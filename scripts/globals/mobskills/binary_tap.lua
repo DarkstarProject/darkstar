@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
             count = count + 1;
         end
 
-        skill:setMsg(msgBasic.EFFECT_DRAINED);
+        skill:setMsg(dsp.msg.basic.EFFECT_DRAINED);
 
         return count;
     else

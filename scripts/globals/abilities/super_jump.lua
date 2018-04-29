@@ -22,7 +22,7 @@ function onUseAbility(player,target,ability)
         target:lowerEnmity(player, 99);
     end
 
-    ability:setMsg(msgBasic.NONE);
+    ability:setMsg(dsp.msg.basic.NONE);
 
     -- Prevent the player from performing actions while in the air
     player:queue(0, function(player)

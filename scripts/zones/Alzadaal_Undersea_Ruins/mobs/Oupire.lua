@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(OUPIRE_IMPALER);
+    player:addTitle(dsp.title.OUPIRE_IMPALER);
 end;

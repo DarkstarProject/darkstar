@@ -17,15 +17,15 @@ function onUseAbility(player,target,ability)
     local power = 0;
     local duration = 30;
 
-    if player:getMainJob() == dsp.jobs.WAR then
+    if player:getMainJob() == dsp.job.WAR then
         power = math.floor((player:getMainLvl()/4)+4.75)/256;
     else
         power = math.floor((player:getSubLvl()/4)+4.75)/256;
     end
 
     power = power * 100;
-    duration = duration + player:getMod(MOD_WARCRY_DURATION);
+    duration = duration + player:getMod(dsp.mod.WARCRY_DURATION);
 
 
-    target:addStatusEffect(dsp.effects.WARCRY,power,0,duration,0,merit);
+    target:addStatusEffect(dsp.effect.WARCRY,power,0,duration,0,merit);
 end;

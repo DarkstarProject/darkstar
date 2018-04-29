@@ -1,8 +1,9 @@
 -- chocobo_digging.lua
 
+require("scripts/globals/settings");
+require("scripts/globals/weather");
 require("scripts/globals/status");
 require("scripts/globals/utils");
-require("scripts/globals/settings");
 
 -----------------------------------
 -- DIG REQUIREMENTS
@@ -128,7 +129,7 @@ function getChocoboDiggingItem(itemMap, chance, burrowAbility, boreAbility, mod,
                 (itemReq == DIGREQ_BURROW and burrowAbility == 1) or
                 (itemReq == DIGREQ_BORE and boreAbility == 1) or
                 (itemReq == DIGREQ_MODIFIER and mod == 1) or
-                (itemReq == DIGREQ_NIGHT and totd == TIME_NIGHT)) then
+                (itemReq == DIGREQ_NIGHT and totd == dsp.time.NIGHT)) then
 
                 return itemID;
             end
@@ -185,7 +186,7 @@ function chocoboDig(player, itemMap, precheck, messageArray)
                 boreAbility = 1;
             end
 
-            local Mod = player:getMod(MOD_EGGHELM);
+            local Mod = player:getMod(dsp.mod.EGGHELM);
 
             ItemID = getChocoboDiggingItem(itemMap, Chance, burrowAbility, boreAbility, Mod, VanadielTOTD());
 

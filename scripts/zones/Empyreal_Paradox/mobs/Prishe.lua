@@ -9,7 +9,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 30);
+    mob:addMod(dsp.mod.REGAIN, 30);
 end;
 
 function onMobSpawn(mob)
@@ -39,7 +39,7 @@ end;
 
 function onMobEngaged(mob, target)
     mob:useMobAbility(1487);
-    mob:addStatusEffectEx(dsp.effects.SILENCE,0,0,0,5)
+    mob:addStatusEffectEx(dsp.effect.SILENCE,0,0,0,5)
 end;
 
 function onMobFight(mob, target)

@@ -18,12 +18,12 @@ function onMobSpawn(mob)
     end
 
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(17297459):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(17297459):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 60);
 end;
 
 function onSpellPrecast(mob, spell)
@@ -37,7 +37,7 @@ function onSpellPrecast(mob, spell)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BEHEMOTH_DETHRONER);
+    player:addTitle(dsp.title.BEHEMOTH_DETHRONER);
 end;
 
 function onMobDespawn(mob)

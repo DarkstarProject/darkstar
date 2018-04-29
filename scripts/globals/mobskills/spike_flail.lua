@@ -10,13 +10,13 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.SUPER_BUFF)) then
+    elseif (mob:hasStatusEffect(dsp.effect.SUPER_BUFF)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.INVINCIBLE)) then
+    elseif (mob:hasStatusEffect(dsp.effect.INVINCIBLE)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
+    elseif (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON)) then
         return 1;
     elseif (target:isBehind(mob, 48) == false) then
         return 1;

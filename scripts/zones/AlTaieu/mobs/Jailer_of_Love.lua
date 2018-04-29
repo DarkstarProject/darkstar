@@ -24,7 +24,7 @@ function onMobFight(mob, target)
         if (mob:getLocalVar("JoL_Qn_xzomit_Killed") == 9
         and mob:getLocalVar("JoL_Qn_hpemde_Killed") == 9) then
             mob:setLocalVar("JoL_Regen_Reduction", 1);
-            mob:addMod(MOD_REGEN, -260)
+            mob:addMod(dsp.mod.REGEN, -260)
         end
     end
 

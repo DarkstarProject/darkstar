@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.HUNDRED_FISTS
+--     dsp.effect.HUNDRED_FISTS
 --     
 -----------------------------------
 

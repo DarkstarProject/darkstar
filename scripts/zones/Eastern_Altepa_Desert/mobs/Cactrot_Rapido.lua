@@ -338,7 +338,7 @@ function onMobRoam(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CACTROT_DESACELERADOR);
+    player:addTitle(dsp.title.CACTROT_DESACELERADOR);
 end;
 
 function onMobDespawn(mob)

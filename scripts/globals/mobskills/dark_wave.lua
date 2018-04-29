@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.BIO;
+    local typeEffect = dsp.effect.BIO;
 
     local cTime = VanadielHour();
     local power = 8;

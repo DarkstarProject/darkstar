@@ -28,8 +28,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
-    if (damage > 0 and target:hasStatusEffect(dsp.effects.FLASH) == false) then
-    target:addStatusEffect(dsp.effects.FLASH, 200, 0, 15);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.FLASH) == false) then
+    target:addStatusEffect(dsp.effect.FLASH, 200, 0, 15);
     end
 	
 

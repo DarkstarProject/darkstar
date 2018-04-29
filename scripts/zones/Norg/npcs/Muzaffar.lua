@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,40);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     elseif (csid == 18) then
         player:addGil(GIL_RATE*2000);
@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,50);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     elseif (csid == 19) then
         player:addGil(GIL_RATE*3000);
@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,80);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     end
 end;

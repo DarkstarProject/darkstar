@@ -32,7 +32,7 @@ function onEventFinish(player,csid,option)
     if (csid == 14 and option == 1) then
         player:addQuest(AHT_URHGAN,FEAR_OF_THE_DARK_II);
     elseif (csid == 16) then
-        if (npcUtil.completeQuest(player, AHT_URHGAN, FEAR_OF_THE_DARK_II, {title=DARK_RESISTANT, gil=200})) then
+        if (npcUtil.completeQuest(player, AHT_URHGAN, FEAR_OF_THE_DARK_II, {title=dsp.title.DARK_RESISTANT, gil=200})) then
             player:confirmTrade();
         end
     end

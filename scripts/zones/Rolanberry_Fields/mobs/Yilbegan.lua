@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(YILBEGAN_HIDEFLAYER);
+    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER);
 end;

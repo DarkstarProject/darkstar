@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
 
     MobStatusEffectMove(mob, target, typeEffect, 50, 0, 60);
 

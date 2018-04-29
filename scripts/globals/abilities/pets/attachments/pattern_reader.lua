@@ -10,7 +10,7 @@ function onEquip(pet)
     pet:addListener("AUTOMATON_AI_TICK", "AUTO_PATTERN_READER_TICK", function(pet, target)
         if pet:getLocalVar("patternreadertick") > 0 then
             local master = pet:getMaster()
-            local maneuvers = master:countEffect(dsp.effects.WIND_MANEUVER)
+            local maneuvers = master:countEffect(dsp.effect.WIND_MANEUVER)
             local lasttick = pet:getLocalVar("patternreadertick")
             local tick = VanadielTime()
             local dt = tick - lasttick
@@ -22,7 +22,7 @@ function onEquip(pet)
                     amount = 30 - prevamount
                 end
                 if amount ~= 0 then
-                    pet:addMod(MOD_EVA, amount)
+                    pet:addMod(dsp.mod.EVA, amount)
                 end
             else
                 amount = -1 * dt
@@ -30,7 +30,7 @@ function onEquip(pet)
                     amount = -prevamount
                 end
                 if amount ~= 0 then
-                    pet:delMod(MOD_EVA, -amount)
+                    pet:delMod(dsp.mod.EVA, -amount)
                 end
             end
             if amount ~= 0 then
@@ -41,7 +41,7 @@ function onEquip(pet)
     end)
     pet:addListener("DISENGAGE", "AUTO_PATTERN_READER_DISENGAGE", function(pet)
         if pet:getLocalVar("patternreader") > 0 then
-            pet:delMod(MOD_EVA, pet:getLocalVar("patternreader"))
+            pet:delMod(dsp.mod.EVA, pet:getLocalVar("patternreader"))
             pet:setLocalVar("patternreader", 0)
         end
         pet:setLocalVar("patternreadertick", 0)

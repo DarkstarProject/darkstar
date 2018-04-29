@@ -26,9 +26,9 @@ end;
 function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
-    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
+    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, ELE_WATER, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_WATER,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    dmg = dmg * applyResistanceAbility(player,target,ELE_WATER,SKILL_MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,ELE_WATER);
     
     local shadowsAbsorbed = 0
@@ -41,18 +41,18 @@ function onUseAbility(player,target,ability,action)
     if shadowsAbsorbed == 0 then
         local effects = {};
         local counter = 1;
-        local drown = target:getStatusEffect(dsp.effects.DROWN);
+        local drown = target:getStatusEffect(dsp.effect.DROWN);
         if (drown ~= nil) then
             effects[counter] = drown;
             counter = counter + 1;
         end
-        local poison = target:getStatusEffect(dsp.effects.POISON);
+        local poison = target:getStatusEffect(dsp.effect.POISON);
         if (poison ~= nil) then
             effects[counter] = poison;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(dsp.effects.THRENODY);
-        if (threnody ~= nil and threnody:getSubPower() == MOD_FIRERES) then
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+        if (threnody ~= nil and threnody:getSubPower() == dsp.mod.FIRERES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end

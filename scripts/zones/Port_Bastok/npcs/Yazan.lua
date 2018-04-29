@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,BITE_THE_DUST);
     elseif (csid == 193) then
         if (player:getQuestStatus(BASTOK,BITE_THE_DUST) == QUEST_ACCEPTED) then
-            player:addTitle(SAND_BLASTER)
+            player:addTitle(dsp.title.SAND_BLASTER)
             player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,BITE_THE_DUST);
         else

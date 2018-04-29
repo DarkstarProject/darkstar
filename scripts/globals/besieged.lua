@@ -43,24 +43,24 @@ function hasAssaultOrders(player)
     local event = 0;
     local keyitem = 0;
 
-    if (player:hasKeyItem(dsp.kis.LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
+    if (player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
         event = 0x0078;
-        keyitem = dsp.kis.LEUJAOAM_ASSAULT_ORDERS;
-    elseif (player:hasKeyItem(dsp.kis.MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja
+        keyitem = dsp.ki.LEUJAOAM_ASSAULT_ORDERS;
+    elseif (player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja
         event = 0x0079;
-        keyitem = dsp.kis.MAMOOL_JA_ASSAULT_ORDERS;
-    elseif (player:hasKeyItem(dsp.kis.LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung
+        keyitem = dsp.ki.MAMOOL_JA_ASSAULT_ORDERS;
+    elseif (player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung
         event = 0x007A;
-        keyitem = dsp.kis.LEBROS_ASSAULT_ORDERS;
-    elseif (player:hasKeyItem(dsp.kis.PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle
+        keyitem = dsp.ki.LEBROS_ASSAULT_ORDERS;
+    elseif (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle
         event = 0x007B;
-        keyitem = dsp.kis.PERIQIA_ASSAULT_ORDERS;
-    elseif (player:hasKeyItem(dsp.kis.ILRUSI_ASSAULT_ORDERS)) then -- assault @ Ilrusi Atoll
+        keyitem = dsp.ki.PERIQIA_ASSAULT_ORDERS;
+    elseif (player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS)) then -- assault @ Ilrusi Atoll
         event = 0x007C;
-        keyitem = dsp.kis.ILRUSI_ASSAULT_ORDERS;
-    elseif (player:hasKeyItem(dsp.kis.NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
+        keyitem = dsp.ki.ILRUSI_ASSAULT_ORDERS;
+    elseif (player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
         event = 0x007D;
-        keyitem = dsp.kis.NYZUL_ISLE_ASSAULT_ORDERS;
+        keyitem = dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS;
     end
 
     return event, keyitem;

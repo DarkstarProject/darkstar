@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     if (not GetMobByID(ULLIKUMMI):isSpawned() and trade:hasItemQty(2388,1) and trade:getItemCount() == 1) then -- Trade Diorite
         player:tradeComplete();
         SpawnMob(ULLIKUMMI):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

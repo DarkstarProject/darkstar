@@ -52,7 +52,7 @@ end;
 
 function onZoneWeatherChange(weather)
     local waterfall = GetNPCByID(ULEGUERAND_WATERFALL);
-    if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
+    if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
         if (waterfall:getAnimation() ~= ANIMATION_CLOSE_DOOR) then
             waterfall:setAnimation(ANIMATION_CLOSE_DOOR);
         end

@@ -38,13 +38,13 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local duration = 120;
 
-    MobStatusEffectMove(mob, target, dsp.effects.PARALYSIS, 40, 3, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.BLINDNESS, 40, 3, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.POISON, 10, 3, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.PLAGUE, 5, 3, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.BIND, 1, 0, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.SILENCE, 1, 0, duration);
-    MobStatusEffectMove(mob, target, dsp.effects.SLOW, 128, 0, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 40, 3, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 40, 3, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.POISON, 10, 3, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.PLAGUE, 5, 3, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.BIND, 1, 0, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, duration);
 
     local dmgmod = 1;
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*7,ELE_FIRE,dmgmod,TP_NO_EFFECT);

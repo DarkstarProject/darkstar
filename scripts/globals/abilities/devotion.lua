@@ -13,9 +13,9 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return msgBasic.CANNOT_PERFORM_TARG,0;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG,0;
     elseif (player:getHP() < 4) then -- Fails if HP < 4
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     else
         return 0,0;
     end

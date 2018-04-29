@@ -12,7 +12,7 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT,mob:getShortID());
 end;
 
 function onMobSpawn(mob)
@@ -29,7 +29,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_LIGHT);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_LIGHT,dmg);
 
-    return SUBEFFECT_LIGHT_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return SUBEFFECT_LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

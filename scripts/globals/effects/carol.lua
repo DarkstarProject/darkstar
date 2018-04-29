@@ -1,13 +1,13 @@
 -----------------------------------
 --
---      dsp.effects.CAROL
+--      dsp.effect.CAROL
 --
 -----------------------------------
 
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
-local resistMod = {MOD_FIRERES, MOD_EARTHRES, MOD_WATERRES, MOD_WINDRES, MOD_ICERES, MOD_THUNDERRES, MOD_LIGHTRES, MOD_DARKRES};
+local resistMod = {dsp.mod.FIRERES, dsp.mod.EARTHRES, dsp.mod.WATERRES, dsp.mod.WINDRES, dsp.mod.ICERES, dsp.mod.THUNDERRES, dsp.mod.LIGHTRES, dsp.mod.DARKRES};
 
 -----------------------------------
 -- onEffectGain Action

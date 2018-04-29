@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onAdditionalEffect(mob,target,damage)
@@ -25,7 +25,7 @@ function onAdditionalEffect(mob,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+        local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
         if (INT_diff > 20) then
             INT_diff = 20 + (INT_diff - 20) / 2;
@@ -41,7 +41,7 @@ function onAdditionalEffect(mob,target,damage)
 
         dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
-        return SUBEFFECT_WATER_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+        return SUBEFFECT_WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
     end
 
 end;

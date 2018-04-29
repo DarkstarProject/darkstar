@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
     if (csid == 3078) then
         player:completeMission(TOAU,GUESTS_OF_THE_EMPIRE);
         player:setVar("AhtUrganStatus",0);
-        player:addTitle(OVJANGS_ERRAND_RUNNER);
+        player:addTitle(dsp.title.OVJANGS_ERRAND_RUNNER);
         player:addItem(2186) -- Imperial Mythril Piece Reward
         player:needToZone(true);
         player:setVar("TOAUM18_STARTDAY", VanadielDayOfTheYear());

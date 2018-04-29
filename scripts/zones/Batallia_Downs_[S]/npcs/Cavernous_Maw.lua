@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 701) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);
+        player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,1);
         end

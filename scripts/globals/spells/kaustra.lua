@@ -22,7 +22,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local skill = caster:getSkillLevel(DARK_MAGIC_SKILL);
-    local dINT = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
     if (skill > 500) then
         skill = 500;
@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     local base = math.floor((math.floor(0.67 * caster:getMainLvl())/10)*(37 + math.floor(0.67*dINT)))
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 0;
     params.effect = nil;
@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
     dmg = adjustForTarget(target,dmg,spell:getElement());
     dmg = finalMagicAdjustments(caster,target,spell,dmg);
 
-    target:addStatusEffect(dsp.effects.KAUSTRA,math.floor(dmg/3),3,duration);
+    target:addStatusEffect(dsp.effect.KAUSTRA,math.floor(dmg/3),3,duration);
 
     return dmg;
 end;

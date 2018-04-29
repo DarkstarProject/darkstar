@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Threnody - MOD_FIRERES
+-- Spell: Threnody - dsp.mod.FIRERES
 -----------------------------------------
 package.loaded["scripts/globals/magic"] = nil;
 require("scripts/globals/status");
@@ -13,5 +13,5 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    return handleThrenody(caster, target, spell, 50, 60, MOD_FIRERES);
+    return handleThrenody(caster, target, spell, 50, 60, dsp.mod.FIRERES);
 end;

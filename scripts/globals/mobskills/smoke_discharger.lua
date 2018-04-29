@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
+    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST);
     local mobhp = mob:getHPP();
     local phase = mob:getLocalVar("battlePhase");
 
@@ -27,7 +27,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effects.PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 3, 15);
 
     local dmgmod = 2;

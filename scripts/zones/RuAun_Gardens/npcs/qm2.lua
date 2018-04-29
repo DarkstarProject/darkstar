@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         SpawnMob(SEIRYU):updateClaim(player);
         player:showText(npc,SKY_GOD_OFFSET + 9);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

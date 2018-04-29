@@ -8,13 +8,13 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK, -1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobSpawn(mob)
-    mob:addMod(MOD_STUNRES, 50);
+    mob:addMod(dsp.mod.STUNRES, 50);
 end;
 
 function onMobFight(mob,target)

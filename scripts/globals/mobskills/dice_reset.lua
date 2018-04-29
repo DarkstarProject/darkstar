@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:resetRecasts();
 
-    skill:setMsg(msgBasic.ABILITIES_RECHARGED);
+    skill:setMsg(dsp.msg.basic.ABILITIES_RECHARGED);
 
     return 1;
 end;

@@ -10,11 +10,11 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_GIL_MAX, -1);
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED) then
         player:setVar("SPLINTERSPINE_GRUKJUK",2);
     end
 end;

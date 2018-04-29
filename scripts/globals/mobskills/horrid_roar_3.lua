@@ -9,11 +9,11 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(dsp.effects.MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.INVINCIBLE)) then
+    elseif (mob:hasStatusEffect(dsp.effect.INVINCIBLE)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.BLOOD_WEAPON)) then
+    elseif (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON)) then
         return 1;
     elseif (target:isBehind(mob, 48) == true) then
         return 1;
@@ -28,9 +28,9 @@ function onMobWeaponSkill(target, mob, skill)
 
     if (dispel == 0) then
         -- no effect
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
     end
 
     mob:lowerEnmity(target, 70);

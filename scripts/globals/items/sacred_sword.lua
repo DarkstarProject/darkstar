@@ -24,9 +24,9 @@ function onAdditionalEffect(player,target,damage)
         dmg = adjustForTarget(target,dmg,ELE_LIGHT);
         dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
 
-        local message = msgBasic.ADD_EFFECT_DMG;
+        local message = dsp.msg.basic.ADD_EFFECT_DMG;
         if (dmg < 0) then
-            message = msgBasic.ADD_EFFECT_HEAL;
+            message = dsp.msg.basic.ADD_EFFECT_HEAL;
         end
 
         return SUBEFFECT_LIGHT_DAMAGE,message,dmg;
@@ -37,6 +37,6 @@ function onItemCheck(target)
     return 0;
 end;
 function onItemUse(target)
-    local effect = dsp.effects.ENLIGHT;
+    local effect = dsp.effect.ENLIGHT;
     doEnspell(target,target,nil,effect);
 end;

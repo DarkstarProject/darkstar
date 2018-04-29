@@ -6,7 +6,7 @@
 require("scripts/globals/status");
 
 function onEquip(pet)
-    pet:addMod(MOD_ENMITY, 20)
+    pet:addMod(dsp.mod.ENMITY, 20)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_STROBE_II", function(automaton, target)
         if automaton:getLocalVar("provoke") < VanadielTime() and (automaton:checkDistance(target) - target:getModelSize()) < 7 then
             automaton:useMobAbility(1945)
@@ -17,26 +17,26 @@ function onEquip(pet)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_ENMITY, 20)
+    pet:delMod(dsp.mod.ENMITY, 20)
     pet:removeListener("ATTACHMENT_STROBE_II")
 end
 
 function onManeuverGain(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:addMod(MOD_ENMITY, 20);
+        pet:addMod(dsp.mod.ENMITY, 20);
     elseif (maneuvers == 2) then
-        pet:addMod(MOD_ENMITY, 25);
+        pet:addMod(dsp.mod.ENMITY, 25);
     elseif (maneuvers == 3) then
-        pet:addMod(MOD_ENMITY, 35);
+        pet:addMod(dsp.mod.ENMITY, 35);
     end
 end
 
 function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:delMod(MOD_ENMITY, 20);
+        pet:delMod(dsp.mod.ENMITY, 20);
     elseif (maneuvers == 2) then
-        pet:delMod(MOD_ENMITY, 25);
+        pet:delMod(dsp.mod.ENMITY, 25);
     elseif (maneuvers == 3) then
-        pet:delMod(MOD_ENMITY, 35);
+        pet:delMod(dsp.mod.ENMITY, 35);
     end
 end

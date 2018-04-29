@@ -15,14 +15,14 @@ function onAdditionalEffect(player,target,damage)
         chance = utils.clamp(chance, 5, 95);
     end
     if (target:hasImmunity(64)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(dsp.effects.BLINDNESS)
-        if (not target:hasStatusEffect(dsp.effects.BLINDNESS)) then
-            target:addStatusEffect(dsp.effects.BLINDNESS, 10, 0, 30);
+        target:delStatusEffect(dsp.effect.BLINDNESS)
+        if (not target:hasStatusEffect(dsp.effect.BLINDNESS)) then
+            target:addStatusEffect(dsp.effect.BLINDNESS, 10, 0, 30);
         end
-        return SUBEFFECT_BLIND, msgBasic.ADD_EFFECT_STATUS, dsp.effects.BLINDNESS;
+        return SUBEFFECT_BLIND, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.BLINDNESS;
     end
 end;

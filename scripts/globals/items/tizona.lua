@@ -22,21 +22,21 @@ aftermathTable[19006] =
         duration = 60,
         mods =
         {
-            { id = MOD_ACC, power = function(tp) return math.floor(tp / 100); end }
+            { id = dsp.mod.ACC, power = function(tp) return math.floor(tp / 100); end }
         }
     },
     {   -- Tier 2
         duration = 90,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(tp / 100 - 10); end }
+            { id = dsp.mod.MACC, power = function(tp) return math.floor(tp / 100 - 10); end }
         }
     },
     {   -- Tier 3
         duration = 120,
         mods =
         {
-            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end }
+            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end }
         }
     }
 };
@@ -48,21 +48,21 @@ aftermathTable[19075] =
         duration = 90,
         mods =
         {
-            { id = MOD_ACC, power = function(tp) return math.floor(3 * tp / 200); end }
+            { id = dsp.mod.ACC, power = function(tp) return math.floor(3 * tp / 200); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(3 * tp / 200 - 15); end }
+            { id = dsp.mod.MACC, power = function(tp) return math.floor(3 * tp / 200 - 15); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 60; end }
+            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 60; end }
         }
     }
 };
@@ -76,22 +76,22 @@ aftermathTable[19725] =
         duration = 90,
         mods =
         {
-            { id = MOD_ACC, power = function(tp) return math.floor(tp / 50 + 10); end }
+            { id = dsp.mod.ACC, power = function(tp) return math.floor(tp / 50 + 10); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_MACC, power = function(tp) return math.floor(tp / 50 - 10); end }
+            { id = dsp.mod.MACC, power = function(tp) return math.floor(tp / 50 - 10); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end },
-            { id = MOD_MYTHIC_OCC_ATT_THRICE, power = function(tp) return 20; end }
+            { id = dsp.mod.MYTHIC_OCC_ATT_TWICE, power = function(tp) return 40; end },
+            { id = dsp.mod.MYTHIC_OCC_ATT_THRICE, power = function(tp) return 20; end }
         }
     }
 };
@@ -102,7 +102,7 @@ aftermathTable[20652] = aftermathTable[19725]; -- Nirvana (119/II)
 aftermathTable[20688] = aftermathTable[19725]; -- Nirvana (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_EXPIACION) then -- Expiacion onry
+    if (wsid == dsp.ws.EXPIACION) then -- Expiacion onry
         if (shouldApplyAftermath(user, tp)) then
             local itemId = user:getEquipID(SLOT_MAIN);
             if (aftermathTable[itemId]) then
@@ -116,7 +116,7 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
+    if (effect:getType() == dsp.effect.AFTERMATH) then
         local itemId = target:getEquipID(SLOT_MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
@@ -132,8 +132,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -164,6 +164,6 @@ function onAdditionalEffect(player,target,damage)
         local drain = math.floor(damage * (math.random(100,200)/1000));
         player:addMP(drain);
 
-        return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, drain;
+        return SUBEFFECT_MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, drain;
     end
 end;

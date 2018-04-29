@@ -28,14 +28,14 @@ end;
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then
-        skin = target:getMod(MOD_STONESKIN);
+        skin = target:getMod(dsp.mod.STONESKIN);
         if (skin > 0) then
             if (skin > dmg) then --absorb all damage
-                target:delMod(MOD_STONESKIN,dmg);
+                target:delMod(dsp.mod.STONESKIN,dmg);
                 return 0;
             else --absorbs some damage then wear
-                target:delStatusEffect(dsp.effects.STONESKIN);
-                target:setMod(MOD_STONESKIN, 0);
+                target:delStatusEffect(dsp.effect.STONESKIN);
+                target:setMod(dsp.mod.STONESKIN, 0);
                 return dmg - skin;
             end
         end
@@ -49,12 +49,12 @@ function utils.takeShadows(target, dmg, shadowbehav)
         shadowbehav = 1;
     end
 
-    local targShadows = target:getMod(MOD_UTSUSEMI);
-    local shadowType = MOD_UTSUSEMI;
+    local targShadows = target:getMod(dsp.mod.UTSUSEMI);
+    local shadowType = dsp.mod.UTSUSEMI;
 
     if (targShadows == 0) then --try blink, as utsusemi always overwrites blink this is okay
-        targShadows = target:getMod(MOD_BLINK);
-        shadowType = MOD_BLINK;
+        targShadows = target:getMod(dsp.mod.BLINK);
+        shadowType = dsp.mod.BLINK;
     end
 
     if (targShadows > 0) then
@@ -66,28 +66,28 @@ function utils.takeShadows(target, dmg, shadowbehav)
 
             target:setMod(shadowType, shadowsLeft);
 
-            if (shadowsLeft > 0 and shadowType == MOD_UTSUSEMI) then --update icon
-                effect = target:getStatusEffect(dsp.effects.COPY_IMAGE);
+            if (shadowsLeft > 0 and shadowType == dsp.mod.UTSUSEMI) then --update icon
+                effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
                 if (effect ~= nil) then
                     if (shadowsLeft == 1) then
-                        effect:setIcon(dsp.effects.COPY_IMAGE);
+                        effect:setIcon(dsp.effect.COPY_IMAGE);
                     elseif (shadowsLeft == 2) then
-                        effect:setIcon(dsp.effects.COPY_IMAGE_2);
+                        effect:setIcon(dsp.effect.COPY_IMAGE_2);
                     elseif (shadowsLeft == 3) then
-                        effect:setIcon(dsp.effects.COPY_IMAGE_3);
+                        effect:setIcon(dsp.effect.COPY_IMAGE_3);
                     end
                 end
             end
             -- remove icon
             if (shadowsLeft <= 0) then
-                target:delStatusEffect(dsp.effects.COPY_IMAGE);
-                target:delStatusEffect(dsp.effects.BLINK);
+                target:delStatusEffect(dsp.effect.COPY_IMAGE);
+                target:delStatusEffect(dsp.effect.BLINK);
             end
 
             return 0;
         else --less shadows than this move will take, remove all and factor damage down
-            target:delStatusEffect(dsp.effects.COPY_IMAGE);
-            target:delStatusEffect(dsp.effects.BLINK);
+            target:delStatusEffect(dsp.effect.COPY_IMAGE);
+            target:delStatusEffect(dsp.effect.BLINK);
             return dmg * ((shadowbehav-targShadows)/shadowbehav);
         end
     end
@@ -99,7 +99,7 @@ end;
 function utils.thirdeye(target)
     --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
     --chance of anticipate based on previous successful anticipates.
-    local teye = target:getStatusEffect(dsp.effects.THIRD_EYE);
+    local teye = target:getStatusEffect(dsp.effect.THIRD_EYE);
 
     if (teye == nil) then
         return false;
@@ -109,7 +109,7 @@ function utils.thirdeye(target)
 
     if ( prevAnt == 0 or (math.random()*100) < (80-(prevAnt*10)) ) then
         --anticipated!
-        target:delStatusEffect(dsp.effects.THIRD_EYE);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
         return true;
     end
 

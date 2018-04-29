@@ -10,5 +10,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SANDWORM_WRANGLER);
+    player:addTitle(dsp.title.SANDWORM_WRANGLER);
 end;

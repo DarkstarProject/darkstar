@@ -18,7 +18,7 @@ function onAbilityCheck(player,target,ability)
     if (pet >= 0 and pet <= 7) then -- spirits
         return 0,0;
     else
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     end
 end;
 
@@ -38,7 +38,7 @@ function onUseAbility(player,target,ability)
         spiritEle = 3
     end;
 
-    local pEquipMods = player:getMod(MOD_ENHANCES_ELEMENTAL_SIPHON);
+    local pEquipMods = player:getMod(dsp.mod.ENHANCES_ELEMENTAL_SIPHON);
     local basePower = player:getSkillLevel(SKILL_SUM) + pEquipMods - 50;
     if (basePower < 0) then -- skill your summoning magic you lazy bastard !
         basePower = 0;

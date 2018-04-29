@@ -32,9 +32,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.vit_wsc = 1.0;
     end
 
-    if (damage > 0 and target:hasStatusEffect(dsp.effects.STUN) == false) then
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.STUN) == false) then
         local duration = (tp/500) * applyResistanceAddEffect(player,target,ELE_LIGHTNING,0);
-        target:addStatusEffect(dsp.effects.STUN, 1, 0, duration);
+        target:addStatusEffect(dsp.effect.STUN, 1, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 

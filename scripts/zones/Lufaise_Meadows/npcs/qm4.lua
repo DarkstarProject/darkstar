@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
     -- NOTE: uncertain of retailness of messages. Had expected but did not find any csid.
     if (
-        player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and
+        player:getQuestStatus(OTHER_AREAS_LOG,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and
         player:getVar("SPLINTERSPINE_GRUKJUK") <= 1 and
         not GetMobByID(SPLINTERSPINE_GRUKJUK):isSpawned()
     ) then

@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,FOREVER_TO_HOLD);
         player:setVar("ForevertoHold_Event",1);
     elseif (csid == 126) then
-        player:addTitle(QIJIS_FRIEND);
+        player:addTitle(dsp.title.QIJIS_FRIEND);
         player:addGil(GIL_RATE*300);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
         player:addFame(BASTOK,80);

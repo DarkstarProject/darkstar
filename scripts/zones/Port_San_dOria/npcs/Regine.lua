@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:setVar("FFR",17);
         end
     elseif (csid == 603) then
-        if (npcUtil.completeQuest(player, SANDORIA, FLYERS_FOR_REGINE, {gil=440, title=ADVERTISING_EXECUTIVE})) then
+        if (npcUtil.completeQuest(player, SANDORIA, FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
             player:setVar("tradeAnswald",0);
             player:setVar("tradePrietta",0);
             player:setVar("tradeMiene",0);

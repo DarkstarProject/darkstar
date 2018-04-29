@@ -33,25 +33,25 @@ function onEventFinish(player,csid,option)
 
         if (c == 0) then
             player:setVar("countRedPoolForORB", c + 4);
-            player:delKeyItem(dsp.kis.WHITE_ORB);
-            player:addKeyItem(dsp.kis.PINK_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.PINK_ORB);
+            player:delKeyItem(dsp.ki.WHITE_ORB);
+            player:addKeyItem(dsp.ki.PINK_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.PINK_ORB);
         elseif (c == 1 or c == 2 or c == 8) then
             player:setVar("countRedPoolForORB", c + 4);
-            player:delKeyItem(dsp.kis.PINK_ORB);
-            player:addKeyItem(dsp.kis.RED_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.RED_ORB);
+            player:delKeyItem(dsp.ki.PINK_ORB);
+            player:addKeyItem(dsp.ki.RED_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.RED_ORB);
         elseif (c == 3 or c == 9 or c == 10) then
             player:setVar("countRedPoolForORB", c + 4);
-            player:delKeyItem(dsp.kis.RED_ORB);
-            player:addKeyItem(dsp.kis.BLOOD_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.BLOOD_ORB);
+            player:delKeyItem(dsp.ki.RED_ORB);
+            player:addKeyItem(dsp.ki.BLOOD_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BLOOD_ORB);
         elseif (c == 11) then
             player:setVar("countRedPoolForORB", c + 4);
-            player:delKeyItem(dsp.kis.BLOOD_ORB);
-            player:addKeyItem(dsp.kis.CURSED_ORB);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.CURSED_ORB);
-            player:addStatusEffect(dsp.effects.CURSE_I,50,0,900);
+            player:delKeyItem(dsp.ki.BLOOD_ORB);
+            player:addKeyItem(dsp.ki.CURSED_ORB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.CURSED_ORB);
+            player:addStatusEffect(dsp.effect.CURSE_I,50,0,900);
         end
     end
 

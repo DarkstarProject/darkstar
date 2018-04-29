@@ -6,7 +6,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 300);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300);
 end;
 
 function onMobDeath(mob, player, isKiller)

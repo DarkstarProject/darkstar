@@ -1,6 +1,6 @@
 -----------------------------------
 --  
---     dsp.effects.LEVEL_RESTRICTION
+--     dsp.effect.LEVEL_RESTRICTION
 --     
 -----------------------------------
 

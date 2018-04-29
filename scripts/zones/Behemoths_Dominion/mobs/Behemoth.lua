@@ -12,12 +12,12 @@ end;
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(17297459):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(17297459):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BEHEMOTHS_BANE);
+    player:addTitle(dsp.title.BEHEMOTHS_BANE);
 end;
 
 function onMobDespawn(mob)

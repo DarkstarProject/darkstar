@@ -9,9 +9,9 @@ require("scripts/globals/msg");
 
 function onMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
-        return msgBasic.CANT_BE_USED_IN_AREA;
+        return dsp.msg.basic.CANT_BE_USED_IN_AREA;
     elseif (caster:hasPet()) then
-        return msgBasic.ALREADY_HAS_A_PET;
+        return dsp.msg.basic.ALREADY_HAS_A_PET;
     else
         return 0;
     end

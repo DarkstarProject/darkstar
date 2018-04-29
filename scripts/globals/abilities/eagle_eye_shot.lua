@@ -24,7 +24,7 @@ function onAbilityCheck(player,target,ability)
         end;
     end;
 
-    return msgBasic.NO_RANGED_WEAPON, 0;
+    return dsp.msg.basic.NO_RANGED_WEAPON, 0;
 end;
 
 function onUseAbility(player,target,ability,action)
@@ -46,10 +46,10 @@ function onUseAbility(player,target,ability,action)
     
     -- Set the message id ourselves
     if (tpHits + extraHits > 0) then
-        action:messageID(target:getID(), msgBasic.JA_DAMAGE);
+        action:messageID(target:getID(), dsp.msg.basic.JA_DAMAGE);
         action:speceffect(target:getID(), 32);
     else
-        action:messageID(target:getID(), msgBasic.JA_MISS_2);
+        action:messageID(target:getID(), dsp.msg.basic.JA_MISS_2);
         action:speceffect(target:getID(), 0);
     end
 

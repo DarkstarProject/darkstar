@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OTHER_AREAS,CARGO) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,CARGO) ~= QUEST_AVAILABLE) then
         realday = tonumber(os.date("%j")); -- %M for next minute, %j for next real day
         starttime = player:getVar("VuntarCanBuyItem_date");
 
@@ -34,7 +34,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getMainLvl() >= 20 and player:getQuestStatus(OTHER_AREAS,CARGO) == QUEST_AVAILABLE) then
+    if (player:getMainLvl() >= 20 and player:getQuestStatus(OTHER_AREAS_LOG,CARGO) == QUEST_AVAILABLE) then
         player:startEvent(50,4365); -- Start quest "Cargo"
     elseif (player:getMainLvl() < 20) then
         player:startEvent(53); -- Dialog for low level or low fame
@@ -52,12 +52,12 @@ function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
     if (csid == 50) then
-        player:addQuest(OTHER_AREAS,CARGO);
+        player:addQuest(OTHER_AREAS_LOG,CARGO);
     elseif (csid == 52) then
         player:setVar("VuntarCanBuyItem_date", os.date("%j")); -- %M for next minute, %j for next real day
-        if (player:getQuestStatus(OTHER_AREAS,CARGO) == QUEST_ACCEPTED) then
-            player:completeQuest(OTHER_AREAS,CARGO);
-            player:addFame(OTHER_AREAS,30);
+        if (player:getQuestStatus(OTHER_AREAS_LOG,CARGO) == QUEST_ACCEPTED) then
+            player:completeQuest(OTHER_AREAS_LOG,CARGO);
+            player:addFame(SELBINA,30);
         end
         if (option == 1) then
             player:addGil(800);

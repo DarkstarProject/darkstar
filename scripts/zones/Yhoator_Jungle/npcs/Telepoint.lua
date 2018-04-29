@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.kis.YHOATOR_GATE_CRYSTAL) == false) then
-        player:addKeyItem(dsp.kis.YHOATOR_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.YHOATOR_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.ki.YHOATOR_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.ki.YHOATOR_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.YHOATOR_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

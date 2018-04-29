@@ -44,8 +44,8 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if (csid == 10 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DEATH, {item=16637, title=BLACK_DEATH, var="ChaosbringerKills"})) then
+    if (csid == 10 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DEATH, {item=16637, title=dsp.title.BLACK_DEATH, var="ChaosbringerKills"})) then
         player:confirmTrade();
-        player:delKeyItem(dsp.kis.LETTER_FROM_ZEID);
+        player:delKeyItem(dsp.ki.LETTER_FROM_ZEID);
     end
 end;

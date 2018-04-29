@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
         heal = heal * 3;
     end
 
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
 
     return MobHealMove(mob, heal);
 end;

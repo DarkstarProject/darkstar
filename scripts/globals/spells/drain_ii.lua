@@ -23,8 +23,8 @@ function onSpellCast(caster,target,spell)
 
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
     params.skillType = DARK_MAGIC_SKILL;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
         return dmg;
     end
 
@@ -54,10 +54,10 @@ function onSpellCast(caster,target,spell)
     local leftOver = (caster:getHP() + dmg) - caster:getMaxHP();
 
     if (leftOver > 0) then
-        caster:addStatusEffect(dsp.effects.MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
+        caster:addStatusEffect(dsp.effect.MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
     end
 
     caster:addHP(dmg);
-    spell:setMsg(msgBasic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
+    spell:setMsg(dsp.msg.basic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
     return dmg;
 end;

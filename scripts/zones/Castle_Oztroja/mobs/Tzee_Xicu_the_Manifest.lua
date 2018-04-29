@@ -16,7 +16,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(DEITY_DEBUNKER);
+    player:addTitle(dsp.title.DEITY_DEBUNKER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
 end;

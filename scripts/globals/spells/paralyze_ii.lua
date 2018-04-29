@@ -17,7 +17,7 @@ function onSpellCast(caster,target,spell)
     local merits = caster:getMerit(MERIT_PARALYZE_II);
 
     -- Pull base stats
-    local dMND = caster:getStat(MOD_MND) - target:getStat(MOD_MND);
+    local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);
 
     -- Base potency
     local potency = math.floor(dMND / 4) + 20;
@@ -34,32 +34,32 @@ function onSpellCast(caster,target,spell)
         potency = potency + merits - 1;
     end
 
-    if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         potency = potency * 2;
     end
 
     local duration = 120;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = merits*2;
-    params.effect = dsp.effects.PARALYSIS;
+    params.effect = dsp.effect.PARALYSIS;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 90) then
-        if (caster:hasStatusEffect(dsp.effects.SABOTEUR)) then
+        if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
             duration = duration * 2;
         end
-        caster:delStatusEffect(dsp.effects.SABOTEUR);
+        caster:delStatusEffect(dsp.effect.SABOTEUR);
 
-        if (target:addStatusEffect(dsp.effects.PARALYSIS,potency,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (target:addStatusEffect(dsp.effect.PARALYSIS,potency,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
-    return dsp.effects.PARALYSIS;
+    return dsp.effect.PARALYSIS;
 end;

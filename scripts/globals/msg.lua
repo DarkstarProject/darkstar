@@ -1,13 +1,14 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-
+dsp = dsp or {};
+dsp.msg = dsp.msg or {};
 
 ------------------------------------
--- Chat types
+-- Message Channels
 ------------------------------------
 
-chatType =
+dsp.msg.channel =
 {
     SAY            = 0,
     SHOUT          = 1,
@@ -46,7 +47,7 @@ chatType =
 -- Message Basic
 ------------------------------------
 
-msgBasic =
+dsp.msg.basic =
 {
     NONE    = 0, -- Display nothing
     HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.

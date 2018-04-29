@@ -15,11 +15,11 @@ function onTrigger(player,npc)
     if (
         player:getCurrentMission(COP) == THREE_PATHS and
         player:getVar("COP_Tenzen_s_Path") == 6 and
-        player:hasKeyItem(dsp.kis.DELKFUTT_RECOGNITION_DEVICE) and
+        player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) and
         not GetMobByID(DISASTER_IDOL):isSpawned()
     ) then
         SpawnMob(DISASTER_IDOL):updateClaim(player);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(dsp.kis.DELKFUTT_RECOGNITION_DEVICE)) then
+    elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE)) then
         player:startEvent(25);
     end
 

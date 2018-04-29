@@ -40,6 +40,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(HYDRA_HEADHUNTER);
+    player:addTitle(dsp.title.HYDRA_HEADHUNTER);
 
 end;

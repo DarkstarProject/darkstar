@@ -15,36 +15,36 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getAnimation() ~= 1) then
-        return msgBasic.REQUIRES_COMBAT,0;
+        return dsp.msg.basic.REQUIRES_COMBAT,0;
     else
-        if (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_1)) then
-            player:delStatusEffect(dsp.effects.FINISHING_MOVE_1);
+        if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
+            player:delStatusEffect(dsp.effect.FINISHING_MOVE_1);
             return 0,0;
-        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_2)) then
-            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_2);
-            player:addStatusEffect(dsp.effects.FINISHING_MOVE_1,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_2)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_2);
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_1,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_3)) then
-            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_3);
-            player:addStatusEffect(dsp.effects.FINISHING_MOVE_2,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_3)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_3);
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_2,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_4)) then
-            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_4);
-            player:addStatusEffect(dsp.effects.FINISHING_MOVE_3,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_4)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_4);
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_3,1,0,7200);
             return 0,0;
-        elseif (player:hasStatusEffect(dsp.effects.FINISHING_MOVE_5)) then
-            player:delStatusEffectSilent(dsp.effects.FINISHING_MOVE_5);
-            player:addStatusEffect(dsp.effects.FINISHING_MOVE_4,1,0,7200);
+        elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
+            player:delStatusEffectSilent(dsp.effect.FINISHING_MOVE_5);
+            player:addStatusEffect(dsp.effect.FINISHING_MOVE_4,1,0,7200);
             return 0,0;
         else
-            return msgBasic.NO_FINISHINGMOVES,0;
+            return dsp.msg.basic.NO_FINISHINGMOVES,0;
         end
     end
 end;
 
 function onUseAbility(player,target,ability,action)
 
-    local isSneakValid = player:hasStatusEffect(dsp.effects.SNEAK_ATTACK);
+    local isSneakValid = player:hasStatusEffect(dsp.effect.SNEAK_ATTACK);
     if (isSneakValid and not player:isBehind(target)) then
         isSneakValid = false;
     end
@@ -57,21 +57,21 @@ function onUseAbility(player,target,ability,action)
         local params = {};
         params.diff = 0;
         params.skillType = player:getWeaponSkillType(SLOT_MAIN);
-        params.bonus = 50 - target:getMod(MOD_STUNRES);
+        params.bonus = 50 - target:getMod(dsp.mod.STUNRES);
         local resist = applyResistance(player, target, spell, params)
 
         if resist > 0.25 then
-            target:delStatusEffectSilent(dsp.effects.WEIGHT);
-            target:addStatusEffect(dsp.effects.WEIGHT, 50, 0, 60 * resist);
+            target:delStatusEffectSilent(dsp.effect.WEIGHT);
+            target:addStatusEffect(dsp.effect.WEIGHT, 50, 0, 60 * resist);
         else
-            ability:setMsg(msgBasic.JA_DAMAGE);
+            ability:setMsg(dsp.msg.basic.JA_DAMAGE);
         end
-        ability:setMsg(msgBasic.JA_ENFEEB_IS);
+        ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS);
         action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
         action:speceffect(target:getID(), 2)
-        return dsp.effects.WEIGHT
+        return dsp.effect.WEIGHT
     else
-        ability:setMsg(msgBasic.JA_MISS);
+        ability:setMsg(dsp.msg.basic.JA_MISS);
         return 0;
     end
 end;

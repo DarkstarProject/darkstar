@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
         local inst = player:getVar("bcnm_instanceid");
         if (inst >= 1 and inst <= 3) then
             -- players are healed in between fights, but their TP is set to 0
-            player:addTitle(BRANDED_BY_LIGHTNING);
+            player:addTitle(dsp.title.BRANDED_BY_LIGHTNING);
             player:setHP(player:getMaxHP());
             player:setMP(player:getMaxMP());
             player:setTP(0);

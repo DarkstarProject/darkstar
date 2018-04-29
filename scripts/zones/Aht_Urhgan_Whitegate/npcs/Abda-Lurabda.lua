@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getMainJob() == dsp.jobs.PUP) then
+    if (player:getMainJob() == dsp.job.PUP) then
         player:startEvent(648, 0, 9800, player:getGil());
     else
         player:startEvent(257);

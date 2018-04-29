@@ -7,14 +7,14 @@ require("scripts/globals/status");
 
 
 function onMobInitialise(mob)
-    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(dsp.effects.PHALANX,35,0,180);
-    mob:addStatusEffect(dsp.effects.STONESKIN,350,0,300);
-    mob:addStatusEffect(dsp.effects.PROTECT,175,0,1800);
-    mob:addStatusEffect(dsp.effects.SHELL,24,0,1800);
+    mob:addStatusEffect(dsp.effect.PHALANX,35,0,180);
+    mob:addStatusEffect(dsp.effect.STONESKIN,350,0,300);
+    mob:addStatusEffect(dsp.effect.PROTECT,175,0,1800);
+    mob:addStatusEffect(dsp.effect.SHELL,24,0,1800);
 end;
 
 function onMobFight(mob,target)

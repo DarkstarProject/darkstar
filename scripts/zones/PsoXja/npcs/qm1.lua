@@ -18,12 +18,12 @@ function onTrade(player,npc,trade)
             player:confirmTrade();
             SpawnMob(GOLDEN_TONGUED_CULBERRY):updateClaim(player);
             SetDropRate(1512, 13145, 500);
-            npc:setStatus(STATUS_DISAPPEAR);
+            npc:setStatus(dsp.status.DISAPPEAR);
         elseif (npcUtil.tradeHas(trade, 18016)) then -- odorous knife +1
             player:confirmTrade();
             SpawnMob(GOLDEN_TONGUED_CULBERRY):updateClaim(player);
             SetDropRate(1512, 13145, 1000);
-            npc:setStatus(STATUS_DISAPPEAR);
+            npc:setStatus(dsp.status.DISAPPEAR);
         end
     end
 end;

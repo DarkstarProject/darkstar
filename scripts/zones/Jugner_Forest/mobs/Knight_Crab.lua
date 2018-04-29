@@ -15,7 +15,7 @@ function onMobSpawn(mob)
     end
 
     -- 5 minute rage timer (ffxiah says 5, ffxiclopedia says 5-10, bg doesn't say at all)
-    mob:setMobMod(MOBMOD_RAGE, 300);
+    mob:setMobMod(dsp.mobMod.RAGE, 300);
 end;
 
 function onMobDeath(mob, player, isKiller)

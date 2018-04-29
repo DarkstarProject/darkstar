@@ -7,9 +7,9 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, mob:getShortID());
-    mob:addStatusEffect(dsp.effects.SHOCK_SPIKES, 10, 0, 0);
-    mob:getStatusEffect(dsp.effects.SHOCK_SPIKES):setFlag(32);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID());
+    mob:addStatusEffect(dsp.effect.SHOCK_SPIKES, 10, 0, 0);
+    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(32);
 end;
 
 function onMobFight(mob,target)
@@ -26,9 +26,9 @@ function onAdditionalEffect(mob,target,damage)
     power = adjustForTarget(target, power, ELE_ICE);
     power = finalMagicNonSpellAdjustments(mob, target, ELE_ICE, power);
 
-    local message = msgBasic.ADD_EFFECT_DMG;
+    local message = dsp.msg.basic.ADD_EFFECT_DMG;
     if (power < 0) then
-        message = msgBasic.ADD_EFFECT_HEAL;
+        message = dsp.msg.basic.ADD_EFFECT_HEAL;
     end
 
     return SUBEFFECT_ICE_DAMAGE, message, power;

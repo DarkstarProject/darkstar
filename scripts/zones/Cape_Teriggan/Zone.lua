@@ -62,9 +62,9 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(KREUTZET) == 24 and (weather == WEATHER_WIND or weather == WEATHER_GALES)) then
+    if (GetMobAction(KREUTZET) == 24 and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)) then
         SpawnMob(KREUTZET); -- Kreutzet
-    elseif (GetMobAction(KREUTZET) == 16 and (weather ~= WEATHER_WIND and weather ~= WEATHER_GALES)) then
+    elseif (GetMobAction(KREUTZET) == 16 and (weather ~= dsp.weather.WIND and weather ~= dsp.weather.GALES)) then
         DespawnMob(KREUTZET);
     end
 end;

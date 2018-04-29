@@ -28,6 +28,6 @@ function onMobDespawn(mob)
 
     if (mobID ==16933063) then -- item
        GetNPCByID(16932864+126):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+126):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+126):setStatus(dsp.status.NORMAL);
  end
 end;

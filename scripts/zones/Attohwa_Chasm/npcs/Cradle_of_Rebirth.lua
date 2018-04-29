@@ -23,15 +23,15 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.kis.MIMEO_JEWEL) == true) then
-        player:delKeyItem(dsp.kis.MIMEO_JEWEL);
-        player:messageSpecial(KEYITEM_LOST,dsp.kis.MIMEO_JEWEL);
-        player:addKeyItem(dsp.kis.MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.MIMEO_FEATHER);
-        player:addKeyItem(dsp.kis.SECOND_MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.SECOND_MIMEO_FEATHER);
-        player:addKeyItem(dsp.kis.THIRD_MIMEO_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.kis.THIRD_MIMEO_FEATHER);
+    if (player:hasKeyItem(dsp.ki.MIMEO_JEWEL) == true) then
+        player:delKeyItem(dsp.ki.MIMEO_JEWEL);
+        player:messageSpecial(KEYITEM_LOST,dsp.ki.MIMEO_JEWEL);
+        player:addKeyItem(dsp.ki.MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MIMEO_FEATHER);
+        player:addKeyItem(dsp.ki.SECOND_MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.SECOND_MIMEO_FEATHER);
+        player:addKeyItem(dsp.ki.THIRD_MIMEO_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.THIRD_MIMEO_FEATHER);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

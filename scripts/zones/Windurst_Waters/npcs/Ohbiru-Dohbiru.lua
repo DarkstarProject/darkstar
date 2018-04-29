@@ -149,7 +149,7 @@ function onEventFinish(player,csid,option)
         if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 2) then -- If this is the last NPC to be fed
             player:tradeComplete();
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(FAST_FOOD_DELIVERER);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addGil(GIL_RATE*440);
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
@@ -165,7 +165,7 @@ function onEventFinish(player,csid,option)
         if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 2) then -- If this is the last NPC to be fed
             player:tradeComplete();
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(FAST_FOOD_DELIVERER);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addGil(GIL_RATE*440);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
         player:completeQuest(WINDURST,TORAIMARAI_TURMOIL);
         player:addFame(WINDURST,100);
-        player:addTitle(CERTIFIED_RHINOSTERY_VENTURER);
+        player:addTitle(dsp.title.CERTIFIED_RHINOSTERY_VENTURER);
         player:tradeComplete();
     elseif (csid == 791 and turmoil == 2) then -- Completes Toraimarai turmoil - repeats
         player:addGil(GIL_RATE*4500);
