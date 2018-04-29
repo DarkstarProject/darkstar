@@ -556,7 +556,12 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(SpellID SpellID)
     {
-        return PSpellList[static_cast<size_t>(SpellID)];
+        auto id = static_cast<uint16>(SpellID);
+        if (id >= MAX_SPELL_ID)
+        {
+            return nullptr;
+        }
+        return PSpellList[id];
     }
 
     bool CanUseSpell(CBattleEntity* PCaster, SpellID SpellID)
