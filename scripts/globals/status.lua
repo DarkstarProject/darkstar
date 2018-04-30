@@ -1021,7 +1021,7 @@ dsp.mod =
     FASTCAST                        = 170,
     UFASTCAST                       = 407,
     CURE_CAST_TIME                  = 519,
-	ELEMENTAL_CELERITY 				= 901, -- Quickens Elemental Magic Casting
+    ELEMENTAL_CELERITY 	            = 901, -- Quickens Elemental Magic Casting
     DELAY                           = 171,
     RANGED_DELAY                    = 172,
     MARTIAL_ARTS                    = 173,
@@ -1410,7 +1410,7 @@ dsp.mod =
     ENHANCES_BLITZERS_ROLL          = 893, -- Blitzer's Roll Bonus % chance
     ENHANCES_ALLIES_ROLL            = 894, -- Allies' Roll Bonus % chance
     ENHANCES_TACTICIANS_ROLL        = 895, -- Tactician's Roll Bonus % chance
-	OCCULT_ACUMEN             		= 902, -- Grants bonus TP when dealing damage with elemental or dark magic
+    OCCULT_ACUMEN                   = 902, -- Grants bonus TP when dealing damage with elemental or dark magic
 
     -- Automaton mods
     AUTO_DECISION_DELAY             = 842, -- Reduces the Automaton's global decision delay
