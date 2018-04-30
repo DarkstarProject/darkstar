@@ -1262,6 +1262,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
                 // Check for bind breaking
                 battleutils::BindBreakCheck(this, PTarget);
+
+                // Do we get TP for damaging spells?
+                int16 tp = battleutils::CalculateSpellTP(this, PSpell);
+                addTP(tp);
             }
 
             if (msg == 0)

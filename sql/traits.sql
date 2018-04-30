@@ -152,6 +152,8 @@ INSERT INTO `traits` VALUES ('12','fast cast','5','55','3','170','20',null,'0');
 INSERT INTO `traits` VALUES ('12','fast cast','5','76','4','170','25','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('12','fast cast','5','89','5','170','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('13','conserve mp','4','20','1','296','25',null,'0');
+INSERT INTO `traits` VALUES ('13','conserve mp','4','76','2','296','28','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('13','conserve mp','4','86','3','296','31','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('13','conserve mp','20','25','1','296','25','WOTG','0');
 INSERT INTO `traits` VALUES ('14','store tp','12','10','1','73','10',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('14','store tp','12','30','2','73','15',null,'0'); -- ROTZ
@@ -207,8 +209,8 @@ INSERT INTO `traits` VALUES ('24','clear mind','4','45','3','295','1',null,'0');
 INSERT INTO `traits` VALUES ('24','clear mind','4','60','4','71','12',null,'0');
 INSERT INTO `traits` VALUES ('24','clear mind','4','75','5','71','15',null,'0');
 INSERT INTO `traits` VALUES ('24','clear mind','4','75','5','295','2',null,'0');
-INSERT INTO `traits` VALUES ('24','clear mind','4','91','6','71','18','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('24','clear mind','4','91','6','295','3','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('24','clear mind','4','96','6','71','18','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('24','clear mind','4','96','6','295','3','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('24','clear mind','5','31','1','71','3',null,'0');
 INSERT INTO `traits` VALUES ('24','clear mind','5','53','2','71','6',null,'0');
 INSERT INTO `traits` VALUES ('24','clear mind','5','75','3','71','9',null,'0');
@@ -410,6 +412,8 @@ INSERT INTO `traits` VALUES ('106','skillchain bonus','19','58','2','174','12','
 INSERT INTO `traits` VALUES ('106','skillchain bonus','19','71','3','174','16','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','19','84','4','174','20','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','19','97','4','174','23','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('109','occult acumen','4','85','1','902','25','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('109','occult acumen','4','95','2','902','50','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','4','45','1','487','5','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','4','58','2','487','7','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','4','71','3','487','9','ABYSSEA','0');
@@ -422,6 +426,11 @@ INSERT INTO `traits` VALUES ('110','mag. burst bonus','13','90','2','487','7','A
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','79','1','487','5','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','89','2','487','7','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','99','3','487','9','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('112','elemental celerity','4','50','1','901','10','SOA','0');
+INSERT INTO `traits` VALUES ('112','elemental celerity','4','60','2','901','15','SOA','0');
+INSERT INTO `traits` VALUES ('112','elemental celerity','4','70','3','901','20','SOA','0');
+INSERT INTO `traits` VALUES ('112','elemental celerity','4','80','4','901','25','SOA','0');
+INSERT INTO `traits` VALUES ('112','elemental celerity','4','90','5','901','30','SOA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','3','21','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','5','26','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','20','30','1','0','0','ABYSSEA','0');
