@@ -23,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         if (not target:hasStatusEffect(dsp.effect.POISON)) then
             target:addStatusEffect(dsp.effect.POISON, 4, 3, 30);
         end
-        return SUBEFFECT_POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
+        return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
 end;

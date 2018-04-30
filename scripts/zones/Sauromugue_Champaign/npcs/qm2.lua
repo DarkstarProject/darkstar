@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 
 function isNaked(player)
-    for i = SLOT_MAIN, SLOT_BACK do
+    for i = dsp.slot.MAIN, dsp.slot.BACK do
         if (player:getEquipID(i) ~= 0) then return false; end
     end
     return true;

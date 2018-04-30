@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,2);
-    local SkillLevel = player:getSkillLevel(SKILL_BONECRAFT);
-    local Cost = getAdvImageSupportCost(player,SKILL_BONECRAFT);
+    local SkillLevel = player:getSkillLevel(dsp.skill.BONECRAFT);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.BONECRAFT);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.BONECRAFT_IMAGERY) == false) then

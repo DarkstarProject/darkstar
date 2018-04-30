@@ -21,7 +21,7 @@ end;
 function onUseAbility(player,target,ability)
     target:fold();
 
-    local merit = target:getMerit(MERIT_FOLD);
+    local merit = target:getMerit(dsp.merit.FOLD);
     merit = merit - 10;
 
     if (math.random(0, 99) < merit) then

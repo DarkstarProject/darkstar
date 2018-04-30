@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
+    local dispel =  target:dispelStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD));
 
     if (dispel == dsp.effect.NONE) then
         -- no effect

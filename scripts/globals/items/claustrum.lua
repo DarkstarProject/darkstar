@@ -48,7 +48,7 @@ aftermathTable[22060] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.GATE_OF_TARTARUS) then -- Gate Of Tartarus onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -60,7 +60,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -91,7 +91,7 @@ function onAdditionalEffect(player,target,damage)
         if (dispel == dsp.effect.NONE) then
             return 0,0,0;
         else
-            return SUBEFFECT_DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
+            return dsp.subEffect.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
         end
     else
         return 0,0,0;

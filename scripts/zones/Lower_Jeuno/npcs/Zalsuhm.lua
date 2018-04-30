@@ -57,7 +57,7 @@ function onTrigger(player,npc)
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
     -- printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
 
-    local mainWeaponId = player:getEquipID(SLOT_MAIN);
+    local mainWeaponId = player:getEquipID(dsp.slot.MAIN);
     -- printf("\tmainWeaponId: %u", mainWeaponId);
         
     local nyzulWeapon = isBaseNyzulWeapon(mainWeaponId);

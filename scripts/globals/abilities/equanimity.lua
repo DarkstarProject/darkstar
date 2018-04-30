@@ -26,7 +26,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.EQUANIMITY,player:getMerit(MERIT_EQUANIMITY),0,60);
+    player:addStatusEffect(dsp.effect.EQUANIMITY,player:getMerit(dsp.merit.EQUANIMITY),0,60);
 
     return dsp.effect.EQUANIMITY;
 end;

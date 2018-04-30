@@ -464,7 +464,7 @@ end;
 function onTrigger(player,npc)
     InsideTheBelly = player:getQuestStatus(OTHER_AREAS_LOG,INSIDE_THE_BELLY);
     TheRealGift =  player:getQuestStatus(OTHER_AREAS_LOG,THE_REAL_GIFT);
-    mLvl = player:getMainLvl(); -- This should be fishingLvl = player:getSkillLevel(SKILL_FISHING); but fishing doesn't work yet.
+    mLvl = player:getMainLvl(); -- This should be fishingLvl = player:getSkillLevel(dsp.skill.FISHING); but fishing doesn't work yet.
 
     if (player:getVar("underTheSeaVar") == 3) then
         player:startEvent(34,4501); -- During quest "Under the sea" - 3rd dialog

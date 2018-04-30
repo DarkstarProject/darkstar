@@ -11,8 +11,8 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if ((player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK and player:getWeaponSkillType(SLOT_AMMO) == SKILL_MRK) or
-    (player:getWeaponSkillType(SLOT_RANGED) == SKILL_ARC and player:getWeaponSkillType(SLOT_AMMO) == SKILL_ARC)) then
+    if ((player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MRK and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.MRK) or
+    (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.ARC and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.ARC)) then
         return 0,0;
     end
     return 216,0; -- You do not have an appropriate ranged weapon equipped.
@@ -20,12 +20,12 @@ end;
 
 function onUseAbility(player,target,ability,action)
 
-    if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then -- can't have your crossbow/gun held like a bow, now can we?
+    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MRK) then -- can't have your crossbow/gun held like a bow, now can we?
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
 
     local duration = 30 + player:getMod(dsp.mod.SHADOW_BIND_EXT);
-    local recycleChance = player:getMod(dsp.mod.RECYCLE) + player:getMerit(MERIT_RECYCLE);
+    local recycleChance = player:getMod(dsp.mod.RECYCLE) + player:getMerit(dsp.merit.RECYCLE);
     if (player:hasStatusEffect(dsp.effect.UNLIMITED_SHOT)) then
         player:delStatusEffect(dsp.effect.UNLIMITED_SHOT);
         recycleChance = 100;

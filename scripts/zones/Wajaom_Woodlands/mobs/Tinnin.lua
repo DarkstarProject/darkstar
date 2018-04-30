@@ -76,8 +76,8 @@ function onMobFight(mob, target)
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
-            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
         end
         -- These need to be listed in reverse order as forced moves are added to the top of the queue.
         mob:useMobAbility(1830); -- Polar Blast
@@ -96,8 +96,8 @@ function onMobFight(mob, target)
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
-            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
         end
         -- Reverse order, same deal.
         mob:useMobAbility(1828); -- Pyric Blast

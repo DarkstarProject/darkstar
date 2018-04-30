@@ -25,7 +25,7 @@ function onAdditionalEffect(player,target,damage)
             message = dsp.msg.basic.ADD_EFFECT_HEAL;
         end
 
-        return SUBEFFECT_ICE_DAMAGE, message, dmg;
+        return dsp.subEffect.ICE_DAMAGE, message, dmg;
     else
         return 0,0,0;
     end

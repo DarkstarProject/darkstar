@@ -30,7 +30,7 @@ function onUseAbility(pet, target, skill, action)
     local master = pet:getMaster()
     local deep = 0;
    if (pet:hasStatusEffect(dsp.effect.MAGIC_ATK_BOOST) == true) then
-      deep = 50 + (master:getMerit(MERIT_DEEP_BREATHING)-1)*5;
+      deep = 50 + (master:getMerit(dsp.merit.DEEP_BREATHING)-1)*5;
       pet:delStatusEffect(dsp.effect.MAGIC_ATK_BOOST);
    end
 

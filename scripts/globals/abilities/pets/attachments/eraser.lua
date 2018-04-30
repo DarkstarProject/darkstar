@@ -29,9 +29,9 @@ function onEquip(pet)
                 return false
             end
 
-            if automaton:hasStatusEffectByFlag(EFFECTFLAG_ERASABLE) or checkEffects(automaton) then
+            if automaton:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE) or checkEffects(automaton) then
                 erasetarget = automaton
-            elseif (automaton:checkDistance(master) - master:getModelSize()) < 7 and (master:hasStatusEffectByFlag(EFFECTFLAG_ERASABLE) or checkEffects(master)) then
+            elseif (automaton:checkDistance(master) - master:getModelSize()) < 7 and (master:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE) or checkEffects(master)) then
                 erasetarget = master
             end
 

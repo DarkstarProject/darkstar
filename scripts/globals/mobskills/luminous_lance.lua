@@ -10,7 +10,7 @@ function onMobSkillCheck(target,mob,skill)
     local lanceTime = mob:getLocalVar("lanceTime");
     local lanceOut = mob:getLocalVar("lanceOut");
     if (not (target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)))
-        and (lanceTime + 60 < mob:getBattleTime()) and target:getCurrentAction() ~= ACTION_MOBABILITY_USING
+        and (lanceTime + 60 < mob:getBattleTime()) and target:getCurrentAction() ~= dsp.act.MOBABILITY_USING
         and lanceOut == 1 then
 
         return 0;

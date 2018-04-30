@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(MERIT_CHIVALRY);
+    local merits = player:getMerit(dsp.merit.CHIVALRY);
     local tp = target:getTP()
 --(TP * .5) + ((0.015 * TP) * MND) = MP Gained
     local amount = ((tp*(0.05)) + ((0.0015*tp) * target:getStat(dsp.mod.MND))) * ((100 + merits - 5) / 100)

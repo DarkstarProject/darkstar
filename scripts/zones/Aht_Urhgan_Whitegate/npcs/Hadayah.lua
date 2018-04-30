@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,1);
-    local SkillLevel = player:getSkillLevel(SKILL_ALCHEMY);
+    local SkillLevel = player:getSkillLevel(dsp.skill.ALCHEMY);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == false) then

@@ -28,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
         end
 
         target:addMP(-drain);
-        return SUBEFFECT_MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, player:addMP(drain);
+        return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, player:addMP(drain);
     end
 end;

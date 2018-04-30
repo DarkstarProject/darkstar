@@ -24,7 +24,7 @@ function onMobFight(mob,target)
     local YingID = 17330183;
     local YingToD = mob:getLocalVar("YingToD");
     -- Repop Ying every 30 seconds if Yang is up and Ying is not.
-    if (GetMobAction(YingID) == ACTION_NONE and os.time() > YingToD+30) then
+    if (GetMobAction(YingID) == dsp.act.NONE and os.time() > YingToD+30) then
         GetMobByID(YingID):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos());
         SpawnMob(YingID):updateEnmity(target);
     end

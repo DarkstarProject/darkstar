@@ -23,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         drain = adjustForTarget(target,drain,ELE_DARK);
         drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
 
-        return SUBEFFECT_HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, player:addHP(drain);
+        return dsp.subEffect.HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, player:addHP(drain);
     end
 end;

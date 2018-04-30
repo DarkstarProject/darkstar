@@ -41,21 +41,21 @@ function onUseAbility(player,target,ability)
 
     if (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_1)) then
         player:delStatusEffect(dsp.effect.FINISHING_MOVE_1);
-        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,1,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,1,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT));
     elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_2)) then
         player:delStatusEffect(dsp.effect.FINISHING_MOVE_2);
-        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,2,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,2,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT));
     elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_3)) then
         player:delStatusEffect(dsp.effect.FINISHING_MOVE_3);
-        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT));
     elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_4)) then
         player:delStatusEffect(dsp.effect.FINISHING_MOVE_4);
         player:addStatusEffect(dsp.effect.FINISHING_MOVE_1,1,0,7200);
-        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT));
     elseif (player:hasStatusEffect(dsp.effect.FINISHING_MOVE_5)) then
         player:delStatusEffect(dsp.effect.FINISHING_MOVE_5);
         player:addStatusEffect(dsp.effect.FINISHING_MOVE_2,1,0,7200);
-        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(MERIT_BUILDING_FLOURISH_EFFECT));
+        player:addStatusEffect(dsp.effect.BUILDING_FLOURISH,3,0,60, 0, player:getMerit(dsp.merit.BUILDING_FLOURISH_EFFECT));
     end;
 
 end;

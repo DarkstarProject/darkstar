@@ -23,7 +23,7 @@ function onAbilityCheck(player,target,ability)
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
         return dsp.msg.basic.NO_EFFECT_ON_PET, 0
     else
-        local id = player:getEquipID(SLOT_AMMO)
+        local id = player:getEquipID(dsp.slot.AMMO)
         if idStrengths[id] then
             return 0, 0
         else
@@ -33,7 +33,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    local id = player:getEquipID(SLOT_AMMO)
+    local id = player:getEquipID(dsp.slot.AMMO)
     local pet = player:getPet()
 
     local function removeStatus()

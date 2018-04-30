@@ -64,7 +64,7 @@ function onRegionEnter(player,region)
             event = MEA_MEMORY_STREAMS[regionId][7][1];
         else
             local stream = GetNPCByID(regionId);
-            if (stream ~= nil and stream:getAnimation() == ANIMATION_OPEN_DOOR) then
+            if (stream ~= nil and stream:getAnimation() == dsp.anim.OPEN_DOOR) then
                 event = stream:getLocalVar("destination");
                 if (event == nil or event == 0) then -- this should never happen, but sanity check
                     event = MEA_MEMORY_STREAMS[regionId][7][1];

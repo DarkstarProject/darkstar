@@ -36,7 +36,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local weaponDamage = attacker:getWeaponDmg();
     local weaponType = attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
+    if (weaponType == dsp.skill.H2H or weaponType == dsp.skill.NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
         if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
@@ -71,7 +71,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE))) then
         isSneakValid = false;
     end
-    attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    attacker:delStatusEffectsByFlag(dsp.effectFlag.DETECTABLE);
     attacker:delStatusEffect(dsp.effect.SNEAK_ATTACK);
     local isTrickValid = taChar ~= nil
 
@@ -98,7 +98,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
             nativecrit = 0.05;
         end
 
-        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100 - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(dsp.effect.INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(dsp.effect.INNIN):getPower();
         end
@@ -156,7 +156,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     if not multiHitfTP then dmg = base end
 
-    if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==SKILL_H2H)) then
+    if ((attacker:getOffhandDmg() ~= 0) and (attacker:getOffhandDmg() > 0 or weaponType==dsp.skill.H2H)) then
 
         local chance = math.random();
         if ((chance<=hitrate or math.random() < attacker:getMod(dsp.mod.ZANSHIN)/100 or isSneakValid)
@@ -241,11 +241,11 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = target:physicalDmgTaken(finaldmg);
 
     -- Check for reductions from phys resistances
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == dsp.skill.H2H) then
         finaldmg = finaldmg * target:getMod(dsp.mod.HTHRES) / 1000;
-    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+    elseif (weaponType == dsp.skill.DAG or weaponType == dsp.skill.POL) then
         finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000;
-    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+    elseif (weaponType == dsp.skill.CLB or weaponType == dsp.skill.STF) then
         finaldmg = finaldmg * target:getMod(dsp.mod.IMPACTRES) / 1000;
     else
         finaldmg = finaldmg * target:getMod(dsp.mod.SLASHRES) / 1000;
@@ -253,12 +253,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     attacker:delStatusEffectSilent(dsp.effect.BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded;
 end;
 
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
---         ele (ELE_FIRE), skill (SKILL_STF), includemab = true
+--         ele (ELE_FIRE), skill (dsp.skill.STF), includemab = true
 
 function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     local bonusTP = 0;
@@ -308,7 +308,7 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     else
         shadowsAbsorbed = shadowsAbsorbed + 1
     end
-    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, SLOT_MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
+    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, dsp.slot.MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
     return dmg, false, 1, 0;
 end
 
@@ -371,7 +371,7 @@ function getHitRate(attacker,target,capHitRate,bonus)
         bonus = bonus - target:getStatusEffect(dsp.effect.YONIN):getPower();
     end
     if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
-        bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
+        bonus = bonus + attacker:getMerit(dsp.merit.AMBUSH);
     end
 
     acc = acc + bonus;
@@ -418,7 +418,7 @@ function getRangedHitRate(attacker,target,capHitRate,bonus)
         bonus = bonus - target:getStatusEffect(dsp.effect.YONIN):getPower();
     end
     if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then --TRAIT_AMBUSH
-        bonus = bonus + attacker:getMerit(MERIT_AMBUSH);
+        bonus = bonus + attacker:getMerit(dsp.merit.AMBUSH);
     end
 
     acc = acc + bonus;
@@ -758,7 +758,7 @@ end;
             nativecrit = 0.05;
         end
 
-        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100 - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(dsp.effect.INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(dsp.effect.INNIN):getPower();
         end
@@ -861,26 +861,26 @@ end;
     finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     return finaldmg, crit, tpHitsLanded, extraHitsLanded, shadowsAbsorbed;
 end;
 
 function getMultiAttacks(attacker, target, numHits)
     local bonusHits = 0;
     local multiChances = 1;
-    local doubleRate = (attacker:getMod(dsp.mod.DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
-    local tripleRate = (attacker:getMod(dsp.mod.TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
+    local doubleRate = (attacker:getMod(dsp.mod.DOUBLE_ATTACK) + attacker:getMerit(dsp.merit.DOUBLE_ATTACK_RATE))/100;
+    local tripleRate = (attacker:getMod(dsp.mod.TRIPLE_ATTACK) + attacker:getMerit(dsp.merit.TRIPLE_ATTACK_RATE))/100;
     local quadRate = attacker:getMod(dsp.mod.QUAD_ATTACK)/100;
     local oaThriceRate = attacker:getMod(dsp.mod.MYTHIC_OCC_ATT_THRICE)/100;
     local oaTwiceRate = attacker:getMod(dsp.mod.MYTHIC_OCC_ATT_TWICE)/100;
 
     -- Add Ambush Augments to Triple Attack
     if (attacker:hasTrait(76) and attacker:isBehind(target, 23)) then -- TRAIT_AMBUSH
-        tripleRate = tripleRate + attacker:getMerit(MERIT_AMBUSH) / 3; -- Value of Ambush is 3 per mert, augment gives +1 Triple Attack per merit
+        tripleRate = tripleRate + attacker:getMerit(dsp.merit.AMBUSH) / 3; -- Value of Ambush is 3 per mert, augment gives +1 Triple Attack per merit
     end
 
     -- QA/TA/DA can only proc on the first hit of each weapon or each fist
-    if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H) then
+    if (attacker:getOffhandDmg() > 0 or attacker:getWeaponSkillType(dsp.slot.MAIN) == dsp.skill.H2H) then
         multiChances = 2;
     end
 
@@ -901,8 +901,8 @@ function getMultiAttacks(attacker, target, numHits)
             attacker:delStatusEffect(dsp.effect.WARRIOR_S_CHARGE);
 
             -- recalculate DA/TA/QA rate
-            doubleRate = (attacker:getMod(dsp.mod.DOUBLE_ATTACK) + attacker:getMerit(MERIT_DOUBLE_ATTACK_RATE))/100;
-            tripleRate = (attacker:getMod(dsp.mod.TRIPLE_ATTACK) + attacker:getMerit(MERIT_TRIPLE_ATTACK_RATE))/100;
+            doubleRate = (attacker:getMod(dsp.mod.DOUBLE_ATTACK) + attacker:getMerit(dsp.merit.DOUBLE_ATTACK_RATE))/100;
+            tripleRate = (attacker:getMod(dsp.mod.TRIPLE_ATTACK) + attacker:getMerit(dsp.merit.TRIPLE_ATTACK_RATE))/100;
             quadRate = attacker:getMod(dsp.mod.QUAD_ATTACK)/100;
         end
     end
@@ -1087,8 +1087,8 @@ function handleWSGorgetBelt(attacker)
         -- TODO: Get these out of itemid checks when possible.
         local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
         local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };
-        local neck = attacker:getEquipID(SLOT_NECK);
-        local belt = attacker:getEquipID(SLOT_WAIST);
+        local neck = attacker:getEquipID(dsp.slot.NECK);
+        local belt = attacker:getEquipID(dsp.slot.WAIST);
         local SCProp1, SCProp2, SCProp3 = attacker:getWSSkillchainProp();
 
         for i,v in ipairs(elementalGorget) do

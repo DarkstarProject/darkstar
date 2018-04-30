@@ -103,7 +103,7 @@ aftermathTable[21751] = aftermathTable[19718]; -- Aymur (119/III)
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.PRIMAL_REND) then -- Primal Rend onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_MAIN);
+            local itemId = user:getEquipID(dsp.slot.MAIN);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -122,7 +122,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);

@@ -12,7 +12,7 @@ require("scripts/globals/status");
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.UFASTCAST,150);
-    effect:setFlag(EFFECTFLAG_MAGIC_BEGIN);
+    effect:setFlag(dsp.effectFlag.MAGIC_BEGIN);
 end;
 
 -----------------------------------

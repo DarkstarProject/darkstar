@@ -74,7 +74,7 @@ aftermathTable[21269] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.WILDFIRE) then -- Wildfire onry
-        local itemId = user:getEquipID(SLOT_RANGED);
+        local itemId = user:getEquipID(dsp.slot.RANGED);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
@@ -88,7 +88,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_RANGED);
+        local itemId = target:getEquipID(dsp.slot.RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId]);

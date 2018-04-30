@@ -41,7 +41,7 @@ function onRegionEnter(player,region)
         local regionId = region:GetRegionID();
         local events = VAHZL_MEMORY_STREAMS[regionId][7];
         local event = events[math.random(#events)];
-        if (regionId < 100 or GetNPCByID(regionId):getAnimation() == ANIMATION_OPEN_DOOR) then
+        if (regionId < 100 or GetNPCByID(regionId):getAnimation() == dsp.anim.OPEN_DOOR) then
             player:startEvent(event);
         end
     end

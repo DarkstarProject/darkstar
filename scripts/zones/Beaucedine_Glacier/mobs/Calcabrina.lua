@@ -45,7 +45,7 @@ function onAdditionalEffect(mob,target,damage)
             mob:addHP(drain);
         end
 
-        return SUBEFFECT_HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, drain;
+        return dsp.subEffect.HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, drain;
     end
 
 end;

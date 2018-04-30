@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local merits = caster:getMerit(MERIT_BLIND_II);
+    local merits = caster:getMerit(dsp.merit.BLIND_II);
 
     -- Pull base stats.
     local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND)); --blind uses caster INT vs target MND

@@ -16,9 +16,9 @@ function onUseAbility(player,target,ability)
     local hp = player:getHP();
     local vit = player:getStat(dsp.mod.VIT);
     local multi = 2;
-    local merits = player:getMerit(MERIT_INVIGORATE);
-    local body = player:getEquipID(SLOT_BODY);
-    local hand = player:getEquipID(SLOT_HANDS);
+    local merits = player:getMerit(dsp.merit.INVIGORATE);
+    local body = player:getEquipID(dsp.slot.BODY);
+    local hand = player:getEquipID(dsp.slot.HANDS);
 
     if (player:hasStatusEffect(dsp.effect.POISON)) then
         player:delStatusEffect(dsp.effect.POISON);

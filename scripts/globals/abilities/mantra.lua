@@ -15,7 +15,7 @@ end;
 function onUseAbility(player,target,ability)
     player:delStatusEffect(dsp.effect.MAX_HP_BOOST);
 
-    local merits = player:getMerit(MERIT_MANTRA);
+    local merits = player:getMerit(dsp.merit.MANTRA);
 
     target:addStatusEffect(dsp.effect.MAX_HP_BOOST,merits,0,180);
 

@@ -48,7 +48,7 @@ aftermathTable[20685] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.KNIGHTS_OF_ROUND) then -- Knights Of Round onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -60,7 +60,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -99,7 +99,7 @@ function onAdditionalEffect(player,target,damage)
             finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);
-            return SUBEFFECT_LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG;
+            return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG;
         end
     end
 end;

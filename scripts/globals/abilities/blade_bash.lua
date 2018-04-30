@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
 
     -- Applying Plague based on merit level.
     if (math.random(1,100) < 65) then
-        target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
+        target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(dsp.merit.BLADE_BASH));
     end
 
     ability:setMsg(dsp.msg.basic.JA_DAMAGE)

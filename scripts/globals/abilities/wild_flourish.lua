@@ -45,7 +45,7 @@ function onUseAbility(player,target,ability,action)
     else
         ability:setMsg(dsp.msg.basic.JA_NO_EFFECT);
     end
-    action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(SLOT_MAIN)))
+    action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
     action:speceffect(target:getID(), 1)
     return 0
 end;

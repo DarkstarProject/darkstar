@@ -49,7 +49,7 @@ aftermathTable[20583] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.MERCY_STROKE) then -- Mercy Stroke onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -61,7 +61,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -92,7 +92,7 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.POISON, 10, 3, 30); -- Power and Duration needs verified.
-        return SUBEFFECT_POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
+        return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
     
     return 0;

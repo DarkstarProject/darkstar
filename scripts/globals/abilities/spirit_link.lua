@@ -13,7 +13,7 @@ function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
         return dsp.msg.basic.REQUIRES_A_PET,0;
     else
-        if (player:getPet():getHP() == player:getPet():getMaxHP() and player:getMerit(MERIT_EMPATHY) == 0) then
+        if (player:getPet():getHP() == player:getPet():getMaxHP() and player:getMerit(dsp.merit.EMPATHY) == 0) then
             return dsp.msg.basic.UNABLE_TO_USE_JA,0;
         else
             return 0,0;
@@ -55,7 +55,7 @@ function onUseAbility(player,target,ability)
     local petTP = pet:getTP();
     local regenAmount = player:getMainLvl()/3; -- level/3 tic regen
 
-    if (player:getEquipID(SLOT_HEAD)==15238) then
+    if (player:getEquipID(dsp.slot.HEAD)==15238) then
         healPet = healPet + 15;
     end
 

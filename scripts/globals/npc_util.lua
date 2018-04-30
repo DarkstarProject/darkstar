@@ -359,24 +359,24 @@ function npcUtil.fishingAnimation(npc, phaseDuration, func)
     npc:timer(phaseDuration * 1000, function(npc)
         local anims =
         {
-            [ANIMATION_FISHING_NPC] = { duration = 5, nextAnim = { ANIMATION_FISHING_START } },
-            [ANIMATION_FISHING_START] = { duration = 10, nextAnim = { ANIMATION_FISHING_FISH } },
-            [ANIMATION_FISHING_FISH] = { duration = 10,
+            [dsp.anim.FISHING_NPC] = { duration = 5, nextAnim = { dsp.anim.FISHING_START } },
+            [dsp.anim.FISHING_START] = { duration = 10, nextAnim = { dsp.anim.FISHING_FISH } },
+            [dsp.anim.FISHING_FISH] = { duration = 10,
                                             nextAnim =
                                             {
-                                                ANIMATION_FISHING_CAUGHT,
-                                                ANIMATION_FISHING_ROD_BREAK,
-                                                ANIMATION_FISHING_LINE_BREAK,
+                                                dsp.anim.FISHING_CAUGHT,
+                                                dsp.anim.FISHING_ROD_BREAK,
+                                                dsp.anim.FISHING_LINE_BREAK,
                                             }
                                        },
-            [ANIMATION_FISHING_ROD_BREAK] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_LINE_BREAK] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_CAUGHT] = { duration = 5, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_STOP] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
+            [dsp.anim.FISHING_ROD_BREAK] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_LINE_BREAK] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_CAUGHT] = { duration = 5, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_STOP] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
         }
 
         local anim = anims[npc:getAnimation()]
-        local nextAnimationId = ANIMATION_FISHING_NPC
+        local nextAnimationId = dsp.anim.FISHING_NPC
         local nextAnimationDuration = 10
         local nextAnim = nil
         if anim then

@@ -135,7 +135,7 @@ function checkForGearSet(player)
 
     -- cause we dont want hundreds of function calls
     local equip = {};
-    for slot = 0, MAX_SLOTID do
+    for slot = 0, dsp.MAX_SLOTID do
         equip[slot+1] = player:getEquipID(slot);
     end
 
@@ -146,7 +146,7 @@ function checkForGearSet(player)
             local gearMatch = {};
 
             for _, id in pairs(gearset.items) do
-                for slot = 1, MAX_SLOTID do
+                for slot = 1, dsp.MAX_SLOTID do
                     local equipId = equip[slot];
 
                     -- check the item matches
@@ -159,13 +159,13 @@ function checkForGearSet(player)
             end
 
             -- doesnt count as a match if the same item is in both slots
-            if (gearMatch[SLOT_EAR1+1] == gearMatch[SLOT_EAR2+1] and gearMatch[SLOT_EAR1+1] ~= nil) then
+            if (gearMatch[dsp.slot.EAR1+1] == gearMatch[dsp.slot.EAR2+1] and gearMatch[dsp.slot.EAR1+1] ~= nil) then
                 matches = matches - 1;
             end;
-            if (gearMatch[SLOT_RING1+1] == gearMatch[SLOT_RING2+1] and gearMatch[SLOT_RING1+1] ~= nil) then
+            if (gearMatch[dsp.slot.RING1+1] == gearMatch[dsp.slot.RING2+1] and gearMatch[dsp.slot.RING1+1] ~= nil) then
                 matches = matches - 1;
             end;
-            if (gearMatch[SLOT_MAIN+1] == gearMatch[SLOT_SUB+1] and gearMatch[SLOT_MAIN+1] ~= nil) then
+            if (gearMatch[dsp.slot.MAIN+1] == gearMatch[dsp.slot.SUB+1] and gearMatch[dsp.slot.MAIN+1] ~= nil) then
                 matches = matches - 1;
             end;
 
@@ -184,9 +184,9 @@ function FindMatchByType(gearset, gearMatch)
     end
 
     for _, id in ipairs(gearMatch) do
-        if (gearset.matchType == matchtype.earring_weapon and (gearMatch[SLOT_MAIN+1] ~= nil or gearMatch[SLOT_SUB+1] ~= nil) and (gearMatch[SLOT_EAR1+1] ~= nil or gearMatch[SLOT_EAR2+1] ~= nil)) then
+        if (gearset.matchType == matchtype.earring_weapon and (gearMatch[dsp.slot.MAIN+1] ~= nil or gearMatch[dsp.slot.SUB+1] ~= nil) and (gearMatch[dsp.slot.EAR1+1] ~= nil or gearMatch[dsp.slot.EAR2+1] ~= nil)) then
             return true;
-        elseif (gearset.matchType == matchtype.weapon_weapon and (gearMatch[SLOT_MAIN+1] ~= nil and gearMatch[SLOT_SUB+1] ~= nil)) then
+        elseif (gearset.matchType == matchtype.weapon_weapon and (gearMatch[dsp.slot.MAIN+1] ~= nil and gearMatch[dsp.slot.SUB+1] ~= nil)) then
             return true;
         end
     end

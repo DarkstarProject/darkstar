@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local merits = caster:getMerit(MERIT_PARALYZE_II);
+    local merits = caster:getMerit(dsp.merit.PARALYZE_II);
 
     -- Pull base stats
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND);

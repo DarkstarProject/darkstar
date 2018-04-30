@@ -23,7 +23,7 @@ end;
 
 function onUseAbility(player,target,ability)
     -- Plus 5 percent hp recovers per extra martyr merit
-    local meritBonus = player:getMerit(MERIT_MARTYR) - 5;
+    local meritBonus = player:getMerit(dsp.merit.MARTYR) - 5;
     -- printf("Martyr Merit Bonus: %d", meritBonus);
 
     local hpPercent = (200 + meritBonus) / 100;

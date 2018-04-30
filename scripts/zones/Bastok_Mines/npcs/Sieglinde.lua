@@ -15,8 +15,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,1);
-    local SkillCap = getCraftSkillCap(player,SKILL_SMITHING);
-    local SkillLevel = player:getSkillLevel(SKILL_SMITHING);
+    local SkillCap = getCraftSkillCap(player,dsp.skill.SMITHING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.SMITHING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == false) then

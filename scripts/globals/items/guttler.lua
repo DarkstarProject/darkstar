@@ -48,7 +48,7 @@ aftermathTable[21750] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.ONSLAUGHT) then -- Onslaught onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -67,7 +67,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -105,6 +105,6 @@ function onAdditionalEffect(player,target,damage)
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.CHOKE, 17, 0, 60);
-        return SUBEFFECT_CHOKE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CHOKE;
+        return dsp.subEffect.CHOKE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.CHOKE;
     end
 end;

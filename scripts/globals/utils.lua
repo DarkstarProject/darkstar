@@ -268,94 +268,94 @@ function utils.getSystemStrengthBonus(attacker, defender)
     local attackerSystem = attacker:getSystem();
     local defenderSystem = defender:getSystem();
 
-    if (attackerSystem == SYSTEM_BEAST) then
-        if (defenderSystem == SYSTEM_LIZARD) then
+    if (attackerSystem == dsp.eco.BEAST) then
+        if (defenderSystem == dsp.eco.LIZARD) then
             return 1;
-        elseif (defenderSystem == SYSTEM_PLANTOID) then
+        elseif (defenderSystem == dsp.eco.PLANTOID) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LIZARD) then
-        if (defenderSystem == SYSTEM_VERMIN) then
+    if (attackerSystem == dsp.eco.LIZARD) then
+        if (defenderSystem == dsp.eco.VERMIN) then
             return 1;
-        elseif (defenderSystem == SYSTEM_BEAST) then
+        elseif (defenderSystem == dsp.eco.BEAST) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_VERMIN) then
-        if (defenderSystem == SYSTEM_PLANTOID) then
+    if (attackerSystem == dsp.eco.VERMIN) then
+        if (defenderSystem == dsp.eco.PLANTOID) then
             return 1;
-        elseif (defenderSystem == SYSTEM_LIZARD) then
+        elseif (defenderSystem == dsp.eco.LIZARD) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_PLANTOID) then
-        if (defenderSystem == SYSTEM_BEAST) then
+    if (attackerSystem == dsp.eco.PLANTOID) then
+        if (defenderSystem == dsp.eco.BEAST) then
             return 1;
-        elseif (defenderSystem == SYSTEM_VERMIN) then
+        elseif (defenderSystem == dsp.eco.VERMIN) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_AQUAN) then
-        if (defenderSystem == SYSTEM_AMORPH) then
+    if (attackerSystem == dsp.eco.AQUAN) then
+        if (defenderSystem == dsp.eco.AMORPH) then
             return 1;
-        elseif (defenderSystem == SYSTEM_BIRD) then
+        elseif (defenderSystem == dsp.eco.BIRD) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_AMORPH) then
-        if (defenderSystem == SYSTEM_BIRD) then
+    if (attackerSystem == dsp.eco.AMORPH) then
+        if (defenderSystem == dsp.eco.BIRD) then
             return 1;
-        elseif (defenderSystem == SYSTEM_AQUAN) then
+        elseif (defenderSystem == dsp.eco.AQUAN) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_BIRD) then
-        if (defenderSystem == SYSTEM_AQUAN) then
+    if (attackerSystem == dsp.eco.BIRD) then
+        if (defenderSystem == dsp.eco.AQUAN) then
             return 1;
-        elseif (defenderSystem == SYSTEM_AMORPH) then
+        elseif (defenderSystem == dsp.eco.AMORPH) then
             return -1;
         end
     end
 
-    if (attackerSystem == SYSTEM_UNDEAD) then
-        if (defenderSystem == SYSTEM_ARCANA) then
+    if (attackerSystem == dsp.eco.UNDEAD) then
+        if (defenderSystem == dsp.eco.ARCANA) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_ARCANA) then
-        if (defenderSystem == SYSTEM_UNDEAD) then
+    if (attackerSystem == dsp.eco.ARCANA) then
+        if (defenderSystem == dsp.eco.UNDEAD) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_DRAGON) then
-        if (defenderSystem == SYSTEM_DEMON) then
+    if (attackerSystem == dsp.eco.DRAGON) then
+        if (defenderSystem == dsp.eco.DEMON) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_DEMON) then
-        if (defenderSystem == SYSTEM_DRAGON) then
+    if (attackerSystem == dsp.eco.DEMON) then
+        if (defenderSystem == dsp.eco.DRAGON) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LUMORIAN) then
-        if (defenderSystem == SYSTEM_LUMINION) then
+    if (attackerSystem == dsp.eco.LUMORIAN) then
+        if (defenderSystem == dsp.eco.LUMINION) then
             return 1;
         end
     end
 
-    if (attackerSystem == SYSTEM_LUMINION) then
-        if (defenderSystem == SYSTEM_LUMORIAN) then
+    if (attackerSystem == dsp.eco.LUMINION) then
+        if (defenderSystem == dsp.eco.LUMORIAN) then
             return 1;
         end
     end

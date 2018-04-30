@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,4);
-    local SkillLevel = player:getSkillLevel(SKILL_COOKING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.COOKING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == false) then

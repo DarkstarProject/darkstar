@@ -50,7 +50,7 @@ function onMobFight( mob, target )
     -- ensure all spawned pets are doing stuff
     for i = KIRIN + 1, KIRIN + 4 do
         local god = GetMobByID(i);
-        if (god:getCurrentAction() == ACTION_ROAMING) then
+        if (god:getCurrentAction() == dsp.act.ROAMING) then
             god:updateEnmity(target);
         end
     end
@@ -67,7 +67,7 @@ function onAdditionalEffect(mob, target, damage)
     dmg = adjustForTarget(target,dmg,ELE_EARTH);
     dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
 
-    return SUBEFFECT_EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
+    return dsp.subEffect.EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

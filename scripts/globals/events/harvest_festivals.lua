@@ -31,8 +31,8 @@ end;
 
 
 function halloweenItemsCheck(player)
-    local headSlot = player:getEquipID(SLOT_HEAD);
-    local mainHand = player:getEquipID(SLOT_MAIN);
+    local headSlot = player:getEquipID(dsp.slot.HEAD);
+    local mainHand = player:getEquipID(dsp.slot.MAIN);
     local reward = 0;
     
     -- Normal Quality Rewards

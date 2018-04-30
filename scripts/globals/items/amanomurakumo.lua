@@ -49,7 +49,7 @@ aftermathTable[21954] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.TACHI_KAITEN) then -- Tachi: Kaiten onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -61,7 +61,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -93,6 +93,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(dsp.effect.ATTACK_BOOST);
         target:addStatusEffect(dsp.effect.ATTACK_DOWN, 10, 0, 60); -- Power needs verification/correction
-        return SUBEFFECT_ATTACK_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
+        return dsp.subEffect.ATTACK_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.ATTACK_DOWN;
     end
 end;

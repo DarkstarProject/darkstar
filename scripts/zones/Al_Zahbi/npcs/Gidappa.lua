@@ -29,7 +29,7 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,3);
-    local SkillLevel = player:getSkillLevel(SKILL_CLOTHCRAFT);
+    local SkillLevel = player:getSkillLevel(dsp.skill.CLOTHCRAFT);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY) == false) then

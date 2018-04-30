@@ -17,7 +17,7 @@ function onAbilityCheck(player,target,ability)
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
         return dsp.msg.basic.NO_EFFECT_ON_PET,0;
     else
-        local id = player:getEquipID(SLOT_AMMO);
+        local id = player:getEquipID(dsp.slot.AMMO);
         if (id >= 18731 and id <= 18733 or id == 19185) then
             return 0,0;
         else
@@ -28,7 +28,7 @@ end;
 
 function onUseAbility(player,target,ability)
     -- 1st need to get the pet food is equipped in the range slot.
-    local rangeObj = player:getEquipID(SLOT_AMMO);
+    local rangeObj = player:getEquipID(dsp.slot.AMMO);
     local totalHealing = 0;
     local regenAmount = 0;
     local regenTime = 0;
@@ -90,7 +90,7 @@ function onUseAbility(player,target,ability)
         toremove = toremove - 1
     end
 
-    local bonus = 1 + player:getMerit(MERIT_REPAIR_EFFECT)/100
+    local bonus = 1 + player:getMerit(dsp.merit.REPAIR_EFFECT)/100
 
     totalHealing = totalHealing * bonus
 

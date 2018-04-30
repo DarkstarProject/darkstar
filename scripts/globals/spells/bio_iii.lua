@@ -55,7 +55,7 @@ function onSpellCast(caster,target,spell)
     local final = finalMagicAdjustments(caster,target,spell,dmg);
 
     -- Calculate duration.
-    local duration = caster:getMerit(MERIT_BIO_III);
+    local duration = caster:getMerit(dsp.merit.BIO_III);
     if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;
     end

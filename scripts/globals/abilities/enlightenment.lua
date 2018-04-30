@@ -18,7 +18,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local merit = (player:getMerit(MERIT_ENLIGHTENMENT) - 5);
+    local merit = (player:getMerit(dsp.merit.ENLIGHTENMENT) - 5);
     player:addStatusEffect(dsp.effect.ENLIGHTENMENT,merit,0,60);
     return dsp.effect.ENLIGHTENMENT;
 end;

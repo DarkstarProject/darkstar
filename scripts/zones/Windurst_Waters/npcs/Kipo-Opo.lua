@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,4);
-    local SkillLevel = player:getSkillLevel(SKILL_COOKING);
-    local Cost = getAdvImageSupportCost(player,SKILL_COOKING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.COOKING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == false) then
@@ -38,7 +38,7 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    local Cost = getAdvImageSupportCost(player,SKILL_COOKING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
 
     if (csid == 10015 and option == 1) then
         player:delGil(Cost);

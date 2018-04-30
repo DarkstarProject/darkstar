@@ -10,7 +10,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if (player:getWeaponSubSkillType(SLOT_RANGED) == 10 and
+    if (player:getWeaponSubSkillType(dsp.slot.RANGED) == 10 and
         not player:hasStatusEffect(dsp.effect.OVERLOAD) and
         player:getPet()) then
         return 0,0;

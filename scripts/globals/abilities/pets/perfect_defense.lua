@@ -15,7 +15,7 @@ function onPetAbility(target, pet, skill, master)
     local power = 100 * (master:getMP() / master:getMaxMP());
     duration = 60;
     if (master ~= nil) then
-        local summoningSkill = master:getSkillLevel(SKILL_SUM);
+        local summoningSkill = master:getSkillLevel(dsp.skill.SUM);
         if (summoningSkill > 600) then
             summoningSkill = 600;
         end

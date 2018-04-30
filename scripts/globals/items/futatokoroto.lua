@@ -27,7 +27,7 @@ aftermathTable[18347] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.NAMAS_ARROW) then -- Namas Arrow onry
-        local itemId = user:getEquipID(SLOT_RANGED);
+        local itemId = user:getEquipID(dsp.slot.RANGED);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -39,7 +39,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_RANGED);
+        local itemId = target:getEquipID(dsp.slot.RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);

@@ -41,7 +41,7 @@ function onAdditionalEffect(mob,target,damage)
 
         dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
 
-        return SUBEFFECT_WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
+        return dsp.subEffect.WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
     end
 
 end;

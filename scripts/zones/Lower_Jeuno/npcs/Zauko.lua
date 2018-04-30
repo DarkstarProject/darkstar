@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     local allLampsLit = true;
     for i=0,11 do
         local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
-        if (lamp:getAnimation() == ANIMATION_CLOSE_DOOR) then
+        if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
             allLampsLit = false;
             break;
         end

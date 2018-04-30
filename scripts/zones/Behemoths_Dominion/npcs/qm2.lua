@@ -21,8 +21,8 @@ function onTrade(player,npc,trade)
     local Behemoth = GetMobAction(17297440);
     local KingBehemoth = GetMobAction(17297441);
 
-    if ((KingBehemoth == ACTION_NONE or KingBehemoth == ACTION_SPAWN)
-    and (Behemoth == ACTION_NONE or Behemoth == ACTION_SPAWN)) then
+    if ((KingBehemoth == dsp.act.NONE or KingBehemoth == dsp.act.SPAWN)
+    and (Behemoth == dsp.act.NONE or Behemoth == dsp.act.SPAWN)) then
         -- Trade Beastly Shank
         if (trade:hasItemQty(3341,1) and trade:getItemCount() == 1) then
             if (LandKingSystem_NQ ~= 0) then

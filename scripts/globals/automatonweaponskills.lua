@@ -21,7 +21,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local weaponDamage = params.weaponDamage or attacker:getWeaponDmg();
     local weaponType = params.weaponType or attacker:getWeaponSkillType(0);
 
-    if (weaponType == SKILL_H2H or weaponType == SKILL_NON) then
+    if (weaponType == dsp.skill.H2H or weaponType == dsp.skill.NON) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
 
         if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
@@ -57,7 +57,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE))) then
         isSneakValid = false;
     end
-    attacker:delStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+    attacker:delStatusEffectsByFlag(dsp.effectFlag.DETECTABLE);
     attacker:delStatusEffect(dsp.effect.SNEAK_ATTACK);
     local isTrickValid = taChar ~= nil
 
@@ -77,7 +77,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
             critrate = critrate + (10 + flourisheffect:getSubPower()/2)/100;
         end
         nativecrit = (attacker:getStat(dsp.mod.DEX) - target:getStat(dsp.mod.AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100 - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(dsp.effect.INNIN) and attacker:isBehind(target, 23)) then -- Innin acc boost attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(dsp.effect.INNIN):getPower();
         end
@@ -193,11 +193,11 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     finaldmg = target:physicalDmgTaken(finaldmg);
 
     -- Check for reductions from phys resistances
-    if (weaponType == SKILL_H2H) then
+    if (weaponType == dsp.skill.H2H) then
         finaldmg = finaldmg * target:getMod(dsp.mod.HTHRES) / 1000;
-    elseif (weaponType == SKILL_DAG or weaponType == SKILL_POL) then
+    elseif (weaponType == dsp.skill.DAG or weaponType == dsp.skill.POL) then
         finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000;
-    elseif (weaponType == SKILL_CLB or weaponType == SKILL_STF) then
+    elseif (weaponType == dsp.skill.CLB or weaponType == dsp.skill.STF) then
         finaldmg = finaldmg * target:getMod(dsp.mod.IMPACTRES) / 1000;
     else
         finaldmg = finaldmg * target:getMod(dsp.mod.SLASHRES) / 1000;
@@ -206,7 +206,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     attacker:delStatusEffectSilent(dsp.effect.BUILDING_FLOURISH);
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     else
         skill:setMsg(dsp.msg.basic.SKILL_MISS)
     end
@@ -393,7 +393,7 @@ end;
         critrate = fTP(tp,params.crit100,params.crit200,params.crit300);
         -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
         local nativecrit = (attacker:getStat(dsp.mod.DEX) - target:getStat(dsp.mod.AGI))*0.005; -- assumes +0.5% crit rate per 1 dDEX
-        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(MERIT_CRIT_HIT_RATE)/100 - target:getMerit(MERIT_ENEMY_CRIT_RATE)/100;
+        nativecrit = nativecrit + (attacker:getMod(dsp.mod.CRITHITRATE)/100) + attacker:getMerit(dsp.merit.CRIT_HIT_RATE)/100 - target:getMerit(dsp.merit.ENEMY_CRIT_RATE)/100;
         if (attacker:hasStatusEffect(dsp.effect.INNIN) and attacker:isBehind(target, 23)) then -- Innin crit boost if attacker is behind target
             nativecrit = nativecrit + attacker:getStatusEffect(dsp.effect.INNIN):getPower();
         end
@@ -497,7 +497,7 @@ end;
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
     if tpHitsLanded + extraHitsLanded > 0 then
-        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, SLOT_RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
+        finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     else
         skill:setMsg(dsp.msg.basic.SKILL_MISS)
     end

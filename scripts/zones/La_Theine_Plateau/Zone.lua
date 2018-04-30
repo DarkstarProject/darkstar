@@ -104,10 +104,10 @@ function onZoneWeatherChange(weather)
     local TOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and weather ~= dsp.weather.RAIN and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == ANIMATION_CLOSE_DOOR) then
-        rainbow:setAnimation(ANIMATION_OPEN_DOOR);
-    elseif (I_Can_Hear_a_Rainbow == 1 and weather == dsp.weather.RAIN and rainbow:getAnimation() == ANIMATION_OPEN_DOOR) then
-        rainbow:setAnimation(ANIMATION_CLOSE_DOOR);
+    if (I_Can_Hear_a_Rainbow == 1 and weather ~= dsp.weather.RAIN and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then
+        rainbow:setAnimation(dsp.anim.OPEN_DOOR);
+    elseif (I_Can_Hear_a_Rainbow == 1 and weather == dsp.weather.RAIN and rainbow:getAnimation() == dsp.anim.OPEN_DOOR) then
+        rainbow:setAnimation(dsp.anim.CLOSE_DOOR);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;
@@ -116,10 +116,10 @@ function onTOTDChange(TOTD)
     local rainbow = GetNPCByID(LA_THEINE_RAINBOW);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
-    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == ANIMATION_CLOSE_DOOR) then
-        rainbow:setAnimation(ANIMATION_OPEN_DOOR);
-    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < dsp.time.DAWN or TOTD > dsp.time.EVENING and rainbow:getAnimation() == ANIMATION_OPEN_DOOR) then
-        rainbow:setAnimation(ANIMATION_CLOSE_DOOR);
+    if (I_Can_Hear_a_Rainbow == 1 and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then
+        rainbow:setAnimation(dsp.anim.OPEN_DOOR);
+    elseif (I_Can_Hear_a_Rainbow == 1 and TOTD < dsp.time.DAWN or TOTD > dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.OPEN_DOOR) then
+        rainbow:setAnimation(dsp.anim.CLOSE_DOOR);
         SetServerVariable("I_Can_Hear_a_Rainbow", 0);
     end
 end;

@@ -55,8 +55,8 @@ require("scripts/globals/msg");
     defenseMod = {dsp.mod.FIREDEF, dsp.mod.EARTHDEF, dsp.mod.WATERDEF, dsp.mod.WINDDEF, dsp.mod.ICEDEF, dsp.mod.THUNDERDEF, dsp.mod.LIGHTDEF, dsp.mod.DARKDEF};
     absorbMod = {dsp.mod.FIRE_ABSORB, dsp.mod.EARTH_ABSORB, dsp.mod.WATER_ABSORB, dsp.mod.WIND_ABSORB, dsp.mod.ICE_ABSORB, dsp.mod.LTNG_ABSORB, dsp.mod.LIGHT_ABSORB, dsp.mod.DARK_ABSORB};
     nullMod = {dsp.mod.FIRE_NULL, dsp.mod.EARTH_NULL, dsp.mod.WATER_NULL, dsp.mod.WIND_NULL, dsp.mod.ICE_NULL, dsp.mod.LTNG_NULL, dsp.mod.LIGHT_NULL, dsp.mod.DARK_NULL};
-    blmMerit = {MERIT_FIRE_MAGIC_POTENCY, MERIT_EARTH_MAGIC_POTENCY, MERIT_WATER_MAGIC_POTENCY, MERIT_WIND_MAGIC_POTENCY, MERIT_ICE_MAGIC_POTENCY, MERIT_LIGHTNING_MAGIC_POTENCY};
-    rdmMerit = {MERIT_FIRE_MAGIC_ACCURACY, MERIT_EARTH_MAGIC_ACCURACY, MERIT_WATER_MAGIC_ACCURACY, MERIT_WIND_MAGIC_ACCURACY, MERIT_ICE_MAGIC_ACCURACY, MERIT_LIGHTNING_MAGIC_ACCURACY};
+    blmMerit = {dsp.merit.FIRE_MAGIC_POTENCY, dsp.merit.EARTH_MAGIC_POTENCY, dsp.merit.WATER_MAGIC_POTENCY, dsp.merit.WIND_MAGIC_POTENCY, dsp.merit.ICE_MAGIC_POTENCY, dsp.merit.LIGHTNING_MAGIC_POTENCY};
+    rdmMerit = {dsp.merit.FIRE_MAGIC_ACCURACY, dsp.merit.EARTH_MAGIC_ACCURACY, dsp.merit.WATER_MAGIC_ACCURACY, dsp.merit.WIND_MAGIC_ACCURACY, dsp.merit.ICE_MAGIC_ACCURACY, dsp.merit.LIGHTNING_MAGIC_ACCURACY};
     barSpells = {dsp.effect.BARFIRE, dsp.effect.BARSTONE, dsp.effect.BARWATER, dsp.effect.BARAERO, dsp.effect.BARBLIZZARD, dsp.effect.BARTHUNDER};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
@@ -331,7 +331,7 @@ function applyResistanceEffect(caster, target, spell, params)
     end
 
     if (skill == SINGING_SKILL and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
-        if (math.random(0,99) < caster:getMerit(MERIT_TROUBADOUR)-25) then
+        if (math.random(0,99) < caster:getMerit(dsp.merit.TROUBADOUR)-25) then
             return 1.0;
         end
     end
@@ -558,7 +558,7 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
     if (skill == BLUE_SKILL) then
-        magicAccBonus = magicAccBonus + caster:getMerit(MERIT_MAGICAL_ACCURACY);
+        magicAccBonus = magicAccBonus + caster:getMerit(dsp.merit.MAGICAL_ACCURACY);
     end
 
     return magicAccBonus;
@@ -1185,11 +1185,11 @@ function doNuke(caster, target, spell, params)
         if (caster:getMainJob() == dsp.job.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
             local ninSkillBonus = 100;
             if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
             elseif (spell:getID() % 3 == 0) then -- ni nuke spell ids are 1 more than their corresponding ichi spell
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 125)/2);
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 125)/2);
             else -- san nuke spell, also has ids 1 more than their corresponding ni spell
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(SKILL_NIN) - 275)/2);
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 275)/2);
             end
             ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200); -- bonus caps at +100%, and does not go negative
             dmg = dmg * ninSkillBonus/100;
@@ -1241,7 +1241,7 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 end
 
 function calculateBarspellPower(caster,enhanceSkill)
-    local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);
+    local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT);
     local equipBonus = caster:getMod(dsp.mod.BARSPELL_AMOUNT);
     --printf("Barspell: Merit Bonus +%d", meritBonus);
 

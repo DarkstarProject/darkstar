@@ -81,7 +81,7 @@ function onGameHour(zone)
     if (dir > 0) then
         local shouldOpen = boulderOpen[dir][VanadielHour()];
         local boulder = GetNPCByID(KUFTAL_DOOR_ROCK);
-        if (shouldOpen ~= nil and shouldOpen() and boulder:getAnimation() == ANIMATION_CLOSE_DOOR) then
+        if (shouldOpen ~= nil and shouldOpen() and boulder:getAnimation() == dsp.anim.CLOSE_DOOR) then
             boulder:openDoor(144 * 6); -- one vanadiel hour is 144 earth seconds. lower boulder for 6 vanadiel hours.
         end
     end

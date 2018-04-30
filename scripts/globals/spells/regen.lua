@@ -17,7 +17,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     local hp = math.ceil(5 * (1 + 0.01 * caster:getMod(dsp.mod.REGEN_MULTIPLIER))); -- spell base times gear multipliers
-    hp = hp + caster:getMerit(MERIT_REGEN_EFFECT); -- bonus hp from merits
+    hp = hp + caster:getMerit(dsp.merit.REGEN_EFFECT); -- bonus hp from merits
     hp = hp + caster:getMod(dsp.mod.LIGHT_ARTS_REGEN); -- bonus hp from light arts
 
     local duration = 75 + caster:getMod(dsp.mod.REGEN_DURATION);

@@ -32,7 +32,7 @@ function onSpikesDamage(mob,target,damage)
         dmg = 0;
     end
 
-    return SUBEFFECT_ICE_SPIKES,44,dmg;
+    return dsp.subEffect.ICE_SPIKES,44,dmg;
 
 end;
 

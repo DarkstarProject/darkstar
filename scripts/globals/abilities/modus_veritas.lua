@@ -19,14 +19,14 @@ function onUseAbility(player,target,ability)
     local helix = target:getStatusEffect(dsp.effect.HELIX);
     if (helix ~= nil) then
         local mvPower = helix:getSubPower();
-        local resist = applyResistanceAbility(player,target,ELE_NONE,SKILL_ELE,0); -- seems reasonable...
+        local resist = applyResistanceAbility(player,target,ELE_NONE,dsp.skill.ELE,0); -- seems reasonable...
         -- Doesn't work against NMs apparently
         if (mvPower > 0) or (resist < 0.25) or (target:isNM()) then -- Don't let Modus Veritas stack to prevent abuse
             ability:setMsg(dsp.msg.basic.JA_MISS); --Miss
             return 0;
         else
             -- Double power and halve remaining time
-            local mvMerits = player:getMerit(MERIT_MODUS_VERITAS_DURATION);
+            local mvMerits = player:getMerit(dsp.merit.MODUS_VERITAS_DURATION);
             local durationMultiplier = 0.5 + (0.05 * mvMerits);
             mvPower = mvPower +1;
             local helixPower = helix:getPower() * 2;

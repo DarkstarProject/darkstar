@@ -44,7 +44,7 @@ function onMobFight(mob,target)
             -- Force minions to 2hour
             for i = 1, 2 do
                 local minion = GetMobByID(mob:getID() + i);
-                if (minion:getCurrentAction() ~= ACTION_NONE) then
+                if (minion:getCurrentAction() ~= dsp.act.NONE) then
                     minion:useMobAbility(3411 + i); -- Chainspell or Benediction
                 end
             end

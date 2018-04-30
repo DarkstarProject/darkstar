@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local modAcc = player:getMerit(MERIT_FERAL_HOWL);
+    local modAcc = player:getMerit(dsp.merit.FERAL_HOWL);
     --printf("modAcc : %u",modAcc);
     local feralHowlMod = player:getMod(dsp.mod.FERAL_HOWL_DURATION);
     --printf("feralHowlMod : %u",feralHowlMod);

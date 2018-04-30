@@ -23,7 +23,7 @@ end;
 
 function onUseAbility(player,target,ability)
     -- Plus 5 percent mp recovers per extra devotion merit
-    local meritBonus = player:getMerit(MERIT_DEVOTION) - 5;
+    local meritBonus = player:getMerit(dsp.merit.DEVOTION) - 5;
     -- printf("Devotion Merit Bonus: %d", meritBonus);
 
     local mpPercent = (25 + meritBonus) / 100;

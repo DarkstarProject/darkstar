@@ -28,6 +28,6 @@ function onAdditionalEffect(player,target,damage)
             message = dsp.msg.basic.ADD_EFFECT_HEAL;
         end
 
-        return SUBEFFECT_LIGHTNING_DAMAGE,message,dmg;
+        return dsp.subEffect.LIGHTNING_DAMAGE,message,dmg;
     end
 end;

@@ -23,7 +23,7 @@ aftermathTable[18300] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=dsp.mod.SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES, power=dsp.subEffect.SHOCK_SPIKES },
         { id=dsp.mod.SPIKES_DMG, power=10 }
     }
 };
@@ -43,7 +43,7 @@ aftermathTable[21857] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=dsp.mod.SPIKES, power=SUBEFFECT_SHOCK_SPIKES },
+        { id=dsp.mod.SPIKES, power=dsp.subEffect.SHOCK_SPIKES },
         { id=dsp.mod.SPIKES_DMG, power=10 },
         { id=dsp.mod.ATTP, power=5 },
         { id=dsp.mod.DOUBLE_ATTACK, power=5 }
@@ -52,7 +52,7 @@ aftermathTable[21857] =
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.GEIRSKOGUL) then -- Gierskogul onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -64,7 +64,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -96,6 +96,6 @@ function onAdditionalEffect(player,target,damage)
     else
         target:delStatusEffect(dsp.effect.DEFENSE_BOOST)
         target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 17, 0, 60); -- Power and duration needs verification
-        return SUBEFFECT_DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.DEFENSE_DOWN;
+        return dsp.subEffect.DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.DEFENSE_DOWN;
     end
 end;

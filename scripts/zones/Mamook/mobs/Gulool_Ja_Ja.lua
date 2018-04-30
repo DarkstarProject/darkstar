@@ -39,7 +39,7 @@ function onMobFight(mob, target)
     end
     for i = GULOOL_JA_JA + 1, GULOOL_JA_JA + 4 do
         local pet = GetMobByID(i);
-        if (pet:getCurrentAction() == ACTION_ROAMING) then
+        if (pet:getCurrentAction() == dsp.act.ROAMING) then
             pet:updateEnmity(target);
         end
     end

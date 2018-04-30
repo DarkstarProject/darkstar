@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     end;
 
     if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
-        local diffMerit = caster:getMerit(MERIT_DIFFUSION);
+        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION);
 
         if (diffMerit > 0) then
             duration = duration + (duration/100)* diffMerit;

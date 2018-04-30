@@ -103,7 +103,7 @@ aftermathTable[22063] = aftermathTable[19724]; -- Nirvana (119/III)
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.GARLAND_OF_BLISS) then -- Garland of Bliss onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_MAIN);
+            local itemId = user:getEquipID(dsp.slot.MAIN);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -122,7 +122,7 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);

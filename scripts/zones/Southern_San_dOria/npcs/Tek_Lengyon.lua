@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,7);
-    local SkillCap = getCraftSkillCap(player, SKILL_LEATHERCRAFT);
-    local SkillLevel = player:getSkillLevel(SKILL_LEATHERCRAFT);
+    local SkillCap = getCraftSkillCap(player, dsp.skill.LEATHERCRAFT);
+    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
 
     if (guildMember == 1) then
         if (player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false) then

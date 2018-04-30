@@ -54,6 +54,6 @@ function onAdditionalEffect(mob, player)
         if (not player:hasStatusEffect(dsp.effect.PETRIFICATION)) then
             player:addStatusEffect(dsp.effect.PETRIFICATION, 1, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PETRIFICATION;
+        return dsp.subEffect.PETRIFY, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PETRIFICATION;
     end
 end;
