@@ -5321,7 +5321,7 @@ namespace battleutils
         {
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ELE || PSpell->getSkillType() == SKILLTYPE::SKILL_DRK)
             {
-                CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity);
+                CCharEntity* PChar = static_cast<CCharEntity*>(PEntity);
                 if (charutils::hasTrait(PChar, TRAIT_OCCULT_ACUMEN))
                 {
                     return static_cast<int16>(PSpell->getMPCost() * PChar->getMod(Mod::OCCULT_ACUMEN) / 100.f * (1 + (PChar->getMod(Mod::STORETP) / 100.f)));
