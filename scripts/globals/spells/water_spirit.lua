@@ -21,7 +21,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_WATER_SPIRIT);
+    caster:spawnPet(dsp.pet.id.WATER_SPIRIT);
 
     return 0;
 end;

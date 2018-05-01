@@ -19,7 +19,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_SHIVA);
+    caster:spawnPet(dsp.pet.id.SHIVA);
 
     return 0;
 end;

@@ -22,5 +22,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:spawnPet(PET_AUTOMATON);
+    player:spawnPet(dsp.pet.id.AUTOMATON);
 end;

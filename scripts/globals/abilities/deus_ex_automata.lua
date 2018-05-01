@@ -22,7 +22,7 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-    player:spawnPet(PET_AUTOMATON)
+    player:spawnPet(dsp.pet.id.AUTOMATON)
     local pet = player:getPet()
     if pet then
         local percent = math.floor((player:getMainLvl()/3))/100

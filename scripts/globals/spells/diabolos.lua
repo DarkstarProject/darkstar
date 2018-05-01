@@ -20,7 +20,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_DIABOLOS);
+    caster:spawnPet(dsp.pet.id.DIABOLOS);
 
     return 0;
 end;

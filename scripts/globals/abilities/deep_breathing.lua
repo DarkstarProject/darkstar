@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
         return dsp.msg.basic.REQUIRES_A_PET,0;
-   elseif (player:getPetID() ~= PET_WYVERN) then
+   elseif (player:getPetID() ~= dsp.pet.id.WYVERN) then
       return dsp.msg.basic.NO_EFFECT_ON_PET,0;
     else
       return 0,0;

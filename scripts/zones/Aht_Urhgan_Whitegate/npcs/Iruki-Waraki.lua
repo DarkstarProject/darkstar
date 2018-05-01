@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,17859); -- animator
             player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster."
             player:setVar("NoStringsAttachedProgress",0);
-            player:setPetName(PETTYPE_AUTOMATON, option+118);
+            player:setPetName(dsp.pet.type.AUTOMATON, option+118);
             player:unlockAttachment(8224); --Harlequin Frame
             player:unlockAttachment(8193); --Harlequin Head
         else
