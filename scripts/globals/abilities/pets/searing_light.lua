@@ -24,8 +24,8 @@ function onPetAbility(target, pet, skill, master)
     local level = pet:getMainLvl()
     local damage = 26 + (level * 6);
     damage = damage + (dINT * 1.5);
-    damage = MobMagicalMove(pet,target,skill,damage,ELE_LIGHT,1,TP_NO_EFFECT,0);
-    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_LIGHT);
+    damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.LIGHT,1,TP_NO_EFFECT,0);
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.LIGHT);
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
 
     target:delHP(damage);

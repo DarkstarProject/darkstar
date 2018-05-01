@@ -38,7 +38,7 @@ MOBDRAIN_TP = 2;
 
 --skillparam (MAGICAL)
 -- this is totally useless and should be removed
--- add resistence using ELE_FIRE, see bomb_toss.lua
+-- add resistence using dsp.magic.ele.FIRE, see bomb_toss.lua
 MOBPARAM_FIRE = 6;
 MOBPARAM_EARTH = 7;
 MOBPARAM_WATER = 8;
@@ -271,8 +271,8 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     local resist = 1;
 
     local mdefBarBonus = 0;
-    if (element > 0 and element <= 6 and target:hasStatusEffect(barSpells[element])) then -- bar- spell magic defense bonus
-        mdefBarBonus = target:getStatusEffect(barSpells[element]):getSubPower();
+    if (element > 0 and element <= 6 and target:hasStatusEffect(dsp.magic.barSpell[element])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[element]):getSubPower();
     end
     -- plus 100 forces it to be a number
     mab = (100 + mob:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
@@ -298,7 +298,7 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     if (mob:isPet() and mob:getMaster() ~= nil) then
         local master = mob:getMaster();
         if (master:getPetID() >= 0 and master:getPetID() <= 20) then -- check to ensure pet is avatar
-            avatarAccBonus = utils.clamp(master:getSkillLevel(dsp.skill.SUM) - master:getMaxSkillLevel(mob:getMainLvl(), dsp.job.SMN, SUMMONING_SKILL), 0, 200);
+            avatarAccBonus = utils.clamp(master:getSkillLevel(dsp.skill.SUM) - master:getMaxSkillLevel(mob:getMainLvl(), dsp.job.SMN, dsp.skill.SUM), 0, 200);
         end
     end
     resist = applyPlayerResistance(mob,nil,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),avatarAccBonus,element);
@@ -347,29 +347,29 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
     dayWeatherBonus = 1.00;
 
-    if caster:getWeather() == singleWeatherStrong[ele] then
+    if caster:getWeather() == dsp.magic.singleWeatherStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif caster:getWeather() == singleWeatherWeak[ele] then
+    elseif caster:getWeather() == dsp.magic.singleWeatherWeak[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif caster:getWeather() == doubleWeatherStrong[ele] then
+    elseif caster:getWeather() == dsp.magic.doubleWeatherStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif caster:getWeather() == doubleWeatherWeak[ele] then
+    elseif caster:getWeather() == dsp.magic.doubleWeatherWeak[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
-    if VanadielDayElement() == dayStrong[ele] then
+    if VanadielDayElement() == dsp.magic.dayStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif VanadielDayElement() == dayWeak[ele] then
+    elseif VanadielDayElement() == dsp.magic.dayWeak[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
@@ -391,8 +391,8 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     dmg = math.floor(dmg * burst);
 
     local mdefBarBonus = 0;
-    if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
-        mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+    if (ele > 0 and ele <= 6 and target:hasStatusEffect(dsp.magic.barSpell[ele])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[ele]):getSubPower();
     end
     mab = (100 + caster:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus) ;
 

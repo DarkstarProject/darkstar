@@ -21,8 +21,8 @@ function onPetAbility(target, pet, skill, master)
         if (dmg > 9999) then
             dmg = 9999;
         end
-        dmg = MobMagicalMove(pet,target,skill,dmg,ELE_DARK,1,TP_NO_EFFECT,0);
-        dmg = mobAddBonuses(pet, nil, target, dmg.dmg, ELE_DARK);
+        dmg = MobMagicalMove(pet,target,skill,dmg,dsp.magic.ele.DARK,1,TP_NO_EFFECT,0);
+        dmg = mobAddBonuses(pet, nil, target, dmg.dmg, dsp.magic.ele.DARK);
         dmg = AvatarFinalAdjustments(dmg,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
         target:delHP(dmg);
         target:updateEnmityFromDamage(pet,dmg);

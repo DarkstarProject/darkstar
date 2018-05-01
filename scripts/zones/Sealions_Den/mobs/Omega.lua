@@ -22,7 +22,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,dsp.effect.STUN);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.THUNDER,dsp.effect.STUN);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else

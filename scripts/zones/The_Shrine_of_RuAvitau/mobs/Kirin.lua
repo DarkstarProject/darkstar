@@ -62,10 +62,10 @@ function onAdditionalEffect(mob, target, damage)
     params.bonusmab = 0;
     params.includemab = false;
 
-    dmg = addBonusesAbility(mob, ELE_EARTH, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_EARTH,0);
-    dmg = adjustForTarget(target,dmg,ELE_EARTH);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.EARTH, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.EARTH,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.EARTH);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.EARTH,dmg);
 
     return dsp.subEffect.EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;

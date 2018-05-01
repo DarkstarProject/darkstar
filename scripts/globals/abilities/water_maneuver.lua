@@ -26,7 +26,7 @@ function onUseAbility(player,target,ability)
         burden = 20;
     end
 
-    local overload = target:addBurden(ELE_WATER-1, burden);
+    local overload = target:addBurden(dsp.magic.ele.WATER-1, burden);
 
     if (overload ~= 0) then
         target:removeAllManeuvers();

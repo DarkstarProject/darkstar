@@ -27,9 +27,9 @@ function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
     local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
-    dmg  = addBonusesAbility(player, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,dsp.skill.MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
-    dmg = adjustForTarget(target,dmg,ELE_ICE);
+    dmg  = addBonusesAbility(player, dsp.magic.ele.ICE, target, dmg, params);
+    dmg = dmg * applyResistanceAbility(player,target,dsp.magic.ele.ICE,dsp.skill.MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.ICE);
 
     local shadowsAbsorbed = 0
     if shadowAbsorb(target) then

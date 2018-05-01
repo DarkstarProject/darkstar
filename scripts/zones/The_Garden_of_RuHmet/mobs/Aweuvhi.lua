@@ -34,22 +34,22 @@ function onMobFight(mob)
             mob:setMod(dsp.mod.SLASHRES,2000);
             mob:setMod(dsp.mod.PIERCERES,2000);
             mob:setMod(dsp.mod.IMPACTRES,2000);
-            for n =1,#resistMod,1 do
-                mob:setMod(resistMod[n],2000);
+            for n =1,#dsp.magic.resistMod,1 do
+                mob:setMod(dsp.magic.resistMod[n],2000);
             end
-            for n =1,#defenseMod,1 do
-                mob:setMod(defenseMod[n],-1000);
+            for n =1,#dsp.magic.defenseMod,1 do
+                mob:setMod(dsp.magic.defenseMod[n],-1000);
             end
         else -- Reset all damage types
             mob:setMod(dsp.mod.HTHRES,1000);
             mob:setMod(dsp.mod.SLASHRES,1000);
             mob:setMod(dsp.mod.PIERCERES,1000);
             mob:setMod(dsp.mod.IMPACTRES,1000);
-            for n =1,#resistMod,1 do
-                mob:setMod(resistMod[n],1000);
+            for n =1,#dsp.magic.resistMod,1 do
+                mob:setMod(dsp.magic.resistMod[n],1000);
             end
-            for n =1,#defenseMod,1 do
-                mob:setMod(defenseMod[n],1000);
+            for n =1,#dsp.magic.defenseMod,1 do
+                mob:setMod(dsp.magic.defenseMod[n],1000);
             end
         end
     end

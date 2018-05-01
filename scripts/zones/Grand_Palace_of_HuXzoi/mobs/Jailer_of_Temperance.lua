@@ -20,11 +20,11 @@ function onMobSpawn(mob)
     mob:setMod(dsp.mod.PIERCERES,0);
     mob:setMod(dsp.mod.IMPACTRES,1000);
     -- Set the magic resists. It always takes no damage from direct magic
-    for n =1,#resistMod,1 do
-        mob:setMod(resistMod[n],0);
+    for n =1,#dsp.magic.resistMod,1 do
+        mob:setMod(dsp.magic.resistMod[n],0);
     end
-    for n =1,#defenseMod,1 do
-        mob:setMod(defenseMod[n],1000);
+    for n =1,#dsp.magic.defenseMod,1 do
+        mob:setMod(dsp.magic.defenseMod[n],1000);
     end
 end;
 

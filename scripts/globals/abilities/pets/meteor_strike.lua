@@ -30,8 +30,8 @@ function onPetAbility(target, pet, skill)
     --note: this formula is only accurate for level 75 - 76+ may have a different intercept and/or slope
     local damage = math.floor(512 + 1.72*(tp+1));
     damage = damage + (dINT * 1.5);
-    damage = MobMagicalMove(pet,target,skill,damage,ELE_FIRE,1,TP_NO_EFFECT,0);
-    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_FIRE);
+    damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.FIRE,1,TP_NO_EFFECT,0);
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.FIRE);
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
 
     target:delHP(damage);

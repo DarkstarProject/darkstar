@@ -88,7 +88,7 @@ end
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.WATER,0) <= 0.5) then
         return 0,0,0;
     else
         target:delStatusEffect(dsp.effect.ATTACK_BOOST);

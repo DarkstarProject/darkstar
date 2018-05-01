@@ -28,10 +28,10 @@ function onMobFight(mob, target)
             newelement = math.random(1,6);
         end
         if (element ~= 0) then
-            mob:delMod(absorbMod[element], 100);
+            mob:delMod(dsp.magic.absorbMod[element], 100);
         end
         mob:useMobAbility(blades[newelement]);
-        mob:addMod(absorbMod[newelement], 100);
+        mob:addMod(dsp.magic.absorbMod[newelement], 100);
         mob:setLocalVar("changeTime", mob:getBattleTime() + math.random(1,3)*15);
         mob:setLocalVar("element", newelement);
     end

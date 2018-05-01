@@ -24,7 +24,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effect.SLOW);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.EARTH,dsp.effect.SLOW);
     if (resist <= 0.5) then
         return 0,0,0;
     else

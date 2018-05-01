@@ -1,63 +1,48 @@
-
 require("scripts/globals/magicburst");
 require("scripts/globals/settings");
 require("scripts/globals/weather");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
+------------------------------------
 
-    DIVINE_MAGIC_SKILL     = 32;
-    HEALING_MAGIC_SKILL    = 33;
-    ENHANCING_MAGIC_SKILL  = 34;
-    ENFEEBLING_MAGIC_SKILL = 35;
-    ELEMENTAL_MAGIC_SKILL  = 36;
-    DARK_MAGIC_SKILL       = 37;
-    NINJUTSU_SKILL         = 39;
-    SUMMONING_SKILL        = 38;
-    SINGING_SKILL          = 40;
-    STRING_SKILL           = 41;
-    WIND_SKILL             = 42;
-    BLUE_SKILL             = 43;
+dsp = dsp or {};
+dsp.magic = dsp.magic or {};
 
-    FIRESDAY      = 0;
-    EARTHSDAY     = 1;
-    WATERSDAY     = 2;
-    WINDSDAY      = 3;
-    ICEDAY        = 4;
-    LIGHTNINGDAY  = 5;
-    LIGHTSDAY     = 6;
-    DARKSDAY      = 7;
+dsp.magic.element =
+{
+    NONE      = 0,
+    FIRE      = 1,
+    EARTH     = 2,
+    WATER     = 3,
+    WIND      = 4,
+    ICE       = 5,
+    LIGHTNING = 6,
+    THUNDER   = 6,
+    LIGHT     = 7,
+    DARK      = 8,
+}
+dsp.magic.ele = dsp.magic.element;
 
-    ELE_NONE      = 0;
-    ELE_FIRE      = 1;
-    ELE_EARTH     = 2;
-    ELE_WATER     = 3;
-    ELE_WIND      = 4;
-    ELE_ICE       = 5;
-    ELE_LIGHTNING = 6;
-    -- added both because monsterstpmoves calls it thunder
-    ELE_THUNDER   = 6;
-    ELE_LIGHT     = 7;
-    ELE_DARK      = 8;
+dsp.magic.dayStrong           = {dsp.day.FIRESDAY,              dsp.day.EARTHSDAY,              dsp.day.WATERSDAY,               dsp.day.WINDSDAY,              dsp.day.ICEDAY,               dsp.day.LIGHTNINGDAY,            dsp.day.LIGHTSDAY,           dsp.day.DARKSDAY};
+dsp.magic.singleWeatherStrong = {dsp.weather.HOT_SPELL,         dsp.weather.DUST_STORM,         dsp.weather.RAIN,                dsp.weather.WIND,              dsp.weather.SNOW,             dsp.weather.THUNDER,             dsp.weather.AURORAS,         dsp.weather.GLOOM};
+dsp.magic.doubleWeatherStrong = {dsp.weather.HEAT_WAVE,         dsp.weather.SAND_STORM,         dsp.weather.SQUALL,              dsp.weather.GALES,             dsp.weather.BLIZZARDS,        dsp.weather.THUNDERSTORMS,       dsp.weather.STELLAR_GLARE,   dsp.weather.DARKNESS};
+local elementalObiStrong      = {dsp.mod.FORCE_FIRE_DWBONUS,    dsp.mod.FORCE_EARTH_DWBONUS,    dsp.mod.FORCE_WATER_DWBONUS,     dsp.mod.FORCE_WIND_DWBONUS,    dsp.mod.FORCE_ICE_DWBONUS,    dsp.mod.FORCE_LIGHTNING_DWBONUS, dsp.mod.FORCE_LIGHT_DWBONUS, dsp.mod.FORCE_DARK_DWBONUS};
+local spellAcc                = {dsp.mod.FIREACC,               dsp.mod.EARTHACC,               dsp.mod.WATERACC,                dsp.mod.WINDACC,               dsp.mod.ICEACC,               dsp.mod.THUNDERACC,              dsp.mod.LIGHTACC,            dsp.mod.DARKACC};
+local strongAffinityDmg       = {dsp.mod.FIRE_AFFINITY_DMG,     dsp.mod.EARTH_AFFINITY_DMG,     dsp.mod.WATER_AFFINITY_DMG,      dsp.mod.WIND_AFFINITY_DMG,     dsp.mod.ICE_AFFINITY_DMG,     dsp.mod.THUNDER_AFFINITY_DMG,    dsp.mod.LIGHT_AFFINITY_DMG,  dsp.mod.DARK_AFFINITY_DMG};
+local strongAffinityAcc       = {dsp.mod.FIRE_AFFINITY_ACC,     dsp.mod.EARTH_AFFINITY_ACC,     dsp.mod.WATER_AFFINITY_ACC,      dsp.mod.WIND_AFFINITY_ACC,     dsp.mod.ICE_AFFINITY_ACC,     dsp.mod.THUNDER_AFFINITY_ACC,    dsp.mod.LIGHT_AFFINITY_ACC,  dsp.mod.DARK_AFFINITY_ACC};
+dsp.magic.resistMod           = {dsp.mod.FIRERES,               dsp.mod.EARTHRES,               dsp.mod.WATERRES,                dsp.mod.WINDRES,               dsp.mod.ICERES,               dsp.mod.THUNDERRES,              dsp.mod.LIGHTRES,            dsp.mod.DARKRES};
+dsp.magic.defenseMod          = {dsp.mod.FIREDEF,               dsp.mod.EARTHDEF,               dsp.mod.WATERDEF,                dsp.mod.WINDDEF,               dsp.mod.ICEDEF,               dsp.mod.THUNDERDEF,              dsp.mod.LIGHTDEF,            dsp.mod.DARKDEF};
+dsp.magic.absorbMod           = {dsp.mod.FIRE_ABSORB,           dsp.mod.EARTH_ABSORB,           dsp.mod.WATER_ABSORB,            dsp.mod.WIND_ABSORB,           dsp.mod.ICE_ABSORB,           dsp.mod.LTNG_ABSORB,             dsp.mod.LIGHT_ABSORB,        dsp.mod.DARK_ABSORB};
+local nullMod                 = {dsp.mod.FIRE_NULL,             dsp.mod.EARTH_NULL,             dsp.mod.WATER_NULL,              dsp.mod.WIND_NULL,             dsp.mod.ICE_NULL,             dsp.mod.LTNG_NULL,               dsp.mod.LIGHT_NULL,          dsp.mod.DARK_NULL};
+local blmMerit                = {dsp.merit.FIRE_MAGIC_POTENCY,  dsp.merit.EARTH_MAGIC_POTENCY,  dsp.merit.WATER_MAGIC_POTENCY,   dsp.merit.WIND_MAGIC_POTENCY,  dsp.merit.ICE_MAGIC_POTENCY,  dsp.merit.LIGHTNING_MAGIC_POTENCY};
+local rdmMerit                = {dsp.merit.FIRE_MAGIC_ACCURACY, dsp.merit.EARTH_MAGIC_ACCURACY, dsp.merit.WATER_MAGIC_ACCURACY,  dsp.merit.WIND_MAGIC_ACCURACY, dsp.merit.ICE_MAGIC_ACCURACY, dsp.merit.LIGHTNING_MAGIC_ACCURACY};
+dsp.magic.barSpell            = {dsp.effect.BARFIRE,            dsp.effect.BARSTONE,            dsp.effect.BARWATER,             dsp.effect.BARAERO,            dsp.effect.BARBLIZZARD,       dsp.effect.BARTHUNDER};
 
-    dayStrong = {FIRESDAY, EARTHSDAY, WATERSDAY, WINDSDAY, ICEDAY, LIGHTNINGDAY, LIGHTSDAY, DARKSDAY};
-    dayWeak = {WATERSDAY, WINDSDAY, LIGHTNINGDAY, ICEDAY, FIRESDAY, EARTHSDAY, DARKSDAY, LIGHTSDAY};
-    singleWeatherStrong = {dsp.weather.HOT_SPELL, dsp.weather.DUST_STORM, dsp.weather.RAIN, dsp.weather.WIND, dsp.weather.SNOW, dsp.weather.THUNDER, dsp.weather.AURORAS, dsp.weather.GLOOM};
-    doubleWeatherStrong = {dsp.weather.HEAT_WAVE, dsp.weather.SAND_STORM, dsp.weather.SQUALL, dsp.weather.GALES, dsp.weather.BLIZZARDS, dsp.weather.THUNDERSTORMS, dsp.weather.STELLAR_GLARE, dsp.weather.DARKNESS};
-    singleWeatherWeak = {dsp.weather.RAIN, dsp.weather.WIND, dsp.weather.THUNDER, dsp.weather.SNOW, dsp.weather.HOT_SPELL, dsp.weather.DUST_STORM, dsp.weather.GLOOM, dsp.weather.AURORAS};
-    doubleWeatherWeak = {dsp.weather.SQUALL, dsp.weather.GALES, dsp.weather.THUNDERSTORMS, dsp.weather.BLIZZARDS, dsp.weather.HEAT_WAVE, dsp.weather.SAND_STORM, dsp.weather.DARKNESS, dsp.weather.STELLAR_GLARE};
-    elementalObi = {dsp.mod.FORCE_FIRE_DWBONUS, dsp.mod.FORCE_EARTH_DWBONUS, dsp.mod.FORCE_WATER_DWBONUS, dsp.mod.FORCE_WIND_DWBONUS, dsp.mod.FORCE_ICE_DWBONUS, dsp.mod.FORCE_LIGHTNING_DWBONUS, dsp.mod.FORCE_LIGHT_DWBONUS, dsp.mod.FORCE_DARK_DWBONUS};
-    elementalObiWeak = {dsp.mod.FORCE_WATER_DWBONUS, dsp.mod.FORCE_WIND_DWBONUS, dsp.mod.FORCE_LIGHTNING_DWBONUS, dsp.mod.FORCE_ICE_DWBONUS, dsp.mod.FORCE_FIRE_DWBONUS, dsp.mod.FORCE_EARTH_DWBONUS, dsp.mod.FORCE_DARK_DWBONUS, dsp.mod.FORCE_LIGHT_DWBONUS};
-    spellAcc = {dsp.mod.FIREACC, dsp.mod.EARTHACC, dsp.mod.WATERACC, dsp.mod.WINDACC, dsp.mod.ICEACC, dsp.mod.THUNDERACC, dsp.mod.LIGHTACC, dsp.mod.DARKACC};
-    strongAffinityDmg = {dsp.mod.FIRE_AFFINITY_DMG, dsp.mod.EARTH_AFFINITY_DMG, dsp.mod.WATER_AFFINITY_DMG, dsp.mod.WIND_AFFINITY_DMG, dsp.mod.ICE_AFFINITY_DMG, dsp.mod.THUNDER_AFFINITY_DMG, dsp.mod.LIGHT_AFFINITY_DMG, dsp.mod.DARK_AFFINITY_DMG};
-    strongAffinityAcc = {dsp.mod.FIRE_AFFINITY_ACC, dsp.mod.EARTH_AFFINITY_ACC, dsp.mod.WATER_AFFINITY_ACC, dsp.mod.WIND_AFFINITY_ACC, dsp.mod.ICE_AFFINITY_ACC, dsp.mod.THUNDER_AFFINITY_ACC, dsp.mod.LIGHT_AFFINITY_ACC, dsp.mod.DARK_AFFINITY_ACC};
-    resistMod = {dsp.mod.FIRERES, dsp.mod.EARTHRES, dsp.mod.WATERRES, dsp.mod.WINDRES, dsp.mod.ICERES, dsp.mod.THUNDERRES, dsp.mod.LIGHTRES, dsp.mod.DARKRES};
-    defenseMod = {dsp.mod.FIREDEF, dsp.mod.EARTHDEF, dsp.mod.WATERDEF, dsp.mod.WINDDEF, dsp.mod.ICEDEF, dsp.mod.THUNDERDEF, dsp.mod.LIGHTDEF, dsp.mod.DARKDEF};
-    absorbMod = {dsp.mod.FIRE_ABSORB, dsp.mod.EARTH_ABSORB, dsp.mod.WATER_ABSORB, dsp.mod.WIND_ABSORB, dsp.mod.ICE_ABSORB, dsp.mod.LTNG_ABSORB, dsp.mod.LIGHT_ABSORB, dsp.mod.DARK_ABSORB};
-    nullMod = {dsp.mod.FIRE_NULL, dsp.mod.EARTH_NULL, dsp.mod.WATER_NULL, dsp.mod.WIND_NULL, dsp.mod.ICE_NULL, dsp.mod.LTNG_NULL, dsp.mod.LIGHT_NULL, dsp.mod.DARK_NULL};
-    blmMerit = {dsp.merit.FIRE_MAGIC_POTENCY, dsp.merit.EARTH_MAGIC_POTENCY, dsp.merit.WATER_MAGIC_POTENCY, dsp.merit.WIND_MAGIC_POTENCY, dsp.merit.ICE_MAGIC_POTENCY, dsp.merit.LIGHTNING_MAGIC_POTENCY};
-    rdmMerit = {dsp.merit.FIRE_MAGIC_ACCURACY, dsp.merit.EARTH_MAGIC_ACCURACY, dsp.merit.WATER_MAGIC_ACCURACY, dsp.merit.WIND_MAGIC_ACCURACY, dsp.merit.ICE_MAGIC_ACCURACY, dsp.merit.LIGHTNING_MAGIC_ACCURACY};
-    barSpells = {dsp.effect.BARFIRE, dsp.effect.BARSTONE, dsp.effect.BARWATER, dsp.effect.BARAERO, dsp.effect.BARBLIZZARD, dsp.effect.BARTHUNDER};
+dsp.magic.dayWeak             = {dsp.day.WATERSDAY,             dsp.day.WINDSDAY,               dsp.day.LIGHTNINGDAY,            dsp.day.ICEDAY,                dsp.day.FIRESDAY,             dsp.day.EARTHSDAY,               dsp.day.DARKSDAY,            dsp.day.LIGHTSDAY};
+dsp.magic.singleWeatherWeak   = {dsp.weather.RAIN,              dsp.weather.WIND,               dsp.weather.THUNDER,             dsp.weather.SNOW,              dsp.weather.HOT_SPELL,        dsp.weather.DUST_STORM,          dsp.weather.GLOOM,           dsp.weather.AURORAS};
+dsp.magic.doubleWeatherWeak   = {dsp.weather.SQUALL,            dsp.weather.GALES,              dsp.weather.THUNDERSTORMS,       dsp.weather.BLIZZARDS,         dsp.weather.HEAT_WAVE,        dsp.weather.SAND_STORM,          dsp.weather.DARKNESS,        dsp.weather.STELLAR_GLARE};
+local elementalObiWeak        = {dsp.mod.FORCE_WATER_DWBONUS,   dsp.mod.FORCE_WIND_DWBONUS,     dsp.mod.FORCE_LIGHTNING_DWBONUS, dsp.mod.FORCE_ICE_DWBONUS,     dsp.mod.FORCE_FIRE_DWBONUS,   dsp.mod.FORCE_EARTH_DWBONUS,     dsp.mod.FORCE_DARK_DWBONUS,  dsp.mod.FORCE_LIGHT_DWBONUS};
 
 -- USED FOR DAMAGING MAGICAL SPELLS (Stages 1 and 2 in Calculating Magic Damage on wiki)
 --Calculates magic damage using the standard magic damage calc.
@@ -71,8 +56,8 @@ require("scripts/globals/msg");
 --
 -- Output:
 -- The total damage, before resistance and before equipment (so no HQ staff bonus worked out here).
-SOFT_CAP = 60; --guesstimated
-HARD_CAP = 120; --guesstimated
+local SOFT_CAP = 60; --guesstimated
+local HARD_CAP = 120; --guesstimated
 
 function calculateMagicDamage(caster, target, spell, params)
 
@@ -93,7 +78,7 @@ function calculateMagicDamage(caster, target, spell, params)
     end
 
 
-    if (params.skillType == DIVINE_MAGIC_SKILL and target:isUndead()) then
+    if (params.skillType == dsp.skill.DIV and target:isUndead()) then
         -- 150% bonus damage
         dmg = dmg * 1.5;
     end
@@ -111,7 +96,7 @@ function doBoostGain(caster,target,spell,effect)
     end
 
     --calculate potency
-    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local magicskill = target:getSkillLevel(dsp.skill.ENH);
 
     local potency = math.floor((magicskill - 300) / 10) + 5;
 
@@ -153,7 +138,7 @@ function doEnspell(caster,target,spell,effect)
         duration = duration * 3;
     end
     --calculate potency
-    local magicskill = target:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local magicskill = target:getSkillLevel(dsp.skill.ENH);
 
     local potency = 3 + math.floor((6*magicskill)/100);
     if (magicskill>200) then
@@ -168,22 +153,22 @@ function doEnspell(caster,target,spell,effect)
 end;
 
 
- ---------------------------------
- --   getCurePower returns the caster's cure power
- --   getCureFinal returns the final cure amount
- --   Source: http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
- ---------------------------------
- function getCurePower(caster,isBlueMagic)
+---------------------------------
+--   getCurePower returns the caster's cure power
+--   getCureFinal returns the final cure amount
+--   Source: http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
+---------------------------------
+function getCurePower(caster,isBlueMagic)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
-    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL);
+    local skill = caster:getSkillLevel(dsp.skill.HEA);
     local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
     return power;
 end;
 function getCurePowerOld(caster)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
-    local skill = caster:getSkillLevel(HEALING_MAGIC_SKILL); -- it's healing magic skill for the BLU cures as well
+    local skill = caster:getSkillLevel(dsp.skill.HEA); -- it's healing magic skill for the BLU cures as well
     local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power;
 end;
@@ -222,41 +207,41 @@ function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
 
     local castersWeather = caster:getWeather();
 
-    if (castersWeather == singleWeatherStrong[ele]) then
+    if (castersWeather == dsp.magic.singleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (castersWeather == singleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+    elseif (castersWeather == dsp.magic.singleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif (castersWeather == doubleWeatherStrong[ele]) then
+    elseif (castersWeather == dsp.magic.doubleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif (castersWeather == doubleWeatherWeak[ele]) then
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+    elseif (castersWeather == dsp.magic.doubleWeatherWeak[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if (dayElement == dayStrong[ele]) then
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+    if (dayElement == dsp.magic.dayStrong[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (dayElement == dayWeak[ele]) then
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+    elseif (dayElement == dsp.magic.dayWeak[ele]) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
@@ -324,13 +309,13 @@ function applyResistanceEffect(caster, target, spell, params)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == ENFEEBLING_MAGIC_SKILL and caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
+        if (skill == dsp.skill.ENF and caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
             caster:delStatusEffect(dsp.effect.STYMIE);
             return 1;
         end
     end
 
-    if (skill == SINGING_SKILL and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
+    if (skill == dsp.skill.SNG and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         if (math.random(0,99) < caster:getMerit(dsp.merit.TROUBADOUR)-25) then
             return 1.0;
         end
@@ -397,8 +382,8 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     end
 
     local resMod = 0; -- Some spells may possibly be non elemental, but have status effects.
-    if (element ~= ELE_NONE) then
-        resMod = target:getMod(resistMod[element]);
+    if (element ~= dsp.magic.ele.NONE) then
+        resMod = target:getMod(dsp.magic.resistMod[element]);
 
         -- Add acc for elemental affinity accuracy and element specific accuracy
         local affinityBonus = AffinityBonusAcc(caster, element);
@@ -541,13 +526,13 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     --Add acc for klimaform
     if element > 0 then
-        if caster:hasStatusEffect(dsp.effect.KLIMAFORM) and (castersWeather == singleWeatherStrong[element] or castersWeather == doubleWeatherStrong[element]) then
+        if caster:hasStatusEffect(dsp.effect.KLIMAFORM) and (castersWeather == dsp.magic.singleWeatherStrong[element] or castersWeather == dsp.magic.doubleWeatherStrong[element]) then
             magicAccBonus = magicAccBonus + 15
         end
     end
 
     --Add acc for dark seal
-    if (skill == DARK_MAGIC_SKILL and caster:hasStatusEffect(dsp.effect.DARK_SEAL)) then
+    if (skill == dsp.skill.DRK and caster:hasStatusEffect(dsp.effect.DARK_SEAL)) then
         magicAccBonus = magicAccBonus + 256;
     end
 
@@ -557,7 +542,7 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
-    if (skill == BLUE_SKILL) then
+    if (skill == dsp.skill.BLU) then
         magicAccBonus = magicAccBonus + caster:getMerit(dsp.merit.MAGICAL_ACCURACY);
     end
 
@@ -616,13 +601,13 @@ end;
     end
 
     local skill = spell:getSkillType();
-    if (skill == ELEMENTAL_MAGIC_SKILL) then
+    if (skill == dsp.skill.ELE) then
         dmg = dmg * ELEMENTAL_POWER;
-    elseif (skill == DARK_MAGIC_SKILL) then
+    elseif (skill == dsp.skill.DRK) then
         dmg = dmg * DARK_POWER;
-    elseif (skill == NINJUTSU_SKILL) then
+    elseif (skill == dsp.skill.NIN) then
         dmg = dmg * NINJUTSU_POWER;
-    elseif (skill == DIVINE_MAGIC_SKILL) then
+    elseif (skill == dsp.skill.DIV) then
         dmg = dmg * DIVINE_POWER;
     end
 
@@ -681,7 +666,7 @@ function finalMagicNonSpellAdjustments(caster,target,ele,dmg)
 end;
 
 function adjustForTarget(target,dmg,ele)
-    if (dmg > 0 and math.random(0,99) < target:getMod(absorbMod[ele])) then
+    if (dmg > 0 and math.random(0,99) < target:getMod(dsp.magic.absorbMod[ele])) then
         return -dmg;
     end
     if (math.random(0,99) < target:getMod(nullMod[ele])) then
@@ -758,41 +743,41 @@ function addBonuses(caster, spell, target, dmg, params)
     local dayWeatherBonus = 1.00;
     local weather = caster:getWeather();
 
-    if (weather == singleWeatherStrong[ele]) then
+    if (weather == dsp.magic.singleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (caster:getWeather() == singleWeatherWeak[ele]) then
+    elseif (caster:getWeather() == dsp.magic.singleWeatherWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif (weather == doubleWeatherStrong[ele]) then
+    elseif (weather == dsp.magic.doubleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1 or isHelixSpell(spell)) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif (weather == doubleWeatherWeak[ele]) then
+    elseif (weather == dsp.magic.doubleWeatherWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if (dayElement == dayStrong[ele]) then
+    if (dayElement == dsp.magic.dayStrong[ele]) then
         dayWeatherBonus = dayWeatherBonus + caster:getMod(dsp.mod.DAY_NUKE_BONUS)/100; -- sorc. tonban(+1)/zodiac ring
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1 or isHelixSpell(spell)) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (dayElement == dayWeak[ele]) then
+    elseif (dayElement == dsp.magic.dayWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1 or isHelixSpell(spell)) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
@@ -827,8 +812,8 @@ function addBonuses(caster, spell, target, dmg, params)
         local mdefBarBonus = 0;
         if (ele > 0 and ele <= 6) then
             mab = mab + caster:getMerit(blmMerit[ele]);
-            if (target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
-                mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+            if (target:hasStatusEffect(dsp.magic.barSpell[ele])) then -- bar- spell magic defense bonus
+                mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[ele]):getSubPower();
             end
         end
         mabbonus = (100 + mab) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
@@ -868,41 +853,41 @@ function addBonusesAbility(caster, ele, target, dmg, params)
     local dayWeatherBonus = 1.00;
     local weather = caster:getWeather();
 
-    if (weather == singleWeatherStrong[ele]) then
+    if (weather == dsp.magic.singleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (caster:getWeather() == singleWeatherWeak[ele]) then
+    elseif (caster:getWeather() == dsp.magic.singleWeatherWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif (weather == doubleWeatherStrong[ele]) then
+    elseif (weather == dsp.magic.doubleWeatherStrong[ele]) then
         if (caster:getMod(dsp.mod.IRIDESCENCE) >= 1) then
-            if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+            if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
                 dayWeatherBonus = dayWeatherBonus + 0.10;
             end
         end
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif (weather == doubleWeatherWeak[ele]) then
+    elseif (weather == dsp.magic.doubleWeatherWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
     local dayElement = VanadielDayElement();
-    if (dayElement == dayStrong[ele]) then
+    if (dayElement == dsp.magic.dayStrong[ele]) then
         dayWeatherBonus = dayWeatherBonus + caster:getMod(dsp.mod.DAY_NUKE_BONUS)/100; -- sorc. tonban(+1)/zodiac ring
-        if (math.random() < 0.33 or caster:getMod(elementalObi[ele]) >= 1) then
+        if (math.random() < 0.33 or caster:getMod(elementalObiStrong[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif (dayElement == dayWeak[ele]) then
+    elseif (dayElement == dsp.magic.dayWeak[ele]) then
         if (math.random() < 0.33 or caster:getMod(elementalObiWeak[ele]) >= 1) then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
@@ -916,8 +901,8 @@ function addBonusesAbility(caster, ele, target, dmg, params)
 
     local mab = 1;
     local mdefBarBonus = 0;
-    if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
-        mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+    if (ele > 0 and ele <= 6 and target:hasStatusEffect(dsp.magic.barSpell[ele])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[ele]):getSubPower();
     end
 
     if (params ~= nil and params.bonusmab ~= nil and params.includemab == true) then
@@ -946,7 +931,7 @@ end;
 function getElementalDamageReduction(target, element)
     local defense = 1;
     if (element > 0) then
-        defense = 1 - (target:getMod(defenseMod[element]) / 256);
+        defense = 1 - (target:getMod(dsp.magic.defenseMod[element]) / 256);
 
         return utils.clamp(defense, 0.0, 2.0);
     end
@@ -1023,7 +1008,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     -- print("dCHR=" .. dCHR);
     local params = {};
     params.attribute = dsp.mod.CHR;
-    params.skillType = SINGING_SKILL;
+    params.skillType = dsp.skill.SNG;
     params.bonus = staff;
 
     local resm = applyResistance(caster, target, spell, params);
@@ -1129,7 +1114,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     --get resist multiplier (1x if no resist)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.skillType = dsp.skill.ELE;
     params.resistBonus = resistBonus;
     params.AMIIaccBonus = AMIIaccBonus;
 
@@ -1152,7 +1137,7 @@ function doElementalNuke(caster, spell, target, spellParams)
 end
 
 function doDivineNuke(caster, target, spell, params)
-    params.skillType = DIVINE_MAGIC_SKILL;
+    params.skillType = dsp.skill.DIV;
     params.attribute = dsp.mod.MND;
 
     return doNuke(caster, target, spell, params);
@@ -1167,7 +1152,7 @@ function doNinjutsuNuke(caster, target, spell, params)
     if (caster:hasStatusEffect(dsp.effect.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
         mabBonus = mabBonus + caster:getStatusEffect(dsp.effect.INNIN):getPower();
     end
-    params.skillType = NINJUTSU_SKILL;
+    params.skillType = dsp.skill.NIN;
     params.attribute = dsp.mod.INT;
     params.mabBonus = mabBonus;
 
@@ -1181,7 +1166,7 @@ function doNuke(caster, target, spell, params)
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
-    if (skill == NINJUTSU_SKILL) then
+    if (skill == dsp.skill.NIN) then
         if (caster:getMainJob() == dsp.job.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
             local ninSkillBonus = 100;
             if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
@@ -1211,7 +1196,7 @@ function doNuke(caster, target, spell, params)
 end
 
 function doDivineBanishNuke(caster, target, spell, params)
-    params.skillType = DIVINE_MAGIC_SKILL;
+    params.skillType = dsp.skill.DIV;
     params.attribute = dsp.mod.MND;
 
     --calculate raw damage
@@ -1292,3 +1277,5 @@ function outputMagicHitRateInfo()
 end;
 
 -- outputMagicHitRateInfo();
+
+dsp.mag = dsp.magic;

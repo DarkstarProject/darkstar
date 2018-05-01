@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local typeEffect = dsp.effect.WEIGHT;
 
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4.0,ELE_DARK,dmgmod,TP_MAB_BONUS);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4.0,dsp.magic.ele.DARK,dmgmod,TP_MAB_BONUS);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     MobStatusEffectMove(mob, target, typeEffect, 50, 0, 60);

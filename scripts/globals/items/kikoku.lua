@@ -88,7 +88,7 @@ end
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_ICE,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.ICE,0) <= 0.5) then
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.PARALYSIS, 17, 0, 30); -- Power needs verification/adjustment.

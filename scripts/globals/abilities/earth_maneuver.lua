@@ -26,7 +26,7 @@ function onUseAbility(player,target,ability)
         burden = 20;
     end
 
-    local overload = target:addBurden(ELE_EARTH-1, burden);
+    local overload = target:addBurden(dsp.magic.ele.EARTH-1, burden);
 
     if (overload ~= 0 and
         (player:getMod(dsp.mod.PREVENT_OVERLOAD) > 0 or player:getPet():getMod(dsp.mod.PREVENT_OVERLOAD) > 0) and

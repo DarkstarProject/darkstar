@@ -258,7 +258,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 end;
 
 -- params: ftp100, ftp200, ftp300, wsc_str, wsc_dex, wsc_vit, wsc_agi, wsc_int, wsc_mnd, wsc_chr,
---         ele (ELE_FIRE), skill (dsp.skill.STF), includemab = true
+--         ele (dsp.magic.ele.FIRE), skill (dsp.skill.STF), includemab = true
 
 function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     local bonusTP = 0;

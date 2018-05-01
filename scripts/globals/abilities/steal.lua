@@ -70,7 +70,7 @@ function onUseAbility(player,target,ability,action)
     -- Attempt Aura steal
     local effect = dsp.effect.NONE;
     if (stolen == 0 and player:hasTrait(75)) then
-        local resist = applyResistanceAbility(player, target, ELE_NONE, 0, 0);
+        local resist = applyResistanceAbility(player, target, dsp.magic.ele.NONE, 0, 0);
         local effectStealSuccess = false;
         if (resist > 0.0625) then
             local auraStealChance = math.min(player:getMerit(dsp.merit.AURA_STEAL), 95);

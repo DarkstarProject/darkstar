@@ -26,7 +26,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_EARTH, 1400);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.EARTH, 1400);
     local angle = mob:getAngle(target);
 
     angle = mob:getRotPos() - angle;

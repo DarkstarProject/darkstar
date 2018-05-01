@@ -15,7 +15,7 @@ function onAdditionalEffect(mob,target,damage)
     -- Guesstimating the chance to stun before resistance applied (it's fairly low rate on retail).
     -- Does not proc if Jack's enstone is up.
     if (math.random(1,100) <= 75 or mob:hasStatusEffect(dsp.effect.ENSTONE)
-    or applyResistanceAddEffect(mob, target, ELE_LIGHTNING, 0) <= 0.5) then
+    or applyResistanceAddEffect(mob, target, dsp.magic.ele.LIGHTNING, 0) <= 0.5) then
         return 0,0,0;
     else
         local duration = math.random(5,15);

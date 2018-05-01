@@ -36,10 +36,10 @@ function onSpikesDamage(mob,target,damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    dmg = addBonusesAbility(mob, ELE_THUNDER, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_THUNDER,0);
-    dmg = adjustForTarget(target,dmg,ELE_THUNDER);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_THUNDER,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.THUNDER, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.THUNDER,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.THUNDER);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.THUNDER,dmg);
 
     if (dmg < 0) then
         dmg = 0;

@@ -21,10 +21,10 @@ function onAdditionalEffect(mob,target,damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    power = addBonusesAbility(mob, ELE_ICE, target, power, params);
-    power = power * applyResistanceAddEffect(mob, target, ELE_ICE, 0);
-    power = adjustForTarget(target, power, ELE_ICE);
-    power = finalMagicNonSpellAdjustments(mob, target, ELE_ICE, power);
+    power = addBonusesAbility(mob, dsp.magic.ele.ICE, target, power, params);
+    power = power * applyResistanceAddEffect(mob, target, dsp.magic.ele.ICE, 0);
+    power = adjustForTarget(target, power, dsp.magic.ele.ICE);
+    power = finalMagicNonSpellAdjustments(mob, target, dsp.magic.ele.ICE, power);
 
     local message = dsp.msg.basic.ADD_EFFECT_DMG;
     if (power < 0) then

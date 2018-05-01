@@ -14,7 +14,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,dsp.effect.PLAGUE);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.WATER,dsp.effect.PLAGUE);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else

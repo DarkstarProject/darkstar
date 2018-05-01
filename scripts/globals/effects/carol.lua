@@ -7,14 +7,14 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
-local resistMod = {dsp.mod.FIRERES, dsp.mod.EARTHRES, dsp.mod.WATERRES, dsp.mod.WINDRES, dsp.mod.ICERES, dsp.mod.THUNDERRES, dsp.mod.LIGHTRES, dsp.mod.DARKRES};
+local dsp.magic.resistMod = {dsp.mod.FIRERES, dsp.mod.EARTHRES, dsp.mod.WATERRES, dsp.mod.WINDRES, dsp.mod.ICERES, dsp.mod.THUNDERRES, dsp.mod.LIGHTRES, dsp.mod.DARKRES};
 
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(resistMod[effect:getSubPower()], effect:getPower());
+    target:addMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower());
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(resistMod[effect:getSubPower()], effect:getPower());
+    target:delMod(dsp.magic.resistMod[effect:getSubPower()], effect:getPower());
 end;
