@@ -7,8 +7,6 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
-local dsp.magic.resistMod = {dsp.mod.FIRERES, dsp.mod.EARTHRES, dsp.mod.WATERRES, dsp.mod.WINDRES, dsp.mod.ICERES, dsp.mod.THUNDERRES, dsp.mod.LIGHTRES, dsp.mod.DARKRES};
-
 -----------------------------------
 -- onEffectGain Action
 -----------------------------------
