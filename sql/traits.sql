@@ -235,8 +235,8 @@ INSERT INTO `traits` VALUES ('24','clear mind','20','76','5','71','15','ABYSSEA'
 INSERT INTO `traits` VALUES ('24','clear mind','20','76','5','295','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('24','clear mind','20','96','6','71','18','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('24','clear mind','20','96','6','295','3','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('25','shield mastery','5','87','10','485','10',null,'0');
-INSERT INTO `traits` VALUES ('25','shield mastery','5','97','20','485','20',null,'0');
+INSERT INTO `traits` VALUES ('25','shield mastery','5','87','10','485','10','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('25','shield mastery','5','97','20','485','20','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('25','shield mastery','7','25','10','485','10',null,'0');
 INSERT INTO `traits` VALUES ('25','shield mastery','7','50','20','485','20',null,'0');
 INSERT INTO `traits` VALUES ('25','shield mastery','7','75','30','485','30',null,'0');
@@ -279,10 +279,11 @@ INSERT INTO `traits` VALUES ('52','resist silence','20','10','1','244','2','WOTG
 INSERT INTO `traits` VALUES ('52','resist silence','20','40','2','244','3','WOTG','0');
 INSERT INTO `traits` VALUES ('52','resist silence','20','70','3','244','5','WOTG','0');
 INSERT INTO `traits` VALUES ('52','resist silence','20','81','4','244','6','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('53','resist petrify','5','10','1','246','2',null,'0');
-INSERT INTO `traits` VALUES ('53','resist petrify','5','30','2','246','3',null,'0');
-INSERT INTO `traits` VALUES ('53','resist petrify','5','50','3','246','5',null,'0');
-INSERT INTO `traits` VALUES ('53','resist petrify','5','70','4','246','6',null,'0');
+INSERT INTO `traits` VALUES ('53','resist petrify','5','10','1','246','10',null,'0');
+INSERT INTO `traits` VALUES ('53','resist petrify','5','30','2','246','15',null,'0');
+INSERT INTO `traits` VALUES ('53','resist petrify','5','50','3','246','20',null,'0');
+INSERT INTO `traits` VALUES ('53','resist petrify','5','70','4','246','25',null,'0');
+INSERT INTO `traits` VALUES ('53','resist petrify','5','81','5','246','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('54','resist virus','1','15','1','245','2',null,'0');
 INSERT INTO `traits` VALUES ('54','resist virus','1','35','2','245','3',null,'0');
 INSERT INTO `traits` VALUES ('54','resist virus','1','55','3','245','5',null,'0');
