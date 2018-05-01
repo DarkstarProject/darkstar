@@ -9,6 +9,10 @@ require("scripts/globals/msg");
 dsp = dsp or {};
 dsp.magic = dsp.magic or {};
 
+------------------------------------
+-- Elements
+------------------------------------
+
 dsp.magic.element =
 {
     NONE      = 0,
@@ -23,6 +27,25 @@ dsp.magic.element =
     DARK      = 8,
 }
 dsp.magic.ele = dsp.magic.element;
+
+------------------------------------
+-- Spell Groups
+------------------------------------
+
+dsp.magic.spellGroup =
+{
+    NONE      = 0,
+    SONG      = 1,
+    BLACK     = 2,
+    BLUE      = 3,
+    NINJUTSU  = 4,
+    SUMMONING = 5,
+    WHITE     = 6,
+};
+
+------------------------------------
+-- Tables by element
+------------------------------------
 
 dsp.magic.dayStrong           = {dsp.day.FIRESDAY,              dsp.day.EARTHSDAY,              dsp.day.WATERSDAY,               dsp.day.WINDSDAY,              dsp.day.ICEDAY,               dsp.day.LIGHTNINGDAY,            dsp.day.LIGHTSDAY,           dsp.day.DARKSDAY};
 dsp.magic.singleWeatherStrong = {dsp.weather.HOT_SPELL,         dsp.weather.DUST_STORM,         dsp.weather.RAIN,                dsp.weather.WIND,              dsp.weather.SNOW,             dsp.weather.THUNDER,             dsp.weather.AURORAS,         dsp.weather.GLOOM};
@@ -506,12 +529,12 @@ function getSpellBonusAcc(caster, target, spell, params)
 
     params.AMIIaccBonus = params.AMIIaccBonus or 0
 
-    if caster:hasStatusEffect(dsp.effect.ALTRUISM) and spellGroup == SPELLGROUP_WHITE then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.ALTRUISM):getPower();
+    if caster:hasStatusEffect(dsp.effect.ALTRUISM) and spellGroup == dsp.magic.spellGroup.WHITE then
+        magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.ALTRUISM):getPower();
     end
 
-    if caster:hasStatusEffect(dsp.effect.FOCALIZATION) and spellGroup == SPELLGROUP_BLACK then
-      magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.FOCALIZATION):getPower();
+    if caster:hasStatusEffect(dsp.effect.FOCALIZATION) and spellGroup == dsp.magic.spellGroup.BLACK then
+        magicAccBonus = magicAccBonus + caster:getStatusEffect(dsp.effect.FOCALIZATION):getPower();
     end
 
     local skillchainTier, skillchainCount = FormMagicBurst(element, target);

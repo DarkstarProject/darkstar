@@ -801,7 +801,7 @@ dsp.effect =
 };
 
 ----------------------------------
--- SC masks (these are not currently used anywhere in code base. do we need them?)
+-- SC masks (not currently used in code base)
 ----------------------------------
 
 -- EFFECT_SKILLCHAIN0    = 0x200
@@ -1950,35 +1950,23 @@ TYPE_PET  = 0x08
 TYPE_SHIP = 0x10
 
 ----------------------------------
--- DropType
+-- Drop Type (not currently used in code base)
 ----------------------------------
 
-DROP_NORMAL  = 0x00
-DROP_GROUPED = 0x01
-DROP_STEAL   = 0x02
-DROP_DESPOIL = 0x04
+-- DROP_NORMAL  = 0x00
+-- DROP_GROUPED = 0x01
+-- DROP_STEAL   = 0x02
+-- DROP_DESPOIL = 0x04
 
 ----------------------------------
--- Allegiance Definitions
+-- Allegiance (not currently used in code base)
 ----------------------------------
 
-ALLEGIANCE_MOB       = 0
-ALLEGIANCE_PLAYER    = 1
-ALLEGIANCE_SAN_DORIA = 2
-ALLEGIANCE_BASTOK    = 3
-ALLEGIANCE_WINDURST  = 4
-
-------------------------------------
--- Spell Groups
-------------------------------------
-
-SPELLGROUP_NONE      = 0
-SPELLGROUP_SONG      = 1
-SPELLGROUP_BLACK     = 2
-SPELLGROUP_BLUE      = 3
-SPELLGROUP_NINJUTSU  = 4
-SPELLGROUP_SUMMONING = 5
-SPELLGROUP_WHITE     = 6
+-- ALLEGIANCE_MOB       = 0
+-- ALLEGIANCE_PLAYER    = 1
+-- ALLEGIANCE_SAN_DORIA = 2
+-- ALLEGIANCE_BASTOK    = 3
+-- ALLEGIANCE_WINDURST  = 4
 
 ------------------------------------
 -- MOBMODs
