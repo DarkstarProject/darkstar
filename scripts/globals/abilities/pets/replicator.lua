@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 60)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 60)
     local maneuvers = master:countEffect(dsp.effect.WIND_MANEUVER)
     local duration = 300
     local shadows = 1 + maneuvers -- math.floor(maneuvers * 3.5) currently on retail

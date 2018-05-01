@@ -39,9 +39,9 @@ function onUseAbility(player,target,ability)
 
     target:despawnPet();
     -- All Jump recast times are reset
-    target:resetRecast(RECAST_ABILITY,158); -- Jump
-    target:resetRecast(RECAST_ABILITY,159); -- High Jump
-    target:resetRecast(RECAST_ABILITY,160); -- Super Jump
+    target:resetRecast(dsp.recast.ABILITY,158); -- Jump
+    target:resetRecast(dsp.recast.ABILITY,159); -- High Jump
+    target:resetRecast(dsp.recast.ABILITY,160); -- Super Jump
 
     target:addStatusEffect(dsp.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
 end;

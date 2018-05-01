@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
     local hp = target:getHP()
     local duration = 30
     local amount = math.floor((hp/2)/10)

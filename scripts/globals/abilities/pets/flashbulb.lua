@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 45)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 45)
 	local highest = automaton:getSkillLevel(22)
 	local highestskill = 22
 	if automaton:getSkillLevel(23) > highest then

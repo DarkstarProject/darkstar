@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/zones/Apollyon/TextIDs");
+require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -21,8 +22,8 @@ end;
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
-        spell:setAoE(SPELLAOE_RADIAL);
-        spell:setFlag(SPELLFLAG_HIT_ALL);
+        spell:setAoE(dsp.magic.aoe.RADIAL);
+        spell:setFlag(dsp.magic.spellFlag.HIT_ALL);
         spell:setRadius(30);
         spell:setAnimation(280);
         spell:setMPCost(1);

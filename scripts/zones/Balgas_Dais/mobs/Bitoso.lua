@@ -4,6 +4,8 @@
 -- BCNM Fight: Creeping Doom
 -----------------------------------
 require("scripts/globals/status");
+require("scripts/globals/magic");
+-----------------------------------
 
 function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.MAGIC_COOL, 4);
@@ -14,7 +16,7 @@ end
 
 function onMagicHit(caster, target, spell)
     if (spell:getID() == 356) then
-        spell:setFlag(SPELLFLAG_WIPE_SHADOWS);
+        spell:setFlag(dsp.magic.spellFlag.WIPE_SHADOWS);
     end
 end
 

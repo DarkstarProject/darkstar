@@ -2224,9 +2224,12 @@ dsp.skill =
 -- Recast IDs
 ------------------------------------
 
-RECAST_ITEM     = 0
-RECAST_MAGIC    = 1
-RECAST_ABILITY  = 2
+dsp.recast =
+{
+    ITEM     = 0,
+    MAGIC    = 1,
+    ABILITY  = 2,
+};
 
 ------------------------------------
 -- ACTION IDs
@@ -2304,26 +2307,6 @@ dsp.ecosystem =
     VORAGEAN       = 21,
 };
 dsp.eco = dsp.ecosystem;
-
-------------------------------------
--- Spell AOE IDs
-------------------------------------
-
-SPELLAOE_NONE        = 0;
-SPELLAOE_RADIAL      = 1;
-SPELLAOE_CONAL       = 2;
-SPELLAOE_RADIAL_MANI = 3; -- AOE when under SCH stratagem Manifestation
-SPELLAOE_RADIAL_ACCE = 4; -- AOE when under SCH stratagem Accession
-SPELLAOE_PIANISSIMO  = 5; -- Single target when under BRD JA Pianissimo
-SPELLAOE_DIFFUSION   = 6; -- AOE when under Diffusion
-
-------------------------------------
--- Spell flag bits
-------------------------------------
-
-SPELLFLAG_NONE          = 0x00;
-SPELLFLAG_HIT_ALL       = 0x01; -- Hit all targets in range regardless of party
-SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 
 ------------------------------------
 -- Behavior bits

@@ -43,7 +43,7 @@ function onUseAbility(caster,target,ability,action)
             end
         end
         if (roll == 11) then
-            caster:resetRecast(RECAST_ABILITY, 193)
+            caster:resetRecast(dsp.recast.ABILITY, 193)
         end
         caster:setLocalVar("corsairRollTotal", roll)
         action:speceffect(caster:getID(),roll-prev_roll:getSubPower())

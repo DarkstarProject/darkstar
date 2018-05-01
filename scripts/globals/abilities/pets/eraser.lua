@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 30)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 30)
     local maneuvers = master:countEffect(dsp.effect.LIGHT_MANEUVER)
     skill:setMsg(dsp.msg.basic.USES)
 

@@ -44,6 +44,32 @@ dsp.magic.spellGroup =
 };
 
 ------------------------------------
+-- Spell AOE IDs
+------------------------------------
+
+dsp.magic.aoe =
+{
+    NONE        = 0,
+    RADIAL      = 1,
+    CONAL       = 2,
+    RADIAL_MANI = 3, -- AOE when under SCH stratagem Manifestation
+    RADIAL_ACCE = 4, -- AOE when under SCH stratagem Accession
+    PIANISSIMO  = 5, -- Single target when under BRD JA Pianissimo
+    DIFFUSION   = 6, -- AOE when under Diffusion
+}
+
+------------------------------------
+-- Spell flag bits
+------------------------------------
+
+dsp.magic.spellFlag =
+{
+    NONE          = 0x00,
+    HIT_ALL       = 0x01, -- Hit all targets in range regardless of party
+    WIPE_SHADOWS  = 0x02, -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
+};
+
+------------------------------------
 -- Tables by element
 ------------------------------------
 
