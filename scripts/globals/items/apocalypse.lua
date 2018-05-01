@@ -93,7 +93,7 @@ function onAdditionalEffect(player,target,damage)
     -- This does nothing, as this is not a spell, and it doesn't get used in the return.
     -- That should be handled in the resist check in the global anyways.
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0) <= 0.5) then
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.BLINDNESS, 15, 0, 30);

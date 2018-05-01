@@ -35,11 +35,11 @@ function onAdditionalEffect(mob,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(mob, ELE_WATER, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WATER,0);
-        dmg = adjustForTarget(target,dmg,ELE_WATER);
+        dmg = addBonusesAbility(mob, dsp.magic.ele.WATER, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.WATER,0);
+        dmg = adjustForTarget(target,dmg,dsp.magic.ele.WATER);
 
-        dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
+        dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.WATER,dmg);
 
         return dsp.subEffect.WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
     end

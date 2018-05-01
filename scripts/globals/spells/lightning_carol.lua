@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
         duration = duration * 2;
     end
 
-    if not (target:addBardSong(caster,dsp.effect.CAROL,power,0,duration,caster:getID(), ELE_LIGHTNING, 1)) then
+    if not (target:addBardSong(caster,dsp.effect.CAROL,power,0,duration,caster:getID(), dsp.magic.ele.LIGHTNING, 1)) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 

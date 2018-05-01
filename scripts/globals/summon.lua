@@ -3,8 +3,6 @@ require("scripts/globals/common");
 require("scripts/globals/status");
 require("scripts/globals/msg");
 
-SUMMONING_MAGIC_SKILL = 38
-
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
     returninfo = {};
 
@@ -15,7 +13,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     lvluser = avatar:getMainLvl();
     lvltarget = target:getMainLvl();
     local master = avatar:getMaster();
-    local bonusacc = utils.clamp(master:getSkillLevel(dsp.skill.SUM) - master:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, SUMMONING_SKILL), 0, 200);
+    local bonusacc = utils.clamp(master:getSkillLevel(dsp.skill.SUM) - master:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, dsp.skill.SUM), 0, 200);
     acc = avatar:getACC() + bonusacc;
     eva = target:getEVA();
 

@@ -25,9 +25,9 @@ function onAdditionalEffect(player,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(player, ELE_LIGHT, target, dmg, params);
-        dmg = adjustForTarget(target,dmg,ELE_LIGHT);
-        dmg = finalMagicNonSpellAdjustments(player,target,ELE_LIGHT,dmg);
+        dmg = addBonusesAbility(player, dsp.magic.ele.LIGHT, target, dmg, params);
+        dmg = adjustForTarget(target,dmg,dsp.magic.ele.LIGHT);
+        dmg = finalMagicNonSpellAdjustments(player,target,dsp.magic.ele.LIGHT,dmg);
         return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
     end
 end;

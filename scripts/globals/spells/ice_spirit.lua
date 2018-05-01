@@ -21,7 +21,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_ICE_SPIRIT);
+    caster:spawnPet(dsp.pet.id.ICE_SPIRIT);
 
     return 0;
 end;

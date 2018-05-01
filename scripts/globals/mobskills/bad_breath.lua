@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 15, 0, 60);
     MobStatusEffectMove(mob, target, dsp.effect.WEIGHT, 50, 0, 60);
 
-    local dmgmod = MobBreathMove(mob, target, 0.15, 3, ELE_EARTH, 500);
+    local dmgmod = MobBreathMove(mob, target, 0.15, 3, dsp.magic.ele.EARTH, 500);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

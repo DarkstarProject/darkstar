@@ -41,7 +41,7 @@ function onMobDespawn(mob)
 end;
 
 function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effect.PETRIFICATION);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.EARTH,dsp.effect.PETRIFICATION);
     if (resist <= 0.5) then -- "Has an innate Additional Effect of Petrification on all of its physical attacks. "
         return 0,0,0;
     else

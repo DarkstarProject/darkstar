@@ -24,7 +24,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,dsp.effect.PETRIFICATION);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.EARTH,dsp.effect.PETRIFICATION);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else

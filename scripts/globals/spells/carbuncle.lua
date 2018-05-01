@@ -18,7 +18,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_CARBUNCLE);
+    caster:spawnPet(dsp.pet.id.CARBUNCLE);
 
     return 0;
 end;

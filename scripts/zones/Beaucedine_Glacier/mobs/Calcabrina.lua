@@ -34,10 +34,10 @@ function onAdditionalEffect(mob,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        drain = addBonusesAbility(mob, ELE_DARK, target, drain, params);
-        drain = drain * applyResistanceAddEffect(mob,target,ELE_DARK,0);
-        drain = adjustForTarget(target,drain,ELE_DARK);
-        drain = finalMagicNonSpellAdjustments(target,mob,ELE_DARK,drain);
+        drain = addBonusesAbility(mob, dsp.magic.ele.DARK, target, drain, params);
+        drain = drain * applyResistanceAddEffect(mob,target,dsp.magic.ele.DARK,0);
+        drain = adjustForTarget(target,drain,dsp.magic.ele.DARK);
+        drain = finalMagicNonSpellAdjustments(target,mob,dsp.magic.ele.DARK,drain);
 
         if (drain <= 0) then
             drain = 0;

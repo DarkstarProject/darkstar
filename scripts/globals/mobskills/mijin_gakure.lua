@@ -33,7 +33,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local baseDmg = mob:getWeaponDmg() * power;
 
-    local info = MobMagicalMove(mob,target,skill,baseDmg,ELE_NONE,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,baseDmg,dsp.magic.ele.NONE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if (mob:isInDynamis()) then

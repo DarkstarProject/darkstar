@@ -22,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_LIGHT, 1600);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.LIGHT, 1600);
     local dis = ((mob:checkDistance(target)*2) / 20);
 
     dmgmod = dmgmod * dis;

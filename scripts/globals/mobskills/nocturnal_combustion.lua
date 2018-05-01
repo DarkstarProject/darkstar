@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local BOMB_TOSS_HPP = skill:getHPP() / 100;
 
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*20*BOMB_TOSS_HPP,ELE_DARK,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*20*BOMB_TOSS_HPP,dsp.magic.ele.DARK,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
     mob:setHP(0);
     target:delHP(dmg);

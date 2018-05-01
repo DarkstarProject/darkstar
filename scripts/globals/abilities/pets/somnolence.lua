@@ -14,11 +14,11 @@ end;
 
 function onPetAbility(target, pet, skill)
     local dmg = 10 + pet:getMainLvl() * 2
-    local resist = applyPlayerResistance(pet,-1,target, 0, ELEMENTAL_MAGIC_SKILL, ELE_DARK);
+    local resist = applyPlayerResistance(pet,-1,target, 0, ELEMENTAL_MAGIC_SKILL, dsp.magic.ele.DARK);
     local duration = 120;
 
     dmg = dmg*resist;
-    dmg = mobAddBonuses(pet,spell,target,dmg, ELE_DARK);
+    dmg = mobAddBonuses(pet,spell,target,dmg, dsp.magic.ele.DARK);
     dmg = finalMagicAdjustments(pet,target,spell,dmg);
 
     if (resist < 0.15) then  --the gravity effect from this ability is more likely to land than Tail Whip

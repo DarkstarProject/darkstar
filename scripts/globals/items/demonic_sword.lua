@@ -18,10 +18,10 @@ function onAdditionalEffect(player,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(player, ELE_DARK, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(player,target,ELE_DARK,0);
-        dmg = adjustForTarget(target,dmg,ELE_DARK);
-        dmg = finalMagicNonSpellAdjustments(player,target,ELE_DARK,dmg);
+        dmg = addBonusesAbility(player, dsp.magic.ele.DARK, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0);
+        dmg = adjustForTarget(target,dmg,dsp.magic.ele.DARK);
+        dmg = finalMagicNonSpellAdjustments(player,target,dsp.magic.ele.DARK,dmg);
 
         local message = dsp.msg.basic.ADD_EFFECT_DMG;
         if (dmg < 0) then

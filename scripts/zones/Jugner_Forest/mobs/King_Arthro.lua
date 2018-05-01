@@ -27,7 +27,7 @@ function onAdditionalEffect(mob,target,damage)
     local procRate = 10; -- No retail data, so we guessed at it.
     -- Can't proc it if enwater is up, if player full resists, or is just plain lucky.
     if (procRate > math.random(1,100) or mob:hasStatusEffect(dsp.effect.ENWATER)
-    or applyResistanceAddEffect(mob, target, ELE_ICE, 0) <= 0.5) then
+    or applyResistanceAddEffect(mob, target, dsp.magic.ele.ICE, 0) <= 0.5) then
         return 0,0,0;
     else
         target:addStatusEffect(dsp.effect.PARALYSIS, 20, 0, 30); -- Potency unconfirmed

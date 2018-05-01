@@ -16,7 +16,7 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 50);
     end
-    if (math.random(0,50) >= chance or applyResistanceAddEffect(player,target,ELE_LIGHTNING,0) <= 0.5) then
+    if (math.random(0,50) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.LIGHTNING,0) <= 0.5) then
         return 0,0,0;
     else
         if (not target:hasStatusEffect(dsp.effect.STUN)) then

@@ -469,7 +469,7 @@ function corsairSetup(caster, ability, action, effect, job)
         action:recast(action:recast()/2)
     end
     checkForJobBonus(caster, job)
-    caster:addRecast(RECAST_ABILITY, 194, 8)
+    caster:addRecast(dsp.recast.ABILITY, 194, 8)
 end
 
 function atMaxCorsairBusts(caster)

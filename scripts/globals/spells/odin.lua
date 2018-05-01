@@ -22,7 +22,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_ODIN);
+    caster:spawnPet(dsp.pet.id.ODIN);
     caster:petAttack(target);
 
     return 0;

@@ -27,8 +27,8 @@ end;
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then -- Meteor
-        spell:setAoE(SPELLAOE_RADIAL);
-        spell:setFlag(SPELLFLAG_HIT_ALL);
+        spell:setAoE(dsp.magic.aoe.RADIAL);
+        spell:setFlag(dsp.magic.spellFlag.HIT_ALL);
         spell:setRadius(30);
         spell:setAnimation(280); -- AoE Meteor Animation
         spell:setMPCost(1);

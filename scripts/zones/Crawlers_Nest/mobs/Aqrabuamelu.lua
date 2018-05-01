@@ -23,10 +23,10 @@ function onSpikesDamage(mob,target,damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    dmg = addBonusesAbility(mob, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_ICE,0);
-    dmg = adjustForTarget(target,dmg,ELE_ICE);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_ICE,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.ICE, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.ICE,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.ICE);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.ICE,dmg);
 
     if (dmg < 0) then
         dmg = 0;

@@ -41,7 +41,7 @@ function onMobFight(mob, target)
 end;
 
 function onMagicHit(caster,target,spell)
-    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
+    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= dsp.magic.spellGroup.BLUE ) then
         -- Handle mimicked spells
         target:setLocalVar("COPY_SPELL", spell:getID());
         target:setLocalVar("LAST_CAST", target:getBattleTime());

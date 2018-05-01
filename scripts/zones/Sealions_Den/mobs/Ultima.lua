@@ -21,7 +21,7 @@ end;
 
 function onAdditionalEffect(mob, player)
     local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,ELE_ICE,dsp.effect.PARALYSIS);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else

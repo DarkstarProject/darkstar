@@ -12,7 +12,7 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
     local maneuvers = master:countEffect(dsp.effect.EARTH_MANEUVER)
     local pMod = math.max(automaton:getSkillLevel(22), automaton:getSkillLevel(23), automaton:getSkillLevel(24))
     local duration = 180

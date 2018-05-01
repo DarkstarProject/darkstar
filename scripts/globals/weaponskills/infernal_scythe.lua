@@ -21,7 +21,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.ftp100 = 3.5; params.ftp200 = 3.5; params.ftp300 = 3.5;
     params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.3; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-    params.ele = ELE_DARK;
+    params.ele = dsp.magic.ele.DARK;
     params.skill = dsp.skill.SYH;
     params.includemab = true;
 
@@ -32,7 +32,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
     if (damage > 0 and target:hasStatusEffect(dsp.effect.ATTACK_DOWN) == false) then
-        local duration = (tp/1000 * 180) * applyResistanceAddEffect(player,target,ELE_WATER,0);
+        local duration = (tp/1000 * 180) * applyResistanceAddEffect(player,target,dsp.magic.ele.WATER,0);
         target:addStatusEffect(dsp.effect.ATTACK_DOWN, 25, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;

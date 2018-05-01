@@ -20,7 +20,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_FENRIR);
+    caster:spawnPet(dsp.pet.id.FENRIR);
 
     return 0;
 end;

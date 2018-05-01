@@ -24,7 +24,7 @@ end;
 function onUseAbility(player,target,ability)
 
     local duration = 60;
-    local resist = applyResistanceAbility(player,target,ELE_DARK,dsp.skill.MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
+    local resist = applyResistanceAbility(player,target,dsp.magic.ele.DARK,dsp.skill.MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
 
     if (resist < 0.25) then
         ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message

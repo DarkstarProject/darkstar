@@ -16,7 +16,7 @@ function onAdditionalEffect(player,target,damage)
     end
     if (target:hasImmunity(64)) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-    elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_DARK,0) <= 0.5) then
+    elseif (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0) <= 0.5) then
         return 0,0,0;
     else
         target:delStatusEffect(dsp.effect.BLINDNESS)

@@ -19,7 +19,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_RAMUH);
+    caster:spawnPet(dsp.pet.id.RAMUH);
 
     return 0;
 end;

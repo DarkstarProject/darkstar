@@ -801,7 +801,7 @@ dsp.effect =
 };
 
 ----------------------------------
--- SC masks (these are not currently used anywhere in code base. do we need them?)
+-- SC masks (not currently used in code base)
 ----------------------------------
 
 -- EFFECT_SKILLCHAIN0    = 0x200
@@ -1950,35 +1950,23 @@ TYPE_PET  = 0x08
 TYPE_SHIP = 0x10
 
 ----------------------------------
--- DropType
+-- Drop Type (not currently used in code base)
 ----------------------------------
 
-DROP_NORMAL  = 0x00
-DROP_GROUPED = 0x01
-DROP_STEAL   = 0x02
-DROP_DESPOIL = 0x04
+-- DROP_NORMAL  = 0x00
+-- DROP_GROUPED = 0x01
+-- DROP_STEAL   = 0x02
+-- DROP_DESPOIL = 0x04
 
 ----------------------------------
--- Allegiance Definitions
+-- Allegiance (not currently used in code base)
 ----------------------------------
 
-ALLEGIANCE_MOB       = 0
-ALLEGIANCE_PLAYER    = 1
-ALLEGIANCE_SAN_DORIA = 2
-ALLEGIANCE_BASTOK    = 3
-ALLEGIANCE_WINDURST  = 4
-
-------------------------------------
--- Spell Groups
-------------------------------------
-
-SPELLGROUP_NONE      = 0
-SPELLGROUP_SONG      = 1
-SPELLGROUP_BLACK     = 2
-SPELLGROUP_BLUE      = 3
-SPELLGROUP_NINJUTSU  = 4
-SPELLGROUP_SUMMONING = 5
-SPELLGROUP_WHITE     = 6
+-- ALLEGIANCE_MOB       = 0
+-- ALLEGIANCE_PLAYER    = 1
+-- ALLEGIANCE_SAN_DORIA = 2
+-- ALLEGIANCE_BASTOK    = 3
+-- ALLEGIANCE_WINDURST  = 4
 
 ------------------------------------
 -- MOBMODs
@@ -2236,9 +2224,12 @@ dsp.skill =
 -- Recast IDs
 ------------------------------------
 
-RECAST_ITEM     = 0
-RECAST_MAGIC    = 1
-RECAST_ABILITY  = 2
+dsp.recast =
+{
+    ITEM     = 0,
+    MAGIC    = 1,
+    ABILITY  = 2,
+};
 
 ------------------------------------
 -- ACTION IDs
@@ -2316,26 +2307,6 @@ dsp.ecosystem =
     VORAGEAN       = 21,
 };
 dsp.eco = dsp.ecosystem;
-
-------------------------------------
--- Spell AOE IDs
-------------------------------------
-
-SPELLAOE_NONE        = 0;
-SPELLAOE_RADIAL      = 1;
-SPELLAOE_CONAL       = 2;
-SPELLAOE_RADIAL_MANI = 3; -- AOE when under SCH stratagem Manifestation
-SPELLAOE_RADIAL_ACCE = 4; -- AOE when under SCH stratagem Accession
-SPELLAOE_PIANISSIMO  = 5; -- Single target when under BRD JA Pianissimo
-SPELLAOE_DIFFUSION   = 6; -- AOE when under Diffusion
-
-------------------------------------
--- Spell flag bits
-------------------------------------
-
-SPELLFLAG_NONE          = 0x00;
-SPELLFLAG_HIT_ALL       = 0x01; -- Hit all targets in range regardless of party
-SPELLFLAG_WIPE_SHADOWS  = 0x02; -- Wipe shadows even if single target and miss/resist (example: Maiden's Virelai)
 
 ------------------------------------
 -- Behavior bits
