@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         player:startEvent(20);
     elseif (player:getQuestStatus(OUTLANDS,OPEN_SESAME) == QUEST_ACCEPTED) then
         player:startEvent(21);
-    elseif (player:hasCompleteQuest(OUTLANDS,OPEN_SESAME)) then
+    elseif (player:hasCompletedQuest(OUTLANDS,OPEN_SESAME)) then
         player:startEvent(24);
     end
 end;

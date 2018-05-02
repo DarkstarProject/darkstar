@@ -5672,13 +5672,12 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 }
 
 /************************************************************************
-*  Function: hasCompleteQuest()
+*  Function: hasCompletedQuest()
 *  Purpose : Returns true if a player has completed a quest
-*  Example : if (player:hasCompleteQuest(JEUNO,BEYOND_INFINITY)) then
-*  Notes   : To Do: Change to hasComplete(d)Quest()? Oh well...
+*  Example : if (player:hasCompletedQuest(JEUNO,BEYOND_INFINITY)) then
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
+inline int32 CLuaBaseEntity::hasCompletedQuest(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -5701,7 +5700,7 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
         lua_pushboolean(L, (complete != 0));
         return 1;
     }
-    ShowError(CL_RED"Lua::hasCompleteQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
+    ShowError(CL_RED"Lua::hasCompletedQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     lua_pushboolean(L, false);
     return 1;
 }
@@ -13862,7 +13861,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompleteQuest),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),

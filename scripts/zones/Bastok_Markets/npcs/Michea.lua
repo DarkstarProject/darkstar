@@ -73,7 +73,7 @@ function onEventFinish(player,csid,option)
     if (csid == 215) then
         player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
     elseif (csid == 216) then
-        local fame = player:hasCompleteQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
+        local fame = player:hasCompletedQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
         if (npcUtil.completeQuest(player, BASTOK, THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
             player:confirmTrade();
         end
