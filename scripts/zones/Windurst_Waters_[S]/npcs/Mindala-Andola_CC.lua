@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Windurst Waters [S]
---  NPC: Andola-wtfever
+--  NPC: Mindala Andola C.C.
 -- Type: Sigil NPC
+-- !pos -31.869 -6.009 226.793 94
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
