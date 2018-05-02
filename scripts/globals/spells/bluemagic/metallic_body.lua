@@ -25,7 +25,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local typeEffect = dsp.effect.STONESKIN
-    local blueskill = caster:getSkillLevel(BLUE_SKILL);
+    local blueskill = caster:getSkillLevel(dsp.skill.BLU);
     local power = (blueskill/3) + (caster:getMainLvl()/3) + 10;
     local duration = 300;
 

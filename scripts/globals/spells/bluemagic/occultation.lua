@@ -22,7 +22,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local typeEffect = dsp.effect.BLINK;
-    local skill = caster:getSkillLevel(BLUE_SKILL);
+    local skill = caster:getSkillLevel(dsp.skill.BLU);
     local power = (skill / 50);
     local duration = 300;
 

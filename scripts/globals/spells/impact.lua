@@ -73,7 +73,7 @@ local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleT
     local params = {};
     params.dmg = 939;
     params.multiplier = 2.335;
-    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.skillType = dsp.skill.ELE;
     params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
@@ -82,7 +82,7 @@ local params = {};params.dmg = 939;params.multiplier = 2.335;params.hasMultipleT
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = ELEMENTAL_MAGIC_SKILL;
+    params.skillType = dsp.skill.ELE;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage

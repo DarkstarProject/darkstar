@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local enhskill = caster:getSkillLevel(dsp.skill.ENH);
     local final = 0;
     local duration = 180;
     if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then

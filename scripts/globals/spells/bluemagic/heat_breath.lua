@@ -35,7 +35,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLU;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     local params = {};

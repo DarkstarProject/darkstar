@@ -55,6 +55,7 @@ public:
     bool    isRanged();
     bool    isThrowing();
     bool    isTwoHanded();
+    bool    isHandToHand();
 	bool    isUnlockable();
     bool    isUnlocked();
 

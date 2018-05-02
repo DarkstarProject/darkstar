@@ -1464,12 +1464,15 @@ dsp.mod =
     SAVETP                          = 880, -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
     SMITE                           = 898, -- Att increase with H2H or 2H weapons
     TACTICAL_GUARD                  = 899, -- Tp gain increase when guarding
+    FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
+    FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
+    SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 900, -- stuff
-    -- SPARE = 901, -- stuff
-    -- SPARE = 902, -- stuff
+    -- SPARE = 906, -- stuff
+    -- SPARE = 907, -- stuff
+    -- SPARE = 908, -- stuff
 };
 
 ------------------------------------

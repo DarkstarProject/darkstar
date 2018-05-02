@@ -25,7 +25,7 @@ end;
 function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLU;
     params.effect = dsp.effect.EVASION_DOWN;
     local resist = applyResistance(caster, target, spell, params);
     local duration = 60 * resist;

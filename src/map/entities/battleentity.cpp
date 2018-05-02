@@ -234,7 +234,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     }
     uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
     uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(Mod::DELAY);
-    if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+    if (m_Weapons[SLOT_MAIN]->isHandToHand())
     {
         WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
     }
@@ -568,7 +568,7 @@ uint16 CBattleEntity::ATT()
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
 
         // Smite applies when using 2H or H2H weapons
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->isHandToHand())
         {
             ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
         }

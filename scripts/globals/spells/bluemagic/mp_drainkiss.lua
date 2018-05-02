@@ -33,12 +33,12 @@ end;
 
 function onSpellCast(caster,target,spell)
     -- also have small constant to account for 0 dark skill
-    local dmg = utils.clamp(5 + 0.375 * caster:getSkillLevel(BLUE_SKILL),0,165);
+    local dmg = utils.clamp(5 + 0.375 * caster:getSkillLevel(dsp.skill.BLU),0,165);
     -- get resist multiplier (1x if no resist)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLU;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     -- get the resisted damage

@@ -15,11 +15,11 @@ end;
 function onSpellCast(caster,target,spell)
 
     --calculate raw damage
-    local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 3;
+    local basedmg = caster:getSkillLevel(dsp.skill.ENF) / 3;
     local params = {};
     params.dmg = basedmg;
     params.multiplier = 5;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.skillType = dsp.skill.ENF;
     params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
@@ -31,7 +31,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.skillType = dsp.skill.ENF;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage

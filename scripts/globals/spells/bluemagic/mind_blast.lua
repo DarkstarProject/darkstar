@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLU;
     params.bonus = 1.0;
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     params.multiplier = 7.08;

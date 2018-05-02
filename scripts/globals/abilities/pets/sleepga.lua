@@ -13,7 +13,7 @@ end;
 
 function onPetAbility(target, pet, skill)
     local duration = 60;
-    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),ELEMENTAL_MAGIC_SKILL, 5);
+    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),dsp.skill.ELE, 5);
     if (resm < 0.5) then
         skill:setMsg(dsp.msg.basic.RESIST); -- resist message
         return dsp.effect.SLEEP_I;

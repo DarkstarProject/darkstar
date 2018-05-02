@@ -20,11 +20,11 @@ end;
 function onSpellCast(caster,target,spell)
 
     --calculate raw damage
-    local basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
+    local basedmg = caster:getSkillLevel(dsp.skill.DRK) / 4;
     local params = {};
     params.dmg = basedmg;
     params.multiplier = 3;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.skillType = dsp.skill.DRK;
     params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
@@ -42,7 +42,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.skillType = dsp.skill.DRK;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
     local dia = target:getStatusEffect(dsp.effect.DIA);
 
     -- Calculate DoT (rough, though fairly accurate)
-    local dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
+    local dotdmg = 4 + math.floor(caster:getSkillLevel(dsp.skill.DRK) / 60);
 
     -- Do it!
     if (target:addStatusEffect(dsp.effect.BIO,dotdmg,3,duration,FLAG_ERASABLE, 15,3)) then

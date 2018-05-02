@@ -12,12 +12,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dmg = 10 + 0.575 * caster:getSkillLevel(DARK_MAGIC_SKILL);
+    local dmg = 10 + 0.575 * caster:getSkillLevel(dsp.skill.DRK);
     --get resist multiplier (1x if no resist)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.skillType = dsp.skill.DRK;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage

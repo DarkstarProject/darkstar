@@ -2376,6 +2376,7 @@ INSERT INTO `item_mods` VALUES (10799,384,-20); -- SLOW
 INSERT INTO `item_mods` VALUES (10800,1,28);
 INSERT INTO `item_mods` VALUES (10800,10,15);
 INSERT INTO `item_mods` VALUES (10800,68,-6);
+INSERT INTO `item_mods` VALUES (10800,905,5); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (10801,1,17);
 INSERT INTO `item_mods` VALUES (10801,5,50);
 INSERT INTO `item_mods` VALUES (10801,13,4);
@@ -3445,6 +3446,7 @@ INSERT INTO `item_mods` VALUES (11110,8,11);
 INSERT INTO `item_mods` VALUES (11110,10,11);
 INSERT INTO `item_mods` VALUES (11110,82,7);
 INSERT INTO `item_mods` VALUES (11110,384,40);
+INSERT INTO `item_mods` VALUES (11110,905,2); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (11111,1,31);
 INSERT INTO `item_mods` VALUES (11111,23,10);
 INSERT INTO `item_mods` VALUES (11111,25,10);
@@ -3514,6 +3516,8 @@ INSERT INTO `item_mods` VALUES (11124,1,54);
 INSERT INTO `item_mods` VALUES (11124,23,15);
 INSERT INTO `item_mods` VALUES (11124,288,5);
 INSERT INTO `item_mods` VALUES (11124,384,71);
+INSERT INTO `item_mods` VALUES (11124,903,50);	-- "Fencer" +1 Adds 50 TP BONUS
+INSERT INTO `item_mods` VALUES (11124,904,1);	-- "Fencer" +1 Adds 1% Crit Rate
 INSERT INTO `item_mods` VALUES (11125,1,49);
 INSERT INTO `item_mods` VALUES (11125,23,10);
 INSERT INTO `item_mods` VALUES (11125,25,10);
@@ -3924,6 +3928,7 @@ INSERT INTO `item_mods` VALUES (11210,8,7);
 INSERT INTO `item_mods` VALUES (11210,10,7);
 INSERT INTO `item_mods` VALUES (11210,82,5);
 INSERT INTO `item_mods` VALUES (11210,384,30);
+INSERT INTO `item_mods` VALUES (11210,905,1); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (11211,1,29);
 INSERT INTO `item_mods` VALUES (11211,23,7);
 INSERT INTO `item_mods` VALUES (11211,25,7);
@@ -22376,7 +22381,9 @@ INSERT INTO `item_mods` VALUES (18524,8,10);
 INSERT INTO `item_mods` VALUES (18525,8,15);
 INSERT INTO `item_mods` VALUES (18531,24,4);
 INSERT INTO `item_mods` VALUES (18533,25,7);      -- Magnus Axe: Accuracy+7
-INSERT INTO `item_mods` VALUES (18534,25,5);
+INSERT INTO `item_mods` VALUES (18534,25,5);	  -- Charmer's Merlin: Accuracy+5
+INSERT INTO `item_mods` VALUES (18534,903,50);	  -- "Fencer" +1 50 TP Bonus
+INSERT INTO `item_mods` VALUES (18534,904,1);	  -- "Fencer" +1 1% Crit Rate
 INSERT INTO `item_mods` VALUES (18535,73,4);
 INSERT INTO `item_mods` VALUES (18535,104,5);
 INSERT INTO `item_mods` VALUES (18535,105,5);
@@ -23133,6 +23140,8 @@ INSERT INTO `item_mods` VALUES (18887,13,15);     -- Dukkha: MND+15
 INSERT INTO `item_mods` VALUES (18888,12,10);     -- Ankylosis Wand: INT+10
 INSERT INTO `item_mods` VALUES (18891,5,15);      -- Hannibal's Sword: MP+15
 INSERT INTO `item_mods` VALUES (18893,25,7);      -- Magnus Sword: Accuracy+7
+INSERT INTO `item_mods` VALUES (18894,903,50);	  -- Accoladde Sword: "Fencer"+1
+INSERT INTO `item_mods` VALUES (18894,904,1);
 INSERT INTO `item_mods` VALUES (18895,25,5);
 INSERT INTO `item_mods` VALUES (18895,288,3);
 INSERT INTO `item_mods` VALUES (18895,432,7);
@@ -35869,6 +35878,7 @@ INSERT INTO `item_mods` VALUES (27064,31,32);
 INSERT INTO `item_mods` VALUES (27064,68,8);
 INSERT INTO `item_mods` VALUES (27064,82,18);
 INSERT INTO `item_mods` VALUES (27064,384,40);
+INSERT INTO `item_mods` VALUES (27064,905,2); -- "Shield Def. Bonus"+2
 INSERT INTO `item_mods` VALUES (27065,1,106);
 INSERT INTO `item_mods` VALUES (27065,2,34);
 INSERT INTO `item_mods` VALUES (27065,5,14);
@@ -35882,6 +35892,7 @@ INSERT INTO `item_mods` VALUES (27065,31,48);
 INSERT INTO `item_mods` VALUES (27065,68,19);
 INSERT INTO `item_mods` VALUES (27065,82,28);
 INSERT INTO `item_mods` VALUES (27065,384,51);
+INSERT INTO `item_mods` VALUES (27065,905,3); -- "Shield Def. Bonus"+3
 INSERT INTO `item_mods` VALUES (27066,1,74);
 INSERT INTO `item_mods` VALUES (27066,2,14);
 INSERT INTO `item_mods` VALUES (27066,5,12);
@@ -37082,6 +37093,8 @@ INSERT INTO `item_mods` VALUES (27237,31,54);
 INSERT INTO `item_mods` VALUES (27237,68,11);
 INSERT INTO `item_mods` VALUES (27237,288,5);
 INSERT INTO `item_mods` VALUES (27237,384,71);
+INSERT INTO `item_mods` VALUES (27237,903,50); -- "Fencer"+1
+INSERT INTO `item_mods` VALUES (27237,904,1);
 INSERT INTO `item_mods` VALUES (27238,1,125);
 INSERT INTO `item_mods` VALUES (27238,2,50);
 INSERT INTO `item_mods` VALUES (27238,8,38);
@@ -37096,6 +37109,8 @@ INSERT INTO `item_mods` VALUES (27238,31,80);
 INSERT INTO `item_mods` VALUES (27238,68,24);
 INSERT INTO `item_mods` VALUES (27238,288,6);
 INSERT INTO `item_mods` VALUES (27238,384,81);
+INSERT INTO `item_mods` VALUES (27238,903,100); -- "Fencer"+2
+INSERT INTO `item_mods` VALUES (27238,904,2);
 INSERT INTO `item_mods` VALUES (27239,1,76);
 INSERT INTO `item_mods` VALUES (27239,2,22);
 INSERT INTO `item_mods` VALUES (27239,8,22);
@@ -39305,6 +39320,8 @@ INSERT INTO `item_mods` VALUES (27643,518,5); -- Chance of Successful Block +5
 INSERT INTO `item_mods` VALUES (27644,25,20); -- Blurred Shield +1 - 20 Acc
 INSERT INTO `item_mods` VALUES (27644,23,20); -- 20 Att
 INSERT INTO `item_mods` VALUES (27644,518,10); -- Chance of Successful Block +10
+INSERT INTO `item_mods` VALUES (27644,903,50); -- "Fencer"+1
+INSERT INTO `item_mods` VALUES (27644,904,1);
 INSERT INTO `item_mods` VALUES (27648,1,51);
 INSERT INTO `item_mods` VALUES (27648,3,4);
 INSERT INTO `item_mods` VALUES (27648,6,4);

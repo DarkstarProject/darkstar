@@ -22,7 +22,7 @@ function onPetAbility(target, pet, skill)
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 
     local duration = 120;
-    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),ELEMENTAL_MAGIC_SKILL, 5);
+    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),dsp.skill.ELE, 5);
     if resm < 0.25 then
         resm = 0;
     end

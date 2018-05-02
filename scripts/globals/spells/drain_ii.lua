@@ -15,17 +15,17 @@ end;
 function onSpellCast(caster,target,spell)
     --calculate raw damage (unknown function  -> only dark skill though) - using http://www.bluegartr.com/threads/44518-Drain-Calculations
     -- also have small constant to account for 0 dark skill
-    local dmg = 20 + (1.236 * caster:getSkillLevel(DARK_MAGIC_SKILL));
+    local dmg = 20 + (1.236 * caster:getSkillLevel(dsp.skill.DRK));
 
-    if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85)) then
-        dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85);
+    if (dmg > (caster:getSkillLevel(dsp.skill.DRK) + 85)) then
+        dmg = (caster:getSkillLevel(dsp.skill.DRK) + 85);
     end
 
     --get resist multiplier (1x if no resist)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.skillType = dsp.skill.DRK;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
