@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 
     -- WANDERING SOULS
     if (trade:hasItemQty(949,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompleteQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
+        if (not player:hasCompletedQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
              player:addQuest(OUTLANDS,WANDERING_SOULS);
              player:startEvent(202,949);
         else

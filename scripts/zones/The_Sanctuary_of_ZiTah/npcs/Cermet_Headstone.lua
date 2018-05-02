@@ -47,7 +47,7 @@ function onTrigger(player,npc)
         end
 
     -- SOUL SEARCHING
-    elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and not player:hasCompleteQuest(OUTLANDS,SOUL_SEARCHING)) then
+    elseif (player:hasCompletedMission(ZILART,THE_CHAMBER_OF_ORACLES) and not player:hasCompletedQuest(OUTLANDS,SOUL_SEARCHING)) then
         player:addQuest(OUTLANDS,SOUL_SEARCHING);
         player:startEvent(202,dsp.ki.PRISMATIC_FRAGMENT);
 

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     -- WRATH OF THE OPO-OPOS
     if (trade:hasItemQty(790,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.FIRE_FRAGMENT))) then
+        if (not player:hasCompletedQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.FIRE_FRAGMENT))) then
             player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
             player:startEvent(202,790);
         else
