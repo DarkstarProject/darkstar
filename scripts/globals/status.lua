@@ -2159,30 +2159,30 @@ dsp.jsa = dsp.jobSpecialAbility;
 dsp.skill =
 {
     -- Combat Skills
-    NON = 0,
-    H2H = 1,
-    DAG = 2,
-    SWD = 3,
-    GSD = 4,
+    NONE = 0,
+    HAND_TO_HAND = 1,
+    DAGGER = 2,
+    SWORD = 3,
+    GREAT_SWORD = 4,
     AXE = 5,
-    GAX = 6,
-    SYH = 7,
-    POL = 8,
-    KAT = 9,
-    GKT = 10,
-    CLB = 11,
-    STF = 12,
+    GREAT_AXE = 6,
+    SCYTHE = 7,
+    POLEARM = 8,
+    KATANA = 9,
+    GREAT_KATANA = 10,
+    CLUB = 11,
+    STAFF = 12,
     -- 13~21 unused
     -- 22~24 pup's Automaton skills
-    ARC = 25,
-    MRK = 26,
-    THR = 27,
+    ARCHERY = 25,
+    MARKSMANSHIP = 26,
+    THROWING = 27,
 
     -- Defensive Skills
-    GRD = 28,
-    EVA = 29,
-    SHL = 30,
-    PAR = 31,
+    GUARD = 28,
+    EVASION = 29,
+    SHIELD = 30,
+    PARRY = 31,
 
     -- Magic Skills
     DIV = 32,
@@ -2198,9 +2198,9 @@ dsp.skill =
     WND = 42,
     BLU = 43,
     GEO = 44,
-    
+
     -- 45~47 unused
-    
+
     -- Crafting Skills
     FISHING      = 48,
     WOODWORKING  = 49,
@@ -2212,7 +2212,7 @@ dsp.skill =
     ALCHEMY      = 55,
     COOKING      = 56,
     SYNERGY      = 57,
-    
+
     -- Other Skills
     RID          = 58,
     DIG          = 59,
@@ -2235,7 +2235,7 @@ dsp.recast =
 -- ACTION IDs
 ------------------------------------
 
-dsp.action = 
+dsp.action =
 {
     NONE                 = 0,
     ATTACK               = 1,

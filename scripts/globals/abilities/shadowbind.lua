@@ -11,8 +11,8 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if ((player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MRK and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.MRK) or
-    (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.ARC and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.ARC)) then
+    if ((player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MARKSMANSHIP and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.MARKSMANSHIP) or
+    (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.ARCHERY and player:getWeaponSkillType(dsp.slot.AMMO) == dsp.skill.ARCHERY)) then
         return 0,0;
     end
     return 216,0; -- You do not have an appropriate ranged weapon equipped.
@@ -20,7 +20,7 @@ end;
 
 function onUseAbility(player,target,ability,action)
 
-    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MRK) then -- can't have your crossbow/gun held like a bow, now can we?
+    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MARKSMANSHIP) then -- can't have your crossbow/gun held like a bow, now can we?
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
 

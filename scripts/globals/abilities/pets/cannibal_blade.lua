@@ -18,7 +18,7 @@ function onPetAbility(target, automaton, skill, master, action)
         atkmulti = 20.0,
         accBonus = 1000,
         weaponDamage = automaton:getSkillLevel(22),
-        weaponType = dsp.skill.SWD,
+        weaponType = dsp.skill.SWORD,
         ftp100 = 0.25,
         ftp200 = 0.4,
         ftp300 = 0.6,

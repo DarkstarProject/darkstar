@@ -16,7 +16,7 @@ function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 2,
         atkmulti = 1.25,
-        weaponType = dsp.skill.SWD,
+        weaponType = dsp.skill.SWORD,
         ftp100 = 2.0,
         ftp200 = 2.0,
         ftp300 = 2.0,

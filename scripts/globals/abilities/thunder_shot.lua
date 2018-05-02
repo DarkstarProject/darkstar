@@ -13,7 +13,7 @@ require("scripts/globals/ability");
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MRK or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP) then
         return 216,0;
     end
     if (player:hasItem(2180, 0) or player:hasItem(2974, 0)) then
@@ -28,7 +28,7 @@ function onUseAbility(player,target,ability,action)
     params.includemab = true;
     local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
     dmg  = addBonusesAbility(player, dsp.magic.ele.LIGHTNING, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,dsp.magic.ele.LIGHTNING,dsp.skill.MRK, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
+    dmg = dmg * applyResistanceAbility(player,target,dsp.magic.ele.LIGHTNING,dsp.skill.MARKSMANSHIP, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
     dmg = adjustForTarget(target,dmg,dsp.magic.ele.LIGHTNING);
     
     local shadowsAbsorbed = 0
