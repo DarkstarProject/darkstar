@@ -24,7 +24,7 @@ function onMobFight(mob,target)
             mob:setLocalVar("Def1",1);
         end
     elseif mobHPP <= 25 then
-    mob:AnimationSub(2);
+        mob:AnimationSub(2);
         if mob:getLocalVar("Def2") == 0 then
             mob:delMod(MOD_MDEF, 10);
             mob:delMod(MOD_MDEF, 10);
@@ -33,8 +33,4 @@ function onMobFight(mob,target)
     elseif mobHPP > 50 then
         mob:AnimationSub(0); -- tripple gear
     end
-end
-
-function onMobDeath(mob, player, isKiller)
-
 end;
