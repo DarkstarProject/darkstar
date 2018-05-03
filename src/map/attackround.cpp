@@ -156,7 +156,7 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H ? true : false;
+    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND ? true : false;
 }
 
 /************************************************************************

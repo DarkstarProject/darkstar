@@ -166,7 +166,7 @@ bool CPlayerController::WeaponSkill(uint16 targid, uint16 wsid)
             PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, MSGBASIC_NOT_ENOUGH_TP));
             return false;
         }
-        if (PWeaponSkill->getType() == SKILL_ARC || PWeaponSkill->getType() == SKILL_MRK)
+        if (PWeaponSkill->getType() == SKILL_ARCHERY || PWeaponSkill->getType() == SKILL_MARKSMANSHIP)
         {
             CItemWeapon* PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
