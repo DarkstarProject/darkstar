@@ -415,8 +415,8 @@ INSERT INTO `traits` VALUES ('101','tactical guard','2','77','1','899','30','ABY
 INSERT INTO `traits` VALUES ('101','tactical guard','2','87','2','899','45','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('101','tactical guard','2','97','3','899','60','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','80','1','905','2','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('102','shield def. bonus','2','88','2','905','4','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('102','shield def. bonus','3','99','3','905','6','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','1','88','2','905','4','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','1','99','3','905','6','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','85','1','174','8','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','95','2','174','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','12','78','1','174','8','ABYSSEA','0');
