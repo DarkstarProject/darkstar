@@ -127,7 +127,7 @@ function calculateMagicDamage(caster, target, spell, params)
     end
 
 
-    if (params.skillType == dsp.skill.DIV and target:isUndead()) then
+    if (params.skillType == dsp.skill.DIVINE_MAGIC and target:isUndead()) then
         -- 150% bonus damage
         dmg = dmg * 1.5;
     end
@@ -145,7 +145,7 @@ function doBoostGain(caster,target,spell,effect)
     end
 
     --calculate potency
-    local magicskill = target:getSkillLevel(dsp.skill.ENH);
+    local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
 
     local potency = math.floor((magicskill - 300) / 10) + 5;
 
@@ -187,7 +187,7 @@ function doEnspell(caster,target,spell,effect)
         duration = duration * 3;
     end
     --calculate potency
-    local magicskill = target:getSkillLevel(dsp.skill.ENH);
+    local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
 
     local potency = 3 + math.floor((6*magicskill)/100);
     if (magicskill>200) then
@@ -210,14 +210,14 @@ end;
 function getCurePower(caster,isBlueMagic)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
-    local skill = caster:getSkillLevel(dsp.skill.HEA);
+    local skill = caster:getSkillLevel(dsp.skill.HEALING_MAGIC);
     local power = math.floor(MND/2) + math.floor(VIT/4) + skill;
     return power;
 end;
 function getCurePowerOld(caster)
     local MND = caster:getStat(dsp.mod.MND);
     local VIT = caster:getStat(dsp.mod.VIT);
-    local skill = caster:getSkillLevel(dsp.skill.HEA); -- it's healing magic skill for the BLU cures as well
+    local skill = caster:getSkillLevel(dsp.skill.HEALING_MAGIC); -- it's healing magic skill for the BLU cures as well
     local power = ((3 * MND) + VIT + (3 * math.floor(skill/5)));
     return power;
 end;
@@ -358,13 +358,13 @@ function applyResistanceEffect(caster, target, spell, params)
 
     -- If Stymie is active, as long as the mob is not immune then the effect is not resisted
     if (effect ~= nil) then -- Dispel's script doesn't have an "effect" to send here, nor should it.
-        if (skill == dsp.skill.ENF and caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
+        if (skill == dsp.skill.ENFEEBLING_MAGIC and caster:hasStatusEffect(dsp.effect.STYMIE) and target:canGainStatusEffect(effect)) then
             caster:delStatusEffect(dsp.effect.STYMIE);
             return 1;
         end
     end
 
-    if (skill == dsp.skill.SNG and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
+    if (skill == dsp.skill.SINGING and caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         if (math.random(0,99) < caster:getMerit(dsp.merit.TROUBADOUR)-25) then
             return 1.0;
         end
@@ -581,7 +581,7 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     --Add acc for dark seal
-    if (skill == dsp.skill.DRK and caster:hasStatusEffect(dsp.effect.DARK_SEAL)) then
+    if (skill == dsp.skill.DARK_MAGIC and caster:hasStatusEffect(dsp.effect.DARK_SEAL)) then
         magicAccBonus = magicAccBonus + 256;
     end
 
@@ -591,7 +591,7 @@ function getSpellBonusAcc(caster, target, spell, params)
     end
 
     -- BLU mag acc merits - nuke acc is handled in bluemagic.lua
-    if (skill == dsp.skill.BLU) then
+    if (skill == dsp.skill.BLUE_MAGIC) then
         magicAccBonus = magicAccBonus + caster:getMerit(dsp.merit.MAGICAL_ACCURACY);
     end
 
@@ -650,13 +650,13 @@ end;
     end
 
     local skill = spell:getSkillType();
-    if (skill == dsp.skill.ELE) then
+    if (skill == dsp.skill.ELEMENTAL_MAGIC) then
         dmg = dmg * ELEMENTAL_POWER;
-    elseif (skill == dsp.skill.DRK) then
+    elseif (skill == dsp.skill.DARK_MAGIC) then
         dmg = dmg * DARK_POWER;
-    elseif (skill == dsp.skill.NIN) then
+    elseif (skill == dsp.skill.NINJUTSU) then
         dmg = dmg * NINJUTSU_POWER;
-    elseif (skill == dsp.skill.DIV) then
+    elseif (skill == dsp.skill.DIVINE_MAGIC) then
         dmg = dmg * DIVINE_POWER;
     end
 
@@ -1057,7 +1057,7 @@ function handleThrenody(caster, target, spell, basePower, baseDuration, modifier
     -- print("dCHR=" .. dCHR);
     local params = {};
     params.attribute = dsp.mod.CHR;
-    params.skillType = dsp.skill.SNG;
+    params.skillType = dsp.skill.SINGING;
     params.bonus = staff;
 
     local resm = applyResistance(caster, target, spell, params);
@@ -1163,7 +1163,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     --get resist multiplier (1x if no resist)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.ELE;
+    params.skillType = dsp.skill.ELEMENTAL_MAGIC;
     params.resistBonus = resistBonus;
     params.AMIIaccBonus = AMIIaccBonus;
 
@@ -1186,7 +1186,7 @@ function doElementalNuke(caster, spell, target, spellParams)
 end
 
 function doDivineNuke(caster, target, spell, params)
-    params.skillType = dsp.skill.DIV;
+    params.skillType = dsp.skill.DIVINE_MAGIC;
     params.attribute = dsp.mod.MND;
 
     return doNuke(caster, target, spell, params);
@@ -1201,7 +1201,7 @@ function doNinjutsuNuke(caster, target, spell, params)
     if (caster:hasStatusEffect(dsp.effect.INNIN) and caster:isBehind(target, 23)) then -- Innin mag atk bonus from behind, guesstimating angle at 23 degrees
         mabBonus = mabBonus + caster:getStatusEffect(dsp.effect.INNIN):getPower();
     end
-    params.skillType = dsp.skill.NIN;
+    params.skillType = dsp.skill.NINJUTSU;
     params.attribute = dsp.mod.INT;
     params.mabBonus = mabBonus;
 
@@ -1215,15 +1215,15 @@ function doNuke(caster, target, spell, params)
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
-    if (skill == dsp.skill.NIN) then
+    if (skill == dsp.skill.NINJUTSU) then
         if (caster:getMainJob() == dsp.job.NIN) then -- NIN main gets a bonus to their ninjutsu nukes
             local ninSkillBonus = 100;
             if (spell:getID() % 3 == 2) then -- ichi nuke spell ids are 320, 323, 326, 329, 332, and 335
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NINJUTSU) - 50)/2); -- getSkillLevel includes bonuses from merits and modifiers (ie. gear)
             elseif (spell:getID() % 3 == 0) then -- ni nuke spell ids are 1 more than their corresponding ichi spell
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 125)/2);
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NINJUTSU) - 125)/2);
             else -- san nuke spell, also has ids 1 more than their corresponding ni spell
-                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NIN) - 275)/2);
+                ninSkillBonus = 100 + math.floor((caster:getSkillLevel(dsp.skill.NINJUTSU) - 275)/2);
             end
             ninSkillBonus = utils.clamp(ninSkillBonus, 100, 200); -- bonus caps at +100%, and does not go negative
             dmg = dmg * ninSkillBonus/100;
@@ -1245,7 +1245,7 @@ function doNuke(caster, target, spell, params)
 end
 
 function doDivineBanishNuke(caster, target, spell, params)
-    params.skillType = dsp.skill.DIV;
+    params.skillType = dsp.skill.DIVINE_MAGIC;
     params.attribute = dsp.mod.MND;
 
     --calculate raw damage

@@ -2185,19 +2185,19 @@ dsp.skill =
     PARRY = 31,
 
     -- Magic Skills
-    DIV = 32,
-    HEA = 33,
-    ENH = 34,
-    ENF = 35,
-    ELE = 36,
-    DRK = 37,
-    SUM = 38,
-    NIN = 39,
-    SNG = 40,
-    STR = 41,
-    WND = 42,
-    BLU = 43,
-    GEO = 44,
+    DIVINE_MAGIC = 32,
+    HEALING_MAGIC = 33,
+    ENHANCING_MAGIC = 34,
+    ENFEEBLING_MAGIC = 35,
+    ELEMENTAL_MAGIC = 36,
+    DARK_MAGIC = 37,
+    SUMMONING_MAGIC = 38,
+    NINJUTSU = 39,
+    SINGING = 40,
+    STRING_INSTRUMENT = 41,
+    WIND_INSTRUMENT = 42,
+    BLUE_MAGIC = 43,
+    GEOMANCY = 44,
 
     -- 45~47 unused
 
