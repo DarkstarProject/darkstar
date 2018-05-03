@@ -19,7 +19,7 @@ function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
     -- TODO: summon animations?
     for wynavs = mob:getID()+1, mob:getID()+3 do
-        if (GetMobAction(wynavs) == ACTION_NONE) then
+        if (GetMobAction(wynavs) == dsp.act.NONE) then
             local repopWynavs = GetMobByID(wynavs):getLocalVar("repop"); -- see Wynav script
             if (mob:getBattleTime() - repopWynavs > 10) then
                 GetMobByID(wynavs):setSpawn(

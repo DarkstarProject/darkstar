@@ -14,13 +14,13 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    target:delStatusEffect(dsp.effects.AQUAVEIL);
+    target:delStatusEffect(dsp.effect.AQUAVEIL);
 
     -- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
     -- tests that quantify the relationship so I'm using 5 minutes for now.
 
     local duration = 300;
-    local power = AQUAVEIL_COUNTER + caster:getMod(MOD_AQUAVEIL_COUNT);
+    local power = AQUAVEIL_COUNTER + caster:getMod(dsp.mod.AQUAVEIL_COUNT);
     if (caster:getSkillLevel(ENHANCING_MAGIC_SKILL) >= 200) then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil
         power = power + 1;
     end
@@ -28,12 +28,12 @@ function onSpellCast(caster,target,spell)
         power = 1;
     end;
 
-    if (caster:hasStatusEffect(dsp.effects.COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(dsp.effects.AQUAVEIL,power,0,duration);
-    spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+    target:addStatusEffect(dsp.effect.AQUAVEIL,power,0,duration);
+    spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
 
-    return dsp.effects.AQUAVEIL;
+    return dsp.effect.AQUAVEIL;
 end;

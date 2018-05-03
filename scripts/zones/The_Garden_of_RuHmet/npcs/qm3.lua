@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         local qm3 = GetNPCByID(Jailer_of_Faith_QM);
         player:tradeComplete();
         -- Hide the ???
-        qm3:setStatus(STATUS_DISAPPEAR);
+        qm3:setStatus(dsp.status.DISAPPEAR);
         -- Change MobSpawn to ???'s pos.
         GetMobByID(Jailer_of_Faith):setSpawn(qm3:getXPos(),qm3:getYPos(),qm3:getZPos());
         -- Spawn Jailer of Faith

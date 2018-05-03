@@ -80,13 +80,13 @@ IsMobDead(16932888)==true
  
 -- time
        GetNPCByID(16932864+70):setPos(mobX+3,mobY,mobZ);
-    GetNPCByID(16932864+70):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+70):setStatus(dsp.status.NORMAL);
 -- recover
        GetNPCByID(16932864+71):setPos(mobX+4,mobY,mobZ+4);
-    GetNPCByID(16932864+71):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+71):setStatus(dsp.status.NORMAL);
 -- item
       GetNPCByID(16932864+72):setPos(mobX,mobY,mobZ-3);
-    GetNPCByID(16932864+72):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+72):setStatus(dsp.status.NORMAL);
 
  
  end

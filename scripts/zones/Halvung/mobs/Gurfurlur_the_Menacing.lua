@@ -42,5 +42,5 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(TROLL_SUBJUGATOR);
+    player:addTitle(dsp.title.TROLL_SUBJUGATOR);
 end;

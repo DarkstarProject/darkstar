@@ -17,16 +17,16 @@ function onMobWeaponSkill(target, mob, skill)
     local num = 0;
 
     for i,effect in ipairs(effects) do
-        -- check mask bit for EFFECTFLAG_DISPELABLE
-        if (target:getMaskBit(effect:getFlag(),0) == true and effect:getType() ~= dsp.effects.RERAISE and num < 10) then
+        -- check mask bit for dsp.effectFlag.DISPELABLE
+        if (target:getMaskBit(effect:getFlag(),0) == true and effect:getType() ~= dsp.effect.RERAISE and num < 10) then
             target:delStatusEffect(effect:getType());
             num = num + 1;
         end
     end
 
-    skill:setMsg(msgBasic.DISAPPEAR_NUM);
+    skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
     if (num == 0) then
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
     end
 
     return num;

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.BATTLEFIELD
+--     dsp.effect.BATTLEFIELD
 --
 -----------------------------------
 
@@ -27,7 +27,7 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effects.BATTLEFIELD);
+        target:getPet():delStatusEffect(dsp.effect.BATTLEFIELD);
     end
 end;
 

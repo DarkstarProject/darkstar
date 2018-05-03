@@ -36,8 +36,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 114) then
-        player:addKeyItem(dsp.kis.SACRIFICIAL_CHAMBER_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SACRIFICIAL_CHAMBER_KEY);
+        player:addKeyItem(dsp.ki.SACRIFICIAL_CHAMBER_KEY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SACRIFICIAL_CHAMBER_KEY);
         player:completeMission(ZILART,KAZAMS_CHIEFTAINESS);
         player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
     elseif (csid == 265) then

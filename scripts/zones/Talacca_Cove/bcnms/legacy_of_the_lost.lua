@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
     
     if (csid == 32001) then
         player:completeMission(TOAU,LEGACY_OF_THE_LOST);
-        player:setTitle(GESSHOS_MERCY);
+        player:setTitle(dsp.title.GESSHOS_MERCY);
         player:addMission(TOAU,GAZE_OF_THE_SABOTEUR);
     end
     

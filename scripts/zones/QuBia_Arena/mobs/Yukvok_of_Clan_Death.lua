@@ -7,7 +7,7 @@ require("scripts/zones/QuBia_Arena/MobIDs");
 require("scripts/globals/status");
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", jobSpec.EES_ORC);
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_ORC);
 end;
 
 function allHeirMobsDead(player)

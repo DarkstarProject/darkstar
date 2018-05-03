@@ -37,14 +37,14 @@ function onMobFight(mob,target)
             -- Go into bracer mode
             mob:setLocalVar("BracerMode", 1);
             mob:AnimationSub(2);
-            mob:addMod(MOD_ATT, 200);
-            mob:addMod(MOD_HASTE_ABILITY, 150);
+            mob:addMod(dsp.mod.ATT, 200);
+            mob:addMod(dsp.mod.HASTE_ABILITY, 150);
             mob:useMobAbility(3411); -- Hundred Fists
 
             -- Force minions to 2hour
             for i = 1, 2 do
                 local minion = GetMobByID(mob:getID() + i);
-                if (minion:getCurrentAction() ~= ACTION_NONE) then
+                if (minion:getCurrentAction() ~= dsp.act.NONE) then
                     minion:useMobAbility(3411 + i); -- Chainspell or Benediction
                 end
             end

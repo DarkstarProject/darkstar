@@ -17,11 +17,11 @@ end;
 function onTrigger(player,npc)
     local gownQuestProgress = player:getVar("AF_SCH_BODY");
 
-    player:delStatusEffect(dsp.effects.SNEAK);
+    player:delStatusEffect(dsp.effect.SNEAK);
 
     -- SCH AF Quest - Boots
-    if (gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.kis.SAMPLE_OF_GRAUBERG_CHERT)) then
-        npcUtil.giveKeyItem(player, dsp.kis.SAMPLE_OF_GRAUBERG_CHERT);
+    if (gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SAMPLE_OF_GRAUBERG_CHERT)) then
+        npcUtil.giveKeyItem(player, dsp.ki.SAMPLE_OF_GRAUBERG_CHERT);
         player:setVar("AF_SCH_BODY", gownQuestProgress + 1);
 
         -- Move the markings around

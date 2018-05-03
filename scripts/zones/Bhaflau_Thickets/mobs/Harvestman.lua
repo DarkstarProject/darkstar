@@ -7,17 +7,17 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to poison on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effects.POISON) == true)) then
+    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effect.POISON) == true)) then
         return 0,0,0;
     else
         local duration = math.random(6,9); -- 2-3 Tick's
-        target:addStatusEffect(dsp.effects.POISON,100,3,duration);
-        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,dsp.effects.POISON;
+        target:addStatusEffect(dsp.effect.POISON,100,3,duration);
+        return dsp.subEffect.POISON,dsp.msg.basic.ADD_EFFECT_STATUS,dsp.effect.POISON;
     end
 end;
 

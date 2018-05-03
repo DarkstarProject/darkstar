@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.PERFECT_DODGE
+--     dsp.effect.PERFECT_DODGE
 --     
 -----------------------------------
 

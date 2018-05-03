@@ -13,11 +13,11 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffect(dsp.effects.MAX_HP_BOOST);
+    player:delStatusEffect(dsp.effect.MAX_HP_BOOST);
 
-    local merits = player:getMerit(MERIT_MANTRA);
+    local merits = player:getMerit(dsp.merit.MANTRA);
 
-    target:addStatusEffect(dsp.effects.MAX_HP_BOOST,merits,0,180);
+    target:addStatusEffect(dsp.effect.MAX_HP_BOOST,merits,0,180);
 
-    return dsp.effects.MANTRA;
+    return dsp.effect.MANTRA;
 end;

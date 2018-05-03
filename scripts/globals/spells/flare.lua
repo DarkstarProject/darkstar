@@ -28,7 +28,7 @@ function onSpellCast(caster, target, spell)
     spellParams.M200 = 2;
 
     -- no point in making a separate function for this if the only thing they won't have in common is the name
-    handleNinjutsuDebuff(caster,target,spell,30,10,MOD_WATERRES);
+    handleNinjutsuDebuff(caster,target,spell,30,10,dsp.mod.WATERRES);
 
     return doElementalNuke(caster, spell, target, spellParams);
 end;

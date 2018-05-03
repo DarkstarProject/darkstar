@@ -12,8 +12,8 @@ end;
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(dsp.effects.BLINDNESS) == true) then
-        target:delStatusEffect(dsp.effects.BLINDNESS);
+    if (target:hasStatusEffect(dsp.effect.BLINDNESS) == true) then
+        target:delStatusEffect(dsp.effect.BLINDNESS);
     end
 end;
 

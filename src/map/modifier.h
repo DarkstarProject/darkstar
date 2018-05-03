@@ -220,6 +220,7 @@ enum class Mod
     FASTCAST                  = 170, // Increases Spell Cast Time (TRAIT)
     UFASTCAST                 = 407, // uncapped fast cast
     CURE_CAST_TIME            = 519, // cure cast time reduction
+    ELEMENTAL_CELERITY        = 901, // Quickens Elemental Magic Casting
     DELAY                     = 171, // Increase/Decrease Delay
     RANGED_DELAY              = 172, // Increase/Decrease Ranged Delay
     MARTIAL_ARTS              = 173, // The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
@@ -696,7 +697,8 @@ enum class Mod
     ENHANCES_CASTERS_ROLL     = 892, // Caster's Roll Bonus % chance
     ENHANCES_BLITZERS_ROLL    = 893, // Blitzer's Roll Bonus % chance
     ENHANCES_ALLIES_ROLL      = 894, // Allies' Roll Bonus % chance
-    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance    
+    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance
+    OCCULT_ACUMEN             = 902, // Grants bonus TP when dealing damage with elemental or dark magic
 
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
@@ -715,9 +717,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 901, // stuff
-    // SPARE = 902, // stuff
     // SPARE = 903, // stuff
+    // SPARE = 904, // stuff
+    // SPARE = 905, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

@@ -79,8 +79,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 60) then
         player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
         player:setVar("WrathOfTheGriffon",0);
-        player:addKeyItem(dsp.kis.MILITARY_SCRIP);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MILITARY_SCRIP);
+        player:addKeyItem(dsp.ki.MILITARY_SCRIP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MILITARY_SCRIP);
     end
 
 end;

@@ -35,7 +35,7 @@ function onMobFight(mob, target)
         mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
     elseif (mob:getBattleTime()/15 > spawnTime) then
         for i, offset in ipairs(offsets) do
-            if (GetMobAction(mob:getID()+offset) == ACTION_SPAWN or GetMobAction(mob:getID()+offset) == ACTION_NONE) then
+            if (GetMobAction(mob:getID()+offset) == dsp.act.SPAWN or GetMobAction(mob:getID()+offset) == dsp.act.NONE) then
                 local pet = SpawnMob(mob:getID()+offset, 60);
                 local pos = mob:getPos();
                 pet:setPos(pos.x, pos.y, pos.z);
@@ -54,7 +54,7 @@ function onMobDisengage(mob, weather)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(VRTRA_VANQUISHER);
+    player:addTitle(dsp.title.VRTRA_VANQUISHER);
 end;
 
 function onMobDespawn(mob)

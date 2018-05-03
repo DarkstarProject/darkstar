@@ -9,14 +9,14 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(dsp.effects.LIGHT_MANEUVER)
+    return master:countEffect(dsp.effect.LIGHT_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 3,
         atkmulti = 1,
-        weaponType = SKILL_CLB,
+        weaponType = dsp.skill.CLUB,
         ftp100 = 1.5,
         ftp200 = 1.5,
         ftp300 = 1.5,
@@ -55,8 +55,8 @@ function onPetAbility(target, automaton, skill, master, action)
 
     if damage > 0 then
         local chance = 0.033 * skill:getTP()
-        if not target:hasStatusEffect(dsp.effects.STUN) and chance >= math.random()*100 then
-            target:addStatusEffect(dsp.effects.STUN, 1, 0, 4)
+        if not target:hasStatusEffect(dsp.effect.STUN) and chance >= math.random()*100 then
+            target:addStatusEffect(dsp.effect.STUN, 1, 0, 4)
         end
     end
 

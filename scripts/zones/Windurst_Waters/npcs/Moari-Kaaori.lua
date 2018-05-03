@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,16536);
             player:setVar("FLOWER_PROGRESS",0);
             player:needToZone(true);
-            player:setTitle(CUPIDS_FLORIST);
+            player:setTitle(dsp.title.CUPIDS_FLORIST);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16536);
         end
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE * 400);
         player:setVar("FLOWER_PROGRESS",0);
         player:needToZone(true);
-        player:setTitle(CUPIDS_FLORIST);
+        player:setTitle(dsp.title.CUPIDS_FLORIST);
     elseif (csid == 523) then
         player:setVar("FLOWER_PROGRESS",1);
     end

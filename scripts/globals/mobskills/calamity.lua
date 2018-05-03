@@ -12,7 +12,7 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
-    mob:messageBasic(msgBasic.READIES_WS, 0, 685+256);
+    mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 685+256);
     return 0;
 end;
 

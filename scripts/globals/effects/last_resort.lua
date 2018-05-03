@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effects.LAST_RESORT
+--     dsp.effect.LAST_RESORT
 --     
 -----------------------------------
 
@@ -11,9 +11,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ATTP,15 + target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:addMod(MOD_DEFP,-15 - target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:addMod(MOD_HASTE_ABILITY, 156+effect:getPower())
+    target:addMod(dsp.mod.ATTP,15 + target:getMerit(dsp.merit.LAST_RESORT_EFFECT));
+    target:addMod(dsp.mod.DEFP,-15 - target:getMerit(dsp.merit.LAST_RESORT_EFFECT));
+    target:addMod(dsp.mod.HASTE_ABILITY, 156+effect:getPower())
 end;
 
 -----------------------------------
@@ -28,7 +28,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,15 + target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:delMod(MOD_DEFP,-15 - target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:delMod(MOD_HASTE_ABILITY, 156+effect:getPower())
+    target:delMod(dsp.mod.ATTP,15 + target:getMerit(dsp.merit.LAST_RESORT_EFFECT));
+    target:delMod(dsp.mod.DEFP,-15 - target:getMerit(dsp.merit.LAST_RESORT_EFFECT));
+    target:delMod(dsp.mod.HASTE_ABILITY, 156+effect:getPower())
 end;

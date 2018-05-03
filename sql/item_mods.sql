@@ -3640,6 +3640,7 @@ INSERT INTO `item_mods` VALUES (11151,12,9);
 INSERT INTO `item_mods` VALUES (11151,13,9);
 INSERT INTO `item_mods` VALUES (11151,28,8);
 INSERT INTO `item_mods` VALUES (11151,30,8);
+INSERT INTO `item_mods` VALUES (11151,902,25); -- Occult Acumen +25%
 INSERT INTO `item_mods` VALUES (11152,1,25);
 INSERT INTO `item_mods` VALUES (11152,8,7);
 INSERT INTO `item_mods` VALUES (11152,9,7);
@@ -4107,6 +4108,7 @@ INSERT INTO `item_mods` VALUES (11251,12,7);
 INSERT INTO `item_mods` VALUES (11251,13,7);
 INSERT INTO `item_mods` VALUES (11251,28,6);
 INSERT INTO `item_mods` VALUES (11251,30,6);
+INSERT INTO `item_mods` VALUES (11251,902,15); -- Occult Acumen +15%
 INSERT INTO `item_mods` VALUES (11252,1,23);
 INSERT INTO `item_mods` VALUES (11252,8,5);
 INSERT INTO `item_mods` VALUES (11252,9,5);
@@ -5762,6 +5764,7 @@ INSERT INTO `item_mods` VALUES (11774,24,9);      -- Ranged Attack+9
 INSERT INTO `item_mods` VALUES (11774,73,3);      -- Store TP+3
 INSERT INTO `item_mods` VALUES (11775,1,4);
 INSERT INTO `item_mods` VALUES (11775,73,2);
+INSERT INTO `item_mods` VALUES (11775,902,20); -- Occult Acumen +20%
 INSERT INTO `item_mods` VALUES (11776,1,4);
 INSERT INTO `item_mods` VALUES (11776,5,60);
 INSERT INTO `item_mods` VALUES (11777,1,6);
@@ -24705,6 +24708,7 @@ INSERT INTO `item_mods` VALUES (20717,68,13);     -- Evasion +13
 INSERT INTO `item_mods` VALUES (20717,113,10);    -- Enhancing magic skill +10
 INSERT INTO `item_mods` VALUES (20717,114,10);    -- Enfeebling magic skill +10
 INSERT INTO `item_mods` VALUES (20717,311,90);    -- Magic Damage +90
+INSERT INTO `item_mods` VALUES (20717,902,30);	  -- "Occult Acumen" +30
 INSERT INTO `item_mods` VALUES (20721,2,50);
 INSERT INTO `item_mods` VALUES (20721,8,10);
 INSERT INTO `item_mods` VALUES (20721,9,10);
@@ -25321,6 +25325,7 @@ INSERT INTO `item_mods` VALUES (21144,311,248); -- Magic Damage +248
 INSERT INTO `item_mods` VALUES (21144,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (21147,73,10); -- Khatvanga - STP +10
 INSERT INTO `item_mods` VALUES (21147,345,500); -- TP Bonus +500
+INSERT INTO `item_mods` VALUES (21147,902,30); -- "Occult Acumen" +30
 INSERT INTO `item_mods` VALUES (21151,24,10);
 INSERT INTO `item_mods` VALUES (21151,26,15);
 INSERT INTO `item_mods` VALUES (21155,5,61); -- Marquetry staff 21155-- MP+61
@@ -38685,6 +38690,7 @@ INSERT INTO `item_mods` VALUES (27425,30,10);
 INSERT INTO `item_mods` VALUES (27425,31,47);
 INSERT INTO `item_mods` VALUES (27425,68,24);
 INSERT INTO `item_mods` VALUES (27425,384,30);
+INSERT INTO `item_mods` VALUES (27425,902,27); -- Occult Acumen +27%
 INSERT INTO `item_mods` VALUES (27426,1,87);
 INSERT INTO `item_mods` VALUES (27426,2,18);
 INSERT INTO `item_mods` VALUES (27426,5,14);
@@ -38701,6 +38707,7 @@ INSERT INTO `item_mods` VALUES (27426,30,20);
 INSERT INTO `item_mods` VALUES (27426,31,69);
 INSERT INTO `item_mods` VALUES (27426,68,52);
 INSERT INTO `item_mods` VALUES (27426,384,30);
+INSERT INTO `item_mods` VALUES (27426,902,30); -- Occult Acumen +30%
 INSERT INTO `item_mods` VALUES (27427,1,52);
 INSERT INTO `item_mods` VALUES (27427,2,7);
 INSERT INTO `item_mods` VALUES (27427,8,13);
@@ -44809,7 +44816,7 @@ INSERT INTO `item_mods` VALUES (28148,30,13); -- 13 Macc
 INSERT INTO `item_mods` VALUES (28148,31,107); -- 107 Meva
 INSERT INTO `item_mods` VALUES (28148,68,27); -- 27 Eva
 INSERT INTO `item_mods` VALUES (28148,384,51); -- 5% Gear Haste
--- INSERT INTO `item_mods` VALUES (28148,Occult Acumen,30); -- "Occult Acumen"+30
+INSERT INTO `item_mods` VALUES (28148,902,30); -- "Occult Acumen"+30
 INSERT INTO `item_mods` VALUES (28151,1,106);     -- Sifahir Slacks
 INSERT INTO `item_mods` VALUES (28151,2,43);      -- comment me
 INSERT INTO `item_mods` VALUES (28151,5,69);      -- comment me

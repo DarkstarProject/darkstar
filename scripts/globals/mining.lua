@@ -388,7 +388,7 @@ function pickaxeBreak(player, trade)
     local broke = 0;
     local pickbreak = math.random();
 
-    pickbreak = pickbreak + (player:getMod(MOD_MINING_RESULT) / 1000);
+    pickbreak = pickbreak + (player:getMod(dsp.mod.MINING_RESULT) / 1000);
 
     if (pickbreak < MINING_BREAK_CHANCE) then
         broke = 1;

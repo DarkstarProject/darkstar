@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(dsp.kis.VAHZL_GATE_CRYSTAL) == false) then
-        player:addKeyItem(dsp.kis.VAHZL_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.VAHZL_GATE_CRYSTAL);
+    if (player:hasKeyItem(dsp.ki.VAHZL_GATE_CRYSTAL) == false) then
+        player:addKeyItem(dsp.ki.VAHZL_GATE_CRYSTAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VAHZL_GATE_CRYSTAL);
     else
         player:messageSpecial(ALREADY_OBTAINED_TELE);
     end

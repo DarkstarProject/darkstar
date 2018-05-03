@@ -13,13 +13,13 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local power = 12.5 + (0.10 * player:getMod(MOD_BOOST_EFFECT));
+    local power = 12.5 + (0.10 * player:getMod(dsp.mod.BOOST_EFFECT));
 
-    if (player:hasStatusEffect(dsp.effects.BOOST) == true) then
-        local effect = player:getStatusEffect(dsp.effects.BOOST);
+    if (player:hasStatusEffect(dsp.effect.BOOST) == true) then
+        local effect = player:getStatusEffect(dsp.effect.BOOST);
         effect:setPower(effect:getPower() + power);
-        player:addMod(MOD_ATTP,power);
+        player:addMod(dsp.mod.ATTP,power);
     else
-        player:addStatusEffect(dsp.effects.BOOST,power,1,180);
+        player:addStatusEffect(dsp.effect.BOOST,power,1,180);
     end
 end;

@@ -27,12 +27,12 @@ function onMobDespawn(mob)
 
  if (mobID ==16932869) then -- time
        GetNPCByID(16932864+14):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+14):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+14):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932871) then -- recover
        GetNPCByID(16932864+16):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+16):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+16):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932874) then -- item
       GetNPCByID(16932864+15):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+15):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+15):setStatus(dsp.status.NORMAL);
  end
 end;

@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13465);
             player:messageSpecial(ITEM_OBTAINED, 13465);
             player:addFame(SANDORIA,30);
-            player:addTitle(THE_BENEVOLENT_ONE);
+            player:addTitle(dsp.title.THE_BENEVOLENT_ONE);
             player:setVar("sermonQuestVar",0);
             player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
         end

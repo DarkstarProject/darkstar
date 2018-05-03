@@ -7,15 +7,15 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_RAGE, 1800); -- 30 minute rage timer
+    mob:setMobMod(dsp.mobMod.RAGE, 1800); -- 30 minute rage timer
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SERKET_BREAKER);
+    player:addTitle(dsp.title.SERKET_BREAKER);
 end;
 
 function onMobDespawn(mob)

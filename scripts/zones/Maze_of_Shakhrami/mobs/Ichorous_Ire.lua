@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(JELLYBANE);
+    player:addTitle(dsp.title.JELLYBANE);
 end;

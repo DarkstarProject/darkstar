@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_KICK_ATTACK,20);
+    target:addMod(dsp.mod.KICK_ATTACK,20);
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_KICK_ATTACK,20);
+    target:delMod(dsp.mod.KICK_ATTACK,20);
 end;

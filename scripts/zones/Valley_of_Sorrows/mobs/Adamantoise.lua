@@ -12,12 +12,12 @@ end;
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(ADAMANTOISE_QM):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(TORTOISE_TORTURER);
+    player:addTitle(dsp.title.TORTOISE_TORTURER);
 end;
 
 function onMobDespawn(mob)

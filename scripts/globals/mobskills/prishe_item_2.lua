@@ -11,9 +11,9 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (target:hasStatusEffect(dsp.effects.PHYSICAL_SHIELD) or target:hasStatusEffect(dsp.effects.MAGIC_SHIELD)) then
+    if (target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) or target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
         return 1;
-    elseif (mob:hasStatusEffect(dsp.effects.PLAGUE) or mob:hasStatusEffect(dsp.effects.CURSE_I) or mob:hasStatusEffect(dsp.effects.MUTE)) then
+    elseif (mob:hasStatusEffect(dsp.effect.PLAGUE) or mob:hasStatusEffect(dsp.effect.CURSE_I) or mob:hasStatusEffect(dsp.effect.MUTE)) then
         return 0;
     elseif (math.random() < 0.25) then
         return 1;
@@ -22,21 +22,21 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(msgBasic.NONE);
-    if (mob:hasStatusEffect(dsp.effects.PLAGUE) or mob:hasStatusEffect(dsp.effects.CURSE_I) or mob:hasStatusEffect(dsp.effects.MUTE)) then
+    skill:setMsg(dsp.msg.basic.NONE);
+    if (mob:hasStatusEffect(dsp.effect.PLAGUE) or mob:hasStatusEffect(dsp.effect.CURSE_I) or mob:hasStatusEffect(dsp.effect.MUTE)) then
         -- use Remedy!
         mob:messageText(mob, PRISHE_TEXT + 12, false);
-        mob:delStatusEffect(dsp.effects.PLAGUE);
-        mob:delStatusEffect(dsp.effects.CURSE_I);
-        mob:delStatusEffect(dsp.effects.MUTE);
+        mob:delStatusEffect(dsp.effect.PLAGUE);
+        mob:delStatusEffect(dsp.effect.CURSE_I);
+        mob:delStatusEffect(dsp.effect.MUTE);
     elseif (math.random() < 0.5) then
         -- Carnal Incense!
         mob:messageText(mob, PRISHE_TEXT + 10, false);
-        mob:addStatusEffect(dsp.effects.PHYSICAL_SHIELD, 0, 0, 30);
+        mob:addStatusEffect(dsp.effect.PHYSICAL_SHIELD, 0, 0, 30);
     else
         -- Spiritual Incense!
         mob:messageText(mob, PRISHE_TEXT + 11, false);
-        mob:addStatusEffect(dsp.effects.MAGIC_SHIELD, 0, 0, 30);
+        mob:addStatusEffect(dsp.effect.MAGIC_SHIELD, 0, 0, 30);
     end
     return 0;
 end;

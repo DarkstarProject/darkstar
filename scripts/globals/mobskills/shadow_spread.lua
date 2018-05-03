@@ -16,27 +16,27 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = 0;
-    local currentMsg = msgBasic.NONE;
-    local msg = msgBasic.NONE;
+    local currentMsg = dsp.msg.basic.NONE;
+    local msg = dsp.msg.basic.NONE;
 
-    msg = MobStatusEffectMove(mob, target, dsp.effects.CURSE_I, 25, 0, 300);
+    msg = MobStatusEffectMove(mob, target, dsp.effect.CURSE_I, 25, 0, 300);
 
-    if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effects.CURSE_I;
+    if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = dsp.effect.CURSE_I;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, dsp.effects.BLINDNESS, 20, 0, 180);
+    msg = MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 20, 0, 180);
 
-    if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effects.BLINDNESS;
+    if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = dsp.effect.BLINDNESS;
         currentMsg = msg;
     end
 
-    msg = MobStatusEffectMove(mob, target, dsp.effects.SLEEP_I, 1, 0, 30);
+    msg = MobStatusEffectMove(mob, target, dsp.effect.SLEEP_I, 1, 0, 30);
 
-    if (msg == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = dsp.effects.SLEEP_I;
+    if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = dsp.effect.SLEEP_I;
         currentMsg = msg;
     end
 

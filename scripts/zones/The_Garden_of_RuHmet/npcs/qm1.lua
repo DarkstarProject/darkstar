@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         -- Complete the trade
         player:tradeComplete();
         -- Hide the NPC, will become unhidden after Jailer of Fortitude despawns
-        qm1:setStatus(STATUS_DISAPPEAR);
+        qm1:setStatus(dsp.status.DISAPPEAR);
         -- Change MobSpawn to ???'s pos.
         GetMobByID(Jailer_of_Fortitude):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
         -- Change spawn point of pets to be at the ???'s pos as well

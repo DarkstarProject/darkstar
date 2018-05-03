@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(KRABKATOA_STEAMER);
+    player:addTitle(dsp.title.KRABKATOA_STEAMER);
 end;

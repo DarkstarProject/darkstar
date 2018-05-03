@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(OURYU_OVERWHELMER);
+    player:addTitle(dsp.title.OURYU_OVERWHELMER);
 end;

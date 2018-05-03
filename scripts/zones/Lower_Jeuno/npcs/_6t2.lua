@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO, SAVE_MY_SON);
     elseif (csid == 163) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:addTitle(LIFE_SAVER);
+            player:addTitle(dsp.title.LIFE_SAVER);
             player:addItem(13110);
             player:messageSpecial(ITEM_OBTAINED, 13110);
             player:addGil(GIL_RATE*2100);

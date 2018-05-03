@@ -6,7 +6,7 @@ require("scripts/zones/Promyvion-Holla/MobIDs");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 100); -- 10% Regain for now
+    mob:addMod(dsp.mod.REGAIN, 100); -- 10% Regain for now
     mob:SetAutoAttackEnabled(false); -- Recepticles only use TP moves.
 end;
 

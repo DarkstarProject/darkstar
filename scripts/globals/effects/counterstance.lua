@@ -5,7 +5,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_COUNTER,effect:getPower());
+    target:addMod(dsp.mod.COUNTER,effect:getPower());
 end;
 
 -----------------------------------
@@ -20,5 +20,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_COUNTER,effect:getPower());
+    target:delMod(dsp.mod.COUNTER,effect:getPower());
 end;

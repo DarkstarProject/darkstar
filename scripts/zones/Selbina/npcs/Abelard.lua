@@ -67,7 +67,7 @@ end;
 
 function onTrigger(player,npc)
     local explorer = player:getQuestStatus(OTHER_AREAS_LOG,EN_EXPLORER_S_FOOTSTEPS);
-    local keyitem = player:hasKeyItem(dsp.kis.TORN_OUT_PAGES);
+    local keyitem = player:hasKeyItem(dsp.ki.TORN_OUT_PAGES);
     local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
     local SignedBldProg = player:getVar("SIGNED_IN_BLOOD_Prog");
     -- SIGNED IN BLOOD QUEST -- (WILL ONLY ACTIVATE IF EXPLORERS
@@ -152,7 +152,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 41 or csid == 46 or csid == 47) then
         local currtab = player:getVar("anExplorer-CurrentTablet");
         local tablets = player:getVar("anExplorer-ClayTablets");
-        local keyitem = player:hasKeyItem(dsp.kis.MAP_OF_THE_CRAWLERS_NEST);
+        local keyitem = player:hasKeyItem(dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
         for zone = 1, #ZoneID, 2 do
             if (ZoneID[zone] == currtab) then
                 player:tradeComplete();
@@ -174,8 +174,8 @@ function onEventFinish(player,csid,option)
             player:setVar("anExplorer-CurrentTablet",-1);
         end
         if ((tablets % (2*0x7fff)) >= 0x7fff and keyitem == false) then
-            player:addKeyItem(dsp.kis.MAP_OF_THE_CRAWLERS_NEST);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_THE_CRAWLERS_NEST);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_CRAWLERS_NEST);
         end
     elseif (csid == 1104) then
         player:setVar("SIGNED_IN_BLOOD_Prog",2);

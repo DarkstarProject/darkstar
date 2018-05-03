@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 30);
+    mob:addMod(dsp.mod.REGAIN, 30);
 end;
 
 function onMobSpawn(mob)

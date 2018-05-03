@@ -106,7 +106,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function isHabrokWeather(weather)
-    return (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM or weather == WEATHER_WIND or weather == WEATHER_GALES);
+    return (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM or weather == dsp.weather.WIND or weather == dsp.weather.GALES);
 end
 
 function onZoneWeatherChange(weather)

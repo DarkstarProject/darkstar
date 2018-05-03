@@ -13,11 +13,11 @@ function afterInstanceRegister(player)
     local instance = player:getInstance();
     player:messageSpecial(Arrapago.text.TIME_TO_COMPLETE, instance:getTimeLimit());
     player:messageSpecial(Arrapago.text.SALVAGE_START, 1);
-    player:addStatusEffectEx(dsp.effects.ENCUMBRANCE_I, dsp.effects.ENCUMBRANCE_I, 0xFFFF, 0, 0)
-    player:addStatusEffectEx(dsp.effects.OBLIVISCENCE, dsp.effects.OBLIVISCENCE, 0, 0, 0)
-    player:addStatusEffectEx(dsp.effects.OMERTA, dsp.effects.OMERTA, 0, 0, 0)
-    player:addStatusEffectEx(dsp.effects.IMPAIRMENT, dsp.effects.IMPAIRMENT, 0, 0, 0)
-    player:addStatusEffectEx(dsp.effects.DEBILITATION, dsp.effects.DEBILITATION, 0x1FF, 0, 0)
+    player:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, 0xFFFF, 0, 0)
+    player:addStatusEffectEx(dsp.effect.OBLIVISCENCE, dsp.effect.OBLIVISCENCE, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effect.OMERTA, dsp.effect.OMERTA, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effect.IMPAIRMENT, dsp.effect.IMPAIRMENT, 0, 0, 0)
+    player:addStatusEffectEx(dsp.effect.DEBILITATION, dsp.effect.DEBILITATION, 0x1FF, 0, 0)
     for i = 0,15 do
         player:unequipItem(i)
     end
@@ -27,7 +27,7 @@ function onInstanceCreated(instance)
 
     for i,v in pairs(Arrapago.npcs[1][1]) do
         local npc = instance:getEntity(bit.band(v, 0xFFF), TYPE_NPC);
-        npc:setStatus(STATUS_NORMAL)
+        npc:setStatus(dsp.status.NORMAL)
     end
     instance:setStage(1)
 

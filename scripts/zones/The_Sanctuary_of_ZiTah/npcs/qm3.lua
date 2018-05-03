@@ -25,8 +25,8 @@ end;
 function onTrigger(player,npc)
     if (player:getVar("IsonadeKilled") == 1) then
         player:setVar("IsonadeKilled",0);
-        player:addKeyItem(dsp.kis.HANDFUL_OF_CRYSTAL_SCALES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.HANDFUL_OF_CRYSTAL_SCALES);
+        player:addKeyItem(dsp.ki.HANDFUL_OF_CRYSTAL_SCALES);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.HANDFUL_OF_CRYSTAL_SCALES);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

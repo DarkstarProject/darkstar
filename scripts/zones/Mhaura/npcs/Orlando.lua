@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     local QuestStatus = player:getQuestStatus(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
 
     if (player:getFameLevel(WINDURST) >= 2) then
-        if (player:hasKeyItem(dsp.kis.CHOCOBO_LICENSE)) then
+        if (player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE)) then
             if (QuestStatus ~= QUEST_AVAILABLE) then
                 player:startEvent(103);
             elseif (QuestStatus == QUEST_AVAILABLE) then

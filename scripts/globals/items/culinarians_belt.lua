@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(dsp.effects.COOKING_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == true) then
         result = 243;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.COOKING_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effect.COOKING_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

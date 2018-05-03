@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
         else
             player:completeQuest(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
-            player:addTitle(ECOLOGIST);
+            player:addTitle(dsp.title.ECOLOGIST);
             player:addItem(89);
             player:messageSpecial(ITEM_OBTAINED,89); -- Wastebasket
             player:addFame(SELBINA,30);

@@ -7,7 +7,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_EXP_BONUS, -100);
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100);
 end;
 
 function onMobSpawn(mob)

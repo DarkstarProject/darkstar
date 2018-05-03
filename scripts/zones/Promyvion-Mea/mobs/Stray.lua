@@ -17,7 +17,7 @@ function findMother(mob)
 end;
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_GIL_MAX, -1);
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
 end;
 
 function onMobSpawn(mob, target)

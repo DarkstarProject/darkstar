@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
         if (chance > 0) then
             player:confirmTrade();
             npc:setLocalVar("[SEA]IxAern_DropRate", chance); -- adjusts drops in IxAern (MNK)'s onMobSpawn.
-            npc:setStatus(STATUS_DISAPPEAR);
+            npc:setStatus(dsp.status.DISAPPEAR);
 
             -- spawn Ix'Aern (MNK) and minions
             nm:setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos());

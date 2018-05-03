@@ -16,7 +16,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     
-    local typeEffect = dsp.effects.PLAGUE;
+    local typeEffect = dsp.effect.PLAGUE;
 
     local numhits = 1;
     local accmod = 1;

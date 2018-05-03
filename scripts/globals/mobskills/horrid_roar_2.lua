@@ -18,13 +18,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelAllStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
+    local dispel =  target:dispelAllStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD));
 
     if (dispel == 0) then
         -- no effect
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
     end
 
     mob:lowerEnmity(target, 45);

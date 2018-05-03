@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = dsp.effects.ENAERO;
+    local typeEffect = dsp.effect.ENAERO;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60));
 

@@ -8,16 +8,16 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1); -- not currently implemented
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1);
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
 function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_HORNSPLITTER);
+    player:addTitle(dsp.title.THE_HORNSPLITTER);
 end;
 
 function onMobDespawn(mob)

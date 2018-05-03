@@ -9,10 +9,10 @@ require("scripts/globals/fieldsofvalor");
 function onMobInitialize(mob)
     -- Higher TP Gain per melee hit than normal lizards.
     -- It is definitly NOT regain.
-    mob:addMod(MOD_STORETP, 25); -- May need adjustment.
+    mob:addMod(dsp.mod.STORETP, 25); -- May need adjustment.
 
     -- Hits especially hard for his level, even by NM standards.
-    mob:addMod(MOD_ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
+    mob:addMod(dsp.mod.ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
 end;
 
 function onMobSpawn(mob)

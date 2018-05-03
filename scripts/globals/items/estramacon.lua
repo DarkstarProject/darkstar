@@ -23,6 +23,6 @@ function onAdditionalEffect(player,target,damage)
         target:addTP(-TpDrain);
         player:addTP(TpDrain);
 
-        return SUBEFFECT_TP_DRAIN, msgBasic.ADD_EFFECT_TP_DRAIN, TpDrain;
+        return dsp.subEffect.TP_DRAIN, dsp.msg.basic.ADD_EFFECT_TP_DRAIN, TpDrain;
     end
 end;

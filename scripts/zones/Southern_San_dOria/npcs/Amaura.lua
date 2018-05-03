@@ -16,7 +16,7 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:hasKeyItem(dsp.kis.AMAURAS_FORMULA) == true) then
+    if (player:hasKeyItem(dsp.ki.AMAURAS_FORMULA) == true) then
         if (trade:hasItemQty(920,1) == true and trade:hasItemQty(642,1) == true and trade:hasItemQty(846,1) == true and trade:getItemCount() == 3) then
             player:startEvent(637);
         end
@@ -30,8 +30,8 @@ function onTrigger(player,npc)
     toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
 
     if (medicineWoman == QUEST_ACCEPTED) then
-        amaurasFormulaKI = player:hasKeyItem(dsp.kis.AMAURAS_FORMULA);
-        coldMedicine = player:hasKeyItem(dsp.kis.COLD_MEDICINE);
+        amaurasFormulaKI = player:hasKeyItem(dsp.ki.AMAURAS_FORMULA);
+        coldMedicine = player:hasKeyItem(dsp.ki.COLD_MEDICINE);
 
         if (amaurasFormulaKI == false and coldMedicine == false) then
             player:startEvent(636);
@@ -39,9 +39,9 @@ function onTrigger(player,npc)
             player:startEvent(642);
         end
     elseif (player:getVar("DiaryPage") == 3 or toCureaCough == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(dsp.kis.THYME_MOSS) == false and player:hasKeyItem(dsp.kis.COUGH_MEDICINE) == false) then
+        if (player:hasKeyItem(dsp.ki.THYME_MOSS) == false and player:hasKeyItem(dsp.ki.COUGH_MEDICINE) == false) then
             player:startEvent(645); -- need thyme moss for cough med
-        elseif (player:hasKeyItem(dsp.kis.THYME_MOSS) == true) then
+        elseif (player:hasKeyItem(dsp.ki.THYME_MOSS) == true) then
             player:startEvent(646); -- receive cough med for Nenne
         end
     else
@@ -60,19 +60,19 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 636 and option == 0) then
-        player:addKeyItem(dsp.kis.AMAURAS_FORMULA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.AMAURAS_FORMULA);
+        player:addKeyItem(dsp.ki.AMAURAS_FORMULA);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AMAURAS_FORMULA);
     elseif (csid == 637) then
         player:tradeComplete();
-        player:delKeyItem(dsp.kis.AMAURAS_FORMULA);
-        player:addKeyItem(dsp.kis.COLD_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.COLD_MEDICINE);
+        player:delKeyItem(dsp.ki.AMAURAS_FORMULA);
+        player:addKeyItem(dsp.ki.COLD_MEDICINE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.COLD_MEDICINE);
     elseif (csid == 645) then
         player:addQuest(SANDORIA,TO_CURE_A_COUGH);
     elseif (csid == 646) then
-        player:delKeyItem(dsp.kis.THYME_MOSS);
-        player:addKeyItem(dsp.kis.COUGH_MEDICINE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.COUGH_MEDICINE);
+        player:delKeyItem(dsp.ki.THYME_MOSS);
+        player:addKeyItem(dsp.ki.COUGH_MEDICINE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.COUGH_MEDICINE);
     end
 
 end;

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 2384) and not GetMobByID(BIG_BOMB):isSpawned()) then -- Smokey Flask
         player:confirmTrade();
         SpawnMob(BIG_BOMB):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

@@ -10,20 +10,20 @@ require("scripts/globals/magic");
 
 function onMobInitialize(mob)
     --50% fast cast, no standback
-    mob:addMod(MOD_UFASTCAST, 50);
-    mob:setMobMod(MOBMOD_HP_STANDBACK,-1);
+    mob:addMod(dsp.mod.UFASTCAST, 50);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK,-1);
 end;
 
 function onMobSpawn(mob)
     mob:SetAutoAttackEnabled(false);
-    mob:setMobMod(MOBMOD_GA_CHANCE,25);
-    mob:addStatusEffectEx(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
-    mob:addStatusEffectEx(dsp.effects.ARROW_SHIELD, 0, 1, 0, 0);
-    mob:addStatusEffectEx(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
+    mob:setMobMod(dsp.mobMod.GA_CHANCE,25);
+    mob:addStatusEffectEx(dsp.effect.PHYSICAL_SHIELD, 0, 1, 0, 0);
+    mob:addStatusEffectEx(dsp.effect.ARROW_SHIELD, 0, 1, 0, 0);
+    mob:addStatusEffectEx(dsp.effect.MAGIC_SHIELD, 0, 1, 0, 0);
 end;
 
 function onMobEngaged(mob, target)
-    mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 5);
+    mob:addStatusEffectEx(dsp.effect.SILENCE, 0, 1, 0, 5);
     GetMobByID(mob:getID() + 1):updateEnmity(target);
 end;
 
@@ -32,10 +32,10 @@ function onMobFight(mob, target)
         local orbital1 = mob:getID()+3;
         local orbital2 = mob:getID()+4;
 
-        if (GetMobAction(orbital1) == ACTION_NONE) then
+        if (GetMobAction(orbital1) == dsp.act.NONE) then
             GetMobByID(orbital1):setPos(mob:getPos());
             SpawnMob(orbital1):updateEnmity(target);
-        elseif (GetMobAction(orbital2) == ACTION_NONE) then
+        elseif (GetMobAction(orbital2) == dsp.act.NONE) then
             GetMobByID(orbital2):setPos(mob:getPos());
             SpawnMob(orbital2):updateEnmity(target);
         end
@@ -63,7 +63,7 @@ function onEventFinish(player,csid,option,target)
         mob = SpawnMob(target:getID()+2);
         mob:updateEnmity(player);
         --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-        mob:addStatusEffectEx(dsp.effects.BIND, 0, 1, 0, 30);
-        mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 40);
+        mob:addStatusEffectEx(dsp.effect.BIND, 0, 1, 0, 30);
+        mob:addStatusEffectEx(dsp.effect.SILENCE, 0, 1, 0, 40);
     end
 end;

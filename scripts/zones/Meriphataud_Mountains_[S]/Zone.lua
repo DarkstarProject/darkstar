@@ -29,10 +29,10 @@ function onGameHour(zone)
     local npc = GetNPCByID(MERIPH_S_MARKINGS); -- Indescript Markings
     if (npc ~= nil) then
         if (VanadielHour() == 17) then
-            npc:setStatus(STATUS_DISAPPEAR);
+            npc:setStatus(dsp.status.DISAPPEAR);
         end
         if (VanadielHour() == 7) then
-            npc:setStatus(STATUS_NORMAL);
+            npc:setStatus(dsp.status.NORMAL);
         end
     end
 end;

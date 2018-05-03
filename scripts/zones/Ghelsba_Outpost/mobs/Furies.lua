@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_CHARMABLE, 1);
+    mob:setMobMod(dsp.mobMod.CHARMABLE, 1);
 end;
 
 function onMobDeath(mob, player, isKiller)

@@ -6,7 +6,7 @@ mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", jobSpec.EES_TROLL);
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_TROLL);
 end;
 
 function onMobDeath(mob, player, isKiller)

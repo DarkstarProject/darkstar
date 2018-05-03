@@ -234,7 +234,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     }
     uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
     uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(Mod::DELAY);
-    if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+    if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
     {
         WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
     }
@@ -568,14 +568,14 @@ uint16 CBattleEntity::ATT()
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
 
         // Smite applies when using 2H or H2H weapons
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
         {
             ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
         }
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        ATT += this->GetSkill(SKILL_AME);
+        ATT += this->GetSkill(SKILL_AUTOMATON_MELEE);
     }
     return ATT + (ATT * m_modStat[Mod::ATTP] / 100) +
         std::min<int16>((ATT * m_modStat[Mod::FOOD_ATTP] / 100), m_modStat[Mod::FOOD_ATT_CAP]);
@@ -621,21 +621,21 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
         {
             skill = m_Weapons[SLOT_MAIN]->getSkillType();
             iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
-            if (skill == SKILL_NON && GetSkill(SKILL_H2H) > 0)
-                skill = SKILL_H2H;
+            if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0)
+                skill = SKILL_HAND_TO_HAND;
         }
         else if (attackNumber == 1)
         {
             skill = m_Weapons[SLOT_SUB]->getSkillType();
             iLvlSkill = m_Weapons[SLOT_SUB]->getILvlSkill();
-            if (skill == SKILL_NON && GetSkill(SKILL_H2H) > 0 &&
-                (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NON || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H))
-                skill = SKILL_H2H;
+            if (skill == SKILL_NONE && GetSkill(SKILL_HAND_TO_HAND) > 0 &&
+                (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_NONE || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND))
+                skill = SKILL_HAND_TO_HAND;
         }
         else if (attackNumber == 2)
         {
             iLvlSkill = m_Weapons[SLOT_MAIN]->getILvlSkill();
-            skill = SKILL_H2H;
+            skill = SKILL_HAND_TO_HAND;
         }
         int16 ACC = GetSkill(skill) + iLvlSkill;
         ACC = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
@@ -653,7 +653,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PETTYPE_AUTOMATON)
     {
-        int16 ACC = this->GetSkill(SKILL_AME);
+        int16 ACC = this->GetSkill(SKILL_AUTOMATON_MELEE);
         ACC = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
         ACC += (int16)(DEX() * 0.5);
         ACC += m_modStat[Mod::ACC] + offsetAccuracy;
@@ -681,7 +681,7 @@ uint16 CBattleEntity::DEF()
 
 uint16 CBattleEntity::EVA()
 {
-    int16 evasion = GetSkill(SKILL_EVA);
+    int16 evasion = GetSkill(SKILL_EVASION);
 
     if (evasion > 200) { //Evasion skill is 0.9 evasion post-200
         evasion = (int16)(200 + (evasion - 200) * 0.9);
@@ -1262,6 +1262,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
                 PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
                 // Check for bind breaking
                 battleutils::BindBreakCheck(this, PTarget);
+
+                // Do we get TP for damaging spells?
+                int16 tp = battleutils::CalculateSpellTP(this, PSpell);
+                addTP(tp);
             }
 
             if (msg == 0)
@@ -1451,9 +1455,9 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     else
                     {
                         int16 naturalh2hDMG = 0;
-                        if (PTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H || (PTarget->objtype == TYPE_MOB && PTarget->GetMJob() == JOB_MNK))
+                        if (PTarget->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND || (PTarget->objtype == TYPE_MOB && PTarget->GetMJob() == JOB_MNK))
                         {
-                            naturalh2hDMG = (int16)((PTarget->GetSkill(SKILL_H2H) * 0.11f) + 3);
+                            naturalh2hDMG = (int16)((PTarget->GetSkill(SKILL_HAND_TO_HAND) * 0.11f) + 3);
                         }
 
                         float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), 0);
@@ -1462,13 +1466,13 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         actionTarget.spikesMessage = 33;
                         if (PTarget->objtype == TYPE_PC)
                         {
-                            uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_H2H : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
+                            uint8 skilltype = (PTarget->m_Weapons[SLOT_MAIN] == nullptr ? SKILL_HAND_TO_HAND : PTarget->m_Weapons[SLOT_MAIN]->getSkillType());
                             charutils::TrySkillUP((CCharEntity*)PTarget, (SKILLTYPE)skilltype, GetMLevel());
                         } // In case the Automaton can counter
                         else if (PTarget->objtype == TYPE_PET && PTarget->PMaster && PTarget->PMaster->objtype == TYPE_PC &&
                             static_cast<CPetEntity*>(PTarget)->getPetType() == PETTYPE_AUTOMATON)
                         {
-                            puppetutils::TrySkillUP((CAutomatonEntity*)PTarget, SKILL_AME, GetMLevel());
+                            puppetutils::TrySkillUP((CAutomatonEntity*)PTarget, SKILL_AUTOMATON_MELEE, GetMLevel());
                         }
                     }
                 }
@@ -1534,7 +1538,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     if (battleutils::GetGuardRate(this, PTarget) > 0)
                     {
-                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_GRD, GetMLevel());
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_GUARD, GetMLevel());
                     }
                 }
 
@@ -1542,7 +1546,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     if (battleutils::GetBlockRate(this, PTarget) > 0)
                     {
-                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_SHL, GetMLevel());
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_SHIELD, GetMLevel());
                     }
                 }
 
@@ -1550,12 +1554,12 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     if (battleutils::GetParryRate(this, PTarget) > 0)
                     {
-                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_PAR, GetMLevel());
+                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_PARRY, GetMLevel());
                     }
                 }
                 if (!attack.IsCountered() && !attack.IsParried())
                 {
-                    charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_EVA, GetMLevel());
+                    charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_EVASION, GetMLevel());
                 }
             }
         }

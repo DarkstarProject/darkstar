@@ -24,10 +24,10 @@ end;
 
 function onZoneWeatherChange(weather)
     local npc = GetNPCByID(GRAUBERG_INDESCRIPT_MARKINGS);
-    if (weather == WEATHER_WIND or weather == WEATHER_GALES) then
-        npc:setStatus(STATUS_NORMAL);
+    if (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
+        npc:setStatus(dsp.status.NORMAL);
     else
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

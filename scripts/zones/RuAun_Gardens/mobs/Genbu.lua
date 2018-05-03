@@ -12,7 +12,7 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT,mob:getShortID());
 end;
 
 function onMobSpawn(mob)
@@ -24,12 +24,12 @@ function onAdditionalEffect(mob, target, damage)
     params.bonusmab = 0;
     params.includemab = false;
 
-    dmg = addBonusesAbility(mob, ELE_WATER, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WATER,0);
-    dmg = adjustForTarget(target,dmg,ELE_WATER);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.WATER, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.WATER,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.WATER);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.WATER,dmg);
 
-    return SUBEFFECT_WATER_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return dsp.subEffect.WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

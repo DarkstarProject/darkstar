@@ -28,8 +28,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(dsp.kis.SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.SOMBER_STONE);
+            player:addKeyItem(dsp.ki.SOMBER_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
@@ -60,8 +60,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("theSandCharmVar",0);
         player:setVar("SmallDialogByBlandine",1);
-        player:addKeyItem(dsp.kis.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.kis.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:addKeyItem(dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
         player:addFame(MHAURA,30);
         player:completeQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
     end

@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(SUN_CHARIOTEER);
+    player:addTitle(dsp.title.SUN_CHARIOTEER);
 end;

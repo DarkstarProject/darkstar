@@ -13,9 +13,9 @@ function onEffectGain(target,effect)
     local refresh = effect:getSubPower();
     local haste = effect:getTier()
     
-    target:addMod(MOD_REGEN, regen);
-    target:addMod(MOD_REFRESH, refresh);
-    target:addMod(MOD_HASTE_MAGIC, haste);
+    target:addMod(dsp.mod.REGEN, regen);
+    target:addMod(dsp.mod.REFRESH, refresh);
+    target:addMod(dsp.mod.HASTE_MAGIC, haste);
 end;
 
 -----------------------------------
@@ -34,7 +34,7 @@ function onEffectLose(target,effect)
     local refresh = effect:getSubPower();
     local haste = effect:getTier()
     
-    target:delMod(MOD_REGEN, regen);
-    target:delMod(MOD_REFRESH, refresh);
-    target:delMod(MOD_HASTE_MAGIC, haste);
+    target:delMod(dsp.mod.REGEN, regen);
+    target:delMod(dsp.mod.REFRESH, refresh);
+    target:delMod(dsp.mod.HASTE_MAGIC, haste);
 end;

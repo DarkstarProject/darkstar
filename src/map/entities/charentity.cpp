@@ -685,13 +685,13 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     if (PSpell->tookEffect())
     {
         charutils::TrySkillUP(this, (SKILLTYPE)PSpell->getSkillType(), PTarget->GetMLevel());
-        if (PSpell->getSkillType() == SKILL_SNG)
+        if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
             if (PItem && PItem->isType(ITEM_ARMOR))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
-                if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+                if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
                 {
                     charutils::TrySkillUP(this, Skilltype, PTarget->GetMLevel());
                 }
