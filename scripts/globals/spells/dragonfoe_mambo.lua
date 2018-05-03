@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local sLvl = caster:getSkillLevel(dsp.skill.SNG); -- Gets skill level of Singing
+    local sLvl = caster:getSkillLevel(dsp.skill.SINGING); -- Gets skill level of Singing
     local iLvl = caster:getWeaponSkillLevel(dsp.slot.RANGED);
 
     -- Since nobody knows the evasion values for mambo, I'll just make shit up! (aka - same as madrigal)

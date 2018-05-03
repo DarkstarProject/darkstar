@@ -39,7 +39,7 @@ function onUseAbility(player,target,ability)
     end;
 
     local pEquipMods = player:getMod(dsp.mod.ENHANCES_ELEMENTAL_SIPHON);
-    local basePower = player:getSkillLevel(dsp.skill.SUM) + pEquipMods - 50;
+    local basePower = player:getSkillLevel(dsp.skill.SUMMONING_MAGIC) + pEquipMods - 50;
     if (basePower < 0) then -- skill your summoning magic you lazy bastard !
         basePower = 0;
     end;

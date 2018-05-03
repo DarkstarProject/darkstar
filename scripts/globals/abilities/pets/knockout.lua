@@ -17,7 +17,7 @@ function onPetAbility(target, automaton, skill, master, action)
         numHits = 1,
         atkmulti = 1,
         accBonus = 50,
-        weaponType = dsp.skill.CLB,
+        weaponType = dsp.skill.CLUB,
         ftp100 = 4.0,
         ftp200 = 5.0,
         ftp300 = 5.5,
