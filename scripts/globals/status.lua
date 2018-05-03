@@ -2173,7 +2173,9 @@ dsp.skill =
     CLUB = 11,
     STAFF = 12,
     -- 13~21 unused
-    -- 22~24 pup's Automaton skills
+    AUTOMATON_MELEE = 22,
+    AUTOMATON_RANGED = 23,
+    AUTOMATON_MAGIC = 24,
     ARCHERY = 25,
     MARKSMANSHIP = 26,
     THROWING = 27,

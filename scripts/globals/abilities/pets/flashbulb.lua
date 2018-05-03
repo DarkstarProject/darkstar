@@ -13,13 +13,13 @@ end
 
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 45)
-	local highest = automaton:getSkillLevel(22)
+	local highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE)
 	local highestskill = 22
-	if automaton:getSkillLevel(23) > highest then
+	if automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED) > highest then
 		highestskill = 23
-		highest = automaton:getSkillLevel(23)
+		highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED)
 	end
-	if automaton:getSkillLevel(24) > highest then
+	if automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC) > highest then
 		highestskill = 24
 	end
 
