@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 
     params.attribute = dsp.mod.INT;
 
-    params.skillType = dsp.skill.DIV;
+    params.skillType = dsp.skill.DIVINE_MAGIC;
 
     params.bonus =  150;
 
