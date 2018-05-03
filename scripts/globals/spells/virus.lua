@@ -23,7 +23,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.ENF;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     params.bonus = 0;
     params.effect = effect;
     local resist = applyResistanceEffect(caster, target, spell, params);

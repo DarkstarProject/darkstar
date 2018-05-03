@@ -13,7 +13,7 @@ end;
 function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.ENF;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     local resist = applyResistance(caster, target, spell, params);
     local effect = dsp.effect.NONE;
 

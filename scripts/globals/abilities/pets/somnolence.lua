@@ -14,7 +14,7 @@ end;
 
 function onPetAbility(target, pet, skill)
     local dmg = 10 + pet:getMainLvl() * 2
-    local resist = applyPlayerResistance(pet,-1,target, 0, dsp.skill.ELE, dsp.magic.ele.DARK);
+    local resist = applyPlayerResistance(pet,-1,target, 0, dsp.skill.ELEMENTAL_MAGIC, dsp.magic.ele.DARK);
     local duration = 120;
 
     dmg = dmg*resist;

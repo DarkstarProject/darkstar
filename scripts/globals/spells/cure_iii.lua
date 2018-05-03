@@ -96,7 +96,7 @@ function onSpellCast(caster,target,spell)
             local params = {};
             params.dmg = minCure;
             params.multiplier = 1;
-            params.skillType = dsp.skill.HEA;
+            params.skillType = dsp.skill.HEALING_MAGIC;
             params.attribute = dsp.mod.MND;
             params.hasMultipleTargetReduction = false;
 
@@ -104,7 +104,7 @@ function onSpellCast(caster,target,spell)
             local params = {};
             params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND);
             params.attribute = dsp.mod.MND;
-            params.skillType = dsp.skill.HEA;
+            params.skillType = dsp.skill.HEALING_MAGIC;
             params.bonus = 1.0;
             local resist = applyResistance(caster, target, spell, params);
             dmg = dmg*resist;

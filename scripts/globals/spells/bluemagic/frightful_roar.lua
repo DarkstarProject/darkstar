@@ -25,7 +25,7 @@ end;
 function onSpellCast(caster,target,spell)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.BLU;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.effect = dsp.effect.DEFENSE_DOWN;
     local resist = applyResistance(caster, target, spell, params);
     local duration = 60 * resist;

@@ -24,7 +24,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.dmg = 35;
     params.multiplier = 1;
-    params.skillType = dsp.skill.ELE;
+    params.skillType = dsp.skill.ELEMENTAL_MAGIC;
     params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.ELE;
+    params.skillType = dsp.skill.ELEMENTAL_MAGIC;
     -- bonus accuracy from merit
     params.bonus = merit*3;
     local resist = applyResistance(caster, target, spell, params);
