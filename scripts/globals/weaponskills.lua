@@ -104,7 +104,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN);
         local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB);
         if (mainEquip:isTwoHanded() == false and mainEquip:isHandToHand() == false) then
-            if (subEquip:getSkillType() == dsp.skill.NON or subEquip:isShield()) then
+            if (subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield()) then
                 nativecrit = nativecrit + attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100;
             end
         end
@@ -774,7 +774,7 @@ end;
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN);
         local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB);
         if (mainEquip:isTwoHanded() == false and mainEquip:isHandToHand() == false) then
-            if (subEquip:getSkillType() == dsp.skill.NON or subEquip:isShield()) then
+            if (subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield()) then
                 nativecrit = nativecrit + attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100;
             end
         end
