@@ -480,7 +480,7 @@ void CalculateStats(CMobEntity * PMob)
     }
 
     // cap all stats for mLvl / job
-    for (int i=SKILL_DIV; i <=SKILL_BLU; i++)
+    for (int i=SKILL_DIVINE_MAGIC; i <=SKILL_BLUE_MAGIC; i++)
     {
         uint16 maxSkill = battleutils::GetMaxSkill((SKILLTYPE)i,PMob->GetMJob(),mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)
@@ -498,7 +498,7 @@ void CalculateStats(CMobEntity * PMob)
             }
         }
     }
-    for (int i=SKILL_H2H; i <=SKILL_STF; i++)
+    for (int i=SKILL_HAND_TO_HAND; i <=SKILL_STAFF; i++)
     {
         uint16 maxSkill = battleutils::GetMaxSkill(3, mLvl > 99 ? 99 : mLvl);
         if (maxSkill != 0)

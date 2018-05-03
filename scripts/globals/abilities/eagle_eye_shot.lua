@@ -17,8 +17,8 @@ function onAbilityCheck(player,target,ability)
 
     if ranged and ranged:isType(ITEM_WEAPON) then
         local skilltype = ranged:getSkillType();
-        if skilltype == dsp.skill.ARC or skilltype == dsp.skill.MRK or skilltype == dsp.skill.THR then
-            if ammo and (ammo:isType(ITEM_WEAPON) or skilltype == dsp.skill.THR) then
+        if skilltype == dsp.skill.ARCHERY or skilltype == dsp.skill.MARKSMANSHIP or skilltype == dsp.skill.THROWING then
+            if ammo and (ammo:isType(ITEM_WEAPON) or skilltype == dsp.skill.THROWING) then
                 return 0, 0;
             end;
         end;
@@ -28,7 +28,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability,action)
-    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MARKSMANSHIP) then
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
     local params = {};

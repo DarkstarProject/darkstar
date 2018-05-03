@@ -14,7 +14,7 @@ end
 function onPetAbility(target, automaton, skill, master, action)
     automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
     local maneuvers = master:countEffect(dsp.effect.EARTH_MANEUVER)
-    local pMod = math.max(automaton:getSkillLevel(22), automaton:getSkillLevel(23), automaton:getSkillLevel(24))
+    local pMod = math.max(automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE), automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED), automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC))
     local duration = 180
     local amount = 200
     local bonus = 0

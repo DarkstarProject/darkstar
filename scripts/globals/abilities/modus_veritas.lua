@@ -19,7 +19,7 @@ function onUseAbility(player,target,ability)
     local helix = target:getStatusEffect(dsp.effect.HELIX);
     if (helix ~= nil) then
         local mvPower = helix:getSubPower();
-        local resist = applyResistanceAbility(player,target,dsp.magic.ele.NONE,dsp.skill.ELE,0); -- seems reasonable...
+        local resist = applyResistanceAbility(player,target,dsp.magic.ele.NONE,dsp.skill.ELEMENTAL_MAGIC,0); -- seems reasonable...
         -- Doesn't work against NMs apparently
         if (mvPower > 0) or (resist < 0.25) or (target:isNM()) then -- Don't let Modus Veritas stack to prevent abuse
             ability:setMsg(dsp.msg.basic.JA_MISS); --Miss

@@ -13,7 +13,7 @@ end
 
 function onPetAbility(target, automaton, skill, master, action)
     local chance = 90
-    local damage = (automaton:getSkillLevel(22)/2) + automaton:getMod(dsp.mod.SHIELD_BASH)
+    local damage = (automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE)/2) + automaton:getMod(dsp.mod.SHIELD_BASH)
 
     damage = math.floor(damage)
 

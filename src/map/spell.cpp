@@ -146,7 +146,7 @@ bool CSpell::hasMPCost()
 
 bool CSpell::isHeal()
 {
-    return ((getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA) || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
+    return ((getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEALING_MAGIC) || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
 }
 
 
@@ -696,8 +696,8 @@ namespace spell
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
             if(entity->objtype == TYPE_MOB || (entity->GetMJob() == JOB_BRD &&
                 entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) &&
-                ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STR)){
-                total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
+                ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STRING_INSTRUMENT)){
+                total += ((float)entity->GetSkill(SKILL_STRING_INSTRUMENT) / 276) * 10;
             }
 
             if (total > 20){

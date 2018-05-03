@@ -30,7 +30,7 @@ function onPetAbility(target, automaton, skill, master, action)
     end
 
     local hpdamage = (automaton:getMaxHP() - automaton:getHP()) * ftp
-    local skilldamage = automaton:getSkillLevel(22) * ftp
+    local skilldamage = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE) * ftp
     local damage = (hpdamage > skilldamage) and hpdamage or skilldamage
 
     if damage > 0 then
