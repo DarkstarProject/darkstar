@@ -15,7 +15,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.MND;
-    params.skillType = dsp.skill.DIV;
+    params.skillType = dsp.skill.DIVINE_MAGIC;
     params.bonus = 0;
     params.effect = dsp.effect.SLEEP_II;
     local resist = applyResistanceEffect(caster, target, spell, params);
