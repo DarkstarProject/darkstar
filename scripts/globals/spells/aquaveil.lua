@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 
     local duration = 300;
     local power = AQUAVEIL_COUNTER + caster:getMod(dsp.mod.AQUAVEIL_COUNT);
-    if (caster:getSkillLevel(dsp.skill.ENH) >= 200) then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil
+    if (caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC) >= 200) then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil
         power = power + 1;
     end
     if (power < 1) then -- this shouldn't happen but it's probably best to prevent someone from accidentally underflowing the counter...

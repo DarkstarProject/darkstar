@@ -14,7 +14,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     local effect = dsp.effect.MULTI_STRIKES;
-    local enhskill = caster:getSkillLevel(dsp.skill.ENH);
+    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     local final = 0;
     local duration = 180;
 

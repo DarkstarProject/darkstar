@@ -23,6 +23,7 @@ This file is part of DarkStar-server source code.
 
 #include "lua_item.h"
 
+#include "../../common/showmsg.h"
 #include "../items/item.h"
 #include "../items/item_armor.h"
 #include "../items/item_weapon.h"
@@ -240,6 +241,7 @@ inline int32 CLuaItem::isTwoHanded(lua_State* L)
     }
     else
     {
+        ShowError(CL_RED"CLuaItem::isTwoHanded - not a valid Weapon.\n" CL_RESET);
         lua_pushboolean(L, 0);
     }
 
@@ -256,6 +258,7 @@ inline int32 CLuaItem::isHandToHand(lua_State* L)
     }
     else
     {
+        ShowError(CL_RED"CLuaItem::isHandToHand - not a valid Weapon.\n" CL_RESET);
         lua_pushboolean(L, 0);
     }
 
@@ -272,6 +275,7 @@ inline int32 CLuaItem::isShield(lua_State* L)
     }
     else
     {
+        ShowError(CL_RED"CLuaItem::isShield - not a valid Armor.\n" CL_RESET);
         lua_pushboolean(L, 0);
     }
 

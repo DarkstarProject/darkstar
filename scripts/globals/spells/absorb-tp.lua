@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     --get resist multiplier (1x if no resist)
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.DRK;
+    params.skillType = dsp.skill.DARK_MAGIC;
     local resist = applyResistance(caster, target, spell, params);
 
     --get the resisted damage

@@ -18,7 +18,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local skill = caster:getSkillLevel(dsp.skill.ENH);
+    local skill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     if (skill > 500) then
         skill = 500;
     end
