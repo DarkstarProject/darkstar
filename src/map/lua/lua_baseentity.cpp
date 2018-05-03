@@ -3748,7 +3748,7 @@ inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
 *  Function: getStorageItem()
 *  Purpose : Returns object data for an item in a container
 *  Example : player:getStorageItem(0, 0, SLOT_RANGED)
-*  Notes   : Used exlusively for Eagle Eye Shot
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)

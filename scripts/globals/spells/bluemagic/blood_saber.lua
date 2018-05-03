@@ -24,18 +24,18 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dmg = 1 + (0.709 * caster:getSkillLevel(BLUE_SKILL));
+    local dmg = 1 + (0.709 * caster:getSkillLevel(dsp.skill.BLUE_MAGIC));
     local params = {};
     params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND);
     params.attribute = dsp.mod.MND;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     dmg = dmg*resist;
     dmg = addBonuses(caster,spell,target,dmg);
     dmg = adjustForTarget(target,dmg,spell:getElement());
-    if (dmg > (caster:getSkillLevel(BLUE_SKILL) + 20)) then
-        dmg = (caster:getSkillLevel(BLUE_SKILL) + 20);
+    if (dmg > (caster:getSkillLevel(dsp.skill.BLUE_MAGIC) + 20)) then
+        dmg = (caster:getSkillLevel(dsp.skill.BLUE_MAGIC) + 20);
     end
 
     if (dmg < 0) then

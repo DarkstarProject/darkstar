@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     end
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.effect = dsp.effect.NONE;
     params.multiplier = multi;
     params.tMultiplier = 3.5;
