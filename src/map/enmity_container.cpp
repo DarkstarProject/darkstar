@@ -24,15 +24,16 @@ This file is part of DarkStar-server source code.
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 
-#include "entities/battleentity.h"
 #include "ai/ai_container.h"
+#include "alliance.h"
 #include "enmity_container.h"
-#include "utils/battleutils.h"
-#include "utils/zoneutils.h"
+#include "entities/battleentity.h"
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
-#include "alliance.h"
 #include "packets/entity_update.h"
+#include "status_effect_container.h"
+#include "utils/battleutils.h"
+#include "utils/zoneutils.h"
 
 /************************************************************************
 *                                                                       *
@@ -97,12 +98,18 @@ void CEnmityContainer::AddBaseEnmity(CBattleEntity* PChar)
 *                                                                       *
 ************************************************************************/
 
-float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity){
+float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity)
+{
     int8 enmityBonus = 0;
     if (PEntity->objtype & TYPE_PC)
     {
-        enmityBonus = ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, (CCharEntity*)PEntity) -
-            ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, (CCharEntity*)PEntity);
+        CCharEntity* PChar = static_cast<CCharEntity*>(PEntity);
+        enmityBonus = PChar->PMeritPoints->GetMeritValue(MERIT_ENMITY_INCREASE, PChar) - PChar->PMeritPoints->GetMeritValue(MERIT_ENMITY_DECREASE, PChar);
+
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER))
+        {
+            enmityBonus -= PChar->PMeritPoints->GetMeritValue(MERIT_MUTED_SOUL, PChar);
+        }
     }
 
     float bonus = (100.0f + std::clamp(PEntity->getMod(Mod::ENMITY) + enmityBonus, -50, 100)) / 100.0f;
