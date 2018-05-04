@@ -1621,12 +1621,12 @@ INSERT INTO `mob_skills` VALUES (1798,1321,'decussate',1,16.0,2000,1500,4,0,0,0,
 INSERT INTO `mob_skills` VALUES (1799,1322,'tyranic_blare',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1800,1323,'miasma',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1801,1324,'vorpal_wheel',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1802,1351,'sledgehammer',4,12,2000,0,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1803,1352,'head_snatch',0,7,2000,0,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1804,1353,'haymaker',4,12,2000,0,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1805,1354,'incessant_fists',0,7,2000,0,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1806,1355,'arcane_stomp',1,25,2000,0,1,0,0,0,0,0,0); -- corected ? to 1
-INSERT INTO `mob_skills` VALUES (1807,1356,'pleiades_ray',1,10,2000,0,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1802,1351,'sledgehammer',4,12,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1803,1352,'head_snatch',0,7,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1804,1353,'haymaker',4,12,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1805,1354,'incessant_fists',0,7,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1806,1355,'arcane_stomp',1,25,2000,1500,1,0,0,0,0,0,0); -- corected ? to 1 
+INSERT INTO `mob_skills` VALUES (1807,1356,'pleiades_ray',1,10,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1808,1334,'petrifaction',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1809,1335,'pw_shadow_thrust',0,10,2000,2000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1810,1336,'tail_slap',0,7.0,2000,1500,4,0,0,0,0,0,0);

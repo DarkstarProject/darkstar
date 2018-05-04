@@ -1,6 +1,5 @@
 ---------------------------------------------
 --  Incessant Fists
---
 --  Description: Delivers a fivefold punching attack to a single target.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 5 shadows
@@ -8,7 +7,6 @@
 --  Notes:
 ---------------------------------------------
 
-require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
 
