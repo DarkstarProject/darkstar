@@ -556,6 +556,8 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(SpellID SpellID)
     {
+        DSP_DEBUG_BREAK_IF(SpellID >= MAX_SPELL_ID);
+
         auto id = static_cast<uint16>(SpellID);
         if (id >= MAX_SPELL_ID)
         {
