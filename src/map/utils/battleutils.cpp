@@ -3576,7 +3576,7 @@ namespace battleutils
         else if (m_PChar->GetSJob() == JOB_DRK &&m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)) {
             //lose 10% Current HP, only HALF (5%) converted to damage
             damage += (uint32)(m_PChar->health.hp * 0.05f);
-            m_PChar->addHP((int32)(m_PChar->health.hp * 0.1f));
+            m_PChar->addHP((int32)(m_PChar->health.hp * -0.1f));
         }
         return damage;
     }
