@@ -364,6 +364,10 @@ namespace battleutils
     CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
     {
         DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
+        if (WSkillID >= MAX_WEAPONSKILL_ID)
+        {
+            return nullptr;
+        }
 
         return g_PWeaponSkillList[WSkillID];
     }
