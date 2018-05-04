@@ -401,7 +401,7 @@ void CSpell::setRange(float range)
 //Implement namespace to work with spells
 namespace spell
 {
-    std::array<CSpell*, 1024> PSpellList; // spell list
+    std::array<CSpell*, MAX_SPELL_ID> PSpellList; // spell list
     std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
@@ -556,7 +556,7 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(SpellID SpellID)
     {
-        DSP_DEBUG_BREAK_IF(SpellID >= MAX_SPELL_ID);
+        DSP_DEBUG_BREAK_IF(static_cast<uint16>(SpellID) >= MAX_SPELL_ID);
 
         auto id = static_cast<uint16>(SpellID);
         if (id >= MAX_SPELL_ID)
