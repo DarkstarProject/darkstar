@@ -9,12 +9,6 @@ require("scripts/zones/Halvung/MobIDs");
 mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
-function onMobInitialize(mob)
-    mob:setMod(MOD_DEF, 400);
-    mob:setMod(MOD_MEVA, 300);
-    mob:setMod(MOD_MDEF, 50);
-end;
-
 function onMobEngaged(mob,target)
     for i = GURFURLUR_THE_MENACING + 1, GURFURLUR_THE_MENACING + 4 do
         SpawnMob(i):updateEnmity(target);

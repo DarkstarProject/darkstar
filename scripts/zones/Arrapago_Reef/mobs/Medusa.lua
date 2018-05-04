@@ -6,18 +6,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/zones/Arrapago_Reef/TextIDs");
 require("scripts/zones/Arrapago_Reef/MobIDs");
+require("scripts/globals/status");
 require("scripts/globals/titles");
-mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
-
-function onMobInitialize(mob)
-    mob:setMod(MOD_DEF, 400);
-    mob:setMod(MOD_MEVA, 300);
-    mob:setMod(MOD_MDEF, 50);
-end;
 
 function onMobSpawn(mob)
     mob:setLocalVar("mainSpec", dsp.jsa.EES_LAMIA);
