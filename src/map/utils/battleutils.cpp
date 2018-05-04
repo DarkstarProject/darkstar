@@ -3571,12 +3571,12 @@ namespace battleutils
             drainPercent = drainPercent + std::min(0.02f, 0.01f * gearBonusPercent);
 
             damage += (uint32)(m_PChar->health.hp * drainPercent);
-            m_PChar->addHP((int32)(-(drainPercent - m_PChar->getMod(Mod::STALWART_SOUL) * 0.001f) * m_PChar->health.hp));
+            m_PChar->addHP((int32)(m_PChar->health.hp * -(drainPercent - m_PChar->getMod(Mod::STALWART_SOUL) * 0.001f)));
         }
         else if (m_PChar->GetSJob() == JOB_DRK &&m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)) {
             //lose 10% Current HP, only HALF (5%) converted to damage
-            damage += (uint32)(m_PChar->health.hp * 0.05);
-            m_PChar->addHP((int32)(-0.1 * m_PChar->health.hp));
+            damage += (uint32)(m_PChar->health.hp * 0.05f);
+            m_PChar->addHP((int32)(m_PChar->health.hp * 0.1f));
         }
         return damage;
     }

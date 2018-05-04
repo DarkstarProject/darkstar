@@ -2176,7 +2176,6 @@ INSERT INTO `item_mods` VALUES (10736,837,10);
 INSERT INTO `item_mods` VALUES (10737,1,22);
 INSERT INTO `item_mods` VALUES (10737,8,6);
 INSERT INTO `item_mods` VALUES (10737,23,6);
-INSERT INTO `item_mods` VALUES (10737,907,10); -- Enhances "Last Resort" effect
 INSERT INTO `item_mods` VALUES (10738,1,18);
 INSERT INTO `item_mods` VALUES (10738,2,18);
 INSERT INTO `item_mods` VALUES (10738,8,7);
@@ -16285,7 +16284,6 @@ INSERT INTO `item_mods` VALUES (15138,837,10);
 INSERT INTO `item_mods` VALUES (15139,1,17);
 INSERT INTO `item_mods` VALUES (15139,5,12);
 INSERT INTO `item_mods` VALUES (15139,114,5);
-INSERT INTO `item_mods` VALUES (15139,907,10); -- Enhances "Last Resort" effect
 INSERT INTO `item_mods` VALUES (15140,1,14);
 INSERT INTO `item_mods` VALUES (15140,2,13);
 INSERT INTO `item_mods` VALUES (15140,10,4);
@@ -18071,7 +18069,6 @@ INSERT INTO `item_mods` VALUES (15672,1,18);
 INSERT INTO `item_mods` VALUES (15672,5,12);
 INSERT INTO `item_mods` VALUES (15672,25,2);
 INSERT INTO `item_mods` VALUES (15672,114,5);
-INSERT INTO `item_mods` VALUES (15672,907,10); -- Enhances "Last Resort" effect
 INSERT INTO `item_mods` VALUES (15673,1,15);
 INSERT INTO `item_mods` VALUES (15673,2,13);
 INSERT INTO `item_mods` VALUES (15673,10,5);
@@ -37916,7 +37913,6 @@ INSERT INTO `item_mods` VALUES (27342,29,1);
 INSERT INTO `item_mods` VALUES (27342,31,43);
 INSERT INTO `item_mods` VALUES (27342,68,23);
 INSERT INTO `item_mods` VALUES (27342,384,30);
-INSERT INTO `item_mods` VALUES (27342,907,10); -- "Last Resort"+1
 INSERT INTO `item_mods` VALUES (27343,1,88);
 INSERT INTO `item_mods` VALUES (27343,2,18);
 INSERT INTO `item_mods` VALUES (27343,8,21);
@@ -37930,7 +37926,6 @@ INSERT INTO `item_mods` VALUES (27343,29,2);
 INSERT INTO `item_mods` VALUES (27343,31,64);
 INSERT INTO `item_mods` VALUES (27343,68,49);
 INSERT INTO `item_mods` VALUES (27343,384,30);
-INSERT INTO `item_mods` VALUES (27343,907,10); -- "Last Resort"+1
 INSERT INTO `item_mods` VALUES (27344,1,51);
 INSERT INTO `item_mods` VALUES (27344,2,8);
 INSERT INTO `item_mods` VALUES (27344,8,8);

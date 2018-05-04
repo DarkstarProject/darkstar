@@ -348,8 +348,7 @@ enum class Mod
     ARCANE_CIRCLE_DURATION    = 858, // Arcane Circle extended duration in seconds
     SOULEATER_EFFECT          = 96,  // Souleater power in percents
     DESPERATE_BLOWS           = 906, // Adds ability haste to Last Resort
-    LAST_RESORT_DEF_PENALTY   = 907, // Reduces the defense penalty of last resort
-    STALWART_SOUL             = 908, // Reduces damage taken from Souleater
+    STALWART_SOUL             = 907, // Reduces damage taken from Souleater
 
     // Beastmaster
     TAME                      = 304, // Additional percent chance to charm
@@ -724,9 +723,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
+    // SPARE = 908, // stuff
     // SPARE = 909, // stuff
     // SPARE = 910, // stuff
-    // SPARE = 911, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

@@ -965,8 +965,7 @@ dsp.mod =
     WARDING_CIRCLE_DURATION         = 95,  -- Warding Circle duration in seconds
     SOULEATER_EFFECT                = 96,  -- Souleater power in percents
     DESPERATE_BLOWS                 = 906, -- Adds ability haste to Last Resort
-    LAST_RESORT_DEF_PENALTY         = 907, -- Reduces the defense penalty of last resort
-    STALWART_SOUL                   = 908, -- Reduces damage taken from Souleater
+    STALWART_SOUL                   = 907, -- Reduces damage taken from Souleater
     BOOST_EFFECT                    = 97,  -- Boost power in tenths
     CAMOUFLAGE_DURATION             = 98,  -- Camouflage duration in percents
     AUTO_MELEE_SKILL                = 101,
@@ -1473,9 +1472,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
+    -- SPARE = 908, -- stuff
     -- SPARE = 909, -- stuff
     -- SPARE = 910, -- stuff
-    -- SPARE = 911, -- stuff
 };
 
 ------------------------------------

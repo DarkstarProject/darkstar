@@ -476,10 +476,10 @@ INSERT INTO `traits` VALUES ('112','elemental celerity','4','90','5','901','30',
 INSERT INTO `traits` VALUES ('114','tranquil heart','3','21','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','5','26','1','0','0','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('114','tranquil heart','20','30','1','0','0','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('115','stalwart soul','8','45','1','908','15','TOAU','0');
-INSERT INTO `traits` VALUES ('115','stalwart soul','8','60','2','908','30','TOAU','0');
-INSERT INTO `traits` VALUES ('115','stalwart soul','8','75','3','908','40','TOAU','0');
-INSERT INTO `traits` VALUES ('115','stalwart soul','8','90','4','908','50','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('115','stalwart soul','8','45','1','907','15','TOAU','0');
+INSERT INTO `traits` VALUES ('115','stalwart soul','8','60','2','907','30','TOAU','0');
+INSERT INTO `traits` VALUES ('115','stalwart soul','8','75','3','907','40','TOAU','0');
+INSERT INTO `traits` VALUES ('115','stalwart soul','8','90','4','907','50','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('127','smite','1','35','1','898','25','SOA','0'); -- 25/256 ~ 9.7%
 INSERT INTO `traits` VALUES ('127','smite','1','65','2','898','38','SOA','0'); -- 38/256 ~ 15%
 INSERT INTO `traits` VALUES ('127','smite','1','95','3','898','51','SOA','0'); -- 51/256 ~ 19.9%
