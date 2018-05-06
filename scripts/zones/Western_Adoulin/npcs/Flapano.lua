@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
     local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
 
     -- ALL THE WAY TO THE BANK
-    if (player:hasKeyItem(TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
+    if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
         local ATWTTB_Paid_Flapano = player:getMaskBit(player:getVar("ATWTTB_Payments"), 2);
         if (not ATWTTB_Paid_Flapano) then
             player:startEvent(5071);
@@ -83,7 +83,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:setMaskBit("ATWTTB_Payments", 2, true);
         if (player:isMaskFull(player:getVar("ATWTTB_Payments"), 5)) then
-            npcUtil.giveKeyItem(TARUTARU_SAUCE_RECEIPT);
+            npcUtil.giveKeyItem(dsp.ki.TARUTARU_SAUCE_RECEIPT);
         end
 
     -- EXOTIC DELICACIES

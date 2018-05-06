@@ -101,9 +101,9 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(KING_VINEGARROON) == 24 and (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM)) then
+    if (GetMobAction(KING_VINEGARROON) == 24 and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
         SpawnMob(KING_VINEGARROON); -- King Vinegarroon
-    elseif (GetMobAction(KING_VINEGARROON) == 16 and (weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM)) then
+    elseif (GetMobAction(KING_VINEGARROON) == 16 and (weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM)) then
         DespawnMob(KING_VINEGARROON);
     end
 end;

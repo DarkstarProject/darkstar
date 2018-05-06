@@ -38,8 +38,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
-            player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:addKeyItem(dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
 
@@ -67,11 +67,11 @@ function onTrigger(player,npc)
         player:startEvent(876);
 
     -- Waking Dreams --
-    elseif (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date")))) then
+    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==false and ((player:hasCompletedMission(COP,DARKNESS_NAMED) and  waking_dreams == QUEST_AVAILABLE ) or(waking_dreams  == QUEST_COMPLETED and realday ~= player:getVar("Darkness_Named_date")))) then
         player:addQuest(WINDURST,WAKING_DREAMS);
         player:startEvent(918);--918
 
-    elseif (player:hasKeyItem(WHISPER_OF_DREAMS) == true) then
+    elseif (player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS) == true) then
         local availRewards = 0
         if (player:hasItem(17599)) then availRewards = availRewards + 1; end -- Diabolos's Pole
         if (player:hasItem(14814)) then availRewards = availRewards + 2; end -- Diabolos's Earring
@@ -160,7 +160,7 @@ function onEventFinish(player,csid,option)
         if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:addGil(GIL_RATE*440);
             player:tradeComplete();
-            player:addTitle(FAST_FOOD_DELIVERER);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
@@ -199,11 +199,11 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,BLUE_RIBBON_BLUES);
         player:setVar("BlueRibbonBluesProg",0);
         player:addFame(WINDURST,140);
-        player:addTitle(GHOSTIE_BUSTER);
+        player:addTitle(dsp.title.GHOSTIE_BUSTER);
         player:needToZone(true);
     elseif (csid == 918) then    --diablos start
-               player:addKeyItem(VIAL_OF_DREAM_INCENSE);
-            player:messageSpecial(KEYITEM_OBTAINED,VIAL_OF_DREAM_INCENSE);
+               player:addKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_DREAM_INCENSE);
     elseif (csid == 920) then    --diablos reward
     local item = 0;
     local addspell = 0;
@@ -219,7 +219,7 @@ function onEventFinish(player,csid,option)
         elseif (option == 5) then
                 player:addGil(GIL_RATE*15000);
                 player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
-                player:delKeyItem(WHISPER_OF_DREAMS);
+                player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
                 player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
                 player:completeQuest(WINDURST,WAKING_DREAMS);
 
@@ -229,11 +229,11 @@ function onEventFinish(player,csid,option)
                 addspell=1;
         end
         if (addspell==1) then
-            player:delKeyItem(WHISPER_OF_DREAMS);
+            player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
          elseif (item > 0 and player:getFreeSlotsCount()~=0) then
-            player:delKeyItem(WHISPER_OF_DREAMS);
+            player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
             player:addItem(item);

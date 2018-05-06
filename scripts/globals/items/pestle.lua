@@ -18,16 +18,16 @@ function onAdditionalEffect(player,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        -- drain = addBonusesAbility(player, ELE_DARK, target, drain, params);
-        drain = drain * applyResistanceAddEffect(player,target,ELE_DARK,0);
-        drain = adjustForTarget(target,drain,ELE_DARK);
-        drain = finalMagicNonSpellAdjustments(player,target,ELE_DARK,drain);
+        -- drain = addBonusesAbility(player, dsp.magic.ele.DARK, target, drain, params);
+        drain = drain * applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0);
+        drain = adjustForTarget(target,drain,dsp.magic.ele.DARK);
+        drain = finalMagicNonSpellAdjustments(player,target,dsp.magic.ele.DARK,drain);
 
         if (drain > target:getMP()) then
             drain = target:getMP();
         end
 
         target:addMP(-drain);
-        return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, player:addMP(drain);
+        return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, player:addMP(drain);
     end
 end;

@@ -26,8 +26,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.ki.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
         if (wantsSubligar==13) then
@@ -47,11 +47,11 @@ end;
 function onTrigger(player,npc)
     local BrygidTheStylist = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST);
     local BrygidReturns = player:getQuestStatus(BASTOK,BRYGID_THE_STYLIST_RETURNS);
-    local head = player:getEquipID(SLOT_HEAD);
-    local body = player:getEquipID(SLOT_BODY);
-    local hands = player:getEquipID(SLOT_HANDS);
-    local legs = player:getEquipID(SLOT_LEGS);
-    local feet = player:getEquipID(SLOT_FEET);
+    local head = player:getEquipID(dsp.slot.HEAD);
+    local body = player:getEquipID(dsp.slot.BODY);
+    local hands = player:getEquipID(dsp.slot.HANDS);
+    local legs = player:getEquipID(dsp.slot.LEGS);
+    local feet = player:getEquipID(dsp.slot.FEET);
 
     local getBody = player:getVar("BrygidGetBody");
     local getLegs = player:getVar("BrygidGetLegs");
@@ -120,7 +120,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
         else
-            player:addTitle(BRYGIDAPPROVED);
+            player:addTitle(dsp.title.BRYGIDAPPROVED);
             player:addItem(12720);
             player:messageSpecial(ITEM_OBTAINED,12720);
             player:addFame(BASTOK,30);
@@ -135,7 +135,7 @@ function onEventFinish(player,csid,option)
         player:setVar("BrygidGetBody",0);
         player:setVar("BrygidGetLegs",0);
         player:setVar("BrygidWantsSubligar",0);
-        player:addTitle(BASTOKS_SECOND_BEST_DRESSED);
+        player:addTitle(dsp.title.BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
         player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
         player:addFame(BASTOK,30);

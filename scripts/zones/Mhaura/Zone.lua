@@ -44,9 +44,9 @@ end;
 
 function onTransportEvent(player,transport)
     if (transport == 47 or transport == 46) then
-        if (not player:hasKeyItem(BOARDING_PERMIT) or ENABLE_TOAU == 0) then
+        if (not player:hasKeyItem(dsp.ki.BOARDING_PERMIT) or ENABLE_TOAU == 0) then
             player:setPos(8.200,-1.363,3.445,192);
-            player:messageSpecial(DO_NOT_POSSESS, BOARDING_PERMIT);
+            player:messageSpecial(DO_NOT_POSSESS, dsp.ki.BOARDING_PERMIT);
         else
             player:startEvent(200);
         end

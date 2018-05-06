@@ -55,8 +55,8 @@ function onEventFinish(player,csid,option)
     if (csid == 2550) then
         -- Starting Quest: 'A Certain Substitute Patrolman'
         player:addQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
-        player:addKeyItem(WESTERN_ADOULIN_PATROL_ROUTE);
-        player:messageSpecial(KEYITEM_OBTAINED, WESTERN_ADOULIN_PATROL_ROUTE);
+        player:addKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:setVar("ACSP_NPCs_Visited", 1);
     elseif (csid == 2552) then
         -- Finishing Quest: 'A Certain Substitute Patrolman'
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
         player:messageSpecial(BAYLD_OBTAINED, 500 * BAYLD_RATE);
-        player:delKeyItem(WESTERN_ADOULIN_PATROL_ROUTE);
+        player:delKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:addFame(ADOULIN);
         player:setVar("ACSP_NPCs_Visited", 0);
     end

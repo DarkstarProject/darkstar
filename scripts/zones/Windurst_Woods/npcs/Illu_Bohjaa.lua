@@ -50,6 +50,6 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addGil(600 * GIL_RATE);
         player:completeQuest(WINDURST,CREEPY_CRAWLIES);
-        player:addTitle(CRAWLER_CULLER);
+        player:addTitle(dsp.title.CRAWLER_CULLER);
     end
 end;

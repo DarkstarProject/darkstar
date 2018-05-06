@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getMainJob() ~= JOBS.DRG) then
+    if (player:getMainJob() ~= dsp.job.DRG) then
       player:showText(npc,FOUIVA_DIALOG); -- Oi 'av naw business wi' de likes av you.
     elseif (player:getGil() < 9800) then
       player:showText(npc,FOUIVA_DIALOG + 9); -- You don't 'av enough gil.  Come back when you do.
@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
     if (csid == 130 and option ~= 1073741824) then -- Player didn't cancel out
       player:delGil(9800);
       player:setVar("ChangedWyvernName",1);
-      player:setPetName(PETTYPE_WYVERN,option+1);
+      player:setPetName(dsp.pet.type.WYVERN,option+1);
     end
 end;
 

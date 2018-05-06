@@ -38,11 +38,11 @@ function onTrigger(player,npc)
             player:startEvent(132);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
             player:startEvent(149);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(197);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(114,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(114,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
@@ -60,10 +60,10 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,1,csid,option);
 
     if (csid == 121 and option == 1) then
-        player:addTitle(NEW_BUUMAS_BOOMERS_RECRUIT);
+        player:addTitle(dsp.title.NEW_BUUMAS_BOOMERS_RECRUIT);
     elseif (csid == 114 and (option == 12 or option == 15)) then
-        player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
 
 end;

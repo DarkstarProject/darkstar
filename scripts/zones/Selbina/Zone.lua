@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
         end
     end
 
-    if (player:hasKeyItem(SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
+    if (player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 1) then
         cs = 1101;
     end
 
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
         else
-            player:delKeyItem(SEANCE_STAFF);
+            player:delKeyItem(dsp.ki.SEANCE_STAFF);
             player:addItem(14226);
             player:messageSpecial(ITEM_OBTAINED,14226); -- Ninja Hakama
             player:setVar("Enagakure_Killed",0);

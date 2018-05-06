@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     -- GROCERIES
     if (groceries == 1) then
-        if (player:seenKeyItem(TAMIS_NOTE)) then
+        if (player:seenKeyItem(dsp.ki.TAMIS_NOTE)) then
             player:startEvent(162);
         else
             player:startEvent(161);
@@ -38,9 +38,9 @@ function onEventFinish(player,csid,option)
     -- GROCERIES
     if (csid == 161) then
         player:setVar("Groceries",2);
-        player:delKeyItem(TAMIS_NOTE);
+        player:delKeyItem(dsp.ki.TAMIS_NOTE);
     elseif (csid == 162) then
         player:setVar("Groceries",3);
-        player:delKeyItem(TAMIS_NOTE);
+        player:delKeyItem(dsp.ki.TAMIS_NOTE);
     end
 end;

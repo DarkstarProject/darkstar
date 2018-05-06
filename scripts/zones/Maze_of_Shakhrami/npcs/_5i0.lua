@@ -32,7 +32,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 66) then
-        npcUtil.giveKeyItem(player, WHEEL_LOCK_TRIGGER);
+        npcUtil.giveKeyItem(player, dsp.ki.WHEEL_LOCK_TRIGGER);
         player:setVar("EquipedforAllOccasions",3);
     end
 end;

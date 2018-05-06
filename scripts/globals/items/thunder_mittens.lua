@@ -9,6 +9,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local effect = dsp.effects.ENTHUNDER;
+    local effect = dsp.effect.ENTHUNDER;
     doEnspell(target,target,nil,effect);
 end;

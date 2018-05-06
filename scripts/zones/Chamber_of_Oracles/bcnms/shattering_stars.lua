@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         if (bit.band(maatsCap, bit.lshift(1, (pjob -1))) ~= 1) then
             player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (pjob -1))))
         end
-        player:addTitle(MAAT_MASHER);
+        player:addTitle(dsp.title.MAAT_MASHER);
     end
 
 end;

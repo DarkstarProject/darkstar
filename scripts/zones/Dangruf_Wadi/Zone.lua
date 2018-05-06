@@ -52,9 +52,9 @@ function onRegionEnter(player,region)
             SendEntityVisualPacket(DANGRUF_GEYSER_OFFSET + 2, "kkj3");
         end,
     }
-    if (player:hasKeyItem(BLUE_ACIDITY_TESTER)) then
-        player:delKeyItem(BLUE_ACIDITY_TESTER);
-        player:addKeyItem(RED_ACIDITY_TESTER);
+    if (player:hasKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)) then
+        player:delKeyItem(dsp.ki.BLUE_ACIDITY_TESTER);
+        player:addKeyItem(dsp.ki.RED_ACIDITY_TESTER);
     end
 end;
 
@@ -77,9 +77,9 @@ function onGameHour(zone)
 end;
 
 function onZoneWeatherChange(weather)
-    if (weather == WEATHER_NONE or weather == WEATHER_SUNSHINE) then
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_NORMAL);
+    if (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE) then
+        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.NORMAL);
     else
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;

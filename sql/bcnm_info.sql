@@ -102,7 +102,7 @@ INSERT INTO `bcnm_info` VALUES (100,146,'treasure_and_tribulations','Shitstain',
 INSERT INTO `bcnm_info` VALUES (101,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (102,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (103,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
-INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','Shitstain',1,18,900,30,3,0,15);
+INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','Shitstain',1,18,900,30,3,104,15);
 INSERT INTO `bcnm_info` VALUES (105,146,'charming_trio','Shitstain',1,18,900,20,3,105,15);
 INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','Shitstain',1,18,1800,30,6,0,15);
 INSERT INTO `bcnm_info` VALUES (107,146,'early_bird_catches_the_wyrm','Shitstain',1,18,1800,0,18,107,15);

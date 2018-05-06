@@ -22,25 +22,25 @@ aftermathTable[18269] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MERCY_STROKE) then -- Mercy Stroke onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.MERCY_STROKE) then -- Mercy Stroke onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
             -- Add a listener for when aftermath wears (to remove mods)
-            user:addListener("dsp.effects.LOSE", NAME_EFFECT_LOSE, aftermathLost);
+            user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
         end
     end
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == dsp.effects.AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -55,8 +55,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(dsp.effects.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effects.AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

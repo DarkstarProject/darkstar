@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     local TCCOM = player:getQuestStatus(ADOULIN, THE_CURIOUS_CASE_OF_MELVIEN);
-    local TCCOM_Need_KI = player:hasKeyItem(MELVIENS_TURN) and (not player:hasKeyItem(MELVIENS_DEATH))
+    local TCCOM_Need_KI = player:hasKeyItem(dsp.ki.MELVIENS_TURN) and (not player:hasKeyItem(dsp.ki.MELVIENS_DEATH))
     local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
     local Order_Mastan = player:getMaskBit(player:getVar("Order_Up_NPCs"), 11);
 
@@ -45,8 +45,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 184) then
         -- Progresses Quest: 'The Curious Case of Melvien'
         if (option == 1) then
-            player:addKeyItem(MELVIENS_DEATH);
-            player:messageSpecial(KEYITEM_OBTAINED, MELVIENS_DEATH);
+            player:addKeyItem(dsp.ki.MELVIENS_DEATH);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MELVIENS_DEATH);
         end
     end
 end;

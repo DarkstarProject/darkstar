@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     local ringCheck = player:hasItem(2217);
     if (olduumQuest == QUEST_AVAILABLE) then
         player:startEvent(4);
-    elseif (player:hasKeyItem(ELECTROLOCOMOTIVE) or player:hasKeyItem(ELECTROPOT) or player:hasKeyItem(ELECTROCELL) and ringCheck == false) then
+    elseif (player:hasKeyItem(dsp.ki.ELECTROLOCOMOTIVE) or player:hasKeyItem(dsp.ki.ELECTROPOT) or player:hasKeyItem(dsp.ki.ELECTROCELL) and ringCheck == false) then
         if (olduumQuest == QUEST_ACCEPTED) then
             player:startEvent(6);
         else
@@ -43,17 +43,17 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 4) then
-        player:addKeyItem(DKHAAYAS_RESEARCH_JOURNAL);
-        player:messageSpecial(KEYITEM_OBTAINED, DKHAAYAS_RESEARCH_JOURNAL);
+        player:addKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
         player:addQuest(AHT_URHGAN, OLDUUM);
     elseif (csid == 6 or csid == 8) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addItem(2217);
             player:messageSpecial(ITEM_OBTAINED, 2217);
-            player:delKeyItem(DKHAAYAS_RESEARCH_JOURNAL);
-            player:delKeyItem(ELECTROLOCOMOTIVE);
-            player:delKeyItem(ELECTROPOT);
-            player:delKeyItem(ELECTROCELL);
+            player:delKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
+            player:delKeyItem(dsp.ki.ELECTROLOCOMOTIVE);
+            player:delKeyItem(dsp.ki.ELECTROPOT);
+            player:delKeyItem(dsp.ki.ELECTROCELL);
             if (csid == 6) then
                 player:completeQuest(AHT_URHGAN, OLDUUM);
             end

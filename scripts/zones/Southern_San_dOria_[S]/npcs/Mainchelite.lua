@@ -37,10 +37,10 @@ function onTrigger(player,npc)
     local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
     local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
     local SteamedRams = player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS);
-    local RedLetter = player:hasKeyItem(RED_RECOMMENDATION_LETTER);
-    local CharredPropeller = player:hasKeyItem(CHARRED_PROPELLER);
-    local OxidizedPlate = player:hasKeyItem(OXIDIZED_PLATE);
-    local ShatteredLumber = player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER);
+    local RedLetter = player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
+    local CharredPropeller = player:hasKeyItem(dsp.ki.CHARRED_PROPELLER);
+    local OxidizedPlate = player:hasKeyItem(dsp.ki.OXIDIZED_PLATE);
+    local ShatteredLumber = player:hasKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
 
     if (TheFightingFourth == QUEST_ACCEPTED or SnakeOnThePlains == QUEST_ACCEPTED) then
         player:startEvent(9);
@@ -70,10 +70,10 @@ function onEventFinish(player,csid,option)
     if (csid == 7 and option == 0) then
         player:addQuest(CRYSTAL_WAR,STEAMED_RAMS);
         player:setVar("RED_R_LETTER_USED",1);
-        player:delKeyItem(RED_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
     elseif (csid == 7 and option == 1) then
         player:setVar("RED_R_LETTER_USED",1);
-        player:delKeyItem(RED_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
     elseif (csid == 8 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
     elseif (csid == 10 and option == 0) then
@@ -86,14 +86,14 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(1);
                 player:setVar("RED_R_LETTER_USED",0);
-                player:addTitle(KNIGHT_OF_THE_IRON_RAM);
-                player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
+                player:addTitle(dsp.title.KNIGHT_OF_THE_IRON_RAM);
+                player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
-                player:delKeyItem(CHARRED_PROPELLER);
-                player:delKeyItem(OXIDIZED_PLATE);
-                player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:delKeyItem(dsp.ki.CHARRED_PROPELLER);
+                player:delKeyItem(dsp.ki.OXIDIZED_PLATE);
+                player:delKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:messageSpecial(ITEM_OBTAINED, 15754);
             else
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
@@ -101,11 +101,11 @@ function onEventFinish(player,csid,option)
         else
             player:setCampaignAllegiance(1);
             player:setVar("RED_R_LETTER_USED",0);
-            player:addTitle(KNIGHT_OF_THE_IRON_RAM);
+            player:addTitle(dsp.title.KNIGHT_OF_THE_IRON_RAM);
             player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
-            player:delKeyItem(CHARRED_PROPELLER);
-            player:delKeyItem(OXIDIZED_PLATE);
-            player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
+            player:delKeyItem(dsp.ki.CHARRED_PROPELLER);
+            player:delKeyItem(dsp.ki.OXIDIZED_PLATE);
+            player:delKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
         end
     elseif (csid == 13 and option == 1) then
         player:delQuest(CRYSTAL_WAR,STEAMED_RAMS);

@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         if (math.random(1,100)<=50) then
             SpawnMob(17584131):updateClaim(player); -- Drone Crawler
-            npc:setStatus(STATUS_DISAPPEAR) -- hide ???
+            npc:setStatus(dsp.status.DISAPPEAR) -- hide ???
         else
             player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
         end

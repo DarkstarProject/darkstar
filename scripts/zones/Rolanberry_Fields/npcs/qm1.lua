@@ -17,9 +17,9 @@ end;
 function onTrigger(player,npc)
     if (
         not GetMobByID(CHUGLIX_BERRYPAWS):isSpawned() and
-        player:hasKeyItem(JUG_OF_GREASY_GOBLIN_JUICE) and
-        not player:hasKeyItem(SEEDSPALL_CAERULUM) and
-        not player:hasKeyItem(VIRIDIAN_KEY)
+        player:hasKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE) and
+        not player:hasKeyItem(dsp.ki.SEEDSPALL_CAERULUM) and
+        not player:hasKeyItem(dsp.ki.VIRIDIAN_KEY)
     ) then
         SpawnMob(CHUGLIX_BERRYPAWS):updateClaim(player);
     else

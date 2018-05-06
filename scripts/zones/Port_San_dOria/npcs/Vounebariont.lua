@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         end
 
         player:tradeComplete();
-        player:addTitle(BUG_CATCHER);
+        player:addTitle(dsp.title.BUG_CATCHER);
         player:addGil(GIL_RATE*750);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*750)
     end

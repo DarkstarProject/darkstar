@@ -49,27 +49,27 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == JOBS.RDM and region:AddCount(1) == 1) then
-                red:setAnimation(ANIMATION_OPEN_DOOR);
-                if (white:getAnimation() == ANIMATION_OPEN_DOOR and black:getAnimation() == ANIMATION_OPEN_DOOR) then
+            if (player:getMainJob() == dsp.job.RDM and region:AddCount(1) == 1) then
+                red:setAnimation(dsp.anim.OPEN_DOOR);
+                if (white:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == JOBS.WHM and region:AddCount(1) == 1) then
-                white:setAnimation(ANIMATION_OPEN_DOOR);
-                if (red:getAnimation() == ANIMATION_OPEN_DOOR and black:getAnimation() == ANIMATION_OPEN_DOOR) then
+            if (player:getMainJob() == dsp.job.WHM and region:AddCount(1) == 1) then
+                white:setAnimation(dsp.anim.OPEN_DOOR);
+                if (red:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == JOBS.BLM and region:AddCount(1) == 1) then
-                black:setAnimation(ANIMATION_OPEN_DOOR);
-                if (red:getAnimation() == ANIMATION_OPEN_DOOR and white:getAnimation() == ANIMATION_OPEN_DOOR) then
+            if (player:getMainJob() == dsp.job.BLM and region:AddCount(1) == 1) then
+                black:setAnimation(dsp.anim.OPEN_DOOR);
+                if (red:getAnimation() == dsp.anim.OPEN_DOOR and white:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
@@ -91,18 +91,18 @@ function onRegionLeave(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == JOBS.RDM and region:DelCount(1) == 0) then
-                red:setAnimation(ANIMATION_CLOSE_DOOR);
+            if (player:getMainJob() == dsp.job.RDM and region:DelCount(1) == 0) then
+                red:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == JOBS.WHM and region:DelCount(1) == 0) then
-                white:setAnimation(ANIMATION_CLOSE_DOOR);
+            if (player:getMainJob() == dsp.job.WHM and region:DelCount(1) == 0) then
+                white:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == JOBS.BLM and region:DelCount(1) == 0) then
-                black:setAnimation(ANIMATION_CLOSE_DOOR);
+            if (player:getMainJob() == dsp.job.BLM and region:DelCount(1) == 0) then
+                black:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
     }

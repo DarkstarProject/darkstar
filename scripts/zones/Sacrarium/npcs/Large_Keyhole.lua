@@ -14,7 +14,7 @@ function onTrigger(player,npc)
     local LargeKeyholeID = npc:getID();
     local DoorID = GetNPCByID(LargeKeyholeID):getID() - 2;
 
-    if (player:hasKeyItem(TEMPLE_KNIGHT_KEY)) then
+    if (player:hasKeyItem(dsp.ki.TEMPLE_KNIGHT_KEY)) then
         GetNPCByID(DoorID):openDoor(15);
     else
         player:messageSpecial(LARGE_KEYHOLE);

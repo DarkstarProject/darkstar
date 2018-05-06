@@ -46,7 +46,7 @@ function onTrigger(player,npc)
             player:startEvent(613);
             player:setVar("medicineWomanCS",1);
         end
-    elseif (player:hasKeyItem(COLD_MEDICINE)) then
+    elseif (player:hasKeyItem(dsp.ki.COLD_MEDICINE)) then
         player:startEvent(614);
     end
 
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
         else
             player:tradeComplete();
-            player:addTitle(GREEN_GROCER);
+            player:addTitle(dsp.title.GREEN_GROCER);
             player:addItem(12600);
             player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
             player:addFame(SANDORIA,30);
@@ -94,8 +94,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 613 and option == 0 or csid == 615 and option == 0) then
         player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
     elseif (csid == 614) then
-        player:addTitle(TRAVELING_MEDICINE_MAN);
-        player:delKeyItem(COLD_MEDICINE);
+        player:addTitle(dsp.title.TRAVELING_MEDICINE_MAN);
+        player:delKeyItem(dsp.ki.COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(SANDORIA,30);

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- dsp.effects.TELEPORT
+-- dsp.effect.TELEPORT
 --
 -----------------------------------
 require("scripts/globals/teleports");

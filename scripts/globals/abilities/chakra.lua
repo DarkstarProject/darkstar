@@ -14,30 +14,30 @@ end;
 
 function onUseAbility(player,target,ability)
     local hp = player:getHP();
-    local vit = player:getStat(MOD_VIT);
+    local vit = player:getStat(dsp.mod.VIT);
     local multi = 2;
-    local merits = player:getMerit(MERIT_INVIGORATE);
-    local body = player:getEquipID(SLOT_BODY);
-    local hand = player:getEquipID(SLOT_HANDS);
+    local merits = player:getMerit(dsp.merit.INVIGORATE);
+    local body = player:getEquipID(dsp.slot.BODY);
+    local hand = player:getEquipID(dsp.slot.HANDS);
 
-    if (player:hasStatusEffect(dsp.effects.POISON)) then
-        player:delStatusEffect(dsp.effects.POISON);
+    if (player:hasStatusEffect(dsp.effect.POISON)) then
+        player:delStatusEffect(dsp.effect.POISON);
     end
 
-    if (player:hasStatusEffect(dsp.effects.BLINDNESS)) then
-        player:delStatusEffect(dsp.effects.BLINDNESS);
+    if (player:hasStatusEffect(dsp.effect.BLINDNESS)) then
+        player:delStatusEffect(dsp.effect.BLINDNESS);
     end
 
     if ((body == 12639) or (body == 14474)) then -- Temple Cyclas (+1) equipped
-        if (player:hasStatusEffect(dsp.effects.PARALYSIS)) then
-            player:delStatusEffect(dsp.effects.PARALYSIS);
+        if (player:hasStatusEffect(dsp.effect.PARALYSIS)) then
+            player:delStatusEffect(dsp.effect.PARALYSIS);
         end
         multi = multi + 1;
     end
 
     if ((hand == 15103) or (hand == 14910)) then -- Melee Gloves (+1) equipped
-        if (player:hasStatusEffect(dsp.effects.DISEASE)) then
-            player:delStatusEffect(dsp.effects.DISEASE);
+        if (player:hasStatusEffect(dsp.effect.DISEASE)) then
+            player:delStatusEffect(dsp.effect.DISEASE);
         end
         multi = multi + 0.6;
     end
@@ -46,10 +46,10 @@ function onUseAbility(player,target,ability)
     player:setHP((hp + recover));
 
     if (merits >= 1) then
-        if (player:hasStatusEffect(dsp.effects.REGEN)) then
-            player:delStatusEffect(dsp.effects.REGEN);
+        if (player:hasStatusEffect(dsp.effect.REGEN)) then
+            player:delStatusEffect(dsp.effect.REGEN);
         end
-        player:addStatusEffect(dsp.effects.REGEN,10,0,merits,0,0,1);
+        player:addStatusEffect(dsp.effect.REGEN,10,0,merits,0,0,1);
     end
 
     return recover;

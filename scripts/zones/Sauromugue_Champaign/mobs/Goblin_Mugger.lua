@@ -14,11 +14,11 @@ function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,97,2);
     checkRegime(player,mob,98,2);
 
-    if (ENABLE_ACP == 1 and (player:hasKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and player:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
+    if (ENABLE_ACP == 1 and (player:hasKeyItem(dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB) == false) and player:getCurrentMission(ACP) >= THE_ECHO_AWAKENS) then
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
-            player:addKeyItem(CHUNK_OF_SMOKED_GOBLIN_GRUB);
-            player:messageSpecial(KEYITEM_OBTAINED,CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            player:addKeyItem(dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
         end
     end
 

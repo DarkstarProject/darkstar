@@ -31,11 +31,11 @@ function onTrigger(player,npc)
         end
         
         if ( (offset == 0 and randfoss == 1) or (offset > 1 and offset == randfoss) ) then -- clicked target stone
-            if (player:hasKeyItem(LAPIS_CORAL)) then
+            if (player:hasKeyItem(dsp.ki.LAPIS_CORAL)) then
                 player:messageSpecial(FOSSIL_EXTRACTED);
             else
                 player:setVar("MissionStatus",3);
-                npcUtil.giveKeyItem(player, LAPIS_CORAL);
+                npcUtil.giveKeyItem(player, dsp.ki.LAPIS_CORAL);
             end
         else
             player:messageSpecial(NOTHING_FOSSIL);

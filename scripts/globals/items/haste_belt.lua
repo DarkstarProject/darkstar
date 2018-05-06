@@ -11,9 +11,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(dsp.effects.HASTE)) then
-        target:addStatusEffect(dsp.effects.HASTE,102,0,180);
+    if (not target:hasStatusEffect(dsp.effect.HASTE)) then
+        target:addStatusEffect(dsp.effect.HASTE,102,0,180);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

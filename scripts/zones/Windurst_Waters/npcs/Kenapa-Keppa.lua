@@ -99,7 +99,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(336); -- Restart the quest from the beginning
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == false) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == false) then
         if (KenapaOvernight == 4) then
             player:startEvent(340); -- Reminder for Overnight Delivery #1
         elseif (KenapaOvernight == 5) then
@@ -109,7 +109,7 @@ function onTrigger(player,npc)
         elseif (KenapaOvernight == 7) then
             player:startEvent(343); -- Reminder for Overnight Delivery #4
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == true and (HourOfTheDay <= 6 or HourOfTheDay >= 18)) then
         if (VanadielDayOfTheYear() == KenapaOvernightDay and (KenapaOvernightHour <= 24 or KenapaOvernightHour < 6)) then
             player:startEvent(348); -- Brought the key item back inside the time frame; got the item and returned it on the same day
         elseif (VanadielDayOfTheYear() == KenapaOvernightDay + 1 and KenapaOvernightHour <= 24) then
@@ -117,7 +117,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(346); -- Failed to return in time
         end
-    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(SMALL_BAG) == true and HourOfTheDay > 6) then
+    elseif (OvernightDelivery == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_BAG) == true and HourOfTheDay > 6) then
         player:startEvent(346); -- Failed to return in time
     elseif (OvernightDelivery == QUEST_COMPLETED) then
         rand = math.random(1,2);
@@ -149,7 +149,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*120);
             player:tradeComplete();
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(FAST_FOOD_DELIVERER);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
@@ -166,7 +166,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
             player:tradeComplete();
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(FAST_FOOD_DELIVERER);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
@@ -204,13 +204,13 @@ function onEventFinish(player,csid,option)
         player:setVar("Kenapa_Overnight_var",4); -- Begin reminder sequence
     elseif (csid == 346) then
         player:delQuest(WINDURST,OVERNIGHT_DELIVERY);
-        player:delKeyItem(SMALL_BAG);
+        player:delKeyItem(dsp.ki.SMALL_BAG);
         player:setVar("Kenapa_Overnight_Hour_var",0);
         player:setVar("Kenapa_Overnight_var",256);
     elseif (csid == 348) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(12590);
-            player:delKeyItem(SMALL_BAG);
+            player:delKeyItem(dsp.ki.SMALL_BAG);
             player:messageSpecial(ITEM_OBTAINED,12590);
             player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
             player:addFame(WINDURST,100);

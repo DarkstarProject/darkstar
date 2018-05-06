@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
     if (csid == 217) then
         player:addQuest(BASTOK, A_FLASH_IN_THE_PAN);        
     elseif (csid == 219) then
-        local fame = player:hasCompleteQuest(BASTOK, A_FLASH_IN_THE_PAN) and 8 or 75;
+        local fame = player:hasCompletedQuest(BASTOK, A_FLASH_IN_THE_PAN) and 8 or 75;
         if (npcUtil.completeQuest(player, BASTOK, A_FLASH_IN_THE_PAN, {gil=100, fame=fame})) then
             player:confirmTrade();
             player:setVar("FlashInThePan",os.time() + 900);

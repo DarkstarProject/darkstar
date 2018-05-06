@@ -13,7 +13,7 @@ function onEventFinish(entity, eventid, result, door)
         -- spawn mobs, etc
         for i,v in pairs(Arrapago.npcs[1][2]) do
             local npc = instance:getEntity(bit.band(v, 0xFFF), TYPE_NPC);
-            npc:setStatus(STATUS_NORMAL)
+            npc:setStatus(dsp.status.NORMAL)
         end
         for id = Arrapago.mobs[1][2].mobs_start, Arrapago.mobs[1][2].mobs_end do
             SpawnMob(id, instance)

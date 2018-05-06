@@ -62,13 +62,13 @@ end;
 function onEventFinish(player,csid,option)
  -- print("bc finish csid "..csid.." and option "..option);
 
-   local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_COWARDICE)
-         and player:hasKeyItem(SHARD_OF_ENVY) and player:hasKeyItem(SHARD_OF_RAGE));
+   local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE)
+         and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY) and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
 
     if (csid == 32001) then
       if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
-         player:addKeyItem(SHARD_OF_ARROGANCE);
-         player:messageSpecial(KEYITEM_OBTAINED,SHARD_OF_ARROGANCE);
+         player:addKeyItem(dsp.ki.SHARD_OF_ARROGANCE);
+         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ARROGANCE);
          if (AAKeyitems == true) then
             player:completeMission(ZILART,ARK_ANGELS);
             player:addMission(ZILART,THE_SEALED_SHRINE);
@@ -77,9 +77,9 @@ function onEventFinish(player,csid,option)
       end
     end
 
-   local AAKeyitems = (player:hasKeyItem(SHARD_OF_APATHY) and player:hasKeyItem(SHARD_OF_ARROGANCE)
-         and player:hasKeyItem(SHARD_OF_COWARDICE) and player:hasKeyItem(SHARD_OF_ENVY)
-         and player:hasKeyItem(SHARD_OF_RAGE));
+   local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
+         and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)
+         and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
     if (AAKeyitems == true) then
       player:completeMission(ZILART,ARK_ANGELS);
       player:addMission(ZILART,THE_SEALED_SHRINE);

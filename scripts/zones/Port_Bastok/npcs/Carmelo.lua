@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     elseif (SirensTear == QUEST_COMPLETED and player:hasItem(576) == false and SirensTearProgress < 2) then
         player:startEvent(19);
     elseif (LoveAndIce == QUEST_AVAILABLE and SirensTear == QUEST_COMPLETED and SirensTear == QUEST_COMPLETED) then
-        if (player:getFameLevel(BASTOK) >= 5 and player:seenKeyItem(CARRIER_PIGEON_LETTER) == true) then
+        if (player:getFameLevel(BASTOK) >= 5 and player:seenKeyItem(dsp.ki.CARRIER_PIGEON_LETTER) == true) then
             player:startEvent(185);
         else
             player:startEvent(187);
@@ -71,15 +71,15 @@ function onEventFinish(player,csid,option)
         player:setVar("SirensTear",2);
     elseif (csid == 185) then
         player:addQuest(BASTOK,LOVE_AND_ICE);
-        player:addKeyItem(CARMELOS_SONG_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,CARMELOS_SONG_SHEET);
+        player:addKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CARMELOS_SONG_SHEET);
     elseif (csid == 186) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
         else
             player:setVar("LoveAndIceProgress",0);
             player:needToZone(true);
-            player:addTitle(SORROW_DROWNER);
+            player:addTitle(dsp.title.SORROW_DROWNER);
             player:addItem(17356);
             player:messageSpecial(ITEM_OBTAINED,17356); -- Lamia Harp
             player:addFame(BASTOK,120);
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,A_TEST_OF_TRUE_LOVE);
     elseif (csid == 275) then
         player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
-        player:addKeyItem(CHANSON_DE_LIBERTE);
-        player:messageSpecial(KEYITEM_OBTAINED,CHANSON_DE_LIBERTE);
+        player:addKeyItem(dsp.ki.CHANSON_DE_LIBERTE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHANSON_DE_LIBERTE);
     end
 end;

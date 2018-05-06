@@ -83,8 +83,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,MAKING_AMENS);
     elseif (csid == 284) then
         player:needToZone(true);
-        player:delKeyItem(BROKEN_WAND);
-        player:addTitle(HAKKURURINKURUS_BENEFACTOR);
+        player:delKeyItem(dsp.ki.BROKEN_WAND);
+        player:addTitle(dsp.title.HAKKURURINKURUS_BENEFACTOR);
         player:addGil(GIL_RATE*6000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000);
         player:addFame(WINDURST,150);

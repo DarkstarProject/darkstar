@@ -13,7 +13,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     if (mob:getPool() ~= 4006 and mob:getPool() ~= 4249) then
-        mob:messageBasic(msgBasic.READIES_WS, 0, 34);
+        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 34);
     end
     return 0;
 end;
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     local dmgmod = 1.25;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_FIRE,dmgmod,TP_DMG_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,dsp.magic.ele.FIRE,dmgmod,TP_DMG_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_1_SHADOW);
 
     target:delHP(dmg);

@@ -74,7 +74,7 @@ function onGameHour(zone)
     if (VanadielHour == 7) then
         for i=0,11 do
             local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
-            lamp:setAnimation(ANIMATION_CLOSE_DOOR);
+            lamp:setAnimation(dsp.anim.CLOSE_DOOR);
         end
 
     -- 8PM: make quest available
@@ -83,7 +83,7 @@ function onGameHour(zone)
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
-            if player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) then
+            if player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) then
                 player:messageSpecial(ZAUKO_IS_RECRUITING);
             end
         end

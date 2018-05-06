@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     local ecoWarWindurst = player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN);
     local ecoWarActiveNation = player:getVar("ECO_WARRIOR_ACTIVE");
-    if (player:hasKeyItem(INDIGESTED_MEAT) and ecoWarActiveNation == 238) then
+    if (player:hasKeyItem(dsp.ki.INDIGESTED_MEAT) and ecoWarActiveNation == 238) then
         player:startEvent(822); -- quest done
     elseif (ecoWarActiveNation < 1 and player:getFameLevel(WINDURST) >= 1 and player:getVar("ECO-WAR_ConquestWeek") ~= getConquestTally()) then
         player:startEvent(818); -- Start CS
@@ -52,12 +52,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 822) then
         if (player:getFreeSlotsCount() >= 1) then
             player:completeQuest(WINDURST,ECO_WARRIOR_WIN);
-            player:delKeyItem(INDIGESTED_MEAT);
+            player:delKeyItem(dsp.ki.INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
             player:messageSpecial(ITEM_OBTAINED,4198);
-            player:addTitle(EMERALD_EXTERMINATOR);
+            player:addTitle(dsp.title.EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);

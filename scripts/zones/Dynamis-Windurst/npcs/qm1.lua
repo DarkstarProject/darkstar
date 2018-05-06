@@ -14,10 +14,10 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(HYDRA_CORPS_LANTERN) == false) then
+    if (player:hasKeyItem(dsp.ki.HYDRA_CORPS_LANTERN) == false) then
         player:setVar("DynaWindurst_Win",1);
-        player:addKeyItem(HYDRA_CORPS_LANTERN);
-        player:messageSpecial(KEYITEM_OBTAINED,HYDRA_CORPS_LANTERN);
+        player:addKeyItem(dsp.ki.HYDRA_CORPS_LANTERN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.HYDRA_CORPS_LANTERN);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end

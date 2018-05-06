@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         player:startEvent(216); -- Start Quest "Fistful of Fury"
     elseif (FistfulOfFury == QUEST_ACCEPTED) then
         player:startEvent(215); -- During Quest "Fistful of Fury"
-    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then
+    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == dsp.job.MNK and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then
         player:startEvent(160); -- Start Quest "Beat Around the Bushin"
     elseif (BeatAroundTheBushin ~= QUEST_AVAILABLE) then
         player:startEvent(214); -- During & After Quest "Beat Around the Bushin"
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13202);
         else
-            player:addTitle(BROWN_BELT);
+            player:addTitle(dsp.title.BROWN_BELT);
             player:addItem(13202);
             player:messageSpecial(ITEM_OBTAINED,13202);
             player:addFame(NORG,125);

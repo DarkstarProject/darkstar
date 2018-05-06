@@ -9,14 +9,14 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(dsp.effects.THUNDER_MANEUVER)
+    return master:countEffect(dsp.effect.THUNDER_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 3,
         atkmulti = 1,
-        weaponType = SKILL_CLB,
+        weaponType = dsp.skill.CLUB,
         ftp100 = 1.5,
         ftp200 = 2.0,
         ftp300 = 3.0,

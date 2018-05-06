@@ -1,13 +1,14 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-
+dsp = dsp or {};
+dsp.msg = dsp.msg or {};
 
 ------------------------------------
--- Chat types
+-- Message Channels
 ------------------------------------
 
-chatType =
+dsp.msg.channel =
 {
     SAY            = 0,
     SHOUT          = 1,
@@ -46,7 +47,7 @@ chatType =
 -- Message Basic
 ------------------------------------
 
-msgBasic =
+dsp.msg.basic =
 {
     NONE    = 0, -- Display nothing
     HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.
@@ -94,6 +95,7 @@ msgBasic =
     SKILL_NO_EFFECT        = 189, -- <user> uses <skill>. No effect on <target>.
     SKILL_ENFEEB_IS        = 242, -- <user> uses <skill>. <target> is <status>.
     SKILL_ENFEEB           = 243, -- <user> uses <skill>. <target> receives the effect of <status>.
+    SKILL_ENFEEB_2         = 142, -- <user> uses <skill>. <target> receives the effect of <status> and <status>.
     ABILITIES_RECHARGED    = 360, -- <user> uses <skill>. All of <target>'s abilities are recharged.
 
     -- Job Ability messages (offset JA by 16)

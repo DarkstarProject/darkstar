@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(OLD_RUSTY_KEY) or player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
+    if (player:hasKeyItem(dsp.ki.OLD_RUSTY_KEY) or player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS)) then
         player:messageSpecial(NO_REASON_TO_INVESTIGATE);
     else
         local offset = npc:getID() - UGGALEPIH_BOOK_OFFSET;
@@ -37,9 +37,9 @@ function onEventFinish(player,csid,option)
     end
 
     if (player:getVar("paintbrushOfSouls_book") == 7) then
-        player:messageSpecial(FALLS_FROM_THE_BOOK,OLD_RUSTY_KEY);
-        player:addKeyItem(OLD_RUSTY_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,OLD_RUSTY_KEY);
+        player:messageSpecial(FALLS_FROM_THE_BOOK,dsp.ki.OLD_RUSTY_KEY);
+        player:addKeyItem(dsp.ki.OLD_RUSTY_KEY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_RUSTY_KEY);
         player:setVar("paintbrushOfSouls_book",0);
     end
 end;

@@ -17,9 +17,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getVar("DynaBeaucedine_Win") == 1) then
-        player:startEvent(134,HYDRA_CORPS_INSIGNIA); -- Win CS
-    elseif (player:hasKeyItem(VIAL_OF_SHROUDED_SAND) and player:hasKeyItem(HYDRA_CORPS_COMMAND_SCEPTER) and
-            player:hasKeyItem(HYDRA_CORPS_EYEGLASS) and player:hasKeyItem(HYDRA_CORPS_LANTERN) and player:hasKeyItem(HYDRA_CORPS_TACTICAL_MAP)) then
+        player:startEvent(134,dsp.ki.HYDRA_CORPS_INSIGNIA); -- Win CS
+    elseif (player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND) and player:hasKeyItem(dsp.ki.HYDRA_CORPS_COMMAND_SCEPTER) and
+            player:hasKeyItem(dsp.ki.HYDRA_CORPS_EYEGLASS) and player:hasKeyItem(dsp.ki.HYDRA_CORPS_LANTERN) and player:hasKeyItem(dsp.ki.HYDRA_CORPS_TACTICAL_MAP)) then
         local firstDyna = 0;
         local realDay = os.time();
         local dynaWaitxDay = player:getVar("dynaWaitxDay");
@@ -31,10 +31,10 @@ function onTrigger(player,npc)
 
         if (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
-        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
-            player:startEvent(119,5,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,VIAL_OF_SHROUDED_SAND,4236,4237);
+        elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
+            player:startEvent(119,5,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,64,dsp.ki.VIAL_OF_SHROUDED_SAND,4236,4237);
         else
-            dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) - realDay)/3456);
+            dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) - realDay)/3456);
             player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,5);
         end
     else

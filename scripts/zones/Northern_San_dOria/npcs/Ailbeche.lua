@@ -51,7 +51,7 @@ function onTrigger(player,npc)
     mLvl = player:getMainLvl();
     mJob = player:getMainJob();
     -- Check if they have key item "Ordelle whetStone"
-    OrdelleWhetstone = player:hasKeyItem(ORDELLE_WHETSTONE);
+    OrdelleWhetstone = player:hasKeyItem(dsp.ki.ORDELLE_WHETSTONE);
     sharpeningTheSwordCS = player:getVar("sharpeningTheSwordCS");
     aBoysDreamCS = player:getVar("aBoysDreamCS");
 
@@ -90,7 +90,7 @@ function onTrigger(player,npc)
         player:startEvent(47); -- During Quest "A Boy's Dream" (after trading odontotyrannus)
     elseif (aBoysDreamCS >= 6) then
         player:startEvent(25); -- During Quest "A Boy's Dream" (after Zaldon CS)
-    elseif (player:hasKeyItem(KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
         player:startEvent(59); -- During Quest "Under Oath" (he's going fishing in Jugner)
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(13); -- During Quest "Under Oath" (After jugner CS)
@@ -117,14 +117,14 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(17391);
             player:messageSpecial(ITEM_OBTAINED, 17391); -- Willow Fishing Rod
-            player:addTitle(LOST_CHILD_OFFICER);
+            player:addTitle(dsp.title.LOST_CHILD_OFFICER);
             player:setVar("QuestfatherAndSonVar",0);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,FATHER_AND_SON);
         end
     elseif (csid == 61) then
         player:setVar("returnedAilbecheRod",1);
-        player:addTitle(FAMILY_COUNSELOR);
+        player:addTitle(dsp.title.FAMILY_COUNSELOR);
         player:tradeComplete();
     -- "Sharpening the Sword"
     elseif ((csid == 45 or csid == 43) and option == 1) then
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17643);
         else
-            player:delKeyItem(ORDELLE_WHETSTONE);
+            player:delKeyItem(dsp.ki.ORDELLE_WHETSTONE);
             player:addItem(17643);
             player:messageSpecial(ITEM_OBTAINED, 17643); -- Honor Sword
             player:setVar("sharpeningTheSwordCS",0);

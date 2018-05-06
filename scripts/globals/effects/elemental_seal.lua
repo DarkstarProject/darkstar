@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_ELEMENTAL_SEAL
+--     dsp.effect.ELEMENTAL_SEAL
 --
 -----------------------------------
 
@@ -12,7 +12,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_MACC,256);
+   target:addMod(dsp.mod.MACC,256);
 end;
 
 -----------------------------------
@@ -27,7 +27,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MACC,256);
+    target:delMod(dsp.mod.MACC,256);
 end;
 
 

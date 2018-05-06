@@ -8,12 +8,12 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
 function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BLACK_DRAGON_SLAYER);
+    player:addTitle(dsp.title.BLACK_DRAGON_SLAYER);
 end;

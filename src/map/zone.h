@@ -334,10 +334,14 @@ enum ZONEID : uint16
     ZONE_DESUETIA_EMPYREAL_PARADOX    = 290,
     ZONE_REISENJIMA                   = 291,
     ZONE_REISENJIMA_HENGE             = 292,
-    ZONE_REISENJIMA_SANCTORIUM        = 293
+    ZONE_REISENJIMA_SANCTORIUM        = 293,
+    ZONE_DYNAMIS_SAN_DORIA_D          = 294,
+    ZONE_DYNAMIS_BASTOK_D             = 295,
+    ZONE_DYNAMIS_WINDURST_D           = 296,
+    ZONE_DYNAMIS_JEUNO_D              = 297
 };
 
-#define MAX_ZONEID 294
+#define MAX_ZONEID 298
 
 enum REGIONTYPE : uint8
 {

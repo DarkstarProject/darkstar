@@ -12,10 +12,10 @@ function onTrigger(player,npc)
     local DoorID = npc:getID()-2;
     local DoorA = GetNPCByID(DoorID):getAnimation();
 
-    if (DoorA == ANIMATION_CLOSE_DOOR and npc:getAnimation() == ANIMATION_CLOSE_DOOR) then
-        npc:setAnimation(ANIMATION_OPEN_DOOR);
-    elseif (DoorA == ANIMATION_CLOSE_DOOR and npc:getAnimation() == ANIMATION_OPEN_DOOR) then
-        npc:setAnimation(ANIMATION_CLOSE_DOOR);
+    if (DoorA == dsp.anim.CLOSE_DOOR and npc:getAnimation() == dsp.anim.CLOSE_DOOR) then
+        npc:setAnimation(dsp.anim.OPEN_DOOR);
+    elseif (DoorA == dsp.anim.CLOSE_DOOR and npc:getAnimation() == dsp.anim.OPEN_DOOR) then
+        npc:setAnimation(dsp.anim.CLOSE_DOOR);
     end
 
     npc:timer(1500, function(npc)
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             and GetNPCByID(npc:getID()+2):getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+36]
             and GetNPCByID(npc:getID()+3):getAnimation() == OZ_HANDLE_TABLE[Oz_handleSet][npc:getID()+37]) then
                 GetNPCByID(DoorID):openDoor(6);
-                for i = npc:getID(), npc:getID()+3, 1 do GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR); end
+                for i = npc:getID(), npc:getID()+3, 1 do GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR); end
         end
     end);
 end;

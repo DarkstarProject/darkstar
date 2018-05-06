@@ -10,8 +10,8 @@ local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(TheAshuTalif.text.FADES_INTO_NOTHINGNESS, EPHRAMADIAN_GOLD_COIN);
-    player:delKeyItem(EPHRAMADIAN_GOLD_COIN);
+    player:messageSpecial(TheAshuTalif.text.FADES_INTO_NOTHINGNESS, dsp.ki.EPHRAMADIAN_GOLD_COIN);
+    player:delKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
     player:messageSpecial(TheAshuTalif.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 

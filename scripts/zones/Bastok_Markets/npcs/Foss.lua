@@ -32,8 +32,8 @@ function onEventFinish(player,csid,option)
     if (csid == 271 and option == 0) then
         player:addQuest(BASTOK,BUCKETS_OF_GOLD);            
     elseif (csid == 272) then
-        local fame = player:hasCompleteQuest(BASTOK, BUCKETS_OF_GOLD) and 8 or 75;
-        if (npcUtil.completeQuest(player, BASTOK, BUCKETS_OF_GOLD, {title=BUCKET_FISHER, gil=300, fame=fame})) then
+        local fame = player:hasCompletedQuest(BASTOK, BUCKETS_OF_GOLD) and 8 or 75;
+        if (npcUtil.completeQuest(player, BASTOK, BUCKETS_OF_GOLD, {title=dsp.title.BUCKET_FISHER, gil=300, fame=fame})) then
             player:confirmTrade();
         end
     end

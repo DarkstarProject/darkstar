@@ -19,14 +19,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effects.RAPTURE) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.RAPTURE) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effects.RAPTURE,1,0,60);
+    player:addStatusEffect(dsp.effect.RAPTURE,1,0,60);
 
-    return dsp.effects.RAPTURE;
+    return dsp.effect.RAPTURE;
 end;

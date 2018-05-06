@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,139);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
         player:needToZone(true);
-        player:addTitle(AJIDOMARUJIDOS_MINDER);
+        player:addTitle(dsp.title.AJIDOMARUJIDOS_MINDER);
     end
 end;
 

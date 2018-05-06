@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
         player:addGil(gil*GIL_RATE);
         player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
         player:addFame(BASTOK,fame);
-        player:addTitle(MOMMYS_HELPER);
+        player:addTitle(dsp.title.MOMMYS_HELPER);
         player:needToZone(true);
     end
 end;

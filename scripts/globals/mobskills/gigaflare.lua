@@ -29,12 +29,12 @@ function onMobWeaponSkill(target, mob, skill)
     mob:setLocalVar("tauntShown", 0);
     mob:SetMobAbilityEnabled(true); -- enable the spells/other mobskills again
     mob:SetMagicCastingEnabled(true);
-    if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) == 0) then -- re-enable noturn
-        mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_NO_TURN))
+    if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) == 0) then -- re-enable noturn
+        mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))
     end;
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*15,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*15,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     return dmg;

@@ -93,7 +93,7 @@ LandKingSystem_NQ = 0;
 LandKingSystem_HQ = 0;
 
 -- DYNAMIS SETTINGS
-    BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 Dynamis (in real day) min: 1 day
+    BETWEEN_2DYNA_WAIT_TIME = 24;       -- Hours before player can renter Dynamis. Default is 1 Earthday (24 hours).
         DYNA_MIDNIGHT_RESET = true;     -- if true, makes the wait time count by number of server midnights instead of full 24 hour intervals
              DYNA_LEVEL_MIN = 65;       -- level min for entering in Dynamis
     TIMELESS_HOURGLASS_COST = 500000;   -- refund for the timeless hourglass for Dynamis.

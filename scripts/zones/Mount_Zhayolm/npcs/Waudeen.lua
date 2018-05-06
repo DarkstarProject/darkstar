@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
     -- IMMORTAL SENTRIES
     if (toauMission == IMMORTAL_SENTRIES) then
-        if (player:hasKeyItem(SUPPLIES_PACKAGE)) then
+        if (player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE)) then
             player:startEvent(4);
         elseif (player:getVar("AhtUrganStatus") == 1) then
             player:startEvent(5);
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 
     -- BEGINNINGS
     elseif (beginnings == QUEST_ACCEPTED) then
-        if (not player:hasKeyItem(BRAND_OF_THE_FLAMESERPENT)) then
+        if (not player:hasKeyItem(dsp.ki.BRAND_OF_THE_FLAMESERPENT)) then
             player:startEvent(10); -- brands you
         else
             player:startEvent(11); -- the way is neither smooth nor easy
@@ -40,11 +40,11 @@ function onTrigger(player,npc)
     -- ASSAULT
     elseif (toauMission >= PRESIDENT_SALAHEEM) then
         local IPpoint = player:getCurrency("imperial_standing");
-        if (player:hasKeyItem(LEBROS_ASSAULT_ORDERS) and player:hasKeyItem(ASSAULT_ARMBAND) == false) then
+        if (player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) and player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) == false) then
             player:startEvent(209,50,IPpoint);
         else
             player:startEvent(6);
-            -- player:delKeyItem(ASSAULT_ARMBAND);
+            -- player:delKeyItem(dsp.ki.ASSAULT_ARMBAND);
         end;
 
     -- DEFAULT DIALOG
@@ -59,18 +59,18 @@ end;
 function onEventFinish(player,csid,option)
     -- IMMORTAL SENTRIES
     if (csid == 4 and option == 1) then
-        player:delKeyItem(SUPPLIES_PACKAGE);
+        player:delKeyItem(dsp.ki.SUPPLIES_PACKAGE);
         player:setVar("AhtUrganStatus",1);
 
     -- BEGINNINGS
     elseif (csid == 10) then
-        player:addKeyItem(BRAND_OF_THE_FLAMESERPENT);
-        player:messageSpecial(KEYITEM_OBTAINED,BRAND_OF_THE_FLAMESERPENT);
+        player:addKeyItem(dsp.ki.BRAND_OF_THE_FLAMESERPENT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_FLAMESERPENT);
 
     -- ASSAULT
     elseif (csid == 209 and option == 1) then
         player:delCurrency("imperial_standing", 50);
-        player:addKeyItem(ASSAULT_ARMBAND);
-        player:messageSpecial(KEYITEM_OBTAINED,ASSAULT_ARMBAND);
+        player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

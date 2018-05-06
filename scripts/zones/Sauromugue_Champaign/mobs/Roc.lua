@@ -9,7 +9,7 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ROC_STAR);
+    player:addTitle(dsp.title.ROC_STAR);
 end;
 
 function onMobDespawn(mob)

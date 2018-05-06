@@ -26,13 +26,13 @@ function onSpellCast(caster, target, spell)
     spellParams.M50 = 2;
     spellParams.M100 = 2;
     spellParams.M200 = 2;
-    if (caster:getMerit(MERIT_TORNADO_II) ~= 0) then
-        spellParams.AMIIburstBonus = (caster:getMerit(MERIT_TORNADO_II) - 1) * 0.03;
-        spellParams.AMIIaccBonus = (caster:getMerit(MERIT_TORNADO_II) - 1) * 5;
+    if (caster:getMerit(dsp.merit.TORNADO_II) ~= 0) then
+        spellParams.AMIIburstBonus = (caster:getMerit(dsp.merit.TORNADO_II) - 1) * 0.03;
+        spellParams.AMIIaccBonus = (caster:getMerit(dsp.merit.TORNADO_II) - 1) * 5;
     end
 
     -- no point in making a separate function for this if the only thing they won't have in common is the name
-    handleNinjutsuDebuff(caster,target,spell,30,10,MOD_ICERES);
+    handleNinjutsuDebuff(caster,target,spell,30,10,dsp.mod.ICERES);
 
     return doElementalNuke(caster, spell, target, spellParams);
 end;

@@ -113,9 +113,9 @@ function onInstanceComplete(instance)
     local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
     local box = instance:getEntity(bit.band(Lebros.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
     rune:setPos(414.29, -40.64, 301.523, 247);
-    rune:setStatus(STATUS_NORMAL);
+    rune:setStatus(dsp.status.NORMAL);
     box:setPos(410.41, -41.12, 300.743, 243);
-    box:setStatus(STATUS_NORMAL);
+    box:setStatus(dsp.status.NORMAL);
 
 end;
 function onEventUpdate(player,csid,option)

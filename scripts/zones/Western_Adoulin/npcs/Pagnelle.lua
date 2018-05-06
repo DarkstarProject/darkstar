@@ -39,7 +39,7 @@ function onTrigger(player,npc)
             -- Progresses Quest: 'Raptor Rapture', spoke to Ilney.
             player:startEvent(5035);
         elseif (Raptor_Rapture_Status == 6) then
-            local Has_Rockberries = player:hasKeyItem(ROCKBERRY1) and player:hasKeyItem(ROCKBERRY2) and player:hasKeyItem(ROCKBERRY3)
+            local Has_Rockberries = player:hasKeyItem(dsp.ki.ROCKBERRY1) and player:hasKeyItem(dsp.ki.ROCKBERRY2) and player:hasKeyItem(dsp.ki.ROCKBERRY3)
             if (Has_Rockberries) then
                 -- Progresses Quest: 'Raptor Rapture', turning in rockberries.
                 player:startEvent(5037);
@@ -81,9 +81,9 @@ function onEventFinish(player,csid,option)
         player:setVar("Raptor_Rapture_Status", 6);
     elseif (csid == 5037) then
         -- Progresses Quest: 'Raptor Rapture', brought rockberries, now need to go to Rala.
-        player:delKeyItem(ROCKBERRY1);
-        player:delKeyItem(ROCKBERRY2);
-        player:delKeyItem(ROCKBERRY3);
+        player:delKeyItem(dsp.ki.ROCKBERRY1);
+        player:delKeyItem(dsp.ki.ROCKBERRY2);
+        player:delKeyItem(dsp.ki.ROCKBERRY3);
         player:setVar("Raptor_Rapture_Status", 7);
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'

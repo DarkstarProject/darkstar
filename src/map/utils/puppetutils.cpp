@@ -404,7 +404,7 @@ void setHead(CCharEntity* PChar, uint8 head)
 uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
     int8 rank = 0;
-    if (skill < SKILL_AME || skill > SKILL_AMA)
+    if (skill < SKILL_AUTOMATON_MELEE || skill > SKILL_AUTOMATON_MAGIC)
         return 0;
     switch (PChar->PAutomaton->getFrame())
     {
@@ -412,19 +412,19 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
             rank = 5;
             break;
         case FRAME_VALOREDGE:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 2;
             break;
         case FRAME_SHARPSHOT:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 6;
-            else if (skill == SKILL_ARA)
+            else if (skill == SKILL_AUTOMATON_RANGED)
                 rank = 3;
             break;
         case FRAME_STORMWAKER:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 7;
-            else if (skill == SKILL_AMA)
+            else if (skill == SKILL_AUTOMATON_MAGIC)
                 rank = 3;
             break;
     }
@@ -432,20 +432,20 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
     switch (PChar->PAutomaton->getHead())
     {
         case HEAD_VALOREDGE:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank -= 1;
             break;
         case HEAD_SHARPSHOT:
-            if (skill == SKILL_ARA)
+            if (skill == SKILL_AUTOMATON_RANGED)
                 rank -= 1;
             break;
         case HEAD_STORMWAKER:
-            if (skill == SKILL_AME || skill == SKILL_AMA)
+            if (skill == SKILL_AUTOMATON_MELEE || skill == SKILL_AUTOMATON_MAGIC)
                 rank -= 1;
             break;
         case HEAD_SOULSOOTHER:
         case HEAD_SPIRITREAVER:
-            if (skill == SKILL_AMA)
+            if (skill == SKILL_AUTOMATON_MAGIC)
                 rank -= 2;
             break;
         default:
@@ -558,9 +558,9 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
             {
                 PChar->WorkingSkills.skill[SkillID] += 1;
                 PAutomaton->WorkingSkills.skill[SkillID] += 1;
-                if (SkillID == SKILL_AMA)
+                if (SkillID == SKILL_AUTOMATON_MAGIC)
                 {
-                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
+                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AUTOMATON_MAGIC];
                     PAutomaton->WorkingSkills.automaton_magic = amaSkill;
                     PAutomaton->WorkingSkills.healing = amaSkill;
                     PAutomaton->WorkingSkills.enhancing = amaSkill;
