@@ -33,8 +33,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 2) then
         player:setVar("LuckOfTheDraw",4);
-        player:addKeyItem(FORGOTTEN_HEXAGUN);
-        player:messageSpecial(KEYITEM_OBTAINED,FORGOTTEN_HEXAGUN);
+        player:addKeyItem(dsp.ki.FORGOTTEN_HEXAGUN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FORGOTTEN_HEXAGUN);
     end
 
 end;

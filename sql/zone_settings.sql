@@ -50,9 +50,9 @@ INSERT INTO `zone_settings` VALUES (1,2,'127.0.0.1',54230,'Phanauet_Channel',229
 INSERT INTO `zone_settings` VALUES (2,2,'127.0.0.1',54230,'Carpenters_Landing',0,0,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (3,2,'127.0.0.1',54230,'Manaclipper',229,229,101,219,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (4,2,'127.0.0.1',54230,'Bibiki_Bay',0,0,101,219,0,0.00,156);
-INSERT INTO `zone_settings` VALUES (5,2,'127.0.0.1',54230,'Uleguerand_Range',0,0,101,219,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (5,2,'127.0.0.1',54230,'Uleguerand_Range',0,0,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (6,4,'127.0.0.1',54230,'Bearclaw_Pinnacle',0,0,220,220,0,0.00,144);
-INSERT INTO `zone_settings` VALUES (7,2,'127.0.0.1',54230,'Attohwa_Chasm',0,0,101,219,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (7,2,'127.0.0.1',54230,'Attohwa_Chasm',0,0,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (8,4,'127.0.0.1',54230,'Boneyard_Gully',0,0,220,220,0,0.00,144);
 INSERT INTO `zone_settings` VALUES (9,3,'127.0.0.1',54230,'PsoXja',225,225,115,218,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (10,4,'127.0.0.1',54230,'The_Shrouded_Maw',0,0,220,220,0,0.00,145);
@@ -69,8 +69,8 @@ INSERT INTO `zone_settings` VALUES (20,3,'127.0.0.1',54230,'Promyvion-Mea',222,2
 INSERT INTO `zone_settings` VALUES (21,4,'127.0.0.1',54230,'Spire_of_Mea',0,0,220,220,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (22,3,'127.0.0.1',54230,'Promyvion-Vahzl',222,222,115,218,50,0.00,145);
 INSERT INTO `zone_settings` VALUES (23,4,'127.0.0.1',54230,'Spire_of_Vahzl',0,0,220,220,0,0.00,145);
-INSERT INTO `zone_settings` VALUES (24,2,'127.0.0.1',54230,'Lufaise_Meadows',230,230,101,219,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (25,2,'127.0.0.1',54230,'Misareaux_Coast',230,230,101,219,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (24,2,'127.0.0.1',54230,'Lufaise_Meadows',230,230,101,219,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (25,2,'127.0.0.1',54230,'Misareaux_Coast',230,230,101,219,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (26,1,'127.0.0.1',54230,'Tavnazian_Safehold',245,245,245,245,0,0.00,104);
 INSERT INTO `zone_settings` VALUES (27,3,'127.0.0.1',54230,'Phomiuna_Aqueducts',0,0,115,218,40,0.00,145);
 INSERT INTO `zone_settings` VALUES (28,3,'127.0.0.1',54230,'Sacrarium',0,0,115,218,50,0.00,145);
@@ -106,7 +106,7 @@ INSERT INTO `zone_settings` VALUES (57,4,'127.0.0.1',54230,'Talacca_Cove',0,0,14
 INSERT INTO `zone_settings` VALUES (58,2,'127.0.0.1',54230,'Silver_Sea_route_to_Nashmau',147,147,101,138,0,0.00,144);
 INSERT INTO `zone_settings` VALUES (59,2,'127.0.0.1',54230,'Silver_Sea_route_to_Al_Zahbi',147,147,101,138,0,0.00,144);
 INSERT INTO `zone_settings` VALUES (60,6,'127.0.0.1',54230,'The_Ashu_Talif',172,172,143,143,0,0.00,128);
-INSERT INTO `zone_settings` VALUES (61,2,'127.0.0.1',54230,'Mount_Zhayolm',0,0,101,138,0,0.00,154);
+INSERT INTO `zone_settings` VALUES (61,2,'127.0.0.1',54230,'Mount_Zhayolm',0,0,101,138,0,0.00,158);
 INSERT INTO `zone_settings` VALUES (62,3,'127.0.0.1',54230,'Halvung',0,0,115,139,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (63,6,'127.0.0.1',54230,'Lebros_Cavern',0,0,144,144,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (64,4,'127.0.0.1',54230,'Navukgo_Execution_Chamber',0,0,143,143,0,0.00,145);
@@ -115,7 +115,7 @@ INSERT INTO `zone_settings` VALUES (66,6,'127.0.0.1',54230,'Mamool_Ja_Training_G
 INSERT INTO `zone_settings` VALUES (67,4,'127.0.0.1',54230,'Jade_Sepulcher',0,0,143,143,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (68,3,'127.0.0.1',54230,'Aydeewa_Subterrane',174,174,115,139,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (69,6,'127.0.0.1',54230,'Leujaoam_Sanctum',0,0,144,144,0,0.00,145);
-INSERT INTO `zone_settings` VALUES (70,1,'127.0.0.1',54230,'Chocobo_Circuit',176,176,176,176,0,0.00,1028);
+INSERT INTO `zone_settings` VALUES (70,1,'127.0.0.1',54230,'Chocobo_Circuit',176,176,176,176,0,0.00,1028); -- MISC includes chocobo flag, cant call chocobos here on retail
 INSERT INTO `zone_settings` VALUES (71,1,'127.0.0.1',54230,'The_Colosseum',0,0,139,139,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (72,3,'127.0.0.1',54230,'Alzadaal_Undersea_Ruins',0,0,115,139,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (73,6,'127.0.0.1',54230,'Zhayolm_Remnants',148,148,115,139,0,0.00,145);
@@ -124,7 +124,7 @@ INSERT INTO `zone_settings` VALUES (75,6,'127.0.0.1',54230,'Bhaflau_Remnants',14
 INSERT INTO `zone_settings` VALUES (76,6,'127.0.0.1',54230,'Silver_Sea_Remnants',148,148,115,139,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (77,6,'127.0.0.1',54230,'Nyzul_Isle',148,148,144,144,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (78,4,'127.0.0.1',54230,'Hazhalm_Testing_Grounds',0,0,0,0,0,0.00,144);
-INSERT INTO `zone_settings` VALUES (79,2,'127.0.0.1',54230,'Caedarva_Mire',173,173,101,138,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (79,2,'127.0.0.1',54230,'Caedarva_Mire',173,173,101,138,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (80,1,'127.0.0.1',54230,'Southern_San_dOria_[S]',254,254,254,254,0,0.00,72);
 INSERT INTO `zone_settings` VALUES (81,2,'127.0.0.1',54230,'East_Ronfaure_[S]',251,251,101,215,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (82,2,'127.0.0.1',54230,'Jugner_Forest_[S]',0,0,101,215,0,0.00,156);
@@ -156,9 +156,9 @@ INSERT INTO `zone_settings` VALUES (107,2,'127.0.0.1',54230,'South_Gustaberg',11
 INSERT INTO `zone_settings` VALUES (108,2,'127.0.0.1',54230,'Konschtat_Highlands',0,0,101,103,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (109,2,'127.0.0.1',54230,'Pashhow_Marshlands',0,0,101,103,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (110,2,'127.0.0.1',54230,'Rolanberry_Fields',118,118,101,103,0,0.00,156);
-INSERT INTO `zone_settings` VALUES (111,2,'127.0.0.1',54230,'Beaucedine_Glacier',0,0,101,103,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (112,2,'127.0.0.1',54230,'Xarcabard',164,164,101,103,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (113,2,'127.0.0.1',54230,'Cape_Teriggan',0,0,101,191,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (111,2,'127.0.0.1',54230,'Beaucedine_Glacier',0,0,101,103,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (112,2,'127.0.0.1',54230,'Xarcabard',164,164,101,103,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (113,2,'127.0.0.1',54230,'Cape_Teriggan',0,0,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (114,2,'127.0.0.1',54230,'Eastern_Altepa_Desert',171,171,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (115,2,'127.0.0.1',54230,'West_Sarutabaruta',113,113,101,103,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (116,2,'127.0.0.1',54230,'East_Sarutabaruta',113,113,101,103,0,0.00,156);
@@ -167,13 +167,13 @@ INSERT INTO `zone_settings` VALUES (118,2,'127.0.0.1',54230,'Buburimu_Peninsula'
 INSERT INTO `zone_settings` VALUES (119,2,'127.0.0.1',54230,'Meriphataud_Mountains',0,0,101,103,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (120,2,'127.0.0.1',54230,'Sauromugue_Champaign',158,158,101,103,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (121,2,'127.0.0.1',54230,'The_Sanctuary_of_ZiTah',190,190,101,191,0,0.00,156);
-INSERT INTO `zone_settings` VALUES (122,2,'127.0.0.1',54230,'RoMaeve',211,211,101,191,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (122,2,'127.0.0.1',54230,'RoMaeve',211,211,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (123,2,'127.0.0.1',54230,'Yuhtunga_Jungle',134,134,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (124,2,'127.0.0.1',54230,'Yhoator_Jungle',134,134,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (125,2,'127.0.0.1',54230,'Western_Altepa_Desert',171,171,101,191,0,0.00,156);
-INSERT INTO `zone_settings` VALUES (126,2,'127.0.0.1',54230,'Qufim_Island',0,0,101,103,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (127,2,'127.0.0.1',54230,'Behemoths_Dominion',0,0,101,103,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (128,2,'127.0.0.1',54230,'Valley_of_Sorrows',0,0,101,191,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (126,2,'127.0.0.1',54230,'Qufim_Island',0,0,101,103,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (127,2,'127.0.0.1',54230,'Behemoths_Dominion',0,0,101,103,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (128,2,'127.0.0.1',54230,'Valley_of_Sorrows',0,0,101,191,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (129,6,'127.0.0.1',54230,'Ghoyus_Reverie',0,0,216,216,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (130,2,'127.0.0.1',54230,'RuAun_Gardens',210,210,101,191,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (131,3,'127.0.0.1',54230,'Mordion_Gaol',0,0,0,0,0,0.00,0);
@@ -181,8 +181,8 @@ INSERT INTO `zone_settings` VALUES (132,2,'127.0.0.1',54230,'Abyssea-La_Theine',
 INSERT INTO `zone_settings` VALUES (133,0,'127.0.0.1',0,'133',0,0,0,0,0,0.00,0); -- Not a real zone, this is the character selection background before you are in game.
 INSERT INTO `zone_settings` VALUES (134,5,'127.0.0.1',54230,'Dynamis-Beaucedine',121,121,121,121,0,0.00,400);
 INSERT INTO `zone_settings` VALUES (135,5,'127.0.0.1',54230,'Dynamis-Xarcabard',119,119,119,119,0,0.00,400);
-INSERT INTO `zone_settings` VALUES (136,2,'127.0.0.1',54230,'Beaucedine_Glacier_[S]',0,0,101,215,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (137,2,'127.0.0.1',54230,'Xarcabard_[S]',42,42,101,215,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (136,2,'127.0.0.1',54230,'Beaucedine_Glacier_[S]',0,0,101,215,0,0.00,156);
+INSERT INTO `zone_settings` VALUES (137,2,'127.0.0.1',54230,'Xarcabard_[S]',42,42,101,215,0,0.00,156);
 INSERT INTO `zone_settings` VALUES (138,3,'127.0.0.1',54230,'Castle_Zvahl_Baileys_[S]',43,43,101,215,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (139,4,'127.0.0.1',54230,'Horlais_Peak',0,0,125,125,0,0.00,145);
 INSERT INTO `zone_settings` VALUES (140,3,'127.0.0.1',54230,'Ghelsba_Outpost',0,0,115,102,0,0.00,145);
@@ -305,14 +305,14 @@ INSERT INTO `zone_settings` VALUES (256,1,'127.0.0.1',54230,'Western_Adoulin',59
 INSERT INTO `zone_settings` VALUES (257,1,'127.0.0.1',54230,'Eastern_Adoulin',63,63,63,63,0,0.00,1096);
 INSERT INTO `zone_settings` VALUES (258,3,'127.0.0.1',54230,'Rala_Waterways',61,61,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (259,6,'127.0.0.1',54230,'Rala_Waterways_U',61,61,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (260,2,'127.0.0.1',54230,'Yahse_Hunting_Grounds',60,60,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (261,2,'127.0.0.1',54230,'Ceizak_Battlegrounds',60,60,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (262,2,'127.0.0.1',54230,'Foret_de_Hennetiel',60,60,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (263,2,'127.0.0.1',54230,'Yorcia_Weald',61,61,57,57,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (260,2,'127.0.0.1',54230,'Yahse_Hunting_Grounds',60,60,57,57,0,0.00,4);
+INSERT INTO `zone_settings` VALUES (261,2,'127.0.0.1',54230,'Ceizak_Battlegrounds',60,60,57,57,0,0.00,4);
+INSERT INTO `zone_settings` VALUES (262,2,'127.0.0.1',54230,'Foret_de_Hennetiel',60,60,57,57,0,0.00,4);
+INSERT INTO `zone_settings` VALUES (263,2,'127.0.0.1',54230,'Yorcia_Weald',61,61,57,57,0,0.00,4);
 INSERT INTO `zone_settings` VALUES (264,6,'127.0.0.1',54230,'Yorcia_Weald_U',62,62,62,62,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (265,2,'127.0.0.1',54230,'Morimar_Basalt_Fields',60,60,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (266,2,'127.0.0.1',54230,'Marjami_Ravine',60,60,57,57,0,0.00,0);
-INSERT INTO `zone_settings` VALUES (267,2,'127.0.0.1',54230,'Kamihr_Drifts',72,72,57,57,0,0.00,0);
+INSERT INTO `zone_settings` VALUES (265,2,'127.0.0.1',54230,'Morimar_Basalt_Fields',60,60,57,57,0,0.00,4);
+INSERT INTO `zone_settings` VALUES (266,2,'127.0.0.1',54230,'Marjami_Ravine',60,60,57,57,0,0.00,4);
+INSERT INTO `zone_settings` VALUES (267,2,'127.0.0.1',54230,'Kamihr_Drifts',72,72,57,57,0,0.00,4);
 INSERT INTO `zone_settings` VALUES (268,3,'127.0.0.1',54230,'Sih_Gates',0,0,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (269,3,'127.0.0.1',54230,'Moh_Gates',0,0,57,57,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (270,3,'127.0.0.1',54230,'Cirdas_Caverns',0,0,57,57,0,0.00,0);
@@ -339,6 +339,10 @@ INSERT INTO `zone_settings` VALUES (290,0,'127.0.0.1',54230,'Desuetia_Empyreal_P
 INSERT INTO `zone_settings` VALUES (291,0,'127.0.0.1',54230,'Reisenjima',79,79,79,79,0,0.00,128);
 INSERT INTO `zone_settings` VALUES (292,0,'127.0.0.1',54230,'Reisenjima_Henge',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (293,0,'127.0.0.1',54230,'Reisenjima_Sanctorium',0,0,0,0,0,0.00,128);
+INSERT INTO `zone_settings` VALUES (294,5,'127.0.0.1',54230,'Dynamis-San_dOria_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (295,5,'127.0.0.1',54230,'Dynamis-Bastok_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (296,5,'127.0.0.1',54230,'Dynamis-Windurst_[D]',88,88,88,88,0,0.00,400);
+INSERT INTO `zone_settings` VALUES (297,5,'127.0.0.1',54230,'Dynamis-Jeuno_[D]',88,88,88,88,0,0.00,400);
 /*!40000 ALTER TABLE `zone_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

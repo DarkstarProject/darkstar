@@ -26,9 +26,9 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(DYNAMIS_BUBURIMU_SLIVER ) == false) then
-        player:addKeyItem(DYNAMIS_BUBURIMU_SLIVER);
-        player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_BUBURIMU_SLIVER);
+    if (player:hasKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER ) == false) then
+        player:addKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DYNAMIS_BUBURIMU_SLIVER);
     end
-    player:addTitle(DYNAMISBUBURIMU_INTERLOPER);
+    player:addTitle(dsp.title.DYNAMISBUBURIMU_INTERLOPER);
 end;

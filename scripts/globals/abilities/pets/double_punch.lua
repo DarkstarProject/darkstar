@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Double Punch M=6, 2 (still guessing here)
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");

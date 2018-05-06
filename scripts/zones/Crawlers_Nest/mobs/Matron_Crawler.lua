@@ -8,7 +8,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDespawn(mob)
-     GetNPCByID(17584460):setStatus(STATUS_NORMAL); -- qm6
+     GetNPCByID(17584460):setStatus(dsp.status.NORMAL); -- qm6
 end;
 
 function onMobDeath(mob, player, isKiller)

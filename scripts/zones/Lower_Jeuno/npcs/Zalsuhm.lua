@@ -42,8 +42,8 @@ function onTrade(player,npc,trade)
                 end
 
                 return;
-            end			
-	    end	
+            end         
+        end 
     end
 
 end;
@@ -57,9 +57,9 @@ function onTrigger(player,npc)
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
     -- printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
 
-    local mainWeaponId = player:getEquipID(SLOT_MAIN);
+    local mainWeaponId = player:getEquipID(dsp.slot.MAIN);
     -- printf("\tmainWeaponId: %u", mainWeaponId);
-    	
+        
     local nyzulWeapon = isBaseNyzulWeapon(mainWeaponId);
     -- printf("\tIsBaseNyzulWeapon: %s", (nyzulWeapon and "TRUE" or "FALSE"));
 
@@ -83,7 +83,7 @@ function onTrigger(player,npc)
     else -- Quest is complete for the current job
         player:startEvent(10089);
     end
-	
+    
 end;
 
 function onEventUpdate(player,csid,option)
@@ -101,17 +101,17 @@ function onEventFinish(player,csid,option)
     -- printf("\tRESULT: %u", option);
 
     -- Zalsuhm wants to research the player's Nyzul Weapon
-    if (csid == 10086) then	
+    if (csid == 10086) then 
         -- The player chose "He has shifty eyes" (turns down the quest)
         if (option == 53) then
             player:setVar("Upset_Zalsuhm", 1);
             player:needToZone(true);
-        elseif (option <= JOBS["SCH"]) then -- Just to make sure we didn't get into an invalid state
+        elseif (option <= dsp.job.SCH) then -- Just to make sure we didn't get into an invalid state
             -- The player chose "More power" (accepts the quest)
             local questId = getQuestId(option);
             player:addQuest(JEUNO, questId);
         end
-    elseif (csid == 10088 and option <= JOBS["SCH"]) then -- The quest is completed
+    elseif (csid == 10088 and option <= dsp.job.SCH) then -- The quest is completed
         local questId = getQuestId(option);
         player:completeQuest(JEUNO, questId);
     end

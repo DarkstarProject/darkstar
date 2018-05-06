@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Thunderspark M=whatever
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/summon");
@@ -23,7 +22,7 @@ function onPetAbility(target, pet, skill)
     local totaldamage = 0;
     local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,dmgmodsubsequent,TP_NO_EFFECT,1,2,3);
     --get resist multiplier (1x if no resist)
-    local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_THUNDER);
+    local resist = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),dsp.skill.ELEMENTAL_MAGIC, dsp.magic.ele.THUNDER);
     --get the resisted damage
     damage.dmg = damage.dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
@@ -34,7 +33,7 @@ function onPetAbility(target, pet, skill)
     end
     damage.dmg = damage.dmg * tp / 1000;
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits);
-    target:addStatusEffect(EFFECT_PARALYSIS, 15, 0, 60);
+    target:addStatusEffect(dsp.effect.PARALYSIS, 15, 0, 60);
     target:delHP(totaldamage);
     target:updateEnmityFromDamage(pet,totaldamage);
 

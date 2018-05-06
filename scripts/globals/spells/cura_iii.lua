@@ -14,7 +14,7 @@ require("scripts/globals/msg");
 
 function onMagicCastingCheck(caster,target,spell)
     if (caster:getID() ~= target:getID()) then
-        return msgBasic.CANNOT_PERFORM_TARG;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG;
     else
         return 0;
     end;
@@ -72,9 +72,9 @@ function onSpellCast(caster,target,spell)
     end
 
     --Apply Afflatus Misery Bonus to the Result
-    if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then
+    if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         if (caster:getID() == target:getID()) then -- Let's use a local var to hold the power of Misery so the boost is applied to all targets,
-            caster:setLocalVar("Misery_Power", caster:getMod(MOD_AFFLATUS_MISERY));
+            caster:setLocalVar("Misery_Power", caster:getMod(dsp.mod.AFFLATUS_MISERY));
         end;
         local misery = caster:getLocalVar("Misery_Power");
 
@@ -99,11 +99,11 @@ function onSpellCast(caster,target,spell)
         --printf("AFTER AFFLATUS MISERY BONUS: %d", basecure);
 
         --Afflatus Misery Mod Gets Used Up
-        caster:setMod(MOD_AFFLATUS_MISERY, 0);
+        caster:setMod(dsp.mod.AFFLATUS_MISERY, 0);
     end
 
     final = getCureFinal(caster,spell,basecure,minCure,false);
-    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100));
 
     --Applying server mods....
     final = final * CURE_POWER;
@@ -118,9 +118,9 @@ function onSpellCast(caster,target,spell)
 
     --Enmity for Cura III is fixed, so its CE/VE is set in the SQL and not calculated with updateEnmityFromCure
 
-    spell:setMsg(msgBasic.AOE_HP_RECOVERY);
+    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY);
 
-    local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
+    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100;
     if (mpBonusPercent > 0) then
         caster:addMP(mpBonusPercent);
     end

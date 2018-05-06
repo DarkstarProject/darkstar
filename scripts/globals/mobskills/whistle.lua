@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = target:getMainLvl()/10 * 3.75 + 5;
     local duration = 60;
 
-    local typeEffect = EFFECT_AGI_BOOST;
+    local typeEffect = dsp.effect.AGI_BOOST;
 
     skill:setMsg(MobBuffMove(target, typeEffect, power, 3, duration));
 

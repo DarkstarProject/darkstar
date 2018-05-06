@@ -19,17 +19,17 @@ function onTrigger(player,npc)
     player:setVar("NyzulLoopGuard",0); -- Reset Latch 1
     player:setVar("NyzulReady",0); -- Reset Latch 2
 
-    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("PathOfDarkness",1);
         player:startEvent(405, 58, -6, 0, 99, 5, 0);
-    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1) then
+    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) and player:getVar("AhtUrganStatus") == 1) then
         player:setVar("NashmeirasPlea",1);
         player:startEvent(405, 59, -10, 0, 99, 5, 0);
-    elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
+    elseif (player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)) then
         local assaultid = player:getCurrentAssault();
         local recommendedLevel = getRecommendedAssaultLevel(assaultid);
         local armband = 0;
-        if (player:hasKeyItem(ASSAULT_ARMBAND)) then
+        if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
             armband = 1;
         end
         player:startEvent(405, assaultid, -4, 0, recommendedLevel, 5, armband);
@@ -92,7 +92,7 @@ function onEventUpdate(player,csid,option,target)
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID()) then
-                    if (v:hasKeyItem(NYZUL_ISLE_ROUTE) == false and v:hasCompletedMission(TOAU, PATH_OF_DARKNESS) == false) then
+                    if (v:hasKeyItem(dsp.ki.NYZUL_ISLE_ROUTE) == false and v:hasCompletedMission(TOAU, PATH_OF_DARKNESS) == false) then
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
                         return;
@@ -112,7 +112,7 @@ function onEventUpdate(player,csid,option,target)
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID()) then
-                    if (v:hasKeyItem(MYTHRIL_MIRROR) == false and v:hasCompletedMission(TOAU, NASHMEIRAS_PLEA) == false) then
+                    if (v:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) == false and v:hasCompletedMission(TOAU, NASHMEIRAS_PLEA) == false) then
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
                         return;
@@ -132,7 +132,7 @@ function onEventUpdate(player,csid,option,target)
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID()) then
-                    if (not (v:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
+                    if (not (v:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                         print("NO REQS");
                         player:messageText(target,MEMBER_NO_REQS, false);
                         player:instanceEntry(target,1);
@@ -169,15 +169,15 @@ function onInstanceCreated(player,target,instance)
     if (instance) then
         if (pathOfDarkness == 1) then
             player:setVar("PathOfDarkness", 0);
-            player:delKeyItem(NYZUL_ISLE_ROUTE);
+            player:delKeyItem(dsp.ki.NYZUL_ISLE_ROUTE);
         elseif (nashmeirasPlea == 1) then
             player:setVar("NashmeirasPlea", 0);
-            player:delKeyItem(MYTHRIL_MIRROR);
+            player:delKeyItem(dsp.ki.MYTHRIL_MIRROR);
         else
             instance:setLevelCap(player:getVar("AssaultCap"));
             player:setVar("AssaultCap", 0);
-            player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
-            player:delKeyItem(ASSAULT_ARMBAND);
+            player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
+            player:delKeyItem(dsp.ki.ASSAULT_ARMBAND);
         end
 
         player:setInstance(instance);
@@ -191,11 +191,11 @@ function onInstanceCreated(player,target,instance)
                     v:startEvent(116, 2);
 
                     if (pathOfDarkness == 1) then
-                        v:delKeyItem(NYZUL_ISLE_ROUTE);
+                        v:delKeyItem(dsp.ki.NYZUL_ISLE_ROUTE);
                     elseif (nashmeirasPlea == 1) then
-                        v:delKeyItem(MYTHRIL_MIRROR);
+                        v:delKeyItem(dsp.ki.MYTHRIL_MIRROR);
                     else
-                        v:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
+                        v:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
                     end
                 end
             end

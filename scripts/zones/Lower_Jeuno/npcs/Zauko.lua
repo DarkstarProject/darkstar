@@ -2,17 +2,18 @@
 -- Area: Lower Jeuno
 --  NPC: Zauko
 -- Involved in Quests: Save the Clock Tower, Community Service
--- @zone 245
--- !pos -3 0 11
+-- !pos -3 0 11 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/titles");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/NPCIDs");
+require("scripts/zones/Lower_Jeuno/globals");
 require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Lower_Jeuno/MobIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/npc_util");
+require("scripts/globals/quests");
+require("scripts/globals/status");
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,30 +35,27 @@ function onTrigger(player,npc)
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
     local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
     local currCommService = player:getVar("currCommService");
-    local hasMembershipCard = player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
+    local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
     local allLampsLit = true;
     for i=0,11 do
-        local lamp = GetNPCByID(lampIdOffset + i);
-        if lamp:getAnimation() == ANIMATION_CLOSE_DOOR then
+        local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
+        if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
             allLampsLit = false;
             break;
         end
     end
 
-    -- debug output
-    -- player:PrintToPlayer(string.format("pid=%i done=%i curr=%i card=%i lamps=%i",playerOnQuestId,doneCommService,currCommService,hasMembershipCard,allLampsLit and 1 or 0));
-
     -- quest has already been accepted.
-    if currCommService == 1 then
-        if playerOnQuestId ~= player:getID() then
+    if (currCommService == 1) then
+        if (playerOnQuestId ~= player:getID()) then
             player:startEvent(119); -- quest left over from previous day. fail quest.
         else
-            if hour >= 20 and hour < 21 then
+            if (hour >= 20 and hour < 21) then
                 player:startEvent(115); -- tell player it's too early to start lighting lamps.
-            elseif allLampsLit then
+            elseif (allLampsLit) then
                 player:startEvent(117,doneCommService); -- all lamps are lit. win quest.
-            elseif hour >= 21 or hour < 1 then
+            elseif (hour >= 21 or hour < 1) then
                 player:startEvent(114); -- tell player they can start lighting lamps.
             else
                 SetServerVariable("[JEUNO]CommService",-1); -- frees player from quest, but don't allow anyone else to take it today.
@@ -66,7 +64,7 @@ function onTrigger(player,npc)
         end
 
     -- quest is available to player, nobody is currently on it, and the hour is right
-    elseif player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 20 or hour < 1) then
+    elseif (player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 20 or hour < 1)) then
         player:startEvent(116,doneCommService);
 
     -- default dialog including option to drop membership card
@@ -77,7 +75,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    if csid == 116 and option == 0 then
+    if (csid == 116 and option == 0) then
         -- player accepts quest
         -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
 
@@ -85,7 +83,7 @@ function onEventUpdate(player,csid,option)
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
 
-        if playerOnQuestId == 0 and (hour >= 20 or hour < 1) then
+        if (playerOnQuestId == 0 and (hour >= 20 or hour < 1)) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
             player:addQuest(JEUNO,COMMUNITY_SERVICE);
@@ -99,35 +97,31 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-
-    -- ClockTower Quest --
+    -- SAVE THE CLOCKTOWER
     if (csid == 50) then
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 256);
 
-    ---- Community Service Quest ----
-
-    elseif csid == 117 then
-        if player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED then
+    -- COMMUNITY SERVICE
+    elseif (csid == 117) then
+        local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
+        if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
-            player:addFame(JEUNO,30);
+            params.fame = 30;
         else
             -- repeat victory. offer membership card.
-            player:addFame(JEUNO, 15);
-            if option == 1 then
-                player:addKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD);
-                player:messageSpecial(KEYITEM_OBTAINED,LAMP_LIGHTERS_MEMBERSHIP_CARD);
+            params.fame = 15;
+            if (option == 1) then
+                params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
             end
         end
-        player:completeQuest(JEUNO,COMMUNITY_SERVICE);
-        player:addTitle(TORCHBEARER);
-        player:setVar("currCommService",0);
+        npcUtil.completeQuest(player, JEUNO, COMMUNITY_SERVICE, params);
 
-    elseif csid == 118 and option == 1 then
+    elseif (csid == 118 and option == 1) then
         -- player drops membership card
-        player:delKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD);
+        player:delKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD);
 
-    elseif csid == 119 then
+    elseif (csid == 119) then
         -- player fails quest
         player:setVar("currCommService",0);
 

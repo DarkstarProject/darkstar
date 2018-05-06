@@ -9,11 +9,11 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         return 0;
     elseif (skill:getParam() == 2 and math.random() <= 0.5) then -- not always used
         return 1;
-    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
+    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
         return 0;
     end
     return 1;
@@ -33,7 +33,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local baseDmg = mob:getWeaponDmg() * power;
 
-    local info = MobMagicalMove(mob,target,skill,baseDmg,ELE_NONE,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,baseDmg,dsp.magic.ele.NONE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,MOBPARAM_IGNORE_SHADOWS);
 
     if (mob:isInDynamis()) then

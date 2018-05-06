@@ -10,7 +10,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(XOLOTL_XTRAPOLATOR);
+    player:addTitle(dsp.title.XOLOTL_XTRAPOLATOR);
 end;
 
 function onMobDespawn(mob)

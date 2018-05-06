@@ -13,23 +13,23 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_ALCHEMY);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.ALCHEMY);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_ALCHEMY,newRank);
+        player:setSkillRank(dsp.skill.ALCHEMY,newRank);
         player:startEvent(121,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_ALCHEMY);
-    local testItem = getTestItem(player,npc,SKILL_ALCHEMY);
+    local craftSkill = player:getSkillLevel(dsp.skill.ALCHEMY);
+    local testItem = getTestItem(player,npc,dsp.skill.ALCHEMY);
     local guildMember = isGuildMember(player,1);
 
     if (guildMember == 1) then guildMember = 150995375; end
 
-    if (canGetNewRank(player,craftSkill,SKILL_ALCHEMY) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.ALCHEMY) == 1) then getNewRank = 100; end
 
     if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and getNewRank ~= 100) then
         local item = 0;

@@ -156,7 +156,7 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H ? true : false;
+    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND ? true : false;
 }
 
 /************************************************************************
@@ -231,6 +231,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
         //merit chance only applies if player has the job trait
         if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE, PChar);
+
+        // Ambush Augment adds +1% Triple Attack per merit (need to satisfy conditions for Ambush)
+        if (charutils::hasTrait(PChar, TRAIT_AMBUSH) && PChar->getMod(Mod::AUGMENTS_AMBUSH) > 0 && abs(m_defender->loc.p.rotation - m_attacker->loc.p.rotation) < 23)
+        {
+            tripleAttack += PChar->PMeritPoints->GetMerit(MERIT_AMBUSH)->count;
+        }
+
         if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, PChar);
         // TODO: Quadruple attack merits when SE release them.
     }

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARAERO
+-- dsp.effect.BARAERO
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_WINDRES,effect:getPower());
+    target:addMod(dsp.mod.WINDRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_WINDRES,effect:getPower());
+    target:delMod(dsp.mod.WINDRES,effect:getPower());
 end;

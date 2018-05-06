@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(GIL_OBTAINED, 5000);
             player:completeQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
             player:addFame(WINDURST,100);
-            player:addTitle(KAZHAM_CALLER);
+            player:addTitle(dsp.title.KAZHAM_CALLER);
             player:setVar("PamamaVar",0);
             player:needToZone(true);
         elseif (Pamamas == 2) then --Repeats of quest; give only gil and less fame

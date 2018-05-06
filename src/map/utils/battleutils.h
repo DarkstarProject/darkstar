@@ -166,6 +166,7 @@ namespace battleutils
     uint8				GetEnmityModDamage(uint8 level);
     uint8				GetEnmityModCure(uint8 level);
     bool				isValidSelfTargetWeaponskill(int wsid);
+    bool                CanUseWeaponskill(CCharEntity* PChar, CWeaponSkill* PSkill);
     int16				CalculateBaseTP(int delay);
     void				GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount);
     void                GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE);
@@ -203,6 +204,7 @@ namespace battleutils
     int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
     int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
     void                HandleTacticalParry(CBattleEntity* PEntity);
+    void                HandleTacticalGuard(CBattleEntity* PEntity);
 
     // Handles everything related to breaking Bind
     void                BindBreakCheck(CBattleEntity* PAttacker, CBattleEntity* PDefender);
@@ -233,6 +235,7 @@ namespace battleutils
     uint32              CalculateSpellCastTime(CBattleEntity*, CSpell*);
     uint16              CalculateSpellCost(CBattleEntity*, CSpell*);
     uint32              CalculateSpellRecastTime(CBattleEntity*, CSpell*);
+    int16               CalculateSpellTP(CBattleEntity* PEntity, CSpell* PSpell);
     int16               CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
     bool                RemoveAmmo(CCharEntity*, int quantity = 1);
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);

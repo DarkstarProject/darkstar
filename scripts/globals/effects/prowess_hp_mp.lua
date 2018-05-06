@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Increased HP and MP
+-- dsp.effect.PROWESS : Increased HP and MP
 --
 -----------------------------------
 
@@ -9,8 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPP, effect:getPower());
-    target:addMod(MOD_MPP, effect:getPower());
+    target:addMod(dsp.mod.HPP, effect:getPower());
+    target:addMod(dsp.mod.MPP, effect:getPower());
 end;
 
 -----------------------------------
@@ -25,6 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, effect:getPower());
-    target:delMod(MOD_MPP, effect:getPower());
+    target:delMod(dsp.mod.HPP, effect:getPower());
+    target:delMod(dsp.mod.MPP, effect:getPower());
 end;

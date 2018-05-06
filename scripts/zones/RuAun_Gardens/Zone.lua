@@ -51,7 +51,7 @@ function onRegionEnter(player,region)
             player:startEvent(42);
         else
             title = player:getTitle();
-            if (title == WARRIOR_OF_THE_CRYSTAL) then
+            if (title == dsp.title.WARRIOR_OF_THE_CRYSTAL) then
                 player:startEvent(41,title);
             else
                 player:startEvent(43,title);
@@ -59,7 +59,7 @@ function onRegionEnter(player,region)
         end
 
     elseif (p["portal"] ~= nil) then -- blue portal
-        if (GetNPCByID(p["portal"]):getAnimation() == ANIMATION_OPEN_DOOR) then
+        if (GetNPCByID(p["portal"]):getAnimation() == dsp.anim.OPEN_DOOR) then
             player:startEvent(p["event"]);
         end
 

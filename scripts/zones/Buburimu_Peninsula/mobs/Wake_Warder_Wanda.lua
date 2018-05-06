@@ -6,20 +6,20 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 50); -- just one spell to spam
-    mob:addMod(MOD_SILENCERES,20);
-    mob:addMod(MOD_BINDRES,20);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 50); -- just one spell to spam
+    mob:addMod(dsp.mod.SILENCERES,20);
+    mob:addMod(dsp.mod.BINDRES,20);
 end;
 
 function onMobSpawn(mob)
 end;
 
 function onMobEngaged(mob,target)
-    mob:setMod(MOD_REGAIN, 25);
+    mob:setMod(dsp.mod.REGAIN, 25);
 end;
 
 function onMobDisengage(mob)
-    mob:setMod(MOD_REGAIN,0);
+    mob:setMod(dsp.mod.REGAIN,0);
 end;
 
 function onMobDeath(mob, player, isKiller)

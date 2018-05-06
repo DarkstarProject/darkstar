@@ -38,11 +38,11 @@ function onTrigger(player,npc)
             player:startEvent(130);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
             player:startEvent(131);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(232);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(111,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(111,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
@@ -60,10 +60,10 @@ printf("RESULT: %u",option);
     finishMissionTimeline(player,2,csid,option);
 
     if (csid == 118 and option == 1) then
-        player:addTitle(FRESH_NORTH_WINDS_RECRUIT);
+        player:addTitle(dsp.title.FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 111 and (option == 12 or option == 15)) then
-        player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
 
 end;

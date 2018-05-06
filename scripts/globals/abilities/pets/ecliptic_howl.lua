@@ -13,7 +13,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
+    local bonusTime = utils.clamp(summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - 300, 0, 200);
     local duration = 180 + bonusTime;
 
     local moon = VanadielMoonPhase();
@@ -33,10 +33,10 @@ function onPetAbility(target, pet, skill, summoner)
     else
         buffvalue = 1;
     end
-    target:delStatusEffect(EFFECT_ACCURACY_BOOST);
-    target:delStatusEffect(EFFECT_EVASION_BOOST);
-    target:addStatusEffect(EFFECT_ACCURACY_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_EVASION_BOOST,25-buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    target:delStatusEffect(dsp.effect.ACCURACY_BOOST);
+    target:delStatusEffect(dsp.effect.EVASION_BOOST);
+    target:addStatusEffect(dsp.effect.ACCURACY_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.EVASION_BOOST,25-buffvalue,0,duration);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

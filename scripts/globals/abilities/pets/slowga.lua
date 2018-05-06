@@ -12,15 +12,15 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local duration = 180 + summoner:getMod(MOD_SUMMONING);
+    local duration = 180 + summoner:getMod(dsp.mod.SUMMONING);
     if duration > 350 then
         duration = 350;
     end;
 
-    if (target:addStatusEffect(EFFECT_SLOW,300,0,duration)) then
-        skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
+    if (target:addStatusEffect(dsp.effect.SLOW,300,0,duration)) then
+        skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
     end
-    return EFFECT_SLOW;
+    return dsp.effect.SLOW;
 end

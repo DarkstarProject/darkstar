@@ -7,7 +7,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:addStatusEffect(EFFECT_STONESKIN, math.random(30,40), 0, 300);
+    mob:addStatusEffect(dsp.effect.STONESKIN, math.random(30,40), 0, 300);
 end;
 
 function onMobDeath(mob, player, isKiller)

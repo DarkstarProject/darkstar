@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_ALCHEMY_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effect.ALCHEMY_IMAGERY) == true) then
         result = 242;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_ALCHEMY_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,3,0,120);
 end;
 
 -----------------------------------------

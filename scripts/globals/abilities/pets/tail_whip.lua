@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Tail Whip M=5
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
@@ -23,14 +22,14 @@ function onPetAbility(target, pet, skill)
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits);
 
     local duration = 120;
-    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, 5);
+    local resm = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),dsp.skill.ELEMENTAL_MAGIC, 5);
     if resm < 0.25 then
         resm = 0;
     end
     duration = duration * resm
 
-    if (duration > 0 and AvatarPhysicalHit(skill, totaldamage) and target:hasStatusEffect(EFFECT_WEIGHT) == false) then
-        target:addStatusEffect(EFFECT_WEIGHT, 50, 0, duration);
+    if (duration > 0 and AvatarPhysicalHit(skill, totaldamage) and target:hasStatusEffect(dsp.effect.WEIGHT) == false) then
+        target:addStatusEffect(dsp.effect.WEIGHT, 50, 0, duration);
     end
     target:delHP(totaldamage);
     target:updateEnmityFromDamage(pet,totaldamage);

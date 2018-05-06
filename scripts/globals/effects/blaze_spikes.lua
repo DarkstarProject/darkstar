@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_BLAZE_SPIKES
+-- dsp.effect.BLAZE_SPIKES
 --
 -----------------------------------
 
@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SPIKES,1);
-    target:addMod(MOD_SPIKES_DMG, effect:getPower());
+    target:addMod(dsp.mod.SPIKES,1);
+    target:addMod(dsp.mod.SPIKES_DMG, effect:getPower());
 end;
 
 -----------------------------------
@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SPIKES,1);
-    target:delMod(MOD_SPIKES_DMG, effect:getPower());
+    target:delMod(dsp.mod.SPIKES,1);
+    target:delMod(dsp.mod.SPIKES_DMG, effect:getPower());
 end;

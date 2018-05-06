@@ -60,8 +60,8 @@ function onInstanceComplete(instance)
 
     local rune = instance:getEntity(bit.band(Leujaoam.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
     local box = instance:getEntity(bit.band(Leujaoam.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
-    rune:setStatus(STATUS_NORMAL);
-    box:setStatus(STATUS_NORMAL);
+    rune:setStatus(dsp.status.NORMAL);
+    box:setStatus(dsp.status.NORMAL);
 
 end;
 

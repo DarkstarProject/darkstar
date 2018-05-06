@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_STR_DOWN;
+    local typeEffect = dsp.effect.STR_DOWN;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 33, 3, 120));
     return typeEffect;

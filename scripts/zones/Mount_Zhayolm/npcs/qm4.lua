@@ -6,16 +6,14 @@
 package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Mount_Zhayolm/TextIDs");
-require("scripts/globals/status");
+require("scripts/zones/Mount_Zhayolm/MobIDs");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 17027474;
-    if (trade:hasItemQty(2585,1) and trade:getItemCount() == 1) then -- Trade Vinegar Pie
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if (npcUtil.tradeHas(trade, 2585) and not GetMobByID(KHROMASOUL_BHURBORLOR):isSpawned()) then -- Vinegar Pie
+        player:confirmTrade();
+        SpawnMob(KHROMASOUL_BHURBORLOR):updateClaim(player);
     end
 end;
 
@@ -24,11 +22,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

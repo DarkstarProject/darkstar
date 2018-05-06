@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_NONE
+--     dsp.effect.NONE
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_REGEN_DOWN, effect:getPower());
+    target:addMod(dsp.mod.REGEN_DOWN, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_REGEN_DOWN, effect:getPower());
+    target:delMod(dsp.mod.REGEN_DOWN, effect:getPower());
 end;

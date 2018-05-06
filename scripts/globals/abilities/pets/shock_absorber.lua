@@ -12,9 +12,9 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
-    local maneuvers = master:countEffect(EFFECT_EARTH_MANEUVER)
-    local pMod = math.max(automaton:getSkillLevel(22), automaton:getSkillLevel(23), automaton:getSkillLevel(24))
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
+    local maneuvers = master:countEffect(dsp.effect.EARTH_MANEUVER)
+    local pMod = math.max(automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE), automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED), automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC))
     local duration = 180
     local amount = 200
     local bonus = 0
@@ -46,11 +46,11 @@ function onPetAbility(target, automaton, skill, master, action)
     end
     amount = amount + math.floor(bonus)
 
-    if target:addStatusEffect(EFFECT_STONESKIN, amount, 0, duration) then
-        skill:setMsg(msgBasic.SKILL_GAIN_EFFECT)
+    if target:addStatusEffect(dsp.effect.STONESKIN, amount, 0, duration) then
+        skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
     else
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
     end
 
-    return EFFECT_STONESKIN
+    return dsp.effect.STONESKIN
 end

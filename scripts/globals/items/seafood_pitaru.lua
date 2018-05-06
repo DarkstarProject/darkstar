@@ -11,24 +11,24 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5891);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5891);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_MPP, 8);
-    target:addMod(MOD_FOOD_MP_CAP, 120);
-    target:addMod(MOD_MAGIC_SKILLUP_RATE, 60);
+    target:addMod(dsp.mod.FOOD_MPP, 8);
+    target:addMod(dsp.mod.FOOD_MP_CAP, 120);
+    target:addMod(dsp.mod.MAGIC_SKILLUP_RATE, 60);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_MPP, 8);
-    target:delMod(MOD_FOOD_MP_CAP, 120);
-    target:delMod(MOD_MAGIC_SKILLUP_RATE, 60);
+    target:delMod(dsp.mod.FOOD_MPP, 8);
+    target:delMod(dsp.mod.FOOD_MP_CAP, 120);
+    target:delMod(dsp.mod.MAGIC_SKILLUP_RATE, 60);
 end;

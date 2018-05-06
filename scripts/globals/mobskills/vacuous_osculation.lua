@@ -23,8 +23,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_PLAGUE, 5, 3, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_POISON, mob:getMainLvl() / 6, 3, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.PLAGUE, 5, 3, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.POISON, mob:getMainLvl() / 6, 3, 60);
 
     target:delHP(dmg);
     return dmg;

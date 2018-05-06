@@ -5,21 +5,13 @@
 -- Recast Time: 3:00
 -- Duration: Instant
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability,action)
     return 0,0;
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player, target, ability, action)
 
@@ -47,7 +39,7 @@ function onUseAbility(player, target, ability, action)
 
     else
 
-    local bonuses = (player:getMod(MOD_SCAVENGE_EFFECT)  + player:getMerit(MERIT_SCAVENGE_EFFECT) ) / 100;
+    local bonuses = (player:getMod(dsp.mod.SCAVENGE_EFFECT)  + player:getMerit(dsp.merit.SCAVENGE_EFFECT) ) / 100;
     local arrowsToReturn = math.floor(math.floor(player:getLocalVar("ArrowsUsed")  % 10000) * (player:getMainLvl() / 200 + bonuses));
     local playerID = target:getID();
 

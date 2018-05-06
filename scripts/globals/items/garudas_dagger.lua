@@ -11,20 +11,20 @@ require("scripts/globals/weather");
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
-    if (VanadielDayElement() == WINDSDAY) then
+    if (VanadielDayElement() == dsp.day.WINDSDAY) then
         chance = chance+6;
     end
 
-    if (player:getWeather() == WEATHER_WIND) then
+    if (player:getWeather() == dsp.weather.WIND) then
         chance = chance+4;
-    elseif (player:getWeather() == WEATHER_GALES) then
+    elseif (player:getWeather() == dsp.weather.GALES) then
         chance = chance+6;
     end
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_SILENCE, 10, 0, 30);
-        return SUBEFFECT_SILENCE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SILENCE;
+        target:addStatusEffect(dsp.effect.SILENCE, 10, 0, 30);
+        return dsp.subEffect.SILENCE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SILENCE;
     end
 end;

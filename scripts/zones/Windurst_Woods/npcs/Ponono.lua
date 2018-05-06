@@ -12,21 +12,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_CLOTHCRAFT);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.CLOTHCRAFT);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_CLOTHCRAFT,newRank);
+        player:setSkillRank(dsp.skill.CLOTHCRAFT,newRank);
         player:startEvent(10012,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_CLOTHCRAFT);
-    local testItem = getTestItem(player,npc,SKILL_CLOTHCRAFT);
+    local craftSkill = player:getSkillLevel(dsp.skill.CLOTHCRAFT);
+    local testItem = getTestItem(player,npc,dsp.skill.CLOTHCRAFT);
     local guildMember = isGuildMember(player,3);
     if (guildMember == 1) then guildMember = 10000; end
-    if (canGetNewRank(player,craftSkill,SKILL_CLOTHCRAFT) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.CLOTHCRAFT) == 1) then getNewRank = 100; end
 
     player:startEvent(10011,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;

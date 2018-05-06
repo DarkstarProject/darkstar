@@ -51,10 +51,10 @@ function onEventFinish(player,csid,option)
 
     if (option == 1) then
         local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
-        player:delStatusEffect(EFFECT_SIGIL);
-        player:delStatusEffect(EFFECT_SANCTION);
-        player:delStatusEffect(EFFECT_SIGNET);
-        player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
+        player:delStatusEffect(dsp.effect.SIGIL);
+        player:delStatusEffect(dsp.effect.SANCTION);
+        player:delStatusEffect(dsp.effect.SIGNET);
+        player:addStatusEffect(dsp.effect.SIGNET,0,0,duration); -- Grant Signet
     elseif (option == 2) then
         player:delKeyItem(getSupplyKey(region));
         player:addCP(supplyReward[region + 1])

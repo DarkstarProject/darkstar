@@ -11,10 +11,10 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onUseAbility(pet, target, skill, action)
-    if (target:delStatusEffect(EFFECT_BLINDNESS)) then
-        skill:setMsg(msgBasic.JA_REMOVE_EFFECT);
+    if (target:delStatusEffect(dsp.effect.BLINDNESS)) then
+        skill:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT);
     else
-        skill:setMsg(msgBasic.JA_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.JA_NO_EFFECT);
     end
-    return EFFECT_BLINDNESS;
+    return dsp.effect.BLINDNESS;
 end

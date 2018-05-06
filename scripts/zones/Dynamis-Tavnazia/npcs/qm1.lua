@@ -21,17 +21,17 @@ function onTrade(player,npc,trade)
 
             local ShortID = GetMobByID(DiabolosID):getShortID()
                         SpawnMob(DiabolosID):updateClaim(player);
-                        GetMobByID(DiabolosID):setMobMod(MOBMOD_SUPERLINK,ShortID);
+                        GetMobByID(DiabolosID):setMobMod(dsp.mobMod.SUPERLINK,ShortID);
                         GetMobByID(DiabolosID):setPos(npcX-1,npcY-2,npcZ-1);
                         GetMobByID(DiabolosID):setSpawn(npcX-1,npcY-2,npcZ-1);
     -- printf("DiabolosID: %u",DiabolosID);
 
 
             if (DiabolosID == 16949252) then -- diabolos smn
-                SpawnMob(16949253):setMobMod(MOBMOD_SUPERLINK, ShortID);
+                SpawnMob(16949253):setMobMod(dsp.mobMod.SUPERLINK, ShortID);
                         GetMobByID(16949253):setPos(npcX-1,npcY-2,npcZ-1);
                         GetMobByID(16949253):setSpawn(npcX-1,npcY-2,npcZ-1);
-                SpawnMob(16949254):setMobMod(MOBMOD_SUPERLINK, ShortID);
+                SpawnMob(16949254):setMobMod(dsp.mobMod.SUPERLINK, ShortID);
                         GetMobByID(16949254):setPos(npcX-3,npcY-2,npcZ-1);
                         GetMobByID(16949254):setSpawn(npcX+3,npcY-2,npcZ-1);
             end

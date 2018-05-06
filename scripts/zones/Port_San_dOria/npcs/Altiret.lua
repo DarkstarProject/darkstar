@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
         if (count == 1 and freeSlot > 0 and giltGlasses == true) then
             player:tradeComplete();
             player:addFame(SANDORIA,30);
-            player:addTitle(PICKPOCKET_PINCHER);
+            player:addTitle(dsp.title.PICKPOCKET_PINCHER);
             player:completeQuest(SANDORIA,THE_PICKPOCKET);
             player:startEvent(550);
         elseif (giltGlasses == false) then

@@ -21,21 +21,21 @@ aftermathTable[19001] =
         duration = 60,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 100); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 100); end }
         }
     },
     {   -- Tier 2
         duration = 90,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(2 * tp / 50 - 60); end }
         }
     },
     {   -- Tier 3
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end }
         }
     }
 };
@@ -47,21 +47,21 @@ aftermathTable[19070] =
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 50); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(3 * tp / 50 - 90); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 60; end }
         }
     }
 };
@@ -75,22 +75,22 @@ aftermathTable[19720] =
         duration = 90,
         mods =
         {
-            { id = MOD_RACC, power = function(tp) return math.floor(tp / 50 + 10); end }
+            { id = dsp.mod.RACC, power = function(tp) return math.floor(tp / 50 + 10); end }
         }
     },
     {   -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_RATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
+            { id = dsp.mod.RATT, power = function(tp) return math.floor(tp * 0.06 - 80); end }
         }
     },
     {   -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = function(tp) return 40; end },
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = function(tp) return 20; end }
         }
     }
 };
@@ -101,9 +101,9 @@ aftermathTable[21247] = aftermathTable[19720]; -- Gastraphetes (119/II)
 aftermathTable[21266] = aftermathTable[19720]; -- Gastraphetes (119/III)
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_TRUEFLIGHT) then -- Trueflight onry
+    if (wsid == dsp.ws.TRUEFLIGHT) then -- Trueflight onry
         if (shouldApplyAftermath(user, tp)) then
-            local itemId = user:getEquipID(SLOT_RANGED);
+            local itemId = user:getEquipID(dsp.slot.RANGED);
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
                 addMythicAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -115,8 +115,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_RANGED);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.RANGED);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeMythicAftermathEffect(target, effect, aftermathTable[itemId]);
@@ -131,8 +131,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

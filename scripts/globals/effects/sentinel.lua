@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_SENTINEL
+-- dsp.effect.SENTINEL
 --
 -----------------------------------
 
@@ -11,9 +11,9 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_UDMGPHYS,-effect:getPower());
-    target:addMod(MOD_ENMITY, 100);
-    target:addMod(MOD_ENMITY_LOSS_REDUCTION, effect:getSubPower());
+    target:addMod(dsp.mod.UDMGPHYS,-effect:getPower());
+    target:addMod(dsp.mod.ENMITY, 100);
+    target:addMod(dsp.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower());
 end;
 
 -----------------------------------
@@ -33,7 +33,7 @@ function onEffectTick(target,effect)
          decayby = 8;
       end
       effect:setPower(power-decayby);
-      target:delMod(MOD_UDMGPHYS,-decayby);
+      target:delMod(dsp.mod.UDMGPHYS,-decayby);
    end
 end;
 
@@ -42,7 +42,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_UDMGPHYS,-effect:getPower());
-    target:delMod(MOD_ENMITY, 100);
-    target:delMod(MOD_ENMITY_LOSS_REDUCTION, effect:getSubPower());
+    target:delMod(dsp.mod.UDMGPHYS,-effect:getPower());
+    target:delMod(dsp.mod.ENMITY, 100);
+    target:delMod(dsp.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower());
 end;

@@ -7,7 +7,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(MOONGATE_PASS) == true) then
+    if (player:hasKeyItem(dsp.ki.MOONGATE_PASS) == true) then
         npc:openDoor(10);
     end
 end;

@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_TRIPLE_ATTACK, effect:getPower());
-    target:addMod(MOD_DOUBLE_ATTACK, 100);
+    target:addMod(dsp.mod.TRIPLE_ATTACK, effect:getPower());
+    target:addMod(dsp.mod.DOUBLE_ATTACK, 100);
 end;
 
 -----------------------------------
@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_TRIPLE_ATTACK, effect:getPower());
-    target:delMod(MOD_DOUBLE_ATTACK, 100);
+    target:delMod(dsp.mod.TRIPLE_ATTACK, effect:getPower());
+    target:delMod(dsp.mod.DOUBLE_ATTACK, 100);
 end;

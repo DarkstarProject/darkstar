@@ -14,22 +14,22 @@ require("scripts/globals/quests");
 
 local keyitems = {
     [0] = {
-        id = LEATHER_PURIFICATION,
+        id = dsp.ki.LEATHER_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = LEATHER_ENSORCELLMENT,
+        id = dsp.ki.LEATHER_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = TANNING,
+        id = dsp.ki.TANNING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = WAY_OF_THE_TANNER,
+        id = dsp.ki.WAY_OF_THE_TANNER,
         rank = 9,
         cost = 20000
     }

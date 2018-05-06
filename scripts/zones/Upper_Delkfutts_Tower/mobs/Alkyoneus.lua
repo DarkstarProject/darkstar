@@ -3,6 +3,7 @@
 --  MOB: Alkyoneus
 -----------------------------------
 require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/settings");
 
 function onMobDeath(mob, player, isKiller)

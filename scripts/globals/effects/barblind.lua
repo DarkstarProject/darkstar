@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARBLIND
+-- dsp.effect.BARBLIND
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_BLINDRES,effect:getPower());
+    target:addMod(dsp.mod.BLINDRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_BLINDRES,effect:getPower());
+    target:delMod(dsp.mod.BLINDRES,effect:getPower());
 end;

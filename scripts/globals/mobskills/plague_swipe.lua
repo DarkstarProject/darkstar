@@ -27,8 +27,8 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
-   MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_BIO, 7, 3, 60);
-   MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_PLAGUE, 5, 3, 60);
+   MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.BIO, 7, 3, 60);
+   MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.PLAGUE, 5, 3, 60);
 
     target:delHP(dmg);
     return dmg;

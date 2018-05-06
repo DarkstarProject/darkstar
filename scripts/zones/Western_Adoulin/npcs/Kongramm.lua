@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local Transporting = player:getQuestStatus(ADOULIN, TRANSPORTING);
 
-    if ((SOA_Mission == A_CURSE_FROM_THE_PAST) and (not player:hasKeyItem(PIECE_OF_A_STONE_WALL))) then
+    if ((SOA_Mission == A_CURSE_FROM_THE_PAST) and (not player:hasKeyItem(dsp.ki.PIECE_OF_A_STONE_WALL))) then
         if (player:getVar("SOA_ACFTP_Kongramm") < 1) then
             -- Gives hint for SOA Mission: 'A Curse From the Past'
             player:startEvent(148);

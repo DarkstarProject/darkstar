@@ -24,7 +24,7 @@ function onMobDeath(mob, player, isKiller)
         -- show ??? for desired duration
         -- notify people on the quest who need the KI
         GetNPCByID(BOREAL_HOUND_QM):showNPC(FrigiciteDuration);
-        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(TRIANGULAR_FRIGICITE)) then
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.TRIANGULAR_FRIGICITE)) then
             player:messageSpecial(BLOCKS_OF_ICE);
         end
     end

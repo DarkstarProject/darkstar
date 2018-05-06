@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
 
     -- You need to talk to Aldo before you can obtain the Crest of Davoi or Yagudo Torch
-    if (player:hasKeyItem(SILVER_BELL) and CrestOfDavoi == QUEST_AVAILABLE) then
+    if (player:hasKeyItem(dsp.ki.SILVER_BELL) and CrestOfDavoi == QUEST_AVAILABLE) then
         player:startEvent(174); -- Start Quest "Crest of Davoi"
     elseif (CrestOfDavoi == QUEST_ACCEPTED) then
         player:startEvent(175); -- During Quest "Crest of Davoi"
@@ -68,8 +68,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 171) then
         player:tradeComplete();
         player:setVar("saveMySisterVar",1);
-        player:addKeyItem(CREST_OF_DAVOI_KI);
-        player:messageSpecial(KEYITEM_OBTAINED,CREST_OF_DAVOI_KI);
+        player:addKeyItem(dsp.ki.CREST_OF_DAVOI_KI);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CREST_OF_DAVOI_KI);
         player:addFame(JEUNO, 30);
         player:completeQuest(JEUNO,CREST_OF_DAVOI);
 
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17041);
         else
-            player:addTitle(EXORCIST_IN_TRAINING);
+            player:addTitle(dsp.title.EXORCIST_IN_TRAINING);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(17041);

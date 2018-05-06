@@ -14,10 +14,10 @@ end;
 function onSpellCast(caster,target,spell)
     local effect = target:eraseStatusEffect();
 
-    if (effect == EFFECT_NONE) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+    if (effect == dsp.effect.NONE) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     else
-        spell:setMsg(msgBasic.MAGIC_ERASE);
+        spell:setMsg(dsp.msg.basic.MAGIC_ERASE);
     end
 
     return effect;

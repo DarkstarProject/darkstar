@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Waters
 --  NPC: Door_House
--- 17752333 (Corsair's Gants) !pos -200 -4 -111 238
+-- (Corsair's Gants) !pos -200 -4 -111 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local npcID = npc:getID();
     if (npcID == LELEROON_GREEN_DOOR) then
         local letterGreen = player:getVar("LeleroonsLetterGreen");
-        if (player:hasKeyItem(LELEROONS_LETTER_GREEN)) then
+        if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_GREEN)) then
             player:startEvent(941); -- accept letter, now bring me four items
         elseif (letterGreen == 2) then
             player:startEvent(942); -- i'm waiting for four items
@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 941) then
         player:setVar("LeleroonsLetterGreen", 2);
-        player:delKeyItem(LELEROONS_LETTER_GREEN);
+        player:delKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
     elseif (csid == 943) then
         player:tradeComplete();
         player:setVar("LeleroonsletterGreen", 3);

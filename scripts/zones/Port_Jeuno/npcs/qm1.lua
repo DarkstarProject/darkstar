@@ -19,8 +19,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    OldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
-    ShadowFlames = player:hasKeyItem(SHADOW_FLAMES);
+    OldGauntlets = player:hasKeyItem(dsp.ki.OLD_GAUNTLETS);
+    ShadowFlames = player:hasKeyItem(dsp.ki.SHADOW_FLAMES);
     BorghertzCS = player:getVar("BorghertzCS");
 
     if (OldGauntlets == true and ShadowFlames == false and BorghertzCS == 1) then
@@ -50,8 +50,8 @@ function onEventFinish(player,csid,option)
         else
             player:addItem(NumHands);
             player:messageSpecial(ITEM_OBTAINED,NumHands);
-            player:delKeyItem(OLD_GAUNTLETS);
-            player:delKeyItem(SHADOW_FLAMES);
+            player:delKeyItem(dsp.ki.OLD_GAUNTLETS);
+            player:delKeyItem(dsp.ki.SHADOW_FLAMES);
             player:setVar("BorghertzCS",0);
             player:setVar("BorghertzAlreadyActiveWithJob",0);
             player:addFame(JEUNO,30);

@@ -10,27 +10,20 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return msgBasic.CANNOT_PERFORM_TARG,0;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG,0;
     elseif (player:getTP() < 1000) then
-        return msgBasic.NOT_ENOUGH_TP, 0;
+        return dsp.msg.basic.NOT_ENOUGH_TP, 0;
     else
         return 0,0;
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(MERIT_SHIKIKOYO) - 12) / 100));
+    local pTP = (player:getTP() - 1000) * (1 + ((player:getMerit(dsp.merit.SHIKIKOYO) - 12) / 100));
     pTP = utils.clamp(pTP, 0, 3000 - target:getTP());
 
     player:setTP(1000);

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_NONE
+--     dsp.effect.NONE
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HASTE_MAGIC,-effect:getPower());
+    target:addMod(dsp.mod.HASTE_MAGIC,-effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HASTE_MAGIC,-effect:getPower());
+    target:delMod(dsp.mod.HASTE_MAGIC,-effect:getPower());
 end;

@@ -1,12 +1,12 @@
 -----------------------------------
 --
--- EFFECT_ELEMENTAL_SFORZO
+-- dsp.effect.ELEMENTAL_SFORZO
 --
 -----------------------------------
 require("scripts/globals/status");
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_UDMGMAGIC, -100);
+    target:addMod(dsp.mod.UDMGMAGIC, -100);
     -- Todo: status resists
 end;
 
@@ -14,6 +14,6 @@ function onEffectTick(target,effect)
 end;
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_UDMGMAGIC, -100);
+    target:delMod(dsp.mod.UDMGMAGIC, -100);
     -- Todo: status resists
 end;

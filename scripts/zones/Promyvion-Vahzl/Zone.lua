@@ -32,7 +32,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0); -- LV50 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,50,0,0); -- LV50 cap
     end
 end;
 
@@ -41,7 +41,7 @@ function onRegionEnter(player,region)
         local regionId = region:GetRegionID();
         local events = VAHZL_MEMORY_STREAMS[regionId][7];
         local event = events[math.random(#events)];
-        if (regionId < 100 or GetNPCByID(regionId):getAnimation() == ANIMATION_OPEN_DOOR) then
+        if (regionId < 100 or GetNPCByID(regionId):getAnimation() == dsp.anim.OPEN_DOOR) then
             player:startEvent(event);
         end
     end

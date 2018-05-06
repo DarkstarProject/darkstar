@@ -12,14 +12,14 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 45)
-	local highest = automaton:getSkillLevel(22)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 45)
+	local highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE)
 	local highestskill = 22
-	if automaton:getSkillLevel(23) > highest then
+	if automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED) > highest then
 		highestskill = 23
-		highest = automaton:getSkillLevel(23)
+		highest = automaton:getSkillLevel(dsp.skill.AUTOMATON_RANGED)
 	end
-	if automaton:getSkillLevel(24) > highest then
+	if automaton:getSkillLevel(dsp.skill.AUTOMATON_MAGIC) > highest then
 		highestskill = 24
 	end
 
@@ -27,14 +27,14 @@ function onPetAbility(target, automaton, skill, master, action)
     local duration = 12 * resist
 
     if resist > 0.0625 then
-        if target:addStatusEffect(EFFECT_FLASH, 200, 0, duration) then
-            skill:setMsg(msgBasic.SKILL_ENFEEB)
+        if target:addStatusEffect(dsp.effect.FLASH, 200, 0, duration) then
+            skill:setMsg(dsp.msg.basic.SKILL_ENFEEB)
         else
-            skill:setMsg(msgBasic.SKILL_NO_EFFECT)
+            skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
         end
     else
-        skill:setMsg(msgBasic.RESIST)
+        skill:setMsg(dsp.msg.basic.RESIST)
     end
 
-    return EFFECT_FLASH
+    return dsp.effect.FLASH
 end

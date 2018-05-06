@@ -20,8 +20,8 @@ function onTrigger(player,npc)
 
     if (X < -60) then
         if (Z < -6) then -- SW frame
-            if (player:hasKeyItem(FINAL_FANTASY)) then
-                player:startEvent(50,FINAL_FANTASY);
+            if (player:hasKeyItem(dsp.ki.FINAL_FANTASY)) then
+                player:startEvent(50,dsp.ki.FINAL_FANTASY);
             else
                 player:messageSpecial(PAINTBRUSH_OFFSET + 31); -- This is a frame for a painting.
             end
@@ -34,16 +34,16 @@ function onTrigger(player,npc)
         if (Z <-5) then -- SE picture
             player:messageSpecial(PAINTBRUSH_OFFSET + 12); -- It is a painting of a beautiful landscape.
         elseif (Z > -5 and Z < 5) then
-            if (GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):getAnimation() == ANIMATION_OPEN_DOOR) then
-                player:messageSpecial(PAINTBRUSH_OFFSET + 23,PAINTBRUSH_OF_SOULS); -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
-            elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1) then -- has paintbrush of souls + close enough
-                player:messageSpecial(PAINTBRUSH_OFFSET + 17,PAINTBRUSH_OF_SOULS);
+            if (GetNPCByID(UGGALEPIH_DOOR_TO_RANCOR):getAnimation() == dsp.anim.OPEN_DOOR) then
+                player:messageSpecial(PAINTBRUSH_OFFSET + 23,dsp.ki.PAINTBRUSH_OF_SOULS); -- The <KEY_ITEM> begins to twitch. The canvas is graced with the image from your soul.
+            elseif (player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS) and X >= -53.2 and Z <= 0.1 and Z >= -0.1) then -- has paintbrush of souls + close enough
+                player:messageSpecial(PAINTBRUSH_OFFSET + 17,dsp.ki.PAINTBRUSH_OF_SOULS);
                 player:setVar("started_painting",os.time());
-                player:startEvent(60,PAINTBRUSH_OF_SOULS);
-            elseif (player:hasKeyItem(PAINTBRUSH_OF_SOULS)) then
-                player:messageSpecial(PAINTBRUSH_OFFSET + 15,PAINTBRUSH_OF_SOULS);
+                player:startEvent(60,dsp.ki.PAINTBRUSH_OF_SOULS);
+            elseif (player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS)) then
+                player:messageSpecial(PAINTBRUSH_OFFSET + 15,dsp.ki.PAINTBRUSH_OF_SOULS);
             else
-                player:messageSpecial(PAINTBRUSH_OFFSET, PAINTBRUSH_OF_SOULS); -- When the paintbrush of souls projects the deepest, darkest corner of your soul...
+                player:messageSpecial(PAINTBRUSH_OFFSET, dsp.ki.PAINTBRUSH_OF_SOULS); -- When the paintbrush of souls projects the deepest, darkest corner of your soul...
             end
         else
             player:messageSpecial(PAINTBRUSH_OFFSET + 11); -- It is a painting of a sublime-looking woman.

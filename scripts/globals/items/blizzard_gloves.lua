@@ -9,6 +9,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    local effect = EFFECT_ENBLIZZARD;
+    local effect = dsp.effect.ENBLIZZARD;
     doEnspell(target,target,nil,effect);
 end;

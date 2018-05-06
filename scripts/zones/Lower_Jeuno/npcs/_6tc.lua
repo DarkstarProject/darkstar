@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         player:startEvent(22); --COP event
     elseif (player:getVar("BeatAroundTheBushin") == 1) then
         player:startEvent(155); -- Start Quest "Beat around the Bushin"
-    elseif (player:hasKeyItem(TENSHODO_MEMBERS_CARD) == true) then
+    elseif (player:hasKeyItem(dsp.ki.TENSHODO_MEMBERS_CARD) == true) then
         player:startEvent(105); -- Open the door
     else
         player:messageSpecial(ITS_LOCKED);
@@ -77,7 +77,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13186);
         else
-            player:addTitle(BLACK_BELT);
+            player:addTitle(dsp.title.BLACK_BELT);
             player:addItem(13186);
             player:messageSpecial(ITEM_OBTAINED,13186);
             player:setVar("BeatAroundTheBushin",0);

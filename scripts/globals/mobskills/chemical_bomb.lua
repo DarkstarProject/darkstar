@@ -13,7 +13,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
+    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST);
     local mobhp = mob:getHPP();
     local phase = mob:getLocalVar("battlePhase");
 
@@ -25,8 +25,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffectOne = EFFECT_ELEGY;
-    local typeEffectTwo = EFFECT_SLOW;
+    local typeEffectOne = dsp.effect.ELEGY;
+    local typeEffectTwo = dsp.effect.SLOW;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffectOne, 512, 0, 120));
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffectTwo, 512, 0, 120));

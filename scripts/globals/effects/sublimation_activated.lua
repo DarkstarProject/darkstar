@@ -19,28 +19,28 @@ end;
 function onEffectTick(target,effect)
     local complete = false;
     local level = 0;
-    if (target:getMainJob() == JOBS.SCH) then
+    if (target:getMainJob() == dsp.job.SCH) then
         level = target:getMainLvl();
     else
         level = target:getSubLvl();
     end
     local basemp = math.floor((level - 15)/10);
-    local bonus = target:getMod(MOD_SUBLIMATION_BONUS);
+    local bonus = target:getMod(dsp.mod.SUBLIMATION_BONUS);
     
     local dmg = 2 + bonus;
     
     local store = effect:getPower() + basemp + bonus;
     
-    local limit = math.floor((target:getBaseHP() + target:getMod(MOD_HP) + target:getMerit(MERIT_MAX_HP)) / 4) +
-        target:getMerit(MERIT_MAX_SUBLIMATION);
+    local limit = math.floor((target:getBaseHP() + target:getMod(dsp.mod.HP) + target:getMerit(dsp.merit.MAX_HP)) / 4) +
+        target:getMerit(dsp.merit.MAX_SUBLIMATION);
     
     if not (target:getHPP() < 51 ) then
-        if (target:hasStatusEffect(EFFECT_STONESKIN)) then
-            local skin = target:getMod(MOD_STONESKIN);
+        if (target:hasStatusEffect(dsp.effect.STONESKIN)) then
+            local skin = target:getMod(dsp.mod.STONESKIN);
             if (skin >= dmg) then --absorb all damage
-                target:delMod(MOD_STONESKIN,dmg);
+                target:delMod(dsp.mod.STONESKIN,dmg);
             else
-                target:delStatusEffect(EFFECT_STONESKIN);
+                target:delStatusEffect(dsp.effect.STONESKIN);
                 target:delHP(dmg - skin);
                 target:wakeUp();
                 if (target:getHPP() < 51 ) then
@@ -64,8 +64,8 @@ function onEffectTick(target,effect)
     end
     
     if (complete) then
-        target:delStatusEffectSilent(EFFECT_SUBLIMATION_ACTIVATED);
-        target:addStatusEffect(EFFECT_SUBLIMATION_COMPLETE,store,0,7200);
+        target:delStatusEffectSilent(dsp.effect.SUBLIMATION_ACTIVATED);
+        target:addStatusEffect(dsp.effect.SUBLIMATION_COMPLETE,store,0,7200);
     else
         effect:setPower(store);
     end

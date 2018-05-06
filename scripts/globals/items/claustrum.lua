@@ -22,7 +22,7 @@ aftermathTable[18330] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=8 }
+        { id=dsp.mod.REFRESH, power=8 }
     }
 };
 aftermathTable[18331] = aftermathTable[18330]; -- Claustrum (80)
@@ -41,14 +41,14 @@ aftermathTable[22060] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_REFRESH, power=15 },
-        { id=MOD_DMG, power=-20 }
+        { id=dsp.mod.REFRESH, power=15 },
+        { id=dsp.mod.DMG, power=-20 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_GATE_OF_TARTARUS) then -- Gate Of Tartarus onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.GATE_OF_TARTARUS) then -- Gate Of Tartarus onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -59,8 +59,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -75,8 +75,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -88,10 +88,10 @@ function onAdditionalEffect(player,target,damage)
     local chance = 15;
     if (chance > math.random(0,99)) then
         local dispel = target:dispelStatusEffect();
-        if (dispel == EFFECT_NONE) then
+        if (dispel == dsp.effect.NONE) then
             return 0,0,0;
         else
-            return SUBEFFECT_DISPEL, msgBasic.ADD_EFFECT_DISPEL, dispel;
+            return dsp.subEffect.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, dispel;
         end
     else
         return 0,0,0;

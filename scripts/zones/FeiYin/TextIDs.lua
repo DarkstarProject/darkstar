@@ -1,9 +1,9 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6566; -- Obtained: <item>
-           GIL_OBTAINED = 6567; -- Obtained <number> gil
+ITEM_CANNOT_BE_OBTAINED = 6559; -- You cannot obtain the item <item> come back again after sorting your inventory
+          ITEM_OBTAINED = 6565; -- Obtained: <item>
+           GIL_OBTAINED = 6566; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6568; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7226; -- You can't fish here
          HOMEPOINT_SET = 10686; -- Home point set!
@@ -28,7 +28,7 @@ MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7498; -- The Mark of Seed is about to dissi
         MARK_OF_SEED_GROWS_FAINTER = 7497; -- The Mark of Seed grows fainter still. Before long, it will fade away entirely...
              MARK_OF_SEED_FLICKERS = 7496; -- The glow of the Mark of Seed flickers and dims ever so slightly...
       SCINTILLATING_BURST_OF_LIGHT = 7487; -- As you extend your hand, there is a scintillating burst of light!
-           YOU_REACH_FOR_THE_LIGHT = 7486; -- You reach for the light, but there is no discernable effect...
+           YOU_REACH_FOR_THE_LIGHT = 7486; -- You reach for the light, but there is no discernable dsp.effect...
             EVEN_GREATER_INTENSITY = 7485; -- The emblem on your hand glows with even greater intensity!
                 THE_LIGHT_DWINDLES = 7484; -- However, the light dwindles and grows dim almost at once...
         YOU_REACH_OUT_TO_THE_LIGHT = 7483; -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand.

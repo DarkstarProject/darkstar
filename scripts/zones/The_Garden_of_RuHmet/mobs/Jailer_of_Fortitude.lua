@@ -10,8 +10,8 @@ require("scripts/globals/magic");
 
 function onMobSpawn(mob)
     -- Give it two hour
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
+    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);
@@ -28,7 +28,7 @@ function onMobFight(mob, target)
     end;
 
     if (not GetMobByID(Kf_Ghrah_WHM):isDead() or not GetMobByID(Kf_Ghrah_BLM):isDead()) then -- check for kf'ghrah
-        if (spell > 0 and not mob:hasStatusEffect(EFFECT_SILENCE)) then
+        if (spell > 0 and not mob:hasStatusEffect(dsp.effect.SILENCE)) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);
@@ -41,7 +41,7 @@ function onMobFight(mob, target)
 end;
 
 function onMagicHit(caster,target,spell)
-    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
+    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= dsp.magic.spellGroup.BLUE ) then
         -- Handle mimicked spells
         target:setLocalVar("COPY_SPELL", spell:getID());
         target:setLocalVar("LAST_CAST", target:getBattleTime());

@@ -5,9 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/settings");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
+require("scripts/zones/Lufaise_Meadows/MobIDs");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,14 +15,17 @@ end;
 
 function onTrigger(player,npc)
     -- NOTE: uncertain of retailness of messages. Had expected but did not find any csid.
-    if (GetMobAction(16875774) == 0 and player:getQuestStatus(OTHER_AREAS,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and player:getVar("SPLINTERSPINE_GRUKJUK") <= 1) then
+    if (
+        player:getQuestStatus(OTHER_AREAS_LOG,A_HARD_DAY_S_KNIGHT) == QUEST_ACCEPTED and
+        player:getVar("SPLINTERSPINE_GRUKJUK") <= 1 and
+        not GetMobByID(SPLINTERSPINE_GRUKJUK):isSpawned()
+    ) then
         player:messageSpecial(SURVEY_THE_SURROUNDINGS);
         player:messageSpecial(MURDEROUS_PRESENCE);
         player:setVar("SPLINTERSPINE_GRUKJUK",1);
-        SpawnMob(16875774):updateClaim(player); -- Splinterspine Grukjuk
+        SpawnMob(SPLINTERSPINE_GRUKJUK):updateClaim(player);
     else
         player:messageSpecial(YOU_CAN_SEE_FOR_MALMS);
         player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
     end
-
 end;

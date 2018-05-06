@@ -7,12 +7,12 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_POISON);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.WATER,dsp.effect.POISON);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -22,10 +22,10 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(EFFECT_POISON)) then
-            player:addStatusEffect(EFFECT_POISON, 1, 3, duration); -- Don't know potency on the poison.
+        if (not player:hasStatusEffect(dsp.effect.POISON)) then
+            player:addStatusEffect(dsp.effect.POISON, 1, 3, duration); -- Don't know potency on the poison.
         end
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
+        return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
 end;
 

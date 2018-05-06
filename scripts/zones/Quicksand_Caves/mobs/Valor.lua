@@ -9,13 +9,13 @@ require("scripts/globals/missions");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobSpawn(mob)
     DespawnMob(mob:getID(), 180);
-    mob:addMod(MOD_SLEEPRES, 50);
-    mob:addMod(MOD_LULLABYRES, 50);
+    mob:addMod(dsp.mod.SLEEPRES, 50);
+    mob:addMod(dsp.mod.LULLABYRES, 50);
 end;
 
 function onMobDeath(mob, player, isKiller)

@@ -23,9 +23,9 @@ function onMobWeaponSkill(target, mob, skill)
     local power = 50;
     local duration = 120;
 
-    MobStatusEffectMove(mob, target, EFFECT_STR_DOWN, power, 3, duration);
+    MobStatusEffectMove(mob, target, dsp.effect.STR_DOWN, power, 3, duration);
 
-    local dmgmod = MobBreathMove(mob, target, 0.1, 1, ELE_FIRE, 200);
+    local dmgmod = MobBreathMove(mob, target, 0.1, 1, dsp.magic.ele.FIRE, 200);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
     

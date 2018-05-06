@@ -38,8 +38,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    if (damage > 0) then
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 19, 0, 120);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.ATTACK_DOWN) == false) then
+        local duration = (tp/1000 * 20) * applyResistanceAddEffect(player,target,dsp.magic.ele.WIND,0);
+        target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 19, 0, duration);
     end
 
     return tpHits, extraHits, criticalHit, damage;

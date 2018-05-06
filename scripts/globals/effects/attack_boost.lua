@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ATTACK_BOOST
+-- dsp.effect.ATTACK_BOOST
 --
 -----------------------------------
 
@@ -14,7 +14,7 @@ function onEffectGain(target,effect)
     if (effect:getPower()>100) then
         effect:setPower(50);
     end
-    target:addMod(MOD_ATTP,effect:getPower());
+    target:addMod(dsp.mod.ATTP,effect:getPower());
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,effect:getPower());
+    target:delMod(dsp.mod.ATTP,effect:getPower());
 end;

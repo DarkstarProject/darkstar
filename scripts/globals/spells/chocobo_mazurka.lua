@@ -13,27 +13,27 @@ end;
 function onSpellCast(caster,target,spell)
     local power = 24;
 
-    local iBoost = caster:getMod(MOD_MAZURKA_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(dsp.mod.MAZURKA_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
 
     local duration = 120;
 
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
         duration = duration * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
         duration = duration * 1.5;
     end
-    caster:delStatusEffect(EFFECT_MARCATO);
+    caster:delStatusEffect(dsp.effect.MARCATO);
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         duration = duration * 2;
     end
 
-    if not (target:addBardSong(caster,EFFECT_MAZURKA,power,0,duration,caster:getID(), 0, 1)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+    if not (target:addBardSong(caster,dsp.effect.MAZURKA,power,0,duration,caster:getID(), 0, 1)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_MAZURKA;
+    return dsp.effect.MAZURKA;
 end;
 

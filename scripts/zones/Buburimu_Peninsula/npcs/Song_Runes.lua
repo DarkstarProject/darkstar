@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:addItem(634,1);
         player:messageSpecial(ITEM_OBTAINED, 634);
         player:completeQuest(JEUNO,THE_OLD_MONUMENT);
-        player:addTitle(RESEARCHER_OF_CLASSICS);
+        player:addTitle(dsp.title.RESEARCHER_OF_CLASSICS);
         player:addFame(BASTOK,10);
         player:addFame(SANDORIA,10);
         player:addFame(WINDURST,10);

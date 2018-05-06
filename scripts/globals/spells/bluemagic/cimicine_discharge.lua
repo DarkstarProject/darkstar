@@ -24,27 +24,27 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = math.random(60,180);
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(dsp.mod.INT);
+    local mINT = target:getStat(dsp.mod.INT);
     local dINT = (pINT - mINT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus = 0;
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);
 
     if (resist < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); --resist message
-        return EFFECT_SLOW;
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); --resist message
+        return dsp.effect.SLOW;
     end
 
-    if (target:addStatusEffect(EFFECT_SLOW,200,0,getBlueEffectDuration(caster,resist,EFFECT_SLOW))) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+    if (target:addStatusEffect(dsp.effect.SLOW,200,0,getBlueEffectDuration(caster,resist,dsp.effect.SLOW))) then
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_SLOW;
+    return dsp.effect.SLOW;
 end;

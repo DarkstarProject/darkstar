@@ -24,10 +24,10 @@ function onAdditionalEffect(player,target,damage)
             duration = duration - (target:getMainLvl() - player:getMainLvl())
         end
         duration = utils.clamp(duration,1,25);
-        duration = duration * applyResistanceAddEffect(player,target,ELE_LIGHT,0);
-        if (not target:hasStatusEffect(EFFECT_SLEEP_I)) then
-            target:addStatusEffect(EFFECT_SLEEP_I, 1, 0, duration);
+        duration = duration * applyResistanceAddEffect(player,target,dsp.magic.ele.LIGHT,0);
+        if (not target:hasStatusEffect(dsp.effect.SLEEP_I)) then
+            target:addStatusEffect(dsp.effect.SLEEP_I, 1, 0, duration);
         end
-        return SUBEFFECT_SLEEP, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLEEP_I;
+        return dsp.subEffect.SLEEP, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SLEEP_I;
     end
 end;

@@ -11,8 +11,8 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    spell:setMsg(msgBasic.MAGIC_TELEPORT);
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_ESCAPE,0,4);
+    spell:setMsg(dsp.msg.basic.MAGIC_TELEPORT);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_ESCAPE,0,4);
     --Escape(target, target:getZoneID());
 
     return 0;

@@ -8,25 +8,27 @@ g_mixins = g_mixins or {};
 g_mixins.job_special = function(mob)
 
     mob:addListener("SPAWN", "JOB_SPECIAL_SPAWN", function(mob)
+        mob:setLocalVar("useSpecAtHpMin", 40);
+        mob:setLocalVar("useSpecAtHpMax", 60);
         mob:setLocalVar("useMainSpecAtHPP", math.random(40,60));
     end);
     
     mob:addListener("COMBAT_TICK", "JOB_SPECIAL_CTICK", function(mob)
         local defaultAbility = {
-            [JOBS.WAR] = jobSpec.MIGHTY_STRIKES,
-            [JOBS.MNK] = jobSpec.HUNDRED_FISTS,
-            [JOBS.WHM] = jobSpec.BENEDICTION,
-            [JOBS.BLM] = jobSpec.MANAFONT,
-            [JOBS.RDM] = jobSpec.CHAINSPELL,
-            [JOBS.THF] = jobSpec.PERFECT_DODGE,
-            [JOBS.PLD] = jobSpec.INVINCIBLE,
-            [JOBS.DRK] = jobSpec.BLOOD_WEAPON,
-            [JOBS.BST] = jobSpec.FAMILIAR,
-            [JOBS.BRD] = jobSpec.SOUL_VOICE,
-            [JOBS.SAM] = jobSpec.MEIKYO_SHISUI,
-            [JOBS.NIN] = jobSpec.MIJIN_GAKURE,
-            [JOBS.DRG] = jobSpec.CALL_WYVERN,
-            [JOBS.SMN] = jobSpec.ASTRAL_FLOW,
+            [dsp.job.WAR] = dsp.jsa.MIGHTY_STRIKES,
+            [dsp.job.MNK] = dsp.jsa.HUNDRED_FISTS,
+            [dsp.job.WHM] = dsp.jsa.BENEDICTION,
+            [dsp.job.BLM] = dsp.jsa.MANAFONT,
+            [dsp.job.RDM] = dsp.jsa.CHAINSPELL,
+            [dsp.job.THF] = dsp.jsa.PERFECT_DODGE,
+            [dsp.job.PLD] = dsp.jsa.INVINCIBLE,
+            [dsp.job.DRK] = dsp.jsa.BLOOD_WEAPON,
+            [dsp.job.BST] = dsp.jsa.FAMILIAR,
+            [dsp.job.BRD] = dsp.jsa.SOUL_VOICE,
+            [dsp.job.SAM] = dsp.jsa.MEIKYO_SHISUI,
+            [dsp.job.NIN] = dsp.jsa.MIJIN_GAKURE,
+            [dsp.job.DRG] = dsp.jsa.CALL_WYVERN,
+            [dsp.job.SMN] = dsp.jsa.ASTRAL_FLOW,
         };
 
         if (mob:getLocalVar("usedMainSpec") == 0 and mob:getHPP() < mob:getLocalVar("useMainSpecAtHPP")) then
@@ -56,6 +58,14 @@ g_mixins.job_special = function(mob)
     mob:addListener("DISENGAGE", "JOB_SPECIAL_DISENGAGE", function(mob, target)
         mob:setLocalVar("usedMainSpec", 0);
         mob:setLocalVar("usedSubSpec", 0);
+
+        local hpMin =  mob:getLocalVar("useSpecAtHpMin");
+        local hpMax =  mob:getLocalVar("useSpecAtHpMax");
+  
+        mob:setLocalVar("useMainSpecAtHPP", math.random(hpMin,hpMax));
+        if (mob:getLocalVar("useSubSpecAtHPP") > 0) then
+            mob:setLocalVar("useSubSpecAtHPP", math.random(hpMin,hpMax));
+        end
     end);
     
 end

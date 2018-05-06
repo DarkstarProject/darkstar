@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
         end
         player:tradeComplete();
         SpawnMob(OLLAS_OFFSET):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

@@ -9,7 +9,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(MORBOLBANE);
+    player:addTitle(dsp.title.MORBOLBANE);
 end;
 
 function onMobDespawn(mob)

@@ -4,8 +4,9 @@
 --
 -----------------------------------
 
-require("scripts/globals/common");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/common");
 
 -----------------------------------
 -- convenience constants
@@ -230,10 +231,10 @@ end;
 function finishConquestGuard(player,csid,option,size,inventory,guardnation)
     if (option == 1) then
         local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
-        player:delStatusEffectSilent(EFFECT_SIGIL);
-        player:delStatusEffectSilent(EFFECT_SANCTION);
-        player:delStatusEffectSilent(EFFECT_SIGNET);
-        player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
+        player:delStatusEffectSilent(dsp.effect.SIGIL);
+        player:delStatusEffectSilent(dsp.effect.SANCTION);
+        player:delStatusEffectSilent(dsp.effect.SIGNET);
+        player:addStatusEffect(dsp.effect.SIGNET,0,0,duration); -- Grant Signet
     elseif (option >= 32768 and option <= 32944) then
         for Item = 1,size,3 do
             if (option == inventory[Item]) then
@@ -249,7 +250,7 @@ function finishConquestGuard(player,csid,option,size,inventory,guardnation)
                     end
 
                     local itemCP;
-                    if (player:getNation() == guardnation) then
+                    if (player:getNation() == guardnation or guardnation == OTHER) then
                         itemCP = inventory[Item + 1];
                     else
                         if (inventory[Item + 1] <= 8000) then
@@ -631,19 +632,19 @@ end;
 -- Expeditionary Force
 -- {Option,Quest,Zone,MenuMask,MinimumLevel,KeyItem} NOT USED
 -----------------------------------
-EXFORCE = {0x20006,ZULK_EF,0x67,0x000040,0x14,ZULKHEIM_EF_INSIGNIA,
-           0x20007,NORV_EF,0x68,0x000080,0x19,NORVALLEN_EF_INSIGNIA,
-           0x20009,DERF_EF,0x6D,0x000200,0x19,DERFLAND_EF_INSIGNIA,
-           0x2000B,KOLS_EF,0x76,0x000800,0x14,KOLSHUSHU_EF_INSIGNIA,
-           0x2000C,ARAG_EF,0x77,0x001000,0x19,ARAGONEU_EF_INSIGNIA,
-           0x2000D,FAUR_EF,0x6F,0x002000,0x23,FAUREGANDI_EF_INSIGNIA,
-           0x2000E,VALD_EF,0x70,0x004000,0x28,VALDEAUNIA_EF_INSIGNIA,
-           0x2000F,QUFI_EF,0x7E,0x008000,0x19,QUFIM_EF_INSIGNIA,
-           0x20010,LITE_EF,0x79,0x010000,0x23,LITELOR_EF_INSIGNIA,
-           0x20011,KUZO_EF,0x72,0x020000,0x28,KUZOTZ_EF_INSIGNIA,
-           0x20012,VOLL_EF,0x71,0x040000,0x41,VOLLBOW_EF_INSIGNIA,
-           0x20013,ELLO_EF,0x7B,0x080000,0x23,ELSHIMO_LOWLANDS_EF_INSIGNIA,
-           0x20014,ELUP_EF,0x7C,0x100000,0x2D,ELSHIMO_UPLANDS_EF_INSIGNIA};
+EXFORCE = {0x20006,ZULK_EF,0x67,0x000040,0x14,dsp.ki.ZULKHEIM_EF_INSIGNIA,
+           0x20007,NORV_EF,0x68,0x000080,0x19,dsp.ki.NORVALLEN_EF_INSIGNIA,
+           0x20009,DERF_EF,0x6D,0x000200,0x19,dsp.ki.DERFLAND_EF_INSIGNIA,
+           0x2000B,KOLS_EF,0x76,0x000800,0x14,dsp.ki.KOLSHUSHU_EF_INSIGNIA,
+           0x2000C,ARAG_EF,0x77,0x001000,0x19,dsp.ki.ARAGONEU_EF_INSIGNIA,
+           0x2000D,FAUR_EF,0x6F,0x002000,0x23,dsp.ki.FAUREGANDI_EF_INSIGNIA,
+           0x2000E,VALD_EF,0x70,0x004000,0x28,dsp.ki.VALDEAUNIA_EF_INSIGNIA,
+           0x2000F,QUFI_EF,0x7E,0x008000,0x19,dsp.ki.QUFIM_EF_INSIGNIA,
+           0x20010,LITE_EF,0x79,0x010000,0x23,dsp.ki.LITELOR_EF_INSIGNIA,
+           0x20011,KUZO_EF,0x72,0x020000,0x28,dsp.ki.KUZOTZ_EF_INSIGNIA,
+           0x20012,VOLL_EF,0x71,0x040000,0x41,dsp.ki.VOLLBOW_EF_INSIGNIA,
+           0x20013,ELLO_EF,0x7B,0x080000,0x23,dsp.ki.ELSHIMO_LOWLANDS_EF_INSIGNIA,
+           0x20014,ELUP_EF,0x7C,0x100000,0x2D,dsp.ki.ELSHIMO_UPLANDS_EF_INSIGNIA};
 
 
 ---------------------------------

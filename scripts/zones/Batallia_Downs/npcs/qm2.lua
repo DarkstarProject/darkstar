@@ -15,8 +15,8 @@ function onTrigger(player,npc)
     if (player:getVar("ChasingQuotas_Progress") == 5 and sturmtigerKilled == 0) then
         SpawnMob(STURMTIGER,300):updateClaim(player);
     elseif (sturmtigerKilled == 1) then
-        player:addKeyItem(RANCHURIOMES_LEGACY);
-        player:messageSpecial(KEYITEM_OBTAINED,RANCHURIOMES_LEGACY);
+        player:addKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RANCHURIOMES_LEGACY);
         player:setVar("ChasingQuotas_Progress",6);
         player:setVar("SturmtigerKilled",0);
     else

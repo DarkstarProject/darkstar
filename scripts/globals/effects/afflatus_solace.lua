@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_AFFLATUS_SOLACE
+-- dsp.effect.AFFLATUS_SOLACE
 --
 -----------------------------------
 
@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AFFLATUS_SOLACE,0);
-    target:addMod(MOD_BARSPELL_MDEF_BONUS,5);
+    target:addMod(dsp.mod.AFFLATUS_SOLACE,0);
+    target:addMod(dsp.mod.BARSPELL_MDEF_BONUS,5);
 end;
 
 -----------------------------------
@@ -27,6 +27,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_AFFLATUS_SOLACE,0);
-    target:delMod(MOD_BARSPELL_MDEF_BONUS,5);
+    target:delMod(dsp.mod.AFFLATUS_SOLACE,0);
+    target:delMod(dsp.mod.BARSPELL_MDEF_BONUS,5);
 end;

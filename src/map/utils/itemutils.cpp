@@ -28,16 +28,16 @@
 #include "../map.h"
 #include "itemutils.h"
 
-std::array<CItem*, MAX_ITEMID> g_pItemList;// глобальный массив указателей на игровые предметы
-std::array<DropList_t*, MAX_DROPID> g_pDropList;    // глобальный массив списков выпадающих предметов
-std::array<LootList_t*, MAX_LOOTID> g_pLootList;
+std::array<CItem*, MAX_ITEMID> g_pItemList;      // global array of pointers to game items
+std::array<DropList_t*, MAX_DROPID> g_pDropList; // global array of monster droplist items
+std::array<LootList_t*, MAX_LOOTID> g_pLootList; // global array of BCNM lootlist items
 
 CItemWeapon* PUnarmedItem;
 CItemWeapon* PUnarmedH2HItem;
 
 /************************************************************************
 *                                                                       *
-*  Собственно методы работы с глобальной коллекцией предметов           *
+*  Actually methods of working with a global collection of items        *
 *                                                                       *
 ************************************************************************/
 
@@ -46,7 +46,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Создаем пустой экземпляр предмета по ID (private метод)              *
+    *  Create an empty instance of the item by ID (private method)          *
     *                                                                       *
     ************************************************************************/
 
@@ -89,13 +89,12 @@ namespace itemutils
             return new CItemGeneral(ItemID);
         }
 
-
         return nullptr;
     }
 
     /************************************************************************
     *                                                                       *
-    *  Создаем новый экземпляр предмета по ID                               *
+    *  Create a new copy of the item ID                                     *
     *                                                                       *
     ************************************************************************/
 
@@ -149,7 +148,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Создаем копию предмета                                               *
+    *  Create a copy of the item                                            *
     *                                                                       *
     ************************************************************************/
 
@@ -194,7 +193,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Получаем указатель на предмет из коллекции (только для чтения)       *
+    *  Get a pointer to an item (read-only)                                 *
     *                                                                       *
     ************************************************************************/
 
@@ -226,7 +225,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Список выпадаемых из монстров предметов                              *
+    *  Get the monsters item drop list                                      *
     *                                                                       *
     ************************************************************************/
 
@@ -258,7 +257,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Загружаем базу предметов                                             *
+    *  Load the items                                                       *
     *                                                                       *
     ************************************************************************/
 
@@ -454,7 +453,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Загружаем списки предметов, выпадающих из монстров                   *
+    *  load lists of items monsters drop                                    *
     *                                                                       *
     ************************************************************************/
 
@@ -485,7 +484,6 @@ namespace itemutils
             }
         }
     }
-
 
     /************************************************************************
     *                                                                       *
@@ -522,7 +520,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Инициализация системы игровых предметов                              *
+    *  Initialization of the  game objects             bbbb                 *
     *                                                                       *
     ************************************************************************/
 
@@ -535,19 +533,19 @@ namespace itemutils
         PUnarmedItem = new CItemWeapon(0);
 
         PUnarmedItem->setDmgType(DAMAGE_NONE);
-        PUnarmedItem->setSkillType(SKILL_NON);
+        PUnarmedItem->setSkillType(SKILL_NONE);
         PUnarmedItem->setDamage(3);
 
         PUnarmedH2HItem = new CItemWeapon(0);
 
         PUnarmedH2HItem->setDmgType(DAMAGE_HTH);
-        PUnarmedH2HItem->setSkillType(SKILL_H2H);
+        PUnarmedH2HItem->setSkillType(SKILL_HAND_TO_HAND);
         PUnarmedH2HItem->setDamage(3);
     }
 
     /************************************************************************
     *                                                                       *
-    *  Освобождаем базу предметов (метод только для "галочки")              *
+    *  Release the list of items                                            *
     *                                                                       *
     ************************************************************************/
 

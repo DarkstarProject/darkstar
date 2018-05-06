@@ -72,9 +72,9 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(17386);
             player:messageSpecial(ITEM_OBTAINED, 17386);
-            player:addTitle(CARP_DIEM);
-            player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:addTitle(dsp.title.CARP_DIEM);
+            player:addKeyItem(dsp.ki.TESTIMONIAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_RIVALRY);
         end

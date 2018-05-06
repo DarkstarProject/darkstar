@@ -27,7 +27,7 @@ function onMobFight(mob, target)
         bf:win();
         return;
     -- THF's Maat additionally gives up if stolen from
-    elseif (target:getMainJob() == JOBS.THF and mob:getStealItem() == 0) then
+    elseif (target:getMainJob() == dsp.job.THF and mob:getStealItem() == 0) then
         -- Todo: move this to a listener for steal?
         -- Steal JA is coded stupidly, getStealItem() is used to check itemID and itemStolen()
         -- returns a bool yet is always set true instead of checking if mob even has an item right there..

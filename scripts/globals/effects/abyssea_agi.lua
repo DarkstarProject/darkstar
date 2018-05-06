@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_ABYSSEA_AGI
+-- dsp.effect.ABYSSEA_AGI
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI,effect:getPower());
+    target:addMod(dsp.mod.AGI,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_AGI,effect:getPower());
+    target:delMod(dsp.mod.AGI,effect:getPower());
 end;

@@ -68,7 +68,7 @@ function onZoneIn( player, prevZone)
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 52; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
-        player:hasStatusEffect(EFFECT_MOUNTED) == false ) then
+        player:hasStatusEffect(dsp.effect.MOUNTED) == false ) then
         cs = 71;
     end
 
@@ -114,12 +114,12 @@ function onEventFinish( player, csid, option)
     if (csid == 48) then
         player:setVar( "MissionStatus",6);
         -- Remove the glowing orb key items
-        player:delKeyItem(FIRST_GLOWING_MANA_ORB);
-        player:delKeyItem(SECOND_GLOWING_MANA_ORB);
-        player:delKeyItem(THIRD_GLOWING_MANA_ORB);
-        player:delKeyItem(FOURTH_GLOWING_MANA_ORB);
-        player:delKeyItem(FIFTH_GLOWING_MANA_ORB);
-        player:delKeyItem(SIXTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.THIRD_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FOURTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FIFTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.SIXTH_GLOWING_MANA_ORB);
     elseif (csid == 50) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 71) then

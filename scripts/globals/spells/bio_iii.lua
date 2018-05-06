@@ -20,12 +20,12 @@ end;
 function onSpellCast(caster,target,spell)
 
     --calculate raw damage
-    local basedmg = caster:getSkillLevel(DARK_MAGIC_SKILL) / 4;
+    local basedmg = caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 4;
     local params = {};
     params.dmg = basedmg;
     params.multiplier = 3;
-    params.skillType = DARK_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.skillType = dsp.skill.DARK_MAGIC;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
@@ -40,9 +40,9 @@ function onSpellCast(caster,target,spell)
 
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.DARK_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
@@ -55,28 +55,28 @@ function onSpellCast(caster,target,spell)
     local final = finalMagicAdjustments(caster,target,spell,dmg);
 
     -- Calculate duration.
-    local duration = caster:getMerit(MERIT_BIO_III);
+    local duration = caster:getMerit(dsp.merit.BIO_III);
     if (duration == 0) then --if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;
     end
 
     -- Check for Dia.
-    local dia = target:getStatusEffect(EFFECT_DIA);
+    local dia = target:getStatusEffect(dsp.effect.DIA);
 
     -- Calculate DoT (rough, though fairly accurate)
-    local dotdmg = 4 + math.floor(caster:getSkillLevel(DARK_MAGIC_SKILL) / 60);
+    local dotdmg = 4 + math.floor(caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 60);
 
     -- Do it!
-    if (target:addStatusEffect(EFFECT_BIO,dotdmg,3,duration,FLAG_ERASABLE, 15,3)) then
-        spell:setMsg(msgBasic.MAGIC_DMG);
+    if (target:addStatusEffect(dsp.effect.BIO,dotdmg,3,duration,FLAG_ERASABLE, 15,3)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_DMG);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     --Try to kill same tier Dia (default behavior)
     if (DIA_OVERWRITE == 1 and dia ~= nil) then
         if (dia:getPower() <= 3) then
-            target:delStatusEffect(EFFECT_DIA);
+            target:delStatusEffect(dsp.effect.DIA);
         end
     end
 

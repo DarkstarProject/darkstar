@@ -55,9 +55,9 @@ function onEventFinish(player,csid,option)
     if (csid == 3 and option == 13) then -- Accept and unlock
         player:setVar("AnEmptyVesselProgress",0);
         player:setVar("EmptyVesselStone",0);
-        player:addKeyItem(MARK_OF_ZAHAK);
-        player:unlockJob(JOBS.BLU);
-        player:addTitle(BEARER_OF_THE_MARK_OF_ZAHAK);
+        player:addKeyItem(dsp.ki.MARK_OF_ZAHAK);
+        player:unlockJob(dsp.job.BLU);
+        player:addTitle(dsp.title.BEARER_OF_THE_MARK_OF_ZAHAK);
         player:completeQuest(AHT_URHGAN,AN_EMPTY_VESSEL);
         player:setPos(148,-2,0,130,50);
     elseif (csid == 3 and option ~= 13) then -- Make a mistake and get reset

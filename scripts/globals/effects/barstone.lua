@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARSTONE
+-- dsp.effect.BARSTONE
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_EARTHRES,effect:getPower());
+    target:addMod(dsp.mod.EARTHRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_EARTHRES,effect:getPower());
+    target:delMod(dsp.mod.EARTHRES,effect:getPower());
 end;

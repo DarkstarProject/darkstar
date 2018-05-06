@@ -19,18 +19,18 @@ function onMobWeaponSkill(target, mob, skill)
     local slowed = false;
     local weight = false;
 
-    slowed = MobStatusEffectMove(mob, target, EFFECT_SLOW, 128, 0, 60);
-    weight = MobStatusEffectMove(mob, target, EFFECT_WEIGHT, 40, 0, 60);
+    slowed = MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 60);
+    weight = MobStatusEffectMove(mob, target, dsp.effect.WEIGHT, 40, 0, 60);
 
-    skill:setMsg(msgBasic.SKILL_ENFEEB_IS);
+    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS);
 
     -- display slow first, else weight
-    if (slowed == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_SLOW;
-    elseif (weight == msgBasic.SKILL_ENFEEB_IS) then
-        typeEffect = EFFECT_WEIGHT;
+    if (slowed == dsp.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = dsp.effect.SLOW;
+    elseif (weight == dsp.msg.basic.SKILL_ENFEEB_IS) then
+        typeEffect = dsp.effect.WEIGHT;
     else
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     return typeEffect;

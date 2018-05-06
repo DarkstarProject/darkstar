@@ -27,7 +27,7 @@ function onMobFight(mob, target)
         bf:win();
         return;
     -- WHM's Maat additionally gives up if kept fighting for 5 min
-    elseif (target:getMainJob() == JOBS.WHM and mob:getBattleTime() > 300) then
+    elseif (target:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
         bf:win();
         return;
     end

@@ -65,13 +65,12 @@ struct LootItem_t
     uint8  LootGroupId;
 };
 
-
 typedef std::vector<DropItem_t> DropList_t;
 typedef std::vector<LootItem_t> LootList_t;
 
 /************************************************************************
 *                                                                       *
-*  Пространстов имен дла работы с глобальными списками предметов        *
+*  The namespace for working with a global lists of items               *
 *                                                                       *
 ************************************************************************/
 
@@ -91,5 +90,4 @@ namespace itemutils
     LootList_t* GetLootList(uint16 LootDropID);
 
 };
-
 #endif

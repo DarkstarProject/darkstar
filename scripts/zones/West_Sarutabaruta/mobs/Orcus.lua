@@ -9,5 +9,5 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ORCUS_TROPHY_HUNTER);
+    player:addTitle(dsp.title.ORCUS_TROPHY_HUNTER);
 end;

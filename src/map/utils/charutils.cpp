@@ -1356,7 +1356,7 @@ namespace charutils
             PChar->pushPacket(new CInventoryItemPacket(nullptr, LocationID, slotID));
             return 0;
         }
-        if ((int32)PItem->getQuantity() + quantity < 0)
+        if ((int32)(PItem->getQuantity() - PItem->getReserve() + quantity) < 0)
         {
             ShowDebug("UpdateItem: Trying to move too much quantity\n");
             return 0;
@@ -1488,10 +1488,9 @@ namespace charutils
                     AddItem(PTarget, LOC_INVENTORY, PItem->getID(), PItem->getReserve());
                 }
                 ShowDebug(CL_CYAN"Removing %s from %s's inventory\n" CL_RESET, PItem->getName(), PChar->GetName());
-                int32 qty = (PItem->getQuantity() - PItem->getReserve());
-                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - PItem->getReserve()));
-                if (qty > 0)
-                    PItem->setReserve(0);
+                auto amount = PItem->getReserve();
+                PItem->setReserve(0);
+                UpdateItem(PChar, LOC_INVENTORY, PItem->getSlotID(), (int32)(0 - amount));
                 PChar->UContainer->ClearSlot(slotid);
             }
         }
@@ -1629,7 +1628,7 @@ namespace charutils
                 {
                     if (PItem->isType(ITEM_WEAPON))
                     {
-                        if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
+                        if (((CItemWeapon*)PItem)->getSkillType() == SKILL_HAND_TO_HAND)
                         {
                             PChar->look.sub = 0;
                         }
@@ -1765,13 +1764,13 @@ namespace charutils
                     {
                         switch (((CItemWeapon*)PItem)->getSkillType())
                         {
-                            case SKILL_H2H:
-                            case SKILL_GSD:
-                            case SKILL_GAX:
-                            case SKILL_SYH:
-                            case SKILL_POL:
-                            case SKILL_GKT:
-                            case SKILL_STF:
+                            case SKILL_HAND_TO_HAND:
+                            case SKILL_GREAT_SWORD:
+                            case SKILL_GREAT_AXE:
+                            case SKILL_SCYTHE:
+                            case SKILL_POLEARM:
+                            case SKILL_GREAT_KATANA:
+                            case SKILL_STAFF:
                             {
                                 CItemArmor* armor = (CItemArmor*)PChar->getEquip(SLOT_SUB);
                                 if ((armor != nullptr) && armor->isType(ITEM_ARMOR))
@@ -1779,7 +1778,7 @@ namespace charutils
                                     if (armor->isType(ITEM_WEAPON))
                                     {
                                         CItemWeapon* PWeapon = (CItemWeapon*)armor;
-                                        if (PWeapon->getSkillType() != SKILL_NON || ((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
+                                        if (PWeapon->getSkillType() != SKILL_NONE || ((CItemWeapon*)PItem)->getSkillType() == SKILL_HAND_TO_HAND)
                                         {
                                             UnequipItem(PChar, SLOT_SUB, false);
                                         }
@@ -1789,7 +1788,7 @@ namespace charutils
                                         UnequipItem(PChar, SLOT_SUB, false);
                                     }
                                 }
-                                if (((CItemWeapon*)PItem)->getSkillType() == SKILL_H2H)
+                                if (((CItemWeapon*)PItem)->getSkillType() == SKILL_HAND_TO_HAND)
                                 {
                                     PChar->look.sub = PItem->getModelId() + 0x1000;
                                 }
@@ -1828,20 +1827,20 @@ namespace charutils
                     {
                         switch (weapon->getSkillType())
                         {
-                            case SKILL_H2H:
+                            case SKILL_HAND_TO_HAND:
                             {
                                 if (!PItem->isType(ITEM_WEAPON))
                                 {
                                     UnequipItem(PChar, SLOT_MAIN, false);
                                 }
                             }
-                            case SKILL_DAG:
-                            case SKILL_SWD:
+                            case SKILL_DAGGER:
+                            case SKILL_SWORD:
                             case SKILL_AXE:
-                            case SKILL_KAT:
-                            case SKILL_CLB:
+                            case SKILL_KATANA:
+                            case SKILL_CLUB:
                             {
-                                if (PItem->isType(ITEM_WEAPON) && (!charutils::hasTrait(PChar, TRAIT_DUAL_WIELD) || ((CItemWeapon*)PItem)->getSkillType() == SKILL_NON))
+                                if (PItem->isType(ITEM_WEAPON) && (!charutils::hasTrait(PChar, TRAIT_DUAL_WIELD) || ((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE))
                                 {
                                     return false;
                                 }
@@ -1854,7 +1853,7 @@ namespace charutils
                                 {
                                     UnequipItem(PChar, SLOT_MAIN, false);
                                 }
-                                else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
+                                else if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
                                 {
                                     //allow Grips to be equipped
                                     return false;
@@ -2004,15 +2003,15 @@ namespace charutils
                 else
                     switch (((CItemWeapon*)PItem)->getSkillType())
                     {
-                        case SKILL_H2H:
+                        case SKILL_HAND_TO_HAND:
                             PChar->mainlook.sub = appearanceModel + 0x1000;
                             break;
-                        case SKILL_GSD:
-                        case SKILL_GAX:
-                        case SKILL_SYH:
-                        case SKILL_POL:
-                        case SKILL_GKT:
-                        case SKILL_STF:
+                        case SKILL_GREAT_SWORD:
+                        case SKILL_GREAT_AXE:
+                        case SKILL_SCYTHE:
+                        case SKILL_POLEARM:
+                        case SKILL_GREAT_KATANA:
+                        case SKILL_STAFF:
                             PChar->mainlook.sub = PChar->look.sub;
                             break;
                     }
@@ -2179,7 +2178,7 @@ namespace charutils
                         continue;
 
                     // if the item isn't a grip, unequip it
-                    if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NON)
+                    if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
                         RemoveSub(PChar);
 
                     continue;
@@ -2298,10 +2297,7 @@ namespace charutils
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         for (auto&& PSkill : WeaponSkillList)
         {
-            if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+            if (battleutils::CanUseWeaponskill(PChar, PSkill) ||
                 PSkill->getID() == main_ws ||
                 (isInDynamis && (PSkill->getID() == main_ws_dyn)))
             {
@@ -2311,16 +2307,13 @@ namespace charutils
 
         //add in ranged ws
         PItem = (CItemWeapon*)PChar->getEquip(SLOT_RANGED);
-        if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THR)
+        if (PItem != nullptr && PItem->isType(ITEM_WEAPON) && PItem->getSkillType() != SKILL_THROWING)
         {
             skill = PChar->m_Weapons[SLOT_RANGED]->getSkillType();
             auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
             for (auto&& PSkill : WeaponSkillList)
             {
-                if ((((PSkill->getSkillLevel() > 0 && PChar->GetSkill(skill) >= PSkill->getSkillLevel() &&
-                    (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId()))) ||
-                    (PSkill->getSkillLevel() == 0 && (PSkill->getUnlockId() == 0 || charutils::hasLearnedWeaponskill(PChar, PSkill->getUnlockId())))) &&
-                    (PSkill->getJob(curMainJob) > 0 || (PSkill->getJob(curSubJob) > 0 && !PSkill->mainOnly()))) ||
+                if ((battleutils::CanUseWeaponskill(PChar, PSkill)) ||
                     PSkill->getID() == range_ws ||
                     (isInDynamis && (PSkill->getID() == range_ws_dyn)))
                 {
@@ -2514,9 +2507,9 @@ namespace charutils
             if ((i >= 32 && i <= 35 && PChar->StatusEffectContainer->HasStatusEffect({EFFECT_LIGHT_ARTS, EFFECT_ADDENDUM_WHITE})) ||
                 (i >= 35 && i <= 37 && PChar->StatusEffectContainer->HasStatusEffect({EFFECT_DARK_ARTS, EFFECT_ADDENDUM_BLACK})))
             {
-                uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENH, JOB_RDM, PChar->GetMLevel()); //B+ skill
+                uint16 artsSkill = battleutils::GetMaxSkill(SKILL_ENHANCING_MAGIC, JOB_RDM, PChar->GetMLevel()); //B+ skill
                 uint16 skillCapD = battleutils::GetMaxSkill((SKILLTYPE)i, JOB_SCH, PChar->GetMLevel()); // D skill cap
-                uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DRK, JOB_RDM, PChar->GetMLevel()); // E skill cap
+                uint16 skillCapE = battleutils::GetMaxSkill(SKILL_DARK_MAGIC, JOB_RDM, PChar->GetMLevel()); // E skill cap
                 auto currentSkill = std::clamp<uint16>((PChar->RealSkills.skill[i] / 10), 0, std::max(MaxMSkill, MaxSSkill)); // working skill before bonuses
                 uint16 artsBaseline = 0; // Level based baseline to which to raise skills
                 uint8 mLevel = PChar->GetMLevel();
@@ -2644,7 +2637,7 @@ namespace charutils
 
         PChar->delModifier(Mod::MEVA, PChar->m_magicEvasion);
 
-        PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PChar->GetMLevel());
+        PChar->m_magicEvasion = battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PChar->GetMLevel());
         PChar->addModifier(Mod::MEVA, PChar->m_magicEvasion);
     }
 
@@ -2767,12 +2760,10 @@ namespace charutils
         }
         auto& WeaponSkillList = battleutils::GetWeaponSkills(skill);
         uint16 curSkill = PChar->RealSkills.skill[skill] / 10;
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
 
         for (auto&& PSkill : WeaponSkillList)
         {
-            if (curSkill == PSkill->getSkillLevel() && (PSkill->getJob(curMainJob) > 0 || PSkill->getJob(curSubJob) > 0))
+            if (curSkill == PSkill->getSkillLevel() && (battleutils::CanUseWeaponskill(PChar, PSkill)))
             {
                 addWeaponSkill(PChar, PSkill->getID());
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, PSkill->getID(), PSkill->getID(), 45));
@@ -3118,7 +3109,7 @@ namespace charutils
             // First gather all valid party members
             PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                if (PPartyMember->getZone() == PMob->getZone() && distance(PPartyMember->loc.p, PMob->loc.p) < 100)
+                if (PPartyMember->getZone() == PMob->getZone() && distanceSquared(PPartyMember->loc.p, PMob->loc.p) < square(100.f))
                 {
                     members.push_back((CCharEntity*)PPartyMember);
                 }
@@ -3128,18 +3119,22 @@ namespace charutils
             if (members.size() > 0)
             {
                 // distribute gil
-                auto gilPerPerson = (int32)(gil / members.size());
+                int32 gilPerPerson = static_cast<int32>(gil / members.size());
                 for (auto PMember : members)
                 {
+                    // Check for gilfinder
+                    gilPerPerson += gilPerPerson * PMember->getMod(Mod::GILFINDER) / 100;
                     UpdateItem(PMember, LOC_INVENTORY, 0, gilPerPerson);
                     PMember->pushPacket(new CMessageBasicPacket(PMember, PMember, gilPerPerson, 0, 565));
                 }
             }
         }
-        else if (distance(PChar->loc.p, PMob->loc.p) < 100)
+        else if (distanceSquared(PChar->loc.p, PMob->loc.p) < square(100.f))
         {
-            UpdateItem(PChar, LOC_INVENTORY, 0, gil);
-            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, gil, 0, 565));
+            // Check for gilfinder
+            gil += gil * PChar->getMod(Mod::GILFINDER) / 100;
+            UpdateItem(PChar, LOC_INVENTORY, 0, static_cast<int32>(gil));
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, static_cast<int32>(gil), 0, 565));
         }
     }
 
@@ -4461,7 +4456,7 @@ namespace charutils
         CItem* PSubslot = PChar->getEquip(SLOT_SUB);
 
         // Main or sub job provides H2H skill, and sub slot is empty.
-        if ((battleutils::GetSkillRank(SKILL_H2H, PChar->GetMJob()) > 0 || battleutils::GetSkillRank(SKILL_H2H, PChar->GetSJob()) > 0) &&
+        if ((battleutils::GetSkillRank(SKILL_HAND_TO_HAND, PChar->GetMJob()) > 0 || battleutils::GetSkillRank(SKILL_HAND_TO_HAND, PChar->GetSJob()) > 0) &&
             (!PSubslot || !PSubslot->isType(ITEM_ARMOR)))
         {
             PChar->m_Weapons[SLOT_MAIN] = itemutils::GetUnarmedH2HItem();

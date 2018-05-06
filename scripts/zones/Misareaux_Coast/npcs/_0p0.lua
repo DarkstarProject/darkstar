@@ -5,47 +5,65 @@
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/missions");
 require("scripts/zones/Misareaux_Coast/TextIDs");
+require("scripts/zones/Misareaux_Coast/MobIDs");
+require("scripts/globals/missions");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(COP) == AN_ETERNAL_MELODY and player:getVar("PromathiaStatus") == 1) then
+    local cop = player:getCurrentMission(COP);
+    local copStat = player:getVar("PromathiaStatus");
+    
+    -- AN ETERNAL MEMORY (PM2-4)
+    if (cop == AN_ETERNAL_MELODY and copStat == 1) then
         player:startEvent(5);
-    elseif (player:getCurrentMission(COP) == SHELTERING_DOUBT and player:getVar("PromathiaStatus") == 3) then
+
+    -- SHELTERING DOUBT (PM4-1)
+    elseif (cop == SHELTERING_DOUBT and copStat == 3) then
         player:startEvent(7);
-    elseif (player:getCurrentMission(COP) == A_PLACE_TO_RETURN  and player:getVar("PromathiaStatus") == 1) then
-        if (player:getVar("Warder_Aglaia_KILL") == 1 and player:getVar("Warder_Euphrosyne_KILL") == 1 and player:getVar("Warder_Thalia_KILL") == 1) then
-            player:startEvent(10);
-        elseif (GetMobAction(16879893) == 0 and GetMobAction(16879894) == 0 and GetMobAction(16879895) == 0) then
-            SpawnMob(16879893):updateClaim(player);
-            SpawnMob(16879894):updateClaim(player);
-            SpawnMob(16879895):updateClaim(player);
-        else
-            player:messageSpecial(DOOR_CLOSED);
-        end
+
+    -- A PLACE TO RETURN (PM6-2)
+    elseif (
+        cop == A_PLACE_TO_RETURN and copStat == 1 and
+        player:getVar("Warder_Aglaia_KILL") == 1 and
+        player:getVar("Warder_Euphrosyne_KILL") == 1 and
+        player:getVar("Warder_Thalia_KILL") == 1
+    ) then
+        player:startEvent(10);
+    elseif (
+        cop == A_PLACE_TO_RETURN and copStat == 1 and
+        not GetMobByID(PM6_2_MOB_OFFSET + 0):isSpawned() and
+        not GetMobByID(PM6_2_MOB_OFFSET + 1):isSpawned() and
+        not GetMobByID(PM6_2_MOB_OFFSET + 2):isSpawned()
+    ) then
+        SpawnMob(PM6_2_MOB_OFFSET + 0):updateClaim(player);
+        SpawnMob(PM6_2_MOB_OFFSET + 1):updateClaim(player);
+        SpawnMob(PM6_2_MOB_OFFSET + 2):updateClaim(player);
+        
+    -- DEFAULT DIALOG
     else
         player:messageSpecial(DOOR_CLOSED);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    -- AN ETERNAL MEMORY (PM2-4)
     if (csid == 5) then
         player:setVar("PromathiaStatus",2);
+
+    -- SHELTERING DOUBT (PM4-1)
     elseif (csid == 7) then
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,SHELTERING_DOUBT);
         player:addMission(COP,THE_SAVAGE);
+
+    -- A PLACE TO RETURN (PM6-2)
     elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
         player:setVar("Warder_Aglaia_KILL",0);

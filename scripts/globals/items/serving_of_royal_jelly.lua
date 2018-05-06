@@ -10,20 +10,20 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,4508);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4508);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_MPHEAL, 3);
+    target:addMod(dsp.mod.MPHEAL, 3);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MPHEAL, 3);
+    target:delMod(dsp.mod.MPHEAL, 3);
 end;

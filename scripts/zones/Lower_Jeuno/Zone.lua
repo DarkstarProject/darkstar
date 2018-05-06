@@ -5,12 +5,15 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Lower_Jeuno/globals");
+require("scripts/zones/Lower_Jeuno/TextIDs");
+require("scripts/zones/Lower_Jeuno/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/pathfind");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/Lower_Jeuno/NPCIDs");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,6 +22,7 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
+    
     local month = tonumber(os.date("%m"));
     local day = tonumber(os.date("%d"));
     -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
@@ -37,7 +41,7 @@ function onZoneIn(player,prevZone)
         player:setVar("PlayerMainJob",0);
     elseif (player:getCurrentMission(COP) == TENDING_AGED_WOUNDS and player:getVar("PromathiaStatus") == 0) then
         player:setVar("PromathiaStatus",1);
-        cs = 0x0046;
+        cs = 70;
     elseif (ENABLE_ACP == 1 and player:getCurrentMission(ACP) == A_CRYSTALLINE_PROPHECY and player:getMainLvl() >=10) then
         cs = 10094;
     end
@@ -47,16 +51,13 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
 function onRegionEnter(player,region)
-    -- print("entered region")
     if (region:GetRegionID() == 1) then
-        -- print("entered region 1")
         if (player:getCurrentMission(ZILART) == AWAKENING and player:getVar("ZilartStatus") < 2) then
             player:startEvent(20);
         end
@@ -72,8 +73,8 @@ function onGameHour(zone)
     -- 7AM: it's daytime. turn off all the lights
     if (VanadielHour == 7) then
         for i=0,11 do
-            local lamp = GetNPCByID(lampIdOffset + i);
-            lamp:setAnimation(ANIMATION_CLOSE_DOOR);
+            local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
+            lamp:setAnimation(dsp.anim.CLOSE_DOOR);
         end
 
     -- 8PM: make quest available
@@ -82,7 +83,7 @@ function onGameHour(zone)
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
-            if player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) then
+            if player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) then
                 player:messageSpecial(ZAUKO_IS_RECRUITING);
             end
         end
@@ -99,30 +100,26 @@ function onGameHour(zone)
     -- PATHFLAG_WALLHACK because she gets stuck on some terrain otherwise.
     elseif (VanadielHour == 1) then
         if (playerOnQuestId == 0) then
-            local npc = GetNPCByID(vhana);
+            local npc = GetNPCByID(VHANA_EHGAKLYWHA);
             npc:clearPath();
             npc:setStatus(0);
             npc:initNpcAi();
-            npc:setPos(pathfind.first(lampPath));
-            npc:pathThrough(pathfind.fromStart(lampPath), bit.bor(PATHFLAG_RUN,PATHFLAG_WALLHACK));
+            npc:setPos(pathfind.first(LOWER_JEUNO.lampPath));
+            npc:pathThrough(pathfind.fromStart(LOWER_JEUNO.lampPath), bit.bor(PATHFLAG_RUN,PATHFLAG_WALLHACK));
         end
 
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
     elseif (csid == 20) then
-        player:setVar("ZilartStatus", player:getVar("ZilartStatus")+2);
+        player:setVar("ZilartStatus", player:getVar("ZilartStatus") + 2);
     elseif (csid == 10094) then
         player:completeMission(ACP,A_CRYSTALLINE_PROPHECY);
         player:addMission(ACP,THE_ECHO_AWAKENS);

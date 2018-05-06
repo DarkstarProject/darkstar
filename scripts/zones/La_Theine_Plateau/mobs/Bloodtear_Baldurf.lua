@@ -2,40 +2,41 @@
 -- Area: La Theine Plateau
 --  MOB: Bloodtear_Baldurf
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/globals/status");
 require("scripts/globals/titles");
-require("scripts/zones/La_Theine_Plateau/MobIDs");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1);
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 end;
 
 function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_HORNSPLITTER);
+    player:addTitle(dsp.title.THE_HORNSPLITTER);
 end;
 
 function onMobDespawn(mob)
-    local mobID = mob:getID();
-    local chanceForLambert = 0;
-
-    if (GetServerVariable("[POP]Lumbering_Lambert") <= os.time()) then
-        chanceForLambert = math.random(1,100);
-    end
-
-    if (chanceForLambert > 95 and GetMobAction(Battering_Ram) == ACTION_NONE and GetMobAction(Lumbering_Lambert) == ACTION_NONE) then
-        UpdateNMSpawnPoint(Lumbering_Lambert);
-        GetMobByID(Lumbering_Lambert):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DisallowRespawn(mobID, true);
+    local mobId = mob:getID();
+    
+    DisallowRespawn(mob:getID(), true);
+    mob:setLocalVar("cooldown", os.time() + 64800); -- 18 hours
+    
+    local nmId  = mobId - 1;
+    local nm    = GetMobByID(nmId);
+    local phId  = mobId - 2;
+    local ph    = GetMobByID(phId);
+    
+    if (math.random(1,100) <= 10 and os.time() > nm:getLocalVar("cooldown")) then
+        DisallowRespawn(nmId, false);
+        UpdateNMSpawnPoint(nmId);
+        nm:setRespawnTime(GetMobRespawnTime(phId));
     else
-        GetMobByID(Battering_Ram):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DisallowRespawn(mobID, true);
+        DisallowRespawn(phId, false);
+        ph:setRespawnTime(GetMobRespawnTime(phId));
     end
-
-    SetServerVariable("[POP]Bloodtear_Baldurf", os.time() + math.random(75600, 86400)); -- 21-24hours repop
 end;

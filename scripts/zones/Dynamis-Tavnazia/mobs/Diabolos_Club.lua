@@ -10,9 +10,9 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(DYNAMIS_TAVNAZIA_SLIVER ) == false) then
-        player:addKeyItem(DYNAMIS_TAVNAZIA_SLIVER);
-        player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_TAVNAZIA_SLIVER);
+    if (player:hasKeyItem(dsp.ki.DYNAMIS_TAVNAZIA_SLIVER ) == false) then
+        player:addKeyItem(dsp.ki.DYNAMIS_TAVNAZIA_SLIVER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DYNAMIS_TAVNAZIA_SLIVER);
     end
     -- despawn diabolos 's pet
     if (GetMobAction(16949253)~=0) then
@@ -22,5 +22,5 @@ function onMobDeath(mob, player, isKiller)
         DespawnMob(16949254);
     end
 
-    player:addTitle(NIGHTMARE_AWAKENER);
+    player:addTitle(dsp.title.NIGHTMARE_AWAKENER);
 end;

@@ -8,7 +8,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onAdditionalEffect(mob,target,damage)
@@ -19,12 +19,12 @@ function onAdditionalEffect(mob,target,damage)
     params.bonusmab = 0;
     params.includemab = false;
 
-    local dmg = addBonusesAbility(mob, ELE_WIND, target, basePower, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WIND,0);
-    dmg = adjustForTarget(target,dmg,ELE_WIND);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
+    local dmg = addBonusesAbility(mob, dsp.magic.ele.WIND, target, basePower, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.WIND,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.WIND);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.WIND,dmg);
 
-    return SUBEFFECT_WIND_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return dsp.subEffect.WIND_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob,player,isKiller)

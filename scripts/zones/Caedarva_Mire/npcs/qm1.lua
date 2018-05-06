@@ -12,7 +12,7 @@ require("scripts/globals/status");
 function onTrade(player,npc,trade)
     local mobID = 17101202;
     if (trade:hasItemQty(2599,1) and trade:getItemCount() == 1) then -- Trade Mint Drop
-        if (GetMobAction(mobID) == ACTION_NONE) then
+        if (GetMobAction(mobID) == dsp.act.NONE) then
             player:tradeComplete();
             SpawnMob(mobID):updateClaim(player);
         end

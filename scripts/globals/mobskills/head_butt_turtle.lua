@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- Large Knockdown ----------------------------
 
-    local typeEffect = EFFECT_ACCURACY_DOWN;
+    local typeEffect = dsp.effect.ACCURACY_DOWN;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
 

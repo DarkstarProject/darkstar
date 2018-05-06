@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
       if (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_ACCEPTED) then
          player:setVar("DivineMight",2); -- Used to use 2 to track completion, so that's preserved to maintain compatibility
-         for i=SHARD_OF_APATHY, SHARD_OF_RAGE do
+         for i=dsp.ki.SHARD_OF_APATHY, dsp.ki.SHARD_OF_RAGE do
             player:addKeyItem(i);
             player:messageSpecial(KEYITEM_OBTAINED,i);
          end
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             player:addMission(ZILART,THE_SEALED_SHRINE);
             player:setVar("ZilartStatus",0);
          end
-      elseif (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(MOONLIGHT_ORE) == true) then
+      elseif (player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MOONLIGHT_ORE) == true) then
          player:setVar("DivineMight",2);
       end
     end

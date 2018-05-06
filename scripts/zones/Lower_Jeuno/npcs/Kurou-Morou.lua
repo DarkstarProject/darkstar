@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
     if (csid == 194 and option == 0) then
         player:addQuest(JEUNO,YOUR_CRYSTAL_BALL);
     elseif (csid == 196) then
-        player:addTitle(FORTUNETELLER_IN_TRAINING);
+        player:addTitle(dsp.title.FORTUNETELLER_IN_TRAINING);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,YOUR_CRYSTAL_BALL);

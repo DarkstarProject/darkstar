@@ -50,12 +50,12 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
             tpHits = 1;
         end
     end
-    if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-        damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+    if (player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+        damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
     end
     damage = damage * WEAPON_SKILL_POWER
 
-    damage = takeWeaponskillDamage(target, player, {}, primary, damage, SLOT_MAIN, tpHits, 0, 0, 0, action, nil)
+    damage = takeWeaponskillDamage(target, player, {}, primary, damage, dsp.slot.MAIN, tpHits, 0, 0, 0, action, nil)
 
     return tpHits, 0, false, damage;
 

@@ -12,12 +12,12 @@ end;
 
 function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(ADAMANTOISE_QM):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(ASPIDOCHELONE_SINKER);
+    player:addTitle(dsp.title.ASPIDOCHELONE_SINKER);
 end;
 
 function onMobDespawn(mob)

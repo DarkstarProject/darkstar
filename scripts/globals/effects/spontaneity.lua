@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_SPONTANEITY
+--     dsp.effect.SPONTANEITY
 --     
 -----------------------------------
 
@@ -11,8 +11,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_UFASTCAST,150);
-    effect:setFlag(EFFECTFLAG_MAGIC_BEGIN);
+    target:addMod(dsp.mod.UFASTCAST,150);
+    effect:setFlag(dsp.effectFlag.MAGIC_BEGIN);
 end;
 
 -----------------------------------
@@ -27,5 +27,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_UFASTCAST,150);
+    target:delMod(dsp.mod.UFASTCAST,150);
 end;

@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Rapid Molt
 -- Family: Hpemde
--- Description: Erases all negative effects on the mob, and adds a Regen effect.
+-- Description: Erases all negative effects on the mob, and adds a Regen dsp.effect.
 -- Can be dispelled: Yes (regen)
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self
@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 
     local dispel = target:eraseStatusEffect();
 
-    if (dispel ~= EFFECT_NONE) then
+    if (dispel ~= dsp.effect.NONE) then
         return 0;
     end;
 
@@ -26,7 +26,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     mob:eraseAllStatusEffect();
-    local typeEffect = EFFECT_REGEN;
+    local typeEffect = dsp.effect.REGEN;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 10, 3, 180));
     return typeEffect;

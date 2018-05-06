@@ -21,21 +21,21 @@ aftermathTable[19457] =
         duration = 30,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 30 }
         }
     },
     { -- Tier 2
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 40 }
         }
     },
     { -- Tier 3
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_DOUBLE_DMG, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 50 }
         }
     }
 };
@@ -53,28 +53,28 @@ aftermathTable[20587] =
         duration = 60,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 30 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 30 }
         }
     },
     { -- Tier 2
         duration = 120,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 40 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 40 }
         }
     },
     { -- Tier 3
         duration = 180,
         mods =
         {
-            { id = MOD_REM_OCC_DO_TRIPLE_DMG, power = 50 }
+            { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 50 }
         }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_RUDRAS_STORM) then -- Rudra's Storm onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.RUDRAS_STORM) then -- Rudra's Storm onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
@@ -87,8 +87,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId]);
@@ -103,8 +103,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

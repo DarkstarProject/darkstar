@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_WEIGHT
+--     dsp.effect.WEIGHT
 --
 -----------------------------------
 
@@ -14,8 +14,8 @@ function onEffectGain(target,effect)
     if (effect:getPower()>100) then
         effect:setPower(50);
     end
-    target:addMod(MOD_MOVE,-effect:getPower());
-    target:addMod(MOD_EVA,-effect:getPower()/5);
+    target:addMod(dsp.mod.MOVE,-effect:getPower());
+    target:addMod(dsp.mod.EVA,-effect:getPower()/5);
 end;
 
 -----------------------------------
@@ -30,6 +30,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MOVE,-effect:getPower());
-    target:delMod(MOD_EVA,-effect:getPower()/5);
+    target:delMod(dsp.mod.MOVE,-effect:getPower());
+    target:delMod(dsp.mod.EVA,-effect:getPower()/5);
 end;

@@ -20,13 +20,13 @@ function onTrigger(player,npc)
     local prof = GetMobByID(OLD_PROFESSOR_MARISELLE);
     local profLoc = GetServerVariable("Old_Prof_Spawn_Location");
 
-    if (cop == THE_SECRETS_OF_WORSHIP and copStat == 3 and not player:hasKeyItem(RELIQUIARIUM_KEY) and not prof:isSpawned() and profLoc == 3) then
+    if (cop == THE_SECRETS_OF_WORSHIP and copStat == 3 and not player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY) and not prof:isSpawned() and profLoc == 3) then
         player:messageSpecial(EVIL_PRESENCE);
         SpawnMob(OLD_PROFESSOR_MARISELLE):updateClaim(player);
         prof:setPos(npc:getXPos()+1, npc:getYPos(), npc:getZPos()+1); -- Set Prof. spawn x and z pos. +1 from NPC
-    elseif (cop == THE_SECRETS_OF_WORSHIP and copStat == 4 and not player:hasKeyItem(RELIQUIARIUM_KEY)) then
-        player:addKeyItem(RELIQUIARIUM_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,RELIQUIARIUM_KEY);
+    elseif (cop == THE_SECRETS_OF_WORSHIP and copStat == 4 and not player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)) then
+        player:addKeyItem(dsp.ki.RELIQUIARIUM_KEY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RELIQUIARIUM_KEY);
     elseif (profLoc == 3) then
         player:messageSpecial(DRAWER_SHUT);
     else

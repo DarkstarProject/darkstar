@@ -40,8 +40,8 @@ function onSpellCast(caster,target,spell)
     if (damage > 0) then
         target:delHP(playerHP);
         caster:setHP(1);
-        caster:delStatusEffect(EFFECT_WEAKNESS);
-        caster:addStatusEffect(EFFECT_WEAKNESS,1,0,duration);
+        caster:delStatusEffect(dsp.effect.WEAKNESS);
+        caster:addStatusEffect(dsp.effect.WEAKNESS,1,0,duration);
         
     end
     

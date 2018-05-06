@@ -21,12 +21,12 @@ function onMobWeaponSkill(target, mob, skill)
     local effectCount = 0;
     local dispel = mob:eraseStatusEffect();
 
-    while (dispel ~= EFFECT_NONE)
+    while (dispel ~= dsp.effect.NONE)
     do
         effectCount = effectCount + 1;
         dispel = mob:eraseStatusEffect();
     end;
 
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
     return MobHealMove(mob, statusHeal * effectCount + baseHeal);
 end;

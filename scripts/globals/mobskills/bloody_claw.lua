@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local numhits = 3;
     local accmod = 1;
     local dmgmod = 0.9;
-    local typeEffect = 136 + math.random(0,6); -- 136 is EFFECT_STR_DOWN; add 0 to 6 for all 7 of the possible attribute reductions
+    local typeEffect = 136 + math.random(0,6); -- 136 is dsp.effect.STR_DOWN; add 0 to 6 for all 7 of the possible attribute reductions
 
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_IGNORE_SHADOWS);

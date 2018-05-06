@@ -5,30 +5,22 @@
 -- Recast Time: 0:05:00
 -- Duration: Apprx. 0:00:01 - 0:00:10
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    local modAcc = player:getMerit(MERIT_FERAL_HOWL);
+    local modAcc = player:getMerit(dsp.merit.FERAL_HOWL);
     --printf("modAcc : %u",modAcc);
-    local feralHowlMod = player:getMod(MOD_FERAL_HOWL_DURATION);
+    local feralHowlMod = player:getMod(dsp.mod.FERAL_HOWL_DURATION);
     --printf("feralHowlMod : %u",feralHowlMod);
         local duration = 10;
     --printf("Duration : %u",duration);
-    if target:hasStatusEffect(EFFECT_TERROR) == true or target:hasStatusEffect(EFFECT_STUN) == true then -- effect already on, or target stunned, do nothing
+    if target:hasStatusEffect(dsp.effect.TERROR) == true or target:hasStatusEffect(dsp.effect.STUN) == true then -- effect already on, or target stunned, do nothing
     -- reserved for miss based on target already having stun or terror effect active
     else
         -- Calculate duration.
@@ -78,10 +70,10 @@ function onUseAbility(player,target,ability)
     
     -- execute ability based off of resistance value; space reserved for resist message
     if resist <= 90 then -- still experimental. not exactly sure how to calculate hit %
-        target:addStatusEffect(EFFECT_TERROR,potency,0,duration);
+        target:addStatusEffect(dsp.effect.TERROR,potency,0,duration);
     else
         -- reserved for text related to resist
     end
 
-    return EFFECT_TERROR;
+    return dsp.effect.TERROR;
 end;

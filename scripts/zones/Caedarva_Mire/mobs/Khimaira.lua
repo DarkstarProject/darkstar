@@ -5,7 +5,7 @@
 require("scripts/globals/titles");
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(KHIMAIRA_CARVER);
+    player:addTitle(dsp.title.KHIMAIRA_CARVER);
 end;
 
 function onMobDespawn(mob)

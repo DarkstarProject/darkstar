@@ -3,9 +3,9 @@
 --  MOB: Crimson-toothed Pawberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
+mixins = {require("scripts/mixins/job_special")};
 
-function onMobSpawn(mob)
-end;
+require("scripts/globals/status");
 
 function onMobDeath(mob, player, isKiller)
     SetServerVariable("[POP]Crimson-toothed_Pawberry",os.time() + 900); -- 15min

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: BoWho Warmonger
+--   NM: Bo'Who Warmonger
 -----------------------------------
 require("scripts/globals/fieldsofvalor");
 -----------------------------------

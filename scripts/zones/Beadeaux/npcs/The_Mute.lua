@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         player:setVar("cCollectSilence",1);
     end
 
-    player:addStatusEffect(EFFECT_SILENCE,0,0,duration);
+    player:addStatusEffect(dsp.effect.SILENCE,0,0,duration);
 
 end;
 

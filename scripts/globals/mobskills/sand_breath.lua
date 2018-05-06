@@ -14,11 +14,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effect.BLINDNESS;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 180);
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, ELE_EARTH, 800);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, dsp.magic.ele.EARTH, 800);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

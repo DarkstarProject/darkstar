@@ -44,10 +44,10 @@ function onSpellCast(caster,target,spell)
     local damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
-    if (target:hasStatusEffect(EFFECT_VIT_DOWN)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+    if (target:hasStatusEffect(dsp.effect.VIT_DOWN)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     else
-        target:addStatusEffect(EFFECT_VIT_DOWN,15,0,20);
+        target:addStatusEffect(dsp.effect.VIT_DOWN,15,0,20);
     end
 
     return damage;

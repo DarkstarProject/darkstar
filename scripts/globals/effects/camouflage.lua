@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_CAMOUFLAGE
+--     dsp.effect.CAMOUFLAGE
 --     
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ENMITY,-25);
+    target:addMod(dsp.mod.ENMITY,-25);
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ENMITY,-25);
+    target:delMod(dsp.mod.ENMITY,-25);
 end;

@@ -7,15 +7,16 @@
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
+require("scripts/zones/Ifrits_Cauldron/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    -- Trade a Rattling Egg to pop Tarasque
-    if(GetMobAction(17617164) == 0 and trade:hasItemQty(1189,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(17617164):updateClaim(player); -- Spawn Tarasque
-        npc:setStatus(STATUS_DISAPPEAR);
+    if (npcUtil.tradeHas(trade, 1189) and not GetMobByID(TARASQUE):isSpawned()) then -- Rattling Egg
+        player:confirmTrade();
+        SpawnMob(TARASQUE):updateClaim(player);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
@@ -24,11 +25,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

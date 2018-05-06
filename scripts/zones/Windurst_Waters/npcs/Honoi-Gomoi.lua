@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 782) then
         player:completeQuest(WINDURST,WILD_CARD);
         player:addFame(WINDURST,135);
-        player:addTitle(DREAM_DWELLER);
+        player:addTitle(dsp.title.DREAM_DWELLER);
         player:setVar("WildCard",0);
         player:needToZone(true);
     elseif (csid == 59) then  -- Show Off Hat
@@ -102,8 +102,8 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
     elseif (csid == 874)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
-        player:addKeyItem(CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
+        player:addKeyItem(dsp.ki.CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRACKED_MIMEO_MIRROR);
     end
 end;
 

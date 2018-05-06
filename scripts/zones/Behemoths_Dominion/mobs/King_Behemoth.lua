@@ -5,6 +5,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -18,18 +19,18 @@ function onMobSpawn(mob)
     end
 
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
-        GetNPCByID(17297459):setStatus(STATUS_DISAPPEAR);
+        GetNPCByID(17297459):setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 60);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 60);
 end;
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
-        spell:setAoE(SPELLAOE_RADIAL);
-        spell:setFlag(SPELLFLAG_HIT_ALL);
+        spell:setAoE(dsp.magic.aoe.RADIAL);
+        spell:setFlag(dsp.magic.spellFlag.HIT_ALL);
         spell:setRadius(30);
         spell:setAnimation(280);
         spell:setMPCost(1);
@@ -37,7 +38,7 @@ function onSpellPrecast(mob, spell)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BEHEMOTH_DETHRONER);
+    player:addTitle(dsp.title.BEHEMOTH_DETHRONER);
 end;
 
 function onMobDespawn(mob)

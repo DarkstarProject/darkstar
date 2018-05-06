@@ -17,9 +17,9 @@ end;
 
 function onTrigger(player,npc)
     if (not OldSchoolG2 or GetMobByID(BOREAL_TIGER):isDead()) then
-        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(ROUND_FRIGICITE)) then
-            player:addKeyItem(ROUND_FRIGICITE);
-            player:messageSpecial(KEYITEM_OBTAINED, ROUND_FRIGICITE);
+        if (player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.ROUND_FRIGICITE)) then
+            player:addKeyItem(dsp.ki.ROUND_FRIGICITE);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ROUND_FRIGICITE);
         else
             player:messageSpecial(ONLY_SHARDS);
         end

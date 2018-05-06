@@ -57,16 +57,16 @@ function onEventFinish(player,csid,option)
 
     if (csid == 254) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_BASTOK);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         player:setVar("MissionStatus",3);
     elseif (csid == 256) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_BASTOK2);
         player:setVar("MissionStatus",8);
     elseif (csid == 257) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
-        player:delKeyItem(KINDRED_CREST);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     elseif (csid == 255) then
         player:tradeComplete();
         player:setVar("MissionStatus",7);

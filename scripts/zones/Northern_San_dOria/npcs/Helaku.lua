@@ -48,7 +48,7 @@ function onTrigger(player,npc)
             player:startEvent(537);
         elseif (missionStatus == 9) then
             player:startEvent(542);
-        elseif (player:hasKeyItem(KINDRED_CREST)) then
+        elseif (player:hasKeyItem(dsp.ki.KINDRED_CREST)) then
             player:startEvent(545);
         end
     else
@@ -76,8 +76,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 545) then
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",11);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
-        player:delKeyItem(KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
     end
 end;
