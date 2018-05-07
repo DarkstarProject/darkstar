@@ -468,7 +468,7 @@ void EncodeStringLinkshell(int8* signature, int8* target)
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     uint8 leftover = 0;
-    auto length = std::min(20u, strlen((const char*)signature));
+    auto length = std::min<size_t>(20u, strlen((const char*)signature));
 
     for(uint8 currChar = 0; currChar < length; ++currChar)
     {
@@ -494,7 +494,7 @@ void DecodeStringLinkshell(int8* signature, int8* target)
 {
     uint8 decodedSignature[21];
     memset(decodedSignature, 0, sizeof decodedSignature);
-    auto length = std::min(20u, (strlen((const char*)signature) * 8) / 6);
+    auto length = std::min<size_t>(20u, (strlen((const char*)signature) * 8) / 6);
 
     for(uint8 currChar = 0; currChar < length; ++currChar)
     {
@@ -529,7 +529,7 @@ int8* EncodeStringSignature(int8* signature, int8* target)
     memset(encodedSignature, 0, sizeof encodedSignature);
     uint8 chars = 0;
     // uint8 leftover = 0;
-    auto length = std::min(15u, strlen((const char*)signature));
+    auto length = std::min<size_t>(15u, strlen((const char*)signature));
 
     for(uint8 currChar = 0; currChar < length; ++currChar)
     {
@@ -555,7 +555,7 @@ void DecodeStringSignature(int8* signature, int8* target)
 {
     uint8 decodedSignature[16];
     memset(decodedSignature, 0, sizeof decodedSignature);
-    auto length = std::min(15u, (strlen((const char*)signature) * 8) / 6);
+    auto length = std::min<size_t>(15u, (strlen((const char*)signature) * 8) / 6);
 
     for(uint8 currChar = 0; currChar < length; ++currChar)
     {
