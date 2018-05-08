@@ -23,11 +23,11 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delKeyItem(CRIMSON_GRANULES_OF_TIME)
-    target:delKeyItem(AZURE_GRANULES_OF_TIME)
-    target:delKeyItem(AMBER_GRANULES_OF_TIME)
-    target:delKeyItem(ALABASTER_GRANULES_OF_TIME)
-    target:delKeyItem(OBSIDIAN_GRANULES_OF_TIME)
+    target:delKeyItem(dsp.ki.CRIMSON_GRANULES_OF_TIME)
+    target:delKeyItem(dsp.ki.AZURE_GRANULES_OF_TIME)
+    target:delKeyItem(dsp.ki.AMBER_GRANULES_OF_TIME)
+    target:delKeyItem(dsp.ki.ALABASTER_GRANULES_OF_TIME)
+    target:delKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
     if effect:getTimeRemaining() == 0 then
         target:triggerListener("DYNAMIS_EXPIRE", target)
         target:startEvent(100)
