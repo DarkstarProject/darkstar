@@ -183,7 +183,7 @@ dsp.armorStorage.onEventFinish = function(player, csid, option, deposit, withdra
     if (csid == deposit) then
         player:tradeComplete();
         
-    elseif (csid == withdrawal) then
+    elseif (csid == withdrawal and player:hasKeyItem(armorSets[option * 11])) then
         if (option > 0 and option <= armorSets[#armorSets] - 10) then
             if (player:getFreeSlotsCount() >= armorSets[option * 11 - 7]) then
                 for item = 2, 6 do
