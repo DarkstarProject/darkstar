@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local LoversInTheDusk = player:getQuestStatus(BASTOK,LOVERS_IN_THE_DUSK);
     local TOTD = VanadielTOTD();
 
-    if (TOTD == TIME_DUSK and LoversInTheDusk == QUEST_ACCEPTED) then
+    if (TOTD == dsp.time.DUSK and LoversInTheDusk == QUEST_ACCEPTED) then
         player:startEvent(204);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

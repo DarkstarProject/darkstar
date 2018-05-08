@@ -60,9 +60,8 @@ function onEventFinish(player,csid,option)
             player:startEvent(7);
         end
     elseif (csid==7) then
-        player:setPos(378, -12, -20, 125, 0xA1);
-        player:addKeyItem(SHADOW_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
+        player:addKeyItem(dsp.ki.SHADOW_FRAGMENT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHADOW_FRAGMENT);
         player:setVar("MissionStatus",4);
     end
 end;

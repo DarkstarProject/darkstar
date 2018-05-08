@@ -7,11 +7,12 @@ package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
 require("scripts/zones/Empyreal_Paradox/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
-    mob:addMod(MOD_UFASTCAST,50);
+    mob:addMod(dsp.mod.REGAIN, 50);
+    mob:addMod(dsp.mod.UFASTCAST,50);
 end;
 
 function onMobEngaged(mob,target)
@@ -30,12 +31,12 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)
-    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(EFFECT_STUN)) then
+    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(dsp.effect.STUN)) then
         mob:AnimationSub(0);
         mob:stun(1500);
-    elseif (mob:AnimationSub() == 2 and not mob:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    elseif (mob:AnimationSub() == 2 and not mob:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
         mob:AnimationSub(0);
-    elseif (mob:AnimationSub() == 1 and not mob:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
+    elseif (mob:AnimationSub() == 1 and not mob:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD)) then
         mob:AnimationSub(0);
     end
 
@@ -49,8 +50,8 @@ end;
 
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
-        spell:setAoE(SPELLAOE_RADIAL);
-        spell:setFlag(SPELLFLAG_HIT_ALL);
+        spell:setAoE(dsp.magic.aoe.RADIAL);
+        spell:setFlag(dsp.magic.spellFlag.HIT_ALL);
         spell:setRadius(30);
         spell:setAnimation(280);
         spell:setMPCost(1);

@@ -33,7 +33,7 @@ function onTrade(player,npc,trade)
                     player:startEvent(43,12,0,597); -- chunk of mine gravel (597)
                 end
             else
-                player:startEvent(52,8,598); -- pickaxe breaks
+                player:startEvent(47,8,598); -- pickaxe breaks
                 player:tradeComplete();
             end
 

@@ -44,7 +44,6 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
-#include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
 #include "packets/party_effects.h"
@@ -405,7 +404,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 PChar->PLatentEffectContainer->CheckLatentsRollSong();
                 PChar->UpdateHealth();
             }
-            PChar->pushPacket(new CCharSyncPacket(PChar));
         }
         m_POwner->updatemask |= UPDATE_HP;
 
@@ -464,7 +462,6 @@ void CStatusEffectContainer::DeleteStatusEffects()
             PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
             PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
             PChar->PLatentEffectContainer->CheckLatentsRollSong();
-            PChar->pushPacket(new CCharSyncPacket(PChar));
         }
         m_POwner->UpdateHealth();
     }
@@ -1114,13 +1111,12 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 S
 * Used in mob abilities
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::StealStatusEffect()
+CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag)
 {
-
     std::vector<uint16> dispelableList;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+        if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0 &&
             !m_StatusEffectList.at(i)->deleted)
         {

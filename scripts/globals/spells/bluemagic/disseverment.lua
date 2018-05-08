@@ -52,11 +52,11 @@ function onSpellCast(caster,target,spell)
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
     
-    poison = target:getStatusEffect(EFFECT_POISON);
+    poison = target:getStatusEffect(dsp.effect.POISON);
     local chance = math.random();
     if (chance < 0.95 and poison == nil) then
         local power = (caster:getMainLvl()/5) + 3; -- from http://wiki.ffxiclopedia.org/wiki/Disseverment
-        target:addStatusEffect(EFFECT_POISON,power,3,180); -- for 180secs
+        target:addStatusEffect(dsp.effect.POISON,power,3,180); -- for 180secs
     end
     
     return damage;

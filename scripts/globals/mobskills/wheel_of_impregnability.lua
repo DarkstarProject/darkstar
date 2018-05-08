@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_PHYSICAL_SHIELD) or mob:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    if (mob:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) or mob:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
         return 1;
     end
     mob:showText(mob, PROMATHIA_TEXT + 5);
@@ -19,11 +19,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PHYSICAL_SHIELD;
+    local typeEffect = dsp.effect.PHYSICAL_SHIELD;
 
-    mob:addStatusEffect(EFFECT_PHYSICAL_SHIELD, 0, 0, 0);
+    mob:addStatusEffect(dsp.effect.PHYSICAL_SHIELD, 0, 0, 0);
     mob:AnimationSub(1);
 
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
-    return EFFECT_PHYSICAL_SHIELD;
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
+    return dsp.effect.PHYSICAL_SHIELD;
 end;

@@ -11,26 +11,26 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
     local power = utils.clamp(40+math.floor(dMND/5), 40, 50);
     local duration = 120;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_EVASION_DOWN;
+    params.effect = dsp.effect.EVASION_DOWN;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then
-        if (target:addStatusEffect(EFFECT_EVASION_DOWN,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (target:addStatusEffect(dsp.effect.EVASION_DOWN,power,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
-    return EFFECT_EVASION_DOWN;
+    return dsp.effect.EVASION_DOWN;
 end;

@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
     -- GROCERIES
     if (csid == 110) then
         player:addQuest(BASTOK, GROCERIES);
-        player:addKeyItem(TAMIS_NOTE);
-        player:messageSpecial(KEYITEM_OBTAINED, TAMIS_NOTE);
+        player:addKeyItem(dsp.ki.TAMIS_NOTE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TAMIS_NOTE);
         player:setVar("Groceries", 1);
     elseif (csid == 112) then
         player:addFame(BASTOK,8);

@@ -9,28 +9,21 @@
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return msgBasic.CANNOT_PERFORM_TARG,0;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG,0;
     elseif (player:getHP() < 4) then -- Fails if HP < 4
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     else
         return 0,0;
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
     -- Plus 5 percent mp recovers per extra devotion merit
-    local meritBonus = player:getMerit(MERIT_DEVOTION) - 5;
+    local meritBonus = player:getMerit(dsp.merit.DEVOTION) - 5;
     -- printf("Devotion Merit Bonus: %d", meritBonus);
 
     local mpPercent = (25 + meritBonus) / 100;

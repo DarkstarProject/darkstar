@@ -1,6 +1,6 @@
 -----------------------------------
 --
---      EFFECT_CAROL
+--      dsp.effect.CAROL
 --  TODO: MOD_CRITICAL_DAMAGE_REDUCTION
 -----------------------------------
 

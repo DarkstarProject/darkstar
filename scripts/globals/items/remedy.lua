@@ -13,22 +13,22 @@ end;
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_SILENCE) == true) then
-        target:delStatusEffect(EFFECT_SILENCE);
+    if (target:hasStatusEffect(dsp.effect.SILENCE) == true) then
+        target:delStatusEffect(dsp.effect.SILENCE);
     end
-    if (target:hasStatusEffect(EFFECT_BLINDNESS) == true) then
-        target:delStatusEffect(EFFECT_BLINDNESS);
+    if (target:hasStatusEffect(dsp.effect.BLINDNESS) == true) then
+        target:delStatusEffect(dsp.effect.BLINDNESS);
     end
-    if (target:hasStatusEffect(EFFECT_POISON) == true) then
-        target:delStatusEffect(EFFECT_POISON);
+    if (target:hasStatusEffect(dsp.effect.POISON) == true) then
+        target:delStatusEffect(dsp.effect.POISON);
     end
-    if (target:hasStatusEffect(EFFECT_PARALYSIS) == true) then
-        target:delStatusEffect(EFFECT_PARALYSIS);
+    if (target:hasStatusEffect(dsp.effect.PARALYSIS) == true) then
+        target:delStatusEffect(dsp.effect.PARALYSIS);
     end
 
     local rDisease = math.random(1,2) -- Disease is not garunteed to be cured, 1 means removed 2 means fail. 50% chance
-    if (rDisease == 1 and target:hasStatusEffect(EFFECT_DISEASE) == true) then
-        target:delStatusEffect(EFFECT_DISEASE);
+    if (rDisease == 1 and target:hasStatusEffect(dsp.effect.DISEASE) == true) then
+        target:delStatusEffect(dsp.effect.DISEASE);
     end
 end;
 

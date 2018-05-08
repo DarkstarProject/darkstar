@@ -6,12 +6,12 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
     mob:setSpellList(0); -- If it dies with the ability to cast spells, the next spawn would be able to cast from the start.
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
 end;
 
 function onMobFight(mob, target)
@@ -30,12 +30,12 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guestimating 2 in 3 chance to stun on melee.
-    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(EFFECT_STUN) == true)) then
+    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effect.STUN) == true)) then
         return 0,0,0;
     else
         local duration = math.random(4,8);
-        target:addStatusEffect(EFFECT_STUN,5,0,duration);
-        return SUBEFFECT_STUN,0,EFFECT_STUN;
+        target:addStatusEffect(dsp.effect.STUN,5,0,duration);
+        return dsp.subEffect.STUN,0,dsp.effect.STUN;
     end
 end;
 

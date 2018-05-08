@@ -12,17 +12,17 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect1 = EFFECT_MAGIC_ATK_BOOST;
-    local typeEffect2 = EFFECT_MAGIC_DEF_BOOST;
-    local mabTotal = mob:getStatusEffect(EFFECT_MAGIC_ATK_BOOST);
-    local mdbTotal = mob:getStatusEffect(EFFECT_MAGIC_DEF_BOOST);
+    local typeEffect1 = dsp.effect.MAGIC_ATK_BOOST;
+    local typeEffect2 = dsp.effect.MAGIC_DEF_BOOST;
+    local mabTotal = mob:getStatusEffect(dsp.effect.MAGIC_ATK_BOOST);
+    local mdbTotal = mob:getStatusEffect(dsp.effect.MAGIC_DEF_BOOST);
 
-    if (mob:getStatusEffect(EFFECT_MAGIC_ATK_BOOST) ~= nil) then -- mag atk bonus stacking
+    if (mob:getStatusEffect(dsp.effect.MAGIC_ATK_BOOST) ~= nil) then -- mag atk bonus stacking
         mabTotal = mabTotal:getPower() + 10;
     else
         mabTotal = 10;
     end;
-    if (mob:getStatusEffect(EFFECT_MAGIC_DEF_BOOST) ~= nil) then -- mag def bonus stacking
+    if (mob:getStatusEffect(dsp.effect.MAGIC_DEF_BOOST) ~= nil) then -- mag def bonus stacking
         mdbTotal = mdbTotal:getPower() + 10;
     else
         mdbTotal = 10;

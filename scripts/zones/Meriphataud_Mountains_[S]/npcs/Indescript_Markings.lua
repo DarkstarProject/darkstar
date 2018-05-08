@@ -17,12 +17,12 @@ function onTrigger(player,npc)
 
     local loafersQuestProgress = player:getVar("AF_SCH_BOOTS");
 
-    player:delStatusEffect(EFFECT_SNEAK);
+    player:delStatusEffect(dsp.effect.SNEAK);
 
     -- SCH AF Quest - Boots
-    if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(DROGAROGAN_BONEMEAL) == false) then
-        player:addKeyItem(DROGAROGAN_BONEMEAL);
-        player:messageSpecial(KEYITEM_OBTAINED, DROGAROGAN_BONEMEAL);
+    if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(dsp.ki.DROGAROGAN_BONEMEAL) == false) then
+        player:addKeyItem(dsp.ki.DROGAROGAN_BONEMEAL);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DROGAROGAN_BONEMEAL);
         player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);

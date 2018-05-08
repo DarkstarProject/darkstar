@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:addTitle(SHELL_OUTER);
+            player:addTitle(dsp.title.SHELL_OUTER);
             player:setVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ITEM_OBTAINED,12501);

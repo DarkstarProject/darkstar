@@ -74,11 +74,12 @@ YOWIE_PH =
     [17490141] = 17490204, -- 87.000 21.000 59.000
 };
 
-Gordov_s_Ghost  = 17489926;
-Dervo_s_Ghost   = 17489927;
-Gizerl_s_Ghost  = 17489928;
-Cancer          = 17490231;
-Phantom_Worm    = 17490233;
-GUIVRE          = 17490234;
+TALEKEEPER_OFFSET   = 17489926;
+CANCER              = 17490231;
+PHANTOM_WORM        = 17490233;
+GUIVRE              = 17490234;
 
-DOOR_ROCK       = 17490280;
+PHANTOM_WORM_QM         = 17490253;
+CANCER_QM               = 17490254;
+KUFTAL_DOOR_ROCK        = 17490280;
+KUFTAL_TREASURE_COFFER  = 17490304;

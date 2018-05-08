@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_DYNAMIS
+--     dsp.effect.DYNAMIS
 --
 -----------------------------------
 require("scripts/globals/keyitems")

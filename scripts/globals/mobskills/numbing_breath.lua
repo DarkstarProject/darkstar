@@ -16,10 +16,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 60);
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.875, ELE_ICE, 500);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.875, dsp.magic.ele.ICE, 500);
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

@@ -8,22 +8,15 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (not target:isWeaponTwoHanded()) then
-        return msgBasic.NEEDS_2H_WEAPON,0;
+        return dsp.msg.basic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local strboost = target:getMainLvl()/7;
@@ -31,8 +24,8 @@ function onUseAbility(player,target,ability)
         strboost = target:getSubLvl()/7;
     end
     if (target:isWeaponTwoHanded()) then
-        target:delStatusEffect(EFFECT_HASSO);
-        target:delStatusEffect(EFFECT_SEIGAN);
-        target:addStatusEffect(EFFECT_HASSO,strboost,0,300);
+        target:delStatusEffect(dsp.effect.HASSO);
+        target:delStatusEffect(dsp.effect.SEIGAN);
+        target:addStatusEffect(dsp.effect.HASSO,strboost,0,300);
     end
 end;

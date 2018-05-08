@@ -59,7 +59,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 1) then
             player:startEvent(91);
         elseif (MissionStatus == 3) then
-            player:startEvent(94,0,CRACKED_MANA_ORBS); -- Finish Mission 1-1
+            player:startEvent(94,0,dsp.ki.CRACKED_MANA_ORBS); -- Finish Mission 1-1
         end
     elseif (player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
         player:startEvent(147);
@@ -119,7 +119,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*1500);
             player:completeQuest(WINDURST,MAKING_AMENDS);
             player:addFame(WINDURST,75);
-            player:addTitle(QUICK_FIXER);
+            player:addTitle(dsp.title.QUICK_FIXER);
             player:needToZone(true);
             player:tradeComplete();
     elseif (csid == 259 and option == 1) then
@@ -176,14 +176,14 @@ function onEventFinish(player,csid,option)
             player:addItem(12750); -- New Moon Armlets
             player:messageSpecial(ITEM_OBTAINED, 12750); -- New Moon Armlets
             player:addFame(WINDURST,150);
-            player:addTitle(DOCTOR_SHANTOTTOS_GUINEA_PIG);
+            player:addTitle(dsp.title.DOCTOR_SHANTOTTOS_GUINEA_PIG);
             player:completeQuest(WINDURST,WONDER_WANDS);
         end
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
     elseif (csid == 456) then
             player:setVar("MissionStatus",1);
-            player:addKeyItem(SOUTHWESTERN_STAR_CHARM);
-            player:messageSpecial(KEYITEM_OBTAINED,SOUTHWESTERN_STAR_CHARM);
+            player:addKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOUTHWESTERN_STAR_CHARM);
     end
 
 end;

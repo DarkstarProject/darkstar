@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
         player:startEvent(22);
     elseif (csid == 22) then
         player:completeMission(TOAU,UNRAVELING_REASON);
-        player:setTitle(ENDYMION_PARATROOPER);
+        player:setTitle(dsp.title.ENDYMION_PARATROOPER);
         player:setVar("TOAUM40_STARTDAY", 0);
         player:addMission(TOAU,LIGHT_OF_JUDGMENT);
     end

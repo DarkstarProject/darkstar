@@ -13,31 +13,31 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     --Power for Hojo is a flat 19.5% reduction
     local power = 200;
     --Duration and Resistance calculation
     local duration = 300;
     local params = {};
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = NINJUTSU_SKILL;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
     --Calculates the resist chance from Resist Blind trait
-    if (math.random(0,100) >= target:getMod(MOD_SLOWRES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.SLOWRES)) then
         -- Spell succeeds if a 1 or 1/2 resist check is achieved
         if (duration >= 150) then
 
-            if (target:addStatusEffect(EFFECT_SLOW,power,0,duration)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            if (target:addStatusEffect(dsp.effect.SLOW,power,0,duration)) then
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
             end
         else
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2);
     end
-    return EFFECT_SLOW;
+    return dsp.effect.SLOW;
 end;

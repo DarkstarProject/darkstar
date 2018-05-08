@@ -17,12 +17,12 @@ function onMobFight (mob,target)
         mob:SetAutoAttackEnabled(true);
         mob:SetMobAbilityEnabled(true);
         mob:addHP(mob:getMaxHP()/2);
-        mob:addMod(MOD_ATT, 500);
+        mob:addMod(dsp.mod.ATT, 500);
         if(math.random(2)==2) then
-            mob:addMod(MOD_UDMGPHYS, -100);
-            mob:addMod(MOD_UDMGRANGE, -100);
+            mob:addMod(dsp.mod.UDMGPHYS, -100);
+            mob:addMod(dsp.mod.UDMGRANGE, -100);
         else
-            mob:setMod(MOD_UDMGMAGIC, -100);
+            mob:setMod(dsp.mod.UDMGMAGIC, -100);
         end
     end
 end;

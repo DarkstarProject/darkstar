@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Spring Breeze
 --
--- Description: AoE TP-Reduction and Sleep effect.
+-- Description: AoE TP-Reduction and Sleep dsp.effect.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
@@ -13,8 +13,8 @@ function onMobSkillCheck(target, mob, skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_SLEEP_I, 1, 0, 20));
+    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.SLEEP_I, 1, 0, 20));
     target:setTP(target:getTP() * 0.5);
 
-    return EFFECT_SLEEP_I;
+    return dsp.effect.SLEEP_I;
 end;

@@ -4,7 +4,6 @@
 -- most bcnms can use their ids as the key, though limbus does its own shit
 
 -- you'll need to look up these ids in bcnm_loot table to find any bcnms theyre associated with
-
 -- 10
 [10] =
 {
@@ -79,50 +78,111 @@
 [100] =
 {
     {
-        {itemid = 13292, droprate = 75}, -- Guardians Ring
-        {itemid = 13287, droprate = 32}, -- Kampfer Ring
-        {itemid = 13300, droprate = 54}, -- Conjurers Ring
-        {itemid = 13298, droprate = 32}, -- Shinobi Ring
-        {itemid = 13293, droprate = 97}, -- Slayers Ring
-        {itemid = 13289, droprate = 75}, -- Sorcerers Ring
-        {itemid = 13286, droprate = 108}, -- Soldiers Ring
-        {itemid = 13294, droprate = 22}, -- Tamers Ring
-        {itemid = 13296, droprate = 65}, -- Trackers Ring
-        {itemid = 13299, droprate = 32}, -- Drake Ring
-        {itemid = 13290, droprate = 32}, -- Fencers Ring
-        {itemid = 13295, droprate = 86}, -- Minstrels Ring
-        {itemid = 13288, droprate = 86}, -- Medicine Ring
-        {itemid = 13291, droprate = 75}, -- Rogues Ring
-        {itemid = 13297, droprate = 11}, -- Ronin Ring
-        {itemid = 13447, droprate = 32}, -- Platinum Ring
+        {itemid = 13292, droprate = 80}, -- Guardians Ring
+        {itemid = 13287, droprate = 37}, -- Kampfer Ring
+        {itemid = 13300, droprate = 59}, -- Conjurers Ring
+        {itemid = 13298, droprate = 37}, -- Shinobi Ring
+        {itemid = 13293, droprate = 102}, -- Slayers Ring
+        {itemid = 13289, droprate = 80}, -- Sorcerers Ring
+        {itemid = 13286, droprate = 113}, -- Soldiers Ring
+        {itemid = 13294, droprate = 27}, -- Tamers Ring
+        {itemid = 13296, droprate = 70}, -- Trackers Ring
+        {itemid = 13299, droprate = 37}, -- Drake Ring
+        {itemid = 13290, droprate = 37}, -- Fencers Ring
+        {itemid = 13295, droprate = 91}, -- Minstrels Ring
+        {itemid = 13288, droprate = 91}, -- Medicine Ring
+        {itemid = 13291, droprate = 80}, -- Rogues Ring
+        {itemid = 13297, droprate = 22}, -- Ronin Ring
+        {itemid = 13447, droprate = 37}, -- Platinum Ring
     },
     {
-        {itemid = 13548, droprate = 376}, -- Astral Ring
+        {itemid = 13548, droprate = 382}, -- Astral Ring
         {itemid = 13447, droprate = 22}, -- Platinum Ring
         {itemid = 4818, droprate = 65}, -- Scroll Of Quake
         {itemid = 859, droprate = 0}, -- Ram Skin
-        {itemid = 4172, droprate = 11}, -- Reraiser
+        {itemid = 4172, droprate = 14}, -- Reraiser
         {itemid = 653, droprate = 22}, -- Mythril Ingot
         {itemid = 4902, droprate = 0}, -- Light Spirit Pact
         {itemid = 4814, droprate = 32}, -- Scroll Of Freeze
         {itemid = 4719, droprate = 43}, -- Scroll Of Regen Iii
         {itemid = 4621, droprate = 32}, -- Scroll Of Raise Ii
-        {itemid = 703, droprate = 11}, -- Petrified Log
-        {itemid = 887, droprate = 11}, -- Coral Fragment
-        {itemid = 700, droprate = 11}, -- Mahogany Log
+        {itemid = 703, droprate = 14}, -- Petrified Log
+        {itemid = 887, droprate = 14}, -- Coral Fragment
+        {itemid = 700, droprate = 14}, -- Mahogany Log
         {itemid = 738, droprate = 43}, -- Chunk Of Platinum Ore
         {itemid = 737, droprate = 108}, -- Chunk Of Gold Ore
         {itemid = 645, droprate = 32}, -- Chunk Of Darksteel Ore
         {itemid = 644, droprate = 65}, -- Chunk Of Mythril Ore
         {itemid = 745, droprate = 0}, -- Gold Ingot
-        {itemid = 654, droprate = 11}, -- Darksteel Ingot
-        {itemid = 746, droprate = 11}, -- Platinum Ingot
-        {itemid = 702, droprate = 11}, -- Ebony Log
-        {itemid = 895, droprate = 11}, -- Ram Horn
-        {itemid = 902, droprate = 11}, -- Demon Horn
+        {itemid = 654, droprate = 14}, -- Darksteel Ingot
+        {itemid = 746, droprate = 14}, -- Platinum Ingot
+        {itemid = 702, droprate = 14}, -- Ebony Log
+        {itemid = 895, droprate = 14}, -- Ram Horn
+        {itemid = 902, droprate = 14}, -- Demon Horn
         {itemid = 1116, droprate = 0}, -- Manticore Hide
-        {itemid = 1122, droprate = 11}, -- Wyvern Skin
-        {itemid = 866, droprate = 11}, -- Handful Of Wyvern Scales
+        {itemid = 1122, droprate = 14}, -- Wyvern Skin
+        {itemid = 866, droprate = 14}, -- Handful Of Wyvern Scales
+    },
+}
+-- 104
+[104] =
+{
+    {
+        {itemid = 816, droprate = 1000}, -- Spool Of Silk Thread
+    },
+    {
+        {itemid = 816, droprate = 500}, -- Spool Of Silk Thread
+    },
+    {
+        {itemid = 816, droprate = 330}, -- Spool Of Silk Thread
+    },
+    {
+        {itemid = 14738, droprate = 90}, -- Magicians Earring
+        {itemid = 14737, droprate = 90}, -- Wyvern Earring
+        {itemid = 14736, droprate = 90}, -- Genin Earring
+        {itemid = 14735, droprate = 90}, -- Ashigaru Earring
+        {itemid = 14734, droprate = 90}, -- Beaters Earring
+        {itemid = 14733, droprate = 90}, -- Singers Earring
+        {itemid = 14732, droprate = 90}, -- Trimmers Earring
+        {itemid = 14731, droprate = 90}, -- Killer Earring
+        {itemid = 14730, droprate = 90}, -- Esquires Earring
+        {itemid = 14729, droprate = 90}, -- Pilferers Earring
+    },
+    {
+        {itemid = 13439, droprate = 90}, -- Warlocks Earring
+        {itemid = 13438, droprate = 90}, -- Wizards Earring
+        {itemid = 13437, droprate = 90}, -- Healers Earring
+        {itemid = 13436, droprate = 90}, -- Wrestlers Earring
+        {itemid = 13435, droprate = 90}, -- Mercenarys Earring
+    },
+    {
+        {itemid = 1134, droprate = 110}, -- Sheet Of Bast Parchment
+        {itemid = 4116, droprate = 150}, -- Hi-potion
+        {itemid = 4132, droprate = 150}, -- Hi-ether
+    },
+    {
+        {itemid = 694, droprate = 100}, -- Chestnut Log
+        {itemid = 690, droprate = 100}, -- Elm Log
+        {itemid = 651, droprate = 80}, -- Iron Ingot
+        {itemid = 653, droprate = 80}, -- Mythril Ingot
+        {itemid = 744, droprate = 80}, -- Silver Ingot
+        {itemid = 652, droprate = 80}, -- Steel Ingot
+    },
+    {
+        {itemid = 644, droprate = 100}, -- Chunk Of Mythril Ore
+        {itemid = 645, droprate = 100}, -- Chunk Of Darksteel Ore
+        {itemid = 736, droprate = 100}, -- Chunk Of Silver Ore
+        {itemid = 806, droprate = 80}, -- Tourmaline
+        {itemid = 814, droprate = 80}, -- Amber Stone
+        {itemid = 795, droprate = 80}, -- Lapis Lazuli
+        {itemid = 799, droprate = 80}, -- Onyx
+        {itemid = 807, droprate = 80}, -- Sardonyx
+    },
+    {
+        {itemid = 4751, droprate = 200}, -- Scroll Of Erase
+        {itemid = 4868, droprate = 150}, -- Scroll Of Dispel
+        {itemid = 5070, droprate = 200}, -- Scroll Of Magic Finale
+        {itemid = 4947, droprate = 100}, -- Scroll Of Utsusemi Ni
     },
 }
 -- 105
@@ -710,7 +770,6 @@
     },
     {
         {itemid = 12486, droprate = 364}, -- Emperor Hairpin
-        {itemid = 846, droprate = 636}, -- Insect Wing
     },
     {
         {itemid = 12400, droprate = 175}, -- Ashigaru Targe
@@ -1389,7 +1448,6 @@
 [14] =
 {
     {
-        {itemid = 939, droprate = 50}, -- Hecteyes Eye
         {itemid = 13254, droprate = 95}, -- Jungle Belt
         {itemid = 13253, droprate = 95}, -- Steppe Belt
         {itemid = 13255, droprate = 95}, -- Desert Belt
@@ -1419,7 +1477,6 @@
         {itemid = 13447, droprate = 30}, -- Platinum Ring
     },
     {
-        {itemid = 939, droprate = 166}, -- Hecteyes Eye
         {itemid = 4902, droprate = 10}, -- Light Spirit Pact
         {itemid = 4814, droprate = 176}, -- Scroll Of Freeze
         {itemid = 4719, droprate = 176}, -- Scroll Of Regen Iii
@@ -2144,10 +2201,8 @@
 {
     {
         {itemid = 13056, droprate = 90}, -- Peacock Charm
-        {itemid = 939, droprate = 910}, -- Hecteyes Eye
     },
     {
-        {itemid = 939, droprate = 467}, -- Hecteyes Eye
         {itemid = 18086, droprate = 48}, -- Behourd Lance
         {itemid = 18046, droprate = 61}, -- Mutilator
         {itemid = 18210, droprate = 46}, -- Raifu
@@ -2155,7 +2210,6 @@
         {itemid = 18350, droprate = 76}, -- Tourney Patas
     },
     {
-        {itemid = 939, droprate = 413}, -- Hecteyes Eye
         {itemid = 17696, droprate = 42}, -- Buzzard Tuck
         {itemid = 17936, droprate = 77}, -- De Saintres Axe
         {itemid = 17693, droprate = 73}, -- Grudge Sword
@@ -2477,19 +2531,19 @@
         {itemid = 4947, droprate = 79}, -- Scroll Of Utsusemi Ni
     },
     {
-        {itemid = 847, droprate = 330}, -- Bird Feather
-        {itemid = 694, droprate = 130}, -- Chestnut Log
-        {itemid = 690, droprate = 125}, -- Elm Log
-        {itemid = 4132, droprate = 210}, -- Hi-ether
-        {itemid = 4222, droprate = 235}, -- Horn Quiver
-        {itemid = 651, droprate = 98}, -- Iron Ingot
-        {itemid = 795, droprate = 130}, -- Lapis Lazuli
-        {itemid = 796, droprate = 150}, -- Light Opal
-        {itemid = 653, droprate = 184}, -- Mythril Ingot
-        {itemid = 644, droprate = 159}, -- Chunk Of Mythril Ore
-        {itemid = 799, droprate = 160}, -- Onyx
-        {itemid = 736, droprate = 180}, -- Chunk Of Silver Ore
-        {itemid = 744, droprate = 175}, -- Silver Ingot
+        {itemid = 847, droprate = 230}, -- Bird Feather
+        {itemid = 694, droprate = 30}, -- Chestnut Log
+        {itemid = 690, droprate = 25}, -- Elm Log
+        {itemid = 4132, droprate = 60}, -- Hi-ether
+        {itemid = 4222, droprate = 35}, -- Horn Quiver
+        {itemid = 651, droprate = 58}, -- Iron Ingot
+        {itemid = 795, droprate = 30}, -- Lapis Lazuli
+        {itemid = 796, droprate = 50}, -- Light Opal
+        {itemid = 653, droprate = 84}, -- Mythril Ingot
+        {itemid = 644, droprate = 99}, -- Chunk Of Mythril Ore
+        {itemid = 799, droprate = 60}, -- Onyx
+        {itemid = 736, droprate = 80}, -- Chunk Of Silver Ore
+        {itemid = 744, droprate = 75}, -- Silver Ingot
     },
 }
 -- 76
@@ -2497,17 +2551,17 @@
 {
     {
         {itemid = 18047, droprate = 188}, -- Havoc Scythe
-        {itemid = 17939, droprate = 27}, -- Kriegsbeil
+        {itemid = 17939, droprate = 40}, -- Kriegsbeil
         {itemid = 17937, droprate = 170}, -- Leopard Axe
         {itemid = 1441, droprate = 295}, -- Libation Abjuration
-        {itemid = 18351, droprate = 27}, -- Meteor Cesti
+        {itemid = 18351, droprate = 40}, -- Meteor Cesti
         {itemid = 17464, droprate = 71}, -- Purgatory Mace
         {itemid = 17575, droprate = 196}, -- Somnus Signa
     },
     {
         {itemid = 18211, droprate = 45}, -- Gawains Axe
-        {itemid = 17576, droprate = 259}, -- Grim Staff
-        {itemid = 17245, droprate = 241}, -- Grosveneurs Bow
+        {itemid = 17576, droprate = 242}, -- Grim Staff
+        {itemid = 17245, droprate = 230}, -- Grosveneurs Bow
         {itemid = 17838, droprate = 143}, -- Harlequins Horn
         {itemid = 1442, droprate = 161}, -- Oblation Abjuration
         {itemid = 17996, droprate = 143}, -- Stylet
@@ -2519,8 +2573,8 @@
     {
         {itemid = 683, droprate = 446}, -- Adaman Chain
         {itemid = 908, droprate = 420}, -- Adamantoise Shell
-        {itemid = 1312, droprate = 71}, -- Piece Of Angel Skin
-        {itemid = 14080, droprate = 26}, -- Strider Boots
+        {itemid = 1312, droprate = 98}, -- Piece Of Angel Skin
+        {itemid = 14080, droprate = 36}, -- Strider Boots
     },
     {
         {itemid = 887, droprate = 116}, -- Coral Fragment

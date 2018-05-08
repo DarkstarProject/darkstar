@@ -16,11 +16,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SLEEP_I;
+    local typeEffect = dsp.effect.SLEEP_I;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
 
-    local dmgmod = MobBreathMove(mob, target, 0.125, 3, ELE_WATER, 500);
+    local dmgmod = MobBreathMove(mob, target, 0.125, 3, dsp.magic.ele.WATER, 500);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

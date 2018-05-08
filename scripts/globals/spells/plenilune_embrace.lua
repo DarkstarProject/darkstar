@@ -43,8 +43,8 @@ function onSpellCast(caster,target,spell)
         magAttBoost = 1;
         attBoost = 15;
     end
-    caster:addStatusEffect(EFFECT_ATTACK_BOOST,attBoost,0,duration);
-    caster:addStatusEffect(EFFECT_MAGIC_ATK_BOOST,magAttBoost,0,duration);
+    caster:addStatusEffect(dsp.effect.ATTACK_BOOST,attBoost,0,duration);
+    caster:addStatusEffect(dsp.effect.MAGIC_ATK_BOOST,magAttBoost,0,duration);
 
     local minCure = 350;
 
@@ -61,7 +61,7 @@ function onSpellCast(caster,target,spell)
 
     local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
 
-    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100));
     local diff = (target:getMaxHP() - target:getHP());
     if (final > diff) then
         final = diff;

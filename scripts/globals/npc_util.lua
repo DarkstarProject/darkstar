@@ -104,9 +104,9 @@ end
     Message is displayed showing key items obtained.
     
     Examples of valid keyitems parameter:
-        ZERUHN_REPORT
-        {PALBOROUGH_MINES_LOGS}
-        {BLUE_ACIDITY_TESTER, RED_ACIDITY_TESTER}
+        dsp.ki.ZERUHN_REPORT
+        {dsp.ki.PALBOROUGH_MINES_LOGS}
+        {dsp.ki.BLUE_ACIDITY_TESTER, dsp.ki.RED_ACIDITY_TESTER}
 ******************************************************************************* --]]
 function npcUtil.giveKeyItem(player, keyitems)
     -- require zone TextIDs
@@ -141,12 +141,13 @@ end
     Example of usage with params (all params are optional):
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
             item = { {640,2}, 641 },    -- see npcUtil.giveItem for formats
-            keyItem = ZERUHN_REPORT,    -- see npcUtil.giveKeyItem for formats
+            keyItem = dsp.ki.ZERUHN_REPORT,    -- see npcUtil.giveKeyItem for formats
             fame = 120,                 -- fame defaults to 30 if not set
             bayld = 500,
             gil = 200,
             xp = 1000,
-            title = ENTRANCE_DENIED,
+            title = dsp.title.ENTRANCE_DENIED,
+            var = {"foo1", "foo2"}      -- variable(s) to set to 0. string or table
         });
 ******************************************************************************* --]]
 function npcUtil.completeQuest(player, area, quest, params)
@@ -174,6 +175,8 @@ function npcUtil.completeQuest(player, area, quest, params)
     end
     if (area["fame_area"] ~= nil and type(params["fame"]) == "number") then
         player:addFame(area, params["fame"]);
+    elseif (params["fameArea"] ~= nil and params["fameArea"]["fame_area"] ~= nil and type(params["fame"]) == "number") then
+        player:addFame(params["fameArea"], params["fame"]);
     end
 
     if (params["gil"] ~= nil and type(params["gil"]) == "number") then
@@ -192,6 +195,18 @@ function npcUtil.completeQuest(player, area, quest, params)
 
     if (params["title"] ~= nil) then
         player:addTitle(params["title"]);
+    end
+    
+    if (params["var"] ~= nil) then
+        local playerVarsToZero = {};
+        if (type(params["var"]) == "table") then
+            playerVarsToZero = params["var"];
+        elseif (type(params["var"]) == "string") then
+            table.insert(playerVarsToZero, params["var"]);
+        end
+        for _, v in pairs(playerVarsToZero) do
+            player:setVar(v, 0);
+        end
     end
 
     -- successfully complete the quest
@@ -344,24 +359,24 @@ function npcUtil.fishingAnimation(npc, phaseDuration, func)
     npc:timer(phaseDuration * 1000, function(npc)
         local anims =
         {
-            [ANIMATION_FISHING_NPC] = { duration = 5, nextAnim = { ANIMATION_FISHING_START } },
-            [ANIMATION_FISHING_START] = { duration = 10, nextAnim = { ANIMATION_FISHING_FISH } },
-            [ANIMATION_FISHING_FISH] = { duration = 10,
+            [dsp.anim.FISHING_NPC] = { duration = 5, nextAnim = { dsp.anim.FISHING_START } },
+            [dsp.anim.FISHING_START] = { duration = 10, nextAnim = { dsp.anim.FISHING_FISH } },
+            [dsp.anim.FISHING_FISH] = { duration = 10,
                                             nextAnim =
                                             {
-                                                ANIMATION_FISHING_CAUGHT,
-                                                ANIMATION_FISHING_ROD_BREAK,
-                                                ANIMATION_FISHING_LINE_BREAK,
+                                                dsp.anim.FISHING_CAUGHT,
+                                                dsp.anim.FISHING_ROD_BREAK,
+                                                dsp.anim.FISHING_LINE_BREAK,
                                             }
                                        },
-            [ANIMATION_FISHING_ROD_BREAK] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_LINE_BREAK] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_CAUGHT] = { duration = 5, nextAnim = { ANIMATION_FISHING_NPC } },
-            [ANIMATION_FISHING_STOP] = { duration = 3, nextAnim = { ANIMATION_FISHING_NPC } },
+            [dsp.anim.FISHING_ROD_BREAK] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_LINE_BREAK] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_CAUGHT] = { duration = 5, nextAnim = { dsp.anim.FISHING_NPC } },
+            [dsp.anim.FISHING_STOP] = { duration = 3, nextAnim = { dsp.anim.FISHING_NPC } },
         }
 
         local anim = anims[npc:getAnimation()]
-        local nextAnimationId = ANIMATION_FISHING_NPC
+        local nextAnimationId = dsp.anim.FISHING_NPC
         local nextAnimationDuration = 10
         local nextAnim = nil
         if anim then

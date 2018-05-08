@@ -34,8 +34,8 @@ function onTrade(player,npc,trade)
         if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
-            player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:addKeyItem(dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     elseif (trade:hasItemQty(16511,1) and count == 1 and trade:getGil() == 0) then
         if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
@@ -144,8 +144,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 285) then  -- Giving him KI from Principle
         player:tradeComplete();
-        player:addKeyItem(TATTERED_TEST_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,TATTERED_TEST_SHEET);
+        player:addKeyItem(dsp.ki.TATTERED_TEST_SHEET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TATTERED_TEST_SHEET);
         player:setVar("QuestMakingTheGrade_prog",2);
     elseif (csid == 211) then
         player:tradeComplete();
@@ -168,7 +168,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
         player:addItem(17030);
         player:messageSpecial(ITEM_OBTAINED,17030);
-        player:addTitle(FOSSILIZED_SEA_FARER);
+        player:addTitle(dsp.title.FOSSILIZED_SEA_FARER);
         player:addFame(WINDURST,30);
         player:needToZone(true);
     elseif (csid == 404) then
@@ -183,7 +183,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17532);
         end;
     elseif (csid == 412) then
-        player:delKeyItem(CARBUNCLES_TEAR);
+        player:delKeyItem(dsp.ki.CARBUNCLES_TEAR);
         player:setVar("ClassReunionProgress",2);
     elseif (csid == 407) then
         player:tradeComplete();
@@ -205,13 +205,13 @@ function onEventFinish(player,csid,option)
         player:setVar("CarbuncleDebacleProgress",2);
     elseif (csid == 417) then
         player:setVar("CarbuncleDebacleProgress",5);
-        player:addKeyItem(DAZEBREAKER_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,DAZEBREAKER_CHARM);
+        player:addKeyItem(dsp.ki.DAZEBREAKER_CHARM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DAZEBREAKER_CHARM);
     elseif (csid == 419) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12520); -- Evoker's Horn
             player:messageSpecial(ITEM_OBTAINED,12520);
-            player:addTitle(PARAGON_OF_SUMMONER_EXCELLENCE);
+            player:addTitle(dsp.title.PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
             player:addFame(WINDURST,AF3_FAME);
             player:setVar("CarbuncleDebacleProgress",0);

@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (not target:hasStatusEffect(EFFECT_INVISIBLE)) then
+    if (not target:hasStatusEffect(dsp.effect.INVISIBLE)) then
 
         -- last 7-9 minutes
         local duration = math.random(420, 540);
@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
             duration = duration * target:getMainLvl() / 25; -- level adjustment
         end
 
-        if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+        if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
             duration = duration * 3;
         end
 
@@ -29,11 +29,11 @@ function onSpellCast(caster,target,spell)
             duration = duration * 1.5;
         end
 
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
-        target:addStatusEffect(EFFECT_INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
+        target:addStatusEffect(dsp.effect.INVISIBLE, 0, 10, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect.
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no dsp.effect.
     end
 
-    return EFFECT_INVISIBLE;
+    return dsp.effect.INVISIBLE;
 end;

@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- String Clipper
 ---------------------------------------------------
-
 require("scripts/globals/status")
 require("scripts/globals/settings")
 require("scripts/globals/automatonweaponskills")
@@ -10,14 +9,14 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(EFFECT_THUNDER_MANEUVER)
+    return master:countEffect(dsp.effect.THUNDER_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
     local params = {
         numHits = 2,
         atkmulti = 1.25,
-        weaponType = SKILL_SWD,
+        weaponType = dsp.skill.SWORD,
         ftp100 = 2.0,
         ftp200 = 2.0,
         ftp300 = 2.0,

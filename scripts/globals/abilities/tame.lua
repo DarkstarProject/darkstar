@@ -15,27 +15,27 @@ end
 
 function onUseAbility(player,target,ability)
     if player:getPet() ~= nil then
-        ability:setMsg(msgBasic.JA_NO_EFFECT)
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
         return 0
     end
-    if target:getMobMod(MOBMOD_CHARMABLE) == 0 then
-        ability:setMsg(msgBasic.JA_NO_EFFECT)
+    if target:getMobMod(dsp.mobMod.CHARMABLE) == 0 then
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
         return 0
     end
-    local resist = applyResistanceAbility(player, target, ELE_NONE, SKILL_NON, player:getStat(MOD_INT) - target:getStat(MOD_INT))
+    local resist = applyResistanceAbility(player, target, dsp.magic.ele.NONE, dsp.skill.NONE, player:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
     if resist <= 0.25 then
-        ability:setMsg(msgBasic.JA_MISS_2)
+        ability:setMsg(dsp.msg.basic.JA_MISS_2)
         return 0
     else
         if target:isEngaged() then
             local enmitylist = target:getEnmityList()
             for _,enmity in ipairs(enmitylist) do
                 if enmity.active and enmity.entity:getID() ~= player:getID() then
-                    ability:setMsg(msgBasic.JA_NO_EFFECT)
+                    ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
                     return 0
                 elseif enmity.entity:getID() == player:getID() then
                     if not enmity.tameable then
-                        ability:setMsg(msgBasic.JA_NO_EFFECT)
+                        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT)
                         return 0
                     end
                 end

@@ -15,7 +15,7 @@ require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
     -- ALL THE WAY TO THE BANK
-    if (player:hasKeyItem(TARUTARU_SAUCE_INVOICE)) then
+    if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE)) then
         local ATWTTB_Paid_Hujette = player:getMaskBit(player:getVar("ATWTTB_Payments"), 1);
         if ((not ATWTTB_Paid_Hujette) and npcUtil.tradeHas( trade, {{"gil",3000}} )) then
             player:startEvent(5070);
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:setMaskBit("ATWTTB_Payments", 1, true);
         if (player:isMaskFull(player:getVar("ATWTTB_Payments"), 5)) then
-            npcUtil.giveKeyItem(player, TARUTARU_SAUCE_RECEIPT);
+            npcUtil.giveKeyItem(player, dsp.ki.TARUTARU_SAUCE_RECEIPT);
         end
     end
 end;

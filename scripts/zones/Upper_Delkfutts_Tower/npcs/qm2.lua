@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
     if (not GetMobByID(PALLAS):isSpawned() and trade:hasItemQty(2386,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
         SpawnMob(PALLAS):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

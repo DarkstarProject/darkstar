@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);
     elseif (csid == 125) then
         player:tradeComplete();
-        player:addTitle(LOOKS_SUBLIME_IN_A_SUBLIGAR);
+        player:addTitle(dsp.title.LOOKS_SUBLIME_IN_A_SUBLIGAR);
         player:addItem(4955); -- Scroll of Kurayami: Ichi
         player:messageSpecial(ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
         player:setVar("shiningSubligar_nb",0);

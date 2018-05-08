@@ -17,15 +17,15 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1 and not player:hasKeyItem(SCRAP_OF_PAPYRUS)) then
+    if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL and player:getVar("ZilartStatus") == 1 and not player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
         if (player:needToZone() and player:getVar("AncientVesselKilled") == 1) then
             player:setVar("AncientVesselKilled",0);
-            player:addKeyItem(SCRAP_OF_PAPYRUS);
-            player:messageSpecial(KEYITEM_OBTAINED,SCRAP_OF_PAPYRUS);
+            player:addKeyItem(dsp.ki.SCRAP_OF_PAPYRUS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCRAP_OF_PAPYRUS);
         else
             player:startEvent(12);
         end
-    elseif (player:hasCompletedMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL) or player:hasKeyItem(SCRAP_OF_PAPYRUS)) then
+    elseif (player:hasCompletedMission(ZILART,THE_MITHRA_AND_THE_CRYSTAL) or player:hasKeyItem(dsp.ki.SCRAP_OF_PAPYRUS)) then
         player:messageSpecial(YOU_FIND_NOTHING);
     else
         player:messageSpecial(SOMETHING_IS_BURIED);

@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_BATTLEFIELD
+--     dsp.effect.BATTLEFIELD
 --
 -----------------------------------
 
@@ -28,7 +28,7 @@ end;
 function onEffectLose(target,effect)
     local pet = target:getPet()
     if pet then
-        pet:delStatusEffect(EFFECT_BATTLEFIELD);
+        pet:delStatusEffect(dsp.effect.BATTLEFIELD)
         pet:leaveBattlefield(1)
     end
     target:setLocalVar("[battlefield]area", 0)

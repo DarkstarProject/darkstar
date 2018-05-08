@@ -8,13 +8,13 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_DOUBLE_ATTACK, 20);
-    mob:setMod(MOD_STORETP, 10);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 20);
+    mob:setMod(dsp.mod.STORETP, 10);
 end;
 
 function onAdditionalEffect(mob, player)
     local chance = 25;
-    local resist = applyResistanceAddEffect(mob,player,ELE_WATER,EFFECT_PLAGUE);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.WATER,dsp.effect.PLAGUE);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -24,10 +24,10 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(EFFECT_PLAGUE)) then
-            player:addStatusEffect(EFFECT_PLAGUE, 1, 0, duration);
+        if (not player:hasStatusEffect(dsp.effect.PLAGUE)) then
+            player:addStatusEffect(dsp.effect.PLAGUE, 1, 0, duration);
         end
-        return SUBEFFECT_PLAGUE, msgBasic.ADD_EFFECT_STATUS, EFFECT_PLAGUE;
+        return dsp.subEffect.PLAGUE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PLAGUE;
     end
 end;
 

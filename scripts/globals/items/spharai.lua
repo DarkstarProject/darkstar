@@ -21,7 +21,7 @@ aftermathTable[18264] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_SUBTLE_BLOW, power=10 }
+        { id=dsp.mod.SUBTLE_BLOW, power=10 }
     }
 };
 aftermathTable[18265] = aftermathTable[18264]; -- Spharai (80)
@@ -40,14 +40,14 @@ aftermathTable[20509] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_SUBTLE_BLOW, power=10 },
-        { id=MOD_KICK_ATTACK, power=15 }
+        { id=dsp.mod.SUBTLE_BLOW, power=10 },
+        { id=dsp.mod.KICK_ATTACK, power=15 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_FINAL_HEAVEN) then -- Final Heaven onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.FINAL_HEAVEN) then -- Final Heaven onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -58,8 +58,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -74,8 +74,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end

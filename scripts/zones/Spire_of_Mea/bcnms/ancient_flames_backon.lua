@@ -52,9 +52,9 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then    
-            if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then 
+            if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then 
                 player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 3)
-            elseif (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_DEM)) then 
+            elseif (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then 
                 player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 2) 
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
@@ -79,20 +79,20 @@ function onEventFinish(player,csid,option)
     
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
     
-            if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then
+            if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then
                 player:addExp(1500);
-                player:addKeyItem(LIGHT_OF_MEA);
-                player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
+                player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
+                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
                 player:completeMission(COP,THE_MOTHERCRYSTALS);
                 player:setVar("PromathiaStatus",0)
                 player:addMission(COP,AN_INVITATION_WEST);
-                player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_LUFAISE,0,1);
-            elseif (not(player:hasKeyItem(LIGHT_OF_MEA))) then
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_LUFAISE,0,1);
+            elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
                 player:setVar("cspromy3",1)
-                player:addKeyItem(LIGHT_OF_MEA);
+                player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
                 player:addExp(1500);
-                player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
-                player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
+                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
             end
         
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
@@ -101,12 +101,12 @@ function onEventFinish(player,csid,option)
             player:addMission(COP,THE_MOTHERCRYSTALS)
             player:setVar("cspromy2",1)
             player:setVar("PromathiaStatus",0)
-            player:addKeyItem(LIGHT_OF_MEA);
-            player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
-            player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
+            player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
+            player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
         else    
             player:addExp(1500);
-            player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
         end
     end
 end;

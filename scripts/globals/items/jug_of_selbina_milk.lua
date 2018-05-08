@@ -11,13 +11,13 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_REGEN)) then
-        if (target:getEquipID(SLOT_BODY) == 14520) then -- Dream Robe +1
-            target:addStatusEffect(EFFECT_REGEN,1,3,150);
+    if (not target:hasStatusEffect(dsp.effect.REGEN)) then
+        if (target:getEquipID(dsp.slot.BODY) == 14520) then -- Dream Robe +1
+            target:addStatusEffect(dsp.effect.REGEN,1,3,150);
         else
-            target:addStatusEffect(EFFECT_REGEN,1,3,120);
+            target:addStatusEffect(dsp.effect.REGEN,1,3,120);
         end
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

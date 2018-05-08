@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_ARCANE_CIRCLE
+--     dsp.effect.ARCANE_CIRCLE
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_ARCANA_KILLER, effect:getPower());
+   target:addMod(dsp.mod.ARCANA_KILLER, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_ARCANA_KILLER, effect:getPower());
+   target:delMod(dsp.mod.ARCANA_KILLER, effect:getPower());
 end;

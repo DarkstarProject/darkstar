@@ -500,11 +500,14 @@ INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1445);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1446);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1444);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1441);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,922);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,923);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,924);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,926);
+
+-- Non NM Roc type Bird
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,399); -- Scratch
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,400); -- Triple Attack
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,401); -- Gliding Spike
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402); -- Feather Barrier
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,403); -- Stormwind
+
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,662);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,663);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,664);
@@ -3623,3 +3626,10 @@ INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
+
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,923); -- Giga Scream
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
+-- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind

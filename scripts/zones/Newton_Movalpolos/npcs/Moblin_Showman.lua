@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         player:confirmTrade();
         player:showText(npc, SHOWMAN_ACCEPT);
         SpawnMob(BUGBEAR_MATMAN):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     else
         player:showText(npc, SHOWMAN_DECLINE);
     end

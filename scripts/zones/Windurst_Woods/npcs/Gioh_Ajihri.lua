@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
                 player:addFame(WINDURST,80);
                 player:addItem(17154);
                 player:messageSpecial(ITEM_OBTAINED,17154);
-                player:addTitle(BOND_FIXER);
+                player:addTitle(dsp.title.BOND_FIXER);
             end
         else
             player:addFame(WINDURST,10);

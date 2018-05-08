@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local meritBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT);    
+    local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT);    
     --printf("Barspell: Merit Bonus +%d", meritBonus);
     
     local enhanceSkill = caster:getSkillLevel(34);
@@ -26,11 +26,11 @@ function onSpellCast(caster,target,spell)
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARPARALYZE,power,0,duration);
+    target:addStatusEffect(dsp.effect.BARPARALYZE,power,0,duration);
 
-    return EFFECT_BARPARALYZE;
+    return dsp.effect.BARPARALYZE;
 end;

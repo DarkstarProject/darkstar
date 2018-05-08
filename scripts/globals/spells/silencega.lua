@@ -11,15 +11,15 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effectType = EFFECT_SILENCE;
+    local effectType = dsp.effect.SILENCE;
 
     if (target:hasStatusEffect(effectType)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         return effectType;
     end
 
     --Pull base stats.
-    local dMND = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local dMND = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
 
     --Duration, including resistance.  May need more research.
     local duration = 120;
@@ -27,20 +27,20 @@ function onSpellCast(caster,target,spell)
     --Resist
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_MND;
+    params.attribute = dsp.mod.MND;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_SILENCE;
+    params.effect = dsp.effect.SILENCE;
     local resist = applyResistanceEffect(caster, target, spell, params);
 
     if (resist >= 0.5) then --Do it!
         if (target:addStatusEffect(effectType,1,0,duration * resist)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return effectType;

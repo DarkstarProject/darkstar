@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 
 function isNaked(player)
-    for i = SLOT_MAIN, SLOT_BACK do
+    for i = dsp.slot.MAIN, dsp.slot.BACK do
         if (player:getEquipID(i) ~= 0) then return false; end
     end
     return true;
@@ -60,9 +60,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2) then
         player:setVar("thickAsThievesGrapplingCS",8);
-        player:delKeyItem(FIRST_FORGED_ENVELOPE);
-        player:addKeyItem(FIRST_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,FIRST_SIGNED_FORGED_ENVELOPE);
+        player:delKeyItem(dsp.ki.FIRST_FORGED_ENVELOPE);
+        player:addKeyItem(dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE);
         player:tradeComplete();
     end
 end;

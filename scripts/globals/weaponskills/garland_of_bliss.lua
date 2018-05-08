@@ -24,8 +24,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
     params.mnd_wsc = 0.4; params.chr_wsc = 0.0;
-    params.ele = ELE_LIGHT;
-    params.skill = SKILL_STF;
+    params.ele = dsp.magic.ele.LIGHT;
+    params.skill = dsp.skill.STAFF;
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -34,9 +34,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
-    if (damage > 0 and target:hasStatusEffect(EFFECT_DEFENSE_DOWN) == false) then
-        local duration = (30 + (tp/1000 * 30)) * applyResistanceAddEffect(player,target,ELE_WIND,0);
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 12.5, 0, duration);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.DEFENSE_DOWN) == false) then
+        local duration = (30 + (tp/1000 * 30)) * applyResistanceAddEffect(player,target,dsp.magic.ele.WIND,0);
+        target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 12.5, 0, duration);
     end
 
     return tpHits, extraHits, criticalHit, damage;

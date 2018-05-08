@@ -10,18 +10,18 @@ end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)
-    
+
     SetServerVariable("[DynaXarcabard]UniqueID",os.time());
     SetServerVariable("[DynaXarcabard]TE43_Trigger",0);
     SetServerVariable("[DynaXarcabard]TE60_Trigger",0);
     SetServerVariable("[DynaXarcabard]TE150_Trigger",0);
     SetServerVariable("[DynaXarcabard]Boss_Trigger",0);
-    
+
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    
+
     player:setVar("DynamisID",GetServerVariable("[DynaXarcabard]UniqueID"));
     local realDay = os.time();
     if (DYNA_MIDNIGHT_RESET == true) then
@@ -29,10 +29,10 @@ function onBattlefieldEnter(player,battlefield)
     end
     local dynaWaitxDay = player:getVar("dynaWaitxDay");
 
-    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay) then
+    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay) then
         player:setVar("dynaWaitxDay",realDay);
     end
-    
+
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
@@ -41,10 +41,10 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
-    
+
     if leavecode == dsp.battlefield.leaveCode.LOST then
         GetNPCByID(17330778):setStatus(2);
         SetServerVariable("[DynaXarcabard]UniqueID",0);
     end
-    
+
 end;

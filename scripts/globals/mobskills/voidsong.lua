@@ -15,7 +15,7 @@ require("scripts/globals/msg");
 
 function onMobSkillCheck(target,mob,skill)
     -- can only used if not silenced
-    if (mob:getMainJob() == JOBS.BRD and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
+    if (mob:getMainJob() == dsp.job.BRD and mob:hasStatusEffect(dsp.effect.SILENCE) == false) then
         return 0;
     end
     return 1;
@@ -28,9 +28,9 @@ function onMobWeaponSkill(target, mob, skill)
     count = count + target:eraseAllStatusEffect();
 
     if (count == 0) then
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
     end
 
     return count;

@@ -62,7 +62,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
             end
       elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
             player:startEvent(2000); -- Start First Mission "Smash the Orcish scouts"
-        elseif (player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
+        elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1036);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then -- Not ready yet
             player:startEvent(1038);
@@ -98,7 +98,7 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,2,csid,option);
     if (csid == 1036) then
        player:setVar("MissionStatus",4);
-       player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
+       player:delKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
        player:setVar("Wait1DayForRanperre_date", os.date("%j"));
     elseif (csid == 1038) then
        player:setVar("MissionStatus",6);

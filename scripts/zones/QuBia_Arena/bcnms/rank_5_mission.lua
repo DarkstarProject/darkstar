@@ -36,7 +36,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.NEW_FEIYIN_SEAL)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else -- Gives skip dialogue if previously completed
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
@@ -54,11 +54,11 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:hasKeyItem(NEW_FEIYIN_SEAL)) then
-            player:addKeyItem(BURNT_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,BURNT_SEAL);
+        if (player:hasKeyItem(dsp.ki.NEW_FEIYIN_SEAL)) then
+            player:addKeyItem(dsp.ki.BURNT_SEAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BURNT_SEAL);
             player:setVar("MissionStatus",12);
-            player:delKeyItem(NEW_FEIYIN_SEAL);
+            player:delKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
         end;
     end;
 

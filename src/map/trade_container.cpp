@@ -209,6 +209,13 @@ void CTradeContainer::setType(uint8 type)
 
 void CTradeContainer::Clean()
 {
+    for (auto PItem : m_PItem)
+    {
+        if (PItem)
+        {
+            PItem->setReserve(0);
+        }
+    }
 	m_type = 0;
 	m_ItemsCount = 0;
 

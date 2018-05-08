@@ -30,6 +30,7 @@
 #include "../packets/action.h"
 #include "../packets/basic.h"
 #include "../packets/char.h"
+#include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/char_recast.h"
 #include "../packets/lock_on.h"
@@ -481,6 +482,7 @@ void CCharEntity::PostTick()
     if (m_EffectsChanged)
     {
         pushPacket(new CCharUpdatePacket(this));
+        pushPacket(new CCharSyncPacket(this));
         pushPacket(new CCharJobExtraPacket(this, true));
         pushPacket(new CCharJobExtraPacket(this, false));
         pushPacket(new CStatusEffectPacket(this));
@@ -683,13 +685,13 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     if (PSpell->tookEffect())
     {
         charutils::TrySkillUP(this, (SKILLTYPE)PSpell->getSkillType(), PTarget->GetMLevel());
-        if (PSpell->getSkillType() == SKILL_SNG)
+        if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
             if (PItem && PItem->isType(ITEM_ARMOR))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
-                if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+                if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
                 {
                     charutils::TrySkillUP(this, Skilltype, PTarget->GetMLevel());
                 }

@@ -296,6 +296,7 @@ void CLatentEffectContainer::CheckLatentsRollSong()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_SONG_ROLL_ACTIVE:
+        case LATENT_ELEVEN_ROLL_ACTIVE:
             return ProcessLatentEffect(latentEffect);
             break;
         default:
@@ -1042,6 +1043,9 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_WEAPON_DRAWN_MP_OVER:
         expression = m_POwner->health.mp > latentEffect.GetConditionsValue() && m_POwner->animation == ANIMATION_ATTACK;
+        break;
+    case LATENT_ELEVEN_ROLL_ACTIVE:
+        expression = m_POwner->StatusEffectContainer->CheckForElevenRoll();
         break;
     default:
         latentFound = false;

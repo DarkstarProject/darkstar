@@ -19,8 +19,8 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(SANDORIA, THE_DISMAYED_CUSTOMER) == QUEST_ACCEPTED and player:getVar("theDismayedCustomer") == 1) then
-        player:addKeyItem(GULEMONTS_DOCUMENT);
-        player:messageSpecial(KEYITEM_OBTAINED, GULEMONTS_DOCUMENT);
+        player:addKeyItem(dsp.ki.GULEMONTS_DOCUMENT);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.GULEMONTS_DOCUMENT);
         player:setVar("theDismayedCustomer", 0);
     else
         player:messageSpecial(DISMAYED_CUSTOMER);

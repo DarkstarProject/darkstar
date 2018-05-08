@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     elseif (hatedPlayer == player:getID()) then
         -- this player has animosity
         -- hide the QM, set its position to a random location, and reset animosity
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
         local qm2position = math.random(1,4);
         npc:setLocalVar("position",qm2position);
         npc:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);

@@ -13,12 +13,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SLOW;
+    local typeEffect = dsp.effect.SLOW;
     local power = 200;
     local duration = math.random(60,180);
 
-    if (mob:hasStatusEffect(EFFECT_HASTE) == false) then
-        mob:addStatusEffect(EFFECT_HASTE,150,0,duration)
+    if (mob:hasStatusEffect(dsp.effect.HASTE) == false) then
+        mob:addStatusEffect(dsp.effect.HASTE,150,0,duration)
     end
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     return typeEffect;
 
     --[[ Is there suppsoed to be a message about haste?
-    local typeEffect = EFFECT_HASTE;
+    local typeEffect = dsp.effect.HASTE;
     skill:setMsg(MobBuffMove(mob, typeEffect, 150, 0, duration));
     return typeEffect;
     ]]--

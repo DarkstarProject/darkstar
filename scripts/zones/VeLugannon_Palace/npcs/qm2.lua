@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
     if (not GetMobByID(BRIGANDISH_BLADE):isSpawned() and trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
         player:tradeComplete();
         SpawnMob(BRIGANDISH_BLADE):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

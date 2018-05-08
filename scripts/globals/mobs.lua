@@ -21,7 +21,7 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
         local BladeofDeath = player:getQuestStatus(BASTOK, BLADE_OF_DEATH);
         local ChaosbringerKills = player:getVar("ChaosbringerKills");
         if (BladeofDarkness == QUEST_ACCEPTED or BladeofDeath == QUEST_ACCEPTED) then
-            if (player:getEquipID(SLOT_MAIN) == 16607 and isWeaponSkillKill == false) then
+            if (player:getEquipID(dsp.slot.MAIN) == 16607 and isWeaponSkillKill == false) then
                 if (ChaosbringerKills < 200) then
                     player:setVar("ChaosbringerKills", ChaosbringerKills + 1);
                 end

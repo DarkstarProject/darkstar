@@ -15,11 +15,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = dsp.effect.BIND;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 20);
 
-    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, ELE_ICE, 600);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 0.75, dsp.magic.ele.ICE, 600);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);

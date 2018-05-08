@@ -52,9 +52,9 @@ function onEventFinish(player,csid,option)
     --printf("onFinish RESULT: %u",option);
 
     if (csid==2) then
-        player:delKeyItem(DOMINAS_AZURE_SEAL);
-        player:addKeyItem(AZURE_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,AZURE_COUNTERSEAL);
+        player:delKeyItem(dsp.ki.DOMINAS_AZURE_SEAL);
+        player:addKeyItem(dsp.ki.AZURE_COUNTERSEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AZURE_COUNTERSEAL);
         player:setVar("ASA4_Azure","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

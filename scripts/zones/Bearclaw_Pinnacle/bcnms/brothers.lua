@@ -26,8 +26,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-   if (player:hasKeyItem(ZEPHYR_FAN)) then
-        player:delKeyItem(ZEPHYR_FAN);
+   if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
+        player:delKeyItem(dsp.ki.ZEPHYR_FAN);
     end
 end;
 

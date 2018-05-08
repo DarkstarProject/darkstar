@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local shadows = MOBPARAM_1_SHADOW;
     local dmg = MobFinalAdjustments(10,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,shadows);
 
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
 
         mob:resetEnmity(target);
 

@@ -16,24 +16,17 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_CELERITY) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.CELERITY) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_CELERITY,1,0,60);
+    player:addStatusEffect(dsp.effect.CELERITY,1,0,60);
 
-    return EFFECT_CELERITY;
+    return dsp.effect.CELERITY;
 end;

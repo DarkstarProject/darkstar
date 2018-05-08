@@ -22,8 +22,8 @@ function onTrigger(player,npc)
     if (
         player:getVar("KnightStalker_Progress") == 4 and
         player:getVar("KnightStalker_Kill") == 0 and
-        player:getMainJob() == JOBS.DRG and
-        player:getPetID() == PET_WYVERN and
+        player:getMainJob() == dsp.job.DRG and
+        player:getPetID() == dsp.pet.id.WYVERN and
         not GetMobByID(CLEUVARION_M_RESOAIX):isSpawned() and
         not GetMobByID(ROMPAULION_S_CITALLE):isSpawned()
     ) then
@@ -49,8 +49,8 @@ function onEventFinish(player,csid,option)
             player:addItem(12519);
             player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
             player:addFame(SANDORIA,AF3_FAME);
-            player:addTitle(PARAGON_OF_DRAGOON_EXCELLENCE);
-            player:delKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS);
+            player:addTitle(dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE);
+            player:delKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS);
             player:setVar("KnightStalker_Option1",1); -- Optional post-quest cutscenes.
             player:setVar("KnightStalker_Option2",1);
             player:setVar("KnightStalker_Kill",0);

@@ -10,7 +10,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
 
     local numhits = 1;
     local accmod = 1;

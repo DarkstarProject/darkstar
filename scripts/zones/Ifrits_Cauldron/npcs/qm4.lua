@@ -6,17 +6,26 @@
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/missions");
 require("scripts/zones/Ifrits_Cauldron/TextIDs");
+require("scripts/zones/Ifrits_Cauldron/MobIDs");
+require("scripts/globals/missions");
+require("scripts/globals/npc_util");
+require("scripts/globals/status");
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and player:getVar("MissionStatus") == 2) then
-        if (not GetMobByID(17616897):isSpawned() and not GetMobByID(17616898):isSpawned() and trade:hasItemQty(646,1) and trade:getItemCount() == 1) then
-            player:tradeComplete();
-            SpawnMob(17616897):lookAt(player:getPos());
-            SpawnMob(17616898):updateClaim(player);
-            npc:setStatus(STATUS_DISAPPEAR);
-        end
+    -- Adaman Ore: spawn Salamander and Magma for The Pirate's Cove
+    if (
+        player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and
+        player:getVar("MissionStatus") == 2 and
+        npcUtil.tradeHas(trade, 646) and
+        not GetMobByID(PIRATES_COVE_NMS):isSpawned() and
+        not GetMobByID(PIRATES_COVE_NMS + 1):isSpawned()
+    ) then
+        player:confirmTrade();
+        SpawnMob(PIRATES_COVE_NMS):lookAt(player:getPos()); -- Salamander
+        SpawnMob(PIRATES_COVE_NMS + 1):updateClaim(player); -- Magma
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
@@ -25,11 +34,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

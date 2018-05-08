@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PARALISIS
+-- dsp.effect.PARALISIS
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_PARALYZE,effect:getPower());
+    target:addMod(dsp.mod.PARALYZE,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_PARALYZE,effect:getPower());
+    target:delMod(dsp.mod.PARALYZE,effect:getPower());
 end;

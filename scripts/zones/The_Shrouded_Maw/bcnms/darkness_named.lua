@@ -21,7 +21,7 @@ function onBattlefieldRegister(player,battlefield)
     local inst = player:getBattlefield():getArea();
     local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
-        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
             end
 end;
 
@@ -43,7 +43,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         local name, clearTime, partySize = battlefield:getRecord()
         player:addExp(1000);
         if (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2) then
-            player:addTitle(TRANSIENT_DREAMER);
+            player:addTitle(dsp.title.TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
         else

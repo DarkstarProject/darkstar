@@ -26,7 +26,7 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
     player:setVar("characterLimbusKey",GetServerVariable("[CS_Apollyon]UniqueID"));
-    player:delKeyItem(COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
 end;
 
 -- Leaving the by every mean possible, given by the LeaveCode

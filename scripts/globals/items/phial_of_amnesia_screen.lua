@@ -7,12 +7,12 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(EFFECT_NEGATE_AMNESIA)) then
+    if (target:hasStatusEffect(dsp.effect.NEGATE_AMNESIA)) then
         return 56;
     end
     return 0;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_NEGATE_AMNESIA,1,0,120);
+    target:addStatusEffect(dsp.effect.NEGATE_AMNESIA,1,0,120);
 end;

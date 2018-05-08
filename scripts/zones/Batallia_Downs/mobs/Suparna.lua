@@ -9,7 +9,7 @@ require("scripts/globals/missions");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobSpawn(mob)

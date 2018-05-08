@@ -7,8 +7,8 @@ package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/globals/settings");
-require("scripts/globals/limbus");
 require("scripts/zones/Temenos/TextIDs");
+require("scripts/globals/limbus");
 
 -----------------------------------
 -- onInitialize
@@ -25,7 +25,17 @@ function onInitialize(zone)
     SetServerVariable("[C_Temenos_3rd]UniqueID",0);
     SetServerVariable("[C_Temenos_4th]UniqueID",0);
     SetServerVariable("[C_Temenos_4th_II]UniqueID",0);
+
+    zone:registerRegion(1,  378,70,-186    ,382,72,-182); -- 'Temenos_Western_Tower'    380 71 -184
+    zone:registerRegion(2,  378,70,373    ,382,72,377); -- 'Temenos_Northern_Tower'   380 71 375
+    zone:registerRegion(3,  378,-4,93    ,382,4,98); -- 'Temenos_Eastern_Tower'    380 -2 96
+    zone:registerRegion(4,  578,-4,-546    ,582,4,-542); -- 'Central_Temenos_Basement' 580 -2 -544
+    zone:registerRegion(5,  258,-164,-506    ,262,-160,-502); -- 'Central_Temenos_1st_Floor' 260 -162 -504
+    zone:registerRegion(6,  18,-4,-546    ,22,4,-542); -- 'Central_Temenos_2nd_Floor' 20 -2 -544
+    zone:registerRegion(7,  -298,-164,-502    ,-294,-160,-498); -- 'Central_Temenos_3rd_Floor' -296 -162 -500
+    zone:registerRegion(8,  -542,-4,-586    ,-538,4,-582); -- 'Central_Temenos_4th_Floor'  -540 -2  -584
 end;
+
 
 -----------------------------------
 -- onConquestUpdate
@@ -44,33 +54,8 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = 0;
-
-    player:delStatusEffect(EFFECT_LIMBUS);
-    local inst = belongsInBattlefield(player);
-    local zone = player:getZone()
-
-    -- player is returning from disconnect, so add them to matching run in progress
-    if (inst > 0 and not zone:battlefieldsFull(inst)) then
-        if player:enterBattlefield(inst) then
-            local x, y, z = getBattlefieldEntrance(player, inst);
-            printf("%s reconnected to battlefield. Moving to x=%f y=%f z=%f",player:getName(),x,y,z);
-            player:setPos(x,y,z);
-            cs = -1;
-        end
-
-    -- GM can goto players in battlefield, and should not be set to entrance
-    elseif (player:getGMLevel() > 0) then
-        if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-            player:setPos(580,-1.5,4.452,192);
-        end
-
-    -- everyone else should be put at the entrance
-    else
+    local cs = -1;
         player:setPos(580,-1.5,4.452,192);
-
-    end
-
     return cs;
 end;
 
@@ -79,15 +64,64 @@ end;
 -----------------------------------
 
 function onRegionEnter(player,region)
+    local regionID = region:GetRegionID();
+
+    switch (regionID): caseof
+    {
+        [1] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance   Temenos_Western_Tower
+                RegisterLimbusInstance(player,1298);
+            end
+        end,
+        [2] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance Temenos_Northern_Tower
+                RegisterLimbusInstance(player,1299);
+            end
+        end,
+        [3] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance Temenos_Eastern_Tower
+                RegisterLimbusInstance(player,1300);
+            end
+        end,
+        [4] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance  Central_Temenos_Basement
+                RegisterLimbusInstance(player,1301);
+            end
+        end,
+        [5] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance Central_Temenos_1st_Floor
+                RegisterLimbusInstance(player,1303);
+            end
+        end,
+        [6] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance   Central_Temenos_2nd_Floor
+                RegisterLimbusInstance(player,1304);
+            end
+        end,
+        [7] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance Central_Temenos_3rd_Floor
+                RegisterLimbusInstance(player,1305);
+            end
+        end,
+        [8] = function (x)
+            if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
+                -- create instance Central_Temenos_4th_Floor
+                RegisterLimbusInstance(player,1306);
+            end
+        end,
+    }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
-
 -----------------------------------
 -- onEventUpdate
 -----------------------------------

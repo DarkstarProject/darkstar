@@ -17,37 +17,30 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/pets");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() ~= nil) then
-        return msgBasic.ALREADY_HAS_A_PET,0;
+        return dsp.msg.basic.ALREADY_HAS_A_PET,0;
     elseif (target:getMaster() ~= nil and target:getMaster():isPC()) then
-        return msgBasic.THAT_SOMEONES_PET,0;
+        return dsp.msg.basic.THAT_SOMEONES_PET,0;
     else
         return 0,0;
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
     local Tamed = false;
 
     if (player:getLocalVar("Tamed_Mob") == target:getID())then
-        player:addMod(MOD_CHARM_CHANCE, 10);
+        player:addMod(dsp.mod.CHARM_CHANCE, 10);
         Tamed = true;
     end
 
     player:charmPet(target);
 
     if (Tamed == true) then
-        player:delMod(MOD_CHARM_CHANCE, 10);
+        player:delMod(dsp.mod.CHARM_CHANCE, 10);
         player:setLocalVar("Tamed_Mob",0);
     end
 end;

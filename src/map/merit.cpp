@@ -411,6 +411,9 @@ void CMeritPoints::RaiseMerit(MERIT_TYPE merit)
             }
         }
 		PMerit->count++;
+
+        // Reset traits
+        charutils::BuildingCharTraitsTable(m_PChar);
     }
 }
 
@@ -434,6 +437,9 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
         {
             charutils::DeleteSpell(m_PChar, PMerit->spellid);
             m_PChar->pushPacket(new CCharSpellsPacket(m_PChar));
+
+            // Reset traits
+            charutils::BuildingCharTraitsTable(m_PChar);
         }
     }
 }

@@ -10,9 +10,9 @@ function onMobSpawn(mob)
 end;
 
 function onMobDespawn(mob)
-     GetNPCByID(17584461):setStatus(STATUS_NORMAL); -- qm7
+     GetNPCByID(17584461):setStatus(dsp.status.NORMAL); -- qm7
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BOGEYDOWNER);
+    player:addTitle(dsp.title.BOGEYDOWNER);
 end;

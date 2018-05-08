@@ -17,7 +17,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(OVERLORD_OVERTHROWER);
+    player:addTitle(dsp.title.OVERLORD_OVERTHROWER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,ORC_KING_DEATH);
 end;

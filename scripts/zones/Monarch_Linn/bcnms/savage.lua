@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         player:addExp(1500);
-        player:addTitle(MIST_MELTER);
+        player:addTitle(dsp.title.MIST_MELTER);
         if (player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 1) then
             player:setVar("PromathiaStatus",2);
         end

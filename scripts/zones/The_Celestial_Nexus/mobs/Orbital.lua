@@ -9,7 +9,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
+    mob:addMod(dsp.mod.REGAIN, 50);
 end;
 
 function onMobSpawn(mob)
@@ -39,8 +39,8 @@ function onEventFinish(player,csid,option,target)
             mob = SpawnMob(target:getID()-2);
             mob:updateEnmity(player);
             --the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-            mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
-            mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);
+            mob:addStatusEffectEx(dsp.effect.BIND, 0, 1, 0, 30);
+            mob:addStatusEffectEx(dsp.effect.SILENCE, 0, 1, 0, 40);
         else
             DespawnMob(target:getID());
             DespawnMob(target:getID()+1);
@@ -49,8 +49,8 @@ function onEventFinish(player,csid,option,target)
             mob = SpawnMob(target:getID()-1);
             mob:updateEnmity(player);
             -- the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-            mob:addStatusEffectEx(EFFECT_BIND, 0, 1, 0, 30);
-            mob:addStatusEffectEx(EFFECT_SILENCE, 0, 1, 0, 40);
+            mob:addStatusEffectEx(dsp.effect.BIND, 0, 1, 0, 30);
+            mob:addStatusEffectEx(dsp.effect.SILENCE, 0, 1, 0, 40);
         end
     end
 

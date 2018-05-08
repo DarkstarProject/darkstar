@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_STUN;
+    local typeEffect = dsp.effect.STUN;
 
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 6));

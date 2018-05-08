@@ -13,15 +13,15 @@ end;
 function onSpellCast(caster,target,spell)
     local duration = 180;
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     local power = 307; -- 307/1024
 
-    if (target:addStatusEffect(EFFECT_HASTE,power,0,duration) == false) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+    if (target:addStatusEffect(dsp.effect.HASTE,power,0,duration) == false) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_HASTE;
+    return dsp.effect.HASTE;
 end;

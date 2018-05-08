@@ -13,17 +13,17 @@ require("scripts/globals/status");
 require("scripts/globals/titles");
 
 function onMobInitialize( mob )
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end
 
 function onMobSpawn(mob)
-    mob:setMod(MOD_WINDRES, -64);
-    mob:setMod(MOD_SILENCERES, 35);
-    mob:setMod(MOD_STUNRES, 35);
-    mob:setMod(MOD_BINDRES, 35);
-    mob:setMod(MOD_GRAVITYRES, 35);
-    mob:addStatusEffect(EFFECT_REGEN,50,3,0);
+    mob:setMod(dsp.mod.WINDRES, -64);
+    mob:setMod(dsp.mod.SILENCERES, 35);
+    mob:setMod(dsp.mod.STUNRES, 35);
+    mob:setMod(dsp.mod.BINDRES, 35);
+    mob:setMod(dsp.mod.GRAVITYRES, 35);
+    mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
     mob:setLocalVar("numAdds", 1);
 end
 
@@ -50,7 +50,7 @@ function onMobFight( mob, target )
     -- ensure all spawned pets are doing stuff
     for i = KIRIN + 1, KIRIN + 4 do
         local god = GetMobByID(i);
-        if (god:getCurrentAction() == ACTION_ROAMING) then
+        if (god:getCurrentAction() == dsp.act.ROAMING) then
             god:updateEnmity(target);
         end
     end
@@ -62,16 +62,16 @@ function onAdditionalEffect(mob, target, damage)
     params.bonusmab = 0;
     params.includemab = false;
 
-    dmg = addBonusesAbility(mob, ELE_EARTH, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_EARTH,0);
-    dmg = adjustForTarget(target,dmg,ELE_EARTH);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_EARTH,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.EARTH, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.EARTH,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.EARTH);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.EARTH,dmg);
 
-    return SUBEFFECT_EARTH_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return dsp.subEffect.EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle( KIRIN_CAPTIVATOR );
+    player:addTitle( dsp.title.KIRIN_CAPTIVATOR );
     player:showText( mob, KIRIN_OFFSET + 1 );
     for i = KIRIN + 1, KIRIN + 4 do
         DespawnMob(i);

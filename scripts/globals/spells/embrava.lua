@@ -18,7 +18,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local skill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local skill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     if (skill > 500) then
         skill = 500;
     end
@@ -27,7 +27,7 @@ function onSpellCast(caster,target,spell)
     local haste = math.floor(skill/(500/256));
     local duration = 90;
     
-    target:addStatusEffect(EFFECT_EMBRAVA,regen,0,duration,0,refresh,haste);
+    target:addStatusEffect(dsp.effect.EMBRAVA,regen,0,duration,0,refresh,haste);
         
-    return EFFECT_EMBRAVA;
+    return dsp.effect.EMBRAVA;
 end;

@@ -35,7 +35,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasCompleteQuest(ASA,SUGAR_COATED_DIRECTIVE)) then
+        if (player:hasCompletedQuest(ASA,SUGAR_COATED_DIRECTIVE)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)

@@ -20,8 +20,8 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
     player:setVar("characterLimbusKey",GetServerVariable("[SE_Apollyon]UniqueID"));
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(BLACK_CARD);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.BLACK_CARD);
 end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
 -- 4=Finish 

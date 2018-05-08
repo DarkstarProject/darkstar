@@ -11,9 +11,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_BLINDNESS)) then
-        target:addStatusEffect(EFFECT_BLINDNESS,25,0,180);
+    if (not target:hasStatusEffect(dsp.effect.BLINDNESS)) then
+        target:addStatusEffect(dsp.effect.BLINDNESS,25,0,180);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

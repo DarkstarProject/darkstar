@@ -38,7 +38,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasCompleteQuest(BASTOK,TRIAL_BY_EARTH)) then
+        if (player:hasCompletedQuest(BASTOK,TRIAL_BY_EARTH)) then
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         else
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
@@ -57,9 +57,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_EARTH);
-        player:addKeyItem(WHISPER_OF_TREMORS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_TREMORS);
+        player:delKeyItem(dsp.ki.TUNING_FORK_OF_EARTH);
+        player:addKeyItem(dsp.ki.WHISPER_OF_TREMORS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_TREMORS);
     end
 
 end;

@@ -28,8 +28,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    if (player:hasKeyItem(MIASMA_FILTER)) then
-        player:delKeyItem(MIASMA_FILTER);
+    if (player:hasKeyItem(dsp.ki.MIASMA_FILTER)) then
+        player:delKeyItem(dsp.ki.MIASMA_FILTER);
     end;
 end;
 

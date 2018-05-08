@@ -14,7 +14,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
       if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
         if (player:getVar("WishUponAStar_Status") == 3) then
-            if (player:getWeather() == WEATHER_NONE and  (VanadielTOTD() == TIME_NIGHT or VanadielTOTD() == TIME_MIDNIGHT)) then
+            if (player:getWeather() == dsp.weather.NONE and  (VanadielTOTD() == dsp.time.NIGHT or VanadielTOTD() == dsp.time.MIDNIGHT)) then
                 player:startEvent(334); -- Trade accepeted
             else
                 player:startEvent(337); -- Player has to wait for clear weather

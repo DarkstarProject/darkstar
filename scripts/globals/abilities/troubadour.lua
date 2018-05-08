@@ -8,19 +8,12 @@
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_TROUBADOUR,0,0,60);
+    player:addStatusEffect(dsp.effect.TROUBADOUR,0,0,60);
 end;

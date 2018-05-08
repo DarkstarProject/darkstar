@@ -6,7 +6,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobDeath(mob, player, isKiller)
@@ -23,13 +23,13 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
 
-    if ((math.random(1,15) ~= 5) or (target:hasStatusEffect(EFFECT_TERROR) == true)) then
+    if ((math.random(1,15) ~= 5) or (target:hasStatusEffect(dsp.effect.TERROR) == true)) then
         return 0,0,0;
     else
         local duration = 5;
-        target:addStatusEffect(EFFECT_TERROR,1,0,duration);
+        target:addStatusEffect(dsp.effect.TERROR,1,0,duration);
         mob:resetEnmity(target);
-        return SUBEFFECT_NONE,0,EFFECT_TERROR;
+        return dsp.subEffect.NONE,0,dsp.effect.TERROR;
     end
 
 end;

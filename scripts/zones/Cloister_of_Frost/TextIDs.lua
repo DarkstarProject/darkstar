@@ -22,4 +22,3 @@ YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7209; -- You cannot enter the battlefield at 
 
 -- conquest Base
                    CONQUEST_BASE = 7047; -- Tallying conquest results...
-     

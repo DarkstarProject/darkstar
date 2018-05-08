@@ -23,18 +23,18 @@ function onTrade(player,npc,trade)
 
     local seals =
     {
-        MAROON_SEAL, MAROON_SEAL, MAROON_SEAL,
-        APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,
-        CHARCOAL_GREY_SEAL, DEEP_PURPLE_SEAL, CHESTNUT_COLORED_SEAL,
-        LILAC_COLORED_SEAL,
-        CERISE_SEAL,CERISE_SEAL,CERISE_SEAL,
-        SALMON_COLORED_SEAL,SALMON_COLORED_SEAL,SALMON_COLORED_SEAL,
-        PURPLISH_GREY_SEAL, GOLD_COLORED_SEAL, COPPER_COLORED_SEAL,
-        BRIGHT_BLUE_SEAL,
-        PINE_GREEN_SEAL,PINE_GREEN_SEAL,PINE_GREEN_SEAL,
-        AMBER_COLORED_SEAL,AMBER_COLORED_SEAL,AMBER_COLORED_SEAL,
-        FALLOW_COLORED_SEAL,TAUPE_COLORED_SEAL,SIENNA_COLORED_SEAL,
-        LAVENDER_COLORED_SEAL
+        dsp.ki.MAROON_SEAL, dsp.ki.MAROON_SEAL, dsp.ki.MAROON_SEAL,
+        dsp.ki.APPLE_GREEN_SEAL,dsp.ki.APPLE_GREEN_SEAL,dsp.ki.APPLE_GREEN_SEAL,
+        dsp.ki.CHARCOAL_GREY_SEAL, dsp.ki.DEEP_PURPLE_SEAL, dsp.ki.CHESTNUT_COLORED_SEAL,
+        dsp.ki.LILAC_COLORED_SEAL,
+        dsp.ki.CERISE_SEAL,dsp.ki.CERISE_SEAL,dsp.ki.CERISE_SEAL,
+        dsp.ki.SALMON_COLORED_SEAL,dsp.ki.SALMON_COLORED_SEAL,dsp.ki.SALMON_COLORED_SEAL,
+        dsp.ki.PURPLISH_GREY_SEAL, dsp.ki.GOLD_COLORED_SEAL, dsp.ki.COPPER_COLORED_SEAL,
+        dsp.ki.BRIGHT_BLUE_SEAL,
+        dsp.ki.PINE_GREEN_SEAL,dsp.ki.PINE_GREEN_SEAL,dsp.ki.PINE_GREEN_SEAL,
+        dsp.ki.AMBER_COLORED_SEAL,dsp.ki.AMBER_COLORED_SEAL,dsp.ki.AMBER_COLORED_SEAL,
+        dsp.ki.FALLOW_COLORED_SEAL,dsp.ki.TAUPE_COLORED_SEAL,dsp.ki.SIENNA_COLORED_SEAL,
+        dsp.ki.LAVENDER_COLORED_SEAL
     }
 
     if (trade:getItemCount() == 1) then
@@ -76,39 +76,39 @@ function onTrigger(player,npc)
         local param = 2140136440; -- Defaut bitmask, Tier 1 ZNM Menu + don't ask option
 
         -- Tinnin Path
-        if (player:hasKeyItem(MAROON_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.MAROON_SEAL)) then
             param = param - 0x38; -- unlocks Tinnin path tier 2 ZNMs.
         end;
-        if (player:hasKeyItem(APPLE_GREEN_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.APPLE_GREEN_SEAL)) then
             param = param - 0x1C0; -- unlocks Tinnin path tier 3 ZNMs.
         end;
-        if (player:hasKeyItem(CHARCOAL_GREY_SEAL) and player:hasKeyItem(DEEP_PURPLE_SEAL) and player:hasKeyItem(CHESTNUT_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.CHARCOAL_GREY_SEAL) and player:hasKeyItem(dsp.ki.DEEP_PURPLE_SEAL) and player:hasKeyItem(dsp.ki.CHESTNUT_COLORED_SEAL)) then
             param = param - 0x200; -- unlocks Tinnin.
         end;
 
         -- Sarameya Path
-        if (player:hasKeyItem(CERISE_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.CERISE_SEAL)) then
             param = param - 0xE000; -- unlocks Sarameya path tier 2 ZNMs.
         end;
-        if (player:hasKeyItem(SALMON_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.SALMON_COLORED_SEAL)) then
             param = param - 0x70000; -- unlocks Sarameya path tier 3 ZNMs.
         end;
-        if (player:hasKeyItem(PURPLISH_GREY_SEAL) and player:hasKeyItem(GOLD_COLORED_SEAL) and player:hasKeyItem(COPPER_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.PURPLISH_GREY_SEAL) and player:hasKeyItem(dsp.ki.GOLD_COLORED_SEAL) and player:hasKeyItem(dsp.ki.COPPER_COLORED_SEAL)) then
             param = param - 0x80000; -- unlocks Sarameya.
         end;
 
         -- Tyger Path
-        if (player:hasKeyItem(PINE_GREEN_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.PINE_GREEN_SEAL)) then
             param = param - 0x3800000; -- unlocks Tyger path tier 2 ZNMs.
         end;
-        if (player:hasKeyItem(AMBER_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.AMBER_COLORED_SEAL)) then
             param = param - 0x1C000000; -- unlocks Tyger path tier 3 ZNMs.
         end;
-        if (player:hasKeyItem(TAUPE_COLORED_SEAL) and player:hasKeyItem(FALLOW_COLORED_SEAL) and player:hasKeyItem(SIENNA_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.TAUPE_COLORED_SEAL) and player:hasKeyItem(dsp.ki.FALLOW_COLORED_SEAL) and player:hasKeyItem(dsp.ki.SIENNA_COLORED_SEAL)) then
             param = param - 0x20000000; -- unlocks Tyger.
         end;
 
-        if (player:hasKeyItem(LILAC_COLORED_SEAL) and player:hasKeyItem(BRIGHT_BLUE_SEAL) and player:hasKeyItem(LAVENDER_COLORED_SEAL)) then
+        if (player:hasKeyItem(dsp.ki.LILAC_COLORED_SEAL) and player:hasKeyItem(dsp.ki.BRIGHT_BLUE_SEAL) and player:hasKeyItem(dsp.ki.LAVENDER_COLORED_SEAL)) then
             param = param - 0x40000000; -- unlocks Pandemonium Warden.
         end;
 
@@ -131,18 +131,18 @@ function onEventUpdate(player,csid,option)
 
     local seals =
     {
-        MAROON_SEAL, MAROON_SEAL, MAROON_SEAL,
-        APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,APPLE_GREEN_SEAL,
-        CHARCOAL_GREY_SEAL, DEEP_PURPLE_SEAL, CHESTNUT_COLORED_SEAL,
-        LILAC_COLORED_SEAL,
-        CERISE_SEAL,CERISE_SEAL,CERISE_SEAL,
-        SALMON_COLORED_SEAL,SALMON_COLORED_SEAL,SALMON_COLORED_SEAL,
-        PURPLISH_GREY_SEAL, GOLD_COLORED_SEAL, COPPER_COLORED_SEAL,
-        BRIGHT_BLUE_SEAL,
-        PINE_GREEN_SEAL,PINE_GREEN_SEAL,PINE_GREEN_SEAL,
-        AMBER_COLORED_SEAL,AMBER_COLORED_SEAL,AMBER_COLORED_SEAL,
-        FALLOW_COLORED_SEAL,TAUPE_COLORED_SEAL,SIENNA_COLORED_SEAL,
-        LAVENDER_COLORED_SEAL
+        dsp.ki.MAROON_SEAL, dsp.ki.MAROON_SEAL, dsp.ki.MAROON_SEAL,
+        dsp.ki.APPLE_GREEN_SEAL,dsp.ki.APPLE_GREEN_SEAL,dsp.ki.APPLE_GREEN_SEAL,
+        dsp.ki.CHARCOAL_GREY_SEAL, dsp.ki.DEEP_PURPLE_SEAL, dsp.ki.CHESTNUT_COLORED_SEAL,
+        dsp.ki.LILAC_COLORED_SEAL,
+        dsp.ki.CERISE_SEAL,dsp.ki.CERISE_SEAL,dsp.ki.CERISE_SEAL,
+        dsp.ki.SALMON_COLORED_SEAL,dsp.ki.SALMON_COLORED_SEAL,dsp.ki.SALMON_COLORED_SEAL,
+        dsp.ki.PURPLISH_GREY_SEAL, dsp.ki.GOLD_COLORED_SEAL, dsp.ki.COPPER_COLORED_SEAL,
+        dsp.ki.BRIGHT_BLUE_SEAL,
+        dsp.ki.PINE_GREEN_SEAL,dsp.ki.PINE_GREEN_SEAL,dsp.ki.PINE_GREEN_SEAL,
+        dsp.ki.AMBER_COLORED_SEAL,dsp.ki.AMBER_COLORED_SEAL,dsp.ki.AMBER_COLORED_SEAL,
+        dsp.ki.FALLOW_COLORED_SEAL,dsp.ki.TAUPE_COLORED_SEAL,dsp.ki.SIENNA_COLORED_SEAL,
+        dsp.ki.LAVENDER_COLORED_SEAL
     }
 
     if (csid == 909) then
@@ -150,11 +150,11 @@ function onEventUpdate(player,csid,option)
 
         if (option >= 300 and option <= 302) then
             if (option == 300) then
-                salt = SICKLEMOON_SALT;
+                salt = dsp.ki.SICKLEMOON_SALT;
             elseif (option == 301) then
-                salt = SILVER_SEA_SALT;
+                salt = dsp.ki.SILVER_SEA_SALT;
             elseif (option == 302) then
-                salt = CYAN_DEEP_SALT
+                salt = dsp.ki.CYAN_DEEP_SALT
             end;
             if (zeni < 500) then
                 player:updateEvent(2,500); -- not enough zeni
@@ -194,13 +194,13 @@ function onEventUpdate(player,csid,option)
                 item = lures[option-399]
 
                 if (option == 430) then -- Pandemonium Warden
-                    keyitem1 = LILAC_COLORED_SEAL; keyitem2 = BRIGHT_BLUE_SEAL; keyitem3 = LAVENDER_COLORED_SEAL;
+                    keyitem1 = dsp.ki.LILAC_COLORED_SEAL; keyitem2 = dsp.ki.BRIGHT_BLUE_SEAL; keyitem3 = dsp.ki.LAVENDER_COLORED_SEAL;
                 elseif (option == 409) then -- Tinnin
-                    keyitem1 = CHARCOAL_GREY_SEAL; keyitem2 = DEEP_PURPLE_SEAL; keyitem3 = CHESTNUT_COLORED_SEAL;
+                    keyitem1 = dsp.ki.CHARCOAL_GREY_SEAL; keyitem2 = dsp.ki.DEEP_PURPLE_SEAL; keyitem3 = dsp.ki.CHESTNUT_COLORED_SEAL;
                 elseif (option == 419) then -- Sarameya
-                    keyitem1 = PURPLISH_GREY_SEAL; keyitem2 = GOLD_COLORED_SEAL; keyitem3 = COPPER_COLORED_SEAL;
+                    keyitem1 = dsp.ki.PURPLISH_GREY_SEAL; keyitem2 = dsp.ki.GOLD_COLORED_SEAL; keyitem3 = dsp.ki.COPPER_COLORED_SEAL;
                 elseif (option == 429) then -- Tyger
-                    keyitem1 = TAUPE_COLORED_SEAL; keyitem2 = FALLOW_COLORED_SEAL; keyitem3 = SIENNA_COLORED_SEAL;
+                    keyitem1 = dsp.ki.TAUPE_COLORED_SEAL; keyitem2 = dsp.ki.FALLOW_COLORED_SEAL; keyitem3 = dsp.ki.SIENNA_COLORED_SEAL;
                 else
                     keyitem1 = seals[option - 402]; keyitem2 = nil; keyitem3 = nil;
                 end

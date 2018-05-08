@@ -7,7 +7,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target)
     if (target:getHP() == target:getMaxHP()) then
-        return msgBasic.ITEM_UNABLE_TO_USE;
+        return dsp.msg.basic.ITEM_UNABLE_TO_USE;
     end
     return 0;
 end;
@@ -19,5 +19,5 @@ function onItemUse(target)
         hpHeal = dif;
     end
     target:addHP(hpHeal);
-    target:messageBasic(msgBasic.RECOVERS_HP,0,hpHeal);
+    target:messageBasic(dsp.msg.basic.RECOVERS_HP,0,hpHeal);
 end;

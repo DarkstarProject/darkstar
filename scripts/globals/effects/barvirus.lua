@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARVIRUS
+-- dsp.effect.BARVIRUS
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_VIRUSRES,effect:getPower());
+    target:addMod(dsp.mod.VIRUSRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_VIRUSRES,effect:getPower());
+    target:delMod(dsp.mod.VIRUSRES,effect:getPower());
 end;

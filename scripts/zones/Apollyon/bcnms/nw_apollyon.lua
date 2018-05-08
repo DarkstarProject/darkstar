@@ -20,8 +20,8 @@ end;
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
     player:setVar("characterLimbusKey",GetServerVariable("[NW_Apollyon]UniqueID"));
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(RED_CARD);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.RED_CARD);
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode

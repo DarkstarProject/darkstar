@@ -23,23 +23,23 @@ function onTrigger(player,npc)
     HealingTheLand = player:getQuestStatus(SANDORIA,HEALING_THE_LAND);
     SorceryOfTheNorth = player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH);
 
-    if (AltanaSorrow == QUEST_ACCEPTED and player:hasKeyItem(LETTER_FROM_VIRNAGE)) then
+    if (AltanaSorrow == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.LETTER_FROM_VIRNAGE)) then
         player:startEvent(679); -- Finish quest "Altana's Sorrow"
-    elseif (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(GANTINEUXS_LETTER)) then
+    elseif (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.GANTINEUXS_LETTER)) then
         player:startEvent(680); -- Finish quest "Acting in Good Faith"
     elseif (HealingTheLand == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(681); -- Start quest "Healing the Land"
-    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING)) then
+    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING)) then
         player:startEvent(682); -- During quest "Healing the Land"
-    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(SEAL_OF_BANISHING) == false) then
+    elseif (HealingTheLand == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEAL_OF_BANISHING) == false) then
         player:startEvent(683); -- Finish quest "Healing the Land"
     elseif (HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone()) then
         player:startEvent(684); -- New standard dialog after "Healing the Land"
     elseif (HealingTheLand == QUEST_COMPLETED and SorceryOfTheNorth == QUEST_AVAILABLE and player:needToZone() == false) then
         player:startEvent(685); -- Start quest "Sorcery of the North"
-    elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME) == false) then
+    elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) == false) then
         player:startEvent(686); -- During quest "Sorcery of the North"
-    elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(FEIYIN_MAGIC_TOME)) then
+    elseif (SorceryOfTheNorth == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME)) then
         player:startEvent(687); -- Finish quest "Sorcery of the North"
     else
         player:startEvent(678); -- Standard dialog
@@ -60,8 +60,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4731);
         else
-            player:addTitle(PILGRIM_TO_DEM);
-            player:delKeyItem(LETTER_FROM_VIRNAGE);
+            player:addTitle(dsp.title.PILGRIM_TO_DEM);
+            player:delKeyItem(dsp.ki.LETTER_FROM_VIRNAGE);
             player:addItem(4731);
             player:messageSpecial(ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
             player:addFame(BASTOK,30);
@@ -71,8 +71,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4732);
         else
-            player:addTitle(PILGRIM_TO_MEA);
-            player:delKeyItem(GANTINEUXS_LETTER);
+            player:addTitle(dsp.title.PILGRIM_TO_MEA);
+            player:delKeyItem(dsp.ki.GANTINEUXS_LETTER);
             player:addItem(4732);
             player:messageSpecial(ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
             player:addFame(WINDURST,30);
@@ -80,13 +80,13 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 681 and option == 0) then
         player:addQuest(SANDORIA,HEALING_THE_LAND);
-        player:addKeyItem(SEAL_OF_BANISHING);
-        player:messageSpecial(KEYITEM_OBTAINED,SEAL_OF_BANISHING);
+        player:addKeyItem(dsp.ki.SEAL_OF_BANISHING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEAL_OF_BANISHING);
     elseif (csid == 683) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4730);
         else
-            player:addTitle(PILGRIM_TO_HOLLA);
+            player:addTitle(dsp.title.PILGRIM_TO_HOLLA);
             player:addItem(4730);
             player:messageSpecial(ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
             player:needToZone(true);
@@ -99,7 +99,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4747);
         else
-            player:delKeyItem(FEIYIN_MAGIC_TOME);
+            player:delKeyItem(dsp.ki.FEIYIN_MAGIC_TOME);
             player:addItem(4747);
             player:messageSpecial(ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
             player:addFame(SANDORIA,30);

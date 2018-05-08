@@ -15,17 +15,17 @@ end;
 
 function onTrigger(player,npc)
    local curentticket=0;
-    if  (player:hasKeyItem(MANACLIPPER_TICKET)) then
-       curentticket=MANACLIPPER_TICKET;
-    elseif (player:hasKeyItem(MANACLIPPER_MULTITICKET)) then
-       curentticket=MANACLIPPER_MULTITICKET;
+    if  (player:hasKeyItem(dsp.ki.MANACLIPPER_TICKET)) then
+       curentticket=dsp.ki.MANACLIPPER_TICKET;
+    elseif (player:hasKeyItem(dsp.ki.MANACLIPPER_MULTITICKET)) then
+       curentticket=dsp.ki.MANACLIPPER_MULTITICKET;
     end
 
   if ( curentticket ~= 0 ) then
     player:messageSpecial(HAVE_BILLET,curentticket);
   else
   local gils=player:getGil();
-    player:startEvent(35,MANACLIPPER_TICKET,MANACLIPPER_MULTITICKET ,80,gils,0,500);
+    player:startEvent(35,dsp.ki.MANACLIPPER_TICKET,dsp.ki.MANACLIPPER_MULTITICKET ,80,gils,0,500);
   end
 end;
 
@@ -40,12 +40,12 @@ function onEventFinish(player,csid,option)
      if (csid == 35) then
        if (option==1) then
        player:delGil(80);
-       player:addKeyItem(MANACLIPPER_TICKET);
-       player:messageSpecial(KEYITEM_OBTAINED,MANACLIPPER_TICKET);
+       player:addKeyItem(dsp.ki.MANACLIPPER_TICKET);
+       player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_TICKET);
        elseif (option==2) then
        player:delGil(500);
-       player:addKeyItem(MANACLIPPER_MULTITICKET);
-       player:messageSpecial(KEYITEM_OBTAINED,MANACLIPPER_MULTITICKET);
+       player:addKeyItem(dsp.ki.MANACLIPPER_MULTITICKET);
+       player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_MULTITICKET);
        player:setVar("Manaclipper_Ticket",10);
        end
      end

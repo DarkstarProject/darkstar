@@ -156,70 +156,70 @@ function onEventFinish(player,csid,option)
 
     -- Keyitems
     elseif (option == 65539) then -- Map of Abyssea - Konschtat
-        if (player:hasKeyItem(MAP_OF_ABYSSEA_KONSCHTAT) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ABYSSEA_KONSCHTAT);
-            player:addKeyItem(MAP_OF_ABYSSEA_KONSCHTAT);
+        if (player:hasKeyItem(dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT);
+            player:addKeyItem(dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT);
             player:delCurrency("cruor", 3500);
         end
     elseif (option == 131075) then -- Ivory Abyssite of Sojourn
-        if (player:hasKeyItem(IVORY_ABYSSITE_OF_SOJOURN) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_SOJOURN);
-            player:addKeyItem(IVORY_ABYSSITE_OF_SOJOURN);
+        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_SOJOURN) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_SOJOURN);
+            player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_SOJOURN);
             player:delCurrency("cruor", 6000);
         end
     elseif (option == 196611) then -- Ivory Abyssite of Confluence
-        if (player:hasKeyItem(IVORY_ABYSSITE_OF_CONFLUENCE) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_CONFLUENCE);
-            player:addKeyItem(IVORY_ABYSSITE_OF_CONFLUENCE);
+        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE);
+            player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE);
             player:delCurrency("cruor", 4800);
         end
     elseif (option == 262147) then -- Ivory Abyssite of Expertise
-        if (player:hasKeyItem(IVORY_ABYSSITE_OF_EXPERTISE) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,IVORY_ABYSSITE_OF_EXPERTISE);
-            player:addKeyItem(IVORY_ABYSSITE_OF_EXPERTISE);
+        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE);
+            player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE);
             player:delCurrency("cruor", 4800);
         end
     elseif (option == 458755) then -- Clear Demilune Abyssite
-        if (player:hasKeyItem(CLEAR_DEMILUNE_ABYSSITE) == false) then
-            player:messageSpecial(KEYITEM_OBTAINED,CLEAR_DEMILUNE_ABYSSITE);
-            player:addKeyItem(CLEAR_DEMILUNE_ABYSSITE);
+        if (player:hasKeyItem(dsp.ki.CLEAR_DEMILUNE_ABYSSITE) == false) then
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CLEAR_DEMILUNE_ABYSSITE);
+            player:addKeyItem(dsp.ki.CLEAR_DEMILUNE_ABYSSITE);
             player:delCurrency("cruor", 300);
         end
 
     -- Enhancement Effects (only removed by zoning, infinite duration)
     elseif (option == 393220) then -- HP Boost
-        player:addStatusEffectEx(EFFECT_ABYSSEA_HP,EFFECT_MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_HP,dsp.effect.MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
         player:addHP(20+(getAbyssiteTotal(player,"MERIT") *10) *10);
         player:delCurrency("cruor", 50);
     elseif (option == 458756) then -- MP Boost
-        player:addStatusEffectEx(EFFECT_ABYSSEA_MP,EFFECT_MAX_MP_BOOST,10+(getAbyssiteTotal(player,"MERIT") *5),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_MP,dsp.effect.MAX_MP_BOOST,10+(getAbyssiteTotal(player,"MERIT") *5),0,0);
         player:addMP(10+(getAbyssiteTotal(player,"MERIT") *5) *10);
         player:delCurrency("cruor", 120);
     elseif (option == 524292) then -- STR-DEX Boost
-        player:addStatusEffectEx(EFFECT_ABYSSEA_STR,EFFECT_STR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_DEX,EFFECT_DEX_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_STR,dsp.effect.STR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_DEX,dsp.effect.DEX_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:delCurrency("cruor", 120);
     elseif (option == 589828) then -- VIT-AGI Boost
-        player:addStatusEffectEx(EFFECT_ABYSSEA_VIT,EFFECT_VIT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_AGI,EFFECT_AGI_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_VIT,dsp.effect.VIT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_AGI,dsp.effect.AGI_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:delCurrency("cruor", 100);
     elseif (option == 655364) then -- INT-MND-CHR Boost
-        player:addStatusEffectEx(EFFECT_ABYSSEA_INT,EFFECT_INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_MND,EFFECT_MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_CHR,EFFECT_CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_INT,dsp.effect.INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_MND,dsp.effect.MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_CHR,dsp.effect.CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:delCurrency("cruor", 100);
     elseif (option == 720900) then -- All Enhancements
-        player:addStatusEffectEx(EFFECT_ABYSSEA_HP,EFFECT_MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_HP,dsp.effect.MAX_HP_BOOST,20+(getAbyssiteTotal(player,"MERIT") *10),0,0);
         player:addHP(20+(getAbyssiteTotal(player,"MERIT") *10) *10);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_MP,EFFECT_MAX_MP_BOOST,10+(getAbyssiteTotal(player,"MERIT") *5),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_MP,dsp.effect.MAX_MP_BOOST,10+(getAbyssiteTotal(player,"MERIT") *5),0,0);
         player:addMP(10+(getAbyssiteTotal(player,"MERIT") *5) *10);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_STR,EFFECT_STR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_DEX,EFFECT_DEX_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_VIT,EFFECT_VIT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_AGI,EFFECT_AGI_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_INT,EFFECT_INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_MND,EFFECT_MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
-        player:addStatusEffectEx(EFFECT_ABYSSEA_CHR,EFFECT_CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_STR,dsp.effect.STR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_DEX,dsp.effect.DEX_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_VIT,dsp.effect.VIT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_AGI,dsp.effect.AGI_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_INT,dsp.effect.INT_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_MND,dsp.effect.MND_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
+        player:addStatusEffectEx(dsp.effect.ABYSSEA_CHR,dsp.effect.CHR_BOOST,10+(getAbyssiteTotal(player,"FURTHERANCE") *10),0,0);
         player:delCurrency("cruor", 470);
     end
 

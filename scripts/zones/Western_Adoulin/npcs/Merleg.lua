@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
     local APBIF = player:getQuestStatus(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
     if (APBIF == QUEST_ACCEPTED) then
-        if (player:hasStatusEffect(EFFECT_IONIS)) then
+        if (player:hasStatusEffect(dsp.effect.IONIS)) then
             -- Finishing Quest: 'A Pioneers Best (Imaginary) Friend'
             player:startEvent(2522);
         else
@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
     if (csid == 2520) then
         -- Starting Quest: 'A Pioneers Best (Imaginary) Friend'
         player:addQuest(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
-        if (player:hasStatusEffect(EFFECT_IONIS)) then
+        if (player:hasStatusEffect(dsp.effect.IONIS)) then
             -- Finishes quest if Ionis is already active
             player:startEvent(2522);
         end
@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 200 * BAYLD_RATE);
         player:messageSpecial(BAYLD_OBTAINED, 200 * BAYLD_RATE);
-        player:addKeyItem(FAIL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED, FAIL_BADGE);
+        player:addKeyItem(dsp.ki.FAIL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.FAIL_BADGE);
         player:addFame(ADOULIN);
     end
 end;

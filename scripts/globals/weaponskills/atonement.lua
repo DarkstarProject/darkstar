@@ -65,8 +65,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         dmg = utils.clamp(dmg, 0, player:getMainLvl() * 10); -- Damage is capped to player's level * 10, before WS damage mods
         damage = target:breathDmgTaken(dmg);
-        if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-            damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+        if (player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+            damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
         end
         damage = damage * WEAPON_SKILL_POWER;
 
@@ -81,7 +81,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         local wsParams = {}
         wsParams.enmityMult = enmityMult
-        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, SLOT_MAIN, tpHits, extraHits, 0, 0, action, nil)
+        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, dsp.slot.MAIN, tpHits, extraHits, 0, 0, action, nil)
     end
 
     return tpHits, extraHits, criticalHit, damage;

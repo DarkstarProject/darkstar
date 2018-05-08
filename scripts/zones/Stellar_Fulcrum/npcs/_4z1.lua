@@ -30,7 +30,7 @@ function onEventFinish(player,csid,option)
             player:setVar("BCNM_Timer",0);
         end
         player:setVar(tostring(pZone) .. "_Runaway",1);
-        player:delStatusEffect(EFFECT_BATTLEFIELD);
+        player:delStatusEffect(dsp.effect.BATTLEFIELD);
         player:setVar(tostring(pZone) .. "_Runaway",0)
     end
 

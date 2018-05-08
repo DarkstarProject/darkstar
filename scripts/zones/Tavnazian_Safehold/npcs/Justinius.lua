@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,THE_SAVAGE);
         player:addMission(COP,THE_SECRETS_OF_WORSHIP);
-        player:addTitle(NAGMOLADAS_UNDERLING);
+        player:addTitle(dsp.title.NAGMOLADAS_UNDERLING);
     end
 
 end;

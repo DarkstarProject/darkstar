@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_EVASION_BOOST
+-- dsp.effect.EVASION_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_EVA,effect:getPower());
+    target:addMod(dsp.mod.EVA,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_EVA,effect:getPower());
+    target:delMod(dsp.mod.EVA,effect:getPower());
 end;

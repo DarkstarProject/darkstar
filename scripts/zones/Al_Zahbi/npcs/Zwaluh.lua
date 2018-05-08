@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (guildMember == 1) then
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-            if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
+            if (player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false) then
                 player:tradeComplete();
                 player:startEvent(227,8,0,0,0,188,0,5,0);
             else
@@ -28,10 +28,10 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,7);
-    local SkillLevel = player:getSkillLevel(SKILL_LEATHERCRAFT);
+    local SkillLevel = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY) == false) then
             player:startEvent(226,8,SkillLevel,0,511,188,0,5,2184);
         else
             player:startEvent(226,8,SkillLevel,0,511,188,7127,5,2184);
@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 226 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,5,1);
-        player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,1,0,120);
+        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120);
     elseif (csid == 227) then
         player:messageSpecial(IMAGE_SUPPORT,0,5,0);
-        player:addStatusEffect(EFFECT_LEATHERCRAFT_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,3,0,480);
     end
 end;

@@ -69,12 +69,12 @@ function onMobRoam(mob)
     if (mob:getLocalVar("Stage") == 2) then
         mob:showText(mob,NyzulIsle.text.OH_ARE_WE_DONE);
         mob:pathThrough(stage2Position, PATHFLAG_SCRIPT);
-        mob:setMobMod(MOBMOD_NO_MOVE, 1);
+        mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
     -- Advance to Stage 3 area
     elseif (mob:getLocalVar("Stage") == 3) then
         mob:showText(mob,NyzulIsle.text.NOW_WERE_TALKIN);
         mob:pathThrough(stage3Position, PATHFLAG_SCRIPT);
-        mob:setMobMod(MOBMOD_NO_MOVE, 1);
+        mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
     end
 
     -- Ally Assist Check
@@ -85,7 +85,7 @@ function onMobRoam(mob)
         mob:setLocalVar("Stage",0);
     -- Path must finish before Ally Asisst (no wallhacking!)
     elseif (ready == 1) then
-        mob:setMobMod(MOBMOD_NO_MOVE, 0);
+        mob:setMobMod(dsp.mobMod.NO_MOVE, 0);
         startAllyAssist(mob, ALLY_ASSIST_RANDOM);
     end
 end;

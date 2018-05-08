@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,4543);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4543);
 end;
 
 -----------------------------------------
@@ -28,15 +28,15 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MND, 10);
-    target:addMod(MOD_CHR, -5);
-    target:addMod(MOD_POISONRES, 4);
-    target:addMod(MOD_BLINDRES, 4);
+    target:addMod(dsp.mod.MND, 10);
+    target:addMod(dsp.mod.CHR, -5);
+    target:addMod(dsp.mod.POISONRES, 4);
+    target:addMod(dsp.mod.BLINDRES, 4);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_MND, 10);
-    target:delMod(MOD_CHR, -5);
-    target:delMod(MOD_POISONRES, 4);
-    target:delMod(MOD_BLINDRES, 4);
+    target:delMod(dsp.mod.MND, 10);
+    target:delMod(dsp.mod.CHR, -5);
+    target:delMod(dsp.mod.POISONRES, 4);
+    target:delMod(dsp.mod.BLINDRES, 4);
 end;

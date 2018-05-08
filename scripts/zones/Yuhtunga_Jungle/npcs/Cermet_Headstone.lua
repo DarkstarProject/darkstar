@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     -- WRATH OF THE OPO-OPOS
     if (trade:hasItemQty(790,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompleteQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(FIRE_FRAGMENT))) then
+        if (not player:hasCompletedQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.FIRE_FRAGMENT))) then
             player:addQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
             player:startEvent(202,790);
         else
@@ -29,30 +29,30 @@ function onTrigger(player,npc)
 
     -- HEADSTONE PILGRIMAGE
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
-        if (player:hasKeyItem(FIRE_FRAGMENT)) then
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,FIRE_FRAGMENT);
+        if (player:hasKeyItem(dsp.ki.FIRE_FRAGMENT)) then
+            player:messageSpecial(ALREADY_OBTAINED_FRAG,dsp.ki.FIRE_FRAGMENT);
         elseif (os.time() <= npc:getLocalVar("cooldown")) then
             if (not GetMobByID(TIPHA):isSpawned() and not GetMobByID(CARTHI):isSpawned()) then
-                player:startEvent(200,FIRE_FRAGMENT);
+                player:startEvent(200,dsp.ki.FIRE_FRAGMENT);
             else
                 player:messageSpecial(SOMETHING_BETTER);
             end
         else
-            player:addKeyItem(FIRE_FRAGMENT);
+            player:addKeyItem(dsp.ki.FIRE_FRAGMENT);
             if (
-                player:hasKeyItem(ICE_FRAGMENT) and
-                player:hasKeyItem(EARTH_FRAGMENT) and
-                player:hasKeyItem(WATER_FRAGMENT) and
-                player:hasKeyItem(WIND_FRAGMENT) and
-                player:hasKeyItem(LIGHTNING_FRAGMENT) and
-                player:hasKeyItem(LIGHT_FRAGMENT)
+                player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and
+                player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)
             ) then
-                player:messageSpecial(FOUND_ALL_FRAGS,FIRE_FRAGMENT);
-                player:addTitle(BEARER_OF_THE_EIGHT_PRAYERS);
+                player:messageSpecial(FOUND_ALL_FRAGS,dsp.ki.FIRE_FRAGMENT);
+                player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS);
                 player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
                 player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
             else
-                player:messageSpecial(KEYITEM_OBTAINED,FIRE_FRAGMENT);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIRE_FRAGMENT);
             end
         end
 
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(13143); -- Opo-opo Necklace
             player:messageSpecial(ITEM_OBTAINED,13143);
-            player:addTitle(FRIEND_OF_THE_OPOOPOS);
+            player:addTitle(dsp.title.FRIEND_OF_THE_OPOOPOS);
             player:completeQuest(OUTLANDS,WRATH_OF_THE_OPO_OPOS);
         end
     end

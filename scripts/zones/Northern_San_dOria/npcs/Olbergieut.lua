@@ -22,10 +22,10 @@ end;
 function onTrigger(player,npc)
 
     gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
-    if (player:hasKeyItem(SCRIPTURE_OF_WATER) == true) then
+    if (player:hasKeyItem(dsp.ki.SCRIPTURE_OF_WATER) == true) then
         player:startEvent(620);
     elseif (gates == QUEST_ACCEPTED) then
-        player:showText(npc, OLBERGIEUT_DIALOG, SCRIPTURE_OF_WIND);
+        player:showText(npc, OLBERGIEUT_DIALOG, dsp.ki.SCRIPTURE_OF_WIND);
     elseif (player:getFameLevel(SANDORIA) >= 2 and gates == QUEST_AVAILABLE) then
         player:startEvent(619);
     else
@@ -45,16 +45,16 @@ function onEventFinish(player,csid,option)
 
     if (csid == 619 and option == 0) then
         player:addQuest(SANDORIA, GATES_TO_PARADISE);
-        player:addKeyItem(SCRIPTURE_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED, SCRIPTURE_OF_WIND);
+        player:addKeyItem(dsp.ki.SCRIPTURE_OF_WIND);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.SCRIPTURE_OF_WIND);
     elseif (csid == 620) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13584);
         else
             player:completeQuest(SANDORIA,GATES_TO_PARADISE);
             player:addFame(SANDORIA,30);
-            player:addTitle(THE_PIOUS_ONE);
-            player:delKeyItem(SCRIPTURE_OF_WATER);
+            player:addTitle(dsp.title.THE_PIOUS_ONE);
+            player:delKeyItem(dsp.ki.SCRIPTURE_OF_WATER);
             player:addItem(13584,1);
             player:messageSpecial(ITEM_OBTAINED,13584);
         end;

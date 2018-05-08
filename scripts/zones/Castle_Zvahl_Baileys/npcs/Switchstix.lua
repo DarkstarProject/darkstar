@@ -101,7 +101,7 @@ function hasRelic(entity,checktype)
 
     if checktype == 1 then
       for i=1, #relics, 2 do -- Step through the array grabbing every second (2 value, and see if it matches that itemid.
-         if (entity:hasItem(relics[i],LOC_INVENTORY)) then -- Specifically checks inventory, so that items in other containers (mog safe, satchel, etc) will be ignored.
+         if (entity:hasItem(relics[i],dsp.inv.INVENTORY)) then -- Specifically checks inventory, so that items in other containers (mog safe, satchel, etc) will be ignored.
             return relics[i];
          end
       end
@@ -193,11 +193,11 @@ function onTrade(player,npc,trade)
          if (eventParams[7] == 1) then
             player:setVar("RELIC_DUE_AT",getMidnight());
 
-         -- Stage 2->3, wait RELIC_2ND_UPGRADE_WAIT_TIME (604800s / 1 week default)
+         -- Stage 2->3, wait RELIC_2ND_UPGRADE_WAIT_TIME (7200s / 2 hours default)
          elseif (eventParams[7] == 2) then
             player:setVar("RELIC_DUE_AT",os.time() + RELIC_2ND_UPGRADE_WAIT_TIME);
 
-         -- Stage 3->4, wait RELIC_3RD_UPGRADE_WAIT_TIME (295200s / 3 days 10 hours default)
+         -- Stage 3->4, wait RELIC_3RD_UPGRADE_WAIT_TIME (3600s / 1 hour default)
          elseif (eventParams[7] == 3) then
             player:setVar("RELIC_DUE_AT",os.time() + RELIC_3RD_UPGRADE_WAIT_TIME);
          end

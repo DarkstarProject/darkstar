@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:delHP(dmg);
     
     -- Apply poison if it hits
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_POISON, 100, 3, math.random(3,6) * 3);  -- 3-6 ticks
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.POISON, 100, 3, math.random(3,6) * 3);  -- 3-6 ticks
     
     return dmg;
 end;

@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 484) then
         player:completeQuest(WINDURST,THE_AMAZIN_SCORPIO);
         player:addFame(WINDURST,80);
-        player:addTitle(GREAT_GRAPPLER_SCORPIO);
+        player:addTitle(dsp.title.GREAT_GRAPPLER_SCORPIO);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         player:tradeComplete();

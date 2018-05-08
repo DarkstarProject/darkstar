@@ -12,5 +12,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_BLAZE_SPIKES, 15, 0, 180);
+    target:addStatusEffect(dsp.effect.BLAZE_SPIKES, 15, 0, 180);
 end;

@@ -10,9 +10,9 @@ end;
 
 function onMobDespawn(mob)
     if (mob:getID() == 17584129) then
-        GetNPCByID(17584455):setStatus(STATUS_NORMAL); -- qm1
+        GetNPCByID(17584455):setStatus(dsp.status.NORMAL); -- qm1
     elseif (mob:getID() == 17584130) then
-        GetNPCByID(17584456):setStatus(STATUS_NORMAL); -- qm2
+        GetNPCByID(17584456):setStatus(dsp.status.NORMAL); -- qm2
     end
 end;
 

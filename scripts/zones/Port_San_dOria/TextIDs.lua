@@ -65,8 +65,7 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7944; -- Why must I wait for the Kingdom to iss
                  CONQUEST_BASE = 7064; -- Tallying conquest results...
 
 -- Lu Shang Brothers
-         GALLIJAUX_CARP_STATUS = 8107;
-  GALLIJAUX_HELP_OTHER_BROTHER = 8110;
-
-            JOULET_CARP_STATUS = 8119;
-     JOULET_HELP_OTHER_BROTHER = 8122;
+         GALLIJAUX_CARP_STATUS = 8107; -- How's it going with you? I've got ?Numeric Parameter 1? ?Singular/Plural Choice (Parameter 1)?[carp/carps] now--don't let me down!?Prompt?
+  GALLIJAUX_HELP_OTHER_BROTHER = 8110; -- What's this? You're helping me brother, are you? Be gone with you, then! Out of my sight!?Prompt?
+            JOULET_CARP_STATUS = 8119; -- How goes it? I've got a hold of ?Numeric Parameter 1? ?Singular/Plural Choice (Parameter 1)?[carp/carps] now. Keep bringing them--I wouldn't want to lose to my brother!?Prompt?
+     JOULET_HELP_OTHER_BROTHER = 8122; -- Ah, so you've been helping my brother, have you!? Traitor! Turncoat! Be gone with you!?Prompt?

@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     if (csid == 50) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 61) then
-        player:addTitle(GUIDING_STAR);
+        player:addTitle(dsp.title.GUIDING_STAR);
         finishMissionTimeline(player,3,csid,option);
     end
 end;

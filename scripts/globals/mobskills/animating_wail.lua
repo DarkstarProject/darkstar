@@ -20,7 +20,7 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = 153;
     local duration = 300;
-    local typeEffect = EFFECT_HASTE;
+    local typeEffect = dsp.effect.HASTE;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
     return typeEffect;

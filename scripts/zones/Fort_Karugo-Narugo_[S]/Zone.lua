@@ -3,10 +3,7 @@
 -- Zone: Fort_Karugo-Narugo_[S] (96)
 --
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
-require("scripts/globals/settings");
+require("scripts/zones/Fort_Karugo-Narugo_[S]/MobIDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -26,23 +23,18 @@ function onRegionEnter(player,region)
 end;
 
 function onZoneWeatherChange(weather)
-
-    local npc = GetNPCByID(17171272); -- Indescript Markings
+    npc = GetNPCByID(FORT_KN_INDESCRIPT_MARKINGS);
     if (npc ~= nil) then
-        if (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM) then
-            npc:setStatus(STATUS_DISAPPEAR);
+        if (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
+            npc:setStatus(dsp.status.DISAPPEAR);
         else
-            npc:setStatus(STATUS_NORMAL);
+            npc:setStatus(dsp.status.NORMAL);
         end
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

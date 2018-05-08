@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    if (player:hasKeyItem(OLD_POCKET_WATCH) and player:hasKeyItem(OLD_BOOTS) == false) then
+    if (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH) and player:hasKeyItem(dsp.ki.OLD_BOOTS) == false) then
         if (trade:hasItemQty(828,1) and trade:getItemCount() == 1) then -- Trade Velvet Cloth
             player:startEvent(37);
         end
@@ -35,9 +35,9 @@ function onTrigger(player,npc)
 
     sanFame = player:getFameLevel(SANDORIA);
     undyingFlames = player:getQuestStatus(SANDORIA,UNDYING_FLAMES);
-    if (player:hasKeyItem(OLD_POCKET_WATCH)) then
+    if (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH)) then
         player:startEvent(48);
-    elseif (player:hasKeyItem(OLD_BOOTS)) then
+    elseif (player:hasKeyItem(dsp.ki.OLD_BOOTS)) then
         player:startEvent(58);
     elseif (sanFame >= 2 and undyingFlames == QUEST_AVAILABLE) then
         player:startEvent(562);
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
-            player:addTitle(FAITH_LIKE_A_CANDLE);
+            player:addTitle(dsp.title.FAITH_LIKE_A_CANDLE);
             player:addItem(13211);
             player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
             player:addFame(SANDORIA,30);
@@ -75,9 +75,9 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 37) then
         player:tradeComplete();
-        player:delKeyItem(OLD_POCKET_WATCH);
-        player:addKeyItem(OLD_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,OLD_BOOTS);
+        player:delKeyItem(dsp.ki.OLD_POCKET_WATCH);
+        player:addKeyItem(dsp.ki.OLD_BOOTS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_BOOTS);
     end
 
 end;

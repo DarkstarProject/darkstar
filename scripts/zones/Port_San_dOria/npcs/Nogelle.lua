@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,30);
             player:addGil(GIL_RATE*600);
-            player:addTitle(BEAN_CUISINE_SALTER);
+            player:addTitle(dsp.title.BEAN_CUISINE_SALTER);
             player:completeQuest(SANDORIA,LUFET_S_LAKE_SALT);
             player:startEvent(11);
         end

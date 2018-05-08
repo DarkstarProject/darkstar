@@ -14,11 +14,11 @@ function onTrigger(player,npc)
     if (offset >= 0 and offset <= 38) then
         local colorTouched = SHRINE_MONOLITHS[offset / 2];
         for i = 0, 21 do
-            local anim = SHRINE_DOORS[i] == colorTouched and ANIMATION_OPEN_DOOR or ANIMATION_CLOSE_DOOR;
+            local anim = SHRINE_DOORS[i] == colorTouched and dsp.anim.OPEN_DOOR or dsp.anim.CLOSE_DOOR;
             GetNPCByID(SHRINE_DOOR_OFFSET + i):setAnimation(anim);
         end
         for i = 0, 19 do
-            local anim = SHRINE_MONOLITHS[i] == colorTouched and ANIMATION_OPEN_DOOR or ANIMATION_CLOSE_DOOR;
+            local anim = SHRINE_MONOLITHS[i] == colorTouched and dsp.anim.OPEN_DOOR or dsp.anim.CLOSE_DOOR;
             GetNPCByID(SHRINE_MONOLITH_OFFSET + (i * 2) - 1):setAnimation(anim);
         end
     end

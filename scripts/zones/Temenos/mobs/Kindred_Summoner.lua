@@ -28,16 +28,12 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    if (
-        GetMobByID(16928797):isDead() and
-        GetMobByID(16928798):isDead() and
-        GetMobByID(16928799):isDead()
-    ) then
-        GetNPCByID(16928768+27):setPos(-120,-80,429);
-        GetNPCByID(16928768+27):setStatus(STATUS_NORMAL);
-        GetNPCByID(16928768+161):setPos(-123,-80,429);
-        GetNPCByID(16928768+161):setStatus(STATUS_NORMAL);
-        GetNPCByID(16928768+212):setPos(-117,-80,429);
-        GetNPCByID(16928768+212):setStatus(STATUS_NORMAL);
-    end
+ if (IsMobDead(16928797)==true and IsMobDead(16928798)==true  and IsMobDead(16928799)==true ) then
+       GetNPCByID(16928768+27):setPos(-120,-80,429);
+    GetNPCByID(16928768+27):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928768+161):setPos(-123,-80,429);
+    GetNPCByID(16928768+161):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928768+212):setPos(-117,-80,429);
+    GetNPCByID(16928768+212):setStatus(dsp.status.NORMAL);
+ end
 end;

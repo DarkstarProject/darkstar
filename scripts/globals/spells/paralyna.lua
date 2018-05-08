@@ -11,11 +11,11 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    if (target:getStatusEffect(EFFECT_PARALYSIS) ~= nil) then
-        target:delStatusEffect(EFFECT_PARALYSIS);
-        spell:setMsg(msgBasic.MAGIC_REMOVE_EFFECT);
+    if (target:getStatusEffect(dsp.effect.PARALYSIS) ~= nil) then
+        target:delStatusEffect(dsp.effect.PARALYSIS);
+        spell:setMsg(dsp.msg.basic.MAGIC_REMOVE_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
-    return EFFECT_PARALYSIS;
+    return dsp.effect.PARALYSIS;
 end;

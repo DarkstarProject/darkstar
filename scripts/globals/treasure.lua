@@ -8,17 +8,72 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
+--[[
+    -- Items reference
+
+    BurstScroll = 0x12D4;
+  MagesBalladII = 0x1383;
+     AdeptsRope = 0x33AE;
+ElectrumHairpin = 0x3610;
+    PhalanxRing = 0x34CC;
+      GigantAxe = 0x4146;
+ TropicalShield = 0x3035;
+   ElectrumRing = 0x34CB;
+      EmethPick = 0x4122;
+      Falcastra = 0x4183;
+       LifeBelt = 0x33AF;
+CougarBaghnakhs = 0x413E;
+       PyroRobe = 0x359B;
+        MothAxe = 0x414F;
+  ShieldEarring = 0x3435;
+    FrostShield = 0x3032;
+    ReplicaMaul = 0x4412;
+   BattleGloves = 0x31FF;
+        HeatRod = 0x42AF;
+      ForceBelt = 0x33A6;
+ FlameBoomerang = 0x438B;
+  SafeguardRing = 0x394E;
+ LightGauntlets = 0x3699;
+     HiReraiser = 0x104D;
+PhysicalEarring = 0x3456;
+    VileElixir1 = 0x104F;
+
+    -- Gems reference
+
+      Amber = 0x32E;
+   Amethyst = 0x320;
+   Ametrine = 0x32B;
+ Aquamarine = 0x317;
+Chrysoberyl = 0x321;
+ ClearTopaz = 0x329;
+   Fluorite = 0x32A;
+     Garnet = 0x316;
+  Goshenite = 0x328;
+LapisLazuli = 0x31B;
+  LightOpal = 0x31C;
+  Moonstone = 0x322;
+       Onyx = 0x31F;
+    Painite = 0x31D;
+    Peridot = 0x314;
+   Sardonyx = 0x327;
+     Sphene = 0x32F;
+   Sunstone = 0x323;
+ Tourmaline = 0x326;
+  Turquoise = 0x31E;
+     Zircon = 0x325;
+--]]
+
 -------------------------------------------------
 -- THF tools/keys & their chance increment
 -------------------------------------------------
 
-skeletonKey = 0x45B; -- 1115
-  livingKey = 0x3FF; -- 1023
-   thftools = 0x3FE; -- 1022
+local skeletonKey   = 0x45B; -- 1115
+local livingKey     = 0x3FF; -- 1023
+local thftools      = 0x3FE; -- 1022
 
-   SK_SUCCESS_INCREMENT = 0.2
-   LK_SUCCESS_INCREMENT = 0.15
-  TTK_SUCCESS_INCREMENT = 0.1
+local SK_SUCCESS_INCREMENT  = 0.2;
+local LK_SUCCESS_INCREMENT  = 0.15;
+local TTK_SUCCESS_INCREMENT = 0.1;
 
 ---------------------------------------
 -- Spawn Mimic
@@ -59,63 +114,6 @@ function spawnMimic(zone,npc,player)
     end
 end;
 
----------------------------------------
--- Items
----------------------------------------
-
-    BurstScroll = 0x12D4;
-  MagesBalladII = 0x1383;
-     AdeptsRope = 0x33AE;
-ElectrumHairpin = 0x3610;
-    PhalanxRing = 0x34CC;
-      GigantAxe = 0x4146;
- TropicalShield = 0x3035;
-   ElectrumRing = 0x34CB;
-      EmethPick = 0x4122;
-      Falcastra = 0x4183;
-       LifeBelt = 0x33AF;
-CougarBaghnakhs = 0x413E;
-       PyroRobe = 0x359B;
-        MothAxe = 0x414F;
-  ShieldEarring = 0x3435;
-    FrostShield = 0x3032;
-    ReplicaMaul = 0x4412;
-   BattleGloves = 0x31FF;
-        HeatRod = 0x42AF;
-      ForceBelt = 0x33A6;
- FlameBoomerang = 0x438B;
-  SafeguardRing = 0x394E;
- LightGauntlets = 0x3699;
-     HiReraiser = 0x104D;
-PhysicalEarring = 0x3456;
-    VileElixir1 = 0x104F;
-
----------------------------------------
--- Gems
----------------------------------------
-
-      Amber = 0x32E;
-   Amethyst = 0x320;
-   Ametrine = 0x32B;
- Aquamarine = 0x317;
-Chrysoberyl = 0x321;
- ClearTopaz = 0x329;
-   Fluorite = 0x32A;
-     Garnet = 0x316;
-  Goshenite = 0x328;
-LapisLazuli = 0x31B;
-  LightOpal = 0x31C;
-  Moonstone = 0x322;
-       Onyx = 0x31F;
-    Painite = 0x31D;
-    Peridot = 0x314;
-   Sardonyx = 0x327;
-     Sphene = 0x32F;
-   Sunstone = 0x323;
- Tourmaline = 0x326;
-  Turquoise = 0x31E;
-     Zircon = 0x325;
-
 -------------------------------------------------
 -- AF by Zone
 -------------------------------------------------
@@ -123,61 +121,74 @@ LapisLazuli = 0x31B;
 function getAFbyZone(zone)
     -- job#1, quest#1, item#1, job#2, quest#2, item#2, ...
     if (zone == 147) then -- Beadeaux
-        -- Beast Jackcoat (BST), Gallant Breeches (PLD), Temple Cyclas (MNK)
-        return {9,BORGHERTZ_S_WILD_HANDS,12646,
-                7,BORGHERTZ_S_STALWART_HANDS,14220,
-                2,BORGHERTZ_S_STRIKING_HANDS,12639};
+        return {
+            dsp.job.BST,    BORGHERTZ_S_WILD_HANDS,         12646, -- Beast Jackcoat
+            dsp.job.PLD,    BORGHERTZ_S_STALWART_HANDS,     14220, -- Gallant Breeches
+            dsp.job.MNK,    BORGHERTZ_S_STRIKING_HANDS,     12639, -- Temple Cyclas
+        };
     elseif (zone == 150) then -- Monastic Cavern
-        -- Chaos Flanchard (DRK), Hunter's Jerkin (RNG), Wizard's Coat (BLM)
-        return { 8,BORGHERTZ_S_SHADOWY_HANDS,14221,
-                11,BORGHERTZ_S_CHASING_HANDS,12648,
-                 4,BORGHERTZ_S_SORCEROUS_HANDS,12641};
+        return {
+            dsp.job.DRK,    BORGHERTZ_S_SHADOWY_HANDS,      14221, -- Chaos Flanchard
+            dsp.job.RNG,    BORGHERTZ_S_CHASING_HANDS,      12648, -- Hunter's Jerkin
+            dsp.job.BLM,    BORGHERTZ_S_SORCEROUS_HANDS,    12641, -- Wizard's Coat
+        };
     elseif (zone == 151) then -- Castle Oztroja
-        -- Chaos Cuirass(DRK), Choral Cannions (BRD), Rogue's Culottes (THF), Warlock's Tabard (RDM)
-        return { 8,BORGHERTZ_S_SHADOWY_HANDS,12645,
-                10,BORGHERTZ_S_HARMONIOUS_HANDS,14223,
-                 6,BORGHERTZ_S_SNEAKY_HANDS,14219,
-                 5,BORGHERTZ_S_VERMILLION_HANDS,12642};
+        return {
+            dsp.job.DRK,    BORGHERTZ_S_SHADOWY_HANDS,      12645, -- Chaos Cuirass
+            dsp.job.BRD,    BORGHERTZ_S_HARMONIOUS_HANDS,   14223, -- Choral Cannions
+            dsp.job.THF,    BORGHERTZ_S_SNEAKY_HANDS,       14219, -- Rogue's Culottes
+            dsp.job.RDM,    BORGHERTZ_S_VERMILLION_HANDS,   12642, -- Warlock's Tabard
+        };
     elseif (zone == 153) then -- The Boyahda Tree
-        -- Ninja Hatsuburi (NIN)
-        return {13,BORGHERTZ_S_LURKING_HANDS,13869};
+        return {
+            dsp.job.NIN,    BORGHERTZ_S_LURKING_HANDS,      13869, -- Ninja Hatsuburi
+        };
     elseif (zone == 159) then -- Temple of Uggalepih
-        -- Evoker's Doublet (SMN), Myochin Domaru (SAM)
-        return {15,BORGHERTZ_S_CALLING_HANDS,12650,
-                12,BORGHERTZ_S_LOYAL_HANDS,13781};
+        return {
+            dsp.job.SMN,    BORGHERTZ_S_CALLING_HANDS,      12650, -- Evoker's Doublet
+            dsp.job.SAM,    BORGHERTZ_S_LOYAL_HANDS,        13781, -- Myochin Domaru
+        };
     elseif (zone == 161) then -- Castle Zvahl Baileys
-        -- Fighter's Cuisses (WAR), Rogue's Vest (THF)
-        return {1,BORGHERTZ_S_WARRING_HANDS,14214,
-                6,BORGHERTZ_S_SNEAKY_HANDS,12643};
+        return {
+            dsp.job.WAR,    BORGHERTZ_S_WARRING_HANDS,      14214, -- Fighter's Cuisses
+            dsp.job.THF,    BORGHERTZ_S_SNEAKY_HANDS,       12643, -- Rogue's Vest
+        };
     elseif (zone == 169) then -- Toraimarai Canal
-        -- Evoker's Pigaches (SMN)
-        return {15,BORGHERTZ_S_CALLING_HANDS,14103};
+        return {
+            dsp.job.SMN,    BORGHERTZ_S_CALLING_HANDS,      14103, -- Evoker's Pigaches
+        };
     elseif (zone == 176) then -- Sea Serpent Grotto
-        -- Ninja Kyahan (NIN)
-        return {13,BORGHERTZ_S_LURKING_HANDS,14101};
+        return {
+            dsp.job.NIN,    BORGHERTZ_S_LURKING_HANDS,      14101, -- Ninja Kyahan
+        };
     elseif (zone == 195) then -- The eldieme Necropolis
-        -- Wizard's Tonban (BLM)
-        return {4,BORGHERTZ_S_SORCEROUS_HANDS,14217};
+        return {
+            dsp.job.BLM,    BORGHERTZ_S_SORCEROUS_HANDS,    14217, -- Wizard's Tonban
+        };
     elseif (zone == 197) then -- Crawler's Nest
-        -- Choral Roundlet (BRD), Fighter's Mask (WAR), Healer's Pantaloons (WHM), Hunter's Braccae (RNG)
-        return {10,BORGHERTZ_S_HARMONIOUS_HANDS,13857,
-                 1,BORGHERTZ_S_WARRING_HANDS,12511,
-                 3,BORGHERTZ_S_HEALING_HANDS,14216,
-                11,BORGHERTZ_S_CHASING_HANDS,14224};
+        return {
+            dsp.job.BRD,    BORGHERTZ_S_HARMONIOUS_HANDS,   13857, -- Choral Roundlet
+            dsp.job.WAR,    BORGHERTZ_S_WARRING_HANDS,      12511, -- Fighter's Mask
+            dsp.job.WHM,    BORGHERTZ_S_HEALING_HANDS,      14216, -- Healer's Pantaloons
+            dsp.job.RNG,    BORGHERTZ_S_CHASING_HANDS,      14224, -- Hunter's Braccae
+        };
     elseif (zone == 200) then -- Garlaige Citadel
-        -- Beast Helm (BST), Gallant Coronet (PLD), Healer's Cap (WHM), Temple Crown (MNK), Warlock's Tights (RDM)
-        return {9,BORGHERTZ_S_WILD_HANDS,12517,
-                7,BORGHERTZ_S_STALWART_HANDS,12515,
-                3,BORGHERTZ_S_HEALING_HANDS,13855,
-                2,BORGHERTZ_S_STRIKING_HANDS,12512,
-                5,BORGHERTZ_S_VERMILLION_HANDS,14218};
+        return {
+            dsp.job.BST,    BORGHERTZ_S_WILD_HANDS,         12517, -- Beast Helm
+            dsp.job.PLD,    BORGHERTZ_S_STALWART_HANDS,     12515, -- Gallant Coronet
+            dsp.job.WHM,    BORGHERTZ_S_HEALING_HANDS,      13855, -- Healer's Cap
+            dsp.job.MNK,    BORGHERTZ_S_STRIKING_HANDS,     12512, -- Temple Crown
+            dsp.job.RDM,    BORGHERTZ_S_VERMILLION_HANDS,   14218, -- Warlock's Tights
+        };
     elseif (zone == 205) then -- Ifrit's Cauldron
-        -- Drachen Mail (DRG)
-        return {14,BORGHERTZ_S_DRAGON_HANDS,12649};
+        return {
+            dsp.job.DRG,    BORGHERTZ_S_DRAGON_HANDS,       12649, -- Drachen Mail
+        };
     elseif (zone == 208) then -- Quicksand Caves
-        -- Drachen Greaves (DRG), Myochin Haidate (SAM)
-        return {14,BORGHERTZ_S_DRAGON_HANDS,14102,
-                12,BORGHERTZ_S_LOYAL_HANDS,14225};
+        return {
+            dsp.jos.DRG,    BORGHERTZ_S_DRAGON_HANDS,       14102, -- Drachen Greaves
+            dsp.jos.SAM,    BORGHERTZ_S_LOYAL_HANDS,        14225, -- Myochin Haidate
+        };
     end
 end
 
@@ -222,7 +233,7 @@ end
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
     local success = 0;
     local chance_answer = {nil,nil}; -- {success%,messageType}
-    local weak = player:getStatusEffect(EFFECT_WEAKNESS);
+    local weak = player:getStatusEffect(dsp.effect.WEAKNESS);
     local illu  = player:getVar("["..player:getZoneID().."]".."Treasure_"..TreasureType);
 
     -- SE implemented this in order to prevent coffer farming.
@@ -243,7 +254,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
         end
     elseif (not(isTHFKey(trade))) then
         chance_answer = {1,nil}; -- Zone Key is always 100% success
-    elseif (player:getMainJob() == JOBS.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
+    elseif (player:getMainJob() == dsp.job.THF and player:getMainLvl() >= minLVL) then -- ifplayer is THF with level higher or equal than minimun lv for coffer/chest
         success = thfKeySuccess(trade,player:getMainLvl(),treasureLVL);
         chance_answer = {success,nil};
     else
@@ -255,66 +266,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
 end
 
 function chestLoot(zone,npc)
-    --[[-----------------------------------------------
-                           Chest Loot
-    ---------------------------------------------------
-    ---------------------------------------
-    -- Items
-    ---------------------------------------
-
-        BurstScroll = 0x12D4;
-      MagesBalladII = 0x1383;
-         AdeptsRope = 0x33AE;
-    ElectrumHairpin = 0x3610;
-        PhalanxRing = 0x34CC;
-          GigantAxe = 0x4146;
-     TropicalShield = 0x3035;
-       ElectrumRing = 0x34CB;
-          EmethPick = 0x4122;
-          Falcastra = 0x4183;
-           LifeBelt = 0x33AF;
-    CougarBaghnakhs = 0x413E;
-           PyroRobe = 0x359B;
-            MothAxe = 0x414F;
-      ShieldEarring = 0x3435;
-        FrostShield = 0x3032;
-        ReplicaMaul = 0x4412;
-       BattleGloves = 0x31FF;
-            HeatRod = 0x42AF;
-          ForceBelt = 0x33A6;
-     FlameBoomerang = 0x438B;
-      SafeguardRing = 0x394E;
-     LightGauntlets = 0x3699;
-         HiReraiser = 0x104D;
-    PhysicalEarring = 0x3456;
-        VileElixir1 = 0x104F;
-
-    ---------------------------------------
-    -- Gems
-    ---------------------------------------
-
-          Amber = 0x32E;
-       Amethyst = 0x320;
-       Ametrine = 0x32B;
-     Aquamarine = 0x317;
-    Chrysoberyl = 0x321;
-     ClearTopaz = 0x329;
-       Fluorite = 0x32A;
-         Garnet = 0x316;
-      Goshenite = 0x328;
-        Jadeite = 0x310;
-    LapisLazuli = 0x31B;
-      LightOpal = 0x31C;
-      Moonstone = 0x322;
-           Onyx = 0x31F;
-        Painite = 0x31D;
-        Peridot = 0x314;
-       Sardonyx = 0x327;
-         Sphene = 0x32F;
-       Sunstone = 0x323;
-     Tourmaline = 0x326;
-      Turquoise = 0x31E;
-         Zircon = 0x325;
+    --[[
     Description:
           Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
         Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
@@ -327,7 +279,7 @@ function chestLoot(zone,npc)
         Done : First collection of all the loot and drop rate.
         * 19/06/2013
                   Done : Drop and drop rate by zone
-    --]]-----------------------------------------------
+    --]]
 
     local gil =
     {
@@ -335,7 +287,7 @@ function chestLoot(zone,npc)
         11, {0.731,3200,6400},
         28, {0.929,5100,9900},
         141,{0.500,800,2100},
-        142,{0.450,800,235},
+        142,{0.450,800,2350},
         143,{0.455,840,1600},
         145,{0.448,800,1600},
         147,{0.152,3440,9000},
@@ -453,68 +405,7 @@ function chestLoot(zone,npc)
 end
 
 function cofferLoot(zone,npc)
-    --[[-----------------------------------------------
-                           Chest Loot
-    ---------------------------------------------------
-    ---------------------------------------
-    -- Items
-    ---------------------------------------
-
-        BurstScroll = 0x12D4;
-      MagesBalladII = 0x1383;
-         AdeptsRope = 0x33AE;
-    ElectrumHairpin = 0x3610;
-        PhalanxRing = 0x34CC;
-          GigantAxe = 0x4146;
-     TropicalShield = 0x3035;
-       ElectrumRing = 0x34CB;
-          EmethPick = 0x4122;
-          Falcastra = 0x4183;
-           LifeBelt = 0x33AF;
-    CougarBaghnakhs = 0x413E;
-           PyroRobe = 0x359B;
-            MothAxe = 0x414F;
-       ScreamFungus = 0x115F
-      ShieldEarring = 0x3435;
-        FrostShield = 0x3032;
-        ReplicaMaul = 0x4412;
-       BattleGloves = 0x31FF;
-            HeatRod = 0x42AF;
-          ForceBelt = 0x33A6;
-     FlameBoomerang = 0x438B;
-      SafeguardRing = 0x394E;
-     LightGauntlets = 0x3699;
-         HiReraiser = 0x104D;
-    PhysicalEarring = 0x3456;
-        VileElixir1 = 0x104F;
-
-    ---------------------------------------
-    -- Gems
-    ---------------------------------------
-
-          Amber = 0x32E;
-       Amethyst = 0x320;
-       Ametrine = 0x32B;
-     Aquamarine = 0x317;
-    Chrysoberyl = 0x321;
-     ClearTopaz = 0x329;
-       Fluorite = 0x32A;
-         Garnet = 0x316;
-      Goshenite = 0x328;
-        Jadeite = 0x310;
-    LapisLazuli = 0x31B;
-      LightOpal = 0x31C;
-      Moonstone = 0x322;
-           Onyx = 0x31F;
-        Painite = 0x31D;
-        Peridot = 0x314;
-       Sardonyx = 0x327;
-         Sphene = 0x32F;
-       Sunstone = 0x323;
-     Tourmaline = 0x326;
-      Turquoise = 0x31E;
-         Zircon = 0x325;
-
+    --[[
     Description:
          Gil = Zone, { [1] Drop rate, [2] Minimum gil, [3] Maximum gil }
         Gems = Zone, { [1] Drop rate, [2] gem1,        [3] gem2,       [4] gem3,  ... ,[10] gem10 }
@@ -527,7 +418,8 @@ function cofferLoot(zone,npc)
                   Done : First collection of all the loot and drop rate.
         * 19/06/2013
                   Done : Drop and drop rate by zone
-    --]]-----------------------------------------------
+    --]]
+    
     local gil =
     {
         12, {0.927,9800,19180},

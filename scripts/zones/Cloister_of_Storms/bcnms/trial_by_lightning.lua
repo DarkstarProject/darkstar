@@ -42,7 +42,7 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING)
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
 
@@ -65,8 +65,8 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:addKeyItem(WHISPER_OF_STORMS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_STORMS);
+        player:delKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:addKeyItem(dsp.ki.WHISPER_OF_STORMS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_STORMS);
     end
 end;

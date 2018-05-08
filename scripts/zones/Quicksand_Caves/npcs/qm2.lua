@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 1190) and not GetMobByID(TRIBUNUS_VII_I):isSpawned()) then
         player:confirmTrade();
         SpawnMob(TRIBUNUS_VII_I):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

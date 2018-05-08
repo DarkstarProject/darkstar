@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_ABYSSEA_HP
+-- dsp.effect.ABYSSEA_HP
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPP, effect:getPower());
+    target:addMod(dsp.mod.HPP, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HPP, effect:getPower());
+    target:delMod(dsp.mod.HPP, effect:getPower());
 end;

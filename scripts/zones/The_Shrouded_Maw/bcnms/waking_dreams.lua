@@ -22,7 +22,7 @@ function onBattlefieldRegister(player,battlefield)
     local inst = player:getBattlefield():getArea();
     local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
-        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
             end
 end;
 
@@ -42,12 +42,12 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
-        if (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)) then
-            player:delKeyItem(VIAL_OF_DREAM_INCENSE);
-            player:addKeyItem(WHISPER_OF_DREAMS);
-            player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
+        if (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)) then
+            player:delKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
+            player:addKeyItem(dsp.ki.WHISPER_OF_DREAMS);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_DREAMS);
         end
-        player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
+        player:addTitle(dsp.title.HEIR_TO_THE_REALM_OF_DREAMS);
         player:startEvent(32002);
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);

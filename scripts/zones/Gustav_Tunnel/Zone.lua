@@ -8,7 +8,6 @@ package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 require("scripts/globals/conquest");
-require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
@@ -18,7 +17,6 @@ end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
@@ -36,11 +34,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

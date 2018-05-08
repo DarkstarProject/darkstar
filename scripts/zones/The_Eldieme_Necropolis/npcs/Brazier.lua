@@ -36,33 +36,33 @@ function onEventFinish(player,csid,option)
 
         if (LanternOrder == 0) then
             if (offset == 0) then --(F-9)
-                player:messageSpecial(THE_LIGHT_DIMLY,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(THE_LIGHT_DIMLY,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",1);
             else
-                player:messageSpecial(REFUSE_TO_LIGHT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(REFUSE_TO_LIGHT,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
             end
         elseif (LanternOrder == 1) then
             if (offset == 1) then --(H-7)
-                player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",2);
             else
-                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",0);
             end
         elseif (LanternOrder == 2) then
             if (offset == 2) then --(F-7)
-                player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(THE_LIGHT_HAS_INTENSIFIED,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",3);
             else
-                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",0);
             end
         elseif (LanternOrder == 3) then
             if (offset == 3) then --(H-9)
-                player:messageSpecial(THE_LIGHT_IS_FULLY_LIT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(THE_LIGHT_IS_FULLY_LIT,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",4);
             else
-                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,DUCAL_GUARDS_LANTERN_LIT);
+                player:messageSpecial(LANTERN_GOES_OUT,0,0,0,dsp.ki.DUCAL_GUARDS_LANTERN_LIT);
                 player:setVar("saveMySisterFireLantern",0);
             end
         end

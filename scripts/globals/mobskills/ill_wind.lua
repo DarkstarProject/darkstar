@@ -4,7 +4,7 @@
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes Shadows
 --  Range: Unknown radial
---  Notes: Only used by Puks in Mamook, Besieged, and the following Notorious Monsters: Vulpangue, Nis Puk, Nguruvilu, Seps , Phantom Puk and Waugyl. Dispels one effect.
+--  Notes: Only used by Puks in Mamook, Besieged, and the following Notorious Monsters: Vulpangue, Nis Puk, Nguruvilu, Seps , Phantom Puk and Waugyl. Dispels one dsp.effect.
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -22,7 +22,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.5,ELE_WIND,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.5,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS);
 
     target:dispelStatusEffect();

@@ -14,44 +14,44 @@ function onSpellCast(caster,target,spell)
     local duration = 120;
     local power = 256;
 
-    local pCHR = caster:getStat(MOD_CHR);
-    local mCHR = target:getStat(MOD_CHR);
+    local pCHR = caster:getStat(dsp.mod.CHR);
+    local mCHR = target:getStat(dsp.mod.CHR);
     local dCHR = (pCHR - mCHR);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_CHR;
+    params.attribute = dsp.mod.CHR;
     params.skillType = SINGING_SKILL;
     params.bonus = 0;
-    params.effect = EFFECT_ELEGY;
+    params.effect = dsp.effect.ELEGY;
     resm = applyResistanceEffect(caster, target, spell, params);
 
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
     else
-        local iBoost = caster:getMod(MOD_ELEGY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+        local iBoost = caster:getMod(dsp.mod.ELEGY_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
         power = power + iBoost*10;
 
-        if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+        if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
             power = power * 2;
-        elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+        elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
             power = power * 1.5;
         end
-        caster:delStatusEffect(EFFECT_MARCATO);
+        caster:delStatusEffect(dsp.effect.MARCATO);
 
-        duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+        duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
-        if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+        if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
             duration = duration * 2;
         end
 
         -- Try to overwrite weaker elegy
-        if (target:addStatusEffect(EFFECT_ELEGY,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB);
+        if (target:addStatusEffect(dsp.effect.ELEGY,power,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
         end
 
     end
 
-    return EFFECT_ELEGY;
+    return dsp.effect.ELEGY;
 end;

@@ -1,13 +1,14 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-
+dsp = dsp or {};
+dsp.msg = dsp.msg or {};
 
 ------------------------------------
--- Chat types
+-- Message Channels
 ------------------------------------
 
-chatType =
+dsp.msg.channel =
 {
     SAY            = 0,
     SHOUT          = 1,
@@ -46,7 +47,7 @@ chatType =
 -- Message Basic
 ------------------------------------
 
-msgBasic =
+dsp.msg.basic =
 {
     NONE    = 0, -- Display nothing
     HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.
@@ -94,6 +95,7 @@ msgBasic =
     SKILL_NO_EFFECT        = 189, -- <user> uses <skill>. No effect on <target>.
     SKILL_ENFEEB_IS        = 242, -- <user> uses <skill>. <target> is <status>.
     SKILL_ENFEEB           = 243, -- <user> uses <skill>. <target> receives the effect of <status>.
+    SKILL_ENFEEB_2         = 142, -- <user> uses <skill>. <target> receives the effect of <status> and <status>.
     ABILITIES_RECHARGED    = 360, -- <user> uses <skill>. All of <target>'s abilities are recharged.
 
     -- Job Ability messages (offset JA by 16)
@@ -149,6 +151,7 @@ msgBasic =
     STATUS_PREVENTS        = 569, -- Your current status prevents you from using that ability.
     STEAL_SUCCESS          = 125, -- <user> uses <ability>. <user> steals <item> from <target>.
     STEAL_FAIL             = 153, -- <user> uses <ability>. <user> fails to steal from <target>.
+    STEAL_EFFECT           = 453, -- <user> uses <ability>. <user> steals the effect of <status> from <target>.
     MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
     MUG_FAIL               = 244, -- <user> fails to mug <target>.
     FULL_INVENTORY         = 356, --  Cannot execute command. Your inventory is full.
@@ -271,5 +274,13 @@ msgBasic =
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
-
+    
+    -- Depoil Statuses
+    DESPOIL_ATT_DOWN        = 593,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Attack Down.
+    DESPOIL_DEF_DOWN        = 594,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Defense Down.
+    DESPOIL_MATT_DOWN       = 595,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Magic Atk. Down.
+    DESPOIL_MDEF_DOWN       = 596,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Magic Def. Down.
+    DESPOIL_EVA_DOWN        = 597,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Evasion Down.
+    DESPOIL_ACC_DOWN        = 598,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Accuracy Down.
+    DESPOIL_SLOW            = 599,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Slow.
 };

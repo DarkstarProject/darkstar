@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     if (GetMobAction(16785722) == 0 and trade:hasItemQty(4373,1) and trade:hasItemQty(4374,1) and trade:hasItemQty(4375,1) and trade:getItemCount() == 3) then
         player:tradeComplete();
         SpawnMob(16785722):updateClaim(player); -- Mycophile
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
