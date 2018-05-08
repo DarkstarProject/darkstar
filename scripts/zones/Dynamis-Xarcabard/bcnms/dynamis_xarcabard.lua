@@ -42,7 +42,7 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
     
-    if (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         GetNPCByID(17330778):setStatus(2);
         SetServerVariable("[DynaXarcabard]UniqueID",0);
     end

@@ -68,11 +68,11 @@ end;
 
 function onBattlefieldLeave(player,battlefield,leavecode)
     
-    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
     
         local name, clearTime, partySize = battlefield:getRecord()
         player:startEvent(6); 
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
     --printf("leavecode: %u",leavecode);

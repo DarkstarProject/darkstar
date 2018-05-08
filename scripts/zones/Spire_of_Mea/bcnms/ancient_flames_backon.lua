@@ -49,20 +49,20 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
     -- printf("leavecode: %u",leavecode);
 
-    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
+    if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then    
             if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then 
-                player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,3);
+                player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 3)
             elseif (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_DEM)) then 
-                player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,2); 
+                player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 2) 
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); 
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 1) 
         else
-            player:startEvent(32001,battlefield:getArea(),clearTime,partySize,battlefield:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
+            player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 0, battlefield:getLocalVar("[cs]bit"), 1) -- can't tell which cs is playing when you're doing it again to help 
         end
-    elseif (leavecode == 4) then
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 

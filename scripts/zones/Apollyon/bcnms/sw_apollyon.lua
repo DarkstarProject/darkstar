@@ -31,7 +31,7 @@ end;
 -- 4=Finish
 
 function onBattlefieldLeave(player,battlefield,leavecode)
-    if (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         SetServerVariable("[SW_Apollyon]UniqueID",0);
         player:setPos(-668,0.1,-666);
     end

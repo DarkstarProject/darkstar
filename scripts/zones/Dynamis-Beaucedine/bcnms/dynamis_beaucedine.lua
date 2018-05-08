@@ -39,7 +39,7 @@ end;
 function onBattlefieldLeave(player,battlefield,leavecode)
 --print("leave code "..leavecode);
     
-    if (leavecode == 4) then
+    if leavecode == dsp.battlefield.leaveCode.LOST then
         SetServerVariable("[DynaBeaucedine]UniqueID",0);
     end
     

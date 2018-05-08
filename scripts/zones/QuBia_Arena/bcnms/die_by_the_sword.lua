@@ -1,19 +1,29 @@
+require("scripts/globals/battlefield")
+
 -----------------------------------
 -- Area: Qu'Bia Arena
 -- Name: Die By the Sword
 -- BCNM30
 -----------------------------------
 
-function onBcnmRegister(player,instance)
+function onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
+end
+
+
+
+function onBattlefieldRegister(player,battlefield)
 end;
 
-function onBcnmEnter(player,instance)
+function onBattlefieldEnter(player,battlefield)
 end;
 
-function onBcnmLeave(player,instance,leavecode)
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,9,0);
-    elseif (leavecode == 4) then
+function onBattlefieldLeave(player,battlefield,leavecode)
+    if leavecode == dsp.battlefield.leaveCode.WON then
+        local name, clearTime, partySize = battlefield:getRecord()
+ -- play end CS. Need time and battle id for record keeping + storage
+        player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 0)
+    elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
 end;
