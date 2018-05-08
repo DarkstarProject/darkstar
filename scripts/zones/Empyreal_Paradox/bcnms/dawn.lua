@@ -35,7 +35,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldTick(battlefield, tick)
-    g_Battlefield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 

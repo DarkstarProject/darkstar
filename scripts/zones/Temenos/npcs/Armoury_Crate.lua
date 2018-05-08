@@ -937,7 +937,7 @@ function onTrigger(player,npc)
     local coffer = CofferID-16928768;
 
     if (CofferType == cTIME) then
-        g_Battlefield.ExtendTimeLimit(battlefield, addtime)
+        dsp.battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
             local randmimic = math.random(1,24)
@@ -950,7 +950,7 @@ function onTrigger(player,npc)
             else
                 battlefield:setLocalVar("loot", 1)
                 battlefield:spawnLoot(npc)
-                g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
+                dsp.battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
             end
             -- despawn les coffer du meme groupe
             for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
@@ -961,10 +961,10 @@ function onTrigger(player,npc)
         else
             battlefield:setLocalVar("loot", 1)
             battlefield:spawnLoot(npc)
-            g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
+            dsp.battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
         end
     elseif (CofferType == cRESTORE) then
-        g_Battlefield.HealPlayers(battlefield)
+        dsp.battlefield.HealPlayers(battlefield)
     elseif (CofferType == cMIMIC) then
         if (coffer == 284) then
             GetMobByID(16928844):setSpawn(X,Y,Z);

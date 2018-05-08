@@ -5,7 +5,7 @@ require("scripts/globals/battlefield")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
-    g_Battlefield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

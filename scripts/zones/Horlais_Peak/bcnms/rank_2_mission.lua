@@ -25,7 +25,7 @@ require("scripts/globals/battlefield")
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 function onBattlefieldTick(battlefield, tick)
-    g_Battlefield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

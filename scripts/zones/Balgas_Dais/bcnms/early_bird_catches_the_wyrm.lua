@@ -34,7 +34,7 @@ function onBattlefieldEnter(player,battlefield)
 end;
 
 function onBattlefieldTick(battlefield, timeinside)
-    g_Battlefield.onBattlefieldTick(battlefield, timeinside)
+    dsp.battlefield.onBattlefieldTick(battlefield, timeinside)
 end
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode

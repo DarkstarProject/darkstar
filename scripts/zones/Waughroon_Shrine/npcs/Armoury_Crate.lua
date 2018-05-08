@@ -360,7 +360,7 @@ end
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
     if battlefield then
-        g_Battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
+        dsp.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
     end
 end
 

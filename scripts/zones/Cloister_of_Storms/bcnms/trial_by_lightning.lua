@@ -25,7 +25,7 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 function onBattlefieldRegister(player,battlefield)
 end;
 function onBattlefieldTick(battlefield, tick)
-    g_Battlefield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

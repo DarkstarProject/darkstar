@@ -729,13 +729,13 @@ function onTrigger(player, npc)
 -- printf("lootID: %u",lootID);
 
     if (CofferType == cTIME) then
-        g_Battlefield.ExtendTimeLimit(battlefield, addtime)
+        dsp.battlefield.ExtendTimeLimit(battlefield, addtime)
     elseif (CofferType == cITEM) then
         battlefield:setLocalVar("loot", 1)
         battlefield:spawnLoot(npc)
-        g_Battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
+        dsp.battlefield.HandleLootRolls(battlefield, loot[lootID], nil, npc)
     elseif (CofferType == cRESTORE) then
-        g_Battlefield.HealPlayers(battlefield)
+        dsp.battlefield.HealPlayers(battlefield)
     elseif (CofferType == cMIMIC) then
          if (CofferID==16932864+210) then
                 GetNPCByID(16932864+195):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());

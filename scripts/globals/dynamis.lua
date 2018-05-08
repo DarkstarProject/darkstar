@@ -945,5 +945,5 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
 end;
 
 function dynamis.extendTimeLimit(battlefield, minutes)
-    g_Battlefield.ExtendTimeLimit(battlefield, minutes, msgBasic.TIME_DYNAMIS_EXTENDED)
+    dsp.battlefield.ExtendTimeLimit(battlefield, minutes, msgBasic.TIME_DYNAMIS_EXTENDED)
 end

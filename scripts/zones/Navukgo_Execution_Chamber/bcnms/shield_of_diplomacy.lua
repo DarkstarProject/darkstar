@@ -13,7 +13,7 @@ require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldTick(battlefield, tick)
-    g_Battlefield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 

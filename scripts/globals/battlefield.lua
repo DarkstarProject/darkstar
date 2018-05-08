@@ -1,5 +1,7 @@
 require("scripts/globals/msg")
 
+dsp = dsp or {}
+
 local MaxAreas =
 {
     -- temenos
@@ -28,9 +30,9 @@ end
 
 
 
-g_Battlefield = {}
+dsp.battlefield = {}
 
-g_Battlefield.STATUS =
+dsp.battlefield.status =
 {
     OPEN     = 0,
     LOCKED   = 1,
@@ -38,7 +40,7 @@ g_Battlefield.STATUS =
     LOST     = 3,
 }
 
-g_Battlefield.RETURNCODE =
+dsp.battlefield.returnCode =
 {
     WAIT              = 1,
     CUTSCENE          = 2,
@@ -48,7 +50,7 @@ g_Battlefield.RETURNCODE =
     BATTLEFIELD_FULL  = 6
 }
 
-g_Battlefield.LEAVECODE =
+dsp.battlefield.leaveCode =
 {
     EXIT = 1,
     WON = 2,
@@ -56,7 +58,7 @@ g_Battlefield.LEAVECODE =
     LOST = 4
 }
 
-function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
+function dsp.battlefield.onBattlefieldTick(battlefield, timeinside, players)
     local killedallmobs = true
     local mobs = battlefield:getMobs(true, true)
     local status = battlefield:getStatus()
@@ -64,9 +66,9 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
     local players = battlefield:getPlayers()
     local cutsceneTimer = battlefield:getLocalVar("cutsceneTimer")
 
-    if status == g_Battlefield.STATUS.LOST then
+    if status == dsp.battlefield.status.LOST then
         leavecode = 4
-    elseif status == g_Battlefield.STATUS.WON then
+    elseif status == dsp.battlefield.status.WON then
         leavecode = 2
     end
 
@@ -74,7 +76,7 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
         battlefield:setLocalVar("cutsceneTimer", cutsceneTimer + 1)
 
         local canLeave = battlefield:getLocalVar("loot") == 0
-        if status == g_Battlefield.STATUS.WON and not canLeave then
+        if status == dsp.battlefield.status.WON and not canLeave then
             if battlefield:getLocalVar("lootSpawned") == 0 and battlefield:spawnLoot() then
                 canLeave = false
             elseif battlefield:getLocalVar("lootSeen") == 1 then
@@ -92,20 +94,20 @@ function g_Battlefield.onBattlefieldTick(battlefield, timeinside, players)
             break
         end
     end
-    g_Battlefield.HandleWipe(battlefield, players)
+    dsp.battlefield.HandleWipe(battlefield, players)
 
     -- if we cant send anymore time prompts theyre out of time
-    if not g_Battlefield.SendTimePrompts(battlefield, players) then
+    if not dsp.battlefield.SendTimePrompts(battlefield, players) then
         battlefield:cleanup(true)
     end
 
     if killedallmobs then
-        battlefield:setStatus(g_Battlefield.STATUS.WON)
+        battlefield:setStatus(dsp.battlefield.status.WON)
     end
 end
 
 -- returns false if out of time
-function g_Battlefield.SendTimePrompts(battlefield, players)
+function dsp.battlefield.SendTimePrompts(battlefield, players)
     local tick = battlefield:getTimeInside()
     local status = battlefield:getStatus()
     local remainingTime = battlefield:getRemainingTime()
@@ -136,7 +138,7 @@ function g_Battlefield.SendTimePrompts(battlefield, players)
     return remainingTime >= 0
 end
 
-function g_Battlefield.HandleWipe(battlefield, players)
+function dsp.battlefield.HandleWipe(battlefield, players)
     local rekt = true
     local wipeTime = battlefield:getWipeTime()
     local elapsed = battlefield:getTimeInside()
@@ -159,7 +161,7 @@ function g_Battlefield.HandleWipe(battlefield, players)
         end
     else
         if (elapsed - wipeTime) > 180 then
-            battlefield:setStatus(g_Battlefield.STATUS.LOST)
+            battlefield:setStatus(dsp.battlefield.status.LOST)
         else
             for _, player in pairs(players) do
                 if player:getHP() ~= 0 then
@@ -170,22 +172,22 @@ function g_Battlefield.HandleWipe(battlefield, players)
             end
 
             if rekt then
-                battlefield:setStatus(g_Battlefield.STATUS.LOST)
+                battlefield:setStatus(dsp.battlefield.status.LOST)
             end
         end
     end
 end
 
 
-function g_Battlefield.onBattlefieldStatusChange(battlefield, players, status)
+function dsp.battlefield.onBattlefieldStatusChange(battlefield, players, status)
 
 end
 
-function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
+function dsp.battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
     local lootGroup = lootTable[math.random(1, #lootTable)]
     print("fuck")
-    if battlefield:getStatus() == g_Battlefield.STATUS.WON and battlefield:getLocalVar("lootSeen") == 0 then
+    if battlefield:getStatus() == dsp.battlefield.status.WON and battlefield:getLocalVar("lootSeen") == 0 then
         print("shit")
         if npc then
             npc:setAnimation(90)
@@ -208,7 +210,7 @@ function g_Battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     end
 end
 
-function g_Battlefield.ExtendTimeLimit(battlefield, minutes, message, param, players)
+function dsp.battlefield.ExtendTimeLimit(battlefield, minutes, message, param, players)
     local timeLimit = battlefield:getTimeLimit()
     local extension = minutes * 60
     battlefield:setTimeLimit(timeLimit + extension)
@@ -221,7 +223,7 @@ function g_Battlefield.ExtendTimeLimit(battlefield, minutes, message, param, pla
     end
 end
 
-function g_Battlefield.HealPlayers(battlefield, players)
+function dsp.battlefield.HealPlayers(battlefield, players)
     players = players or battlefield:getPlayers()
     for _, player in pairs(players) do
         local recoverHP = player:getMaxHP() - player:getHP()

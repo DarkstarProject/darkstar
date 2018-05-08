@@ -875,19 +875,19 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         local name = "Meme"
         local partySize = 1
 
-        local result = g_Battlefield.RETURNCODE.REQS_NOT_MET
+        local result = dsp.battlefield.returnCode.REQS_NOT_MET
         --print(id)
 
         result = player:registerBattlefield(id, area)
 
         print("AREAAAAAAAAAAA "..area.."res "..result)
-        local status = g_Battlefield.STATUS.OPEN
-        if result ~= g_Battlefield.RETURNCODE.CUTSCENE then
-            if result == g_Battlefield.RETURNCODE.INCREMENT_REQUEST then
+        local status = dsp.battlefield.status.OPEN
+        if result ~= dsp.battlefield.returnCode.CUTSCENE then
+            if result == dsp.battlefield.returnCode.INCREMENT_REQUEST then
                 if area < 2 then
                     player:setLocalVar("[battlefield]area", area)
                 else
-                    result = g_Battlefield.RETURNCODE.WAIT
+                    result = dsp.battlefield.returnCode.WAIT
                     player:updateEvent(result)
                 end
             end
@@ -918,7 +918,7 @@ function EventUpdateBCNM(player, csid, option, extras, entrance)
         end
         player:updateEvent(result, battlefieldIndex, 0, clearTime, partySize, skip)
         player:updateEventString(name)
-        return status < g_Battlefield.STATUS.LOCKED and result < g_Battlefield.RETURNCODE.LOCKED
+        return status < dsp.battlefield.status.LOCKED and result < dsp.battlefield.returnCode.LOCKED
 
     -- leaving a battlefield
     elseif csid == 32003 and option == 2 then
