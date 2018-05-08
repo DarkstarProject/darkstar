@@ -25,15 +25,16 @@ function onTrade(player,npc,trade)
     elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
         local OhbiruFood = player:getVar("Ohbiru_Food_var");
 
-        if (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3 and OhbiruFood ~= 2) then -- Traded all 3 items & Didn't ask for order
-            rand = math.random(1,2);
-            if (rand == 1) then
-                player:startEvent(325,440);
-            else
-                player:startEvent(326);
+        if (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3) then
+            if (OhbiruFood < 2) then -- Traded all 3 items & Didn't ask for order
+                if (math.random(1,2) == 1) then
+                    player:startEvent(325,440);
+                else
+                    player:startEvent(326);
+                end
+            elseif (OhbiruFood == 2) then -- Traded all 3 items after receiving order
+                player:startEvent(322,440);
             end
-        elseif (trade:hasItemQty(4493,1) == true and trade:hasItemQty(4408,1) == true and trade:hasItemQty(624,1) == true and count == 3 and OhbiruFood == 2) then -- Traded all 3 items after receiving order
-            player:startEvent(322,440);
         end
     elseif (turmoil == QUEST_ACCEPTED) then
         if (count == 3 and trade:getGil() == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
@@ -42,7 +43,7 @@ function onTrade(player,npc,trade)
             player:startEvent(786,4500,267,906); -- Reminder of needed items
         end
     elseif (turmoil == QUEST_COMPLETED) then
-        if (count == 3 and trade:getGil () == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
+        if (count == 3 and trade:getGil() == 0 and trade:hasItemQty(906,3) == true) then --Check that all 3 items have been traded
             player:startEvent(791);
         else
             player:startEvent(795,4500,0,906); -- Reminder of needed items for repeated quest
@@ -145,39 +146,19 @@ function onEventFinish(player,csid,option)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
     if (csid == 143) then
         player:setVar("ohbiru_dohbiru_talk",2);
-    elseif (csid == 322 or csid == 325)  then
-        if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 2) then -- If this is the last NPC to be fed
-            player:tradeComplete();
+    elseif (csid == 322 or csid == 325 or csid == 326) then
+        player:tradeComplete();
+        player:addGil(GIL_RATE*440);
+        if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
+            player:addFame(WINDURST,100);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
-            player:addGil(GIL_RATE*440);
-            player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
+            player:needToZone(true);
+            player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-            player:addFame(WINDURST,100);
-            player:needToZone(true);
-        else
-            player:tradeComplete();
-            player:addGil(GIL_RATE*440);
-            player:setVar("Ohbiru_Food_var",3); -- If this is NOT the last NPC given food, flag this NPC as completed.
-        end
-    elseif (csid == 326) then
-        if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 2) then -- If this is the last NPC to be fed
-            player:tradeComplete();
-            player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
-            player:addGil(GIL_RATE*440);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
-            player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-            player:addFame(WINDURST,100);
-            player:needToZone(true);
-        else
-            player:tradeComplete();
-            player:addGil(GIL_RATE*440);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*440);
-            player:setVar("Ohbiru_Food_var",3); -- If this is NOT the last NPC given food, flag this NPC as completed.
+        else -- If this is NOT the last NPC given food, flag this NPC as completed.
+            player:setVar("Ohbiru_Food_var",3);
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
