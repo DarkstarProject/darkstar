@@ -24,9 +24,9 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.SKILL_GLD, 1);
+    target:addMod(dsp.mod.GOLDSMITH, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.SKILL_GLD, 1);
+    target:delMod(dsp.mod.GOLDSMITH, 1);
 end;

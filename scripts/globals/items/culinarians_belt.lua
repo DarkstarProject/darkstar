@@ -24,9 +24,9 @@ function onItemUse(target)
 end;
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.SKILL_COK, 1);
+    target:addMod(dsp.mod.COOK, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.SKILL_COK, 1);
+    target:delMod(dsp.mod.COOK, 1);
 end;
