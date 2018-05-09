@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus = 0;
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);

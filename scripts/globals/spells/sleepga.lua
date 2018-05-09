@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.INT;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     params.bonus = 0;
     params.effect = dsp.effect.SLEEP_I;
     resm = applyResistanceEffect(caster, target, spell, params);

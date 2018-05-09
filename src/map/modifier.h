@@ -209,6 +209,9 @@ enum class Mod
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
+    FENCER_TP_BONUS           = 903, // TP Bonus to weapon skills from Fencer Trait
+    FENCER_CRITHITRATE        = 904, // Increased Crit chance from Fencer Trait
+
     SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
     TACTICAL_GUARD            = 899, // Tp increase when guarding
 
@@ -339,10 +342,13 @@ enum class Mod
     ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
+    SHIELD_DEF_BONUS          = 905, // Shield Defense Bonus
 
     // Dark Knight
-    ARCANE_CIRCLE_DURATION    = 858,  // Arcane Circle extended duration in seconds
+    ARCANE_CIRCLE_DURATION    = 858, // Arcane Circle extended duration in seconds
     SOULEATER_EFFECT          = 96,  // Souleater power in percents
+    DESPERATE_BLOWS           = 906, // Adds ability haste to Last Resort
+    STALWART_SOUL             = 907, // Reduces damage taken from Souleater
 
     // Beastmaster
     TAME                      = 304, // Additional percent chance to charm
@@ -717,9 +723,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 903, // stuff
-    // SPARE = 904, // stuff
-    // SPARE = 905, // stuff
+    // SPARE = 908, // stuff
+    // SPARE = 909, // stuff
+    // SPARE = 910, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

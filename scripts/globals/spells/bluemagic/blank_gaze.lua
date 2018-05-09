@@ -26,7 +26,7 @@ function onSpellCast(caster,target,spell)
     local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
 
     local resist = applyResistance(caster, target, spell, params);
     local effect = dsp.effect.NONE;

@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     local final = 0;
     local merits = caster:getMerit(dsp.merit.PHALANX_II);
 

@@ -964,6 +964,8 @@ dsp.mod =
     MEDITATE_DURATION               = 94,  -- Meditate duration in seconds
     WARDING_CIRCLE_DURATION         = 95,  -- Warding Circle duration in seconds
     SOULEATER_EFFECT                = 96,  -- Souleater power in percents
+    DESPERATE_BLOWS                 = 906, -- Adds ability haste to Last Resort
+    STALWART_SOUL                   = 907, -- Reduces damage taken from Souleater
     BOOST_EFFECT                    = 97,  -- Boost power in tenths
     CAMOUFLAGE_DURATION             = 98,  -- Camouflage duration in percents
     AUTO_MELEE_SKILL                = 101,
@@ -1464,12 +1466,15 @@ dsp.mod =
     SAVETP                          = 880, -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
     SMITE                           = 898, -- Att increase with H2H or 2H weapons
     TACTICAL_GUARD                  = 899, -- Tp gain increase when guarding
+    FENCER_TP_BONUS                 = 903, -- TP Bonus to weapon skills from Fencer Trait
+    FENCER_CRITHITRATE              = 904, -- Increased Crit chance from Fencer Trait
+    SHIELD_DEF_BONUS                = 905, -- Shield Defense Bonus
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 900, -- stuff
-    -- SPARE = 901, -- stuff
-    -- SPARE = 902, -- stuff
+    -- SPARE = 908, -- stuff
+    -- SPARE = 909, -- stuff
+    -- SPARE = 910, -- stuff
 };
 
 ------------------------------------

@@ -364,6 +364,10 @@ namespace battleutils
     CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
     {
         DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
+        if (WSkillID >= MAX_WEAPONSKILL_ID)
+        {
+            return nullptr;
+        }
 
         return g_PWeaponSkillList[WSkillID];
     }
@@ -1915,10 +1919,11 @@ namespace battleutils
                     if (PDefender->objtype == TYPE_PC)
                     {
                         absorb = std::clamp(100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption(), 0, 100);
+                        absorb -= PDefender->getMod(Mod::SHIELD_DEF_BONUS); // Include Shield Defense Bonus in absorb amount
 
-                        //Shield Mastery
+                        // Shield Mastery
                         if ((std::max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
-                            && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                            && charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))
                         {
                             // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                             // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
@@ -2343,8 +2348,22 @@ namespace battleutils
         }
         else
         {
-            //apply merit mods
-            if (PAttacker->objtype == TYPE_PC) crithitrate += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE, (CCharEntity*)PAttacker);
+            //apply merit mods and traits
+            if (PAttacker->objtype == TYPE_PC)
+            {
+                CCharEntity* PCharAttacker = static_cast<CCharEntity*>(PAttacker);
+                crithitrate += PCharAttacker->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE, PCharAttacker);
+
+                // Add Fencer crit hit rate
+                CItemWeapon* PMain = PCharAttacker->m_Weapons[SLOT_MAIN];
+                CItemWeapon* PSub = PCharAttacker->m_Weapons[SLOT_SUB];
+                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                {
+                    crithitrate += PCharAttacker->getMod(Mod::FENCER_CRITHITRATE);
+                }
+            }
+
             if (PDefender->objtype == TYPE_PC) crithitrate -= ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_ENEMY_CRIT_RATE, (CCharEntity*)PDefender);
             //ShowDebug("Crit rate mod before Innin/Yonin: %d\n", crithitrate);
             // Check for Innin crit rate bonus from behind target
@@ -3556,12 +3575,12 @@ namespace battleutils
             drainPercent = drainPercent + std::min(0.02f, 0.01f * gearBonusPercent);
 
             damage += (uint32)(m_PChar->health.hp * drainPercent);
-            m_PChar->addHP((int32)(-drainPercent * m_PChar->health.hp));
+            m_PChar->addHP((int32)(m_PChar->health.hp * -(drainPercent - m_PChar->getMod(Mod::STALWART_SOUL) * 0.001f)));
         }
         else if (m_PChar->GetSJob() == JOB_DRK &&m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)) {
             //lose 10% Current HP, only HALF (5%) converted to damage
-            damage += (uint32)(m_PChar->health.hp * 0.05);
-            m_PChar->addHP((int32)(-0.1 * m_PChar->health.hp));
+            damage += (uint32)(m_PChar->health.hp * 0.05f);
+            m_PChar->addHP((int32)(m_PChar->health.hp * -0.1f));
         }
         return damage;
     }
@@ -5368,14 +5387,19 @@ namespace battleutils
                 {
                     tp -= battleutils::GetScaledItemModifier(PEntity, PChar->m_Weapons[SLOT_RANGED], Mod::TP_BONUS);
                 }
+
+                // Add Fencer TP Bonus
+                CItemWeapon* PMain = PChar->m_Weapons[SLOT_MAIN];
+                CItemWeapon* PSub = PChar->m_Weapons[SLOT_SUB];
+                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                {
+                    tp += PEntity->getMod(Mod::FENCER_TP_BONUS);
+                }
             }
         }
 
-        if (tp > 3000)
-        {
-            tp = 3000;
-        }
-        return tp;
+        return std::min(tp, (int16)3000);
     }
 
     bool RemoveAmmo(CCharEntity* PChar, int quantity)

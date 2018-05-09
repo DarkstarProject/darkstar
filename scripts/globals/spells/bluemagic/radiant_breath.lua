@@ -56,7 +56,7 @@ function onSpellCast(caster,target,spell)
 
     params.attribute = dsp.mod.INT;
 
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
 
     params.bonus = 1.0;
 

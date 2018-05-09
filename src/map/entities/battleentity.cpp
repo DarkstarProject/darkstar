@@ -234,7 +234,7 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     }
     uint16 MinimumDelay = m_Weapons[SLOT_MAIN]->getDelay(); // Track base delay.  We will need this later.  Mod::DELAY is ignored for now.
     uint16 WeaponDelay = m_Weapons[SLOT_MAIN]->getDelay() - getMod(Mod::DELAY);
-    if (m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
+    if (m_Weapons[SLOT_MAIN]->isHandToHand())
     {
         WeaponDelay -= getMod(Mod::MARTIAL_ARTS) * 1000 / 60;
     }
@@ -251,9 +251,9 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = (getMod(Mod::HASTE_MAGIC) > 448) ? 448 : getMod(Mod::HASTE_MAGIC);
-        int16 hasteAbility = (getMod(Mod::HASTE_ABILITY) > 256) ? 256 : getMod(Mod::HASTE_ABILITY);
-        int16 hasteGear = (getMod(Mod::HASTE_GEAR) > 256) ? 256 : getMod(Mod::HASTE_GEAR);
+        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -448, 448);
+        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -256, 256);
+        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -256, 256);
         WeaponDelay = (uint16)(WeaponDelay * ((1024.0f - hasteMagic - hasteAbility - hasteGear) / 1024.0f));
     }
     WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
@@ -568,7 +568,7 @@ uint16 CBattleEntity::ATT()
         ATT += GetSkill(m_Weapons[SLOT_MAIN]->getSkillType()) + m_Weapons[SLOT_MAIN]->getILvlSkill();
 
         // Smite applies when using 2H or H2H weapons
-        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
+        if (m_Weapons[SLOT_MAIN]->isTwoHanded() || m_Weapons[SLOT_MAIN]->isHandToHand())
         {
             ATT += static_cast<int32>(ATT * this->getMod(Mod::SMITE) / 256.f); // Divide smite value by 256
         }

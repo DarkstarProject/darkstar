@@ -19,7 +19,7 @@ function onSpellCast(caster,target,spell)
     local mINT = target:getStat(dsp.mod.INT);
 
     local dINT = (pINT - mINT);
-    local power = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 15 + 1;
+    local power = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 15 + 1;
     if power > 25 then
         power = 25;
     end
@@ -30,7 +30,7 @@ function onSpellCast(caster,target,spell)
 
     params.attribute = dsp.mod.INT;
 
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
 
     params.bonus = 0;
 

@@ -71,6 +71,10 @@ public:
 
     int32 getSkillType(lua_State*);         // get skill type
     int32 getWeaponskillPoints(lua_State*); // get current ws points
+
+    int32 isTwoHanded(lua_State*);          // is a two handed weapon
+    int32 isHandToHand(lua_State*);         // is a hand to hand weapon (or unarmed H2H)
+    int32 isShield(lua_State*);             // is a Shield
 };
 
 #endif
