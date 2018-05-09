@@ -14,8 +14,8 @@ function onEffectGain(target,effect)
             target:addMod(dsp.mod.RACC, -effect:getPower());
         elseif (effect:getSubType() == dsp.mod.ATTP) then
             target:addMod(dsp.mod.RATTP, -effect:getPower());
-        elseif (effect:getSubType() == MOD_PET_MACC) then
-            target:addMod(dsp.mod.PET_MATT, -effect:getPower());
+        -- elseif (effect:getSubType() == MOD_PET_MACC) then
+        --     target:addMod(MOD_PET_MATT, -effect:getPower());
         end
         target:addMod(effect:getSubType(), -effect:getPower());
     end
@@ -33,8 +33,8 @@ function onEffectLose(target,effect)
             target:delMod(dsp.mod.RACC, -effect:getPower());
         elseif (effect:getSubType() == dsp.mod.ATTP) then
             target:delMod(dsp.mod.RATTP, -effect:getPower());
-        elseif (effect:getSubType() == MOD_PET_MACC) then
-            target:delMod(dsp.mod.PET_MATT, -effect:getPower());
+        -- elseif (effect:getSubType() == MOD_PET_MACC) then
+        --     target:delMod(MOD_PET_MATT, -effect:getPower());
         end
         target:delMod(effect:getSubType(), -effect:getPower());
     end
