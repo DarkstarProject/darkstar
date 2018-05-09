@@ -1291,6 +1291,7 @@ dsp.mod =
     ALL_SONGS_EFFECT                = 452, --
     MAXIMUM_SONGS_BONUS             = 453, --
     SONG_DURATION_BONUS             = 454, --
+    SONG_SPELLCASTING_TIME          = 455, --
 
     QUICK_DRAW_DMG                  = 411, --
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
