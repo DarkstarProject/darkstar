@@ -29,10 +29,10 @@ end;
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.DEX, 2);
-    target:addMod(dsp.mod.CHA, -4);
+    target:addMod(dsp.mod.CHR, -4);
 end;
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.DEX, 2);
-    target:delMod(dsp.mod.CHA, -4);
+    target:delMod(dsp.mod.CHR, -4);
 end;
