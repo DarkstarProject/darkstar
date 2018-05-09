@@ -3,9 +3,7 @@
 -- dsp.effect.SIGIL
 --
 -----------------------------------
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -23,30 +21,22 @@ function onEffectGain(target,effect)
     end
 
     if (power >= 4 and power <= 7) then
-        -- target:addMod(MOD_FOOD_DURATION), ???);
+        -- target:addMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
     elseif (power >= 8 and power <= 11) then
-        -- target:addMod(MOD_EXPLOSS_REDUCTION), ???);
+        -- target:addMod(dsp.mod.EXPLOSS_REDUCTION), ???);
         -- exp loss reduction not implemented.
     elseif (power >= 12) then
         -- Possibly handle exp loss reduction in core instead..Maybe the food bonus also?
-        -- target:addMod(MOD_FOOD_DURATION), ???);
+        -- target:addMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
         -- target:addLatent(LATENT_SIGIL_EXPLOSS, ?, MOD_EXPLOSS_REDUCTION, ?);
         -- exp loss reduction not implemented.
     end
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local power = effect:getPower(); -- Tracks which bonus effects are in use.
@@ -63,15 +53,15 @@ function onEffectLose(target,effect)
     end
 
     if (effect:getPower() >= 4 and effect:getPower() <= 7) then
-        -- target:delMod(MOD_FOOD_DURATION), ???);
+        -- target:delMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
     elseif (effect:getPower() >= 8 and effect:getPower() <= 11) then
-        -- target:delMod(MOD_EXPLOSS_REDUCTION), ???);
+        -- target:delMod(dsp.mod.EXPLOSS_REDUCTION), ???);
         -- exp loss reduction not implemented.
     elseif (effect:getPower() >= 12) then
-        -- target:delMod(MOD_FOOD_DURATION), ???);
+        -- target:delMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
-        -- target:delMod(MOD_EXPLOSS_REDUCTION), ???);
+        -- target:delMod(dsp.mod.EXPLOSS_REDUCTION), ???);
         -- exp loss reduction not implemented.
     end
 end;

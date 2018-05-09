@@ -27,16 +27,12 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,300,4379);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.DEX, 2);
-    target:addMod(MOD_CHA, -4);
+    target:addMod(dsp.mod.CHA, -4);
 end;
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.DEX, 2);
-    target:delMod(MOD_CHA, -4);
+    target:delMod(dsp.mod.CHA, -4);
 end;
