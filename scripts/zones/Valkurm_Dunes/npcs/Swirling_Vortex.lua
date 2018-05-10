@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 12 and option == 1) then
-        toLufaiseMeadows(player);
+        dsp.teleport.to(player, dsp.teleport.id.LUFAISE_VORTEX);
     end
 
 end;

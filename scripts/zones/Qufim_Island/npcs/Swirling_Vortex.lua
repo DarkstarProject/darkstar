@@ -34,7 +34,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 300 and option == 1) then
-        toMisareauxCoast(player);
+        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX);
     end
 
 end;

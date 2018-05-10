@@ -65,6 +65,6 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1548);
         end
     elseif (csid == 10026 and option == 1) then
-        toCloisterOfStorms(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_STORMS);
     end
 end;

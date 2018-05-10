@@ -95,6 +95,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHITE_INVITATION_CARD);
     elseif (csid == 10177) then
         player:tradeComplete();
-        toAhtUrhganWhitegate(player);
+        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;

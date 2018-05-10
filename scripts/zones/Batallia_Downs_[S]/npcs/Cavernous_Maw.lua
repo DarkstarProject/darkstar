@@ -38,9 +38,9 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 100 and option == 1) then
         player:addNationTeleport(MAW,1);
-        toMaw(player,2);
+        dsp.teleport.toMaw(player,2);
     elseif (csid == 101 and option == 1) then
-        toMaw(player,2);
+        dsp.teleport.toMaw(player,2);
     elseif (csid == 701) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,1);
         end
-        toMaw(player,2);
+        dsp.teleport.toMaw(player,2);
     end
 
 end;

@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1546);
         end
     elseif (csid == 109 and option == 1) then
-        toCloisterOfGales(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_GALES);
     end
 
 end;
