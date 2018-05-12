@@ -28,14 +28,14 @@ function onTrade(player,npc,trade)
                 player:startEvent(358,3600);
             end
         end
-    end
-    if (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED and trade:hasItemQty(4371,1) and count == 1) then
-        player:startEvent(332,440);
-        player:setVar("Kerutoto_Food_var",2);
-    end
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 3) then
-        if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
+    elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
+        local KerutotoFood = player:getVar("Kerutoto_Food_var");
+        if (trade:hasItemQty(4371,1) and count == 1 and KerutotoFood == 1) then
+            player:startEvent(332,440);
+        end
+    elseif (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED) then
+        if (player:getVar("ridingOnTheClouds_4") == 3 and trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
@@ -129,7 +129,7 @@ function onTrigger(player,npc)
     elseif (FoodForThought == QUEST_ACCEPTED) then
         if (KerutotoFood == 1)  then
             player:startEvent(315,0,4371); -- Repeats Order
-        elseif (KerutotoFood == 3) then
+        elseif (KerutotoFood == 2) then
             player:startEvent(333); -- Reminder to check with the others if this NPC has already been fed
         end
     elseif (FoodForThought == QUEST_COMPLETED and needZone) then
@@ -157,20 +157,18 @@ function onEventFinish(player,csid,option)
     elseif (csid == 313 and option == 1) then
         player:setVar("Kerutoto_Food_var",256);
     elseif (csid == 332) then
-        if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
-            player:addGil(GIL_RATE*440);
-            player:tradeComplete();
-            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
-            player:addFame(WINDURST,100);
-            player:needToZone(true);
+        player:tradeComplete();
+        player:addGil(GIL_RATE*440);
+        if (player:getVar("Kenapa_Food_var") == 4 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
+            player:addFame(WINDURST,100);
+            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
+            player:needToZone(true);
             player:setVar("Kerutoto_Food_var",0);        -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-        else
-            player:tradeComplete();
-            player:addGil(GIL_RATE*440);
-            player:setVar("Kerutoto_Food_var",3); -- If this is NOT the last NPC given food, flag this NPC as completed.
+        else -- If this is NOT the last NPC given food, flag this NPC as completed.
+            player:setVar("Kerutoto_Food_var",2);
         end
     elseif (csid == 357) then
         player:addQuest(WINDURST,BLUE_RIBBON_BLUES);
