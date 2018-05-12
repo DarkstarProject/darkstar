@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
      player:tradeComplete();
  elseif (csid == 56 and option == 1) then
      player:tradeComplete();
-     toMineShaft2716(player);
+     dsp.teleport.to(player, dsp.teleport.id.MINESHAFT);
  end
 
 end;

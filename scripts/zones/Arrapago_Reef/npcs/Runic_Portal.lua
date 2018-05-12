@@ -41,9 +41,9 @@ function onEventFinish(player,csid,option)
 
     if (csid == 111 and option == 1) then
         player:addNationTeleport(AHTURHGAN,32);
-        toChamberOfPassage(player);
+        dsp.teleport.toChamberOfPassage(player);
     elseif (csid == 109 and option == 1) then
-        toChamberOfPassage(player);
+        dsp.teleport.toChamberOfPassage(player);
     end
 
 end;

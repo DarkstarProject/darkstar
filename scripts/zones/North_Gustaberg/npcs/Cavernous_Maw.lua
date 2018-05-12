@@ -33,6 +33,6 @@ function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
     if (csid == 903 and option == 1) then
-        toMaw(player,11);
+        dsp.teleport.toMaw(player,11);
     end
 end;
