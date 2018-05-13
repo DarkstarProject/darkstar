@@ -143,7 +143,7 @@ function onMobSpawn(mob)
                 master:addMod(dsp.mod.HASTE_ABILITY,20*diff)
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
-            mob:setLocalVar("level_Ups", diff)
+            mob:setLocalVar("level_Ups", mob:getLocalVar("level_Ups") + diff)
         end
     end);
 end;
