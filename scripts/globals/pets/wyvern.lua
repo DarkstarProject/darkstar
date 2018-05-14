@@ -143,7 +143,7 @@ function onMobSpawn(mob)
                 master:addMod(dsp.mod.HASTE_ABILITY,20*diff)
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
-            mob:setLocalVar("level_Ups", mob:getLocalVar("level_Ups") + diff)
+            pet:setLocalVar("level_Ups", pet:getLocalVar("level_Ups") + diff)
         end
     end);
 end;
@@ -152,9 +152,10 @@ end;
 -- onMobDespawn Action
 -----------------------------------
 
-function onMobDeath(mob)
+function onMobDeath(mob, player)
     local master = mob:getMaster();
-    local numLvls = mob:getLocalVar("level_Ups");
+    local pet = player:getPet();
+    local numLvls = pet:getLocalVar("level_Ups");
     if (numLvls ~= nil) then
         master:delMod(dsp.mod.ATTP,4*numLvls);
         master:delMod(dsp.mod.DEFP,4*numLvls);
