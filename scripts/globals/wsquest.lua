@@ -625,7 +625,7 @@ function handleWsQuestEventFinish(quest, player, csid, option, learnedId)
     elseif (csid == quest.eventIds.finish) then -- WS Quest completed
         player:messageSpecial(learnedId);
         player:addLearnedWeaponskill(quest.wsUnlockId);
-        player:addFame(quest.fameRegion, WSNM_FAME);
+        player:addFame(quest.fameRegion, 30);
         player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH);
         player:delKeyItem(dsp.ki.ANNALS_OF_TRUTH);
         player:delKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE);
