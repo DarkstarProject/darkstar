@@ -148,15 +148,15 @@ function onEventFinish(player,csid,option)
         elseif (player:getPreviousZone() == 117) then -- Mea
             player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 169 and option == 1) then
         player:setVar("MeaChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 170 and option == 1) then
         player:setVar("HollaChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 171 and option == 1) then
         player:setVar("DemChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     end
 end;

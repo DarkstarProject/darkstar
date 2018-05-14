@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.BOARDING_PERMIT);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOARDING_PERMIT);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",4);
-        toWajaomLaypoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.WAJAOM_LEYPOINT);
     elseif (csid == 10068) then
         player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);

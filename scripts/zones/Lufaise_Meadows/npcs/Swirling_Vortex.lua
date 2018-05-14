@@ -24,7 +24,7 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
 
     if (csid == 100 and option == 1) then
-        toValkurmDunes(player);
+        dsp.teleport.to(player, dsp.teleport.id.VALKURM_VORTEX);
     end
 
 end;

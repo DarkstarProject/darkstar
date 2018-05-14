@@ -36,9 +36,9 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 12 and option == 1) then
-        toPalaceEntrance(player);
+        dsp.teleport.to(player, dsp.teleport.id.SEA);
     elseif (csid == 16) then
-      player:setVar("PromathiaStatus",2);
+        player:setVar("PromathiaStatus",2);
     elseif (csid == 17) then
         player:completeMission(COP,CALM_BEFORE_THE_STORM);
         player:addMission(COP,THE_WARRIOR_S_PATH);

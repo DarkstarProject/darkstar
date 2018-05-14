@@ -2,573 +2,263 @@
 -- A collection of frequently needed teleport shortcuts.
 -----------------------------------
 
+dsp = dsp or {};
+dsp.teleport = dsp.teleport or {};
+
 -----------------------------------
--- TELEPORT NAMES
+-- TELEPORT IDS
 -----------------------------------
-TELEPORT_DEM           = 1;
-TELEPORT_HOLLA         = 2;
-TELEPORT_YHOAT         = 3;
-TELEPORT_VAHZL         = 4;
-TELEPORT_MEA           = 5;
-TELEPORT_ALTEP         = 6;
-TELEPORT_WARP          = 7;
-TELEPORT_ESCAPE        = 8;
-RECALL_JUGNER          = 9;
-RECALL_PASHH           = 10;
-RECALL_MERIPH          = 11;
-FIREFLIES_AZOUPH       = 12;
-FIREFLIES_BHAFLAU      = 13;
-FIREFLIES_ZHAYOLM      = 14;
-FIREFLIES_DVUCCA       = 15;
-FIREFLIES_REEF         = 16;
-FIREFLIES_ALZADAAL     = 17;
-FIREFLIES_CUTTER       = 18;
-FIREFLIES_Z_REM        = 19;
-FIREFLIES_A_REM        = 20;
-FIREFLIES_B_REM        = 21;
-FIREFLIES_S_REM        = 22;
-TELEPORT_MAAT          = 23;
-TELEPORT_HOMING        = 24;
-TELEPORT_TO_LEADER     = 25;
-TELEPORT_EXITPROMMEA   = 26;
-TELEPORT_EXITPROMHOLLA = 27;
-TELEPORT_EXITPROMDEM   = 28;
-TELEPORT_LUFAISE       = 29;
-TELEPORT_CHOCOWINDURST = 30;
-TELEPORT_CHOCOSANDORIA = 31;
-TELEPORT_CHOCOBASTOK   = 32;
-TELEPORT_DUCALGUARD    = 33;
+local ids =
+{
+    DEM                 = 1,
+    HOLLA               = 2,
+    YHOAT               = 3,
+    VAHZL               = 4,
+    MEA                 = 5,
+    ALTEP               = 6,
+    WARP                = 7,
+    ESCAPE              = 8,
+    JUGNER              = 9,
+    PASHH               = 10,
+    MERIPH              = 11,
+    AZOUPH              = 12,
+    BHAFLAU             = 13,
+    ZHAYOLM             = 14,
+    DVUCCA              = 15,
+    REEF                = 16,
+    ALZADAAL            = 17,
+    CUTTER              = 18,
+    Z_REM               = 19,
+    A_REM               = 20,
+    B_REM               = 21,
+    S_REM               = 22,
+    MAAT                = 23,
+    HOMING              = 24,
+    LEADER              = 25,
+    EXITPROMMEA         = 26,
+    EXITPROMHOLLA       = 27,
+    EXITPROMDEM         = 28,
+    LUFAISE             = 29,
+    CHOCOWINDURST       = 30,
+    CHOCOSANDORIA       = 31,
+    CHOCOBASTOK         = 32,
+    DUCALGUARD          = 33,
+    PURGONORGO          = 34,
+    AZOUPH_SP           = 35,
+    DVUCCA_SP           = 36,
+    MAMOOL_SP           = 37,
+    HALVUNG_SP          = 38,
+    ILRUSI_SP           = 39,
+    NYZUL_SP            = 40,
+    SKY                 = 41,
+    CLOISTER_OF_FLAMES  = 42,
+    CLOISTER_OF_FROST   = 43,
+    CLOISTER_OF_GALES   = 44,
+    CLOISTER_OF_STORMS  = 45,
+    CLOISTER_OF_TIDES   = 46,
+    CLOISTER_OF_TREMORS = 47,
+    GHELSBA_HUT         = 48,
+    WAJAOM_LEYPOINT     = 49,
+    VALKURM_VORTEX      = 50,
+    QUFIM_VORTEX        = 51,
+    LUFAISE_VORTEX      = 52,
+    MISAREAUX_VORTEX    = 53,
+    MINESHAFT           = 54,
+    WHITEGATE           = 55,
+    SEA                 = 56,    
+};
+dsp.teleport.id = ids;
+
 -----------------------------------
--- Teleports
+-- TELEPORT TO SINGLE DESTINATION
 -----------------------------------
-function toLeader(player)
+
+local destinations = 
+{
+    [ids.DEM]                   = { 220.000,   19.104,  300.000,   0, 108}, -- {R}
+    [ids.HOLLA]                 = { 420.000,   19.104,   20.000,   0, 102}, -- {R}
+    [ids.YHOAT]                 = {-280.942,    0.596, -144.156,   0, 124}, -- {R}
+    [ids.VAHZL]                 = { 150.258,  -21.048,  -37.256,  94, 112}, -- {R}
+    [ids.MEA]                   = { 100.000,   35.151,  340.000,   0, 117}, -- {R}
+    [ids.ALTEP]                 = { 115.859,   -7.916,  -74.276, 171, 114},
+    [ids.JUGNER]                = {-122.862,    0.000, -163.154, 192,  82}, -- {R}
+    [ids.PASHH]                 = { 345.472,   24.280, -114.731,  99,  90}, -- {R}
+    [ids.MERIPH]                = { 305.989,  -14.978,   18.960, 192,  97}, -- {R}
+    [ids.AZOUPH]                = { 495.450,  -28.250, -478.430,  32,  79}, -- {R}
+    [ids.BHAFLAU]               = {-172.863,  -12.250, -801.021, 128,  52}, -- {R}
+    [ids.ZHAYOLM]               = { 681.950,  -24.000,  369.936,  64,  61}, -- {R}
+    [ids.DVUCCA]                = {-252.715,   -7.666,  -30.640, 128,  79}, -- {R}
+    [ids.REEF]                  = {   9.304,   -7.376,  620.133,   0,  54}, -- {R}
+    [ids.ALZADAAL]              = { 180.000,    0.000,   20.000,   0,  72}, -- {R}
+    [ids.B_REM]                 = { 620.000,    0.000, -260,640,  72,  72}, -- {R}
+    [ids.S_REM]                 = { 580.000,    0.000,  500.000, 192,  72}, -- {R}
+    [ids.MAAT]                  = {  11.000,    3.000,  117.000,   0, 243},
+    [ids.EXITPROMMEA]           = { 179.000,   35.000,  256.000,  63, 117},
+    [ids.EXITPROMHOLLA]         = { 337.000,   19.000,  -60.000, 125, 102},
+    [ids.EXITPROMDEM]           = { 136.000,   19.000,  220.000, 130, 108},
+    [ids.LUFAISE]               = { 438.000,    0.000,  -18.000,  11,  24},
+    [ids.CHOCOWINDURST]         = { 123.000,   -6.000, -134.000,   0, 241},
+    [ids.CHOCOSANDORIA]         = {  -8.557,    1.999,  -80.093,  64, 230}, -- {R}
+    [ids.CHOCOBASTOK]           = {  40.164,    0.000,  -83.578,  64, 234}, -- {R}
+    [ids.DUCALGUARD]            = {  48.930,   10.002,  -71.032, 195, 243},
+    [ids.PURGONORGO]            = {-382.000,   -2.000, -428.000, 190,   4},
+    [ids.AZOUPH_SP]             = { 522.730,  -28.009, -502.621, 161,  79}, -- {R}
+    [ids.DVUCCA_SP]             = {-265.632,   -6.000,  -29.472,  94,  79}, -- {R}
+    [ids.MAMOOL_SP]             = {-210.291,  -11.500, -818.056, 255,  52}, -- {R}
+    [ids.HALVUNG_SP]            = { 688.994,  -23.960,  351.496, 191,  61}, -- {R}
+    [ids.ILRUSI_SP]             = {  17.540,   -7.250,  627.968, 254,  54}, -- {R}
+    [ids.NYZUL_SP]              = { 222.798,   -0.500,   19.872,   0,  72}, -- {R}
+    [ids.SKY]                   = {-134.145,  -32.328, -205.947, 215, 130}, -- {R}
+    [ids.CLOISTER_OF_FLAMES]    = {-716.461,    0.407, -606.661, 168, 207}, -- {R}
+    [ids.CLOISTER_OF_FROST]     = { 550.403,    0.006,  584.820, 217, 203}, -- {R}
+    [ids.CLOISTER_OF_GALES]     = {-374.919,    0.628, -386.774, 226, 201}, -- {R}
+    [ids.CLOISTER_OF_STORMS]    = { 540.853,  -13.329,  511.298,  82, 202}, -- {R}
+    [ids.CLOISTER_OF_TIDES]     = { 570.294,   36.757,  546.895, 167, 211}, -- {R}
+    [ids.CLOISTER_OF_TREMORS]   = {-540.269,    1.396, -509.800, 192, 209}, -- {R}
+    [ids.GHELSBA_HUT]           = {-156.000,  -10.000,   80.000, 119, 140},
+    [ids.WAJAOM_LEYPOINT]       = {-200.116,  -10.000,   79.879, 213,  51}, -- {R}
+    [ids.VALKURM_VORTEX]        = { 420.062,    0.000, -199.904,  87, 103}, -- {R}
+    [ids.QUFIM_VORTEX]          = {-436.000,  -13.499,  340.117, 107, 126}, -- {R}
+    [ids.LUFAISE_VORTEX]        = { 458.847,    7.999,    5.519,  72,  24}, -- {R}
+    [ids.MISAREAUX_VORTEX]      = {-118.000,  -32.000,  219.000,   3,  25}, -- {R}
+    [ids.MINESHAFT]             = { -93.657, -120.000, -583.561,   0,  13}, -- (R)
+    [ids.WHITEGATE]             = {  27.424,   -6.000, -123.792, 192,  50}, -- {R}
+    [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
+};
+
+dsp.teleport.to = function(player, destination)
+    local dest = destinations[destination];
+    if (dest) then
+        player:setPos(unpack(dest));
+    end
+end
+
+-----------------------------------
+-- TELEPORT TO PARTY LEADER
+-----------------------------------
+
+dsp.teleport.toLeader = function(player)
     local leader = player:getPartyLeader();
-    if not leader:isInMogHouse() then
-        local X = leader:getXPos();
-        local Y = leader:getYPos();
-        local Z = leader:getZPos();
-        local Rot = leader:getRotPos();
-        local Zone = leader:getZoneID();
-        player:setPos(X, Y, Z, Rot, Zone);
+    if (leader ~= nil and not leader:isInMogHouse()) then
+        player:setPos(leader:getXPos(), leader:getYPos(), leader:getZPos(), leader:getRotPos(), leader:getZoneID());
+    end
+end
+
+-----------------------------------
+-- TELEPORT TO CAMPAIGN DESTINATION
+-----------------------------------
+
+local campaignDestinations =
+{
+    [ 1] = { 205.973, -23.587, -206.606, 167, 137}, -- {R} {R} Xarcabard [S]
+    [ 2] = { -46.172, -60.109,  -38.487,  16, 136}, -- {R} Beaucedine Glacier [S]
+    [ 3] = { 306.939,  -1.000, -141.567, 173,  84}, -- {R} Batallia Downs [S]
+    [ 4] = {  -4.701,  15.982,  235.996, 160,  91}, -- {R} Rolanberry Fields [S]
+    [ 5] = { -64.212,   7.625,  -51.292, 192,  98}, -- {R} Sauromugue Champaign [S]
+    [ 6] = {  60.617,  -3.949,   56.658,  64,  82}, -- {R} Jugner Forest [S]
+    [ 7] = { 504.088,  24.511,  628.360,  69,  90}, -- {R} Pashhow Marshlands [S]
+    [ 8] = {-447.084,  23.433,  586.847,  31,  97}, -- {R} Meriphataud Mountains [S]
+    [ 9] = { -77.817, -47.234, -302.732, 135,  83}, -- {R} Vunkerl Inlet [S]
+    [10] = { 314.335, -36.368,  -12.200, 192,  89}, -- {R} Grauberg [S]
+    [11] = { 141.021, -45.000,   19.543,   0,  96}, -- {R} Fort Karugo-Narugo [S]
+    [12] = { 183.297, -19.971, -240.895,   2,  81}, -- {R} East Ronfaure [S]
+    [13] = {-441.332,  40.000,  -77.986, 164,  88}, -- {R} North Gustaberg [S]
+    [14] = {-104.707, -21.838,  258.043, 237,  95}, -- {R} West Sarutabaruta [S]
+    [15] = { -98.000,   1.000,  -41.000, 224,  80}, --     Southern San d'Oria [S]
+    [16] = {-291.000, -10.000, -107.000, 212,  87}, --     Bastok Markets [S]
+    [17] = { -31.442,  -5.000,  129.202, 128,  94}, -- {R} Windurst Waters [S}
+    [18] = {-194.095,   0.000,   30.009,   0, 164}, -- {R} Garlaige Citdadel [S]
+    [19] = {  59.213, -32.158,  -38.022,  64, 171}, -- {R} Crawler's Nest [S]
+    [20] = { 294.350, -27.500,   19.947,   0, 175}, -- {R} The Eldieme Necropolis [S]
+};
+
+dsp.teleport.toCampaign = function(player, option)
+    local dest = campaignDestinations[option];
+    if (dest) then
+        player:setPos(unpack(dest));
     end
 end;
 
-function toFeiYin(player)
-    player:setPos(280, 20, 543, 192, 0x6F);
-end;
-
-function toQuHauSpring(player)
-    player:setPos(0,-30,60,192,0x7A);
-end;
-
-function toMhaura(player)
-    player:setPos(0,-8,41,64,0xF9);
-end;
-
-function toBatalliaDowns(player)
-    player:setPos(180,8,-420,167,0x69); -- to main entrance of the Eldieme Necropolis.
-end;
-
-function toThroneRoom(player)
-    player:setPos(72, -4, 0, 128, 0xA5);
-end;
-
-function toRuLudeEmbassyArea(player)
-    player:setPos(0, 7, -23, 63, 0xF3);
-end;
-
-function toOrastery(player)
-    player:setPos(-108, -3, 105, 90, 0xF0);  -- to Port Windurst Orastery
-end;
-
-function toOptistery(player)
-    player:setPos(-27, -5, 101, 172, 0xEE);  -- to Tosuka - Porika (Optistery)
-end;
-
-function toAurastery(player)
-    player:setPos(170, -1.2, 160, 87, 0xEE); -- to Moreno-Toeno (Aurastery)
-end;
-
-function toManustery(player)
-    player:setPos(-14, -3, 14, 221, 0xF1);   -- to Apururu (Manustery)
-end;
-
-function toRhinostery(player)
-    player:setPos(-5, -4, -182, 252, 0xEE);
-end;
-
-function toAnimastery(player)
-    player:setPos(62, 20, -59, 223, 0xA9); -- to Toraimarai Canal
-end;
-
-function toStarSibyl(player)
-    player:setPos(2, -45, -28, 180, 0xF2);   -- to Star Sibyl chamber, Heaven's Tower
-end;
-
-function toHeavensTower(player)
-    player:setPos(0, 0, -14, 192, 0xF2); -- to entrance (first?) floor of Heaven's Tower.
-end;
-
-function toLeepeHoppe(player)
-    player:setPos(17, -10, -200, 139, 0xEE);
-end;
-
-function toFullMoonFountain(player)
-    player:setpos(-260, 4, -325, 192, 0xAA);
-end;
-
-function toRukususu(player)
-    player:setPos(-193,0,190,128,0xCC); -- to Rukususu @ Fei'Yin
-end;
-
-function toShantotto(player)
-    player:setPos(121, -3, 113, 212, 0xEF);  -- to Shantotto
-end;
-
-function toLilyTower(player)
-    player:setPos(362, -13, 100, 0, 0x74); -- to J-7 in East Saru, entrance "5" to Inner Horutoto Ruins.
-end;
-
-function toMargueriteTower(player)
-    player:setPos(259, -18, -432, 61, 0x74); -- to J-11 in East Saru, entrance "4" to Outer Horutoto Ruins.
-end;
-
-function toRoseTower(player)
-    player:setPos(-259, 0, 100, 192, 0xC0); -- to H-7 Inner Horutoto Ruins, behind 3 Mages' Gate, room with elemental gates.
-end;
-
-function toDahliaTower(player)
-    player:setPos(-300, 0, -660, 255, 0xC2); -- this is the SW tower in West Saru at F-11 that's filled with Cardians.
-end;
-
-function toAmaryllisTower(player)
-    player:setPos(-421, 0, 620, 128, 0xC2); -- to Outer Horutoto Ruins, NW tower,G-8
-end;
-
-function toCatBurglar(player)
-    player:setPos(60,-5,239,0,0xF1); -- to Nanaa Mihgo
-end;
-
-function toPerihVashai(player)
-    player:setPos(118,-4,98,66,0xF1); -- to RNG quest NPC
-end;
-
-function toCatBurglarsHideout(player)
-    player:setPos(-5, 0, 21, 128, 0xC0); -- to G-8 in Inner Horutoto Ruins, Beetle's Burrow, in front of Mahagony Door.
-end;
-
-function toHouseOfTheHero(player)
-    player:setPos(-26, -12, 253, 194, 0xEF); -- to the House of the Hero, G-4 Windurst Walls.
-end;
-
-function toKupipi(player)
-    player:setPos(0, 0, 28, 206, 0xF2);
-end;
-
-function toZubaba(player)
-    player:setPos(13, -26.25, 15, 222, 0xf2) -- to Zubaba in Heaven's Tower.
-end;
-
-function toPurgonorgo(player)
-    player:setPos(522, -3, 545, 65, 0x2C)  -- to Abdhaljs Purgonorgo Isle
-end;
-
-function toPurgonorgoBibiki(player)
-    player:setPos(-382, -2, -428, 190, 0x04)  -- to Purgonorgo Isle (bibiki bay)
-end;
-
-function toWindurstMissionOverseer(player)
-    local which = player:getVar("firstmissionguard");
-    if (which == 1) then
-        player:setPos(0, -16, 122, 198, 0xEF); -- Zokima-Rokima in Windurst Walls
-    elseif (which == 2) then
-        player:setPos(107, -5, -24, 248, 0xF1); -- Rakoh Buuma in Windurst Woods
-    end;
-end;
-
-
-function toRomaaMigho(player)
-    player:setPos(29, -12, -174, 68, 0xFA); -- to H-11 in Kazham (Migho's Residence)
-end;
-
-function toCathedral(player)
-    player:setPos(148, 0, 139, 220, 0xE7);    -- to Arnau in the San d'Oria Cathedral
-end;
-
-function toChateaudOraguille(player)
-    player:setPos(0, 0, 0, 192, 0xE9);
-end;
-function toMaat(player)
-    player:setPos(11, 3, 117, 0, 243);
-end;
-
-function toGhelsba(player)
-    player:setPos(-156, -10, 80, 119, 0x8C); -- to the BCNM hut in Ghelsba Outpost.
-end;
-
-function toDrogarogasSpine(player)
-    player:setPos(644,-16,0,185,0x77);    -- to eastern portion of Drogaroga's Spine in Meriphataud Mountains.
-end;
-
-function toHallofTransferenceDem(player)
-    player:setPos(-267.194, -40.634, -280.019, 0, 0xE); -- {R}
-end;
-
-function toHallofTransferenceHolla(player)
-    player:setPos(-266.76, -0.6337, 280.058, 0, 0xE); -- {R}
-end;
-
-function PromyvionHollaExitPosition(player)
-    player:setPos(-225.682, -6.4595, 280.002, 128, 0xE); -- {R}
-end;
-
-function PromyvionHollaEntryPosition(player)
-    player:setPos(92.033, 0, 80.38, 255, 0xE); -- {R}
-end;
-
-function toHallofTransferenceMea(player)
-    player:setPos(280.066, -80.63337, -67.096, 192, 0xE); -- {R}
-end;
-
-function toSelbina(player)
-    player:setPos(-57.329,-0.959,-45.690,125,0xF8); --to Isacio for subjob quest
-end;
-
-function toWajaomPukCamp(player)  -- Just a camp just for puks \\ disregard
-    player:setPos(-174.223,-20.132,-564.999,187,0x33);
-end;
-
-function toBalasiel(player) -- Teles to Balasiel
-    player:setPos(-136.078,-10.800,63.500,162,0xE6);
-end;
-
-function toWaterLeaper(player) -- teleport to Water Leaper for Impulse Drive WSNM
-    player:setPos(108.156,0.500,-121.639,775,0xB0);
-end;
-
-function toMiaux(player)  --- Teleport back to Miaux for DRG AF1 complete
-    player:setPos(-170.509,4,159.737,7959,0xE7);
-end;
-
-function toAltepaDesert(player) -- Teleport to ??? for DRG AF1
-    player:setPos(115.859,-7.916,-74.276,8076,0x72);
-end;
-
-function toMineShaft2716(player) -- Teleport to Mine Shaft 2716
-    player:setPos(-93.657, -120.000, -583.561, 0, 13); -- (R)
-end;
-
-function toSkyGreenPorterLeft(player)
-    player:setPos(-134.145, -32.328, -205.947, 215, 130); -- {R}
-end;
-
-function toPalaceEntrance(player)
-    player:setPos(-31.8, 0, -618.7, 190, 33); -- to Palace Entrance in Al'Taieu (via Sueleen) {R}
-end;
-
-function toRuLudeGardens(player)
-    player:setPos(-0.041, 2.999, -6.067, 192, 243); -- H-8  {R}
-end;
-
-function toWajaomLaypoint(player)  -- Wajaom Woodlands Laypoint
-    player:setPos(-200.116, -10, 79.879, 213, 51); -- {R}
-end;
-
-function toAhtUrhganWhitegate(player)
-    player:setPos(27.424, -6, -123.792, 192, 0x32); -- {R}
-end;
-
 -----------------------------------
--- Telepoint Crags
+-- TELEPORT TO MAW
 -----------------------------------
 
-function toAltep(player)
-    player:setPos(-61.942,3.949,224.9,0,0x72);         -- to Altep Telepoint {R}
-end;
-
-function toYhoat(player)
-    player:setPos(-280.942,0.596,-144.156,0,0x7c);  -- to Yhoat Telepoint {R}
-end;
-
-function toVahzl(player)
-    player:setPos(150.258,-21.048,-37.256,94,0x70); -- to Vahzl Teleport  {R}
-end;
-
-function toDem(player)
-    player:setPos(220,19.104,300,0,0x6c);             -- Dem Telepoint       {R}
-end;
-
-function toHolla(player)
-    player:setPos(420,19.104,20,0,0x66);             -- Holla Telepoint       {R}
-end;
-
-function toMea(player)
-    player:setPos(100,35.1506,340,0,0x75);             -- Mea Telepoint       {R}
-end;
-
------------------------------------
--- Swirling Vortex
------------------------------------
-
-function toLufaiseMeadows(player) -- Teleport Valkurm Dunes > Lufaise Meadows
-    player:setPos(458.847,7.999,5.519,72,24); -- {R}
-end;
-
-function toValkurmDunes(player)   -- Teleport Lufaise Meadows > Valkurm Dunes
-    player:setPos(420.062,0,-199.904,87,103); -- {R}
-end;
-
-function toMisareauxCoast(player) -- Teleport Qufim Island > Misareaux Coast
-    player:setPos(-118,-32,219,3,25); -- {R}
-end;
-
-function toQufimIsland(player)       -- Teleport Misareaux Coast > Qufim Island
-    player:setPos(-436,-13.499,340.117,107,126); -- {R}
-end;
-
------------------------------------
--- Campaign NPC Teleport
------------------------------------
-
-function toCampaignDestination(player, option)
-
-    if (option == 1) then
-        player:setPos(205.973,-23.5875,-206.606, 167, 0x89);  -- Xarcabard [S] {R}
-    elseif (option == 2) then
-        player:setPos(-46.172,-60.1088,-38.487, 16, 0x88);       -- Beaucedine Glacier [S] {R}
-    elseif (option == 3) then
-        player:setPos(306.939, -1, -141.567, 173, 84);           -- Batallia Downs [S] {R}
-    elseif (option == 4) then
-        player:setPos(-4.701, 15.982, 235.996, 160, 91);       -- Rolanberry Fields [S] {R}
-    elseif (option == 5) then
-        player:setPos(-64.212, 7.625, -51.292, 192, 98);       -- Sauromugue Champaign [S] {R}
-    elseif (option == 6) then
-        player:setPos(60.617, -3.949, 56.658, 64, 82);           -- Jugner Forest [S] {R}
-    elseif (option == 7) then
-        player:setPos(504.088, 24.511, 628.36, 69, 90);       -- Pashhow Marshlands [S] {R}
-    elseif (option == 8) then
-        player:setPos(-447.084, 23.433, 586.847, 31, 0x61);   -- Meriphataud Mountains [S] {R}
-    elseif (option == 9) then
-        player:setPos(-77.817, -47.234, -302.732, 135, 0x53); -- Vunkerl Inlet [S] {R}
-    elseif (option == 10) then
-        player:setPos(314.335, -36.368, -12.2, 192,0x59);       -- Grauberg [S] {R}
-    elseif (option == 11) then
-        player:setPos(141.021, -45, 19.543, 0, 0x60);          -- Fort Karugo-Narugo [S] {R}
-    elseif (option == 12) then
-        player:setPos(183.297, -19.9714, -240.895, 2, 0x51);  -- East Ronfaure [S] {R}
-    elseif (option == 13) then
-        player:setPos(-441.332, 40, -77.986, 164, 0x58);       -- North Gustaberg [S] {R}
-    elseif (option == 14) then
-        player:setPos(-104.707, -21.838, 258.043, 237, 0x5f); -- West Sarutabaruta [S] {R}
-    elseif (option == 15) then
-        player:setPos(-98, 1, -41, 224, 0x50);                  -- Southern San d'Oria [S] {approximated from memory}
-    elseif (option == 16) then
-        player:setPos(-291, -10, -107, 212, 0x57);               -- Bastok Markets [S] {appoximated from memory}
-    elseif (option == 17) then
-        player:setPos(-31.442, -5, 129.202, 128, 0x5E);       -- Windurst Waters [S} {R}
-    elseif (option == 18) then
-        player:setPos(-194.095, 0, 30.009, 0, 0xA4);           -- Garlaige Citdadel [S] {R}
-    elseif (option == 19) then
-        player:setPos(59.213, -32.158, -38.022, 64, 0xAB);       -- Crawler's Nest [S] {R}
-    elseif (option == 20) then
-        player:setPos(294.35, -27.5, 19.947, 0, 0xAF);           -- The Eldieme Necropolis [S] {R}
-    end;
-end;
-
------------------------------------
--- Cavernous Maws
------------------------------------
-
-function toMaw(player, option)
-    if (option == 1) then         -- Batallia Downs [S]
-        player:setPos(-51.486, 0.371, 436.972, 128, 84);        -- {R}
-    elseif (option == 2) then    -- Batallia Downs
-        player:setPos(-51.486, 0.371, 436.972, 128, 105);        -- {R}
-    elseif (option == 3) then    -- Rolanberry Fields [S]
-        player:setPos(-196.5, 7.999, 361.192, 225, 91);            -- {R}
-    elseif (option == 4) then    -- Rolanberry Fields
-        player:setPos(-196.5, 7.999, 361.192, 225, 110);        -- {R}
-    elseif (option == 5) then    -- Sauromugue Champaign [S]
-        player:setPos(366.858, 8.545, -228.861, 95, 98);        -- {R}
-    elseif (option == 6) then    -- Sauromugue Champaign
-        player:setPos(366.858, 8.545, -228.861, 95, 120);        -- {R}
-    elseif (option == 7) then    -- West Sarutabaruta [S]
-        player:setPos(2.628, -0.15, -166.562, 32, 95);            -- {R}
-    elseif (option == 8) then    -- West Sarutabaruta
-        player:setPos(2.628, -0.15, -166.562, 32, 115);            -- {R}
-    elseif (option == 9) then    -- East Ronfaure [S]
-        player:setPos(322.057, -60.059, 503.712, 64, 81);        -- {R}
-    elseif (option == 10) then    -- East Ronfaure
-        player:setPos(322.057, -60.059, 503.712, 64, 101);        -- {R}
-    elseif (option == 11) then    -- North Gustaberg [S]
-        player:setPos(469.697, -0.05, 478.949, 0, 88);            -- {R}
-    elseif (option == 12) then    -- North Gustaberg
-        player:setPos(469.697, -0.05, 478.949, 0, 106);            -- {R}
-    elseif (option == 13) then    -- Jugner Forest [S]
-        player:setPos(-116.093,-8.005,-520.041,0,82);            -- {R}
-    elseif (option == 14) then    -- Jugner Forest
-        player:setPos(-116.093,-8.005,-520.041,0,104);            -- {R}
-    elseif (option == 15) then    -- Pashhow Marshlands [S]
-        player:setPos(415.945,24.659,25.611,101,90);            -- {R}
-    elseif (option == 16) then    -- Pashhow Marshlands
-        player:setPos(415.945,24.659,25.611,101,109);            -- {R}
-    elseif (option == 17) then    -- Meriphataud Mountains [S]
-        player:setPos(595,-32,279.3,93,97);                        -- {R}
-    elseif (option == 18) then    -- Meriphataud Mountains
-        player:setPos(595,-32,279.3,93,119);                    -- {R}
+local mawDestinations =
+{
+    [ 1] = { -51.486,   0.371,  436.972, 128,  84}, -- {R} Batallia Downs [S]
+    [ 2] = { -51.486,   0.371,  436.972, 128, 105}, -- {R} Batallia Downs
+    [ 3] = {-196.500,   7.999,  361.192, 225,  91}, -- {R} Rolanberry Fields [S]
+    [ 4] = {-196.500,   7.999,  361.192, 225, 110}, -- {R} Rolanberry Fields
+    [ 5] = { 366.858,   8.545, -228.861,  95,  98}, -- {R} Sauromugue Champaign [S]
+    [ 6] = { 366.858,   8.545, -228.861,  95, 120}, -- {R} Sauromugue Champaign
+    [ 7] = {   2.628,  -0.150, -166.562,  32,  95}, -- {R} West Sarutabaruta [S]
+    [ 8] = {   2.628,  -0.150, -166.562,  32, 115}, -- {R} West Sarutabaruta
+    [ 9] = { 322.057, -60.059,  503.712,  64,  81}, -- {R} East Ronfaure [S]
+    [10] = { 322.057, -60.059,  503.712,  64, 101}, -- {R} East Ronfaure
+    [11] = { 469.697,  -0.050,  478.949,   0,  88}, -- {R} North Gustaberg [S]
+    [12] = { 469.697,  -0.050,  478.949,   0, 106}, -- {R} North Gustaberg
+    [13] = {-116.093,  -8.005, -520.041,   0,  82}, -- {R} Jugner Forest [S]
+    [14] = {-116.093,  -8.005, -520.041,   0, 104}, -- {R} Jugner Forest
+    [15] = { 415.945,  24.659,   25.611, 101,  90}, -- {R} Pashhow Marshlands [S]
+    [16] = { 415.945,  24.659,   25.611, 101, 109}, -- {R} Pashhow Marshlands
+    [17] = { 595.000, -32.000,  279.300,  93,  97}, -- {R} Meriphataud Mountains [S]
+    [18] = { 595.000, -32.000,  279.300,  93, 119}, -- {R} Meriphataud Mountains
     -- TODO: Abyessa Maws:
-            --Tahrongi Canyon (H-12)
-            --Konschtat Highlands (I-12)
-            --La Theine Plateau (E-4)
-            --Valkurm Dunes (I-9)
-            --Jugner Forest (J-8)
-            --Buburimu Peninsula (F-7)
-            --South Gustaberg (J-10)
-            --North Gustaberg (G-6)
-            --Xarcabard (H-8)
-    end;
-end;
+    -- Tahrongi Canyon (H-12)
+    -- Konschtat Highlands (I-12)
+    -- La Theine Plateau (E-4)
+    -- Valkurm Dunes (I-9)
+    -- Jugner Forest (J-8)
+    -- Buburimu Peninsula (F-7)
+    -- South Gustaberg (J-10)
+    -- North Gustaberg (G-6)
+    -- Xarcabard (H-8)
+};
 
------------------------------------
--- Recalls
------------------------------------
-
-function recallJugner(player)
-    player:setPos(-122.862, 0, -163.154, 192, 0x52);    -- {R}
-end;
-
-function recallMeriph(player)
-    player:setPos(305.989, -14.978, 18.96, 192, 0x61);  -- {R}
-end;
-
-function recallPashh(player)
-    player:setPos(345.472, 24.28, -114.731, 99, 0x5A);  -- {R}
-end;
-
------------------------------------
--- Staging Points
------------------------------------
-
-function AzouphIsleStagingPoint(player)
-    player:setPos(522.73, -28.009, -502.621, 161, 0x4f); -- to Caedarva Mire {R}
-end;
-
-function MamoolJaStagingPoint(player)
-    player:setPos(-210.291, -11.5, -818.056, 255, 0x34); -- to Bhauflau Thickets {R}
-end;
-
-function HalvungStagingPoint(player)
-    player:setPos(688.994, -23.96, 351.496, 191, 0x3d); -- to Mount Zhayolm {R}
-end;
-
-function IlrusiAtollStagingPoint(player)
-    player:setPos(17.54, -7.25, 627.968, 254, 0x36); -- to Arrapago Reef {R}
-end;
-
-function DvuccaIsleStagingPoint(player)
-    player:setPos(-265.632, -6, -29.472, 94, 0x4f); -- to Caedarva Mire {R}
-end;
-
-function NzyulIsleStagingPoint(player)
-    player:setPos(222.798, -0.5, 19.872, 0, 0x48); -- to Alzadaal Undersea Ruins {R}
-end;
-
-function toChamberOfPassage(player)
-    if (math.random(1,2) == 1) then
-        player:setPos(133.4, 1.485, 47.427, 96, 0x32);  -- Aht Urhgan Whitegate Chamber of Passage Left  {R}
-    else
-        player:setPos(116.67, 1.485, 47.427, 32, 0x32); -- Aht Urhgan Whitegate Chamber of Passage Right {R}
+dsp.teleport.toMaw = function(player, option)
+    local dest = mawDestinations[option];
+    if (dest) then
+        player:setPos(unpack(dest));
     end
-end;
+end
 
 -----------------------------------
--- Assaults
+-- TELEPORT TO CHAMBER OF PASSAGE
 -----------------------------------
 
-function PeriqiaExit(player)
-    player:setPos(-252.715, -7.666, -30.64, 128, 79); -- Exit                        {R}
-end;
-
-function LebrosCavernExit(player)
-    player:setPos(681.950, -24, 369.936, 64, 61); -- Exit                            {R}
-end;
-
-function MamoolJaTrainingExit(player)
-    player:setPos(-172.863, -12.25, -801.021, 128, 52);  -- Exit                    {R}
-end;
-
-function LeujaoamSanctumExit(player)
-    player:setPos(495.450, -28.25, -478.430, 32, 79); -- Exit                        {R}
-end;
-
-function IlrusiAtollExit(player)
-    player:setPos(9.304,-7.376,620.133,0,54); -- Exit                                {R}
-end;
-
-function NyzulIsleExit(player)
-    player:setPos(180,0,20,0,72); -- Exit                                            {R}
-end;
+dsp.teleport.toChamberOfPassage = function(player)
+    if (math.random(1,2) == 1) then
+        player:setPos(133.400, 1.485, 47.427, 96, 50); -- {R} Aht Urhgan Whitegate Chamber of Passage Left
+    else
+        player:setPos(116.670, 1.485, 47.427, 32, 50); -- {R} Aht Urhgan Whitegate Chamber of Passage Right
+    end
+end
 
 -----------------------------------
--- Salvage
------------------------------------
--- TODO: The rest
-
-function SilverSeaRemnantsExit(player)
-    player:setPos(580,0,500,192,72); -- Exit                                        {R}
-end;
-
-function BhaflauRemnantsExit(player)
-    player:setPos(620,0,-260,64,72); -- Exit                                        {R}
-end;
-
------------------------------------
--- Explorer Moogle
+-- TELEPORT TO EXPLORER MOOGLE
 -----------------------------------
 
-function toExplorerMoogle(player,zone)
+dsp.teleport.toExplorerMoogle = function(player, zone)
     if (zone == 231) then
-        player:setPos(39.4, -0.2, 25, 253, zone);        -- Northern_San_d'Oria
+        player:setPos(39.4, -0.2, 25, 253, zone);       -- Northern_San_d'Oria
     elseif (zone == 234) then
-        player:setPos(76.82, 0, -66.12, 232, zone);        -- Bastok_Mines
+        player:setPos(76.82, 0, -66.12, 232, zone);     -- Bastok_Mines
     elseif (zone == 240) then
-        player:setPos(185.6, -12, 223.5, 96, zone);        -- Port_Windurst
+        player:setPos(185.6, -12, 223.5, 96, zone);     -- Port_Windurst
     elseif (zone == 248) then
-        player:setPos(14.67, -14.56, 66.69, 96, zone);    -- Selbina
+        player:setPos(14.67, -14.56, 66.69, 96, zone);  -- Selbina
     elseif (zone == 249) then
         player:setPos(2.87, -4, 71.95, 0, zone);        -- Mhaura
     end
-end;
+end
 
 -----------------------------------
--- Trial-Size Avatar Quest Teleports
+-- CAST ESCAPE SPELL
 -----------------------------------
 
-function toCloisterOfGales(player)
-    player:setPos(-374.919, 0.628, -386.774, 226, 201); -- Cloister of Gales (Garuda)     {R}
-end;
-function toCloisterOfStorms(player)
-    player:setPos(540.853, -13.329, 511.298, 82, 202);  -- Cloister of Storms (Ramuh)     {R}
-end;
-function toCloisterOfFrost(player)
-    player:setPos(550.403, 0.006, 584.82, 217, 203);    -- Cloister of Frost (Shiva)     {R}
-end;
-function toCloisterOfFlames(player)
-    player:setPos(-716.461, 0.407, -606.661, 168, 207); -- Cloister of Flames (Ifrit)    {R}
-end;
-function toCloisterOfTremors(player)
-    player:setPos(-540.269, 1.396, -509.8, 192, 209);   -- Cloister of Tremors (Titan)   {R}
-end;
-function toCloisterOfTides(player)
-    player:setPos(570.294, 36.757, 546.895, 167, 211);  -- Cloister of Tides (Leviathan) {R}
-end;
-
------------------------------------------
--- Escape
------------------------------------------
-
-function Escape(player, zone)
-
+dsp.teleport.escape = function(player)
+    local zone = player:getZoneID();
+    
     -- Ronfaure {R}
     if (zone == 139 or zone == 140 or zone == 141 or zone == 142) then         -- From Ghelsba Outpost, Fort Ghelsba, Yughott Grotto, Horlais Peak
         player:setPos(-720,-61,600,64,100);                                 -- To West Ronfaure at E-4
@@ -731,37 +421,13 @@ function Escape(player, zone)
     -- TODO: Arrapago Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
     -- TODO: Abyssea / SOA Areas
     -- MISC Flag in zone_settings will also need +1 or -1 depending on escape possibility.
-end;
+end
 
 -----------------------------------
--- Teleport Items
+-- USE HOMING RING
 -----------------------------------
 
-function duchyEarring(player)
-    player:setPos(5,0,-6,0,0xF4);
-end;
-
-function cobraStaff(player)
-    player:setPos(-39,-5,231,68,0x5E);
-end;
-
-function ducalGuardRing(player)
-    player:setPos(48.930,10.002,-71.032,195,243);
-end;
-
-function federationEarring(player)
-    player:setPos(160,0,-10,0,238);
-end;
-
-function federationStablesScarf(player)
-    player:setPos(123,-6,-134,0,241);
-end;
-
-function fourthStaff(player)
-    player:setPos(-291, -10, -107, 212, 0x57);
-end;
-
-function homingRing(player) -- homing ring and return ring should return same positions.
+dsp.teleport.homingRing = function(player) -- homing ring and return ring should return same positions.
     local zone = player:getZoneID();
     -- Ronfaure
     if (zone == 100 or zone == 101 or zone == 139 or zone == 140 or zone == 141 or zone == 142 or zone == 190 or zone == 167 or zone == 230 or zone == 231 or zone == 232 or zone == 233) then
@@ -818,99 +484,4 @@ function homingRing(player) -- homing ring and return ring should return same po
     elseif (zone == 26 or zone == 25 or zone ==24 or zone == 28 or zone == 29 or zone == 30 or zone == 31 or zone == 32 or zone == 27) then
         player:setPos(-535.861, -7.149, -53.628, 122, 24);    -- {R}
     end
-end;
-
-function kazhamEarring(player)
-    player:setPos(-1,-4,-6,0,250);
-end;
-
-function kingdomEarring(player)
-    player:setPos(154,-2,152,0,230);
-end;
-
-function kingdomStablesCollar(player)
-    player:setPos(-8.557,1.999,-80.093,64,230); -- {R}
-end;
-
-function laurelCrown(player)
-    player:setPos(50,0,-18,0,243);
-end;
-
-function maatsCap(player)
-    player:setPos(11,3,117,0,243);
-end;
-
-function mhauraEarring(player)
-    player:setPos(0,-4,109,0,249);
-end;
-
-function nashmauEarring(player)
-    player:setPos(11,2,-94,0,53);
-end;
-
-function nomadCap(player)
-    local nation = player:getNation();
-    if (nation == 0) then
-        player:setPos(0154,-2,152,0,230);
-    elseif (nation == 1) then
-        player:setPos(84,0,-71,0,234);
-    elseif (nation == 2) then
-        player:setPos(-211,0,-119,0,239);
-    end
-end;
-
-function norgEarring(player)
-    player:setPos(-19,0,-53,0,252);
-end;
-
-function rabaoEarring(player)
-    player:setPos(9,-2,-91,0,247);
-end;
-
-function ramStaff(player)
-    player:setPos(-98, 1, -41, 224, 0x50);
-end;
-
-function republicEarring(player)
-    player:setPos(-302,-12,-68,0,235);
-end;
-
-function republicStablesMedal(player)
-    player:setPos(40.164,0.000,-83.578,64,234); -- {R}
-end;
-
-function safeholdEarring(player)
-    player:setPos(9,-9,11,0,26);
-end;
-
-function selbinaEarring(player)
-    player:setPos(17,-14,95,0,248);
-end;
-
-function olduumRing(player) -- To Wajoam Laypoint
-    player:setPos(-200.116, -10, 79.879, 213, 51); -- {R}
-end;
-
-function starsCap(player)
-    player:setPos(50,0,-18,0,243);
-end;
-
-function tavnzanianRing(player)
-    player:setPos(0,-23.5,34,64,26); -- {R}
-end;
-
-function toExitPromMea(player)
-    player:setPos(179 ,35 ,256 ,63 ,117);
-end;
-
-function toExitPromHolla(player)
-    player:setPos(337 ,19 ,-60 ,125 ,102);
-end;
-
-function toExitPromDem(player)
-    player:setPos(136 ,19 ,220 ,130 ,108);
-end;
-
-function toLufaise(player)
-    player:setPos(438 ,0 ,-18 ,11 ,24);
-end;
+end

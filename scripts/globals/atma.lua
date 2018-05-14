@@ -163,7 +163,7 @@ function atmaEffectGain(target, effect)
     elseif (pwr == 43) then -- dsp.ki.ATMA_OF_THE_DEEP_DEVOURER
         target:addMod(dsp.mod.SUBTLE_BLOW, 5);
         target:addMod(dsp.mod.STORETP, 5);
-        -- target:addMod(MOD_SONG_CASTING_TIME, -20); Doesnt exist
+        target:addMod(dsp.mod.SONG_SPELLCASTING_TIME, 20);
     elseif (pwr == 44) then -- dsp.ki.ATMA_OF_THE_MOUNTED_CHAMPION
         target:addMod(dsp.mod.VIT, 50);
         target:addMod(dsp.mod.REGEN, 20);
@@ -304,7 +304,7 @@ function atmaEffectGain(target, effect)
         target:addMod(dsp.mod.VIT, 40);
         target:addMod(dsp.mod.INT, 40);
     elseif (pwr == 83) then -- dsp.ki.ATMA_OF_BLIGHTED_BREATH
-        -- target:addMod(MOD_SONG_CASTING_TIME, -40); Doesnt exist
+        target:addMod(dsp.mod.SONG_SPELLCASTING_TIME, 40);
         target:addMod(dsp.mod.LIGHTACC, 40);
     elseif (pwr == 84) then -- dsp.ki.ATMA_OF_THE_PERSISTENT_PREDATOR
         target:addMod(dsp.mod.STORETP, 40);
@@ -567,7 +567,7 @@ function atmaEffectLose(target, effect)
     elseif (pwr == 43) then -- dsp.ki.ATMA_OF_THE_DEEP_DEVOURER
         target:delMod(dsp.mod.SUBTLE_BLOW, 5);
         target:delMod(dsp.mod.STORETP, 5);
-        -- target:delMod(MOD_SONG_CASTING_TIME, -20); Doesnt exist
+        target:delMod(dsp.mod.SONG_SPELLCASTING_TIME, 20);
     elseif (pwr == 44) then -- dsp.ki.ATMA_OF_THE_MOUNTED_CHAMPION
         target:delMod(dsp.mod.VIT, 50);
         target:delMod(dsp.mod.REGEN, 20);
@@ -708,7 +708,7 @@ function atmaEffectLose(target, effect)
         target:delMod(dsp.mod.VIT, 40);
         target:delMod(dsp.mod.INT, 40);
     elseif (pwr == 83) then -- dsp.ki.ATMA_OF_BLIGHTED_BREATH
-        -- target:delMod(MOD_SONG_CASTING_TIME, -40); Doesnt exist
+        target:delMod(dsp.mod.SONG_SPELLCASTING_TIME, 40);
         target:delMod(dsp.mod.LIGHTACC, 40);
     elseif (pwr == 84) then -- dsp.ki.ATMA_OF_THE_PERSISTENT_PREDATOR
         target:delMod(dsp.mod.STORETP, 40);
