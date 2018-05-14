@@ -14,3 +14,8 @@ ITEM_CANNOT_BE_OBTAINED = 6540; -- You cannot obtain the item <item>. Come back 
 
 -- conquest Base
           CONQUEST_BASE =    0;
+
+-- WS Quest
+    SPIRAL_HELL_LEARNED = 7415; -- You have learned the weapon skill “Spiral Hell”!
+ SENSE_OMINOUS_PRESENCE = 7416; -- You sense an ominous presence...
+NOTHING_OUT_OF_ORDINARY = 7417; -- There is nothing out of the ordinary here

@@ -1,8 +1,8 @@
 -----------------------------------
--- Area: Port Bastok
---  NPC: Oggbi
--- Starts and Finishes: Ghosts of the Past, The First Meeting
--- @zone 236
+-- Area: Port Bastok (236)
+-- NPC: Oggbi
+-- Starts and Finishes: Ghosts of the Past, The First Meeting, The Walls of Your Mind
+-- !zone 236
 -- !pos -159 -7 5
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -10,25 +10,32 @@ package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
+require("scripts/globals/wsquest");
 require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
+local wsQuest = dsp.wsquest.theWallsOfYourMind;
+
 function onTrade(player,npc,trade)
+    local wsQuestEvent = getWsQuestTradeEvent(wsQuest, player, trade);
 
     if (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13122,1) and trade:getItemCount() == 1) then -- Trade Miner's Pendant
             player:startEvent(232); -- Finish Quest "Ghosts of the Past"
         end
-    end
+    end;
 
+    if (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent);
+    end;
 end;
 
 function onTrigger(player,npc)
-
-    ghostsOfThePast = player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST);
-    theFirstMeeting = player:getQuestStatus(BASTOK,THE_FIRST_MEETING);
-    mLvl = player:getMainLvl();
-    mJob = player:getMainJob();
+    local wsQuestEvent = getWsQuestTriggerEvent(wsQuest, player);
+    local ghostsOfThePast = player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST);
+    local theFirstMeeting = player:getQuestStatus(BASTOK,THE_FIRST_MEETING);
+    local mLvl = player:getMainLvl();
+    local mJob = player:getMainJob();
 
     if (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
         player:startEvent(231); -- Start Quest "Ghosts of the Past"
@@ -36,21 +43,15 @@ function onTrigger(player,npc)
         player:startEvent(233); -- Start Quest "The First Meeting"
     elseif (player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK) and player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)) then
         player:startEvent(234); -- Finish Quest "The First Meeting"
+    elseif (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent);
     else
         player:startEvent(230); -- Standard Dialog
     end
 
 end;
 
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 231) then
         player:addQuest(BASTOK,GHOSTS_OF_THE_PAST);
     elseif (csid == 232) then
@@ -77,6 +78,8 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,AF2_FAME);
             player:completeQuest(BASTOK,THE_FIRST_MEETING);
         end
-    end
+    else
+        handleWsQuestEventFinish(wsQuest, player, csid, option, ASURAN_FISTS_LEARNED);
+    end;
 
 end;
