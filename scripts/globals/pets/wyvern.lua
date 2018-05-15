@@ -138,9 +138,9 @@ function onMobSpawn(mob)
                 pet:addMod(dsp.mod.ATTP,5*diff)
                 pet:setHP(pet:getMaxHP())
                 player:messageBasic(dsp.msg.basic.STATUS_INCREASED, 0, 0, pet);
-                master:addMod(dsp.mod.ATTP,4*diff)
-                master:addMod(dsp.mod.DEFP,4*diff)
-                master:addMod(dsp.mod.HASTE_ABILITY,20*diff)
+                master:addMod(dsp.mod.ATTP, 4 * diff)
+                master:addMod(dsp.mod.DEFP, 4 * diff)
+                master:addMod(dsp.mod.HASTE_ABILITY, 20 * diff)
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
             pet:setLocalVar("level_Ups", pet:getLocalVar("level_Ups") + diff)
@@ -154,12 +154,12 @@ end;
 
 function onMobDeath(mob, player)
     local master = mob:getMaster();
-    local pet = player:getPet();
-    local numLvls = pet:getLocalVar("level_Ups");
-    if (numLvls ~= nil) then
-        master:delMod(dsp.mod.ATTP,4*numLvls);
-        master:delMod(dsp.mod.DEFP,4*numLvls);
-        master:delMod(dsp.mod.HASTE_ABILITY,20*numLvls);
+    local pet = player:getPet()
+    local numLvls = pet:getLocalVar("level_Ups")
+    if numLvls ~= 0 then
+        master:delMod(dsp.mod.ATTP, 4 * numLvls)
+        master:delMod(dsp.mod.DEFP, 4 * numLvls)
+        master:delMod(dsp.mod.HASTE_ABILITY, 20 * numLvls)
     end
     master:removeListener("PET_WYVERN_WS");
     master:removeListener("PET_WYVERN_MAGIC");
