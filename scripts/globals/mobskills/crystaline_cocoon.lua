@@ -17,8 +17,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect1 = EFFECT_PROTECT;
-    local typeEffect2 = EFFECT_SHELL;
+    local typeEffect1 = dsp.effect.PROTECT;
+    local typeEffect2 = dsp.effect.SHELL;
     local power1 = 50;
     local power2 = 20;
     local duration = 300;

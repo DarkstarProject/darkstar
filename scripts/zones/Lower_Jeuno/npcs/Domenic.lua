@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasCompleteQuest(JEUNO,BEYOND_INFINITY) == true) then
+    if (player:hasCompletedQuest(JEUNO,BEYOND_INFINITY) == true) then
         player:startEvent(10115,player:getGil());
     else
         player:startEvent(10116);
@@ -33,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 10115) then
         if (option == 1 and player:getGil() >= 750) then
             player:delGil(750);
-            toGhelsba(player);
+            dsp.teleport.to(player, dsp.teleport.id.GHELSBA_HUT);
         elseif (option == 2 and player:getGil() >= 750) then
             player:delGil(750);
             player:setPos(0, 0, 0, 0, 139);

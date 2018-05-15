@@ -9,7 +9,7 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
@@ -22,14 +22,14 @@ end;
 
 function onMobDisengage(mob, weather)
 
-    if (weather ~= WEATHER_DUST_STORM and weather ~= WEATHER_SAND_STORM) then
+    if (weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM) then
         DespawnMob(mob:getID());
     end
 
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(VINEGAR_EVAPORATOR);
+    player:addTitle(dsp.title.VINEGAR_EVAPORATOR);
 end;
 
 function onMobDespawn(mob)
@@ -41,7 +41,7 @@ function onMobDespawn(mob)
 end;
 
 function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,ELE_EARTH,EFFECT_PETRIFICATION);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.EARTH,dsp.effect.PETRIFICATION);
     if (resist <= 0.5) then -- "Has an innate Additional Effect of Petrification on all of its physical attacks. "
         return 0,0,0;
     else
@@ -51,9 +51,9 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration,1,45);
         duration = duration * resist;
-        if (not player:hasStatusEffect(EFFECT_PETRIFICATION)) then
-            player:addStatusEffect(EFFECT_PETRIFICATION, 1, 0, duration);
+        if (not player:hasStatusEffect(dsp.effect.PETRIFICATION)) then
+            player:addStatusEffect(dsp.effect.PETRIFICATION, 1, 0, duration);
         end
-        return SUBEFFECT_PETRIFY, msgBasic.ADD_EFFECT_STATUS, EFFECT_PETRIFICATION;
+        return dsp.subEffect.PETRIFY, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PETRIFICATION;
     end
 end;

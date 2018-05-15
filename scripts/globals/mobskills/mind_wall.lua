@@ -19,8 +19,8 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    MobBuffMove(mob, EFFECT_MAGIC_SHIELD, 2, 0, 30);
-    skill:setMsg(msgBasic.NONE);
+    MobBuffMove(mob, dsp.effect.MAGIC_SHIELD, 2, 0, 30);
+    skill:setMsg(dsp.msg.basic.NONE);
 
     return 0;
 end;

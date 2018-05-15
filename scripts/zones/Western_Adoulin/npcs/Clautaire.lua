@@ -20,14 +20,14 @@ end;
 function onTrigger(player,npc)
     local FINAO = player:getQuestStatus(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
     if (FINAO == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(HUNK_OF_BEDROCK)) then
+        if (player:hasKeyItem(dsp.ki.HUNK_OF_BEDROCK)) then
             -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
             player:startEvent(76);
         else
             -- Dialgoue during Quest: 'F.A.I.L.ure Is Not an Option'
             player:startEvent(77);
         end
-    elseif ((FINAO == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 4) and player:hasKeyItem(FAIL_BADGE)) then
+    elseif ((FINAO == QUEST_AVAILABLE) and (player:getFameLevel(ADOULIN) >= 4) and player:hasKeyItem(dsp.ki.FAIL_BADGE)) then
         -- Starting Quest: 'F.A.I.L.ure Is Not an Option'
         player:startEvent(78);
     else
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
     elseif (csid == 76) then
         -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
-        player:delKeyItem(HUNK_OF_BEDROCK);
+        player:delKeyItem(dsp.ki.HUNK_OF_BEDROCK);
         player:completeQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);

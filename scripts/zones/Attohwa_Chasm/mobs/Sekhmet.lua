@@ -7,14 +7,14 @@ require("scripts/globals/magic");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
-    mob:setMod(MOD_DOUBLE_ATTACK, 10);
-    mob:setMod(MOD_FASTCAST, 15);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10);
+    mob:setMod(dsp.mod.FASTCAST, 15);
 end;
 
 function onAdditionalEffect(mob, target, damage)
     local chance = 100;
-    local resist = applyResistanceAddEffect(mob,target,ELE_DARK,EFFECT_ENASPIR);
+    local resist = applyResistanceAddEffect(mob,target,dsp.magic.ele.DARK,dsp.effect.ENASPIR);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
@@ -27,7 +27,7 @@ function onAdditionalEffect(mob, target, damage)
         else
             target:delMP(mp);
             mob:addMP(mp);
-            return SUBEFFECT_MP_DRAIN, msgBasic.ADD_EFFECT_MP_DRAIN, mp;
+            return dsp.subEffect.MP_DRAIN, dsp.msg.basic.ADD_EFFECT_MP_DRAIN, mp;
         end
     end
 end;

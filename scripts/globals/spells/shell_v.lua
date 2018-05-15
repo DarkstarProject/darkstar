@@ -13,11 +13,11 @@ function onSpellCast(caster,target,spell)
     local power = 24;
     local duration = 1800;
 
-    local typeEffect = EFFECT_SHELL;
+    local typeEffect = dsp.effect.SHELL;
     if (target:addStatusEffect(typeEffect, power, 0, duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     end
     return typeEffect;
 end;

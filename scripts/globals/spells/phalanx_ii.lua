@@ -13,23 +13,23 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     local final = 0;
-    local merits = caster:getMerit(MERIT_PHALANX_II);
+    local merits = caster:getMerit(dsp.merit.PHALANX_II);
 
     local duration = 90 + (10 * merits);
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     final = (enhskill / 25) + merits + 1;
 
-    if (target:addStatusEffect(EFFECT_PHALANX,final,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+    if (target:addStatusEffect(dsp.effect.PHALANX,final,0,duration)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_PHALANX;
+    return dsp.effect.PHALANX;
 end;

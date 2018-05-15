@@ -17966,21 +17966,25 @@ INSERT INTO `mob_droplist` VALUES (3052,2,0,1000,838,0);
 INSERT INTO `mob_droplist` VALUES (3052,0,0,1000,838,170);
 INSERT INTO `mob_droplist` VALUES (3053,0,0,1000,891,70);
 INSERT INTO `mob_droplist` VALUES (3053,0,0,1000,922,160);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,501,30);
-INSERT INTO `mob_droplist` VALUES (3054,2,0,1000,748,0);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1043,30);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1429,80);
-INSERT INTO `mob_droplist` VALUES (3054,4,0,1000,4552,0);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4779,20);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4780,20);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4808,20);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4809,10);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4822,20);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4862,30);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4866,30);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12739,10);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12867,0);
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12995,10);
+
+-- [Sapphire Quadav]
+-- Data taken from ffxidb on 4/24/2018 (http://www.ffxidb.com/zones/147/sapphire-quadav)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,501,0); -- Quadav Helm (0%, was 3%) Suspected not to actually drop in retail
+INSERT INTO `mob_droplist` VALUES (3054,2,0,1000,748,0); -- Gold Beastcoin (0%) (steal)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1043,10); -- Beadeaux Coffer Key (1%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,1429,80); -- Black Mage's Testimony (8%)
+INSERT INTO `mob_droplist` VALUES (3054,4,0,1000,4552,0); -- Serving of Herb Crawler Eggs (0%) (despoil)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4779,50); -- Water III (5%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4780,10); -- Water IV (1%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4808,30); -- Waterga II (3%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4809,20); -- Waterga III (2%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4822,10); -- Flood (1%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4862,0); -- Blind (0%, was 3%) Suspected not to actually drop in retail
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4866,0); -- Bind (0%, was 3%) Suspected not to actually drop in retail
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12739,2); -- Black Mitts (0.2%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12867,2); -- White Slacks (0.2%)
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12995,2); -- Moccasins (0.2%) 
+
 INSERT INTO `mob_droplist` VALUES (3055,0,0,1000,501,30);
 INSERT INTO `mob_droplist` VALUES (3055,2,0,1000,748,0);
 INSERT INTO `mob_droplist` VALUES (3055,0,0,1000,1043,90);
@@ -20530,10 +20534,15 @@ INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1138,110);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1162,10);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1429,40);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,4158,80);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1119,30);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1162,10);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4901,40);
-INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4902,40);
+
+-- [Tonberry Kinq] 
+-- Values taken from ffxidb on 04/23/2018 (http://www.ffxidb.com/zones/159/tonberry-kinq)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1119,400); -- Tonberry Coat (40%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1162,160); -- Tonberry Lantern (16%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4901,60); -- Water Spirit (6%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1443,40); -- Dried Mugwort (4%)
+INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,4902,40); -- Light Spirit (4%)
+
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1311,30);
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1633,10);
 INSERT INTO `mob_droplist` VALUES (3553,0,0,1000,1829,10);

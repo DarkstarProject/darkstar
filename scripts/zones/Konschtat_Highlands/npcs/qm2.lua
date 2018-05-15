@@ -6,17 +6,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/quests");
 require("scripts/zones/Konschtat_Highlands/TextIDs");
+require("scripts/zones/Konschtat_Highlands/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED) then
-        if (trade:getItemCount() == 1 and trade:hasItemQty(1151,1) and GetMobAction(17219999) == 0) then -- Oriental Steel
-            SpawnMob(17219999, 300):updateClaim(player); -- Spawn Forger, Despawn after inactive for 5 minutes
-            player:tradeComplete();
-        end
+    if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 1151) and not GetMobByID(FORGER):isSpawned()) then -- Oriental Steel
+        SpawnMob(FORGER):updateClaim(player);
+        player:confirmTrade();
     end
 end;
 
@@ -25,11 +24,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

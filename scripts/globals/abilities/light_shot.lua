@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP) then
         return 216,0;
     end
     if (player:hasItem(2182, 0) or player:hasItem(2974, 0)) then
@@ -24,24 +24,24 @@ end;
 function onUseAbility(player,target,ability)
 
     local duration = 60;
-    local resist = applyResistanceAbility(player,target,ELE_LIGHT,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    local resist = applyResistanceAbility(player,target,dsp.magic.ele.LIGHT,dsp.skill.MARKSMANSHIP, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
 
     if (resist < 0.5) then
-        ability:setMsg(msgBasic.JA_MISS_2); -- resist message
-        return EFFECT_SLEEP_I;
+        ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message
+        return dsp.effect.SLEEP_I;
     end
 
     duration = duration * resist;
 
     local effects = {};
     local counter = 1;
-    local dia = target:getStatusEffect(EFFECT_DIA);
+    local dia = target:getStatusEffect(dsp.effect.DIA);
     if (dia ~= nil) then
         effects[counter] = dia;
         counter = counter + 1;
     end
-    local threnody = target:getStatusEffect(EFFECT_THRENODY);
-    if (threnody ~= nil and threnody:getSubPower() == MOD_DARKRES) then
+    local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+    if (threnody ~= nil and threnody:getSubPower() == dsp.mod.DARKRES) then
         effects[counter] = threnody;
         counter = counter + 1;
     end
@@ -64,13 +64,13 @@ function onUseAbility(player,target,ability)
         newEffect:setStartTime(startTime);
     end
 
-    if (target:addStatusEffect(EFFECT_SLEEP_I,1,0,duration)) then
-        ability:setMsg(msgBasic.JA_ENFEEB_IS);
+    if (target:addStatusEffect(dsp.effect.SLEEP_I,1,0,duration)) then
+        ability:setMsg(dsp.msg.basic.JA_ENFEEB_IS);
     else
-        ability:setMsg(msgBasic.JA_NO_EFFECT_2);
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2);
     end
 
     local del = player:delItem(2182, 1) or player:delItem(2974, 1)
     target:updateClaim(player);
-    return EFFECT_SLEEP_I;
+    return dsp.effect.SLEEP_I;
 end;

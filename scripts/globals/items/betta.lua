@@ -14,25 +14,25 @@ function onItemCheck(target)
     if (target:getRace() ~= 7) then
         result = 247;
     end
-    if (target:getMod(MOD_EAT_RAW_FISH) == 1) then
+    if (target:getMod(dsp.mod.EAT_RAW_FISH) == 1) then
         result = 0;
     end
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,5139);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,5139);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_DEX, 3);
-    target:addMod(MOD_MND, -5);
+    target:addMod(dsp.mod.DEX, 3);
+    target:addMod(dsp.mod.MND, -5);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, 3);
-    target:delMod(MOD_MND, -5);
+    target:delMod(dsp.mod.DEX, 3);
+    target:delMod(dsp.mod.MND, -5);
 end;

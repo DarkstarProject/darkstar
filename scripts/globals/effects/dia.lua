@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    EFFECT_DIA
+--    dsp.effect.DIA
 --
 ----------------------------------   
 -- Quick Explanation of Algorithm:
@@ -18,8 +18,8 @@ require("scripts/globals/status");
 function onEffectGain(target,effect)
     local power = effect:getPower();
     local subpower = effect:getSubPower();
-    target:addMod(MOD_REGEN_DOWN, power);
-    target:addMod(MOD_DEFP,-subpower);
+    target:addMod(dsp.mod.REGEN_DOWN, power);
+    target:addMod(dsp.mod.DEFP,-subpower);
 end;
 
 -----------------------------------
@@ -36,6 +36,6 @@ end;
 function onEffectLose(target,effect)
     local power = effect:getPower();
     local subpower = effect:getSubPower();
-    target:delMod(MOD_REGEN_DOWN, power);
-    target:delMod(MOD_DEFP,-subpower);
+    target:delMod(dsp.mod.REGEN_DOWN, power);
+    target:delMod(dsp.mod.DEFP,-subpower);
 end;

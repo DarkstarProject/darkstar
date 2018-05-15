@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
 
-    local typeEffect = EFFECT_STUN;
+    local typeEffect = dsp.effect.STUN;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
 

@@ -19,7 +19,7 @@ end;
 
 function onTrigger(player,npc)
     local ATFTA = player:getQuestStatus(ADOULIN, A_THIRST_FOR_THE_AGES);
-    local ATFTA_Need_KI = ((player:getVar("ATFTA_Status") < 2) and (not player:hasKeyItem(COPY_OF_THE_ALLIANCE_AGREEMENT)));
+    local ATFTA_Need_KI = ((player:getVar("ATFTA_Status") < 2) and (not player:hasKeyItem(dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT)));
 
     local SOA_Mission = player:getCurrentMission(SOA);
 
@@ -43,7 +43,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 5053) then
         -- Progresses Quest: 'A Thirst for the Ages'
-        player:addKeyItem(COPY_OF_THE_ALLIANCE_AGREEMENT);
-        player:messageSpecial(KEYITEM_OBTAINED, COPY_OF_THE_ALLIANCE_AGREEMENT);
+        player:addKeyItem(dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT);
     end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ASSASSINS_CHARGE
+-- dsp.effect.ASSASSINS_CHARGE
 --
 -----------------------------------
 require("scripts/globals/status");
@@ -9,10 +9,10 @@ require("scripts/globals/status");
 -- onEffectGain Action
 ----------------------------------
 function onEffectGain(target,effect)
-    target:addMod(MOD_QUAD_ATTACK, effect:getPower());
-    target:addMod(MOD_TRIPLE_ATTACK, 100);
+    target:addMod(dsp.mod.QUAD_ATTACK, effect:getPower());
+    target:addMod(dsp.mod.TRIPLE_ATTACK, 100);
     if (effect:getSubType() > 0) then
-        target:addMod(MOD_CRITHITRATE, effect:getSubPower());
+        target:addMod(dsp.mod.CRITHITRATE, effect:getSubPower());
     end
 end;
 
@@ -26,9 +26,9 @@ end;
 -- onEffectLose Action
 -----------------------------------
 function onEffectLose(target,effect)
-    target:delMod(MOD_QUAD_ATTACK, effect:getPower());
-    target:delMod(MOD_TRIPLE_ATTACK, 100);
-    if (effect:getSubPower() > 0) then -- MOD_AUGMENTS_ASSASSINS_CHARGE
-        target:delMod(MOD_CRITHITRATE, effect:getSubPower());
+    target:delMod(dsp.mod.QUAD_ATTACK, effect:getPower());
+    target:delMod(dsp.mod.TRIPLE_ATTACK, 100);
+    if (effect:getSubPower() > 0) then -- dsp.mod.AUGMENTS_ASSASSINS_CHARGE
+        target:delMod(dsp.mod.CRITHITRATE, effect:getSubPower());
     end
 end;

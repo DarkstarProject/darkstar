@@ -14,7 +14,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     -- list of effects to give in AoE
-    local effects = {EFFECT_SLOW, EFFECT_DIA, EFFECT_BIO, EFFECT_WEIGHT, EFFECT_DEFENSE_DOWN, EFFECT_PARALYSIS, EFFECT_BLINDNESS, EFFECT_SILENCE, EFFECT_POISON}
+    local effects = {dsp.effect.SLOW, dsp.effect.DIA, dsp.effect.BIO, dsp.effect.WEIGHT, dsp.effect.DEFENSE_DOWN, dsp.effect.PARALYSIS, dsp.effect.BLINDNESS, dsp.effect.SILENCE, dsp.effect.POISON}
     local lastEffect = 0;
     local effectCount = false;
 
@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
             effectCount = true;
             local currentEffect = mob:getStatusEffect(effect);
             local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), currentEffect:getTick(), 120);
-            if (msg == msgBasic.SKILL_ENFEEB_IS) then
+            if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
                 lastEffect = effect;
             end
         end
@@ -31,12 +31,12 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- all resisted
     if (lastEffect == 0) then
-        skill:setMsg(msgBasic.RESIST);
+        skill:setMsg(dsp.msg.basic.RESIST);
     end
 
     -- no effects present
     if (effectCount == false) then
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT);
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
     end
 
     return lastEffect;

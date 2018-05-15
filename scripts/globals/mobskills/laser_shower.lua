@@ -22,7 +22,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_LIGHT, 1600);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.LIGHT, 1600);
     local dis = ((mob:checkDistance(target)*2) / 20);
 
     dmgmod = dmgmod * dis;
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 25, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.DEFENSE_DOWN, 25, 0, 60);
 
     target:delHP(dmg);
     return dmg;

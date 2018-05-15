@@ -10,19 +10,19 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_GIL_MIN, 12000);
-    mob:setMobMod(MOBMOD_GIL_MAX, 30000);
-    mob:setMobMod(MOBMOD_MUG_GIL, 8000);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-    mob:setMod(MOD_UDMGBREATH, 0); -- immune to breath damage
+    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
+    mob:setMobMod(dsp.mobMod.GIL_MIN, 12000);
+    mob:setMobMod(dsp.mobMod.GIL_MAX, 30000);
+    mob:setMobMod(dsp.mobMod.MUG_GIL, 8000);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
+    mob:setMod(dsp.mod.UDMGBREATH, 0); -- immune to breath damage
 
 end;
 
 function onMobSpawn(mob)
     mob:setHP(mob:getMaxHP()/2);
     mob:setUnkillable(true);
-    mob:setMod(MOD_REGEN, 50);
+    mob:setMod(dsp.mod.REGEN, 50);
 
     -- Regen Head every 1.5-4 minutes 90-240
     mob:setLocalVar("headTimer", os.time() + math.random(60,190));
@@ -54,7 +54,7 @@ function onMobRoam(mob)
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
             mob:addHP(mob:getMaxHP() * .25);
-            mob:setMod(MOD_REGEN, 10);
+            mob:setMod(dsp.mod.REGEN, 10);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
@@ -76,8 +76,8 @@ function onMobFight(mob, target)
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
-            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
         end
         -- These need to be listed in reverse order as forced moves are added to the top of the queue.
         mob:useMobAbility(1830); -- Polar Blast
@@ -89,15 +89,15 @@ function onMobFight(mob, target)
 
         -- First time it regens third head, 25%. Reduced afterwards.
         if (mob:getLocalVar("thirdHead") == 0) then
-            mob:setMod(MOD_REGEN, 10);
+            mob:setMod(dsp.mod.REGEN, 10);
             mob:addHP(mob:getMaxHP() * .25);
             mob:setLocalVar("thirdHead", 1);
             mob:setUnkillable(false); -- It can be killed now that has all his heads
         else
             mob:addHP(mob:getMaxHP() * .05);
         end
-        if (bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
-            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(BEHAVIOUR_NO_TURN)))
+        if (bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) > 0) then -- disable no turning for the forced mobskills upon head growth
+            mob:setBehaviour(bit.band(mob:getBehaviour(), bit.bnot(dsp.behavior.NO_TURN)))
         end
         -- Reverse order, same deal.
         mob:useMobAbility(1828); -- Pyric Blast

@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
-    local typeEffect = EFFECT_SLEEP_I;
+    local typeEffect = dsp.effect.SLEEP_I;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 30);
 

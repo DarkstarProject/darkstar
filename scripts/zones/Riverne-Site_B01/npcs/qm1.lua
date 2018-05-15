@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(1880,1) and trade:getItemCount() == 1 and not GetMobByID(UNSTABLE_CLUSTER):isSpawned()) then -- Trade Clustered tar
         player:tradeComplete();
         SpawnMob(UNSTABLE_CLUSTER):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

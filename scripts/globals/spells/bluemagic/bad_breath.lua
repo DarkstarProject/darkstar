@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.08;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 0.50;
     end
         params.multiplier = multi;
@@ -51,49 +51,49 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     local params = {};
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.3) then
-        local typeEffect = EFFECT_PARALYSIS;
+        local typeEffect = dsp.effect.PARALYSIS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effect.POISON;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_SLOW;
+    local typeEffect = dsp.effect.SLOW;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effect.SILENCE;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
 
     if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = dsp.effect.BIND;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
         if (damage > 0 and resist > 0.3) then
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effect.BLINDNESS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

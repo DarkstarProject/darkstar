@@ -12,14 +12,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,4465);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4465);
 end;
 
 -----------------------------------------
@@ -27,17 +27,17 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX, -4);
-    target:addMod(MOD_FOOD_ATTP, 16);
-    target:addMod(MOD_FOOD_ATT_CAP, 80);
-    target:addMod(MOD_FOOD_RATTP, 16);
-    target:addMod(MOD_FOOD_RATT_CAP, 80);
+    target:addMod(dsp.mod.DEX, -4);
+    target:addMod(dsp.mod.FOOD_ATTP, 16);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 80);
+    target:addMod(dsp.mod.FOOD_RATTP, 16);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 80);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, -4);
-    target:delMod(MOD_FOOD_ATTP, 16);
-    target:delMod(MOD_FOOD_ATT_CAP, 80);
-    target:delMod(MOD_FOOD_RATTP, 16);
-    target:delMod(MOD_FOOD_RATT_CAP, 80);
+    target:delMod(dsp.mod.DEX, -4);
+    target:delMod(dsp.mod.FOOD_ATTP, 16);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 80);
+    target:delMod(dsp.mod.FOOD_RATTP, 16);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 80);
 end;

@@ -9,21 +9,21 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    local effect = target:getStatusEffect(EFFECT_ENCHANTMENT);
+    local effect = target:getStatusEffect(dsp.effect.ENCHANTMENT);
     if (effect ~= nil) then
         if (effect:getSubType() == 15487) then
-            target:delStatusEffect(EFFECT_ENCHANTMENT);
+            target:delStatusEffect(dsp.effect.ENCHANTMENT);
         end;
     end;
     return 0;
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == true) then
-        target:delStatusEffect(EFFECT_ENCHANTMENT);
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,1800,15487);
+    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true) then
+        target:delStatusEffect(dsp.effect.ENCHANTMENT);
+        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,1800,15487);
     else
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,1800,15487);
+        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,1800,15487);
     end;
 end;
 
@@ -32,11 +32,11 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 38);
-    target:addMod(MOD_ENMITY, 5);
+    target:addMod(dsp.mod.HP, 38);
+    target:addMod(dsp.mod.ENMITY, 5);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 38);
-    target:delMod(MOD_ENMITY, 5);
+    target:delMod(dsp.mod.HP, 38);
+    target:delMod(dsp.mod.ENMITY, 5);
 end;

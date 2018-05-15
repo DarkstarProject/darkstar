@@ -35,5 +35,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_TO_LEADER,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.TO_LEADER,0,1);
 end;

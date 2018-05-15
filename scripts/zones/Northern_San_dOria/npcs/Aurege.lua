@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
         exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
-        if (player:hasKeyItem(MAP_OF_KING_RANPERRES_TOMB)) then
+        if (player:hasKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB)) then
            player:startEvent(514);
         elseif (exitTheGambler == QUEST_COMPLETED) then
            player:startEvent(516);
@@ -41,10 +41,10 @@ function onEventFinish(player,csid,option)
 
     if (exitTheGambler == QUEST_AVAILABLE) then
        player:addQuest(SANDORIA,EXIT_THE_GAMBLER);
-    elseif (exitTheGambler == QUEST_COMPLETED and player:hasKeyItem(MAP_OF_KING_RANPERRES_TOMB) == false) then
-           player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_KING_RANPERRES_TOMB);
-           player:addKeyItem(MAP_OF_KING_RANPERRES_TOMB);
-       player:addTitle(DAYBREAK_GAMBLER);
+    elseif (exitTheGambler == QUEST_COMPLETED and player:hasKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB) == false) then
+           player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_KING_RANPERRES_TOMB);
+           player:addKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB);
+       player:addTitle(dsp.title.DAYBREAK_GAMBLER);
            player:addFame(SANDORIA,30);
     end
 end;

@@ -14,7 +14,7 @@ require("scripts/globals/status");
 function onMobInitialize(mob)
     -- the quest version of this NM doesn't drop gil
     if (mob:getID() >= AFFABLE_ADAMANTKING_OFFSET) then
-        mob:setMobMod(MOBMOD_GIL_MAX, -1);
+        mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
     end
 end;
 

@@ -20,12 +20,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PLAGUE;
+    local typeEffect = dsp.effect.PLAGUE;
 
     MobStatusEffectMove(mob, target, typeEffect, 10, 0, 120);
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     return dmg;

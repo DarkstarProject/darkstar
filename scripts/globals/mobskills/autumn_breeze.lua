@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     ]]
     local heal = math.random(100,400);
 
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
 
     return MobHealMove(mob, heal);
 end;

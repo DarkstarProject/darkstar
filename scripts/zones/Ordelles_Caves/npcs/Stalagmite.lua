@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     local stsCS = player:getVar("sharpeningTheSwordCS");
 
     if (stsCS == 3 and player:getVar("PolevikKilled") == 1) then
-        npcUtil.giveKeyItem(player, ORDELLE_WHETSTONE)
+        npcUtil.giveKeyItem(player, dsp.ki.ORDELLE_WHETSTONE)
         player:setVar("PolevikKilled",0);
         player:setVar("sharpeningTheSwordCS",4)
     elseif (stsCS == 3 and not GetMobByID(POLEVIK):isSpawned()) then

@@ -12,14 +12,14 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT,mob:getShortID());
 end;
 
 function onMobSpawn(mob)
 end;
 
 function onMonsterMagicPrepare(mob,target)
-    if (not mob:hasStatusEffect(EFFECT_HUNDRED_FISTS,0)) then
+    if (not mob:hasStatusEffect(dsp.effect.HUNDRED_FISTS,0)) then
         local rnd = math.random();
         if (rnd < 0.5) then
             return 186; -- aeroga 3
@@ -40,12 +40,12 @@ function onAdditionalEffect(mob, target, damage)
     params.bonusmab = 0;
     params.includemab = false;
 
-    dmg = addBonusesAbility(mob, ELE_WIND, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WIND,0);
-    dmg = adjustForTarget(target,dmg,ELE_WIND);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WIND,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.WIND, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.WIND,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.WIND);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.WIND,dmg);
 
-    return SUBEFFECT_WIND_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+    return dsp.subEffect.WIND_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
 end;
 
 function onMobDeath(mob, player, isKiller)

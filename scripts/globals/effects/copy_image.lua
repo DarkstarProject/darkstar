@@ -1,29 +1,17 @@
 -----------------------------------
 --
---     EFFECT_COPY_IMAGE
+--     dsp.effect.COPY_IMAGE
 --
 -----------------------------------
-
 require("scripts/globals/status");
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
+    target:setMod(dsp.mod.UTSUSEMI, effect:getSubPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
 end;
 
------------------------------------
--- onEffectLose Action
------------------------------------
-
 function onEffectLose(target,effect)
-    target:setMod(MOD_UTSUSEMI,0);
+    target:setMod(dsp.mod.UTSUSEMI, 0);
 end;

@@ -15,7 +15,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = 40;
     local duration = 300;
 
-    local typeEffect = EFFECT_PROTECT;
+    local typeEffect = dsp.effect.PROTECT;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
 

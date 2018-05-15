@@ -419,7 +419,7 @@ void CAttack::ProcessDamage()
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
-        m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_H2H) * 0.11f);
+        m_naturalH2hDamage = (int32)(m_attacker->GetSkill(SKILL_HAND_TO_HAND) * 0.11f);
         m_baseDamage = std::max<uint16>(m_attacker->GetMainWeaponDmg(), 3);
         if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
         {
@@ -484,7 +484,7 @@ void CAttack::ProcessDamage()
         if (m_attacker->objtype == TYPE_PET && m_attacker->PMaster && m_attacker->PMaster->objtype == TYPE_PC &&
             static_cast<CPetEntity*>(m_attacker)->getPetType() == PETTYPE_AUTOMATON)
         {
-            puppetutils::TrySkillUP((CAutomatonEntity*)m_attacker, SKILL_AME, m_victim->GetMLevel());
+            puppetutils::TrySkillUP((CAutomatonEntity*)m_attacker, SKILL_AUTOMATON_MELEE, m_victim->GetMLevel());
         }
     }
     m_isBlocked = attackutils::IsBlocked(m_attacker, m_victim);

@@ -14,13 +14,13 @@ end;
 function onSpellCast(caster,target,spell)
     local count = 1;
 
-    local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_PARALYSIS, EFFECT_POISON, EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE};
+    local removables = {dsp.effect.FLASH, dsp.effect.BLINDNESS, dsp.effect.PARALYSIS, dsp.effect.POISON, dsp.effect.CURSE_I, dsp.effect.CURSE_II, dsp.effect.DISEASE, dsp.effect.PLAGUE};
 
     -- remove one effect and add it to me
     for i, effect in ipairs(removables) do
 
         if (target:hasStatusEffect(effect)) then
-            spell:setMsg(msgBasic.MAGIC_ABSORB_AILMENT);
+            spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_AILMENT);
 
             local statusEffect = target:getStatusEffect(effect);
 
@@ -34,6 +34,6 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+    spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     return 0;
 end;

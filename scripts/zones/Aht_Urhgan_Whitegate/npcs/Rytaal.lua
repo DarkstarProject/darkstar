@@ -51,12 +51,12 @@ function onTrigger(player,npc)
             player:setVar("LAST_IMPERIAL_TAG",currentday);
         end
 
-        if (player:hasKeyItem(IMPERIAL_ARMY_ID_TAG)) then
+        if (player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG)) then
             haveimperialIDtag = 1;
         else
             haveimperialIDtag = 0;
         end
-        player:startEvent(268,IMPERIAL_ARMY_ID_TAG,tagCount,currentAssault,haveimperialIDtag);
+        player:startEvent(268,dsp.ki.IMPERIAL_ARMY_ID_TAG,tagCount,currentAssault,haveimperialIDtag);
     end
 end;
 
@@ -74,26 +74,26 @@ function onEventFinish(player,csid,option)
 
     if (csid == 269) then
         player:setVar("AhtUrganStatus",1);
-    elseif (csid == 268 and option == 1 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0) then
-        player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+    elseif (csid == 268 and option == 1 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0) then
+        player:addKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
         player:setCurrency("id_tags", tagCount - 1);
-    elseif (csid == 268 and option == 2 and player:hasKeyItem(IMPERIAL_ARMY_ID_TAG) == false and hasAssaultOrders(player) ~= 0) then
-        if (player:hasKeyItem(LEUJAOAM_ASSAULT_ORDERS)) then
-            player:delKeyItem(LEUJAOAM_ASSAULT_ORDERS);
-        elseif (player:hasKeyItem(MAMOOL_JA_ASSAULT_ORDERS)) then
-            player:delKeyItem(MAMOOL_JA_ASSAULT_ORDERS);
-        elseif (player:hasKeyItem(LEBROS_ASSAULT_ORDERS)) then
-            player:delKeyItem(LEBROS_ASSAULT_ORDERS);
-        elseif (player:hasKeyItem(PERIQIA_ASSAULT_ORDERS)) then
-            player:delKeyItem(PERIQIA_ASSAULT_ORDERS);
-        elseif (player:hasKeyItem(ILRUSI_ASSAULT_ORDERS )) then
-            player:delKeyItem(ILRUSI_ASSAULT_ORDERS);
-        elseif (player:hasKeyItem(NYZUL_ISLE_ASSAULT_ORDERS)) then
-            player:delKeyItem(NYZUL_ISLE_ASSAULT_ORDERS);
+    elseif (csid == 268 and option == 2 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and hasAssaultOrders(player) ~= 0) then
+        if (player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS)) then
+            player:delKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS);
+        elseif (player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)) then
+            player:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
+        elseif (player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)) then
+            player:delKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS);
+        elseif (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)) then
+            player:delKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS);
+        elseif (player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS )) then
+            player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS);
+        elseif (player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)) then
+            player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
         end
-        player:addKeyItem(IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,IMPERIAL_ARMY_ID_TAG);
+        player:addKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
         player:delAssault(currentAssault);
     end
 

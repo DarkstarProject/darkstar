@@ -75,7 +75,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 546) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         player:setVar("MissionStatus",3);
     elseif (csid == 550) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
@@ -85,9 +85,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",8);
     elseif (csid == 551) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
-        player:delKeyItem(KINDRED_CREST);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:setVar("MissionStatus",11);
     end
 

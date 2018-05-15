@@ -19,7 +19,7 @@ function onTrigger(player,npc)
         player:startEvent(12);
     elseif (player:getCurrentMission(COP) == FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 1) then
       player:startEvent(16);
-    elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:hasKeyItem(LETTERS_FROM_ULMIA_AND_PRISHE)) then
+    elseif (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)) then
       player:startEvent(17);
     else
       player:startEvent(20);
@@ -36,9 +36,9 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 12 and option == 1) then
-        toPalaceEntrance(player);
+        dsp.teleport.to(player, dsp.teleport.id.SEA);
     elseif (csid == 16) then
-      player:setVar("PromathiaStatus",2);
+        player:setVar("PromathiaStatus",2);
     elseif (csid == 17) then
         player:completeMission(COP,CALM_BEFORE_THE_STORM);
         player:addMission(COP,THE_WARRIOR_S_PATH);

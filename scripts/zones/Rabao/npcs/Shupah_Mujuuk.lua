@@ -6,18 +6,18 @@
 -----------------------------------
 require("scripts/globals/titles");
 
-local title2 = { THE_IMMORTAL_FISHER_LU_SHANG , INDOMITABLE_FISHER , KUFTAL_TOURIST , ACQUIRER_OF_ANCIENT_ARCANUM , DESERT_HUNTER ,
-                ROOKIE_HERO_INSTRUCTOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { HEIR_OF_THE_GREAT_WIND , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { FODDERCHIEF_FLAYER , WARCHIEF_WRECKER , DREAD_DRAGON_SLAYER , OVERLORD_EXECUTIONER , DARK_DRAGON_SLAYER ,
-                ADAMANTKING_KILLER , BLACK_DRAGON_SLAYER , MANIFEST_MAULER , BEHEMOTHS_BANE , ARCHMAGE_ASSASSIN , HELLSBANE , GIANT_KILLER ,
-                LICH_BANISHER , JELLYBANE , BOGEYDOWNER , BEAKBENDER , SKULLCRUSHER , MORBOLBANE , GOLIATH_KILLER , MARYS_GUIDE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title5 = { SIMURGH_POACHER , ROC_STAR , SERKET_BREAKER , CASSIENOVA , THE_HORNSPLITTER , TORTOISE_TORTURER , MON_CHERRY ,
-                BEHEMOTH_DETHRONER , THE_VIVISECTOR , DRAGON_ASHER , EXPEDITIONARY_TROOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { ADAMANTKING_USURPER , OVERLORD_OVERTHROWER , DEITY_DEBUNKER , FAFNIR_SLAYER , ASPIDOCHELONE_SINKER , NIDHOGG_SLAYER ,
-                MAAT_MASHER , KIRIN_CAPTIVATOR , CACTROT_DESACELERADOR , LIFTER_OF_SHADOWS , TIAMAT_TROUNCER , VRTRA_VANQUISHER , WORLD_SERPENT_SLAYER ,
-                XOLOTL_XTRAPOLATOR , BOROKA_BELEAGUERER , OURYU_OVERWHELMER , VINEGAR_EVAPORATOR , VIRTUOUS_SAINT , BYEBYE_TAISAI , TEMENOS_LIBERATOR ,
-                APOLLYON_RAVAGER , WYRM_ASTONISHER , NIGHTMARE_AWAKENER , 0 , 0 , 0 , 0 , 0 }
+local title2 = { dsp.title.THE_IMMORTAL_FISHER_LU_SHANG , dsp.title.INDOMITABLE_FISHER , dsp.title.KUFTAL_TOURIST , dsp.title.ACQUIRER_OF_ANCIENT_ARCANUM , dsp.title.DESERT_HUNTER ,
+                dsp.title.ROOKIE_HERO_INSTRUCTOR , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title3 = { dsp.title.HEIR_OF_THE_GREAT_WIND , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title4 = { dsp.title.FODDERCHIEF_FLAYER , dsp.title.WARCHIEF_WRECKER , dsp.title.DREAD_DRAGON_SLAYER , dsp.title.OVERLORD_EXECUTIONER , dsp.title.DARK_DRAGON_SLAYER ,
+                dsp.title.ADAMANTKING_KILLER , dsp.title.BLACK_DRAGON_SLAYER , dsp.title.MANIFEST_MAULER , dsp.title.BEHEMOTHS_BANE , dsp.title.ARCHMAGE_ASSASSIN , dsp.title.HELLSBANE , dsp.title.GIANT_KILLER ,
+                dsp.title.LICH_BANISHER , dsp.title.JELLYBANE , dsp.title.BOGEYDOWNER , dsp.title.BEAKBENDER , dsp.title.SKULLCRUSHER , dsp.title.MORBOLBANE , dsp.title.GOLIATH_KILLER , dsp.title.MARYS_GUIDE , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title5 = { dsp.title.SIMURGH_POACHER , dsp.title.ROC_STAR , dsp.title.SERKET_BREAKER , dsp.title.CASSIENOVA , dsp.title.THE_HORNSPLITTER , dsp.title.TORTOISE_TORTURER , dsp.title.MON_CHERRY ,
+                dsp.title.BEHEMOTH_DETHRONER , dsp.title.THE_VIVISECTOR , dsp.title.DRAGON_ASHER , dsp.title.EXPEDITIONARY_TROOPER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local title6 = { dsp.title.ADAMANTKING_USURPER , dsp.title.OVERLORD_OVERTHROWER , dsp.title.DEITY_DEBUNKER , dsp.title.FAFNIR_SLAYER , dsp.title.ASPIDOCHELONE_SINKER , dsp.title.NIDHOGG_SLAYER ,
+                dsp.title.MAAT_MASHER , dsp.title.KIRIN_CAPTIVATOR , dsp.title.CACTROT_DESACELERADOR , dsp.title.LIFTER_OF_SHADOWS , dsp.title.TIAMAT_TROUNCER , dsp.title.VRTRA_VANQUISHER , dsp.title.WORLD_SERPENT_SLAYER ,
+                dsp.title.XOLOTL_XTRAPOLATOR , dsp.title.BOROKA_BELEAGUERER , dsp.title.OURYU_OVERWHELMER , dsp.title.VINEGAR_EVAPORATOR , dsp.title.VIRTUOUS_SAINT , dsp.title.BYEBYE_TAISAI , dsp.title.TEMENOS_LIBERATOR ,
+                dsp.title.APOLLYON_RAVAGER , dsp.title.WYRM_ASTONISHER , dsp.title.NIGHTMARE_AWAKENER , 0 , 0 , 0 , 0 , 0 }
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)

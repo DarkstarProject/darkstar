@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MAX_HP_DOWN;
+    local typeEffect = dsp.effect.MAX_HP_DOWN;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 30, 0, 60));
 

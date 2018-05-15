@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARWATER
+-- dsp.effect.BARWATER
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_WATERRES,effect:getPower());
+    target:addMod(dsp.mod.WATERRES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_WATERRES,effect:getPower());
+    target:delMod(dsp.mod.WATERRES,effect:getPower());
 end;

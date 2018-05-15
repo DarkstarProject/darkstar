@@ -15,13 +15,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target,mob,skill)
-    local typeEffectOne = EFFECT_SILENCE;
-    local typeEffectTwo = EFFECT_BLINDNESS;
+    local typeEffectOne = dsp.effect.SILENCE;
+    local typeEffectTwo = dsp.effect.BLINDNESS;
 
     MobStatusEffectMove(mob,target,typeEffectOne,1,0,60);
     MobStatusEffectMove(mob,target,typeEffectTwo,15,0,60);
 
-    local dmgmod = MobBreathMove(mob,target, 0.25,2.5,ELE_EARTH,300);
+    local dmgmod = MobBreathMove(mob,target, 0.25,2.5,dsp.magic.ele.EARTH,300);
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);

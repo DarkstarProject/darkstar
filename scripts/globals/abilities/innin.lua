@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(EFFECT_INNIN);
-    target:delStatusEffect(EFFECT_YONIN);
-    target:addStatusEffect(EFFECT_INNIN,30,15,300,0,20);
+    target:delStatusEffect(dsp.effect.INNIN);
+    target:delStatusEffect(dsp.effect.YONIN);
+    target:addStatusEffect(dsp.effect.INNIN,30,15,300,0,20);
 end;

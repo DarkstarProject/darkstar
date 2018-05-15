@@ -11,14 +11,14 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_DIFFUSION) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.DIFFUSION) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_DIFFUSION,1,0,60);
+    player:addStatusEffect(dsp.effect.DIFFUSION,1,0,60);
 
-    return EFFECT_DIFFUSION;
+    return dsp.effect.DIFFUSION;
 end;

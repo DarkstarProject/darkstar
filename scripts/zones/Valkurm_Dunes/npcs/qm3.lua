@@ -17,11 +17,11 @@ function onTrigger(player,npc)
 
     local cstime = VanadielHour();
 
-    if (player:hasKeyItem(YOMOTSU_HIRASAKA) and (cstime > 18 or cstime < 5) and not GetMobByID(DOMAN):isSpawned() and not GetMobByID(ONRYO):isSpawned()) then
+    if (player:hasKeyItem(dsp.ki.YOMOTSU_HIRASAKA) and (cstime > 18 or cstime < 5) and not GetMobByID(DOMAN):isSpawned() and not GetMobByID(ONRYO):isSpawned()) then
         if (player:getVar("OkuriNMKilled") >= 1 and player:needToZone()) then
-            player:delKeyItem(YOMOTSU_HIRASAKA);
-            player:addKeyItem(FADED_YOMOTSU_HIRASAKA);
-            player:messageSpecial(KEYITEM_OBTAINED,FADED_YOMOTSU_HIRASAKA);
+            player:delKeyItem(dsp.ki.YOMOTSU_HIRASAKA);
+            player:addKeyItem(dsp.ki.FADED_YOMOTSU_HIRASAKA);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FADED_YOMOTSU_HIRASAKA);
             player:setVar("OkuriNMKilled",0);
         else
             player:startEvent(10);

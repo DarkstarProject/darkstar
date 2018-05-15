@@ -49,7 +49,7 @@ function onTrigger(player,npc)
     elseif (LvL >= 7 and LvL < 15) then
         player:startEvent(671);
     elseif (LvL >= 15 and ASquiresTestII ~= QUEST_COMPLETED) then
-        local StalactiteDew = player:hasKeyItem(STALACTITE_DEW)
+        local StalactiteDew = player:hasKeyItem(dsp.ki.STALACTITE_DEW)
 
         if (ASquiresTestII == QUEST_AVAILABLE) then
             player:startEvent(625);
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
             else
                 player:startEvent(627);
             end
-        elseif (player:hasKeyItem(KNIGHTS_SOUL)) then
+        elseif (player:hasKeyItem(dsp.ki.KNIGHTS_SOUL)) then
             player:startEvent(628);
         else
             player:startEvent(669);
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 617) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
-            player:addTitle(KNIGHT_IN_TRAINING);
+            player:addTitle(dsp.title.KNIGHT_IN_TRAINING);
             player:addItem(16565);
             player:messageSpecial(ITEM_OBTAINED, 16565); -- Spatha
             player:addFame(SANDORIA,30);
@@ -113,35 +113,35 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II);
     elseif (csid == 626) then
         player:tradeComplete();
-        player:addTitle(SPELUNKER);
-        player:delKeyItem(STALACTITE_DEW);
-        player:addKeyItem(SQUIRE_CERTIFICATE);
-        player:messageSpecial(KEYITEM_OBTAINED, SQUIRE_CERTIFICATE);
+        player:addTitle(dsp.title.SPELUNKER);
+        player:delKeyItem(dsp.ki.STALACTITE_DEW);
+        player:addKeyItem(dsp.ki.SQUIRE_CERTIFICATE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.SQUIRE_CERTIFICATE);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,A_SQUIRE_S_TEST_II);
     elseif (csid == 627) then
         if (option == 0) then
             player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
-            player:addKeyItem(BOOK_OF_TASKS);
-            player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_TASKS);
+            player:addKeyItem(dsp.ki.BOOK_OF_TASKS);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BOOK_OF_TASKS);
         else
             player:setVar("KnightsTest_Event",1);
         end
     elseif (csid == 635 and option == 0) then
         player:addQuest(SANDORIA,A_KNIGHT_S_TEST);
-        player:addKeyItem(BOOK_OF_TASKS);
-        player:messageSpecial(KEYITEM_OBTAINED, BOOK_OF_TASKS);
+        player:addKeyItem(dsp.ki.BOOK_OF_TASKS);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BOOK_OF_TASKS);
         player:setVar("KnightsTest_Event",0);
     elseif (csid == 628) then
         if (player:getFreeSlotsCount(0) >= 1) then
-            player:addTitle(TRIED_AND_TESTED_KNIGHT);
-            player:delKeyItem(KNIGHTS_SOUL);
-            player:delKeyItem(BOOK_OF_TASKS);
-            player:delKeyItem(BOOK_OF_THE_WEST);
-            player:delKeyItem(BOOK_OF_THE_EAST);
+            player:addTitle(dsp.title.TRIED_AND_TESTED_KNIGHT);
+            player:delKeyItem(dsp.ki.KNIGHTS_SOUL);
+            player:delKeyItem(dsp.ki.BOOK_OF_TASKS);
+            player:delKeyItem(dsp.ki.BOOK_OF_THE_WEST);
+            player:delKeyItem(dsp.ki.BOOK_OF_THE_EAST);
             player:addItem(12306);
             player:messageSpecial(ITEM_OBTAINED, 12306); -- Kite Shield
-            player:unlockJob(JOBS.PLD);
+            player:unlockJob(dsp.job.PLD);
             player:messageSpecial(UNLOCK_PALADIN);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,A_KNIGHT_S_TEST);

@@ -24,8 +24,8 @@ function onTrigger(player,npc)
         SpawnMob(17244524):updateClaim(player);
         SpawnMob(17244525):updateClaim(player);
     elseif (twentyInPirateYearsCS == 3 and TsuchigumoKilled >= 2) then
-        player:addKeyItem(TRICK_BOX);
-        player:messageSpecial(KEYITEM_OBTAINED,TRICK_BOX);
+        player:addKeyItem(dsp.ki.TRICK_BOX);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRICK_BOX);
         player:setVar("twentyInPirateYearsCS",4);
         player:setVar("TsuchigumoKilled",0);
     else

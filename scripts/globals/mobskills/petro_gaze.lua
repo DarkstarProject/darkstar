@@ -13,7 +13,7 @@ require("scripts/globals/zone");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (target:getCurrentRegion() == REGION_TAVNAZIA) then
+    if (target:getCurrentRegion() == dsp.region.TAVNAZIA) then
         return 0;
     end
 
@@ -21,7 +21,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 25));
 

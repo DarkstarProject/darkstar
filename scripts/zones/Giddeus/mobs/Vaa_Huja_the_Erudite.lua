@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Giddeus
---  NM:  Vaa Huja the Erudite
+--   NM: Vaa Huja the Erudite
 -- Involved in Quests: Dark Legacy
 -----------------------------------
 

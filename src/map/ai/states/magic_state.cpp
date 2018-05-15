@@ -41,16 +41,15 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     m_PSpell(nullptr),
     m_flags(flags)
 {
-    CSpell* PSpell = spell::GetSpell(spellid);
+    auto PSpell = spell::GetSpell(spellid);
+    if (PSpell == nullptr)
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(spellid), 0, MSGBASIC_CANNOT_CAST_SPELL));
+    }
 
     m_PSpell = PSpell->clone();
 
-    if (!m_PSpell)
-    {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_CAST_SPELL));
-    }
     auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
-
     if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));

@@ -364,6 +364,10 @@ namespace battleutils
     CWeaponSkill* GetWeaponSkill(uint16 WSkillID)
     {
         DSP_DEBUG_BREAK_IF(WSkillID >= MAX_WEAPONSKILL_ID);
+        if (WSkillID >= MAX_WEAPONSKILL_ID)
+        {
+            return nullptr;
+        }
 
         return g_PWeaponSkillList[WSkillID];
     }
@@ -547,7 +551,7 @@ namespace battleutils
         else if (Tier == 2)
         {
             //Tier 2 enspells calculate the damage on each hit and increment the potency in Mod::ENSPELL_DMG per hit
-            uint16 skill = PAttacker->GetSkill(SKILL_ENH);
+            uint16 skill = PAttacker->GetSkill(SKILL_ENHANCING_MAGIC);
             uint16 cap = 3 + ((6 * skill) / 100);
             if (skill > 200) {
                 cap = 5 + ((5 * skill) / 100);
@@ -1081,7 +1085,7 @@ namespace battleutils
         }
         //check script for grip if main failed
         else if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB) &&
-            weapon == PAttacker->m_Weapons[SLOT_MAIN] && static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB))->getSkillType() == SKILL_NON &&
+            weapon == PAttacker->m_Weapons[SLOT_MAIN] && static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB))->getSkillType() == SKILL_NONE &&
             battleutils::GetScaledItemModifier(PAttacker, static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB), Mod::ADDITIONAL_EFFECT) > 0 &&
             luautils::OnAdditionalEffect(PAttacker, PDefender, static_cast<CItemWeapon*>(static_cast<CCharEntity*>(PAttacker)->getEquip(SLOT_SUB)), Action, finaldamage) == 0 && Action->additionalEffect)
         {
@@ -1493,7 +1497,7 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
         {
-            acc = PAttacker->RACC(SKILL_ARA);
+            acc = PAttacker->RACC(SKILL_AUTOMATON_RANGED);
         }
         // Check for Yonin evasion bonus while in front of target
         if (PDefender->StatusEffectContainer->HasStatusEffect(EFFECT_YONIN) && ((abs(abs(PAttacker->loc.p.rotation - PDefender->loc.p.rotation) - 128) < 23)))
@@ -1528,7 +1532,7 @@ namespace battleutils
             {
                 PItem = (CItemWeapon*)PChar->getEquip(SLOT_AMMO);
 
-                if (PItem == nullptr || !PItem->isType(ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THR)) {
+                if (PItem == nullptr || !PItem->isType(ITEM_WEAPON) || (PItem->getSkillType() != SKILL_THROWING)) {
                     ShowDebug("battleutils::GetRangedPDIF Cannot find a valid ranged weapon to calculate PDIF for. \n");
                 }
                 else
@@ -1539,12 +1543,12 @@ namespace battleutils
         }
         else if (PAttacker->objtype == TYPE_PET && ((CPetEntity*)PAttacker)->getPetType() == PETTYPE_AUTOMATON)
         {
-            rAttack = PAttacker->RATT(SKILL_ARA);
+            rAttack = PAttacker->RATT(SKILL_AUTOMATON_RANGED);
         }
         else
         {
             //assume mobs capped
-            rAttack = battleutils::GetMaxSkill(SKILL_ARC, JOB_RNG, PAttacker->GetMLevel());
+            rAttack = battleutils::GetMaxSkill(SKILL_ARCHERY, JOB_RNG, PAttacker->GetMLevel());
         }
 
         //get ratio (not capped for RAs)
@@ -1616,7 +1620,7 @@ namespace battleutils
         }
 
         // Songs cannot be interrupted by physical attacks.
-        if ((SKILLTYPE)PSpell->getSkillType() == SKILL_SNG)
+        if ((SKILLTYPE)PSpell->getSkillType() == SKILL_SINGING)
         {
             // ShowDebug("Is song, interrupt prevented.\n");
             return false;
@@ -1718,7 +1722,7 @@ namespace battleutils
         int32 base = 0;
         float blockRateMod = (100.0f + PDefender->getMod(Mod::SHIELDBLOCKRATE)) / 100.0f;
         uint16 attackskill = PAttacker->GetSkill((SKILLTYPE)(PAttacker->m_Weapons[SLOT_MAIN]->getSkillType()));
-        uint16 blockskill = PDefender->GetSkill(SKILL_SHL);
+        uint16 blockskill = PDefender->GetSkill(SKILL_SHIELD);
 
         if (PDefender->objtype == TYPE_PC)
         {
@@ -1738,7 +1742,7 @@ namespace battleutils
         }
         else if (PDefender->objtype == TYPE_PET && static_cast<CPetEntity*>(PDefender)->getPetType() == PETTYPE_AUTOMATON && PDefender->GetMJob() == JOB_PLD)
         {
-            float skillmodifier = (PDefender->GetSkill(SKILL_AME) - attackskill) * 0.215f;
+            float skillmodifier = (PDefender->GetSkill(SKILL_AUTOMATON_MELEE) - attackskill) * 0.215f;
             base = PDefender->getMod(Mod::SHIELDBLOCKRATE);
             if (base <= 0)
                 return 0;
@@ -1778,7 +1782,7 @@ namespace battleutils
     {
         CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
         if ((PWeapon != nullptr && PWeapon->getID() != 0 && PWeapon->getID() != 65535 &&
-            PWeapon->getSkillType() != SKILL_H2H) && PDefender->PAI->IsEngaged())
+            PWeapon->getSkillType() != SKILL_HAND_TO_HAND) && PDefender->PAI->IsEngaged())
         {
             JOBTYPE job = PDefender->GetMJob();
 
@@ -1793,7 +1797,7 @@ namespace battleutils
                 // http://wiki.ffxiclopedia.org/wiki/Talk:Parrying_Skill
                 // {(Parry Skill x .125) + ([Player Agi - Enemy Dex] x .125)} x Diff
 
-                float skill = (float)(PDefender->GetSkill(SKILL_PAR) + PDefender->getMod(Mod::PARRY) + PWeapon->getILvlParry());
+                float skill = (float)(PDefender->GetSkill(SKILL_PARRY) + PDefender->getMod(Mod::PARRY) + PWeapon->getILvlParry());
 
                 float diff = 1.0f + (((float)PDefender->GetMLevel() - PAttacker->GetMLevel()) / 15.0f);
 
@@ -1830,7 +1834,7 @@ namespace battleutils
         CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
         // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
-        bool validWeapon = (PWeapon == nullptr || PWeapon->getSkillType() == SKILL_H2H);
+        bool validWeapon = (PWeapon == nullptr || PWeapon->getSkillType() == SKILL_HAND_TO_HAND);
 
         if (PDefender->objtype == TYPE_MOB || PDefender->objtype == TYPE_PET) {
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
@@ -1839,7 +1843,7 @@ namespace battleutils
         if (validWeapon && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
-            float skill = (float)PDefender->GetSkill(SKILL_GRD) + PDefender->getMod(Mod::GUARD);
+            float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);
 
             if (PWeapon)
                 skill += PWeapon->getILvlParry(); //no weapon will ever have ilvl guard and parry
@@ -1915,10 +1919,11 @@ namespace battleutils
                     if (PDefender->objtype == TYPE_PC)
                     {
                         absorb = std::clamp(100 - PDefender->m_Weapons[SLOT_SUB]->getShieldAbsorption(), 0, 100);
+                        absorb -= PDefender->getMod(Mod::SHIELD_DEF_BONUS); // Include Shield Defense Bonus in absorb amount
 
-                        //Shield Mastery
+                        // Shield Mastery
                         if ((std::max(damage - (PDefender->getMod(Mod::PHALANX) + PDefender->getMod(Mod::STONESKIN)), 0) > 0)
-                            && (charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY)))
+                            && charutils::hasTrait((CCharEntity*)PDefender, TRAIT_SHIELD_MASTERY))
                         {
                             // If the player blocked with a shield and has shield mastery, add shield mastery TP bonus
                             // unblocked damage (before block but as if affected by stoneskin/phalanx) must be greater than zero
@@ -2058,14 +2063,14 @@ namespace battleutils
 
                 if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PAttacker->m_Weapons[slot]->getSkillType() != SKILL_H2H)
+                    PAttacker->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
                 {
                     delay = delay / 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_H2H)
+                if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
                 baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
@@ -2196,14 +2201,14 @@ namespace battleutils
 
                 if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
                     PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PChar->m_Weapons[slot]->getSkillType() != SKILL_H2H)
+                    PChar->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
                 {
                     delay /= 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PChar->m_Weapons[slot]->getSkillType() == SKILL_H2H)
+                if (PChar->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
                 baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
@@ -2343,8 +2348,22 @@ namespace battleutils
         }
         else
         {
-            //apply merit mods
-            if (PAttacker->objtype == TYPE_PC) crithitrate += ((CCharEntity*)PAttacker)->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE, (CCharEntity*)PAttacker);
+            //apply merit mods and traits
+            if (PAttacker->objtype == TYPE_PC)
+            {
+                CCharEntity* PCharAttacker = static_cast<CCharEntity*>(PAttacker);
+                crithitrate += PCharAttacker->PMeritPoints->GetMeritValue(MERIT_CRIT_HIT_RATE, PCharAttacker);
+
+                // Add Fencer crit hit rate
+                CItemWeapon* PMain = PCharAttacker->m_Weapons[SLOT_MAIN];
+                CItemWeapon* PSub = PCharAttacker->m_Weapons[SLOT_SUB];
+                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                {
+                    crithitrate += PCharAttacker->getMod(Mod::FENCER_CRITHITRATE);
+                }
+            }
+
             if (PDefender->objtype == TYPE_PC) crithitrate -= ((CCharEntity*)PDefender)->PMeritPoints->GetMeritValue(MERIT_ENEMY_CRIT_RATE, (CCharEntity*)PDefender);
             //ShowDebug("Crit rate mod before Innin/Yonin: %d\n", crithitrate);
             // Check for Innin crit rate bonus from behind target
@@ -2692,11 +2711,13 @@ namespace battleutils
         //utsus always overwrites blink, so if utsus>0 then we know theres no blink.
         uint16 Shadow = PDefender->getMod(Mod::UTSUSEMI);
         Mod modShadow = Mod::UTSUSEMI;
-        if (Shadow == 0) {
+        if (Shadow == 0)
+        {
             Shadow = PDefender->getMod(Mod::BLINK);
             modShadow = Mod::BLINK;
             //random chance, assume 80% proc
-            if (dsprand::GetRandomNumber(100) < 20) {
+            if (dsprand::GetRandomNumber(100) < 20)
+            {
                 return false;
             }
         }
@@ -2707,7 +2728,8 @@ namespace battleutils
 
             if (Shadow == 0)
             {
-                switch (modShadow) {
+                switch (modShadow)
+                {
                     case Mod::UTSUSEMI:
                         PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_COPY_IMAGE);
                         break;
@@ -2722,12 +2744,12 @@ namespace battleutils
             {
                 if (PDefender->objtype == TYPE_PC)
                 {
-                    CStatusEffect* PStatusEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_COPY_IMAGE, 0);
+                    CStatusEffect* PStatusEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_COPY_IMAGE);
 
                     if (PStatusEffect != nullptr)
                     {
                         uint16 icon = EFFECT_COPY_IMAGE_3;
-                        switch (PDefender->getMod(Mod::UTSUSEMI))
+                        switch (Shadow)
                         {
                             case 1: icon = EFFECT_COPY_IMAGE_1; break;
                             case 2: icon = EFFECT_COPY_IMAGE_2; break;
@@ -3469,7 +3491,6 @@ namespace battleutils
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
-        DSP_DEBUG_BREAK_IF(amount < 0);
 
         for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {
@@ -3553,12 +3574,12 @@ namespace battleutils
             drainPercent = drainPercent + std::min(0.02f, 0.01f * gearBonusPercent);
 
             damage += (uint32)(m_PChar->health.hp * drainPercent);
-            m_PChar->addHP((int32)(-drainPercent * m_PChar->health.hp));
+            m_PChar->addHP((int32)(m_PChar->health.hp * -(drainPercent - m_PChar->getMod(Mod::STALWART_SOUL) * 0.001f)));
         }
         else if (m_PChar->GetSJob() == JOB_DRK &&m_PChar->health.hp >= 10 && m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SOULEATER)) {
             //lose 10% Current HP, only HALF (5%) converted to damage
-            damage += (uint32)(m_PChar->health.hp * 0.05);
-            m_PChar->addHP((int32)(-0.1 * m_PChar->health.hp));
+            damage += (uint32)(m_PChar->health.hp * 0.05f);
+            m_PChar->addHP((int32)(m_PChar->health.hp * -0.1f));
         }
         return damage;
     }
@@ -3709,7 +3730,7 @@ namespace battleutils
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_SUB]);
 
         //h2h equipped
-        if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H)
+        if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND)
             numattacksLeftHand = battleutils::CheckMultiHits(PAttacker, PAttacker->m_Weapons[SLOT_MAIN]);
 
         // normal multi hit from left hand
@@ -3733,7 +3754,7 @@ namespace battleutils
                 if (PVictim->isDead())
                     break;
 
-                if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() != SKILL_H2H && i >= numattacksRightHand)
+                if (PAttacker->m_Weapons[SLOT_MAIN]->getSkillType() != SKILL_HAND_TO_HAND && i >= numattacksRightHand)
                 {
                     PWeapon = PAttacker->m_Weapons[SLOT_SUB];
                     fstrslot = SLOT_SUB;
@@ -4294,15 +4315,26 @@ namespace battleutils
         }
     }
 
-    void HandleTacticalParry(CBattleEntity* PEntity) {
-        for (uint8 j = 0; j < PEntity->TraitList.size(); ++j)
+    void HandleTacticalParry(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
-            CTrait* PExistingTrait = PEntity->TraitList.at(j);
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_PARRY))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_PARRY);
+                PChar->addTP(tpBonus);
+            }
+        }
+    }
 
-            if (PExistingTrait->getID() == TRAIT_TACTICAL_PARRY) {
-                int16 tpBonus = PEntity->getMod(Mod::TACTICAL_PARRY);
-                //ShowDebug(CL_CYAN"HandleTacticalParry: Tactical Parry Tp Bonus = %d\n" CL_RESET, tpBonus);
-                PEntity->addTP(tpBonus);
+    void HandleTacticalGuard(CBattleEntity* PEntity)
+    {
+        if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PEntity))
+        {
+            if (charutils::hasTrait(PChar, TRAIT_TACTICAL_GUARD))
+            {
+                int16 tpBonus = PChar->getMod(Mod::TACTICAL_GUARD);
+                PChar->addTP(tpBonus);
             }
         }
     }
@@ -4313,7 +4345,7 @@ namespace battleutils
 
         if (PEntity->objtype == TYPE_PC && charutils::hasTrait((CCharEntity*)PEntity, TRAIT_TRANQUIL_HEART))
         {
-            int16 healingSkill = PEntity->GetSkill(SKILL_HEA);
+            int16 healingSkill = PEntity->GetSkill(SKILL_HEALING_MAGIC);
             reductionPercent = ((healingSkill / 10) * .5f);
 
             // Reduction Percent Caps at 25%
@@ -4663,9 +4695,13 @@ namespace battleutils
             return false;
         }
 
+        bool success = false;
         float drawInDistance = (float)(PMob->getMobMod(MOBMOD_DRAW_IN) > 1 ? PMob->getMobMod(MOBMOD_DRAW_IN) : PMob->GetMeleeRange() * 2);
 
-        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, nearEntity](CBattleEntity* PMember)
+        if (std::chrono::time_point_cast<std::chrono::seconds>(server_clock::now()).time_since_epoch().count() - PMob->GetLocalVar("DrawInTime") < 2)
+            return false;
+
+        std::function <void(CBattleEntity*)> drawInFunc = [PMob, drawInDistance, &nearEntity, &success](CBattleEntity* PMember)
         {
             float pDistance = distance(PMob->loc.p, PMember->loc.p);
 
@@ -4697,6 +4733,7 @@ namespace battleutils
 
                     luautils::OnMobDrawIn(PMob, PMember);
                     PMob->loc.zone->PushPacket(PMob, CHAR_INRANGE, new CMessageBasicPacket(PMember, PMember, 0, 0, 232));
+                    success = true;
                 }
             }
         };
@@ -4712,7 +4749,10 @@ namespace battleutils
             drawInFunc(PEntity);
         }
 
-        return true;
+        if (success)
+            PMob->SetLocalVar("DrawInTime", (uint32)std::chrono::time_point_cast<std::chrono::seconds>(server_clock::now()).time_since_epoch().count());
+
+        return success;
     }
 
     /************************************************************************
@@ -5071,15 +5111,19 @@ namespace battleutils
         }
 
         auto fastCast = std::clamp<int16>(PEntity->getMod(Mod::FASTCAST), -100, 50);
-        if (PSpell->isCure()) // Cure cast time reductions
+        if (PSpell->getSkillType() == SKILLTYPE::SKILL_ELEMENTAL_MAGIC) // Elemental Celerity reductions
+        {
+            fastCast += PEntity->getMod(Mod::ELEMENTAL_CELERITY);
+        }
+        else if (PSpell->isCure()) // Cure cast time reductions
         {
             fastCast += PEntity->getMod(Mod::CURE_CAST_TIME);
             if (PEntity->objtype == TYPE_PC)
             {
                 fastCast += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)PEntity);
             }
-            fastCast = std::clamp<int16>(fastCast, -100, 80);
         }
+        fastCast = std::clamp<int16>(fastCast, -100, 80);
         auto uncappedFastCast = std::clamp<int16>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
         float sumFastCast = std::clamp<float>((float)(fastCast + uncappedFastCast), -100.f, 100.f);
 
@@ -5287,6 +5331,26 @@ namespace battleutils
         return recast / 1000;
     }
 
+    // Calculate TP generated by spell for Occult Acumen trait
+    int16 CalculateSpellTP(CBattleEntity* PEntity, CSpell* PSpell)
+    {
+        // Players onry
+        if (PEntity->objtype == TYPE_PC)
+        {
+            if (PSpell->getSkillType() == SKILLTYPE::SKILL_ELEMENTAL_MAGIC || PSpell->getSkillType() == SKILLTYPE::SKILL_DARK_MAGIC)
+            {
+                CCharEntity* PChar = static_cast<CCharEntity*>(PEntity);
+                if (charutils::hasTrait(PChar, TRAIT_OCCULT_ACUMEN))
+                {
+                    return static_cast<int16>(PSpell->getMPCost() * PChar->getMod(Mod::OCCULT_ACUMEN) / 100.f * (1 + (PChar->getMod(Mod::STORETP) / 100.f)));
+                }
+                
+            }
+        }
+
+        return 0;
+    }
+
     int16 CalculateWeaponSkillTP(CBattleEntity* PEntity, CWeaponSkill* PWeaponSkill, int16 spentTP)
     {
         //apply TP Bonus
@@ -5322,14 +5386,19 @@ namespace battleutils
                 {
                     tp -= battleutils::GetScaledItemModifier(PEntity, PChar->m_Weapons[SLOT_RANGED], Mod::TP_BONUS);
                 }
+
+                // Add Fencer TP Bonus
+                CItemWeapon* PMain = PChar->m_Weapons[SLOT_MAIN];
+                CItemWeapon* PSub = PChar->m_Weapons[SLOT_SUB];
+                if (!PMain->isTwoHanded() && !PMain->isHandToHand() &&
+                    (PSub->getSkillType() == SKILL_NONE || PSub->IsShield()))
+                {
+                    tp += PEntity->getMod(Mod::FENCER_TP_BONUS);
+                }
             }
         }
 
-        if (tp > 3000)
-        {
-            tp = 3000;
-        }
-        return tp;
+        return std::min(tp, (int16)3000);
     }
 
     bool RemoveAmmo(CCharEntity* PChar, int quantity)

@@ -34,8 +34,8 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT: %u",option);
     if (csid == 10172) then
         player:setVar("QueenOfTheDance",2);
-        player:addKeyItem(MAYAKOV_SHOW_TICKET);
-        player:messageSpecial(KEYITEM_OBTAINED,MAYAKOV_SHOW_TICKET);
+        player:addKeyItem(dsp.ki.MAYAKOV_SHOW_TICKET);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAYAKOV_SHOW_TICKET);
     end
 end;
 

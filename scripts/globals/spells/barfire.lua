@@ -14,20 +14,20 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local enhanceSkill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local enhanceSkill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     local power = calculateBarspellPower(caster,enhanceSkill);
-    local mdefBonus = caster:getMerit(MERIT_BAR_SPELL_EFFECT) + caster:getMod(MOD_BARSPELL_MDEF_BONUS);
+    local mdefBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT) + caster:getMod(dsp.mod.BARSPELL_MDEF_BONUS);
     local duration = 150;
 
     if (enhanceSkill > 180) then
         duration = 150 + 0.8 * (enhanceSkill - 180);
     end
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    target:addStatusEffect(EFFECT_BARFIRE,power,0,duration,0,mdefBonus);
+    target:addStatusEffect(dsp.effect.BARFIRE,power,0,duration,0,mdefBonus);
 
-    return EFFECT_BARFIRE;
+    return dsp.effect.BARFIRE;
 end;

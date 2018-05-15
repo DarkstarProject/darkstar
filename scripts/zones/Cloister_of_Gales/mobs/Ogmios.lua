@@ -26,7 +26,7 @@ function onEventUpdate(player,csid,option)
     -- printf("onUpdate RESULT: %u",option);
 
     if (csid == 32001) then
-        player:delStatusEffect(EFFECT_BATTLEFIELD);
+        player:delStatusEffect(dsp.effect.BATTLEFIELD);
     end
 
 end;
@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 32001) then
-        player:delKeyItem(DAZEBREAKER_CHARM);
+        player:delKeyItem(dsp.ki.DAZEBREAKER_CHARM);
     end
 
 end;

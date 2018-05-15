@@ -43,8 +43,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
         if (freeSlots ~= 0) then
             player:addItem(0x3001);
             player:messageSpecial(ITEM_OBTAINED,0x3001);
-            player:addTitle(COURIER_EXTRAORDINAIRE);
+            player:addTitle(dsp.title.COURIER_EXTRAORDINAIRE);
             player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,30);
             player:setVar("TheBrugaireConsortium-Parcels",0);

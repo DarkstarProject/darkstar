@@ -29,7 +29,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,50,0,0); -- LV50 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,50,0,0); -- LV50 cap
     end
 end;
 
@@ -58,7 +58,7 @@ function onGameDay()
     };
     local doors = labyrinthDoorsByDay[VanadielDayElement()];
     for i = 0, 17 do
-        GetNPCByID(SACRARIUM_LABYRINTH_OFFSET + i):setAnimation(ANIMATION_OPEN_DOOR + doors[i+1]);
+        GetNPCByID(SACRARIUM_LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
     end
 end;
 

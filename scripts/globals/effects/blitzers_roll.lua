@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DELAY, effect:getPower());
+    target:addMod(dsp.mod.DELAY, effect:getPower());
 end;
 
 function onEffectTick(target,effect)
 end;
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_DELAY, effect:getPower());
+    target:delMod(dsp.mod.DELAY, effect:getPower());
 end;

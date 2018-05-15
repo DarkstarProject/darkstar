@@ -12,8 +12,8 @@ end;
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_SILENCE) == true) then
-        target:delStatusEffect(EFFECT_SILENCE);
+    if (target:hasStatusEffect(dsp.effect.SILENCE) == true) then
+        target:delStatusEffect(dsp.effect.SILENCE);
     end
 end;
 

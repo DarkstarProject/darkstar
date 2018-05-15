@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) == false) then
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(dsp.ki.PURE_WHITE_FEATHER) == false) then
         player:startEvent(500,1);
     elseif (ENABLE_WOTG == 1 and hasMawActivated(player,1)) then
         if (player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
@@ -45,26 +45,26 @@ function onEventFinish(player,csid,option)
     -- printf("RESULT:",option);
     if (csid == 500) then
         local r = math.random(1,3);
-        player:addKeyItem(PURE_WHITE_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED,PURE_WHITE_FEATHER);
+        player:addKeyItem(dsp.ki.PURE_WHITE_FEATHER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PURE_WHITE_FEATHER);
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then
             player:addNationTeleport(MAW,1);
-            toMaw(player,1); -- go to Batallia_Downs[S]
+            dsp.teleport.toMaw(player,1); -- go to Batallia_Downs[S]
         elseif (r == 2) then
             player:addNationTeleport(MAW,2);
-            toMaw(player,3); -- go to Rolanberry_Fields_[S]
+            dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
         elseif (r == 3) then
             player:addNationTeleport(MAW,4);
-            toMaw(player,5); -- go to Sauromugue_Champaign_[S]
+            dsp.teleport.toMaw(player,5); -- go to Sauromugue_Champaign_[S]
         end;
     elseif (csid == 904 and option == 1) then
-        toMaw(player,3); -- go to Rolanberry_Fields_[S]
+        dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
-        player:addTitle(CAIT_SITHS_ASSISTANT);
-        toMaw(player,3);
+        player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
+        dsp.teleport.toMaw(player,3);
     end;
 end;

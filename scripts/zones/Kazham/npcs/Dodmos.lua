@@ -15,7 +15,7 @@ require("scripts/zones/Kazham/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    if (trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == JOBS.SMN) then
+    if (trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(287,0,1544,0,20);
     end
 
@@ -24,7 +24,7 @@ end;
 function onTrigger(player,npc)
     local TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
 
-    if (player:getMainLvl() >= 20 and player:getMainJob() == JOBS.SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
+    if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(286,0,1544,0,20);     --mini tuning fork, zone, level
     elseif (TrialSizeFire == QUEST_ACCEPTED) then
         local FireFork = player:hasItem(1544);
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1544);
         end
     elseif (csid == 287 and option == 1) then
-        toCloisterOfFlames(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FLAMES);
     end
 end;
 

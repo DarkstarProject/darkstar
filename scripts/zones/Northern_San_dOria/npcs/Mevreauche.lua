@@ -12,21 +12,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_SMITHING);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.SMITHING);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_SMITHING,newRank);
+        player:setSkillRank(dsp.skill.SMITHING,newRank);
         player:startEvent(627,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_SMITHING);
-    local testItem = getTestItem(player,npc,SKILL_SMITHING);
+    local craftSkill = player:getSkillLevel(dsp.skill.SMITHING);
+    local testItem = getTestItem(player,npc,dsp.skill.SMITHING);
     local guildMember = isGuildMember(player,8);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,SKILL_SMITHING) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.SMITHING) == 1) then getNewRank = 100; end
 
     player:startEvent(626,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;

@@ -209,6 +209,12 @@ enum class Mod
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
+    FENCER_TP_BONUS           = 903, // TP Bonus to weapon skills from Fencer Trait
+    FENCER_CRITHITRATE        = 904, // Increased Crit chance from Fencer Trait
+
+    SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
+    TACTICAL_GUARD            = 899, // Tp increase when guarding
+
     HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
     HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
     HASTE_GEAR                = 384, // Haste (and Slow) from equipment - 1024 base! (256 cap) Truncate at decimal, do not round.
@@ -217,6 +223,7 @@ enum class Mod
     FASTCAST                  = 170, // Increases Spell Cast Time (TRAIT)
     UFASTCAST                 = 407, // uncapped fast cast
     CURE_CAST_TIME            = 519, // cure cast time reduction
+    ELEMENTAL_CELERITY        = 901, // Quickens Elemental Magic Casting
     DELAY                     = 171, // Increase/Decrease Delay
     RANGED_DELAY              = 172, // Increase/Decrease Ranged Delay
     MARTIAL_ARTS              = 173, // The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
@@ -317,6 +324,7 @@ enum class Mod
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds
     STEAL                     = 298, // Increase/Decrease THF Steal chance
+    DESPOIL                   = 896, // Increases THF Despoil chance
     PERFECT_DODGE             = 883, // Increases Perfect Dodge duration in seconds
     TRIPLE_ATTACK             = 302, // Percent chance
     TREASURE_HUNTER           = 303, // Percent chance
@@ -325,6 +333,7 @@ enum class Mod
     MUG_EFFECT                = 835, // Mug effect as multiplier
     ACC_COLLAB_EFFECT         = 884, // Increases amount of enmity transferred for Accomplice/Collaborator
     HIDE_DURATION             = 885, // Hide duration increase (percentage based)
+    GILFINDER                 = 897, // Gilfinder, duh
 
     // Paladin
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
@@ -333,10 +342,13 @@ enum class Mod
     ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
+    SHIELD_DEF_BONUS          = 905, // Shield Defense Bonus
 
     // Dark Knight
-    ARCANE_CIRCLE_DURATION    = 858,  // Arcane Circle extended duration in seconds
+    ARCANE_CIRCLE_DURATION    = 858, // Arcane Circle extended duration in seconds
     SOULEATER_EFFECT          = 96,  // Souleater power in percents
+    DESPERATE_BLOWS           = 906, // Adds ability haste to Last Resort
+    STALWART_SOUL             = 907, // Reduces damage taken from Souleater
 
     // Beastmaster
     TAME                      = 304, // Additional percent chance to charm
@@ -395,6 +407,7 @@ enum class Mod
 
     // Ninja
     UTSUSEMI                  = 307, // Everyone's favorite --tracks shadows.
+    UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
 
@@ -690,7 +703,8 @@ enum class Mod
     ENHANCES_CASTERS_ROLL     = 892, // Caster's Roll Bonus % chance
     ENHANCES_BLITZERS_ROLL    = 893, // Blitzer's Roll Bonus % chance
     ENHANCES_ALLIES_ROLL      = 894, // Allies' Roll Bonus % chance
-    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance    
+    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance
+    OCCULT_ACUMEN             = 902, // Grants bonus TP when dealing damage with elemental or dark magic
 
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
@@ -709,9 +723,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 896, // stuff
-    // SPARE = 897, // stuff
-    // SPARE = 898, // stuff
+    // SPARE = 908, // stuff
+    // SPARE = 909, // stuff
+    // SPARE = 910, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

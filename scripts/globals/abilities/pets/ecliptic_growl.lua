@@ -13,7 +13,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill, summoner)
-    local bonusTime = utils.clamp(summoner:getSkillLevel(SKILL_SUM) - 300, 0, 200);
+    local bonusTime = utils.clamp(summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - 300, 0, 200);
     local duration = 180 + bonusTime;
 
     local moon = VanadielMoonPhase();
@@ -33,20 +33,20 @@ function onPetAbility(target, pet, skill, summoner)
     else
         buffvalue = 1;
     end
-    target:delStatusEffect(EFFECT_STR_BOOST);
-    target:delStatusEffect(EFFECT_DEX_BOOST);
-    target:delStatusEffect(EFFECT_VIT_BOOST);
-    target:delStatusEffect(EFFECT_AGI_BOOST);
-    target:delStatusEffect(EFFECT_MND_BOOST);
-    target:delStatusEffect(EFFECT_CHR_BOOST);
+    target:delStatusEffect(dsp.effect.STR_BOOST);
+    target:delStatusEffect(dsp.effect.DEX_BOOST);
+    target:delStatusEffect(dsp.effect.VIT_BOOST);
+    target:delStatusEffect(dsp.effect.AGI_BOOST);
+    target:delStatusEffect(dsp.effect.MND_BOOST);
+    target:delStatusEffect(dsp.effect.CHR_BOOST);
 
-    target:addStatusEffect(EFFECT_STR_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_DEX_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_VIT_BOOST,buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_AGI_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_INT_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_MND_BOOST,8-buffvalue,0,duration);
-    target:addStatusEffect(EFFECT_CHR_BOOST,8-buffvalue,0,duration);
-    skill:setMsg(msgBasic.NONE);
+    target:addStatusEffect(dsp.effect.STR_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.DEX_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.VIT_BOOST,buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.AGI_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.INT_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.MND_BOOST,8-buffvalue,0,duration);
+    target:addStatusEffect(dsp.effect.CHR_BOOST,8-buffvalue,0,duration);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

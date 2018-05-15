@@ -48,7 +48,7 @@ local VIRTUE_STONE_POUCH=5410;
 function onTrade(player,npc,trade)
     local reward = 0;
     local item = 0;
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
 
     if (NameOfScience == QUEST_COMPLETED and trade:getItemCount()==1) then
         if (trade:hasItemQty(Sin_of_Indulgence,1)) then
@@ -102,7 +102,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
     local rnd= math.random();
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
         if (NameOfScience == QUEST_COMPLETED) then

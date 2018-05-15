@@ -109,7 +109,7 @@ function onEventFinish(player,csid,option,npc)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
         else
             player:tradeComplete();
-            player:addTitle(RONFAURIAN_RESCUER);
+            player:addTitle(dsp.title.RONFAURIAN_RESCUER);
             player:addItem(12832);
             player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
             player:addFame(SANDORIA,30);

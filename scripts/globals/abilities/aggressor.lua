@@ -14,6 +14,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(MERIT_AGGRESSIVE_AIM);
-    player:addStatusEffect(EFFECT_AGGRESSOR,merits,0,180);
+    local merits = player:getMerit(dsp.merit.AGGRESSIVE_AIM);
+    player:addStatusEffect(dsp.effect.AGGRESSOR,merits,0,180);
 end;

@@ -15,12 +15,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_VIT_DOWN;
+    local typeEffect = dsp.effect.VIT_DOWN;
 
     MobStatusEffectMove(mob, target, typeEffect, 10, 3, 120);
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,ELE_WIND,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*4,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

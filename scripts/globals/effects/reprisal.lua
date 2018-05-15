@@ -11,10 +11,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SPIKES,6);
+    target:addMod(dsp.mod.SPIKES,6);
      -- Spike damage is calculated on hit in battleutils::TakePhysicalDamage
-    target:setMod(MOD_SPIKES_DMG, 0);
-    target:addMod(MOD_SHIELDBLOCKRATE, 50);
+    target:setMod(dsp.mod.SPIKES_DMG, 0);
+    target:addMod(dsp.mod.SHIELDBLOCKRATE, 50);
 end;
 
 -----------------------------------
@@ -29,7 +29,7 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SPIKES,6);
-    target:setMod(MOD_SPIKES_DMG, 0);
-    target:delMod(MOD_SHIELDBLOCKRATE, 50);
+    target:delMod(dsp.mod.SPIKES,6);
+    target:setMod(dsp.mod.SPIKES_DMG, 0);
+    target:delMod(dsp.mod.SHIELDBLOCKRATE, 50);
 end;

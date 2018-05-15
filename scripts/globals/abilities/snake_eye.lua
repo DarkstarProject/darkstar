@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_SNAKE_EYE,(player:getMerit(MERIT_SNAKE_EYE) - 5),0,60);
+    player:addStatusEffect(dsp.effect.SNAKE_EYE,(player:getMerit(dsp.merit.SNAKE_EYE) - 5),0,60);
 
-    return EFFECT_SNAKE_EYE;
+    return dsp.effect.SNAKE_EYE;
 end;

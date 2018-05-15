@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local targetcurrentHP = target:getHP();
     local targetmaxHP = target:getMaxHP();
     local hpset=targetmaxHP*0.20;
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = dsp.effect.BIND;
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30);
 
     if (targetcurrentHP > hpset) then

@@ -38,7 +38,7 @@ function onTrigger(player,npc)
         player:startEvent(182); -- mentions song runes in Valkurm
 
     -- THE REQUIEM (Bard AF2)
-    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == JOBS.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
+    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == dsp.job.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (player:getVar("TheRequiemCS") == 0) then
             player:startEvent(145); -- Long dialog & Start Quest "The Requiem"
         else
@@ -46,13 +46,13 @@ function onTrigger(player,npc)
         end;
     elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 2) then
         player:startEvent(146); -- During Quest "The Requiem" (before trading Holy Water)
-    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(STAR_RING1) == false) then
+    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(dsp.ki.STAR_RING1) == false) then
         if (math.random(1,2) == 1) then
             player:startEvent(147); -- oh, did you take the holy water and play the requiem? you must do both!
         else
             player:startEvent(149); -- his stone sarcophagus is deep inside the eldieme necropolis.
         end;
-    elseif (theRequiem == QUEST_ACCEPTED and player:hasKeyItem(STAR_RING1) == true) then
+    elseif (theRequiem == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) == true) then
         player:startEvent(150); -- Finish Quest "The Requiem"
     elseif (theRequiem == QUEST_COMPLETED) then
         player:startEvent(134); -- Standard dialog after "The Requiem"

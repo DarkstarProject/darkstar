@@ -65,7 +65,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16565);
         else
-            player:addTitle(BASTOK_WELCOMING_COMMITTEE);
+            player:addTitle(dsp.title.BASTOK_WELCOMING_COMMITTEE);
             player:addItem(16565);
             player:messageSpecial(ITEM_OBTAINED,16565); -- Spatha
             player:setVar("WelcomeToBastok_Event",0);
@@ -78,10 +78,10 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12300);
         else
-            player:addTitle(BASTOK_WELCOMING_COMMITTEE);
+            player:addTitle(dsp.title.BASTOK_WELCOMING_COMMITTEE);
             player:addItem(12300);
             player:messageSpecial(ITEM_OBTAINED,12300); -- Targe
-            player:delKeyItem(LETTERS_FROM_DOMIEN);
+            player:delKeyItem(dsp.ki.LETTERS_FROM_DOMIEN);
             player:setVar("GuestofHauteur_Event",0);
             player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,GUEST_OF_HAUTEUR);

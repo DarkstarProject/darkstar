@@ -7,20 +7,20 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 600);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 600);
 end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating the chance to stun before resistance applied (it's fairly low rate on retail).
     -- Does not proc if Jack's enstone is up.
-    if (math.random(1,100) <= 75 or mob:hasStatusEffect(EFFECT_ENSTONE)
-    or applyResistanceAddEffect(mob, target, ELE_LIGHTNING, 0) <= 0.5) then
+    if (math.random(1,100) <= 75 or mob:hasStatusEffect(dsp.effect.ENSTONE)
+    or applyResistanceAddEffect(mob, target, dsp.magic.ele.LIGHTNING, 0) <= 0.5) then
         return 0,0,0;
     else
         local duration = math.random(5,15);
-        target:addStatusEffect(EFFECT_STUN,5,0,duration);
-        return SUBEFFECT_STUN,0,EFFECT_STUN; -- Todo: confirm retail message. Unsure if says "is stunned" on proc.
+        target:addStatusEffect(dsp.effect.STUN,5,0,duration);
+        return dsp.subEffect.STUN,0,dsp.effect.STUN; -- Todo: confirm retail message. Unsure if says "is stunned" on proc.
     end
 end;
 

@@ -650,7 +650,7 @@ INSERT INTO `mob_skills` VALUES (827,499,'lightning_blade',0,7,2000,0,1,0,0,0,0,
 INSERT INTO `mob_skills` VALUES (828,500,'water_blade',0,7,2000,0,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (829,501,'great_wheel',1,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (830,502,'light_blade',0,30.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (831,513,'moonlit_charge',0,10.0,512,3000,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (831,513,'moonlit_charge',0,10.0,512,3000,4,0,0,7,0,0,0);
 INSERT INTO `mob_skills` VALUES (832,514,'crescent_fang',0,10.0,513,3000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (833,515,'lunar_cry',0,10.0,514,3000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (834,516,'ecliptic_growl',1,10.0,516,3000,1,0,0,0,0,0,0);
@@ -1862,8 +1862,8 @@ INSERT INTO `mob_skills` VALUES (2031,433,'reactive_shield',0,7.0,2000,0,16,4,0,
 -- INSERT INTO `mob_skills` VALUES (2040,1784,'rail_cannon',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2041,1376,'restoral',0,7.0,2000,1500,1,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2042,1786,'armature',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2043,1787,'artificial_gravity',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2044,1788,'antigravity',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2043,1372,'artificial_gravity',1,15.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2044,1387,'antigravity',1,15.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2045,1373,'pl_rail_cannon',1,15.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2046,1790,'artificial_gravity',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2047,1791,'antigravity',0,7.0,2000,1500,4,0,0,0,0,0,0);
@@ -1872,7 +1872,7 @@ INSERT INTO `mob_skills` VALUES (2045,1373,'pl_rail_cannon',1,15.0,2000,1500,4,0
 -- INSERT INTO `mob_skills` VALUES (2050,1794,'antigravity',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2051,1795,'rail_cannon',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2052,1796,'restoral',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2053,1797,'heavy_armature',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2053,1797,'heavy_armature',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2054,1407,'diffusion_ray',4,18.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2055,1408,'intertia_stream',1,10.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2056,1399,'discharge',1,10.0,2000,1000,4,0,0,0,0,0,0);

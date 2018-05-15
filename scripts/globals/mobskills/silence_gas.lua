@@ -16,12 +16,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effect.SILENCE;
 
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 60);
 
 
-    local dmgmod = MobBreathMove(mob, target, 0.25, 2, ELE_WIND, 800);
+    local dmgmod = MobBreathMove(mob, target, 0.25, 2, dsp.magic.ele.WIND, 800);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS);
 

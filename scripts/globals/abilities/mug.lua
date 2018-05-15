@@ -17,7 +17,7 @@ function onUseAbility(player,target,ability,action)
     local thfLevel;
     local gil = 0;
 
-    if (player:getMainJob() == JOBS.THF) then
+    if (player:getMainJob() == dsp.job.THF) then
         thfLevel = player:getMainLvl();
     else
         thfLevel = player:getSubLvl();
@@ -25,8 +25,8 @@ function onUseAbility(player,target,ability,action)
 
     local mugChance = 90 + thfLevel - target:getMainLvl();
 
-    if (target:isMob() and math.random(100) < mugChance and target:getMobMod(MOBMOD_MUG_GIL) > 0) then
-        local purse = target:getMobMod(MOBMOD_MUG_GIL);
+    if (target:isMob() and math.random(100) < mugChance and target:getMobMod(dsp.mobMod.MUG_GIL) > 0) then
+        local purse = target:getMobMod(dsp.mobMod.MUG_GIL);
         local fatpurse = target:getGil();
         gil = fatpurse / (8 + math.random(0,8));
         if (gil == 0) then
@@ -40,15 +40,15 @@ function onUseAbility(player,target,ability,action)
         end
 
         if (gil <= 0) then
-            ability:setMsg(MsgBasic.MUG_FAIL);
+            ability:setMsg(dsp.msg.basic.MUG_FAIL);
         else
-            gil = gil * (1 + player:getMod(MOD_MUG_EFFECT));
+            gil = gil * (1 + player:getMod(dsp.mod.MUG_EFFECT));
             player:addGil(gil);
-            target:setMobMod(MOBMOD_MUG_GIL, target:getMobMod(MOBMOD_MUG_GIL) - gil);
-            ability:setMsg(msgBasic.MUG_SUCCESS);
+            target:setMobMod(dsp.mobMod.MUG_GIL, target:getMobMod(dsp.mobMod.MUG_GIL) - gil);
+            ability:setMsg(dsp.msg.basic.MUG_SUCCESS);
         end
     else
-        ability:setMsg(msgBasic.MUG_FAIL);
+        ability:setMsg(dsp.msg.basic.MUG_FAIL);
         action:animation(target:getID(), 184);
     end
 

@@ -17,8 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and
-            player:getEquipID(SLOT_RANGE) == 0 and player:getEquipID(SLOT_AMMO) == 0) then
+    if (player:getEquipID(dsp.slot.MAIN) == 0 and player:getEquipID(dsp.slot.SUB) == 0) then
         if (player:getCurrentMission(TOAU) == GUESTS_OF_THE_EMPIRE and player:getVar("AhtUrganStatus") == 1 and
                 doRoyalPalaceArmorCheck(player) == true) then
             player:startEvent(3078,0,1,0,0,0,0,0,1,0);
@@ -103,7 +102,7 @@ function onEventFinish(player,csid,option)
     if (csid == 3078) then
         player:completeMission(TOAU,GUESTS_OF_THE_EMPIRE);
         player:setVar("AhtUrganStatus",0);
-        player:addTitle(OVJANGS_ERRAND_RUNNER);
+        player:addTitle(dsp.title.OVJANGS_ERRAND_RUNNER);
         player:addItem(2186) -- Imperial Mythril Piece Reward
         player:needToZone(true);
         player:setVar("TOAUM18_STARTDAY", VanadielDayOfTheYear());

@@ -15,6 +15,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local power = 40 + player:getMod(MOD_SHARPSHOT);
-    player:addStatusEffect(EFFECT_SHARPSHOT,power,0,60);
+    local power = 40 + player:getMod(dsp.mod.SHARPSHOT);
+    player:addStatusEffect(dsp.effect.SHARPSHOT,power,0,60);
 end;

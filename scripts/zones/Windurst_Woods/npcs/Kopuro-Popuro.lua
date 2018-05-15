@@ -129,7 +129,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 292) then
         player:tradeComplete();
         player:addFame(WINDURST,80);
-        player:addTitle(CARDIAN_TUTOR);
+        player:addTitle(dsp.title.CARDIAN_TUTOR);
         player:addGil(GIL_RATE*200);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
         player:completeQuest(WINDURST,THE_ALL_NEW_C_2000);

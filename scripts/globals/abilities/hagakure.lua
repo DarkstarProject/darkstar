@@ -13,6 +13,6 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(EFFECT_HAGAKURE);
-    player:addStatusEffect(EFFECT_HAGAKURE,1,0,60);
+    target:delStatusEffect(dsp.effect.HAGAKURE);
+    player:addStatusEffect(dsp.effect.HAGAKURE,1,0,60);
 end;

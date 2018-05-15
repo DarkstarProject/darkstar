@@ -24,13 +24,13 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_STONESKIN;
-    local blueskill = caster:getSkillLevel(BLUE_SKILL);
+    local typeEffect = dsp.effect.STONESKIN;
+    local blueskill = caster:getSkillLevel(dsp.skill.BLUE_MAGIC);
     local power = ((blueskill)/3) *2;
     local duration = 300;
 
     if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end;
 
     return typeEffect;

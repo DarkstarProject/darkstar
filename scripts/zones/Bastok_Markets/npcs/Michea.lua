@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         
     -- DISTANT LOYALTIES
     elseif (distantLoyalties == QUEST_ACCEPTED and distantLoyaltiesProgress >= 1 and distantLoyaltiesProgress <= 3) then
-        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(GOLDSMITHING_ORDER)) then
+        if (distantLoyaltiesProgress == 1 and player:hasKeyItem(dsp.ki.GOLDSMITHING_ORDER)) then
             player:startEvent(315);
         elseif (distantLoyaltiesProgress == 2) then
             player:startEvent(316);
@@ -73,14 +73,14 @@ function onEventFinish(player,csid,option)
     if (csid == 215) then
         player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
     elseif (csid == 216) then
-        local fame = player:hasCompleteQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
+        local fame = player:hasCompletedQuest(BASTOK, THE_ELVAAN_GOLDSMITH) and 8 or 100;
         if (npcUtil.completeQuest(player, BASTOK, THE_ELVAAN_GOLDSMITH, {gil=180, fame=fame})) then
             player:confirmTrade();
         end
 
     -- DISTANT LOYALTIES
     elseif (csid == 315) then
-        player:delKeyItem(GOLDSMITHING_ORDER);
+        player:delKeyItem(dsp.ki.GOLDSMITHING_ORDER);
         player:setVar("DistantLoyaltiesProgress",2);
     elseif (csid == 317) then
         player:confirmTrade();
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 318) then
         player:setVar("DistantLoyaltiesProgress",4);
-        npcUtil.giveKeyItem(player, MYTHRIL_HEARTS);
+        npcUtil.giveKeyItem(player, dsp.ki.MYTHRIL_HEARTS);
         
     -- FATHER FIGURE
     elseif (csid == 240) then

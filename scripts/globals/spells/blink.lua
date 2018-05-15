@@ -11,15 +11,15 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = 300;
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
-    if (target:addStatusEffect(EFFECT_BLINK, BLINK_SHADOWS, 0, duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+    if (target:addStatusEffect(dsp.effect.BLINK, BLINK_SHADOWS, 0, duration)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_BLINK;
+    return dsp.effect.BLINK;
 end;

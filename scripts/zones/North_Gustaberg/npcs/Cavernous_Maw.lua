@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (ENABLE_WOTG == 1 and player:hasKeyItem(PURE_WHITE_FEATHER) and hasMawActivated(player,7)) then
+    if (ENABLE_WOTG == 1 and player:hasKeyItem(dsp.ki.PURE_WHITE_FEATHER) and hasMawActivated(player,7)) then
         player:startEvent(903);
     else
         player:messageSpecial(NOTHING_HAPPENS);
@@ -33,6 +33,6 @@ function onEventFinish(player,csid,option)
     -- printf("CSID:",csid);
     -- printf("RESULT:",option);
     if (csid == 903 and option == 1) then
-        toMaw(player,11);
+        dsp.teleport.toMaw(player,11);
     end
 end;

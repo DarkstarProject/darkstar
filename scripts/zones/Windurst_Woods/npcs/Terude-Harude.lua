@@ -16,11 +16,11 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,3);
-    local SkillLevel = player:getSkillLevel(SKILL_CLOTHCRAFT);
-    local Cost = getAdvImageSupportCost(player,SKILL_CLOTHCRAFT);
+    local SkillLevel = player:getSkillLevel(dsp.skill.CLOTHCRAFT);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.CLOTHCRAFT);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY) == false) then
             player:startEvent(10013,Cost,SkillLevel,0,511,player:getGil(),0,4095,0);
         else
             player:startEvent(10013,Cost,SkillLevel,0,511,player:getGil(),28754,0,0);
@@ -42,6 +42,6 @@ function onEventFinish(player,csid,option)
     if (csid == 10013 and option == 1) then
         player:delGil(Cost);
         player:messageSpecial(IMAGE_SUPPORT,0,4,0);
-        player:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,480);
+        player:addStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY,3,0,480);
     end
 end;

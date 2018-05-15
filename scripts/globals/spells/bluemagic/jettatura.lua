@@ -24,24 +24,24 @@ end;
 
 function onSpellCast(caster,target,spell)
     local params = {};
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
-    params.effect = EFFECT_TERROR;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
+    params.effect = dsp.effect.TERROR;
     local resist = applyResistance(caster, target, spell, params);
     local duration = 5 * resist;
 
     if (resist > 0.5) then -- Do it!
         if (target:isFacing(caster)) then
             if (target:addStatusEffect(params.effect,1,0,duration)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
             else
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
             end;
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end;
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end;
 
     return params.effect;

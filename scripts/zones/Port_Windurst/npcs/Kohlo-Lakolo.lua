@@ -57,7 +57,7 @@ Fame       = player:getFameLevel(WINDURST);
     if (ThePromise == QUEST_COMPLETED) then
         player:startEvent(544);
     elseif (ThePromise == QUEST_ACCEPTED) then
-        InvisibleManSticker = player:hasKeyItem(INVISIBLE_MAN_STICKER);
+        InvisibleManSticker = player:hasKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
 
         if (InvisibleManSticker == true) then
             ThePromiseCS_Seen = player:getVar("ThePromiseCS_Seen");
@@ -68,7 +68,7 @@ Fame       = player:getFameLevel(WINDURST);
                 if (FreeSlots >= 1) then
                     player:completeQuest(WINDURST,THE_PROMISE);
                     player:addFame(WINDURST,150);
-                    player:delKeyItem(INVISIBLE_MAN_STICKER);
+                    player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
                     player:addItem(13135);
                     player:messageSpecial(ITEM_OBTAINED,13135);
                     player:setVar("ThePromise",0);
@@ -77,13 +77,13 @@ Fame       = player:getFameLevel(WINDURST);
                     player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13135);
                 end
             else
-                player:startEvent(522,0,INVISIBLE_MAN_STICKER);
+                player:startEvent(522,0,dsp.ki.INVISIBLE_MAN_STICKER);
             end
         else
             player:startEvent(514);
         end
     elseif (WildCard == QUEST_COMPLETED) then
-        player:startEvent(513,0,INVISIBLE_MAN_STICKER);
+        player:startEvent(513,0,dsp.ki.INVISIBLE_MAN_STICKER);
     elseif (WildCard == QUEST_ACCEPTED) then
         WildCardVar = player:getVar("WildCard");
 
@@ -111,7 +111,7 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(440);
         end
     elseif (OnionRings == QUEST_ACCEPTED) then
-        OldRing = player:hasKeyItem(OLD_RING);
+        OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
         if (OldRing == true) then
             OnionRingsTime = player:getVar("OnionRingsTime");
@@ -125,15 +125,15 @@ Fame       = player:getFameLevel(WINDURST);
         end
     elseif (InspectorsGadget == QUEST_COMPLETED) then
         if (NeedToZone == false and Fame >= 3) then
-            OldRing = player:hasKeyItem(OLD_RING);
+            OldRing = player:hasKeyItem(dsp.ki.OLD_RING);
 
             if (OldRing == true) then
                 OnionRingsVar = player:getVar("OnionRings");
 
                 if (OnionRingsVar == 1) then
-                    player:startEvent(430,0,OLD_RING);
+                    player:startEvent(430,0,dsp.ki.OLD_RING);
                 else
-                    player:startEvent(432,0,OLD_RING);
+                    player:startEvent(432,0,dsp.ki.OLD_RING);
                 end
             else
                 player:startEvent(429);
@@ -142,7 +142,7 @@ Fame       = player:getFameLevel(WINDURST);
             player:startEvent(422);
         end
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
-        FakeMoustache = player:hasKeyItem(FAKE_MOUSTACHE);
+        FakeMoustache = player:hasKeyItem(dsp.ki.FAKE_MOUSTACHE);
 
         if (FakeMoustache == true) then
             player:startEvent(421);
@@ -203,7 +203,7 @@ function onEventFinish(player,csid,option)
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
             player:addFame(WINDURST,75);
-            player:addTitle(STAR_ONION_BRIGADE_MEMBER);
+            player:addTitle(dsp.title.STAR_ONION_BRIGADE_MEMBER);
             player:tradeComplete();
             player:addItem(13093);
             player:messageSpecial(ITEM_OBTAINED,13093);
@@ -230,7 +230,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 386 or csid == 400) then
         player:completeQuest(WINDURST,KNOW_ONE_S_ONIONS);
         player:addFame(WINDURST,80);
-        player:addTitle(SOB_SUPER_HERO);
+        player:addTitle(dsp.title.SOB_SUPER_HERO);
         player:setVar("KnowOnesOnions",0);
         player:setVar("KnowOnesOnionsTime",0);
         player:needToZone(true);
@@ -242,7 +242,7 @@ function onEventFinish(player,csid,option)
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,INSPECTOR_S_GADGET);
             player:addFame(WINDURST,90);
-            player:addTitle(FAKEMOUSTACHED_INVESTIGATOR);
+            player:addTitle(dsp.title.FAKEMOUSTACHED_INVESTIGATOR);
             player:addItem(13204);
             player:messageSpecial(ITEM_OBTAINED,13204);
             player:needToZone(true);
@@ -263,8 +263,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 432 or csid == 433) then
         player:completeQuest(WINDURST,ONION_RINGS);
         player:addFame(WINDURST,100);
-        player:addTitle(STAR_ONION_BRIGADIER);
-        player:delKeyItem(OLD_RING);
+        player:addTitle(dsp.title.STAR_ONION_BRIGADIER);
+        player:delKeyItem(dsp.ki.OLD_RING);
         player:setVar("OnionRingsTime",0);
         player:needToZone(true);
     elseif (csid == 440) then
@@ -294,7 +294,7 @@ function onEventFinish(player,csid,option)
         if (FreeSlots >= 1) then
             player:completeQuest(WINDURST,THE_PROMISE);
             player:addFame(WINDURST,150);
-            player:delKeyItem(INVISIBLE_MAN_STICKER);
+            player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
             player:addItem(13135);
             player:messageSpecial(ITEM_OBTAINED,13135);
             player:setVar("ThePromise",0);

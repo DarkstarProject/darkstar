@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(MAGICITE_ORASTONE) == false) then
+    if (player:getCurrentMission(player:getNation()) == 13 and player:hasKeyItem(dsp.ki.MAGICITE_ORASTONE) == false) then
         if (player:getVar("MissionStatus") < 4) then
             player:startEvent(44,1); -- play Lion part of the CS (this is first magicite)
         else
@@ -38,8 +38,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 44) then
         player:setVar("MissionStatus",4);
-        player:addKeyItem(MAGICITE_ORASTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,MAGICITE_ORASTONE);
+        player:addKeyItem(dsp.ki.MAGICITE_ORASTONE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGICITE_ORASTONE);
     end
 
 end;

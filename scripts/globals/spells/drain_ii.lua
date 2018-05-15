@@ -15,17 +15,17 @@ end;
 function onSpellCast(caster,target,spell)
     --calculate raw damage (unknown function  -> only dark skill though) - using http://www.bluegartr.com/threads/44518-Drain-Calculations
     -- also have small constant to account for 0 dark skill
-    local dmg = 20 + (1.236 * caster:getSkillLevel(DARK_MAGIC_SKILL));
+    local dmg = 20 + (1.236 * caster:getSkillLevel(dsp.skill.DARK_MAGIC));
 
-    if (dmg > (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85)) then
-        dmg = (caster:getSkillLevel(DARK_MAGIC_SKILL) + 85);
+    if (dmg > (caster:getSkillLevel(dsp.skill.DARK_MAGIC) + 85)) then
+        dmg = (caster:getSkillLevel(dsp.skill.DARK_MAGIC) + 85);
     end
 
     --get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
-    params.skillType = DARK_MAGIC_SKILL;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.DARK_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
@@ -45,7 +45,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:isUndead()) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
         return dmg;
     end
 
@@ -54,10 +54,10 @@ function onSpellCast(caster,target,spell)
     local leftOver = (caster:getHP() + dmg) - caster:getMaxHP();
 
     if (leftOver > 0) then
-        caster:addStatusEffect(EFFECT_MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
+        caster:addStatusEffect(dsp.effect.MAX_HP_BOOST, (leftOver/caster:getMaxHP())*100, 0, 60);
     end
 
     caster:addHP(dmg);
-    spell:setMsg(msgBasic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
+    spell:setMsg(dsp.msg.basic.MAGIC_DRAIN_HP); --change msg to 'xxx hp drained from the yyyy.'
     return dmg;
 end;

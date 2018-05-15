@@ -107,7 +107,7 @@ function getNOS(itemtarget,item)
 end;
 
 function onTrade(player,npc,trade)
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
     local count = trade:getItemCount(); --nombre d'objet total
     local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
     local reward = false;
@@ -256,14 +256,14 @@ end;
 
 function onTrigger(player,npc)
 
-    local NameOfScience = player:getQuestStatus(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+    local NameOfScience = player:getQuestStatus(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
     local itemtarget = player:getVar("NAME_OF_SCIENCE_target");
     local rnd= math.random();
 
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then   --have SEA acces
         if (NameOfScience == QUEST_AVAILABLE) then
             player:startEvent(524,13205,13327,13080);
-            player:addQuest(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+            player:addQuest(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
         elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED  and itemtarget == 0) then
             player:startEvent(525,13205,13327,13080);
         elseif (NameOfScience == QUEST_ACCEPTED or NameOfScience ==QUEST_COMPLETED and itemtarget > 0) then
@@ -296,7 +296,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,itemtarget);
         else
             player:tradeComplete();
-            player:completeQuest(OTHER_AREAS,IN_THE_NAME_OF_SCIENCE);
+            player:completeQuest(OTHER_AREAS_LOG,IN_THE_NAME_OF_SCIENCE);
             player:addItem(itemtarget);
             player:messageSpecial(ITEM_OBTAINED,itemtarget); -- Item
             player:setVar("NAME_OF_SCIENCE_target",0);

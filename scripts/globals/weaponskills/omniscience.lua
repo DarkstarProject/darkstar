@@ -24,8 +24,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
     params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;  
     params.mnd_wsc = 0.3; params.chr_wsc = 0.0;
-    params.ele = ELE_DARK;
-    params.skill = SKILL_STF;
+    params.ele = dsp.magic.ele.DARK;
+    params.skill = dsp.skill.STAFF;
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -36,8 +36,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local duration = (tp/1000 * 60);
-        if (target:hasStatusEffect(EFFECT_MAGIC_ATK_DOWN) == false) then
-            target:addStatusEffect(EFFECT_MAGIC_ATK_DOWN, 10, 0, duration);
+        if (target:hasStatusEffect(dsp.effect.MAGIC_ATK_DOWN) == false) then
+            target:addStatusEffect(dsp.effect.MAGIC_ATK_DOWN, 10, 0, duration);
         end
     end
 

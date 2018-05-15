@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_EVASION_DOWN
+-- dsp.effect.EVASION_DOWN
 --
 -----------------------------------
 require("scripts/globals/status");
@@ -9,10 +9,10 @@ require("scripts/globals/status");
 -- onEffectGain Action
 -----------------------------------
 function onEffectGain(target,effect)
-    if (target:getMod(MOD_EVA) - effect:getPower() < 0) then
-        effect:setPower(target:getStat(MOD_EVA));
+    if (target:getMod(dsp.mod.EVA) - effect:getPower() < 0) then
+        effect:setPower(target:getStat(dsp.mod.EVA));
     end
-    target:addMod(MOD_EVA,-effect:getPower());
+    target:addMod(dsp.mod.EVA,-effect:getPower());
 end
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local evaDownAmt = effect:getPower();
     if (evaDownAmt > 0) then
         effect:setPower(evaDownAmt - 10);
-        target:delMod(MOD_EVA, -10);
+        target:delMod(dsp.mod.EVA, -10);
     end
 end
 
@@ -33,6 +33,6 @@ end
 function onEffectLose(target,effect)
     local evaDownAmt = effect:getPower();
     if (evaDownAmt > 0) then
-        target:delMod(MOD_EVA,-effect:getPower());
+        target:delMod(dsp.mod.EVA,-effect:getPower());
     end
 end

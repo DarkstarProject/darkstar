@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player,target,ability)
-    local power = player:getMerit(MERIT_FEALTY);
+    local power = player:getMerit(dsp.merit.FEALTY);
 
-    player:addStatusEffect(EFFECT_FEALTY,power,0,60 + (power * 5));
+    player:addStatusEffect(dsp.effect.FEALTY,power,0,60 + (power * 5));
 end;

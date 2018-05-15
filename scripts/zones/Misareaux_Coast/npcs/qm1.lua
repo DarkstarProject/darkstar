@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     if ( not GetMobByID(GRATION):isSpawned() and (npcUtil.tradeHas(trade, 12370) or npcUtil.tradeHas(trade, 12359)) ) then -- Hickory Shield or Picaroon's Shield
         player:confirmTrade();
         SpawnMob(GRATION):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

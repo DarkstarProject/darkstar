@@ -8,23 +8,23 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         return 0;
-    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
+    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
         return 0;
     end
     return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MIGHTY_STRIKES;
+    local typeEffect = dsp.effect.MIGHTY_STRIKES;
     local duration = 45;
-    if (skill:getParam() ~= 0 and mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+    if (skill:getParam() ~= 0 and mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         duration = skill:getParam();
     end
     MobBuffMove(mob, typeEffect, 1, 0, duration);
 
-    skill:setMsg(msgBasic.USES);
+    skill:setMsg(dsp.msg.basic.USES);
 
     return typeEffect;
 end;

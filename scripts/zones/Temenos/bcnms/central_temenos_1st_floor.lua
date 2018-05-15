@@ -18,8 +18,8 @@ function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[C_Temenos_1st]UniqueID"));
     player:setVar("LimbusID",1303);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(WHITE_CARD);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
 
 -- Leaving by every mean possible, given by the LeaveCode

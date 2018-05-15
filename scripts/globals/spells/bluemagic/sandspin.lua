@@ -48,19 +48,19 @@ function onSpellCast(caster,target,spell)
     
     local params = {};
     
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     
     params.bonus = 1.0;
     
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.0625) then
-        if (target:canGainStatusEffect(EFFECT_ACCURACY_DOWN)) then
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60);
+        if (target:canGainStatusEffect(dsp.effect.ACCURACY_DOWN)) then
+            target:addStatusEffect(dsp.effect.ACCURACY_DOWN,20,3,60);
         end
     end
     

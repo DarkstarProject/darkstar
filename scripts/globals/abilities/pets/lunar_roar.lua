@@ -14,6 +14,6 @@ end;
 function onPetAbility(target, pet, skill)
     target:dispelStatusEffect();
     target:dispelStatusEffect();
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
     return 0;
 end

@@ -17,9 +17,9 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_CHAINSPELL;
+    local typeEffect = dsp.effect.CHAINSPELL;
     MobBuffMove(mob, typeEffect, 1, 0, 60);
 
-    skill:setMsg(msgBasic.USES);
+    skill:setMsg(dsp.msg.basic.USES);
     return typeEffect;
 end;

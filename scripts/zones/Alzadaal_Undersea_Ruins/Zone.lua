@@ -160,18 +160,18 @@ function onEventFinish(player,csid,option)
     -- printf("FINISH CSID: %u",csid);
     -- printf("FINISH RESULT: %u",option);
     if (csid == 1) then
-        player:addKeyItem(ASTRAL_COMPASS);
+        player:addKeyItem(dsp.ki.ASTRAL_COMPASS);
         player:completeMission(TOAU,UNDERSEA_SCOUTING);
         player:addMission(TOAU,ASTRAL_WAVES);
-        player:messageSpecial(KEYITEM_OBTAINED,ASTRAL_COMPASS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASTRAL_COMPASS);
     elseif (csid == 7) then
         player:completeMission(TOAU,PATH_OF_DARKNESS);
-        player:setTitle(NAJAS_COMRADEINARMS);
+        player:setTitle(dsp.title.NAJAS_COMRADEINARMS);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,FANGS_OF_THE_LION);
     elseif (csid == 10) then
         player:completeMission(TOAU,NASHMEIRAS_PLEA);
-        player:setTitle(PREVENTER_OF_RAGNAROK);
+        player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,RAGNAROK);
     elseif (csid == 116) then -- enter instancedd nyzul island

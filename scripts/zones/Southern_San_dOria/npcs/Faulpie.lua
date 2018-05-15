@@ -13,21 +13,21 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_LEATHERCRAFT);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.LEATHERCRAFT);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_LEATHERCRAFT,newRank);
+        player:setSkillRank(dsp.skill.LEATHERCRAFT,newRank);
         player:startEvent(649,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_LEATHERCRAFT);
-    local testItem = getTestItem(player,npc,SKILL_LEATHERCRAFT);
+    local craftSkill = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
+    local testItem = getTestItem(player,npc,dsp.skill.LEATHERCRAFT);
     local guildMember = isGuildMember(player,7);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,SKILL_LEATHERCRAFT) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
 
     if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
         getNewRank ~= 100) then

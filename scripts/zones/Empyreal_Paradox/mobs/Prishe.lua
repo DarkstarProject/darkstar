@@ -9,7 +9,7 @@ require("scripts/zones/Empyreal_Paradox/TextIDs");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 30);
+    mob:addMod(dsp.mod.REGAIN, 30);
 end;
 
 function onMobSpawn(mob)
@@ -20,7 +20,7 @@ function onMobRoam(mob)
     local ready = mob:getLocalVar("ready");
     if (ready == 0 and wait > 240) then
         local baseID = 16924673 + (mob:getBattlefield():getBattlefieldNumber() - 1) * 2
-        if (GetMobAction(baseID) ~= ACTION_NONE) then
+        if (GetMobAction(baseID) ~= dsp.act.NONE) then
             mob:entityAnimationPacket("prov");
             mob:messageText(mob, PRISHE_TEXT);
         else
@@ -39,7 +39,7 @@ end;
 
 function onMobEngaged(mob, target)
     mob:useMobAbility(1487);
-    mob:addStatusEffectEx(EFFECT_SILENCE,0,0,0,5)
+    mob:addStatusEffectEx(dsp.effect.SILENCE,0,0,0,5)
 end;
 
 function onMobFight(mob, target)

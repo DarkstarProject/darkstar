@@ -8,8 +8,8 @@ require("scripts/zones/Batallia_Downs/TextIDs");
 require("scripts/globals/keyitems");
 
 function onMobDeath(mob, player, isKiller)
-    if (not player:hasKeyItem(SEEDSPALL_ROSEUM) and not player:hasKeyItem(VIRIDIAN_KEY)) then
-        player:addKeyItem(SEEDSPALL_ROSEUM);
-        player:messageSpecial(KEYITEM_OBTAINED,SEEDSPALL_ROSEUM);
+    if (not player:hasKeyItem(dsp.ki.SEEDSPALL_ROSEUM) and not player:hasKeyItem(dsp.ki.VIRIDIAN_KEY)) then
+        player:addKeyItem(dsp.ki.SEEDSPALL_ROSEUM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEEDSPALL_ROSEUM);
     end
 end;

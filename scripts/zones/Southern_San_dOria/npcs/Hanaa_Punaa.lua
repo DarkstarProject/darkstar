@@ -111,7 +111,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12696); -- Leather Gloves
         else
             player:tradeComplete();
-            player:addTitle(SILENCER_OF_THE_LAMBS);
+            player:addTitle(dsp.title.SILENCER_OF_THE_LAMBS);
             player:addItem(12696);
             player:messageSpecial(ITEM_OBTAINED, 12696); -- Leather Gloves
             if (player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) == QUEST_ACCEPTED) then
@@ -131,7 +131,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12697); -- Lizard Gloves
         else
             player:tradeComplete();
-            player:addTitle(LIZARD_SKINNER);
+            player:addTitle(dsp.title.LIZARD_SKINNER);
             player:addItem(12697);
             player:messageSpecial(ITEM_OBTAINED, 12697); -- Lizard Gloves
             if (player:getQuestStatus(SANDORIA,LIZARD_SKINS) == QUEST_ACCEPTED) then
@@ -151,7 +151,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13119); -- Tyger Stole
         else
             player:tradeComplete();
-            player:addTitle(CAT_SKINNER);
+            player:addTitle(dsp.title.CAT_SKINNER);
             player:addItem(13119);
             player:messageSpecial(ITEM_OBTAINED, 13119); -- Tyger Stole
             player:addFame(SANDORIA,30);

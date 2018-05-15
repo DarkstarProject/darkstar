@@ -22,6 +22,7 @@
       YOU_CANNOT_ENTER_DYNAMIS = 9081; -- You cannot enter Dynamis
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 9083; -- Players who have not reached levelare prohibited from entering Dynamis.
          STRANDS_OF_GRASS_HERE = 9095; -- The strands of grass here have been tied together.
+      TEAR_IN_FABRIC_OF_SPACE = 10780; -- There appears to be a tear in the fabric of space...
 
 -- Shop Texts
            SCAVNIX_SHOP_DIALOG = 8670; -- I'm goood Goblin from underwooorld.I find lotshhh of gooodieshhh.You want try shhhome chipshhh? Cheap for yooou.

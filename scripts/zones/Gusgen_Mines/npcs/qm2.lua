@@ -6,28 +6,34 @@
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
 require("scripts/zones/Gusgen_Mines/TextIDs");
+require("scripts/zones/Gusgen_Mines/MobIDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/globals/npc_util");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    -- TO THE FORSAKEN MINES: Hare Meat
+    if (
+        player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and
+        npcUtil.tradeHas(trade, 4358) and
+        not player:hasItem(563) and
+        not GetMobByID(BLIND_MOBY):isSpawned()
+    ) then
+        player:confirmTrade();
+        SpawnMob(BLIND_MOBY):updateClaim(player);
 
-    if (player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and player:hasItem(563) == false) then
-        if (trade:hasItemQty(4358,1) and trade:getItemCount() == 1) then -- Trade Hare Meat
-            player:tradeComplete();
-            SpawnMob(17580038):updateClaim(player);
-        end
+    -- BLADE OF DEATH: Chaosbringer
+    elseif (
+        player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and
+        player:getVar("ChaosbringerKills") >= 200 and
+        npcUtil.tradeHas(trade, 16607)
+    ) then
+        player:startEvent(10);
     end
-    if (player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 200) then
-        if (trade:hasItemQty(16607,1) and trade:getItemCount() == 1) then -- Trade Chaosbringer
-            player:tradeComplete();
-            player:startEvent(10);
-        end
-    end
-
 end;
 
 function onTrigger(player,npc)
@@ -35,24 +41,11 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID2: %u",csid);
-    -- printf("RESULT2: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 10) then
-        if (player:getFreeSlotsCount() > 0) then
-            player:addItem(16637);
-            player:addTitle(BLACK_DEATH);
-            player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16637);
-            player:delKeyItem(LETTER_FROM_ZEID);
-            player:completeQuest(BASTOK,BLADE_OF_DEATH);
-        else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16637);
-        end
+    if (csid == 10 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DEATH, {item=16637, title=dsp.title.BLACK_DEATH, var="ChaosbringerKills"})) then
+        player:confirmTrade();
+        player:delKeyItem(dsp.ki.LETTER_FROM_ZEID);
     end
-
 end;

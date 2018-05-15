@@ -31,7 +31,7 @@ itemid_bcnmid_map =
     139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
     140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
     144, {1166, 68, 1553, 76, 1130, 79, 1178, 81, 1180, 82}, -- Waughroon Shrine
-    146, {1551, 105, 1553, 107}, -- Balgas Dias
+    146, {1552, 104, 1551, 105, 1553, 107}, -- Balgas Dias
     163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
     168, {0, 0}, -- Chamber of Oracles
     170, {0, 0}, -- Full Moon Fountain
@@ -108,7 +108,7 @@ function TradeBCNM(player, zone, trade, npc)
         return false
     end
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then -- cant start a new bc
+    if (player:hasStatusEffect(dsp.effect.BATTLEFIELD)) then -- cant start a new bc
         player:messageBasic(94, 0, 0)
         return false
     elseif (player:hasWornItem(trade:getItemId())) then -- If already used orb or testimony
@@ -151,11 +151,11 @@ function EventTriggerBCNM(player, npc)
     player:setVar("trade_bcnmid", 0)
     player:setVar("trade_itemid", 0)
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+    if (player:hasStatusEffect(dsp.effect.BATTLEFIELD)) then
         if (player:isInBcnm() == 1) then
             player:startEvent(0x7d03) -- Run Away or Stay menu
-        else -- You're not in the BCNM but you have the Battlefield effect. Think: non-trader in a party
-            status = player:getStatusEffect(EFFECT_BATTLEFIELD)
+        else -- You're not in the BCNM but you have the Battlefield dsp.effect. Think: non-trader in a party
+            status = player:getStatusEffect(dsp.effect.BATTLEFIELD)
             playerbcnmid = status:getPower()
             playermask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 1)
             if (playermask~=-1) then
@@ -190,7 +190,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         return true
     end
     if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
-        if (player:hasStatusEffect(EFFECT_BATTLEFIELD)) then
+        if (player:hasStatusEffect(dsp.effect.BATTLEFIELD)) then
             -- You're entering a bcnm but you already had the battlefield effect, so you want to go to the
             -- instance that your battlefield effect represents.
             player:setVar("bcnm_instanceid_tick", 0)
@@ -226,7 +226,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
         if (instance == player:getVar("bcnm_instanceid")) then
             -- respond to this packet
             local mask = GetBattleBitmask(id, player:getZoneID(), 2)
-            local status = player:getStatusEffect(EFFECT_BATTLEFIELD)
+            local status = player:getStatusEffect(dsp.effect.BATTLEFIELD)
             local playerbcnmid = status:getPower()
             local battlefield = player:getBattlefield()
             local name = 'Meme';
@@ -286,7 +286,7 @@ end
 function EventFinishBCNM(player, csid, option)
     print("FINISH csid "..csid.." option "..option)
 
-    if (player:hasStatusEffect(EFFECT_BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
+    if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then -- Temp condition for normal bcnm (started with onTrigger)
         return false
     else
         local id = player:getVar("trade_bcnmid")
@@ -392,7 +392,7 @@ function ItemToBCNMID(player, zone, trade)
                     local questTimelineOK = 0
 
                     -- Job/lvl condition for smn battle lvl20
-                    if (item >= 1544 and item <= 1549 and player:getMainJob() == JOBS.SMN and player:getMainLvl() >= 20) then
+                    if (item >= 1544 and item <= 1549 and player:getMainJob() == dsp.job.SMN and player:getMainLvl() >= 20) then
                         questTimelineOK = 1
                     elseif (item == 1166 and player:getVar("aThiefinNorgCS") == 6) then -- AF3 SAM condition
                         questTimelineOK = 1
@@ -452,30 +452,30 @@ function checkNonTradeBCNM(player, npc, mode)
     {
         [6] =   {
                     [640] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 6)  end, -- flames_for_the_dead
-                    [643] = function() return (player:hasKeyItem(ZEPHYR_FAN))  end, -- Brothers ENM
+                    [643] = function() return (player:hasKeyItem(dsp.ki.ZEPHYR_FAN))  end, -- Brothers ENM
                 },
         [8] =   {
                     [672] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Ulmia_s_Path") == 5)  end, -- head_wind
-                    [673] = function() return (player:hasKeyItem(MIASMA_FILTER)==true)  end,
+                    [673] = function() return (player:hasKeyItem(dsp.ki.MIASMA_FILTER)==true)  end,
                 },
         [10] =  {
                     [704] = function() return (player:getCurrentMission(COP) == DARKNESS_NAMED  and  player:getVar("PromathiaStatus") == 2)  end,-- DARKNESS_NAMED
-                    [706] = function() return (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)==true)  end, -- waking_dreams (diabolos avatar quest)
+                    [706] = function() return (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)==true)  end, -- waking_dreams (diabolos avatar quest)
                 },
         [13] =  {
                     [736] = function() return (player:getCurrentMission(COP) == THREE_PATHS  and  player:getVar("COP_Louverance_s_Path") == 5)  end, -- century_of_hardship
                 },
         [17] = {
                     [768] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
-                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_HOLLA) == false) end, -- light of holla
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) == false) end, -- light of holla
                },
         [19] = {
                     [800] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
-                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_DEM) == false)  end, -- light of dem
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) == false)  end, -- light of dem
                },
         [21] = {
                     [832] = function() return (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") ==1 )  or
-                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(LIGHT_OF_MEA) == false)  end, -- light of mea
+                                (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) == false)  end, -- light of mea
                },
         [23] = {
                     [864] = function() return (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8)  end, -- desires of emptiness
@@ -519,7 +519,7 @@ function checkNonTradeBCNM(player, npc, mode)
                                 local sTcCompleted = player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN);
                                 return (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2))
                            end, -- Sandy Mission 1-3
-                    [33] = function() return (player:hasKeyItem(DRAGON_CURSE_REMEDY))  end, -- DRG Flag Quest
+                    [33] = function() return (player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY))  end, -- DRG Flag Quest
                 },
         [144] = {
                     [64] = function() return ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or
@@ -527,7 +527,7 @@ function checkNonTradeBCNM(player, npc, mode)
                     [67] = function() return ((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2))  end,
                 },
         [146] = {
-                    [96] = function() return (player:hasKeyItem(DARK_KEY))  end, -- Mission 2-3
+                    [96] = function() return (player:hasKeyItem(dsp.ki.DARK_KEY))  end, -- Mission 2-3
                     [99] = function() return ((player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1))  end, -- Mission 6-2
                 },
         [163] = {
@@ -541,53 +541,53 @@ function checkNonTradeBCNM(player, npc, mode)
                     [192] = function() return (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES)  end, -- Zilart Mission 6
                 },
         [170] = {
-                    [224] = function() return (player:hasKeyItem(MOON_BAUBLE))  end, -- The Moonlit Path
+                    [224] = function() return (player:hasKeyItem(dsp.ki.MOON_BAUBLE))  end, -- The Moonlit Path
                     [225] = function() return ((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("WINDURST92") == 2)  end, -- Moon reading
                 },
         [179] = {
                     [256] = function() return (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3)  end, -- Zilart Mission 8
                 },
         [180] = {
-                    [288] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514791 and player:hasKeyItem(SHARD_OF_APATHY) == false)  end, -- Hume, Ark Angels 1
-                    [289] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514792 and player:hasKeyItem(SHARD_OF_COWARDICE) == false)  end, -- Tarutaru, Ark Angels 2
-                    [290] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514793 and player:hasKeyItem(SHARD_OF_ENVY) == false)  end, -- Mithra, Ark Angels 3
-                    [291] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514794 and player:hasKeyItem(SHARD_OF_ARROGANCE) == false)  end, -- Elvaan, Ark Angels 4
-                    [292] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514795 and player:hasKeyItem(SHARD_OF_RAGE) == false)  end, -- Galka, Ark Angels 5
+                    [288] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514791 and player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) == false)  end, -- Hume, Ark Angels 1
+                    [289] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514792 and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) == false)  end, -- Tarutaru, Ark Angels 2
+                    [290] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514793 and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY) == false)  end, -- Mithra, Ark Angels 3
+                    [291] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514794 and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE) == false)  end, -- Elvaan, Ark Angels 4
+                    [292] = function() return (player:getCurrentMission(ZILART) == ARK_ANGELS and player:getVar("ZilartStatus") == 1 and npc:getID() == 17514795 and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE) == false)  end, -- Galka, Ark Angels 5
                 },
         [181] = {
                     [320] = function() return (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS)  end, -- Zilart Mission 16
                 },
         [201] = {
-                    [416] = function() return (player:hasKeyItem(TUNING_FORK_OF_WIND))  end, -- Trial by Wind
-                    [420] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_EMERALD_SEAL))  end,
+                    [416] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND))  end, -- Trial by Wind
+                    [420] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL))  end,
                 },
         [202] = {
-                    [448] = function() return (player:hasKeyItem(TUNING_FORK_OF_LIGHTNING))  end, -- Trial by Lightning
-                    [452] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_VIOLET_SEAL))  end,
+                    [448] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING))  end, -- Trial by Lightning
+                    [452] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL))  end,
                },
         [203] = {
-                    [480] = function() return (player:hasKeyItem(TUNING_FORK_OF_ICE))  end, -- Trial by Ice
-                    [484] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AZURE_SEAL))  end,
+                    [480] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE))  end, -- Trial by Ice
+                    [484] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL))  end,
                 },
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
                     [516] = function() return (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
                 --[[
                     Temp disabled pending BCNM mob fixes
-                    [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(MARK_OF_SEED))  end, -- ACP Mission 7
+                    [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(dsp.ki.MARK_OF_SEED))  end, -- ACP Mission 7
                 ]]
                 },
         [207] = {
-                    [544] = function() return (player:hasKeyItem(TUNING_FORK_OF_FIRE))  end, -- Trial by Fire
-                    [547] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_SCARLET_SEAL))  end,
+                    [544] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE))  end, -- Trial by Fire
+                    [547] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL))  end,
                 },
         [209] = {
-                    [576] = function() return (player:hasKeyItem(TUNING_FORK_OF_EARTH))  end, -- Trial by Earth
-                    [580] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_AMBER_SEAL))  end,
+                    [576] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_EARTH))  end, -- Trial by Earth
+                    [580] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL))  end,
                },
         [211] = {
-                    [608] = function() return (player:hasKeyItem(TUNING_FORK_OF_WATER))  end, -- Trial by Water
-                    [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(DOMINAS_CERULEAN_SEAL))  end,
+                    [608] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER))  end, -- Trial by Water
+                    [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL))  end,
                 },
     }
 
@@ -624,7 +624,7 @@ function CutsceneSkip(player, npc)
     elseif (Zone == 10) then -- The_Shrouded_Maw
         if ((player:hasCompletedMission(COP, DARKNESS_NAMED)) or (player:getCurrentMission(COP) == DARKNESS_NAMED and player:getVar("PromathiaStatus") > 2)) then -- DARKNESS_NAMED
             skip = 1
-        elseif ((player:hasCompleteQuest(WINDURST, WAKING_DREAMS)) or (player:hasKeyItem(WHISPER_OF_DREAMS))) then -- waking_dreams (diabolos avatar quest)
+        elseif ((player:hasCompletedQuest(WINDURST, WAKING_DREAMS)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS))) then -- waking_dreams (diabolos avatar quest)
             skip = 1
         end
     elseif (Zone == 13) then -- Mine Shaft 2716
@@ -632,15 +632,15 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 17) then -- Spire of Holla
-        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(LIGHT_OF_HOLLA))) then -- light of holla
+        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then -- light of holla
             skip = 1
         end
     elseif (Zone == 19) then -- Spire of Dem
-        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(LIGHT_OF_DEM))) then -- light of dem
+        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then -- light of dem
             skip = 1
         end
     elseif (Zone == 21) then -- Spire of Mea
-        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(LIGHT_OF_MEA))) then -- light of mea
+        if ((player:hasCompletedMission(COP, THE_MOTHERCRYSTALS)) or (player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then -- light of mea
             skip = 1
         end
     elseif (Zone == 23) then -- Spire of Vahzl
@@ -681,7 +681,7 @@ function CutsceneSkip(player, npc)
     elseif (Zone == 140) then -- Ghelsba Outpost
         if ((player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN)) or (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") > 2)) then -- Sandy Mission 1-3
             skip = 1
-        elseif (player:hasCompleteQuest(SANDORIA, THE_HOLY_CREST)) then -- DRG Flag Quest
+        elseif (player:hasCompletedQuest(SANDORIA, THE_HOLY_CREST)) then -- DRG Flag Quest
             skip = 1
         end
     elseif (Zone == 144) then -- Waughroon Shrine
@@ -707,7 +707,7 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 170) then -- Full Moon Fountain
-        if ((player:hasCompleteQuest(WINDURST, THE_MOONLIT_PATH)) or (player:hasKeyItem(WHISPER_OF_THE_MOON))) then -- The Moonlit Path
+        if ((player:hasCompletedQuest(WINDURST, THE_MOONLIT_PATH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON))) then -- The Moonlit Path
             skip = 1
         end
     elseif (Zone == 179) then -- Stellar Fulcrum
@@ -723,15 +723,15 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 201) then -- Cloister of Gales
-        if ((player:hasCompleteQuest(OUTLANDS, TRIAL_BY_WIND)) or (player:hasKeyItem(WHISPER_OF_GALES))) then -- Trial by Wind
+        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_WIND)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_GALES))) then -- Trial by Wind
             skip = 1
         end
     elseif (Zone == 202) then -- Cloister of Storms
-        if ((player:hasCompleteQuest(OTHER_AREAS, TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(WHISPER_OF_STORMS))) then -- Trial by Lightning
+        if ((player:hasCompletedQuest(OTHER_AREAS_LOG, TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS))) then -- Trial by Lightning
             skip = 1
         end
     elseif (Zone == 203) then -- Cloister of Frost
-        if ((player:hasCompleteQuest(SANDORIA, TRIAL_BY_ICE)) or (player:hasKeyItem(WHISPER_OF_FROST))) then -- Trial by Ice
+        if ((player:hasCompletedQuest(SANDORIA, TRIAL_BY_ICE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FROST))) then -- Trial by Ice
             skip = 1
         end
     elseif (Zone == 206) then -- Qu'Bia Arena
@@ -741,15 +741,15 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 207) then -- Cloister of Flames
-        if ((player:hasCompleteQuest(OUTLANDS, TRIAL_BY_FIRE)) or (player:hasKeyItem(WHISPER_OF_FLAMES))) then -- Trial by Fire
+        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_FIRE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES))) then -- Trial by Fire
             skip = 1
         end
     elseif (Zone == 209) then -- Cloister of Tremors
-        if ((player:hasCompleteQuest(BASTOK, TRIAL_BY_EARTH)) or (player:hasKeyItem(WHISPER_OF_TREMORS))) then -- Trial by Earth
+        if ((player:hasCompletedQuest(BASTOK, TRIAL_BY_EARTH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS))) then -- Trial by Earth
             skip = 1
         end
     elseif (Zone == 211) then -- Cloister of Tides
-        if ((player:hasCompleteQuest(OUTLANDS, TRIAL_BY_WATER)) or (player:hasKeyItem(WHISPER_OF_TIDES))) then -- Trial by Water
+        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_WATER)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES))) then -- Trial by Water
             skip = 1
         end
     end

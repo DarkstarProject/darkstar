@@ -2376,6 +2376,7 @@ INSERT INTO `item_mods` VALUES (10799,384,-20); -- SLOW
 INSERT INTO `item_mods` VALUES (10800,1,28);
 INSERT INTO `item_mods` VALUES (10800,10,15);
 INSERT INTO `item_mods` VALUES (10800,68,-6);
+INSERT INTO `item_mods` VALUES (10800,905,5); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (10801,1,17);
 INSERT INTO `item_mods` VALUES (10801,5,50);
 INSERT INTO `item_mods` VALUES (10801,13,4);
@@ -3419,6 +3420,7 @@ INSERT INTO `item_mods` VALUES (11105,1,27);
 INSERT INTO `item_mods` VALUES (11105,25,10);
 INSERT INTO `item_mods` VALUES (11105,80,7);
 INSERT INTO `item_mods` VALUES (11105,384,30);
+INSERT INTO `item_mods` VALUES (11105,899,25); -- Tactical Guard +25 TP/Guard
 INSERT INTO `item_mods` VALUES (11106,1,22);
 INSERT INTO `item_mods` VALUES (11106,2,25);
 INSERT INTO `item_mods` VALUES (11106,5,25);
@@ -3444,6 +3446,7 @@ INSERT INTO `item_mods` VALUES (11110,8,11);
 INSERT INTO `item_mods` VALUES (11110,10,11);
 INSERT INTO `item_mods` VALUES (11110,82,7);
 INSERT INTO `item_mods` VALUES (11110,384,40);
+INSERT INTO `item_mods` VALUES (11110,905,2); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (11111,1,31);
 INSERT INTO `item_mods` VALUES (11111,23,10);
 INSERT INTO `item_mods` VALUES (11111,25,10);
@@ -3513,6 +3516,8 @@ INSERT INTO `item_mods` VALUES (11124,1,54);
 INSERT INTO `item_mods` VALUES (11124,23,15);
 INSERT INTO `item_mods` VALUES (11124,288,5);
 INSERT INTO `item_mods` VALUES (11124,384,71);
+INSERT INTO `item_mods` VALUES (11124,903,50);	-- "Fencer" +1 Adds 50 TP BONUS
+INSERT INTO `item_mods` VALUES (11124,904,1);	-- "Fencer" +1 Adds 1% Crit Rate
 INSERT INTO `item_mods` VALUES (11125,1,49);
 INSERT INTO `item_mods` VALUES (11125,23,10);
 INSERT INTO `item_mods` VALUES (11125,25,10);
@@ -3536,6 +3541,7 @@ INSERT INTO `item_mods` VALUES (11129,1,48);
 INSERT INTO `item_mods` VALUES (11129,9,7);
 INSERT INTO `item_mods` VALUES (11129,165,4);
 INSERT INTO `item_mods` VALUES (11129,384,51);
+INSERT INTO `item_mods` VALUES (11129,896,5);
 INSERT INTO `item_mods` VALUES (11130,1,58);
 INSERT INTO `item_mods` VALUES (11130,2,50);
 INSERT INTO `item_mods` VALUES (11130,82,7);
@@ -3638,6 +3644,7 @@ INSERT INTO `item_mods` VALUES (11151,12,9);
 INSERT INTO `item_mods` VALUES (11151,13,9);
 INSERT INTO `item_mods` VALUES (11151,28,8);
 INSERT INTO `item_mods` VALUES (11151,30,8);
+INSERT INTO `item_mods` VALUES (11151,902,25); -- Occult Acumen +25%
 INSERT INTO `item_mods` VALUES (11152,1,25);
 INSERT INTO `item_mods` VALUES (11152,8,7);
 INSERT INTO `item_mods` VALUES (11152,9,7);
@@ -3661,6 +3668,8 @@ INSERT INTO `item_mods` VALUES (11156,1,23);
 INSERT INTO `item_mods` VALUES (11156,8,5);
 INSERT INTO `item_mods` VALUES (11156,9,5);
 INSERT INTO `item_mods` VALUES (11156,384,40);
+INSERT INTO `item_mods` VALUES (11156,486,15); -- Tactical Parry +15 TP/Parry
+INSERT INTO `item_mods` VALUES (11156,900,1); -- Enhances "Utsusemi"
 INSERT INTO `item_mods` VALUES (11157,1,26);
 INSERT INTO `item_mods` VALUES (11157,10,10);
 INSERT INTO `item_mods` VALUES (11157,23,12);
@@ -3893,6 +3902,7 @@ INSERT INTO `item_mods` VALUES (11205,1,25);
 INSERT INTO `item_mods` VALUES (11205,25,8);
 INSERT INTO `item_mods` VALUES (11205,80,5);
 INSERT INTO `item_mods` VALUES (11205,384,20);
+INSERT INTO `item_mods` VALUES (11205,899,15); -- Tactical Guard +15 TP/Guard
 INSERT INTO `item_mods` VALUES (11206,1,20);
 INSERT INTO `item_mods` VALUES (11206,2,20);
 INSERT INTO `item_mods` VALUES (11206,5,20);
@@ -3918,6 +3928,7 @@ INSERT INTO `item_mods` VALUES (11210,8,7);
 INSERT INTO `item_mods` VALUES (11210,10,7);
 INSERT INTO `item_mods` VALUES (11210,82,5);
 INSERT INTO `item_mods` VALUES (11210,384,30);
+INSERT INTO `item_mods` VALUES (11210,905,1); -- Enhances "Shield Def. Bonus" effect
 INSERT INTO `item_mods` VALUES (11211,1,29);
 INSERT INTO `item_mods` VALUES (11211,23,7);
 INSERT INTO `item_mods` VALUES (11211,25,7);
@@ -4005,6 +4016,7 @@ INSERT INTO `item_mods` VALUES (11228,30,5);
 INSERT INTO `item_mods` VALUES (11229,1,46);
 INSERT INTO `item_mods` VALUES (11229,9,5);
 INSERT INTO `item_mods` VALUES (11229,384,40);
+INSERT INTO `item_mods` VALUES (11229,896,3);
 INSERT INTO `item_mods` VALUES (11230,1,56);
 INSERT INTO `item_mods` VALUES (11230,2,30);
 INSERT INTO `item_mods` VALUES (11230,161,-3);
@@ -4101,6 +4113,7 @@ INSERT INTO `item_mods` VALUES (11251,12,7);
 INSERT INTO `item_mods` VALUES (11251,13,7);
 INSERT INTO `item_mods` VALUES (11251,28,6);
 INSERT INTO `item_mods` VALUES (11251,30,6);
+INSERT INTO `item_mods` VALUES (11251,902,15); -- Occult Acumen +15%
 INSERT INTO `item_mods` VALUES (11252,1,23);
 INSERT INTO `item_mods` VALUES (11252,8,5);
 INSERT INTO `item_mods` VALUES (11252,9,5);
@@ -4123,6 +4136,7 @@ INSERT INTO `item_mods` VALUES (11256,1,21);
 INSERT INTO `item_mods` VALUES (11256,8,4);
 INSERT INTO `item_mods` VALUES (11256,9,4);
 INSERT INTO `item_mods` VALUES (11256,384,30);
+INSERT INTO `item_mods` VALUES (11256,486,10); -- Tactial Parry +10 TP/Parry
 INSERT INTO `item_mods` VALUES (11257,1,24);
 INSERT INTO `item_mods` VALUES (11257,10,7);
 INSERT INTO `item_mods` VALUES (11257,23,8);
@@ -5755,6 +5769,7 @@ INSERT INTO `item_mods` VALUES (11774,24,9);      -- Ranged Attack+9
 INSERT INTO `item_mods` VALUES (11774,73,3);      -- Store TP+3
 INSERT INTO `item_mods` VALUES (11775,1,4);
 INSERT INTO `item_mods` VALUES (11775,73,2);
+INSERT INTO `item_mods` VALUES (11775,902,20); -- Occult Acumen +20%
 INSERT INTO `item_mods` VALUES (11776,1,4);
 INSERT INTO `item_mods` VALUES (11776,5,60);
 INSERT INTO `item_mods` VALUES (11777,1,6);
@@ -22366,7 +22381,9 @@ INSERT INTO `item_mods` VALUES (18524,8,10);
 INSERT INTO `item_mods` VALUES (18525,8,15);
 INSERT INTO `item_mods` VALUES (18531,24,4);
 INSERT INTO `item_mods` VALUES (18533,25,7);      -- Magnus Axe: Accuracy+7
-INSERT INTO `item_mods` VALUES (18534,25,5);
+INSERT INTO `item_mods` VALUES (18534,25,5);	  -- Charmer's Merlin: Accuracy+5
+INSERT INTO `item_mods` VALUES (18534,903,50);	  -- "Fencer" +1 50 TP Bonus
+INSERT INTO `item_mods` VALUES (18534,904,1);	  -- "Fencer" +1 1% Crit Rate
 INSERT INTO `item_mods` VALUES (18535,73,4);
 INSERT INTO `item_mods` VALUES (18535,104,5);
 INSERT INTO `item_mods` VALUES (18535,105,5);
@@ -23123,6 +23140,8 @@ INSERT INTO `item_mods` VALUES (18887,13,15);     -- Dukkha: MND+15
 INSERT INTO `item_mods` VALUES (18888,12,10);     -- Ankylosis Wand: INT+10
 INSERT INTO `item_mods` VALUES (18891,5,15);      -- Hannibal's Sword: MP+15
 INSERT INTO `item_mods` VALUES (18893,25,7);      -- Magnus Sword: Accuracy+7
+INSERT INTO `item_mods` VALUES (18894,903,50);	  -- Accoladde Sword: "Fencer"+1
+INSERT INTO `item_mods` VALUES (18894,904,1);
 INSERT INTO `item_mods` VALUES (18895,25,5);
 INSERT INTO `item_mods` VALUES (18895,288,3);
 INSERT INTO `item_mods` VALUES (18895,432,7);
@@ -24698,6 +24717,7 @@ INSERT INTO `item_mods` VALUES (20717,68,13);     -- Evasion +13
 INSERT INTO `item_mods` VALUES (20717,113,10);    -- Enhancing magic skill +10
 INSERT INTO `item_mods` VALUES (20717,114,10);    -- Enfeebling magic skill +10
 INSERT INTO `item_mods` VALUES (20717,311,90);    -- Magic Damage +90
+INSERT INTO `item_mods` VALUES (20717,902,30);	  -- "Occult Acumen" +30
 INSERT INTO `item_mods` VALUES (20721,2,50);
 INSERT INTO `item_mods` VALUES (20721,8,10);
 INSERT INTO `item_mods` VALUES (20721,9,10);
@@ -25314,6 +25334,7 @@ INSERT INTO `item_mods` VALUES (21144,311,248); -- Magic Damage +248
 INSERT INTO `item_mods` VALUES (21144,355,190); -- Hvergelmir iLvL 119 - Myrkr
 INSERT INTO `item_mods` VALUES (21147,73,10); -- Khatvanga - STP +10
 INSERT INTO `item_mods` VALUES (21147,345,500); -- TP Bonus +500
+INSERT INTO `item_mods` VALUES (21147,902,30); -- "Occult Acumen" +30
 INSERT INTO `item_mods` VALUES (21151,24,10);
 INSERT INTO `item_mods` VALUES (21151,26,15);
 INSERT INTO `item_mods` VALUES (21155,5,61); -- Marquetry staff 21155-- MP+61
@@ -31612,6 +31633,8 @@ INSERT INTO `item_mods` VALUES (26202,247,17);    -- Resist Bind+17
 INSERT INTO `item_mods` VALUES (26202,249,17);    -- Resist Gravity+17
 INSERT INTO `item_mods` VALUES (26248,1,15);      -- Alaunus's Cape: DEF 15
 INSERT INTO `item_mods` VALUES (26248,310,25);    -- Cursna effect +25%
+INSERT INTO `item_mods` VALUES (26258,1,16);	  -- Andartia's Mantle: DEF 16
+INSERT INTO `item_mods` VALUES (26258,900,1);	  -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (26324,8,7); -- Latria Sash STR+7
 INSERT INTO `item_mods` VALUES (26324,9,7); -- DEX+7
 INSERT INTO `item_mods` VALUES (26324,10,7); -- VIT+7
@@ -35701,6 +35724,7 @@ INSERT INTO `item_mods` VALUES (27054,31,21);
 INSERT INTO `item_mods` VALUES (27054,68,11);
 INSERT INTO `item_mods` VALUES (27054,80,9);
 INSERT INTO `item_mods` VALUES (27054,384,40);
+INSERT INTO `item_mods` VALUES (27054,899,30); -- Tactical Guard +30 TP/Guard
 INSERT INTO `item_mods` VALUES (27055,1,83);
 INSERT INTO `item_mods` VALUES (27055,2,25);
 INSERT INTO `item_mods` VALUES (27055,8,11);
@@ -35716,6 +35740,7 @@ INSERT INTO `item_mods` VALUES (27055,31,32);
 INSERT INTO `item_mods` VALUES (27055,68,24);
 INSERT INTO `item_mods` VALUES (27055,80,11);
 INSERT INTO `item_mods` VALUES (27055,384,51);
+INSERT INTO `item_mods` VALUES (27055,899,35); -- Tactical Guard +35 TP/Guard
 INSERT INTO `item_mods` VALUES (27056,1,60);
 INSERT INTO `item_mods` VALUES (27056,2,34);
 INSERT INTO `item_mods` VALUES (27056,5,42);
@@ -35853,6 +35878,7 @@ INSERT INTO `item_mods` VALUES (27064,31,32);
 INSERT INTO `item_mods` VALUES (27064,68,8);
 INSERT INTO `item_mods` VALUES (27064,82,18);
 INSERT INTO `item_mods` VALUES (27064,384,40);
+INSERT INTO `item_mods` VALUES (27064,905,2); -- "Shield Def. Bonus"+2
 INSERT INTO `item_mods` VALUES (27065,1,106);
 INSERT INTO `item_mods` VALUES (27065,2,34);
 INSERT INTO `item_mods` VALUES (27065,5,14);
@@ -35866,6 +35892,7 @@ INSERT INTO `item_mods` VALUES (27065,31,48);
 INSERT INTO `item_mods` VALUES (27065,68,19);
 INSERT INTO `item_mods` VALUES (27065,82,28);
 INSERT INTO `item_mods` VALUES (27065,384,51);
+INSERT INTO `item_mods` VALUES (27065,905,3); -- "Shield Def. Bonus"+3
 INSERT INTO `item_mods` VALUES (27066,1,74);
 INSERT INTO `item_mods` VALUES (27066,2,14);
 INSERT INTO `item_mods` VALUES (27066,5,12);
@@ -37066,6 +37093,8 @@ INSERT INTO `item_mods` VALUES (27237,31,54);
 INSERT INTO `item_mods` VALUES (27237,68,11);
 INSERT INTO `item_mods` VALUES (27237,288,5);
 INSERT INTO `item_mods` VALUES (27237,384,71);
+INSERT INTO `item_mods` VALUES (27237,903,50); -- "Fencer"+1
+INSERT INTO `item_mods` VALUES (27237,904,1);
 INSERT INTO `item_mods` VALUES (27238,1,125);
 INSERT INTO `item_mods` VALUES (27238,2,50);
 INSERT INTO `item_mods` VALUES (27238,8,38);
@@ -37080,6 +37109,8 @@ INSERT INTO `item_mods` VALUES (27238,31,80);
 INSERT INTO `item_mods` VALUES (27238,68,24);
 INSERT INTO `item_mods` VALUES (27238,288,6);
 INSERT INTO `item_mods` VALUES (27238,384,81);
+INSERT INTO `item_mods` VALUES (27238,903,100); -- "Fencer"+2
+INSERT INTO `item_mods` VALUES (27238,904,2);
 INSERT INTO `item_mods` VALUES (27239,1,76);
 INSERT INTO `item_mods` VALUES (27239,2,22);
 INSERT INTO `item_mods` VALUES (27239,8,22);
@@ -37216,6 +37247,7 @@ INSERT INTO `item_mods` VALUES (27247,31,51);
 INSERT INTO `item_mods` VALUES (27247,68,21);
 INSERT INTO `item_mods` VALUES (27247,165,4);
 INSERT INTO `item_mods` VALUES (27247,384,61);
+INSERT INTO `item_mods` VALUES (27247,896,7);
 INSERT INTO `item_mods` VALUES (27248,1,112);
 INSERT INTO `item_mods` VALUES (27248,2,50);
 INSERT INTO `item_mods` VALUES (27248,8,29);
@@ -37230,6 +37262,7 @@ INSERT INTO `item_mods` VALUES (27248,31,75);
 INSERT INTO `item_mods` VALUES (27248,68,47);
 INSERT INTO `item_mods` VALUES (27248,165,5);
 INSERT INTO `item_mods` VALUES (27248,384,61);
+INSERT INTO `item_mods` VALUES (27248,896,9);
 INSERT INTO `item_mods` VALUES (27249,1,97);
 INSERT INTO `item_mods` VALUES (27249,2,77);
 INSERT INTO `item_mods` VALUES (27249,5,34);
@@ -38672,6 +38705,7 @@ INSERT INTO `item_mods` VALUES (27425,30,10);
 INSERT INTO `item_mods` VALUES (27425,31,47);
 INSERT INTO `item_mods` VALUES (27425,68,24);
 INSERT INTO `item_mods` VALUES (27425,384,30);
+INSERT INTO `item_mods` VALUES (27425,902,27); -- Occult Acumen +27%
 INSERT INTO `item_mods` VALUES (27426,1,87);
 INSERT INTO `item_mods` VALUES (27426,2,18);
 INSERT INTO `item_mods` VALUES (27426,5,14);
@@ -38688,6 +38722,7 @@ INSERT INTO `item_mods` VALUES (27426,30,20);
 INSERT INTO `item_mods` VALUES (27426,31,69);
 INSERT INTO `item_mods` VALUES (27426,68,52);
 INSERT INTO `item_mods` VALUES (27426,384,30);
+INSERT INTO `item_mods` VALUES (27426,902,30); -- Occult Acumen +30%
 INSERT INTO `item_mods` VALUES (27427,1,52);
 INSERT INTO `item_mods` VALUES (27427,2,7);
 INSERT INTO `item_mods` VALUES (27427,8,13);
@@ -38818,6 +38853,7 @@ INSERT INTO `item_mods` VALUES (27435,31,51);
 INSERT INTO `item_mods` VALUES (27435,68,37);
 INSERT INTO `item_mods` VALUES (27435,384,40);
 INSERT INTO `item_mods` VALUES (27435,486,17);
+INSERT INTO `item_mods` VALUES (27435,900,1); -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (27436,1,73);
 INSERT INTO `item_mods` VALUES (27436,2,15);
 INSERT INTO `item_mods` VALUES (27436,8,14);
@@ -38831,6 +38867,7 @@ INSERT INTO `item_mods` VALUES (27436,31,75);
 INSERT INTO `item_mods` VALUES (27436,68,80);
 INSERT INTO `item_mods` VALUES (27436,384,51);
 INSERT INTO `item_mods` VALUES (27436,486,20);
+INSERT INTO `item_mods` VALUES (27436,900,1); -- "Utsusemi" +1
 INSERT INTO `item_mods` VALUES (27437,1,60);
 INSERT INTO `item_mods` VALUES (27437,2,7);
 INSERT INTO `item_mods` VALUES (27437,8,10);
@@ -39283,6 +39320,8 @@ INSERT INTO `item_mods` VALUES (27643,518,5); -- Chance of Successful Block +5
 INSERT INTO `item_mods` VALUES (27644,25,20); -- Blurred Shield +1 - 20 Acc
 INSERT INTO `item_mods` VALUES (27644,23,20); -- 20 Att
 INSERT INTO `item_mods` VALUES (27644,518,10); -- Chance of Successful Block +10
+INSERT INTO `item_mods` VALUES (27644,903,50); -- "Fencer"+1
+INSERT INTO `item_mods` VALUES (27644,904,1);
 INSERT INTO `item_mods` VALUES (27648,1,51);
 INSERT INTO `item_mods` VALUES (27648,3,4);
 INSERT INTO `item_mods` VALUES (27648,6,4);
@@ -44794,7 +44833,7 @@ INSERT INTO `item_mods` VALUES (28148,30,13); -- 13 Macc
 INSERT INTO `item_mods` VALUES (28148,31,107); -- 107 Meva
 INSERT INTO `item_mods` VALUES (28148,68,27); -- 27 Eva
 INSERT INTO `item_mods` VALUES (28148,384,51); -- 5% Gear Haste
--- INSERT INTO `item_mods` VALUES (28148,Occult Acumen,30); -- "Occult Acumen"+30
+INSERT INTO `item_mods` VALUES (28148,902,30); -- "Occult Acumen"+30
 INSERT INTO `item_mods` VALUES (28151,1,106);     -- Sifahir Slacks
 INSERT INTO `item_mods` VALUES (28151,2,43);      -- comment me
 INSERT INTO `item_mods` VALUES (28151,5,69);      -- comment me

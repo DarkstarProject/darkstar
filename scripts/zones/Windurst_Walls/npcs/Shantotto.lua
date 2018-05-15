@@ -142,14 +142,14 @@ function onEventFinish(player,csid,option)
     elseif (csid == 180 and option == 3) then
         player:setVar("CursesFoiledAgain",0);
         player:addQuest(WINDURST,CURSES_FOILED_AGAIN_2);
-        player:setTitle(TARUTARU_MURDER_SUSPECT);
+        player:setTitle(dsp.title.TARUTARU_MURDER_SUSPECT);
 
     elseif (csid == 183) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17116);
         else
             player:tradeComplete();
-            player:setTitle(HEXER_VEXER);
+            player:setTitle(dsp.title.HEXER_VEXER);
             player:addItem(17116);
             player:messageSpecial(ITEM_OBTAINED,17116);
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2);
@@ -161,7 +161,7 @@ function onEventFinish(player,csid,option)
         if (option == 1) then
             player:addQuest(WINDURST,CURSES_FOILED_A_GOLEM);
         else
-            player:setTitle(TOTAL_LOSER);
+            player:setTitle(dsp.title.TOTAL_LOSER);
         end
 
     elseif (csid == 342) then
@@ -172,7 +172,7 @@ function onEventFinish(player,csid,option)
             player:setVar("foiledagolemdeliverycomplete",0);
             player:addItem(4870);
             player:messageSpecial(ITEM_OBTAINED,4870);
-            player:setTitle(DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
+            player:setTitle(dsp.title.DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH);
             player:addFame(WINDURST,120);
         end
     elseif (csid == 409) then
@@ -180,8 +180,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 498) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true);
     elseif (csid == 397) then
-        player:addKeyItem(GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:messageSpecial(KEYITEM_OBTAINED,GLOVE_OF_PERPETUAL_TWILIGHT);
+        player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT);
         player:setVar("MissionStatus",8)
     elseif (csid == 399) then
         player:setVar("ShantottoCS",0)

@@ -22,7 +22,7 @@ aftermathTable[18276] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_REGEN, power=10 }
+        { id=dsp.mod.REGEN, power=10 }
     }
 };
 aftermathTable[18277] = aftermathTable[18276]; -- Excalibur (80)
@@ -41,14 +41,14 @@ aftermathTable[20685] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_REGEN, power=30 },
-        { id=MOD_REFRESH, power=3 }
+        { id=dsp.mod.REGEN, power=30 },
+        { id=dsp.mod.REFRESH, power=3 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_KNIGHTS_OF_ROUND) then -- Knights Of Round onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.KNIGHTS_OF_ROUND) then -- Knights Of Round onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -59,8 +59,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -75,8 +75,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -92,14 +92,14 @@ function onAdditionalEffect(player,target,damage)
     else
         local finalDMG = math.floor(player.getHP(player)/4);
         if (finalDMG > 0) then
-            local physicalResist = target:getMod(MOD_SLASHRES)/1000;
+            local physicalResist = target:getMod(dsp.mod.SLASHRES)/1000;
             finalDMG = finalDMG*physicalResist;
             finalDMG = target:physicalDmgTaken(finalDMG);
-            finalDMG = finalDMG - target:getMod(MOD_PHALANX);
+            finalDMG = finalDMG - target:getMod(dsp.mod.PHALANX);
             finalDMG = utils.clamp(finalDMG, 0, 99999);
             finalDMG = utils.stoneskin(target, finalDMG);
             target:delHP(finalDMG);
-            return SUBEFFECT_LIGHT_DAMAGE, msgBasic.ADD_EFFECT_DMG, finalDMG;
+            return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG;
         end
     end
 end;

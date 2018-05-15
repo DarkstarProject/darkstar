@@ -11,5 +11,5 @@ end;
 
 function onItemUse(target)
     target:resetRecasts();
-    target:messageBasic(msgBasic.ALL_ABILITIES_RECHARGED, 0);
+    target:messageBasic(dsp.msg.basic.ALL_ABILITIES_RECHARGED, 0);
 end;

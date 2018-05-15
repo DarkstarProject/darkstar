@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_AFFLATUS_MISERY
+-- dsp.effect.AFFLATUS_MISERY
 --
 -----------------------------------
 
@@ -11,12 +11,12 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:setMod(MOD_AFFLATUS_MISERY,0);
+    target:setMod(dsp.mod.AFFLATUS_MISERY,0);
     
-    if (target:hasStatusEffect(EFFECT_AUSPICE)) then
-        local power = target:getStatusEffect(EFFECT_AUSPICE):getPower();
-        target:addMod(MOD_ENSPELL,18);
-        target:addMod(MOD_ENSPELL_DMG, power);
+    if (target:hasStatusEffect(dsp.effect.AUSPICE)) then
+        local power = target:getStatusEffect(dsp.effect.AUSPICE):getPower();
+        target:addMod(dsp.mod.ENSPELL,18);
+        target:addMod(dsp.mod.ENSPELL_DMG, power);
     end
 end;
 
@@ -32,15 +32,15 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:setMod(MOD_AFFLATUS_MISERY,0);
+    target:setMod(dsp.mod.AFFLATUS_MISERY,0);
     
     --Clean Up Afflatus Misery Bonuses
     local accuracyBonus = effect:getSubPower();
     --printf("AUSPICE: Removing Accuracy Bonus +%d!", accuracyBonus);
-    target:delMod(MOD_ACC, accuracyBonus);
+    target:delMod(dsp.mod.ACC, accuracyBonus);
         
-    if (target:hasStatusEffect(EFFECT_AUSPICE)) then
-        target:setMod(MOD_ENSPELL,0);
-        target:setMod(MOD_ENSPELL_DMG, 0);
+    if (target:hasStatusEffect(dsp.effect.AUSPICE)) then
+        target:setMod(dsp.mod.ENSPELL,0);
+        target:setMod(dsp.mod.ENSPELL_DMG, 0);
     end
 end;

@@ -17,7 +17,7 @@ function onMobFight(mob, target)
             mob:AnimationSub(0);
         end
 
-        if (spell > 0 and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
+        if (spell > 0 and mob:hasStatusEffect(dsp.effect.SILENCE) == false) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);
@@ -31,7 +31,7 @@ function onMobFight(mob, target)
 end;
 
 function onMagicHit(caster, target, spell)
-    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
+    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= dsp.magic.spellGroup.BLUE ) then
         target:setLocalVar("COPY_SPELL", spell:getID());
         target:setLocalVar("LAST_CAST", target:getBattleTime());
         target:AnimationSub(1);

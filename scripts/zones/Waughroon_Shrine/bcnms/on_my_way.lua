@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         if ((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2)) then
-            player:addKeyItem(LETTER_FROM_WEREI);
-            player:messageSpecial(KEYITEM_OBTAINED,LETTER_FROM_WEREI);
+            player:addKeyItem(dsp.ki.LETTER_FROM_WEREI);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_WEREI);
             player:setVar("MissionStatus",3);
         end
     end

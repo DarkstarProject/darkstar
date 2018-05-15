@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     if (
         CurrentMission == FULL_MOON_FOUNTAIN and
         MissionStatus == 1 and
-        player:hasKeyItem(SOUTHWESTERN_STAR_CHARM) and
+        player:hasKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM) and
         not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 0):isSpawned() and
         not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 1):isSpawned() and
         not GetMobByID(FULL_MOON_FOUNTAIN_OFFSET + 2):isSpawned() and
@@ -55,6 +55,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 68) then
         player:setVar("MissionStatus",3);
-        player:delKeyItem(SOUTHWESTERN_STAR_CHARM);
+        player:delKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM);
     end
 end;

@@ -11,7 +11,7 @@ require("scripts/globals/magic");
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP) then
         return 216,0;
     end
     if (player:hasItem(2183, 0) or player:hasItem(2974, 0)) then
@@ -24,10 +24,10 @@ end;
 function onUseAbility(player,target,ability)
 
     local duration = 60;
-    local resist = applyResistanceAbility(player,target,ELE_DARK,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
+    local resist = applyResistanceAbility(player,target,dsp.magic.ele.DARK,dsp.skill.MARKSMANSHIP, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
 
     if (resist < 0.25) then
-        ability:setMsg(msgBasic.JA_MISS_2); -- resist message
+        ability:setMsg(dsp.msg.basic.JA_MISS_2); -- resist message
         return 0;
     end
 
@@ -35,18 +35,18 @@ function onUseAbility(player,target,ability)
 
     local effects = {};
     local counter = 1;
-    local bio = target:getStatusEffect(EFFECT_BIO);
+    local bio = target:getStatusEffect(dsp.effect.BIO);
     if (bio ~= nil) then
         effects[counter] = bio;
         counter = counter + 1;
     end
-    local blind = target:getStatusEffect(EFFECT_BLINDNESS);
+    local blind = target:getStatusEffect(dsp.effect.BLINDNESS);
     if (blind ~= nil) then
         effects[counter] = blind;
         counter = counter + 1;
     end
-    local threnody = target:getStatusEffect(EFFECT_THRENODY);
-    if (threnody ~= nil and threnody:getSubPower() == MOD_LIGHTRES) then
+    local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+    if (threnody ~= nil and threnody:getSubPower() == dsp.mod.LIGHTRES) then
         effects[counter] = threnody;
         counter = counter + 1;
     end
@@ -69,11 +69,11 @@ function onUseAbility(player,target,ability)
         newEffect:setStartTime(startTime);
     end
 
-    ability:setMsg(msgBasic.JA_REMOVE_EFFECT_2);
+    ability:setMsg(dsp.msg.basic.JA_REMOVE_EFFECT_2);
     local dispelledEffect = target:dispelStatusEffect();
-    if (dispelledEffect == EFFECT_NONE) then
+    if (dispelledEffect == dsp.effect.NONE) then
         -- no effect
-        ability:setMsg(msgBasic.JA_NO_EFFECT_2);
+        ability:setMsg(dsp.msg.basic.JA_NO_EFFECT_2);
     end
 
     local del = player:delItem(2183, 1) or player:delItem(2974, 1)

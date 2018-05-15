@@ -14,9 +14,9 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local pMod = (caster:getSkillLevel(ENHANCING_MAGIC_SKILL)/3)+caster:getStat(MOD_MND);
+    local pMod = (caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC)/3)+caster:getStat(dsp.mod.MND);
     local pAbs = 0;
-    local pEquipMods = (caster:getMod(MOD_STONESKIN_BONUS_HP));
+    local pEquipMods = (caster:getMod(dsp.mod.STONESKIN_BONUS_HP));
     local duration = 300;
     if (pMod < 80) then
         pAbs = pMod;
@@ -30,16 +30,16 @@ function onSpellCast(caster,target,spell)
     -- pAbs = utils.clamp(1, STONESKIN_CAP); This just always sets it to 350, let's use the actual value, shall we?
     pAbs = utils.clamp(pAbs, 1, STONESKIN_CAP);
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
     local final = pAbs + pEquipMods;
-    if (target:addStatusEffect(EFFECT_STONESKIN,final,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+    if (target:addStatusEffect(dsp.effect.STONESKIN,final,0,duration)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_STONESKIN;
+    return dsp.effect.STONESKIN;
 end;

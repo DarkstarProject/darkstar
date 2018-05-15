@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_CLOTH,effect:getPower());
+    target:addMod(dsp.mod.CLOTH,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_CLOTH,effect:getPower());
+    target:delMod(dsp.mod.CLOTH,effect:getPower());
 end;

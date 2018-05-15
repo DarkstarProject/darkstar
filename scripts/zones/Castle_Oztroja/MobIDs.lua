@@ -45,15 +45,15 @@ YAA_HAQA_THE_PROFANE_PH =
 local hdl = 17396196 -- Base handle for OZ_HANDLE_TABLE
 OZ_HANDLE_TABLE =
 {
-    [0] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
-    [1] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
-    [2] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
-    [3] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
-    [4] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
-    [5] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
-    [6] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_OPEN_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
-    [7] = {[hdl] = ANIMATION_CLOSE_DOOR, [hdl+1] = ANIMATION_CLOSE_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_OPEN_DOOR},
-    [8] = {[hdl] = ANIMATION_OPEN_DOOR, [hdl+1] = ANIMATION_OPEN_DOOR, [hdl+2] = ANIMATION_CLOSE_DOOR, [hdl+3] = ANIMATION_CLOSE_DOOR},
+    [0] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
+    [1] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
+    [2] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
+    [3] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
+    [4] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
+    [5] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
+    [6] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
+    [7] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
+    [8] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
 };
 
 OZ_PASSWORD_TABLE =

@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end;
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_ELEMENTAL_SEAL,1,0,60);
+    player:addStatusEffect(dsp.effect.ELEMENTAL_SEAL,1,0,60);
 end;

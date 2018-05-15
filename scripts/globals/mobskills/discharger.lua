@@ -22,8 +22,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffectOne = EFFECT_MAGIC_SHIELD;
-    local typeEffectTwo = EFFECT_SHOCK_SPIKES
+    local typeEffectOne = dsp.effect.MAGIC_SHIELD;
+    local typeEffectTwo = dsp.effect.SHOCK_SPIKES
 
     skill:setMsg(MobBuffMove(mob, typeEffectOne, 1, 0, 60));
     MobBuffMove(mob, typeEffectTwo, 25, 0, 60)

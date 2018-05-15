@@ -19,8 +19,8 @@ end;
 function onMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effectFirst = mob:stealStatusEffect(target, EFFECTFLAG_DISPELABLE+EFFECTFLAG_FOOD);
-    local effectSecond = mob:stealStatusEffect(target, EFFECTFLAG_DISPELABLE+EFFECTFLAG_FOOD);
+    local effectFirst = mob:stealStatusEffect(target, dsp.effectFlag.DISPELABLE+dsp.effectFlag.FOOD);
+    local effectSecond = mob:stealStatusEffect(target, dsp.effectFlag.DISPELABLE+dsp.effectFlag.FOOD);
     local dmg = 0;
 
     if (effectFirst ~= 0) then
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
             count = count + 1;
         end
 
-        skill:setMsg(msgBasic.EFFECT_DRAINED);
+        skill:setMsg(dsp.msg.basic.EFFECT_DRAINED);
 
         return count;
     else

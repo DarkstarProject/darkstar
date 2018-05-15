@@ -21,8 +21,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.ftp100 = 2.25; params.ftp200 = 2.25; params.ftp300 = 2.25;
     params.str_wsc = 0.0; params.dex_wsc = 0.5; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.5; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-    params.ele = ELE_WATER;
-    params.skill = SKILL_KAT;
+    params.ele = dsp.magic.ele.WATER;
+    params.skill = dsp.skill.KATANA;
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -32,9 +32,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_POISON) == false) then
-        local duration = (75 + (tp/1000 * 15)) * applyResistanceAddEffect(player,target,ELE_WATER,0);
-        target:addStatusEffect(EFFECT_POISON, 10, 0, duration);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.POISON) == false) then
+        local duration = (75 + (tp/1000 * 15)) * applyResistanceAddEffect(player,target,dsp.magic.ele.WATER,0);
+        target:addStatusEffect(dsp.effect.POISON, 10, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 

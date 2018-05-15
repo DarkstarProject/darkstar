@@ -41,7 +41,7 @@ function onRegionEnter(player,region)
 end;
 
 function onGameDay()
-    if (IsMoonFull() and GetNPCByID(MOONGATE_OFFSET):getWeather() == WEATHER_SUNSHINE) then
+    if (IsMoonFull() and GetNPCByID(MOONGATE_OFFSET):getWeather() == dsp.weather.SUNSHINE) then
         for i = MOONGATE_OFFSET, MOONGATE_OFFSET+7 do
             GetNPCByID(i):openDoor(432);
         end
@@ -49,11 +49,11 @@ function onGameDay()
 end;
 
 function onZoneWeatherChange(weather)
-    if (weather ~= WEATHER_SUNSHINE and GetNPCByID(MOONGATE_OFFSET):getAnimation() ~= ANIMATION_CLOSE_DOOR) then
+    if (weather ~= dsp.weather.SUNSHINE and GetNPCByID(MOONGATE_OFFSET):getAnimation() ~= dsp.anim.CLOSE_DOOR) then
         for i = MOONGATE_OFFSET, MOONGATE_OFFSET+7 do
-            GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+            GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
         end
-    elseif (weather == WEATHER_SUNSHINE and IsMoonFull() == true and VanadielHour() < 3) then -- reactivate things for the remainder of the time until 3AM
+    elseif (weather == dsp.weather.SUNSHINE and IsMoonFull() == true and VanadielHour() < 3) then -- reactivate things for the remainder of the time until 3AM
         local moonMinRemaining = math.floor(432 * (180 - VanadielHour() * 60 + VanadielMinute())/180) -- 180 minutes (ie 3AM) subtract the time that has passed since midnight
         for i = MOONGATE_OFFSET, MOONGATE_OFFSET+7 do
             GetNPCByID(i):openDoor(moonMinRemaining);

@@ -35,12 +35,12 @@ function onTrigger(player,npc)
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
     local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
     local currCommService = player:getVar("currCommService");
-    local hasMembershipCard = player:hasKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
+    local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
     local allLampsLit = true;
     for i=0,11 do
         local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
-        if (lamp:getAnimation() == ANIMATION_CLOSE_DOOR) then
+        if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
             allLampsLit = false;
             break;
         end
@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
 
     -- COMMUNITY SERVICE
     elseif (csid == 117) then
-        local params = {title = TORCHBEARER, var = "currCommService"};
+        local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
         if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
             params.fame = 30;
@@ -112,14 +112,14 @@ function onEventFinish(player,csid,option)
             -- repeat victory. offer membership card.
             params.fame = 15;
             if (option == 1) then
-                params.keyItem = LAMP_LIGHTERS_MEMBERSHIP_CARD;
+                params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
             end
         end
         npcUtil.completeQuest(player, JEUNO, COMMUNITY_SERVICE, params);
 
     elseif (csid == 118 and option == 1) then
         -- player drops membership card
-        player:delKeyItem(LAMP_LIGHTERS_MEMBERSHIP_CARD);
+        player:delKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD);
 
     elseif (csid == 119) then
         -- player fails quest

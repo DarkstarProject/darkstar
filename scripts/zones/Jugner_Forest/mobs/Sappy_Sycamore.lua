@@ -7,9 +7,9 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
-    mob:addMod(MOD_SLEEPRES,20);
-    mob:addMod(MOD_BINDRES,20);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:addMod(dsp.mod.SLEEPRES,20);
+    mob:addMod(dsp.mod.BINDRES,20);
 end;
 
 function onMobSpawn(mob)
@@ -17,12 +17,12 @@ end;
 
 function onAdditionalEffect(mob,target,damage)
     -- Guesstimating 1 in 4 chance to slow on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(EFFECT_SLOW) == true)) then
+    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effect.SLOW) == true)) then
         return 0,0,0;
     else
         local duration = math.random(15,25);
-        target:addStatusEffect(EFFECT_SLOW,15,0,duration); -- sproud smack like
-        return SUBEFFECT_NONE, msgBasic.ADD_EFFECT_STATUS, EFFECT_SLOW;
+        target:addStatusEffect(dsp.effect.SLOW,15,0,duration); -- sproud smack like
+        return dsp.subEffect.NONE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SLOW;
     end
 end;
 

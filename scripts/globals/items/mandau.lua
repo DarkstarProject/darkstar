@@ -23,7 +23,7 @@ aftermathTable[18270] =
     duration = function(tp) return math.floor(0.02 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 }
     }
 };
 aftermathTable[18271] = aftermathTable[18270]; -- Mandau (80)
@@ -42,14 +42,14 @@ aftermathTable[20583] =
     duration = function(tp) return math.floor(0.06 * tp); end,
     mods =
     {
-        { id=MOD_CRITHITRATE, power=5 },
-        { id=MOD_CRIT_DMG_INCREASE, power=5 }
+        { id=dsp.mod.CRITHITRATE, power=5 },
+        { id=dsp.mod.CRIT_DMG_INCREASE, power=5 }
     }
 };
 
 function onWeaponskill(user, target, wsid, tp, action)
-    if (wsid == WEAPONSKILL_MERCY_STROKE) then -- Mercy Stroke onry
-        local itemId = user:getEquipID(SLOT_MAIN);
+    if (wsid == dsp.ws.MERCY_STROKE) then -- Mercy Stroke onry
+        local itemId = user:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Apply the effect and add mods
             addAftermathEffect(user, tp, aftermathTable[itemId]);
@@ -60,8 +60,8 @@ function onWeaponskill(user, target, wsid, tp, action)
 end
 
 function aftermathLost(target, effect)
-    if (effect:getType() == EFFECT_AFTERMATH) then
-        local itemId = target:getEquipID(SLOT_MAIN);
+    if (effect:getType() == dsp.effect.AFTERMATH) then
+        local itemId = target:getEquipID(dsp.slot.MAIN);
         if (aftermathTable[itemId]) then
             -- Remove mods
             removeAftermathEffect(target, aftermathTable[itemId]);
@@ -76,8 +76,8 @@ function onItemCheck(player, param, caster)
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
     elseif (param == ITEMCHECK_UNEQUIP) then
         -- Make sure we clean up the effect and mods
-        if (player:hasStatusEffect(EFFECT_AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(EFFECT_AFTERMATH));
+        if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
@@ -88,11 +88,11 @@ end
 function onAdditionalEffect(player,target,damage)
     local chance = 10;
 
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WATER,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.WATER,0) <= 0.5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_POISON, 10, 3, 30); -- Power and Duration needs verified.
-        return SUBEFFECT_POISON, msgBasic.ADD_EFFECT_STATUS, EFFECT_POISON;
+        target:addStatusEffect(dsp.effect.POISON, 10, 3, 30); -- Power and Duration needs verified.
+        return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON;
     end
     
     return 0;

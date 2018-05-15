@@ -2,6 +2,8 @@
 -- Area: Grand Palace of Hu'Xzoi
 --  NM:  Jailer of Temperance
 -----------------------------------
+require("scripts/zones/Grand_Palace_of_HuXzoi/globals");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
 require("scripts/globals/magic");
 -----------------------------------
@@ -10,21 +12,19 @@ function onMobSpawn(mob)
     -- Set AnimationSub to 0, put it in pot form
     -- Change it's damage resists. Pot for take
 
-    -- Give it two hour
-    mob:setMod(MOBMOD_MAIN_2HOUR, 1);
     -- Change animation to pot
     mob:AnimationSub(0);
     -- Set the damage resists
-    mob:setMod(MOD_HTHRES,1000);
-    mob:setMod(MOD_SLASHRES,0);
-    mob:setMod(MOD_PIERCERES,0);
-    mob:setMod(MOD_IMPACTRES,1000);
+    mob:setMod(dsp.mod.HTHRES,1000);
+    mob:setMod(dsp.mod.SLASHRES,0);
+    mob:setMod(dsp.mod.PIERCERES,0);
+    mob:setMod(dsp.mod.IMPACTRES,1000);
     -- Set the magic resists. It always takes no damage from direct magic
-    for n =1,#resistMod,1 do
-        mob:setMod(resistMod[n],0);
+    for n =1,#dsp.magic.resistMod,1 do
+        mob:setMod(dsp.magic.resistMod[n],0);
     end
-    for n =1,#defenseMod,1 do
-        mob:setMod(defenseMod[n],1000);
+    for n =1,#dsp.magic.defenseMod,1 do
+        mob:setMod(dsp.magic.defenseMod[n],1000);
     end
 end;
 
@@ -40,16 +40,16 @@ function onMobFight(mob)
 
         -- We changed to Poles. Make it only take piercing.
         if (aniChange == 2) then
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,1000);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,1000);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- We changed to Rings. Make it only take slashing.
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,1000);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,1000);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     -- We're in poles, but changing
@@ -59,17 +59,17 @@ function onMobFight(mob)
         -- Changing to Pot, only take Blunt damage
         if (aniChange == 0) then
             mob:AnimationSub(0);
-            mob:setMod(MOD_HTHRES,1000);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,1000);
+            mob:setMod(dsp.mod.HTHRES,1000);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,1000);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- Going to Rings, only take slashing
             mob:AnimationSub(3);
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,1000);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,1000);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     -- We're in rings, but going to change to pot or poles
@@ -79,16 +79,16 @@ function onMobFight(mob)
 
         -- We're changing to pot form, only take blunt damage.
         if (aniChange == 0 or aniChange == 1) then
-            mob:setMod(MOD_HTHRES,1000);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,0);
-            mob:setMod(MOD_IMPACTRES,1000);
+            mob:setMod(dsp.mod.HTHRES,1000);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,0);
+            mob:setMod(dsp.mod.IMPACTRES,1000);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         else -- Changing to poles, only take piercing
-            mob:setMod(MOD_HTHRES,0);
-            mob:setMod(MOD_SLASHRES,0);
-            mob:setMod(MOD_PIERCERES,1000);
-            mob:setMod(MOD_IMPACTRES,0);
+            mob:setMod(dsp.mod.HTHRES,0);
+            mob:setMod(dsp.mod.SLASHRES,0);
+            mob:setMod(dsp.mod.PIERCERES,1000);
+            mob:setMod(dsp.mod.IMPACTRES,0);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
     end
@@ -98,11 +98,10 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    -- Set PH back to normal, then set respawn time
-    local PH = GetServerVariable("[SEA]Jailer_of_Temperance_PH");
+    local ph = mob:getLocalVar("ph");
     DisallowRespawn(mob:getID(), true);
-    DisallowRespawn(PH, false);
-    SetServerVariable("[SEA]Jailer_of_Temperance_POP", os.time() + 900); -- 15 mins
-    GetMobByID(PH):setRespawnTime(GetMobRespawnTime(PH));
-    SetServerVariable("[SEA]Jailer_of_Temperance_PH", 0);
+    DisallowRespawn(ph, false);
+    GetMobByID(ph):setRespawnTime(GetMobRespawnTime(ph));
+    mob:setLocalVar("pop", os.time() + 900); -- 15 mins
+    GRAND_PALACE_OF_HUXZOI.pickTemperancePH();
 end;

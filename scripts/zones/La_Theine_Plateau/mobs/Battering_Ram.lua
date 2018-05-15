@@ -10,34 +10,23 @@ end;
 
 function onMobDespawn(mob)
     local mobID = mob:getID();
-    local chanceForLambert = 0;
-    local chanceForBaldurf = 0;
-    local nmToPop = 0;
 
-    if (mobID == Battering_Ram) then
-        if (GetServerVariable("[POP]Lumbering_Lambert") <= os.time()) then
-            chanceForLambert = math.random(1,100);
-        end
-
-        if (GetServerVariable("[POP]Bloodtear_Baldurf") <= os.time()) then
-            chanceForBaldurf = math.random(1,100);
-        end
-
-        if (chanceForLambert > 0 or chanceForBaldurf > 0) then
-            if (chanceForLambert > chanceForBaldurf) then
-                nmToPop = Lumbering_Lambert;
-            else
-                nmToPop = Bloodtear_Baldurf;
+    if (mobID == BATTERING_RAM and math.random(1,100) <= 10) then
+        -- what nms are ready to spawn
+        local nms = {};
+        for i = 1, 2 do
+            if (os.time() > GetMobByID(BATTERING_RAM + i):getLocalVar("cooldown")) then
+                table.insert(nms, BATTERING_RAM + i);
             end
         end
-
-        if (nmToPop > 0 and GetMobAction(Lumbering_Lambert) == ACTION_NONE and GetMobAction(Bloodtear_Baldurf) == ACTION_NONE) then
-            if (math.random(1,20) == 5) then
-                UpdateNMSpawnPoint(nmToPop);
-                GetMobByID(nmToPop):setRespawnTime(GetMobRespawnTime(mobID));
-                DisallowRespawn(mobID, true);
-            end
+    
+        -- spawn one in its place
+        if (#nms > 0) then
+            local nmId = nms[math.random(#nms)];
+            DisallowRespawn(mobID, true);
+            DisallowRespawn(nmId, false);
+            UpdateNMSpawnPoint(nmId);
+            GetMobByID(nmId):setRespawnTime(GetMobRespawnTime(mobID));
         end
     end
 end;
-

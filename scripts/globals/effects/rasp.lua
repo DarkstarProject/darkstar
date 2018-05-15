@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_RASP
+--     dsp.effect.RASP
 --     
 -----------------------------------
 
@@ -12,8 +12,8 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_REGEN_DOWN, effect:getPower());
-    target:addMod(MOD_DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
+    target:addMod(dsp.mod.REGEN_DOWN, effect:getPower());
+    target:addMod(dsp.mod.DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
 end;
 
 -----------------------------------
@@ -28,6 +28,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_REGEN_DOWN, effect:getPower());
-    target:delMod(MOD_DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
+    target:delMod(dsp.mod.REGEN_DOWN, effect:getPower());
+    target:delMod(dsp.mod.DEX, -getElementalDebuffStatDownFromDOT(effect:getPower()));
 end;

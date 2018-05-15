@@ -23,16 +23,16 @@ local shop = {
     28, 658,  -- Damascus Ingot
 }
 local maps = {
-    [MAP_OF_DYNAMIS_SANDORIA]   = 10000,
-    [MAP_OF_DYNAMIS_BASTOK]     = 10000,
-    [MAP_OF_DYNAMIS_WINDURST]   = 10000,
-    [MAP_OF_DYNAMIS_JEUNO]      = 10000,
-    [MAP_OF_DYNAMIS_BEAUCEDINE] = 15000,
-    [MAP_OF_DYNAMIS_XARCABARD]  = 20000,
-    [MAP_OF_DYNAMIS_VALKURM]    = 10000,
-    [MAP_OF_DYNAMIS_BUBURIMU]   = 10000,
-    [MAP_OF_DYNAMIS_QUFIM]      = 10000,
-    [MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
+    [dsp.ki.MAP_OF_DYNAMIS_SANDORIA]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BASTOK]     = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_WINDURST]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_JEUNO]      = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BEAUCEDINE] = 15000,
+    [dsp.ki.MAP_OF_DYNAMIS_XARCABARD]  = 20000,
+    [dsp.ki.MAP_OF_DYNAMIS_VALKURM]    = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BUBURIMU]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_QUFIM]      = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
 }
 -----------------------------------
 
@@ -40,10 +40,10 @@ function onTrade(player,npc,trade)
     local gil = trade:getGil();
     local count = trade:getItemCount();
 
-    if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+    if (player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND)) then
 
         -- buy prismatic hourglass
-        if (gil == PRISMATIC_HOURGLASS_COST and count == 1 and not player:hasKeyItem(PRISMATIC_HOURGLASS)) then
+        if (gil == PRISMATIC_HOURGLASS_COST and count == 1 and not player:hasKeyItem(dsp.ki.PRISMATIC_HOURGLASS)) then
             player:startEvent(54);
 
         -- return timeless hourglass for refund
@@ -77,7 +77,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+    if (player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND)) then
         player:startEvent(53, currency[1], CURRENCY_EXCHANGE_RATE, currency[2], CURRENCY_EXCHANGE_RATE, currency[3], PRISMATIC_HOURGLASS_COST, TIMELESS_HOURGLASS, TIMELESS_HOURGLASS_COST);
     else
         player:startEvent(50);
@@ -129,8 +129,8 @@ function onEventFinish(player,csid,option)
     -- bought prismatic hourglass
     if (csid == 54) then
         player:tradeComplete();
-        player:addKeyItem(PRISMATIC_HOURGLASS);
-        player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_HOURGLASS);
+        player:addKeyItem(dsp.ki.PRISMATIC_HOURGLASS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PRISMATIC_HOURGLASS);
 
     -- refund timeless hourglass
     elseif (csid == 97) then

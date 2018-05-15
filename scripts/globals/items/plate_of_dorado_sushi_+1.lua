@@ -16,14 +16,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5179);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5179);
 end;
 
 -----------------------------------------
@@ -31,21 +31,21 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ENMITY, 5);
-    target:addMod(MOD_DEX, 5);
-    target:addMod(MOD_FOOD_ACCP, 16);
-    target:addMod(MOD_FOOD_ACC_CAP, 76);
-    target:addMod(MOD_FOOD_RACCP, 16);
-    target:addMod(MOD_FOOD_RACC_CAP, 76);
-    target:addMod(MOD_SLEEPRES, 2);
+    target:addMod(dsp.mod.ENMITY, 5);
+    target:addMod(dsp.mod.DEX, 5);
+    target:addMod(dsp.mod.FOOD_ACCP, 16);
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 76);
+    target:addMod(dsp.mod.FOOD_RACCP, 16);
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 76);
+    target:addMod(dsp.mod.SLEEPRES, 2);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_ENMITY, 5);
-    target:delMod(MOD_DEX, 5);
-    target:delMod(MOD_FOOD_ACCP, 16);
-    target:delMod(MOD_FOOD_ACC_CAP, 76);
-    target:delMod(MOD_FOOD_RACCP, 16);
-    target:delMod(MOD_FOOD_RACC_CAP, 76);
-    target:delMod(MOD_SLEEPRES, 2);
+    target:delMod(dsp.mod.ENMITY, 5);
+    target:delMod(dsp.mod.DEX, 5);
+    target:delMod(dsp.mod.FOOD_ACCP, 16);
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 76);
+    target:delMod(dsp.mod.FOOD_RACCP, 16);
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 76);
+    target:delMod(dsp.mod.SLEEPRES, 2);
 end;

@@ -21,13 +21,13 @@ end;
 
 function onSpellCast(caster,target,spell)
     local multi = 1.0;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 1.50;
     end
     local params = {};
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
-    params.effect = EFFECT_NONE;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
+    params.effect = dsp.effect.NONE;
     params.multiplier = multi;
     params.tMultiplier = 3.5;
     params.duppercap = 100;

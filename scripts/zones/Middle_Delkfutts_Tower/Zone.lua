@@ -74,7 +74,7 @@ function onEventFinish(player,csid,option)
         end
 
     -- BLADE OF EVIL
-    elseif ( csid == 14 and option == 0 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_EVIL, {item=12516, title=PARAGON_OF_DARK_KNIGHT_EXCELLENCE, fame=AF3_FAME}) ) then
+    elseif ( csid == 14 and option == 0 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_EVIL, {item=12516, title=dsp.title.PARAGON_OF_DARK_KNIGHT_EXCELLENCE, fame=AF3_FAME}) ) then
         player:setVar("bladeOfEvilCS",0);
     end
 end;
