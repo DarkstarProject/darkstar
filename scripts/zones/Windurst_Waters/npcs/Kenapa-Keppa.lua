@@ -22,15 +22,16 @@ function onTrade(player,npc,trade)
         gil = trade:getGil();
         if (trade:hasItemQty(4409,1) == false) then -- Traded in wrong item. Not accepted.
             player:startEvent(329);
-        elseif (count == 1 and trade:hasItemQty(4409,1) == true and gil == 0 and KenapaFood == 0) then -- Traded item without receiving order
-            rand = math.random(1,2);
-            if (rand == 1) then
-                player:startEvent(331);
-            else
-                player:startEvent(330,120);
+        elseif (count == 1 and trade:hasItemQty(4409,1) == true and gil == 0) then
+            if (KenapaFood < 3) then -- Traded item without receiving order
+                if (math.random(1,2) == 1) then
+                    player:startEvent(331);
+                else
+                    player:startEvent(330,120);
+                end
+            elseif (KenapaFood == 3) then  -- Traded item after receiving order
+                player:startEvent(327,120);
             end
-        elseif (count == 1 and trade:hasItemQty(4409,1) == true and gil == 0 and KenapaFood == 3) then  -- Traded item after receiving order
-            player:startEvent(327,120);
         end
     end
 end;
@@ -144,10 +145,10 @@ end;
 function onEventFinish(player,csid,option)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
-    if (csid == 327 or csid == 330) then
-        if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
-            player:addGil(GIL_RATE*120);
-            player:tradeComplete();
+    if (csid == 327 or csid == 330 or csid == 331) then
+        player:tradeComplete();
+        player:addGil(GIL_RATE*120);
+        if (player:getVar("Kerutoto_Food_var") == 2 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
             player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
             player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
             player:addFame(WINDURST,100);
@@ -155,28 +156,8 @@ function onEventFinish(player,csid,option)
             player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
             player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
             player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-        else
-            player:tradeComplete();
-            player:addGil(GIL_RATE*120);
-            player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
-        end
-    elseif (csid == 331) then
-        if (player:getVar("Kerutoto_Food_var") == 3 and player:getVar("Kenapa_Food_var") == 3 and player:getVar("Ohbiru_Food_var") == 3) then -- If this is the last NPC to be fed
-            player:addGil(GIL_RATE*120);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
-            player:tradeComplete();
-            player:completeQuest(WINDURST,FOOD_FOR_THOUGHT);
-            player:addTitle(dsp.title.FAST_FOOD_DELIVERER);
-            player:addFame(WINDURST,100);
-            player:needToZone(true);
-            player:setVar("Kerutoto_Food_var",0);          -- ------------------------------------------
-            player:setVar("Kenapa_Food_var",0);            -- Erase all the variables used in this quest
-            player:setVar("Ohbiru_Food_var",0);            -- ------------------------------------------
-        else
-            player:tradeComplete();
-            player:addGil(GIL_RATE*120);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
-            player:setVar("Kenapa_Food_var",4); -- If this is NOT the last NPC given food, flag this NPC as completed.
+        else -- If this is NOT the last NPC given food, flag this NPC as completed.
+            player:setVar("Kenapa_Food_var",4);
         end
     elseif  (csid == 56) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);

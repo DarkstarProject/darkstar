@@ -44,34 +44,34 @@ function onEventFinish(player,csid,option)
     if (csid == 101) then
         if (option == 101) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            AzouphIsleStagingPoint(player)
+            dsp.teleport.to(player, dsp.teleport.id.AZOUPH_SP);
         elseif (option == 102) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            DvuccaIsleStagingPoint(player);
+            dsp.teleport.to(player, dsp.teleport.id.DVUCCA_SP);
         elseif (option == 103) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            MamoolJaStagingPoint(player);
+            dsp.teleport.to(player, dsp.teleport.id.MAMOOL_SP);
         elseif (option == 104) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            HalvungStagingPoint(player);
+            dsp.teleport.to(player, dsp.teleport.id.HALVUNG_SP);
         elseif (option == 105) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            IlrusiAtollStagingPoint(player);
+            dsp.teleport.to(player, dsp.teleport.id.ILRUSI_SP);
         elseif (option == 106) then
             player:delKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-            NzyulIsleStagingPoint(player);
+            dsp.teleport.to(player, dsp.teleport.id.NYZUL_SP);
         end
     elseif (csid == 120 and option == 1) then -- dsp.ki.LEUJAOAM_ASSAULT_ORDERS
-       AzouphIsleStagingPoint(player)
+        dsp.teleport.to(player, dsp.teleport.id.AZOUPH_SP);
     elseif (csid == 121 and option == 1) then -- MAMMOOL_JA_ASSAULT_ORDERS
-       MamoolJaStagingPoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.MAMOOL_SP);
     elseif (csid == 122 and option == 1) then -- dsp.ki.LEBROS_ASSAULT_ORDERS
-       HalvungStagingPoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.HALVUNG_SP);
     elseif (csid == 123 and option == 1) then -- dsp.ki.PERIQIA_ASSAULT_ORDERS
-       DvuccaIsleStagingPoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.DVUCCA_SP);
     elseif (csid == 124 and option == 1) then -- dsp.ki.ILRUSI_ASSAULT_ORDERS
-       IlrusiAtollStagingPoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.ILRUSI_SP);
     elseif (csid == 125 and option == 1) then -- dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS
-       NzyulIsleStagingPoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.NYZUL_SP);
     end
 end;

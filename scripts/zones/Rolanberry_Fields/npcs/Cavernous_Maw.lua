@@ -51,20 +51,20 @@ function onEventFinish(player,csid,option)
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then
             player:addNationTeleport(MAW,1);
-            toMaw(player,1); -- go to Batallia_Downs[S]
+            dsp.teleport.toMaw(player,1); -- go to Batallia_Downs[S]
         elseif (r == 2) then
             player:addNationTeleport(MAW,2);
-            toMaw(player,3); -- go to Rolanberry_Fields_[S]
+            dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
         elseif (r == 3) then
             player:addNationTeleport(MAW,4);
-            toMaw(player,5); -- go to Sauromugue_Champaign_[S]
+            dsp.teleport.toMaw(player,5); -- go to Sauromugue_Champaign_[S]
         end;
     elseif (csid == 904 and option == 1) then
-        toMaw(player,3); -- go to Rolanberry_Fields_[S]
+        dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
     elseif (csid == 501) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
-        toMaw(player,3);
+        dsp.teleport.toMaw(player,3);
     end;
 end;

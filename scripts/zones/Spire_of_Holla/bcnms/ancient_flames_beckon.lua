@@ -78,13 +78,13 @@ function onEventFinish(player,csid,option)
                 player:completeMission(COP,THE_MOTHERCRYSTALS);
                 player:setVar("PromathiaStatus",0)
                 player:addMission(COP,AN_INVITATION_WEST);
-                player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_LUFAISE,0,1);
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.LUFAISE,0,1);
             elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                 player:setVar("cspromy3",1)
                 player:addKeyItem(dsp.ki.LIGHT_OF_HOLLA);
                 player:addExp(1500);
                 player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_HOLLA);
-                player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMHOLLA,0,1);
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMHOLLA,0,1);
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
             player:addExp(1500);
@@ -94,10 +94,10 @@ function onEventFinish(player,csid,option)
             player:setVar("PromathiaStatus",0)
             player:addKeyItem(dsp.ki.LIGHT_OF_HOLLA);
             player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_HOLLA);
-            player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMHOLLA,0,1);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMHOLLA,0,1);
         else
             player:addExp(1500);
-            player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_EXITPROMHOLLA,0,1);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMHOLLA,0,1);
         end
     end
 end;

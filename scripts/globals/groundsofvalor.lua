@@ -252,7 +252,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     elseif (option == GOV_MENU_HOMING_INSTINCT) then -- Send to Homepoint
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            player:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_WARP,0,1);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.WARP,0,1);
         end
     elseif (option == GOV_MENU_RERAISE) then -- Reraise 1
         if (tabs >= 10) then

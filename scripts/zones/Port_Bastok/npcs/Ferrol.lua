@@ -70,7 +70,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1547);
         end
     elseif (csid == 298 and option == 1) then
-        toCloisterOfTremors(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_TREMORS);
     end
 
 end;

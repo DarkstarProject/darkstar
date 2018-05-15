@@ -33,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 10115) then
         if (option == 1 and player:getGil() >= 750) then
             player:delGil(750);
-            toGhelsba(player);
+            dsp.teleport.to(player, dsp.teleport.id.GHELSBA_HUT);
         elseif (option == 2 and player:getGil() >= 750) then
             player:delGil(750);
             player:setPos(0, 0, 0, 0, 139);

@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1544);
         end
     elseif (csid == 287 and option == 1) then
-        toCloisterOfFlames(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FLAMES);
     end
 end;
 
