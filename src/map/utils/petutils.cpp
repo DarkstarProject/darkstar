@@ -1705,12 +1705,12 @@ namespace petutils
         PTrust->SetSLevel(PMaster->GetSLevel());
 
         // TODO: Proper stats per trust
-        PTrust->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PTrust->GetMLevel()));
-        PTrust->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLB, JOB_WHM, PTrust->GetMLevel()));
-        PTrust->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PTrust->GetMLevel()));
-        PTrust->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THR, JOB_WHM, PTrust->GetMLevel()));
+        PTrust->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
+        PTrust->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
+        PTrust->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PTrust->GetMLevel())); // Throwing??
+        PTrust->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PTrust->GetMLevel()));
         //set C magic evasion
-        PTrust->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELE, JOB_RDM, PTrust->GetMLevel()));
+        PTrust->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PTrust->GetMLevel()));
         // HP/MP STR/DEX/etc..
         LoadTrustStats(PTrust);
 
