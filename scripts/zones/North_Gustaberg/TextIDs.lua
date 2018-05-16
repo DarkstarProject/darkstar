@@ -1,7 +1,7 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED_TWICE = 6562; -- You cannot obtain the item <item>.
+ITEM_CANNOT_BE_OBTAINED_TWICE = 6561; -- You cannot obtain any more.
       ITEM_CANNOT_BE_OBTAINED = 6562; -- You cannot obtain the item <item>. Come back after sorting your inventory.
    FULL_INVENTORY_AFTER_TRADE = 6566; -- You cannot obtain the #. Try trading again after sorting your inventory.
                 ITEM_OBTAINED = 6568; -- Obtained: <item>.
