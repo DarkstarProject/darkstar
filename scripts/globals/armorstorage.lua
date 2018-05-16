@@ -3,11 +3,11 @@
 --  Armor Storage
 --
 -----------------------------------
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 -----------------------------------
 
-dsp = dsp or {};
-dsp.armorStorage = dsp.armorStorage or {};
+dsp = dsp or {}
+dsp.armorStorage = dsp.armorStorage or {}
 
 -- {SetId,SetGroup,SetMask,SetCount,Head,Body,Hands,Legs,Feet,StorageCost,KeyItem}
 local armorSets =
@@ -100,72 +100,69 @@ local armorSets =
     0x56, 0x06, 0x020000, 0x05, 0x2CCF, 0x2C22, 0x3AB7, 0x3FE0, 0x2C7C, 0x3E8, dsp.ki.PANTIN_ATTIRE_CLAIM_SLIP,
     0x57, 0x06, 0x040000, 0x05, 0x2CD6, 0x2C29, 0x3ABE, 0x3FE8, 0x2C84, 0x3E8, dsp.ki.ETOILE_ATTIRE_CLAIM_SLIP,
     0x58, 0x06, 0x080000, 0x05, 0x2CD8, 0x2C2B, 0x3AC0, 0x3FEA, 0x2C86, 0x3E8, dsp.ki.ARGUTE_ATTIRE_CLAIM_SLIP,
-    0x59, 0x02, 0x040000, 0x02, 0x0000, 0x2C2E, 0x0000, 0x3FED, 0x0000, 0x258, dsp.ki.ARGENT_ATTIRE_CLAIM_SLIP,
-};
+    0x59, 0x02, 0x040000, 0x02, 0x0000, 0x2C2E, 0x0000, 0x3FED, 0x0000, 0x258, dsp.ki.ARGENT_ATTIRE_CLAIM_SLIP
+}
 
 dsp.armorStorage.onTrade = function(player, trade, deposit)
-    local returnValue = false;
+    local returnValue = false
 
     for i = 1, #armorSets, 11 do
-        local T1 = trade:hasItemQty(armorSets[i + 5], 1);
+        local T1 = trade:hasItemQty(armorSets[i + 5], 1)
         
-        if (T1) then
-            if (not player:hasKeyItem(armorSets[i + 10])) then
-                if (trade:getItemCount() == armorSets[i + 3]) then
-                    local T2 = trade:hasItemQty(armorSets[i + 4], 1) or armorSets[i + 4] == 0;
-                    local T3 = trade:hasItemQty(armorSets[i + 6], 1) or armorSets[i + 6] == 0;
-                    local T4 = trade:hasItemQty(armorSets[i + 7], 1) or armorSets[i + 7] == 0;
-                    local T5 = trade:hasItemQty(armorSets[i + 8], 1) or armorSets[i + 8] == 0;
+        if T1 then
+            if not player:hasKeyItem(armorSets[i + 10]) then
+                if trade:getItemCount() == armorSets[i + 3] then
+                    local T2 = trade:hasItemQty(armorSets[i + 4], 1) or armorSets[i + 4] == 0
+                    local T3 = trade:hasItemQty(armorSets[i + 6], 1) or armorSets[i + 6] == 0
+                    local T4 = trade:hasItemQty(armorSets[i + 7], 1) or armorSets[i + 7] == 0
+                    local T5 = trade:hasItemQty(armorSets[i + 8], 1) or armorSets[i + 8] == 0
 
-                    if (T2 and T3 and T4 and T5) then
-                        player:startEvent(deposit, 0, 0, 0, 0, 0, armorSets[i + 9]);
-                        player:addKeyItem(armorSets[i + 10]);
-                        player:messageSpecial(KEYITEM_OBTAINED, armorSets[i + 10]);
-                        returnValue = true;
-                        break;
+                    if T2 and T3 and T4 and T5 then
+                        player:startEvent(deposit, 0, 0, 0, 0, 0, armorSets[i + 9])
+                        player:addKeyItem(armorSets[i + 10])
+                        player:messageSpecial(KEYITEM_OBTAINED, armorSets[i + 10])
+                        returnValue = true
+                        break
                     end
                 end
             end
         end
     end
     
-    return returnValue;
+    return returnValue
 end
 
 dsp.armorStorage.onTrigger = function(player, withdrawal)
-    local G1 = 0;
-    local G2 = 0;
-    local G3 = 0;
-    local G4 = 0;
-    local G5 = 0;
+    local G1 = 0
+    local G2 = 0
+    local G3 = 0
+    local G4 = 0
+    local G5 = 0
 
     for i = 11, #armorSets, 11 do
         if player:hasKeyItem(armorSets[i]) then
-            local group = armorSets[i - 9];
-            local mask  = armorSets[i - 8];
+            local group = armorSets[i - 9]
+            local mask  = armorSets[i - 8]
             
-            if (group == 1) then
-                G1 = G1 + mask;
-            elseif (group == 2) then
-                G2 = G2 + mask;
-            elseif (group == 3) then
-                G3 = G3 + mask;
-            elseif (group == 4) then
-                G4 = G4 + mask;
-            elseif (group == 6) then
-                G5 = G5 + mask;
+            if group == 1 then
+                G1 = G1 + mask
+            elseif group == 2 then
+                G2 = G2 + mask
+            elseif group == 3 then
+                G3 = G3 + mask
+            elseif group == 4 then
+                G4 = G4 + mask
+            elseif group == 6 then
+                G5 = G5 + mask
             end
         end
     end
     
-    player:startEvent(withdrawal, G1, G2, G3, G4, player:getGil(), G5);
+    player:startEvent(withdrawal, G1, G2, G3, G4, player:getGil(), G5)
 end
 
 dsp.armorStorage.onEventUpdate = function(player, csid, option, withdrawal)
-    local returnVal = false;
-    
-    if (csid == withdrawal) then
-        returnVal = true;
+    if csid == withdrawal then
         player:updateEvent(
             armorSets[option * 11 - 6],
             armorSets[option * 11 - 5],
@@ -173,31 +170,36 @@ dsp.armorStorage.onEventUpdate = function(player, csid, option, withdrawal)
             armorSets[option * 11 - 3],
             armorSets[option * 11 - 2],
             armorSets[option * 11 - 1]
-        );
+        )
     end
-    
-    return returnVal;
 end
 
 dsp.armorStorage.onEventFinish = function(player, csid, option, deposit, withdrawal)
-    if (csid == deposit) then
-        player:tradeComplete();
+    if csid == deposit then
+        player:tradeComplete()
         
-    elseif (csid == withdrawal and player:hasKeyItem(armorSets[option * 11])) then
-        if (option > 0 and option <= armorSets[#armorSets] - 10) then
-            if (player:getFreeSlotsCount() >= armorSets[option * 11 - 7]) then
-                for item = 2, 6 do
-                    if (armorSets[option * 11 - item] > 0) then
-                        player:addItem(armorSets[option * 11 - item], 1);
-                        player:messageSpecial(ITEM_OBTAINED, armorSets[option * 11 - item]);
+    elseif csid == withdrawal then
+        if option > 0 and option <= armorSets[#armorSets] - 10 then
+            local idx   = (option * 11) - 10
+            local count = armorSets[idx + 3]
+            local cost  = armorSets[idx + 9]
+            local ki    = armorSets[idx + 10]
+            
+            if player:hasKeyItem(ki) and player:getFreeSlotsCount() >= count and player:getGil() >= cost then
+                for i = 4, 8 do
+                    local itemId = armorSets[idx + i]
+                    if itemId > 0 then
+                        player:addItem(itemId, 1)
+                        player:messageSpecial(ITEM_OBTAINED, itemId)
                     end
                 end
-                player:delKeyItem(armorSets[option * 11]);
-                player:setGil(player:getGil() - armorSets[option * 11 - 1]);
+                player:delKeyItem(ki)
+                player:setGil(player:getGil() - cost)
             else
-                for item = 2, 6 do
-                    if (armorSets[option * 11 - item] > 0) then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, armorSets[option * 11 - item]);
+                for i = 4, 8 do
+                    local itemId = armorSets[idx + i]
+                    if itemId > 0 then
+                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemId)
                     end
                 end
             end
