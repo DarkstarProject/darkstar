@@ -20,7 +20,6 @@ dsp.wsquest =
         ['logId'] = BASTOK,
         ['questId'] = THE_WALLS_OF_YOUR_MIND,
         ['fameRegion'] = BASTOK,
-        ['wsnmId'] = 17461479,
         ['eventIds'] =
         {
             ['start'] = 286,
@@ -52,7 +51,6 @@ dsp.wsquest =
         ['logId'] = OUTLANDS,
         ['questId'] = CLOAK_AND_DAGGER,
         ['fameRegion'] = KAZHAM,
-        ['wsnmId'] = 17645809,
         ['eventIds'] =
         {
             ['start'] = 279,
@@ -84,7 +82,6 @@ dsp.wsquest =
         ['logId'] = SANDORIA,
         ['questId'] = OLD_WOUNDS,
         ['fameRegion'] = SANDORIA,
-        ['wsnmId'] = 17629645,
         ['eventIds'] =
         {
             ['start'] = 43,
@@ -116,7 +113,6 @@ dsp.wsquest =
         ['logId'] = BASTOK,
         ['questId'] = INHERITANCE,
         ['fameRegion'] = BASTOK,
-        ['wsnmId'] = 17289656,
         ['eventIds'] =
         {
             ['start'] = 190,
@@ -148,7 +144,6 @@ dsp.wsquest =
         ['logId'] = JEUNO,
         ['questId'] = AXE_THE_COMPETITION,
         ['fameRegion'] = JEUNO,
-        ['wsnmId'] = 17428817,
         ['eventIds'] =
         {
             ['start'] = 12,
@@ -180,7 +175,6 @@ dsp.wsquest =
         ['logId'] = BASTOK,
         ['questId'] = THE_WEIGHT_OF_YOUR_LIMITS,
         ['fameRegion'] = BASTOK,
-        ['wsnmId'] = 17273295,
         ['eventIds'] =
         {
             ['start'] = 790,
@@ -212,7 +206,6 @@ dsp.wsquest =
         ['logId'] = SANDORIA,
         ['questId'] = SOULS_IN_SHADOW,
         ['fameRegion'] = SANDORIA,
-        ['wsnmId'] = 17433006,
         ['eventIds'] =
         {
             ['start'] = 0,
@@ -244,7 +237,6 @@ dsp.wsquest =
         ['logId'] = SANDORIA,
         ['questId'] = METHODS_CREATE_MADNESS,
         ['fameRegion'] = SANDORIA,
-        ['wsnmId'] = 17498565,
         ['eventIds'] =
         {
             ['start'] = 8,
@@ -276,7 +268,6 @@ dsp.wsquest =
         ['logId'] = OUTLANDS,
         ['questId'] = BUGI_SODEN,
         ['fameRegion'] = NORG,
-        ['wsnmId'] = 17649861,
         ['eventIds'] =
         {
             ['start'] = 184,
@@ -308,7 +299,6 @@ dsp.wsquest =
         ['logId'] = OUTLANDS,
         ['questId'] = THE_POTENTIAL_WITHIN,
         ['fameRegion'] = NORG,
-        ['wsnmId'] = 17490235,
         ['eventIds'] =
         {
             ['start'] = 178,
@@ -340,7 +330,6 @@ dsp.wsquest =
         ['logId'] = WINDURST,
         ['questId'] = ORASTERY_WOES,
         ['fameRegion'] = WINDURST,
-        ['wsnmId'] = 17277126,
         ['eventIds'] =
         {
             ['start'] = 578,
@@ -372,7 +361,6 @@ dsp.wsquest =
         ['logId'] = WINDURST,
         ['questId'] = BLOOD_AND_GLORY,
         ['fameRegion'] = WINDURST,
-        ['wsnmId'] = 17617165,
         ['eventIds'] =
         {
             ['start'] = 445,
@@ -404,7 +392,6 @@ dsp.wsquest =
         ['logId'] = WINDURST,
         ['questId'] = FROM_SAPLINGS_GROW,
         ['fameRegion'] = WINDURST,
-        ['wsnmId'] = 17240424,
         ['eventIds'] =
         {
             ['start'] = 661,
@@ -436,7 +423,6 @@ dsp.wsquest =
         ['logId'] = BASTOK,
         ['questId'] = SHOOT_FIRST_ASK_QUESTIONS_LATER,
         ['fameRegion'] = BASTOK,
-        ['wsnmId'] = 17404338,
         ['eventIds'] =
         {
             ['start'] = 795,
@@ -513,14 +499,14 @@ function getWsQuestTriggerEvent(quest, player)
     return nil;
 end;
 
-function handleQmTrigger(quest, player)
+function handleQmTrigger(quest, player, wsnmId)
     if (getWsQuestState(quest, player) == WSQUEST_CONT2) then
         if (player:getVar('killed_wsnm') == 1) then
             player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH);
             player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH);
-        elseif (GetMobAction(quest.wsnmId) == 0) then
+        elseif (GetMobAction(wsnmId) == 0) then
             player:messageSpecial(SENSE_OMINOUS_PRESENCE);
-            SpawnMob(quest.wsnmId):updateClaim(player);
+            SpawnMob(wsnmId):updateClaim(player);
         end;
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
