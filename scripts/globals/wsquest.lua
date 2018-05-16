@@ -12,18 +12,14 @@ dsp.wsquest =
     --------------------------------------
     ['theWallsOfYourMind'] =
     {
-        ['questName'] = 'The Walls Of Your Mind',
-        ['wsName'] = 'Asuran Fists',
         ['wsId'] = 9,
         ['wsUnlockId'] = 1,
         ['skillId'] = dsp.skill.HAND_TO_HAND,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Knuckles of Trials',
         ['trialWeaponId'] = 17507,
         ['logId'] = BASTOK,
         ['questId'] = THE_WALLS_OF_YOUR_MIND,
         ['fameRegion'] = BASTOK,
-        ['wsnmName'] = 'Bodach',
         ['wsnmId'] = 17461479,
         ['eventIds'] =
         {
@@ -48,18 +44,14 @@ dsp.wsquest =
     ------------------------------------
     ['cloakAndDagger'] =
     {
-        ['questName'] = 'Cloak and Dagger',
-        ['wsName'] = 'Evisceration',
         ['wsId'] = 25,
         ['wsUnlockId'] = 2,
         ['skillId'] = dsp.skill.DAGGER,
         ['minSkill'] = 230,
-        ['trialWeaponName'] = 'Dagger of Trials',
         ['trialWeaponId'] = 17616,
         ['logId'] = OUTLANDS,
         ['questId'] = CLOAK_AND_DAGGER,
         ['fameRegion'] = KAZHAM,
-        ['wsnmName'] = 'Baronial Bat',
         ['wsnmId'] = 17645809,
         ['eventIds'] =
         {
@@ -84,18 +76,14 @@ dsp.wsquest =
     ----------------------------------------
     ['oldWounds'] =
     {
-        ['questName'] = 'Old Wounds',
-        ['wsName'] = 'Savage Blade',
         ['wsId'] = 42,
         ['wsUnlockId'] = 3,
         ['skillId'] = dsp.skill.SWORD,
         ['minSkill'] = 240,
-        ['trialWeaponName'] = 'Sapara of Trials',
         ['trialWeaponId'] = 17654,
         ['logId'] = SANDORIA,
         ['questId'] = OLD_WOUNDS,
         ['fameRegion'] = SANDORIA,
-        ['wsnmName'] = 'Girtablulu',
         ['wsnmId'] = 17629645,
         ['eventIds'] =
         {
@@ -120,18 +108,14 @@ dsp.wsquest =
     --------------------------------------
     ['inheritance'] =
     {
-        ['questName'] = 'Inheritance',
-        ['wsName'] = 'Ground Strike',
         ['wsId'] = 56,
         ['wsUnlockId'] = 4,
         ['skillId'] = dsp.skill.GREAT_SWORD,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Sword of Trials',
         ['trialWeaponId'] = 16952,
         ['logId'] = BASTOK,
         ['questId'] = INHERITANCE,
         ['fameRegion'] = BASTOK,
-        ['wsnmName'] = 'Maharaja',
         ['wsnmId'] = 17289656,
         ['eventIds'] =
         {
@@ -156,18 +140,14 @@ dsp.wsquest =
     -------------------------------
     ['axeTheCompetition'] =
     {
-        ['questName'] = 'Axe The Competition',
-        ['wsName'] = 'Decimation',
         ['wsId'] = 72,
         ['wsUnlockId'] = 5,
         ['skillId'] = dsp.skill.AXE,
         ['minSkill'] = 240,
-        ['trialWeaponName'] = 'Pick of Trials',
         ['trialWeaponId'] = 17933,
         ['logId'] = JEUNO,
         ['questId'] = AXE_THE_COMPETITION,
         ['fameRegion'] = JEUNO,
-        ['wsnmName'] = 'Yallery Brown',
         ['wsnmId'] = 17428817,
         ['eventIds'] =
         {
@@ -192,18 +172,14 @@ dsp.wsquest =
     ------------------------------------
     ['theWeightOfYourLimits'] =
     {
-        ['questName'] = 'The Weight Of Your Limits',
-        ['wsName'] = 'Steel Cyclone',
         ['wsId'] = 88,
         ['wsUnlockId'] = 6,
         ['skillId'] = dsp.skill.GREAT_AXE,
         ['minSkill'] = 240,
-        ['trialWeaponName'] = 'Axe of Trials',
         ['trialWeaponId'] = 16735,
         ['logId'] = BASTOK,
         ['questId'] = THE_WEIGHT_OF_YOUR_LIMITS,
         ['fameRegion'] = BASTOK,
-        ['wsnmName'] = 'Greenman',
         ['wsnmId'] = 17273295,
         ['eventIds'] =
         {
@@ -228,18 +204,14 @@ dsp.wsquest =
     ---------------------------------------------
     ['soulsInShadow'] =
     {
-        ['questName'] = 'Souls In Shadow',
-        ['wsName'] = 'Spiral Hell',
         ['wsId'] = 104,
         ['wsUnlockId'] = 7,
         ['skillId'] = dsp.skill.SCYTHE,
         ['minSkill'] = 240,
-        ['trialWeaponName'] = 'Scythe of Trials',
         ['trialWeaponId'] = 16793,
         ['logId'] = SANDORIA,
         ['questId'] = SOULS_IN_SHADOW,
         ['fameRegion'] = SANDORIA,
-        ['wsnmName'] = 'Mokumokuren',
         ['wsnmId'] = 17433006,
         ['eventIds'] =
         {
@@ -264,18 +236,14 @@ dsp.wsquest =
     -----------------------------------------
     ['methodsCreateMadness'] =
     {
-        ['questName'] = 'Methods Create Madness',
-        ['wsName'] = 'Impulse Drive',
         ['wsId'] = 120,
         ['wsUnlockId'] = 8,
         ['skillId'] = dsp.skill.POLEARM,
         ['minSkill'] = 240,
-        ['trialWeaponName'] = 'Spear of Trials',
         ['trialWeaponId'] = 16892,
         ['logId'] = SANDORIA,
         ['questId'] = METHODS_CREATE_MADNESS,
         ['fameRegion'] = SANDORIA,
-        ['wsnmName'] = 'Water Leaper',
         ['wsnmId'] = 17498565,
         ['eventIds'] =
         {
@@ -300,18 +268,14 @@ dsp.wsquest =
     -----------------------------
     ['bugiSoden'] =
     {
-        ['questName'] = 'Bugi Soden',
-        ['wsName'] = 'Blade: Ku',
         ['wsId'] = 136,
         ['wsUnlockId'] = 9,
         ['skillId'] = dsp.skill.KATANA,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Kodachi of Trials',
         ['trialWeaponId'] = 17773,
         ['logId'] = OUTLANDS,
         ['questId'] = BUGI_SODEN,
         ['fameRegion'] = NORG,
-        ['wsnmName'] = 'Megapod Megalops',
         ['wsnmId'] = 17649861,
         ['eventIds'] =
         {
@@ -336,18 +300,14 @@ dsp.wsquest =
     --------------------------------------
     ['thePotentialWithin'] =
     {
-        ['questName'] = 'The Potential Within',
-        ['wsName'] = 'Tachi: Kasha',
         ['wsId'] = 152,
         ['wsUnlockId'] = 10,
         ['skillId'] = dsp.skill.GREAT_KATANA,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Tachi of Trials',
         ['trialWeaponId'] = 17815,
         ['logId'] = OUTLANDS,
         ['questId'] = THE_POTENTIAL_WITHIN,
         ['fameRegion'] = NORG,
-        ['wsnmName'] = 'Kettenkaefer',
         ['wsnmId'] = 17490235,
         ['eventIds'] =
         {
@@ -372,18 +332,14 @@ dsp.wsquest =
     ----------------------------------------
     ['orasteryWoes'] =
     {
-        ['questName'] = 'Orastery Woes',
-        ['wsName'] = 'Black Halo',
         ['wsId'] = 169,
         ['wsUnlockId'] = 11,
         ['skillId'] = dsp.skill.CLUB,
         ['minSkill'] = 230,
-        ['trialWeaponName'] = 'Club of Trials',
         ['trialWeaponId'] = 17456,
         ['logId'] = WINDURST,
         ['questId'] = ORASTERY_WOES,
         ['fameRegion'] = WINDURST,
-        ['wsnmName'] = 'Eldhrimnir',
         ['wsnmId'] = 17277126,
         ['eventIds'] =
         {
@@ -408,18 +364,14 @@ dsp.wsquest =
     -------------------------------------
     ['bloodAndGlory'] =
     {
-        ['questName'] = 'Blood And Glory',
-        ['wsName'] = 'Retribution',
         ['wsId'] = 184,
         ['wsUnlockId'] = 12,
         ['skillId'] = dsp.skill.STAFF,
         ['minSkill'] = 230,
-        ['trialWeaponName'] = 'Pole of Trials',
         ['trialWeaponId'] = 17527,
         ['logId'] = WINDURST,
         ['questId'] = BLOOD_AND_GLORY,
         ['fameRegion'] = WINDURST,
-        ['wsnmName'] = 'Cailleach Bheur',
         ['wsnmId'] = 17617165,
         ['eventIds'] =
         {
@@ -444,18 +396,14 @@ dsp.wsquest =
     ----------------------------------------
     ['fromSaplingsGrow'] =
     {
-        ['questName'] = 'From Saplings Grow',
-        ['wsName'] = 'Empyrean Arrow',
         ['wsId'] = 199,
         ['wsUnlockId'] = 13,
         ['skillId'] = dsp.skill.ARCHERY,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Bow of Trials',
         ['trialWeaponId'] = 18144,
         ['logId'] = WINDURST,
         ['questId'] = FROM_SAPLINGS_GROW,
         ['fameRegion'] = WINDURST,
-        ['wsnmName'] = 'Stolas',
         ['wsnmId'] = 17240424,
         ['eventIds'] =
         {
@@ -480,18 +428,14 @@ dsp.wsquest =
     -------------------------------------------
     ['shootFirstAskQuestionsLater'] =
     {
-        ['questName'] = 'Shoot First, Ask Questions Later',
-        ['wsName'] = 'Detonator',
         ['wsId'] = 215,
         ['wsUnlockId'] = 14,
         ['skillId'] = dsp.skill.MARKSMANSHIP,
         ['minSkill'] = 250,
-        ['trialWeaponName'] = 'Gun of Trials',
         ['trialWeaponId'] = 18146,
         ['logId'] = BASTOK,
         ['questId'] = SHOOT_FIRST_ASK_QUESTIONS_LATER,
         ['fameRegion'] = BASTOK,
-        ['wsnmName'] = 'Beet Leafhopper',
         ['wsnmId'] = 17404338,
         ['eventIds'] =
         {
@@ -539,10 +483,6 @@ local function getWsQuestState(quest, player)
     return nil;
 end;
 
-local function getWsnmVariableName(quest)
-    return string.format('Killed_%s', string.gsub(quest.wsnmName, ' ', '_'));
-end;
-
 function getWsQuestTradeEvent(quest, player, trade)
     local wsPoints = (trade:getItem(0):getWeaponskillPoints());
 
@@ -575,7 +515,7 @@ end;
 
 function handleQmTrigger(quest, player)
     if (getWsQuestState(quest, player) == WSQUEST_CONT2) then
-        if (player:getVar(getWsnmVariableName(quest)) == 1) then
+        if (player:getVar('killed_wsnm') == 1) then
             player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH);
             player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH);
         elseif (GetMobAction(quest.wsnmId) == 0) then
@@ -589,7 +529,7 @@ end;
 
 function handleWsnmDeath(quest, player)
     if (getWsQuestState(quest, player) == WSQUEST_CONT2) then
-        player:setVar(getWsnmVariableName(quest), 1);
+        player:setVar('killed_wsnm', 1);
     end;
 end;
 
