@@ -235,7 +235,7 @@ end;
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function getAutocRatio(attacker, defender, params, ignoredDef, melee)
-    local cratio = (melee and attacker:getStat(dsp.mod.ATT) or attacker:getRATT()) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef
+    local cratio = (melee and attacker:getStat(dsp.mod.ATT) or attacker:getRATT()) * params.atkmulti / (defender:getStat(dsp.mod.DEF) - ignoredDef)
 
     local levelbonus = 0;
     if attacker:getMainLvl() > defender:getMainLvl() then
