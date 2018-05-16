@@ -272,7 +272,7 @@ function getAutocRatio(attacker, defender, params, ignoredDef, melee)
             pdifmin =  0
         elseif 0.38 <= cratio and cratio <= 1.25 then
             pdifmin = cratio * 1176 / 1024 - 448 / 1024
-        elseif 1.25 < cratio and (cratio <= 1.51 then
+        elseif 1.25 < cratio and cratio <= 1.51 then
             pdifmin = 1
         elseif 1.51 < cratio and cratio <= 2.44 then
             pdifmin = cratio * 1176 / 1024 - 775 / 1024
