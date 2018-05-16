@@ -2,8 +2,7 @@
 -- Area: Port Bastok (236)
 -- NPC: Oggbi
 -- Starts and Finishes: Ghosts of the Past,The First Meeting,The Walls of Your Mind
--- !zone 236
--- !pos -159 -7 5
+-- !pos -159 -7 5 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
 -----------------------------------
