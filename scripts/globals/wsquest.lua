@@ -1,8 +1,8 @@
-require('scripts/globals/keyitems');
-require('scripts/globals/quests');
-require('scripts/globals/status');
+require('scripts/globals/keyitems')
+require('scripts/globals/quests')
+require('scripts/globals/status')
 
-dsp = dsp or {};
+dsp = dsp or {}
 dsp.wsquest =
 {
     --------------------------------------
@@ -439,122 +439,124 @@ dsp.wsquest =
             ['abandon'] = 2
         }
     },
-};
+}
 
-local WSQUEST_START = 0; -- Quest is available or completed
-local WSQUEST_CONT1 = 1; -- Player has accepted quest ('cont1')
-local WSQUEST_CONT2 = 2; -- Player has turned in completed trial weapon and received Map to Annals ('cont2')
-local WSQUEST_FINISH = 3; -- Player has killed NM and received Annals of Truth ('finish')
+local WSQUEST_START = 0 -- Quest is available or completed
+local WSQUEST_CONT1 = 1 -- Player has accepted quest ('cont1')
+local WSQUEST_CONT2 = 2 -- Player has turned in completed trial weapon and received Map to Annals ('cont2')
+local WSQUEST_FINISH = 3 -- Player has killed NM and received Annals of Truth ('finish')
 
-local function getWsQuestState(quest, player)
+local function getQuestState(quest, player)
     if (player:getQuestStatus(quest.logId, quest.questId) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.ANNALS_OF_TRUTH)) then
-            return WSQUEST_FINISH;
+            return WSQUEST_FINISH
         elseif (player:hasKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)) then
-            return WSQUEST_CONT2;
+            return WSQUEST_CONT2
         else
-            return WSQUEST_CONT1;
-        end;
+            return WSQUEST_CONT1
+        end
     else
-        local canEquip = player:canEquipItem(quest.trialWeaponId, true);
-        local sufficientSkill = player:getSkillLevel(quest.skillId) >= quest.minSkill;
-        local hasWeapon = player:hasItem(quest.trialWeaponId);
-        local hasTrainingGuide = player:hasKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE);
+        local canEquip = player:canEquipItem(quest.trialWeaponId, true)
+        local sufficientSkill = player:getSkillLevel(quest.skillId) >= quest.minSkill
+        local hasWeapon = player:hasItem(quest.trialWeaponId)
+        local hasTrainingGuide = player:hasKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE)
 
         if (canEquip and sufficientSkill and not hasWeapon and not hasTrainingGuide) then
-            return WSQUEST_START;
-        end;
-    end;
+            return WSQUEST_START
+        end
+    end
 
-    return nil;
-end;
+    return nil
+end
 
-function getWsQuestTradeEvent(quest, player, trade)
-    local wsPoints = (trade:getItem(0):getWeaponskillPoints());
+dsp.wsquest.getTradeEvent = function(quest, player, trade)
+    local wsPoints = (trade:getItem(0):getWeaponskillPoints())
 
-    if (getWsQuestState(quest, player) == WSQUEST_CONT1 and trade:hasItemQty(quest.trialWeaponId, 1) and trade:getItemCount() == 1) then
+    if (getQuestState(quest, player) == WSQUEST_CONT1 and trade:hasItemQty(quest.trialWeaponId, 1) and trade:getItemCount() == 1) then
         if (wsPoints < 300) then
-            return quest.eventIds.tradedUnfinishedWeapon;
+            return quest.eventIds.tradedUnfinishedWeapon
         else
-            return quest.eventIds.tradedFinishedWeapon;
-        end;
-    end;
+            return quest.eventIds.tradedFinishedWeapon
+        end
+    end
 
-    return nil;
-end;
+    return nil
+end
 
-function getWsQuestTriggerEvent(quest, player)
-    local state = getWsQuestState(quest, player);
+dsp.wsquest.getTriggerEvent = function(quest, player)
+    local state = getQuestState(quest, player)
 
     if (state == WSQUEST_START) then
-        return quest.eventIds.start; -- WS Quest start
+        return quest.eventIds.start -- WS Quest start
     elseif (state == WSQUEST_CONT1) then
-        return quest.eventIds.cont1;
+        return quest.eventIds.cont1
     elseif (state == WSQUEST_CONT2) then
-        return quest.eventIds.cont2;
+        return quest.eventIds.cont2
     elseif (state == WSQUEST_FINISH) then
-        return quest.eventIds.finish; -- WS Quest completed (WSNM killed)
-    end;
+        return quest.eventIds.finish -- WS Quest completed (WSNM killed)
+    end
 
-    return nil;
-end;
+    return nil
+end
 
-function handleQmTrigger(quest, player, wsnmId)
-    if (getWsQuestState(quest, player) == WSQUEST_CONT2) then
+dsp.wsquest.handleQmTrigger = function(quest, player, wsnmId)
+    if (getQuestState(quest, player) == WSQUEST_CONT2) then
         if (player:getVar('killed_wsnm') == 1) then
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH);
-            player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH)
+            player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH)
         elseif (GetMobAction(wsnmId) == 0) then
-            player:messageSpecial(SENSE_OMINOUS_PRESENCE);
-            SpawnMob(wsnmId):updateClaim(player);
-        end;
+            player:messageSpecial(SENSE_OMINOUS_PRESENCE)
+            SpawnMob(wsnmId):updateClaim(player)
+        end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-    end;
-end;
+        player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+    end
+end
 
-function handleWsnmDeath(quest, player)
-    if (getWsQuestState(quest, player) == WSQUEST_CONT2) then
-        player:setVar('killed_wsnm', 1);
-    end;
-end;
+dsp.wsquest.handleWsnmDeath = function(quest, player)
+    if (getQuestState(quest, player) == WSQUEST_CONT2) then
+        player:setVar('killed_wsnm', 1)
+    end
+end
 
-function handleWsQuestEventFinish(quest, player, csid, option, learnedId)
-    if (csid == quest.eventIds.start and ((quest.options.acceptStart == nil) or (option == quest.options.acceptStart))) then -- WS Quest start
-        if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, quest.trialWeaponId);
-        else
-            player:messageSpecial(ITEM_OBTAINED, quest.trialWeaponId);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.WEAPON_TRAINING_GUIDE);
-            player:addItem(quest.trialWeaponId);
-            player:addKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE);
-            player:addQuest(quest.logId, quest.questId);
-        end;
-    elseif (csid == quest.eventIds.cont1) then -- WS Quest ongoing stage 1
-        if ((quest.options.dropped ~= nil) and (option == quest.options.dropped)) then -- Misplaced weapon
-            if (player:hasItem(quest.trialWeaponId)) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, quest.trialWeaponId);
+dsp.wsquest.handleEventFinish = function(quest, player, csid, option, learnedId)
+    if (csid == quest.eventIds.start) then -- WS Quest start
+        if (quest.options.acceptStart == nil or option == quest.options.acceptStart) then
+            if (player:getFreeSlotsCount() < 1) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, quest.trialWeaponId)
             else
-                player:messageSpecial(ITEM_OBTAINED, quest.trialWeaponId);
-                player:addItem(quest.trialWeaponId);
-            end;
-        end;
+                player:messageSpecial(ITEM_OBTAINED, quest.trialWeaponId)
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.WEAPON_TRAINING_GUIDE)
+                player:addItem(quest.trialWeaponId)
+                player:addKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE)
+                player:addQuest(quest.logId, quest.questId)
+            end
+        end
+    elseif (csid == quest.eventIds.cont1) then -- WS Quest ongoing stage 1
+        if (quest.options.dropped ~= nil and option == quest.options.dropped) then -- Misplaced weapon
+            if (player:hasItem(quest.trialWeaponId)) then
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, quest.trialWeaponId)
+            else
+                player:messageSpecial(ITEM_OBTAINED, quest.trialWeaponId)
+                player:addItem(quest.trialWeaponId)
+            end
+        end
         if (option == quest.options.abandon) then -- Abandon quest
-            player:delQuest(quest.logId, quest.questId);
-            player:delKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE);
-            player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH);
-        end;
+            player:delQuest(quest.logId, quest.questId)
+            player:delKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE)
+            player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
+        end
     elseif (csid == quest.eventIds.tradedFinishedWeapon) then -- WS Quest ongoing stage 2
-        player:tradeComplete();
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH);
-        player:addKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH);
+        player:tradeComplete()
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
+        player:addKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
     elseif (csid == quest.eventIds.finish) then -- WS Quest completed
-        player:messageSpecial(learnedId);
-        player:addLearnedWeaponskill(quest.wsUnlockId);
-        player:addFame(quest.fameRegion, 30);
-        player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH);
-        player:delKeyItem(dsp.ki.ANNALS_OF_TRUTH);
-        player:delKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE);
-        player:completeQuest(quest.logId, quest.questId);
-    end;
-end;
+        player:messageSpecial(learnedId)
+        player:addLearnedWeaponskill(quest.wsUnlockId)
+        player:addFame(quest.fameRegion, 30)
+        player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
+        player:delKeyItem(dsp.ki.ANNALS_OF_TRUTH)
+        player:delKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE)
+        player:completeQuest(quest.logId, quest.questId)
+    end
+end
