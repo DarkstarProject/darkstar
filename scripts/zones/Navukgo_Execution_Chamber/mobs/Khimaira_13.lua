@@ -15,7 +15,7 @@ function onMobFight(mob,target)
     local assist = mob:getLocalVar("assist");
 
     if (assist == 0) then
-        startAllyAssist(mob);
+        dsp.ally.startAssist(mob);
         mob:setLocalVar("assist", 1);
     end
 end;

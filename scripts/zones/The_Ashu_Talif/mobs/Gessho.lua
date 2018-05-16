@@ -20,7 +20,7 @@ function onMobSpawn(mob)
     -- Give a little buffer for while the instance loads
     mob:timer(80000, function(mob)
         if(mob:getLocalVar("ready") == 0 and not(mob:getTarget())) then
-            startAllyAssist(mob, ALLY_ASSIST_RANDOM);
+            dsp.ally.startAssist(mob, dsp.ally.ASSIST_RANDOM);
         end
     end)
 
@@ -55,7 +55,7 @@ function onMobRoam(mob)
 
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
-        startAllyAssist(mob, ALLY_ASSIST_PLAYER);
+        dsp.ally.startAssist(mob, dsp.ally.ASSIST_PLAYER);
     end
 end;
 
