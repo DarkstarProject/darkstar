@@ -19,14 +19,12 @@ local wsQuest = dsp.wsquest.theWallsOfYourMind;
 function onTrade(player,npc,trade)
     local wsQuestEvent = getWsQuestTradeEvent(wsQuest, player, trade);
 
-    if (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
+    if (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent);
+    elseif (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13122,1) and trade:getItemCount() == 1) then -- Trade Miner's Pendant
             player:startEvent(232); -- Finish Quest "Ghosts of the Past"
         end
-    end;
-
-    if (wsQuestEvent ~= nil) then
-        player:startEvent(wsQuestEvent);
     end;
 end;
 
@@ -37,14 +35,14 @@ function onTrigger(player,npc)
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
 
-    if (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
+    if (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent);
+    elseif (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
         player:startEvent(231); -- Start Quest "Ghosts of the Past"
     elseif (ghostsOfThePast == QUEST_COMPLETED and player:needToZone() == false and theFirstMeeting == QUEST_AVAILABLE and mJob == 2 and mLvl >= 50) then
         player:startEvent(233); -- Start Quest "The First Meeting"
     elseif (player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK) and player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)) then
         player:startEvent(234); -- Finish Quest "The First Meeting"
-    elseif (wsQuestEvent ~= nil) then
-        player:startEvent(wsQuestEvent);
     else
         player:startEvent(230); -- Standard Dialog
     end
