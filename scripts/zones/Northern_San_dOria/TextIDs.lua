@@ -2,9 +2,9 @@
 
 -- General Texts
     ITEM_CANNOT_BE_OBTAINED =  6589; -- Come back after sorting your inventory.
-              ITEM_OBTAINED =  6986; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>
-               GIL_OBTAINED =  6596; -- Obtained <<<Numeric Parameter 0>>> gil.
-           KEYITEM_OBTAINED =  6598; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>
+              ITEM_OBTAINED =  6595; -- Obtained: <Unknown Parameter (Type: 80) 1><Possible Special Code: 01><Possible Special Code: 05>
+               GIL_OBTAINED =  6596; -- Obtained <Numeric Parameter 0> gil.
+           KEYITEM_OBTAINED =  6598; -- Obtained key item: <Unknown Parameter (Type: 80) 1>
         NOT_HAVE_ENOUGH_GIL =  6602; -- You do not have enough gil.
               HOMEPOINT_SET =   188; -- Home point set!
               IMAGE_SUPPORT =  6952; -- Your ?Multiple Choice (Parameter 1)?[fishing/woodworking/smithing/goldsmithing/clothcraft/leatherworking/bonecraft/alchemy/cooking] skills went up ...
