@@ -4,11 +4,14 @@
 --   ID: 17461479
 -- Note: Popped by qm1
 -- Involved in Quest: The Walls of Your Mind
--- !zone 236
--- !pos -159 -7 5
+-- !pos -159 -7 5 167
 -----------------------------------
-require("scripts/globals/wsquest");
+require("scripts/globals/wsquest")
+
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
+end
 
 function onMobDeath(mob, player, isKiller)
-    handleWsnmDeath(dsp.wsquest.theWallsOfYourMind, player);
-end;
+    handleWsnmDeath(dsp.wsquest.theWallsOfYourMind, player)
+end
