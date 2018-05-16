@@ -19,7 +19,7 @@ function onEffectGain(target,effect)
     elseif effect:getPower() < 2 then
         target:addMod(dsp.mod.UDMGMAGIC, -101)
         if target:isPC() and target:hasTrait(77) then -- Iron Will
-            target:addMod(dsp.mod.SPELLINTERRUPT, dsp.merit.IRON_WILL)
+            target:addMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
         end
     else
         target:addMod(dsp.mod.MAGIC_ABSORB, 100)
@@ -39,7 +39,7 @@ function onEffectLose(target,effect)
     elseif effect:getPower() < 2 then
         target:delMod(dsp.mod.UDMGMAGIC, -101)
         if target:isPC() and target:hasTrait(77) then -- Iron Will
-            target:delMod(dsp.mod.SPELLINTERRUPT, dsp.merit.IRON_WILL)
+            target:delMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
         end
     else
         target:delMod(dsp.mod.MAGIC_ABSORB, 100)
