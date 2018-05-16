@@ -2482,7 +2482,7 @@ namespace battleutils
 
         if (isCritical)
         {
-            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE);
+            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
             criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
             pDIF *= ((100 + criticaldamage) / 100.0f);
         }

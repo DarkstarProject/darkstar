@@ -490,101 +490,101 @@ end
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function cMeleeRatio(attacker, defender, params, ignoredDef)
 
-    local flourisheffect = attacker:getStatusEffect(dsp.effect.BUILDING_FLOURISH);
+    local flourisheffect = attacker:getStatusEffect(dsp.effect.BUILDING_FLOURISH)
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:addMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower()/2)
+        attacker:addMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower() / 2)
     end
-    local cratio = (attacker:getStat(dsp.mod.ATT) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef);
+    local cratio = (attacker:getStat(dsp.mod.ATT) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef)
     cratio = utils.clamp(cratio, 0, 2.25);
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
-        attacker:delMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower()/2)
+        attacker:delMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower() / 2)
     end
     local levelcor = 0;
-    if (attacker:getMainLvl() < defender:getMainLvl()) then
-        levelcor = 0.05 * (defender:getMainLvl() - attacker:getMainLvl());
+    if attacker:getMainLvl() < defender:getMainLvl() then
+        levelcor = 0.05 * (defender:getMainLvl() - attacker:getMainLvl())
     end
 
-    cratio = cratio - levelcor;
+    cratio = cratio - levelcor
 
-    if (cratio < 0) then
-        cratio = 0;
+    if cratio < 0 then
+        cratio = 0
     end
-    local pdifmin = 0;
-    local pdifmax = 0;
+    local pdifmin = 0
+    local pdifmax = 0
 
     -- max
 
-    if (cratio < 0.5) then
-        pdifmax = cratio + 0.5;
-    elseif (cratio < 0.7) then
+    if cratio < 0.5 then
+        pdifmax = cratio + 0.5
+    elseif cratio < 0.7 then
         pdifmax = 1;
-    elseif (cratio < 1.2) then
-        pdifmax = cratio + 0.3;
-    elseif (cratio < 1.5) then
-        pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 2.625) then
-        pdifmax = cratio + 0.375;
+    elseif cratio < 1.2 then
+        pdifmax = cratio + 0.3
+    elseif cratio < 1.5 then
+        pdifmax = cratio * 0.25 + cratio
+    elseif cratio < 2.625 then
+        pdifmax = cratio + 0.375
     else
-        pdifmax = 3;
+        pdifmax = 3
     end
     -- min
 
-    if (cratio < 0.38) then
-        pdifmin = 0;
+    if cratio < 0.38 then
+        pdifmin = 0
     elseif (cratio < 1.25) then
-        pdifmin = cratio * (1176/1024) - (448/1024);
-    elseif (cratio < 1.51) then
-        pdifmin = 1;
-    elseif (cratio < 2.44) then
-        pdifmin = cratio * (1176/1024) - (775/1024);
+        pdifmin = cratio * 1176 / 1024 - 448 / 1024
+    elseif cratio < 1.51 then
+        pdifmin = 1
+    elseif cratio < 2.44 then
+        pdifmin = cratio * 1176 / 1024 - 775 / 1024
     else
-        pdifmin = cratio - 0.375;
+        pdifmin = cratio - 0.375
     end
 
-    local pdif = {};
-    pdif[1] = pdifmin;
-    pdif[2] = pdifmax;
+    local pdif = {}
+    pdif[1] = pdifmin
+    pdif[2] = pdifmax
 
-    local pdifcrit = {};
-    cratio = cratio + 1;
-    cratio = utils.clamp(cratio, 0, 3);
+    local pdifcrit = {}
+    cratio = cratio + 1
+    cratio = utils.clamp(cratio, 0, 3)
 
     -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
 
-    if (cratio < 0.5) then
-        pdifmax = cratio + 0.5;
-    elseif (cratio < 0.7) then
+    if cratio < 0.5 then
+        pdifmax = cratio + 0.5
+    elseif cratio < 0.7 then
         pdifmax = 1;
     elseif (cratio < 1.2) then
-        pdifmax = cratio + 0.3;
-    elseif (cratio < 1.5) then
-        pdifmax = (cratio * 0.25) + cratio;
-    elseif (cratio < 2.625) then
-        pdifmax = cratio + 0.375;
+        pdifmax = cratio + 0.3
+    elseif cratio < 1.5 then
+        pdifmax = cratio * 0.25 + cratio
+    elseif cratio < 2.625 then
+        pdifmax = cratio + 0.375
     else
-        pdifmax = 3;
+        pdifmax = 3
     end
     -- min
 
-    if (cratio < 0.38) then
-        pdifmin = 0;
-    elseif (cratio < 1.25) then
-        pdifmin = cratio * (1176/1024) - (448/1024);
-    elseif (cratio < 1.51) then
-        pdifmin = 1;
-    elseif (cratio < 2.44) then
-        pdifmin = cratio * (1176/1024) - (775/1024);
+    if cratio < 0.38 then
+        pdifmin = 0
+    elseif cratio < 1.25 then
+        pdifmin = cratio * 1176 / 1024 - 448 / 1024
+    elseif cratio < 1.51 then
+        pdifmin = 1
+    elseif (ratio < 2.44 then
+        pdifmin = cratio * 1176 / 1024 - 775 / 1024
     else
-        pdifmin = cratio - 0.375;
+        pdifmin = cratio - 0.375
     end
 
-    local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE)
-    critbonus = utils.clamp(critbonus, 0, 100);
-    pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
-    pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+    local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE) - defender:getMod(dsp.mod.CRIT_DEF_BONUS)
+    critbonus = utils.clamp(critbonus, 0, 100)
+    pdifcrit[1] = pdifmin * (100 + critbonus) / 100
+    pdifcrit[2] = pdifmax * (100 + critbonus) / 100
 
-    return pdif, pdifcrit;
-end;
+    return pdif, pdifcrit
+end
 
 function cRangedRatio(attacker, defender, params, ignoredDef)
 

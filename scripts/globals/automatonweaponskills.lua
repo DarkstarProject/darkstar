@@ -235,127 +235,127 @@ end;
 
 -- Given the raw ratio value (atk/def) and levels, returns the cRatio (min then max)
 function getAutocRatio(attacker, defender, params, ignoredDef, melee)
-    local cratio = ((melee and attacker:getStat(dsp.mod.ATT) or attacker:getRATT()) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef);
+    local cratio = (melee and attacker:getStat(dsp.mod.ATT) or attacker:getRATT()) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef
 
     local levelbonus = 0;
-    if (attacker:getMainLvl() > defender:getMainLvl()) then
-        levelbonus = 0.05 * (attacker:getMainLvl() - defender:getMainLvl());
+    if attacker:getMainLvl() > defender:getMainLvl() then
+        levelbonus = 0.05 * (attacker:getMainLvl() - defender:getMainLvl())
     end
 
-    cratio = cratio + levelbonus;
-    cratio = utils.clamp(cratio, 0, (melee and 4.0 or 3.0));
+    cratio = cratio + levelbonus
+    cratio = utils.clamp(cratio, 0, melee and 4.0 or 3.0)
 
-    local pdif = {};
-    local pdifcrit = {};
+    local pdif = {}
+    local pdifcrit = {}
 
     if melee then
-        local pdifmin = 0;
-        local pdifmax = 1;
+        local pdifmin = 0
+        local pdifmax = 1
 
-        if (cratio < 0.5) then
-            pdifmax = cratio + 0.5;
-        elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
-            pdifmax = 1;
-        elseif ((0.7 < cratio) and (cratio <= 1.2)) then
+        if cratio < 0.5 then
+            pdifmax = cratio + 0.5
+        elseif 0.5 <= cratio and cratio <= 0.7 then
+            pdifmax = 1
+        elseif 0.7 < cratio and cratio <= 1.2 then
+            pdifmax = cratio + 0.3
+        elseif 1.2 < cratio and cratio <= 1.5 then
+            pdifmax = (cratio * 0.25) + cratio
+        elseif 1.5 < cratio and cratio <= 2.625 then
+            pdifmax = cratio + 0.375
+        elseif 2.625 < cratio and cratio <= 3.25 then
+            pdifmax = 3
+        else
+            pdifmax = cratio
+        end
+
+        if cratio < 0.38 then
+            pdifmin =  0
+        elseif 0.38 <= cratio and cratio <= 1.25 then
+            pdifmin = cratio * 1176 / 1024 - 448 / 1024
+        elseif 1.25 < cratio and (cratio <= 1.51 then
+            pdifmin = 1
+        elseif 1.51 < cratio and cratio <= 2.44 then
+            pdifmin = cratio * 1176 / 1024 - 775 / 1024
+        else
+            pdifmin = cratio - 0.375
+        end
+
+        pdif[1] = pdifmin
+        pdif[2] = pdifmax
+
+        cratio = cratio + 1
+        cratio = utils.clamp(cratio, 0, 4.0)
+
+        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax)
+
+        if cratio < 0.5 then
+            pdifmax = cratio + 0.5
+        elseif 0.5 <= cratio and cratio <= 0.7 then
+            pdifmax = 1
+        elseif(0.7 < cratio and cratio <= 1.2 then
             pdifmax = cratio + 0.3;
-        elseif ((1.2 < cratio) and (cratio <= 1.5)) then
+        elseif 1.2 < cratio and cratio <= 1.5 then
             pdifmax = (cratio * 0.25) + cratio;
-        elseif ((1.5 < cratio) and (cratio <= 2.625)) then
-            pdifmax = cratio + 0.375;
-        elseif ((2.625 < cratio) and (cratio <= 3.25)) then
-            pdifmax = 3;
+        elseif 1.5 < cratio and cratio <= 2.625 then
+            pdifmax = cratio + 0.375
+        elseif 2.625 < cratio and cratio <= 3.25 then
+            pdifmax = 3
         else
-            pdifmax = cratio;
+            pdifmax = cratio
         end
 
-        if (cratio < 0.38) then
-            pdifmin =  0;
-        elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
-            pdifmin = cratio * (1176 / 1024) - (448 / 1024);
-        elseif ((1.25 < cratio) and (cratio <= 1.51)) then
-            pdifmin = 1;
-        elseif ((1.51 < cratio) and (cratio <= 2.44)) then
-            pdifmin = cratio * (1176 / 1024) - (775 / 1024);
+        if cratio < 0.38 then
+            pdifmin =  0
+        elseif 0.38 <= cratio and cratio <= 1.25 then
+            pdifmin = cratio * 1176 / 1024 - 448 / 1024
+        elseif(1.25 < cratio and cratio <= 1.51 then
+            pdifmin = 1
+        elseif 1.51 < cratio and cratio <= 2.44 then
+            pdifmin = cratio * 1176 / 1024 - 775 / 1024
         else
-            pdifmin = cratio - 0.375;
+            pdifmin = cratio - 0.375
         end
 
-        pdif[1] = pdifmin;
-        pdif[2] = pdifmax;
-
-        cratio = cratio + 1;
-        cratio = utils.clamp(cratio, 0, 4.0);
-
-        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
-
-        if (cratio < 0.5) then
-            pdifmax = cratio + 0.5;
-        elseif ((0.5 <= cratio) and (cratio <= 0.7)) then
-            pdifmax = 1;
-        elseif ((0.7 < cratio) and (cratio <= 1.2)) then
-            pdifmax = cratio + 0.3;
-        elseif ((1.2 < cratio) and (cratio <= 1.5)) then
-            pdifmax = (cratio * 0.25) + cratio;
-        elseif ((1.5 < cratio) and (cratio <= 2.625)) then
-            pdifmax = cratio + 0.375;
-        elseif ((2.625 < cratio) and (cratio <= 3.25)) then
-            pdifmax = 3;
-        else
-            pdifmax = cratio;
-        end
-
-        if (cratio < 0.38) then
-            pdifmin =  0;
-        elseif ((0.38 <= cratio) and (cratio <= 1.25)) then
-            pdifmin = cratio * (1176 / 1024) - (448 / 1024);
-        elseif ((1.25 < cratio) and (cratio <= 1.51)) then
-            pdifmin = 1;
-        elseif ((1.51 < cratio) and (cratio <= 2.44)) then
-            pdifmin = cratio * (1176 / 1024) - (775 / 1024);
-        else
-            pdifmin = cratio - 0.375;
-        end
-
-        local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE)
-        critbonus = utils.clamp(critbonus, 0, 100);
-        pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
-        pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+        local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE) - defender:getMod(dsp.mod.CRIT_DEF_BONUS);
+        critbonus = utils.clamp(critbonus, 0, 100)
+        pdifcrit[1] = pdifmin * (100 + critbonus) / 100
+        pdifcrit[2] = pdifmax * (100 + critbonus) / 100
     else
         -- max
-        local pdifmax = 0;
-        if (cratio < 0.9) then
-            pdifmax = cratio * (10/9);
-        elseif (cratio < 1.1) then
-            pdifmax = 1;
+        local pdifmax = 0
+        if cratio < 0.9 then
+            pdifmax = cratio * 10 / 9
+        elseif cratio < 1.1 then
+            pdifmax = 1
         else
-            pdifmax = cratio;
+            pdifmax = cratio
         end
 
         -- min
-        local pdifmin = 0;
-        if (cratio < 0.9) then
-            pdifmin = cratio;
-        elseif (cratio < 1.1) then
-            pdifmin = 1;
+        local pdifmin = 0
+        if cratio < 0.9 then
+            pdifmin = cratio
+        elseif cratio < 1.1 then
+            pdifmin = 1
         else
-            pdifmin = (cratio * (20/19))-(3/19);
+            pdifmin = cratio * 20 / 19 - 3 / 19
         end
 
-        pdif[1] = pdifmin;
-        pdif[2] = pdifmax;
-        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax);
+        pdif[1] = pdifmin
+        pdif[2] = pdifmax
+        -- printf("ratio: %f min: %f max %f\n", cratio, pdifmin, pdifmax)
 
-        pdifmin = pdifmin * 1.25;
-        pdifmax = pdifmax * 1.25;
+        pdifmin = pdifmin * 1.25
+        pdifmax = pdifmax * 1.25
 
-        local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE)
-        critbonus = utils.clamp(critbonus, 0, 100);
-        pdifcrit[1] = pdifmin * ((100 + critbonus)/100);
-        pdifcrit[2] = pdifmax * ((100 + critbonus)/100);
+        local critbonus = attacker:getMod(dsp.mod.CRIT_DMG_INCREASE) - defender:getMod(dsp.mod.CRIT_DEF_BONUS);
+        critbonus = utils.clamp(critbonus, 0, 100)
+        pdifcrit[1] = pdifmin * (100 + critbonus) / 100
+        pdifcrit[2] = pdifmax * (100 + critbonus) / 100
     end
 
-    return pdif, pdifcrit;
-end;
+    return pdif, pdifcrit
+end
 
  -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, accBonus, weaponDamage
  function doAutoRangedWeaponskill(attacker, target, wsID, params, tp, primary, skill, action)

@@ -206,6 +206,7 @@ enum class Mod
     CRITHITRATE               = 165, // Raises chance to crit
     CRIT_DMG_INCREASE         = 421, // Raises the damage of critcal hit by percent %
     ENEMYCRITRATE             = 166, // Raises chance enemy will crit
+    CRIT_DEF_BONUS            = 908, // Reduces crit hit damage
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
 
@@ -723,9 +724,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 908, // stuff
     // SPARE = 909, // stuff
     // SPARE = 910, // stuff
+    // SPARE = 911, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
