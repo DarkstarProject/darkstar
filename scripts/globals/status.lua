@@ -1950,11 +1950,14 @@ dsp.MAX_SLOTID  = 15
 -- Objtype Definitions
 ----------------------------------
 
-TYPE_PC   = 0x01
-TYPE_NPC  = 0x02
-TYPE_MOB  = 0x04
-TYPE_PET  = 0x08
-TYPE_SHIP = 0x10
+dsp.objType =
+{
+    PC   = 0x01,
+    NPC  = 0x02,
+    MOB  = 0x04,
+    PET  = 0x08,
+    SHIP = 0x10,
+}
 
 ----------------------------------
 -- Drop Type (not currently used in code base)

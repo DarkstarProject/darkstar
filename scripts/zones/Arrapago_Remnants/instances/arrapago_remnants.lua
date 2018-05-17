@@ -26,7 +26,7 @@ end;
 function onInstanceCreated(instance)
 
     for i,v in pairs(Arrapago.npcs[1][1]) do
-        local npc = instance:getEntity(bit.band(v, 0xFFF), TYPE_NPC);
+        local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC);
         npc:setStatus(dsp.status.NORMAL)
     end
     instance:setStage(1)

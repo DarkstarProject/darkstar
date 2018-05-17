@@ -1103,7 +1103,7 @@ end
 function handleWSGorgetBelt(attacker)
     local ftpBonus = 0;
     local accBonus = 0;
-    if (attacker:getObjType() == TYPE_PC) then
+    if (attacker:getObjType() == dsp.objType.PC) then
         -- TODO: Get these out of itemid checks when possible.
         local elementalGorget = { 15495, 15498, 15500, 15497, 15496, 15499, 15501, 15502 };
         local elementalBelt =   { 11755, 11758, 11760, 11757, 11756, 11759, 11761, 11762 };

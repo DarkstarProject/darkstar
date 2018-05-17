@@ -110,8 +110,8 @@ function onInstanceComplete(instance)
         v:messageSpecial(Lebros.text.RUNE_UNLOCKED, 7, 8);
     end
 
-    local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Lebros.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Lebros.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Lebros.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setPos(414.29, -40.64, 301.523, 247);
     rune:setStatus(dsp.status.NORMAL);
     box:setPos(410.41, -41.12, 300.743, 243);

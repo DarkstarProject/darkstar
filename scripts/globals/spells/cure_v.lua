@@ -66,7 +66,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then -- e.g. is a PC and not a monster (?)
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then -- e.g. is a PC and not a monster (?)
         if (USE_OLD_CURE_FORMULA == true) then
             basecure = getBaseCureOld(power,divisor,constant);
         else
@@ -122,7 +122,7 @@ function onSpellCast(caster,target,spell)
             final = dmg;
             target:delHP(final);
             target:updateEnmityFromDamage(caster,final);
-        elseif (caster:getObjType() == TYPE_PC) then
+        elseif (caster:getObjType() == dsp.objType.PC) then
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         else
             -- e.g. monsters healing themselves.
