@@ -2430,6 +2430,10 @@ dsp.mount =
 ------------------------------------
 -- Item Check Params
 ------------------------------------
-ITEMCHECK_NONE      = 0;
-ITEMCHECK_EQUIP     = 1;
-ITEMCHECK_UNEQUIP   = 2;
+
+dsp.itemCheck =
+{
+    NONE    = 0,
+    EQUIP   = 1,
+    UNEQUIP = 2,
+}
