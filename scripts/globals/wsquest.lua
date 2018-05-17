@@ -10,7 +10,7 @@ dsp.wsquest =
     --   NPC: Oggbi (Port Bastok)
     --    WS: Asuran Fists (Hand-to-Hand)
     --------------------------------------
-    ['theWallsOfYourMind'] =
+    ['asuran_fists'] =
     {
         ['wsId'] = 9,
         ['wsUnlockId'] = 1,
@@ -41,7 +41,7 @@ dsp.wsquest =
     --   NPC: Jakoh Wahcondalo (Kazham)
     --    WS: Evisceration (Dagger)
     ------------------------------------
-    ['cloakAndDagger'] =
+    ['evisceration'] =
     {
         ['wsId'] = 25,
         ['wsUnlockId'] = 2,
@@ -72,7 +72,7 @@ dsp.wsquest =
     --   NPC: Curilla (Chateau d'Oraguille)
     --    WS: Savage Blade (Sword)
     ----------------------------------------
-    ['oldWounds'] =
+    ['savage_blade'] =
     {
         ['wsId'] = 42,
         ['wsUnlockId'] = 3,
@@ -103,7 +103,7 @@ dsp.wsquest =
     --   NPC: Gumbah (Bastok Mines)
     --    WS: Ground Strike (Great Sword)
     --------------------------------------
-    ['inheritance'] =
+    ['ground_strike'] =
     {
         ['wsId'] = 56,
         ['wsUnlockId'] = 4,
@@ -134,7 +134,7 @@ dsp.wsquest =
     --   NPC: Brutus (Upper Jeuno)
     --    WS: Decimation (Axe)
     -------------------------------
-    ['axeTheCompetition'] =
+    ['decimation'] =
     {
         ['wsId'] = 72,
         ['wsUnlockId'] = 5,
@@ -165,7 +165,7 @@ dsp.wsquest =
     --   NPC: Iron Eater (Metalworks)
     --    WS: Steel Cyclone (Great Axe)
     ------------------------------------
-    ['theWeightOfYourLimits'] =
+    ['steel_cyclone'] =
     {
         ['wsId'] = 88,
         ['wsUnlockId'] = 6,
@@ -196,7 +196,7 @@ dsp.wsquest =
     --   NPC: Novalmauge (Bostaunieux Oubliette)
     --    WS: Spiral Hell (Scythe)
     ---------------------------------------------
-    ['soulsInShadow'] =
+    ['spiral_hell'] =
     {
         ['wsId'] = 104,
         ['wsUnlockId'] = 7,
@@ -227,7 +227,7 @@ dsp.wsquest =
     --   NPC: Balasiel (Southern San d'Oria)
     --    WS: Impulse Drive (Polearm)
     -----------------------------------------
-    ['methodsCreateMadness'] =
+    ['impulse_drive'] =
     {
         ['wsId'] = 120,
         ['wsUnlockId'] = 8,
@@ -258,7 +258,7 @@ dsp.wsquest =
     --   NPC: Ryoma (Norg)
     --    WS: Blade: Ku (Katana)
     -----------------------------
-    ['bugiSoden'] =
+    ['blade_ku'] =
     {
         ['wsId'] = 136,
         ['wsUnlockId'] = 9,
@@ -289,7 +289,7 @@ dsp.wsquest =
     --   NPC: Jaucribaix (Norg)
     --    WS: Tachi: Kasha (Great Katana)
     --------------------------------------
-    ['thePotentialWithin'] =
+    ['tachi_kasha'] =
     {
         ['wsId'] = 152,
         ['wsUnlockId'] = 10,
@@ -320,7 +320,7 @@ dsp.wsquest =
     --   NPC: Kuroido-Moido (Port Windurst)
     --    WS: Black Halo (Club)
     ----------------------------------------
-    ['orasteryWoes'] =
+    ['black_halo'] =
     {
         ['wsId'] = 169,
         ['wsUnlockId'] = 11,
@@ -351,7 +351,7 @@ dsp.wsquest =
     --   NPC: Shantotto (Windurst Walls)
     --    WS: Retribution (Staff)
     -------------------------------------
-    ['bloodAndGlory'] =
+    ['retribution'] =
     {
         ['wsId'] = 184,
         ['wsUnlockId'] = 12,
@@ -382,7 +382,7 @@ dsp.wsquest =
     --   NPC: Perih Vashai (Windurst Woods)
     --    WS: Empyrean Arrow (Archery)
     ----------------------------------------
-    ['fromSaplingsGrow'] =
+    ['empyrean_arrow'] =
     {
         ['wsId'] = 199,
         ['wsUnlockId'] = 13,
@@ -413,7 +413,7 @@ dsp.wsquest =
     --   NPC: Cid (Metalworks)
     --    WS: Detonator (Marksmanship)
     -------------------------------------------
-    ['shootFirstAskQuestionsLater'] =
+    ['detonator'] =
     {
         ['wsId'] = 215,
         ['wsUnlockId'] = 14,

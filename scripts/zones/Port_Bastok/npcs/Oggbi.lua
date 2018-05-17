@@ -13,7 +13,7 @@ require("scripts/globals/wsquest")
 require("scripts/zones/Port_Bastok/TextIDs")
 -----------------------------------
 
-local wsQuest = dsp.wsquest.theWallsOfYourMind
+local wsQuest = dsp.wsquest.asuran_fists
 
 function onTrade(player,npc,trade)
     local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)

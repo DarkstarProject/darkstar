@@ -11,5 +11,5 @@ require("scripts/zones/Bostaunieux_Oubliette/TextIDs")
 require("scripts/zones/Bostaunieux_Oubliette/MobIDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.theWallsOfYourMind, player, BODACH)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.asuran_fists, player, BODACH)
 end

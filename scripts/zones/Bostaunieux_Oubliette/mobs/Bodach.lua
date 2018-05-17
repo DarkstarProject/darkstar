@@ -13,5 +13,5 @@ function onMobInitialize(mob)
 end
 
 function onMobDeath(mob, player, isKiller)
-    dsp.wsquest.handleWsnmDeath(dsp.wsquest.theWallsOfYourMind, player)
+    dsp.wsquest.handleWsnmDeath(dsp.wsquest.asuran_fists, player)
 end
