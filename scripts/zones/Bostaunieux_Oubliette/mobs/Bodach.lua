@@ -9,9 +9,9 @@
 require("scripts/globals/wsquest")
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS,-100)
 end
 
-function onMobDeath(mob, player, isKiller)
-    dsp.wsquest.handleWsnmDeath(dsp.wsquest.asuran_fists, player)
+function onMobDeath(mob,player,isKiller)
+    dsp.wsquest.handleWsnmDeath(dsp.wsquest.asuran_fists,player)
 end
