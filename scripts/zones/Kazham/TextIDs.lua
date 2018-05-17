@@ -29,3 +29,5 @@ GHEMISENTERILO_SHOP_DIALOG = 10043; -- Can you really get everything that you wa
 
 -- Porter Moogle
         RETRIEVE_DIALOG_ID = 10995; -- You retrieve$ from the porter moogle's care.
+-- WS Quest
+      EVISCERATION_LEARNED = 10645; -- You have learned the weapon skill "Evisceration"!
