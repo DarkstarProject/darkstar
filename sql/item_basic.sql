@@ -1299,7 +1299,7 @@ INSERT INTO `item_basic` VALUES (1412,0,'olive_flower','olive_flower',12,4,44,0,
 INSERT INTO `item_basic` VALUES (1413,0,'cattleya','cattleya',12,4,44,0,291);
 INSERT INTO `item_basic` VALUES (1414,0,'piece_of_wisteria_lumber','wisteria_lumber',12,4,43,0,6177);
 INSERT INTO `item_basic` VALUES (1415,0,'pot_of_urushi','urushi',12,4,43,0,4085);
-INSERT INTO `item_basic` VALUES (1416,0,'handful_of_karimata_arrowheads','kari._arrowhd.',99,4,43,0,1299);
+INSERT INTO `item_basic` VALUES (1416,0,'handful_of_karimata_arrowheads','kari._arrowhd.',99,4,43,0,171);
 INSERT INTO `item_basic` VALUES (1417,0,'bag_of_giant_bird_fletchings','g._bird_fltchg.',99,4,43,0,170);
 INSERT INTO `item_basic` VALUES (1418,0,'gem_of_the_east','gem_of_the_east',1,45140,99,1,0);
 INSERT INTO `item_basic` VALUES (1419,0,'springstone','springstone',1,45140,99,1,0);
