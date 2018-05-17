@@ -2335,23 +2335,30 @@ dsp.behavior =
 -- Elevator IDs
 ------------------------------------
 
-ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
-ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
-ELEVATOR_DAVOI_LIFT                = 3;
-ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
+dsp.elevator =
+{
+    KUFTAL_TUNNEL_DSPPRNG_RCK = 0,
+    PORT_BASTOK_DRWBRDG       = 2,
+    DAVOI_LIFT                = 3,
+    PALBOROUGH_MINES_LIFT     = 4,
+}
 
 ------------------------------------
 -- Item Type
 -----------------------------------
-ITEM_BASIC       = 0x00;
-ITEM_GENERAL     = 0x01;
-ITEM_USABLE      = 0x02;
-ITEM_PUPPET      = 0x04;
-ITEM_ARMOR       = 0x08;
-ITEM_WEAPON      = 0x10;
-ITEM_CURRENCY    = 0x20;
-ITEM_FURNISHING  = 0x40;
-ITEM_LINKSHELL   = 0x80;
+
+dsp.itemType =
+{
+    BASIC       = 0x00,
+    GENERAL     = 0x01,
+    USABLE      = 0x02,
+    PUPPET      = 0x04,
+    ARMOR       = 0x08,
+    WEAPON      = 0x10,
+    CURRENCY    = 0x20,
+    FURNISHING  = 0x40,
+    LINKSHELL   = 0x80,
+}
 
 ------------------------------------
 -- Animations
