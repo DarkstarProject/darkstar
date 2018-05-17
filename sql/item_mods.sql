@@ -19394,7 +19394,8 @@ INSERT INTO `item_mods` VALUES (16185,5,5);
 INSERT INTO `item_mods` VALUES (16186,1,2);
 INSERT INTO `item_mods` VALUES (16186,7,15);
 INSERT INTO `item_mods` VALUES (16186,13,2);
-INSERT INTO `item_mods` VALUES (16187,1,15);
+INSERT INTO `item_mods` VALUES (16187,1,15);	-- Adoubeur's Pavise: DEF:15
+INSERT INTO `item_mods` VALUES (16187,485,10); 	-- "Shield Mastery"+1
 INSERT INTO `item_mods` VALUES (16188,1,1);
 INSERT INTO `item_mods` VALUES (16189,1,31);
 INSERT INTO `item_mods` VALUES (16190,1,22);
@@ -34976,7 +34977,7 @@ INSERT INTO `item_mods` VALUES (26971,68,22); -- Evasion +22
 INSERT INTO `item_mods` VALUES (26971,31,37); -- Magic Evasion +37
 INSERT INTO `item_mods` VALUES (26971,29,6); -- "Magic Def. Bonus"+6
 INSERT INTO `item_mods` VALUES (26971,384,41); -- Haste +4
-INSERT INTO `item_mods` VALUES (26971,0,13);-- "Shield Def. Bonus"+3 unassign value
+INSERT INTO `item_mods` VALUES (26971,905,3);-- "Shield Def. Bonus"+3
 INSERT INTO `item_mods` VALUES (26971,369,2); -- "Refresh"+2
 INSERT INTO `item_mods` VALUES (26971,160,-8); -- Damage taken -8%
 INSERT INTO `item_mods` VALUES (26976,1,70);

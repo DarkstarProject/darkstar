@@ -461,7 +461,7 @@ void CAttack::ProcessDamage()
     // Get critical bonus mods.
     if (m_isCritical)
     {
-        m_damage += (int32)(m_damage * m_attacker->getMod(Mod::CRIT_DMG_INCREASE) / 100.0f);
+        m_damage += (int32)(m_damage * (m_attacker->getMod(Mod::CRIT_DMG_INCREASE) - m_victim->getMod(Mod::CRIT_DEF_BONUS)) / 100.0f);
     }
 
     // Apply Sneak Attack Augment Mod

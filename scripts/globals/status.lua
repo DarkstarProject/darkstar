@@ -1022,6 +1022,7 @@ dsp.mod =
     CRITHITRATE                     = 165,
     CRIT_DMG_INCREASE               = 421,
     ENEMYCRITRATE                   = 166,
+    CRIT_DEF_BONUS                  = 908, -- Reduces crit hit damage
     MAGIC_CRITHITRATE               = 562,
     MAGIC_CRIT_DMG_INCREASE         = 563,
     HASTE_MAGIC                     = 167,
@@ -1473,9 +1474,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 908, -- stuff
     -- SPARE = 909, -- stuff
     -- SPARE = 910, -- stuff
+    -- SPARE = 911, -- stuff
 };
 
 ------------------------------------
