@@ -1,1 +1,4 @@
-FAFNIR                  = 17408018;
+FAFNIR      = 17408018
+NIDHOGG     = 17408019
+
+FAFNIR_QM   = 17408033
