@@ -1,0 +1,17 @@
+----------------------------------
+-- Area: Kuftal Tunnel (174)
+--  MOB: Kettenkaefer
+--   ID: 17490235
+-- Note: Popped by qm3
+-- !pos 204.052 10.25 96.414 174
+-- Involved in Quest: The Potential Within
+-----------------------------------
+require("scripts/globals/wsquest")
+
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS,-100)
+end
+
+function onMobDeath(mob,player,isKiller)
+    dsp.wsquest.handleWsnmDeath(dsp.wsquest.tachi_kasha,player)
+end

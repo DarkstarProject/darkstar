@@ -37,3 +37,7 @@ YOU_CAN_NOW_BECOME_A_SAMURAI = 10197; -- You can now become a samurai.
 
 -- Porter Moogle
           RETRIEVE_DIALOG_ID = 11275; -- You retrieve$ from the porter moogle's care.
+
+-- WS Quest
+         TACHI_KASHA_LEARNED = 10797; -- You have learned the weapon skill “Tachi: Kasha”!
+            BLADE_KU_LEARNED = 10822; -- You have learned the weapon skill “Blade: Ku”!
