@@ -4,7 +4,7 @@
 --   ID: 17461479
 -- Note: Popped by qm1
 -- Involved in Quest: The Walls of Your Mind
--- !pos 29 16 -140
+-- !pos 29 16 -140 167
 -----------------------------------
 require("scripts/globals/wsquest")
 
