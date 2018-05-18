@@ -4874,7 +4874,7 @@ namespace charutils
         SendToZone(PChar, 2, zoneutils::GetZoneIPP(PChar->loc.destination));
     }
 
-    void AddWeaponSkillPoints(CCharEntity* PChar, SLOTTYPE slotid, int wspoints)
+    bool AddWeaponSkillPoints(CCharEntity* PChar, SLOTTYPE slotid, int wspoints)
     {
         CItemWeapon* PWeapon = (CItemWeapon*)PChar->m_Weapons[slotid];
 
@@ -4891,7 +4891,9 @@ namespace charutils
 
             const char* Query = "UPDATE char_inventory SET extra = '%s' WHERE charid = %u AND location = %u AND slot = %u LIMIT 1";
             Sql_Query(SqlHandle, Query, extra, PChar->id, PWeapon->getLocationID(), PWeapon->getSlotID());
+            return true;
         }
+        return false;
     }
 
     int32 GetVar(CCharEntity* PChar, const char* var)
