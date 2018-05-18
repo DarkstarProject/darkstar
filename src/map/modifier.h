@@ -707,6 +707,8 @@ enum class Mod
     ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance
     OCCULT_ACUMEN             = 902, // Grants bonus TP when dealing damage with elemental or dark magic
 
+    QUICK_MAGIC               = 909, // Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
+
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
     SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
@@ -724,9 +726,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 909, // stuff
     // SPARE = 910, // stuff
     // SPARE = 911, // stuff
+    // SPARE = 912, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
