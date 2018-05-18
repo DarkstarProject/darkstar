@@ -381,11 +381,11 @@ dsp.wsquest =
     ----------------------------------------
     -- Quest: From Saplings Grow
     --   NPC: Perih Vashai (Windurst Woods)
-    --    WS: Empyrean Arrow (Archery)
+    --    WS: Empyreal Arrow (Archery)
     ----------------------------------------
-    ['empyrean_arrow'] =
+    ['empyreal_arrow'] =
     {
-        ['wsId'] = dsp.weaponskill.EMPYREAN_ARROW,
+        ['wsId'] = dsp.weaponskill.EMPYREAL_ARROW,
         ['wsUnlockId'] = 13,
         ['skillId'] = dsp.skill.ARCHERY,
         ['minSkill'] = 250,
