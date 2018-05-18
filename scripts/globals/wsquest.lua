@@ -1,6 +1,7 @@
 require('scripts/globals/keyitems')
 require('scripts/globals/quests')
 require('scripts/globals/status')
+require('scripts/globals/weaponskillids')
 
 dsp = dsp or {}
 dsp.wsquest =
@@ -12,7 +13,7 @@ dsp.wsquest =
     --------------------------------------
     ['asuran_fists'] =
     {
-        ['wsId'] = 9,
+        ['wsId'] = dsp.weaponskill.ASURAN_FISTS,
         ['wsUnlockId'] = 1,
         ['skillId'] = dsp.skill.HAND_TO_HAND,
         ['minSkill'] = 250,
@@ -43,7 +44,7 @@ dsp.wsquest =
     ------------------------------------
     ['evisceration'] =
     {
-        ['wsId'] = 25,
+        ['wsId'] = dsp.weaponskill.EVISCERATION,
         ['wsUnlockId'] = 2,
         ['skillId'] = dsp.skill.DAGGER,
         ['minSkill'] = 230,
@@ -74,7 +75,7 @@ dsp.wsquest =
     ----------------------------------------
     ['savage_blade'] =
     {
-        ['wsId'] = 42,
+        ['wsId'] = dsp.weaponskill.SAVAGE_BLADE,
         ['wsUnlockId'] = 3,
         ['skillId'] = dsp.skill.SWORD,
         ['minSkill'] = 240,
@@ -105,7 +106,7 @@ dsp.wsquest =
     --------------------------------------
     ['ground_strike'] =
     {
-        ['wsId'] = 56,
+        ['wsId'] = dsp.weaponskill.GROUND_STRIKE,
         ['wsUnlockId'] = 4,
         ['skillId'] = dsp.skill.GREAT_SWORD,
         ['minSkill'] = 250,
@@ -136,7 +137,7 @@ dsp.wsquest =
     -------------------------------
     ['decimation'] =
     {
-        ['wsId'] = 72,
+        ['wsId'] = dsp.weaponskill.DECIMATION,
         ['wsUnlockId'] = 5,
         ['skillId'] = dsp.skill.AXE,
         ['minSkill'] = 240,
@@ -167,7 +168,7 @@ dsp.wsquest =
     ------------------------------------
     ['steel_cyclone'] =
     {
-        ['wsId'] = 88,
+        ['wsId'] = dsp.weaponskill.STEEL_CYCLONE,
         ['wsUnlockId'] = 6,
         ['skillId'] = dsp.skill.GREAT_AXE,
         ['minSkill'] = 240,
@@ -198,7 +199,7 @@ dsp.wsquest =
     ---------------------------------------------
     ['spiral_hell'] =
     {
-        ['wsId'] = 104,
+        ['wsId'] = dsp.weaponskill.SPIRAL_HELL,
         ['wsUnlockId'] = 7,
         ['skillId'] = dsp.skill.SCYTHE,
         ['minSkill'] = 240,
@@ -229,7 +230,7 @@ dsp.wsquest =
     -----------------------------------------
     ['impulse_drive'] =
     {
-        ['wsId'] = 120,
+        ['wsId'] = dsp.weaponskill.IMPULSE_DRIVE,
         ['wsUnlockId'] = 8,
         ['skillId'] = dsp.skill.POLEARM,
         ['minSkill'] = 240,
@@ -260,7 +261,7 @@ dsp.wsquest =
     -----------------------------
     ['blade_ku'] =
     {
-        ['wsId'] = 136,
+        ['wsId'] = dsp.weaponskill.BLADE_KU,
         ['wsUnlockId'] = 9,
         ['skillId'] = dsp.skill.KATANA,
         ['minSkill'] = 250,
@@ -291,7 +292,7 @@ dsp.wsquest =
     --------------------------------------
     ['tachi_kasha'] =
     {
-        ['wsId'] = 152,
+        ['wsId'] = dsp.weaponskill.TACHI_KASHA,
         ['wsUnlockId'] = 10,
         ['skillId'] = dsp.skill.GREAT_KATANA,
         ['minSkill'] = 250,
@@ -322,7 +323,7 @@ dsp.wsquest =
     ----------------------------------------
     ['black_halo'] =
     {
-        ['wsId'] = 169,
+        ['wsId'] = dsp.weaponskill.BLACK_HALO,
         ['wsUnlockId'] = 11,
         ['skillId'] = dsp.skill.CLUB,
         ['minSkill'] = 230,
@@ -353,7 +354,7 @@ dsp.wsquest =
     -------------------------------------
     ['retribution'] =
     {
-        ['wsId'] = 184,
+        ['wsId'] = dsp.weaponskill.RETRIBUTION,
         ['wsUnlockId'] = 12,
         ['skillId'] = dsp.skill.STAFF,
         ['minSkill'] = 230,
@@ -384,7 +385,7 @@ dsp.wsquest =
     ----------------------------------------
     ['empyrean_arrow'] =
     {
-        ['wsId'] = 199,
+        ['wsId'] = dsp.weaponskill.EMPYREAN_ARROW,
         ['wsUnlockId'] = 13,
         ['skillId'] = dsp.skill.ARCHERY,
         ['minSkill'] = 250,
@@ -415,7 +416,7 @@ dsp.wsquest =
     -------------------------------------------
     ['detonator'] =
     {
-        ['wsId'] = 215,
+        ['wsId'] = dsp.weaponskill.DETONATOR,
         ['wsUnlockId'] = 14,
         ['skillId'] = dsp.skill.MARKSMANSHIP,
         ['minSkill'] = 250,
