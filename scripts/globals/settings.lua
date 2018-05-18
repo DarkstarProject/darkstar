@@ -104,8 +104,6 @@ RELIC_3RD_UPGRADE_WAIT_TIME = 3600;     -- wait time for 3rd relic upgrade (stag
 FREE_COP_DYNAMIS = 1 ; -- Authorize player to entering inside COP Dynamis without completing COP mission ( 1 = enable 0= disable)
 
 -- QUEST/MISSION SPECIFIC SETTINGS
-WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
-WSNM_SKILL_LEVEL = 240;
 AF1_QUEST_LEVEL = 40; -- Minimum level to start AF1 quest
 AF2_QUEST_LEVEL = 50; -- Minimum level to start AF2 quest
 AF3_QUEST_LEVEL = 50; -- Minimum level to start AF3 quest

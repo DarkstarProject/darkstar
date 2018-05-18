@@ -27,3 +27,6 @@ NOTHING_OUT_OF_ORDINARY = 7350; -- There is nothing out of the ordinary here.
 
 -- conquest Base
           CONQUEST_BASE = 7048; -- Tallying conquest results...
+
+-- WS Quest
+ SENSE_OMINOUS_PRESENCE = 7349 -- You sense an ominous presence...
