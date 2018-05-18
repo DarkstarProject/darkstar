@@ -572,7 +572,7 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
         pdifmin = cratio * 1176 / 1024 - 448 / 1024
     elseif cratio < 1.51 then
         pdifmin = 1
-    elseif ratio < 2.44 then
+    elseif cratio < 2.44 then
         pdifmin = cratio * 1176 / 1024 - 775 / 1024
     else
         pdifmin = cratio - 0.375
