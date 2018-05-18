@@ -18,9 +18,9 @@ ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the item <item>. Come back
          CHEST_ILLUSION =  7161; -- The chest was but an illusion...
            CHEST_LOCKED =  7162; -- The chest appears to be locked.
 
--- Other
+-- WS Quest
 NOTHING_OUT_OF_ORDINARY =  7392; -- There is nothing out of the ordinary here.
-       OMINOUS_PRESENCE =  7391; -- You sense an ominous presence...
+ SENSE_OMINOUS_PRESENCE =  7391; -- You sense an ominous presence...
 
 -- Quests
             CAN_SEE_SKY =  7168; -- You can see the sky from here.
