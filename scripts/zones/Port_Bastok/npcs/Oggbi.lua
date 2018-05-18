@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok (236)
 -- NPC: Oggbi
--- Starts and Finishes: Ghosts of the Past,The First Meeting,The Walls of Your Mind
+-- Starts and Finishes: Ghosts of the Past, The First Meeting, The Walls of Your Mind
 -- !pos -159 -7 5 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
@@ -18,7 +18,7 @@ local wsQuest = dsp.wsquest.asuran_fists
 function onTrade(player,npc,trade)
     local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)
 
-    if (wsQuestEvent ~= nil) then
+    if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
     elseif (player:getQuestStatus(BASTOK,GHOSTS_OF_THE_PAST) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13122,1) and trade:getItemCount() == 1) then -- Trade Miner's Pendant
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     local mLvl = player:getMainLvl()
     local mJob = player:getMainJob()
 
-    if (wsQuestEvent ~= nil) then
+    if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
     elseif (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
         player:startEvent(231) -- Start Quest "Ghosts of the Past"
