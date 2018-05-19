@@ -5,7 +5,7 @@
 
 function onMobSpawn(mob)
     -- Give it two hour
-    mob:setMod(dsp.mobMod.MAIN_2HOUR, 1);
+    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
     -- Change animation to open
     mob:AnimationSub(2);
 end;
