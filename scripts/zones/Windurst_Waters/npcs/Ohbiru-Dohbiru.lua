@@ -63,6 +63,7 @@ function onTrigger(player,npc)
     local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
+    local blueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES)
 
     if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
         player:startEvent(872);
@@ -111,7 +112,7 @@ function onTrigger(player,npc)
     --
     -- Begin Toraimarai Turmoil Section
     --
-    elseif (turmoil == QUEST_AVAILABLE and pfame >= 6 and needToZone == false) then
+    elseif blueRibbonBlues == QUEST_COMPLETED and turmoil == QUEST_AVAILABLE and pfame >= 6 and needToZone == false then
         player:startEvent(785,4500,267,906);
     elseif (turmoil == QUEST_ACCEPTED) then
         player:startEvent(786,4500,267,906); -- Reminder of needed items
