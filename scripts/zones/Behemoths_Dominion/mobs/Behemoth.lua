@@ -14,6 +14,9 @@ function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
         GetNPCByID(17297459):setStatus(dsp.status.DISAPPEAR);
     end
+    if (LandKingSystem_HQ == 0) then
+        SetDropRate(270,3342,0); -- do not drop savory_shank
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)

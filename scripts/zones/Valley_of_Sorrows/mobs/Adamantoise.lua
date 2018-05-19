@@ -14,6 +14,9 @@ function onMobSpawn(mob)
     if (LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0) then
         GetNPCByID(ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR);
     end
+    if (LandKingSystem_HQ == 0) then
+        SetDropRate(24,3344,0); -- do not drop clump_of_red_pondweed
+    end
 end;
 
 function onMobDeath(mob, player, isKiller)

@@ -15,6 +15,9 @@ function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
         GetNPCByID(FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
     end
+    if (LandKingSystem_HQ == 0) then
+        SetDropRate(918,3340,0); -- do not drop cup_of_sweet_tea
+    end
 end
 
 function onMobDeath(mob, player, isKiller)
