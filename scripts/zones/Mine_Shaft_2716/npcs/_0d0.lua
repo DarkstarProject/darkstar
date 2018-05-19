@@ -10,10 +10,6 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     if (player:getCurrentMission(COP) == THREE_PATHS and ( player:getVar("COP_Louverance_s_Path") == 7 or player:getVar("COP_Louverance_s_Path") == 8 )) then
         if (trade:getItemCount() == 1 and trade:hasItemQty(1684,1)) then            
@@ -25,10 +21,6 @@ function onTrade(player,npc,trade)
     
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) ==FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==0) then
@@ -37,10 +29,6 @@ function onTrigger(player,npc)
    end
     return 1;
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

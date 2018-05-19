@@ -32,15 +32,10 @@ function onTrigger(player,npc)
 end;
 
 -- 10009  10010  0x0253  0x0255
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10009 and option == 1) then
         local crystal = 4101; -- water crystal
 

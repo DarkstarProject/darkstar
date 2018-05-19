@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
         end
     end
-end; 
+end;
 
 function onEventUpdate(player,csid,option)
 end;

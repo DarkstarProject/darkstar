@@ -30,15 +30,10 @@ function onTrigger(player,npc)
 end;
 
 -- 0x7fb5  55  85  0x00b0  0x00b4  182  0x024f  0x0251
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 182) then
         finishMissionTimeline(player,1,csid,option);

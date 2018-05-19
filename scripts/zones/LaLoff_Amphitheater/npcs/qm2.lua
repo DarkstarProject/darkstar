@@ -32,10 +32,6 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -44,20 +40,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (EventTriggerBCNM(player,npc)) then
         return;
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 -- printf("onUpdate CSID: %u",csid);

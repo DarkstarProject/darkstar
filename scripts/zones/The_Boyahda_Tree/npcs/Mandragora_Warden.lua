@@ -39,13 +39,9 @@ local dialog = player:getVar ("mandialog");
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 13) then
         player:setVar("MissionStatus",6);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZONPAZIPPA);

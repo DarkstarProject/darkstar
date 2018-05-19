@@ -218,13 +218,7 @@ end;
 function onRegionLeave(player,region)
 end;
  
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
    if (csid == 209 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
     SpawnCofferSWfloor3();
     --printf("Mimics should be 1: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
@@ -234,13 +228,7 @@ function onEventUpdate(player,csid,option)
    end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
    if (csid == 100 and option == 1) then
     player:setPos(557,-1,441,128,0x21);  -- APPOLLYON_SE_NE exit
    elseif (csid == 101 and option == 1) then

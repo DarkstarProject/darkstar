@@ -49,13 +49,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 116) then
         player:setVar("BetterPartOfValProg",1);
         player:delKeyItem(dsp.ki.CLUMP_OF_ANIMAL_HAIR);

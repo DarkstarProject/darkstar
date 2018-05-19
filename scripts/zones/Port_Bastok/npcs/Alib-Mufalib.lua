@@ -77,8 +77,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 357) then
         player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
         player:setVar("WildcatBastok",0);

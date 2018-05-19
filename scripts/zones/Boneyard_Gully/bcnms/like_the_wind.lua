@@ -45,7 +45,6 @@ end;
 function onBcnmDestroy(player,instance)
 end;
 
-
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;

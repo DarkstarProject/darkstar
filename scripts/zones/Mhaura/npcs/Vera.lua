@@ -61,8 +61,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 131 and option == 40) then
         player:addQuest(OTHER_AREAS_LOG, THE_OLD_LADY);

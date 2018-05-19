@@ -31,8 +31,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     -- 9 = arrapago, 54 = base salvage number
     local instanceid = bit.rshift(option, 19) + 64
 
@@ -61,9 +59,7 @@ function onEventUpdate(player,csid,option,target)
 end;
 
 function onEventFinish(player,csid,option,target)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
+  
     if ((csid == 408 and option == 4) or csid == 116) then
         player:setPos(0,0,0,0,74);
     end

@@ -38,13 +38,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10019 and option == 0) then
         player:addQuest(WINDURST,ACTING_IN_GOOD_FAITH);
         player:addKeyItem(dsp.ki.SPIRIT_INCENSE);

@@ -142,16 +142,13 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(option1, option2, option3, option4, option5, option6, option7, option8);
         --   print("artifact");
     end
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     local remainingAB=player:getCurrency("ancient_beastcoin");
     local ugrade_armor_Type = 0 ;
     local ugrade_armor_ID = 0 ;
-    -- printf("CSID: %u",csid);
     --print("event finish");
-    -- printf("RESULT: %u",option);
 
     if (csid == 313) then
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true);

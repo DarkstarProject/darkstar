@@ -28,15 +28,10 @@ end;
 -- player:startEvent(180);
 -- player:startEvent(181);
 --0x0001  25  0x00b0  181  180
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 180) then
         player:setVar("MissionStatus",1);

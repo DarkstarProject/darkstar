@@ -12,16 +12,8 @@ require("scripts/globals/limbus");
 
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local  CofferID = npc:getID();
@@ -167,10 +159,6 @@ function onTrigger(player,npc)
     end
     npc:setStatus(dsp.status.DISAPPEAR);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

@@ -111,13 +111,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 217 and option == 1)  then                   -- Opo Opo and I quest start CS
         player:addQuest(OUTLANDS, THE_OPO_OPO_AND_I);
     elseif (csid == 219) then

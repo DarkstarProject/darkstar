@@ -32,15 +32,10 @@ function onTrigger(player,npc)
 end;
 
 -- 10016  10017  0x02c6  0x02c7  0x02c8  0x02c9  0x02ca  0x02cb  0x02fc
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10016 and option == 1) then
         local crystal = 4098; -- wind crystal
 

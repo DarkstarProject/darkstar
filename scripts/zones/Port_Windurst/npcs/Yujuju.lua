@@ -46,13 +46,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 314) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.PORT_WINDURST_SCOOP);

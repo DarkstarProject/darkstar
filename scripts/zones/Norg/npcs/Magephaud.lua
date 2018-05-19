@@ -25,17 +25,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(115);
     end
-    -- printf("CSID: %u",nFame);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 116) then
         player:addQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:setVar("EveryonesGrudgeStarted",1);

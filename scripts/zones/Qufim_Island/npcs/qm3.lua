@@ -63,13 +63,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 31) then
         player:completeMission(ACP,THE_ECHO_AWAKENS);
         player:addMission(ACP,GATHERER_OF_LIGHT_I);
