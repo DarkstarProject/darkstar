@@ -23,7 +23,7 @@ function onManeuverGain(pet,maneuvers)
         if frame == 0x20 then bonus = 3 end
         if frame == 0x21 then bonus = 4 end
         if frame == 0x22 then bonus = 1 end
-        pet:addMod(dsp.mod.REGEN, 10 + bonus); 
+        pet:addMod(dsp.mod.REGEN, 10 + bonus);
     elseif (maneuvers == 3) then
         if frame == 0x20 then bonus = 3 end
         if frame == 0x21 then bonus = 4 end
@@ -43,7 +43,7 @@ function onManeuverLose(pet,maneuvers)
         if frame == 0x20 then bonus = 3 end
         if frame == 0x21 then bonus = 4 end
         if frame == 0x22 then bonus = 1 end
-        pet:delMod(dsp.mod.REGEN, 10 + bonus); 
+        pet:delMod(dsp.mod.REGEN, 10 + bonus);
     elseif (maneuvers == 3) then
         if frame == 0x20 then bonus = 3 end
         if frame == 0x21 then bonus = 4 end

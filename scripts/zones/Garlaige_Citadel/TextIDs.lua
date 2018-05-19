@@ -36,5 +36,5 @@ NOTHING_OUT_OF_THE_ORDINARY = 7450; -- There is nothing out of the ordinary here
 
 -- Strange Apparatus
          DEVICE_NOT_WORKING = 7232; -- The device is not working.
-               SYS_OVERLOAD = 7241; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-               YOU_LOST_THE = 7246; -- You lost the #. 
+               SYS_OVERLOAD = 7241; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+               YOU_LOST_THE = 7246; -- You lost the #.

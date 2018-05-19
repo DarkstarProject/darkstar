@@ -45,4 +45,4 @@ function onEventFinish(player,csid,option)
         player:setVar("aThiefinNorgCS",5);
     end
 
-end;    
+end;

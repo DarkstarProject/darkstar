@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Dynamis-Valkurm
--- 
+--
 -----------------------------------
 package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------

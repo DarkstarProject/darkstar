@@ -22,7 +22,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
-    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;  
+    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.3; params.chr_wsc = 0.0;
     params.ele = dsp.magic.ele.DARK;
     params.skill = dsp.skill.STAFF;

@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Turbofan
---  Description: 
+--  Description:
 --  Type: Magical
 --  additional effect : Silence.
 ---------------------------------------------------
@@ -20,7 +20,7 @@ function onMobSkillCheck(target,mob,skill)
     local phase = mob:getLocalVar("battlePhase");
 
     if ((skillList == 729 and phase >= 1 and phase <= 2) or (skillList == 728 and mobhp < 70 and mobhp >= 40)) then
-        return 0;  
+        return 0;
     end
     return 1;
 end;

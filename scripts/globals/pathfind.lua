@@ -5,7 +5,7 @@ pathfind = {};
 PATHFLAG_NONE = 0
 PATHFLAG_RUN = 1
 PATHFLAG_WALLHACK = 2
-PATHFLAG_REVERSE = 4 
+PATHFLAG_REVERSE = 4
 
 -- returns the point at the given index
 function pathfind.get(points, index)

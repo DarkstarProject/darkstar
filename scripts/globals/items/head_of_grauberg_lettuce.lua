@@ -4,7 +4,7 @@
 -- Food Effect: 5Min, All Races
 -----------------------------------------
 -- Agility 1
--- Vitality -3 
+-- Vitality -3
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------

@@ -12,16 +12,16 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
-    ---- 0: 
-    ---- 1: 
-    ---- 2: 
-    ---- 3: 
-    ---- 4: 
-    ---- 5: 
-    ---- 6: 
-    ---- 7: 
-    ---- 8: 
-    ---- 9: 
+    ---- 0:
+    ---- 1:
+    ---- 2:
+    ---- 3:
+    ---- 4:
+    ---- 5:
+    ---- 6:
+    ---- 7:
+    ---- 8:
+    ---- 9:
 -- Death cutscenes:
 
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0); -- hume

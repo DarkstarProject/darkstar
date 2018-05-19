@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.SPONTANEITY
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

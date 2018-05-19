@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local OperationTeatime = player:getQuestStatus(AHT_URHGAN,OPERATION_TEATIME);
     local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress");
     local OTT_DayWait = player:getVar("OTT_DayWait");
-    local Gameday = VanadielDayOfTheYear(); 
+    local Gameday = VanadielDayOfTheYear();
 
     -- Quest: The WayWard Automation
     if (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then

@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD) >= QUEST_ACCEPTED and npcUtil.tradeHas(trade, {{90,5}})) then
         player:startEvent(272);
     end
-end; 
+end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(BASTOK,BUCKETS_OF_GOLD) == QUEST_AVAILABLE) then
@@ -30,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 271 and option == 0) then
-        player:addQuest(BASTOK,BUCKETS_OF_GOLD);            
+        player:addQuest(BASTOK,BUCKETS_OF_GOLD);
     elseif (csid == 272) then
         local fame = player:hasCompletedQuest(BASTOK, BUCKETS_OF_GOLD) and 8 or 75;
         if (npcUtil.completeQuest(player, BASTOK, BUCKETS_OF_GOLD, {title=dsp.title.BUCKET_FISHER, gil=300, fame=fame})) then

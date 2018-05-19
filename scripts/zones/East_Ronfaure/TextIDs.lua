@@ -1,6 +1,6 @@
 -- Variable TextID   Description text
 
--- General Texts 
+-- General Texts
  ITEM_CANNOT_BE_OBTAINED = 6403; -- You cannot obtain the item <item> come back again after sorting your inventory.
            ITEM_OBTAINED = 6409; -- Obtained: <item>.
             GIL_OBTAINED = 6410; -- Obtained <number> gil.

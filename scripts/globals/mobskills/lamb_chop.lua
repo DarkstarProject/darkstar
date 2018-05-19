@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Lamb Chop
--- Deals critical damage. 
+-- Deals critical damage.
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

@@ -1,7 +1,7 @@
 -----------------------------------
--- 
+--
 -- Zone: Apollyon
--- 
+--
 -----------------------------------
 
 require("scripts/globals/settings");
@@ -13,14 +13,14 @@ require("scripts/globals/limbus");
 -----------------------------------
 
 function onInitialize(zone)
-            SetServerVariable("[NW_Apollyon]UniqueID",0);       
-            SetServerVariable("[SW_Apollyon]UniqueID",0);       
-            SetServerVariable("[NE_Apollyon]UniqueID",0) ;  
-            SetServerVariable("[SE_Apollyon]UniqueID",0);       
-            SetServerVariable("[CS_Apollyon]UniqueID",0);       
-            SetServerVariable("[CS_Apollyon_II]UniqueID",0);        
-            SetServerVariable("[Central_Apollyon]UniqueID",0);      
-            SetServerVariable("[Central_Apollyon_II]UniqueID",0); 
+            SetServerVariable("[NW_Apollyon]UniqueID",0);
+            SetServerVariable("[SW_Apollyon]UniqueID",0);
+            SetServerVariable("[NE_Apollyon]UniqueID",0) ;
+            SetServerVariable("[SE_Apollyon]UniqueID",0);
+            SetServerVariable("[CS_Apollyon]UniqueID",0);
+            SetServerVariable("[CS_Apollyon_II]UniqueID",0);
+            SetServerVariable("[Central_Apollyon]UniqueID",0);
+            SetServerVariable("[Central_Apollyon_II]UniqueID",0);
 
 
 zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APPOLLYON_SE_NE exit
@@ -45,22 +45,22 @@ zone:registerRegion(26,   236,-4,517,   243,4,523); -- appolyon NE telporter flo
 zone:registerRegion(27,   517,-4,637,   523,4,643); -- appolyon NE telporter floor4 to floor5
 zone:registerRegion(28,   557,-4,356,   563,4,363); -- appolyon NE telporter floor5 to entrance
 
-zone:registerRegion(29, -403,-4,-523,  -396,4,-516); -- appolyon SW telporter floor1 to floor2   
-zone:registerRegion(30, -123,-4,-443,  -116,4,-436); -- appolyon SW telporter floor2 to floor3  
-zone:registerRegion(31, -283,-4,-283,  -276,4,-276); -- appolyon SW telporter floor3 to floor4 
-zone:registerRegion(32, -523,-4,-323,  -517,4,-316); -- appolyon SW telporter floor4 to entrance 
+zone:registerRegion(29, -403,-4,-523,  -396,4,-516); -- appolyon SW telporter floor1 to floor2
+zone:registerRegion(30, -123,-4,-443,  -116,4,-436); -- appolyon SW telporter floor2 to floor3
+zone:registerRegion(31, -283,-4,-283,  -276,4,-276); -- appolyon SW telporter floor3 to floor4
+zone:registerRegion(32, -523,-4,-323,  -517,4,-316); -- appolyon SW telporter floor4 to entrance
 
-zone:registerRegion(33, -403,-4,76,   -396,4,83); -- appolyon NW telporter floor1 to floor2 
-zone:registerRegion(34, -283,-4,356,  -276,4,363); -- appolyon NW telporter floor2 to floor3 
-zone:registerRegion(35, -243,-4,516,  -236,4,523); -- appolyon NW telporter floor3 to floor4 
-zone:registerRegion(36, -523,-4,636,  -516,4,643); -- appolyon NW telporter floor4 to floor5 
-zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floor5 to entrance 
+zone:registerRegion(33, -403,-4,76,   -396,4,83); -- appolyon NW telporter floor1 to floor2
+zone:registerRegion(34, -283,-4,356,  -276,4,363); -- appolyon NW telporter floor2 to floor3
+zone:registerRegion(35, -243,-4,516,  -236,4,523); -- appolyon NW telporter floor3 to floor4
+zone:registerRegion(36, -523,-4,636,  -516,4,643); -- appolyon NW telporter floor4 to floor5
+zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floor5 to entrance
                                                                 
 end;
 
------------------------------------     
--- onConquestUpdate     
------------------------------------     
+-----------------------------------
+-- onConquestUpdate
+-----------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -85,134 +85,134 @@ cs = -1;
         player:setPos(643,0.1,-600);
         end
  
-    elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then    
-        player:setPos(643,0.1,-600);        
-    end 
+    elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+        player:setPos(643,0.1,-600);
+    end
     
 return cs;
 end;
 
 -----------------------------------
--- onRegionEnter          
+-- onRegionEnter
 -----------------------------------
 
 function onRegionEnter(player,region)
   local regionID = region:GetRegionID();
    switch (regionID): caseof {
-        [1] = function (x) 
+        [1] = function (x)
              player:startEvent(100); -- APPOLLYON_SE_NE exit
         end,
-        [2] = function (x) 
+        [2] = function (x)
              player:startEvent(101); -- APPOLLYON_NW_SW exit
             -- print("APPOLLYON_NW_SW");
         end,
-        [3] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+        [3] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1293);
-              end   --create instance appolyon SE     
+              end   --create instance appolyon SE
         end,
-        [4] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+        [4] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1292);
-              end   --create instance appolyon NE     
+              end   --create instance appolyon NE
         end,
-        [5] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+        [5] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1291);
-              end   --create instance appolyon SW     
+              end   --create instance appolyon SW
         end,
-        [6] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+        [6] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1290);
-              end   --create instance appolyon NW     
+              end   --create instance appolyon NW
         end,
-        [7] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+        [7] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1294);
-              end   --create instance appolyon CS     
-        end,        
-        [8] = function (x) 
-              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then 
+              end   --create instance appolyon CS
+        end,
+        [8] = function (x)
+              if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1296);
-              end   --create instance appolyon CENTER     
-        end,    
+              end   --create instance appolyon CENTER
+        end,
         
         -- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
-        [20] = function (x) 
+        [20] = function (x)
              -- print("SE_telporter_f1_to_f2");
              if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(219);end
         end,
-        [21] = function (x) 
+        [21] = function (x)
              -- print("SE_telporter_f2_to_f3");
               if (IsMobDead(16933006)==true and player:getAnimation()==0) then player:startEvent(218);end
-        end,    
-        [22] = function (x) 
+        end,
+        [22] = function (x)
             --  print("SE_telporter_f3_to_f4");
               if (IsMobDead(16933020)==true and player:getAnimation()==0) then player:startEvent(216);end
-         end,       
-        [23] = function (x) 
+         end,
+        [23] = function (x)
              -- print("SE_telporter_f3_to_entrance");
               if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(217);end
          end,
-         -- ///////////////////////////////////////////////////////////////////////////////////////////      
+         -- ///////////////////////////////////////////////////////////////////////////////////////////
          -- /////////////////////    APPOLLYON NE TELEPORTER           ////////////////////////////////
-        [24] = function (x) 
+        [24] = function (x)
              -- print("NE_telporter_f1_to_f2");
-              if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end 
+              if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end
          end,
-         [25] = function (x) 
+         [25] = function (x)
              -- print("NE_telporter_f2_to_f3");
               if (IsMobDead(16933064)==true and player:getAnimation()==0) then player:startEvent(212);end  --212
          end,
-         [26] = function (x) 
+         [26] = function (x)
             --  print("NE_telporter_f3_to_f4");
               if (IsMobDead(16933086)==true and player:getAnimation()==0) then player:startEvent(210);end  --210
          end,
-         [27] = function (x) 
+         [27] = function (x)
             --  print("NE_telporter_f4_to_f5");
               if (IsMobDead(16933101)==true and player:getAnimation()==0) then player:startEvent(215);end    --215
          end,
-         [28] = function (x) 
+         [28] = function (x)
             --  print("NE_telporter_f5_to_entrance");
               if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(213);end --213
          end,
          -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON SW TELEPORTER           //////////////////////////////// 
-         [29] = function (x) 
+         -- /////////////////////    APPOLLYON SW TELEPORTER           ////////////////////////////////
+         [29] = function (x)
               if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(208);end --208
          end,
-         [30] = function (x) 
+         [30] = function (x)
               if (IsMobDead(16932885)==true and player:getAnimation()==0) then player:startEvent(209);end --209
               --printf("Mimics should be 0: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
          end,
-         [31] = function (x)        
+         [31] = function (x)
               if (( IsMobDead(16932896)==true or IsMobDead(16932897)==true or IsMobDead(16932898)==true or  IsMobDead(16932899)==true )and player:getAnimation()==0) then player:startEvent(207);end -- 207
          end,
-         [32] = function (x) 
+         [32] = function (x)
               if (IselementalDayAreDead()==true and player:getAnimation()==0) then player:startEvent(206);end -- 206
-         end,        
+         end,
              -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON NW TELEPORTER           //////////////////////////////// 
-         [33] = function (x) 
+         -- /////////////////////    APPOLLYON NW TELEPORTER           ////////////////////////////////
+         [33] = function (x)
               if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(205);end --205
          end,
-         [34] = function (x) 
+         [34] = function (x)
               if (IsMobDead(16932950)==true and player:getAnimation()==0) then player:startEvent(203);end --203
          end,
-         [35] = function (x) 
+         [35] = function (x)
               if (IsMobDead(16932963)==true and player:getAnimation()==0) then player:startEvent(201);end --201
          end,
-         [36] = function (x) 
+         [36] = function (x)
               if (IsMobDead(16932976)==true and player:getAnimation()==0) then player:startEvent(200);end --200
          end,
-         [37] = function (x) 
+         [37] = function (x)
               if (IsMobDead(16932985)==true and player:getAnimation()==0) then player:startEvent(202);end --202
          end,
     }
     
 end;
------------------------------------ 
--- onRegionLeave    
+-----------------------------------
+-- onRegionLeave
 -----------------------------------
     
 function onRegionLeave(player,region)
@@ -222,7 +222,7 @@ function onEventUpdate(player,csid,option)
    if (csid == 209 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
     SpawnCofferSWfloor3();
     --printf("Mimics should be 1: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
-   elseif (csid == 207 and option == 0 and GetServerVariable("[SW_Apollyon]ElementalTrigger")==0) then 
+   elseif (csid == 207 and option == 0 and GetServerVariable("[SW_Apollyon]ElementalTrigger")==0) then
     SetServerVariable("[SW_Apollyon]ElementalTrigger",VanadielDayElement()+1);
     -- printf("Elementals should be 1: %u",GetServerVariable("[SW_Apollyon]ElementalTrigger"));
    end
@@ -233,7 +233,7 @@ function onEventFinish(player,csid,option)
     player:setPos(557,-1,441,128,0x21);  -- APPOLLYON_SE_NE exit
    elseif (csid == 101 and option == 1) then
     player:setPos(-561,0,443,242,0x21); -- APPOLLYON_NW_SW exit
-   end   
+   end
 end;
 
 

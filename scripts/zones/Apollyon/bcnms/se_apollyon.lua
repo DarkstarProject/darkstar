@@ -15,12 +15,12 @@ end;
 function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[SE_Apollyon]UniqueID"));
-    player:setVar("LimbusID",1293);    
+    player:setVar("LimbusID",1293);
     player:delKeyItem(dsp.ki.COSMOCLEANSE);
     player:delKeyItem(dsp.ki.BLACK_CARD);
 end;
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish 
+-- 4=Finish
 
 function onBcnmLeave(player,instance,leavecode)
   -- print("leave code "..leavecode);

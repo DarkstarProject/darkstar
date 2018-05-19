@@ -65,7 +65,7 @@ local ids =
     MISAREAUX_VORTEX    = 53,
     MINESHAFT           = 54,
     WHITEGATE           = 55,
-    SEA                 = 56,    
+    SEA                 = 56,
 };
 dsp.teleport.id = ids;
 
@@ -73,7 +73,7 @@ dsp.teleport.id = ids;
 -- TELEPORT TO SINGLE DESTINATION
 -----------------------------------
 
-local destinations = 
+local destinations =
 {
     [ids.DEM]                   = { 220.000,   19.104,  300.000,   0, 108}, -- {R}
     [ids.HOLLA]                 = { 420.000,   19.104,   20.000,   0, 102}, -- {R}

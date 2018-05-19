@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostAGI_effect_size = effect:getPower();
     if (boostAGI_effect_size > 0) then
         effect:setPower(boostAGI_effect_size - 1)
-        target:delMod(dsp.mod.AGI,1); 
+        target:delMod(dsp.mod.AGI,1);
     end
 end;
 

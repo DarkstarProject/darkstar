@@ -13,12 +13,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local GateID =  npc:getID();  
+    local GateID =  npc:getID();
     local GateOffset = 16929221;
     -- print("GateID " ..GateID);
     -- player:PrintToPlayer(npc:getID());
     
-    switch (GateID): caseof 
+    switch (GateID): caseof
     {
          -- 100-106 : Northern Tower
         [GateOffset] = function (x)
@@ -105,7 +105,7 @@ function onTrigger(player,npc)
     }
 end;
 
-function onEventUpdate(player,csid,option)  
+function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)

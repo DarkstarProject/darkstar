@@ -28,7 +28,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4161,1) and trade:hasItemQty(5570,1)) then -- Trade Chai and Sleeping Potion
             player:tradeComplete();
             player:startEvent(780);
-        end   
+        end
     end
 end;
 

@@ -27,5 +27,5 @@ MINING_IS_POSSIBLE_HERE = 7361; -- Mining is possible here if you have
 
 -- Strange Apparatus
      DEVICE_NOT_WORKING = 7249; -- The device is not working.
-           SYS_OVERLOAD = 7258; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-           YOU_LOST_THE = 7263; -- You lost the #. 
+           SYS_OVERLOAD = 7258; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+           YOU_LOST_THE = 7263; -- You lost the #.

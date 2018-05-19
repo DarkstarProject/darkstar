@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
         return;
     end
     
-end; 
+end;
 
 function onTrigger(player,npc)
     
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);                    
+        player:messageSpecial(PROTOCRYSTAL);
     end
     
 end;

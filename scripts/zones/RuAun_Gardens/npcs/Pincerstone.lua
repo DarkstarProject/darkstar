@@ -10,7 +10,7 @@ require("scripts/zones/RuAun_Gardens/MobIDs");
 require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 function onTrigger(player,npc)
     local npcId = npc:getID();

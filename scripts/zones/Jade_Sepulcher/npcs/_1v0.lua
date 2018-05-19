@@ -14,7 +14,7 @@ require("scripts/globals/bcnm");
 require("scripts/zones/Jade_Sepulcher/TextIDs");
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 function onTrigger(player,npc)
 

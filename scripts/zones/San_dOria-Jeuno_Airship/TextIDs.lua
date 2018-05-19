@@ -8,7 +8,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
 
 -- Other
 
-       WILL_REACH_JEUNO = 7207; -- The airship will reach Jeuno in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
-    WILL_REACH_SANDORIA = 7208; -- The airship will reach San d'Oria in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time). 
+       WILL_REACH_JEUNO = 7207; -- The airship will reach Jeuno in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time).
+    WILL_REACH_SANDORIA = 7208; -- The airship will reach San d'Oria in Multiple Choice (Parameter 1)[less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] ( Singular/Plural Choice (Parameter 0)[minute/minutes] in Earth time).
    IN_JEUNO_MOMENTARILY = 7210; -- We will be arriving in Jeuno momentarily.
 IN_SANDORIA_MOMENTARILY = 7211; -- We will be arriving in San d'Oria momentarily.

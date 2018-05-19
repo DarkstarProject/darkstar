@@ -35,5 +35,5 @@ A_SQUIRE_S_TEST_II_DIALOG_III = 7359; -- You have already obtained the dew.
 
 -- Strange Apparatus
            DEVICE_NOT_WORKING = 7321; -- The device is not working.
-                 SYS_OVERLOAD = 7330; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-                 YOU_LOST_THE = 7335; -- You lost the #. 
+                 SYS_OVERLOAD = 7330; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+                 YOU_LOST_THE = 7335; -- You lost the #.

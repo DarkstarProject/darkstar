@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Coronach
 --
---  Description: Annihilator/Ferninand: Temporarily lowers enmity. 
+--  Description: Annihilator/Ferninand: Temporarily lowers enmity.
 --  Type: Physical
 --  Shadow per hit
 --  Range: Melee

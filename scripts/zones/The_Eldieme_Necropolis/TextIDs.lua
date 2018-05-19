@@ -40,5 +40,5 @@ dsp.ki.SPIRIT_INCENSE_EMITS_PUTRID_ODOR = 7410; -- emits a putrid odor and burns
 
 -- Strange Apparatus
               DEVICE_NOT_WORKING = 7317; -- The device is not working.
-                    SYS_OVERLOAD = 7326; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-                    YOU_LOST_THE = 7331; -- You lost the #. 
+                    SYS_OVERLOAD = 7326; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+                    YOU_LOST_THE = 7331; -- You lost the #.

@@ -12,7 +12,7 @@ require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 function onTrade(player,npc,trade)
     if (player:getCurrentMission(COP) == THREE_PATHS and ( player:getVar("COP_Louverance_s_Path") == 7 or player:getVar("COP_Louverance_s_Path") == 8 )) then
-        if (trade:getItemCount() == 1 and trade:hasItemQty(1684,1)) then            
+        if (trade:getItemCount() == 1 and trade:hasItemQty(1684,1)) then
             player:startEvent(3);
         end
     elseif (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
     if (csid ==3) then
       player:setVar("COP_Louverance_s_Path",9);
       player:tradeComplete();
-     elseif (csid ==4) then 
+     elseif (csid ==4) then
       player:setVar("PromathiaStatus",1);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

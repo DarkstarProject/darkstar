@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Onslaught
 --
---  Description: Lowers target's accuracy. Guttler/Ogre Killer: Temporarily increases Attack. 
+--  Description: Lowers target's accuracy. Guttler/Ogre Killer: Temporarily increases Attack.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

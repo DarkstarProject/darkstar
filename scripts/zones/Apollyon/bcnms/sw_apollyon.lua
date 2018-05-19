@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Appolyon
--- Name: 
+-- Name:
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
@@ -9,7 +9,7 @@ require("scripts/globals/keyitems");
 function onBcnmRegister(player,instance)
     SetServerVariable("[SW_Apollyon]UniqueID",GenerateLimbusKey());
     HideArmouryCrates(GetInstanceRegion(1291),APPOLLYON_NW_SW);
-    SetServerVariable("[SW_Apollyon]MimicTrigger",0);    
+    SetServerVariable("[SW_Apollyon]MimicTrigger",0);
     SetServerVariable("[SW_Apollyon]ElementalTrigger",0);
 end;
 
@@ -17,7 +17,7 @@ end;
 function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[SW_Apollyon]UniqueID"));
-    player:setVar("LimbusID",1291);    
+    player:setVar("LimbusID",1291);
     player:delKeyItem(dsp.ki.COSMOCLEANSE);
     player:delKeyItem(dsp.ki.RED_CARD);
 end;

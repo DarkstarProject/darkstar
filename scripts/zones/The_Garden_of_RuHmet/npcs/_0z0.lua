@@ -23,10 +23,10 @@ function onTrigger(player,npc)
     --player:addMission(COP, WHEN_ANGELS_FALL);
     --player:setVar("PromathiaStatus",3);
    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==3) then
-      player:startEvent(203);            
+      player:startEvent(203);
    elseif (EventTriggerBCNM(player,npc)) then
    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
-      player:startEvent(205);    
+      player:startEvent(205);
     end
   return 1;
 end;
@@ -41,7 +41,7 @@ function onEventUpdate(player,csid,option)
     end;
 
 -----------------------------------
--- onEventFinish Action 
+-- onEventFinish Action
 -----------------------------------
 
 function onEventFinish(player,csid,option)

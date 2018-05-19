@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     --player:addMission(COP, DAWN);
     --player:setVar("PromathiaStatus",3);
    if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus")==1) then
-      player:startEvent(2);            
+      player:startEvent(2);
     elseif (EventTriggerBCNM(player,npc)) then
     end
 end;
@@ -36,7 +36,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 -----------------------------------
--- onEventFinish Action 
+-- onEventFinish Action
 -----------------------------------
 
 function onEventFinish(player,csid,option)

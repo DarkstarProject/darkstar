@@ -19,5 +19,5 @@ function onItemUse(target)
         hpHeal = dif;
     end
     target:addHP(hpHeal);
-    target:messageBasic(dsp.msg.basic.RECOVERS_HP, 0, hpHeal); 
+    target:messageBasic(dsp.msg.basic.RECOVERS_HP, 0, hpHeal);
 end;

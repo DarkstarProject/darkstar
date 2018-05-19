@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Thermal Pulse
 --  Family: Wamouracampa
---  Description: Deals Fire damage to enemies within area of effect. Additional effect: Blindness 
+--  Description: Deals Fire damage to enemies within area of effect. Additional effect: Blindness
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadow
 --  Range: 12.5

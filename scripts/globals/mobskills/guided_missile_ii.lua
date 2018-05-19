@@ -3,7 +3,7 @@
 --
 --  Description: ~475 magic damage, ignores Utsusemi
 --  Type: Magical
---  
+--
 --  Range: 5 yalms
 ---------------------------------------------------
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SW
--- NPC:  Jidra 
+-- NPC:  Jidra
 
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
@@ -20,7 +20,7 @@ end;
 -----------------------------------
 
 function onMobEngaged(mob,target)
- local mobID = mob:getID();    
+ local mobID = mob:getID();
  -- print(mobID);
       local mobX = mob:getXPos();
     local mobY = mob:getYPos();
@@ -33,18 +33,18 @@ function onMobEngaged(mob,target)
 
  if (mobID ==16932882) then
                         SpawnMob(16932889):updateEnmity(target);
- elseif (mobID ==16932883) then    
+ elseif (mobID ==16932883) then
                         SpawnMob(16932890):updateEnmity(target);
  elseif (mobID ==16932884) then
                         SpawnMob(16932891):updateEnmity(target);
  elseif (mobID ==16932885) then
                         SpawnMob(16932892):updateEnmity(target);
- elseif (mobID ==16932886) then    
+ elseif (mobID ==16932886) then
                         SpawnMob(16932893):updateEnmity(target);
  elseif (mobID ==16932887) then
                         SpawnMob(16932894):updateEnmity(target);
  elseif (mobID ==16932888) then
-                        SpawnMob(16932895):updateEnmity(target);                        
+                        SpawnMob(16932895):updateEnmity(target);
  end
 end;
 
@@ -60,7 +60,7 @@ end;
 -----------------------------------
 
 function onMobDespawn(mob)
- local mobID = mob:getID();    
+ local mobID = mob:getID();
  -- print(mobID);
       local mobX = mob:getXPos();
     local mobY = mob:getYPos();
@@ -74,7 +74,7 @@ IsMobDead(16932884)==true and
 IsMobDead(16932885)==true and
 IsMobDead(16932886)==true and
 IsMobDead(16932887)==true and
-IsMobDead(16932888)==true 
+IsMobDead(16932888)==true
  
  ) then
  
