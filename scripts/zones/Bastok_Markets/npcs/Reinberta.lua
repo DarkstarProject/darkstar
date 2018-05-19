@@ -32,15 +32,10 @@ function onTrigger(player,npc)
 end;
 
 -- 300  301  0x0192
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 300 and option == 1) then
         local crystal = 4096; -- fire crystal
 

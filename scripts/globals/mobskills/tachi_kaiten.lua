@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tachi:Kaiten
 --
---  Description: Amanomurakumo/Totsukanotsurugi: Temporarily increases amount of TP stored with each hit. 
+--  Description: Amanomurakumo/Totsukanotsurugi: Temporarily increases amount of TP stored with each hit.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

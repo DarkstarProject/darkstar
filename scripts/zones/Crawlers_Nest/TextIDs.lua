@@ -31,5 +31,5 @@ EQUIPMENT_COMPLETELY_PURIFIED = 7259; -- Your equipment has not been completely 
 
 -- Strange Apparatus
            DEVICE_NOT_WORKING =  173; -- The device is not working.
-                 SYS_OVERLOAD =  182; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-                 YOU_LOST_THE =  187; -- You lost the #. 
+                 SYS_OVERLOAD =  182; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+                 YOU_LOST_THE =  187; -- You lost the #.

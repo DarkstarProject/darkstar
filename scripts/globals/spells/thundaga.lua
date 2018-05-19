@@ -1,5 +1,5 @@
 -----------------------------------------
--- Spell: Thundaga 
+-- Spell: Thundaga
 -- Deals thunder damage to enemies within area of effect.
 -----------------------------------------
 

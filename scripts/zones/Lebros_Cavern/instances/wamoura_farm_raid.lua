@@ -118,6 +118,7 @@ function onInstanceComplete(instance)
     box:setStatus(dsp.status.NORMAL);
 
 end;
+
 function onEventUpdate(player,csid,option)
 end
 

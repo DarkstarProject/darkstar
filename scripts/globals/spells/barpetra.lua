@@ -13,7 +13,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT);    
+    local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT);
     --printf("Barspell: Merit Bonus +%d", meritBonus);
     
     local enhanceSkill = caster:getSkillLevel(34);

@@ -18,7 +18,7 @@
 
 -- Mission Dialogs
      YOU_ACCEPT_THE_MISSION = 7340; -- You have accepted the mission.
-    ORIGINAL_MISSION_OFFSET = 7345; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
+    ORIGINAL_MISSION_OFFSET = 7345; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
     EXTENDED_MISSION_OFFSET = 8465; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dialog Texts
@@ -30,7 +30,7 @@
            NOKKHI_BAD_COUNT = 8788; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
           NOKKHI_GOOD_TRADE = 8790; -- And here you go! Come back soon, and bring your friends!
             NOKKHI_BAD_ITEM = 8791; -- I'm real sorry, but there's nothing I can do with those.
-            CLOUD_BAD_COUNT = 9215; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
+            CLOUD_BAD_COUNT = 9215; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and
            CLOUD_GOOD_TRADE = 9219; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
              CLOUD_BAD_ITEM = 9220; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
 

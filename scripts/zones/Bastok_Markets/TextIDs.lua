@@ -25,7 +25,7 @@
 
 -- Mission Dialogs
      YOU_ACCEPT_THE_MISSION =  6507; -- You have accepted the mission.
-    ORIGINAL_MISSION_OFFSET =  6512; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
+    ORIGINAL_MISSION_OFFSET =  6512; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
     EXTENDED_MISSION_OFFSET =  8145; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Other Dialogs

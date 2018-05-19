@@ -64,7 +64,7 @@ function npcUtil.giveItem(player, items)
     -- require zone TextIDs
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;
-    require(TextIDs); 
+    require(TextIDs);
 
     -- create table of items, with key/val of itemId/itemQty
     local givenItems = {};
@@ -156,7 +156,7 @@ function npcUtil.completeQuest(player, area, quest, params)
     -- load text ids
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;
-    require(TextIDs); 
+    require(TextIDs);
 
     -- item(s) plus message. return false if player lacks inventory space.
     if (params["item"] ~= nil) then

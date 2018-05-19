@@ -15,13 +15,13 @@ require("scripts/globals/titles")
 -----------------------------------
 
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -56,7 +56,7 @@ end
 
 function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(6); 
+        player:startEvent(6);
     elseif (leavecode == 4) then
         player:startEvent(32002)
     end
@@ -67,13 +67,13 @@ end
     
 function onEventFinish(player,csid,option)
     if (csid == 6) then
-        player:setPos(539,0,-593,192);    
+        player:setPos(539,0,-593,192);
         player:addTitle(dsp.title.AVERTER_OF_THE_APOCALYPSE)
         player:startEvent(3)
         if (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 2) then
             player:addKeyItem(dsp.ki.TEAR_OF_ALTANA)
             player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TEAR_OF_ALTANA)
-            player:setVar("Promathia_kill_day", tonumber(os.date("%j")));       
+            player:setVar("Promathia_kill_day", tonumber(os.date("%j")));
             player:setVar("PromathiaStatus", 3)
         end
     end

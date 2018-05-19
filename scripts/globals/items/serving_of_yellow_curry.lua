@@ -8,7 +8,7 @@
 -- Agility 2
 -- Intelligence -4
 -- HP Recovered While Healing 2
--- MP Recovered While Healing 1 
+-- MP Recovered While Healing 1
 -- Attack 21% (caps @ 75)
 -- Ranged Attack 21% (caps @ 75)
 -- Resist Sleep +3

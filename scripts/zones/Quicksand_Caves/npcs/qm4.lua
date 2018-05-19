@@ -26,8 +26,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
     if (csid == 10) then
         player:setVar("MissionStatus", 3);
     end

@@ -15,7 +15,7 @@ require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------------
 -- onMobSkillCheck
--- if not in Ball form, then ignore. 
+-- if not in Ball form, then ignore.
 ---------------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     if (mob:AnimationSub() ~=0) then

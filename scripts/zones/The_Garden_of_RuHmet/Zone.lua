@@ -201,8 +201,6 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if ((csid >0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",1);
@@ -210,8 +208,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101 and option == 1) then
         player:setPos(540,-1,-499.900,62,0x24);

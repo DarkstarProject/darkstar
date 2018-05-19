@@ -24,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 164) then
         player:messageSpecial(NO_RESPONSE_OFFSET+4,478); -- You fit..
         player:messageSpecial(NO_RESPONSE_OFFSET+5);     -- Device has been repaired

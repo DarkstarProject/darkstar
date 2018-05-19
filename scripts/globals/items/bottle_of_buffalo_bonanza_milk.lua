@@ -1,7 +1,7 @@
 -----------------------------------------
 -- ID: 5742
 -- Item: Bottle of Buffalo Bonanza Milk
--- Item Effect: Restores 120 HP over 60 seconds. 
+-- Item Effect: Restores 120 HP over 60 seconds.
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");

@@ -142,13 +142,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 876) then
         player:setVar("COP_Ulmia_s_Path",4);
     elseif ((csid == 313 and option == 0) or (csid == 314 and option == 0)) then

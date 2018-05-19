@@ -64,13 +64,9 @@ end;
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid==100) then
     player:delKeyItem(dsp.ki.ARAGONEU_PIZZA); -- Give pizza to Valgeir
 elseif (csid==102) then

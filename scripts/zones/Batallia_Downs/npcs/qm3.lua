@@ -29,13 +29,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 904) then
         player:addKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIGURE_OF_LEVIATHAN);

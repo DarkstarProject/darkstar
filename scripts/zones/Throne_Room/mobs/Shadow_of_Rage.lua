@@ -17,10 +17,8 @@ end;
 
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

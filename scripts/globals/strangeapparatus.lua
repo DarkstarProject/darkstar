@@ -102,7 +102,7 @@ local function ltrVal(letter)
     end
 end
 
-local function generatePassword(player) 
+local function generatePassword(player)
     local zone = player:getZoneID()
     local name = string.lower(player:getName())
     local uid  = strAppData[zone][2] -- unique identifier

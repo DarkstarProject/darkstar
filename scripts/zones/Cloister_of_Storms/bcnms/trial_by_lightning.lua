@@ -16,7 +16,7 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -63,4 +63,4 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.WHISPER_OF_STORMS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_STORMS);
     end
-end;    
+end;

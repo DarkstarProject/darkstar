@@ -37,8 +37,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10124) then
         local ItemID =0 ;
         if (option == 4456449) then
@@ -51,8 +49,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10122 and option == 1) then
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGIAN_TRIAL_LOG);
         player:addKeyItem(dsp.ki.MAGIAN_TRIAL_LOG);

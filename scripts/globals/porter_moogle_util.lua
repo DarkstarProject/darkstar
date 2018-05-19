@@ -40,7 +40,7 @@ local function isSlip(itemId)
 end
 
 ----------------------------------------------------------------------
--- desc : Checks if the supplied slip can store the supplied item. 
+-- desc : Checks if the supplied slip can store the supplied item.
 ----------------------------------------------------------------------
 local function isStorableOn(slipId, itemId)
     for _, id in ipairs(slipItems[slipId]) do
@@ -111,7 +111,7 @@ local function int8ToInt32(extra)
 end
 
 ----------------------------------------------------------------------
--- desc : Gets Storage Slip ID from the trade window (does nothing 
+-- desc : Gets Storage Slip ID from the trade window (does nothing
 --        if there are two or more Storage Slips in the trade and no
 --        storable items.
 ----------------------------------------------------------------------
@@ -207,7 +207,7 @@ local function getSlipIndex(slipId)
 end
 
 ----------------------------------------------------------------------
--- desc : Gets the extra data from the traded slip and starts the 
+-- desc : Gets the extra data from the traded slip and starts the
 --        retrieval event.
 ----------------------------------------------------------------------
 local function startRetrieveProcess(player, eventId, slipId)
@@ -216,7 +216,7 @@ local function startRetrieveProcess(player, eventId, slipId)
     local slipIndex = getSlipIndex(slipId);
     
     player:setLocalVar('slipId', slipId);
-    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex);   
+    player:startEvent(eventId, params[1], params[2], params[3], params[4], params[5], params[6], nil, slipIndex);
 end
 
 ----------------------------------------------------------------------
@@ -233,7 +233,7 @@ function porterMoogleTrade(player, trade, e)
         storeItems(player, storableItemIds, slipId, e);
     else
         startRetrieveProcess(player, e.RETRIEVE_EVENT_ID, slipId);
-    end 
+    end
 end
 
 ----------------------------------------------------------------------
@@ -266,7 +266,7 @@ function porterEventUpdate(player, csid, option, RETRIEVE_EVENT_ID, RETRIEVE_DIA
         
         local params = int8ToInt32(extra);
         player:updateEvent(params[1], params[2], params[3], params[4], params[5], params[6], slipId);
-    end 
+    end
 end
 
 ----------------------------------------------------------------------

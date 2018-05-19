@@ -24,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 131 and option == 1) then
         player:setPos(690,-18.5,220,128,0x33);        --> Wajaom Woodlands, at northeastern tower

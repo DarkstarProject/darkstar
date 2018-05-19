@@ -26,5 +26,5 @@ ITEM_CANNOT_BE_OBTAINED = 6540; -- You cannot obtain the item <item>. Come back 
 
 -- Strange Apparatus
      DEVICE_NOT_WORKING = 7321; -- The device is not working.
-           SYS_OVERLOAD = 7330; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-           YOU_LOST_THE = 7335; -- You lost the #. 
+           SYS_OVERLOAD = 7330; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+           YOU_LOST_THE = 7335; -- You lost the #.

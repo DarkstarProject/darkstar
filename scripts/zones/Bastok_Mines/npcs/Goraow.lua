@@ -46,8 +46,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 106) then
         player:addQuest(BASTOK, VENGEFUL_WRATH);

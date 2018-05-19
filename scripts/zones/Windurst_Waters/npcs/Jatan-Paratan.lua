@@ -54,13 +54,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 634) then    -- WONDERING_MINSTREL: Quest Start
         player:addQuest(WINDURST,WONDERING_MINSTREL);
     elseif (csid == 638) then  -- WONDERING_MINSTREL: Quest Finish
