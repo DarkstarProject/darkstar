@@ -2,10 +2,10 @@
 -- Area: The Garden of Ru'Hmet
 --   NM: Jailer of Faith
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+-----------------------------------
 
 function onMobSpawn(mob)
-    -- Give it two hour
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1)
     -- Change animation to open
     mob:AnimationSub(2)
 end
