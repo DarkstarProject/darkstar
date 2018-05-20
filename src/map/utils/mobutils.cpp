@@ -606,7 +606,7 @@ void SetupJob(CMobEntity* PMob)
         job = sJob;
     }
 
-    // This switch falls back to a subjob is a mainjob isn't matched, and is mainly magic stuff
+    // This switch falls back to a subjob if a mainjob isn't matched, and is mainly magic stuff
     switch(job)
     {
         case JOB_BLM:
