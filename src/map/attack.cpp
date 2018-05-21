@@ -95,7 +95,17 @@ bool CAttack::IsCritical()
 void CAttack::SetCritical(bool value)
 {
     m_isCritical = value;
-    m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
+
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
+        m_damageRatio = battleutils::GetRangedDamageRatio(m_attacker, m_victim, m_isCritical);
+    }
+
+    else
+    {
+        m_damageRatio = battleutils::GetDamageRatio(m_attacker, m_victim, m_isCritical, 0);
+    }
+
 }
 
 /************************************************************************
@@ -152,7 +162,11 @@ bool CAttack::IsBlocked()
 
 bool CAttack::IsParried()
 {
-    return attackutils::IsParried(m_attacker, m_victim);
+    if (m_attackType != PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
+        return attackutils::IsParried(m_attacker, m_victim);
+    }
+    return false;
 }
 
 bool CAttack::IsAnticipated()
@@ -201,6 +215,9 @@ uint8 CAttack::GetWeaponSlot()
     {
         return SLOT_MAIN;
     }
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+        return SLOT_AMMO;
+    }
     return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
 }
 
@@ -217,6 +234,11 @@ uint8 CAttack::GetAnimationID()
         return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
     }
 
+    if (this->m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
+        return 4;
+    }
+
     // Normal attack
     return this->m_attackDirection == RIGHTATTACK ? 0 : 1;
 }
@@ -228,8 +250,15 @@ uint8 CAttack::GetAnimationID()
 ************************************************************************/
 uint8 CAttack::GetHitRate()
 {
-    // Right hand hitrate
-    if (m_attackDirection == RIGHTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
+    {
+        m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 2);
+    }
+    else if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
+        m_hitRate = battleutils::GetRangedHitRate(m_attacker, m_victim, false);
+    }
+    else if (m_attackDirection == RIGHTATTACK)
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
@@ -246,8 +275,7 @@ uint8 CAttack::GetHitRate()
             m_attackRound->SetSATA(true);
         }
     }
-    // Left hand hitrate
-    else if (m_attackDirection == LEFTATTACK && m_attackType != PHYSICAL_ATTACK_TYPE::KICK)
+    else if (m_attackDirection == LEFTATTACK)
     {
         if (m_attackType == PHYSICAL_ATTACK_TYPE::ZANSHIN)
         {
@@ -257,11 +285,6 @@ uint8 CAttack::GetHitRate()
         {
             m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 1);
         }
-    }
-    // Kick hit rate
-    else if (m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
-    {
-        m_hitRate = battleutils::GetHitRate(m_attacker, m_victim, 2);
     }
     return m_hitRate;
 }
@@ -288,6 +311,10 @@ void CAttack::SetDamage(int32 value)
 
 bool CAttack::CheckAnticipated()
 {
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+        return false;
+    }
+
     CStatusEffect* effect = m_victim->StatusEffectContainer->GetStatusEffect(EFFECT_THIRD_EYE, 0);
     if (effect == nullptr)
     {
@@ -351,6 +378,10 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+        return false;
+    }
+
     if (!m_victim->PAI->IsEngaged())
     {
         m_isCountered = false;
@@ -415,7 +446,6 @@ void CAttack::ProcessDamage()
         m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(Mod::TRICK_ATK_AGI) / 100);
     }
 
-    // H2H.
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
@@ -428,19 +458,19 @@ void CAttack::ProcessDamage()
         m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
             battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
     }
-    // Not H2H.
-    else
+    else if (GetWeaponSlot() == SLOT_MAIN)
     {
-        if (GetWeaponSlot() == SLOT_MAIN)
-        {
-            m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
-                battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-        }
-        else if (GetWeaponSlot() == SLOT_SUB)
-        {
-            m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
-                battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
-        }
+        m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
+            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+    }
+    else if (GetWeaponSlot() == SLOT_SUB)
+    {
+        m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
+            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+    }
+    else if (GetWeaponSlot() == SLOT_AMMO)
+    {
+        m_damage = (uint32)((m_attacker->GetRangedWeaponDmg() + battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio);
     }
 
     // Soul eater.

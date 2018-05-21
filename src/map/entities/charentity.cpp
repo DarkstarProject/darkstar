@@ -1186,14 +1186,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                float pdif = battleutils::GetRangedPDIF(this, PTarget);
+                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
-                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
+                if (isCritical)
                 {
-                    pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE) - PTarget->getMod(Mod::CRIT_DEF_BONUS);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
-                    pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
                 }

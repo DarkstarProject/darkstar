@@ -1514,9 +1514,8 @@ namespace battleutils
     }
 
     //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
-    float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+    float GetRangedDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)
     {
-
         //get ranged attack value
         uint16 rAttack = 1;
 
@@ -1586,7 +1585,16 @@ namespace battleutils
         maxPdif = std::clamp<float>(maxPdif, 0, 3);
 
         //return random number between the two
-        return dsprand::GetRandomNumber(minPdif, maxPdif);
+        float pdif = dsprand::GetRandomNumber(minPdif, maxPdif);
+
+        if (isCritical) {
+            pdif *= 1.25;
+            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
+            criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
+            pdif *= ((100 + criticaldamage) / 100.0f);
+        }
+        
+        return pdif;
     }
 
     int16 CalculateBaseTP(int delay){
@@ -5362,7 +5370,7 @@ namespace battleutils
                 {
                     return static_cast<int16>(PSpell->getMPCost() * PChar->getMod(Mod::OCCULT_ACUMEN) / 100.f * (1 + (PChar->getMod(Mod::STORETP) / 100.f)));
                 }
-                
+
             }
         }
 
