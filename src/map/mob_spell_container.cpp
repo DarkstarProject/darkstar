@@ -67,7 +67,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
         m_damageList.push_back(spellId);
 
     }
-    else if(spell->isNa() || spellId == SpellID::Erase){
+    else if(spell->isNa()){
         // na spell and erase
         m_naList.push_back(spellId);
 
