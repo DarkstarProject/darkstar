@@ -55,39 +55,38 @@ function onEventFinish(player,csid,option)
             local itemID = 0;
             local price = 0;
 
-            -- Copy/pasted from Famad, TODO: fill in the actual IDs/prices for Yahsra
-            --[[if (item == 1) then
-                itemID = 15972;
+            if (item == 1) then
+                itemID = 15970;
                 price = 3000;
             elseif (item == 2) then
-                itemID = 15777;
+                itemID = 15775;
                 price = 5000;
             elseif (item == 3) then
-                itemID = 15523;
+                itemID = 15521;
                 price = 8000;
             elseif (item == 4) then
-                itemID = 15886;
+                itemID = 15884;
                 price = 10000;
             elseif (item == 5) then
-                itemID = 15492;
+                itemID = 15490;
                 price = 10000;
             elseif (item == 6) then
-                itemID = 18583;
+                itemID = 18408;
                 price = 10000;
             elseif (item == 7) then
-                itemID = 18388;
+                itemID = 18485;
                 price = 15000;
             elseif (item == 8) then
-                itemID = 18417;
+                itemID = 18365;
                 price = 15000;
             elseif (item == 9) then
-                itemID = 14940;
+                itemID = 14933;
                 price = 15000;
             elseif (item == 10) then
-                itemID = 15690;
+                itemID = 16069;
                 price = 20000;
             elseif (item == 11) then
-                itemID = 14525;
+                itemID = 15606;
                 price = 20000;
             else
                 return;
@@ -95,7 +94,7 @@ function onEventFinish(player,csid,option)
 
             player:addItem(itemID);
             player:messageSpecial(ITEM_OBTAINED,itemID);
-            player:delAssaultPoint(LEBROS_ASSAULT_POINT,price);]]
+            player:delCurrency("LEUJAOAM_ASSAULT_POINT",price);
         end
     end
 end;
