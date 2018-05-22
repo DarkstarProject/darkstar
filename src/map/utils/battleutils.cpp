@@ -1469,7 +1469,7 @@ namespace battleutils
             }*/
     }
 
-    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage, int8 accBonus)
     {
         int acc = 0;
         int hitrate = 75;
@@ -1506,11 +1506,19 @@ namespace battleutils
             acc -= PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_YONIN)->GetPower();
         }
 
+        // Add any specific accuracy bonus, e.g. Daken RAcc +100
+        acc += accBonus;
+
         int eva = PDefender->EVA();
         hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel()) * 2;
 
         uint8 finalhitrate = std::clamp(hitrate, 20, 95);
         return finalhitrate;
+    }
+
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
+    {
+        return GetRangedHitRate(PAttacker, PDefender, isBarrage, 0);
     }
 
     //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)

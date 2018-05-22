@@ -256,7 +256,7 @@ uint8 CAttack::GetHitRate()
     }
     else if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
     {
-        m_hitRate = battleutils::GetRangedHitRate(m_attacker, m_victim, false);
+        m_hitRate = battleutils::GetRangedHitRate(m_attacker, m_victim, false, 100);
     }
     else if (m_attackDirection == RIGHTATTACK)
     {
