@@ -1690,7 +1690,7 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
         lua_rawgeti(L, 1, i + 1);
         lua_rawgeti(L, 1, i + 2);
 
-        points.push_back({0, (float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0});
+        points.push_back({(float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0, 0});
 
         lua_pop(L, 3);
     }
@@ -7608,6 +7608,30 @@ inline int32 CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
 }
 
 /************************************************************************
+*  Function: addWeaponSkillPoints()
+*  Purpose : Removes a learned weaponskill from the player
+*  Example : player:addWeaponSkillPoints(dsp.slot.MAIN,300)
+*  Notes   : Returns true if points were successfully added.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addWeaponSkillPoints(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    SLOTTYPE slot = (SLOTTYPE)lua_tointeger(L, 1);
+    uint16 points = (uint16)lua_tointeger(L, 2);
+
+    lua_pushboolean(L, charutils::AddWeaponSkillPoints(PChar, slot, points));
+    return 1;
+}
+
+/************************************************************************
 *  Function: addLearnedAbility()
 *  Purpose : Adds a new learned ability to the player
 *  Example : target:addLearnedAbility(89) -- Chaos Roll
@@ -10928,6 +10952,11 @@ inline int32 CLuaBaseEntity::getStat(lua_State *L)
         case Mod::CHR:  lua_pushinteger(L, PEntity->CHR()); break;
         case Mod::ATT:  lua_pushinteger(L, PEntity->ATT()); break;
         case Mod::DEF:  lua_pushinteger(L, PEntity->DEF()); break;
+        case Mod::EVA:  lua_pushinteger(L, PEntity->EVA()); break;
+        // TODO: support getStat for ACC/RACC/RATT
+        //case Mod::ACC:  lua_pushinteger(L, PEntity->ACC()); break;
+        //case Mod::RACC: lua_pushinteger(L, PEntity->RACC()); break;
+        //case Mod::RATT: lua_pushinteger(L, PEntity->RATT()); break;
         default: lua_pushnil(L);
     }
     return 1;
@@ -13954,6 +13983,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedWeaponskill),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addWeaponSkillPoints),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedAbility),

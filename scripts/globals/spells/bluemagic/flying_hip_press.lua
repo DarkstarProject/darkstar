@@ -31,7 +31,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local params = {};    
+    local params = {};
         params.multiplier = 2.775;
         params.tMultiplier = 2.912;
         params.duppercap = 58;
@@ -46,4 +46,4 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
         
     return damage;
-end;    
+end;

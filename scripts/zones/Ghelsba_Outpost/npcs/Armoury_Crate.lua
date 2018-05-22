@@ -11,24 +11,12 @@ require("scripts/globals/bcnm");
 require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:getBCNMloot();
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

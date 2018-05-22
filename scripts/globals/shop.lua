@@ -10,7 +10,7 @@ require("scripts/globals/log_ids");
 -----------------------------------
 -- function showShop
 --
--- Total stock cuts off after 16 items. 
+-- Total stock cuts off after 16 items.
 -- If you add more than that the extras won't display.
 -----------------------------------
 
@@ -33,7 +33,7 @@ end;
 -----------------------------------
 -- function showNationShop
 --
--- Total stock cuts off after 16 items. 
+-- Total stock cuts off after 16 items.
 -- If you add more than that the extras won't display.
 -----------------------------------
 
@@ -72,7 +72,7 @@ end;
 -----------------------------------
 
 function ShowOPVendorShop(player)
-    local stock = 
+    local stock =
     {
         4148,  316, -- Antidote
         4151,  800, -- Echo Drops

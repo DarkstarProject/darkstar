@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.LAST_RESORT
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

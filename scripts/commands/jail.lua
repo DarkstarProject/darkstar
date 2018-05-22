@@ -10,7 +10,7 @@ cmdprops =
 };
 
 function onTrigger(player, target, cellId, reason)
-    local jailCells = 
+    local jailCells =
     {
         -- Floor 1 (Bottom)
         {-620, 11,  660, 0},  {-180, 11,  660, 0}, {260, 11,  660, 0}, {700, 11,  660, 0},

@@ -23,14 +23,10 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.WOODWORKING_IMAGERY,3,0,120);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_WDW, 1);
+    target:addMod(dsp.mod.WOOD, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_WDW, 1);
+    target:delMod(dsp.mod.WOOD, 1);
 end;

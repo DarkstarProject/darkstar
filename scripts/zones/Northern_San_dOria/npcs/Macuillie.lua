@@ -91,16 +91,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 729) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 729) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     elseif (csid == 730) then

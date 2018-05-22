@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Name: Somersault
 -- Utsusemi/Blink absorb: 1 shadow
--- Range: Melee 
+-- Range: Melee
 -- Single Target Attack
 -- Notes: not known if multiplier based on TP
 ---------------------------------------------------

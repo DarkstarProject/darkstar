@@ -15,10 +15,10 @@ function onAbilityCheck(player,target,ability)
     local ranged = player:getStorageItem(0, 0, dsp.slot.RANGED);
     local ammo = player:getStorageItem(0, 0, dsp.slot.AMMO);
 
-    if ranged and ranged:isType(ITEM_WEAPON) then
+    if ranged and ranged:isType(dsp.itemType.WEAPON) then
         local skilltype = ranged:getSkillType();
         if skilltype == dsp.skill.ARCHERY or skilltype == dsp.skill.MARKSMANSHIP or skilltype == dsp.skill.THROWING then
-            if ammo and (ammo:isType(ITEM_WEAPON) or skilltype == dsp.skill.THROWING) then
+            if ammo and (ammo:isType(dsp.itemType.WEAPON) or skilltype == dsp.skill.THROWING) then
                 return 0, 0;
             end;
         end;

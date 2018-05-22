@@ -74,13 +74,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 194 and option == 0) then
         player:addQuest(JEUNO,YOUR_CRYSTAL_BALL);
     elseif (csid == 196) then

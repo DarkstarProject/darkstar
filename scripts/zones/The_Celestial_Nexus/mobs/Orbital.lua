@@ -23,12 +23,10 @@ end;
 
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 32004) then
         if (GetMobByID(target:getID()-1):getName() == "Orbital") then

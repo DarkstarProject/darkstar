@@ -29,18 +29,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
     if (csid == 101 and option == 1) then
         player:addNationTeleport(MAW,2);
-        toMaw(player,4);
+        dsp.teleport.toMaw(player,4);
     elseif (csid == 102 and option == 1) then
-        toMaw(player,4);
+        dsp.teleport.toMaw(player,4);
     elseif (csid == 701) then
         player:completeMission(WOTG, BACK_TO_THE_BEGINNING);
         player:addMission(WOTG, CAIT_SITH);
@@ -48,6 +44,6 @@ function onEventFinish(player,csid,option)
         if (hasMawActivated(player,0) == false) then
             player:addNationTeleport(MAW,2);
         end
-        toMaw(player,4);
+        dsp.teleport.toMaw(player,4);
     end
 end;

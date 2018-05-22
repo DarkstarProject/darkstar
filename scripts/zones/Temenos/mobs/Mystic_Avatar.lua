@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos E T    
+-- Area: Temenos E T
 -- NPC: mystic Avatar
 
 -----------------------------------
@@ -25,14 +25,14 @@ function onMobEngaged(mob,target)
         GetMobByID(16929032):updateEnmity(target);
         GetMobByID(16929031):updateEnmity(target);
         if (IsMobDead(16929033)==true and IsMobDead(16929039)==true) then
-            mob:setMod(dsp.mod.FIREDEF,-128);    
+            mob:setMod(dsp.mod.FIREDEF,-128);
         else
             mob:setMod(dsp.mod.FIREDEF,256);
         end
     
         if (IsMobDead(16929034)==true and IsMobDead(16929040)==true) then
             mob:setMod(dsp.mod.ICEDEF,-128);
-        else    
+        else
             mob:setMod(dsp.mod.ICEDEF,256);
         end
 
@@ -43,25 +43,25 @@ function onMobEngaged(mob,target)
         end
 
         if (IsMobDead(16929036)==true and IsMobDead(16929042)==true) then
-            mob:setMod(dsp.mod.EARTHDEF,-128);    
+            mob:setMod(dsp.mod.EARTHDEF,-128);
         else
             mob:setMod(dsp.mod.EARTHDEF,256);
         end
 
         if (IsMobDead(16929037)==true and IsMobDead(16929043)==true) then
             mob:setMod(dsp.mod.THUNDERDEF,-128);
-        else    
+        else
             mob:setMod(dsp.mod.THUNDERDEF,256);
         end
 
         if (IsMobDead(16929038)==true and IsMobDead(16929044)==true) then
             mob:setMod(dsp.mod.WATERDEF,-128);
         else
-            mob:setMod(dsp.mod.WATERDEF,256);    
-        end        
+            mob:setMod(dsp.mod.WATERDEF,256);
+        end
 
         mob:setMod(dsp.mod.LIGHTDEF,256);
-        mob:setMod(dsp.mod.DARKDEF,-128);    
+        mob:setMod(dsp.mod.DARKDEF,-128);
     end
 end;
 

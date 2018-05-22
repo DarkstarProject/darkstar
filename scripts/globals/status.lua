@@ -1022,6 +1022,7 @@ dsp.mod =
     CRITHITRATE                     = 165,
     CRIT_DMG_INCREASE               = 421,
     ENEMYCRITRATE                   = 166,
+    CRIT_DEF_BONUS                  = 908, -- Reduces crit hit damage
     MAGIC_CRITHITRATE               = 562,
     MAGIC_CRIT_DMG_INCREASE         = 563,
     HASTE_MAGIC                     = 167,
@@ -1291,6 +1292,7 @@ dsp.mod =
     ALL_SONGS_EFFECT                = 452, --
     MAXIMUM_SONGS_BONUS             = 453, --
     SONG_DURATION_BONUS             = 454, --
+    SONG_SPELLCASTING_TIME          = 455, --
 
     QUICK_DRAW_DMG                  = 411, --
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
@@ -1472,9 +1474,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 908, -- stuff
     -- SPARE = 909, -- stuff
     -- SPARE = 910, -- stuff
+    -- SPARE = 911, -- stuff
 };
 
 ------------------------------------
@@ -1948,11 +1950,14 @@ dsp.MAX_SLOTID  = 15
 -- Objtype Definitions
 ----------------------------------
 
-TYPE_PC   = 0x01
-TYPE_NPC  = 0x02
-TYPE_MOB  = 0x04
-TYPE_PET  = 0x08
-TYPE_SHIP = 0x10
+dsp.objType =
+{
+    PC   = 0x01,
+    NPC  = 0x02,
+    MOB  = 0x04,
+    PET  = 0x08,
+    SHIP = 0x10,
+}
 
 ----------------------------------
 -- Drop Type (not currently used in code base)
@@ -2333,23 +2338,30 @@ dsp.behavior =
 -- Elevator IDs
 ------------------------------------
 
-ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
-ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
-ELEVATOR_DAVOI_LIFT                = 3;
-ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
+dsp.elevator =
+{
+    KUFTAL_TUNNEL_DSPPRNG_RCK = 0,
+    PORT_BASTOK_DRWBRDG       = 2,
+    DAVOI_LIFT                = 3,
+    PALBOROUGH_MINES_LIFT     = 4,
+}
 
 ------------------------------------
 -- Item Type
 -----------------------------------
-ITEM_BASIC       = 0x00;
-ITEM_GENERAL     = 0x01;
-ITEM_USABLE      = 0x02;
-ITEM_PUPPET      = 0x04;
-ITEM_ARMOR       = 0x08;
-ITEM_WEAPON      = 0x10;
-ITEM_CURRENCY    = 0x20;
-ITEM_FURNISHING  = 0x40;
-ITEM_LINKSHELL   = 0x80;
+
+dsp.itemType =
+{
+    BASIC       = 0x00,
+    GENERAL     = 0x01,
+    USABLE      = 0x02,
+    PUPPET      = 0x04,
+    ARMOR       = 0x08,
+    WEAPON      = 0x10,
+    CURRENCY    = 0x20,
+    FURNISHING  = 0x40,
+    LINKSHELL   = 0x80,
+}
 
 ------------------------------------
 -- Animations
@@ -2428,6 +2440,10 @@ dsp.mount =
 ------------------------------------
 -- Item Check Params
 ------------------------------------
-ITEMCHECK_NONE      = 0;
-ITEMCHECK_EQUIP     = 1;
-ITEMCHECK_UNEQUIP   = 2;
+
+dsp.itemCheck =
+{
+    NONE    = 0,
+    EQUIP   = 1,
+    UNEQUIP = 2,
+}

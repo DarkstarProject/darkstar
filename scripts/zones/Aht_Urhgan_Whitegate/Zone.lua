@@ -118,8 +118,6 @@ function onTransportEvent(player,transport)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3050 and option == 1) then
         if (player:getLocalVar("A_MERCENARY_LIFE") == 0) then
             player:setLocalVar("A_MERCENARY_LIFE", 1);
@@ -138,8 +136,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 44) then
         player:setVar("vanishingactCS",4);
         player:setPos(-80,-6,122,5);

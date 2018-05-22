@@ -40,7 +40,7 @@ function onBcnmLeave(player,instance,leavecode)
             player:setVar("PromathiaStatus",3);
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0); 
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -51,4 +51,4 @@ function onEventUpdate(player,csid,option)
 end;
         
 function onEventFinish(player,csid,option)
-end;    
+end;

@@ -13,7 +13,7 @@ end;
 
 function onSpellCast(caster,target,spell)
     if (target:hasKeyItem(dsp.ki.HOLLA_GATE_CRYSTAL) == true) then
-            target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_HOLLA,0,4.7);
+            target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.HOLLA,0,4.7);
         spell:setMsg(dsp.msg.basic.MAGIC_TELEPORT);
     else
         spell:setMsg(dsp.msg.basic.NO_EFFECT);

@@ -1,12 +1,12 @@
 ---------------------------------------------
 -- Tidal Slash
 --
--- Description: Deals Water damage in a threefold 
+-- Description: Deals Water damage in a threefold
 -- attack to targets in a fan-shaped area of effect.
 -- Type: Physical?
 -- Utsusemi/Blink absorb: 2-3 shadows
 -- Range: Melee?
--- Notes: Used only by Merrows equipped with a spear. 
+-- Notes: Used only by Merrows equipped with a spear.
 -- If they lost their spear, they'll use Hysteric Barrage instead.
 ---------------------------------------------
 require("scripts/globals/settings");

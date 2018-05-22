@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.AGGRESSOR
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

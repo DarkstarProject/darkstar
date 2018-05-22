@@ -3,9 +3,7 @@
 -- dsp.effect.SANCTION
 --
 -----------------------------------
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -20,21 +18,13 @@ function onEffectGain(target,effect)
     elseif (power == 2) then
         -- target:addLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
     elseif (power == 3) then
-        -- target:addMod(MOD_FOOD_DURATION), ???);
+        -- target:addMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
     end
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local power = effect:getPower(); -- 1 = regen, 2 = refresh, 3 = food.
@@ -47,7 +37,7 @@ function onEffectLose(target,effect)
     elseif (power == 2) then
         -- target:delLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
     elseif (power == 3) then
-        -- target:delMod(MOD_FOOD_DURATION), ???);
+        -- target:delMod(dsp.mod.FOOD_DURATION), ???);
         -- food duration not implemented.
     end
 end;

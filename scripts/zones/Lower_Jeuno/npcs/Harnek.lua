@@ -30,15 +30,10 @@ function onTrigger(player,npc)
 end;
 
 -- 0x000c  0x000d  0x0009  0x000a  0x0014  217  0x009f  10021  10022
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10021) then
         player:setVar("theTenshodoShowdownCS",2);

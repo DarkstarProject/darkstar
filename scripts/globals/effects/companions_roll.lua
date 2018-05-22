@@ -53,7 +53,7 @@ function onEffectLose(target,effect)
         target:delPetMod(dsp.mod.REGEN, (effectregen[rollnum] +6));
     end
     if (effect:getPower() < 19) then
-        local rollnum = effect:getPower() 
+        local rollnum = effect:getPower()
         target:delPetMod(dsp.mod.REGAIN, effectregain[rollnum]);
         target:delPetMod(dsp.mod.REGEN, effectregen[rollnum]);
     end

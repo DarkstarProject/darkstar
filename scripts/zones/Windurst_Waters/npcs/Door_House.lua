@@ -49,13 +49,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 941) then
         player:setVar("LeleroonsLetterGreen", 2);
         player:delKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);

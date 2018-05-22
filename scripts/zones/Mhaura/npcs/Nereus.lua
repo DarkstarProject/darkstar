@@ -40,13 +40,9 @@ end;
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 111 and option == 1)) then  --accept quest
         player:addQuest(OTHER_AREAS_LOG,A_POTTER_S_PREFERENCE);
     elseif (csid == 113) then --quest completed

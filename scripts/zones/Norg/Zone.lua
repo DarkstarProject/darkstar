@@ -43,13 +43,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 1) then
         if (player:hasKeyItem(dsp.ki.MAP_OF_NORG) == false) then

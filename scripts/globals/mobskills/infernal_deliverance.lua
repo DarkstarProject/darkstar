@@ -1,6 +1,6 @@
 ---------------------------------------------
 -- Infernal Deliverance
--- Description: Deals damage to targets in range. Additional effect: Stun  
+-- Description: Deals damage to targets in range. Additional effect: Stun
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

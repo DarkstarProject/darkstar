@@ -25,27 +25,23 @@ event  = 854;
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local price = 300;
 
     if (csid == 854) then
         if (option == 1 and player:delGil(price)) then
-            toExplorerMoogle(player,231);
+            dsp.teleport.toExplorerMoogle(player,231);
         elseif (option == 2 and player:delGil(price)) then
-            toExplorerMoogle(player,234);
+            dsp.teleport.toExplorerMoogle(player,234);
         elseif (option == 3 and player:delGil(price)) then
-            toExplorerMoogle(player,240);
+            dsp.teleport.toExplorerMoogle(player,240);
         elseif (option == 4 and player:delGil(price)) then
-            toExplorerMoogle(player,248);
+            dsp.teleport.toExplorerMoogle(player,248);
         elseif (option == 5 and player:delGil(price)) then
-            toExplorerMoogle(player,249);
+            dsp.teleport.toExplorerMoogle(player,249);
         end
     end
 end;

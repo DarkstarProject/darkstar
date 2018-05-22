@@ -32,13 +32,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
 
     if (csid == 594 and option == 0) then
         player:addQuest(SANDORIA, A_PURCHASE_OF_ARMS);

@@ -45,8 +45,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (player:delGil(10) == false) then
         player:setLocalVar("Durogg_PlayCutscene", 2) ; -- Cancel the cutscene.
@@ -57,8 +55,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (player:getLocalVar("Durogg_PlayCutscene") < 2) then
         if (   option ==   1) then        -- Drenched! It Began with a Raindrop

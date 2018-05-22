@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Final Heaven
 --
---  Description:  Delivers an attack that can stun the target. Shield required. 
+--  Description:  Delivers an attack that can stun the target. Shield required.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

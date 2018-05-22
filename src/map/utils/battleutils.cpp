@@ -2482,7 +2482,7 @@ namespace battleutils
 
         if (isCritical)
         {
-            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE);
+            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
             criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
             pDIF *= ((100 + criticaldamage) / 100.0f);
         }
@@ -3491,7 +3491,6 @@ namespace battleutils
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
-        DSP_DEBUG_BREAK_IF(amount < 0);
 
         for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {

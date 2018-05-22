@@ -90,7 +90,7 @@ function onMobFight(mob,target)
     end
   
     -- Check for phase change
-    if (phase < 21 and mobHPP <= triggerHPP[phase]) then          
+    if (phase < 21 and mobHPP <= triggerHPP[phase]) then
         if (phase == 20) then -- Prepare for death
             mob:hideHP(false);
             mob:setUnkillable(false);
@@ -114,7 +114,7 @@ function onMobFight(mob,target)
         -- Increment phase
         mob:setLocalVar("phase", phase + 1);
        
-    -- Or, check for Astral Flow    
+    -- Or, check for Astral Flow
     elseif (phase == 21 and astral < 9 and mobHPP <= (100 - 25 * astral)) then
         for i = 1, 8 do
             local oldPet = pets[astral % 2][i];
@@ -191,5 +191,5 @@ function handlePet(mob, newPet, oldPet, target, modelId)
     newPet:setModelId(modelId);
     newPet:spawn();
     newPet:setPos(mob:getXPos() + math.random(-2, 2), mob:getYPos(), mob:getZPos() + math.random(-2, 2));
-    newPet:updateEnmity(target); 
+    newPet:updateEnmity(target);
 end;

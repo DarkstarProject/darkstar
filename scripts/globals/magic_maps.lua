@@ -190,7 +190,7 @@ function CheckMaps(player, npc, csid)
         if player:hasKeyItem(Maps[i+1]) then
             mapVar2 = bit.bor(mapVar2, bit.lshift(1,i));
         end
-        i = i + 1; 
+        i = i + 1;
     end
     
     while i <= 71 do

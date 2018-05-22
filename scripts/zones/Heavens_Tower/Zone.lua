@@ -56,13 +56,9 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 41) then
         player:setPos(0,-17,135,60,239);
     elseif (csid == 335) then

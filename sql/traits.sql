@@ -263,13 +263,16 @@ INSERT INTO `traits` VALUES ('36','bird killer','9','20','1','225','8',null,'0')
 INSERT INTO `traits` VALUES ('37','amorph killer','9','30','1','226','8',null,'0');
 INSERT INTO `traits` VALUES ('38','aquan killer','9','50','1','228','8',null,'0');
 INSERT INTO `traits` VALUES ('39','undead killer','7','5','1','231','8',null,'0');
+INSERT INTO `traits` VALUES ('39','undead killer','7','86','2','231','10','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('41','arcana killer','8','25','1','232','8',null,'0');
 INSERT INTO `traits` VALUES ('41','arcana killer','8','86','2','232','10','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('42','demon killer','12','40','1','234','8',null,'0'); -- ROTZ
 INSERT INTO `traits` VALUES ('43','dragon killer','14','25','1','233','8',null,'0'); -- ROTZ
-INSERT INTO `traits` VALUES ('48','resist sleep','7','20','1','240','2',null,'0');
-INSERT INTO `traits` VALUES ('48','resist sleep','7','40','2','240','3',null,'0');
-INSERT INTO `traits` VALUES ('48','resist sleep','7','60','3','240','5',null,'0');
+INSERT INTO `traits` VALUES ('48','resist sleep','7','20','1','240','10',null,'0');
+INSERT INTO `traits` VALUES ('48','resist sleep','7','40','2','240','15',null,'0');
+INSERT INTO `traits` VALUES ('48','resist sleep','7','60','3','240','20',null,'0');
+INSERT INTO `traits` VALUES ('48','resist sleep','7','75','4','240','25',null,'0');
+INSERT INTO `traits` VALUES ('48','resist sleep','7','81','5','240','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('49','resist poison','11','20','1','241','2',null,'0');
 INSERT INTO `traits` VALUES ('49','resist poison','11','40','2','241','3',null,'0');
 INSERT INTO `traits` VALUES ('49','resist poison','11','60','3','241','5',null,'0');
@@ -377,8 +380,8 @@ INSERT INTO `traits` VALUES ('73','invigorate','2','75','1','0','24','TOAU','0')
 INSERT INTO `traits` VALUES ('74','penance','2','75','1','0','0','TOAU','0');
 INSERT INTO `traits` VALUES ('75','aura steal','6','75','1','0','0','TOAU','2372');
 INSERT INTO `traits` VALUES ('76','ambush','6','75','1','0','0','TOAU','2374');
-INSERT INTO `traits` VALUES ('77','iron will','7','75','1','0','0','TOAU','0');
-INSERT INTO `traits` VALUES ('78','guardian','7','75','1','0','0','TOAU','0');
+INSERT INTO `traits` VALUES ('77','iron will','7','75','1','0','0','TOAU','2436');
+INSERT INTO `traits` VALUES ('78','guardian','7','75','1','0','0','TOAU','2438');
 INSERT INTO `traits` VALUES ('79','muted soul','8','75','1','0','0','TOAU','2500');
 INSERT INTO `traits` VALUES ('80','desperate blows','8','15','1','906','52','TOAU','0'); -- 1024 base ~5%
 INSERT INTO `traits` VALUES ('80','desperate blows','8','30','2','906','104','TOAU','0'); -- 1024 base ~10%
@@ -409,6 +412,10 @@ INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','91','3','421','11','AB
 INSERT INTO `traits` VALUES ('98','crit. atk. bonus','6','97','4','421','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('98','crit. atk. bonus','8','85','1','421','5','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('98','crit. atk. bonus','8','95','2','421','8','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('99','crit. def. bonus','7','79','1','908','5','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('99','crit. def. bonus','7','85','2','908','8','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('99','crit. def. bonus','7','91','3','908','11','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('99','crit. def. bonus','7','96','4','908','14','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','88','1','486','20','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','8','98','2','486','30','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('100','tactical parry','13','77','1','486','20','ABYSSEA','0');
@@ -427,6 +434,10 @@ INSERT INTO `traits` VALUES ('101','tactical guard','2','97','3','899','60','ABY
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','80','1','905','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','88','2','905','4','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','99','3','905','6','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','7','77','1','905','2','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','7','82','2','905','4','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','7','88','3','905','6','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','7','93','4','905','8','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','85','1','174','8','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','2','95','2','174','12','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('106','skillchain bonus','12','78','1','174','8','ABYSSEA','0');

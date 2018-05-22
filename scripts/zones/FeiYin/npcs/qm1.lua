@@ -6,22 +6,23 @@
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/FeiYin/TextIDs");
+require("scripts/zones/FeiYin/MobIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:hasItem(13842) == false) then
-        if (trade:hasItemQty(1098,1) and trade:getItemCount() == 1) then -- Trade Tavnazia Bell
-            player:tradeComplete();
-            player:messageSpecial(SENSE_OF_FOREBODING);
-            SpawnMob(17612836):updateClaim(player);
-        end
+    if (
+        player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and
+        npcUtil.tradeHas(trade, 1098) and -- Tavnazia Bell
+        not player:hasItem(13842) and -- Tavnazian Mask
+        not GetMobByID(ALTEDOUR_I_TAVNAZIA):isSpawned()
+    ) then
+        player:confirmTrade();
+        player:messageSpecial(SENSE_OF_FOREBODING);
+        SpawnMob(ALTEDOUR_I_TAVNAZIA):updateClaim(player);
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -29,11 +30,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

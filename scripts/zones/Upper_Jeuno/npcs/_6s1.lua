@@ -56,16 +56,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 84 or csid == 204) and option == 4) then
         player:updateEvent(ring[1],ring[2],ring[3])
     end
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10011) then
         player:setVar("PromathiaStatus", 2);
     elseif (csid == 10012) then

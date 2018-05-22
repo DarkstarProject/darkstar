@@ -60,7 +60,7 @@ function onMobDisengaged(mob, target)
     local ready = mob:getLocalVar("ready");
 
     if (ready == 1) then
-        startAllyAssist(mob, ALLY_ASSIST_RANDOM);
+        dsp.ally.startAssist(mob, dsp.ally.ASSIST_RANDOM);
     end
 end;
 
@@ -86,7 +86,7 @@ function onMobRoam(mob)
     -- Path must finish before Ally Asisst (no wallhacking!)
     elseif (ready == 1) then
         mob:setMobMod(dsp.mobMod.NO_MOVE, 0);
-        startAllyAssist(mob, ALLY_ASSIST_RANDOM);
+        dsp.ally.startAssist(mob, dsp.ally.ASSIST_RANDOM);
     end
 end;
 

@@ -270,7 +270,7 @@ function GetQMLogInfo(cmdParamText, logNameTable)
         else
             logName = logName .. "_LOG";
             ret = _G[logName];
-            if ((type(ret) == "table") and (type(ret.full_name) == "string")) then 
+            if ((type(ret) == "table") and (type(ret.full_name) == "string")) then
                 return ret;
             end
         end

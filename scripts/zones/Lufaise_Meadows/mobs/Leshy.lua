@@ -34,7 +34,7 @@ function onMobRoam(mob)
             os.time() > nm:getLocalVar("timeToGrow") and
             nm:getLocalVar("phIndex") == 0 and
             math.random(1,20) == 1 -- this prevents the same Leshy from growing every cycle
-        ) then  
+        ) then
             local p = mob:getPos();
             DisallowRespawn(ph, true);
             DespawnMob(ph);

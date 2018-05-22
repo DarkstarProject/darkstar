@@ -84,8 +84,6 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 35) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 37) then
@@ -98,8 +96,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 35) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end

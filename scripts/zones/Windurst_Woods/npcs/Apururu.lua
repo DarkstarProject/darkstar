@@ -114,13 +114,9 @@ local MissionStatus = player:getVar("MissionStatus");
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Windurst mission 1-2 start
     if (csid == 137) then

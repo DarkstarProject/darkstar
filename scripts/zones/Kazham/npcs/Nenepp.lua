@@ -78,13 +78,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 241) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();

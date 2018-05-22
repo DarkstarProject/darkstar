@@ -75,13 +75,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 736) then
         player:addQuest(WINDURST,LURE_OF_THE_WILDCAT_WINDURST);
         player:setVar("WildcatWindurst",0);
@@ -97,6 +93,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GREEN_INVITATION_CARD);
     elseif (csid == 794) then
         player:tradeComplete();
-        toAhtUrhganWhitegate(player);
+        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;

@@ -39,7 +39,7 @@ function onMobFight(mob,target)
     local X = mob:getXPos();
     local Y = mob:getYPos();
     local Z = mob:getZPos();
-    local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100); 
+    local lifepourcent= ((mob:getHP()/mob:getMaxHP())*100);
     local instancetime = target:getSpecialBattlefieldLeftTime(5);
 
     if (lifepourcent < 50 and GetNPCByID(16933247):getAnimation() == 8) then
@@ -50,9 +50,9 @@ function onMobFight(mob,target)
     end
 
     if (instancetime < 13) then
-        if (IsMobDead(16933129)==false) then  
+        if (IsMobDead(16933129)==false) then
             GetMobByID(16933129):updateEnmity(target);
-        elseif (IsMobDead(16933137)==false) then 
+        elseif (IsMobDead(16933137)==false) then
             GetMobByID(16933137):updateEnmity(target);
         end
     end
@@ -64,7 +64,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if ((IsMobDead(16933129) == false or IsMobDead(16933137) == false)
-    and alreadyReceived(player,3,GetInstanceRegion(1294)) == false) then          
+    and alreadyReceived(player,3,GetInstanceRegion(1294)) == false) then
         player:addTimeToSpecialBattlefield(5,5);
         addLimbusList(player,4,GetInstanceRegion(1294));
     end

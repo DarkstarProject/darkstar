@@ -28,13 +28,9 @@ end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 102) then
 player:setVar("BASTOK91",2);
 elseif (csid == 104) then
