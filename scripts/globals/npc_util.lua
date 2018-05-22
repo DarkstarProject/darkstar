@@ -93,8 +93,9 @@ function npcUtil.giveItem(player, items)
 
     -- give items to player
     for _, v in pairs(givenItems) do
-        player:addItem(v[1], v[2]);
-        player:messageSpecial(ITEM_OBTAINED, v[1]);
+        if (player:addItem(v[1], v[2])) then
+            player:messageSpecial(ITEM_OBTAINED, v[1]);
+        end
     end
     return true;
 end
