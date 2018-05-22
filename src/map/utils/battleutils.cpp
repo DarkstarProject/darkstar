@@ -1595,7 +1595,8 @@ namespace battleutils
         //return random number between the two
         float pdif = dsprand::GetRandomNumber(minPdif, maxPdif);
 
-        if (isCritical) {
+        if (isCritical)
+        {
             pdif *= 1.25;
             int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
             criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
@@ -2452,7 +2453,8 @@ namespace battleutils
             }
         }
 
-        if (isCritical) {
+        if (isCritical)
+        {
             cRatio += 1;
         }
 

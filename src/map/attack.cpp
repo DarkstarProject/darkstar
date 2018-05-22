@@ -215,7 +215,8 @@ uint8 CAttack::GetWeaponSlot()
     {
         return SLOT_MAIN;
     }
-    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
         return SLOT_AMMO;
     }
     return m_attackDirection == RIGHTATTACK ? SLOT_MAIN : SLOT_SUB;
@@ -311,7 +312,8 @@ void CAttack::SetDamage(int32 value)
 
 bool CAttack::CheckAnticipated()
 {
-    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
         return false;
     }
 
@@ -378,7 +380,8 @@ bool CAttack::IsCountered()
 
 bool CAttack::CheckCounter()
 {
-    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN) {
+    if (m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    {
         return false;
     }
 
