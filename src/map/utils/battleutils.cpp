@@ -1888,6 +1888,7 @@ namespace battleutils
     int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
     {
         giveTPtoAttacker = giveTPtoAttacker && !PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI);
+        giveTPtoVictim = giveTPtoVictim && attackType != PHYSICAL_ATTACK_TYPE::DAKEN;
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
         int32 baseDamage = damage;
         if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES) && !isCounter)
