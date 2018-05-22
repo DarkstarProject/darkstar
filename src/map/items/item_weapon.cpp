@@ -63,18 +63,22 @@ void CItemWeapon::resetDelay()
 
 /************************************************************************
 *                                                                       *
-*  Оружие для атаки с дистанции (Range)                                 *
+*  Is Ranged Weapon?                                                    *
 *                                                                       *
 ************************************************************************/
-
-bool CItemWeapon::isThrowing()
-{
-    return m_ranged && getSkillType() == SKILL_THROWING;
-}
-
 bool CItemWeapon::isRanged()
 {
     return m_ranged;
+}
+
+bool CItemWeapon::isThrowing()
+{
+    return isRanged() && getSkillType() == SKILL_THROWING;
+}
+
+bool CItemWeapon::isShuriken()
+{
+    return isThrowing() && getSubSkillType() == SUBSKILL_SHURIKEN;
 }
 
 /************************************************************************

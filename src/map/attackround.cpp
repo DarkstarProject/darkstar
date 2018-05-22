@@ -377,9 +377,8 @@ void CAttackRound::CreateDakenAttack()
 {
     if (m_attacker->objtype == TYPE_PC)
     {
-        // if ammo slot is a shuriken (throwing, consumable)
         CItemWeapon* PAmmo = m_attacker->m_Weapons[SLOT_AMMO];
-        if (PAmmo && PAmmo->isThrowing()) {
+        if (PAmmo && PAmmo->isShuriken()) {
             uint16 daken = m_attacker->getMod(Mod::DAKEN);
              if (dsprand::GetRandomNumber(100) < daken)
              {
