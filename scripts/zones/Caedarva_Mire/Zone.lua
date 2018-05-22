@@ -64,5 +64,7 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,IN_THE_BLOOD);
     elseif (csid == 133) then -- enter instance, warp to periqia
         player:setPos(0,0,0,0,56);
+    elseif (csid == 130) then
+        player:setPos(0,0,0,0,69);
     end
 end;
