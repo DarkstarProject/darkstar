@@ -91,10 +91,13 @@ function onEventFinish(player,csid,option)
             else
                 return;
             end
-
-            player:addItem(itemID);
-            player:messageSpecial(ITEM_OBTAINED,itemID);
-            player:delCurrency("LEUJAOAM_ASSAULT_POINT",price);
+            if player:getFreeSlotsCount() > 0 then
+                player:addItem(itemID);
+                player:messageSpecial(ITEM_OBTAINED,itemID);
+                player:delCurrency("LEUJAOAM_ASSAULT_POINT",price);
+            else
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            end
         end
     end
 end;
