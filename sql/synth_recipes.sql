@@ -4644,6 +4644,9 @@ INSERT INTO `synth_recipes` VALUES (4529,1,0,45,0,0,0,0,0,0,0,4100,4242,8897,0,0
 INSERT INTO `synth_recipes` VALUES (4530,0,0,0,0,0,0,0,0,73,0,4100,4242,16652,0,0,0,0,0,0,0,707,707,654,654,1,1,1,1); -- Darksteel Pick (desynth)
 INSERT INTO `synth_recipes` VALUES (4531,0,0,0,0,90,0,0,0,0,0,4100,4242,13208,0,0,0,0,0,0,0,823,821,0,0,1,1,0,0); -- Rainbow Obi (desynth)
 INSERT INTO `synth_recipes` VALUES (4532,0,0,0,0,0,0,0,33,0,0,4100,4242,13571,0,0,0,0,0,0,0,858,858,820,0,1,1,1,0); -- Wolf Mantle (desynth)
+INSERT INTO `synth_recipes` VALUES (4533,0,0,0,0,46,0,0,0,0,0,4100,4242,12723,0,0,0,0,0,0,0,834,820,820,820,2,5,6,7); -- Wool Bracers (desynth)
+INSERT INTO `synth_recipes` VALUES (4534,0,0,0,0,0,0,31,0,0,0,4100,4242,18868,0,0,0,0,0,0,0,650,0,0,0,1,0,0,0); -- Lady Bell (desynth)
+INSERT INTO `synth_recipes` VALUES (4535,0,0,0,0,0,0,85,0,0,0,4100,4242,13356,0,0,0,0,0,0,0,746,812,0,0,1,1,0,0); -- Death Earring (desynth)
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)

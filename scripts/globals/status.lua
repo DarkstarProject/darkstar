@@ -1422,6 +1422,8 @@ dsp.mod =
     ENHANCES_ALLIES_ROLL            = 894, -- Allies' Roll Bonus % chance
     ENHANCES_TACTICIANS_ROLL        = 895, -- Tactician's Roll Bonus % chance
     OCCULT_ACUMEN                   = 902, -- Grants bonus TP when dealing damage with elemental or dark magic
+    
+    QUICK_MAGIC                     = 909, -- Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
 
     -- Automaton mods
     AUTO_DECISION_DELAY             = 842, -- Reduces the Automaton's global decision delay

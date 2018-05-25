@@ -708,6 +708,8 @@ enum class Mod
     ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance
     OCCULT_ACUMEN             = 902, // Grants bonus TP when dealing damage with elemental or dark magic
 
+    QUICK_MAGIC               = 909, // Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
+
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
     SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate

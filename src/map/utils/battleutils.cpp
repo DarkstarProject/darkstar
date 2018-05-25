@@ -70,6 +70,7 @@
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/controllers/player_controller.h"
 #include "../ai/controllers/player_charm_controller.h"
+#include "../ai/states/magic_state.h"
 #include "../utils/petutils.h"
 #include "zoneutils.h"
 
@@ -5016,10 +5017,19 @@ namespace battleutils
         return found;
     }
 
-    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState)
     {
+        CSpell* PSpell = PMagicState->GetSpell();
         if (PSpell == nullptr)
         {
+            return 0;
+        }
+
+        // Check Quick Magic procs
+        int16 quickMagicRate = PEntity->getMod(Mod::QUICK_MAGIC);
+        if (dsprand::GetRandomNumber(100) <= quickMagicRate)
+        {
+            PMagicState->SetInstantCast(true);
             return 0;
         }
 
