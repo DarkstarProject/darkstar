@@ -14,11 +14,11 @@ end
 function onTrigger(player,npc)
     local fangKeyTimer = player:getVar("[TIMER]Lamian Fang Key")
 
-    if fangKeyTimer < os.time() then
+    if fangKeyTimer ~= VanadielDayOfTheYear() then
         if player:getFreeSlotsCount() > 0 and player:hasItem(2219) == false then
             player:addItem(2219,1)
             player:messageSpecial(ITEM_OBTAINED,2219)
-            player:setVar("[TIMER]Lamian Fang Key",getConquestTally())
+            player:setVar("[TIMER]Lamian Fang Key", VanadielDayOfTheYear())
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2219)
         end
