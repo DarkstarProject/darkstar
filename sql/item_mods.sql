@@ -2462,6 +2462,7 @@ INSERT INTO `item_mods` VALUES (10825,409,5);     -- Triple Attack Damage+5
 INSERT INTO `item_mods` VALUES (10826,1,8);       -- Witful Belt: DEF 8
 INSERT INTO `item_mods` VALUES (10826,170,3);     -- Fast Cast +3%
 INSERT INTO `item_mods` VALUES (10826,384,30);    -- Haste +3%
+INSERT INTO `item_mods` VALUES (10826,909,3);     -- Occ. quickens spellcasting +3%
 INSERT INTO `item_mods` VALUES (10827,1,9);       -- Prosilio Belt: DEF 9
 INSERT INTO `item_mods` VALUES (10827,8,9);       -- STR +9
 INSERT INTO `item_mods` VALUES (10827,23,25);     -- Attack +25
@@ -24095,6 +24096,7 @@ INSERT INTO `item_mods` VALUES (19760,68,-2); -- -2 Eva
 INSERT INTO `item_mods` VALUES (19760,288,1); -- 1 Double Attack
 INSERT INTO `item_mods` VALUES (19761,168,10);    -- Impatiens: Spell interruption rate down 10%
 INSERT INTO `item_mods` VALUES (19762,84,2);
+INSERT INTO `item_mods` VALUES (19762,909,2);     -- Occ. quickens spellcasting +2%
 INSERT INTO `item_mods` VALUES (19763,23,-7);  -- Oneiros Cluster -- -7 Att
 INSERT INTO `item_mods` VALUES (19763,384,10); -- 1% Gear Haste
 INSERT INTO `item_mods` VALUES (19764,9,4);
@@ -48175,10 +48177,12 @@ INSERT INTO `item_mods` VALUES (28643,12,8);
 INSERT INTO `item_mods` VALUES (28643,13,8);
 INSERT INTO `item_mods` VALUES (28643,14,8);
 INSERT INTO `item_mods` VALUES (28643,30,3);
-INSERT INTO `item_mods` VALUES (28644,1,19);
-INSERT INTO `item_mods` VALUES (28644,30,10);
-INSERT INTO `item_mods` VALUES (28645,1,20);
-INSERT INTO `item_mods` VALUES (28645,30,11);
+INSERT INTO `item_mods` VALUES (28644,1,19);      -- Ogapepo Cape: DEF 19
+INSERT INTO `item_mods` VALUES (28644,30,10);     -- Magic Accuracy +10
+INSERT INTO `item_mods` VALUES (28644,909,3);     -- Occ. quickens spellcasting +2%
+INSERT INTO `item_mods` VALUES (28645,1,20);      -- Ogapepo Cape +1: DEF 20
+INSERT INTO `item_mods` VALUES (28645,30,11);     -- Magic Accuracy +11
+INSERT INTO `item_mods` VALUES (28645,909,10);    -- Occ. quickens spellcasting +3%
 INSERT INTO `item_mods` VALUES (28646,1,10);      -- Radical Mantle: DEF 10
 INSERT INTO `item_mods` VALUES (28646,25,9);      -- Accuracy +9
 INSERT INTO `item_mods` VALUES (28646,26,9);      -- Ranged Accuracy +9
