@@ -12,15 +12,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local fangKeyTimer = player:getVar("[TIMER]Lamian Fang Key")
-
-    if fangKeyTimer ~= VanadielDayOfTheYear() then
-        if player:getFreeSlotsCount() > 0 and not player:hasItem(2219) then
-            player:addItem(2219,1)
-            player:messageSpecial(ITEM_OBTAINED,2219)
-            player:setVar("[TIMER]Lamian Fang Key", VanadielDayOfTheYear())
-        else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2219)
+    if player:getVar("[TIMER]Lamian_Fang_Key") ~= VanadielDayOfTheYear() then 
+        if npcUtil.giveItem(player, 2219) then
+            player:setVar("[TIMER]Lamian_Fang_Key", VanadielDayOfTheYear()) -- Can obtain key once per vanadiel day
         end
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
