@@ -18,6 +18,7 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 -----------------------------------
 
+
 function onChocoboDig(player, precheck)
     local itemMap =
     {
@@ -33,6 +34,7 @@ function onChocoboDig(player, precheck)
         { 622, 28, DIGREQ_NONE },
         { 700, 3, DIGREQ_NONE },
         { 4096, 100, DIGREQ_NONE },  -- all crystals
+        { 1255, 10, DIGREQ_NONE }, -- all ores
         { 4545, 34, DIGREQ_BURROW },
         { 636, 20, DIGREQ_BURROW },
         { 616, 8, DIGREQ_BURROW },
