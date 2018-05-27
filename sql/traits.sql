@@ -434,6 +434,8 @@ INSERT INTO `traits` VALUES ('101','tactical guard','2','97','3','899','60','ABY
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','80','1','905','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','88','2','905','4','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','1','99','3','905','6','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','3','85','1','905','2','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('102','shield def. bonus','3','95','2','905','4','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','7','77','1','905','2','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','7','82','2','905','4','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('102','shield def. bonus','7','88','3','905','6','ABYSSEA','0');
@@ -462,9 +464,9 @@ INSERT INTO `traits` VALUES ('107','fencer','1','97','5','903','500','ABYSSEA','
 INSERT INTO `traits` VALUES ('107','fencer','1','97','5','904','10','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('109','occult acumen','4','85','1','902','25','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('109','occult acumen','4','95','2','902','50','ABYSSEA','0');
-INSERT INTO `traits` VALUES ('109','occult acumen','8','45','1','902','25',null,'0');
-INSERT INTO `traits` VALUES ('109','occult acumen','8','58','2','902','50',null,'0');
-INSERT INTO `traits` VALUES ('109','occult acumen','8','71','3','902','75',null,'0');
+INSERT INTO `traits` VALUES ('109','occult acumen','8','45','1','902','25','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('109','occult acumen','8','58','2','902','50','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('109','occult acumen','8','71','3','902','75','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('109','occult acumen','8','84','4','902','100','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('109','occult acumen','8','97','5','902','125','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','4','45','1','487','5','ABYSSEA','0');
@@ -479,6 +481,11 @@ INSERT INTO `traits` VALUES ('110','mag. burst bonus','13','90','2','487','7','A
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','79','1','487','5','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','89','2','487','7','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('110','mag. burst bonus','20','99','3','487','9','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('111','divine benison','3','50','1','910','10','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('111','divine benison','3','60','2','910','20','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('111','divine benison','3','70','3','910','30','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('111','divine benison','3','80','4','910','40','ABYSSEA','0');
+INSERT INTO `traits` VALUES ('111','divine benison','3','90','5','910','50','ABYSSEA','0');
 INSERT INTO `traits` VALUES ('112','elemental celerity','4','50','1','901','10','SOA','0');
 INSERT INTO `traits` VALUES ('112','elemental celerity','4','60','2','901','15','SOA','0');
 INSERT INTO `traits` VALUES ('112','elemental celerity','4','70','3','901','20','SOA','0');

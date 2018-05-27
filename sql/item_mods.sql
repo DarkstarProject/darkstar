@@ -3528,6 +3528,7 @@ INSERT INTO `item_mods` VALUES (11125,384,61);
 INSERT INTO `item_mods` VALUES (11126,1,41);      -- Orison Pantaloons +2
 INSERT INTO `item_mods` VALUES (11126,13,7);      -- comment me
 INSERT INTO `item_mods` VALUES (11126,860,5);     -- Converts 5% of "Cure" amount to MP
+INSERT INTO `item_mods` VALUES (11126,910,10);    -- "Divine Benison"+1
 INSERT INTO `item_mods` VALUES (11127,1,41);
 INSERT INTO `item_mods` VALUES (11127,5,55);
 INSERT INTO `item_mods` VALUES (11127,28,7);
@@ -4005,6 +4006,7 @@ INSERT INTO `item_mods` VALUES (11225,384,51);
 INSERT INTO `item_mods` VALUES (11226,1,39);      -- Orison Pantaloons +1 
 INSERT INTO `item_mods` VALUES (11226,13,5);      -- comment me
 INSERT INTO `item_mods` VALUES (11226,860,2);     -- Converts 2% of "Cure" amount to MP
+INSERT INTO `item_mods` VALUES (11226,910,10);    -- "Divine Benison"+1
 INSERT INTO `item_mods` VALUES (11227,1,39);
 INSERT INTO `item_mods` VALUES (11227,5,40);
 INSERT INTO `item_mods` VALUES (11227,28,5);
@@ -23398,6 +23400,7 @@ INSERT INTO `item_mods` VALUES (19059,119,3);
 INSERT INTO `item_mods` VALUES (19060,355,90); -- Conqueror 80 - King's Justice
 INSERT INTO `item_mods` VALUES (19061,355,11); -- Glanzfaust 80 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19062,355,171); -- Yagrush 80 - Mystic Boon
+INSERT INTO `item_mods` VALUES (19062,910,10);  -- Enhances "Divine Benison" effect
 INSERT INTO `item_mods` VALUES (19063,355,186); -- Laevateinn 80 - Vidohunir
 INSERT INTO `item_mods` VALUES (19064,30,15);     -- Murgleis (Level 80): Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19064,355,44);    -- Death Blossom
@@ -23435,6 +23438,7 @@ INSERT INTO `item_mods` VALUES (19081,355,11); -- Glanzfaust 85 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19082,30,15); -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19082,355,171); -- Yagrush 85 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19082,524,1); -- Divine Veil
+INSERT INTO `item_mods` VALUES (19082,910,15); -- Enhances "Divine Benison" effect II
 INSERT INTO `item_mods` VALUES (19083,25,30); -- Accuracy
 INSERT INTO `item_mods` VALUES (19083,28,40); -- Magic Attack Bonus +40
 INSERT INTO `item_mods` VALUES (19083,30,10); -- Magic Accuracy +10
@@ -23828,6 +23832,7 @@ INSERT INTO `item_mods` VALUES (19613,355,11); -- Glanzfaust 90 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19613,581,15); -- Ascetic's Fury WS DMG +15%
 INSERT INTO `item_mods` VALUES (19614,355,171); -- Yagrush 90 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19614,741,15); -- Mystic Boon WS DMG +15%
+INSERT INTO `item_mods` VALUES (19614,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (19615,355,186); -- Laevateinn 90 - Vidohunir
 INSERT INTO `item_mods` VALUES (19616,30,25);     -- Murgleis (Level 90): Magic Accuracy +25
 INSERT INTO `item_mods` VALUES (19616,355,44);    -- Death Blossom
@@ -23922,6 +23927,7 @@ INSERT INTO `item_mods` VALUES (19712,30,20); -- Magic Accuracy +20
 INSERT INTO `item_mods` VALUES (19712,355,171); -- Yagrush 95 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19712,524,1); -- Divine Veil
 INSERT INTO `item_mods` VALUES (19712,741,15); -- Mystic Boon WS DMG +15%
+INSERT INTO `item_mods` VALUES (19712,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (19713,25,30); -- Accuracy +30
 INSERT INTO `item_mods` VALUES (19713,28,50); -- Magic Attack Bonus +50
 INSERT INTO `item_mods` VALUES (19713,30,10); -- Magic Accuracy +10
@@ -24193,6 +24199,7 @@ INSERT INTO `item_mods` VALUES (19821,30,25); -- Magic Accuracy
 INSERT INTO `item_mods` VALUES (19821,355,171); -- Yagrush 99 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19821,741,30); -- Mystic Boon WS DMG +30%
 INSERT INTO `item_mods` VALUES (19821,524,1); -- Divine Veil
+INSERT INTO `item_mods` VALUES (19821,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (19822,25,30); -- Accuracy +30
 INSERT INTO `item_mods` VALUES (19822,28,60); -- Magic Attack Bonus 60
 INSERT INTO `item_mods` VALUES (19822,30,10); -- Magic Accuracy +30
@@ -24378,6 +24385,7 @@ INSERT INTO `item_mods` VALUES (19949,355,11); -- Glanzfaust 99 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (19949,581,30); -- Ascetic's Fury WS DMG +30%
 INSERT INTO `item_mods` VALUES (19950,355,171); -- Yagrush 99 - Mystic Boon
 INSERT INTO `item_mods` VALUES (19950,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (19950,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (19951,355,186); -- Laevateinn 99 - Vidohunir
 INSERT INTO `item_mods` VALUES (19952,30,30);     -- Murgleis (Level 99 II): Magic Accuracy +30
 INSERT INTO `item_mods` VALUES (19952,355,44);    -- Death Blossom
@@ -25186,11 +25194,13 @@ INSERT INTO `item_mods` VALUES (21061,311,155); -- Magic DMG +155
 INSERT INTO `item_mods` VALUES (21062,311,155); -- Magic Damage +155
 INSERT INTO `item_mods` VALUES (21062,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21062,741,30); -- Mystic Boon WS DMG +30%
-INSERT INTO `item_mods` VALUES (21062,524,1); -- Diving Veil
+INSERT INTO `item_mods` VALUES (21062,524,1); -- Divine Veil
+INSERT INTO `item_mods` VALUES (21062,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (21063,311,155); -- Magic Damage +155
 INSERT INTO `item_mods` VALUES (21063,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21063,741,30); -- Mystic Boon WS DMG +30%
 INSERT INTO `item_mods` VALUES (21063,524,1); -- Divine Veil
+INSERT INTO `item_mods` VALUES (21063,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (21064,2,90);      -- Gambanteinn (iLvl 119): HP +90
 INSERT INTO `item_mods` VALUES (21064,5,90);      -- MP +90
 INSERT INTO `item_mods` VALUES (21064,311,155);   -- Magic Damage +155
@@ -25202,6 +25212,7 @@ INSERT INTO `item_mods` VALUES (21065,355,173);   -- Dagan
 INSERT INTO `item_mods` VALUES (21077,355,170); -- Mjollnir iLvL 119 - Randgrith
 INSERT INTO `item_mods` VALUES (21078,355,171); -- Yagrush iLvL 119 - Mystic Boon
 INSERT INTO `item_mods` VALUES (21078,741,30); -- Mystic Boon WS DMG +30%
+INSERT INTO `item_mods` VALUES (21078,910,20); -- Enhances "Divine Benison" effect III
 INSERT INTO `item_mods` VALUES (21079,2,135);     -- Gambanteinn (iLvl 119 III): HP +135
 INSERT INTO `item_mods` VALUES (21079,5,135);     -- MP +135
 INSERT INTO `item_mods` VALUES (21079,310,100);   -- Cursna +100%
@@ -37160,6 +37171,7 @@ INSERT INTO `item_mods` VALUES (27241,31,73);     -- Magic Evasion +73
 INSERT INTO `item_mods` VALUES (27241,68,12);     -- Evasion +12
 INSERT INTO `item_mods` VALUES (27241,384,40);    -- Haste +4%
 INSERT INTO `item_mods` VALUES (27241,860,5);     -- Converts 5% of "Cure" amount to MP
+INSERT INTO `item_mods` VALUES (27241,910,10);    -- "Divine Benison"+1
 INSERT INTO `item_mods` VALUES (27242,1,106);     -- Ebers Pantaloons +1: DEF 106
 INSERT INTO `item_mods` VALUES (27242,2,41);      -- HP +41
 INSERT INTO `item_mods` VALUES (27242,5,35);      -- MP +35
@@ -37174,6 +37186,7 @@ INSERT INTO `item_mods` VALUES (27242,31,107);    -- Magic Evasion +107
 INSERT INTO `item_mods` VALUES (27242,68,27);     -- Evasion +27
 INSERT INTO `item_mods` VALUES (27242,384,51);    -- Haste +5%
 INSERT INTO `item_mods` VALUES (27242,860,6);     -- Converts 6% of "Cure" amount to MP
+INSERT INTO `item_mods` VALUES (27242,910,20);    -- "Divine Benison"+2
 INSERT INTO `item_mods` VALUES (27243,1,74);
 INSERT INTO `item_mods` VALUES (27243,2,18);
 INSERT INTO `item_mods` VALUES (27243,5,91);

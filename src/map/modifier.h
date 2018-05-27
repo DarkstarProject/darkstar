@@ -312,6 +312,7 @@ enum class Mod
     AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
     REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
     CURE2MP_PERCENT           = 860, // Converts % of "Cure" amount to MP
+    DIVINE_BENISON            = 910, // Adds fast cast and enmity reduction to -Na spells (includes Erase). Enmity reduction is half of the fast cast amount
 
     // Black Mage
     CLEAR_MIND                = 295, // Used in conjunction with HEALMP to increase amount between tics
@@ -726,9 +727,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 910, // stuff
     // SPARE = 911, // stuff
     // SPARE = 912, // stuff
+    // SPARE = 913, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
