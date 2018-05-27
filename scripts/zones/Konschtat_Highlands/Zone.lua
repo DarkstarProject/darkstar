@@ -93,30 +93,17 @@ function onEventFinish( player, csid, option)
 end;
 
 function onGameHour(zone)
-    if (VanadielMoonPhase() >= 90 and (VanadielHour() >= 17 or VanadielHour() < 5)) then
---        if (not GetMobByID(HATY):isSpawned()) then
-        if (GetMobAction(HATY) == 0) then
-            print ("Spawning Mob: Haty");
+    local hour = VanadielHour();
+    if (hour < 5 or hour >= 17) then
+        local phase = VanadielMoonPhase();
+        local haty = GetMobByID(HATY);
+        local vran = GetMobByID(BENDIGEIT_VRAN);
+        local time = os.time();
+        
+        if (phase >= 90 and not haty:isSpawned() and time > haty:getLocalVar("cooldown")) then
             SpawnMob(HATY);
-        end
-    elseif (VanadielMoonPhase() < 90 or (VanadielHour() >= 5 and VanadielHour() < 17)) then
---        if (GetMobByID(HATY):isSpawned()) then
-        if (GetMobAction(HATY) == 16) then
-            print ("De-spawning Mob: Haty");
-            DespawnMob(HATY);
-        end
-    end
-    if (VanadielMoonPhase() < 10 and (VanadielHour() >= 18 or VanadielHour() < 6)) then
---        if (not GetMobByID(BENDIGEIT_VRAN):isSpawned()) then
-        if (GetMobAction(BENDIGEIT_VRAN) == 0) then
-            print ("Spawning Mob: Bendigeit Vran");
+        elseif (phase <= 10 and not vran:isSpawned() and time > vran:getLocalVar("cooldown")) then
             SpawnMob(BENDIGEIT_VRAN);
-        end
-    elseif (VanadielMoonPhase() >= 10 or (VanadielHour() >= 6 and VanadielHour() < 18)) then
---        if (GetMobByID(BENDIGEIT_VRAN):isSpawned()) then
-        if (GetMobAction(BENDIGEIT_VRAN) == 16) then
-            print ("De-spawning Mob: Bendigeit Vran");
-            DespawnMob(BENDIGEIT_VRAN);
         end
     end
 end;
