@@ -8,16 +8,20 @@ package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Xarcabard/TextIDs");
 require("scripts/zones/Xarcabard/MobIDs");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and not player:hasItem(1104)) then
-        if (trade:hasItemQty(613,1) and trade:getItemCount() == 1) then -- Trade Faded Crystal
-            player:tradeComplete();
-            SpawnMob(CHAOS_ELEMENTAL):updateClaim(player);
-            npc:setStatus(dsp.status.DISAPPEAR);
-        end
+    if (
+        player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and
+        npcUtil.tradeHas(trade, 613) and
+        not player:hasItem(1104) and
+        not GetMobByID(CHAOS_ELEMENTAL):isSpawned()
+    ) then
+        player:confirmTrade();
+        SpawnMob(CHAOS_ELEMENTAL):updateClaim(player);
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 

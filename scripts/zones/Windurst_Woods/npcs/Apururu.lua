@@ -2,52 +2,35 @@
 -- Area: Windurst Woods
 --  NPC: Apururu
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
--- @zone 241
--- !pos -11 -2 13
+-- !pos -11 -2 13 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
-
-require("scripts/globals/titles");
-require("scripts/globals/settings");
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
-
-
     -- The Kind Cardian
-    if (TKC == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(969,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
-            player:startEvent(397);
-        end
+    if (player:getQuestStatus(JEUNO, THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969)) then
+        player:startEvent(397);
 
     -- Can Cardians Cry?
-    elseif (C3 == QUEST_ACCEPTED) then
-        count = trade:getItemCount();
-        if (trade:hasItemQty(551,1) and count == 1) then
-            player:startEvent(325,0,20000,5000); -- finish C3
-        end
-
+    elseif (player:getQuestStatus(WINDURST, CAN_CARDIANS_CRY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 551)) then
+        player:startEvent(325, 0, 20000, 5000); -- finish C3
     end
 end;
 
 function onTrigger(player,npc)
 
-local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000); -- previous quest in line
-local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
-local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
-local MissionStatus = player:getVar("MissionStatus");
+    local ANC3K = player:getQuestStatus(WINDURST,THE_ALL_NEW_C_3000); -- previous quest in line
+    local C3 = player:getQuestStatus(WINDURST,CAN_CARDIANS_CRY);
+    local TKC = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
+    local MissionStatus = player:getVar("MissionStatus");
 
     -- Windurst Mission 8-2
     if (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING) then
@@ -91,13 +74,13 @@ local MissionStatus = player:getVar("MissionStatus");
 
     -- The Kind Cardian
     elseif (TKC == QUEST_ACCEPTED) then
-            if (player:getVar("theKindCardianVar") == 0) then
-                player:startEvent(392);
-            elseif (player:getVar("theKindCardianVar") == 1) then
-                player:startEvent(393);
-            elseif (player:getVar("theKindCardianVar") == 2) then
-                player:startEvent(398);
-            end
+        if (player:getVar("theKindCardianVar") == 0) then
+            player:startEvent(392);
+        elseif (player:getVar("theKindCardianVar") == 1) then
+            player:startEvent(393);
+        elseif (player:getVar("theKindCardianVar") == 2) then
+            player:startEvent(398);
+        end
 
     -- Can Cardians Cry?
     elseif (ANC3K == QUEST_COMPLETED and C3 == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 5) then
@@ -109,7 +92,7 @@ local MissionStatus = player:getVar("MissionStatus");
 
     -- standard dialog
     else
-            player:startEvent(274);
+        player:startEvent(274);
     end
 end;
 
@@ -122,19 +105,7 @@ function onEventFinish(player,csid,option)
     if (csid == 137) then
         player:setVar("MissionStatus",1);
 
-        player:addKeyItem(dsp.ki.FIRST_DARK_MANA_ORB);    -- Give the player the key items
-        player:addKeyItem(dsp.ki.SECOND_DARK_MANA_ORB);
-        player:addKeyItem(dsp.ki.THIRD_DARK_MANA_ORB);
-        player:addKeyItem(dsp.ki.FOURTH_DARK_MANA_ORB);
-        player:addKeyItem(dsp.ki.FIFTH_DARK_MANA_ORB);
-        player:addKeyItem(dsp.ki.SIXTH_DARK_MANA_ORB);
-
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIRST_DARK_MANA_ORB);    -- Display the key item messages
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SECOND_DARK_MANA_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.THIRD_DARK_MANA_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FOURTH_DARK_MANA_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIFTH_DARK_MANA_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SIXTH_DARK_MANA_ORB);
+        npcUtil.giveKeyItem(player, {dsp.ki.FIRST_DARK_MANA_ORB, dsp.ki.SECOND_DARK_MANA_ORB, dsp.ki.THIRD_DARK_MANA_ORB, dsp.ki.FOURTH_DARK_MANA_ORB, dsp.ki.FIFTH_DARK_MANA_ORB, dsp.ki.SIXTH_DARK_MANA_ORB});
 
         player:setVar("MissionStatus_orb1",1);    -- Set the orb variables; 1 = not handled; 2 = handled;
         player:setVar("MissionStatus_orb2",1);
@@ -153,7 +124,6 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus_orb5",0);
         player:setVar("MissionStatus_orb6",0);
 
-
         player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB);    -- Remove the glowing orb key items
         player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB);
         player:delKeyItem(dsp.ki.THIRD_GLOWING_MANA_ORB);
@@ -168,12 +138,12 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.TWO_OF_SWORDS);
         player:setVar("theKindCardianVar",2);
         player:addFame(WINDURST,30);
-        player:tradeComplete();
+        player:confirmTrade();
 
     -- Windurst 8-2
     elseif (csid == 588) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(dsp.ki.MANUSTERY_RING);
+        npcUtil.giveKeyItem(player, dsp.ki.MANUSTERY_RING)
     elseif (csid == 601) then
         player:setVar("MissionStatus",3);
     elseif (csid == 590) then
@@ -197,10 +167,7 @@ function onEventFinish(player,csid,option)
     -- Can Cardians Cry
     elseif (csid == 319) then
         player:addQuest(WINDURST,CAN_CARDIANS_CRY);
-    elseif (csid == 325) then
-        player:completeQuest(WINDURST,CAN_CARDIANS_CRY);
-        player:addGil(GIL_RATE*5000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
-        player:tradeComplete();
+    elseif (csid == 325 and npcUtil.completeQuest(player, WINDURST, CAN_CARDIANS_CRY, {gil=5000})) then
+        player:confirmTrade();
     end
 end;

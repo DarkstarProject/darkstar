@@ -4,17 +4,15 @@
 -- Adventurer's Assistant
 -- Working 100%
 -------------------------------------
-require("scripts/globals/settings");
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/npc_util");
+require("scripts/globals/settings");
+-----------------------------------
 
 function onTrade(player,npc,trade)
-
-count = trade:getItemCount();
-AdventurerCoupon = trade:hasItemQty(536,1);
-
-    if (AdventurerCoupon == true and count == 1) then
+    if npcUtil.tradeHas(trade, 536) then -- adventurer coupon
         player:startEvent(10010,GIL_RATE*50);
     end
 end;
@@ -28,10 +26,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10010) then
-        player:tradeComplete();
+        player:confirmTrade();
         player:addGil(GIL_RATE*50);
     end
 end;
-
-
-

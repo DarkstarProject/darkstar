@@ -10,7 +10,7 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/settings");
+require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -70,25 +70,14 @@ function onEventFinish(player,csid,option)
     --Chocobilious
     if (csid == 224 and option == 1) then            -- Quest start
         player:addQuest(WINDURST,CHOCOBILIOUS);
-    elseif (csid == 231) then                        -- finish Quest
-        player:completeQuest(WINDURST,CHOCOBILIOUS);
-        player:addFame(WINDURST,220);
-        player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
-        player:tradeComplete();
-        player:setVar("ChocobiliousQuest",0)
+    elseif (csid == 231 and npcUtil.completeQuest(player, WINDURST, CHOCOBILIOUS, {fame=220, gil=1500, var="ChocobiliousQuest"})) then
         player:needToZone(true);
 
     -- In a Stew
     elseif (csid == 235) then
         player:addQuest(WINDURST,IN_A_STEW);    -- Quest start
         player:setVar("IASvar",1);
-    elseif (csid == 239) then
-        player:completeQuest(WINDURST,IN_A_STEW);    -- finish Quest
-        player:setVar("IASvar",0);
-        player:addFame(WINDURST,50);
-        player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
+    elseif (csid == 239 and npcUtil.completeQuest(player, WINDURST, IN_A_STEW, {fame=50, gil=900, var="IASvar"})) then
         player:delKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW);
     elseif (csid == 234 and option == 1) then        -- start repeat
         player:setVar("IASvar",3);

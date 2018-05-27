@@ -7,16 +7,14 @@
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/settings");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    local RRvar = player:getVar("rockracketeer_sold");
-
     -- Rock Racketeer
-    if (RRvar == 5 and trade:hasItemQty(598,1) == true and trade:getItemCount() == 1) then  -- Sharp Stone
+    if (player:getVar("rockracketeer_sold") == 5 and npcUtil.tradeHas(trade, 598)) then  -- Sharp Stone
         player:startEvent(102,2100); -- finish quest
     end
 end;
@@ -48,12 +46,8 @@ function onEventFinish(player,csid,option)
         player:setVar("rockracketeer_sold",4);
     elseif (csid == 101) then
         player:setVar("rockracketeer_sold",5);
-    elseif (csid == 102) then
-        player:tradeComplete();
-        player:addFame(WINDURST,30);
-        player:addGil(GIL_RATE*2100);
-        player:completeQuest(WINDURST,ROCK_RACKETTER);
-        player:setVar("rockracketeer_sold",0); -- finish cleanup of vars
+    elseif (csid == 102 and npcUtil.completeQuest(player, WINDURST, ROCK_RACKETTER, {gil=2100, var="rockracketeer_sold"})) then
+        player:confirmTrade();
     end
 end;
 

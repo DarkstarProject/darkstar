@@ -9,24 +9,22 @@ package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and trade:hasItemQty(12298,2) and trade:getItemCount() == 2) then -- Trade 2 Parana Shield
+    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST and npcUtil.tradeHas(trade, {{12298,2}})) then -- Trade 2 Parana Shield
         if (MissionStatus == 5) then
             player:startEvent(455); -- before deliver shield to the yagudo
         elseif (MissionStatus == 6) then
             player:startEvent(457); -- after deliver...Finish part of this quest
         end
     end
-
 end;
 
 function onTrigger(player,npc)
-
     local MissionStatus = player:getVar("MissionStatus");
 
     if (player:getCurrentMission(SANDORIA) == JOURNEY_ABROAD) then
@@ -64,14 +62,13 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-
     if (csid == 448) then
         player:addMission(SANDORIA,JOURNEY_TO_WINDURST);
         player:setVar("MissionStatus",3);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_SANDORIA);
     elseif (csid == 457) then
         player:setVar("MissionStatus",7);
-        player:tradeComplete();
+        player:confirmTrade();
         player:addMission(SANDORIA,JOURNEY_ABROAD);
     elseif (csid == 462) then
         player:addMission(SANDORIA,JOURNEY_TO_WINDURST2);
@@ -80,7 +77,6 @@ function onEventFinish(player,csid,option)
         player:addMission(SANDORIA,JOURNEY_ABROAD);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:setVar("MissionStatus",11);
-        player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        npcUtil.giveKeyItem(player, dsp.ki.KINDRED_REPORT)
     end
 end;
