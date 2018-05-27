@@ -1120,44 +1120,68 @@ end
 
 function doElementalNuke(caster, spell, target, spellParams)
     local DMG = 0;
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT); 
     local V = 0;
     local M = 0;
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
-    local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
-    local resistBonus = spellParams.resistBonus;
-    local AMIIaccBonus = spellParams.AMIIaccBonus;
-    local mDMG = caster:getMod(dsp.mod.MAGIC_DAMAGE);
 
-    --[[
-            Calculate base damage:
-            D = mDMG + V + (dINT × M)
-            D is then floored
-            For dINT reduce by amount factored into the V value (example: at 134 INT, when using V100 in the calculation, use dINT = 134-100 = 34)
-      ]]
+    if (USE_OLD_MAGIC_DAMAGE) then
+        V = spellParams.V;
+        M = spellParams.M;
+        local I = spellParams.I; -- inflection point
+        local cap = (I * 2) + V;
 
-    if (dINT <= 49) then
-        V = spellParams.V0;
-        M = spellParams.M0;
-        DMG = math.floor(DMG + mDMG + V + (dINT * M));
+        --For dINT < 0: DMG = V + dINT (when dINT is a penalty, the tier mult. is always 1)
+        if dINT < 0 then DMG = V + dINT;
+        else
+            --, but after some cap: DMG = cap `
+            if dINT > cap then DMG = cap;
 
-        if (DMG <= 0) then
-            return 0;
+            --, but less than some inflection point: DMG = V + (dINT * M)                
+            elseif DMG < I then DMG = V + (dINT * M);
+            
+            --, but after some inflection point: DMG = V + (inflectionPoint + (dINT-inflectionPoint) * M / 2))
+            --(above some critical value, adding INT/MND becomes half as effective)
+            else DMG = V + (I + ((dINT - I) / 2) * 1); end
         end
 
-    elseif (dINT >= 50 and dINT <= 99) then
-        V = spellParams.V50;
-        M = spellParams.M50;
-        DMG = math.floor(DMG + mDMG + V + ((dINT - 50) * M));
+        if DMG < 0 then DMG = 0; end
+    else
+        local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
+        local resistBonus = spellParams.resistBonus;
+        local AMIIaccBonus = spellParams.AMIIaccBonus;
+        local mDMG = caster:getMod(dsp.mod.MAGIC_DAMAGE);
 
-    elseif (dINT >= 100 and dINT <= 199) then
-        V = spellParams.V100;
-        M = spellParams.M100;
-        DMG = math.floor(DMG + mDMG + V + ((dINT - 100) * M));
+        --[[
+                Calculate base damage:
+                D = mDMG + V + (dINT × M)
+                D is then floored
+                For dINT reduce by amount factored into the V value (example: at 134 INT, when using V100 in the calculation, use dINT = 134-100 = 34)
+        ]]
 
-    elseif (dINT > 199) then
-        V = spellParams.V200;
-        M = spellParams.M200;
-        DMG = math.floor(DMG + mDMG + V + ((dINT - 200) * M));
+        if (dINT <= 49) then
+            V = spellParams.V0;
+            M = spellParams.M0;
+            DMG = math.floor(DMG + mDMG + V + (dINT * M));
+
+            if (DMG <= 0) then
+                return 0;
+            end
+
+        elseif (dINT >= 50 and dINT <= 99) then
+            V = spellParams.V50;
+            M = spellParams.M50;
+            DMG = math.floor(DMG + mDMG + V + ((dINT - 50) * M));
+
+        elseif (dINT >= 100 and dINT <= 199) then
+            V = spellParams.V100;
+            M = spellParams.M100;
+            DMG = math.floor(DMG + mDMG + V + ((dINT - 100) * M));
+
+        elseif (dINT > 199) then
+            V = spellParams.V200;
+            M = spellParams.M200;
+            DMG = math.floor(DMG + mDMG + V + ((dINT - 200) * M));
+        end
     end
 
     --get resist multiplier (1x if no resist)
