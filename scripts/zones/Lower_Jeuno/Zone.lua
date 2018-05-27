@@ -79,7 +79,7 @@ function onGameHour(zone)
 
     -- 8PM: make quest available
     -- notify anyone in zone with membership card that zauko is recruiting
-    elseif (VanadielHour == 20) then
+    elseif (VanadielHour == 18) then
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
