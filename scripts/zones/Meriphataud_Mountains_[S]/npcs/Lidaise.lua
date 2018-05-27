@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Jugner Forest (S)
---  NPC: Helmyre
+-- Area: Meriphataud Mountains [S]
+--  NPC: Lidaise
 -- Type: Chocobo Renter
--- !pos -120.853 0.000 -152.582 82
+-- !pos 312.021 -10.921 28.494 97
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil
+package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs")
+require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
@@ -24,9 +24,9 @@ function onTrigger(player,npc)
         local price = getChocoboPrice(player)
         player:setLocalVar("chocoboPriceOffer",price)
 
-        player:startEvent(208,price,notes)
+        player:startEvent(106,price,notes)
     else
-        player:startEvent(209)
+        player:startEvent(107)
     end
 end
 
@@ -36,7 +36,7 @@ end
 function onEventFinish(player,csid,option)
     local price = player:getLocalVar("chocoboPriceOffer")
 
-    if csid == 208 and option == 0 then
+    if csid == 106 and option == 0 then
         player:delCurrency("allied_notes", price)
         updateChocoboPrice(player, price)
 

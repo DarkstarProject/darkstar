@@ -1,12 +1,12 @@
 -----------------------------------
--- Area: Jugner Forest (S)
---  NPC: Helmyre
+-- Area: Pashhow Marshlands [S]
+--  NPC: Milloure
 -- Type: Chocobo Renter
--- !pos -120.853 0.000 -152.582 82
+-- !pos 336.765 24.416 -124.592 90
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil
+package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs")
+require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
@@ -24,9 +24,9 @@ function onTrigger(player,npc)
         local price = getChocoboPrice(player)
         player:setLocalVar("chocoboPriceOffer",price)
 
-        player:startEvent(208,price,notes)
+        player:startEvent(103,price,notes)
     else
-        player:startEvent(209)
+        player:startEvent(104)
     end
 end
 
@@ -36,7 +36,7 @@ end
 function onEventFinish(player,csid,option)
     local price = player:getLocalVar("chocoboPriceOffer")
 
-    if csid == 208 and option == 0 then
+    if csid == 103 and option == 0 then
         player:delCurrency("allied_notes", price)
         updateChocoboPrice(player, price)
 
