@@ -20,7 +20,7 @@ function onSpellCast(caster,target,spell)
     local duration = 420;
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = NINJUTSU_SKILL;
+    params.skillType = dsp.skill.NINJUTSU;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
     --Calculates the resist chance from Resist Blind trait
