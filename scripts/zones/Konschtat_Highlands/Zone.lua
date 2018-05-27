@@ -29,6 +29,7 @@ function onChocoboDig(player, precheck)
         { 868, 45, DIGREQ_NONE },
         { 642, 71, DIGREQ_NONE },
         { 4096, 100, DIGREQ_NONE },  -- all crystals
+        { 1255, 10, DIGREQ_NONE }, -- all ores
         { 845, 28, DIGREQ_BORE },
         { 842, 27, DIGREQ_BORE },
         { 843, 23, DIGREQ_BORE },
@@ -92,17 +93,30 @@ function onEventFinish( player, csid, option)
 end;
 
 function onGameHour(zone)
-    local hour = VanadielHour();
-    if (hour < 5 or hour >= 17) then
-        local phase = VanadielMoonPhase();
-        local haty = GetMobByID(HATY);
-        local vran = GetMobByID(BENDIGEIT_VRAN);
-        local time = os.time();
-        
-        if (phase >= 90 and not haty:isSpawned() and time > haty:getLocalVar("cooldown")) then
+    if (VanadielMoonPhase() >= 90 and (VanadielHour() >= 17 or VanadielHour() < 5)) then
+--        if (not GetMobByID(HATY):isSpawned()) then
+        if (GetMobAction(HATY) == 0) then
+            print ("Spawning Mob: Haty");
             SpawnMob(HATY);
-        elseif (phase <= 10 and not vran:isSpawned() and time > vran:getLocalVar("cooldown")) then
+        end
+    elseif (VanadielMoonPhase() < 90 or (VanadielHour() >= 5 and VanadielHour() < 17)) then
+--        if (GetMobByID(HATY):isSpawned()) then
+        if (GetMobAction(HATY) == 16) then
+            print ("De-spawning Mob: Haty");
+            DespawnMob(HATY);
+        end
+    end
+    if (VanadielMoonPhase() < 10 and (VanadielHour() >= 18 or VanadielHour() < 6)) then
+--        if (not GetMobByID(BENDIGEIT_VRAN):isSpawned()) then
+        if (GetMobAction(BENDIGEIT_VRAN) == 0) then
+            print ("Spawning Mob: Bendigeit Vran");
             SpawnMob(BENDIGEIT_VRAN);
+        end
+    elseif (VanadielMoonPhase() >= 10 or (VanadielHour() >= 6 and VanadielHour() < 18)) then
+--        if (GetMobByID(BENDIGEIT_VRAN):isSpawned()) then
+        if (GetMobAction(BENDIGEIT_VRAN) == 16) then
+            print ("De-spawning Mob: Bendigeit Vran");
+            DespawnMob(BENDIGEIT_VRAN);
         end
     end
 end;
