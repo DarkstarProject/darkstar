@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.INT;
-    params.skillType = NINJUTSU_SKILL;
+    params.skillType = dsp.skill.NINJUTSU;
     params.bonus = 0;
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);
