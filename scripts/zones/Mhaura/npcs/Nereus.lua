@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Mhaura/TextIDs"] = nil
 -----------------------------------
 require("scripts/zones/Mhaura/TextIDs")
 require("scripts/globals/settings")
+require("scripts/globals/quests")
 -----------------------------------
 --    player:startEvent(110); -- standar dialog
 --    player:startEvent(115); -- i have enough for now, come later
