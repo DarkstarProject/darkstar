@@ -18,7 +18,6 @@ require("scripts/globals/quests");
 require("scripts/globals/status");
 -----------------------------------
 
-
 function onChocoboDig(player, precheck)
     local itemMap =
     {
