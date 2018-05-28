@@ -6,6 +6,7 @@
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil
 -----------------------------------
 require("scripts/zones/Mhaura/TextIDs")
+require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
 -----------------------------------
@@ -18,8 +19,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(OTHER_AREAS_LOG,A_POTTER_S_PREFERENCE) == QUEST_ACCEPTED or player:getVar("QuestAPotterPrefeRepeat_var") == 1 then
-        local gusgenclay  = trade:hasItemQty(569,1)
-        if gusgenclay  == true then
+        if npcUtil.tradeHas(trade, 569) then
             player:startEvent(113) -- quest done!
         end
     end
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
     if csid == 111 and option == 1 then  --accept quest
         player:addQuest(OTHER_AREAS_LOG,A_POTTER_S_PREFERENCE)
     elseif csid == 113 then --quest completed
-        player:tradeComplete()
+        player:confirmTrade()
         player:addFame(WINDURST,120)
         player:addGil(GIL_RATE*2160)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2160)
