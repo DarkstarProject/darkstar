@@ -1566,7 +1566,7 @@ namespace charutils
 
             if (PItem->isSubType(ITEM_CHARGED))
             {
-                PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
+                PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID()); // Also remove item from the Recast List no matter what bag its in
             }
             PItem->setSubType(ITEM_UNLOCKED);
 
@@ -2101,7 +2101,7 @@ namespace charutils
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
                     {
                         PItem->setAssignTime(CVanaTime::getInstance()->getVanaTime());
-                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime() / 1000);
+                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID << 8 | containerID, PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
 
                         // не забываем обновить таймер при экипировке предмета
 
