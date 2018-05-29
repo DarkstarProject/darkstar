@@ -5027,7 +5027,7 @@ namespace battleutils
 
         // Check Quick Magic procs
         int16 quickMagicRate = PEntity->getMod(Mod::QUICK_MAGIC);
-        if (dsprand::GetRandomNumber(100) <= quickMagicRate)
+        if (dsprand::GetRandomNumber(100) < quickMagicRate)
         {
             PMagicState->SetInstantCast(true);
             return 0;
