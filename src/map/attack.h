@@ -51,6 +51,15 @@ enum PHYSICAL_ATTACK_DIRECTION
     RIGHTATTACK = 1,
 };
 
+enum ATTACK_ANIMATION
+{
+    ANIMATION_RIGHTATTACK = 0,
+    ANIMATION_LEFTATTACK = 1,
+    ANIMATION_RIGHTKICK = 2,
+    ANIMATION_LEFTKICK = 3,
+    ANIMATION_THROW = 4
+};
+
 class CAttackRound;
 
 /************************************************************************

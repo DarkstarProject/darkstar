@@ -232,16 +232,16 @@ uint8 CAttack::GetAnimationID()
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
-        return this->m_attackDirection == RIGHTATTACK ? 2 : 3;
+        return this->m_attackDirection == RIGHTATTACK ? ANIMATION_RIGHTKICK : ANIMATION_LEFTKICK;
     }
 
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
     {
-        return 4;
+        return ANIMATION_THROW;
     }
 
     // Normal attack
-    return this->m_attackDirection == RIGHTATTACK ? 0 : 1;
+    return this->m_attackDirection == RIGHTATTACK ? ANIMATION_RIGHTATTACK : ANIMATION_LEFTATTACK;
 }
 
 /************************************************************************
