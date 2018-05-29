@@ -449,6 +449,7 @@ void CAttack::ProcessDamage()
         m_trickAttackDamage += m_attacker->AGI() * (1 + m_attacker->getMod(Mod::TRICK_ATK_AGI) / 100);
     }
 
+    SLOTTYPE slot = (SLOTTYPE)GetWeaponSlot();
     if (m_attackRound->IsH2H())
     {
         // FFXIclopedia H2H: Remove 3 dmg from weapon, DB has an extra 3 for weapon rank. h2hSkill*0.11+3
@@ -459,21 +460,21 @@ void CAttack::ProcessDamage()
             m_baseDamage = m_attacker->getMod(Mod::KICK_DMG) + 3;
         }
         m_damage = (uint32)(((m_baseDamage + m_naturalH2hDamage + m_trickAttackDamage +
-            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+            battleutils::GetFSTR(m_attacker, m_victim, slot)) * m_damageRatio));
     }
-    else if (GetWeaponSlot() == SLOT_MAIN)
+    else if (slot == SLOT_MAIN)
     {
         m_damage = (uint32)(((m_attacker->GetMainWeaponDmg() + m_trickAttackDamage +
-            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+            battleutils::GetFSTR(m_attacker, m_victim, slot)) * m_damageRatio));
     }
-    else if (GetWeaponSlot() == SLOT_SUB)
+    else if (slot == SLOT_SUB)
     {
         m_damage = (uint32)(((m_attacker->GetSubWeaponDmg() + m_trickAttackDamage +
-            battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio));
+            battleutils::GetFSTR(m_attacker, m_victim, slot)) * m_damageRatio));
     }
-    else if (GetWeaponSlot() == SLOT_AMMO)
+    else if (slot == SLOT_AMMO)
     {
-        m_damage = (uint32)((m_attacker->GetRangedWeaponDmg() + battleutils::GetFSTR(m_attacker, m_victim, GetWeaponSlot())) * m_damageRatio);
+        m_damage = (uint32)((m_attacker->GetRangedWeaponDmg() + battleutils::GetFSTR(m_attacker, m_victim, slot)) * m_damageRatio);
     }
 
     // Soul eater.
@@ -489,7 +490,7 @@ void CAttack::ProcessDamage()
     }
 
     // Get damage multipliers.
-    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[GetWeaponSlot()], m_damage, m_attackType, GetWeaponSlot());
+    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, m_attacker->m_Weapons[slot], m_damage, m_attackType, slot);
 
     // Get critical bonus mods.
     if (m_isCritical)
@@ -512,7 +513,7 @@ void CAttack::ProcessDamage()
     // Try skill up.
     if (m_damage > 0)
     {
-        charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[GetWeaponSlot()]->getSkillType(), m_victim->GetMLevel());
+        charutils::TrySkillUP((CCharEntity*)m_attacker, (SKILLTYPE)m_attacker->m_Weapons[slot]->getSkillType(), m_victim->GetMLevel());
 
         if (m_attacker->objtype == TYPE_PET && m_attacker->PMaster && m_attacker->PMaster->objtype == TYPE_PC &&
             static_cast<CPetEntity*>(m_attacker)->getPetType() == PETTYPE_AUTOMATON)
