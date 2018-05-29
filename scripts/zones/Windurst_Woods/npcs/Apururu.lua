@@ -103,7 +103,16 @@ function onEventFinish(player,csid,option)
     if csid == 137 then
         player:setVar("MissionStatus", 1)
 
-        npcUtil.giveKeyItem(player, {dsp.ki.FIRST_DARK_MANA_ORB, dsp.ki.SECOND_DARK_MANA_ORB, dsp.ki.THIRD_DARK_MANA_ORB, dsp.ki.FOURTH_DARK_MANA_ORB, dsp.ki.FIFTH_DARK_MANA_ORB, dsp.ki.SIXTH_DARK_MANA_ORB})
+        npcUtil.giveKeyItem(player,
+            {
+                dsp.ki.FIRST_DARK_MANA_ORB,
+                dsp.ki.SECOND_DARK_MANA_ORB,
+                dsp.ki.THIRD_DARK_MANA_ORB,
+                dsp.ki.FOURTH_DARK_MANA_ORB,
+                dsp.ki.FIFTH_DARK_MANA_ORB,
+                dsp.ki.SIXTH_DARK_MANA_ORB
+            }
+        )
 
         player:setVar("MissionStatus_orb1", 1) -- Set the orb variables: 1 = not handled, 2 = handled
         player:setVar("MissionStatus_orb2", 1)
