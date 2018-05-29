@@ -227,21 +227,28 @@ uint8 CAttack::GetWeaponSlot()
 *  Returns the animation ID.											*
 *																		*
 ************************************************************************/
-uint8 CAttack::GetAnimationID()
+uint16 CAttack::GetAnimationID()
 {
+    AttackAnimation animation;
+
     // Try normal kick attacks (without footwork)
     if (this->m_attackType == PHYSICAL_ATTACK_TYPE::KICK)
     {
-        return this->m_attackDirection == RIGHTATTACK ? ANIMATION_RIGHTKICK : ANIMATION_LEFTKICK;
+        animation = this->m_attackDirection == RIGHTATTACK ? AttackAnimation::RIGHTKICK : AttackAnimation::LEFTKICK;
     }
 
-    if (this->m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
+    else if (this->m_attackType == PHYSICAL_ATTACK_TYPE::DAKEN)
     {
-        return ANIMATION_THROW;
+        animation = AttackAnimation::THROW;
     }
 
     // Normal attack
-    return this->m_attackDirection == RIGHTATTACK ? ANIMATION_RIGHTATTACK : ANIMATION_LEFTATTACK;
+    else
+    {
+        animation = this->m_attackDirection == RIGHTATTACK ? AttackAnimation::RIGHTATTACK : AttackAnimation::LEFTATTACK;
+    }
+
+    return (uint16)animation;
 }
 
 /************************************************************************
