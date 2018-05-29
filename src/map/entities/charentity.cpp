@@ -1514,7 +1514,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         if (PItem->getCurrentCharges() != 0)
         {
-            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID(), PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
         }
     }
     else // разблокируем все предметы, кроме экипирвоки
