@@ -3,38 +3,38 @@
 -- Name: Zilart Mission 6
 -- !pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
+package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil
 -------------------------------------
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-require("scripts/globals/missions");
+require("scripts/zones/Chamber_of_Oracles/TextIDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onBcnmRegister(player,instance)
-end;
+end
 
 function onBcnmEnter(player,instance)
-end;
+end
 
 function onBcnmLeave(player,instance,leavecode)
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
+    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
+        if player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES then
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0)
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1)
         end
-    elseif (leavecode == 4) then
-        player:startEvent(32002);
+    elseif leavecode == 4 then
+        player:startEvent(32002)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 32001) then
-        if (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES) then
-            player:completeMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
-            player:addMission(ZILART,THE_CHAMBER_OF_ORACLES);
+    if csid == 32001 then
+        if player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES then
+            player:completeMission(ZILART, THROUGH_THE_QUICKSAND_CAVES)
+            player:addMission(ZILART, THE_CHAMBER_OF_ORACLES)
         end
     end
-end;
+end

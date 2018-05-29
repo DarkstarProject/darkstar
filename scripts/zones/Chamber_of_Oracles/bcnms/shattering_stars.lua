@@ -3,42 +3,42 @@
 -- Name: Shattering stars - Maat Fight
 -- !pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
+package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil
 -------------------------------------
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/titles");
+require("scripts/zones/Chamber_of_Oracles/TextIDs")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onBcnmRegister(player,instance)
-end;
+end
 
 function onBcnmEnter(player,instance)
-end;
+end
 
 function onBcnmLeave(player,instance,leavecode)
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
-    elseif (leavecode == 4) then
-        player:startEvent(32002);
+    if leavecode == 2 then -- play end CS. Need time and battle id for record keeping + storage
+        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0)
+    elseif leavecode == 4 then
+        player:startEvent(32002)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 32001) then
-        if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
-            player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181);
+    if csid == 32001 then
+        if player:getQuestStatus(JEUNO, SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0 then
+            player:addItem(4181)
+            player:messageSpecial(ITEM_OBTAINED, 4181)
         end
-        local pjob = player:getMainJob();
-        player:setVar("maatDefeated",pjob);
+        local pjob = player:getMainJob()
+        player:setVar("maatDefeated", pjob)
         local maatsCap = player:getVar("maatsCap")
-        if (bit.band(maatsCap, bit.lshift(1, (pjob -1))) ~= 1) then
-            player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (pjob -1))))
+        if bit.band(maatsCap, bit.lshift(1, (pjob - 1))) ~= 1 then
+            player:setVar("maatsCap", bit.bor(maatsCap, bit.lshift(1, (pjob - 1))))
         end
-        player:addTitle(dsp.title.MAAT_MASHER);
+        player:addTitle(dsp.title.MAAT_MASHER)
     end
-end;
+end
