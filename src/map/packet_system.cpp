@@ -5134,14 +5134,21 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 ItemID = data.ref<uint16>(0x04);
 
     if (ItemID == 0)
+    {
         return;
+    }
 
-    uint8  slotID = data.ref<uint8>(0x06);
-    uint8  containerID = data.ref<uint8>(0x07);
-    uint8  col = data.ref<uint8>(0x09);
-    uint8  level = data.ref<uint8>(0x0A);
-    uint8  row = data.ref<uint8>(0x0B);
-    uint8  rotation = data.ref<uint8>(0x0C);
+    uint8 slotID = data.ref<uint8>(0x06);
+    uint8 containerID = data.ref<uint8>(0x07);
+    uint8 col = data.ref<uint8>(0x09);
+    uint8 level = data.ref<uint8>(0x0A);
+    uint8 row = data.ref<uint8>(0x0B);
+    uint8 rotation = data.ref<uint8>(0x0C);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
@@ -5170,9 +5177,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
-            "WHERE location = 1 AND slot = %u AND charid = %u";
+            "WHERE location = %u AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
+        if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
@@ -5199,8 +5206,13 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint8  slotID = data.ref<uint8>(0x06);
+    uint8 slotID = data.ref<uint8>(0x06);
     uint8 containerID = data.ref<uint8>(0x07);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
@@ -5231,9 +5243,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "
-                "WHERE location = 1 AND slot = %u AND charid = %u";
+                "WHERE location = %u AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
