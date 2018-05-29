@@ -23,8 +23,8 @@ function onInitialize(zone)
             SetServerVariable("[Central_Apollyon_II]UniqueID",0);
 
 
-zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APPOLLYON_SE_NE exit
-zone:registerRegion(2, -642,-4,-642,-637,4,-637);  -- APPOLLYON_NW_SW exit
+zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APOLLYON_SE_NE exit
+zone:registerRegion(2, -642,-4,-642,-637,4,-637);  -- APOLLYON_NW_SW exit
 
 zone:registerRegion(3, 468,-4,-637,  478,4,-622); -- appolyon SE register
 zone:registerRegion(4, 421,-4,-98,   455,4,-78); -- appolyon NE register
@@ -100,11 +100,11 @@ function onRegionEnter(player,region)
   local regionID = region:GetRegionID();
    switch (regionID): caseof {
         [1] = function (x)
-             player:startEvent(100); -- APPOLLYON_SE_NE exit
+             player:startEvent(100); -- APOLLYON_SE_NE exit
         end,
         [2] = function (x)
-             player:startEvent(101); -- APPOLLYON_NW_SW exit
-            -- print("APPOLLYON_NW_SW");
+             player:startEvent(101); -- APOLLYON_NW_SW exit
+            -- print("APOLLYON_NW_SW");
         end,
         [3] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
@@ -137,7 +137,7 @@ function onRegionEnter(player,region)
               end   --create instance appolyon CENTER
         end,
         
-        -- ///////////////////////APPOLLYON SE TELEPORTER///////////////////////////////////////////
+        -- ///////////////////////APOLLYON SE TELEPORTER///////////////////////////////////////////
         [20] = function (x)
              -- print("SE_telporter_f1_to_f2");
              if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(219);end
@@ -155,7 +155,7 @@ function onRegionEnter(player,region)
               if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(217);end
          end,
          -- ///////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON NE TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON NE TELEPORTER           ////////////////////////////////
         [24] = function (x)
              -- print("NE_telporter_f1_to_f2");
               if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end
@@ -177,7 +177,7 @@ function onRegionEnter(player,region)
               if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(213);end --213
          end,
          -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON SW TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON SW TELEPORTER           ////////////////////////////////
          [29] = function (x)
               if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(208);end --208
          end,
@@ -192,7 +192,7 @@ function onRegionEnter(player,region)
               if (IselementalDayAreDead()==true and player:getAnimation()==0) then player:startEvent(206);end -- 206
          end,
              -- //////////////////////////////////////////////////////////////////////////////////////////////////
-         -- /////////////////////    APPOLLYON NW TELEPORTER           ////////////////////////////////
+         -- /////////////////////    APOLLYON NW TELEPORTER           ////////////////////////////////
          [33] = function (x)
               if (IsMobDead(16932937)==true and player:getAnimation()==0) then player:startEvent(205);end --205
          end,
@@ -230,9 +230,9 @@ end;
 
 function onEventFinish(player,csid,option)
    if (csid == 100 and option == 1) then
-    player:setPos(557,-1,441,128,0x21);  -- APPOLLYON_SE_NE exit
+    player:setPos(557,-1,441,128,0x21);  -- APOLLYON_SE_NE exit
    elseif (csid == 101 and option == 1) then
-    player:setPos(-561,0,443,242,0x21); -- APPOLLYON_NW_SW exit
+    player:setPos(-561,0,443,242,0x21); -- APOLLYON_NW_SW exit
    end
 end;
 

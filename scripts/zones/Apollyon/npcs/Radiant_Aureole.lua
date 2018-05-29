@@ -39,9 +39,9 @@ function onTrigger(player,npc)
  local currentlimbus= TryTobackOnCurrentLimbus(player);
 
   if ( npc:getID() == 16933242) then
-         instancelist = APPOLLYON_SE_NE_BCNM_LIST;
+         instancelist = APOLLYON_SE_NE_BCNM_LIST;
   else
-         instancelist = APPOLLYON_NW_SW_BCNM_LIST;
+         instancelist = APOLLYON_NW_SW_BCNM_LIST;
  end
 printf("currentlimbus: %u",currentlimbus);
 
