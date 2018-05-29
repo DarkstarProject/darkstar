@@ -1274,18 +1274,19 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
     return duration;
 end
 
-function calculateBarspellPower(caster,enhanceSkill)
-    local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT);
-    local equipBonus = caster:getMod(dsp.mod.BARSPELL_AMOUNT);
-    --printf("Barspell: Merit Bonus +%d", meritBonus);
-
-    if (enhanceSkill == nil or enhanceSkill < 0) then
-        enhanceSkill = 0;
+function calculateDuration(duration,magicSkill,spellGroup,caster,target)
+    if (magicSkill ~= dsp.skill.ENHANCING_MAGIC) then 
+        return duration 
     end
-
-    local power = 40 + 0.2 * enhanceSkill + meritBonus + equipBonus;
-
-    return power;
+        
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
+        duration = duration * 3
+    end
+        
+    if (caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE) then
+        duration  = duration * 2
+    end
+    return duration
 end
 
 -- Output magic hit rate for all levels
