@@ -2979,13 +2979,19 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     /* FORMAT:
-    player:addItem(Item ID,
-                            Quantity (or bool for silent addition of 1 Qty),
-                             Augment 1, A1 Value,
-                             Augment 2, A2 Value,
-                             Augment 3, A3 Value,
-                             Augment 4, A4 Value,
-                             Trial Number)
+    player:addItem(itemID, quantity) -- add quantity of itemID
+
+    player:addItem(itemID, true) -- silently add 1 of itemID
+
+    player:addItem(itemID, quantity, true) -- silently add quantity of itemID
+
+    player:addItem(itemID,
+                   quantity,
+                   Augment 1, A1 Value,
+                   Augment 2, A2 Value,
+                   Augment 3, A3 Value,
+                   Augment 4, A4 Value,
+                   Trial Number)
     */
 
     bool silence = false;
@@ -2999,8 +3005,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         silence = (uint32)lua_toboolean(L, 2);
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    else if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    {
         quantity = (uint32)lua_tointeger(L, 2);
+        if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+            silence = (uint32)lua_toboolean(L, 3);
+    }
 
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
         augment0 = (uint16)lua_tointeger(L, 3);
