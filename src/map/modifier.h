@@ -412,6 +412,7 @@ enum class Mod
     UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
+    DAKEN                     = 911, // chance to throw a shuriken without consuming it
 
     // Dragoon
     ANCIENT_CIRCLE_DURATION   = 859, // Ancient Circle extended duration in seconds
@@ -727,9 +728,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 911, // stuff
     // SPARE = 912, // stuff
     // SPARE = 913, // stuff
+    // SPARE = 914, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

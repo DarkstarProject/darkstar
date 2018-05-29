@@ -498,6 +498,11 @@ INSERT INTO `traits` VALUES ('115','stalwart soul','8','45','1','907','15','TOAU
 INSERT INTO `traits` VALUES ('115','stalwart soul','8','60','2','907','30','TOAU','0');
 INSERT INTO `traits` VALUES ('115','stalwart soul','8','75','3','907','40','TOAU','0');
 INSERT INTO `traits` VALUES ('115','stalwart soul','8','90','4','907','50','ABYSSEA','0');
+INSERT INTO `traits` VALUES (123, 'daken', 13, 25, 1, 911, 20, 'ABYSSEA', 0); -- 20%
+INSERT INTO `traits` VALUES (123, 'daken', 13, 40, 2, 911, 25, 'ABYSSEA', 0); -- 25%
+INSERT INTO `traits` VALUES (123, 'daken', 13, 55, 3, 911, 30, 'ABYSSEA', 0); -- 30%
+INSERT INTO `traits` VALUES (123, 'daken', 13, 70, 4, 911, 35, 'ABYSSEA', 0); -- 35%
+INSERT INTO `traits` VALUES (123, 'daken', 13, 95, 5, 911, 40, 'ABYSSEA', 0); -- 40%
 INSERT INTO `traits` VALUES ('127','smite','1','35','1','898','25','SOA','0'); -- 25/256 ~ 9.7%
 INSERT INTO `traits` VALUES ('127','smite','1','65','2','898','38','SOA','0'); -- 38/256 ~ 15%
 INSERT INTO `traits` VALUES ('127','smite','1','95','3','898','51','SOA','0'); -- 51/256 ~ 19.9%

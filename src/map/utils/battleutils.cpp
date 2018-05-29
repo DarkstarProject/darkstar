@@ -1469,7 +1469,7 @@ namespace battleutils
             }*/
     }
 
-    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage, int8 accBonus)
     {
         int acc = 0;
         int hitrate = 75;
@@ -1506,6 +1506,9 @@ namespace battleutils
             acc -= PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_YONIN)->GetPower();
         }
 
+        // Add any specific accuracy bonus, e.g. Daken RAcc +100
+        acc += accBonus;
+
         int eva = PDefender->EVA();
         hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel()) * 2;
 
@@ -1513,10 +1516,14 @@ namespace battleutils
         return finalhitrate;
     }
 
-    //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
-    float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
     {
+        return GetRangedHitRate(PAttacker, PDefender, isBarrage, 0);
+    }
 
+    //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
+    float GetRangedDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)
+    {
         //get ranged attack value
         uint16 rAttack = 1;
 
@@ -1586,7 +1593,17 @@ namespace battleutils
         maxPdif = std::clamp<float>(maxPdif, 0, 3);
 
         //return random number between the two
-        return dsprand::GetRandomNumber(minPdif, maxPdif);
+        float pdif = dsprand::GetRandomNumber(minPdif, maxPdif);
+
+        if (isCritical)
+        {
+            pdif *= 1.25;
+            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
+            criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
+            pdif *= ((100 + criticaldamage) / 100.0f);
+        }
+        
+        return pdif;
     }
 
     int16 CalculateBaseTP(int delay){
@@ -1872,6 +1889,7 @@ namespace battleutils
     int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
     {
         giveTPtoAttacker = giveTPtoAttacker && !PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI);
+        giveTPtoVictim = giveTPtoVictim && attackType != PHYSICAL_ATTACK_TYPE::DAKEN;
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
         int32 baseDamage = damage;
         if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES) && !isCounter)
@@ -2435,7 +2453,8 @@ namespace battleutils
             }
         }
 
-        if (isCritical) {
+        if (isCritical)
+        {
             cRatio += 1;
         }
 
@@ -5362,7 +5381,7 @@ namespace battleutils
                 {
                     return static_cast<int16>(PSpell->getMPCost() * PChar->getMod(Mod::OCCULT_ACUMEN) / 100.f * (1 + (PChar->getMod(Mod::STORETP) / 100.f)));
                 }
-                
+
             }
         }
 
