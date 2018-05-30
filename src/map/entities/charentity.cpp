@@ -832,7 +832,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    {
+                        charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    }
                 }
             }
         }
