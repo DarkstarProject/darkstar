@@ -102,9 +102,10 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
         -- Handle Fencer
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
-        local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
-        if (mainEquip:isTwoHanded() == false and mainEquip:isHandToHand() == false) then
-            if (subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield()) then
+        
+        if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
+            local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
+            if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then
                 nativecrit = nativecrit + attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100
             end
         end
@@ -772,9 +773,9 @@ end
 
         -- Handle Fencer
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
-        local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
-        if (mainEquip:isTwoHanded() == false and mainEquip:isHandToHand() == false) then
-            if (subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield()) then
+        if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
+            local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
+            if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then
                 nativecrit = nativecrit + attacker:getMod(dsp.mod.FENCER_CRITHITRATE) / 100
             end
         end
