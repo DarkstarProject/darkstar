@@ -28,7 +28,7 @@ function onMobEngaged(mob, target)
 end;
 
 function onMobFight(mob, target)
-    if (mob:getBattleTime() % 15 < 2 and mob:getBattleTime() > 10) then
+    if (mob:getBattleTime() % 60 < 2 and mob:getBattleTime() > 10) then
         if (not GetMobByID(MEDUSA + 1):isSpawned()) then
             GetMobByID(MEDUSA + 1):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5));
             SpawnMob(MEDUSA + 1):updateEnmity(target);
