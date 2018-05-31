@@ -1926,7 +1926,7 @@ namespace luautils
 
         if (prepFile(File, "onItemCheck"))
         {
-            return std::tuple(56, 0, 0);
+            return { 56, 0, 0 };
         }
 
         CLuaBaseEntity LuaBaseEntityTarget(PTarget);
@@ -1941,7 +1941,7 @@ namespace luautils
         {
             ShowError("luautils::onItemCheck: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return std::tuple(56, 0, 0);
+            return { 56, 0, 0 };
         }
 
         uint32 messageId = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
@@ -1949,7 +1949,7 @@ namespace luautils
         uint32 param2 = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 3);
 
-        return std::tuple(messageId, param1, param2);
+        return { messageId, param1, param2 };
     }
 
     /************************************************************************
