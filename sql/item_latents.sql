@@ -606,8 +606,8 @@ INSERT INTO `item_latents` VALUES(15174,370,-100,10,0);
 -- -------------------------------------------------------
 -- Shark Necklace
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15532, 369, -3, 10, 0); -- Has a hidden effect of draining 3 MP/tick while weapon is drawn.
-INSERT INTO `item_latents` VALUES(15532, 370, 1, 10, 0); -- Latent Effect is triggered when the player's weapon is drawn and has more than 2 MP.
+INSERT INTO `item_latents` VALUES(15532, 369, -3, 56, 2); -- Has a hidden effect of draining 3 MP/tick while weapon is drawn.
+INSERT INTO `item_latents` VALUES(15532, 370, 1, 56, 2); -- Latent Effect is triggered when the player's weapon is drawn and has more than 2 MP.
 
 
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 368);
