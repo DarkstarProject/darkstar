@@ -236,40 +236,27 @@ function finishConquestGuard(player,csid,option,size,inventory,guardnation)
         player:addStatusEffect(dsp.effect.SIGNET,0,0,duration) -- Grant Signet
     elseif option >= 32768 and option <= 32944 then
         for item = 1,size,3 do
-            if option == inventory[item] then
-                if player:getFreeSlotsCount() >= 1 then
-                    -- Logic to impose limits on exp bands
-                    if option >= 32933 and option <= 32935 then
-                        if checkConquestRing(player) > 0 then
-                            player:messageSpecial(CONQUEST+60,0,0,inventory[item+2])
-                            break
-                        else
-                            player:setVar("CONQUEST_RING_TIMER",getConquestTally())
-                        end
-                    end
-
-                    local itemCP
-                    if player:getNation() == guardnation or guardnation == OTHER then
-                        itemCP = inventory[item + 1]
-                    else
-                        if inventory[item + 1] <= 8000 then
-                            itemCP = inventory[item + 1] * 2
-                        else
-                            itemCP = inventory[item + 1] + 8000
-                        end
-                    end
-
-                    if player:hasItem(inventory[item + 2]) == false and player:getCP() >= itemCP then
-                        player:delCP(itemCP)
-                        player:additem(inventory[item + 2],1)
-                        player:messageSpecial(ITEM_OBTAINED,inventory[item + 2])
-                    else
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[item + 2])
-                    end
+            -- Logic to impose limits on exp bands
+            if option >= 32933 and option <= 32935 then
+                if checkConquestRing(player) > 0 then
+                    player:messageSpecial(CONQUEST+60,0,0,inventory[item+2])
+                    break
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,inventory[item + 2])
+                    player:setVar("CONQUEST_RING_TIMER",getConquestTally())
                 end
-                break
+            elseif option == inventory[item] then
+                local itemCP
+                if player:getNation() == guardnation or guardnation == OTHER then
+                    itemCP = inventory[item + 1]
+                elseif inventory[item + 1] <= 8000 then
+                    itemCP = inventory[item + 1] * 2
+                else
+                    itemCP = inventory[item + 1] + 8000
+                end
+            end
+
+            if player:getCP() >= itemCP and npcUtil.giveItem(player,inventory[item + 2]) then
+                player:delCP(itemCP)
             end
         end
     elseif option >= 65541 and option <= 65565 then -- player chose supply quest.
