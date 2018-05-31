@@ -5809,6 +5809,44 @@ void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  /sitchair                                                            *
+*                                                                       *
+************************************************************************/
+void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PrintPacket(data);
+
+    if (PChar->status != STATUS_NORMAL)
+        return;
+
+    if (PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+    
+    uint8 type = data.ref<uint8>(0x04);
+    if (type == 2)
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
+        return;
+    }
+    
+    uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
+    if (chairId < 63 || chairId > 83)
+        return;
+
+    // Validate key item ownership for 64 through 83
+    if (chairId != 63 && !charutils::hasKeyItem(PChar, chairId + 0xACA))
+    {
+        chairId = ANIMATION_SITCHAIR_0;
+    }
+
+    PChar->animation = PChar->animation == chairId ? ANIMATION_NONE : chairId;
+    PChar->updatemask |= UPDATE_HP;
+    return;
+}
+
+/************************************************************************
 *                                                                        *
 *  Request Currency2 tab                                                  *
 *                                                                        *
@@ -5932,6 +5970,7 @@ void PacketParserInitialize()
     PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }
