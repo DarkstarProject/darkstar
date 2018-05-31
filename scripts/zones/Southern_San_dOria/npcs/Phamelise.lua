@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ZULKHEIM);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,PHAMELISE_CLOSED_DIALOG);

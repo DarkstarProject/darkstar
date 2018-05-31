@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(FAUREGANDI);
+    local RegionOwner = GetRegionOwner(dsp.conquest.FAUREGANDI);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,RODELLIEUX_CLOSED_DIALOG);
     else

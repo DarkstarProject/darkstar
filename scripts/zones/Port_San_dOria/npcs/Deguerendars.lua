@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
+    local RegionOwner = GetRegionOwner(dsp.conquest.TAVNAZIANARCH);
     local cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
     if (cop >= 40) then

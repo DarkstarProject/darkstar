@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(LITELOR);
+    local RegionOwner = GetRegionOwner(dsp.conquest.LITELOR);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,GALDEO_CLOSED_DIALOG);
     else

@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(ARAGONEU);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ARAGONEU);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,ANTONIAN_CLOSED_DIALOG);

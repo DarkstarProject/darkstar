@@ -13,7 +13,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conquest.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn( player, prevZone)
@@ -42,7 +42,7 @@ function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers()
 
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
+        dsp.conquest.conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
     end
 end
 

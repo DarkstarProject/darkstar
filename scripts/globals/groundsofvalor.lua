@@ -239,7 +239,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     if (option == GOV_MENU_REPATRIATION) then -- Send to home nation
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            toHomeNation(player);
+            dsp.conquest.toHomeNation(player);
         end
     elseif (option == GOV_MENU_CIRCUMSPECTION) then -- Sneak + Invis
         if (tabs >= 5) then

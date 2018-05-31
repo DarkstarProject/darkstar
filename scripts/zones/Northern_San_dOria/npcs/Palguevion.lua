@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(VALDEAUNIA);
+    local RegionOwner = GetRegionOwner(dsp.conquest.VALDEAUNIA);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,PALGUEVION_CLOSED_DIALOG);

@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(DERFLAND);
+    local RegionOwner = GetRegionOwner(dsp.conquest.DERFLAND);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,POURETTE_CLOSED_DIALOG);

@@ -14,14 +14,14 @@ local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    dsp.conquest.tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
 
 function onTrigger(player,npc)
 
-    local Menu1 = getArg1(guardnation,player);
-    local Menu3 = conquestRanking();
-    local Menu6 = getArg6(player);
+    local Menu1 = dsp.conquest.getArg1(guardnation,player);
+    local Menu3 = dsp.conquest.conquestRanking();
+    local Menu6 = dsp.conquest.getArg6(player);
     local Menu7 = player:getCP();
 
     player:startEvent(32763,Menu1,0,Menu3,0,0,Menu6,Menu7,0);
@@ -34,17 +34,17 @@ function onEventUpdate(player,csid,option)
 
     local inventory, size;
     if (player:getNation() == 0) then
-        inventory = SandInv;
-        size = #SandInv;
+        inventory = dsp.conquest.SANDORIA_INVENTORY;
+        size = #dsp.conquest.SANDORIA_INVENTORY;
     elseif (player:getNation() == 1) then
-        inventory = BastInv;
-        size = #BastInv;
+        inventory = dsp.conquest.BASTOK_INVENTORY;
+        size = #dsp.conquest.BASTOK_INVENTORY;
     else
-        inventory = WindInv;
-        size = #WindInv;
+        inventory = dsp.conquest.WINDURST_INVENTORY;
+        size = #dsp.conquest.WINDURST_INVENTORY;
     end
 
-    updateConquestGuard(player,csid,option,size,inventory);
+    dsp.conquest.updateConquestGuard(player,csid,option,size,inventory);
 end;
 
 function onEventFinish(player,csid,option)
@@ -53,15 +53,15 @@ function onEventFinish(player,csid,option)
 
     local inventory, size;
     if (player:getNation() == 0) then
-        inventory = SandInv;
-        size = #SandInv;
+        inventory = dsp.conquest.SANDORIA_INVENTORY;
+        size = #dsp.conquest.SANDORIA_INVENTORY;
     elseif (player:getNation() == 1) then
-        inventory = BastInv;
-        size = #BastInv;
+        inventory = dsp.conquest.BASTOK_INVENTORY;
+        size = #dsp.conquest.BASTOK_INVENTORY;
     else
-        inventory = WindInv;
-        size = #WindInv;
+        inventory = dsp.conquest.WINDURST_INVENTORY;
+        size = #dsp.conquest.WINDURST_INVENTORY;
     end
 
-    finishConquestGuard(player,csid,option,size,inventory,guardnation);
+    dsp.conquest.finishConquestGuard(player,csid,option,size,inventory,guardnation);
 end;

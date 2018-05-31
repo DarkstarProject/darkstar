@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ZULKHEIM);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,ROSSWALD_CLOSED_DIALOG);
     else

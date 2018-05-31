@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(SARUTABARUTA);
+    local RegionOwner = GetRegionOwner(dsp.conquest.SARUTABARUTA);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
     else

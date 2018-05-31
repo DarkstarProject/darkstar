@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ELSHIMOLOWLANDS);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,FOMINA_CLOSED_DIALOG);
     else

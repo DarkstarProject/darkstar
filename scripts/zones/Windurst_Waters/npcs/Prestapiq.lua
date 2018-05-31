@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(MOVALPOLOS);
+    local RegionOwner = GetRegionOwner(dsp.conquest.MOVALPOLOS);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,PRESTAPIQ_CLOSED_DIALOG);
     else

@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KOLSHUSHU);
+    local RegionOwner = GetRegionOwner(dsp.conquest.KOLSHUSHU);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
     else

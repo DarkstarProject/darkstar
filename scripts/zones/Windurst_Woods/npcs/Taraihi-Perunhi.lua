@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(DERFLAND);
+    local RegionOwner = GetRegionOwner(dsp.conquest.DERFLAND);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);
     else

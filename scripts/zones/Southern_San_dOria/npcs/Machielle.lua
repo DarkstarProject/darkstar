@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(NORVALLEN);
+    local RegionOwner = GetRegionOwner(dsp.conquest.NORVALLEN);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,MACHIELLE_CLOSED_DIALOG);

@@ -15,34 +15,34 @@ require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Windurst_Waters/TextIDs");
 
-local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = dsp.conquest.NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 1;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local size      = #WindInv;
-local inventory = WindInv;
+local size      = #dsp.conquest.WINDURST_INVENTORY;
+local inventory = dsp.conquest.WINDURST_INVENTORY;
 
 function onTrade(player,npc,trade)
-    tradeConquestGuard(player,npc,trade,guardnation,guardtype);
+    dsp.conquest.tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
 
 function onTrigger(player,npc)
 
-    if (player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and supplyRunFresh(player) == 0) then
+    if (player:getNation() == guardnation and player:getVar("supplyQuest_started") > 0 and dsp.conquest.supplyRunFresh(player) == 0) then
         player:showText(npc,CONQUEST + 40); -- "We will dispose of those unusable supplies."
         local region = player:getVar("supplyQuest_region");
-        player:delKeyItem(getSupplyKey(region));
-        player:messageSpecial(KEYITEM_OBTAINED + 1,getSupplyKey(region));
+        player:delKeyItem(dsp.conquest.getSupplyKey(region));
+        player:messageSpecial(KEYITEM_OBTAINED + 1,dsp.conquest.getSupplyKey(region));
         player:setVar("supplyQuest_started",0);
         player:setVar("supplyQuest_region",0);
         player:setVar("supplyQuest_fresh",0);
     else
-        local Menu1 = getArg1(guardnation,player);
-        local Menu2 = getExForceAvailable(guardnation,player);
-        local Menu3 = conquestRanking();
-        local Menu4 = getSupplyAvailable(guardnation,player);
+        local Menu1 = dsp.conquest.getArg1(guardnation,player);
+        local Menu2 = dsp.conquest.getExForceAvailable(guardnation,player);
+        local Menu3 = dsp.conquest.conquestRanking();
+        local Menu4 = dsp.conquest.getSupplyAvailable(guardnation,player);
         local Menu5 = player:getNationTeleport(guardnation);
-        local Menu6 = getArg6(player);
+        local Menu6 = dsp.conquest.getArg6(player);
         local Menu7 = player:getCP();
-        local Menu8 = getRewardExForce(guardnation,player);
+        local Menu8 = dsp.conquest.getRewardExForce(guardnation,player);
         player:startEvent(32759,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
     end
 
@@ -52,12 +52,12 @@ function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
     -- printf("onUpdateOPTION: %u",option);
 
-    updateConquestGuard(player,csid,option,size,inventory);
+    dsp.conquest.updateConquestGuard(player,csid,option,size,inventory);
 end;
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);
     -- printf("onFinishOPTION: %u",option);
 
-    finishConquestGuard(player,csid,option,size,inventory,guardnation);
+    dsp.conquest.finishConquestGuard(player,csid,option,size,inventory,guardnation);
 end;
