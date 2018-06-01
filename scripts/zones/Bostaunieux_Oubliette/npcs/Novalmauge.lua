@@ -32,12 +32,12 @@ local wsQuest = dsp.wsquest.spiral_hell
 
 function onSpawn(npc)
     npc:initNpcAi()
-    npc:setPos(pathfind.first(path))
+    npc:setPos(dsp.path.first(path))
     onPath(npc)
 end
 
 function onPath(npc)
-    pathfind.patrol(npc, path)
+    dsp.path.patrol(npc, path)
 end
 
 function onTrade(player,npc,trade)
