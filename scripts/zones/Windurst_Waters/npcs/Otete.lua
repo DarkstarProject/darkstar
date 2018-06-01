@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(LITELOR);
+    local RegionOwner = GetRegionOwner(dsp.conquest.LITELOR);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,OTETE_CLOSED_DIALOG);
     else

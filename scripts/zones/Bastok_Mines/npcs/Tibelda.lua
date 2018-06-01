@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(VALDEAUNIA);
+    local RegionOwner = GetRegionOwner(dsp.conquest.VALDEAUNIA);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,TIBELDA_CLOSED_DIALOG);
     else

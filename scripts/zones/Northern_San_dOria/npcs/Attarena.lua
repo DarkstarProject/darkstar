@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = GetRegionOwner(LITELOR);
+RegionOwner = GetRegionOwner(dsp.conquest.LITELOR);
 
         if (RegionOwner ~= NATION_SANDORIA) then
                 player:showText(npc,ATTARENA_CLOSED_DIALOG);

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(VOLLBOW);
+    local RegionOwner = GetRegionOwner(dsp.conquest.VOLLBOW);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,LEBONDUR_CLOSED_DIALOG);
     else

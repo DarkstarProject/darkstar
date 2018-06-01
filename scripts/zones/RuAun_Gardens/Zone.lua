@@ -20,13 +20,13 @@ function onInitialize(zone)
 
     UpdateTreasureSpawnPoint(RUAUN_TREASURE_COFFER);
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conquest.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        dsp.conquest.conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 

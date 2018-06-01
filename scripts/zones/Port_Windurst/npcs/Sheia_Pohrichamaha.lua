@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(FAUREGANDI);
+    local RegionOwner = GetRegionOwner(dsp.conquest.FAUREGANDI);
 
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,SHEIAPOHRICHAMAHA_CLOSED_DIALOG);

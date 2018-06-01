@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(VALDEAUNIA);
+    local RegionOwner = GetRegionOwner(dsp.conquest.VALDEAUNIA);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,ZOREEN_CLOSED_DIALOG);
     else

@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(SARUTABARUTA);
+    local RegionOwner = GetRegionOwner(dsp.conquest.SARUTABARUTA);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,MILVA_CLOSED_DIALOG);

@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(NORVALLEN);
+    local RegionOwner = GetRegionOwner(dsp.conquest.NORVALLEN);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,MILLE_CLOSED_DIALOG);
     else

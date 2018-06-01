@@ -269,7 +269,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         -- Decrease tabs
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            toHomeNation(player); -- Needs an entry in scripts/globals/teleports.lua?
+            dsp.conquest.toHomeNation(player); -- Needs an entry in scripts/globals/teleports.lua?
         end
 
     elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)

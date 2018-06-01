@@ -28,7 +28,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(VOLLBOW);
+    local RegionOwner = GetRegionOwner(dsp.conquest.VOLLBOW);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,MILLECHUCA_CLOSED_DIALOG);

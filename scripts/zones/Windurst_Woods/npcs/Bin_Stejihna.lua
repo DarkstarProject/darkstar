@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ZULKHEIM);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,BIN_STEJIHNA_CLOSED_DIALOG);
     else

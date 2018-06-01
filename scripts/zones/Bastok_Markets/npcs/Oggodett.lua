@@ -17,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(ARAGONEU);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ARAGONEU);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,OGGODETT_CLOSED_DIALOG);
     else

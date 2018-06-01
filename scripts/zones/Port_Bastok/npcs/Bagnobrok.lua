@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(MOVALPOLOS);
+    local RegionOwner = GetRegionOwner(dsp.conquest.MOVALPOLOS);
 
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,BAGNOBROK_CLOSED_DIALOG);

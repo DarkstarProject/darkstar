@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
+    local RegionOwner = GetRegionOwner(dsp.conquest.ELSHIMOLOWLANDS);
 
     if (RegionOwner ~= NATION_SANDORIA) then
         player:showText(npc,NIMIA_CLOSED_DIALOG);

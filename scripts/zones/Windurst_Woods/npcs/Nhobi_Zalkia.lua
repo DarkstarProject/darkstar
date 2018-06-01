@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KUZOTZ);
+    local RegionOwner = GetRegionOwner(dsp.conquest.KUZOTZ);
     if (RegionOwner ~= NATION_WINDURST) then
         player:showText(npc,NHOBI_ZALKIA_CLOSED_DIALOG);
     else

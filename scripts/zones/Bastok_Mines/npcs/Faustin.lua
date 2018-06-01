@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(RONFAURE);
+    local RegionOwner = GetRegionOwner(dsp.conquest.RONFAURE);
     if (RegionOwner ~= NATION_BASTOK) then
         player:showText(npc,FAUSTIN_CLOSED_DIALOG);
     else
