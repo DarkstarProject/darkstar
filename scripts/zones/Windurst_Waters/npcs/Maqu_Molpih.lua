@@ -17,8 +17,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ARAGONEU);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.ARAGONEU);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,MAQUMOLPIH_CLOSED_DIALOG);
     else
         player:showText(npc,MAQUMOLPIH_OPEN_DIALOG);

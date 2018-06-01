@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x1230,  1584,3,     --Shell
         0x1237,   360,3      --Aquaveil
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    showNationShop(player, dsp.nation.WINDURST, stock);
 
 end;
 

@@ -25,5 +25,5 @@ function onTrigger(player,npc)
         17217,  2166, 3, -- Crossbow
         17336,     5, 3, -- Crossbow Bolt
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

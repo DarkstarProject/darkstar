@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-RegionOwner = GetRegionOwner(LITELOR);
+RegionOwner = GetRegionOwner(dsp.region.LITELOR);
 
-        if (RegionOwner ~= NATION_SANDORIA) then
+        if (RegionOwner ~= dsp.nation.SANDORIA) then
                 player:showText(npc,ATTARENA_CLOSED_DIALOG);
         else
                 player:showText(npc,ATTARENA_OPEN_DIALOG);

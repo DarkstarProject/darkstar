@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(NORVALLEN);
+    local RegionOwner = GetRegionOwner(dsp.region.NORVALLEN);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,MACHIELLE_CLOSED_DIALOG);
     else
         player:showText(npc,MACHIELLE_OPEN_DIALOG);

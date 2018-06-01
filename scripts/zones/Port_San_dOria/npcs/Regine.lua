@@ -108,7 +108,7 @@ function onEventFinish(player,csid,option)
             4651,219,3,  -- Scroll of Protect
             4656,1584,3  -- Scroll of Shell
         }
-        showNationShop(player, NATION_SANDORIA, stockA);
+        showNationShop(player, dsp.nation.SANDORIA, stockA);
 
     -- BLACK MAGIC SHOP
     elseif (csid == 510 and option == 1) then
@@ -132,6 +132,6 @@ function onEventFinish(player,csid,option)
             4772,3261,3, -- Scroll of Thunder
             4777,140,3   -- Scroll of Water
         }
-        showNationShop(player, NATION_SANDORIA, stockB);
+        showNationShop(player, dsp.nation.SANDORIA, stockB);
     end
 end;

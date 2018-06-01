@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         0x1034,   290, 3  -- Antidote
     }
 
-    showNationShop(player, NATION_WINDURST, stock);
+    showNationShop(player, dsp.nation.WINDURST, stock);
 end;
 
 function onEventUpdate(player,csid,option)

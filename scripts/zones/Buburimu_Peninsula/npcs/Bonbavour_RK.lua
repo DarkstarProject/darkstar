@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = KOLSHUSHU;
+local region      = dsp.region.KOLSHUSHU;
 local csid        = 0x7ffb;
 
 function onTrade(player,npc,trade)

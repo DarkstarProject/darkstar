@@ -32,7 +32,7 @@ function onTrigger(player,npc)
      0x1167,184,3,        -- Pebble Soup
      0x119D,10,3}        -- Distilled Water
 
-showNationShop(player, NATION_BASTOK, stock);
+showNationShop(player, dsp.nation.BASTOK, stock);
 end;
 
 function onEventUpdate(player,csid,option)

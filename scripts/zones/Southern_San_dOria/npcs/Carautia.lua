@@ -46,7 +46,7 @@ function onTrigger(player,npc)
              0x32a1,1116,3,     --Brass Leggings
              0x3298,302,3}         --Leather Highboots
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    showNationShop(player, dsp.nation.SANDORIA, stock);
 
 end;
 

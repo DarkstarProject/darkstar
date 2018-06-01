@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Lufaise_Meadows/TextIDs");
 
-local region     = TAVNAZIANARCH;
+local region     = dsp.region.TAVNAZIANARCH;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

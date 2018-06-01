@@ -3,40 +3,15 @@
 --     Functions for Conquest system
 --
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/common");
+require("scripts/globals/zone");
+-----------------------------------
 
 -----------------------------------
 -- convenience constants
 -----------------------------------
-
-NATION_SANDORIA = 0;
-NATION_BASTOK   = 1;
-NATION_WINDURST = 2;
-BEASTMEN        = 3;
-OTHER           = 4;
-
-RONFAURE        = 0;
-ZULKHEIM        = 1;
-NORVALLEN       = 2;
-GUSTABERG       = 3;
-DERFLAND        = 4;
-SARUTABARUTA    = 5;
-KOLSHUSHU       = 6;
-ARAGONEU        = 7;
-FAUREGANDI      = 8;
-VALDEAUNIA      = 9;
-QUFIMISLAND     = 10;
-LITELOR         = 11;
-KUZOTZ          = 12;
-VOLLBOW         = 13;
-ELSHIMOLOWLANDS = 14;
-ELSHIMOUPLANDS  = 15;
-TULIA           = 16;
-MOVALPOLOS      = 17;
-TAVNAZIANARCH   = 18;
 
 CONQUEST_TALLY_START = 0;
 CONQUEST_TALLY_END   = 1;
@@ -145,14 +120,14 @@ tpFees = { 100, 100, 150, 100, 150, 100, 100, 150, 350, 400, 150, 250, 300, 500,
 
 function tradeConquestGuard(player,npc,trade,guardnation,guardtype)
 
-    -- Nation:    -- NATION_SANDORIA, NATION_BASTOK, NATION_WINDURST, OTHER(Jeuno)
+    -- Nation:    -- dsp.nation.SANDORIA, dsp.nation.BASTOK, dsp.nation.WINDURST, dsp.nation.OTHER(Jeuno)
     -- Type:     1: city, 2: foreign, 3: outpost, 4: border
 
     local myCP = player:getCP();
     local item = trade:getItemId();
     local AddPoints = 0;
 
-    if (player:getNation() == guardnation or guardnation == OTHER) then
+    if (player:getNation() == guardnation or guardnation == dsp.nation.OTHER) then
         if (guardtype ~= 3 and guardtype ~= 4) then -- all guard can trade crystal except outpost and border.
             if (item >= 4096 and item <= 4103 or item >= 4238 and item <= 4245) then
                 for Crystal = 1,#DonateCrys,1 do
@@ -250,7 +225,7 @@ function finishConquestGuard(player,csid,option,size,inventory,guardnation)
                     end
 
                     local itemCP;
-                    if (player:getNation() == guardnation or guardnation == OTHER) then
+                    if (player:getNation() == guardnation or guardnation == dsp.nation.OTHER) then
                         itemCP = inventory[Item + 1];
                     else
                         if (inventory[Item + 1] <= 8000) then
@@ -316,37 +291,37 @@ function getArg1(guardnation,player)
     local output = 0;
     local signet = 0;
 
-    if (guardnation == NATION_WINDURST) then
+    if (guardnation == dsp.nation.WINDURST) then
         output = 33;
-    elseif (guardnation == NATION_SANDORIA) then
+    elseif (guardnation == dsp.nation.SANDORIA) then
         output = 1;
-    elseif (guardnation == NATION_BASTOK) then
+    elseif (guardnation == dsp.nation.BASTOK) then
         output = 17;
     end
 
     if (guardnation == pNation) then
         signet = 0;
-    elseif (pNation == NATION_WINDURST) then
-        if (guardnation == NATION_BASTOK and windurst_bastok_ally == 1) or (guardnation == NATION_SANDORIA and sandy_windurst_ally == 1) then
+    elseif (pNation == dsp.nation.WINDURST) then
+        if (guardnation == dsp.nation.BASTOK and windurst_bastok_ally == 1) or (guardnation == dsp.nation.SANDORIA and sandy_windurst_ally == 1) then
             signet = 1;
         else
             signet = 7;
         end
-    elseif (pNation == NATION_BASTOK) then
-        if (guardnation == NATION_WINDURST and windurst_bastok_ally == 1) or (guardnation == NATION_SANDORIA and sandy_bastok_ally == 1) then
+    elseif (pNation == dsp.nation.BASTOK) then
+        if (guardnation == dsp.nation.WINDURST and windurst_bastok_ally == 1) or (guardnation == dsp.nation.SANDORIA and sandy_bastok_ally == 1) then
             signet = 2;
         else
             signet = 7;
         end
-    elseif (pNation == NATION_SANDORIA) then
-        if (guardnation == NATION_WINDURST and sandy_windurst_ally == 1) or (guardnation == NATION_BASTOK and sandy_bastok_ally == 1) then
+    elseif (pNation == dsp.nation.SANDORIA) then
+        if (guardnation == dsp.nation.WINDURST and sandy_windurst_ally == 1) or (guardnation == dsp.nation.BASTOK and sandy_bastok_ally == 1) then
             signet = 4;
         else
             signet = 7;
         end
     end
 
-    if (guardnation == OTHER) then
+    if (guardnation == dsp.nation.OTHER) then
         output = (pNation * 16) + (3 * 256)  + 65537;
     else
         output = output + 256 * signet;
@@ -370,7 +345,7 @@ end;
 ------------------------------------------------
 
 function conquestRanking()
-    return getNationRank(NATION_SANDORIA) + 4 * getNationRank(NATION_BASTOK) + 16 * getNationRank(NATION_WINDURST);
+    return getNationRank(dsp.nation.SANDORIA) + 4 * getNationRank(dsp.nation.BASTOK) + 16 * getNationRank(dsp.nation.WINDURST);
 end;
 
 ----------------------------------------------------------------
@@ -419,11 +394,11 @@ function getArg6(player)
     local output = player:getRank();
     local nation = player:getNation();
 
-    if (nation == NATION_SANDORIA) then
+    if (nation == dsp.nation.SANDORIA) then
         return output;
-    elseif (nation == NATION_BASTOK) then
+    elseif (nation == dsp.nation.BASTOK) then
         return output + 32;
-    elseif (nation == NATION_WINDURST) then
+    elseif (nation == dsp.nation.WINDURST) then
         return output + 64;
 
     end
@@ -489,12 +464,12 @@ function hasOutpost(player, region)
     local nation = player:getNation()
     local bit = {};
 
-    if (nation == NATION_BASTOK) then
-        supply_quests = player:getNationTeleport(NATION_BASTOK);
-    elseif (nation == NATION_SANDORIA) then
-        supply_quests = player:getNationTeleport(NATION_SANDORIA);
-    elseif (nation == NATION_WINDURST) then
-        supply_quests = player:getNationTeleport(NATION_WINDURST);
+    if (nation == dsp.nation.BASTOK) then
+        supply_quests = player:getNationTeleport(dsp.nation.BASTOK);
+    elseif (nation == dsp.nation.SANDORIA) then
+        supply_quests = player:getNationTeleport(dsp.nation.SANDORIA);
+    elseif (nation == dsp.nation.WINDURST) then
+        supply_quests = player:getNationTeleport(dsp.nation.WINDURST);
     end;
 
     for i = 23,5,-1 do
@@ -536,9 +511,9 @@ end;
 
 function toHomeNation(player)
 
-    if (player:getNation() == NATION_BASTOK) then
+    if (player:getNation() == dsp.nation.BASTOK) then
         player:setPos(89, 0 , -66, 0, 234);
-    elseif (player:getNation() == NATION_SANDORIA) then
+    elseif (player:getNation() == dsp.nation.SANDORIA) then
         player:setPos(49, -1 , 29, 164, 231);
     else
         player:setPos(193, -12 , 220, 64, 240);
@@ -655,7 +630,7 @@ function getRegionalConquestOverseers(region)
 
 switch (region): caseof {
   ---------------------------------
-  [RONFAURE] = function (x) -- West Ronfaure (100)
+  [dsp.region.RONFAURE] = function (x) -- West Ronfaure (100)
   ---------------------------------
     --print("RONFAURE");
 
@@ -663,30 +638,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Doladepaiton,NATION_SANDORIA,        -- Doladepaiton, R.K.
-        Doladepaiton+7,NATION_SANDORIA,    -- Ballie, R.K.
-        Doladepaiton+3,NATION_SANDORIA,    -- Flag
-        Doladepaiton+11,NATION_SANDORIA,    -- Flag
+        Doladepaiton,dsp.nation.SANDORIA,        -- Doladepaiton, R.K.
+        Doladepaiton+7,dsp.nation.SANDORIA,    -- Ballie, R.K.
+        Doladepaiton+3,dsp.nation.SANDORIA,    -- Flag
+        Doladepaiton+11,dsp.nation.SANDORIA,    -- Flag
     --
-        Doladepaiton+1,NATION_BASTOK,        -- Yoshihiro, I.M.
-        Doladepaiton+8,NATION_BASTOK,        -- Molting Moth, I.M.
-        Doladepaiton+4,NATION_BASTOK,        -- Flag
-        Doladepaiton+13,NATION_BASTOK,        -- Flag
+        Doladepaiton+1,dsp.nation.BASTOK,        -- Yoshihiro, I.M.
+        Doladepaiton+8,dsp.nation.BASTOK,        -- Molting Moth, I.M.
+        Doladepaiton+4,dsp.nation.BASTOK,        -- Flag
+        Doladepaiton+13,dsp.nation.BASTOK,        -- Flag
     --
-        Doladepaiton+2,NATION_WINDURST,    -- Kyanta-Pakyanta, W.W.
-        Doladepaiton+9,NATION_WINDURST,    -- Tottoto, W.W.
-        Doladepaiton+5,NATION_WINDURST,    -- Flag
-        Doladepaiton+13,NATION_WINDURST,    -- Flag
+        Doladepaiton+2,dsp.nation.WINDURST,    -- Kyanta-Pakyanta, W.W.
+        Doladepaiton+9,dsp.nation.WINDURST,    -- Tottoto, W.W.
+        Doladepaiton+5,dsp.nation.WINDURST,    -- Flag
+        Doladepaiton+13,dsp.nation.WINDURST,    -- Flag
     --
-        Doladepaiton+6,BEASTMEN,    -- Flag
-        Doladepaiton+14,BEASTMEN,    -- Flag
+        Doladepaiton+6,dsp.nation.BEASTMEN,    -- Flag
+        Doladepaiton+14,dsp.nation.BEASTMEN,    -- Flag
     --
-        Doladepaiton+10,OTHER,        -- Harvetour
+        Doladepaiton+10,dsp.nation.OTHER,        -- Harvetour
     }
   end,
 
   ---------------------------------
-  [ZULKHEIM] = function (x) -- Valkurm_Dunes (103)
+  [dsp.region.ZULKHEIM] = function (x) -- Valkurm_Dunes (103)
   ---------------------------------
     --print("ZULKHEIM");
 
@@ -694,30 +669,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Quanteilleron,NATION_SANDORIA,        -- Quanteilleron, R.K.
-        Quanteilleron+7,NATION_SANDORIA,    -- Prunilla, R.K.
-        Quanteilleron+3,NATION_SANDORIA,    -- flag
-        Quanteilleron+12,NATION_SANDORIA,    -- flag
+        Quanteilleron,dsp.nation.SANDORIA,        -- Quanteilleron, R.K.
+        Quanteilleron+7,dsp.nation.SANDORIA,    -- Prunilla, R.K.
+        Quanteilleron+3,dsp.nation.SANDORIA,    -- flag
+        Quanteilleron+12,dsp.nation.SANDORIA,    -- flag
     --
-        Quanteilleron+1,NATION_BASTOK,        -- Tsunashige, I.M.
-        Quanteilleron+8,NATION_BASTOK,        -- Fighting Ant, I.M.
-        Quanteilleron+4,NATION_BASTOK,        -- flag
-        Quanteilleron+13,NATION_BASTOK,    -- flag
+        Quanteilleron+1,dsp.nation.BASTOK,        -- Tsunashige, I.M.
+        Quanteilleron+8,dsp.nation.BASTOK,        -- Fighting Ant, I.M.
+        Quanteilleron+4,dsp.nation.BASTOK,        -- flag
+        Quanteilleron+13,dsp.nation.BASTOK,    -- flag
     --
-        Quanteilleron+2,NATION_WINDURST,    -- Nyata-Mobuta, W.W.
-        Quanteilleron+9,NATION_WINDURST,    -- Tebubu, W.W.
-        Quanteilleron+5,NATION_WINDURST,    -- flag
-        Quanteilleron+14,NATION_WINDURST,    -- flag
+        Quanteilleron+2,dsp.nation.WINDURST,    -- Nyata-Mobuta, W.W.
+        Quanteilleron+9,dsp.nation.WINDURST,    -- Tebubu, W.W.
+        Quanteilleron+5,dsp.nation.WINDURST,    -- flag
+        Quanteilleron+14,dsp.nation.WINDURST,    -- flag
     --
-        Quanteilleron+6,BEASTMEN,    -- flag
-        Quanteilleron+15,BEASTMEN,    -- flag
+        Quanteilleron+6,dsp.nation.BEASTMEN,    -- flag
+        Quanteilleron+15,dsp.nation.BEASTMEN,    -- flag
     --
-        Quanteilleron+10,OTHER,        -- Medicine Axe
+        Quanteilleron+10,dsp.nation.OTHER,        -- Medicine Axe
     }
   end,
 
   ---------------------------------
-  [NORVALLEN] = function (x) -- Jugner_Forest (104)
+  [dsp.region.NORVALLEN] = function (x) -- Jugner_Forest (104)
   ---------------------------------
     --print("NORVALLEN");
 
@@ -725,30 +700,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Chaplion,NATION_SANDORIA,        -- Chaplion, R.K.
-        Chaplion+7,NATION_SANDORIA,    -- Taumiale, R.K.
-        Chaplion+3,NATION_SANDORIA,    -- flag
-        Chaplion+11,NATION_SANDORIA,    -- flag
+        Chaplion,dsp.nation.SANDORIA,        -- Chaplion, R.K.
+        Chaplion+7,dsp.nation.SANDORIA,    -- Taumiale, R.K.
+        Chaplion+3,dsp.nation.SANDORIA,    -- flag
+        Chaplion+11,dsp.nation.SANDORIA,    -- flag
     --
-        Chaplion+1,NATION_BASTOK,        -- Takamoto, I.M.
-        Chaplion+8,NATION_BASTOK,        -- Pure Heart, I.M.
-        Chaplion+4,NATION_BASTOK,        -- flag
-        Chaplion+12,NATION_BASTOK,        -- flag
+        Chaplion+1,dsp.nation.BASTOK,        -- Takamoto, I.M.
+        Chaplion+8,dsp.nation.BASTOK,        -- Pure Heart, I.M.
+        Chaplion+4,dsp.nation.BASTOK,        -- flag
+        Chaplion+12,dsp.nation.BASTOK,        -- flag
     --
-        Chaplion+2,NATION_WINDURST,    -- Bubchu-Bibinchu, W.W.
-        Chaplion+9,NATION_WINDURST,    -- Geruru, W.W.
-        Chaplion+5,NATION_WINDURST,    -- flag
-        Chaplion+13,NATION_WINDURST,    -- flag
+        Chaplion+2,dsp.nation.WINDURST,    -- Bubchu-Bibinchu, W.W.
+        Chaplion+9,dsp.nation.WINDURST,    -- Geruru, W.W.
+        Chaplion+5,dsp.nation.WINDURST,    -- flag
+        Chaplion+13,dsp.nation.WINDURST,    -- flag
     --
-        Chaplion+6,BEASTMEN,    -- flag
-        Chaplion+14,BEASTMEN,    -- flag
+        Chaplion+6,dsp.nation.BEASTMEN,    -- flag
+        Chaplion+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Chaplion+10,OTHER,        -- Mionie
+        Chaplion+10,dsp.nation.OTHER,        -- Mionie
     }
   end,
 
   ---------------------------------
-  [GUSTABERG] = function (x) -- North_Gustaberg (106)
+  [dsp.region.GUSTABERG] = function (x) -- North_Gustaberg (106)
   ---------------------------------
     --print("GUSTABERG");
 
@@ -756,30 +731,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Ennigreaud,NATION_SANDORIA,    -- Ennigreaud, R.K.
-        Ennigreaud+7,NATION_SANDORIA,    -- Quellebie, R.K.
-        Ennigreaud+3,NATION_SANDORIA,    -- flag
-        Ennigreaud+11,NATION_SANDORIA,    -- flag
+        Ennigreaud,dsp.nation.SANDORIA,    -- Ennigreaud, R.K.
+        Ennigreaud+7,dsp.nation.SANDORIA,    -- Quellebie, R.K.
+        Ennigreaud+3,dsp.nation.SANDORIA,    -- flag
+        Ennigreaud+11,dsp.nation.SANDORIA,    -- flag
     --
-        Ennigreaud+1,NATION_BASTOK,    -- Shigezane, I.M.
-        Ennigreaud+8,NATION_BASTOK,    -- Heavy Fog, I.M.
-        Ennigreaud+4,NATION_BASTOK,    -- flag
-        Ennigreaud+12,NATION_BASTOK,    -- flag
+        Ennigreaud+1,dsp.nation.BASTOK,    -- Shigezane, I.M.
+        Ennigreaud+8,dsp.nation.BASTOK,    -- Heavy Fog, I.M.
+        Ennigreaud+4,dsp.nation.BASTOK,    -- flag
+        Ennigreaud+12,dsp.nation.BASTOK,    -- flag
     --
-        Ennigreaud+2,NATION_WINDURST,    -- Kuuwari-Aori, W.W.
-        Ennigreaud+9,NATION_WINDURST,    -- Butsutsu, W.W.
-        Ennigreaud+5,NATION_WINDURST,    -- flag
-        Ennigreaud+13,NATION_WINDURST,    -- flag
+        Ennigreaud+2,dsp.nation.WINDURST,    -- Kuuwari-Aori, W.W.
+        Ennigreaud+9,dsp.nation.WINDURST,    -- Butsutsu, W.W.
+        Ennigreaud+5,dsp.nation.WINDURST,    -- flag
+        Ennigreaud+13,dsp.nation.WINDURST,    -- flag
     --
-        Ennigreaud+6,BEASTMEN,    -- flag
-        Ennigreaud+14,BEASTMEN,    -- flag
+        Ennigreaud+6,dsp.nation.BEASTMEN,    -- flag
+        Ennigreaud+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Ennigreaud+10,OTHER,    -- Kuleo
+        Ennigreaud+10,dsp.nation.OTHER,    -- Kuleo
     }
   end,
 
   ---------------------------------
-  [DERFLAND] = function (x) -- Pashhow_Marshlands (109)
+  [dsp.region.DERFLAND] = function (x) -- Pashhow_Marshlands (109)
   ---------------------------------
     --print("DERFLAND");
 
@@ -787,30 +762,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Mesachedeau,NATION_SANDORIA,        -- Mesachedeau, R.K.
-        Mesachedeau+7,NATION_SANDORIA,        -- Ioupie, R.K.
-        Mesachedeau+3,NATION_SANDORIA,        -- flag
-        Mesachedeau+11,NATION_SANDORIA,    -- flag
+        Mesachedeau,dsp.nation.SANDORIA,        -- Mesachedeau, R.K.
+        Mesachedeau+7,dsp.nation.SANDORIA,        -- Ioupie, R.K.
+        Mesachedeau+3,dsp.nation.SANDORIA,        -- flag
+        Mesachedeau+11,dsp.nation.SANDORIA,    -- flag
     --
-        Mesachedeau+1,NATION_BASTOK,        -- Souun, I.M.
-        Mesachedeau+8,NATION_BASTOK,        -- Sharp Tooth, I.M.
-        Mesachedeau+4,NATION_BASTOK,        -- flag
-        Mesachedeau+12,NATION_BASTOK,        -- flag
+        Mesachedeau+1,dsp.nation.BASTOK,        -- Souun, I.M.
+        Mesachedeau+8,dsp.nation.BASTOK,        -- Sharp Tooth, I.M.
+        Mesachedeau+4,dsp.nation.BASTOK,        -- flag
+        Mesachedeau+12,dsp.nation.BASTOK,        -- flag
     --
-        Mesachedeau+2,NATION_WINDURST,        -- Mokto-Lankto, W.W.
-        Mesachedeau+9,NATION_WINDURST,        -- Shikoko, W.W.
-        Mesachedeau+5,NATION_WINDURST,        -- flag
-        Mesachedeau+13,NATION_WINDURST,    -- flag
+        Mesachedeau+2,dsp.nation.WINDURST,        -- Mokto-Lankto, W.W.
+        Mesachedeau+9,dsp.nation.WINDURST,        -- Shikoko, W.W.
+        Mesachedeau+5,dsp.nation.WINDURST,        -- flag
+        Mesachedeau+13,dsp.nation.WINDURST,    -- flag
     --
-        Mesachedeau+6,BEASTMEN,        -- flag
-        Mesachedeau+14,BEASTMEN,    -- flag
+        Mesachedeau+6,dsp.nation.BEASTMEN,        -- flag
+        Mesachedeau+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Mesachedeau+10,OTHER,        -- Tahmasp
+        Mesachedeau+10,dsp.nation.OTHER,        -- Tahmasp
     }
   end,
 
   ---------------------------------
-  [SARUTABARUTA] = function (x) -- West_Sarutabaruta (115)
+  [dsp.region.SARUTABARUTA] = function (x) -- West_Sarutabaruta (115)
   ---------------------------------
     --print("SARUTABARUTA");
 
@@ -818,30 +793,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Naguipeillont,NATION_SANDORIA,        -- Naguipeillont, R.K.
-        Naguipeillont+7,NATION_SANDORIA,    -- Banege, R.K.
-        Naguipeillont+3,NATION_SANDORIA,    -- flag
-        Naguipeillont+11,NATION_SANDORIA,    -- flag
+        Naguipeillont,dsp.nation.SANDORIA,        -- Naguipeillont, R.K.
+        Naguipeillont+7,dsp.nation.SANDORIA,    -- Banege, R.K.
+        Naguipeillont+3,dsp.nation.SANDORIA,    -- flag
+        Naguipeillont+11,dsp.nation.SANDORIA,    -- flag
     --
-        Naguipeillont+1,NATION_BASTOK,        -- Ryokei, I.M.
-        Naguipeillont+8,NATION_BASTOK,        -- Slow Axe, I.M.
-        Naguipeillont+4,NATION_BASTOK,        -- flag
-        Naguipeillont+12,NATION_BASTOK,    -- flag
+        Naguipeillont+1,dsp.nation.BASTOK,        -- Ryokei, I.M.
+        Naguipeillont+8,dsp.nation.BASTOK,        -- Slow Axe, I.M.
+        Naguipeillont+4,dsp.nation.BASTOK,        -- flag
+        Naguipeillont+12,dsp.nation.BASTOK,    -- flag
     --
-        Naguipeillont+2,NATION_WINDURST,    -- Roshina-Kuleshuna, W.W.
-        Naguipeillont+9,NATION_WINDURST,    -- Darumomo, W.W.
-        Naguipeillont+5,NATION_WINDURST,    -- flag
-        Naguipeillont+13,NATION_WINDURST,    -- flag
+        Naguipeillont+2,dsp.nation.WINDURST,    -- Roshina-Kuleshuna, W.W.
+        Naguipeillont+9,dsp.nation.WINDURST,    -- Darumomo, W.W.
+        Naguipeillont+5,dsp.nation.WINDURST,    -- flag
+        Naguipeillont+13,dsp.nation.WINDURST,    -- flag
     --
-        Naguipeillont+6,BEASTMEN,    -- flag
-        Naguipeillont+14,BEASTMEN,    -- flag
+        Naguipeillont+6,dsp.nation.BEASTMEN,    -- flag
+        Naguipeillont+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Naguipeillont+10,OTHER,        -- Mahien-Uhien
+        Naguipeillont+10,dsp.nation.OTHER,        -- Mahien-Uhien
     }
   end,
 
   ---------------------------------
-  [KOLSHUSHU] = function (x) -- Buburimu_Peninsula (118)
+  [dsp.region.KOLSHUSHU] = function (x) -- Buburimu_Peninsula (118)
   ---------------------------------
     --print("KOLSHUSHU");
 
@@ -849,30 +824,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Bonbavour,NATION_SANDORIA,    -- Bonbavour, R.K.
-        Bonbavour+7,NATION_SANDORIA,    -- Craigine, R.K.
-        Bonbavour+3,NATION_SANDORIA,    -- flag
-        Bonbavour+11,NATION_SANDORIA,    -- flag
+        Bonbavour,dsp.nation.SANDORIA,    -- Bonbavour, R.K.
+        Bonbavour+7,dsp.nation.SANDORIA,    -- Craigine, R.K.
+        Bonbavour+3,dsp.nation.SANDORIA,    -- flag
+        Bonbavour+11,dsp.nation.SANDORIA,    -- flag
     --
-        Bonbavour+1,NATION_BASTOK,    -- Ishin, I.M.
-        Bonbavour+8,NATION_BASTOK,    -- Wise Turtle, I.M.
-        Bonbavour+4,NATION_BASTOK,    -- flag
-        Bonbavour+12,NATION_BASTOK,    -- flag
+        Bonbavour+1,dsp.nation.BASTOK,    -- Ishin, I.M.
+        Bonbavour+8,dsp.nation.BASTOK,    -- Wise Turtle, I.M.
+        Bonbavour+4,dsp.nation.BASTOK,    -- flag
+        Bonbavour+12,dsp.nation.BASTOK,    -- flag
     --
-        Bonbavour+2,NATION_WINDURST,    -- Ganemu-Punnemu, W.W.
-        Bonbavour+9,NATION_WINDURST,    -- Mashasha, W.W.
-        Bonbavour+5,NATION_WINDURST,    -- flag
-        Bonbavour+13,NATION_WINDURST,    -- flag
+        Bonbavour+2,dsp.nation.WINDURST,    -- Ganemu-Punnemu, W.W.
+        Bonbavour+9,dsp.nation.WINDURST,    -- Mashasha, W.W.
+        Bonbavour+5,dsp.nation.WINDURST,    -- flag
+        Bonbavour+13,dsp.nation.WINDURST,    -- flag
     --
-        Bonbavour+6,BEASTMEN,    -- flag
-        Bonbavour+14,BEASTMEN,    -- flag
+        Bonbavour+6,dsp.nation.BEASTMEN,    -- flag
+        Bonbavour+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Bonbavour+10,OTHER,        -- Lobho Ukipturi
+        Bonbavour+10,dsp.nation.OTHER,        -- Lobho Ukipturi
     }
   end,
 
   ---------------------------------
-  [ARAGONEU] = function (x) -- Meriphataud_Mountains (119)
+  [dsp.region.ARAGONEU] = function (x) -- Meriphataud_Mountains (119)
   ---------------------------------
     --print("ARAGONEU");
 
@@ -880,30 +855,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Chegourt,NATION_SANDORIA,    -- Chegourt, R.K.
-        Chegourt+7,NATION_SANDORIA,    -- Buliame, R.K.
-        Chegourt+3,NATION_SANDORIA,    -- flag
-        Chegourt+11,NATION_SANDORIA,    -- flag
+        Chegourt,dsp.nation.SANDORIA,    -- Chegourt, R.K.
+        Chegourt+7,dsp.nation.SANDORIA,    -- Buliame, R.K.
+        Chegourt+3,dsp.nation.SANDORIA,    -- flag
+        Chegourt+11,dsp.nation.SANDORIA,    -- flag
     --
-        Chegourt+1,NATION_BASTOK,    -- Akane, I.M.
-        Chegourt+8,NATION_BASTOK,    -- Three Steps, I.M.
-        Chegourt+4,NATION_BASTOK,    -- flag
-        Chegourt+12,NATION_BASTOK,    -- flag
+        Chegourt+1,dsp.nation.BASTOK,    -- Akane, I.M.
+        Chegourt+8,dsp.nation.BASTOK,    -- Three Steps, I.M.
+        Chegourt+4,dsp.nation.BASTOK,    -- flag
+        Chegourt+12,dsp.nation.BASTOK,    -- flag
     --
-        Chegourt+2,NATION_WINDURST,    -- Donmo-Boronmo, W.W.
-        Chegourt+9,NATION_WINDURST,    -- Daruru, W.W.
-        Chegourt+5,NATION_WINDURST,    -- flag
-        Chegourt+13,NATION_WINDURST,    -- flag
+        Chegourt+2,dsp.nation.WINDURST,    -- Donmo-Boronmo, W.W.
+        Chegourt+9,dsp.nation.WINDURST,    -- Daruru, W.W.
+        Chegourt+5,dsp.nation.WINDURST,    -- flag
+        Chegourt+13,dsp.nation.WINDURST,    -- flag
     --
-        Chegourt+6,BEASTMEN,    -- flag
-        Chegourt+14,BEASTMEN,    -- flag
+        Chegourt+6,dsp.nation.BEASTMEN,    -- flag
+        Chegourt+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Chegourt+10,OTHER,        -- Mushosho
+        Chegourt+10,dsp.nation.OTHER,        -- Mushosho
     }
   end,
 
   ---------------------------------
-  [FAUREGANDI] = function (x) -- Beaucedine_Glacier (111)
+  [dsp.region.FAUREGANDI] = function (x) -- Beaucedine_Glacier (111)
   ---------------------------------
     --print("FAUREGANDI");
 
@@ -911,30 +886,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Parledaire,NATION_SANDORIA,        -- Parledaire, R.K.
-        Parledaire+7,NATION_SANDORIA,        -- Leaufetie, R.K.
-        Parledaire+3,NATION_SANDORIA,        -- flag
-        Parledaire+11,NATION_SANDORIA,        -- flag
+        Parledaire,dsp.nation.SANDORIA,        -- Parledaire, R.K.
+        Parledaire+7,dsp.nation.SANDORIA,        -- Leaufetie, R.K.
+        Parledaire+3,dsp.nation.SANDORIA,        -- flag
+        Parledaire+11,dsp.nation.SANDORIA,        -- flag
     --
-        Parledaire+1,NATION_BASTOK,        -- Akane, I.M.
-        Parledaire+8,NATION_BASTOK,        -- Rattling Rain, I.M.
-        Parledaire+4,NATION_BASTOK,        -- flag
-        Parledaire+12,NATION_BASTOK,        -- flag
+        Parledaire+1,dsp.nation.BASTOK,        -- Akane, I.M.
+        Parledaire+8,dsp.nation.BASTOK,        -- Rattling Rain, I.M.
+        Parledaire+4,dsp.nation.BASTOK,        -- flag
+        Parledaire+12,dsp.nation.BASTOK,        -- flag
     --
-        Parledaire+2,NATION_WINDURST,        -- Ryunchi-Pauchi, W.W.
-        Parledaire+9,NATION_WINDURST,        -- Chopapa, W.W.
-        Parledaire+5,NATION_WINDURST,        -- flag
-        Parledaire+13,NATION_WINDURST,        -- flag
+        Parledaire+2,dsp.nation.WINDURST,        -- Ryunchi-Pauchi, W.W.
+        Parledaire+9,dsp.nation.WINDURST,        -- Chopapa, W.W.
+        Parledaire+5,dsp.nation.WINDURST,        -- flag
+        Parledaire+13,dsp.nation.WINDURST,        -- flag
     --
-        Parledaire+6,BEASTMEN,        -- flag
-        Parledaire+14,BEASTMEN,        -- flag
+        Parledaire+6,dsp.nation.BEASTMEN,        -- flag
+        Parledaire+14,dsp.nation.BEASTMEN,        -- flag
     --
-        Parledaire+10,OTHER,        -- Gueriette
+        Parledaire+10,dsp.nation.OTHER,        -- Gueriette
     }
   end,
 
   ---------------------------------
-  [VALDEAUNIA] = function (x) -- Xarcabard (112)
+  [dsp.region.VALDEAUNIA] = function (x) -- Xarcabard (112)
   ---------------------------------
     --print("VALDEAUNIA");
 
@@ -942,30 +917,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Jeantelas,NATION_SANDORIA,            -- Jeantelas, R.K.
-        Jeantelas+7,NATION_SANDORIA,        -- Pilcha, R.K.
-        Jeantelas+3,NATION_SANDORIA,        -- flag
-        Jeantelas+11,NATION_SANDORIA,        -- flag
+        Jeantelas,dsp.nation.SANDORIA,            -- Jeantelas, R.K.
+        Jeantelas+7,dsp.nation.SANDORIA,        -- Pilcha, R.K.
+        Jeantelas+3,dsp.nation.SANDORIA,        -- flag
+        Jeantelas+11,dsp.nation.SANDORIA,        -- flag
     --
-        Jeantelas+1,NATION_BASTOK,            -- Kaya, I.M.
-        Jeantelas+8,NATION_BASTOK,            -- Heavy Bear, I.M.
-        Jeantelas+4,NATION_BASTOK,            -- flag
-        Jeantelas+12,NATION_BASTOK,        -- flag
+        Jeantelas+1,dsp.nation.BASTOK,            -- Kaya, I.M.
+        Jeantelas+8,dsp.nation.BASTOK,            -- Heavy Bear, I.M.
+        Jeantelas+4,dsp.nation.BASTOK,            -- flag
+        Jeantelas+12,dsp.nation.BASTOK,        -- flag
     --
-        Jeantelas+2,NATION_WINDURST,        -- Magumo-Yagimo, W.W.
-        Jeantelas+9,NATION_WINDURST,        -- Tememe, W.W.
-        Jeantelas+5,NATION_WINDURST,        -- flag
-        Jeantelas+13,NATION_WINDURST,        -- flag
+        Jeantelas+2,dsp.nation.WINDURST,        -- Magumo-Yagimo, W.W.
+        Jeantelas+9,dsp.nation.WINDURST,        -- Tememe, W.W.
+        Jeantelas+5,dsp.nation.WINDURST,        -- flag
+        Jeantelas+13,dsp.nation.WINDURST,        -- flag
     --
-        Jeantelas+6,BEASTMEN,        -- flag
-        Jeantelas+14,BEASTMEN,        -- flag
+        Jeantelas+6,dsp.nation.BEASTMEN,        -- flag
+        Jeantelas+14,dsp.nation.BEASTMEN,        -- flag
     --
-        Jeantelas+10,OTHER,            -- Pelogrant
+        Jeantelas+10,dsp.nation.OTHER,            -- Pelogrant
     }
   end,
 
   ---------------------------------
-  [QUFIMISLAND] = function (x) -- Qufim_Island (126)
+  [dsp.region.QUFIMISLAND] = function (x) -- Qufim_Island (126)
   ---------------------------------
     --print("QUFIMISLAND");
 
@@ -973,30 +948,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Pitoire,NATION_SANDORIA,    -- Pitoire, R.K.
-        Pitoire+7,NATION_SANDORIA,    -- Matica, R.K.
-        Pitoire+3,NATION_SANDORIA,    -- flag
-        Pitoire+11,NATION_SANDORIA,    -- flag
+        Pitoire,dsp.nation.SANDORIA,    -- Pitoire, R.K.
+        Pitoire+7,dsp.nation.SANDORIA,    -- Matica, R.K.
+        Pitoire+3,dsp.nation.SANDORIA,    -- flag
+        Pitoire+11,dsp.nation.SANDORIA,    -- flag
     --
-        Pitoire+1,NATION_BASTOK,    -- Sasa, I.M.
-        Pitoire+8,NATION_BASTOK,    -- Singing Blade, I.M.
-        Pitoire+4,NATION_BASTOK,    -- flag
-        Pitoire+12,NATION_BASTOK,    -- flag
+        Pitoire+1,dsp.nation.BASTOK,    -- Sasa, I.M.
+        Pitoire+8,dsp.nation.BASTOK,    -- Singing Blade, I.M.
+        Pitoire+4,dsp.nation.BASTOK,    -- flag
+        Pitoire+12,dsp.nation.BASTOK,    -- flag
     --
-        Pitoire+2,NATION_WINDURST,    -- Tsonga-Hoponga, W.W.
-        Pitoire+9,NATION_WINDURST,    -- Numumu, W.W.
-        Pitoire+5,NATION_WINDURST,    -- flag
-        Pitoire+13,NATION_WINDURST,    -- flag
+        Pitoire+2,dsp.nation.WINDURST,    -- Tsonga-Hoponga, W.W.
+        Pitoire+9,dsp.nation.WINDURST,    -- Numumu, W.W.
+        Pitoire+5,dsp.nation.WINDURST,    -- flag
+        Pitoire+13,dsp.nation.WINDURST,    -- flag
     --
-        Pitoire+6,BEASTMEN,    -- flag
-        Pitoire+14,BEASTMEN,    -- flag
+        Pitoire+6,dsp.nation.BEASTMEN,    -- flag
+        Pitoire+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Pitoire+10,OTHER,        -- Jiwon
+        Pitoire+10,dsp.nation.OTHER,        -- Jiwon
     }
   end,
 
   ---------------------------------
-  [LITELOR] = function (x) -- The_Sanctuary_of_ZiTah (121)
+  [dsp.region.LITELOR] = function (x) -- The_Sanctuary_of_ZiTah (121)
   ---------------------------------
     --print("LITELOR");
 
@@ -1004,30 +979,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Credaurion,NATION_SANDORIA,        -- Credaurion, R.K.
-        Credaurion+7,NATION_SANDORIA,        -- Limion, R.K.
-        Credaurion+3,NATION_SANDORIA,        -- flag
-        Credaurion+11,NATION_SANDORIA,        -- flag
+        Credaurion,dsp.nation.SANDORIA,        -- Credaurion, R.K.
+        Credaurion+7,dsp.nation.SANDORIA,        -- Limion, R.K.
+        Credaurion+3,dsp.nation.SANDORIA,        -- flag
+        Credaurion+11,dsp.nation.SANDORIA,        -- flag
     --
-        Credaurion+1,NATION_BASTOK,        -- Calliope, I.M.
-        Credaurion+8,NATION_BASTOK,        -- Dedden, I.M.
-        Credaurion+4,NATION_BASTOK,        -- flag
-        Credaurion+12,NATION_BASTOK,        -- flag
+        Credaurion+1,dsp.nation.BASTOK,        -- Calliope, I.M.
+        Credaurion+8,dsp.nation.BASTOK,        -- Dedden, I.M.
+        Credaurion+4,dsp.nation.BASTOK,        -- flag
+        Credaurion+12,dsp.nation.BASTOK,        -- flag
     --
-        Credaurion+2,NATION_WINDURST,        -- Ajimo-Majimo, W.W.
-        Credaurion+9,NATION_WINDURST,        -- Ochocho, W.W.
-        Credaurion+5,NATION_WINDURST,        -- flag
-        Credaurion+13,NATION_WINDURST,        -- flag
+        Credaurion+2,dsp.nation.WINDURST,        -- Ajimo-Majimo, W.W.
+        Credaurion+9,dsp.nation.WINDURST,        -- Ochocho, W.W.
+        Credaurion+5,dsp.nation.WINDURST,        -- flag
+        Credaurion+13,dsp.nation.WINDURST,        -- flag
     --
-        Credaurion+6,BEASTMEN,        -- flag
-        Credaurion+14,BEASTMEN,        -- flag
+        Credaurion+6,dsp.nation.BEASTMEN,        -- flag
+        Credaurion+14,dsp.nation.BEASTMEN,        -- flag
     --
-        Credaurion+10,OTHER,        -- Kasim
+        Credaurion+10,dsp.nation.OTHER,        -- Kasim
     }
   end,
 
   ---------------------------------
-  [KUZOTZ] = function (x) -- Eastern_Altepa_Desert (114)
+  [dsp.region.KUZOTZ] = function (x) -- Eastern_Altepa_Desert (114)
   ---------------------------------
     --print("KUZOTZ");
 
@@ -1035,30 +1010,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Eaulevisat,NATION_SANDORIA,    -- Eaulevisat, R.K.
-        Eaulevisat+7,NATION_SANDORIA,    -- Laimeve, R.K.
-        Eaulevisat+3,NATION_SANDORIA,    -- flag
-        Eaulevisat+11,NATION_SANDORIA,    -- flag
+        Eaulevisat,dsp.nation.SANDORIA,    -- Eaulevisat, R.K.
+        Eaulevisat+7,dsp.nation.SANDORIA,    -- Laimeve, R.K.
+        Eaulevisat+3,dsp.nation.SANDORIA,    -- flag
+        Eaulevisat+11,dsp.nation.SANDORIA,    -- flag
     --
-        Eaulevisat+1,NATION_BASTOK,    -- Lindgard, I.M.
-        Eaulevisat+8,NATION_BASTOK,    -- Daborn, I.M.
-        Eaulevisat+4,NATION_BASTOK,    -- flag
-        Eaulevisat+12,NATION_BASTOK,    -- flag
+        Eaulevisat+1,dsp.nation.BASTOK,    -- Lindgard, I.M.
+        Eaulevisat+8,dsp.nation.BASTOK,    -- Daborn, I.M.
+        Eaulevisat+4,dsp.nation.BASTOK,    -- flag
+        Eaulevisat+12,dsp.nation.BASTOK,    -- flag
     --
-        Eaulevisat+2,NATION_WINDURST,    -- Variko-Njariko, W.W.
-        Eaulevisat+9,NATION_WINDURST,    -- Sahgygy, W.W.
-        Eaulevisat+5,NATION_WINDURST,    -- flag
-        Eaulevisat+13,NATION_WINDURST,    -- flag
+        Eaulevisat+2,dsp.nation.WINDURST,    -- Variko-Njariko, W.W.
+        Eaulevisat+9,dsp.nation.WINDURST,    -- Sahgygy, W.W.
+        Eaulevisat+5,dsp.nation.WINDURST,    -- flag
+        Eaulevisat+13,dsp.nation.WINDURST,    -- flag
     --
-        Eaulevisat+6,BEASTMEN,    -- flag
-        Eaulevisat+14,BEASTMEN,    -- flag
+        Eaulevisat+6,dsp.nation.BEASTMEN,    -- flag
+        Eaulevisat+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Eaulevisat+10,OTHER,    -- Sowande
+        Eaulevisat+10,dsp.nation.OTHER,    -- Sowande
     }
   end,
 
   ---------------------------------
-  [VOLLBOW] = function (x) -- Cape_Teriggan (113)
+  [dsp.region.VOLLBOW] = function (x) -- Cape_Teriggan (113)
   ---------------------------------
     --print("VOLLBOW");
 
@@ -1066,30 +1041,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Salimardi,NATION_SANDORIA,    -- Salimardi, R.K.
-        Salimardi+7,NATION_SANDORIA,    -- Paise, R.K.
-        Salimardi+3,NATION_SANDORIA,    -- flag
-        Salimardi+11,NATION_SANDORIA,    -- flag
+        Salimardi,dsp.nation.SANDORIA,    -- Salimardi, R.K.
+        Salimardi+7,dsp.nation.SANDORIA,    -- Paise, R.K.
+        Salimardi+3,dsp.nation.SANDORIA,    -- flag
+        Salimardi+11,dsp.nation.SANDORIA,    -- flag
     --
-        Salimardi+1,NATION_BASTOK,    -- Sarmistha, I.M.
-        Salimardi+8,NATION_BASTOK,    -- Dultwa, I.M.
-        Salimardi+4,NATION_BASTOK,    -- flag
-        Salimardi+12,NATION_BASTOK,    -- flag
+        Salimardi+1,dsp.nation.BASTOK,    -- Sarmistha, I.M.
+        Salimardi+8,dsp.nation.BASTOK,    -- Dultwa, I.M.
+        Salimardi+4,dsp.nation.BASTOK,    -- flag
+        Salimardi+12,dsp.nation.BASTOK,    -- flag
     --
-        Salimardi+2,NATION_WINDURST,    -- Voranbo-Natanbo, W.W.
-        Salimardi+9,NATION_WINDURST,    -- Orukeke, W.W.
-        Salimardi+5,NATION_WINDURST,    -- flag
-        Salimardi+13,NATION_WINDURST,    -- flag
+        Salimardi+2,dsp.nation.WINDURST,    -- Voranbo-Natanbo, W.W.
+        Salimardi+9,dsp.nation.WINDURST,    -- Orukeke, W.W.
+        Salimardi+5,dsp.nation.WINDURST,    -- flag
+        Salimardi+13,dsp.nation.WINDURST,    -- flag
     --
-        Salimardi+6,BEASTMEN,    -- flag
-        Salimardi+14,BEASTMEN,    -- flag
+        Salimardi+6,dsp.nation.BEASTMEN,    -- flag
+        Salimardi+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Salimardi+10,OTHER,        -- Bright Moon
+        Salimardi+10,dsp.nation.OTHER,        -- Bright Moon
     }
   end,
 
   ---------------------------------
-  [ELSHIMOLOWLANDS] = function (x) -- Yuhtunga_Jungle (123)
+  [dsp.region.ELSHIMOLOWLANDS] = function (x) -- Yuhtunga_Jungle (123)
   ---------------------------------
     --print("ELSHIMOLOWLANDS");
 
@@ -1097,30 +1072,30 @@ switch (region): caseof {
 
     npc  = {
     --
-        Zorchorevi,NATION_SANDORIA,    -- Zorchorevi, R.K.
-        Zorchorevi+7,NATION_SANDORIA,    -- Mupia, R.K.
-        Zorchorevi+3,NATION_SANDORIA,    -- flag
-        Zorchorevi+11,NATION_SANDORIA,    -- flag
+        Zorchorevi,dsp.nation.SANDORIA,    -- Zorchorevi, R.K.
+        Zorchorevi+7,dsp.nation.SANDORIA,    -- Mupia, R.K.
+        Zorchorevi+3,dsp.nation.SANDORIA,    -- flag
+        Zorchorevi+11,dsp.nation.SANDORIA,    -- flag
     --
-        Zorchorevi+1,NATION_BASTOK,    -- Mahol, I.M.
-        Zorchorevi+8,NATION_BASTOK,    -- Bammiro, I.M.
-        Zorchorevi+4,NATION_BASTOK,    -- flag
-        Zorchorevi+12,NATION_BASTOK,    -- flag
+        Zorchorevi+1,dsp.nation.BASTOK,    -- Mahol, I.M.
+        Zorchorevi+8,dsp.nation.BASTOK,    -- Bammiro, I.M.
+        Zorchorevi+4,dsp.nation.BASTOK,    -- flag
+        Zorchorevi+12,dsp.nation.BASTOK,    -- flag
     --
-        Zorchorevi+2,NATION_WINDURST,    -- Uphra-Kophra, W.W.
-        Zorchorevi+9,NATION_WINDURST,    -- Richacha, W.W.
-        Zorchorevi+5,NATION_WINDURST,    -- flag
-        Zorchorevi+13,NATION_WINDURST,    -- flag
+        Zorchorevi+2,dsp.nation.WINDURST,    -- Uphra-Kophra, W.W.
+        Zorchorevi+9,dsp.nation.WINDURST,    -- Richacha, W.W.
+        Zorchorevi+5,dsp.nation.WINDURST,    -- flag
+        Zorchorevi+13,dsp.nation.WINDURST,    -- flag
     --
-        Zorchorevi+6,BEASTMEN,    -- flag
-        Zorchorevi+14,BEASTMEN,    -- flag
+        Zorchorevi+6,dsp.nation.BEASTMEN,    -- flag
+        Zorchorevi+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Zorchorevi+10,OTHER,        -- Robino-Mobino
+        Zorchorevi+10,dsp.nation.OTHER,        -- Robino-Mobino
     }
   end,
 
   ---------------------------------
-  [ELSHIMOUPLANDS] = function (x) -- Yhoator_Jungle (124)
+  [dsp.region.ELSHIMOUPLANDS] = function (x) -- Yhoator_Jungle (124)
   ---------------------------------
     --print("ELSHIMOUPLANDS");
 
@@ -1128,30 +1103,30 @@ switch (region): caseof {
 
     npc  ={
     --
-        Ilieumort,NATION_SANDORIA,        -- Ilieumort, R.K.
-        Ilieumort+7,NATION_SANDORIA,    -- Emila, R.K.
-        Ilieumort+3,NATION_SANDORIA,    -- flag
-        Ilieumort+11,NATION_SANDORIA,    -- flag
+        Ilieumort,dsp.nation.SANDORIA,        -- Ilieumort, R.K.
+        Ilieumort+7,dsp.nation.SANDORIA,    -- Emila, R.K.
+        Ilieumort+3,dsp.nation.SANDORIA,    -- flag
+        Ilieumort+11,dsp.nation.SANDORIA,    -- flag
     --
-        Ilieumort+1,NATION_BASTOK,        -- Mintoo, I.M.
-        Ilieumort+8,NATION_BASTOK,        -- Guddal, I.M.
-        Ilieumort+4,NATION_BASTOK,        -- flag
-        Ilieumort+12,NATION_BASTOK,    -- flag
+        Ilieumort+1,dsp.nation.BASTOK,        -- Mintoo, I.M.
+        Ilieumort+8,dsp.nation.BASTOK,        -- Guddal, I.M.
+        Ilieumort+4,dsp.nation.BASTOK,        -- flag
+        Ilieumort+12,dsp.nation.BASTOK,    -- flag
     --
-        Ilieumort+2,NATION_WINDURST,    -- Etaj-Pohtaj, W.W.
-        Ilieumort+9,NATION_WINDURST,    -- Ghantata, W.W.
-        Ilieumort+5,NATION_WINDURST,    -- flag
-        Ilieumort+13,NATION_WINDURST,    -- flag
+        Ilieumort+2,dsp.nation.WINDURST,    -- Etaj-Pohtaj, W.W.
+        Ilieumort+9,dsp.nation.WINDURST,    -- Ghantata, W.W.
+        Ilieumort+5,dsp.nation.WINDURST,    -- flag
+        Ilieumort+13,dsp.nation.WINDURST,    -- flag
     --
-        Ilieumort+6,BEASTMEN,    -- flag
-        Ilieumort+14,BEASTMEN,    -- flag
+        Ilieumort+6,dsp.nation.BEASTMEN,    -- flag
+        Ilieumort+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Ilieumort+10,OTHER,        -- Mugha Dovajaiho
+        Ilieumort+10,dsp.nation.OTHER,        -- Mugha Dovajaiho
     }
   end,
 
   ---------------------------------
-  [TULIA] = function (x) -- RuAun_Gardens (130)
+  [dsp.region.TULIA] = function (x) -- RuAun_Gardens (130)
   ---------------------------------
     --print("TULIA");
 
@@ -1159,18 +1134,18 @@ switch (region): caseof {
 
     npc  = {
     --
-        RuAun_Banner,NATION_SANDORIA,        -- flag
+        RuAun_Banner,dsp.nation.SANDORIA,        -- flag
     --
-        RuAun_Banner+1,NATION_BASTOK,        -- flag
+        RuAun_Banner+1,dsp.nation.BASTOK,        -- flag
     --
-        RuAun_Banner+2,NATION_WINDURST,    -- flag
+        RuAun_Banner+2,dsp.nation.WINDURST,    -- flag
     --
-        RuAun_Banner+3,BEASTMEN,    -- flag
+        RuAun_Banner+3,dsp.nation.BEASTMEN,    -- flag
     }
   end,
 
   ---------------------------------
-  [MOVALPOLOS] = function (x) -- Oldton_Movalpolos
+  [dsp.region.MOVALPOLOS] = function (x) -- Oldton_Movalpolos
   ---------------------------------
     --print("MOVALPOLOS");
 
@@ -1178,18 +1153,18 @@ switch (region): caseof {
 
     npc  = {
     --
-        Oldton_Banner_Offset,NATION_SANDORIA,        -- flag
+        Oldton_Banner_Offset,dsp.nation.SANDORIA,        -- flag
     --
-        Oldton_Banner_Offset+1,NATION_BASTOK,        -- flag
+        Oldton_Banner_Offset+1,dsp.nation.BASTOK,        -- flag
     --
-        Oldton_Banner_Offset+2,NATION_WINDURST,    -- flag
+        Oldton_Banner_Offset+2,dsp.nation.WINDURST,    -- flag
     --
-        Oldton_Banner_Offset+3,BEASTMEN,    -- flag
+        Oldton_Banner_Offset+3,dsp.nation.BEASTMEN,    -- flag
     }
   end,
 
   ---------------------------------
-  [TAVNAZIANARCH] = function (x) -- Lufaise_Meadows
+  [dsp.region.TAVNAZIANARCH] = function (x) -- Lufaise_Meadows
   ---------------------------------
     --print("TAVNAZIA");
 
@@ -1197,25 +1172,25 @@ switch (region): caseof {
 
     npc  = {
     --
-        Jemmoquel,NATION_SANDORIA,        -- Jemmoquel, R.K.
-        Jemmoquel+7,NATION_SANDORIA,    -- Chilaumme, R.K.
-        Jemmoquel+3,NATION_SANDORIA,    -- flag
-        Jemmoquel+11,NATION_SANDORIA,    -- flag
+        Jemmoquel,dsp.nation.SANDORIA,        -- Jemmoquel, R.K.
+        Jemmoquel+7,dsp.nation.SANDORIA,    -- Chilaumme, R.K.
+        Jemmoquel+3,dsp.nation.SANDORIA,    -- flag
+        Jemmoquel+11,dsp.nation.SANDORIA,    -- flag
     --
-        Jemmoquel+1,NATION_BASTOK,        -- Yoram, I.M.
-        Jemmoquel+8,NATION_BASTOK,        -- Ghost Talker, I.M.
-        Jemmoquel+4,NATION_BASTOK,        -- flag
-        Jemmoquel+12,NATION_BASTOK,    -- flag
+        Jemmoquel+1,dsp.nation.BASTOK,        -- Yoram, I.M.
+        Jemmoquel+8,dsp.nation.BASTOK,        -- Ghost Talker, I.M.
+        Jemmoquel+4,dsp.nation.BASTOK,        -- flag
+        Jemmoquel+12,dsp.nation.BASTOK,    -- flag
     --
-        Jemmoquel+2,NATION_WINDURST,    -- Teldo-Moroldo, W.W.
-        Jemmoquel+9,NATION_WINDURST,    -- Cotete, W.W.
-        Jemmoquel+5,NATION_WINDURST,    -- flag
-        Jemmoquel+13,NATION_WINDURST,    -- flag
+        Jemmoquel+2,dsp.nation.WINDURST,    -- Teldo-Moroldo, W.W.
+        Jemmoquel+9,dsp.nation.WINDURST,    -- Cotete, W.W.
+        Jemmoquel+5,dsp.nation.WINDURST,    -- flag
+        Jemmoquel+13,dsp.nation.WINDURST,    -- flag
     --
-        Jemmoquel+6,BEASTMEN,    -- flag
-        Jemmoquel+14,BEASTMEN,    -- flag
+        Jemmoquel+6,dsp.nation.BEASTMEN,    -- flag
+        Jemmoquel+14,dsp.nation.BEASTMEN,    -- flag
     --
-        Jemmoquel+10,OTHER,        -- Jersey
+        Jemmoquel+10,dsp.nation.OTHER,        -- Jersey
     }
   end,
   }
@@ -1242,8 +1217,8 @@ function SetRegionalConquestOverseers(region)
                 npc:setStatus(2);
             end
 
-            if (npclist[i+1] == OTHER) then
-                if (nation ~= BEASTMEN) then
+            if (npclist[i+1] == dsp.nation.OTHER) then
+                if (nation ~= dsp.nation.BEASTMEN) then
                     npc:setStatus(0);
                 else
                     npc:setStatus(2);

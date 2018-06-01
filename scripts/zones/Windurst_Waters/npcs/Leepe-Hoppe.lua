@@ -149,7 +149,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,reward);
         end
 
-        if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(dsp.ki.DARK_MANA_ORB);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DARK_MANA_ORB);
         end
@@ -184,7 +184,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,reward);
         end
 
-        if (player:getNation() == NATION_WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(dsp.ki.DARK_MANA_ORB);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DARK_MANA_ORB);
         end

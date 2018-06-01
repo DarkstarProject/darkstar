@@ -25,5 +25,5 @@ function onTrigger(player,npc)
         16449,   855, 3, -- Brass Dagger
         16450,  1867, 3, -- Dagger
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

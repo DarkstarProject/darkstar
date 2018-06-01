@@ -24,5 +24,5 @@ function onTrigger(player,npc)
         4150, 2387, 3, -- Eye Drops
         4148,  290, 3, -- Antidote
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

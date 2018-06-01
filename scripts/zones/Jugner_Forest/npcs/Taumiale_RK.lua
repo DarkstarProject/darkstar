@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = NORVALLEN;
+local region      = dsp.region.NORVALLEN;
 local csid        = 0x7ffa;
 
 function onTrade(player,npc,trade)

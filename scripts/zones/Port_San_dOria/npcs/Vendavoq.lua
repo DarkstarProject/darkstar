@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(MOVALPOLOS);
+    local RegionOwner = GetRegionOwner(dsp.region.MOVALPOLOS);
 
-if (RegionOwner ~= NATION_SANDORIA) then
+if (RegionOwner ~= dsp.nation.SANDORIA) then
     player:showText(npc,VENDAVOQ_CLOSED_DIALOG);
 else
     player:showText(npc,VENDAVOQ_OPEN_DIALOG);

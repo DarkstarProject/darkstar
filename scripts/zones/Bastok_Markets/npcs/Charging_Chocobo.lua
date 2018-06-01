@@ -28,5 +28,5 @@ function onTrigger(player,npc)
         12929, 36735, 1,    -- Mythril Leggings
         13198, 20037, 1,    -- Swordbelt
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

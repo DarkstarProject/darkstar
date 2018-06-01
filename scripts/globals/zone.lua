@@ -45,7 +45,7 @@ dsp.region =
     ELSHIMOUPLANDS   = 15,
     TULIA            = 16,
     MOVALPOLOS       = 17,
-    TAVNAZIA         = 18,
+    TAVNAZIANARCH    = 18,
     SANDORIA         = 19,
     BASTOK           = 20,
     WINDURST         = 21,
@@ -75,6 +75,15 @@ dsp.region =
     EAST_ULBUKA      = 45,
     UNKNOWN          = 255,
 };
+
+dsp.nation =
+{
+    SANDORIA = 0,
+    BASTOK   = 1,
+    WINDURST = 2,
+    BEASTMEN = 3,
+    OTHER    = 4,
+}
 
 -----------------------------------
 -- SetExplorerMoogles

@@ -16,8 +16,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
-    if (RegionOwner ~= NATION_BASTOK) then
+    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOUPLANDS);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,DHENTEVRYUKOH_CLOSED_DIALOG);
     else
         player:showText(npc,DHENTEVRYUKOH_OPEN_DIALOG);

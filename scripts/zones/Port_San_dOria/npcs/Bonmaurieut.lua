@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(ELSHIMOUPLANDS);
+    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOUPLANDS);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,BONMAURIEUT_CLOSED_DIALOG);
     else
         player:showText(npc,BONMAURIEUT_OPEN_DIALOG);

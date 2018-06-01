@@ -34,7 +34,7 @@ function onTrigger(player,npc)
             17345,    43, 3,    -- Flute
             5045 , 54000, 3,    -- Scroll of Bewitching Etude
         }
-        showNationShop(player, NATION_BASTOK, stock);
+        showNationShop(player, dsp.nation.BASTOK, stock);
     end;
 end;
 

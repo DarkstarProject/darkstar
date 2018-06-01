@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
-local region     = SARUTABARUTA;
+local region     = dsp.region.SARUTABARUTA;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

@@ -1,12 +1,5 @@
-require("scripts/globals/log_ids");
-
------------------------------------
---  Nation IDs
------------------------------------
-
-NATION_SANDORIA = 0;
-NATION_BASTOK   = 1;
-NATION_WINDURST = 2;
+require("scripts/globals/log_ids")
+require("scripts/globals/zone")
 
 -----------------------------------
 --

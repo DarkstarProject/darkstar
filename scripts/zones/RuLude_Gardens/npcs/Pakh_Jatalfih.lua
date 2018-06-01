@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
 
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
@@ -46,9 +46,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(107);
         end
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(52);
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(51);
     end
 

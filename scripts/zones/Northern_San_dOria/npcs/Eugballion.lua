@@ -24,7 +24,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_SANDORIA) then
+    if (GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.SANDORIA) then
         player:showText(npc,EUGBALLION_CLOSED_DIALOG);
     else
         player:showText(npc,EUGBALLION_OPEN_DIALOG);

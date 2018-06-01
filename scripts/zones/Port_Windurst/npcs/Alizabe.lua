@@ -16,11 +16,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
+    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH);
     local cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
     if (cop >= 40) then
-        if (RegionOwner ~= NATION_WINDURST) then
+        if (RegionOwner ~= dsp.nation.WINDURST) then
             player:showText(npc,ALIZABE_CLOSED_DIALOG);
         else
             player:showText(npc,ALIZABE_OPEN_DIALOG);

@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
-local region     = FAUREGANDI;
+local region     = dsp.region.FAUREGANDI;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

@@ -25,9 +25,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
+    local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,APAIREMANT_CLOSED_DIALOG);
     else
         player:showText(npc,APAIREMANT_OPEN_DIALOG);

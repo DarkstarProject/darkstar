@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
-local region     = DERFLAND;
+local region     = dsp.region.DERFLAND;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

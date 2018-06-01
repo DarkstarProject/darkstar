@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Xarcabard/TextIDs");
 
-local region     = VALDEAUNIA;
+local region     = dsp.region.VALDEAUNIA;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

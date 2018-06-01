@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
-local region     = NORVALLEN;
+local region     = dsp.region.NORVALLEN;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

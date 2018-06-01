@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         0x43BC,90,3,        -- Bullet
         0x03A0,463,3}        -- Bomb Ash
 
-showNationShop(player, NATION_BASTOK, stock);
+showNationShop(player, dsp.nation.BASTOK, stock);
 end;
 
 function onEventUpdate(player,csid,option)

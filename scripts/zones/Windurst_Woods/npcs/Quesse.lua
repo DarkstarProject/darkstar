@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         0x45CA,   695,3,     --Carrion Broth
         0x13D1, 50784,3      --Scroll of Chocobo Mazurka
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    showNationShop(player, dsp.nation.WINDURST, stock);
 
 end;
 
