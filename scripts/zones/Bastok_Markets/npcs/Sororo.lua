@@ -30,5 +30,5 @@ function onTrigger(player,npc)
         0x1230,  1584, 3, -- Shell
         0x1271, 29700, 3, -- Repose
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

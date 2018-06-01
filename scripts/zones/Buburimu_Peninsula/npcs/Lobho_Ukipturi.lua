@@ -9,7 +9,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
 
-local region     = KOLSHUSHU;
+local region     = dsp.region.KOLSHUSHU;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

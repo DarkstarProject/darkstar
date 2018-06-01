@@ -27,11 +27,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
+    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH);
     local cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
     if (cop >= 40) then
-        if (RegionOwner ~= NATION_SANDORIA) then
+        if (RegionOwner ~= dsp.nation.SANDORIA) then
             player:showText(npc,DEGUERENDARS_CLOSED_DIALOG);
         else
             player:showText(npc,DEGUERENDARS_OPEN_DIALOG);

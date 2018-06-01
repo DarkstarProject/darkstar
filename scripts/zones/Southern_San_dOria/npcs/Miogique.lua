@@ -47,7 +47,7 @@ function onTrigger(player,npc)
              0x3198,331,3,        -- Leather Gloves
              0x3118,618,3}        -- Leather Vest
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    showNationShop(player, dsp.nation.SANDORIA, stock);
 
 end;
 

@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
-local region     = ARAGONEU;
+local region     = dsp.region.ARAGONEU;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

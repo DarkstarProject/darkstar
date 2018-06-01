@@ -10,7 +10,7 @@ require("scripts/globals/status");
 require("scripts/globals/conquest");
 require("scripts/zones/Upper_Jeuno/TextIDs");
 
-local guardnation = OTHER; -- SANDORIA, BASTOK, WINDURST, OTHER(Jeuno).
+local guardnation = dsp.nation.OTHER; -- SANDORIA, BASTOK, WINDURST, dsp.nation.OTHER(Jeuno).
 local guardtype   = 1;     -- 1: city, 2: foreign, 3: outpost, 4: border
 
 function onTrade(player,npc,trade)

@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(RONFAURE);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.RONFAURE);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,JOURILLE_CLOSED_DIALOG);
     else
         player:showText(npc,JOURILLE_OPEN_DIALOG);

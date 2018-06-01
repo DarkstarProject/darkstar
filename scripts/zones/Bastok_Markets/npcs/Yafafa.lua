@@ -16,9 +16,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KOLSHUSHU);
+    local RegionOwner = GetRegionOwner(dsp.region.KOLSHUSHU);
 
-    if (RegionOwner ~= NATION_BASTOK) then
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,YAFAFA_CLOSED_DIALOG);
     else
         player:showText(npc,YAFAFA_OPEN_DIALOG);

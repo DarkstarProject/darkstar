@@ -16,9 +16,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(SARUTABARUTA);
+    local RegionOwner = GetRegionOwner(dsp.region.SARUTABARUTA);
 
-    if (RegionOwner ~= NATION_BASTOK) then
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,SOMNPAEMN_CLOSED_DIALOG);
     else
         player:showText(npc,SOMNPAEMN_OPEN_DIALOG);

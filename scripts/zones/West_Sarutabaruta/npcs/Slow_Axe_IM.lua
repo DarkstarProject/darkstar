@@ -9,9 +9,9 @@ package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/West_Sarutabaruta/TextIDs");
 
-local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;      -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = SARUTABARUTA;
+local region      = dsp.region.SARUTABARUTA;
 local csid        = 0x7ff8;
 
 function onTrade(player,npc,trade)

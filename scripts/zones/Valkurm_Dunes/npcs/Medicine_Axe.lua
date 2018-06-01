@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
-local region     = ZULKHEIM;
+local region     = dsp.region.ZULKHEIM;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

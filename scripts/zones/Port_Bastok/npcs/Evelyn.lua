@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= NATION_BASTOK) then
+    local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,EVELYN_CLOSED_DIALOG);
     else
         player:showText(npc,EVELYN_OPEN_DIALOG);

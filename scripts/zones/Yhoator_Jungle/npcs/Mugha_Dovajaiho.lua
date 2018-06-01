@@ -9,7 +9,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Yhoator_Jungle/TextIDs");
 
-local region     = ELSHIMOUPLANDS;
+local region     = dsp.region.ELSHIMOUPLANDS;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
-local region     = VOLLBOW;
+local region     = dsp.region.VOLLBOW;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

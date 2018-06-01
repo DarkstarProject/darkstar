@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,NYALABICCIO_CLOSED_DIALOG);
     else
         player:showText(npc,NYALABICCIO_OPEN_DIALOG);

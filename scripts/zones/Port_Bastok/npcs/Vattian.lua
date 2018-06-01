@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KUZOTZ);
-    if (RegionOwner ~= NATION_BASTOK) then
+    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,VATTIAN_CLOSED_DIALOG);
     else
         player:showText(npc,VATTIAN_OPEN_DIALOG);

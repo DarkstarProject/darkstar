@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         0x43B8,     5,3      --Crossbow Bolt
     }
 
-    rank = getNationRank(NATION_BASTOK);
+    rank = getNationRank(dsp.nation.BASTOK);
     if (rank ~= 1) then
         table.insert(stock,0x03fe); --Thief's Tools
         table.insert(stock,3643);
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         table.insert(stock,3);
     end
 
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 
 end;
 

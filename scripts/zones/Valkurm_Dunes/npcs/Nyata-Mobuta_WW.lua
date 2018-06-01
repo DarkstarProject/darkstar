@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
-local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = ZULKHEIM;
+local region      = dsp.region.ZULKHEIM;
 local csid        = 0x7ff7;
 
 function onTrade(player,npc,trade)

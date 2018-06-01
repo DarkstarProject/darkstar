@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         0x119D,    10,3,     --Distilled Water
         0x11BA,   846,3      --Roast Pipira
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    showNationShop(player, dsp.nation.WINDURST, stock);
 
 end;
 

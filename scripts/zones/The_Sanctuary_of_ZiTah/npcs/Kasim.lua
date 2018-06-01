@@ -9,7 +9,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 
-local region     = LITELOR;
+local region     = dsp.region.LITELOR;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

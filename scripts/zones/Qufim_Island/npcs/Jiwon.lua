@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
-local region     = QUFIMISLAND;
+local region     = dsp.region.QUFIMISLAND;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)

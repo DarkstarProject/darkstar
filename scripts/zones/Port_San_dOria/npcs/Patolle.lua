@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(KUZOTZ);
+    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,PATOLLE_CLOSED_DIALOG);
     else
         player:showText(npc,PATOLLE_OPEN_DIALOG);

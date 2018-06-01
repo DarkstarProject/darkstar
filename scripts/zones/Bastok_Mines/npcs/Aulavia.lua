@@ -17,9 +17,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(VOLLBOW);
+    local RegionOwner = GetRegionOwner(dsp.region.VOLLBOW);
 
-    if (RegionOwner ~= NATION_BASTOK) then
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,AULAVIA_CLOSED_DIALOG);
     else
         player:showText(npc,AULAVIA_OPEN_DIALOG);

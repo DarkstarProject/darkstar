@@ -16,7 +16,7 @@ require("scripts/zones/Port_Windurst/TextIDs");
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_WINDURST) then
+    if (player:getNation() ~= dsp.nation.WINDURST) then
         player:startEvent(71); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);

@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
-local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = ELSHIMOLOWLANDS;
+local region      = dsp.region.ELSHIMOLOWLANDS;
 local csid        = 0x7ff6;
 
 function onTrade(player,npc,trade)

@@ -27,5 +27,5 @@ function onTrigger(player,npc)
         12544, 45208, 1,    -- Breastplate
         12672, 23846, 1,    -- Gauntlets
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    showNationShop(player, dsp.nation.BASTOK, stock);
 end;

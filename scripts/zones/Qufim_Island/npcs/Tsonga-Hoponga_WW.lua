@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
-local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = QUFIMISLAND;
+local region      = dsp.region.QUFIMISLAND;
 local csid        = 0x7ff7;
 
 function onTrade(player,npc,trade)

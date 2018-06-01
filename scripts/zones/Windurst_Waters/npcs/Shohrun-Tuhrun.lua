@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x1280, 74520,3,     --Scroll of Protectra IV
         0x1304, 64400,3      --Scroll of Dispel
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    showNationShop(player, dsp.nation.WINDURST, stock);
 
 end;
 
