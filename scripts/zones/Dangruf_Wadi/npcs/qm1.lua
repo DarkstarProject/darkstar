@@ -4,33 +4,36 @@
 -- Type: spawns Chocoboleech
 -- !pos  -430 4 115 191
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
+package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+require("scripts/zones/Dangruf_Wadi/TextIDs")
+require("scripts/zones/Dangruf_Wadi/MobIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    local mob = GetMobByID(CHOCOBOLEECH)
 
-    local x = npc:getXPos();
-    local y = npc:getYPos();
-    local z = npc:getZPos();
-    local mob = GetMobByID(17559869);
+    if not mob:isSpawned() and npcUtil.tradeHas(trade, 1898) then -- fresh blood
+        local x = npc:getXPos()
+        local y = npc:getYPos()
+        local z = npc:getZPos()
 
-    -- Trade Fresh Blood
-    if (GetMobAction(17559869) == 0 and trade:hasItemQty(1898,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(17559869):updateClaim(player); -- Chocoboleech
-        mob:setPos(x+1,y,z);
-        npc:setStatus(dsp.status.DISAPPEAR);
+        player:confirmTrade()
+        SpawnMob(CHOCOBOLEECH):updateClaim(player)
+        mob:setPos(x+1, y, z)
+
+        npc:setStatus(dsp.status.DISAPPEAR)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(SMALL_HOLE);
-end;
+    player:messageSpecial(SMALL_HOLE)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
