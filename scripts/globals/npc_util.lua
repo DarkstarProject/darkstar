@@ -1,6 +1,7 @@
 --[[
     Helper functions for common NPC tasks.
     
+    npcUtil.popFromQM(player, qm, mobId, claim, hide)
     npcUtil.pickNewPosition(npc, positionTable, allowCurrentPosition)
     npcUtil.giveItem(player, items)
     npcUtil.giveKeyItem(player, keyitems)
@@ -10,10 +11,81 @@
     npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     npcUtil.fishingAnimation(npc, phaseDuration, func)
 --]]
-package.loaded["scripts/globals/settings"] = nil;
-require("scripts/globals/settings");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 
-npcUtil = {};
+npcUtil = {}
+
+--[[ *******************************************************************************
+    Pop mob(s) from question mark NPC.
+    If any mob is already spawned, return false.
+    Optionally assign claim to player. (default true)
+    Optionally hide the QM for hideDuration seconds. (default QM_RESET_TIME)
+******************************************************************************* --]]
+function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
+    local qmId = qm:getID()
+    
+    -- default params
+    if claim == nil then
+        claim = true
+    end
+    if hideDuration == nil then
+        hideDuration = QM_RESET_TIME
+    end
+
+    -- get list of mobs to pop
+    local mobs = {}
+    if type(mobId) == "number" then
+        table.insert(mobs, mobId)
+    elseif type(mobId) == "table" then
+        for _, v in pairs(mobId) do
+            if type(v) == "number" then
+                table.insert(mobs, v)
+            end
+        end
+    end
+
+    -- make sure none are spawned    
+    for k, v in pairs(mobs) do
+        local mob = GetMobByID(v)
+        if mob == nil or mob:isSpawned() then
+            return false
+        else
+            mobs[k] = mob
+        end
+    end
+    
+    -- hide qm
+    if hideDuration then
+        qm:setStatus(dsp.status.DISAPPEAR)
+    end
+    
+    -- spawn mobs and give each a listener that will show QM after they are all dead
+    for _, mob in pairs(mobs) do
+        mob:spawn()
+        if claim then
+            mob:updateClaim(player)
+        end
+
+        if hideDuration then
+            local myId = mob:getID()
+            mob:setLocalVar("qm", qmId)
+            mob:addListener("DESPAWN", "QM_"..myId, function(m)
+                m:removeListener("QM_"..myId)
+
+                for _, v in pairs(mobs) do
+                    if v:isAlive() then
+                        return false
+                    end
+                end
+
+                GetNPCByID(m:getLocalVar("qm")):updateNPCHideTime(hideDuration)
+            end)
+        end
+    end
+    
+    return true
+end
 
 -- Picks a new position for an NPC and excluding the current position.
 -- INPUT: npc = npcID, position = 2D table with coords: index, {x, y, z}
