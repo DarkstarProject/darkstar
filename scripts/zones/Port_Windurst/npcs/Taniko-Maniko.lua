@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x4300,    39,3,     --Shortbow
         0x43A7,     4,3      --Bone Arrow
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

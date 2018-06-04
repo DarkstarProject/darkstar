@@ -24,5 +24,5 @@ function onTrigger(player,npc)
         12985,  1495,  3,    -- Holly Clogs
         13469,  1150,  3,    -- Leather Ring
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

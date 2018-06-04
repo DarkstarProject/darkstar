@@ -32,7 +32,7 @@ stock =
     0x02ba,86,3,   --Ash Log
     0x0001,1800,3  --Chocobo Bedding
 }
-showNationShop(player, dsp.nation.SANDORIA, stock);
+dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)

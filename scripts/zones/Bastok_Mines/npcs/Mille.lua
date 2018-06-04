@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             618,  25,  -- Blue Peas
             621,  25   -- Crying Mustard
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         0x3258,   239,       --Galkan Braguette
         0x32D1,   165        --Galkan Sandals
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 
 end;
 

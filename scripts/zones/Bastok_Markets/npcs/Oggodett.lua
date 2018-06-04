@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             4505,   92,  -- Sunflower Seeds
             841,    36   -- Yagudo Feather
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

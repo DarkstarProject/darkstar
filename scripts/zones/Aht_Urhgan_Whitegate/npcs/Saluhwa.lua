@@ -24,7 +24,7 @@ function onTrigger(player,npc)
      0x3005,15600,        -- Oak Shield    (Available when AC is in the city)
      0x3007,64791}        -- Round Shield    (Available when AC is in the city)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

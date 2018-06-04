@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             0x110b,39, -- Faerie Apple
             0x02b3,54  -- Maple Log
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 

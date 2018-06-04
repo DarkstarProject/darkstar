@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         0x42C7,   386,3,     --Ash Pole
         0x4040,   143,3      --Bronze Dagger
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

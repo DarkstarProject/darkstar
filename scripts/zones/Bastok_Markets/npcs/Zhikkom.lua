@@ -26,5 +26,5 @@ function onTrigger(player,npc)
         16565,  1711, 3, -- Spatha
         16512,  3215, 3, -- Bilbo
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

@@ -38,7 +38,7 @@ function onTrigger(player,npc)
      0x4281,1740,        -- Chestnut Club (Not available if beastmen have the AC.)
      0x4753,238}        -- Angon
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
          0x43A3,5460,    --Riot Grenade     5460 - 5520
          0x4384,8996}    --Chakram     8996 - 10995
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         4132, 28000, -- Hi-Ether
         2563,  3035, -- Karugo Clay
     };
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

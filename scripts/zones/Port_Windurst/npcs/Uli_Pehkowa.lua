@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         0x0341,    18,3,     --Moko Grass
         0x0072,  1840,3      --My First Magic Kit
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

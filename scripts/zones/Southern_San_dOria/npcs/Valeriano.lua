@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         5059, 28520, -- Scroll of Water Carol II
         4996,123880  -- Scroll of Mage's Ballad III
     }
-    showShop(player, SANDORIA, stock);
+    dsp.shop.general(player, stock, SANDORIA);
 
 end;
 

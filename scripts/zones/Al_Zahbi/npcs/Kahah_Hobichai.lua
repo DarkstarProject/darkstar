@@ -25,7 +25,7 @@ function onTrigger(player,npc)
      0x4051,164,        -- Bronze Knife
      0x4052,2425}        -- Knife
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

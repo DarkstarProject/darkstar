@@ -24,7 +24,7 @@ function onTrigger(player,npc)
      0x4279,82,    --Pet Food Beta Biscuit
      0x45C6,98}    --Jug of Bug Broth
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -36,7 +36,7 @@ function onTrigger(player,npc)
                  0x318A,35673}    --Mufflers
 
 
-        showShop(player, STATIC, stock);
+        dsp.shop.general(player, stock);
     end
 
 end;

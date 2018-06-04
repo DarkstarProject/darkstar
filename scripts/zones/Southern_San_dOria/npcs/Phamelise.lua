@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             4366,    22, -- La Theine Cabbage
             4378,    55  -- Selbina Milk
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;

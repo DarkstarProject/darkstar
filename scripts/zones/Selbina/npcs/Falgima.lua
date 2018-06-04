@@ -23,7 +23,7 @@ function onTrigger(player,npc)
      0x128A,1204,        -- Scroll of Deodorize
      0x13F0,30360}        -- Scroll of Flurry
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -41,7 +41,7 @@ function onTrigger(player,npc)
             614,    72, -- Mhaura Garlic
             4445,   40  -- Yagudo Cherry
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 

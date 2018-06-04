@@ -35,7 +35,7 @@ function onTrigger(player,npc)
      0x13bd,8400,        -- Scroll of Dark Carol
      0x13d6,60000}        -- Scroll of Sentinel's Scherzo
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

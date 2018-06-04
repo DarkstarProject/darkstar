@@ -75,7 +75,7 @@ function onTrigger(player,npc)
         4647,20000      -- Scroll of Banishga II
     }
     player:showText(npc,HASIM_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

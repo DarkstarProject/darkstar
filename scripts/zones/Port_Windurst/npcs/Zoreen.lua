@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             4382,   29,  -- Frost Turnip
             638,   170   -- Sage
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
     end
 end;
 

@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         2370,520     --Flower Seeds
     }
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

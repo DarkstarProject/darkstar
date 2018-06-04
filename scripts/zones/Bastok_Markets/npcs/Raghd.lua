@@ -18,5 +18,5 @@ function onTrigger(player,npc)
         13465,  184, 2, -- Brass Ring
         13454,   69, 3, -- Copper Ring
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

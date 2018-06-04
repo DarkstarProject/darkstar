@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             1650,  6500,  -- Kopparnickel Ore
             5165,   736   -- Movalpolos Water
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
     end
 end;
 

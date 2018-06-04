@@ -35,7 +35,7 @@ function onTrigger(player,npc)
      0x1268,1363,        -- Scroll of Enthunder
      0x1269,6366}        -- Scroll of Enwater
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

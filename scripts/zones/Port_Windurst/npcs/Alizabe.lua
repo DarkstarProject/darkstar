@@ -32,7 +32,7 @@ function onTrigger(player,npc)
                 17005,   99,  -- Lufaise Fly
                 5195,   233   -- Misareaux Parsley
             }
-            showShop(player,WINDURST,stock);
+            dsp.shop.general(player, stock, WINDURST);
         end
     else
         player:showText(npc,ALIZABE_COP_NOT_COMPLETED);

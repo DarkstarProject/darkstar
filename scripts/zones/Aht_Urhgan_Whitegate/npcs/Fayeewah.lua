@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         0x15c2,68,        -- Cup of Chai
      0x15c4,2075}        -- Irmik Helvasi
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

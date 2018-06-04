@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             633,     14,  -- Olive Oil
             951,    110   -- Wijnruit
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

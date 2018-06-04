@@ -43,7 +43,7 @@ function onTrigger(player,npc)
         table.insert(stock,3);
     end
 
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 
 end;
 

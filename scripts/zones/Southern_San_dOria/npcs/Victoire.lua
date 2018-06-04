@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         0x32B0, 1410,    -- Gaiters
     };
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

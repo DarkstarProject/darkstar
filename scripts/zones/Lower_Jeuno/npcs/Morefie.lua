@@ -22,7 +22,7 @@ function onTrigger(player,npc)
      0x3490,1250, -- Silver Ring
      0x3410,4140} -- Mythril Earring
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

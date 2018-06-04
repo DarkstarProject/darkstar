@@ -24,5 +24,5 @@ function onTrigger(player,npc)
         796, 1713, 2,    -- Light Opal
         13454, 69, 3,    -- Copper Ring
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

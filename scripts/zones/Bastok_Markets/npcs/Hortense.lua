@@ -28,5 +28,5 @@ function onTrigger(player,npc)
         5004,  5544, 3, -- Scroll of Valor Minuet III
         5006, 53820, 3, -- Scroll of Valor Minuet V
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

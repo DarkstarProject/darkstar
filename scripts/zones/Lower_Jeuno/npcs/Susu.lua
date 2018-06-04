@@ -49,7 +49,7 @@ function onTrigger(player,npc)
         4820,63750      -- Scroll of Burst
     }
     player:showText(npc,SUSU_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

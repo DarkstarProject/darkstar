@@ -36,7 +36,7 @@ function onTrigger(player,npc)
      0x1577,63375,    --Dancer Die
      0x1578,68250}    --Scholar Die
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         2214, 68, -- Imperial Rice (available only if AC is in the Al Zahbi)
         2271, 316 -- Coffee Beans (available only if AC is in the Al Zahbi)
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
     player:showText(npc,RUBAHAH_SHOP_DIALOG);
 end;
 

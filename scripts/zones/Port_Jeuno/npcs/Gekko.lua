@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         0x00bc,31224,    -- Acolyte's Grief
         0x13dd,50400     -- Scroll of Regen IV
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

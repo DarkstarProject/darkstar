@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         0x32B9, 1495,    -- Holly Clogs
     };
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

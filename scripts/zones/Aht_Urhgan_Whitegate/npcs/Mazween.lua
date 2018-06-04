@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         4856,79800  -- Aspir II
     }
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

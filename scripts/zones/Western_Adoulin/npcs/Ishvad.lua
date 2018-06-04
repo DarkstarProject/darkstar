@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x17BE, 43740,  -- Scroll of Indi-VIT
         0x17BD, 46440,  -- Scroll of Indi-DEX
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
