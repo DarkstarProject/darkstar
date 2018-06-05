@@ -2074,7 +2074,7 @@ namespace charutils
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
             return;
 
-        if (equipSlotID == SLOT_SUB && !PItem->IsShield && ((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
+        if (PItem && equipSlotID == SLOT_SUB && !PItem->IsShield() && ((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
         {
             CItemArmor* PMainItem = PChar->getEquip(SLOT_MAIN);
             if (!PMainItem || !((CItemWeapon*)PMainItem)->isTwoHanded())
