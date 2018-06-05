@@ -10116,7 +10116,7 @@ inline int32 CLuaBaseEntity::updateClaim(lua_State *L)
 }
 
 /************************************************************************
-*  Function: addStatusEffect()
+*  Function: addStatusEffect(effect, power, tick, duration)
 *  Purpose : Adds a specified Status Effect to the Entity
 *  Example : target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60)
 *  Notes   :
