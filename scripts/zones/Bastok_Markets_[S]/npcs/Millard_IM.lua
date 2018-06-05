@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local bonusEffects = 0; -- 1 = regen, 2 = refresh, 4 = meal duration, 8 = exp loss reduction, 15 = all
     local timeStamp = 0; -- getSigilTimeStamp(player);
     -- todo add in Throne Room controls
-    
+
     -- if ( medal_rank > 25 and nation controls Throne_Room_S ) then
         -- medal_rank = 32;
         -- this decides if allied ring is in the Allied Notes item list.
@@ -86,10 +86,10 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effects.SIGIL);
-            player:delStatusEffect(dsp.effects.SANCTION);
-            player:delStatusEffect(dsp.effects.SIGNET);
-            player:addStatusEffect(dsp.effects.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:delStatusEffect(dsp.effect.SIGIL);
+            player:delStatusEffect(dsp.effect.SANCTION);
+            player:delStatusEffect(dsp.effect.SIGNET);
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
             player:messageSpecial(ALLIED_SIGIL);
 
             if (cost > 0) then
