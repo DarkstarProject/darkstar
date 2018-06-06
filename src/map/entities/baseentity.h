@@ -45,7 +45,7 @@ enum STATUSTYPE
     STATUS_MOB           = 1,
   //STATUS_UPDATE        = 1,
     STATUS_DISAPPEAR     = 2,
-    STATUS_3             = 3,
+    STATUS_INVISIBLE     = 3,
     STATUS_4             = 4,
     STATUS_CUTSCENE_ONLY = 6,
     STATUS_18            = 18,
