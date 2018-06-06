@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
 
     if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         if (USE_OLD_CURE_FORMULA == true) then
-            basecure = getBaseCure(power,divisor,constant);
+            basecure = getBaseCureOld(power,divisor,constant);
         else
             basecure = getBaseCure(power,divisor,constant,basepower);
         end
