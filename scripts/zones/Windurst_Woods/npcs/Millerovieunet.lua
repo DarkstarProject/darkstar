@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         {
             954,  4032  -- Magic Pot Shard
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             0x1128,  29,     --Saruta Orange
             0x027b,  18      --Windurstian Tea Leaves
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

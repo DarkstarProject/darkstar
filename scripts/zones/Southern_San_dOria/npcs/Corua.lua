@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         639,  110, -- Chestnut
         610,   55  -- San d'Orian Flour
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;

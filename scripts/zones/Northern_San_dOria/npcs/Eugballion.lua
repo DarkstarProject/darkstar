@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 
         local stock = {954, 4121} -- Magic Pot Shard
 
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;

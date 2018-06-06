@@ -30,7 +30,7 @@ function onTrigger(player,npc)
      0x492D,500,        -- Automaton Oil +2
      0x4AF1,1000}        -- Automaton Oil +3
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         5775, 544,    -- Chocolate Crepe
         5147, 3000,   -- Snoll Gelato
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
          0x32a0,117,  --Bronze Leggings
          0x32a1,1140} --Brass Leggings
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -38,7 +38,7 @@ function onTrigger(player,npc)
             4378,    55   -- Selbina Milk
         }
 
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

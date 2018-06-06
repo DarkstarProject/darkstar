@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x1296, 22356,3,     --Scroll of Blizzard II
         0x12A5, 28520,3      --Scroll of Thunder II
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 end;
 
 function onEventUpdate(player,csid,option)

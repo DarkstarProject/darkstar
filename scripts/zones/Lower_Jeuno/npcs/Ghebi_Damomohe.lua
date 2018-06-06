@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         {0x1135,144,  -- Rice Ball
                  0x1169,2700, -- Eel Kabob
                  0x1173,3}       -- Garlic Cracker
-        showShop(player, NORG, stock);
+        dsp.shop.general(player, stock, NORG);
     elseif (csid == 106 and option == 2) then
         player:addQuest(JEUNO,TENSHODO_MEMBERSHIP);
     elseif (csid == 107) then

@@ -43,7 +43,7 @@ function onTrigger(player,npc)
                 17005,  99,  -- Lufaise Fly
                 5195,  233   -- Misareaux Parsley
             }
-            showShop(player,SANDORIA,stock);
+            dsp.shop.general(player, stock, SANDORIA);
         end
     else
         player:showText(npc,DEGUERENDARS_COP_NOT_COMPLETED);

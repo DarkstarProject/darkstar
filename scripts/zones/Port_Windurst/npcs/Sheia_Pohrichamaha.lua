@@ -28,7 +28,7 @@ function onTrigger(player,npc)
             4363,   39,  -- Faerie Apple
             691,    54   -- Maple Log
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

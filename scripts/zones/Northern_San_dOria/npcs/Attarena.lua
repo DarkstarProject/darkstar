@@ -36,7 +36,7 @@ RegionOwner = GetRegionOwner(dsp.region.LITELOR);
                 local stock = {0x026f,119,            -- Bay Leaves
                                  0x103a,6440}           -- Holy Water
 
-                showShop(player,SANDORIA,stock);
+                dsp.shop.general(player, stock, SANDORIA);
         end
 end;
 

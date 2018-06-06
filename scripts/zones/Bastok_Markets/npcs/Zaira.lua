@@ -31,5 +31,5 @@ function onTrigger(player,npc)
         0x12EB,  4644, 3, -- Scroll of Burn
         0x12F0,  6366, 3, -- Scroll of Drown
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

@@ -43,7 +43,7 @@ function onTrigger(player,npc)
             632,   110, -- Kukuru Bean
             1411, 1656  -- Phalaenopsis
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 

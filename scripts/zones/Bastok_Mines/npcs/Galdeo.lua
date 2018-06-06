@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             623,    119, -- Bay Leaves
             4154,  6440  -- Holy Water
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

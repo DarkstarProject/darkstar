@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             0x0672,  6500,   --Kopparnickel Ore
             0x142D,   736    --Movalpolos Water
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

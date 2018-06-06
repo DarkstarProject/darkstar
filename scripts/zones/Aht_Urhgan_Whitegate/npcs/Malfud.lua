@@ -25,7 +25,7 @@ function onTrigger(player,npc)
      0x1126,40,        -- Mithran Tomato
      0x08A5,12}        -- Pine Nuts
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

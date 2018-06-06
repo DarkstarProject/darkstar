@@ -22,7 +22,7 @@ function onTrigger(player,npc)
      0x17ac,29925,        -- Animus Minuo Schema
      0x17ad,36300}        -- Adloquim Schema
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

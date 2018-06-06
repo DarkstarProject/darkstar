@@ -24,7 +24,7 @@ function onTrigger(player,npc)
      0x1554,4650,        -- Kayabaligi (not available when AC is missing)
      0x1555,130}        -- Alabaligi (not available when AC is missing)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

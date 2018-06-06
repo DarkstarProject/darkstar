@@ -26,7 +26,7 @@ function onTrigger(player,npc)
      0x03B8,515,  -- Poison Flour
      0x04D7,490}  -- Goblin Doll
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

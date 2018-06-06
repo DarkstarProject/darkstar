@@ -25,7 +25,7 @@ function onTrigger(player,npc)
      0x320A,53130,        -- Breeches
      0x328A,32637}        -- Sollerets
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

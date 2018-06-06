@@ -36,7 +36,7 @@ function onTrigger(player,npc)
              0x32ce,162, --Elvaan M Ledelsens
              0x32d3,162} --Elvaan F Ledelsens
 
-    showShop(player, SANDORIA, stock);
+    dsp.shop.general(player, stock, SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)

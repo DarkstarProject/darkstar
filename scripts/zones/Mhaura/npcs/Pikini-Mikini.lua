@@ -31,7 +31,7 @@ function onTrigger(player,npc)
          0x14b3,133,   --Salsa
          0x0b33,9000}  --Mhaura Waystone
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

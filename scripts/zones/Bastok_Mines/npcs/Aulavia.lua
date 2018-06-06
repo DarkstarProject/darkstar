@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             936,     14,  -- Rock Salt
             1410,  1656   -- Sweet William
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

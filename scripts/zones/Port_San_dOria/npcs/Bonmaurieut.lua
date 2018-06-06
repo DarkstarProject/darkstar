@@ -40,7 +40,7 @@ function onTrigger(player,npc)
             4468,   73, -- Pamamas
             721,   147  -- Rattan Lumber
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 

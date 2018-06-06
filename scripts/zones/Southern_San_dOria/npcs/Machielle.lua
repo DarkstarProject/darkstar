@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             618, 25,  -- Blue Peas
             698, 88   -- Ash Log
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 

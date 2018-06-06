@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             0x111e,    29,   --Frost Turnip
             0x027e,   170    --Sage
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x12EF,  1393,3,     --Shock
         0x12F0,  6508,3      --Drown
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

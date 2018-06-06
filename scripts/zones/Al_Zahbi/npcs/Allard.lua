@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     0x3232,24500,    --Hose
     0x32B2,16000}    --Socks
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

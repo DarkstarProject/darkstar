@@ -29,7 +29,7 @@ function onTrigger(player,npc)
      0x0b36,9000}        -- Norg Waystone
 
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

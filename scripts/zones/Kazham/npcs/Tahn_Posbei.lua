@@ -32,7 +32,7 @@ function onTrigger(player,npc)
      0x3298,309,        -- Leather Highboots
      0x3324,28777}        -- Coeurl Gorget
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

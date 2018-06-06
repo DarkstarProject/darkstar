@@ -32,7 +32,7 @@ function onTrigger(player,npc)
      0x006B,180,        -- Water Jug
      0x0b34,9000}        -- Rabao Waystone
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -23,7 +23,7 @@ function onTrigger(player,npc)
     0x025D,200,    --Pickaxe
     0x03FC,300}    --Sickle
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

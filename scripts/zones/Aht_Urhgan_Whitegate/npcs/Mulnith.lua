@@ -22,7 +22,7 @@ function onTrigger(player,npc)
      0x15DE,2000,        -- Sis Kebabi (available when AC is in Al Zahbi)
      0x15E0,3000}        -- Balik Sis (available when AC is in Al Zahbi)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

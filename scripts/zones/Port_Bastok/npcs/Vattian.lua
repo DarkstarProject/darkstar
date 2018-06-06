@@ -27,7 +27,7 @@ function onTrigger(player,npc)
             0x113C,   299,   --Thundermelon
             0x118B,   184    --Watermelon
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

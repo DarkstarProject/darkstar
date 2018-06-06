@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         0x005C,   905,3,     --Tarutaru Stool
         0x006E,  4744,3      --White Jar
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 

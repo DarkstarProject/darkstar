@@ -43,7 +43,7 @@ function onTrigger(player,npc)
          0x119d,10,3,   --Distilled Water
          0x1167,180,3}  --Pebble Soup
 
-showNationShop(player, dsp.nation.SANDORIA, stock);
+dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             630,     88,  -- Ogre Pumpkin
             1411,  1656   -- Phalaenopsis
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 

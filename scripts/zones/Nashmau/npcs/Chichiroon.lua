@@ -25,7 +25,7 @@ function onTrigger(player,npc)
      0x157d,109440,    --Tactician's Die
      0x157e,116568}    --Allies' Die
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

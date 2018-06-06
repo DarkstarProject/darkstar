@@ -23,7 +23,7 @@ function onTrigger(player,npc)
      0x329A,11172,        -- Studded Boots
      0x329B,20532}        -- Cuir Highboots
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

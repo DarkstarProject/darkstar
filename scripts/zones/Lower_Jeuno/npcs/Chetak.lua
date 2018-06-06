@@ -31,7 +31,7 @@ function onTrigger(player,npc)
      0x31BA,10234, -- Wool Cuffs
      0x31C1,4443}  -- White Mitts
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

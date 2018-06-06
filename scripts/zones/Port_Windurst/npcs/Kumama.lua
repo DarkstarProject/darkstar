@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         0x32b8,   111,3,     --Ash Clogs
         0x3001,   110,3      --Lauan Shield
     }
-    showNationShop(player, dsp.nation.WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 end;
 
 function onEventUpdate(player,csid,option)

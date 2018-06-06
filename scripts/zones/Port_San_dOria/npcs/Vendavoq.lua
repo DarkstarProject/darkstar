@@ -40,7 +40,7 @@ else
              0x0672,6500, --Kopparnickel Ore
              0x142d,736}  --Movalpolos Water
 
-    showShop(player,SANDORIA,stock);
+    dsp.shop.general(player, stock, SANDORIA);
 end
 end;
 

@@ -31,7 +31,7 @@ stock =
     0x09C6,29950   -- White Puppet Turban
 }
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

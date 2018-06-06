@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     0x3208,12600,    --Chain Hose
     0x3288,7740}    --Greaves
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

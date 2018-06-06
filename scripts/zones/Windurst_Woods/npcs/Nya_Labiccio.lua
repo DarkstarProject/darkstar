@@ -28,7 +28,7 @@ function onTrigger(player,npc)
             611,    36, -- Rye Flour
             4388,   40  -- Eggplant
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

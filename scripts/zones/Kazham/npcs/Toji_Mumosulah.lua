@@ -33,7 +33,7 @@ function onTrigger(player,npc)
      0x137C,3312,        -- Scroll of Army's Paeon III
      0x1364,8726}        -- Scroll of Monomi: Ichi
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

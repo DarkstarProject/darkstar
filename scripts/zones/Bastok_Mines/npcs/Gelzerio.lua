@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         0x3230,  1899,3,     --Brais
         0x32B0,  1269,3         --Gaiters
     }
-    showNationShop(player, dsp.nation.BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 
 end;
 

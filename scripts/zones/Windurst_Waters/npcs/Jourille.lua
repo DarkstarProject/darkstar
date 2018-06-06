@@ -28,7 +28,7 @@ function onTrigger(player,npc)
             610,    55,  -- San d'Orian Flour
             4431,   69,  -- San d'Orian Grape
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
     end
 end;
 

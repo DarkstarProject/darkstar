@@ -35,7 +35,7 @@ function onTrigger(player,npc)
      0x128E,99375,        -- Scroll of Reraise III
      0x126B,28500}        -- Scroll of Reprisal
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         17320, 8      -- Iron Arrow
     }
     player:showText(npc,COUMUNA_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

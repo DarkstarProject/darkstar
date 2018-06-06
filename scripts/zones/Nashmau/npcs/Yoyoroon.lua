@@ -35,7 +35,7 @@ function onTrigger(player,npc)
      0x08DA,4940,        -- Mana Tank
      0x08DC,9925}        -- Mana Conserver
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
