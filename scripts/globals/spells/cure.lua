@@ -27,11 +27,11 @@ function onSpellCast(caster,target,spell)
         divisor = 1;
         constant = -10;
         if (power > 100) then
-                divisor = 57;
-                constant = 29.125;
+            divisor = 57;
+            constant = 29.125;
         elseif (power > 60) then
-                divisor = 2;
-                constant = 5;
+            divisor = 2;
+            constant = 5;
         end
     else
         power = getCurePower(caster);
