@@ -96,6 +96,7 @@ INSERT INTO `item_mods_pet` VALUES (11720,28,3,3);      -- Automaton: "Magic Atk
 INSERT INTO `item_mods_pet` VALUES (11739,27,2,1);      -- Caller's Sash Avatar: Enmity +2
 INSERT INTO `item_mods_pet` VALUES (11739,28,2,1);      -- Avatar: Magic Atk. Bonus +2
 INSERT INTO `item_mods_pet` VALUES (12520,27,-3,1);     -- Evoker's Horn Avatar: Enmity -3
+INSERT INTO `item_mods_pet` VALUES (12649,370,1,2);     -- Drachen Mail Adds "Regen" effect to wyvern
 INSERT INTO `item_mods_pet` VALUES (12650,27,-2,1);     -- Evoker's Doublet Avatar: Enmity -2
 INSERT INTO `item_mods_pet` VALUES (13974,25,5,2);      -- Drachen Fng. Gnt. Enhances wyvern's accuracy+5 (?)
 INSERT INTO `item_mods_pet` VALUES (13975,27,-2,1);     -- Evoker's Bracers Avatar: Enmity -2
@@ -180,7 +181,7 @@ INSERT INTO `item_mods_pet` VALUES (18792,2,40,3);      -- Buzbaz Sainti +1 Auto
 INSERT INTO `item_mods_pet` VALUES (18792,23,10,3);     -- Automaton: Attack+10
 INSERT INTO `item_mods_pet` VALUES (18792,24,10,3);     -- Automaton: Ranged Attack+10
 INSERT INTO `item_mods_pet` VALUES (18999,23,40,0);     -- Aymur Pet: Attack +40
-INSERT INTO `item_mods_pet` VALUES (19005,28,20,1);     -- Nirvana Avatar: "Magic Atk. Bonus"+20 
+INSERT INTO `item_mods_pet` VALUES (19005,28,20,1);     -- Nirvana Avatar: "Magic Atk. Bonus"+20
 INSERT INTO `item_mods_pet` VALUES (19772,28,1,1);      -- Esper Stone Avatar: "Magic Atk. Bonus"+1
 INSERT INTO `item_mods_pet` VALUES (20822,27,6,0);      -- Anahera Tabar Pet: Enmity +6
 INSERT INTO `item_mods_pet` VALUES (20822,68,40,0);     -- Pet: Evasion +40
