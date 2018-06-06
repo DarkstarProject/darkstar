@@ -3,6 +3,8 @@
 --  MOB: Vanguard Militant
 -----------------------------------
 require("scripts/globals/dynamis");
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
