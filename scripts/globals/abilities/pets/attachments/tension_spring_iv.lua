@@ -1,16 +1,16 @@
 -----------------------------------
--- Attachment: Tension Spring III
+-- Attachment: Tension Spring IV
 -----------------------------------
 require("scripts/globals/status");
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.ATTP, 12)
-    pet:addMod(dsp.mod.RATTP, 12)
+    pet:addMod(dsp.mod.ATTP, 15)
+    pet:addMod(dsp.mod.RATTP, 15)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.ATTP, 12)
-    pet:delMod(dsp.mod.RATTP, 12)
+    pet:delMod(dsp.mod.ATTP, 15)
+    pet:delMod(dsp.mod.RATTP, 15)
 end
 
 function onManeuverGain(pet,maneuvers)
