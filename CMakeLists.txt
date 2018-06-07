@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.7)
+project(darkstar)
+
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
+include(cmake/compiler.cmake)
+
+if(UNIX)
+    find_package(PkgConfig REQUIRED)
+
+    pkg_search_module(MYSQLCLIENT REQUIRED mysqlclient)
+    pkg_search_module(ZMQ REQUIRED libzmq)
+    pkg_search_module(LUAJIT REQUIRED luajit)
+else()
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(lib_suffix "64")
+        set(lib_spacer "_")
+        set(lib_dir lib64)
+    elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+        set(lib_suffix "")
+        set(lib_spacer "")
+        set(lib_dir lib)
+    endif()
+
+    link_directories(${lib_dir})
+
+    if(CMAKE_CONFIGURATION_TYPES STREQUAL Debug)
+        set(lib_debug "-d")
+    else()
+        set(lib_debug "")
+    endif()
+endif()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR})
+
+add_subdirectory(src)
+
+# setup GIT_VER
+execute_process(COMMAND git rev-parse HEAD
+    OUTPUT_VARIABLE git_ver)
+
+file(WRITE GIT_VER ${git_ver})
