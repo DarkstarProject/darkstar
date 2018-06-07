@@ -15,10 +15,10 @@
       LOGGING_IS_POSSIBLE_HERE = 7395; -- Logging is possible here if you have
 
 -- Dialog Texts
-           FIVEOFSPADES_DIALOG = 7242; -- GiMmeIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!
+           FIVEOFSPADES_DIALOG = 7242; -- GiMme★fIvE! FiVe is★A cArdIan★OF WiN-DuRst! FIvE★iS On★pA-tRol!≺Prompt≻
             SONG_RUNES_DEFAULT = 7368; -- An old momument. A melancholy song of two separated lovers is written upon it.
-            SONG_RUNES_REQUIRE = 7382; -- If only you had <item>, you could jot down the lyrics.
-            SONG_RUNES_WRITING = 7383; -- You write down the lyrics on the <item>.
+            SONG_RUNES_REQUIRE = 7382; -- If only you had ≺Possible Special Code: 01≻≺Possible Special Code: 01≻≺Possible Special Code: 01≻ ≺Possible Special Code: 01≻≺Possible Special Code: 05≻$≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻, you could jot down the lyrics.≺Prompt≻
+            SONG_RUNES_WRITING = 7383; -- You write down the lyrics on the ≺Possible Special Code: 01≻≺Possible Special Code: 05≻#≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻.≺Prompt≻
       YOU_CANNOT_ENTER_DYNAMIS = 7890; -- You cannot enter Dynamis
               MYSTERIOUS_VOICE = 7891; -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
 PLAYERS_HAVE_NOT_REACHED_LEVEL = 7892; -- Players who have not reached levelare prohibited from entering Dynamis.
