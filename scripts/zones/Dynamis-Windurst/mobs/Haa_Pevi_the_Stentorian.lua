@@ -3,16 +3,11 @@
 --  NPC: Haa Pevi the Stentorian
 -- Boss Trigger for RDM NM
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/globals/status");
 
 function onMobSpawn(mob)
-    mob:setLocalVar("HpTrigger", math.random(40,65));
-end;
-
-function onMobFight(mob,target)
-    if (mob:getHPP() < mob:getLocalVar("HpTrigger") and mob:getLocalVar("astral_flow") == 0) then
-        mob:useMobAbility(1023);
-        mob:setLocalVar("astral_flow", 1);
-    end
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
 end;
 
 function onMobDeath(mob, player, isKiller)

@@ -17,9 +17,6 @@ function onMobFight(mob,target)
     end
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (alreadyReceived(player,4) == false) then
