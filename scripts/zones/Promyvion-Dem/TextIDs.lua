@@ -6,5 +6,5 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6388; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
 
-NOTHING_OUT_OF_ORDINARY = 6401; -- There is nothing out of the ordinary here.
-        NOTHING_HAPPENS = 119;  -- Nothing happens.
+NOTHING_OUT_OF_ORDINARY = 7211; -- There is nothing out of the ordinary here.
+        NOTHING_HAPPENS =  119; -- Nothing happens.

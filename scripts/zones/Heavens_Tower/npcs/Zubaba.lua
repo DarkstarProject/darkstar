@@ -1,18 +1,14 @@
 -----------------------------------
 -- Area: Heavens Tower
--- NPC:  Zubaba
+--  NPC: Zubaba
 -- Involved in Mission 3-2
 -- !pos 15 -27 18 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Heavens_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,10 +24,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -53,9 +45,9 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 3) then
             player:startEvent(150,0,16447);
         end
-    elseif (player:hasKeyItem(STAR_CRESTED_SUMMONS)) then
+    elseif (player:hasKeyItem(dsp.ki.STAR_CRESTED_SUMMONS)) then
         player:startEvent(157);
-    elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(SHADOW_FRAGMENT)) then
+    elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(194); -- her reaction after 5-1.
     else
         player:startEvent(56);
@@ -63,26 +55,14 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 121) then
-        player:addKeyItem(CHARM_OF_LIGHT);
-        player:messageSpecial(KEYITEM_OBTAINED,CHARM_OF_LIGHT);
+        player:addKeyItem(dsp.ki.CHARM_OF_LIGHT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
         player:setVar("MissionStatus",3);

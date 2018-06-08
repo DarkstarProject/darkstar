@@ -14,18 +14,11 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -38,14 +31,14 @@ function onTrigger(player,npc)
 
     if (player:getVar("aBoysDreamCS") == 8) then
         player:startEvent(88);
-    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == JOBS.PLD) then
+    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.PLD) then
         player:startEvent(90);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(89);
     elseif (currentMission == INFILTRATE_DAVOI and infiltrateDavoi == false and MissionStatus == 0) then
-        player:startEvent(553,0,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:startEvent(553,0,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     elseif (currentMission == INFILTRATE_DAVOI and MissionStatus == 4) then
-        player:startEvent(554,0,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:startEvent(554,0,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 1) then
         player:startEvent(547);
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 0) then
@@ -64,22 +57,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 553) then
         player:setVar("MissionStatus",2);
@@ -91,10 +72,10 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
         else
-            if (player:getMainJob() == JOBS.PLD) then
+            if (player:getMainJob() == dsp.job.PLD) then
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
-            player:delKeyItem(KNIGHTS_BOOTS);
+            player:delKeyItem(dsp.ki.KNIGHTS_BOOTS);
             player:addItem(14095);
             player:messageSpecial(ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
@@ -112,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,12644); -- Gallant Surcoat
             player:setVar("UnderOathCS",9);
             player:addFame(SANDORIA,AF3_FAME);
-            player:setTitle(PARAGON_OF_PALADIN_EXCELLENCE);
+            player:setTitle(dsp.title.PARAGON_OF_PALADIN_EXCELLENCE);
             player:completeQuest(SANDORIA,UNDER_OATH);
         end
     elseif (csid == 81) then

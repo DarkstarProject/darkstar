@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: NiZho Bladebender
+--  MOB: Ni'Zho Bladebender
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

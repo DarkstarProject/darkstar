@@ -3,25 +3,16 @@
 --  MOB: Tarasque
 -- !pos 124 19 163 100
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
+require("scripts/zones/Ifrits_Cauldron/MobIDs");
+require("scripts/globals/settings");
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    GetNPCByID(17617179):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(TARASQUE_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

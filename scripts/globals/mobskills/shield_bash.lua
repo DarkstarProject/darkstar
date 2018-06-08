@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Final Heaven
 --
---  Description:  Delivers an attack that can stun the target. Shield required. 
+--  Description:  Delivers an attack that can stun the target. Shield required.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,2,2,2);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded);
 
-    MobStatusEffectMove(mob, target, EFFECT_STUN, 1, 0, 7);
+    MobStatusEffectMove(mob, target, dsp.effect.STUN, 1, 0, 7);
     
     target:delHP(dmg);
     return dmg;

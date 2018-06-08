@@ -6,28 +6,23 @@
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/PsoXja/TextIDs");
-require("scripts/globals/settings");
+require("scripts/zones/PsoXja/MobIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/missions");
+require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    zone:registerRegion(1,-21.469,27.000,-24.255, -18.723,32.000,-19.877); -- 40 cap (H-8 Tower)
-    zone:registerRegion(2, 337.376,27,-19.836, 342.340,32,-16.055); -- 50 cap area (J-8 Tower)
-    zone:registerRegion(3, 95.659,42,-302.390, 99.973,48,-297.744); -- 60 cap area (H-10 Tower)
-    zone:registerRegion(4, -384.452,26,257.961, -379.945,32,262.558); -- Uncapped area 1 (F-7 Tower)
-    zone:registerRegion(5, -302.493,42,-179.995, -297.386,48,-176.078); -- Uncapped area 2 (G-9 Tower)
-    zone:registerRegion(6, 299.847,42, 257.716, 303.824,48,262.391); -- Uncapped area 3 (I-7 Tower)
+    zone:registerRegion(1,  -21.469, 27,  -24.255,  -18.723, 32,  -19.877); -- 40 cap (H-8 Tower)
+    zone:registerRegion(2,  337.376, 27,  -19.836,  342.340, 32,  -16.055); -- 50 cap area (J-8 Tower)
+    zone:registerRegion(3,   95.659, 42, -302.390,   99.973, 48, -297.744); -- 60 cap area (H-10 Tower)
+    zone:registerRegion(4, -384.452, 26,  257.961, -379.945, 32,  262.558); -- Uncapped area 1 (F-7 Tower)
+    zone:registerRegion(5, -302.493, 42, -179.995, -297.386, 48, -176.078); -- Uncapped area 2 (G-9 Tower)
+    zone:registerRegion(6,  299.847, 42,  257.716,  303.824, 48,  262.391); -- Uncapped area 3 (I-7 Tower)
 
-    UpdateTreasureSpawnPoint(16814557);
+    UpdateTreasureSpawnPoint(PSO_XJA_TREASURE_CHEST);
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -36,10 +31,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -56,10 +47,6 @@ function onZoneIn(player,prevZone)
 
     return cs;
 end;
-
------------------------------------
--- afterZoneIn
------------------------------------
 
 function afterZoneIn(player)
     player:entityVisualPacket("brmp");
@@ -84,59 +71,26 @@ function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then
         local LVLcap = player:getVar("PSOXJA_RESTRICTION_LVL");
         if (LVLcap > 0) then -- LV cap depends on entrance
-            player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,LVLcap,0,0);
+            player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,LVLcap,0,0);
         end
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
-
-    if (region:GetRegionID() == 1) then
-        player:startEvent(20);
-    elseif (region:GetRegionID() == 2) then
-        player:startEvent(21);
-    elseif (region:GetRegionID() == 3) then
-        player:startEvent(22);
-    elseif (region:GetRegionID() == 4) then
-        player:startEvent(23);
-    elseif (region:GetRegionID() == 5) then
-        player:startEvent(24);
-    elseif (region:GetRegionID() == 6) then
-        player:startEvent(25);
-    end
+    player:startEvent(19 + region:GetRegionID());
 end;
-
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
-      player:setVar("PromathiaStatus",3);
+        player:setVar("PromathiaStatus",3);
     elseif (csid == 4) then
-      player:setVar("COP_Tenzen_s_Path",9);
+        player:setVar("COP_Tenzen_s_Path",9);
     elseif (csid == 20 and option == 1) then
         player:setPos(-20,-60.250,-60,63,111);
     elseif (csid == 21 and option == 1) then

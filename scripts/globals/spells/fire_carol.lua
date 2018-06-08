@@ -12,8 +12,8 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local sLvl = caster:getSkillLevel(SKILL_SNG); -- Gets skill level of Singing
-    local iLvl = caster:getWeaponSkillLevel(SLOT_RANGED);
+    local sLvl = caster:getSkillLevel(dsp.skill.SINGING); -- Gets skill level of Singing
+    local iLvl = caster:getWeaponSkillLevel(dsp.slot.RANGED);
 
     local power = 20;
 
@@ -25,26 +25,26 @@ function onSpellCast(caster,target,spell)
         power = 40;
     end
 
-    local iBoost = caster:getMod(MOD_CAROL_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+    local iBoost = caster:getMod(dsp.mod.CAROL_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
     power = power + iBoost*5;
 
-    if (caster:hasStatusEffect(EFFECT_SOUL_VOICE)) then
+    if (caster:hasStatusEffect(dsp.effect.SOUL_VOICE)) then
         power = power * 2;
-    elseif (caster:hasStatusEffect(EFFECT_MARCATO)) then
+    elseif (caster:hasStatusEffect(dsp.effect.MARCATO)) then
         power = power * 1.5;
     end
-    caster:delStatusEffect(EFFECT_MARCATO);
+    caster:delStatusEffect(dsp.effect.MARCATO);
 
     local duration = 120;
-    duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+    duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1);
 
-    if (caster:hasStatusEffect(EFFECT_TROUBADOUR)) then
+    if (caster:hasStatusEffect(dsp.effect.TROUBADOUR)) then
         duration = duration * 2;
     end
 
-    if not (target:addBardSong(caster,EFFECT_CAROL,power,0,duration,caster:getID(), ELE_FIRE, 1)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+    if not (target:addBardSong(caster,dsp.effect.CAROL,power,0,duration,caster:getID(), dsp.magic.ele.FIRE, 1)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
-    return EFFECT_CAROL;
+    return dsp.effect.CAROL;
 end;

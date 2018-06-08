@@ -13,9 +13,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +31,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     crisisstatus = player:getQuestStatus(WINDURST,A_CRISIS_IN_THE_MAKING);
@@ -81,22 +74,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- A Crisis in the Making
     if (csid == 258 and option == 1) then  -- A Crisis in the Making + ITEM: Quest Offer - ACCEPTED
@@ -114,7 +95,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*400);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
-        player:delKeyItem(OFF_OFFERING);
+        player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,75);
         player:completeQuest(WINDURST,A_CRISIS_IN_THE_MAKING);
         player:needToZone(true);
@@ -122,7 +103,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*400);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
-        player:delKeyItem(OFF_OFFERING);
+        player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,8);
         player:needToZone(true);
 
@@ -132,8 +113,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 556) then
         player:tradeComplete();
         player:setVar("IASvar",4);
-        player:addKeyItem(RANPIMONPIS_SPECIAL_STEW);
-        player:messageSpecial(KEYITEM_OBTAINED,RANPIMONPIS_SPECIAL_STEW);
+        player:addKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RANPIMONPIS_SPECIAL_STEW);
 
     end
 end;

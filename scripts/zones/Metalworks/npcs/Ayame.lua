@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Metalworks
--- NPC:  Ayame
+--  NPC: Ayame
 -- Involved in Missions
 -- Starts and Finishes Quest: True Strength
 -- !pos 133 -19 34 237
@@ -14,9 +14,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Metalworks/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,10 +26,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local trueStrength = player:getQuestStatus(BASTOK,TRUE_STRENGTH);
@@ -40,9 +33,9 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,9) == false) then
         player:startEvent(935);
-    elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(C_L_REPORTS)) then
+    elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:hasKeyItem(dsp.ki.C_L_REPORTS)) then
         player:startEvent(712);
-    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 50) then
+    elseif (trueStrength == QUEST_AVAILABLE and player:getMainJob() == dsp.job.MNK and player:getMainLvl() >= 50) then
         player:startEvent(748); -- Start Quest "True Strength"
     else
         player:startEvent(701); -- Standard dialog
@@ -50,22 +43,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 712) then
         finishMissionTimeline(player,1,csid,option);
@@ -76,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14215); -- Temple Hose
         else
             player:tradeComplete();
-            player:addTitle(PARAGON_OF_MONK_EXCELLENCE);
+            player:addTitle(dsp.title.PARAGON_OF_MONK_EXCELLENCE);
             player:addItem(14215);
             player:messageSpecial(ITEM_OBTAINED,14215); -- Temple Hose
             player:addFame(BASTOK,AF3_FAME);

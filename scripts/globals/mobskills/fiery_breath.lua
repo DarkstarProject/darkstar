@@ -14,7 +14,7 @@ require("scripts/globals/utils");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
+    if (mob:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)) then
         return 1;
     elseif (target:isBehind(mob, 48) == true) then
         return 1;
@@ -26,7 +26,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, ELE_FIRE, 1400);
+    local dmgmod = MobBreathMove(mob, target, 0.2, 1.25, dsp.magic.ele.FIRE, 1400);
     local angle = mob:getAngle(target);
 
     angle = mob:getRotPos() - angle;

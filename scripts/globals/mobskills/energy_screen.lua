@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PHYSICAL_SHIELD;
+    local typeEffect = dsp.effect.PHYSICAL_SHIELD;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 1, 0, 60));
     return typeEffect;

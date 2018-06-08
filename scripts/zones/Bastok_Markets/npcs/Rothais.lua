@@ -1,17 +1,10 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Rothais
+--  NPC: Rothais
 -- Involved in Quest: Gourmet
 -----------------------------------
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -26,19 +19,9 @@ vanatime = VanadielHour();
     end
 
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

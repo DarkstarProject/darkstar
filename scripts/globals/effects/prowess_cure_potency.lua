@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced "Cure" potency
+-- dsp.effect.PROWESS : Enhanced "Cure" potency
 --
 -----------------------------------
 
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_CURE_POTENCY, effect:getPower());
+    target:addMod(dsp.mod.CURE_POTENCY, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_CURE_POTENCY, effect:getPower());
+    target:delMod(dsp.mod.CURE_POTENCY, effect:getPower());
 end;

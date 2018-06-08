@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Spine Lash
 --  Phaubo
---  Blinkable 1 hit, plague on hit. 
+--  Blinkable 1 hit, plague on hit.
 ---------------------------------------------
 
 require("scripts/globals/settings");
@@ -16,7 +16,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     
-    local typeEffect = EFFECT_PLAGUE;
+    local typeEffect = dsp.effect.PLAGUE;
 
     local numhits = 1;
     local accmod = 1;

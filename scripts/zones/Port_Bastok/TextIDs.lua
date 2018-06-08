@@ -1,37 +1,38 @@
 -- Variable TextID   Description text
 
 -- General Texts
-   ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item>. Come back after sorting your inventory.
-FULL_INVENTORY_AFTER_TRADE = 6385; -- You cannot obtain the item (item>. Try trading again after sorting your inventory.
-             ITEM_OBTAINED = 6387; -- Obtained: #.
-              GIL_OBTAINED = 6388; -- Obtained <<<Numeric Parameter 0>>> gil.
-          KEYITEM_OBTAINED = 6390; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
-              KEYITEM_LOST = 6391; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
-       NOT_HAVE_ENOUGH_GIL = 6392; -- You do not have enough gil.
-             HOMEPOINT_SET = 6505; -- Home point set!
-    FISHING_MESSAGE_OFFSET = 7081; -- You can't fish here.
-             MOGHOUSE_EXIT = 7944; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
+    ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item>. Come back after sorting your inventory.
+ FULL_INVENTORY_AFTER_TRADE = 6385; -- You cannot obtain the item (item>. Try trading again after sorting your inventory.
+              ITEM_OBTAINED = 6387; -- Obtained: #.
+               GIL_OBTAINED = 6388; -- Obtained <<<Numeric Parameter 0>>> gil.
+           KEYITEM_OBTAINED = 6390; -- Obtained key item: <<<Unknown Parameter (Type: 80) 1>>>.
+               KEYITEM_LOST = 6391; -- Lost key item <<<Unknown Parameter (Type: 80) 1>>>.
+        NOT_HAVE_ENOUGH_GIL = 6394; -- You do not have enough gil.
+              HOMEPOINT_SET = 6505; -- Home point set!
+          MOG_LOCKER_OFFSET = 6819; -- Your Mog Locker lease is valid until <timestamp>, kupo.
+     FISHING_MESSAGE_OFFSET = 7081; -- You can't fish here.
+              MOGHOUSE_EXIT = 7944; -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
 
 -- Conquest System
-CONQUEST = 8000; -- You've earned conquest points!
+                   CONQUEST = 8000; -- You've earned conquest points!
 
 -- Mission Dialogs
-    YOU_ACCEPT_THE_MISSION = 7340; -- You have accepted the mission.
-   ORIGINAL_MISSION_OFFSET = 7345; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed. 
-   EXTENDED_MISSION_OFFSET = 8465; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
+     YOU_ACCEPT_THE_MISSION = 7340; -- You have accepted the mission.
+    ORIGINAL_MISSION_OFFSET = 7345; -- You can consult the ission section of the main menu to review your objectives. Speed and efficiency are your priorities. Dismissed.
+    EXTENDED_MISSION_OFFSET = 8465; -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
 
 -- Dialog Texts
-POWHATAN_DIALOG_1 = 7269; -- I'm sick and tired of entertaining guests.
-   RONAN_DIALOG_1 = 7455; -- Do something! Isn't there anything you can do to make him come out of his shell?
- PAUJEAN_DIALOG_1 = 7646; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea.
-     UNLOCK_NINJA = 8427; -- You can now become a ninja.
-   TITAN_UNLOCKED = 8532; -- You are now able to summon
- NOKKHI_BAD_COUNT = 8788; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
-NOKKHI_GOOD_TRADE = 8790; -- And here you go! Come back soon, and bring your friends!
-  NOKKHI_BAD_ITEM = 8791; -- I'm real sorry, but there's nothing I can do with those.
-  CLOUD_BAD_COUNT = 9215; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and 
- CLOUD_GOOD_TRADE = 9219; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
-   CLOUD_BAD_ITEM = 9220; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
+          POWHATAN_DIALOG_1 = 7269; -- I'm sick and tired of entertaining guests.
+             RONAN_DIALOG_1 = 7455; -- Do something! Isn't there anything you can do to make him come out of his shell?
+           PAUJEAN_DIALOG_1 = 7646; -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea.
+               UNLOCK_NINJA = 8427; -- You can now become a ninja.
+             TITAN_UNLOCKED = 8532; -- You are now able to summon
+           NOKKHI_BAD_COUNT = 8788; -- What kinda smart-alecky baloney is this!? I told you to bring me the same kinda ammunition in complete sets. And don't forget the flowers, neither.
+          NOKKHI_GOOD_TRADE = 8790; -- And here you go! Come back soon, and bring your friends!
+            NOKKHI_BAD_ITEM = 8791; -- I'm real sorry, but there's nothing I can do with those.
+            CLOUD_BAD_COUNT = 9215; -- Well, don't just stand there like an idiot! I can't do any bundlin' until you fork over a set of 99 tools and
+           CLOUD_GOOD_TRADE = 9219; -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
+             CLOUD_BAD_ITEM = 9220; -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
 
 -- Shop Texts
   TENSHODO_SHOP_OPEN_DIALOG = 6726; -- Ah, one of our members. Welcome to the Tenshodo shop.
@@ -72,4 +73,7 @@ DHENTEVRYUKOH_CLOSED_DIALOG = 8364; -- I'm trrrying to start a business selling 
       BAGNOBROK_OPEN_DIALOG = 9120; -- Kbastok! Crepublic sis gstrong! Smoblins lsell sgoods oto gstrong sfriends!
 
 -- conquest Base
-CONQUEST_BASE = 6525; -- Tallying conquest results...
+              CONQUEST_BASE = 6525; -- Tallying conquest results...
+
+-- WS Quest
+       ASURAN_FISTS_LEARNED = 8807; -- You have learned the weapon skill “Asuran Fists”!

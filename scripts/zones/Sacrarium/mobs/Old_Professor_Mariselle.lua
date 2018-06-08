@@ -2,20 +2,12 @@
 -- Area: Sacrarium
 --  MOB: Old Professor Mariselle
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobFight
------------------------------------
 
 function onMobFight(mob,target)
 
@@ -37,10 +29,6 @@ function onMobFight(mob,target)
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 
     local OP_Mariselle = mob:getID();
@@ -51,7 +39,7 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 
-    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(RELIQUIARIUM_KEY)==false) then
+    if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 3 and  player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY)==false) then
         player:setVar("PromathiaStatus",4);
     end
 
@@ -61,9 +49,6 @@ function onMobDeath(mob, player, isKiller)
 
 end;
 
------------------------------------
--- OnMobDespawn
------------------------------------
 function onMobDespawn( mob )
 
     local OP_Mariselle = mob:getID();

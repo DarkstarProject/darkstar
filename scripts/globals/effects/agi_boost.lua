@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_AGI_BOOST
+-- dsp.effect.AGI_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI,effect:getPower());
+    target:addMod(dsp.mod.AGI,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostAGI_effect_size = effect:getPower();
     if (boostAGI_effect_size > 0) then
         effect:setPower(boostAGI_effect_size - 1)
-        target:delMod(MOD_AGI,1); 
+        target:delMod(dsp.mod.AGI,1);
     end
 end;
 
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostAGI_effect_size = effect:getPower();
     if (boostAGI_effect_size > 0) then
-        target:delMod(MOD_AGI,boostAGI_effect_size);
+        target:delMod(dsp.mod.AGI,boostAGI_effect_size);
     end
 end;

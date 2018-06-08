@@ -6,11 +6,11 @@ FULL_INVENTORY_AFTER_TRADE = 6385; -- You cannot obtain the #. Try trading again
              ITEM_OBTAINED = 6387; -- Obtained: <item>.
               GIL_OBTAINED = 6388; -- Obtained <number> gil.
           KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>.
-            ITEMS_OBTAINED = 6393; -- You obtain
+            ITEMS_OBTAINED = 6396; -- You obtain
     FISHING_MESSAGE_OFFSET = 7048; -- You can't fish here.
 
 -- Other dialog
-   NOTHING_OUT_OF_ORDINARY = 6401; -- There is nothing out of the ordinary here.
+   NOTHING_OUT_OF_ORDINARY = 7309; -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7150; -- Tallying conquest results...
+             CONQUEST_BASE = 7150; -- Tallying conquest results...

@@ -15,7 +15,7 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -37,7 +37,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (trialLightning == QUEST_COMPLETED) then
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:hasSpell(303) == false) then
             player:addSpell(303) -- Ramuh
-            player:messageSpecial(RAMUH_UNLOCKED,0,0,5);            
+            player:messageSpecial(RAMUH_UNLOCKED,0,0,5);
         end
         if (player:hasItem(4181) == false) then
             player:addItem(4181);
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeLightning_date", 0);
         player:addFame(WINDURST,30);
-        player:completeQuest(OTHER_AREAS,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
-    end        
+        player:completeQuest(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+    end
 
-end;    
+end;

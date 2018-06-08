@@ -9,46 +9,35 @@
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+require("scripts/zones/Inner_Horutoto_Ruins/MobIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getZPos() >= -15) then
         player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE);
     else
-        if (player:hasKeyItem(PORTAL_CHARM)) then
-            npc:openDoor(30);
+        if (player:hasKeyItem(dsp.ki.PORTAL_CHARM)) then
+        GetNPCByID(PORTAL_CIRCLE_BASE):openDoor(30);
+        GetNPCByID(PORTAL_CIRCLE_BASE+1):openDoor(30);
+        GetNPCByID(PORTAL_CIRCLE_BASE+2):openDoor(30);
+        npc:timer(500, function(npc)
+            GetNPCByID(PORTAL_CIRCLE_BASE+3):openDoor(30);
+        end);
+        npc:timer(2500, function(npc)
+            npc:openDoor(30)
+        end);
         else
             player:messageSpecial(PORTAL_SEALED_BY_3_MAGIC)
         end
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

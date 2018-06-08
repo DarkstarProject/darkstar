@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC:  Naruru
+--  NPC: Naruru
 -- Starts and Finishes Quests: Cook's Pride
 -- !pos -56 0.1 -138 245
 -----------------------------------
@@ -12,17 +12,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Lower_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
@@ -38,9 +31,9 @@ function onTrigger(player,npc)
          else
             player:startEvent(188); -- Start quest "Cook's pride" Short CS
         end
-    elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(SUPER_SOUP_POT) == false) then
+    elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == false) then
         player:startEvent(186); -- During quest "Cook's pride"
-    elseif (player:hasKeyItem(SUPER_SOUP_POT) == true) then
+    elseif (player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == true) then
         player:startEvent(187); -- Finish quest "Cook's pride"
     elseif (CooksPride == QUEST_COMPLETED and TheKindCardian == QUEST_AVAILABLE) then
         if (player:getVar("theLostCardianVar") == 0) then
@@ -57,22 +50,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 189 or csid == 188) and option == 0) then
         player:addQuest(JEUNO,COOK_S_PRIDE);
     elseif (csid == 189 and option == 1) then
@@ -81,8 +62,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
         else
-            player:addTitle(MERCY_ERRAND_RUNNER);
-            player:delKeyItem(SUPER_SOUP_POT);
+            player:addTitle(dsp.title.MERCY_ERRAND_RUNNER);
+            player:delKeyItem(dsp.ki.SUPER_SOUP_POT);
             player:setVar("CooksPrideVar",0);
             player:addGil(GIL_RATE*3000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);

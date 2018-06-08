@@ -15,6 +15,6 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local power = 600; -- Guesstimated, def not based on mobs lv+hp*tp like was previously in this script..
-    skill:setMsg(MobBuffMove(mob, EFFECT_STONESKIN, power, 0, 300));
-    return EFFECT_STONESKIN;
+    skill:setMsg(MobBuffMove(mob, dsp.effect.STONESKIN, power, 0, 300));
+    return dsp.effect.STONESKIN;
 end;

@@ -2,11 +2,7 @@
 -- Area: Sauromugue Champaign
 --  MOB: Sauromugue Skink
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

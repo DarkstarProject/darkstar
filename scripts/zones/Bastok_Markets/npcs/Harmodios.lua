@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Harmodios
+--  NPC: Harmodios
 -- Standard Merchant NPC
 -- !pos -79.928 -4.824 -135.114 235
 -----------------------------------
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
             17345,    43, 3,    -- Flute
             5045 , 54000, 3,    -- Scroll of Bewitching Etude
         }
-        showNationShop(player, NATION_BASTOK, stock);
+        dsp.shop.nation(player, stock, dsp.nation.BASTOK);
     end;
 end;
 

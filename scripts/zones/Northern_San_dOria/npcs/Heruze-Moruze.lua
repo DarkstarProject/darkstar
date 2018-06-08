@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Heruze-Moruze
+--  NPC: Heruze-Moruze
 -- Involved in Mission: 2-3 Windurst
 -- !pos -56 -3 36 231
 -----------------------------------
@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,45 +21,29 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     pNation = player:getNation();
     currentMission = player:getCurrentMission(pNation);
 
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
             player:startEvent(582);
         else
             player:startEvent(554);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(578);
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(577);
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 582) then
         player:setVar("MissionStatus",2);

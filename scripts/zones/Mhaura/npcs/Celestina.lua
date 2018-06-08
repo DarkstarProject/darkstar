@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Celestina
+--  NPC: Celestina
 -- Finish Quest: The Sand Charm
 -- Involved in Quest: Riding on the Clouds
 -- Guild Merchant NPC: Goldsmithing Guild
@@ -9,20 +9,16 @@
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(OTHER_AREAS,THE_SAND_CHARM) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13095,1) and trade:getItemCount() == 1) then
             player:startEvent(127); -- Finish quest "The Sand Charm"
         end
@@ -32,16 +28,12 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:addKeyItem(dsp.ki.SOMBER_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -53,22 +45,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 126 and option == 70) then
         player:setVar("theSandCharmVar",4);
@@ -76,10 +56,10 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("theSandCharmVar",0);
         player:setVar("SmallDialogByBlandine",1);
-        player:addKeyItem(MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:addFame(OTHER_AREAS,30);
-        player:completeQuest(OTHER_AREAS,THE_SAND_CHARM);
+        player:addKeyItem(dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:addFame(MHAURA,30);
+        player:completeQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
     end
 
 end;

@@ -16,24 +16,17 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(EFFECT_TRANQUILITY) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.TRANQUILITY) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
     end
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_TRANQUILITY,player:getMerit(MERIT_TRANQUILITY),0,60);
+    player:addStatusEffect(dsp.effect.TRANQUILITY,player:getMerit(dsp.merit.TRANQUILITY),0,60);
 
-    return EFFECT_TRANQUILITY;
+    return dsp.effect.TRANQUILITY;
 end;

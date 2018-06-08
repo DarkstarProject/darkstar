@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_VIT_BOOST
+-- dsp.effect.VIT_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_VIT,effect:getPower());
+    target:addMod(dsp.mod.VIT,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostVIT_effect_size = effect:getPower();
     if (boostVIT_effect_size > 0) then
         effect:setPower(boostVIT_effect_size - 1)
-        target:delMod(MOD_VIT,1); 
+        target:delMod(dsp.mod.VIT,1);
     end
 end;
 
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostVIT_effect_size = effect:getPower();
     if (boostVIT_effect_size > 0) then
-        target:delMod(MOD_VIT,boostVIT_effect_size);
+        target:delMod(dsp.mod.VIT,boostVIT_effect_size);
     end
 end;

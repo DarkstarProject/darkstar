@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (player:getShieldSize() == 0) then
-        return msgBasic.REQUIRES_SHIELD,0;
+        return dsp.msg.basic.REQUIRES_SHIELD,0;
     else
         return 0,0;
     end
@@ -24,7 +24,7 @@ function onUseAbility(player, target, ability)
     local damage = 0;
 
     local chance = 90;
-    damage = player:getMod(MOD_SHIELD_BASH);
+    damage = player:getMod(dsp.mod.SHIELD_BASH);
 
     if (shieldSize == 1 or shieldSize == 5) then
         damage = 25 + damage;
@@ -36,7 +36,7 @@ function onUseAbility(player, target, ability)
         damage = 90 + damage;
     end
 
-    if (player:getMainJob() ~= JOBS.PLD) then
+    if (player:getMainJob() ~= dsp.job.PLD) then
         damage = math.floor(damage / 2.5);
         chance = 60;
     else
@@ -46,11 +46,11 @@ function onUseAbility(player, target, ability)
     chance = chance + (player:getMainLvl() - target:getMainLvl())*5;
 
     if (math.random()*100 < chance) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+        target:addStatusEffect(dsp.effect.STUN,1,0,6);
     end
 
     -- randomize damage
-    local ratio = player:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+    local ratio = player:getStat(dsp.mod.ATT)/target:getStat(dsp.mod.DEF);
     if (ratio > 1.3) then
         ratio = 1.3;
     end
@@ -67,7 +67,7 @@ function onUseAbility(player, target, ability)
     target:delHP(damage);
     target:updateEnmityFromDamage(player,damage);
 
-    ability:setMsg(msgBasic.JA_DAMAGE);
+    ability:setMsg(dsp.msg.basic.JA_DAMAGE);
 
     return damage;
 end;

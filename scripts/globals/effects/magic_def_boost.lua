@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_MAGIC_DEF_BOOST
+-- dsp.effect.MAGIC_DEF_BOOST
 --
 -----------------------------------
 
@@ -14,7 +14,7 @@ function onEffectGain(target,effect)
     if (effect:getPower()>100) then
         effect:setPower(50);
     end
-    target:addMod(MOD_MDEF,effect:getPower());
+    target:addMod(dsp.mod.MDEF,effect:getPower());
 end;
 
 -----------------------------------
@@ -29,5 +29,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MDEF,effect:getPower());
+    target:delMod(dsp.mod.MDEF,effect:getPower());
 end;

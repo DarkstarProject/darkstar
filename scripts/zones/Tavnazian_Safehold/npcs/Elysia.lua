@@ -1,11 +1,12 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Elysia
+--  NPC: Elysia
 -- Starts Quest: Unforgiven
 -- @zone 26
 -- !pos -50.410 -22.204 -41.640
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -19,23 +20,15 @@ require("scripts/globals/titles");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
-
------------------------------------
--- onTrade Action
------------------------------------
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
     if (Unforgiven == 0) then
         player:startEvent(200); -- Quest Start Dialogue
 
@@ -53,24 +46,13 @@ local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
         end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 200) then
-    player:addQuest(OTHER_AREAS,UNFORGIVEN);
+    player:addQuest(OTHER_AREAS_LOG,UNFORGIVEN);
 
 elseif (csid == 202) then
     player:setVar("UnforgivenVar",1); -- SET THE VAR

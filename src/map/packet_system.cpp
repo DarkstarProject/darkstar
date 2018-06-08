@@ -61,6 +61,7 @@ This file is part of DarkStar-server source code.
 #include "item_container.h"
 #include "universal_container.h"
 #include "recast_container.h"
+#include "enmity_container.h"
 
 #include "ai/ai_container.h"
 #include "ai/states/death_state.h"
@@ -90,6 +91,7 @@ This file is part of DarkStar-server source code.
 #include "packets/char_recast.h"
 #include "packets/char_skills.h"
 #include "packets/char_spells.h"
+#include "packets/char_mounts.h"
 #include "packets/char_stats.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
@@ -447,6 +449,7 @@ void SmallPacket0x00F(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     charutils::SendQuestMissionLog(PChar);
 
     PChar->pushPacket(new CCharSpellsPacket(PChar));
+    PChar->pushPacket(new CCharMountsPacket(PChar));
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     PChar->pushPacket(new CCharSyncPacket(PChar));
     PChar->pushPacket(new CBazaarMessagePacket(PChar));
@@ -828,6 +831,43 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 142));
     }
     break;
+    case 0x1A: // mounts
+    {
+        uint8 MountID = data.ref<uint8>(0x0C);
+
+        if (PChar->animation != ANIMATION_NONE)
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 71));
+        else if (!PChar->loc.zone->CanUseMisc(MISC_MOUNT))
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 316));
+        else if (PChar->GetMLevel() < 20)
+            PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 20, 0, 773));
+        else if (charutils::hasKeyItem(PChar, 3072 + MountID))
+        {
+            if (PChar->PRecastContainer->HasRecast(RECAST_ABILITY, 256, 60))
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 94));
+
+                // add recast timer
+                //PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 202));
+                return;
+            }
+            // Retail prevents mounts if a player has enmity on any mob in the zone, need a function for this
+            for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+            {
+                CMobEntity* PMob = (CMobEntity*)it->second;
+
+                if (PMob->PEnmityContainer->HasID(PChar->id))
+                {
+                    PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 339));
+                    return;
+                }
+            }
+            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_MOUNTED, EFFECT_MOUNTED, (MountID ? ++MountID : 0), 0, 1800), true);
+            PChar->PRecastContainer->Add(RECAST_ABILITY, 256, 60);
+            PChar->pushPacket(new CCharRecastPacket(PChar));
+        }
+    }
+    break;
     default:
     {
         ShowWarning(CL_YELLOW"CLIENT PERFORMING UNHANDLED ACTION %02hX\n" CL_RESET, action);
@@ -836,7 +876,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     }
     ShowDebug(CL_CYAN"CLIENT %s PERFORMING ACTION %02hX\n" CL_RESET, PChar->GetName(), action);
-    return;
 }
 
 /************************************************************************
@@ -887,7 +926,7 @@ void SmallPacket0x028(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (charutils::UpdateItem(PChar, container, slotID, -quantity) != 0)
         {
             // TODO: Break linkshell if the main shell was disposed of.
-
+            // ShowNotice(CL_CYAN"Player %s DROPPING itemID %u \n" CL_RESET, PChar->GetName(), ItemID);
             PChar->pushPacket(new CMessageStandardPacket(nullptr, ItemID, quantity, 180));
             PChar->pushPacket(new CInventoryFinishPacket());
         }
@@ -939,6 +978,7 @@ void SmallPacket0x029(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         return;
     }
+
     if (PItem->getQuantity() - PItem->getReserve() < quantity)
     {
         ShowWarning(CL_YELLOW"SmallPacket0x29: Trying to move too much quantity from location %u slot %u\n" CL_RESET, FromLocationID, FromSlotID);
@@ -1188,16 +1228,19 @@ void SmallPacket0x034(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (PItem->getFlag() & ITEM_FLAG_EX)
                 return;
 
+            if (PItem->isSubType(ITEM_LOCKED))
+                return;
+
             // If item count is zero.. remove from container..
             if (quantity > 0)
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
+                ShowNotice(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity %d\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName(), quantity);
                 PItem->setReserve(quantity + PItem->getReserve());
                 PChar->UContainer->SetItem(tradeSlotID, PItem);
             }
             else
             {
-                ShowDebug(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
+                ShowNotice(CL_CYAN"%s->%s trade updating trade slot id %d with item %s, quantity 0\n" CL_RESET, PChar->GetName(), PTarget->GetName(), tradeSlotID, PItem->getName());
                 PItem->setReserve(0);
                 PChar->UContainer->SetItem(tradeSlotID, nullptr);
             }
@@ -1492,7 +1535,7 @@ void SmallPacket0x04B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if ((bool)Sql_GetUIntData(SqlHandle, 0))
             PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version. Please refrain from posting issues on DSP bugtracker."));
         else
-            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs at DSP bugtracker if !revision output matches latest commit hash and server admin confirms the bug occurs on stock DSP."));
+            PChar->pushPacket(new CChatMessagePacket(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Report bugs at DSP bugtracker if server admin confirms the bug occurs on stock DSP."));
     }
     return;
 }
@@ -1511,6 +1554,11 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
     PrintPacket(data);
+
+    if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
+    {
+        return;
+    }
 
     // 0x01 - Send old items..
     // 0x02 - Add items to be sent..
@@ -2146,6 +2194,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     ShowDebug(CL_CYAN"AH Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
 
+    if (jailutils::InPrison(PChar)) // If jailed, no AH menu for you.
+    {
+        return;
+    }
+
     // 0x04 - Selling Items
     // 0x05 - Open List Of Sales / Wait
     // 0x0A - Retrieve List of Items Sold By Player
@@ -2165,6 +2218,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             PItem->setCharPrice(price); // not sure setCharPrice is right
             PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity, price));
         }
@@ -2223,6 +2281,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             uint32 auctionFee = 0;
             if (quantity == 0)
             {
@@ -2698,7 +2761,7 @@ void SmallPacket0x05E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (zoneLineID == 1903324538)
         {
             uint16 prevzone = PChar->getZone();
-
+            // Note: zone zero actually exists but is unused in retail, we should stop using zero someday.
             // If zero, return to previous zone.. otherwise, determine the zone..
             if (zone != 0)
             {
@@ -3524,6 +3587,11 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint32 price = PChar->Container->getQuantity(shopSlotID); // здесь мы сохранили стоимость предмета
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
+    if (PItem == nullptr)
+    {
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy an invalid item from vendor!\n" CL_RESET, PChar->GetName());
+        return;
+    }
 
     // Prevent purchasing larger stacks than the actual stack size in database.
     if (quantity > PItem->getStackSize())
@@ -3542,7 +3610,7 @@ void SmallPacket0x083(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
-
+                ShowNotice(CL_CYAN"User '%s' purchased %u of item of ID %u [from VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->pushPacket(new CShopBuyPacket(shopSlotID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
             }
@@ -3596,14 +3664,31 @@ void SmallPacket0x085(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if ((PItem != nullptr) && ((gil != nullptr) && gil->isType(ITEM_CURRENCY)))
     {
+        if (quantity < 1 || quantity > PItem->getStackSize()) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell invalid quantity %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity);
+            return;
+        }
+
+        if (PItem->isSubType(ITEM_LOCKED)) // Possible exploit
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a LOCKED item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getID());
+            return;
+        }
+
+        if (PItem->getReserve() > 0) // Usually caused by bug during synth, trade, etc. reserving the item. We don't want such items sold in this state.
+        {
+            ShowError(CL_RED"SmallPacket0x085: Player %s trying to sell %u of a RESERVED(%u) item! ID %i [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, PItem->getReserve(), PItem->getID());
+            return;
+        }
+
         charutils::UpdateItem(PChar, LOC_INVENTORY, 0, quantity * PItem->getBasePrice());
         charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
-
+        ShowNotice(CL_CYAN"SmallPacket0x085: Player '%s' sold %u of itemID %u [to VENDOR] \n" CL_RESET, PChar->GetName(), quantity, itemID);
         PChar->pushPacket(new CMessageStandardPacket(0, itemID, quantity, 232));
         PChar->pushPacket(new CInventoryFinishPacket());
+        PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     }
-
-    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
     return;
 }
 
@@ -3653,11 +3738,11 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         slotQty[invSlotID]++;
 
-        if ((PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)) && (PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getID() == ItemID) &&
-            (slotQty[invSlotID] <= PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getQuantity()))
+        auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+
+        if (PItem && PItem->getID() == ItemID && slotQty[invSlotID] <= (PItem->getQuantity() - PItem->getReserve()))
         {
             PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
-            PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setReserve(PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->getReserve() + 1);
         }
     }
 
@@ -3680,6 +3765,11 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
     CItem* PItem = itemutils::GetItemPointer(itemID);
+    if (PItem == nullptr)
+    {
+        ShowWarning(CL_YELLOW"User '%s' attempting to buy an invalid item from guild vendor!\n" CL_RESET, PChar->GetName());
+        return;
+    }
 
     // Prevent purchasing larger stacks than the actual stack size in database.
     if (quantity > PItem->getStackSize())
@@ -3696,7 +3786,7 @@ void SmallPacket0x0AA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             if (SlotID != ERROR_SLOTID)
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
-
+                ShowNotice(CL_CYAN"SmallPacket0x0AA: Player '%s' purchased %u of itemID %u [from GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                 PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
                 PChar->pushPacket(new CGuildMenuBuyUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                 PChar->pushPacket(new CInventoryFinishPacket());
@@ -3766,7 +3856,7 @@ void SmallPacket0x0AC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
                 {
                     charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
-
+                    ShowNotice(CL_CYAN"SmallPacket0x0AC: Player '%s' sold %u of itemID %u [to GUILD] \n" CL_RESET, PChar->GetName(), quantity, itemID);
                     PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity);
                     PChar->pushPacket(new CGuildMenuSellUpdatePacket(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity));
                     PChar->pushPacket(new CInventoryFinishPacket());
@@ -3801,7 +3891,7 @@ void SmallPacket0x0AD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
-    if (data.ref<uint8>(0x06) == '!' && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
+    if (data.ref<uint8>(0x06) == '!' && !jailutils::InPrison(PChar) && CmdHandler.call(PChar, (const int8*)data[7]) == 0)
     {
         //this makes sure a command isn't sent to chat
     }
@@ -4313,16 +4403,20 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 {
     switch (data.ref<uint32>(0x04))
     {
-    case 0x0001:
+    case NFLAG_INVITE:
+        // /invite [on|off]
         PChar->nameflags.flags ^= FLAG_INVITE;
+        //PChar->menuConfigFlags.flags ^= NFLAG_INVITE;
         break;
-    case 0x0002:
+    case NFLAG_AWAY:
+        // /away | /online
         if (data.ref<uint8>(0x10) == 1)
             PChar->nameflags.flags |= FLAG_AWAY;
         if (data.ref<uint8>(0x10) == 2)
             PChar->nameflags.flags &= ~FLAG_AWAY;
         break;
-    case 0x0004:
+    case NFLAG_ANON:
+        // /anon [on|off]
         PChar->nameflags.flags ^= FLAG_ANON;
         if (PChar->nameflags.flags & FLAG_ANON)
         {
@@ -4333,25 +4427,69 @@ void SmallPacket0x0DC(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->pushPacket(new CMessageSystemPacket(0, 0, 176));
         }
         break;
-    case 0x4000:
+    case NFLAG_AUTOTARGET:
+        // /autotarget [on|off]
         if (data.ref<uint8>(0x10) == 1)
             PChar->m_hasAutoTarget = false;
         if (data.ref<uint8>(0x10) == 2)
             PChar->m_hasAutoTarget = true;
         break;
-    case 0x8000:
-        //if(data.ref<uint8>(0x10) == 1)    // autogroup on
-        //if(data.ref<uint8>(0x10) == 2)    // autogroup off
+    case NFLAG_AUTOGROUP:
+        // /autogroup [on|off]
+        if (data.ref<uint8>(0x10) == 1)
+            PChar->menuConfigFlags.flags |= NFLAG_AUTOGROUP;
+        if (data.ref<uint8>(0x10) == 2)
+            PChar->menuConfigFlags.flags &= ~NFLAG_AUTOGROUP;
         break;
-    case 0x200000:
-        //if(data.ref<uint8>(0x10) == 1)    // party request on
-        //if(data.ref<uint8>(0x10) == 2)    // party request off
+    case NFLAG_MENTOR:
+        // /mentor [on|off]
+        if (data.ref<uint8>(0x10) == 1)
+            PChar->menuConfigFlags.flags |= NFLAG_MENTOR;
+        else if (data.ref<uint8>(0x10) == 2)
+            PChar->menuConfigFlags.flags &= ~NFLAG_MENTOR;
+        break;
+    case NFLAG_NEWPLAYER:
+        // Cancel new adventurer status.
+        if (data.ref<uint8>(0x10) == 1)
+            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+        break;
+    case NFLAG_DISPLAY_HEAD:
+    {
+        // /displayhead [on|off]
+        auto flags = PChar->menuConfigFlags.byte4;
+        auto param = data.ref<uint8>(0x10);
+        if (param == 1)
+            PChar->menuConfigFlags.flags |= NFLAG_DISPLAY_HEAD;
+        else if (param == 2)
+            PChar->menuConfigFlags.flags &= ~NFLAG_DISPLAY_HEAD;
+
+        // This should only check that the display head bit has changed, since
+        // a user gaining mentorship or losing new adventurer status at the
+        // same time this code is called. Since it is unlikely that situation
+        // would occur and the negative impact would be displaying the headgear
+        // message twice, it isn't worth checking. If additional bits are found
+        // in this flag, that assumption may need to be re-evaluated.
+        if (flags != PChar->menuConfigFlags.byte4)
+        {
+            PChar->pushPacket(new CCharAppearancePacket(PChar));
+            PChar->pushPacket(new CMessageStandardPacket(param == 1 ? 0x105 : 0x104));
+        }
         break;
     }
-    charutils::SaveCharStats(PChar);
+    case NFLAG_RECRUIT:
+        // /recruit [on|off]
+        if (data.ref<uint8>(0x10) == 1)
+         PChar->menuConfigFlags.flags |= NFLAG_RECRUIT;
+        if (data.ref<uint8>(0x10) == 2)
+         PChar->menuConfigFlags.flags &= ~NFLAG_RECRUIT;
+        break;
+    }
 
-    PChar->updatemask |= UPDATE_HP;
+    charutils::SaveCharStats(PChar);
+    charutils::SaveMenuConfigFlags(PChar);
     PChar->pushPacket(new CMenuConfigPacket(PChar));
+    PChar->pushPacket(new CCharUpdatePacket(PChar));
+    PChar->pushPacket(new CCharSyncPacket(PChar));
     return;
 }
 
@@ -5006,14 +5144,21 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 ItemID = data.ref<uint16>(0x04);
 
     if (ItemID == 0)
+    {
         return;
+    }
 
-    uint8  slotID = data.ref<uint8>(0x06);
-    uint8  containerID = data.ref<uint8>(0x07);
-    uint8  col = data.ref<uint8>(0x09);
-    uint8  level = data.ref<uint8>(0x0A);
-    uint8  row = data.ref<uint8>(0x0B);
-    uint8  rotation = data.ref<uint8>(0x0C);
+    uint8 slotID = data.ref<uint8>(0x06);
+    uint8 containerID = data.ref<uint8>(0x07);
+    uint8 col = data.ref<uint8>(0x09);
+    uint8 level = data.ref<uint8>(0x0A);
+    uint8 row = data.ref<uint8>(0x0B);
+    uint8 rotation = data.ref<uint8>(0x0C);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
@@ -5042,9 +5187,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
-            "WHERE location = 1 AND slot = %u AND charid = %u";
+            "WHERE location = %u AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
+        if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
@@ -5071,8 +5216,13 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint8  slotID = data.ref<uint8>(0x06);
+    uint8 slotID = data.ref<uint8>(0x06);
     uint8 containerID = data.ref<uint8>(0x07);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
@@ -5103,9 +5253,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "
-                "WHERE location = 1 AND slot = %u AND charid = %u";
+                "WHERE location = %u AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
@@ -5461,6 +5611,17 @@ void SmallPacket0x106(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         CItem* PItem = itemutils::GetItem(PBazaarItem);
 
+        // Validate purchase quantity..
+        if (Quantity < 1)
+        {
+            // Exploit attempt..
+            ShowError(
+                CL_RED"Player %s purchasing invalid quantity %u of itemID %u from Player %s bazaar! \n" CL_RESET,
+                PChar->GetName(), Quantity, PItem->getID(), PTarget->GetName()
+            );
+            return;
+        }
+
         PItem->setCharPrice(0);
         PItem->setQuantity(Quantity);
         PItem->setSubType(ITEM_UNLOCKED);
@@ -5648,6 +5809,44 @@ void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  /sitchair                                                            *
+*                                                                       *
+************************************************************************/
+void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PrintPacket(data);
+
+    if (PChar->status != STATUS_NORMAL)
+        return;
+
+    if (PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+    
+    uint8 type = data.ref<uint8>(0x04);
+    if (type == 2)
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
+        return;
+    }
+    
+    uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
+    if (chairId < 63 || chairId > 83)
+        return;
+
+    // Validate key item ownership for 64 through 83
+    if (chairId != 63 && !charutils::hasKeyItem(PChar, chairId + 0xACA))
+    {
+        chairId = ANIMATION_SITCHAIR_0;
+    }
+
+    PChar->animation = PChar->animation == chairId ? ANIMATION_NONE : chairId;
+    PChar->updatemask |= UPDATE_HP;
+    return;
+}
+
+/************************************************************************
 *                                                                        *
 *  Request Currency2 tab                                                  *
 *                                                                        *
@@ -5771,6 +5970,7 @@ void PacketParserInitialize()
     PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }

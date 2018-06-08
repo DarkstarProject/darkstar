@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Ronan
+--  NPC: Ronan
 -- Start & Finishes Quest: Out of One's Shell
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
@@ -9,24 +9,17 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    
+
     if (player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL) == QUEST_ACCEPTED and player:getVar("OutOfOneShell") == 0) then
         if (trade:hasItemQty(17397,3) and trade:getItemCount() == 3) then
             player:startEvent(84);
         end
     end
-    
-end; 
 
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -41,31 +34,19 @@ function onTrigger(player,npc)
     elseif (OutOfOneShell == QUEST_ACCEPTED) then
         player:showText(npc,RONAN_DIALOG_1);
     elseif (OutOfOneShell == QUEST_COMPLETED) then
-        player:startEvent(89);        
+        player:startEvent(89);
     elseif (player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE) == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 2) then
         player:startEvent(82);
-    else    
+    else
         player:startEvent(37);
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 82) then
         player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
@@ -75,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:addTitle(SHELL_OUTER);
+            player:addTitle(dsp.title.SHELL_OUTER);
             player:setVar("OutOfOneShell",0);
             player:addItem(12501);
             player:messageSpecial(ITEM_OBTAINED,12501);

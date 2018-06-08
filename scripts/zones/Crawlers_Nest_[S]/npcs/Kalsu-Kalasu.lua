@@ -6,21 +6,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCampaignAllegiance() > 0) then
@@ -30,31 +22,19 @@ function onTrigger(player,npc)
             -- message for other nations missing
             player:startEvent(3);
         end
-    elseif (player:hasKeyItem(GREEN_RECOMMENDATION_LETTER) == true) then
+    elseif (player:hasKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER) == true) then
         player:startEvent(2);
-    elseif (player:hasKeyItem(GREEN_RECOMMENDATION_LETTER) == false) then
+    elseif (player:hasKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER) == false) then
         player:startEvent(1);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1 and option == 0) then
-        player:addKeyItem(GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, GREEN_RECOMMENDATION_LETTER);
+        player:addKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.GREEN_RECOMMENDATION_LETTER);
     end
 end;

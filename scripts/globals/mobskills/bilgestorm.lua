@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1839) then
+    if (mobSkin == 1840) then
         return 0;
     else
         return 1;
@@ -28,9 +28,9 @@ end;
 function onMobWeaponSkill(target, mob, skill)
     local power = math.random(20,25);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_ACCURACY_DOWN, power, 0, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_ATTACK_DOWN, power, 0, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.ACCURACY_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.ATTACK_DOWN, power, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.DEFENSE_DOWN, power, 0, 60);
 
     local numhits = 1;
     local accmod = 1;

@@ -33,7 +33,7 @@ function onSpellCast(caster,target,spell)
     local dmg = 0;
     local multi = 1.5;
 
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 0.50;
     end
 
@@ -51,7 +51,7 @@ function onSpellCast(caster,target,spell)
     params.chr_wsc = 0.0;
 
     if (target:isUndead()) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- No effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- No effect
     else
         dmg = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
         dmg = BlueFinalAdjustments(caster, target, spell, dmg, params);

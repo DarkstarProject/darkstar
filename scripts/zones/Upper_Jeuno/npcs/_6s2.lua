@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Galmut's door
+--  NPC: Galmut's door
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
 -- @zone 244
 -- !pos -80 0 104
@@ -8,23 +8,15 @@
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
@@ -34,7 +26,7 @@ function onTrigger(player,npc)
     elseif (aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 2) then
         player:startEvent(118); -- Start short cs quest with option "a clock most delicate"
     elseif (aClockMostdelicate == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(CLOCK_TOWER_OIL) == true) then
+        if (player:hasKeyItem(dsp.ki.CLOCK_TOWER_OIL) == true) then
             player:startEvent(202); -- Ending quest "a clock most delicate"
         else
             player:startEvent(117); -- During quest "a clock most delicate"
@@ -48,22 +40,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 119 and option == 1) then
         player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);
@@ -76,8 +56,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
         else
-            player:addTitle(PROFESSIONAL_LOAFER);
-            player:delKeyItem(CLOCK_TOWER_OIL);
+            player:addTitle(dsp.title.PROFESSIONAL_LOAFER);
+            player:delKeyItem(dsp.ki.CLOCK_TOWER_OIL);
             player:addGil(1200);
             player:messageSpecial(GIL_OBTAINED,1200);
             player:addItem(12727);
@@ -91,7 +71,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17083);
         else
             player:addQuest(JEUNO,THE_CLOCKMASTER);
-            player:addTitle(TIMEKEEPER);
+            player:addTitle(dsp.title.TIMEKEEPER);
             player:addGil(1200);
             player:messageSpecial(GIL_OBTAINED,1200);
             player:addItem(17083);

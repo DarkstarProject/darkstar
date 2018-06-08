@@ -5,6 +5,7 @@
 -- Lucky Number: 5
 -- Unlucky Number: 9
 -- Level: 40
+-- Phantom Roll +1 Value: 1
 --
 -- Die Roll    |No SMN  |With SMN
 -- --------    -------  -----------
@@ -30,12 +31,12 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local effectID = EFFECT_EVOKERS_ROLL
-    ability:setRange(ability:getRange() + player:getMod(MOD_ROLL_RANGE));
+    local effectID = dsp.effect.EVOKERS_ROLL
+    ability:setRange(ability:getRange() + player:getMod(dsp.mod.ROLL_RANGE));
     if (player:hasStatusEffect(effectID)) then
-        return msgBasic.ROLL_ALREADY_ACTIVE,0;
+        return dsp.msg.basic.ROLL_ALREADY_ACTIVE,0;
     elseif atMaxCorsairBusts(player) then
-        return msgBasic.CANNOT_PERFORM,0;
+        return dsp.msg.basic.CANNOT_PERFORM,0;
     else
         return 0,0;
     end
@@ -43,28 +44,32 @@ end;
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        corsairSetup(caster, ability, action, EFFECT_EVOKERS_ROLL, JOBS.SMN);
+        corsairSetup(caster, ability, action, dsp.effect.EVOKERS_ROLL, dsp.job.SMN);
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
 end;
 
 function applyRoll(caster,target,ability,action,total)
-    local duration = 300 + caster:getMerit(MERIT_WINNING_STREAK)
+    local duration = 300 + caster:getMerit(dsp.merit.WINNING_STREAK) + caster:getMod(dsp.mod.PHANTOM_DURATION)
     local effectpowers = {1, 1, 1, 1, 3, 2, 2, 2, 1, 3, 4, 1}
     local effectpower = effectpowers[total];
     if (caster:getLocalVar("corsairRollBonus") == 1 and total < 12) then
         effectpower = effectpower + 1
     end
-    if (caster:getMainJob() == JOBS.COR and caster:getMainLvl() < target:getMainLvl()) then
+-- Apply Additional Phantom Roll+ Buff
+    local phantomBase = 1; -- Base increment buff
+    local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
+-- Check if COR Main or Sub
+    if (caster:getMainJob() == dsp.job.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
-    elseif (caster:getSubJob() == JOBS.COR and caster:getSubLvl() < target:getMainLvl()) then
+    elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getSubLvl() / target:getMainLvl());
     end
-    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(MERIT_BUST_DURATION), EFFECT_EVOKERS_ROLL, effectpower, 0, duration, caster:getID(), total, MOD_REFRESH) == false) then
-        ability:setMsg(msgBasic.ROLL_MAIN_FAIL);
+    if (target:addCorsairRoll(caster:getMainJob(), caster:getMerit(dsp.merit.BUST_DURATION), dsp.effect.EVOKERS_ROLL, effectpower, 0, duration, caster:getID(), total, dsp.mod.REFRESH) == false) then
+        ability:setMsg(dsp.msg.basic.ROLL_MAIN_FAIL);
     elseif total > 11 then
-        ability:setMsg(msgBasic.DOUBLEUP_BUST);
+        ability:setMsg(dsp.msg.basic.DOUBLEUP_BUST);
     end
     return total;
 end

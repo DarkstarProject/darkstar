@@ -11,7 +11,7 @@ function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 91) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1840) then
+    if (mobSkin == 1839) then
         return 0;
     else
         return 1;
@@ -21,7 +21,7 @@ function onMobSkillCheck(target,mob,skill)
   if(mob:getFamily() == 316) then
     local mobSkin = mob:getModelId();
 
-    if (mobSkin == 1839) then
+    if (mobSkin == 1840) then
         return 0;
     else
         return 1;
@@ -32,7 +32,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4);
 
-    return EFFECT_STUN;
+    return dsp.effect.STUN;
 end;

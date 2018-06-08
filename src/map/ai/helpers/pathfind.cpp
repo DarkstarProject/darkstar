@@ -68,7 +68,7 @@ bool CPathFind::RoamAround(const position_t& point, float maxRadius, uint8 maxTu
             return false;
         }
 
-        m_points.push_back({0, point.x - 1 + rand() % 2, point.y, point.z - 1 + rand() % 2, 0});
+        m_points.push_back({point.x - 1 + rand() % 2, point.y, point.z - 1 + rand() % 2, 0, 0});
 
     }
 

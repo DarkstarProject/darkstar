@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Nelcabrit
+--  NPC: Nelcabrit
 -- Involved in Mission: San d'Oria 3-3, 4-1
 -- !pos -32 9 -49 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/RuLude_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -44,11 +36,11 @@ function onTrigger(player,npc)
         player:startEvent(136);
     elseif (currentMission == MAGICITE_SAN_D_ORIA and missionStatus == 6) then
         player:startEvent(36);
-    elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_SANDORIA)) then
+    elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA)) then
         player:startEvent(56);
-    elseif (pNation == NATION_WINDURST) then
+    elseif (pNation == dsp.nation.WINDURST) then
         player:startEvent(47);
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(46);
     else
         player:startEvent(102);
@@ -56,30 +48,18 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 42) then
         player:setVar("MissionStatus",4);
-        player:delKeyItem(LETTER_TO_THE_AMBASSADOR);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 130 and option == 1) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
     elseif (csid == 39 or csid == 36) then
         finishMissionTimeline(player,3,csid,option);
     end

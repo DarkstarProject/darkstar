@@ -10,7 +10,7 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item>. Come back 
     SENSE_OF_FOREBODING = 6402; -- You are suddenly overcome with a sense of foreboding...
 
 -- Quest : "Painful Memory"
-NOTHING_OUT_OF_ORDINARY = 6401; -- There is nothing out of the ordinary here.
+NOTHING_OUT_OF_ORDINARY = 7355; -- There is nothing out of the ordinary here.
 
 -- conquest Base
-CONQUEST_BASE = 7048; -- Tallying conquest results...
+          CONQUEST_BASE = 7048; -- Tallying conquest results...

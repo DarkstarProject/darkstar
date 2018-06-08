@@ -24,8 +24,8 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
     target:delHP(dmg);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_MAGIC_DEF_DOWN, 30, 0, 60);
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_DEFENSE_DOWN, 30, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.MAGIC_DEF_DOWN, 30, 0, 60);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.DEFENSE_DOWN, 30, 0, 60);
 
     return dmg;
 end;

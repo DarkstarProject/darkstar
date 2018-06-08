@@ -1,12 +1,11 @@
 ---------------------------------------------------
--- Lunar Roar
--- Fenrir removes two beneficial status effects from enemies within Area of Effect.
+-- Lunar Cry
+-- Fenrir gives accuracy and evasion down status effects to target.
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
+require("scripts/globals/msg");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
@@ -15,7 +14,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local moon = 50;--VanadielMoonPhase();
+    local moon = VanadielMoonPhase();
     local buffvalue = 1;
 
     if (moon > 90) then
@@ -32,8 +31,9 @@ function onMobWeaponSkill(target, mob, skill)
         buffvalue = 6;
     end
 
-    target:addStatusEffect(EFFECT_ACCURACY_DOWN,buffvalue,0,180);
-    target:addStatusEffect(EFFECT_EVASION_DOWN,32-buffvalue,0,180);
+    target:addStatusEffect(dsp.effect.ACCURACY_DOWN,buffvalue,0,180);
+    target:addStatusEffect(dsp.effect.EVASION_DOWN,32-buffvalue,0,180);
+    skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_2);
     return 0;
 
-end
+end;

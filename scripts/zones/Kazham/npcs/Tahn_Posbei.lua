@@ -1,29 +1,24 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Tahn Posbei
+--  NPC: Tahn Posbei
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
-require("scripts/zones/Kazham/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
-player:showText(npc,TAHNPOSBEI_SHOP_DIALOG);
+    player:showText(npc,TAHNPOSBEI_SHOP_DIALOG);
 
-stock = {0x3001,110,        -- Lauan Shield
+    local stock =
+    {
+        0x3001,110,        -- Lauan Shield
      0x3004,4531,        -- Mahogany Shield
      0x3007,59607,        -- Round Shield
      0x30A7,7026,        -- Beetle Mask
@@ -36,25 +31,13 @@ stock = {0x3001,110,        -- Lauan Shield
      0x3198,331,        -- Leather Gloves
      0x3298,309,        -- Leather Highboots
      0x3324,28777}        -- Coeurl Gorget
- 
-showShop(player, STATIC, stock);
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    dsp.shop.general(player, stock);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

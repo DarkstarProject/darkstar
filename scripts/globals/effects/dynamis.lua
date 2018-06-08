@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_DYNAMIS
+--     dsp.effect.DYNAMIS
 --
 -----------------------------------
 
@@ -25,18 +25,10 @@ end;
 function onEffectLose(target,effect)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

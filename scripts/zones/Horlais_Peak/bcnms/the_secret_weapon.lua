@@ -63,8 +63,8 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         if (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON) then
-            player:addKeyItem(CRYSTAL_DOWSER);
-            player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
+            player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
             player:setVar("SecretWeaponStatus",3)
         end
     end

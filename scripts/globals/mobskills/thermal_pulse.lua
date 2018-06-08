@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Thermal Pulse
 --  Family: Wamouracampa
---  Description: Deals Fire damage to enemies within area of effect. Additional effect: Blindness 
+--  Description: Deals Fire damage to enemies within area of effect. Additional effect: Blindness
 --  Type: Magical
 --  Utsusemi/Blink absorb: Ignores shadow
 --  Range: 12.5
@@ -21,12 +21,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effect.BLINDNESS;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 0, 60);
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

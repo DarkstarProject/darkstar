@@ -11,19 +11,19 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_PLAGUE;
+    local effect = dsp.effect.PLAGUE;
 
     local duration = 60;
 
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
+    local pINT = caster:getStat(dsp.mod.INT);
+    local mINT = target:getStat(dsp.mod.INT);
 
     local dINT = (pINT - mINT);
 
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     params.bonus = 0;
     params.effect = effect;
     local resist = applyResistanceEffect(caster, target, spell, params);
@@ -31,13 +31,13 @@ function onSpellCast(caster,target,spell)
         duration = duration * resist;
 
         if (target:addStatusEffect(effect,5,3,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
 
     else -- resist entirely.
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
 
     return effect;

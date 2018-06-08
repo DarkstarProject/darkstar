@@ -3,70 +3,43 @@
 -- Zone: Sea_Serpent_Grotto (176)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
+package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
-
------------------------------------
--- onInitialize
+require("scripts/zones/Sea_Serpent_Grotto/TextIDs")
+require("scripts/zones/Sea_Serpent_Grotto/MobIDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
     -- Charybdis PH alternates, remove one
-    DespawnMob(17498518);
+    local keys = {}
+    for k, v in pairs(CHARYBDIS_PH) do table.insert(keys,k) end
+    DespawnMob(keys[math.random(#keys)])
 
-    UpdateTreasureSpawnPoint(17498625);
-    UpdateTreasureSpawnPoint(17498626);
-end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
+    UpdateTreasureSpawnPoint(SSG_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(SSG_TREASURE_COFFER)
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
+    local players = zone:getPlayers()
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
     end
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(-60.566,-2.127,412,54);
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-60.566,-2.127,412,54)
     end
-    return cs;
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

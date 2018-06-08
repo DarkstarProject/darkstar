@@ -30,6 +30,7 @@
 #include "../packets/action.h"
 #include "../packets/basic.h"
 #include "../packets/char.h"
+#include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/char_recast.h"
 #include "../packets/lock_on.h"
@@ -85,9 +86,6 @@ CCharEntity::CCharEntity()
     m_GMlevel = 0;
     m_isGMHidden = false;
 
-    m_mentor = 0;
-    m_isNewPlayer = true;
-
     allegiance = ALLEGIANCE_PLAYER;
 
     TradeContainer = new CTradeContainer();
@@ -117,6 +115,7 @@ CCharEntity::CCharEntity()
     memset(&nationtp, 0, sizeof(nationtp));
     memset(&expChain, 0, sizeof(expChain));
     memset(&nameflags, 0, sizeof(nameflags));
+    memset(&menuConfigFlags, 0, sizeof(menuConfigFlags));
 
     memset(&m_SpellList, 0, sizeof(m_SpellList));
     memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
@@ -273,6 +272,11 @@ void CCharEntity::erasePackets(uint8 num)
     {
         delete popPacket();
     }
+}
+
+bool CCharEntity::isNewPlayer()
+{
+    return menuConfigFlags.flags & NFLAG_NEWPLAYER;
 }
 
 void CCharEntity::setPetZoningInfo()
@@ -478,6 +482,7 @@ void CCharEntity::PostTick()
     if (m_EffectsChanged)
     {
         pushPacket(new CCharUpdatePacket(this));
+        pushPacket(new CCharSyncPacket(this));
         pushPacket(new CCharJobExtraPacket(this, true));
         pushPacket(new CCharJobExtraPacket(this, false));
         pushPacket(new CStatusEffectPacket(this));
@@ -529,14 +534,7 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     }
     if (isDead())
     {
-        if (targetFlags & TARGET_PLAYER_DEAD)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return (targetFlags & TARGET_PLAYER_DEAD) != 0;
     }
 
     if ((targetFlags & TARGET_PLAYER) && allegiance == PInitiator->allegiance)
@@ -552,7 +550,8 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     if (((targetFlags & TARGET_PLAYER_PARTY) || ((targetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) &&
         PInitiator->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO))) &&
         ((PParty && PInitiator->PParty == PParty) ||
-        (PInitiator->PMaster && PInitiator->PMaster->PParty == PParty)))
+        (PInitiator->PMaster && PInitiator->PMaster->PParty == PParty)) &&
+        PInitiator != this)
     {
         return true;
     }
@@ -686,13 +685,13 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     if (PSpell->tookEffect())
     {
         charutils::TrySkillUP(this, (SKILLTYPE)PSpell->getSkillType(), PTarget->GetMLevel());
-        if (PSpell->getSkillType() == SKILL_SNG)
+        if (PSpell->getSkillType() == SKILL_SINGING)
         {
             CItemWeapon* PItem = static_cast<CItemWeapon*>(getEquip(SLOT_RANGED));
             if (PItem && PItem->isType(ITEM_ARMOR))
             {
                 SKILLTYPE Skilltype = (SKILLTYPE)PItem->getSkillType();
-                if (Skilltype == SKILL_STR || Skilltype == SKILL_WND || Skilltype == SKILL_SNG)
+                if (Skilltype == SKILL_STRING_INSTRUMENT || Skilltype == SKILL_WIND_INSTRUMENT || Skilltype == SKILL_SINGING)
                 {
                     charutils::TrySkillUP(this, Skilltype, PTarget->GetMLevel());
                 }
@@ -833,7 +832,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    {
+                        charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    }
                 }
             }
         }
@@ -924,7 +926,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
 
         // remove invisible if aggresive
-        if (PAbility->getID() != ABILITY_FIGHT)
+        if (PAbility->getID() != ABILITY_TAME && PAbility->getID() != ABILITY_FIGHT)
         {
             if (PAbility->getValidTarget() & TARGET_ENEMY) {
                 // aggresive action
@@ -1187,14 +1189,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                float pdif = battleutils::GetRangedPDIF(this, PTarget);
+                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
-                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
+                if (isCritical)
                 {
-                    pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
-                    pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
                 }
@@ -1215,11 +1214,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 {
                     if (state.IsRapidShot())
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RAPID_SHOT);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RAPID_SHOT, SLOT_RANGED);
                     }
                     else
                     {
-                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RANGED);
+                        damage = attackutils::CheckForDamageMultiplier(this, PItem, damage, PHYSICAL_ATTACK_TYPE::RANGED, SLOT_RANGED);
                     }
 
                     if (PItem != nullptr)
@@ -1515,7 +1514,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         if (PItem->getCurrentCharges() != 0)
         {
-            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID(), PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
         }
     }
     else // разблокируем все предметы, кроме экипирвоки

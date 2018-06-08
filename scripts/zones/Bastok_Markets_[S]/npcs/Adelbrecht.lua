@@ -16,24 +16,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Allegiance = player:getCampaignAllegiance();
@@ -42,8 +34,8 @@ function onTrigger(player,npc)
     local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
     local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
     local SteamedRams = player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS);
-    local BlueLetter = player:hasKeyItem(BLUE_RECOMMENDATION_LETTER);
-    local BattleRations = player:hasKeyItem(BATTLE_RATIONS);
+    local BlueLetter = player:hasKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
+    local BattleRations = player:hasKeyItem(dsp.ki.BATTLE_RATIONS);
 
     if (TheFightingFourth == QUEST_AVAILABLE and BlueLetter == true) then
         player:startEvent(139);
@@ -62,30 +54,18 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end
-
------------------------------------
--- onEventFinish
------------------------------------
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 139 and option == 1) then
-        player:addKeyItem(BATTLE_RATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,BATTLE_RATIONS);
+        player:addKeyItem(dsp.ki.BATTLE_RATIONS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BATTLE_RATIONS);
         player:addQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
         player:setVar("BLUE_R_LETTER_USED",1);
-        player:delKeyItem(BLUE_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
     elseif (csid == 140 and option == 1) then
-        player:delKeyItem(BATTLE_RATIONS);
+        player:delKeyItem(dsp.ki.BATTLE_RATIONS);
         player:delQuest(CRYSTAL_WAR, THE_FIGHTING_FOURTH);
     elseif (csid == 141 or csid == 142 and option == 1) then
         player:delQuest(CRYSTAL_WAR, THE_FIGHTING_FOURTH);
@@ -95,11 +75,11 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(2);
                 player:setVar("BLUE_R_LETTER_USED",0);
-                player:addTitle(FOURTH_DIVISION_SOLDIER);
-                player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
+                player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
+                player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:messageSpecial(ITEM_OBTAINED, 15754);
             else
                 player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
@@ -107,7 +87,7 @@ function onEventFinish(player,csid,option)
         else
             player:setCampaignAllegiance(2);
             player:setVar("BLUE_R_LETTER_USED",0);
-            player:addTitle(FOURTH_DIVISION_SOLDIER);
+            player:addTitle(dsp.title.FOURTH_DIVISION_SOLDIER);
             player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
         end
     end

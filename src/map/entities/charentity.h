@@ -166,7 +166,11 @@ public:
     keyitems_t				keys;							// таблица ключевых предметов
     event_t					m_event;						// структура для запуска событый
     skills_t				RealSkills;						// структура всех реальных умений персонажа, с точностью до 0.1 и не ограниченных уровнем
+
     nameflags_t				nameflags;						// флаги перед именем персонажа
+    nameflags_t             menuConfigFlags;                // These flags are used for MenuConfig packets. Some nameflags values are duplicated.
+    bool                    isNewPlayer();                  // Checks if new player bit is unset.
+
     profile_t				profile;						// профиль персонажа (все, что связывает города и персонажа)
     expChain_t				expChain;						// Exp Chains
     search_t				search;							// данные и комментарий, отображаемые в окне поиска
@@ -182,7 +186,7 @@ public:
     std::bitset<1024>	    m_SpellList;				    // список изученных заклинаний
     uint8					m_TitleList[94];				// список заслуженных завний
     uint8					m_Abilities[62];				// список текущих способностей
-    uint8					m_LearnedAbilities[46];			// learnable abilities (corsair rolls)
+    uint8					m_LearnedAbilities[47];			// learnable abilities (corsair rolls)
     std::bitset<49>         m_LearnedWeaponskills;          // learnable weaponskills
     uint8					m_TraitList[16];				// список постянно активных способностей в виде битовой маски
     uint8					m_PetCommands[32];				// список доступных команд питомцу
@@ -277,14 +281,14 @@ public:
     uint8			  m_GMlevel;                    // Level of the GM flag assigned to this character
     bool              m_isGMHidden;                 // GM Hidden flag to prevent player updates from being processed.
 
-    uint8             m_mentor;                     // Mentor flag status.
-    bool              m_isNewPlayer;                // New player flag..
+    bool              m_mentorUnlocked;
     uint32            m_moghouseID;
 
     int8			  getShieldSize();
 
     bool			  getWeaponSkillKill();
     void			  setWeaponSkillKill(bool isWeaponSkillKill);
+
     bool              getStyleLocked();
     void              setStyleLocked(bool isStyleLocked);
     bool              getBlockingAid();

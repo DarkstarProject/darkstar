@@ -15,10 +15,6 @@ local TreasureType = "Coffer";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     -- trade:hasItemQty(1043,1);             -- Treasure Key
     -- trade:hasItemQty(1115,1);            -- Skeleton Key
@@ -32,7 +28,7 @@ function onTrade(player,npc,trade)
         -- IMPORTANT ITEM: AF Keyitems, AF Items, & Map -----------
         local mJob = player:getMainJob();
         local AFHandsActivated = player:getVar("BorghertzAlreadyActiveWithJob");
-        local oldGauntlets = player:hasKeyItem(OLD_GAUNTLETS);
+        local oldGauntlets = player:hasKeyItem(dsp.ki.OLD_GAUNTLETS);
         local listAF = getAFbyZone(zone);
         if (AFHandsActivated == 3 and oldGauntlets == false) then
             questItemNeeded = 1;
@@ -64,8 +60,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(OLD_GAUNTLETS);
-                    player:messageSpecial(KEYITEM_OBTAINED,OLD_GAUNTLETS); -- Old Gauntlets (KI)
+                    player:addKeyItem(dsp.ki.OLD_GAUNTLETS);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
@@ -102,28 +98,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1043);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

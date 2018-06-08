@@ -3,19 +3,11 @@
 --  MOB: Ancient Vessel
 -- Mithra and the Crystal (Zilart 12) Fight
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

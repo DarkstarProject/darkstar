@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC:  Marble Bridge Eatery (Door)
+--  NPC: Marble Bridge Eatery (Door)
 -- !pos -96.6 -0.2 92.3 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -17,14 +17,9 @@ local ring =
     15545  -- Tamas Ring
 }
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
 end;
------------------------------------
--- onTrigger Action
------------------------------------
+
 function onTrigger(player,npc)
     local status = player:getVar("PromathiaStatus")
     local mission = player:getCurrentMission(COP)
@@ -60,23 +55,13 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 84 or csid == 204) and option == 4) then
         player:updateEvent(ring[1],ring[2],ring[3])
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10011) then
         player:setVar("PromathiaStatus", 2);
     elseif (csid == 10012) then

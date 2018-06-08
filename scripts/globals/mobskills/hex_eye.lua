@@ -18,8 +18,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = msgBasic.SKILL_MISS;
-    local typeEffect = EFFECT_PARALYSIS;
+    local message = dsp.msg.basic.SKILL_MISS;
+    local typeEffect = dsp.effect.PARALYSIS;
 
     skill:setMsg(MobGazeMove(mob, target, typeEffect, 25, 0, 120));
 

@@ -2,11 +2,7 @@
 -- Area: Ifrit's Cauldron
 --  MOB: Volcanic Bomb
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Endracion
+--  NPC: Endracion
 -- !pos -110 1 -34 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -9,9 +9,6 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,15 +41,11 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
 local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 
-    if (player:getNation() ~= NATION_SANDORIA) then
+    if (player:getNation() ~= dsp.nation.SANDORIA) then
         player:startEvent(1011); -- for Non-San d'Orians
     else
         CurrentMission = player:getCurrentMission(SANDORIA);
@@ -68,7 +61,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
             end
         elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
             player:startEvent(1000); -- Start First Mission "Smash the Orcish scouts"
-        elseif (player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
+        elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1035);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
             player:startEvent(1037);
@@ -92,18 +85,10 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
     -- printf("onUpdateOPTION: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);
@@ -112,7 +97,7 @@ function onEventFinish(player,csid,option)
     finishMissionTimeline(player,1,csid,option);
     if (csid == 1035) then
        player:setVar("MissionStatus",4);
-       player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
+       player:delKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
        player:setVar("Wait1DayForRanperre_date", os.date("%j"));
     elseif (csid == 1037) then
        player:setVar("MissionStatus",6);

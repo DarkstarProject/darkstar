@@ -8,6 +8,5 @@ ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back a
  FISHING_MESSAGE_OFFSET = 7207; -- You can't fish here.
 
 -- conquest Base
-CONQUEST_BASE = 7048; -- Tallying conquest results...
-
-NOTHING_OUT_OF_ORDINARY = 6401; -- There is nothing out of the ordinary here
+          CONQUEST_BASE = 7048; -- Tallying conquest results...
+NOTHING_OUT_OF_ORDINARY = 7308; -- There is nothing out of the ordinary here

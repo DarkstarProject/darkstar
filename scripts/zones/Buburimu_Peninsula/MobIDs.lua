@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Buburimu Peninsula (118)
+-- Area: Buburimu Peninsula (118)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -20,3 +20,5 @@ HELLDIVER_PH =
     [17260868] = 17260907, -- 395.297 -0.037 -149.776
     [17260887] = 17260907, -- 445.199 -0.323 -306.818
 }
+
+BUBURIMU_SIGNPOST_OFFSET = 17261163;

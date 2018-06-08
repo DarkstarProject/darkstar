@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Dauperiat
+--  NPC: Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
 -- @zone 231
 -- !pos
@@ -13,9 +13,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -33,15 +30,11 @@ function onTrade(player,npc,trade)
        end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     -- "Blackmail" quest status
     blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
-    envelope = player:hasKeyItem(SUSPICIOUS_ENVELOPE);
+    envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
     sanFame = player:getFameLevel(SANDORIA);
     homeRank = player:getRank(player:getNation());
     questState = player:getVar("BlackMailQuest");
@@ -69,28 +62,17 @@ function onTrigger(player,npc)
     end
 
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
---print("CSID: %u",csid);
---print("RESULT: %u",option);
 
     if (csid == 643) then
         player:addQuest(SANDORIA,BLACKMAIL);
-        player:addKeyItem(SUSPICIOUS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SUSPICIOUS_ENVELOPE);
+        player:addKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
     elseif (csid == 646 and option == 1) then
         player:setVar("BlackMailQuest",2);
     elseif (csid == 648) then

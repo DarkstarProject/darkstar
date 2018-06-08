@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Yughott Grotto (142)
+-- Area: Yughott Grotto (142)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -12,3 +12,5 @@ ASHMAKER_GOTBLUT_PH =
     [17358929] = 17358932, -- 16.061 -1.383 10.996
     [17358925] = 17358932, -- 10.890 -1.256 2.267
 };
+
+YUGHOTT_TREASURE_CHEST = 17359052;

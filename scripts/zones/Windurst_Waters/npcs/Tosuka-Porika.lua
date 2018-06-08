@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Tosuka-Porika
+--  NPC: Tosuka-Porika
 --  Starts Quests: Early Bird Catches the Bookworm, Chasing Tales
 -- Involved in Quests: Hat in Hand, Past Reflections, Blessed Radiance
 --  Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
@@ -9,24 +9,16 @@
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -70,7 +62,7 @@ function onTrigger(player,npc)
         if (testflag(tonumber(player:getVar("QuestHatInHand_var")),32) == false) then
             player:startEvent(55); -- Show Off Hat
         end
-    -- Book is A_SONG_OF_LOVE, KeyItem ID = 126
+    -- Book is dsp.ki.A_SONG_OF_LOVE, KeyItem ID = 126
     elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
@@ -81,9 +73,9 @@ function onTrigger(player,npc)
         player:startEvent(406); --  Add follow up cutscene
         -- Windurst Mission 7-1 --
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 0) then
-        player:startEvent(715,0,OPTISTERY_RING);
+        player:startEvent(715,0,dsp.ki.OPTISTERY_RING);
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 1) then
-        player:startEvent(716,0,OPTISTERY_RING);
+        player:startEvent(716,0,dsp.ki.OPTISTERY_RING);
     elseif (player:getCurrentMission(WINDURST) == THE_SIXTH_MINISTRY and player:getVar("MissionStatus") == 2) then
         player:startEvent(724);
     else
@@ -91,22 +83,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 55) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);
@@ -122,15 +102,15 @@ function onEventFinish(player,csid,option)
     elseif (csid ==875) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
-        player:addKeyItem(OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
+        player:addKeyItem(dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         player:setVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
-        player:addKeyItem(OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,OPTISTERY_RING);
-        if (player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(RHINOSTERY_RING)) then
+        player:addKeyItem(dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end
     end

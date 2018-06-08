@@ -9,7 +9,7 @@
 -- Level: 66
 -- Casting Time: 5 seconds
 -- Recast Time: 30 seconds
--- 
+--
 -- Combos: Clear Mind
 -----------------------------------------
 
@@ -34,7 +34,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.125;
-    if (caster:hasStatusEffect(EFFECT_AZURE_LORE)) then
+    if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 0.50;
     end
         params.multiplier = multi;
@@ -52,17 +52,17 @@ function onSpellCast(caster,target,spell)
 
     local params = {};
 
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
 
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
 
     params.bonus = 1.0;
 
     local resist = applyResistance(caster, target, spell, params);
-    local typeEffectOne = EFFECT_DEFENSE_DOWN;
-    local typeEffectTwo = EFFECT_ATTACK_DOWN;
+    local typeEffectOne = dsp.effect.DEFENSE_DOWN;
+    local typeEffectTwo = dsp.effect.ATTACK_DOWN;
     local duration = 60;
 
     if (damage > 0 and resist > 0.3) then

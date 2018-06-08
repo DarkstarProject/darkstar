@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Windurst Waters (S)
+-- Area: Windurst Waters (S)
 --   NPC: Dhea Prandoleh
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 94
 -- !pos 1 -1 15
 --
@@ -9,19 +9,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,22 +34,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 128) then
         player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS);
     elseif (csid == 133) then
@@ -67,7 +47,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,139);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
         player:needToZone(true);
-        player:addTitle(AJIDOMARUJIDOS_MINDER);
+        player:addTitle(dsp.title.AJIDOMARUJIDOS_MINDER);
     end
 end;
 

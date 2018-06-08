@@ -285,11 +285,7 @@ namespace luautils
 
     int32 SendEntityVisualPacket(lua_State* L)
     {
-        if ((!lua_isnil(L, 1) && lua_isnumber(L, 1)) &&
-            (!lua_isnil(L, 2) && lua_isnumber(L, 2)) &&
-            (!lua_isnil(L, 3) && lua_isnumber(L, 3)) &&
-            (!lua_isnil(L, 4) && lua_isnumber(L, 4)) &&
-            (!lua_isnil(L, 5) && lua_isnumber(L, 5)))
+        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
         {
             uint32 npcid = (uint32)lua_tointeger(L, 1);
             const char* command = lua_tostring(L, 2);
@@ -1213,18 +1209,18 @@ namespace luautils
 
             bool contentEnabled;
 
-            try
+            if (auto contentEnabledIter = contentEnabledMap.find(contentVariable);  contentEnabledIter != contentEnabledMap.end())
             {
-                contentEnabled = contentEnabledMap.at(contentVariable);
+                contentEnabled = contentEnabledIter->second;
             }
-            catch (std::out_of_range)
+            else
             {
                 // Cache contentTag lookups in a map so that we don't re-hit the Lua file every time
                 contentEnabled = (GetSettingsVariable(contentVariable.c_str()) != 0);
                 contentEnabledMap[contentVariable] = contentEnabled;
             }
 
-            if (contentEnabled == false && contentRestrictionEnabled == true)
+            if (!contentEnabled && contentRestrictionEnabled)
             {
                 return false;
             }
@@ -1924,30 +1920,36 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, uint32 param)
+    std::tuple<int32, int32, int32> OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param, CBaseEntity* PCaster)
     {
         lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
 
         if (prepFile(File, "onItemCheck"))
         {
-            return 56;
+            return { 56, 0, 0 };
         }
 
-        CLuaBaseEntity LuaBaseEntity(PTarget);
-        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        CLuaBaseEntity LuaBaseEntityTarget(PTarget);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityTarget);
+        CLuaBaseEntity LuaBaseEntityCaster(PCaster);
 
-        lua_pushinteger(LuaHandle, param);
+        lua_pushinteger(LuaHandle, static_cast<uint32>(param));
 
-        if (lua_pcall(LuaHandle, 2, 1, 0))
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityCaster);
+
+        if (lua_pcall(LuaHandle, 3, 3, 0))
         {
             ShowError("luautils::onItemCheck: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return 56;
+            return { 56, 0, 0 };
         }
 
-        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-        lua_pop(LuaHandle, 1);
-        return retVal;
+        uint32 messageId = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+        uint32 param1 = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+        uint32 param2 = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+        lua_pop(LuaHandle, 3);
+
+        return { messageId, param1, param2 };
     }
 
     /************************************************************************
@@ -4153,6 +4155,18 @@ namespace luautils
         return searchLuaFileForFunction(PChar->m_event.Script) ||
             (PChar->PInstance && searchLuaFileForFunction(std::string("scripts/zones/") + (const char*)PChar->loc.zone->GetName() + "/instances/" + (const char*)PChar->PInstance->GetName())) ||
             (searchLuaFileForFunction(std::string("scripts/zones/") + (const char*)PChar->loc.zone->GetName() + "/Zone.lua"));
+    }
+
+    uint16 GetDespoilDebuff(uint16 itemId)
+    {
+        uint16 effectId = 0;
+        int32 ret = Sql_Query(SqlHandle, "SELECT effectId FROM despoil_effects WHERE itemId = %u", itemId);
+        if (ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0 && Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            effectId = (uint16)Sql_GetUIntData(SqlHandle, 0);
+        }
+
+        return effectId;
     }
 
 }; // namespace luautils

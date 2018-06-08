@@ -14,11 +14,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
     MobStatusEffectMove(mob, target, typeEffect, 50, 0, 120);
 
 
-    local dmgmod = MobBreathMove(mob, target, 0.167, 1.875, ELE_EARTH, 509);
+    local dmgmod = MobBreathMove(mob, target, 0.167, 1.875, dsp.magic.ele.EARTH, 509);
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);

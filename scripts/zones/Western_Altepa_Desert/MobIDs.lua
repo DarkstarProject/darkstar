@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Western Altepa Desert (125)
+-- Area: Western Altepa Desert (125)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -8,7 +8,7 @@ CACTUAR_CANTAUTOR_PH =
 {
     [17289559] = 17289560, -- -458.944 0.018 -557.266
     [17289578] = 17289560, -- -478.142 -0.457 -596.091
-};
+}
 
 CELPHIE_PH =
 {
@@ -20,6 +20,10 @@ CELPHIE_PH =
     [17289406] = 17289453, -- 35.924 0.087 -98.228
     [17289474] = 17289453, -- 118.575 -0.299 127.016
     [17289277] = 17289453, -- 99.000 -0.030 116.000
-};
+}
 
-KING_VINEGARROON        = 17289575;
+KING_VINEGARROON        = 17289575
+SABOTENDER_ENAMORADO    = 17289653
+EASTERN_SPHINX          = 17289654
+WESTERN_SPHINX          = 17289655
+MAHARAJA                = 17289656

@@ -9,15 +9,15 @@ ITEM_CANNOT_BE_OBTAINED = 6403; -- You cannot obtain the item <item>. Come back 
  FISHING_MESSAGE_OFFSET = 7229; -- You can't fish here.
 
 -- Conquest
-CONQUEST = 7899; -- You've earned conquest points!
+               CONQUEST = 7899; -- You've earned conquest points!
 
 -- General Dialogs
-  NOTHING_FOUND = 7487; -- You find nothing.
-NOTHING_HAPPENS = 141; -- Nothing happens...
+          NOTHING_FOUND = 7487; -- You find nothing.
+        NOTHING_HAPPENS =  141; -- Nothing happens...
 
 -- conquest Base
-CONQUEST_BASE = 7070; -- Tallying conquest results...
+          CONQUEST_BASE = 7070; -- Tallying conquest results...
 
 --chocobo digging
-DIG_THROW_AWAY = 7242; -- You dig up$, but your inventory is full. You regretfully throw the # away.
-FIND_NOTHING = 7244; -- You dig and you dig, but find nothing.
+         DIG_THROW_AWAY = 7242; -- You dig up$, but your inventory is full. You regretfully throw the # away.
+           FIND_NOTHING = 7244; -- You dig and you dig, but find nothing.

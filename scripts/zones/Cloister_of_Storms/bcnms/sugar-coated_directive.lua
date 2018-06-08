@@ -30,7 +30,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
     
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage        
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(ASA,SUGAR_COATED_DIRECTIVE)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
         else

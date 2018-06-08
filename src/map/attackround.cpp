@@ -53,8 +53,6 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
     CreateAttacks(attacker->m_Weapons[SLOT_MAIN], RIGHTATTACK);
 
     // Build dual wield off hand weapon attacks.
-
-
     if (IsH2H())
     {
         // Build left hand H2H attacks.
@@ -63,11 +61,15 @@ CAttackRound::CAttackRound(CBattleEntity* attacker, CBattleEntity* defender)
         // Build kick attacks.
         CreateKickAttacks();
     }
+
     else if ((m_subWeaponType > 0 && m_subWeaponType < 4) ||
         (attacker->objtype == TYPE_MOB && static_cast<CMobEntity*>(attacker)->getMobMod(MOBMOD_DUAL_WIELD)))
     {
         CreateAttacks(attacker->m_Weapons[SLOT_SUB], LEFTATTACK);
     }
+
+    // Build Daken throw
+    CreateDakenAttack();
 
     // Set the first attack flag
     m_attackSwings[0].SetAsFirstSwing();
@@ -150,13 +152,13 @@ CBattleEntity*	CAttackRound::GetTAEntity()
 }
 
 /************************************************************************
-*																		*
-*  Returns the H2H flag.												*
-*																		*
+*                                                                       *
+*  Returns the H2H flag.                                                *
+*                                                                       *
 ************************************************************************/
 bool CAttackRound::IsH2H()
 {
-    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_H2H ? true : false;
+    return m_attacker->m_Weapons[SLOT_MAIN]->getSkillType() == SKILL_HAND_TO_HAND ? true : false;
 }
 
 /************************************************************************
@@ -199,7 +201,7 @@ void CAttackRound::DeleteAttackSwing()
 void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction)
 {
     uint8 num = 1;
-    
+
     bool isPC = m_attacker->objtype == TYPE_PC;
 
     // Checking the players weapon hit count
@@ -207,12 +209,12 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
     {
         num = PWeapon->getHitCount();
     }
-    
+
     // If the attacker is a mobentity or derived from mobentity, check to see if it has any special mutli-hit capabilties
     if (dynamic_cast<CMobEntity*>(m_attacker))
     {
         auto multiHitMax = (uint8)static_cast<CMobEntity*>(m_attacker)->getMobMod(MOBMOD_MULTI_HIT);
-        
+
         if (multiHitMax > 0)
             num = 1 + battleutils::getHitCount(multiHitMax);
     }
@@ -231,6 +233,13 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
         //merit chance only applies if player has the job trait
         if (charutils::hasTrait(PChar, TRAIT_TRIPLE_ATTACK)) tripleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_TRIPLE_ATTACK_RATE, PChar);
+
+        // Ambush Augment adds +1% Triple Attack per merit (need to satisfy conditions for Ambush)
+        if (charutils::hasTrait(PChar, TRAIT_AMBUSH) && PChar->getMod(Mod::AUGMENTS_AMBUSH) > 0 && abs(m_defender->loc.p.rotation - m_attacker->loc.p.rotation) < 23)
+        {
+            tripleAttack += PChar->PMeritPoints->GetMerit(MERIT_AMBUSH)->count;
+        }
+
         if (charutils::hasTrait(PChar, TRAIT_DOUBLE_ATTACK)) doubleAttack += PChar->PMeritPoints->GetMeritValue(MERIT_DOUBLE_ATTACK_RATE, PChar);
         // TODO: Quadruple attack merits when SE release them.
     }
@@ -254,6 +263,21 @@ void CAttackRound::CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION
 
     else if (num == 1 && dsprand::GetRandomNumber(100) < doubleAttack)
         AddAttackSwing(PHYSICAL_ATTACK_TYPE::DOUBLE, direction, 1);
+
+    // Apply Mythic OAT mods (mainhand only)
+    if (direction == PHYSICAL_ATTACK_DIRECTION::RIGHTATTACK)
+    {
+        int16 occAttThriceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_THRICE), 0, 100);
+        int16 occAttTwiceRate = std::clamp<int16>(m_attacker->getMod(Mod::MYTHIC_OCC_ATT_TWICE), 0, 100);
+        if (num == 1 && dsprand::GetRandomNumber(100) < occAttThriceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 2);
+        }
+        else if (num == 1 && dsprand::GetRandomNumber(100) < occAttTwiceRate)
+        {
+            AddAttackSwing(PHYSICAL_ATTACK_TYPE::NORMAL, direction, 1);
+        }
+    }
 
     // Ammo extra swing - players only
     if (isPC && m_attacker->getMod(Mod::AMMO_SWING) > 0)
@@ -336,12 +360,31 @@ void CAttackRound::CreateKickAttacks()
             m_kickAttackOccured = true;
         }
 
-        // TODO: Possible Lua function for the nitty gritty stuff below.
-
-        // Mantra set mod: Try an extra left kick attack.
+        // Tantra set mod: Try an extra left kick attack.
         if (m_kickAttackOccured && dsprand::GetRandomNumber(100) < m_attacker->getMod(Mod::EXTRA_KICK_ATTACK))
         {
             AddAttackSwing(PHYSICAL_ATTACK_TYPE::KICK, LEFTATTACK, 1);
+        }
+    }
+}
+
+/************************************************************************
+*																		*
+*  Creates a Daken throw.												*
+*																		*
+************************************************************************/
+void CAttackRound::CreateDakenAttack()
+{
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        CItemWeapon* PAmmo = m_attacker->m_Weapons[SLOT_AMMO];
+        if (PAmmo && PAmmo->isShuriken())
+        {
+            uint16 daken = m_attacker->getMod(Mod::DAKEN);
+             if (dsprand::GetRandomNumber(100) < daken)
+             {
+                AddAttackSwing(PHYSICAL_ATTACK_TYPE::DAKEN, RIGHTATTACK, 1);
+             }
         }
     }
 }

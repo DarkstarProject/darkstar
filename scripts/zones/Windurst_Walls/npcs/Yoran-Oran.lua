@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
 --   NPC: Yoran-Oran
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 239
 -- !pos -109.987 -14 203.338
 --
@@ -13,8 +13,6 @@ require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/keyitems");
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -65,10 +63,6 @@ local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
     local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
@@ -83,7 +77,7 @@ function onTrigger(player,npc)
         player:startEvent(469);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6) then
         player:startEvent(470,0,587,0,586);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(MIMEO_FEATHER)==true) then
+    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(dsp.ki.MIMEO_FEATHER) == true) then
         player:startEvent(471);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 ) then
         player:startEvent(472);
@@ -112,33 +106,21 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 249) then
         player:addQuest(WINDURST,MANDRAGORA_MAD);
     elseif (csid == 469) then
       player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
     elseif (csid == 470) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
-        player:delKeyItem(CRACKED_MIMEO_MIRROR);
+        player:delKeyItem(dsp.ki.CRACKED_MIMEO_MIRROR);
     elseif (csid == 471) then
-        player:delKeyItem(MIMEO_FEATHER);
-         player:delKeyItem(SECOND_MIMEO_FEATHER);
-        player:delKeyItem(THIRD_MIMEO_FEATHER);
+        player:delKeyItem(dsp.ki.MIMEO_FEATHER);
+         player:delKeyItem(dsp.ki.SECOND_MIMEO_FEATHER);
+        player:delKeyItem(dsp.ki.THIRD_MIMEO_FEATHER);
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
     elseif (csid == 472) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",12);    --end 3-3B: Windurst Route: "Memories of a Maiden"

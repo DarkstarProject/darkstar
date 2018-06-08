@@ -9,28 +9,21 @@
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getID() == target:getID()) then
-        return msgBasic.CANNOT_PERFORM_TARG,0;
+        return dsp.msg.basic.CANNOT_PERFORM_TARG,0;
     elseif (player:getHP() < 4) then -- Fails if HP < 4
-        return msgBasic.UNABLE_TO_USE_JA,0;
+        return dsp.msg.basic.UNABLE_TO_USE_JA,0;
     else
         return 0,0;
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
     -- Plus 5 percent hp recovers per extra martyr merit
-    local meritBonus = player:getMerit(MERIT_MARTYR) - 5;
+    local meritBonus = player:getMerit(dsp.merit.MARTYR) - 5;
     -- printf("Martyr Merit Bonus: %d", meritBonus);
 
     local hpPercent = (200 + meritBonus) / 100;

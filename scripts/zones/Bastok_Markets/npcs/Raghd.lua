@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Raghd
+--  NPC: Raghd
 -- Standard Merchant NPC
 -- !pos -149.200 -4.819 -74.939 235
 -----------------------------------
@@ -18,5 +18,5 @@ function onTrigger(player,npc)
         13465,  184, 2, -- Brass Ring
         13454,   69, 3, -- Copper Ring
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end; 
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
+end;

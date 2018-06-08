@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Mulaujeant
+--  NPC: Mulaujeant
 -- Involved in Quests: Missionary Man
 -- @zone 231
 -- !pos -175 0 181
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
@@ -42,33 +34,21 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 698) then
         player:setVar("MissionaryManVar",3);
         player:setVar("MissionaryMan_date", os.date("%j")); -- %M for next minute, %j for next day
-        player:delKeyItem(RAUTEINOTS_PARCEL);
+        player:delKeyItem(dsp.ki.RAUTEINOTS_PARCEL);
         player:needToZone(true);
 
     elseif (csid == 700) then
         player:setVar("MissionaryManVar",4);
         player:setVar("MissionaryMan_date", 0);
-        player:addKeyItem(SUBLIME_STATUE_OF_THE_GODDESS);
-        player:messageSpecial(KEYITEM_OBTAINED,SUBLIME_STATUE_OF_THE_GODDESS);
+        player:addKeyItem(dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
     end
 end;
 

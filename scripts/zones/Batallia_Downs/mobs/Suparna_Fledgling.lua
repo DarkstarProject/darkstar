@@ -1,27 +1,25 @@
 -----------------------------------
 -- Area: Batallia Downs
---  MOB: Sturmtiger
--- Involved in Quest: Chasing Quotas
--- !pos -715.882,-10.75,65.982 (105)
+--  MOB: Suparna Fledgling
+-- Involved in Mission: San d'Orian 9-1
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/zones/Batallia_Downs/MobIDs");
 require("scripts/globals/missions");
------------------------------------
--- onMobSpawn Action
------------------------------------
+require("scripts/globals/status");
 
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
------------------------------------
--- onMobDeath Action
------------------------------------
+function onMobSpawn(mob)
+    DespawnMob(mob:getID(), 180);
+end;
 
 function onMobDeath(mob, player, isKiller)
-
-    local kills = player:getVar("Mission9-1Kills");
-
-    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3 and kills < 2) then
-        player:setVar("Mission9-1Kills",kills + 1);
+    if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
+        and GetMobByID(SUPARNA):isDead() and GetMobByID(SUPARNA_FLEDGLING):isDead()
+    ) then
+        player:setVar("Mission9-1Kills", 1);
     end
-
 end;

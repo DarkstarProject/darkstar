@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Nogelle
+--  NPC: Nogelle
 -- Starts Lufet's Lake Salt
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -8,9 +8,6 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,7 +21,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(FLYER_REFUSED);
         end
     end
-    
+
     if (player:getQuestStatus(SANDORIA,LUFET_S_LAKE_SALT) == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         LufetSalt = trade:hasItemQty(1019,3);
@@ -32,16 +29,12 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,30);
             player:addGil(GIL_RATE*600);
-            player:addTitle(BEAN_CUISINE_SALTER);
+            player:addTitle(dsp.title.BEAN_CUISINE_SALTER);
             player:completeQuest(SANDORIA,LUFET_S_LAKE_SALT);
             player:startEvent(11);
         end
     end
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -57,22 +50,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 12 and option == 1) then
         player:addQuest(SANDORIA,LUFET_S_LAKE_SALT);

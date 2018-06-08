@@ -10,12 +10,12 @@ require("scripts/globals/teleports");
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:getZone() == 69) then
+    if (target:getZoneID() == 69) then
         return 0;
     end
     return 56;
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,FIREFLIES_AZOUPH,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.AZOUPH,0,1);
 end;

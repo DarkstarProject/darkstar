@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Kubhe Ijyuhla
+--  NPC: Kubhe Ijyuhla
 -- Standard Info NPC
 -- !pos 23.257 0.000 21.532 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local threeMenProg = player:getVar("threemenandaclosetCS");
@@ -42,22 +34,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 836) then
        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
        player:setVar("threemenandaclosetCS",2);

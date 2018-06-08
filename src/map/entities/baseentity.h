@@ -45,7 +45,7 @@ enum STATUSTYPE
     STATUS_MOB           = 1,
   //STATUS_UPDATE        = 1,
     STATUS_DISAPPEAR     = 2,
-    STATUS_3             = 3,
+    STATUS_INVISIBLE     = 3,
     STATUS_4             = 4,
     STATUS_CUTSCENE_ONLY = 6,
     STATUS_18            = 18,
@@ -80,28 +80,45 @@ enum ANIMATIONTYPE
     ANIMATION_FISHING_START_OLD  = 50,
     ANIMATION_FISHING_START      = 56,
     // 63 through 72 are used with /sitchair
-    // 73 through 83 sitting on air (guessing future use for more chairs..)
+    ANIMATION_SITCHAIR_0 = 63,
+    ANIMATION_SITCHAIR_1 = 64,
+    ANIMATION_SITCHAIR_2 = 65,
+    ANIMATION_SITCHAIR_3 = 66,
+    ANIMATION_SITCHAIR_4 = 67,
+    ANIMATION_SITCHAIR_5 = 68,
+    ANIMATION_SITCHAIR_6 = 69,
+    ANIMATION_SITCHAIR_7 = 70,
+    ANIMATION_SITCHAIR_8 = 71,
+    ANIMATION_SITCHAIR_9 = 72,
+    ANIMATION_SITCHAIR_10 = 73,
+    // 74 through 83 sitting on air (guessing future use for more chairs..)
     ANIMATION_MOUNT              = 85,
     // ANIMATION_TRUST              = 90 // This is the animation for a trust NPC spawning in.
 };
 
 enum MOUNTTYPE
 {
-    MOUNT_CHOCOBO    = 0,
-    MOUNT_RAPTOR     = 1,
-    MOUNT_TIGER      = 2,
-    MOUNT_CRAB       = 3,
-    MOUNT_RED_CRAB   = 4,
-    MOUNT_BOMB       = 5,
-    MOUNT_RAM        = 6,
-    MOUNT_MORBOL     = 7,
-    MOUNT_CRAWLER    = 8,
-    MOUNT_FENRIR     = 9,
-    MOUNT_BEETLE     = 10,
-    MOUNT_MOOGLE     = 11,
-    MOUNT_MAGIC_POT  = 12,
-    MOUNT_TULFAIRE   = 13,
-    MOUNT_WARMACHINE = 14
+    MOUNT_CHOCOBO        = 0,
+    MOUNT_QUEST_RAPTOR   = 1,
+    MOUNT_RAPTOR         = 2,
+    MOUNT_TIGER          = 3,
+    MOUNT_CRAB           = 4,
+    MOUNT_RED_CRAB       = 5,
+    MOUNT_BOMB           = 6,
+    MOUNT_RAM            = 7,
+    MOUNT_MORBOL         = 8,
+    MOUNT_CRAWLER        = 9,
+    MOUNT_FENRIR         = 10,
+    MOUNT_BEETLE         = 11,
+    MOUNT_MOOGLE         = 12,
+    MOUNT_MAGIC_POT      = 13,
+    MOUNT_TULFAIRE       = 14,
+    MOUNT_WARMACHINE     = 15,
+    MOUNT_XZOMIT         = 16,
+    MOUNT_HIPPOGRYPH     = 17,
+    MOUNT_SPECTRAL_CHAIR = 18,
+    MOUNT_SPHEROID       = 19,
+    MOUNT_OMEGA          = 20,
 };
 
 enum ALLEGIANCETYPE

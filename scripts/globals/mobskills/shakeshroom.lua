@@ -13,7 +13,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(MOBMOD_VAR) == 2) then
+    if (mob:getMobMod(dsp.mobMod.VAR) == 2) then
         return 0;
     end
     return 1;
@@ -21,14 +21,14 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    mob:setMobMod(MOBMOD_VAR, 3);
+    mob:setMobMod(dsp.mobMod.VAR, 3);
     local numhits = 1;
     local accmod = 1;
     local dmgmod = 2;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded);
 
-    local typeEffect = EFFECT_DISEASE;
+    local typeEffect = dsp.effect.DISEASE;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 180);
 

@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Magic Mortar
 ---------------------------------------------------
-
 require("scripts/globals/status")
 require("scripts/globals/settings")
 require("scripts/globals/automatonweaponskills")
@@ -10,7 +9,7 @@ require("scripts/globals/automatonweaponskills")
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(EFFECT_LIGHT_MANEUVER)
+    return master:countEffect(dsp.effect.LIGHT_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -31,7 +30,7 @@ function onPetAbility(target, automaton, skill, master, action)
     end
 
     local hpdamage = (automaton:getMaxHP() - automaton:getHP()) * ftp
-    local skilldamage = automaton:getSkillLevel(22) * ftp
+    local skilldamage = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE) * ftp
     local damage = (hpdamage > skilldamage) and hpdamage or skilldamage
 
     if damage > 0 then

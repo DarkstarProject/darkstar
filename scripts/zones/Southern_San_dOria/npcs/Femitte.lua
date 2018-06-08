@@ -6,13 +6,9 @@
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +20,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -41,7 +33,7 @@ function onTrigger(player,npc)
         player:startEvent(663);
     elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 1) then
         player:startEvent(664);
-    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(MYTHRIL_HEARTS)) then
+    elseif (DistantLoyalties == 1 and DistantLoyaltiesProgress == 4 and player:hasKeyItem(dsp.ki.MYTHRIL_HEARTS)) then
         player:startEvent(665);
     else
         player:startEvent(661);
@@ -49,35 +41,23 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 807) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
-        player:addKeyItem(GOLDSMITHING_ORDER);
-        player:messageSpecial(KEYITEM_OBTAINED,GOLDSMITHING_ORDER);
+        player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
         player:addQuest(SANDORIA,DISTANT_LOYALTIES);
         player:setVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13585);
         else
-            player:delKeyItem(MYTHRIL_HEARTS);
+            player:delKeyItem(dsp.ki.MYTHRIL_HEARTS);
             player:addItem(13585,1);
             player:messageSpecial(ITEM_OBTAINED,13585);
             player:setVar("DistantLoyaltiesProgress",0);

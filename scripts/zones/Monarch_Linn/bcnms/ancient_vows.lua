@@ -47,13 +47,13 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         player:addExp(1000);
-        player:addTitle(TAVNAZIAN_TRAVELER); 
+        player:addTitle(dsp.title.TAVNAZIAN_TRAVELER);
         if (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2) then
             player:setVar("VowsDone",1);
             player:setVar("PromathiaStatus",0);
             player:completeMission(COP,ANCIENT_VOWS);
             player:addMission(COP,THE_CALL_OF_THE_WYRMKING);
-            player:setPos(694,-5.5,-619,74,107); -- To South Gustaberg 
+            player:setPos(694,-5.5,-619,74,107); -- To South Gustaberg
         end
     end
 end;

@@ -13,16 +13,6 @@ require("scripts/globals/msg")
 
 TABS = 12; -- What is this for? Where is it used?
 
--- key item IDs
-ELITE_TRAINING_INTRODUCTION = 1116;
-ELITE_TRAINING_CHAPTER_1    = 1117;
-ELITE_TRAINING_CHAPTER_2    = 1118;
-ELITE_TRAINING_CHAPTER_3    = 1119;
-ELITE_TRAINING_CHAPTER_4    = 1120;
-ELITE_TRAINING_CHAPTER_5    = 1121;
-ELITE_TRAINING_CHAPTER_6    = 1122;
-ELITE_TRAINING_CHAPTER_7    = 1123;
-
 -- EVENT PARAM ID CONSTANTS (change these if even seqs displayed break!)
 -- onEventUpdate params
 FOV_MENU_PAGE_1      = 18;
@@ -189,8 +179,8 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     local msg_jobs = msg_offset + 1;
     local msg_cancel = msg_offset +2;
     local tabs = player:getCurrency("valor_point");
-    local HAS_FOOD = player:hasStatusEffect(EFFECT_FOOD);
-    local HAS_SUPPORT_FOOD = player:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD);
+    local HAS_FOOD = player:hasStatusEffect(dsp.effect.FOOD);
+    local HAS_SUPPORT_FOOD = player:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD);
     local fov_repeat = bit.band(option, 0x80000000);
 
     if (fov_repeat ~= 0) then
@@ -205,9 +195,9 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
             -- Removes regen if on player
-            player:delStatusEffect(EFFECT_REGEN);
+            player:delStatusEffect(dsp.effect.REGEN);
             -- Adds regen
-            player:addStatusEffect(EFFECT_REGEN, 1, 3, 3600);
+            player:addStatusEffect(dsp.effect.REGEN, 1, 3, 3600);
         end
 
     elseif (option == FOV_MENU_REFRESH) then -- Chose Refresh, removes all other refresh.
@@ -215,11 +205,11 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
             -- Removes refresh if on player
-            player:delStatusEffect(EFFECT_REFRESH);
-            player:delStatusEffect(EFFECT_SUBLIMATION_COMPLETE);
-            player:delStatusEffect(EFFECT_SUBLIMATION_ACTIVATED);
+            player:delStatusEffect(dsp.effect.REFRESH);
+            player:delStatusEffect(dsp.effect.SUBLIMATION_COMPLETE);
+            player:delStatusEffect(dsp.effect.SUBLIMATION_ACTIVATED);
             -- Add refresh
-            player:addStatusEffect(EFFECT_REFRESH, 1, 3, 3600, 0, 3);
+            player:addStatusEffect(dsp.effect.REFRESH, 1, 3, 3600, 0, 3);
         end
 
     elseif (option == FOV_MENU_PROTECT) then -- Chose Protect, removes all other protect.
@@ -227,7 +217,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         if (tabs >= 15) then
             player:delCurrency("valor_point", 15);
             -- Removes protect if on player
-            player:delStatusEffect(EFFECT_PROTECT);
+            player:delStatusEffect(dsp.effect.PROTECT);
             -- Work out how much def to give (highest tier dependant on level)
             local def = 0;
             if (player:getMainLvl() < 27) then -- before protect 2, give protect 1
@@ -240,7 +230,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
                 def = 120;
             end
             -- Add protect
-            player:addStatusEffect(EFFECT_PROTECT, def, 0, 1800);
+            player:addStatusEffect(dsp.effect.PROTECT, def, 0, 1800);
         end
 
     elseif (option == FOV_MENU_SHELL) then -- Chose Shell, removes all other shell.
@@ -248,7 +238,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         if (tabs >= 15) then
             player:delCurrency("valor_point", 15);
             -- Removes shell if on player
-            player:delStatusEffect(EFFECT_SHELL);
+            player:delStatusEffect(dsp.effect.SHELL);
             -- Work out how much mdef to give (highest tier dependant on level)
             -- values taken from Shell scripts by Tenjou.
             local def = 0;
@@ -262,7 +252,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
                 def = 22;
             end
             -- Add shell
-            player:addStatusEffect(EFFECT_SHELL, def, 0, 1800);
+            player:addStatusEffect(dsp.effect.SHELL, def, 0, 1800);
         end
 
     elseif (option == FOV_MENU_RERAISE) then -- Reraise chosen.
@@ -270,9 +260,9 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         if (tabs >= 10) then
             player:delCurrency("valor_point", 10);
             -- Remove any other RR
-            player:delStatusEffect(EFFECT_RERAISE);
+            player:delStatusEffect(dsp.effect.RERAISE);
             -- apply RR1, 2 hour duration.
-            player:addStatusEffect(EFFECT_RERAISE, 1, 0, 7200);
+            player:addStatusEffect(dsp.effect.RERAISE, 1, 0, 7200);
         end
 
     elseif (option == FOV_MENU_HOME_NATION) then -- Return to home nation.
@@ -285,40 +275,40 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
     elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
+                player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 1, 0, 1800);
             end
         end
 
     elseif (option == FOV_MENU_SALTED_FISH) then -- Salted Fish: VIT+2 DEF+30% (Caps at 86)
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
+                player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 2, 0, 1800);
             end
         end
 
     elseif (option == FOV_MENU_HARD_COOKIE) then --- Hard Cookie: INT+4, MaxMP+30
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
+                player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 3, 0, 1800);
             end
         end
 
     elseif (option == FOV_MENU_INSTANT_NOODLES) then -- Instant Noodles: VIT+1, Max HP+27% (caps at 75), StoreTP+5
         if (tabs >= 50) then
             if (HAS_FOOD == true or HAS_SUPPORT_FOOD == true) then
-                player:messageBasic(msgBasic.IS_FULL);
+                player:messageBasic(dsp.msg.basic.IS_FULL);
             else
                 player:delCurrency("valor_point", 50);
-                player:addStatusEffectEx(EFFECT_FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
+                player:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD, 251, 4, 0, 1800);
             end
         end
 
@@ -346,7 +336,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         writeRegime(player, r5, msg_accept, msg_jobs, fov_repeat);
 
     elseif (option == FOV_MENU_ELITE_INTRO) then -- Want elite, 100tabs
-        -- giveEliteRegime(player, ELITE_TRAINING_CHAPTER_7, 100);
+        -- giveEliteRegime(player, dsp.ki.ELITE_TRAINING_CHAPTER_7, 100);
 
     elseif (option == FOV_MENU_ELITE_CHAP1) then -- Want elite, 150tabs
         -- local tabs = player:getVar("tabs");
@@ -427,7 +417,7 @@ function checkRegime(player, mob, rid, index)
 
             if (killed < needed) then -- increment killed number and save.
                 killed = killed + 1;
-                player:messageBasic(msgBasic.FOV_DEFEATED_TARGET, killed, needed);
+                player:messageBasic(dsp.msg.basic.FOV_DEFEATED_TARGET, killed, needed);
                 player:setVar("fov_numkilled"..index, killed);
 
                 if (killed == needed) then
@@ -439,7 +429,7 @@ function checkRegime(player, mob, rid, index)
 
                     if (k1 == fov_info[1] and k2 == fov_info[2] and k3 == fov_info[3] and k4 == fov_info[4]) then
                         -- complete regime
-                        player:messageBasic(msgBasic.FOV_COMPLETED_REGIME);
+                        player:messageBasic(dsp.msg.basic.FOV_COMPLETED_REGIME);
                         local reward = getFoVregimeReward(rid);
                         local tabs = (math.floor(reward / 10) * TABS_RATE);
                         local VanadielEpoch = vanaDay();
@@ -450,10 +440,10 @@ function checkRegime(player, mob, rid, index)
                             if (tabs + player:getCurrency("valor_point") > CAP) then
                                 tabs = utils.clamp(CAP - player:getCurrency("valor_point"),0,CAP);
                             end
-                            player:messageBasic(msgBasic.FOV_OBTAINS_GIL, reward);
+                            player:messageBasic(dsp.msg.basic.FOV_OBTAINS_GIL, reward);
                             player:addGil(reward);
                             player:addCurrency("valor_point", tabs);
-                            player:messageBasic(msgBasic.FOV_OBTAINS_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
+                            player:messageBasic(dsp.msg.basic.FOV_OBTAINS_TABS, tabs, player:getCurrency("valor_point")); -- Careful about order.
                             if (REGIME_WAIT == 1) then
                                 player:setVar("fov_LastReward", VanadielEpoch);
                             end
@@ -473,7 +463,7 @@ function checkRegime(player, mob, rid, index)
                             player:setVar("fov_numneeded3", 0);
                             player:setVar("fov_numneeded4", 0);
                         else
-                           player:messageBasic(msgBasic.FOV_REGIME_BEGINS_ANEW);
+                           player:messageBasic(dsp.msg.basic.FOV_REGIME_BEGINS_ANEW);
                         end
                     end
                 end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC: Imasuke
+--  NPC: Imasuke
 -- Starts and Finishes Quest: The Antique Collector
 -- !pos -165 11 94 246
 -----------------------------------
@@ -12,9 +12,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +22,6 @@ function onTrade(player,npc,trade)
         player:startEvent(15); -- End quest
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
@@ -61,28 +54,23 @@ function onTrigger(player,npc)
     end;
 end;
 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- THE ANTIQUE COLLECTOR
     if (csid == 13 and option == 1) then
         player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
     elseif (csid == 15) then
-        player:addTitle(TRADER_OF_ANTIQUITIES);
-        if (player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
-            player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
-        end;
+        player:addTitle(dsp.title.TRADER_OF_ANTIQUITIES);
+        if (player:hasKeyItem(dsp.ki.MAP_OF_DELKFUTTS_TOWER) == false) then
+            player:addKeyItem(dsp.ki.MAP_OF_DELKFUTTS_TOWER);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_DELKFUTTS_TOWER);
+        else
+            player:addGil(2000 * GIL_RATE);
+            player:messageSpecial(GIL_OBTAINED, 2000 * GIL_RATE);
+            player:addExp(2000 * EXP_RATE);
+        end
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);

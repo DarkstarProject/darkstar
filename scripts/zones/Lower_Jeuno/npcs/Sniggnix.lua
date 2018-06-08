@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Lower Jeuno
+-- Area: Lower Jeuno
 --   NPC: Sniggnix
---  Type: Standard NPC
+-- Type: Standard NPC
 -- @zone 245
 -- !pos -45.832 4.498 -135.029
 --
@@ -9,11 +9,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,10 +22,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -48,31 +40,19 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10024 and option == 1) then                -- player won first dice game
         player:setVar("thickAsThievesGamblingCS",2);
     elseif (csid == 10026) then
         player:tradeComplete();
         player:setVar("thickAsThievesGamblingCS",8);
-        player:delKeyItem(SECOND_FORGED_ENVELOPE);
-        player:addKeyItem(SECOND_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,SECOND_SIGNED_FORGED_ENVELOPE);
+        player:delKeyItem(dsp.ki.SECOND_FORGED_ENVELOPE);
+        player:addKeyItem(dsp.ki.SECOND_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SECOND_SIGNED_FORGED_ENVELOPE);
     end
 
 

@@ -4,23 +4,16 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_AUTO_SPIKES,mob:getShortID());
-    mob:addStatusEffect(EFFECT_ICE_SPIKES,45,0,0);
-    mob:getStatusEffect(EFFECT_ICE_SPIKES):setFlag(32);
+    mob:setMobMod(dsp.mobMod.AUTO_SPIKES,mob:getShortID());
+    mob:addStatusEffect(dsp.effect.ICE_SPIKES,45,0,0);
+    mob:getStatusEffect(dsp.effect.ICE_SPIKES):setFlag(32);
 end;
 
------------------------------------
--- onSpikesDamage
------------------------------------
-
 function onSpikesDamage(mob,target,damage)
-    local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
     if (INT_diff > 20) then
         INT_diff = 20 + ((INT_diff - 20)*0.5); -- INT above 20 is half as effective.
@@ -30,29 +23,21 @@ function onSpikesDamage(mob,target,damage)
     local params = {};
     params.bonusmab = 0;
     params.includemab = false;
-    dmg = addBonusesAbility(mob, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,ELE_ICE,0);
-    dmg = adjustForTarget(target,dmg,ELE_ICE);
-    dmg = finalMagicNonSpellAdjustments(mob,target,ELE_ICE,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.ICE, target, dmg, params);
+    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.ICE,0);
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.ICE);
+    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.ICE,dmg);
 
     if (dmg < 0) then
         dmg = 0;
     end
 
-    return SUBEFFECT_ICE_SPIKES,44,dmg;
+    return dsp.subEffect.ICE_SPIKES,44,dmg;
 
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());

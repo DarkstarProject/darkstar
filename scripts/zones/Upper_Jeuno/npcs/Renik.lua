@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Renik
+--  NPC: Renik
 -- Standard Info NPC
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno");
@@ -27,24 +19,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(168);
     end
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10086) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",8,true);
     end

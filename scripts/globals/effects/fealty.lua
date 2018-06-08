@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_MEVA,200);
+   target:addMod(dsp.mod.MEVA,200);
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_MEVA,200);
+   target:delMod(dsp.mod.MEVA,200);
 end;

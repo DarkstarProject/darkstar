@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Shohrun-Tuhrun
+--  NPC: Shohrun-Tuhrun
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,SHOHRUNTUHRUN_SHOP_DIALOG);
@@ -43,24 +36,12 @@ function onTrigger(player,npc)
         0x1280, 74520,3,     --Scroll of Protectra IV
         0x1304, 64400,3      --Scroll of Dispel
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -11,10 +11,6 @@ require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -23,25 +19,17 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     --player:addMission(COP, WHEN_ANGELS_FALL);
     --player:setVar("PromathiaStatus",3);
    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==3) then
-      player:startEvent(203);            
+      player:startEvent(203);
    elseif (EventTriggerBCNM(player,npc)) then
    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
-      player:startEvent(205);    
+      player:startEvent(205);
     end
   return 1;
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
@@ -53,7 +41,7 @@ function onEventUpdate(player,csid,option)
     end;
 
 -----------------------------------
--- onEventFinish Action 
+-- onEventFinish Action
 -----------------------------------
 
 function onEventFinish(player,csid,option)

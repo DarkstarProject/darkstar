@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- High-Tension_Discharger
--- Description: Discharges a powerful current that deals Lightning damage to players in a fan-shaped area. 
+-- Description: Discharges a powerful current that deals Lightning damage to players in a fan-shaped area.
 -- Additional effect: Stun
 -- Type: Magical
 ---------------------------------------------
@@ -14,7 +14,7 @@ function onMobSkillCheck(target,mob,skill)
     -- skillList 727 = Proto-Omega
     -- skillList 728 = Ultima
     -- skillList 729 = Proto-Ultima
-    local skillList = mob:getMobMod(MOBMOD_SKILL_LIST);
+    local skillList = mob:getMobMod(dsp.mobMod.SKILL_LIST);
     local mobhp = mob:getHPP();
     local phase = mob:getLocalVar("battlePhase");
 
@@ -26,11 +26,11 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_STUN;
+    local typeEffect = dsp.effect.STUN;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 3, 2);
 
     local dmgmod = 2;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_THUNDER,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.THUNDER,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_THUNDER,MOBPARAM_IGNORE_SHADOWS);
 
     target:delHP(dmg);

@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Melek
+--  NPC: Melek
 -- Involved in Mission 2-3
 -- @zone 240
 -- !pos -80 -5 158
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Port_Windurst/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -30,7 +22,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) ~= 255) then
         currentMission = player:getCurrentMission(pNation);
 
-        if (pNation == NATION_BASTOK) then
+        if (pNation == dsp.nation.BASTOK) then
             missionStatus = player:getVar("MissionStatus");
             if (currentMission == THE_EMISSARY) then
                 -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
@@ -41,14 +33,14 @@ function onTrigger(player,npc)
                 -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
                 elseif (missionStatus == 6) then
                     player:startEvent(61);
-                elseif (player:hasKeyItem(KINDRED_REPORT)) then
+                elseif (player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
                     player:startEvent(67);
                 end
             -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
             elseif (currentMission == THE_EMISSARY_WINDURST) then
                 if (missionStatus == 2) then
                     player:startEvent(49);
-                elseif (player:hasKeyItem(SWORD_OFFERING)) then
+                elseif (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
                 player:startEvent(53);
                 elseif (missionStatus <= 5) then
                     player:showText(npc,MELEK_DIALOG_B)
@@ -61,7 +53,7 @@ function onTrigger(player,npc)
                     player:startEvent(64);
                 elseif (missionStatus == 8) then
                     player:showText(npc,MELEK_DIALOG_A)
-                elseif (player:hasKeyItem(KINDRED_CREST)) then
+                elseif (player:hasKeyItem(dsp.ki.KINDRED_CREST)) then
                     player:startEvent(66);
                 end
             else
@@ -74,32 +66,20 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 48) then
         player:addMission(BASTOK,THE_EMISSARY_WINDURST);
         player:setVar("MissionStatus",2);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
     elseif (csid == 53) then
-        player:addKeyItem(DULL_SWORD)
-        player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
+        player:addKeyItem(dsp.ki.DULL_SWORD)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DULL_SWORD);
         player:setVar("MissionStatus",4);  --> Gideus next
-        player:delKeyItem(SWORD_OFFERING) -- remove sword offering
+        player:delKeyItem(dsp.ki.SWORD_OFFERING) -- remove sword offering
     elseif (csid == 55) then
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",7); -- to Sandy now
@@ -108,10 +88,10 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",7);
     elseif (csid == 66) then
         player:addMission(BASTOK,THE_EMISSARY);
-        player:addKeyItem(KINDRED_REPORT)
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT)
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:setVar("MissionStatus",10);  -- return to Bastok
-        player:delKeyItem(KINDRED_CREST)
+        player:delKeyItem(dsp.ki.KINDRED_CREST)
     end
 
 end;

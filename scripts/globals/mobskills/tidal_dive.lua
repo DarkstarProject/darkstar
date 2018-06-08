@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = dsp.effect.BIND;
 
     local numhits = math.random(2, 3);
     local accmod = 1;
@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 30);
 
-    typeEffect = EFFECT_WEIGHT;
+    typeEffect = dsp.effect.WEIGHT;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 60);
 
     target:delHP(dmg);

@@ -8,19 +8,12 @@
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(EFFECT_SOUL_VOICE,1,0,180);
+    player:addStatusEffect(dsp.effect.SOUL_VOICE,1,0,180);
 end;

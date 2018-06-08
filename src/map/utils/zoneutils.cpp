@@ -120,13 +120,13 @@ void InitializeWeather()
         }
         else
         {
-            try
+            if (!PZone.second->m_WeatherVector.empty())
             {
                 PZone.second->SetWeather((WEATHER)PZone.second->m_WeatherVector.at(0).common);
 
                 //ShowDebug(CL_YELLOW"zonetuils::InitializeWeather: Static weather of %s updated to %u\n" CL_RESET, PZone.second->GetName(), PZone.second->m_WeatherVector.at(0).m_common);
             }
-            catch (std::out_of_range&)
+            else
             {
                 PZone.second->SetWeather(WEATHER_NONE); // If not weather data found, initialize with WEATHER_NONE
 
@@ -155,14 +155,11 @@ void SavePlayTime()
 CZone* GetZone(uint16 ZoneID)
 {
     DSP_DEBUG_BREAK_IF(ZoneID >= MAX_ZONEID);
-    try
+    if (auto PZone = g_PZoneList.find(ZoneID); PZone != g_PZoneList.end())
     {
-        return g_PZoneList.at(ZoneID);
+        return PZone->second;
     }
-    catch (const std::out_of_range&)
-    {
-        return nullptr;
-    }
+    return nullptr;
 }
 
 CNpcEntity* GetTrigger(uint16 TargID, uint16 ZoneID)

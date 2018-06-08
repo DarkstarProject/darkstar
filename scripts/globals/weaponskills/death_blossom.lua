@@ -22,7 +22,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     -- ftp damage mods (for Damage Varies with TP; lines are calculated in the function
     params.ftp100 = 1.125; params.ftp200 = 1.125; params.ftp300 = 1.125;
     -- wscs are in % so 0.2=20%
-    params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
+    params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.5; params.chr_wsc = 0.0;
     -- critical mods, again in % (ONLY USE FOR critICAL HIT VARIES WITH TP)
     params.crit100 = 0.0; params.crit200=0.0; params.crit300=0.0;
@@ -39,21 +39,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
     if (damage > 0) then
         local duration = (tp/1000 * 20) - 5;
-        if (target:hasStatusEffect(EFFECT_MAGIC_EVASION_DOWN) == false) then
-            target:addStatusEffect(EFFECT_MAGIC_EVASION_DOWN, 10, 0, duration);
+        if (target:hasStatusEffect(dsp.effect.MAGIC_EVASION_DOWN) == false) then
+            target:addStatusEffect(dsp.effect.MAGIC_EVASION_DOWN, 10, 0, duration);
         end
     end
 
-
-    if ((player:getEquipID(SLOT_MAIN) == 18995) and (player:getMainJob() == JOBS.RDM)) then
-        if (damage > 0) then 
-            local params = initAftermathParams()
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 3
-            params.subpower.lv3 = 1
-            params.power.lv2_inc = 1
-            applyAftermathEffect(player, tp, params)
-        end
-    end
     return tpHits, extraHits, criticalHit, damage;
 end

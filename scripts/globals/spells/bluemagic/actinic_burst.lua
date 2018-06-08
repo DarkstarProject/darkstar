@@ -24,12 +24,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = EFFECT_FLASH;
-    local dINT = (caster:getStat(MOD_MND) - target:getStat(MOD_MND));
+    local typeEffect = dsp.effect.FLASH;
+    local dINT = (caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND));
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus =  150;
     params.effect = nil;
     local resist = applyResistance(caster, target, spell, params);
@@ -38,12 +38,12 @@ function onSpellCast(caster,target,spell)
 
     if (resist > 0.0625) then -- Do it!
         if (target:addStatusEffect(typeEffect,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end;
 
     return typeEffect;

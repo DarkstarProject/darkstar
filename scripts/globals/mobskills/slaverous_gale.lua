@@ -14,12 +14,12 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target,mob,skill)
-    local typeEffectOne = EFFECT_PLAGUE;
-    local typeEffectTwo = EFFECT_SLOW;
+    local typeEffectOne = dsp.effect.PLAGUE;
+    local typeEffectTwo = dsp.effect.SLOW;
     MobStatusEffectMove(mob,target,typeEffectOne,1,3,60);
     MobStatusEffectMove(mob,target,typeEffectTwo,1,3,60);
-    local dmgmod = 1; 
-    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * math.random(4,6),ELE_EARTH,dmgmod,TP_NO_EFFECT);
+    local dmgmod = 1;
+    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * math.random(4,6),dsp.magic.ele.EARTH,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS);
 
     target:delHP(dmg);

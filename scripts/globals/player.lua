@@ -33,29 +33,29 @@ function onGameIn(player, firstlogin, zoning)
 
     if (player:getVar("GodMode") == 1) then
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
-        player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
-        player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-        player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
-        player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
-        player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,0);
-        player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,300,0,0);
-        player:addStatusEffect(EFFECT_REFRESH,99,0,0);
-        player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(dsp.effect.CHAINSPELL,1,0,0);
+        player:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,0);
+        player:addStatusEffect(dsp.effect.INVINCIBLE,1,0,0);
+        player:addStatusEffect(dsp.effect.ELEMENTAL_SFORZO,1,0,0);
+        player:addStatusEffect(dsp.effect.MANAFONT,1,0,0);
+        player:addStatusEffect(dsp.effect.REGAIN,300,0,0);
+        player:addStatusEffect(dsp.effect.REFRESH,99,0,0);
+        player:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
-        player:addMod(MOD_RACC,2500);
-        player:addMod(MOD_RATT,2500);
-        player:addMod(MOD_ACC,2500);
-        player:addMod(MOD_ATT,2500);
-        player:addMod(MOD_MATT,2500);
-        player:addMod(MOD_MACC,2500);
-        player:addMod(MOD_RDEF,2500);
-        player:addMod(MOD_DEF,2500);
-        player:addMod(MOD_MDEF,2500);
+        player:addMod(dsp.mod.RACC,2500);
+        player:addMod(dsp.mod.RATT,2500);
+        player:addMod(dsp.mod.ACC,2500);
+        player:addMod(dsp.mod.ATT,2500);
+        player:addMod(dsp.mod.MATT,2500);
+        player:addMod(dsp.mod.MACC,2500);
+        player:addMod(dsp.mod.RDEF,2500);
+        player:addMod(dsp.mod.DEF,2500);
+        player:addMod(dsp.mod.MDEF,2500);
 
         -- Heal the player from the new buffs..
         player:addHP(50000);
@@ -240,7 +240,7 @@ function CharCreate(player)
             if ((race == 3) or (race == 4))
                 then player:addItem(0x34B7);
             end;
-            player:addKeyItem(MAP_OF_THE_SAN_DORIA_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_SAN_DORIA_AREA);
         end,
 
         -- BASTOK CITIZEN
@@ -248,7 +248,7 @@ function CharCreate(player)
             if (((race == 1) or (race == 2) or (race == 8)))
                 then player:addItem(0x34B9);
             end;
-            player:addKeyItem(MAP_OF_THE_BASTOK_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_BASTOK_AREA);
         end,
 
         -- WINDY CITIZEN
@@ -256,7 +256,7 @@ function CharCreate(player)
             if (((race == 5) or (race == 6) or (race == 7)))
                 then player:addItem(0x34B8);
             end;
-            player:addKeyItem(MAP_OF_THE_WINDURST_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_WINDURST_AREA);
         end,
 
         default = function (x) end,
@@ -323,7 +323,7 @@ function CharCreate(player)
     player:addItem(0x218);
 
     --SET TITLE
-    player:addTitle(NEW_ADVENTURER);
+    player:addTitle(dsp.title.NEW_ADVENTURER);
 
     -- Needs Moghouse Intro
     player:setVar("MoghouseExplication",1);

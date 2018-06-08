@@ -15,21 +15,18 @@ package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 require("scripts/zones/Quicksand_Caves/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrigger Action
 -----------------------------------
 
 function onTrigger(player,npc)
     local TheMissingPiece = player:getQuestStatus(OUTLANDS,THE_MISSING_PIECE);
-    local HasAncientFragment = player:hasKeyItem(ANCIENT_TABLET_FRAGMENT);
-    local HasAncientTablet = player:hasKeyItem(TABLET_OF_ANCIENT_MAGIC);
+    local HasAncientFragment = player:hasKeyItem(dsp.ki.ANCIENT_TABLET_FRAGMENT);
+    local HasAncientTablet = player:hasKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
 
     -- Need to make sure the quest is flagged the player is no further along in the quest
 
-    if (TheMissingPiece == QUEST_ACCEPTED and not(HasAncientTablet or HasAncientFragment or player:getTitle() == ACQUIRER_OF_ANCIENT_ARCANUM)) then
-        player:addKeyItem(ANCIENT_TABLET_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,ANCIENT_TABLET_FRAGMENT);
+    if (TheMissingPiece == QUEST_ACCEPTED and not(HasAncientTablet or HasAncientFragment or player:getTitle() == dsp.title.ACQUIRER_OF_ANCIENT_ARCANUM)) then
+        player:addKeyItem(dsp.ki.ANCIENT_TABLET_FRAGMENT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_TABLET_FRAGMENT);
 
         -- move the ??? to a random location
         local i = math.random(0,100);
@@ -51,25 +48,11 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
-function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onEventUpdate Action
------------------------------------
 function onEventUpdate(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);
 end;
 
-
------------------------------------
--- onEventFinish Action
------------------------------------
 function onEventFinish(player,csid,option)
     -- print("CSID:",csid);
     -- print("RESULT:",option);

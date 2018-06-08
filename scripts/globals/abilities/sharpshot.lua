@@ -8,20 +8,13 @@
  
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    local power = 40 + player:getMod(MOD_SHARPSHOT);
-    player:addStatusEffect(EFFECT_SHARPSHOT,power,0,60);
+    local power = 40 + player:getMod(dsp.mod.SHARPSHOT);
+    player:addStatusEffect(dsp.effect.SHARPSHOT,power,0,60);
 end;

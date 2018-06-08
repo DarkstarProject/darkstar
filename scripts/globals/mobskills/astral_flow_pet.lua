@@ -22,18 +22,18 @@ function onMobSkillCheck(target,mob,skill)
     end
 
     -- pet needs to be active
-    if (pet:hasStatusEffect(EFFECT_LULLABY) or
-        pet:hasStatusEffect(EFFECT_STUN) or
-        pet:hasStatusEffect(EFFECT_PETRIFICATION) or
-        pet:hasStatusEffect(EFFECT_SLEEP_II) or
-        pet:hasStatusEffect(EFFECT_SLEEP_I) or
-        pet:hasStatusEffect(EFFECT_TERROR)) then
+    if (pet:hasStatusEffect(dsp.effect.LULLABY) or
+        pet:hasStatusEffect(dsp.effect.STUN) or
+        pet:hasStatusEffect(dsp.effect.PETRIFICATION) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_II) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_I) or
+        pet:hasStatusEffect(dsp.effect.TERROR)) then
         return 1;
     end
 
-    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         return 0;
-    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
+    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
         return 0;
     end
 
@@ -41,8 +41,8 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_ASTRAL_FLOW;
-    skill:setMsg(msgBasic.USES);
+    local typeEffect = dsp.effect.ASTRAL_FLOW;
+    skill:setMsg(dsp.msg.basic.USES);
 
     -- Find proper pet skill
     local pet = mob:getPet();
@@ -79,12 +79,12 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     -- Astral flow has no effect if pet is inactive
-    if (pet:hasStatusEffect(EFFECT_LULLABY) or
-        pet:hasStatusEffect(EFFECT_STUN) or
-        pet:hasStatusEffect(EFFECT_PETRIFICATION) or
-        pet:hasStatusEffect(EFFECT_SLEEP_II) or
-        pet:hasStatusEffect(EFFECT_SLEEP_I) or
-        pet:hasStatusEffect(EFFECT_TERROR)) then
+    if (pet:hasStatusEffect(dsp.effect.LULLABY) or
+        pet:hasStatusEffect(dsp.effect.STUN) or
+        pet:hasStatusEffect(dsp.effect.PETRIFICATION) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_II) or
+        pet:hasStatusEffect(dsp.effect.SLEEP_I) or
+        pet:hasStatusEffect(dsp.effect.TERROR)) then
         return typeEffect;
     end
 

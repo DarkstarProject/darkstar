@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Ansegusele
---  Type: Shop NPC
+-- Type: Shop NPC
 --  @zone 256
 --  !pos 74 4 -126 256
 -----------------------------------
@@ -9,17 +9,10 @@ package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/shop");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Standard shop
@@ -34,19 +27,11 @@ function onTrigger(player,npc)
         0x1125, 32, -- San D'Or. Carrot
         0x0276, 96, -- Ogre Pumpkin
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

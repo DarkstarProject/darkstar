@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Giddeus (145)
+-- Area: Giddeus (145)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -28,3 +28,7 @@ VUU_PUQU_THE_BEGUILER_PH =
 {
     [17371577] = 17371578, -- -23.973 0.459 -399.155
 };
+
+VAA_HUJA_THE_ERUDITE    = 17371579;
+
+GIDDEUS_TREASURE_CHEST  = 17371608;

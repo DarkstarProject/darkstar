@@ -1,7 +1,7 @@
 ---------------------------------------------
 -- Regeneration
 --
--- Description: Adds a Regen effect.
+-- Description: Adds a Regen dsp.effect.
 -- Type: Enhancing
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self
@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = mob:getMainLvl()/10 * 4 + 5;
     local duration = 60;
 
-    local typeEffect = EFFECT_REGEN;
+    local typeEffect = dsp.effect.REGEN;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, power, 3, duration));
     return typeEffect;

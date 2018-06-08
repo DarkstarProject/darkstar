@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Burning Strike M = 6?
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/summon");
@@ -22,7 +21,7 @@ function onPetAbility(target, pet, skill)
     local totaldamage = 0;
     local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3);
     --get resist multiplier (1x if no resist)
-    local resist = applyPlayerResistance(pet,-1,target,pet:getStat(MOD_INT)-target:getStat(MOD_INT),ELEMENTAL_MAGIC_SKILL, ELE_FIRE);
+    local resist = applyPlayerResistance(pet,-1,target,pet:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),dsp.skill.ELEMENTAL_MAGIC, dsp.magic.ele.FIRE);
     --get the resisted damage
     damage.dmg = damage.dmg*resist;
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)

@@ -13,12 +13,12 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_MULTI_STRIKES;
-    local enhskill = caster:getSkillLevel(ENHANCING_MAGIC_SKILL);
+    local effect = dsp.effect.MULTI_STRIKES;
+    local enhskill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
     local final = 0;
     local duration = 180;
 
-    if (caster:hasStatusEffect(EFFECT_COMPOSURE) == true and caster:getID() == target:getID()) then
+    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
         duration = duration * 3;
     end
 
@@ -35,9 +35,9 @@ function onSpellCast(caster,target,spell)
     end
 
     if (target:addStatusEffect(effect,final,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return effect;

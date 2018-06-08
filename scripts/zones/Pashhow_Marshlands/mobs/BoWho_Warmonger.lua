@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Pashhow Marshlands
---  MOB: BoWho Warmonger
+--   NM: Bo'Who Warmonger
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

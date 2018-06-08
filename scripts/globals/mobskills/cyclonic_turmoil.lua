@@ -16,17 +16,17 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,ELE_WIND,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS);
     local dispel1 = target:dispelStatusEffect();
     local dispel2 = target:dispelStatusEffect();
     local total = 0;
 
-    if (dispel1 ~= EFFECT_NONE) then
+    if (dispel1 ~= dsp.effect.NONE) then
         total = total+1;
     end
 
-    if (dispel2 ~= EFFECT_NONE) then
+    if (dispel2 ~= dsp.effect.NONE) then
         total = total+1;
     end
 
@@ -35,7 +35,7 @@ function onMobWeaponSkill(target, mob, skill)
     if (total == 0) then
         return dmg;
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM);
         return total;
     end
 end;

@@ -1,22 +1,22 @@
 -----------------------------------
 -- Area: Temenos
--- Name: 
+-- Name:
 -----------------------------------
 
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)    
+function onBcnmRegister(player,instance)
     SetServerVariable("[C_Temenos_4th]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1306),TEMENOS);        
+    HideArmouryCrates(GetInstanceRegion(1306),TEMENOS);
     HideTemenosDoor(GetInstanceRegion(1306));
     player:setVar("Limbus_Trade_Item-T",0);
 if (GetMobAction(16928986) > 0) then DespawnMob(16928986);end
 if (GetMobAction(16928987) > 0) then DespawnMob(16928987);end
-if (GetMobAction(16928988) > 0) then DespawnMob(16928988);end    
-    for n=16928991,16929003,1 do      
+if (GetMobAction(16928988) > 0) then DespawnMob(16928988);end
+    for n=16928991,16929003,1 do
         if (GetMobAction(n) > 0) then DespawnMob(n);end
-    end    
+    end
 --print("spawn_coffer");
   SpawnCofferTemenosCFloor4();
 end;
@@ -25,9 +25,9 @@ end;
 function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[C_Temenos_4th]UniqueID"));
-    player:setVar("LimbusID",1306);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(WHITE_CARD);
+    player:setVar("LimbusID",1306);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
 
 -- Leaving  by every mean possible, given by the LeaveCode

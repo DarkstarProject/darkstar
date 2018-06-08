@@ -11,9 +11,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +19,6 @@ function onTrade(player,npc,trade)
         player:startEvent(638);                 -- WONDERING_MINSTREL: Quest Finish
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -60,22 +53,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 634) then    -- WONDERING_MINSTREL: Quest Start
         player:addQuest(WINDURST,WONDERING_MINSTREL);
     elseif (csid == 638) then  -- WONDERING_MINSTREL: Quest Finish
@@ -87,7 +68,7 @@ function onEventFinish(player,csid,option)
             player:addItem(17349);
             player:messageSpecial(ITEM_OBTAINED,17349);
             player:addFame(WINDURST,75);
-            player:addTitle(DOWN_PIPER_PIPEUPPERER);
+            player:addTitle(dsp.title.DOWN_PIPER_PIPEUPPERER);
             player:needToZone(true);
             player:setVar("QuestWonderingMin_var",0);
         end

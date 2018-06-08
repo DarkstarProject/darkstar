@@ -34,11 +34,11 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,shadows);
 
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
     local power = 20;
 
     if (isNM) then
-        typeEffect = EFFECT_POISON;
+        typeEffect = dsp.effect.POISON;
     end
 
 

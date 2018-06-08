@@ -1,6 +1,6 @@
 -----------------------------------
 --
---    EFFECT_VELOCITY_SHOT
+--    dsp.effect.VELOCITY_SHOT
 --
 -----------------------------------
 
@@ -11,10 +11,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ATTP,-15);
-    target:addMod(MOD_HASTE_ABILITY,-150);
-    target:addMod(MOD_RATTP,15);
-    target:addMod(MOD_RANGED_DELAYP,-10);
+    target:addMod(dsp.mod.ATTP,-15);
+    target:addMod(dsp.mod.HASTE_ABILITY,-150);
+    target:addMod(dsp.mod.RATTP,15);
+    target:addMod(dsp.mod.RANGED_DELAYP,-10);
 end;
 
 -----------------------------------
@@ -29,8 +29,8 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,-15);
-    target:delMod(MOD_HASTE_ABILITY,-150);
-    target:delMod(MOD_RATTP,15);
-    target:delMod(MOD_RANGED_DELAYP,-10);
+    target:delMod(dsp.mod.ATTP,-15);
+    target:delMod(dsp.mod.HASTE_ABILITY,-150);
+    target:delMod(dsp.mod.RATTP,15);
+    target:delMod(dsp.mod.RANGED_DELAYP,-10);
 end;

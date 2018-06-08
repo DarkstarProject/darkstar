@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Raimbroy
+--  NPC: Raimbroy
 -- Starts and Finishes Quest: The Sweetest Things
 -- @zone 230
 -- !pos
@@ -12,9 +12,6 @@ require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,10 +38,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local theSweetestThings = player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS);
@@ -67,22 +60,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Sweetest Things" ACCEPTED
     if (csid == 532) then
@@ -99,7 +80,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theSweetestThings", 0);
     elseif (csid == 535) then
         player:tradeComplete();
-        player:addTitle(APIARIST);
+        player:addTitle(dsp.title.APIARIST);
         player:addGil(GIL_RATE*400);
         if (player:getQuestStatus(SANDORIA, THE_SWEETEST_THINGS) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);

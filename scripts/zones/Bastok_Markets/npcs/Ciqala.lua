@@ -29,5 +29,5 @@ function onTrigger(player,npc)
         17088,   57, 3, -- Ash Staff
         17095,  386, 3, -- Ash Pole
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

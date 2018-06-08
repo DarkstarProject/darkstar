@@ -10,9 +10,6 @@ package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +31,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_COMPLETED) then
         player:startEvent(16);
@@ -46,22 +39,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 15 and option == 1) then
         player:addQuest(NORG,BLACK_MARKET);
     elseif (csid == 17) then
@@ -71,7 +52,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,40);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     elseif (csid == 18) then
         player:addGil(GIL_RATE*2000);
@@ -80,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,50);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     elseif (csid == 19) then
         player:addGil(GIL_RATE*3000);
@@ -89,7 +70,7 @@ function onEventFinish(player,csid,option)
             player:completeQuest(NORG,BLACK_MARKET);
         end
         player:addFame(NORG,80);
-        player:addTitle(BLACK_MARKETEER);
+        player:addTitle(dsp.title.BLACK_MARKETEER);
         player:startEvent(20);
     end
 end;

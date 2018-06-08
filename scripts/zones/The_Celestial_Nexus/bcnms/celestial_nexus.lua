@@ -54,7 +54,7 @@ function onEventFinish(player,csid,option)
         if (player:getCurrentMission(ZILART) == THE_CELESTIAL_NEXUS) then
             player:completeMission(ZILART,THE_CELESTIAL_NEXUS);
             player:addMission(ZILART,AWAKENING);
-            player:addTitle(BURIER_OF_THE_ILLUSION);
+            player:addTitle(dsp.title.BURIER_OF_THE_ILLUSION);
             player:setVar("ZilartStatus",0);
         end
         -- You will be transported to the Hall of the Gods

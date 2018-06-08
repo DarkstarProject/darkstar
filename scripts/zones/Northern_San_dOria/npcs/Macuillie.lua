@@ -1,39 +1,39 @@
 -----------------------------------
---  Area: Northern San d'Oria
+-- Area: Northern San d'Oria
 --  NPC: Macuillie
---  Type: Guildworker's Union Representative
+-- Type: Guildworker's Union Representative
 --  @zone 231
 -- !pos -191.738 11.001 138.656
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 require("scripts/zones/Northern_San_dOria/TextIDs");
 
 local keyitems = {
     [0] = {
-        id = METAL_PURIFICATION,
+        id = dsp.ki.METAL_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = METAL_ENSORCELLMENT,
+        id = dsp.ki.METAL_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_BLACKSMITH,
+        id = dsp.ki.WAY_OF_THE_BLACKSMITH,
         rank = 9,
         cost = 20000
     }
@@ -82,41 +82,21 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 730, 2);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 2, 729, "guild_smithing", keyitems);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 729) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 729) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     elseif (csid == 730) then

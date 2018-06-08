@@ -8,9 +8,9 @@ require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(MOBMOD_SCRIPTED_2HOUR) == 1) then
+    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
         return 0;
-    elseif (mob:getHPP() <= mob:getMobMod(MOBMOD_2HOUR_PROC)) then
+    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
         return 0;
     end
     return 1;
@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     target:addHP(maxHeal);
     target:wakeUp();
 
-    skill:setMsg(msgBasic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL);
 
     return maxHeal;
 end;

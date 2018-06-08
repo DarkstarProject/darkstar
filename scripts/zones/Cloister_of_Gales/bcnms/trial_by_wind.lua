@@ -32,7 +32,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompleteQuest(OUTLANDS,TRIAL_BY_WIND)) then
+        if (player:hasCompletedQuest(OUTLANDS,TRIAL_BY_WIND)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -51,9 +51,9 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_WIND);
-        player:addKeyItem(WHISPER_OF_GALES);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_GALES);
+        player:delKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
+        player:addKeyItem(dsp.ki.WHISPER_OF_GALES);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
     end
     
 end;

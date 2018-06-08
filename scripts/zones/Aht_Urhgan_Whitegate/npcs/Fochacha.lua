@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Aht Urhgan Whitegate
---  NPC:  Fochacha
---  Type: Standard NPC
+-- Area: Aht Urhgan Whitegate
+--  NPC: Fochacha
+-- Type: Standard NPC
 -- !pos 2.897 -1 -10.781 50
 --  Quest: Delivering the Goods
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local vanishingact = player:getQuestStatus(AHT_URHGAN,VANISHING_ACT);
@@ -47,22 +39,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 39) then
         player:addQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
         player:setVar("deliveringTheGoodsCS",1);

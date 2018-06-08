@@ -15,7 +15,7 @@ require("scripts/globals/status");
 ---------------------------------------------------
 -- onMobSkillCheck
 -- Check for Grah Family id 122,123,124
--- if not in Bird form, then ignore. 
+-- if not in Bird form, then ignore.
 ---------------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 3) then
@@ -31,7 +31,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = .8;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
-    local typeEffect = EFFECT_STUN;
+    local typeEffect = dsp.effect.STUN;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 4);
 

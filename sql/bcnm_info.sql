@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.7.18-log
+-- Server version   5.7.18-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -76,7 +76,7 @@ INSERT INTO `bcnm_info` VALUES (64,144,'rank_2_mission','Shitstain',1,18,1800,25
 INSERT INTO `bcnm_info` VALUES (65,144,'worms_turn','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (66,144,'grimshell_shocktroopers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (67,144,'on_my_way','Shitstain',1,18,1800,99,6,0,5);
-INSERT INTO `bcnm_info` VALUES (68,144,'thief_in_norg','Shitstain',1,18,1800,99,6,0,6);
+INSERT INTO `bcnm_info` VALUES (68,144,'thief_in_norg','Your mother',1,18,1800,99,6,0,5);
 INSERT INTO `bcnm_info` VALUES (69,144,'3_2_1','Shitstain',1,18,1800,50,6,0,15);
 INSERT INTO `bcnm_info` VALUES (70,144,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (71,144,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
@@ -98,11 +98,11 @@ INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','Shitstain',1,18,1800,25
 INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (99,146,'saintly_invitation','Shitstain',1,18,1800,99,6,0,5);
-INSERT INTO `bcnm_info` VALUES (100,146,'treasures_and_tribulations','Shitstain',1,18,1800,50,6,100,15);
+INSERT INTO `bcnm_info` VALUES (100,146,'treasure_and_tribulations','Shitstain',1,18,1800,50,6,100,15);
 INSERT INTO `bcnm_info` VALUES (101,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (102,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (103,146,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
-INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','Shitstain',1,18,900,30,3,0,15);
+INSERT INTO `bcnm_info` VALUES (104,146,'creeping_doom','Shitstain',1,18,900,30,3,104,15);
 INSERT INTO `bcnm_info` VALUES (105,146,'charming_trio','Shitstain',1,18,900,20,3,105,15);
 INSERT INTO `bcnm_info` VALUES (106,146,'harem_scarem','Shitstain',1,18,1800,30,6,0,15);
 INSERT INTO `bcnm_info` VALUES (107,146,'early_bird_catches_the_wyrm','Shitstain',1,18,1800,0,18,107,15);

@@ -46,14 +46,14 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     local params = {};
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
 
     if (damage > 0 and resist > 0.125) then
-        local typeEffect = EFFECT_BIND;
+        local typeEffect = dsp.effect.BIND;
         target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end

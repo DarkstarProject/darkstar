@@ -162,10 +162,12 @@ void CCharRecastContainer::Check()
             {
                 if (type == RECAST_ITEM)
                 {
-                    auto id = (uint8)recast->ID;
-                    CItem* PItem = m_PChar->getStorage(LOC_INVENTORY)->GetItem(id);
+                    auto id = recast->ID;
+                    uint8 slotID = (id >> 8) & 0xFF;
+                    uint8 containerID = id & 0xFF;
+                    CItem* PItem = m_PChar->getStorage(containerID)->GetItem(slotID);
 
-                    m_PChar->pushPacket(new CInventoryItemPacket(PItem, LOC_INVENTORY, id));
+                    m_PChar->pushPacket(new CInventoryItemPacket(PItem, containerID, slotID));
                     m_PChar->pushPacket(new CInventoryFinishPacket());
                 }
                 if (type == RECAST_ITEM || type == RECAST_MAGIC || type == RECAST_LOOT)

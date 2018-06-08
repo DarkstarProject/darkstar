@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Norg
--- NPC:  Gilgamesh
+--  NPC: Gilgamesh
 -- !pos 122.452 -9.009 -12.052 252
 -----------------------------------
-
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,10 +15,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -56,23 +48,10 @@ end;
 -- 0x0062  99 mission bastok
 -- 0x000c parle de kuzotz ? parle de bijoux aussi
 -- 0x000a parle de zitah
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 99) then
         player:tradeComplete();

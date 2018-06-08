@@ -20,7 +20,7 @@ function onTrigger(player, cmd)
     end
 
     -- Toggle the hide status..
-    if (isHidden == 0) then 
+    if (isHidden == 0) then
         isHidden = 1;
     else
         isHidden = 0;

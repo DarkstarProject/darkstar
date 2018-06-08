@@ -12,7 +12,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,3.4);
-    spell:setMsg(msgBasic.MAGIC_TELEPORT);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.WARP,0,3.4);
+    spell:setMsg(dsp.msg.basic.MAGIC_TELEPORT);
     return 0;
 end;

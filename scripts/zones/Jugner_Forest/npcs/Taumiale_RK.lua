@@ -6,26 +6,17 @@
 -----------------------------------
 package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/conquest");
 require("scripts/zones/Jugner_Forest/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = NORVALLEN;
+local region      = dsp.region.NORVALLEN;
 local csid        = 0x7ffa;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -49,29 +40,19 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then
         local duration = (player:getRank() + getNationRank(player:getNation()) + 3) * 3600;
-        player:delStatusEffect(EFFECT_SIGIL);
-        player:delStatusEffect(EFFECT_SANCTION);
-        player:delStatusEffect(EFFECT_SIGNET);
-        player:addStatusEffect(EFFECT_SIGNET,0,0,duration); -- Grant Signet
+        player:delStatusEffect(dsp.effect.SIGIL);
+        player:delStatusEffect(dsp.effect.SANCTION);
+        player:delStatusEffect(dsp.effect.SIGNET);
+        player:addStatusEffect(dsp.effect.SIGNET,0,0,duration); -- Grant Signet
     elseif (option == 2) then
         player:delKeyItem(getSupplyKey(region));
         player:addCP(supplyReward[region + 1])

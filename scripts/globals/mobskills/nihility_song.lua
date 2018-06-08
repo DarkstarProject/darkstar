@@ -18,13 +18,13 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
+    local dispel =  target:dispelStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD));
 
-    if (dispel == EFFECT_NONE) then
+    if (dispel == dsp.effect.NONE) then
         -- no effect
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
     else
-        skill:setMsg(msgBasic.SKILL_ERASE);
+        skill:setMsg(dsp.msg.basic.SKILL_ERASE);
     end
 
     return dispel;

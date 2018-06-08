@@ -11,11 +11,11 @@ ITEM_CANNOT_BE_OBTAINED = 6540; -- You cannot obtain the item <item> come back a
  ZELMAN_CANT_RUN_AROUND = 7339; -- I can't run around doing everything she tells me to--I have my dignity to uphold!
 
 -- Mission Texts
-MAKARIM_DIALOG_I = 7314; -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
+       MAKARIM_DIALOG_I = 7314; -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
 
 -- Mining
 MINING_IS_POSSIBLE_HERE = 7346; -- Mining is possible here if you have
 
 
 -- conquest Base
-CONQUEST_BASE = 0;
+          CONQUEST_BASE =    0;

@@ -2,29 +2,19 @@
 -- Area: Pso'xja
 --  MOB: Golden-Tongued Culberry
 -----------------------------------
-
-
------------------------------------
--- onMobFight Action
------------------------------------
+mixins = {require("scripts/mixins/families/tonberry")}
+require("scripts/zones/PsoXja/MobIDs");
+require("scripts/globals/settings");
 
 function onMobFight(mob,target)
     mob:SetAutoAttackEnabled(false);
     mob:SetMobAbilityEnabled(false);
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 6);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 6);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    GetNPCByID(16814434):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(GOLDEN_TONGUED_CULBERRY_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

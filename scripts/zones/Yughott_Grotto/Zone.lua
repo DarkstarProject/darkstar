@@ -3,22 +3,15 @@
 -- Zone: Yughott_Grotto (142)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;
-require("scripts/globals/settings");
+-----------------------------------
 require("scripts/zones/Yughott_Grotto/TextIDs");
-
------------------------------------
--- onInitialize
------------------------------------
+require("scripts/zones/Yughott_Grotto/MobIDs");
+require("scripts/globals/conquest");
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17359052);
+    UpdateTreasureSpawnPoint(YUGHOTT_TREASURE_CHEST);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -28,10 +21,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -40,27 +29,11 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

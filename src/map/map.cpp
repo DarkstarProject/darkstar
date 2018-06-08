@@ -304,6 +304,7 @@ void do_abort(void)
 void set_server_type()
 {
     SERVER_TYPE = DARKSTAR_SERVER_MAP;
+    SOCKET_TYPE = socket_type::UDP;
 }
 
 /************************************************************************
@@ -992,6 +993,7 @@ int32 map_config_default()
     map_config.CoP_Battle_cap = 1;
     map_config.max_merit_points = 30;
     map_config.yell_cooldown = 30;
+    map_config.audit_gm_cmd = 0;
     map_config.audit_chat = 0;
     map_config.audit_say = 0;
     map_config.audit_shout = 0;
@@ -1278,6 +1280,10 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "yell_cooldown") == 0)
         {
             map_config.yell_cooldown = atoi(w2);
+        }
+        else if (strcmp(w1, "audit_gm_cmd") == 0)
+        {
+            map_config.audit_gm_cmd = atoi(w2);
         }
         else if (strcmp(w1, "audit_chat") == 0)
         {

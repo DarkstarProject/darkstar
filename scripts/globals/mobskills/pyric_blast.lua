@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Pyric Blast
 --
---  Description: Deals Fire damage to enemies within a fan-shaped area. Additional effect: Plague 
+--  Description: Deals Fire damage to enemies within a fan-shaped area. Additional effect: Plague
 --  Type: Breath
 --  Ignores Shadows
 --  Range: Unknown Cone
@@ -31,15 +31,15 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, ELE_FIRE, 700);
+    local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, dsp.magic.ele.FIRE, 700);
 	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
-    MobStatusEffectMove(mob, target, EFFECT_PLAGUE, 5, 3, 60);
+    MobStatusEffectMove(mob, target, dsp.effect.PLAGUE, 5, 3, 60);
 
 	target:delHP(dmg);
 
-    if (mob:getFamily() == 313 and bit.band(mob:getBehaviour(),BEHAVIOUR_NO_TURN) == 0) then -- re-enable no turn if all three heads are up
-        mob:setBehaviour(bit.bor(mob:getBehaviour(), BEHAVIOUR_NO_TURN))
+    if (mob:getFamily() == 313 and bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) == 0) then -- re-enable no turn if all three heads are up
+        mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))
     end
 
 	return dmg;

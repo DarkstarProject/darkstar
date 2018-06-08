@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/East_Sarutabaruta/TextIDs");
 require("scripts/zones/East_Sarutabaruta/MobIDs");
@@ -14,12 +13,11 @@ require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 689, 132, DIGREQ_NONE },
                     { 938, 79, DIGREQ_NONE },
                     { 17296, 132, DIGREQ_NONE },
@@ -32,6 +30,7 @@ local itemMap = {
                     { 701, 50, DIGREQ_NONE },
                     { 702, 3, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 4545, 200, DIGREQ_BURROW },
                     { 636, 50, DIGREQ_BURROW },
                     { 5235, 10, DIGREQ_BURROW },
@@ -42,34 +41,23 @@ local itemMap = {
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
                     { 572, 100, DIGREQ_NIGHT },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(DUKE_DECAPOD);
     GetMobByID(DUKE_DECAPOD):setRespawnTime(math.random(3600, 4200));
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn( player, prevZone)
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(305.377,-36.092,660.435,71);
     end
 
@@ -81,16 +69,12 @@ function onZoneIn( player, prevZone)
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 52; -- go north no parameters (0 = north NE 1 E 2 SE 3 S 4 SW 5 W6 NW 7 @ as the 6th parameter)
     elseif (player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == 241 and
-        player:hasStatusEffect(EFFECT_MOUNTED) == false ) then
+        player:hasStatusEffect(dsp.effect.MOUNTED) == false ) then
         cs = 71;
     end
 
     return cs;
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -100,20 +84,10 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 50) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 52) then
@@ -133,22 +107,16 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 48) then
         player:setVar( "MissionStatus",6);
         -- Remove the glowing orb key items
-        player:delKeyItem(FIRST_GLOWING_MANA_ORB);
-        player:delKeyItem(SECOND_GLOWING_MANA_ORB);
-        player:delKeyItem(THIRD_GLOWING_MANA_ORB);
-        player:delKeyItem(FOURTH_GLOWING_MANA_ORB);
-        player:delKeyItem(FIFTH_GLOWING_MANA_ORB);
-        player:delKeyItem(SIXTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FIRST_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.SECOND_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.THIRD_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FOURTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.FIFTH_GLOWING_MANA_ORB);
+        player:delKeyItem(dsp.ki.SIXTH_GLOWING_MANA_ORB);
     elseif (csid == 50) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 71) then

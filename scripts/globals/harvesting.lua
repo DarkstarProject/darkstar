@@ -7,6 +7,7 @@
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/quests");
 
 -------------------------------------------------
 -- npcid and drop by zone
@@ -17,9 +18,9 @@ local npcid = {51, {16986725,16986726,16986727,16986728,16986729,16986730},  -- 
                52, {16990607,16990608,16990609,16990610,16990611,16990612},  -- Bhaflau Thickets
                89, {17142545,17142546,17142547,17142548,17142549,17142550},  -- Grauberg [S]
                95, {17167162,17167163,17167164,17167165,17167166,17167167},  -- West Sarutabaruta [S]
-               115,{17248841,17248842,17248843,17248844,17248845,17248846},  -- West Sarutabaruta
-               123,{17281636,17281637,17281638},                             -- Yuhtunga Jungle
-               124,{17285681,17285682,17285683},                             -- Yhoator Jungle
+               115,{17248876,17248877,17248878,17248879,17248880,17248881},  -- West Sarutabaruta
+               123,{17281634,17281635,17281636},                             -- Yuhtunga Jungle
+               124,{17285679,17285680,17285681},                             -- Yhoator Jungle
                145,{17371609,17371610,17371611,17371612,17371613,17371614},  -- Giddeus
                254,{17818220,17818221,17818222,17818223,17818224,17818225}}; -- Abyssea - Grauberg
 -- Zone, {itemid,drop rate,itemid,drop rate,..}
@@ -57,9 +58,9 @@ function startHarvesting(player,zone,npc,trade,csid)
         if (GetServerVariable("[HARVESTING]Zone "..zone) >= 3) then
             getNewHarvestingPositionNPC(player,npc,zone);
         end
-        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
-           player:addKeyItem(RAINBOW_BERRY);
-           player:messageSpecial(KEYITEM_OBTAINED,RAINBOW_BERRY);
+        if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
+           player:addKeyItem(dsp.ki.RAINBOW_BERRY);
+           player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAINBOW_BERRY);
         end
     else
         player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
@@ -74,7 +75,7 @@ function sickleBreak(player,trade)
     local broke = 0;
     local sicklebreak = math.random();
 
-    sicklebreak = sicklebreak + (player:getMod(MOD_HARVESTING_RESULT) / 1000);
+    sicklebreak = sicklebreak + (player:getMod(dsp.mod.HARVESTING_RESULT) / 1000);
 
     if (sicklebreak < HARVESTING_BREAK_CHANCE) then
         broke = 1;

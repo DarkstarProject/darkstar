@@ -1,20 +1,16 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Kupipi
+--  NPC: Kupipi
 -- Involved in Mission 2-3
 -- Involved in Quest: Riding on the Clouds
 -- !pos 2 0.1 30 242
 -----------------------------------
 package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Heavens_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,11 +19,11 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
-            player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:addKeyItem(dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
-    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == NATION_WINDURST and player:getRank() >= 2 and player:hasKeyItem(PORTAL_CHARM) == false) then -- Trade Rolanberry
+    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == dsp.nation.WINDURST and player:getRank() >= 2 and player:hasKeyItem(dsp.ki.PORTAL_CHARM) == false) then -- Trade Rolanberry
         if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
             player:startEvent(291); -- Qualifies for the reward immediately
         else
@@ -36,17 +32,13 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local pNation = player:getNation();
     local currentMission = player:getCurrentMission(pNation);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (pNation == NATION_SANDORIA) then
+    if (pNation == dsp.nation.SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (currentMission == JOURNEY_TO_WINDURST) then
             if (MissionStatus == 4) then
@@ -70,7 +62,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(251);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
         if (currentMission == THE_EMISSARY_WINDURST) then
             if (MissionStatus == 3) then
@@ -94,15 +86,15 @@ function onTrigger(player,npc)
         else
             player:startEvent(251);
         end
-    elseif (pNation == NATION_WINDURST) then
+    elseif (pNation == dsp.nation.WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
-            player:startEvent(95,0,0,0,LETTER_TO_THE_CONSULS_WINDURST);
+            player:startEvent(95,0,0,0,dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         elseif (currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
-            player:startEvent(101,0,0,ADVENTURERS_CERTIFICATE);
+            player:startEvent(101,0,0,dsp.ki.ADVENTURERS_CERTIFICATE);
         elseif (currentMission == THE_THREE_KINGDOMS) then
             player:startEvent(97);
         elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 0) then
-            player:startEvent(103,0,0,STARWAY_STAIRWAY_BAUBLE);
+            player:startEvent(103,0,0,dsp.ki.STARWAY_STAIRWAY_BAUBLE);
         elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
             player:startEvent(104);
         elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
@@ -119,60 +111,48 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 238) then
-        if (player:getNation() == NATION_BASTOK) then
+        if (player:getNation() == dsp.nation.BASTOK) then
             player:setVar("MissionStatus",4);
-            player:addKeyItem(SWORD_OFFERING);
-            player:messageSpecial(KEYITEM_OBTAINED,SWORD_OFFERING);
+            player:addKeyItem(dsp.ki.SWORD_OFFERING);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SWORD_OFFERING);
         else
             player:setVar("MissionStatus",5);
-            player:addKeyItem(SHIELD_OFFERING);
-            player:messageSpecial(KEYITEM_OBTAINED,SHIELD_OFFERING);
+            player:addKeyItem(dsp.ki.SHIELD_OFFERING);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHIELD_OFFERING);
         end
     elseif (csid == 244 or csid == 246) then
         player:setVar("MissionStatus",10);
     elseif (csid == 242) then
-        player:addKeyItem(DARK_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,DARK_KEY);
+        player:addKeyItem(dsp.ki.DARK_KEY);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DARK_KEY);
         player:setVar("MissionStatus",8);
     elseif (csid == 95) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
-        player:messageSpecial(KEYITEM_OBTAINED,LETTER_TO_THE_CONSULS_WINDURST);
+        player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
     elseif (csid == 103) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(STARWAY_STAIRWAY_BAUBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,STARWAY_STAIRWAY_BAUBLE);
+        player:addKeyItem(dsp.ki.STARWAY_STAIRWAY_BAUBLE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STARWAY_STAIRWAY_BAUBLE);
     elseif (csid == 101) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 291) then -- All condition met, grant Portal Charm
         player:tradeComplete();
-        player:addKeyItem(PORTAL_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+        player:addKeyItem(dsp.ki.PORTAL_CHARM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PORTAL_CHARM);
     elseif (csid == 292) then -- Traded rolanberry, but not all conditions met
         player:tradeComplete();
         player:setVar("OwesPortalCharm",1);
     elseif (csid == 293) then -- Traded rolanberry before, and all conditions are now met
         player:setVar("OwesPortalCharm",0);
-        player:addKeyItem(PORTAL_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,PORTAL_CHARM);
+        player:addKeyItem(dsp.ki.PORTAL_CHARM);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PORTAL_CHARM);
     elseif (csid == 326) then
         player:setVar("MissionStatus",4);
     end

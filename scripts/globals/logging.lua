@@ -77,7 +77,7 @@ function hatchetBreak(player,trade)
     local broke = 0;
     local hatchetbreak = math.random();
 
-    hatchetbreak = hatchetbreak + (player:getMod(MOD_LOGGING_RESULT) / 1000);
+    hatchetbreak = hatchetbreak + (player:getMod(dsp.mod.LOGGING_RESULT) / 1000);
 
     if (hatchetbreak < LOGGING_BREAK_CHANCE) then
         broke = 1;

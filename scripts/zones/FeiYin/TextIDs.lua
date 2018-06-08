@@ -6,21 +6,21 @@ ITEM_CANNOT_BE_OBTAINED = 6560; -- You cannot obtain the item <item> come back a
            GIL_OBTAINED = 6567; -- Obtained <number> gil
        KEYITEM_OBTAINED = 6569; -- Obtained key item: <keyitem>
  FISHING_MESSAGE_OFFSET = 7227; -- You can't fish here
-            HOMEPOINT_SET = 10687; -- Home point set!
+         HOMEPOINT_SET = 10687; -- Home point set!
 
 -- Treasure Coffer/Chest Dialog
-CHEST_UNLOCKED = 7357; -- You unlock the chest!
-    CHEST_FAIL = 7358; -- Fails to open the chest.
-    CHEST_TRAP = 7359; -- The chest was trapped!
-    CHEST_WEAK = 7360; -- You cannot open the chest when you are in a weakened state.
-   CHEST_MIMIC = 7361; -- The chest was a mimic!
-  CHEST_MOOGLE = 7362; -- You cannot open the chest while participating in the moogle event.
-CHEST_ILLUSION = 7363; -- The chest was but an illusion...
-  CHEST_LOCKED = 7364; -- The chest appears to be locked.
+                    CHEST_UNLOCKED = 7357; -- You unlock the chest!
+                        CHEST_FAIL = 7358; -- Fails to open the chest.
+                        CHEST_TRAP = 7359; -- The chest was trapped!
+                        CHEST_WEAK = 7360; -- You cannot open the chest when you are in a weakened state.
+                       CHEST_MIMIC = 7361; -- The chest was a mimic!
+                      CHEST_MOOGLE = 7362; -- You cannot open the chest while participating in the moogle event.
+                    CHEST_ILLUSION = 7363; -- The chest was but an illusion...
+                      CHEST_LOCKED = 7364; -- The chest appears to be locked.
 
 -- Other Dialog
-    SENSE_OF_FOREBODING = 6581; -- You are suddenly overcome with a sense of foreboding...
-NOTHING_OUT_OF_ORDINARY = 6580; -- There is nothing out of the ordinary here.
+               SENSE_OF_FOREBODING = 6581; -- You are suddenly overcome with a sense of foreboding...
+           NOTHING_OUT_OF_ORDINARY = 7435; -- There is nothing out of the ordinary here.
 
 -- ACP mission
          MARK_OF_SEED_HAS_VANISHED = 7500; -- The Mark of Seed has vanished without a trace...
@@ -35,5 +35,5 @@ MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7499; -- The Mark of Seed is about to dissi
            SOFTLY_SHIMMERING_LIGHT = 7483; -- You see a softly shimmering light...
 
 -- conquest Base
-CONQUEST_BASE = 3;
+                     CONQUEST_BASE =    3;
 

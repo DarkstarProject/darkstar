@@ -500,11 +500,14 @@ INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1445);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',123,1446);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1444);
 INSERT INTO `mob_skill_lists` VALUES ('Ghrah',124,1441);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,922);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,923);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,924);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402);
-INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,926);
+
+-- Non NM Roc type Bird
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,399); -- Scratch
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,400); -- Triple Attack
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,401); -- Gliding Spike
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,402); -- Feather Barrier
+INSERT INTO `mob_skill_lists` VALUES ('GiantBird',125,403); -- Stormwind
+
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,662);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,663);
 INSERT INTO `mob_skill_lists` VALUES ('Gigas',126,664);
@@ -1225,6 +1228,16 @@ INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,787);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,788);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,920);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,921);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1731);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1732);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1733);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1734);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1738);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1797);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1798);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1799);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1800);
+INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1801);
 -- INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1724);
 -- INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1723);
 INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1722);
@@ -1307,18 +1320,18 @@ INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1781);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1782);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1783);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1784);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2047);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2043);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2045);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2041);
--- INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2064);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1920);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1921);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1922);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1923);
-INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1924);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1925);
--- INSERT INTO `mob_skill_lists` VALUES ('GotohZhaTheRe',305,1926);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2043);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2044);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2045);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2041);
+INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2053);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1920);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1921);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1922);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1923);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1924);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1925);
+-- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1926);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1743);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1744);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1745);
@@ -1369,37 +1382,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2022);
 INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2023);
 INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,2024);
 -- INSERT INTO `mob_skill_lists` VALUES ('Tyger',315,688);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2057);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2058);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2059);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2060);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1797);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1798);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1799);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1738);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1813);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1814);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1812);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1809);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1802);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1803);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1804);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1807);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1785);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1787);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1790);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1828);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1829);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1830);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1831);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1835);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,1836);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2025);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2026);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2028);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2022);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2023);
-INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2024);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2113);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2114);
 INSERT INTO `mob_skill_lists` VALUES ('Pandemonium',316,2116);
@@ -3637,3 +3619,17 @@ INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,660); -- venom
 -- INSERT INTO `mob_skill_lists` VALUES ('Flame_Skimmer',997,1624); -- debilitating_drone
 
 INSERT INTO `mob_skill_lists` VALUES ('Hovering_Hotpot',998,521); -- spinning attack
+
+INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
+INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
+
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,923); -- Giga Scream
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
+-- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
+INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind

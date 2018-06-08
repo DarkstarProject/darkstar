@@ -22,10 +22,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 2; params.ftp200 = 2; params.ftp300 = 2;
-    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;  
+    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.3; params.chr_wsc = 0.0;
-    params.ele = ELE_DARK;
-    params.skill = SKILL_STF;
+    params.ele = dsp.magic.ele.DARK;
+    params.skill = dsp.skill.STAFF;
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -36,19 +36,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (damage > 0) then
         local duration = (tp/1000 * 60);
-        if (target:hasStatusEffect(EFFECT_MAGIC_ATK_DOWN) == false) then
-            target:addStatusEffect(EFFECT_MAGIC_ATK_DOWN, 10, 0, duration);
-        end
-    end
-
-    if ((player:getEquipID(SLOT_MAIN) == 18990) and (player:getMainJob() == JOBS.SCH)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.power.lv2_inc = 1
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 3
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
+        if (target:hasStatusEffect(dsp.effect.MAGIC_ATK_DOWN) == false) then
+            target:addStatusEffect(dsp.effect.MAGIC_ATK_DOWN, 10, 0, duration);
         end
     end
 

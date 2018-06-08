@@ -1,6 +1,6 @@
 -------------------------------------
 -- Area: Southern San d'Oria
--- NPC: Glenne
+--  NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
 -- @zone 230
 -- !pos -122 -2 15
@@ -41,10 +41,6 @@ function onPath(npc)
     pathfind.patrol(npc, path);
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     local count = trade:getItemCount();
@@ -59,10 +55,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -86,22 +78,12 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     npc:wait(5000);
 
@@ -125,7 +107,7 @@ function onEventFinish(player,csid,option,npc)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12832); -- Bronze Subligar
         else
             player:tradeComplete();
-            player:addTitle(RONFAURIAN_RESCUER);
+            player:addTitle(dsp.title.RONFAURIAN_RESCUER);
             player:addItem(12832);
             player:messageSpecial(ITEM_OBTAINED,12832); -- Bronze Subligar
             player:addFame(SANDORIA,30);

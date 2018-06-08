@@ -33,17 +33,17 @@ function onSpellCast(caster,target,spell)
     
     local params = {};
     
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     
     params.bonus = 1.0;
     
     local resist = applyResistance(caster, target, spell, params);
     local params = {};
-    -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage    
+    -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.multiplier = 1.375;
         params.tMultiplier = 1.0;
         params.duppercap = 54;
@@ -58,10 +58,10 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (damage > 0 and resist > 0.125) then
-        local typeEffect = EFFECT_BLINDNESS;
+        local typeEffect = dsp.effect.BLINDNESS;
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,5,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
     return damage;
-end;    
+end;

@@ -8,10 +8,6 @@ package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
 require("scripts/zones/Gustav_Tunnel/TextIDs");
 require("scripts/zones/Gustav_Tunnel/MobIDs");
 require("scripts/globals/conquest");
-require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,21 +15,12 @@ function onInitialize(zone)
     GetMobByID(BUNE):setRespawnTime(math.random(900, 10800));
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -43,27 +30,11 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

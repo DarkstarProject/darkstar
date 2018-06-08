@@ -20,7 +20,7 @@ g_mixins.abyssea_nm = function(mob)
             if spell:getID() == mob:getLocalVar("abyssea_magic_weak") then
                 --TODO: weakness trigger message
                 mob:weaknessTrigger(1)
-                mob:addStatusEffect(EFFECT_SILENCE,0,0,30)
+                mob:addStatusEffect(dsp.effect.SILENCE,0,0,30)
                 mob:setLocalVar("abyssea_yellow_proc_count", mob:getLocalVar("abyssea_yellow_proc_count" + 1))
             else
                 --discernment
@@ -33,12 +33,12 @@ g_mixins.abyssea_nm = function(mob)
             if wsid == mob:getLocalVar("abyssea_ele_ws_weak") then
                 --TODO: weakness trigger message
                 mob:weaknessTrigger(2)
-                mob:addStatusEffect(EFFECT_TERROR,0,0,30)
-                mob:setLocalVar("abyssea_blue_proc_count", mob:getLocalVar("abyssea_red_proc_count" + 1))
+                mob:addStatusEffect(dsp.effect.TERROR,0,0,30)
+                mob:setLocalVar("abyssea_red_proc_count", mob:getLocalVar("abyssea_red_proc_count" + 1))
             elseif wsid == mob:getLocalVar("abyssea_phys_ws_weak") then
                 --TODO: weakness trigger message
                 mob:weaknessTrigger(0)
-                mob:addStatusEffect(EFFECT_AMNESIA,0,0,30)
+                mob:addStatusEffect(dsp.effect.AMNESIA,0,0,30)
                 mob:setLocalVar("abyssea_blue_proc_count", mob:getLocalVar("abyssea_blue_proc_count" + 1))
             else
                 --discernment (figure out if ws is elemental...)

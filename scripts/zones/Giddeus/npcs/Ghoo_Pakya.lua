@@ -1,32 +1,24 @@
 -----------------------------------
 -- Area: Giddeus
--- NPC:  Ghoo Pakya
+--  NPC: Ghoo Pakya
 -- Involved in Mission 1-3
 -- !pos -139 0 147 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/zones/Giddeus/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
-        if (player:hasKeyItem(DRINK_OFFERINGS)) then
+        if (player:hasKeyItem(dsp.ki.DRINK_OFFERINGS)) then
             -- We have the offerings
             player:startEvent(49);
         else
@@ -45,30 +37,18 @@ function onTrigger(player,npc)
         player:startEvent(52);
     end
 
-end
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 49) then
-        player:delKeyItem(DRINK_OFFERINGS);
+        player:delKeyItem(dsp.ki.DRINK_OFFERINGS);
         player:setVar("ghoo_talk",1);
 
-        if (player:hasKeyItem(FOOD_OFFERINGS) == false) then
+        if (player:hasKeyItem(dsp.ki.FOOD_OFFERINGS) == false) then
             player:setVar("MissionStatus",2);
         end
     elseif (csid == 50) then

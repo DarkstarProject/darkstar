@@ -11,9 +11,6 @@ require("scripts/globals/settings");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,15 +24,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-RegionOwner = GetRegionOwner(LITELOR);
+RegionOwner = GetRegionOwner(dsp.region.LITELOR);
 
-        if (RegionOwner ~= NATION_SANDORIA) then
+        if (RegionOwner ~= dsp.nation.SANDORIA) then
                 player:showText(npc,ATTARENA_CLOSED_DIALOG);
         else
                 player:showText(npc,ATTARENA_OPEN_DIALOG);
@@ -43,25 +36,13 @@ RegionOwner = GetRegionOwner(LITELOR);
                 local stock = {0x026f,119,            -- Bay Leaves
                                  0x103a,6440}           -- Holy Water
 
-                showShop(player,SANDORIA,stock);
+                dsp.shop.general(player, stock, SANDORIA);
         end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

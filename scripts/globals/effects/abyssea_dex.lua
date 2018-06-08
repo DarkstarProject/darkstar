@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_ABYSSEA_DEX
+-- dsp.effect.ABYSSEA_DEX
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_DEX,effect:getPower());
+    target:addMod(dsp.mod.DEX,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_DEX,effect:getPower());
+    target:delMod(dsp.mod.DEX,effect:getPower());
 end;

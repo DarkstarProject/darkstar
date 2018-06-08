@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Vitrolic Barrage
 --
---  Description: Bombards nearby targets with acid, dealing fixed Water damage. Additional effect: Poison 
+--  Description: Bombards nearby targets with acid, dealing fixed Water damage. Additional effect: Poison
 --  Type: ??? (Water)
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: AoE 10'
@@ -17,7 +17,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local needles = 1000 / skill:getTotalTargets();
-    local typeEffect = EFFECT_POISON;
+    local typeEffect = dsp.effect.POISON;
 
     MobStatusEffectMove(mob, target, typeEffect, 20, 3, 60);
 

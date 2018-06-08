@@ -1,5 +1,5 @@
 -----------------------------------------
--- 
+--
 -- Spell: Auspice
 --
 -----------------------------------------
@@ -16,7 +16,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_AUSPICE;
-        doEnspell(caster,target,spell,effect);     
+    local effect = dsp.effect.AUSPICE;
+        doEnspell(caster,target,spell,effect);
     return effect;
 end;

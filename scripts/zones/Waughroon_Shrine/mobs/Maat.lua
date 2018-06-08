@@ -5,19 +5,11 @@
 -----------------------------------
 package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Waughroon_Shrine/TextIDs");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
 
 function onMobEngaged(mob,target)
     target:showText(mob,YOU_DECIDED_TO_SHOW_UP);
@@ -28,10 +20,6 @@ function onMobEngaged(mob,target)
     -- If you dying: target:showText(mob,LOOKS_LIKE_YOU_WERENT_READY);
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob, target)
     local bf = mob:getBattlefield();
 
@@ -39,7 +27,7 @@ function onMobFight(mob, target)
         bf:win();
         return;
     -- THF's Maat additionally gives up if stolen from
-    elseif (target:getMainJob() == JOBS.THF and mob:getStealItem() == 0) then
+    elseif (target:getMainJob() == dsp.job.THF and mob:getStealItem() == 0) then
         -- Todo: move this to a listener for steal?
         -- Steal JA is coded stupidly, getStealItem() is used to check itemID and itemStolen()
         -- returns a bool yet is always set true instead of checking if mob even has an item right there..
@@ -47,10 +35,6 @@ function onMobFight(mob, target)
         return;
     end
 end;
-
------------------------------------
--- onMobDeath Action
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     player:showText(mob,YOUVE_COME_A_LONG_WAY);

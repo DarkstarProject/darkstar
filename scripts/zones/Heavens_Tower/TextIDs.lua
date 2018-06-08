@@ -8,8 +8,8 @@
     FISHING_MESSAGE_OFFSET = 7365; -- You can't fish here.
 
 -- Other dialog
-       STAIRWAY_LOCKED = 554; -- The door to the Starway Stairway is locked tight.
-STAIRWAY_ONLY_CITIZENS = 555; -- The door to the Starway Stairway is locked tight, and only citizens of Windurst can open it.
+           STAIRWAY_LOCKED =  554; -- The door to the Starway Stairway is locked tight.
+    STAIRWAY_ONLY_CITIZENS =  555; -- The door to the Starway Stairway is locked tight, and only citizens of Windurst can open it.
 
 -- conquest Base
-CONQUEST_BASE = 582;
+             CONQUEST_BASE =  582;

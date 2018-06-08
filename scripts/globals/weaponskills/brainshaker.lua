@@ -33,11 +33,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    if (damage > 0) then
-        local duration = (tp/500);
-        if (target:hasStatusEffect(EFFECT_STUN) == false) then
-            target:addStatusEffect(EFFECT_STUN, 1, 0, duration);
-        end
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.STUN) == false) then
+        local duration = (tp/500) * applyResistanceAddEffect(player,target,dsp.magic.ele.LIGHTNING,0);
+        target:addStatusEffect(dsp.effect.STUN, 1, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 

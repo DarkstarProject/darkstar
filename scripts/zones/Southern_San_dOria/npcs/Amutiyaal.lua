@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Amutiyaal
+--  NPC: Amutiyaal
 --  Warp NPC (Aht Urhgan)
 -- !pos 116 0.1 84 230
 -------------------------------------
@@ -44,10 +44,6 @@ Chateau d'Oraguille (East to West)
 80000    (F-7) Chalvatot (Her Majesty's garden)
 --]]
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
@@ -62,10 +58,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -91,37 +83,25 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 812) then
         player:addQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:setVar("WildcatSandy",0);
-        player:addKeyItem(RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,RED_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
         player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
-        player:delKeyItem(RED_SENTINEL_BADGE);
-        player:addKeyItem(RED_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,RED_INVITATION_CARD);
+        player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.RED_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
     elseif (csid == 881) then
         player:tradeComplete();
-        toAhtUrhganWhitegate(player);
+        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;

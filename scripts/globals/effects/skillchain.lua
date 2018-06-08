@@ -1,7 +1,7 @@
 -----------------------------------
 --
---  EFFECT_SKILLCHAIN
---    
+-- dsp.effect.SKILLCHAIN
+--
 -----------------------------------
  
 require("scripts/globals/status");

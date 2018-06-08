@@ -14,26 +14,26 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    if (target:getStatusEffect(EFFECT_DROWN) ~= nil) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+    if (target:getStatusEffect(dsp.effect.DROWN) ~= nil) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     else
-        local dINT = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
+        local dINT = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
         local params = {};
         params.diff = nil;
-        params.attribute = MOD_INT;
+        params.attribute = dsp.mod.INT;
         params.skillType = 36;
         params.bonus = 0;
         params.effect = nil;
         local resist = applyResistance(caster, target, spell, params);
         if (resist <= 0.125) then
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
         else
-            if (target:getStatusEffect(EFFECT_FROST) ~= nil) then
-                target:delStatusEffect(EFFECT_FROST);
+            if (target:getStatusEffect(dsp.effect.FROST) ~= nil) then
+                target:delStatusEffect(dsp.effect.FROST);
             end;
-            local sINT = caster:getStat(MOD_INT);
+            local sINT = caster:getStat(dsp.mod.INT);
             local DOT = getElementalDebuffDOT(sINT);
-            local effect = target:getStatusEffect(EFFECT_BURN);
+            local effect = target:getStatusEffect(dsp.effect.BURN);
             local noeffect = false;
             if (effect ~= nil) then
                 if (effect:getPower() >= DOT) then
@@ -41,18 +41,18 @@ function onSpellCast(caster,target,spell)
                 end;
             end;
             if (noeffect) then
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
             else
                 if (effect ~= nil) then
-                    target:delStatusEffect(EFFECT_BURN);
+                    target:delStatusEffect(dsp.effect.BURN);
                 end;
-                spell:setMsg(msgBasic.MAGIC_ENFEEB);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB);
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist);
-                target:addStatusEffect(EFFECT_BURN,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
+                target:addStatusEffect(dsp.effect.BURN,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE);
             end;
         end;
     end;
 
-    return EFFECT_BURN;
+    return dsp.effect.BURN;
 
 end;

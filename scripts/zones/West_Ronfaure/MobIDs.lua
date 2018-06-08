@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: West Ronfaure (100)
+-- Area: West Ronfaure (100)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -21,3 +21,7 @@ JAGGEDY_EARED_JACK_PH =
     [17187152] = 17187111, -- -278.421 -11.691 -351.425
     [17187132] = 17187111, -- -204.492 -20.754 -324.770
 };
+
+MARAUDER_DVOGZOG = 17187273;
+
+W_RONFAURE_SIGNPOST_OFFSET = 17187503;

@@ -14,7 +14,7 @@ require("scripts/zones/Dynamis-Valkurm/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------

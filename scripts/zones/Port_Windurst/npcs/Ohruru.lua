@@ -13,29 +13,22 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 --    player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
---    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
+--    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
 --        if (rand == 1) then
---            player:addStatusEffect(EFFECT_MUTE,0,0,100);
+--            player:addStatusEffect(dsp.effect.MUTE,0,0,100);
 --        elseif (rand == 2) then
---            player:addStatusEffect(EFFECT_BANE,0,0,100);
+--            player:addStatusEffect(dsp.effect.BANE,0,0,100);
 --        elseif (rand == 3) then
---            player:addStatusEffect(EFFECT_PLAGUE,0,0,100);
+--            player:addStatusEffect(dsp.effect.PLAGUE,0,0,100);
 --        end
 --    end
 -- ======== FOR TESTING ONLY ==========-----
@@ -56,11 +49,11 @@ function onTrigger(player,npc)
             player:startEvent(231); -- CATCH IT IF YOU CAN: Before Quest 2
         end
 
-    elseif (Catch >= 1 and (player:hasStatusEffect(EFFECT_MUTE) == true or player:hasStatusEffect(EFFECT_BANE) == true or player:hasStatusEffect(EFFECT_PLAGUE) == true)) then
+    elseif (Catch >= 1 and (player:hasStatusEffect(dsp.effect.MUTE) == true or player:hasStatusEffect(dsp.effect.BANE) == true or player:hasStatusEffect(dsp.effect.PLAGUE) == true)) then
         player:startEvent(246); -- CATCH IT IF YOU CAN: Quest Turn In 1
     elseif (Catch >= 1 and player:needToZone()) then
         player:startEvent(255); -- CATCH IT IF YOU CAN: After Quest
-    elseif (Catch == 1 and player:hasStatusEffect(EFFECT_MUTE) == false and player:hasStatusEffect(EFFECT_BANE) == false and player:hasStatusEffect(EFFECT_PLAGUE) == false) then
+    elseif (Catch == 1 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
         rand = math.random(1,2);
         if (rand == 1) then
             player:startEvent(248); -- CATCH IT IF YOU CAN: During Quest 1
@@ -74,36 +67,24 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 231) then
         player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
-        if (player:hasStatusEffect(EFFECT_MUTE) == true) then
-            player:delStatusEffect(EFFECT_MUTE);
+        if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
+            player:delStatusEffect(dsp.effect.MUTE);
             player:addGil(GIL_RATE*1000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
-        elseif (player:hasStatusEffect(EFFECT_BANE) == true) then
-            player:delStatusEffect(EFFECT_BANE);
+        elseif (player:hasStatusEffect(dsp.effect.BANE) == true) then
+            player:delStatusEffect(dsp.effect.BANE);
             player:addGil(GIL_RATE*1200);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200);
-        elseif (player:hasStatusEffect(EFFECT_PLAGUE) == true) then
-            player:delStatusEffect(EFFECT_PLAGUE);
+        elseif (player:hasStatusEffect(dsp.effect.PLAGUE) == true) then
+            player:delStatusEffect(dsp.effect.PLAGUE);
             player:addGil(GIL_RATE*1500);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
         end

@@ -37,8 +37,9 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.8;
     end
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_SLOW) == false) then
-        target:addStatusEffect(EFFECT_SLOW, 150, 0, 60);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.SLOW) == false) then
+        local duration = 60 * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0);
+        target:addStatusEffect(dsp.effect.SLOW, 150, 0, duration);
     end
     return tpHits, extraHits, criticalHit, damage;
 end

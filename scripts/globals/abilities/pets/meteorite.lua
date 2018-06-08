@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Meteorite
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
@@ -13,7 +12,7 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-    local dint = pet:getStat(MOD_INT) - target:getStat(MOD_INT);
+    local dint = pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     local dmg = 500 + dint*1.5 + skill:getTP()/20;
     target:updateEnmityFromDamage(pet,dmg);
     target:delHP(dmg);

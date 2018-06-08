@@ -1,47 +1,27 @@
 -----------------------------------
 -- Area: Marjami Ravine
--- NPC:  HomePoint#1
+--  NPC: HomePoint#1
 -- !pos  -23 0 174 266
 -----------------------------------
-
 package.loaded["scripts/zones/Marjami_Ravine/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/zones/Marjami_Ravine/TextIDs");
 require("scripts/globals/homepoint");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    homepointMenu( player, 8700, 50);
+    homepointMenu(player, 8700, 50);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 
     if (csid == 8700) then
 
@@ -49,7 +29,7 @@ function onEventFinish(player,csid,option)
             player:setHomePoint();
             player:messageSpecial(HOMEPOINT_SET);
         else
-            hpTeleport( player, option);
+            hpTeleport(player, option);
         end
     end
 end;

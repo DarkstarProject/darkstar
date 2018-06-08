@@ -6,53 +6,23 @@
 -----------------------------------
 package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/quests");
 require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Xarcabard/MobIDs");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-local koenigsTiger = 17236205;
-
 function onTrigger(player,npc)
-
-    local UnbridledPassionCS = player:getVar("unbridledPassion");
-    local tigerAction = GetMobAction(koenigsTiger);
-
-    if (UnbridledPassionCS == 4 and tigerAction == 0) then -- prevent repeated playback while the tiger is already up and fighting
+    if (player:getVar("unbridledPassion") == 4 and not GetMobByID(KOENIGSTIGER):isSpawned()) then
         player:startEvent(8);
     end
-
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 8) then
-        SpawnMob(koenigsTiger):updateClaim(player);
+        SpawnMob(KOENIGSTIGER):updateClaim(player);
     end
-
 end;

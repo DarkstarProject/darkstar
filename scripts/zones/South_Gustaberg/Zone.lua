@@ -4,22 +4,19 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
-require("scripts/globals/zone");
+require("scripts/zones/South_Gustaberg/TextIDs");
+require("scripts/globals/icanheararainbow");
+require("scripts/globals/chocobo_digging");
+require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/icanheararainbow");
-require("scripts/zones/South_Gustaberg/TextIDs");
-require("scripts/globals/chocobo_digging");
+require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 17296, 252, DIGREQ_NONE },
                     { 17396, 227, DIGREQ_NONE },
                     { 846, 156, DIGREQ_NONE },
@@ -30,6 +27,7 @@ local itemMap = {
                     { 847, 23, DIGREQ_NONE },
                     { 644, 5, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 4545, 5, DIGREQ_BURROW },
                     { 636, 63, DIGREQ_BURROW },
                     { 617, 63, DIGREQ_BORE },
@@ -39,27 +37,16 @@ local itemMap = {
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
                     { 575, 14, DIGREQ_NIGHT },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
------------------------------------
--- onInitialize
------------------------------------
-
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -79,11 +66,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
-
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -92,20 +74,10 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 901) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 37) then
@@ -119,13 +91,7 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 906) then
         if (player:getCurrentMission(COP) == A_TRANSIENT_DREAM) then
             player:completeMission(COP,A_TRANSIENT_DREAM);

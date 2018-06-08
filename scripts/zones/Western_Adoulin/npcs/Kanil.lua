@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Kanil
---  Type: Shop NPC
+-- Type: Shop NPC
 --  @zone 256
 --  !pos 154 4 -5 256
 -----------------------------------
@@ -9,17 +9,10 @@ package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/shop");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Standard shop
@@ -32,19 +25,11 @@ function onTrigger(player,npc)
         0x14B3, 148,    -- Salsa
         0x05F3, 316,    -- Apple Mint
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

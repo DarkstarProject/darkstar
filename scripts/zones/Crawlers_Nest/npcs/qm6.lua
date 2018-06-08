@@ -1,15 +1,11 @@
 -----------------------------------
 -- Area: Crawlers Nest
--- NPC:  ??? - Matron Crawler spawn
+--  NPC: ??? - Matron Crawler spawn
 -- !pos -141.158 -33.689 20.944 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Crawlers_Nest/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,16 +14,12 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         if (math.random(1,100)<=34) then
             SpawnMob(17584134):updateClaim(player); -- Matron Crawler
-            npc:setStatus(STATUS_DISAPPEAR) -- hide ???
+            npc:setStatus(dsp.status.DISAPPEAR) -- hide ???
         else
             player:messageSpecial(NOTHING_SEEMS_TO_HAPPEN);
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 end;

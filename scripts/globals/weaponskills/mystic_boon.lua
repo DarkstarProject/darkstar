@@ -21,7 +21,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.numHits = 1;
     params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2;
-    params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
+    params.str_wsc = 0.3; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.5; params.chr_wsc = 0.0;
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
     params.canCrit = false;
@@ -34,18 +34,6 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-
-    -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
-    if ((player:getEquipID(SLOT_MAIN) == 18993) and (player:getMainJob() == JOBS.WHM)) then
-        if (damage > 0) then
-            local params = initAftermathParams()
-            params.subpower.lv1 = 2
-            params.subpower.lv2 = 2
-            params.subpower.lv3 = 1
-            applyAftermathEffect(player, tp, params)
-        end
-    end
-
     player:addMP(damage);
     return tpHits, extraHits, criticalHit, damage;
 end

@@ -12,23 +12,23 @@ require("scripts/globals/msg");
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local ranged = player:getStorageItem(0, 0, SLOT_RANGED);
-    local ammo = player:getStorageItem(0, 0, SLOT_AMMO);
+    local ranged = player:getStorageItem(0, 0, dsp.slot.RANGED);
+    local ammo = player:getStorageItem(0, 0, dsp.slot.AMMO);
 
-    if ranged and ranged:isType(ITEM_WEAPON) then
+    if ranged and ranged:isType(dsp.itemType.WEAPON) then
         local skilltype = ranged:getSkillType();
-        if skilltype == SKILL_ARC or skilltype == SKILL_MRK or skilltype == SKILL_THR then
-            if ammo and (ammo:isType(ITEM_WEAPON) or skilltype == SKILL_THR) then
+        if skilltype == dsp.skill.ARCHERY or skilltype == dsp.skill.MARKSMANSHIP or skilltype == dsp.skill.THROWING then
+            if ammo and (ammo:isType(dsp.itemType.WEAPON) or skilltype == dsp.skill.THROWING) then
                 return 0, 0;
             end;
         end;
     end;
 
-    return msgBasic.NO_RANGED_WEAPON, 0;
+    return dsp.msg.basic.NO_RANGED_WEAPON, 0;
 end;
 
 function onUseAbility(player,target,ability,action)
-    if (player:getWeaponSkillType(SLOT_RANGED) == SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) == dsp.skill.MARKSMANSHIP) then
         action:animation(target:getID(), action:animation(target:getID()) + 1);
     end
     local params = {};
@@ -43,10 +43,14 @@ function onUseAbility(player,target,ability,action)
     params.enmityMult = 0.5
 
     local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
-
-    if not (tpHits + extraHits > 0) then
-        ability:setMsg(msgBasic.JA_MISS_2)
-        action:speceffect(target:getID(), 0)
+    
+    -- Set the message id ourselves
+    if (tpHits + extraHits > 0) then
+        action:messageID(target:getID(), dsp.msg.basic.JA_DAMAGE);
+        action:speceffect(target:getID(), 32);
+    else
+        action:messageID(target:getID(), dsp.msg.basic.JA_MISS_2);
+        action:speceffect(target:getID(), 0);
     end
 
     return damage;

@@ -15,30 +15,30 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,3600,5623);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5623);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_HPP, 13);
-    target:addMod(MOD_FOOD_HP_CAP, 180);
-    target:addMod(MOD_DEX, 1);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_STORETP, 6);
-    target:addMod(MOD_HPHEAL, 1);
+    target:addMod(dsp.mod.FOOD_HPP, 13);
+    target:addMod(dsp.mod.FOOD_HP_CAP, 180);
+    target:addMod(dsp.mod.DEX, 1);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.STORETP, 6);
+    target:addMod(dsp.mod.HPHEAL, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_HPP, 13);
-    target:delMod(MOD_FOOD_HP_CAP, 180);
-    target:delMod(MOD_DEX, 1);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_STORETP, 6);
-    target:delMod(MOD_HPHEAL, 1);
+    target:delMod(dsp.mod.FOOD_HPP, 13);
+    target:delMod(dsp.mod.FOOD_HP_CAP, 180);
+    target:delMod(dsp.mod.DEX, 1);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.STORETP, 6);
+    target:delMod(dsp.mod.HPHEAL, 1);
 end;

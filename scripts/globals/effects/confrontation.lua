@@ -27,6 +27,6 @@ end;
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(EFFECT_CONFRONTATION);
+        target:getPet():delStatusEffect(dsp.effect.CONFRONTATION);
     end
 end;

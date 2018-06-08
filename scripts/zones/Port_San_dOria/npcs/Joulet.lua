@@ -12,19 +12,12 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/globals/status")
-
------------------------------------
--- onSpawn
+require("scripts/globals/status");
 -----------------------------------
 
 function onSpawn(npc)
     npcUtil.fishingAnimation(npc, 2)
-end
-
------------------------------------
--- onTrade Action
------------------------------------
+end;
 
 function onTrade(player,npc,trade)
     local count = trade:getItemCount();
@@ -54,10 +47,6 @@ function onTrade(player,npc,trade)
     npc:setAnimation(0)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
@@ -69,22 +58,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 307) then
         if (player:getFreeSlotsCount() == 0) then
@@ -93,9 +70,9 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addItem(17386);
             player:messageSpecial(ITEM_OBTAINED, 17386);
-            player:addTitle(CARP_DIEM);
-            player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:addTitle(dsp.title.CARP_DIEM);
+            player:addKeyItem(dsp.ki.TESTIMONIAL);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_COMPETITION);
         end

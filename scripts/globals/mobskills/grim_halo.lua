@@ -10,7 +10,7 @@ require("scripts/globals/status");
 
 function onMobSkillCheck(target,mob,skill)
     local job = mob:getMainJob();
-    if (job == JOBS.WAR or job == JOBS.BLM or job == JOBS.DRK or job == JOBS.SAM or job == JOBS.DRG or job == JOBS.SMN) then
+    if (job == dsp.job.WAR or job == dsp.job.BLM or job == dsp.job.DRK or job == dsp.job.SAM or job == dsp.job.DRG or job == dsp.job.SMN) then
         return 0;
     end
     return 1;

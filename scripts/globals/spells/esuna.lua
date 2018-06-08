@@ -16,10 +16,10 @@ function onSpellCast(caster,target,spell)
     if (caster:getID() == target:getID()) then -- much of this should only run once per cast, otherwise it would only delete the debuffs from the caster.
 
         local statusNum = -1;
-        local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_PARALYSIS, EFFECT_POISON, EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE};
+        local removables = {dsp.effect.FLASH, dsp.effect.BLINDNESS, dsp.effect.PARALYSIS, dsp.effect.POISON, dsp.effect.CURSE_I, dsp.effect.CURSE_II, dsp.effect.DISEASE, dsp.effect.PLAGUE};
 
-        if (caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then -- add extra statuses to the list of removables. Elegy and Requiem are specifically absent.
-            removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_PARALYSIS, EFFECT_POISON, EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE, EFFECT_WEIGHT, EFFECT_BIND, EFFECT_BIO, EFFECT_DIA, EFFECT_BURN, EFFECT_FROST, EFFECT_CHOKE, EFFECT_RASP, EFFECT_SHOCK, EFFECT_DROWN, EFFECT_STR_DOWN, EFFECT_DEX_DOWN, EFFECT_VIT_DOWN, EFFECT_AGI_DOWN, EFFECT_INT_DOWN, EFFECT_MND_DOWN, EFFECT_CHR_DOWN, EFFECT_ADDLE, EFFECT_SLOW, EFFECT_HELIX, EFFECT_ACCURACY_DOWN, EFFECT_ATTACK_DOWN, EFFECT_EVASION_DOWN, EFFECT_DEFENSE_DOWN, EFFECT_MAGIC_ACC_DOWN, EFFECT_MAGIC_ATK_DOWN, EFFECT_MAGIC_EVASION_DOWN, EFFECT_MAGIC_DEF_DOWN, EFFECT_MAX_TP_DOWN, EFFECT_MAX_MP_DOWN, EFFECT_MAX_HP_DOWN};
+        if (caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then -- add extra statuses to the list of removables. Elegy and Requiem are specifically absent.
+            removables = {dsp.effect.FLASH, dsp.effect.BLINDNESS, dsp.effect.PARALYSIS, dsp.effect.POISON, dsp.effect.CURSE_I, dsp.effect.CURSE_II, dsp.effect.DISEASE, dsp.effect.PLAGUE, dsp.effect.WEIGHT, dsp.effect.BIND, dsp.effect.BIO, dsp.effect.DIA, dsp.effect.BURN, dsp.effect.FROST, dsp.effect.CHOKE, dsp.effect.RASP, dsp.effect.SHOCK, dsp.effect.DROWN, dsp.effect.STR_DOWN, dsp.effect.DEX_DOWN, dsp.effect.VIT_DOWN, dsp.effect.AGI_DOWN, dsp.effect.INT_DOWN, dsp.effect.MND_DOWN, dsp.effect.CHR_DOWN, dsp.effect.ADDLE, dsp.effect.SLOW, dsp.effect.HELIX, dsp.effect.ACCURACY_DOWN, dsp.effect.ATTACK_DOWN, dsp.effect.EVASION_DOWN, dsp.effect.DEFENSE_DOWN, dsp.effect.MAGIC_ACC_DOWN, dsp.effect.MAGIC_ATK_DOWN, dsp.effect.MAGIC_EVASION_DOWN, dsp.effect.MAGIC_DEF_DOWN, dsp.effect.MAX_TP_DOWN, dsp.effect.MAX_MP_DOWN, dsp.effect.MAX_HP_DOWN};
         end;
 
         local has = {};
@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
             caster:setLocalVar("esunaDelEffMis",0);  -- again, this can't be a local because it would only delete from the caster if it were. For extra status deletion under Misery
         end;
 
-        if (statusNum >= 1 and caster:hasStatusEffect(EFFECT_AFFLATUS_MISERY)) then -- Misery second status removal.
+        if (statusNum >= 1 and caster:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then -- Misery second status removal.
             caster:delStatusEffect(has[delEff]); -- delete the first selected effect so it doesn't get selected again. Won't impact the ability to delete it from others at this point.
             local statusNumMis =  - 1 -- need a new var to track the amount of debuffs for the array
 
@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
     local statusDelMis = caster:getLocalVar("esunaDelEffMis")
 
     if (statusDel == 0) then -- this gets set to 0 if there's no status to delete.
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     elseif (statusDelMis ~= 0) then -- no need to check for statusDelMis because it can't be 0 if this isn't
         target:delStatusEffect(statusDel);
         target:delStatusEffect(statusDelMis);

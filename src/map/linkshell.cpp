@@ -376,11 +376,11 @@ namespace linkshell
         if (PItemLinkshell != nullptr && PItemLinkshell->isType(ITEM_LINKSHELL))
         {
             CLinkshell* PLinkshell = nullptr;
-            try
+            if (auto LinkshellListShell = LinkshellList.find(PItemLinkshell->GetLSID()); LinkshellListShell != LinkshellList.end())
             {
-                PLinkshell = LinkshellList.at(PItemLinkshell->GetLSID()).get();
+                PLinkshell = LinkshellListShell->second.get();
             }
-            catch (std::out_of_range&)
+            else
             {
                 PLinkshell = LoadLinkshell(PItemLinkshell->GetLSID());
             }
@@ -450,11 +450,11 @@ namespace linkshell
 
 	CLinkshell* GetLinkshell(uint32 id)
 	{
-		try
+        if (auto PLinkshell = LinkshellList.find(id); PLinkshell != LinkshellList.end())
 		{
-			return LinkshellList.at(id).get();
+            return PLinkshell->second.get();
 		}
-		catch (const std::out_of_range&)
+        else
 		{
 			return nullptr;
 		}

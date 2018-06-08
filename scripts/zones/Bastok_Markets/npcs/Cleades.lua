@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC:  Cleades
+--  NPC: Cleades
 -- Type: Mission Giver
 -- !pos -358 -10 -168 235
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Bastok_Markets/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,13 +31,9 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_BASTOK) then
+    if (player:getNation() ~= dsp.nation.BASTOK) then
         player:startEvent(1003); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
@@ -67,22 +59,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,1,csid,option);
 

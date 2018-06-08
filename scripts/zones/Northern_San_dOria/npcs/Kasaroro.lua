@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Kasaroro
+--  NPC: Kasaroro
 -- Type: Consulate Representative
 -- Involved in Mission: 2-3 Windurst
 -- !pos -72 -3 34 231
@@ -10,9 +10,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,14 +22,10 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     pNation = player:getNation();
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
@@ -71,26 +64,14 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 546) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         player:setVar("MissionStatus",3);
     elseif (csid == 550) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
@@ -100,9 +81,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",8);
     elseif (csid == 551) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
-        player:delKeyItem(KINDRED_CREST);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:setVar("MissionStatus",11);
     end
 

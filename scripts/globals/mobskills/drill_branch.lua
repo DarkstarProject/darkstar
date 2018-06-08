@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded*math.random(2,3));
 
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effect.BLINDNESS;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 15, 0, 120);
 

@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
 require("scripts/zones/Tahrongi_Canyon/MobIDs");
@@ -12,12 +11,11 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 880, 224, DIGREQ_NONE },
                     { 887, 39, DIGREQ_NONE },
                     { 645, 14, DIGREQ_NONE },
@@ -30,6 +28,7 @@ local itemMap = {
                     { 864, 22, DIGREQ_NONE },
                     { 843, 4, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 656, 95, DIGREQ_BURROW },
                     { 749, 26, DIGREQ_BURROW },
                     { 751, 33, DIGREQ_BURROW },
@@ -47,27 +46,16 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
------------------------------------
--- onInitialize
------------------------------------
-
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -85,11 +73,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
-
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -98,20 +81,10 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter( player, region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 35) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 37) then
@@ -123,20 +96,14 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 35) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end
 end;
 
 function isHabrokWeather(weather)
-    return (weather == WEATHER_DUST_STORM or weather == WEATHER_SAND_STORM or weather == WEATHER_WIND or weather == WEATHER_GALES);
+    return (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM or weather == dsp.weather.WIND or weather == dsp.weather.GALES);
 end
 
 function onZoneWeatherChange(weather)

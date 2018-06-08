@@ -58,16 +58,16 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         if (USE_OLD_CURE_FORMULA == true) then
             basecure = getBaseCure(power,divisor,constant);
         else
             basecure = getBaseCure(power,divisor,constant,basepower);
         end
         final = getCureFinal(caster,spell,basecure,minCure,false);
-        if (caster:hasStatusEffect(EFFECT_AFFLATUS_SOLACE) and target:hasStatusEffect(EFFECT_STONESKIN) == false) then
+        if (caster:hasStatusEffect(dsp.effect.AFFLATUS_SOLACE) and target:hasStatusEffect(dsp.effect.STONESKIN) == false) then
             local solaceStoneskin = 0;
-            local equippedBody = caster:getEquipID(SLOT_BODY);
+            local equippedBody = caster:getEquipID(dsp.slot.BODY);
             if (equippedBody == 11186) then
                 solaceStoneskin = math.floor(final * 0.30);
             elseif (equippedBody == 11086) then
@@ -75,9 +75,9 @@ function onSpellCast(caster,target,spell)
             else
                 solaceStoneskin = math.floor(final * 0.25);
             end
-            target:addStatusEffect(EFFECT_STONESKIN,solaceStoneskin,0,25);
+            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25);
         end;
-        final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+        final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100));
 
         --Applying server mods....
         final = final * CURE_POWER;
@@ -92,19 +92,19 @@ function onSpellCast(caster,target,spell)
         caster:updateEnmityFromCure(target,final);
     else
         if (target:isUndead()) then
-            spell:setMsg(msgBasic.MAGIC_DMG);
+            spell:setMsg(dsp.msg.basic.MAGIC_DMG);
             local params = {};
             params.dmg = minCure;
             params.multiplier = 1;
-            params.skillType = HEALING_MAGIC_SKILL;
-            params.attribute = MOD_MND;
+            params.skillType = dsp.skill.HEALING_MAGIC;
+            params.attribute = dsp.mod.MND;
             params.hasMultipleTargetReduction = false;
 
             local dmg = calculateMagicDamage(caster, target, spell, params)*0.5;
             local params = {};
-            params.diff = caster:getStat(MOD_MND)-target:getStat(MOD_MND);
-            params.attribute = MOD_MND;
-            params.skillType = HEALING_MAGIC_SKILL;
+            params.diff = caster:getStat(dsp.mod.MND)-target:getStat(dsp.mod.MND);
+            params.attribute = dsp.mod.MND;
+            params.skillType = dsp.skill.HEALING_MAGIC;
             params.bonus = 1.0;
             local resist = applyResistance(caster, target, spell, params);
             dmg = dmg*resist;
@@ -114,8 +114,8 @@ function onSpellCast(caster,target,spell)
             final = dmg;
             target:delHP(final);
             target:updateEnmityFromDamage(caster,final);
-        elseif (caster:getObjType() == TYPE_PC) then
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        elseif (caster:getObjType() == dsp.objType.PC) then
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         else
             -- e.g. monsters healing themselves.
             if (USE_OLD_CURE_FORMULA == true) then
@@ -132,7 +132,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
+    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100;
     if (mpBonusPercent > 0) then
         caster:addMP(mpBonusPercent);
     end

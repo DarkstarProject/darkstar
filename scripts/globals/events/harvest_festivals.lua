@@ -23,7 +23,7 @@ function isHalloweenEnabled()
         elseif (HALLOWEEN_2009 == 1) then
             option = 3;
         elseif (HALLOWEEN_2010 == 1) then
-            option = 4;        
+            option = 4;
         end
     end
     return option;
@@ -31,8 +31,8 @@ end;
 
 
 function halloweenItemsCheck(player)
-    local headSlot = player:getEquipID(SLOT_HEAD);
-    local mainHand = player:getEquipID(SLOT_MAIN);
+    local headSlot = player:getEquipID(dsp.slot.HEAD);
+    local mainHand = player:getEquipID(dsp.slot.MAIN);
     local reward = 0;
     
     -- Normal Quality Rewards
@@ -142,7 +142,7 @@ function onHalloweenTrade(player,trade,npc)
                 local harvestFestTreats;
                 if (itemInList < 32) then -- The size of the list is too big for int 32 used that stores the bit mask, as such there are two lists
 
-                    harvestFestTreats = player:getVar(varName); 
+                    harvestFestTreats = player:getVar(varName);
                 else
 
                     varName = "harvestFestTreats2";
@@ -164,7 +164,7 @@ function onHalloweenTrade(player,trade,npc)
                 -- @ 433/432 golem
                 -- 265 dark eye, 266 Giant version
                 -- 290 dark bombs
-                -- 301 dark mandy 
+                -- 301 dark mandy
                 -- 313 black spiders
                 -- 488 gob
                 -- 531 - 548 shade
@@ -180,14 +180,14 @@ function onHalloweenTrade(player,trade,npc)
                     Skeleton = 564;
                     Dark_Stalker = math.random(531,534);
                     
-                    halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker}; 
+                    halloween_costume_list = {Quadav,Orc,Yagudo,Shade,Ghost,Hound,Skeleton,Dark_Stalker};
 
                     local costumePicked = halloween_costume_list[math.random(1,#halloween_costume_list)]; -- will randomly pick one of the costumes in the list
-                    player:addStatusEffect(EFFECT_COSTUME,costumePicked,0,3600);
+                    player:addStatusEffect(dsp.effect.COSTUME,costumePicked,0,3600);
 
                     -- pitchForkCostumeList defines the special costumes per zone that can trigger the pitch fork requirement
                     -- zone, costumeID
-                    pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines 
+                    pitchForkCostumeList = {234,Shade,Skeleton, -- Bastok mines
                                             235,Hound,Ghost,      -- Bastok Markets
                                             230,Ghost,Skeleton, -- Southern Sandoria
                                             231,Hound,Skeleton,   -- Northern Sandoria
@@ -200,7 +200,7 @@ function onHalloweenTrade(player,trade,npc)
                             player:messageSpecial(IF_YOU_WEAR_THIS);
 
                         elseif (zi == 16) then
-                            player:messageSpecial(THANK_YOU_TREAT);    
+                            player:messageSpecial(THANK_YOU_TREAT);
 
                         end
 

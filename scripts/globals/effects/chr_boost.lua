@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_CHR_BOOST
+-- dsp.effect.CHR_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_CHR,effect:getPower());
+    target:addMod(dsp.mod.CHR,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostCHR_effect_size = effect:getPower();
     if (boostCHR_effect_size > 0) then
         effect:setPower(boostCHR_effect_size - 1)
-        target:delMod(MOD_CHR,1); 
+        target:delMod(dsp.mod.CHR,1);
     end
 end;
 
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostCHR_effect_size = effect:getPower();
     if (boostCHR_effect_size > 0) then
-        target:delMod(MOD_CHR,boostCHR_effect_size);
+        target:delMod(dsp.mod.CHR,boostCHR_effect_size);
     end
 end;

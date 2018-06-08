@@ -2,25 +2,12 @@
 -- Area: Yhoator Jungle
 --  NM:  Bright-handed Kunberry
 -----------------------------------
-
+mixins = {require("scripts/mixins/families/tonberry")}
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,133,1);
-
-    local kills = player:getVar("EVERYONES_GRUDGE_KILLS");
-    if (kills < 480) then
-        player:setVar("EVERYONES_GRUDGE_KILLS",kills + 1);
-    end
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set Bright-handed Kunberry's spawnpoint and respawn time (21-21.5 hours)

@@ -11,27 +11,18 @@
 -------------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -------------------------------------
-
 require("scripts/globals/conquest");
 require("scripts/globals/common");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, JEUNO
 local guardtype   = 2;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local size        = #SandInv;
 local inventory   = SandInv;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
-end
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -55,22 +46,14 @@ function onTrigger(player,npc)
         player:startEvent(32763,Menu1,Menu2,Menu3,Menu4,Menu5,Menu6,Menu7,Menu8);
     end
 
-end
-
------------------------------------
--- onEventUpdate
------------------------------------
+end;
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdateCSID: %u",csid);
     -- printf("onUpdateOPTION: %u",option);
 
     updateConquestGuard(player,csid,option,size,inventory);
-end
-
------------------------------------
--- onEventFinish
------------------------------------
+end;
 
 function onEventFinish(player,csid,option)
     -- printf("onFinishCSID: %u",csid);

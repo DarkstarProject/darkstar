@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 25, 0, 60));
 

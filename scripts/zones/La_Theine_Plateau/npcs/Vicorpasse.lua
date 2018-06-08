@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: La Theine Plateau
--- NPC:  Vicorpasse
+--  NPC: Vicorpasse
 -- Involved in Mission: The Rescue Drill
 -- !pos -344 37 266 102
 -----------------------------------
 package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/La_Theine_Plateau/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -48,28 +40,16 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 108) then
         player:setVar("MissionStatus",5);
     elseif (csid == 115) then
-        player:addKeyItem(RESCUE_TRAINING_CERTIFICATE);
-        player:messageSpecial(KEYITEM_OBTAINED,RESCUE_TRAINING_CERTIFICATE);
+        player:addKeyItem(dsp.ki.RESCUE_TRAINING_CERTIFICATE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RESCUE_TRAINING_CERTIFICATE);
         player:setVar("theRescueDrillRandomNPC",0);
         player:setVar("MissionStatus",11);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC: Altiret
+--  NPC: Altiret
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
@@ -9,9 +9,6 @@ require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +26,7 @@ function onTrade(player,npc,trade)
         if (count == 1 and freeSlot > 0 and giltGlasses == true) then
             player:tradeComplete();
             player:addFame(SANDORIA,30);
-            player:addTitle(PICKPOCKET_PINCHER);
+            player:addTitle(dsp.title.PICKPOCKET_PINCHER);
             player:completeQuest(SANDORIA,THE_PICKPOCKET);
             player:startEvent(550);
         elseif (giltGlasses == false) then
@@ -51,10 +48,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     -- Vars for the Quest "The Pickpocket"
@@ -74,22 +67,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" reward with light axe, done with quest
     if (csid == 550) then

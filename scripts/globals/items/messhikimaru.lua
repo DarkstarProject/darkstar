@@ -14,9 +14,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:hasStatusEffect(EFFECT_ENCHANTMENT) == false) then
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,600,17826);
-    end;    
+    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == false) then
+        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,600,17826);
+    end;
 end;
 
 -----------------------------------------
@@ -24,10 +24,10 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ARCANA_KILLER, 20);
+    target:addMod(dsp.mod.ARCANA_KILLER, 20);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_ARCANA_KILLER, 20);
+    target:delMod(dsp.mod.ARCANA_KILLER, 20);
 end;
 

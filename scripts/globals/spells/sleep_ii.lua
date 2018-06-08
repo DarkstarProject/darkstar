@@ -12,33 +12,33 @@ end;
 
 function onSpellCast(caster,target,spell)
     local duration = 90;
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+        if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         duration = duration * 2;
     end
-    caster:delStatusEffect(EFFECT_SABOTEUR);
+    caster:delStatusEffect(dsp.effect.SABOTEUR);
 
-    local typeEffect = EFFECT_SLEEP_II;
-    local pINT = caster:getStat(MOD_INT);
-    local mINT = target:getStat(MOD_INT);
+    local typeEffect = dsp.effect.SLEEP_II;
+    local pINT = caster:getStat(dsp.mod.INT);
+    local mINT = target:getStat(dsp.mod.INT);
     local dINT = (pINT - mINT);
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     params.bonus = 0;
     params.effect = typeEffect;
     resm = applyResistanceEffect(caster, target, spell, params);
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); -- resist message
         return typeEffect;
     end
 
     duration = duration * resm;
 
     if (target:addStatusEffect(typeEffect,2,0,duration)) then
-        spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     return typeEffect;

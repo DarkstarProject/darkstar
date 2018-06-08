@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Beriphaule
+--  NPC: Beriphaule
 -- Type: Allegiance Changer NPC
 -- !pos -247.422 7.000 28.992 231
 -----------------------------------
-
 require("scripts/globals/conquest");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    local new_nation = NATION_SANDORIA;
+    local new_nation = dsp.nation.SANDORIA;
     local old_nation = player:getNation();
     local rank = getNationRank(new_nation);
 
@@ -48,25 +40,13 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 606 and option == 1) then
-        local new_nation = NATION_SANDORIA;
+        local new_nation = dsp.nation.SANDORIA;
         local rank = getNationRank(new_nation);
         local cost = 0;
 

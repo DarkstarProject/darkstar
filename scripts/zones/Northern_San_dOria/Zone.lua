@@ -3,38 +3,34 @@
 -- Zone: Northern_San_dOria (231)
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
-require("scripts/globals/events/harvest_festivals");
-require("scripts/globals/zone");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
-require("scripts/globals/missions");
 -----------------------------------
--- onInitialize
+require("scripts/globals/events/harvest_festivals");
+require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/zones/Northern_San_dOria/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/missions");
+require("scripts/globals/npc_util");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
+require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-
-    SetExplorerMoogles(17723648);
+    SetExplorerMoogles(N_SANDY_EXPLORER_MOOGLE);
 
     zone:registerRegion(1, -7,-3,110, 7,-1,155);
 
     applyHalloweenNpcCostumes(zone:getID())
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
-    
+
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
     local cs = -1;
-    
+
     -- FIRST LOGIN (START CS)
     if (player:getPlaytime(false) == 0) then
         if (OPENING_CUTSCENE_ENABLE == 1) then
@@ -44,7 +40,7 @@ function onZoneIn(player,prevZone)
         player:setHomePoint();
     end
     -- MOG HOUSE EXIT
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(130,-0.2,-3,160);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
             cs = 30004;
@@ -67,10 +63,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -78,10 +70,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -98,32 +86,15 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    
     if (csid == 535) then
-        player:messageSpecial(ITEM_OBTAINED,0x218);
+        player:messageSpecial(ITEM_OBTAINED,536); -- adventurer coupon
     elseif (csid == 1) then
         player:setVar("MissionStatus",1);
     elseif (csid == 0) then
@@ -133,17 +104,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(HOMEPOINT_SET);
     elseif (csid == 569) then
         player:setPos(0,0,-13,192,0xe9);
-    elseif (csid == 49) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12513);
-        else
-            player:addTitle(PARAGON_OF_RED_MAGE_EXCELLENCE);
-            player:addItem(12513);
-            player:messageSpecial(ITEM_OBTAINED, 12513); -- Warlock's Chapeau
-            player:setVar("peaceForTheSpiritCS",0);
-            player:addFame(SANDORIA,AF3_FAME);
-            player:completeQuest(SANDORIA,PEACE_FOR_THE_SPIRIT);
-        end
+    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
+        player:setVar("peaceForTheSpiritCS",0);
     elseif (csid == 16) then
         player:setVar("Wait1DayM8-1_date",0);
         player:setVar("Mission8-1Completed",1);

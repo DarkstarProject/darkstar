@@ -146,7 +146,7 @@ bool CSpell::hasMPCost()
 
 bool CSpell::isHeal()
 {
-    return ((getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEA) || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
+    return ((getValidTarget() & TARGET_SELF) && getSkillType() == SKILL_HEALING_MAGIC) || m_ID == SpellID::Pollen || m_ID == SpellID::Wild_Carrot || m_ID == SpellID::Healing_Breeze || m_ID == SpellID::Magic_Fruit;
 }
 
 
@@ -401,7 +401,7 @@ void CSpell::setRange(float range)
 //Implement namespace to work with spells
 namespace spell
 {
-    std::array<CSpell*, 1024> PSpellList; // spell list
+    std::array<CSpell*, MAX_SPELL_ID> PSpellList; // spell list
     std::map<uint16, uint16> PMobSkillToBlueSpell; // maps the skill id (key) to spell id (value).
 
     //Load a list of spells
@@ -556,7 +556,14 @@ namespace spell
     //Get Spell By ID
     CSpell* GetSpell(SpellID SpellID)
     {
-        return PSpellList[static_cast<size_t>(SpellID)];
+        DSP_DEBUG_BREAK_IF(static_cast<uint16>(SpellID) >= MAX_SPELL_ID);
+
+        auto id = static_cast<uint16>(SpellID);
+        if (id >= MAX_SPELL_ID)
+        {
+            return nullptr;
+        }
+        return PSpellList[id];
     }
 
     bool CanUseSpell(CBattleEntity* PCaster, SpellID SpellID)
@@ -696,8 +703,8 @@ namespace spell
         if(spell->getSpellGroup() == SPELLGROUP_SONG && (spell->getValidTarget() & TARGET_SELF)){
             if(entity->objtype == TYPE_MOB || (entity->GetMJob() == JOB_BRD &&
                 entity->objtype == TYPE_PC && ((CCharEntity*)entity)->getEquip(SLOT_RANGED) &&
-                ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STR)){
-                total += ((float)entity->GetSkill(SKILL_STR) / 276) * 10;
+                ((CItemWeapon*)((CCharEntity*)entity)->getEquip(SLOT_RANGED))->getSkillType() == SKILL_STRING_INSTRUMENT)){
+                total += ((float)entity->GetSkill(SKILL_STRING_INSTRUMENT) / 276) * 10;
             }
 
             if (total > 20){

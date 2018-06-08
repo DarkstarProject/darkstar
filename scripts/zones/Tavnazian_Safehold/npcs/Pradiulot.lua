@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Pradiulot
+--  NPC: Pradiulot
 -- Involved in Quest: Unforgiven
 -- @zone 26
 -- !pos -20.814 -22 8.399
@@ -15,33 +15,25 @@ require("scripts/globals/quests");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
-
------------------------------------
--- onTrade Action
------------------------------------
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 
-if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and trade:getGil() == 1 == true) then
+if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 2 and trade:getGil() == 1 == true) then
         player:startEvent(206); -- Dialogue after completing quest (optional)
         end
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
 
 if (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
     player:startEvent(204); -- Dialogue for final stage of Unforgiven Quest
 
-elseif (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 2 and player:getVar("UnforgivenVar") == 2) then
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 2 and player:getVar("UnforgivenVar") == 2) then
     player:startEvent(206); -- Dialogue after completing quest (optional)
 
 else
@@ -49,28 +41,15 @@ else
 end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 204) then
     player:setVar("UnforgivenVar",2);
     player:addKeyItem(440)
     player:messageSpecial(KEYITEM_OBTAINED,440); -- Map of Tavnazia
-    player:completeQuest(OTHER_AREAS,UNFORGIVEN);
-    player:addFame(OTHER_AREAS,30);
+    player:completeQuest(OTHER_AREAS_LOG,UNFORGIVEN);
 
 elseif (csid == 206) then
     player:setVar("UnforgivenVar",0);

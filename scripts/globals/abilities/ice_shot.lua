@@ -3,21 +3,17 @@
 -- Consumes a Ice Card to enhance ice-based debuffs. Deals ice-based magic damage
 -- Frost Effect: Enhanced DoT and AGI-
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/weaponskills");
 require("scripts/globals/ability");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     --ranged weapon/ammo: You do not have an appropriate ranged weapon equipped.
     --no card: <name> cannot perform that action.
-    if (player:getWeaponSkillType(SLOT_RANGED) ~= SKILL_MRK or player:getWeaponSkillType(SLOT_AMMO) ~= SKILL_MRK) then
+    if (player:getWeaponSkillType(dsp.slot.RANGED) ~= dsp.skill.MARKSMANSHIP or player:getWeaponSkillType(dsp.slot.AMMO) ~= dsp.skill.MARKSMANSHIP) then
         return 216,0;
     end
     if (player:hasItem(2177, 0) or player:hasItem(2974, 0)) then
@@ -27,40 +23,36 @@ function onAbilityCheck(player,target,ability)
     end
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability,action)
     local params = {};
     params.includemab = true;
-    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(MOD_QUICK_DRAW_DMG)) * 1 + player:getMod(MOD_QUICK_DRAW_DMG_PERCENT)/100;
-    dmg  = addBonusesAbility(player, ELE_ICE, target, dmg, params);
-    dmg = dmg * applyResistanceAbility(player,target,ELE_ICE,SKILL_MRK, (player:getStat(MOD_AGI)/2) + player:getMerit(MERIT_QUICK_DRAW_ACCURACY));
-    dmg = adjustForTarget(target,dmg,ELE_ICE);
+    local dmg = (2 * player:getRangedDmg() + player:getAmmoDmg() + player:getMod(dsp.mod.QUICK_DRAW_DMG)) * 1 + player:getMod(dsp.mod.QUICK_DRAW_DMG_PERCENT)/100;
+    dmg  = addBonusesAbility(player, dsp.magic.ele.ICE, target, dmg, params);
+    dmg = dmg * applyResistanceAbility(player,target,dsp.magic.ele.ICE,dsp.skill.MARKSMANSHIP, (player:getStat(dsp.mod.AGI)/2) + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY));
+    dmg = adjustForTarget(target,dmg,dsp.magic.ele.ICE);
 
     local shadowsAbsorbed = 0
     if shadowAbsorb(target) then
         shadowsAbsorbed = 1
     end
 
-    dmg = takeAbilityDamage(target, player, {}, true, dmg, SLOT_RANGED, 1, shadowsAbsorbed, 0, 0, action, nil);
+    dmg = takeAbilityDamage(target, player, {}, true, dmg, dsp.slot.RANGED, 1, shadowsAbsorbed, 0, 0, action, nil);
 
     if shadowsAbsorbed == 0 then
     
         local effects = {};
         local counter = 1;
-        local frost = target:getStatusEffect(EFFECT_FROST);
+        local frost = target:getStatusEffect(dsp.effect.FROST);
         if (frost ~= nil) then
             effects[counter] = frost;
             counter = counter + 1;
         end
-        local threnody = target:getStatusEffect(EFFECT_THRENODY);
-        if (threnody ~= nil and threnody:getSubPower() == MOD_WINDRES) then
+        local threnody = target:getStatusEffect(dsp.effect.THRENODY);
+        if (threnody ~= nil and threnody:getSubPower() == dsp.mod.WINDRES) then
             effects[counter] = threnody;
             counter = counter + 1;
         end
-        local paralyze = target:getStatusEffect(EFFECT_PARALYSIS);
+        local paralyze = target:getStatusEffect(dsp.effect.PARALYSIS);
         if (paralyze ~= nil) then
             effects[counter] = paralyze;
             counter = counter + 1;

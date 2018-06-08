@@ -1,23 +1,15 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Uggalepih Whistle ITEM)
+--  NPC: ??? (Uggalepih Whistle ITEM)
 -- !pos -150 0 -71 159
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 

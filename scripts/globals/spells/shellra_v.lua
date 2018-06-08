@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    local meritBonus = caster:getMerit(MERIT_SHELLRA_V);
+    local meritBonus = caster:getMerit(dsp.merit.SHELLRA_V);
     local duration = 1800;
 
     local power = 62;
@@ -23,11 +23,11 @@ function onSpellCast(caster,target,spell)
 
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl());
 
-    local typeEffect = EFFECT_SHELL;
+    local typeEffect = dsp.effect.SHELL;
     if (target:addStatusEffect(typeEffect, power, 0, duration)) then
-        spell:setMsg(msgBasic.MAGIC_GAIN_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT); -- no effect
     end
     return typeEffect;
 end;

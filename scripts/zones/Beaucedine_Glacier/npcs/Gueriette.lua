@@ -1,29 +1,20 @@
 -----------------------------------
 -- Area: Beaucedine Glacier
--- NPC:  Gueriette
+--  NPC: Gueriette
 -- Type: Outpost Vendor
 -- !pos -24 -59 -120 111
 -----------------------------------
 package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
-local region     = FAUREGANDI;
+local region     = dsp.region.FAUREGANDI;
 local csid    = 0x7ff4;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,28 +33,18 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     player:updateEvent(player:getGil(),OP_TeleFee(player,region),0,OP_TeleFee(player,region),player:getCP());
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then
-        ShowOPVendorShop(player);
+        dsp.shop.outpost(player);
     elseif (option == 2) then
         if (player:delGil(OP_TeleFee(player,region))) then
             toHomeNation(player);

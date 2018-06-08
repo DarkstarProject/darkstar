@@ -22,7 +22,7 @@ function onTrigger(player, skillId)
         error(player, "You must provide a skillID.");
         return;
     end
-    skillId = tonumber(skillId) or _G[string.upper(skillId)];
+    skillId = tonumber(skillId) or dsp.skill[string.upper(skillId)];
     if (skillId == nil or skillId == 0) then
         error(player, "Invalid skillID.");
         return;

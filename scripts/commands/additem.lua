@@ -18,7 +18,7 @@ function onTrigger(player, itemId, quantity, aug0, aug0val, aug1, aug1val, aug2,
     -- Load needed text ids for players current zone..
     local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs";
     package.loaded[TextIDs] = nil;
-    require(TextIDs); 
+    require(TextIDs);
 
     -- validate itemId
     if (itemId == nil or tonumber(itemId) == nil or tonumber(itemId) == 0) then

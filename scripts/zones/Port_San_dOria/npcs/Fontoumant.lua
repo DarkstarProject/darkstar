@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
--- NPC:  Fontoumant
+--  NPC: Fontoumant
 -- Starts Quest: The Brugaire Consortium
 -- Involved in Quests: Riding on the Clouds
 -- @zone 232
@@ -13,9 +13,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -46,16 +43,12 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -79,22 +72,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local freeSlots = player:getFreeSlotsCount();
     if (csid == 509 and option == 0) then
         if (freeSlots ~= 0) then
@@ -127,7 +108,7 @@ function onEventFinish(player,csid,option)
         if (freeSlots ~= 0) then
             player:addItem(0x3001);
             player:messageSpecial(ITEM_OBTAINED,0x3001);
-            player:addTitle(COURIER_EXTRAORDINAIRE);
+            player:addTitle(dsp.title.COURIER_EXTRAORDINAIRE);
             player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,30);
             player:setVar("TheBrugaireConsortium-Parcels",0);

@@ -22,7 +22,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {};
     params.numHits = 1;
     params.ftp100 = 1; params.ftp200 = 1; params.ftp300 = 1;
-    params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.5; 
+    params.str_wsc = 0.5; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.5;
     params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
     params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
     params.canCrit = false;
@@ -35,19 +35,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    if (damage > 0) then
-        local duration = (tp/1000 * 45) + 30;
-        if (target:hasStatusEffect(EFFECT_ACCURACY_DOWN) == false) then
-            target:addStatusEffect(EFFECT_ACCURACY_DOWN, 10, 0, duration);
-        end
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.ACCURACY_DOWN) == false) then
+        local duration = (tp/1000 * 60) * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0);
+        target:addStatusEffect(dsp.effect.ACCURACY_DOWN, 10, 0, duration);
     end
 
-
-    if ((player:getEquipID(SLOT_MAIN) == 19003) and (player:getMainJob() == JOBS.NIN)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
-        end
-    end
     return tpHits, extraHits, criticalHit, damage;
-
 end

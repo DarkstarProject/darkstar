@@ -1,21 +1,13 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Mine Konte
+--  NPC: Mine Konte
 -- Involved in Quest: Out of One's Shell
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -24,25 +16,13 @@ function onTrigger(player,npc)
     if (OutOfOneShell == QUEST_ACCEPTED and player:getVar("OutOfTheShellZone") == 0) then
         player:startEvent(83);
     else
-        player:startEvent(42);    
+        player:startEvent(42);
     end
-    
-end; 
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
