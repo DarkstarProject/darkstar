@@ -265,6 +265,7 @@
     <ClInclude Include="..\..\src\map\guild.h" />
     <ClInclude Include="..\..\src\map\message.h" />
     <ClInclude Include="..\..\src\map\commandhandler.h" />
+    <ClInclude Include="..\..\src\map\campaign_system.h" />
     <ClInclude Include="..\..\src\map\conquest_system.h" />
     <ClInclude Include="..\..\src\map\enmity_container.h" />
     <ClInclude Include="..\..\src\map\entities\automatonentity.h" />
@@ -325,7 +326,7 @@
     <ClInclude Include="..\..\src\map\packets\bazaar_item.h" />
     <ClInclude Include="..\..\src\map\packets\bazaar_message.h" />
     <ClInclude Include="..\..\src\map\packets\blacklist.h" />
-    <ClInclude Include="..\..\src\map\packets\campaing_map.h" />
+    <ClInclude Include="..\..\src\map\packets\campaign_map.h" />
     <ClInclude Include="..\..\src\map\packets\caught_fish.h" />
     <ClInclude Include="..\..\src\map\packets\char.h" />
     <ClInclude Include="..\..\src\map\packets\char_abilities.h" />
@@ -509,6 +510,7 @@
     <ClCompile Include="..\..\src\map\guild.cpp" />
     <ClCompile Include="..\..\src\map\message.cpp" />
     <ClCompile Include="..\..\src\map\commandhandler.cpp" />
+    <ClCompile Include="..\..\src\map\campaign_system.cpp" />
     <ClCompile Include="..\..\src\map\conquest_system.cpp" />
     <ClCompile Include="..\..\src\map\enmity_container.cpp" />
     <ClCompile Include="..\..\src\map\entities\automatonentity.cpp" />
@@ -567,7 +569,7 @@
     <ClCompile Include="..\..\src\map\packets\bazaar_item.cpp" />
     <ClCompile Include="..\..\src\map\packets\bazaar_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\blacklist.cpp" />
-    <ClCompile Include="..\..\src\map\packets\campaing_map.cpp" />
+    <ClCompile Include="..\..\src\map\packets\campaign_map.cpp" />
     <ClCompile Include="..\..\src\map\packets\caught_fish.cpp" />
     <ClCompile Include="..\..\src\map\packets\char.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_abilities.cpp" />

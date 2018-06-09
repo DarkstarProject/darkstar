@@ -35,6 +35,7 @@ This file is part of DarkStar-server source code.
 #include "utils/blueutils.h"
 #include "party.h"
 #include "packet_system.h"
+#include "campaign_system.h"
 #include "conquest_system.h"
 #include "utils/battleutils.h"
 #include "utils/blacklistutils.h"
@@ -78,7 +79,7 @@ This file is part of DarkStar-server source code.
 #include "packets/bazaar_message.h"
 #include "packets/bazaar_purchase.h"
 #include "packets/blacklist.h"
-#include "packets/campaing_map.h"
+#include "packets/campaign_map.h"
 #include "packets/char.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -2627,15 +2628,16 @@ void SmallPacket0x059(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
-*  Map Update (Conquest, Besieged, Campaing)                            *
+*  Map Update (Conquest, Besieged, Campaign)                            *
 *                                                                       *
 ************************************************************************/
 
 void SmallPacket0x05A(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
+    CampaignState state = campaign::LoadState(PChar->id);
     PChar->pushPacket(new CConquestPacket(PChar));
-    PChar->pushPacket(new CCampaingPacket(PChar, 0));
-    PChar->pushPacket(new CCampaingPacket(PChar, 1));
+    PChar->pushPacket(new CCampaignPacket(state, 0));
+    PChar->pushPacket(new CCampaignPacket(state, 1));
 
     // May Require Sending of 0x0F
     //    PChar->pushPacket(new CStopDownloadingPacket(PChar));

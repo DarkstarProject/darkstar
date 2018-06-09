@@ -95,6 +95,9 @@
     <ClInclude Include="..\..\src\map\commandhandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\campaign_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\src\map\conquest_system.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -269,7 +272,7 @@
     <ClInclude Include="..\..\src\map\packets\bazaar_message.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\map\packets\campaing_map.h">
+    <ClInclude Include="..\..\src\map\packets\campaign_map.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\map\packets\char.h">
@@ -871,6 +874,9 @@
     <ClCompile Include="..\..\src\map\commandhandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\map\campaign_system.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\src\map\conquest_system.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1012,7 +1018,7 @@
     <ClCompile Include="..\..\src\map\packets\bazaar_message.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\map\packets\campaing_map.cpp">
+    <ClCompile Include="..\..\src\map\packets\campaign_map.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\char.cpp">

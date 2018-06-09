@@ -276,6 +276,19 @@ namespace luautils
     bool LoadEventScript(CCharEntity* PChar, const char* functionName);    // Utility method: checks for and loads a lua function for events
 
     uint16 GetDespoilDebuff(uint16 itemId);                                   // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
+
+    int32 CampaignHasBattle(lua_State* L);
+    int32 CampaignSetBattle(lua_State* L);
+    int32 CampaignGetRegionControl(lua_State* L);
+    int32 CampaignSetRegionControl(lua_State* L);
+    int32 CampaignModifyFortification(lua_State* L);
+    int32 CampaignModifyResource(lua_State* L);
+    int32 CampaignModifyMaxFortification(lua_State* L);
+    int32 CampaignModifyMaxResource(lua_State* L);
+    int32 CampaignModifyInfluence(lua_State* L);
+    int32 CampaignModifyReconnaissance(lua_State* L);
+    int32 CampaignModifyMorale(lua_State* L);
+    int32 CampaignModifyProsperity(lua_State* L);
 };
 
 #endif //- _LUAUTILS_H -

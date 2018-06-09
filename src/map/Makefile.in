@@ -14,7 +14,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
      obj_map/zone.o obj_map/zoneutils.o obj_map/itemutils.o obj_map/commandhandler.o                                                           \
      obj_map/transport.o obj_map/vana_time.o obj_map/time_server.o                                                                             \
      obj_map/trade_container.o obj_map/modifier.o obj_map/synthutils.o obj_map/status_effect.o                                                 \
-     obj_map/status_effect_container.o obj_map/mobutils.o   obj_map/battleutils.o obj_map/conquest_system.o                                    \
+     obj_map/status_effect_container.o obj_map/mobutils.o   obj_map/battleutils.o obj_map/conquest_system.o obj_map/campaign_system.o          \
      obj_map/ability.o obj_map/alliance.o obj_map/enmity_container.o obj_map/fishingutils.o obj_map/grades.o                                   \
      obj_map/guildutils.o obj_map/mobskill.o obj_map/party.o obj_map/petentity.o obj_map/petutils.o                                            \
      obj_map/spell.o obj_map/trait.o obj_map/treasure_pool.o obj_map/universal_container.o obj_map/weapon_skill.o obj_map/region.o             \
@@ -38,7 +38,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
      obj_map/packets/synth_animation.o obj_map/packets/chocobo_digging.o obj_map/packets/bazaar_close.o                                        \
      obj_map/packets/shop_appraise.o obj_map/packets/event_update.o obj_map/packets/wide_scan_track.o                                          \
      obj_map/packets/menu_raisetractor.o obj_map/packets/message_debug.o obj_map/packets/fade_out.o                                            \
-     obj_map/packets/lock_on.o obj_map/packets/campaing_map.o obj_map/packets/action.o obj_map/packets/char_mounts.o                                   \
+     obj_map/packets/lock_on.o obj_map/packets/campaign_map.o obj_map/packets/action.o obj_map/packets/char_mounts.o                                   \
      obj_map/packets/auction_house.o obj_map/packets/automaton_update.o obj_map/packets/bazaar_check.o obj_map/packets/caught_fish.o           \
      obj_map/packets/char_abilities.o obj_map/packets/char_check.o obj_map/packets/char_spells.o obj_map/packets/delivery_box.o                \
      obj_map/packets/fishing.o obj_map/packets/guild_menu.o obj_map/packets/guild_menu_buy.o obj_map/packets/guild_menu_sell.o                 \
@@ -57,7 +57,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
 MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.h item_container.h packet_system.h                             \
    charutils.h zone.h  zoneutils.h itemutils.h commandhandler.h                                                                                \
    transport.h vana_time.h time_server.h trade_container.h modifier.h synthutils.h status_effect.h                                             \
-   status_effect_container.h mobutils.h battleutils.h conquest_system.h                                                                        \
+   status_effect_container.h mobutils.h battleutils.h conquest_system.h campaign_system.h                                                      \
    ability.h alliance.h enmity_container.h fishingutils.h grades.h guildutils.h mobskill.h party.h petentity.h petutils.h                      \
    spell.h trait.h treasure_pool.h universal_container.h weapon_skill.h region.h linkshell.h                                                   \
    packets/basic.h packets/zone_in.h packets/char_appearance.h packets/downloading_data.h                                                      \
@@ -78,7 +78,7 @@ MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.
    packets/chocobo_digging.h packets/bazaar_close.h packets/shop_appraise.h                                                                    \
    packets/event_update.h packets/wide_scan_track.h packets/menu_raisetractor.h                                                                \
    packets/message_debug.h packets/fade_out.h packets/lock_on.h packets/linkshell_message.h                                                    \
-   packets/campaing_map.h packets/action.h packets/auction_house.h packets/automaton_update.h packets/linkshell_equip.h                        \
+   packets/campaign_map.h packets/action.h packets/auction_house.h packets/automaton_update.h packets/linkshell_equip.h                        \
    packets/bazaar_check.h packets/caught_fish.h packets/char_abilities.h packets/mounts.h packets/char_check.h                                 \
    packets/char_spells.h packets/delivery_box.h packets/fishing.h packets/guild_menu.h packets/guild_menu_buy.h                                \
    packets/guild_menu_sell.h packets/merit_points_categories.h packets/party_define.h packets/party_invite.h                                   \

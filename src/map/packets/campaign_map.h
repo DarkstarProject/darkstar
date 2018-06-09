@@ -28,6 +28,8 @@
 
 #include "basic.h"
 
+#include "../campaign_system.h"
+
 /************************************************************************
 *																		*
 *  																		*
@@ -36,11 +38,16 @@
 
 class CCharEntity;
 
-class CCampaingPacket : public CBasicPacket
+class CCampaignPacket : public CBasicPacket
 {
 public:
 
-	CCampaingPacket(CCharEntity* PChar, uint8 number);
+	CCampaignPacket(CampaignState state, uint8 number);
+
+private:
+
+    void SetRegions(std::vector<CampaignRegion> areas, int start = 0);
+    void SetNations(std::vector<CampaignNation> nations);
 };
 
 #endif

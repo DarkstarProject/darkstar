@@ -1,4 +1,163 @@
+dsp = dsp or {};
+dsp.campaign = {};
 
+dsp.campaign.control =
+{
+    Sandoria = 2,
+    Bastok = 4,
+    Windurst = 6,
+    Beastman = 8,
+};
+
+dsp.campaign.army =
+{
+    Sandoria = 0,
+    Bastok = 1,
+    Windurst = 2,
+    Orcish = 3,
+    Quadav = 4,
+    Yagudo = 5,
+    Kindred = 6,
+};
+
+dsp.campaign.zone =
+{
+    SouthernSandOria = 0,
+    EastRonfaure = 1,
+    JugnerForest = 2,
+    VunkerlInlet = 3,
+    BatalliaDowns = 4,
+    LaVaule = 5,
+    TheEldiemeNecropolis = 6,
+    BastokMarkets = 7,
+    NorthGustaberg = 8,
+    Grauberg = 9,
+    PashhowMarshlands = 10,
+    RolanberryFields = 11,
+    Beadeaux = 12,
+    CrawlersNest = 13,
+    WindurstWaters = 14,
+    WestSarutabaruta = 15,
+    FortKarugoNarugo = 16,
+    MeriphataudMountains = 17,
+    SauromugueChampaign = 18,
+    CastleOztroja = 19,
+    GarlaigeCitadel = 20,
+    BeaucedineGlacier = 21,
+    Xarcabard = 22,
+    CastleZvahlBaileys = 23,
+    CastleZvahlKeep = 24,
+    ThroneRoom = 25,
+};
+
+-----------------------------------------------------------------
+-- Checks to see if a battle is occurring in the dsp.campaign.zone
+-- zone: dsp.campaign.zone
+-- Return: true / false
+-----------------------------------------------------------------
+dsp.campaign.hasBattle = function(zone)
+    return CampaignHasBattle(zone)
+end
+
+-----------------------------------------------------------------
+-- Sets the battle flag for the campaign zone
+-- zone: dsp.campaign.zone
+-- status: true / false
+-----------------------------------------------------------------
+dsp.campaign.setBattle = function(zone, status)
+    CampaignSetBattle(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Returns the dsp.campaign.control value for the zone
+-- zone: dsp.campaign.zone
+-- Return: dsp.campaign.control
+-----------------------------------------------------------------
+dsp.campaign.getRegionControl = function(zone)
+    return CampaignGetRegionControl(zone)
+end
+
+-----------------------------------------------------------------
+-- Modifies the fortification value by the amount for the zone
+-- zone: dsp.campaign.zone
+-- control: dsp.campaign.control
+-----------------------------------------------------------------
+dsp.campaign.setRegionControl = function(zone, control)
+    CampaignSetRegionControl(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the fortification value by the amount for the zone
+-- zone: dsp.campaign.zone
+-- amount: -1000 to 1000 [retail max is unknown]
+-----------------------------------------------------------------
+dsp.campaign.modifyFortification = function(zone, amount)
+    CampaignModifyFortification(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the resource value by the amount for the zone
+-- zone: dsp.campaign.zone
+-- amount: -1000 to 1000 [retail max is unknown]
+-----------------------------------------------------------------
+dsp.campaign.modifyResource = function(zone, amount)
+    CampaignModifyResource(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the max fortification value by the amount for the zone
+-- zone: dsp.campaign.zone
+-- amount: -1000 to 1000 [retail max is unknown]
+-----------------------------------------------------------------
+dsp.campaign.modifyMaxFortification = function(zone, amount)
+    CampaignModifyMaxFortification(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the max resource value by the amount for the zone
+-- zone: dsp.campaign.zone
+-- amount: -1000 to 1000 [retail max is unknown]
+-----------------------------------------------------------------
+dsp.campaign.modifyMaxResource = function(zone, amount)
+    CampaignModifyMaxResource(zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the army's influence value by the amount for the zone
+-- army: dsp.campaign.army
+-- zone: dsp.campaign.zone
+-- amount: -250 to 250
+-----------------------------------------------------------------
+dsp.campaign.modifyInfluence = function(army, zone, amount)
+    CampaignModifyInfluence(army, zone, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the army's reconnaissance value by the amount
+-- army: dsp.campaign.army
+-- amount: -10 to 10
+-----------------------------------------------------------------
+dsp.campaign.modifyReconnaissance = function(army, amount)
+    CampaignModifyReconnaissance(army, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the army's morale value by the amount
+-- army: dsp.campaign.army
+-- amount: -100 to 100
+-----------------------------------------------------------------
+dsp.campaign.modifyMorale = function(army, amount)
+    CampaignModifyMorale(army, amount)
+end
+
+-----------------------------------------------------------------
+-- Modifies the army's prosperity value by the amount
+-- army: dsp.campaign.army
+-- amount: -100 to 100
+-----------------------------------------------------------------
+dsp.campaign.modifyProsperity = function(army, amount)
+    CampaignModifyProsperity(army, amount)
+end
 
 -----------------------------------------------------------------
 -- Variable for getNationTeleport and getPoint
