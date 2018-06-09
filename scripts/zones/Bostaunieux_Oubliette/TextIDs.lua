@@ -16,6 +16,6 @@ ITEM_CANNOT_BE_OBTAINED = 6540 -- You cannot obtain the item <item>. Come back a
           CONQUEST_BASE =    0
 
 -- WS Quest
-    SPIRAL_HELL_LEARNED = 7416 -- You have learned the weapon skill ‚ÄúSpiral Hell‚Äù!
+    SPIRAL_HELL_LEARNED = 7416 -- You have learned the weapon skill ìSpiral Hellî!
  SENSE_OMINOUS_PRESENCE = 7417 -- You sense an ominous presence...
 NOTHING_OUT_OF_ORDINARY = 7418 -- There is nothing out of the ordinary here

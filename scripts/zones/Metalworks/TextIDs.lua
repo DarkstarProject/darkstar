@@ -44,5 +44,5 @@ MISSION_DIALOG_CID_TO_AYAME =  7573 -- Give it to one of his Mythril Musketeers 
               CONQUEST_BASE =  6531 -- Tallying conquest results...
 
 -- WS Quest
-      STEEL_CYCLONE_LEARNED =  9008 -- You have learned the weapon skill ‚ÄúSteel Cyclone‚Äù!
-          DETONATOR_LEARNED =  9033 -- You have learned the weapon skill ‚ÄúDetonator‚Äù!
+      STEEL_CYCLONE_LEARNED =  9008 -- You have learned the weapon skill ìSteel Cycloneî!
+          DETONATOR_LEARNED =  9033 -- You have learned the weapon skill ìDetonatorî!
