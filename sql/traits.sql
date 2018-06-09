@@ -444,10 +444,16 @@ INSERT INTO `traits` VALUES (98,'crit. atk. bonus',6,91,3,421,11,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (98,'crit. atk. bonus',6,97,4,421,14,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (98,'crit. atk. bonus',8,85,1,421,5,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (98,'crit. atk. bonus',8,95,2,421,8,'ABYSSEA',0);
-INSERT INTO `traits` VALUES (99,'crit. def. bonus',7,79,1,908,5,'ABYSSEA',0);
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',7,79,1,908,5,'ABYSSEA',0);   -- Paladin
 INSERT INTO `traits` VALUES (99,'crit. def. bonus',7,85,2,908,8,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (99,'crit. def. bonus',7,91,3,908,11,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (99,'crit. def. bonus',7,96,4,908,14,'ABYSSEA',0);
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',10,80,1,908,5,'ABYSSEA',0);   -- Bard
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',10,91,2,908,8,'ABYSSEA',0);
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',14,85,1,908,5,'ABYSSEA',0);   -- Dragoon
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',14,95,2,908,8,'ABYSSEA',0);
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',18,85,1,908,5,'ABYSSEA',0);   -- Puppetmaster
+INSERT INTO `traits` VALUES (99,'crit. def. bonus',18,95,2,908,8,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (100,'tactical parry',8,88,1,486,20,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (100,'tactical parry',8,98,2,486,30,'ABYSSEA',0);
 INSERT INTO `traits` VALUES (100,'tactical parry',13,77,1,486,20,'ABYSSEA',0);

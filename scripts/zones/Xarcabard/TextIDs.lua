@@ -16,7 +16,7 @@
                    ONLY_SHARDS = 7716; -- Only shards of ice lie upon the ground.
                  BLOCKS_OF_ICE = 7717; -- You can hear blocks of ice moving from deep within the cave.
         PERENNIAL_SNOW_DEFAULT = 7718; -- How many millennia has this snow been here, hidden from the rays of the sun?
-           PERENNIAL_SNOW_WAIT = 7720; -- The <keyitem> you buried is not yet purified.
+           PERENNIAL_SNOW_WAIT = 7720; -- The <keyitem> you buried is not yet purified.≺Prompt≻
 
 -- Dynamis dialogs
       YOU_CANNOT_ENTER_DYNAMIS = 7845; -- You cannot enter Dynamis

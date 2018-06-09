@@ -89,4 +89,4 @@ EMALIVEULAUX_COP_NOT_COMPLETED = 12240 -- I'd like to start my own business some
                  CONQUEST_BASE =  6580 -- Tallying conquest results...
 
 -- WS Quest
-         GROUND_STRIKE_LEARNED = 11711 -- You have learned the weapon skill ‚ÄúGround Strike‚Äù!
+         GROUND_STRIKE_LEARNED = 11711 -- You have learned the weapon skill ìGround Strikeî!

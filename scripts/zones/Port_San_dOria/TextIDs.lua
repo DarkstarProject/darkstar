@@ -2,7 +2,7 @@
 
 -- General Texts
        ITEM_CANNOT_BE_OBTAINED = 6425; -- You cannot obtain the <item>. Come back after sorting your inventory.
-              MYSTIC_RETRIEVER = 6428; -- You cannot obtain the <item>. Speak with the mystic retriever after sorting your inventory.
+              MYSTIC_RETRIEVER = 6428; -- You cannot obtain the ≺Possible Special Code: 01≻≺Possible Special Code: 05≻#≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻. Speak with the mystic retriever after sorting your inventory.≺Prompt≻
     FULL_INVENTORY_AFTER_TRADE = 6429; -- You cannot obtain the <<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>. Try trading again after sorting your inventory.
                  ITEM_OBTAINED = 6431; -- Obtained: <<<Unknown Parameter (Type: 80) 1>>><<<Possible Special Code: 01>>><<<Possible Special Code: 05>>>#<<<BAD CHAR: 8280>>><<<BAD CHAR: 80>>><<<BAD CHAR: 80>>>.
                   GIL_OBTAINED = 6432; -- Obtained <<<Numeric Parameter 0>>> gil.
@@ -65,7 +65,7 @@ DEGUERENDARS_COP_NOT_COMPLETED = 7945; -- Why must I wait for the Kingdom to iss
                  CONQUEST_BASE = 7065; -- Tallying conquest results...
 
 -- Lu Shang Brothers
-         GALLIJAUX_CARP_STATUS = 8108; -- How's it going with you? I've got ?Numeric Parameter 1? ?Singular/Plural Choice (Parameter 1)?[carp/carps] now--don't let me down!?Prompt?
+         GALLIJAUX_CARP_STATUS = 8108; -- How's it going with you? I've got ≺Numeric Parameter 1≻ ≺Singular/Plural Choice (Parameter 1)≻[carp/carps] now--don't let me down!≺Prompt≻
   GALLIJAUX_HELP_OTHER_BROTHER = 8111; -- What's this? You're helping me brother, are you? Be gone with you, then! Out of my sight!?Prompt?
-            JOULET_CARP_STATUS = 8120; -- How goes it? I've got a hold of ?Numeric Parameter 1? ?Singular/Plural Choice (Parameter 1)?[carp/carps] now. Keep bringing them--I wouldn't want to lose to my brother!?Prompt?
+            JOULET_CARP_STATUS = 8120; -- How goes it? I've got a hold of ≺Numeric Parameter 1≻ ≺Singular/Plural Choice (Parameter 1)≻[carp/carps] now. Keep bringing them--I wouldn't want to lose to my brother!≺Prompt≻
      JOULET_HELP_OTHER_BROTHER = 8123; -- Ah, so you've been helping my brother, have you!? Traitor! Turncoat! Be gone with you!?Prompt?
