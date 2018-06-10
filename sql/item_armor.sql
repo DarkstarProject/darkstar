@@ -10974,7 +10974,7 @@ INSERT INTO `item_armor` VALUES (23397,'rune._bandeau_+3',99,119,2097152,338,0,0
 INSERT INTO `item_armor` VALUES (23442,'pumm._lorica_+3',99,119,1,64,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23443,'anch._cyclas_+3',99,119,2,66,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23444,'theo._briault_+3',99,119,4,68,0,0,32,0);
-INSERT INTO `item_armor` VALUES (23445,'spaekonas_coat_+3',99,119,8,70,0,0,32,0);
+INSERT INTO `item_armor` VALUES (23445,'spae._coat_+3',99,119,8,70,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23446,'atrophy_tabard_+3',99,119,16,72,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23447,'pillagers_vest_+3',99,119,32,74,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23448,'rev._surcoat_+3',99,119,64,76,0,0,32,0);
@@ -10984,7 +10984,7 @@ INSERT INTO `item_armor` VALUES (23451,'brioso_justau._+3',99,119,512,82,0,0,32,
 INSERT INTO `item_armor` VALUES (23452,'orion_jerkin_+3',99,119,1024,84,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23453,'wakido_domaru_+3',99,119,2048,86,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23454,'hachiya_chain._+3',99,119,4096,88,0,0,32,0);
-INSERT INTO `item_armor` VALUES (23455,'vishap_mail_+3',99,119,8192,90,0,0,32,0);
+INSERT INTO `item_armor` VALUES (23455,'vishap_mail+3',99,119,8192,90,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23456,'con._doublet_+3',99,119,16384,92,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23457,'assim._jubbah_+3',99,119,32768,165,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23458,'laksa._frac_+3',99,119,65536,167,0,0,32,0);
