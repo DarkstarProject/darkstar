@@ -10984,7 +10984,7 @@ INSERT INTO `item_armor` VALUES (23451,'brioso_justau._+3',99,119,512,82,0,0,32,
 INSERT INTO `item_armor` VALUES (23452,'orion_jerkin_+3',99,119,1024,84,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23453,'wakido_domaru_+3',99,119,2048,86,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23454,'hachiya_chain._+3',99,119,4096,88,0,0,32,0);
-INSERT INTO `item_armor` VALUES (23455,'vishap_mail+3',99,119,8192,90,0,0,32,0);
+INSERT INTO `item_armor` VALUES (23455,'vishap_mail_+3',99,119,8192,90,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23456,'con._doublet_+3',99,119,16384,92,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23457,'assim._jubbah_+3',99,119,32768,165,0,0,32,0);
 INSERT INTO `item_armor` VALUES (23458,'laksa._frac_+3',99,119,65536,167,0,0,32,0);
