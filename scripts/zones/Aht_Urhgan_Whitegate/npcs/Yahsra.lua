@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
                
             local choice = items[item]
             if choice and npcUtil.giveItem(player, choice.itemid) then
-                player:delCurrency("LEUJAOAM_ASSAULT_POINT", choice.price)
+                player:delAssaultPoint(LEUJAOAM_ASSAULT_POINT, choice.price)
             end
         end
     end
