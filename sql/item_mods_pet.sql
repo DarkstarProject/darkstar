@@ -197,6 +197,8 @@ INSERT INTO `item_mods_pet` VALUES (21167,28,120,1);    -- Avatar: "Magic Atk. B
 INSERT INTO `item_mods_pet` VALUES (21167,27,10,1);     -- Avatar: Enmity+10
 INSERT INTO `item_mods_pet` VALUES (21183,28,108,1);    -- Eminent Pole Avatar: "Magic Atk. Bonus"+108
 INSERT INTO `item_mods_pet` VALUES (21361,28,6,0);      -- Esper Stone +1 Pet: "Magic Atk. Bonus"+6
+INSERT INTO `item_mods_pet` VALUES (23254,3,25,2);      -- Vishap Brais +2 Wyvern: HP+25%
+INSERT INTO `item_mods_pet` VALUES (23589,3,27,2);      -- Vishap Brais Wyvern: HP+27%
 INSERT INTO `item_mods_pet` VALUES (26201,23,23,0);     -- Thur. Ring +1 Pet: Attack+23
 INSERT INTO `item_mods_pet` VALUES (26201,24,23,0);     -- Pet: Ranged Attack+23
 INSERT INTO `item_mods_pet` VALUES (26201,25,22,0);     -- Pet: Accuracy+22
@@ -234,9 +236,11 @@ INSERT INTO `item_mods_pet` VALUES (28025,25,20,0);     -- Regimen Mittens Pet: 
 INSERT INTO `item_mods_pet` VALUES (28025,26,20,0);     -- Pet: Ranged Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,30,20,0);     -- Pet: Magic Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28025,384,61,0);    -- Pet: Haste+6%
+INSERT INTO `item_mods_pet` VALUES (28103,3,20,2);      -- Vishap Brais Wyvern: HP+20%
 INSERT INTO `item_mods_pet` VALUES (28104,25,20,1);     -- Convoker's Spats Avatar: Increases Accuracy +20 (?)
 INSERT INTO `item_mods_pet` VALUES (28104,27,4,1);      -- Avatar: Enmity+4
 INSERT INTO `item_mods_pet` VALUES (28119,23,20,0);     -- Tot. Trousers +1 Pet: Attack+20
+INSERT INTO `item_mods_pet` VALUES (28124,3,23,2);      -- Vishap Brais +1 Wyvern: HP+23%
 INSERT INTO `item_mods_pet` VALUES (28125,25,20,1);     -- Con. Spats +1 Avatar: Accuracy+20
 INSERT INTO `item_mods_pet` VALUES (28125,27,4,1);      -- Avatar: Enmity+4
 INSERT INTO `item_mods_pet` VALUES (28141,25,20,0);     -- Wisent Kecks Pet: Accuracy+20
