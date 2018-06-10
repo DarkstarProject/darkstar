@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
             armband = 1;
         end
-        player:startEvent(505, assaultid, -4, 0, recommendedLevel, 2, armband);
+        player:startEvent(505, assaultid, -4, 0, recommendedLevel, 1, armband);
     else
         player:messageSpecial(NOTHING_HAPPENS);
     end
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option,target)
     -- printf("CSID: %u",csid);
     -- printf("RESULT: %u",option);
 
-    if (csid == 108 or (csid == 505 and option == 4)) then
+    if csid == 505 and option == 4 then
         player:setPos(0,0,0,0,66);
     end
 end;
@@ -90,7 +90,7 @@ function onInstanceCreated(player,target,instance)
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
-                    v:startEvent(108, 2);
+                    v:startEvent(108, 1);
                     v:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
                 end
             end
