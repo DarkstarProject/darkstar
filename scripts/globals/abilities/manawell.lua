@@ -23,5 +23,5 @@ end;
 -----------------------------------
 
 function onUseAbility(player, target, ability)
-    target:addStatusEffect(EFFECT_MANAWELL,1,0,60);
+    target:addStatusEffect(dsp.effect.MANAWELL,1,0,60);
 end;
