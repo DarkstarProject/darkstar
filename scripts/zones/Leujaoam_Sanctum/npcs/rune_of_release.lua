@@ -24,7 +24,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-	local instance = player:getInstance()
+    local instance = player:getInstance()
     local chars = instance:getChars();
     local id = instance:getID();
     local points = 0;
