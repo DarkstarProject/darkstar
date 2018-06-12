@@ -17,12 +17,12 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- calculate raw damage
-    local basedmg = caster:getSkillLevel(ENFEEBLING_MAGIC_SKILL) / 4;
+    local basedmg = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 4;
     local params = {};
     params.dmg = basedmg;
     params.multiplier = 5;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
-    params.attribute = MOD_INT;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
+    params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
@@ -33,9 +33,9 @@ function onSpellCast(caster,target,spell)
 
     -- get resist multiplier (1x if no resist)
     local params = {};
-    params.diff = caster:getStat(MOD_INT)-target:getStat(MOD_INT);
-    params.attribute = MOD_INT;
-    params.skillType = ENFEEBLING_MAGIC_SKILL;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC;
     params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
@@ -48,32 +48,32 @@ function onSpellCast(caster,target,spell)
     local final = finalMagicAdjustments(caster,target,spell,dmg);
 
     -- Calculate duration and bonus
-    local duration = caster:getMerit(MERIT_DIA_III);
-    local dotBonus = caster:getMod(MOD_DIA_DOT);  -- Dia Wand
+    local duration = caster:getMerit(dsp.merit.DIA_III);
+    local dotBonus = caster:getMod(dsp.mod.DIA_DOT);  -- Dia Wand
 
     if (duration == 0) then -- if caster has the spell but no merits in it, they are either a mob or we assume they are GM or otherwise gifted with max duration
         duration = 150;
     end
 
-    if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
+    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
         duration = duration * 2;
-        caster:delStatusEffect(EFFECT_SABOTEUR);
+        caster:delStatusEffect(dsp.effect.SABOTEUR);
     end
 
     -- Check for Bio.
-    local bio = target:getStatusEffect(EFFECT_BIO);
+    local bio = target:getStatusEffect(dsp.effect.BIO);
 
     -- Do it!
-    if (target:addStatusEffect(EFFECT_DIA,3+dotBonus,3,duration,FLAG_ERASABLE, 15,3)) then
-        spell:setMsg(msgBasic.MAGIC_DMG);
+    if (target:addStatusEffect(dsp.effect.DIA,3+dotBonus,3,duration,FLAG_ERASABLE, 15,3)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_DMG);
     else
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
     end
 
     -- Try to kill same tier Bio
     if (BIO_OVERWRITE == 1 and bio ~= nil) then
         if (bio:getPower() <= 3) then
-            target:delStatusEffect(EFFECT_BIO);
+            target:delStatusEffect(dsp.effect.BIO);
         end
     end
 

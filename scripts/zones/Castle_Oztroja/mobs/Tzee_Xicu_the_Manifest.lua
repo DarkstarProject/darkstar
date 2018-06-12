@@ -4,41 +4,24 @@
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
+
 require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
+require("scripts/globals/status");
 
 function onMobEngaged(mob,target)
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_ENGAGE);
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(DEITY_DEBUNKER);
+    player:addTitle(dsp.title.DEITY_DEBUNKER);
     -- Needs to be zone wide message
     -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
     -- Set Tzee_Xicu_the_Manifest's Window Open Time
     SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time() + 72 * 3600); -- 3 days
 
@@ -48,5 +31,4 @@ function onMobDespawn(mob)
     DisallowRespawn(Yagudo_Avatar, false);
     UpdateNMSpawnPoint(Yagudo_Avatar);
     GetMobByID(Yagudo_Avatar):setRespawnTime(math.random(75600,86400));
-
 end;

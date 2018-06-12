@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Charging Chocobo
+--  NPC: Charging Chocobo
 -- Standard Merchant NPC
 -- !pos -301.531 -10.319 -157.237 235
 -----------------------------------
@@ -28,5 +28,5 @@ function onTrigger(player,npc)
         12929, 36735, 1,    -- Mythril Leggings
         13198, 20037, 1,    -- Swordbelt
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

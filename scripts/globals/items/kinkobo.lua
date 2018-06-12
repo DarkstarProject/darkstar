@@ -14,9 +14,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_ENCHANTMENT) == false) then
-        target:addStatusEffect(EFFECT_ENCHANTMENT,0,0,3600,17592);
-    end;    
+    if (target:addStatusEffect(dsp.effect.ENCHANTMENT) == false) then
+        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,3600,17592);
+    end;
 end;
 
 -----------------------------------------
@@ -24,9 +24,9 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SUBTLE_BLOW, 20);
+    target:addMod(dsp.mod.SUBTLE_BLOW, 20);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SUBTLE_BLOW, 20);
+    target:delMod(dsp.mod.SUBTLE_BLOW, 20);
 end;

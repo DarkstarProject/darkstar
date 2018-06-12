@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Reactor Overload
 --  Zedi, while in Animation form 3 (Rings)
---  Blinkable 1-3 hit, addtional effect Silence on hit. 
+--  Blinkable 1-3 hit, addtional effect Silence on hit.
 ---------------------------------------------
 
 require("scripts/globals/settings");
@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1;
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,0,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,0,info.hitslanded);
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effect.SILENCE;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 

@@ -1,7 +1,7 @@
 -----------------------------------
 --
---     EFFECT_DEX_DOWN
---     
+--     dsp.effect.DEX_DOWN
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,10 +11,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    if ((target:getStat(MOD_DEX) - effect:getPower()) < 0) then
-        effect:setPower(target:getStat(MOD_DEX));
+    if ((target:getStat(dsp.mod.DEX) - effect:getPower()) < 0) then
+        effect:setPower(target:getStat(dsp.mod.DEX));
     end
-    target:addMod(MOD_DEX,-effect:getPower());
+    target:addMod(dsp.mod.DEX,-effect:getPower());
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ function onEffectTick(target,effect)
     local downDEX_effect_size = effect:getPower()
     if (downDEX_effect_size > 0) then
         effect:setPower(downDEX_effect_size - 1)
-        target:delMod(MOD_DEX,-1);
+        target:delMod(dsp.mod.DEX,-1);
     end
 end;
 
@@ -37,6 +37,6 @@ end;
 function onEffectLose(target,effect)
     downDEX_effect_size = effect:getPower()
     if (downDEX_effect_size > 0) then
-        target:delMod(MOD_DEX,-downDEX_effect_size);
+        target:delMod(dsp.mod.DEX,-downDEX_effect_size);
     end
 end;

@@ -44,6 +44,6 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,SLANDEROUS_UTTERINGS);
         player:addMission(COP,THE_ENDURING_TUMULT_OF_WAR);
-        player:addTitle(THE_LOST_ONE);
+        player:addTitle(dsp.title.THE_LOST_ONE);
     end
 end;

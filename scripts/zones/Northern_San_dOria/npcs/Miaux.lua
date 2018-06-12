@@ -1,40 +1,33 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 --   NPC: Miaux
---  Type: Quest Giver
+-- Type: Quest Giver
 -- !pos -169.127 2.999 158.677 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
     local aCraftsmansWork = player:getQuestStatus(SANDORIA,A_CRAFTSMAN_S_WORK);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
-    if (player:getMainJob() == JOBS.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
+    if (player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and aCraftsmansWork == QUEST_AVAILABLE) then
         if (player:getVar("has_seen_drgaf1_quest_already") == 0) then
             player:startEvent(73);
         else -- If player has seen the big cut scene, give them a smaller one.
             player:startEvent(71);
         end
-    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(ALTEPA_POLISHING_STONE) == false) then
+    elseif (aCraftsmansWork == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ALTEPA_POLISHING_STONE) == false) then
         player:startEvent(69);
     elseif (aCraftsmansWork == QUEST_ACCEPTED) then
             player:startEvent(70);
@@ -50,22 +43,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 73 and option == 0) then -- first part of long CS -- declines questgiver
         player:setVar("has_seen_drgaf1_quest_already",1);
@@ -78,15 +59,15 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
         else
             player:setVar("aCraftsmanWork",0);
-            player:delKeyItem(ALTEPA_POLISHING_STONE);
+            player:delKeyItem(dsp.ki.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
             player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
             player:addFame(SANDORIA,AF1_FAME);
             player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then
-        player:addKeyItem(SHINY_EARRING);
-        player:messageSpecial(KEYITEM_OBTAINED,SHINY_EARRING);
+        player:addKeyItem(dsp.ki.SHINY_EARRING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
         player:setVar("ChasingQuotas_Progress",3);
     end
 

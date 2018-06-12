@@ -19,7 +19,7 @@ end;
 -- onMobSkillCheck no animation check required
 ---------------------------------------------
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effect.SILENCE;
 
     local numhits = 1;
     local accmod = 1;

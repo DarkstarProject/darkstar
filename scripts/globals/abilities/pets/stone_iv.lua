@@ -1,7 +1,6 @@
 ---------------------------------------------------
 -- Stone 4
 ---------------------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
@@ -14,13 +13,13 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-    local dINT = math.floor(pet:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = math.floor(pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
     local tp = skill:getTP();
 
     local damage = math.floor(325 + 0.025*(tp));
     damage = damage + (dINT * 1.5);
-    damage = MobMagicalMove(pet,target,skill,damage,ELE_EARTH,1,TP_NO_EFFECT,0);
-    damage = mobAddBonuses(pet, nil, target, damage.dmg, ELE_EARTH);
+    damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.EARTH,1,TP_NO_EFFECT,0);
+    damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.EARTH);
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1);
 
     target:delHP(damage);

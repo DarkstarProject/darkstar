@@ -8,26 +8,18 @@ package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 require("scripts/zones/Ordelles_Caves/TextIDs");
 require("scripts/zones/Ordelles_Caves/MobIDs");
 require("scripts/globals/conquest");
-require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(MORBOLGER);
     GetMobByID(MORBOLGER):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(17568192);
+    UpdateTreasureSpawnPoint(ORDELLES_TREASURE_CHEST);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-76.839,-1.696,659.969,122);
     end
     if (prevZone == 102 and player:getVar("darkPuppetCS") == 1) then
@@ -36,41 +28,20 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
-
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
     if (csid == 10) then
         player:setVar("darkPuppetCS",2);
     end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Upper Jeuno
--- NPC: Ilumida
+--  NPC: Ilumida
 -- Starts and Finishes Quest: A Candlelight Vigil
 -- !pos -75 -1 58 244
 -----------------------------------
@@ -12,17 +12,10 @@ require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Upper_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local aCandlelightVigil = player:getQuestStatus(JEUNO,A_CANDLELIGHT_VIGIL);
@@ -36,7 +29,7 @@ function onTrigger(player,npc)
     if (player:getFameLevel(JEUNO) >= 4 and aCandlelightVigil == QUEST_AVAILABLE) then
         player:startEvent(192); --Start quest : Ilumida asks you to obtain a candle ...
     elseif (aCandlelightVigil == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(HOLY_CANDLE) == true) then
+        if (player:hasKeyItem(dsp.ki.HOLY_CANDLE) == true) then
             player:startEvent(194); --Finish quest : CS NOT FOUND.
         else
             player:startEvent(191); --quest accepted dialog
@@ -52,7 +45,7 @@ function onTrigger(player,npc)
         player:startEvent(201); --asks player again, SearchingForTheRightWords accept/deny
 
     elseif (SearchingForWords == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(MOONDROP) == true) then
+        if (player:hasKeyItem(dsp.ki.MOONDROP) == true) then
             player:startEvent(198);
         else
             player:startEvent(199); -- SearchingForTheRightWords quest accepted dialog
@@ -69,22 +62,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 192 and option == 1) or (csid == 193 and option == 1)) then --just start quest
         player:addQuest(JEUNO,A_CANDLELIGHT_VIGIL);
         player:setVar("QuestACandlelightVigil_denied", 0);
@@ -96,8 +77,8 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
         else
-            player:addTitle(ACTIVIST_FOR_KINDNESS);
-            player:delKeyItem(HOLY_CANDLE);
+            player:addTitle(dsp.title.ACTIVIST_FOR_KINDNESS);
+            player:delKeyItem(dsp.ki.HOLY_CANDLE);
             player:addItem(13094);
             player:messageSpecial(ITEM_OBTAINED,13094);
             player:needToZone(true);
@@ -118,7 +99,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4882);
         else
-            player:delKeyItem(MOONDROP);
+            player:delKeyItem(dsp.ki.MOONDROP);
             player:messageSpecial(GIL_OBTAINED, GIL_RATE*3000)
             player:addItem(4882);
             player:messageSpecial(ITEM_OBTAINED,4882);

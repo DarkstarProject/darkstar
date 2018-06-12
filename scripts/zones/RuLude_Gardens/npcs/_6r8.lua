@@ -9,17 +9,10 @@ package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     pNation = player:getNation();
@@ -29,7 +22,7 @@ function onTrigger(player,npc)
     if (currentMission == A_NEW_JOURNEY and MissionStatus == 4) then
         player:startEvent(40);
     elseif (player:getRank() == 4 and MissionStatus == 0 and player:getCurrentMission(WINDURST) == 255 and getMissionRankPoints(player,13) == 1) then
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT)) then
+        if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then
             player:startEvent(131,1);
         else
             player:startEvent(131);
@@ -44,30 +37,18 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 40) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 131 and option == 1) then
         player:setVar("MissionStatus",1);
-        if (player:hasKeyItem(ARCHDUCAL_AUDIENCE_PERMIT) == false) then
-            player:addKeyItem(ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,ARCHDUCAL_AUDIENCE_PERMIT);
+        if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) == false) then
+            player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
         end
     elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);

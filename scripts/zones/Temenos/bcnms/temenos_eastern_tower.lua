@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temenos
--- Name: 
+-- Name:
 -----------------------------------
 
 
@@ -15,7 +15,7 @@ if (GetMobAction(16928880) > 0) then DespawnMob(16928880);end
 if (GetMobAction(16928889) > 0) then DespawnMob(16928889);end
 if (GetMobAction(16928894) > 0) then DespawnMob(16928894);end
     SetServerVariable("[Temenos_E_Tower]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1300),TEMENOS);        
+    HideArmouryCrates(GetInstanceRegion(1300),TEMENOS);
     HideTemenosDoor(GetInstanceRegion(1300));
                         
 end;
@@ -24,9 +24,9 @@ end;
 function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[Temenos_E_Tower]UniqueID"));
-    player:setVar("LimbusID",1300);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(WHITE_CARD);
+    player:setVar("LimbusID",1300);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode

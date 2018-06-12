@@ -13,7 +13,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
     local base = 100;
-    local typeEffect = EFFECT_DEFENSE_BOOST;
+    local typeEffect = dsp.effect.DEFENSE_BOOST;
     skill:setMsg(MobBuffMove(mob, typeEffect, base, 0, 180));
     return typeEffect;
 end

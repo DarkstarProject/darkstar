@@ -17,8 +17,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-   if (player:hasKeyItem(ZEPHYR_FAN)) then
-        player:delKeyItem(ZEPHYR_FAN);
+   if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
+        player:delKeyItem(dsp.ki.ZEPHYR_FAN);
     end
 end;
 
@@ -33,7 +33,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);    
+        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
@@ -45,7 +45,7 @@ function onEventUpdate(player,csid,option)
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
         player:addExp(3500);
     end

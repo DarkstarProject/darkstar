@@ -2,11 +2,7 @@
 -- Area: Yhoator Jungle
 --  MOB: White Lizard
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

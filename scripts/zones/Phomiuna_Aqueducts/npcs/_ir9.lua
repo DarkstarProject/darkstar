@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Phomiuna_Aqueducts
--- NPC:  _ir9 (Iron Gate)
+--  NPC: _ir9 (Iron Gate)
 -- !pos 70 -1.5 140 27
 -----------------------------------
 package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +16,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1660,1) and trade:getItemCount() == 1) then -- Bronze Key
             player:tradeComplete();
             npc:openDoor(15);
-        elseif ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == JOBS.THF) then
+        elseif ((trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1 and player:getMainJob() == dsp.job.THF) then
             -- thief's tool/living key/skeleton key as THF main
             player:tradeComplete();
             npc:openDoor(15);
@@ -28,10 +24,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -43,20 +35,8 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

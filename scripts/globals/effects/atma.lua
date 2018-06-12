@@ -1,31 +1,18 @@
 -----------------------------------
 --
--- EFFECT_ATMA
---
--- Global needs redone into table instead of functions
+-- dsp.effect.ATMA
 --
 -----------------------------------
-require("scripts/globals/atma");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/atma")
 -----------------------------------
 
 function onEffectGain(target, effect)
-    atmaEffectGain(target, effect);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    dsp.atma.onEffectGain(target, effect)
+end
 
 function onEffectTick(target, effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target, effect)
-    atmaEffectLose(target, effect);
-end;
+    dsp.atma.onEffectLose(target, effect)
+end

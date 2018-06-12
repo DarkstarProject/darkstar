@@ -4,7 +4,7 @@ require("scripts/globals/monstertpmoves");
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMainJob() == JOBS.MNK) then
+    if (mob:getMainJob() == dsp.job.MNK) then
         return 0;
     end
     return 1;

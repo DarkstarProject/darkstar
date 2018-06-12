@@ -18,10 +18,10 @@ function onAdditionalEffect(player,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        power = addBonusesAbility(player, ELE_DARK, target, power, params);
-        power = power * applyResistanceAddEffect(player,target,ELE_DARK,0);
-        power = adjustForTarget(target,power,ELE_DARK);
-        power = finalMagicNonSpellAdjustments(player,target,ELE_DARK,power );
+        power = addBonusesAbility(player, dsp.magic.ele.DARK, target, power, params);
+        power = power * applyResistanceAddEffect(player,target,dsp.magic.ele.DARK,0);
+        power = adjustForTarget(target,power,dsp.magic.ele.DARK);
+        power = finalMagicNonSpellAdjustments(player,target,dsp.magic.ele.DARK,power );
 
         if (power < 0) then
             power = 0;
@@ -29,6 +29,6 @@ function onAdditionalEffect(player,target,damage)
             player:addHP(power)
         end
 
-        return SUBEFFECT_HP_DRAIN, msgBasic.ADD_EFFECT_HP_DRAIN, power;
+        return dsp.subEffect.HP_DRAIN, dsp.msg.basic.ADD_EFFECT_HP_DRAIN, power;
     end
 end;

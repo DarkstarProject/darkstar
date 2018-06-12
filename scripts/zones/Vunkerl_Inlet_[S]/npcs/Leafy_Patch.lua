@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Vunkerl Inlet (S) (F-5)
--- NPC: Leafy Patch
+--  NPC: Leafy Patch
 -- Involved in Quests
 -- !pos -418 -33 576
 -----------------------------------
 package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -35,25 +27,19 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 107) then
         if (option == 1) then
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.ki.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",3);
         else
-            player:addKeyItem(VUNKERL_HERB);
-            player:messageSpecial(KEYITEM_OBTAINED, VUNKERL_HERB);
+            player:addKeyItem(dsp.ki.VUNKERL_HERB);
+            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.VUNKERL_HERB);
             player:setVar("BoyAndTheBeast",4);
         end
     end

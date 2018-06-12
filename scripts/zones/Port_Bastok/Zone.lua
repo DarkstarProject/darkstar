@@ -5,23 +5,15 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1,-112,-3,-17,-96,3,-3);--event COP
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -30,10 +22,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -66,9 +54,6 @@ function onZoneIn(player,prevZone)
 
     return cs;
 end;
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
@@ -77,36 +62,18 @@ function onRegionEnter(player,region)
         player:startEvent(305);
     end
 end;
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
------------------------------------
--- onTransportEvent
------------------------------------
 
 function onTransportEvent(player,transport)
     player:startEvent(71);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:messageSpecial(ITEM_OBTAINED,536);
     elseif (csid == 71) then

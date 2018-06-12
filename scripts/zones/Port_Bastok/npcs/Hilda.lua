@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Hilda
+--  NPC: Hilda
 -- Involved in Quest: Cid's Secret, Riding on the Clouds
 -- Starts & Finishes: The Usual
 -- !pos -163 -8 13 236
@@ -11,15 +11,12 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
     if (trade:getGil() == 0 and trade:getItemCount() == 1) then
-        if (trade:hasItemQty(4530,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(UNFINISHED_LETTER) == false) then -- Trade Rollanberry
+        if (trade:hasItemQty(4530,1) and player:getVar("CidsSecret_Event") == 1 and player:hasKeyItem(dsp.ki.UNFINISHED_LETTER) == false) then -- Trade Rollanberry
             player:startEvent(133);
         elseif (trade:hasItemQty(4386,1) and player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_ACCEPTED) then -- Trade King Truffle
             player:startEvent(135);
@@ -30,16 +27,12 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
-            player:addKeyItem(SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SMILING_STONE);
+            player:addKeyItem(dsp.ki.SMILING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -74,41 +67,29 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 133) then
         player:tradeComplete();
-        player:addKeyItem(UNFINISHED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,UNFINISHED_LETTER);
+        player:addKeyItem(dsp.ki.UNFINISHED_LETTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.UNFINISHED_LETTER);
     elseif (csid == 134 and option == 0) then
         if (player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,THE_USUAL);
         end
     elseif (csid == 135) then
         player:tradeComplete();
-        player:addKeyItem(STEAMING_SHEEP_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,STEAMING_SHEEP_INVITATION);
+        player:addKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STEAMING_SHEEP_INVITATION);
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
         else
-            player:addTitle(STEAMING_SHEEP_REGULAR);
-            player:delKeyItem(STEAMING_SHEEP_INVITATION);
+            player:addTitle(dsp.title.STEAMING_SHEEP_REGULAR);
+            player:delKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION);
             player:setVar("TheUsual_Event",0);
             player:addItem(17170);
             player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow

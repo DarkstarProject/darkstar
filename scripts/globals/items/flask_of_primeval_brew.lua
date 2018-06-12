@@ -27,7 +27,7 @@ require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)
-    if (target:hasStatusEffect(EFFECT_TRANSCENDENCY)) then
+    if (target:hasStatusEffect(dsp.effect.TRANSCENDENCY)) then
         return 523;
     else
         return 0;
@@ -35,5 +35,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_TRANSCENDENCY,1,0,180);
+    target:addStatusEffect(dsp.effect.TRANSCENDENCY,1,0,180);
 end;

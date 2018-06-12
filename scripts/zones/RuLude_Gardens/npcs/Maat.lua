@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
--- NPC:  Maat
+--  NPC: Maat
 -- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
 -- @zone 243
@@ -13,9 +13,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/RuLude_Gardens/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,10 +33,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local LvL = player:getMainLvl();
@@ -59,7 +52,7 @@ function onTrigger(player,npc)
     elseif (atopTheHighestMountains == QUEST_AVAILABLE and LvL >= 51 and player:levelCap() == 55 and MAX_LEVEL >= 60) then
         player:startEvent(82); -- Start Quest "Atop the Highest Mountains"
     elseif (atopTheHighestMountains == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(ROUND_FRIGICITE) and player:hasKeyItem(SQUARE_FRIGICITE) and player:hasKeyItem(TRIANGULAR_FRIGICITE)) then
+        if (player:hasKeyItem(dsp.ki.ROUND_FRIGICITE) and player:hasKeyItem(dsp.ki.SQUARE_FRIGICITE) and player:hasKeyItem(dsp.ki.TRIANGULAR_FRIGICITE)) then
             player:startEvent(84); -- Finish Quest "Atop the Highest Mountains"
         else
             player:startEvent(83); -- During Quest "Atop the Highest Mountains"
@@ -67,7 +60,7 @@ function onTrigger(player,npc)
     elseif (whenceBlowsTheWind == QUEST_AVAILABLE and LvL >= 56 and player:levelCap() == 60 and MAX_LEVEL >= 65) then
         player:startEvent(85); -- Start Quest "Whence Blows the Wind"
     elseif (whenceBlowsTheWind == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(ORCISH_CREST) and player:hasKeyItem(QUADAV_CREST) and player:hasKeyItem(YAGUDO_CREST)) then
+        if (player:hasKeyItem(dsp.ki.ORCISH_CREST) and player:hasKeyItem(dsp.ki.QUADAV_CREST) and player:hasKeyItem(dsp.ki.YAGUDO_CREST)) then
             player:startEvent(87); -- Finish Quest "Whence Blows the Wind"
         else
             player:startEvent(86); -- During Quest "Whence Blows the Wind"
@@ -80,7 +73,7 @@ function onTrigger(player,npc)
 
         player:startEvent(88,rand1,rand2,rand4,rand3,180); -- Start Quest "Riding on the Clouds"
     elseif (ridingOnTheClouds == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(SMILING_STONE) and player:hasKeyItem(SCOWLING_STONE) and player:hasKeyItem(SOMBER_STONE) and player:hasKeyItem(SPIRITED_STONE)) then
+        if (player:hasKeyItem(dsp.ki.SMILING_STONE) and player:hasKeyItem(dsp.ki.SCOWLING_STONE) and player:hasKeyItem(dsp.ki.SOMBER_STONE) and player:hasKeyItem(dsp.ki.SPIRITED_STONE)) then
             player:startEvent(90); -- Finish Quest "Riding on the Clouds"
         else
             rand1 = player:getVar("ridingOnTheClouds_1") ; rand2 = player:getVar("ridingOnTheClouds_2");
@@ -105,23 +98,12 @@ function onTrigger(player,npc)
 end;
 
 -- Maat cap: 74
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("upCSID: %u",csid);
     -- printf("upRESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 117) then
         player:setVar("BeatAroundTheBushin",6);
@@ -130,7 +112,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,IN_DEFIANT_CHALLENGE);
     elseif (csid == 81) then
         player:tradeComplete();
-        player:addTitle(HORIZON_BREAKER);
+        player:addTitle(dsp.title.HORIZON_BREAKER);
         player:levelCap(55);
         player:completeQuest(JEUNO,IN_DEFIANT_CHALLENGE);
         player:addFame(JEUNO, 30);
@@ -138,10 +120,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 82 and option == 1) then
         player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
     elseif (csid == 84) then
-        player:addTitle(SUMMIT_BREAKER);
-        player:delKeyItem(ROUND_FRIGICITE);
-        player:delKeyItem(SQUARE_FRIGICITE);
-        player:delKeyItem(TRIANGULAR_FRIGICITE);
+        player:addTitle(dsp.title.SUMMIT_BREAKER);
+        player:delKeyItem(dsp.ki.ROUND_FRIGICITE);
+        player:delKeyItem(dsp.ki.SQUARE_FRIGICITE);
+        player:delKeyItem(dsp.ki.TRIANGULAR_FRIGICITE);
         player:levelCap(60);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
         player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
@@ -150,10 +132,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 85 and option == 1) then
         player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
     elseif (csid == 87) then
-        player:addTitle(SKY_BREAKER);
-        player:delKeyItem(ORCISH_CREST);
-        player:delKeyItem(QUADAV_CREST);
-        player:delKeyItem(YAGUDO_CREST);
+        player:addTitle(dsp.title.SKY_BREAKER);
+        player:delKeyItem(dsp.ki.ORCISH_CREST);
+        player:delKeyItem(dsp.ki.QUADAV_CREST);
+        player:delKeyItem(dsp.ki.YAGUDO_CREST);
         player:levelCap(65);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
         player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
@@ -168,11 +150,11 @@ function onEventFinish(player,csid,option)
             player:setVar("ridingOnTheClouds_4",0);
         end
     elseif (csid == 90) then
-        player:addTitle(CLOUD_BREAKER);
-        player:delKeyItem(SMILING_STONE);
-        player:delKeyItem(SCOWLING_STONE);
-        player:delKeyItem(SOMBER_STONE);
-        player:delKeyItem(SPIRITED_STONE);
+        player:addTitle(dsp.title.CLOUD_BREAKER);
+        player:delKeyItem(dsp.ki.SMILING_STONE);
+        player:delKeyItem(dsp.ki.SCOWLING_STONE);
+        player:delKeyItem(dsp.ki.SOMBER_STONE);
+        player:delKeyItem(dsp.ki.SPIRITED_STONE);
         player:levelCap(70);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
         player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
@@ -187,7 +169,7 @@ function onEventFinish(player,csid,option)
         elseif (mJob == 5 or mJob == 6 or mJob == 9) then      player:setPos(-349.899,104.213,-260.150,0,144);
         elseif (mJob == 12 or mJob == 13 or mJob == 14) then player:setPos(-220.084,-0.645,4.442,191,168); end
     elseif (csid == 93) then
-        player:addTitle(STAR_BREAKER);
+        player:addTitle(dsp.title.STAR_BREAKER);
         player:levelCap(75);
         player:setVar("maatDefeated",0);
         player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
@@ -196,7 +178,7 @@ function onEventFinish(player,csid,option)
     elseif (csid==74) then
         if (player:getFreeSlotsCount() > 0) then
             player:completeQuest(JEUNO,BEYOND_THE_SUN);
-            player:addTitle(ULTIMATE_CHAMPION_OF_THE_WORLD);
+            player:addTitle(dsp.title.ULTIMATE_CHAMPION_OF_THE_WORLD);
             player:setVar("maatsCap",0);
             player:addItem(15194);
             player:messageSpecial(ITEM_OBTAINED,15194);

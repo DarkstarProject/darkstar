@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Crawler Nest
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- Involved In Quest: Enveloped in Darkness
 -- !pos 41 0.1 -314 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -15,10 +14,6 @@ require("scripts/zones/Crawlers_Nest/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -54,8 +49,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(CRAWLER_BLOOD);
-                    player:messageSpecial(KEYITEM_OBTAINED,CRAWLER_BLOOD); -- Crawler Blood (KI)
+                    player:addKeyItem(dsp.ki.CRAWLER_BLOOD);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRAWLER_BLOOD); -- Crawler Blood (KI)
                     player:setVar("needs_crawler_blood",0);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
@@ -81,28 +76,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1040);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Shipilolo
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'A Certain Substitute Patrolman'
 --                        'Fertile Ground'
 --                        'The Old Man and the Harpoon'
@@ -15,17 +15,10 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TOMATH = player:getQuestStatus(ADOULIN, THE_OLD_MAN_AND_THE_HARPOON);
@@ -36,13 +29,13 @@ function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
-        if ((TOMATH == QUEST_ACCEPTED) and player:hasKeyItem(BROKEN_HARPOON)) then
+        if ((TOMATH == QUEST_ACCEPTED) and player:hasKeyItem(dsp.ki.BROKEN_HARPOON)) then
             -- Progresses Quest: 'The Old Man and the Harpoon'
             player:startEvent(2543);
-        elseif ((Fertile_Ground == QUEST_ACCEPTED) and (not player:hasKeyItem(BOTTLE_OF_FERTILIZER_X))) then
+        elseif ((Fertile_Ground == QUEST_ACCEPTED) and (not player:hasKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X))) then
             -- Progresses Quest: 'Fertile Ground'
             player:startEvent(2850);
-        elseif (Wayward_Waypoints and (not player:hasKeyItem(WAYPOINT_RECALIBRATION_KIT))) then
+        elseif (Wayward_Waypoints and (not player:hasKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT))) then
             -- Progresses Quest: 'Wayward Waypoints'
             player:startEvent(79);
         elseif ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 5)) then
@@ -58,28 +51,20 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2543) then
         -- Progresses Quest: 'The Old Man and the Harpoon'
-        player:delKeyItem(BROKEN_HARPOON);
-        player:addKeyItem(EXTRAVAGANT_HARPOON);
-        player:messageSpecial(KEYITEM_OBTAINED, EXTRAVAGANT_HARPOON);
+        player:delKeyItem(dsp.ki.BROKEN_HARPOON);
+        player:addKeyItem(dsp.ki.EXTRAVAGANT_HARPOON);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.EXTRAVAGANT_HARPOON);
     elseif (csid == 2850) then
         -- Progresses Quest: 'Fertile Ground'
-        player:addKeyItem(BOTTLE_OF_FERTILIZER_X);
+        player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);
     elseif (csid == 79) then
-        player:addKeyItem(WAYPOINT_RECALIBRATION_KIT);
+        player:addKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT);
         player:setVar("WW_Need_Shipilolo", 0);
     elseif (csid == 2557) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'

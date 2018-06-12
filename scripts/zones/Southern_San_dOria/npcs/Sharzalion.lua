@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Sharzalion
+--  NPC: Sharzalion
 -- Starts and Finishes Quest: The Crimson Trial
 -- Involved in Quest: Peace for the Spirit
 -- @zone 230
@@ -15,17 +15,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -33,9 +26,9 @@ function onTrigger(player,npc)
     envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS);
     peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT);
     peaceForTheSpiritCS = player:getVar("peaceForTheSpiritCS");
-    OrcishDriedFood = player:hasKeyItem(ORCISH_DRIED_FOOD);
+    OrcishDriedFood = player:hasKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
 
-    if (player:getMainJob() == JOBS.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
+    if (player:getMainJob() == dsp.job.RDM and player:getMainLvl() >= AF1_QUEST_LEVEL and theCrimsonTrial == QUEST_AVAILABLE) then
         if (player:getVar("has_seen_rdmaf1_quest_already") == 0) then
             player:startEvent(70);
         else
@@ -61,22 +54,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 70 or csid == 71) then
         if (csid == 70 and option == 0) then
@@ -89,7 +70,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
         else
-            player:delKeyItem(ORCISH_DRIED_FOOD);
+            player:delKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
             player:addItem(16829);
             player:messageSpecial(ITEM_OBTAINED, 16829); -- Fencing Degen
             player:addFame(SANDORIA,30);

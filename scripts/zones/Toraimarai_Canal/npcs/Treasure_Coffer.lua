@@ -1,13 +1,12 @@
 -----------------------------------
 -- Area: Toraimarai Canal
--- NPC:  Treasure Coffer
+--  NPC: Treasure Coffer
 -- Involved In Quest: Wild Card
 -- @zone 169
 -- !pos 220 16 -50
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -17,10 +16,6 @@ require("scripts/zones/Toraimarai_Canal/TextIDs");
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -32,8 +27,8 @@ function onTrade(player,npc,trade)
     local count = trade:getItemCount();
     if (trade:hasItemQty(1057,1) and count == 1 and player:getVar("WildCard") == 2) then
         player:tradeComplete();
-        player:addKeyItem(JOKER_CARD);
-        player:messageSpecial(KEYITEM_OBTAINED,JOKER_CARD);
+        player:addKeyItem(dsp.ki.JOKER_CARD);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.JOKER_CARD);
         player:setVar("WildCard",3);
 
     elseif ((trade:hasItemQty(1057,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and count == 1) then
@@ -102,17 +97,9 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1057);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
@@ -120,13 +107,7 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;
 

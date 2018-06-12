@@ -1,23 +1,16 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Barenngo
---  Type: Standard NPC and Quest NPC
+-- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Dont Ever Leaf Me'
 --  @zone 256
 --  !pos -101 3 14 256
 -----------------------------------
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local DELM = player:getQuestStatus(ADOULIN, DONT_EVER_LEAF_ME);
@@ -33,16 +26,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5015) then

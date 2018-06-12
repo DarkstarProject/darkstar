@@ -16,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_MAGIC_DEF_DOWN;
+    local typeEffect = dsp.effect.MAGIC_DEF_DOWN;
     local power = 20;
 
     local duration = 120;
@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, typeEffect, power, 0, duration);
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3.5,ELE_WATER,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3.5,dsp.magic.ele.WATER,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Kumama
+--  NPC: Kumama
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,KUMAMA_SHOP_DIALOG);
@@ -41,23 +34,11 @@ function onTrigger(player,npc)
         0x32b8,   111,3,     --Ash Clogs
         0x3001,   110,3      --Lauan Shield
     }
-    showNationShop(player, NATION_WINDURST, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

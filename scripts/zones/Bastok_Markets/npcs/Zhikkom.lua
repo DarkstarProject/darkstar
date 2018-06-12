@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Zhikkom
+--  NPC: Zhikkom
 -- Standard Merchant NPC
 -- !pos -288.669 -10.319 -135.064 235
 -----------------------------------
@@ -26,5 +26,5 @@ function onTrigger(player,npc)
         16565,  1711, 3, -- Spatha
         16512,  3215, 3, -- Bilbo
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end; 
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
+end;

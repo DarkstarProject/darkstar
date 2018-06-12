@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Capucine
+--  NPC: Capucine
 -- Standard Merchant NPC
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,CAPUCINE_SHOP_DIALOG);
@@ -36,23 +28,11 @@ function onTrigger(player,npc)
         0x32B9, 1495,    -- Holly Clogs
     };
 
-    showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    dsp.shop.general(player, stock);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

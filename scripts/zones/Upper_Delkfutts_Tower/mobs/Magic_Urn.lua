@@ -2,11 +2,7 @@
 -- Area: Upper Delkfutt's Tower
 --  MOB: Magic Urn
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

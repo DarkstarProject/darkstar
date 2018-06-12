@@ -1,32 +1,23 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC: Imperial Whitegate
+--  NPC: Imperial Whitegate
 -- pos: 152, -2, 0, 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    if (player:getEquipID(SLOT_MAIN) == 0 and player:getEquipID(SLOT_SUB) == 0 and
-            player:getEquipID(SLOT_RANGE) == 0 and player:getEquipID(SLOT_AMMO) == 0) then
+    if (player:getEquipID(dsp.slot.MAIN) == 0 and player:getEquipID(dsp.slot.SUB) == 0) then
         if (player:getCurrentMission(TOAU) == GUESTS_OF_THE_EMPIRE and player:getVar("AhtUrganStatus") == 1 and
                 doRoyalPalaceArmorCheck(player) == true) then
             player:startEvent(3078,0,1,0,0,0,0,0,1,0);
@@ -59,13 +50,9 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    printf("Update CSID: %u",csid);
-    printf("Update RESULT: %u",option);
+    -- printf("Update CSID: %u",csid);
+    -- printf("Update RESULT: %u",option);
 
     if(csid == 3140 or csid == 3155) then
         if (option == 1) then
@@ -108,18 +95,14 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    printf("Finish CSID: %u",csid);
-    printf("Finish RESULT: %u",option);
+    -- printf("Finish CSID: %u",csid);
+    -- printf("Finish RESULT: %u",option);
 
     if (csid == 3078) then
         player:completeMission(TOAU,GUESTS_OF_THE_EMPIRE);
         player:setVar("AhtUrganStatus",0);
-        player:addTitle(OVJANGS_ERRAND_RUNNER);
+        player:addTitle(dsp.title.OVJANGS_ERRAND_RUNNER);
         player:addItem(2186) -- Imperial Mythril Piece Reward
         player:needToZone(true);
         player:setVar("TOAUM18_STARTDAY", VanadielDayOfTheYear());

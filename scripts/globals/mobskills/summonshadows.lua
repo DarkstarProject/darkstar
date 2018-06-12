@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
         GetMobByID(shadow2):updateEnmity(target);
     end
 
-    skill:setMsg(msgBasic.NONE);
+    skill:setMsg(dsp.msg.basic.NONE);
 
     return 0;
 end;

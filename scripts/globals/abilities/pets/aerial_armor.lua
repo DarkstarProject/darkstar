@@ -12,8 +12,8 @@ function onAbilityCheck(player, target, ability)
 end;
 
 function onPetAbility(target, pet, skill)
-    target:delStatusEffect(EFFECT_BLINK);
-    target:addStatusEffect(EFFECT_BLINK,3,0,900);
-    skill:setMsg(msgBasic.SKILL_GAIN_EFFECT);
-    return EFFECT_BLINK;
+    target:delStatusEffect(dsp.effect.BLINK);
+    target:addStatusEffect(dsp.effect.BLINK,3,0,900);
+    skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT);
+    return dsp.effect.BLINK;
 end

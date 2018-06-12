@@ -2,12 +2,13 @@
 -- Area: Jugner Forest
 --  MOB: King Arthro
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
-require("scripts/globals/titles");
+require("scripts/globals/msg");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
@@ -18,30 +19,19 @@ function onMobSpawn(mob)
         GetMobByID(KingArthroID - offset):setRespawnTime(0);
     end
 
-    -- Set the hp% to use hundred fists
-    mob:setLocalVar("jobSpecTrigger", math.random(10, 60));
-
     -- 20 minute rage timer
-    mob:setMobMod(MOBMOD_RAGE, 1200);
-end;
-
-function onMobFight(mob, target)
-    local trigger = mob:getLocalVar("jobSpecTrigger")
-    if (mob:getHPP() <= trigger and mob:getLocalVar("HundredFists") == 0) then
-        mob:useMobAbility(jobSpec.HUNDRED_FISTS);
-        mob:setLocalVar("HundredFists", 1);
-    end
+    mob:setMobMod(dsp.mobMod.RAGE, 1200);
 end;
 
 function onAdditionalEffect(mob,target,damage)
     local procRate = 10; -- No retail data, so we guessed at it.
     -- Can't proc it if enwater is up, if player full resists, or is just plain lucky.
-    if (procRate > math.random(1,100) or mob:hasStatusEffect(EFFECT_ENWATER)
-    or applyResistanceAddEffect(mob, target, ELE_ICE, 0) <= 0.5) then
+    if (procRate > math.random(1,100) or mob:hasStatusEffect(dsp.effect.ENWATER)
+    or applyResistanceAddEffect(mob, target, dsp.magic.ele.ICE, 0) <= 0.5) then
         return 0,0,0;
     else
-        target:addStatusEffect(EFFECT_PARALYSIS, 20, 0, 30); -- Potency unconfirmed
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        target:addStatusEffect(dsp.effect.PARALYSIS, 20, 0, 30); -- Potency unconfirmed
+        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
     end
 end;
 

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Abeaule
+--  NPC: Abeaule
 -- Starts and Finishes Quest: The Trader in the Forest, The Medicine Woman
 -- !pos -136 -2 56 231
 -----------------------------------
@@ -11,9 +11,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +24,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -53,28 +46,16 @@ function onTrigger(player,npc)
             player:startEvent(613);
             player:setVar("medicineWomanCS",1);
         end
-    elseif (player:hasKeyItem(COLD_MEDICINE)) then
+    elseif (player:hasKeyItem(dsp.ki.COLD_MEDICINE)) then
         player:startEvent(614);
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Trader in the Forest" Quest
     if (csid == 524 and option == 0 or csid == 592 and option == 0) then
@@ -99,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12600); -- Robe
         else
             player:tradeComplete();
-            player:addTitle(GREEN_GROCER);
+            player:addTitle(dsp.title.GREEN_GROCER);
             player:addItem(12600);
             player:messageSpecial(ITEM_OBTAINED,12600); -- Robe
             player:addFame(SANDORIA,30);
@@ -109,8 +90,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 613 and option == 0 or csid == 615 and option == 0) then
         player:addQuest(SANDORIA,THE_MEDICINE_WOMAN);
     elseif (csid == 614) then
-        player:addTitle(TRAVELING_MEDICINE_MAN);
-        player:delKeyItem(COLD_MEDICINE);
+        player:addTitle(dsp.title.TRAVELING_MEDICINE_MAN);
+        player:delKeyItem(dsp.ki.COLD_MEDICINE);
         player:addGil(GIL_RATE*2100);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(SANDORIA,30);

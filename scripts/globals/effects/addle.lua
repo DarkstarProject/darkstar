@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_ADDLE
+-- dsp.effect.ADDLE
 --
 -----------------------------------
 
@@ -9,8 +9,8 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FASTCAST, -effect:getPower()); -- Yes we are subtracting in addMod()
-    target:addMod(MOD_MACC, -effect:getSubPower()); -- This is intentional
+    target:addMod(dsp.mod.FASTCAST, -effect:getPower()); -- Yes we are subtracting in addMod()
+    target:addMod(dsp.mod.MACC, -effect:getSubPower()); -- This is intentional
 end;
 
 -----------------------------------
@@ -25,6 +25,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FASTCAST, -effect:getPower());
-    target:delMod(MOD_MACC, -effect:getSubPower());
+    target:delMod(dsp.mod.FASTCAST, -effect:getPower());
+    target:delMod(dsp.mod.MACC, -effect:getSubPower());
 end;

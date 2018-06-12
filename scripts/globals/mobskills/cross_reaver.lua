@@ -6,7 +6,7 @@
 --  ? ? ? (No data offered)
 --  Range: Melee
 
--- Special weaponskill unique to Ark Angel HM. Deals ~500-900 damage. 
+-- Special weaponskill unique to Ark Angel HM. Deals ~500-900 damage.
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW);
 
-   MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 4);
+   MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4);
 
    target:delHP(dmg);
     return dmg;

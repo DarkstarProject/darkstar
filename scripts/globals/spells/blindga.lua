@@ -13,7 +13,7 @@ end;
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_MND)); --blind uses caster INT vs target MND
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND)); --blind uses caster INT vs target MND
 
     -- Base power.  May need more research.
     local power = math.floor(dINT * 9/40) + 23;
@@ -31,21 +31,21 @@ function onSpellCast(caster,target,spell)
     local duration = 180;
     local params = {};
     params.diff = nil;
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     params.skillType = 35;
     params.bonus = 0;
-    params.effect = EFFECT_BLINDNESS;
+    params.effect = dsp.effect.BLINDNESS;
     duration = duration * applyResistanceEffect(caster, target, spell, params);
 
     if (duration >= 60) then --Do it!
 
-        if (target:addStatusEffect(EFFECT_BLINDNESS,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (target:addStatusEffect(dsp.effect.BLINDNESS,power,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
-    return EFFECT_BLINDNESS;
+    return dsp.effect.BLINDNESS;
 end;

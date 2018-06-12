@@ -9,9 +9,6 @@ require("scripts/zones/Attohwa_Chasm/TextIDs");
 require("scripts/zones/Attohwa_Chasm/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -51,10 +48,6 @@ function onInitialize(zone)
     GetMobByID(TIAMAT):setRespawnTime(math.random(86400, 259200));
 end;
 
------------------------------------
--- onZoneIn
------------------------------------
-
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
@@ -62,10 +55,6 @@ function onZoneIn(player,prevZone)
     end
     return cs;
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
@@ -75,10 +64,6 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
     -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In DSP that doesn't happen so I'm leaving it as-is for now.
     local regionId = region:GetRegionID();
@@ -86,24 +71,16 @@ function onRegionEnter(player,region)
         local gasponia = GetNPCByID(GASPONIA_OFFSET + (regionId - 1));
         if (gasponia ~= nil) then
             gasponia:openDoor(3);
-            if (not player:hasStatusEffect(EFFECT_POISON)) then
-                player:addStatusEffect(EFFECT_POISON, 15, 0, math.random(30,60));
+            if (not player:hasStatusEffect(dsp.effect.POISON)) then
+                player:addStatusEffect(dsp.effect.POISON, 15, 0, math.random(30,60));
                 player:messageSpecial(GASPONIA_POISON);
             end
         end
     end
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
-
------------------------------------
--- onGameHour
------------------------------------
 
 function onGameHour(zone)
     --[[
@@ -113,20 +90,8 @@ function onGameHour(zone)
     --]]
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

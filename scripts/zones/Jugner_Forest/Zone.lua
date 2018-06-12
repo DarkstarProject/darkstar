@@ -4,7 +4,6 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/Jugner_Forest/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
 require("scripts/zones/Jugner_Forest/TextIDs");
 require("scripts/zones/Jugner_Forest/MobIDs");
@@ -12,12 +11,11 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 4504, 152, DIGREQ_NONE },
                     { 688, 182, DIGREQ_NONE },
                     { 697, 83, DIGREQ_NONE },
@@ -29,6 +27,7 @@ local itemMap = {
                     { 4447, 38, DIGREQ_NONE },
                     { 695, 45, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 690, 15, DIGREQ_BORE },
                     { 1446, 8, DIGREQ_BORE },
                     { 702, 23, DIGREQ_BORE },
@@ -39,20 +38,13 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
@@ -62,10 +54,6 @@ function onInitialize(zone)
 
     SetRegionalConquestOverseers(zone:getRegionID());
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -81,10 +69,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -92,10 +76,6 @@ function onConquestUpdate(zone, updatetype)
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter( player, region)
     if (region:GetRegionID() == 1) then
@@ -105,25 +85,13 @@ function onRegionEnter( player, region)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 15) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 15) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 14) then

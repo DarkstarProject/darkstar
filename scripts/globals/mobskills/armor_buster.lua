@@ -1,6 +1,6 @@
 ---------------------------------------------------
 --  Armor_Buster
---  Description: 
+--  Description:
 --  Type: Magical
 --  additional effect :WEIGHT
 
@@ -22,10 +22,10 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 20, 3, 45);
     local dmgmod = 2.5;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,ELE_WATER,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.WATER,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS);
     target:delHP(dmg);
     return dmg;

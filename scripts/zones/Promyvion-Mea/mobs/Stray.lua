@@ -2,15 +2,13 @@
 -- Area: Promyvion-Mea
 --  MOB: Stray
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Mea/MobIDs"] = nil;
------------------------------------
 require("scripts/zones/Promyvion-Mea/MobIDs");
 require("scripts/globals/status");
 
 function findMother(mob)
     local mobId = mob:getID();
     local mother = 0;
-    for k,v in pairs(MEMORY_RECEPTACLES) do
+    for k,v in pairs(MEA_MEMORY_RECEPTACLES) do
         if (k < mobId and k > mother) then
             mother = k;
         end
@@ -19,7 +17,7 @@ function findMother(mob)
 end;
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_GIL_MAX, -1);
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
 end;
 
 function onMobSpawn(mob, target)

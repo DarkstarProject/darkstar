@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  Treasure Coffer
+--  NPC: Treasure Coffer
 -- @zone 159
 -- !pos -219 0 32
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
 local TreasureMinLvL = 43;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -36,7 +31,7 @@ function onTrade(player,npc,trade)
         local mJob = player:getMainJob();
         local zone = player:getZoneID();
         local listAF = getAFbyZone(zone);
-        if (player:hasKeyItem(MAP_OF_THE_TEMPLE_OF_UGGALEPIH) == false) then
+        if (player:hasKeyItem(dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH) == false) then
             questItemNeeded = 3;
         end
         for nb = 1,#listAF,3 do
@@ -64,8 +59,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 3) then
-                    player:addKeyItem(MAP_OF_THE_TEMPLE_OF_UGGALEPIH);
-                    player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_TEMPLE_OF_UGGALEPIH); -- Map of the Temple of Uggalepih (KI)
+                    player:addKeyItem(dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH); -- Map of the Temple of Uggalepih (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
@@ -102,28 +97,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1049);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

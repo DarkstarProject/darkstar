@@ -33,10 +33,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
 
-    -- EFFECT_WEIGHT power value is equal to lead breath as per bg-wiki: http://www.bg-wiki.com/bg/Rudra%27s_Storm
+    -- dsp.effect.WEIGHT power value is equal to lead breath as per bg-wiki: http://www.bg-wiki.com/bg/Rudra%27s_Storm
 
-    if (damage > 0 and target:hasStatusEffect(EFFECT_WEIGHT) == false) then
-        target:addStatusEffect(EFFECT_WEIGHT, 50, 0, 60);
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.WEIGHT) == false) then
+        target:addStatusEffect(dsp.effect.WEIGHT, 50, 0, 60);
     end
     return tpHits, extraHits, criticalHit, damage;
 

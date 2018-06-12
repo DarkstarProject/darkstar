@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Heaven's Tower
--- NPC:  Chumimi
+--  NPC: Chumimi
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- !pos 0.1 30 21 242
 -----------------------------------
@@ -11,9 +11,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Heavens_Tower/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +31,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local theThreeMagi = player:getQuestStatus(WINDURST,THE_THREE_MAGI);
@@ -55,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(268); -- New standard dialog after "The Three Magi"
     elseif (theThreeMagi == QUEST_COMPLETED and mJob == 4 and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
         player:startEvent(270,0,1105); -- Start Quest "Recollections"
-    elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(FOE_FINDER_MK_I)) then
+    elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.FOE_FINDER_MK_I)) then
         player:startEvent(275); -- Finish Quest "Recollections"
     elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
             player:startEvent(276,0,829); -- Start Quest "The Root of The problem"
@@ -73,22 +66,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 260) then
         -- option 3: Koru-Moru -- option 2: Shantotto -- option 1: Yoran-Oran
@@ -101,11 +82,11 @@ function onEventFinish(player,csid,option)
             choosetitle = player:getVar("theThreeMagiSupport");
 
             if (choosetitle == 3) then
-                player:addTitle(PROFESSOR_KORUMORU_SUPPORTER);
+                player:addTitle(dsp.title.PROFESSOR_KORUMORU_SUPPORTER);
             elseif (choosetitle == 2) then
-                player:addTitle(DOCTOR_SHANTOTTO_SUPPORTER);
+                player:addTitle(dsp.title.DOCTOR_SHANTOTTO_SUPPORTER);
             else
-                player:addTitle(DOCTOR_YORANORAN_SUPPORTER);
+                player:addTitle(dsp.title.DOCTOR_YORANORAN_SUPPORTER);
             end
 
             player:tradeComplete();
@@ -126,7 +107,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
             player:setVar("recollectionsQuest",0);
-            player:delKeyItem(FOE_FINDER_MK_I);
+            player:delKeyItem(dsp.ki.FOE_FINDER_MK_I);
             player:addItem(14092);
             player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
             player:addFame(WINDURST,AF2_FAME);
@@ -136,8 +117,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
         player:setVar("rootProblem",1);
     elseif (csid == 279) then
-        player:addKeyItem(SLUICE_SURVEYOR_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,SLUICE_SURVEYOR_MK_I);
+        player:addKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);
     elseif (csid == 281) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
@@ -145,8 +126,8 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
             player:addItem(13856);
             player:messageSpecial(ITEM_OBTAINED,13856);
-            player:addTitle(PARAGON_OF_BLACK_MAGE_EXCELLENCE);
-            player:delKeyItem(SLUICE_SURVEYOR_MK_I);
+            player:addTitle(dsp.title.PARAGON_OF_BLACK_MAGE_EXCELLENCE);
+            player:delKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
         end
     end
 

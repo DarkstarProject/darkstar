@@ -13,20 +13,12 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Cloister_of_Storms/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -38,10 +30,6 @@ function onTrigger(player,npc)
         player:messageSpecial(PROTOCRYSTAL);
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     --printf("onUpdate CSID: %u",csid);
@@ -61,9 +49,9 @@ function onEventFinish(player,csid,option)
     --printf("onFinish RESULT: %u",option);
 
     if (csid==2) then
-        player:delKeyItem(DOMINAS_VIOLET_SEAL);
-        player:addKeyItem(VIOLET_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,VIOLET_COUNTERSEAL);
+        player:delKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL);
+        player:addKeyItem(dsp.ki.VIOLET_COUNTERSEAL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIOLET_COUNTERSEAL);
         player:setVar("ASA4_Violet","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

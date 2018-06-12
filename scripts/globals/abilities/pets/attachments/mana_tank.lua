@@ -1,19 +1,14 @@
 -----------------------------------
 -- Attachment: Mana Tank
 -----------------------------------
-
 require("scripts/globals/status");
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onEquip(pet)
-    pet:addMod(MOD_MPP, 4);
+    pet:addMod(dsp.mod.MPP, 4);
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_MPP, 4);
+    pet:delMod(dsp.mod.MPP, 4);
 end
 
 function onManeuverGain(pet,maneuvers)
@@ -21,11 +16,11 @@ function onManeuverGain(pet,maneuvers)
     local frame = pet:getAutomatonFrame()
     if frame == 0x23 then bonus = 1 end
     if (maneuvers == 1) then
-        pet:addMod(MOD_REFRESH, 1 + bonus);
+        pet:addMod(dsp.mod.REFRESH, 1 + bonus);
     elseif (maneuvers == 2) then
-        pet:addMod(MOD_REFRESH, 1 + bonus); 
+        pet:addMod(dsp.mod.REFRESH, 1 + bonus);
     elseif (maneuvers == 3) then
-        pet:addMod(MOD_REFRESH, 2 + bonus);
+        pet:addMod(dsp.mod.REFRESH, 2 + bonus);
     end
 end
 
@@ -34,10 +29,10 @@ function onManeuverLose(pet,maneuvers)
     local frame = pet:getAutomatonFrame()
     if frame == 0x23 then bonus = 1 end
     if (maneuvers == 1) then
-        pet:delMod(MOD_REFRESH, 1 + bonus);
+        pet:delMod(dsp.mod.REFRESH, 1 + bonus);
     elseif (maneuvers == 2) then
-        pet:delMod(MOD_REFRESH, 1 + bonus); 
+        pet:delMod(dsp.mod.REFRESH, 1 + bonus);
     elseif (maneuvers == 3) then
-        pet:delMod(MOD_REFRESH, 2 + bonus);
+        pet:delMod(dsp.mod.REFRESH, 2 + bonus);
     end
 end

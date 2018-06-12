@@ -2,11 +2,7 @@
 -- Area: Batallia Downs
 --  MOB: Orcish Serjeant
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

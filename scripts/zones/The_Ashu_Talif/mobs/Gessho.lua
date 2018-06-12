@@ -10,24 +10,17 @@ require("scripts/globals/allyassist");
 require("scripts/globals/instance");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-end
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+end;
 
 function onMobSpawn(mob)
     -- Gessho will engage by himself ~1min in if you stall too long.
     -- Give a little buffer for while the instance loads
     mob:timer(80000, function(mob)
         if(mob:getLocalVar("ready") == 0 and not(mob:getTarget())) then
-            startAllyAssist(mob, ALLY_ASSIST_RANDOM);
+            dsp.ally.startAssist(mob, dsp.ally.ASSIST_RANDOM);
         end
     end)
 
@@ -48,10 +41,6 @@ function onMobSpawn(mob)
     end);
 end;
 
------------------------------------
--- onMobEngaged Action
------------------------------------
-
 function onMobEngaged(mob, target)
     local dialog = mob:getLocalVar("dialog");
 
@@ -61,22 +50,14 @@ function onMobEngaged(mob, target)
     end
 end;
 
------------------------------------
--- onMobRoam Action
------------------------------------
-
 function onMobRoam(mob)
     local ready = mob:getLocalVar("ready");
 
     -- When Gessho becomes ready via you pulling, he will assist you
     if (ready == 1) then
-        startAllyAssist(mob, ALLY_ASSIST_PLAYER);
+        dsp.ally.startAssist(mob, dsp.ally.ASSIST_PLAYER);
     end
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob, target)
     local dialog = mob:getLocalVar("dialog");
@@ -86,10 +67,6 @@ function onMobFight(mob, target)
         mob:setLocalVar("dialog",2);
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
     mob:showText(mob,TheAshuTalif.text.SO_I_FALL);

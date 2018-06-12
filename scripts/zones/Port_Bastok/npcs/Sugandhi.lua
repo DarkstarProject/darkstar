@@ -1,24 +1,16 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Sugandhi
+--  NPC: Sugandhi
 -- Standard Merchant NPC
 -----------------------------------
-
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,SUGANDHI_SHOP_DIALOG);
@@ -40,24 +32,12 @@ function onTrigger(player,npc)
         0x4085,  9201,3,     --Degen
         0x40A7,   698,3      --Sapara
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

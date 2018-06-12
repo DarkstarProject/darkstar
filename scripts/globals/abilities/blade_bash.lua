@@ -12,7 +12,7 @@ require("scripts/globals/msg");
 
 function onAbilityCheck(player,target,ability)
     if (not player:isWeaponTwoHanded()) then
-        return msgBasic.NEEDS_2H_WEAPON,0;
+        return dsp.msg.basic.NEEDS_2H_WEAPON,0;
     else
         return 0,0;
     end
@@ -21,16 +21,16 @@ end;
 function onUseAbility(player,target,ability)
     -- Stun rate
     if (math.random(1,100) < 99) then
-        target:addStatusEffect(EFFECT_STUN,1,0,6);
+        target:addStatusEffect(dsp.effect.STUN,1,0,6);
     end
 
     -- Yes, even Blade Bash deals damage dependant of Dark Knight level
     local darkKnightLvl = 0;
     local damage = 0;
-    if (player:getMainJob() == JOBS.DRK) then
-        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
-    elseif (player:getSubJob() == JOBS.DRK) then
-        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(MOD_WEAPON_BASH));
+    if (player:getMainJob() == dsp.job.DRK) then
+        damage = math.floor(((player:getMainLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH));
+    elseif (player:getSubJob() == dsp.job.DRK) then
+        damage = math.floor(((player:getSubLvl() + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH));
     end
 
     -- Calculating and applying Blade Bash damage
@@ -39,10 +39,10 @@ function onUseAbility(player,target,ability)
 
     -- Applying Plague based on merit level.
     if (math.random(1,100) < 65) then
-        target:addStatusEffect(EFFECT_PLAGUE,5,0,15 + player:getMerit(MERIT_BLADE_BASH));
+        target:addStatusEffect(dsp.effect.PLAGUE,5,0,15 + player:getMerit(dsp.merit.BLADE_BASH));
     end
 
-    ability:setMsg(msgBasic.JA_DAMAGE)
+    ability:setMsg(dsp.msg.basic.JA_DAMAGE)
 
     return damage;
 end;

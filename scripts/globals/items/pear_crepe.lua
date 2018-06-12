@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5777);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5777);
 end;
 
 -----------------------------------------
@@ -28,17 +28,17 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_INT, 2);
-    target:addMod(MOD_FOOD_MACCP, 20);
-    target:addMod(MOD_FOOD_MACC_CAP, 45);
-    target:addMod(MOD_MDEF, 1);
-    target:addMod(MOD_MPHEAL, 2);
+    target:addMod(dsp.mod.INT, 2);
+    target:addMod(dsp.mod.FOOD_MACCP, 20);
+    target:addMod(dsp.mod.FOOD_MACC_CAP, 45);
+    target:addMod(dsp.mod.MDEF, 1);
+    target:addMod(dsp.mod.MPHEAL, 2);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_INT, 2);
-    target:delMod(MOD_FOOD_MACCP, 20);
-    target:delMod(MOD_FOOD_MACC_CAP, 45);
-    target:delMod(MOD_MDEF, 1);
-    target:delMod(MOD_MPHEAL, 2);
+    target:delMod(dsp.mod.INT, 2);
+    target:delMod(dsp.mod.FOOD_MACCP, 20);
+    target:delMod(dsp.mod.FOOD_MACC_CAP, 45);
+    target:delMod(dsp.mod.MDEF, 1);
+    target:delMod(dsp.mod.MPHEAL, 2);
 end;

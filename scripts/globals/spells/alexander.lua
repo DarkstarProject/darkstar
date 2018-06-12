@@ -10,19 +10,19 @@ require("scripts/globals/msg");
 
 function onMagicCastingCheck(caster,target,spell)
     if (not caster:canUsePet()) then
-        return msgBasic.CANT_BE_USED_IN_AREA;
-    elseif (not caster:hasStatusEffect(EFFECT_ASTRAL_FLOW)) then
+        return dsp.msg.basic.CANT_BE_USED_IN_AREA;
+    elseif (not caster:hasStatusEffect(dsp.effect.ASTRAL_FLOW)) then
         return 581;
     elseif (caster:hasPet()) then
-        return msgBasic.ALREADY_HAS_A_PET;
-    elseif (caster:getObjType() == TYPE_PC) then
+        return dsp.msg.basic.ALREADY_HAS_A_PET;
+    elseif (caster:getObjType() == dsp.objType.PC) then
         return avatarMiniFightCheck(caster);
     end
     return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_ALEXANDER);
+    caster:spawnPet(dsp.pet.id.ALEXANDER);
 
     return 0;
 end;

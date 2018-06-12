@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC:  Deidogg
+--  NPC: Deidogg
 -- Starts and Finishes Quest: The Talekeeper's Truth, The Talekeeper's Gift (start)
 -- !pos -13 7 29 234
 -----------------------------------
@@ -11,9 +11,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Bastok_Mines/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +31,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
@@ -49,7 +42,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(504);
-    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == JOBS.WAR and player:getMainLvl() >= 50) then
+    elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == dsp.job.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
             player:startEvent(160);
             player:setVar("theTalekeeperTruthCS",2);
@@ -64,7 +57,7 @@ function onTrigger(player,npc)
         player:startEvent(165); -- Finish Quest "The Talekeeper's Truth"
     elseif (theTalekeeperTruthCS == 5 or (theTalekeeperTruth == QUEST_COMPLETED and (player:needToZone() or VanadielDayOfTheYear() == Wait1DayForAF3))) then
         player:startEvent(166); -- New standard dialog after "The Talekeeper's Truth"
-    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == JOBS.WAR) then
+    elseif (player:needToZone() == false and VanadielDayOfTheYear() ~= Wait1DayForAF3 and Wait1DayForAF3 ~= 0 and theTalekeeperGiftCS == 0 and player:getMainJob() == dsp.job.WAR) then
         player:startEvent(170);
         player:setVar("theTalekeeperGiftCS",1);
         player:setVar("DeidoggWait1DayForAF3",0);
@@ -74,22 +67,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 161) then
         player:addQuest(BASTOK,THE_TALEKEEPER_S_TRUTH);

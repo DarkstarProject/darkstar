@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (not GetMobByID(VEGNIX_GREENTHUMB):isSpawned() and player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) and not player:hasKeyItem(SEEDSPALL_ROSEUM) and not player:hasKeyItem(VIRIDIAN_KEY)) then
+    if (not GetMobByID(VEGNIX_GREENTHUMB):isSpawned() and player:hasKeyItem(dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD) and not player:hasKeyItem(dsp.ki.SEEDSPALL_ROSEUM) and not player:hasKeyItem(dsp.ki.VIRIDIAN_KEY)) then
         SpawnMob(VEGNIX_GREENTHUMB):updateClaim(player);
     else
         player:messageSpecial(NOTHING_HAPPENS);

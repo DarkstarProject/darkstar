@@ -5,19 +5,11 @@
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
-
------------------------------------
--- onMobInitialize
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
-
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 
 function onAdditionalEffect(mob,target,damage)
     -- Wiki says nothing about proc rate, going with 80% for now.
@@ -33,7 +25,7 @@ function onAdditionalEffect(mob,target,damage)
     if (math.random(0,99) >= chance) then
         return 0,0,0;
     else
-        local INT_diff = mob:getStat(MOD_INT) - target:getStat(MOD_INT);
+        local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
 
         if (INT_diff > 20) then
             INT_diff = 20 + (INT_diff - 20) / 2;
@@ -43,27 +35,19 @@ function onAdditionalEffect(mob,target,damage)
         local params = {};
         params.bonusmab = 0;
         params.includemab = false;
-        dmg = addBonusesAbility(mob, ELE_WATER, target, dmg, params);
-        dmg = dmg * applyResistanceAddEffect(mob,target,ELE_WATER,0);
-        dmg = adjustForTarget(target,dmg,ELE_WATER);
+        dmg = addBonusesAbility(mob, dsp.magic.ele.WATER, target, dmg, params);
+        dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.WATER,0);
+        dmg = adjustForTarget(target,dmg,dsp.magic.ele.WATER);
 
-        dmg = finalMagicNonSpellAdjustments(mob,target,ELE_WATER,dmg);
+        dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.WATER,dmg);
 
-        return SUBEFFECT_WATER_DAMAGE, msgBasic.ADD_EFFECT_DMG, dmg;
+        return dsp.subEffect.WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
     end
 
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- UpdateNMSpawnPoint(mob:getID());

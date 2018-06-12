@@ -1,57 +1,38 @@
 -----------------------------------
 -- Area: Maze of Shakhrami
 -- Quest: Corsair Af1 "Equiped for All Occasions"
--- NPC: Iron Door (Spawn Lost Soul)
+--  NPC: Iron Door (Spawn Lost Soul)
 -- !pos 247.735 18.499 -142.267 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+require("scripts/zones/Maze_of_Shakhrami/MobIDs");
 require("scripts/globals/keyitems");
+require("scripts/globals/npc_util");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
+-----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
-
-    if (player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==1) then
-        SpawnMob(17588706):updateClaim(player);
-    end
-    if (player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS) == QUEST_ACCEPTED and player:getVar("EquipedforAllOccasions") ==2) then
+    local efao = player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
+    local efaoStat = player:getVar("EquipedforAllOccasions");
+    
+    if (efao == QUEST_ACCEPTED and efaoStat == 1 and not GetMobByID():isSpawned(LOST_SOUL)) then
+        SpawnMob(LOST_SOUL):updateClaim(player);
+    elseif (efao == QUEST_ACCEPTED and efaoStat == 2) then
         player:startEvent(66)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-   if (csid == 66) then
+    if (csid == 66) then
+        npcUtil.giveKeyItem(player, dsp.ki.WHEEL_LOCK_TRIGGER);
         player:setVar("EquipedforAllOccasions",3);
-        player:addKeyItem(WHEEL_LOCK_TRIGGER);
-        player:messageSpecial(KEYITEM_OBTAINED, WHEEL_LOCK_TRIGGER);
     end
 end;
-

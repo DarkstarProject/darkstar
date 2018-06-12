@@ -21,10 +21,10 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     local params = {};
     params.ftp100 = 4; params.ftp200 = 4.25; params.ftp300 = 4.75;
-    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; 
+    params.str_wsc = 0.0; params.dex_wsc = 0.0; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0;
     params.mnd_wsc = 0.0; params.chr_wsc = 0.3;
-    params.ele = ELE_LIGHT;
-    params.skill = SKILL_AXE;
+    params.ele = dsp.magic.ele.LIGHT;
+    params.skill = dsp.skill.AXE;
     params.includemab = true;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
@@ -33,13 +33,5 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     end
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params);
-
-    -- Todo: MOD_AFTERMATH instead of Item ID checks in all these..
-    if ((player:getEquipID(SLOT_MAIN) == 18999) and (player:getMainJob() == JOBS.BST)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
-        end
-    end
-
     return tpHits, extraHits, criticalHit, damage;
 end

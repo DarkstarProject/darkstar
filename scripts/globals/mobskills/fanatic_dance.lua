@@ -21,16 +21,16 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_CHARM_I;
+    local typeEffect = dsp.effect.CHARM_I;
     local power = 0;
 
     if (not target:isPC()) then
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return typeEffect;
     end;
 
     local msg = MobStatusEffectMove(mob, target, typeEffect, power, 3, 60)
-    if (msg == msgBasic.SKILL_ENFEEB_IS) then
+    if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
         mob:charm(target);
     end
     skill:setMsg(msg);

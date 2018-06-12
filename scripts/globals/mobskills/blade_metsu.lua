@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Blade Metsu
 --
---  Description: Additional effect: Paralysis Kikoku/Yoshimitsu: Temporarily enhances Subtle Blow effect. 
+--  Description: Additional effect: Paralysis Kikoku/Yoshimitsu: Temporarily enhances Subtle Blow dsp.effect.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
     local duration = 60;
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS;
     local power = 10;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);

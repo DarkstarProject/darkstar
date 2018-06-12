@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_MND_BOOST
+-- dsp.effect.MND_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MND,effect:getPower());
+    target:addMod(dsp.mod.MND,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostMND_effect_size = effect:getPower();
     if (boostMND_effect_size > 0) then
         effect:setPower(boostMND_effect_size - 1)
-        target:delMod(MOD_MND,1); 
+        target:delMod(dsp.mod.MND,1);
     end
 end;
 
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostMND_effect_size = effect:getPower();
     if (boostMND_effect_size > 0) then
-        target:delMod(MOD_MND,boostMND_effect_size);
+        target:delMod(dsp.mod.MND,boostMND_effect_size);
     end
 end;

@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
     if ((mob:getFamily() == 122 or mob:getFamily() == 123 or mob:getFamily() == 124) and mob:AnimationSub() ~= 1) then
         return 1;
     elseif (mob:getPool() ~= 4249) then
-        mob:messageBasic(msgBasic.READIES_WS, 0, 40);
+        mob:messageBasic(dsp.msg.basic.READIES_WS, 0, 40);
     end
 
     return 0;

@@ -1,25 +1,17 @@
 -----------------------------------
--- 
+--
 -- Zone: Abyssea - Attohwa
--- 
+--
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Abyssea-Attohwa/TextIDs");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -29,34 +21,18 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAyssea") == 0) then
-        player:setVar("1stTimeAyssea",1);
+    and player:getVar("1stTimeAbyssea") == 0) then
+        player:setVar("1stTimeAbyssea",1);
     end
 
     return cs;
 end;
 
------------------------------------
--- onRegionEnter          
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

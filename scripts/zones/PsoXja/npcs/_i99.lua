@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: Pso'Xja
--- NPC:  Stone Gate
+--  NPC: Stone Gate
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger
------------------------------------
-
-function onTrigger(player,npc) 
+function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THE_ENDURING_TUMULT_OF_WAR and player:getVar("PromathiaStatus")==4) then
         player:startEvent(2);
     elseif (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==3) then
@@ -37,27 +29,17 @@ function onTrigger(player,npc)
   return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- Retail packet captures have been marked {R}. Please don't change them. 
-   if (csid == 2 and option == 1 ) then
+    -- Retail packet captures have been marked {R}. Please don't change them.
+    if (csid == 2 and option == 1 ) then
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,THE_ENDURING_TUMULT_OF_WAR);
         player:addMission(COP,DESIRES_OF_EMPTINESS);
-        player:addKeyItem(LIGHT_OF_VAHZL);
-        player:messageSpecial(LIGHT_OF_VAHZL);
+        player:addKeyItem(dsp.ki.LIGHT_OF_VAHZL);
+        player:messageSpecial(dsp.ki.LIGHT_OF_VAHZL);
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}
     elseif (csid == 50 and option == 1) then
         player:setPos(-14.744,0.036,-119.736,1,22); -- To Floor 1 {R}
@@ -85,5 +67,5 @@ function onEventFinish(player,csid,option)
         elseif (option == 4) then
             player:setPos(-336.001,0,139.815,0,22); -- To Floor 5 (Ponderer) {R}
         end
-    end   
+    end
 end;

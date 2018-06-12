@@ -1,7 +1,7 @@
 -----------------------------------
 --
---     EFFECT_QUICKENING
---     
+--     dsp.effect.QUICKENING
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_MOVE, effect:getPower());
+    target:addMod(dsp.mod.MOVE, effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_MOVE, effect:getPower());
+    target:delMod(dsp.mod.MOVE, effect:getPower());
 end;

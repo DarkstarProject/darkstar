@@ -44,7 +44,6 @@ When a status effect is gained twice on a player. It can do one or more of the f
 
 #include "packets/char_health.h"
 #include "packets/char_job_extra.h"
-#include "packets/char_sync.h"
 #include "packets/char_update.h"
 #include "packets/message_basic.h"
 #include "packets/party_effects.h"
@@ -405,7 +404,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
                 PChar->PLatentEffectContainer->CheckLatentsRollSong();
                 PChar->UpdateHealth();
             }
-            PChar->pushPacket(new CCharSyncPacket(PChar));
         }
         m_POwner->updatemask |= UPDATE_HP;
 
@@ -435,21 +433,11 @@ void CStatusEffectContainer::DeleteStatusEffects()
         auto PStatusEffect = *effect_iter;
         if (PStatusEffect->deleted)
         {
-            if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
-                PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
-                m_POwner->objtype == TYPE_PC)
-            {
-                puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
-            }
             if (PStatusEffect->GetIcon() != 0)
             {
                 update_icons = true;
             }
             effect_iter = m_StatusEffectList.erase(effect_iter);
-            luautils::OnEffectLose(m_POwner, PStatusEffect);
-            m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
-
-            m_POwner->delModifiers(&PStatusEffect->modList);
             delete PStatusEffect;
             effects_removed = true;
         }
@@ -459,23 +447,22 @@ void CStatusEffectContainer::DeleteStatusEffects()
         }
     }
 
-    if (m_POwner->objtype == TYPE_PC)
-    {
-        CCharEntity* PChar = (CCharEntity*)m_POwner;
-
-        if (update_icons)
-        {
-            UpdateStatusIcons();
-        }
-        //check for latents
-        PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
-        PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
-        PChar->PLatentEffectContainer->CheckLatentsRollSong();
-
-        PChar->pushPacket(new CCharSyncPacket(PChar));
-    }
     if (effects_removed)
     {
+        if (m_POwner->objtype == TYPE_PC)
+        {
+            CCharEntity* PChar = (CCharEntity*)m_POwner;
+
+            if (update_icons)
+            {
+                UpdateStatusIcons();
+            }
+
+            //check for latents
+            PChar->PLatentEffectContainer->CheckLatentsFoodEffect();
+            PChar->PLatentEffectContainer->CheckLatentsStatusEffect();
+            PChar->PLatentEffectContainer->CheckLatentsRollSong();
+        }
         m_POwner->UpdateHealth();
     }
 }
@@ -485,7 +472,17 @@ void CStatusEffectContainer::RemoveStatusEffect(uint32 id, bool silent)
     CStatusEffect* PStatusEffect = m_StatusEffectList.at(id);
     if (!PStatusEffect->deleted)
     {
+        if (PStatusEffect->GetStatusID() >= EFFECT_FIRE_MANEUVER &&
+            PStatusEffect->GetStatusID() <= EFFECT_DARK_MANEUVER &&
+            m_POwner->objtype == TYPE_PC)
+        {
+            puppetutils::CheckAttachmentsForManeuver((CCharEntity*)m_POwner, PStatusEffect->GetStatusID(), false);
+        }
         PStatusEffect->deleted = true;
+        luautils::OnEffectLose(m_POwner, PStatusEffect);
+        m_POwner->PAI->EventHandler.triggerListener("EFFECT_LOSE", m_POwner, PStatusEffect);
+
+        m_POwner->delModifiers(&PStatusEffect->modList);
         if (m_POwner->objtype == TYPE_PC)
         {
             CCharEntity* PChar = (CCharEntity*)m_POwner;
@@ -857,8 +854,8 @@ bool CStatusEffectContainer::ApplyBardEffect(CStatusEffect* PStatusEffect, uint8
 bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, uint8 maxRolls, uint8 bustDuration)
 {
     //break if not a COR roll.
-    DSP_DEBUG_BREAK_IF(!(PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-        PStatusEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL));
+    DSP_DEBUG_BREAK_IF(!((PStatusEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+        PStatusEffect->GetStatusID() <= EFFECT_NATURALISTS_ROLL) || (PStatusEffect->GetStatusID() == EFFECT_RUNEISTS_ROLL)));
 
     //if all match tier/id/effect then overwrite
 
@@ -871,7 +868,8 @@ bool CStatusEffectContainer::ApplyCorsairEffect(CStatusEffect* PStatusEffect, ui
     for (auto&& PEffect : m_StatusEffectList)
     {
         if ((PEffect->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            PEffect->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            PEffect->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            PEffect->GetStatusID() == EFFECT_RUNEISTS_ROLL || 
             PEffect->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (PEffect->GetStatusID() == PStatusEffect->GetStatusID() &&
@@ -936,7 +934,8 @@ bool CStatusEffectContainer::HasCorsairEffect(uint32 charid)
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL ||
             m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (m_StatusEffectList.at(i)->GetSubID() == charid ||
@@ -955,7 +954,8 @@ void CStatusEffectContainer::Fold(uint32 charid)
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
         if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL) ||
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL ||
             m_StatusEffectList.at(i)->GetStatusID() == EFFECT_BUST)//is a cor effect
         {
             if (m_StatusEffectList.at(i)->GetSubID() == charid ||
@@ -1111,13 +1111,12 @@ CStatusEffect* CStatusEffectContainer::GetStatusEffect(EFFECT StatusID, uint32 S
 * Used in mob abilities
 ************************************************************************/
 
-CStatusEffect* CStatusEffectContainer::StealStatusEffect()
+CStatusEffect* CStatusEffectContainer::StealStatusEffect(EFFECTFLAG flag)
 {
-
     std::vector<uint16> dispelableList;
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetFlag() & EFFECTFLAG_DISPELABLE &&
+        if (m_StatusEffectList.at(i)->GetFlag() & flag &&
             m_StatusEffectList.at(i)->GetDuration() > 0 &&
             !m_StatusEffectList.at(i)->deleted)
         {
@@ -1202,9 +1201,11 @@ void CStatusEffectContainer::SetEffectParams(CStatusEffect* StatusEffect)
     string_t name;
     EFFECT effect = StatusEffect->GetStatusID();
 
+    //Determine if this is a BRD Song or COR Effect.
     if (StatusEffect->GetSubID() == 0 || StatusEffect->GetSubID() > 20000 ||
         (effect >= EFFECT_REQUIEM && effect <= EFFECT_NOCTURNE) ||
-        (effect == EFFECT_DOUBLE_UP_CHANCE) || effect == EFFECT_BUST)
+        (effect >= EFFECT_DOUBLE_UP_CHANCE && effect <= EFFECT_NATURALISTS_ROLL) || 
+        effect == EFFECT_RUNEISTS_ROLL)
     {
         name.insert(0, "globals/effects/");
         name.insert(name.size(), effects::EffectsParams[effect].Name);
@@ -1561,9 +1562,11 @@ bool CStatusEffectContainer::CheckForElevenRoll()
 {
     for (uint16 i = 0; i < m_StatusEffectList.size(); ++i)
     {
-        if (m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
-            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_SCHOLARS_ROLL &&
-            m_StatusEffectList.at(i)->GetSubPower() == 11)
+        if ((m_StatusEffectList.at(i)->GetStatusID() >= EFFECT_FIGHTERS_ROLL &&
+            m_StatusEffectList.at(i)->GetStatusID() <= EFFECT_NATURALISTS_ROLL &&
+            m_StatusEffectList.at(i)->GetSubPower() == 11) || (
+            m_StatusEffectList.at(i)->GetStatusID() == EFFECT_RUNEISTS_ROLL &&
+            m_StatusEffectList.at(i)->GetSubPower() == 11))
         {
             return true;
         }

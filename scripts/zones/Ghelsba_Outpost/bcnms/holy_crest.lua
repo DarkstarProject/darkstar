@@ -52,15 +52,15 @@ end;
 function onEventFinish(player,csid,option)
 -- print("bc finish csid: "..csid.."and option: "..option);
 
-    if (csid == 32001 and option ~= 0 and player:hasKeyItem(DRAGON_CURSE_REMEDY) == true) then
-        player:addTitle(HEIR_TO_THE_HOLY_CREST);
-        player:delKeyItem(DRAGON_CURSE_REMEDY);
-        player:unlockJob(JOBS.DRG);
+    if (csid == 32001 and option ~= 0 and player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY) == true) then
+        player:addTitle(dsp.title.HEIR_TO_THE_HOLY_CREST);
+        player:delKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
+        player:unlockJob(dsp.job.DRG);
         player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_HOLY_CREST);
-        player:setPetName(PETTYPE_WYVERN,option+1);
+        player:setPetName(dsp.pet.type.WYVERN,option+1);
     end
 
 end;

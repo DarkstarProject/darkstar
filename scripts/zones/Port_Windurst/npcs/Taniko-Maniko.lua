@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC: Taniko-Maniko
+--  NPC: Taniko-Maniko
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-require("scripts/zones/Port_Windurst/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,TANIKOMANIKO_SHOP_DIALOG);
@@ -43,24 +36,12 @@ function onTrigger(player,npc)
         0x4300,    39,3,     --Shortbow
         0x43A7,     4,3      --Bone Arrow
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

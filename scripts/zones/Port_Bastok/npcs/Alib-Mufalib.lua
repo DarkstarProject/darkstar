@@ -1,12 +1,11 @@
 -----------------------------------
---  Area: Port Bastok
---  NPC:  Alib-Mufalib
---  Type: Warp NPC
+-- Area: Port Bastok
+--  NPC: Alib-Mufalib
+-- Type: Warp NPC
 -- !pos 116.080 7.372 -31.820 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
@@ -52,10 +51,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local LureBastok = player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
     local WildcatBastok = player:getVar("WildcatBastok");
@@ -78,32 +73,26 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 357) then
         player:addQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
         player:setVar("WildcatBastok",0);
-        player:addKeyItem(BLUE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,BLUE_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_SENTINEL_BADGE);
     elseif (csid == 360) then
         player:completeQuest(BASTOK,LURE_OF_THE_WILDCAT_BASTOK);
         player:addFame(BASTOK,150);
         player:setVar("WildcatBastok",0);
-        player:delKeyItem(BLUE_SENTINEL_BADGE);
-        player:addKeyItem(BLUE_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,BLUE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,BLUE_INVITATION_CARD);
+        player:delKeyItem(dsp.ki.BLUE_SENTINEL_BADGE);
+        player:addKeyItem(dsp.ki.BLUE_INVITATION_CARD);
+        player:messageSpecial(KEYITEM_LOST,dsp.ki.BLUE_SENTINEL_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_INVITATION_CARD);
     elseif (csid == 379) then
         player:tradeComplete();
-        toAhtUrhganWhitegate(player);
+        dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;
 

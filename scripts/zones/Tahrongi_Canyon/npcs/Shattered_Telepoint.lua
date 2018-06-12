@@ -1,30 +1,22 @@
 -----------------------------------
 -- Area: Tahrongi_Canyon
--- NPC:  Shattered Telepoint
+--  NPC: Shattered Telepoint
 -- !pos 179 35 255 117
 -----------------------------------
 package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/Tahrongi_Canyon/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(913,0,0,1); -- first time in promy -> have you made your preparations cs
-    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_DEM))) then
+    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
         if (player:getVar("cspromy2") == 1) then
             player:startEvent(912);  -- cs you get nearing second promyvion
         else
@@ -38,22 +30,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 912) then
         player:setVar("cspromy2",0);

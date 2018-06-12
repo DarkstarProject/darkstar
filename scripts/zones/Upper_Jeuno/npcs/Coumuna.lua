@@ -7,17 +7,10 @@ package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local stock =
@@ -41,23 +34,11 @@ function onTrigger(player,npc)
         17320, 8      -- Iron Arrow
     }
     player:showText(npc,COUMUNA_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

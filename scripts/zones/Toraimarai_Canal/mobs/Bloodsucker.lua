@@ -2,11 +2,7 @@
 -- Area: Toraimorai Canal
 --  MOB: Bloodsucker
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

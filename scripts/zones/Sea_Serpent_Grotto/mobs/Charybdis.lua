@@ -1,28 +1,14 @@
 ----------------------------------
--- Area: Sea Serpent Grotto
+-- Area: Sea Serpent Grotto (176)
 --   NM: Charybdis
+-- !pos -152 48 -328 176
 -----------------------------------
-
------------------------------------
--- onMobInitialize
------------------------------------
-
 function onMobInitialize(mob)
-
-    mob:setMobMod(MOBMOD_MULTI_HIT, 5);
-
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+    mob:setMobMod(dsp.mobMod.MULTI_HIT, 5)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
+end
 
 function onMobDespawn(mob)
-end;
+end

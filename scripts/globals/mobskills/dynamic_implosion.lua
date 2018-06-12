@@ -2,7 +2,7 @@
 --  Dynamic Implosion
 --
 --  Description: Deals damage to players within an area of effect. Additional effect: Stun (Status Effect)
---  Type: Physical 
+--  Type: Physical
 --  Utsusemi/Blink absorb: Unknown
 --  Range: Unknown radial
 --  Notes:
@@ -27,7 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, EFFECT_STUN, 1, 0, 7);
+    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 7);
     
     target:delHP(dmg);
     return dmg;

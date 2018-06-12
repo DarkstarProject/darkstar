@@ -11,10 +11,10 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_FOOD)) then
-        target:addStatusEffect(EFFECT_FOOD, 1, 3, 10800, 4541);
+    if (not target:hasStatusEffect(dsp.effect.FOOD)) then
+        target:addStatusEffect(dsp.effect.FOOD, 1, 3, 10800, 4541);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;
 
@@ -22,7 +22,7 @@ function onEffectGain(target, effect)
 end;
 
 function onEffectTick(target, effect)
-    if (target:hasStatusEffect(EFFECT_HEALING)) then
+    if (target:hasStatusEffect(dsp.effect.HEALING)) then
         target:addMP(effect:getPower());
     end;
 end;

@@ -12,27 +12,27 @@ require("scripts/globals/crafting");
 
 local keyitems = {
      [0] = {
-        id = CLOTH_PURIFICATION,
+        id = dsp.ki.CLOTH_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = CLOTH_ENSORCELLMENT,
+        id = dsp.ki.CLOTH_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = SPINNING,
+        id = dsp.ki.SPINNING,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = FLETCHING,
+        id = dsp.ki.FLETCHING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_WEAVER,
+        id = dsp.ki.WAY_OF_THE_WEAVER,
         rank = 9,
         cost = 20000
     }
@@ -81,42 +81,21 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 10025, 4);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 4, 10024, "guild_weaving", keyitems);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
     elseif (csid == 10025) then

@@ -22,44 +22,44 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,5619);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,5619);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_HP, 12);
-    target:addMod(MOD_MP, 12);
-    target:addMod(MOD_STR, 2);
-    target:addMod(MOD_DEX, 2);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_AGI, 2);
-    target:addMod(MOD_ACC, 2);
-    target:addMod(MOD_RACC, 2);
-    target:addMod(MOD_ATT, 2);
-    target:addMod(MOD_RATT, 2);
-    target:addMod(MOD_EVA, 2);
-    target:addMod(MOD_HPHEAL, 1);
-    target:addMod(MOD_MPHEAL, 1);
+    target:addMod(dsp.mod.HP, 12);
+    target:addMod(dsp.mod.MP, 12);
+    target:addMod(dsp.mod.STR, 2);
+    target:addMod(dsp.mod.DEX, 2);
+    target:addMod(dsp.mod.VIT, 2);
+    target:addMod(dsp.mod.AGI, 2);
+    target:addMod(dsp.mod.ACC, 2);
+    target:addMod(dsp.mod.RACC, 2);
+    target:addMod(dsp.mod.ATT, 2);
+    target:addMod(dsp.mod.RATT, 2);
+    target:addMod(dsp.mod.EVA, 2);
+    target:addMod(dsp.mod.HPHEAL, 1);
+    target:addMod(dsp.mod.MPHEAL, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 12);
-    target:delMod(MOD_MP, 12);
-    target:delMod(MOD_STR, 2);
-    target:delMod(MOD_DEX, 2);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_AGI, 2);
-    target:delMod(MOD_ACC, 2);
-    target:delMod(MOD_RACC, 2);
-    target:delMod(MOD_ATT, 2);
-    target:delMod(MOD_RATT, 2);
-    target:delMod(MOD_EVA, 2);
-    target:delMod(MOD_HPHEAL, 1);
-    target:delMod(MOD_MPHEAL, 1);
+    target:delMod(dsp.mod.HP, 12);
+    target:delMod(dsp.mod.MP, 12);
+    target:delMod(dsp.mod.STR, 2);
+    target:delMod(dsp.mod.DEX, 2);
+    target:delMod(dsp.mod.VIT, 2);
+    target:delMod(dsp.mod.AGI, 2);
+    target:delMod(dsp.mod.ACC, 2);
+    target:delMod(dsp.mod.RACC, 2);
+    target:delMod(dsp.mod.ATT, 2);
+    target:delMod(dsp.mod.RATT, 2);
+    target:delMod(dsp.mod.EVA, 2);
+    target:delMod(dsp.mod.HPHEAL, 1);
+    target:delMod(dsp.mod.MPHEAL, 1);
 end;

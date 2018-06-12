@@ -17,17 +17,17 @@ function onItemCheck(target)
     if (target:getRace() ~= 8) then
         result = 247;
     end
-    if (target:getMod(MOD_EAT_RAW_MEAT) == 1) then
+    if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then
         result = 0;
     end
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,5563);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,5563);
 end;
 
 -----------------------------------------
@@ -35,11 +35,11 @@ end;
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 10);
-    target:addMod(MOD_MP, -10);
-    target:addMod(MOD_STR, 6);
-    target:addMod(MOD_INT, -8);
-    target:addMod(MOD_DEMON_KILLER, 10);
+    target:addMod(dsp.mod.HP, 10);
+    target:addMod(dsp.mod.MP, -10);
+    target:addMod(dsp.mod.STR, 6);
+    target:addMod(dsp.mod.INT, -8);
+    target:addMod(dsp.mod.DEMON_KILLER, 10);
 end;
 
 -----------------------------------------
@@ -47,9 +47,9 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_HP, 10);
-    target:delMod(MOD_MP, -10);
-    target:delMod(MOD_STR, 6);
-    target:delMod(MOD_INT, -8);
-    target:delMod(MOD_DEMON_KILLER, 10);
+    target:delMod(dsp.mod.HP, 10);
+    target:delMod(dsp.mod.MP, -10);
+    target:delMod(dsp.mod.STR, 6);
+    target:delMod(dsp.mod.INT, -8);
+    target:delMod(dsp.mod.DEMON_KILLER, 10);
 end;

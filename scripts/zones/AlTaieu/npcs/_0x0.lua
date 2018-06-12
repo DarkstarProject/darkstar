@@ -1,23 +1,16 @@
 -----------------------------------
---  Area: Al'Taieu
---  NPC:  Crystalline Field
+-- Area: Al'Taieu
+--  NPC: Crystalline Field
 -- !pos .1 -10 -464 33
 -----------------------------------
 package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/AlTaieu/TextIDs");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Set the PromathiaStatus to 3 if they did all 3 towers for GARDEN_OF_ANTIQUITY
@@ -37,22 +30,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 100 and option == 1) then
         player:setPos(-20,0.624,-355,191,34); -- {R}
     elseif (csid == 164) then

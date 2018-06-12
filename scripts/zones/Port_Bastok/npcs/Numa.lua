@@ -1,24 +1,17 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC: Numa
+--  NPC: Numa
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-require("scripts/zones/Port_Bastok/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,NUMA_SHOP_DIALOG);
@@ -43,23 +36,11 @@ function onTrigger(player,npc)
         0x16EC, 18000,3,     --Toolbag (Shika)
         0x16ED, 18000,3      --Toolbag (Cho)
     }
-     showNationShop(player, NATION_BASTOK, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+     dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

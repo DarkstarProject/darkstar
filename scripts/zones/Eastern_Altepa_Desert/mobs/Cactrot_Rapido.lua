@@ -320,45 +320,26 @@ local path =
     -39.119324, 0.000000, -203.037552,
     -40.370975, 0.000000, -203.569611
 };
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
     onMobRoam(mob);
 end;
 
------------------------------------
--- onPath Action
------------------------------------
-
 function onPath(mob)
-    pathfind.patrol(mob, path, PATHFLAG_RUN);
+    dsp.path.patrol(mob, path, dsp.path.flag.RUN);
 end;
-
------------------------------------
--- onMobRoam Action
------------------------------------
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path), PATHFLAG_RUN);
+        mob:pathThrough(dsp.path.first(path), dsp.path.flag.RUN);
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CACTROT_DESACELERADOR);
+    player:addTitle(dsp.title.CACTROT_DESACELERADOR);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     -- Set Cactrot Rapido's spawnpoint and respawn time (24-72 hours)

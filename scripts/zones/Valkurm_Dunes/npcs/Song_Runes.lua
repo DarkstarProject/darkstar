@@ -1,29 +1,21 @@
 -----------------------------------
 -- Area: Valkurm Dunes
--- NPC:  Song Runes
+--  NPC: Song Runes
 -- Finishes Quest: Path of the Bard
 -- !pos -721 -7 102 103
 -----------------------------------
 package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     -- PATH OF THE BARD (Bard Flag)
@@ -36,23 +28,15 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2) then
         player:addGil(GIL_RATE*3000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
-        player:addTitle(WANDERING_MINSTREL);
-        player:unlockJob(JOBS.BRD); -- Bard
+        player:addTitle(dsp.title.WANDERING_MINSTREL);
+        player:unlockJob(dsp.job.BRD); -- Bard
         player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
         player:setVar("PathOfTheBard_Event",0);
         player:addFame(JEUNO,30);

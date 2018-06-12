@@ -42,7 +42,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local enmityMult = 1;
     local damage = 0;
 
-    if (target:getObjType() ~= TYPE_MOB) then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
+    if (target:getObjType() ~= dsp.objType.MOB) then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
         if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
             params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2.0;
         end
@@ -65,8 +65,8 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         dmg = utils.clamp(dmg, 0, player:getMainLvl() * 10); -- Damage is capped to player's level * 10, before WS damage mods
         damage = target:breathDmgTaken(dmg);
-        if (player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
-            damage = damage * (100 + player:getMod(MOD_WEAPONSKILL_DAMAGE_BASE + wsID))/100
+        if (player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID) > 0) then
+            damage = damage * (100 + player:getMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE + wsID))/100
         end
         damage = damage * WEAPON_SKILL_POWER;
 
@@ -81,13 +81,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         local wsParams = {}
         wsParams.enmityMult = enmityMult
-        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, SLOT_MAIN, tpHits, extraHits, 0, 0, action, nil)
-    end
-
-    if ((player:getEquipID(SLOT_MAIN) == 18997) and (player:getMainJob() == JOBS.PLD)) then
-        if (damage > 0) then
-            applyAftermathEffect(player, tp)
-        end
+        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, dsp.slot.MAIN, tpHits, extraHits, 0, 0, action, nil)
     end
 
     return tpHits, extraHits, criticalHit, damage;

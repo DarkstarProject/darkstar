@@ -6,13 +6,9 @@
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+require("scripts/zones/Inner_Horutoto_Ruins/MobIDs");
 require("scripts/globals/status");
-require("scripts/globals/settings");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -261, -1, -31, -257, 1, -27); -- Red
@@ -20,12 +16,8 @@ function onInitialize(zone)
     zone:registerRegion(3, -258, -1, -26, -254, 1, -22); -- Black
     zone:registerRegion(4, -261, -3, 182, -257, -1, 186); -- Teleport at H-6
 
-    UpdateTreasureSpawnPoint(17563914);
+    UpdateTreasureSpawnPoint(INNER_HORUTOTO_TREASURE_CHEST);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -35,10 +27,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -47,12 +35,8 @@ function onConquestUpdate(zone, updatetype)
     end
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
-    local circle= 17563861;
+    local circle= PORTAL_CIRCLE_BASE;
     local red   = GetNPCByID(circle);
     local white = GetNPCByID(circle+1);
     local black = GetNPCByID(circle+2);
@@ -65,45 +49,41 @@ function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == JOBS.RDM and region:AddCount(1) == 1) then
-                red:setAnimation(8);
-                if (white:getAnimation() == 8 and black:getAnimation() == 8) then
+            if (player:getMainJob() == dsp.job.RDM and region:AddCount(1) == 1) then
+                red:setAnimation(dsp.anim.OPEN_DOOR);
+                if (white:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == JOBS.WHM and region:AddCount(1) == 1) then
-                white:setAnimation(8);
-                if (red:getAnimation() == 8 and black:getAnimation() == 8) then
+            if (player:getMainJob() == dsp.job.WHM and region:AddCount(1) == 1) then
+                white:setAnimation(dsp.anim.OPEN_DOOR);
+                if (red:getAnimation() == dsp.anim.OPEN_DOOR and black:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == JOBS.BLM and region:AddCount(1) == 1) then
-                black:setAnimation(8);
-                if (red:getAnimation() == 8 and white:getAnimation() == 8) then
+            if (player:getMainJob() == dsp.job.BLM and region:AddCount(1) == 1) then
+                black:setAnimation(dsp.anim.OPEN_DOOR);
+                if (red:getAnimation() == dsp.anim.OPEN_DOOR and white:getAnimation() == dsp.anim.OPEN_DOOR) then
                     GetNPCByID(circle+3):openDoor(30);
                     GetNPCByID(circle+4):openDoor(30);
                 end
             end
         end,
         [4] = function (x)  -- Teleport at H-6
-            player:setPos(-260,0,-21,65);
+            player:startEvent(47);
         end,
     }
 
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
-    local circle= 17563860;
+    local circle= PORTAL_CIRCLE_BASE;
     local red   = GetNPCByID(circle);
     local white = GetNPCByID(circle+1);
     local black = GetNPCByID(circle+2);
@@ -111,18 +91,18 @@ function onRegionLeave(player,region)
     switch (region:GetRegionID()): caseof
     {
         [1] = function (x)  -- Red Circle
-            if (player:getMainJob() == JOBS.RDM and region:DelCount(1) == 0) then
-                red:setAnimation(9);
+            if (player:getMainJob() == dsp.job.RDM and region:DelCount(1) == 0) then
+                red:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
         [2] = function (x)  -- White Circle
-            if (player:getMainJob() == JOBS.WHM and region:DelCount(1) == 0) then
-                white:setAnimation(9);
+            if (player:getMainJob() == dsp.job.WHM and region:DelCount(1) == 0) then
+                white:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
         [3] = function (x)  -- Black Circle
-            if (player:getMainJob() == JOBS.BLM and region:DelCount(1) == 0) then
-                black:setAnimation(9);
+            if (player:getMainJob() == dsp.job.BLM and region:DelCount(1) == 0) then
+                black:setAnimation(dsp.anim.CLOSE_DOOR);
             end
         end,
     }
@@ -133,20 +113,8 @@ function onRegionLeave(player,region)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

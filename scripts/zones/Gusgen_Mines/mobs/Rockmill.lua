@@ -2,11 +2,7 @@
 -- Area: Gusgen Mines
 --  MOB: Rockmill
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

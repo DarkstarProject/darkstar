@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Olwyn
+--  NPC: Olwyn
 -- Standard Merchant NPC
 -- !pos -322.123 -10.319 -169.418 235
 -----------------------------------
@@ -24,5 +24,5 @@ function onTrigger(player,npc)
         4150, 2387, 3, -- Eye Drops
         4148,  290, 3, -- Antidote
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;

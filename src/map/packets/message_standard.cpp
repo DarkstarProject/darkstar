@@ -61,7 +61,7 @@ CMessageStandardPacket::CMessageStandardPacket(CCharEntity* PChar, uint32 param0
 	}
 	else
 	{
-		snprintf((char*)data+(0x0D), 20, "Para0 %d Para1 %d", param0, param1);
+		snprintf((char*)data+(0x0D), 24, "Para0 %d Para1 %d", param0, param1);
 	}
 }
 

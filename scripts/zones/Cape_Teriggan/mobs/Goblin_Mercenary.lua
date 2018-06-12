@@ -2,11 +2,7 @@
 -- Area: Cape Teriggan
 --  MOB: Goblin Mercenary
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

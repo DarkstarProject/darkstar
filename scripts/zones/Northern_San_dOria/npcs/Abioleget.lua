@@ -1,19 +1,17 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 --  NPC: Abioleget
---  Type: Quest Giver (Her Memories: The Faux Pas and The Vicasque's Sermon) / Merchant
+-- Type: Quest Giver (Her Memories: The Faux Pas and The Vicasque's Sermon) / Merchant
 --  @zone 231
 -- !pos 128.771 0.000 118.538
 --
 -----------------------------------
-
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,10 +24,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
@@ -48,22 +42,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 600) then
         if (player:getFreeSlotsCount() == 0) then
@@ -72,7 +54,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13465);
             player:messageSpecial(ITEM_OBTAINED, 13465);
             player:addFame(SANDORIA,30);
-            player:addTitle(THE_BENEVOLENT_ONE);
+            player:addTitle(dsp.title.THE_BENEVOLENT_ONE);
             player:setVar("sermonQuestVar",0);
             player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
         end

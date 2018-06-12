@@ -15,7 +15,7 @@ end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local typeEffect = EFFECT_ENWATER;
+    local typeEffect = dsp.effect.ENWATER;
 
     skill:setMsg(MobBuffMove(mob, typeEffect, 65, 0, 60));
 

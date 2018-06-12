@@ -1,5 +1,12 @@
+PONDERER    = 16867329;
+PROPAGATOR  = 16867330;
+SOLICITOR   = 16867333;
+DEVIATOR    = 16867455;
+WAILER      = 16867544;
+PROVOKER    = 16867642;
+
 -- [receptacle] = {group, numStrays, portal}
-MEMORY_RECEPTACLES = {
+VAHZL_MEMORY_RECEPTACLES = {
     [16867382] = {1, 3, 16867699},
     [16867387] = {1, 3, 16867700},
     [16867429] = {2, 5, 16867697},
@@ -14,7 +21,7 @@ MEMORY_RECEPTACLES = {
 }
 
 -- [memory stream] = {region, {list of events}}
-MEMORY_STREAMS = {
+VAHZL_MEMORY_STREAMS = {
     [11]        = {  -2, -2, -122,    2, 2, -117, {45}}, -- floor 1 return
     [21]        = { -40, -2,  197,  -37, 2,  202, {41}}, -- floor 2 return
     [31]        = { 317, -2, -282,  322, 2, -277, {42}}, -- floor 3 return
@@ -32,3 +39,7 @@ MEMORY_STREAMS = {
     [16867706]  = { 435, -2,   38,  443, 2,   41, {40}}, -- floor 4 MR2
     [16867707]  = { 436, -2,  276,  443, 2,  283, {34}}, -- floor 4 MR3
 }
+
+DEVIATOR_QM     = 16867687;
+WAILER_QM       = 16867688;
+PROVOKER_QM     = 16867689;

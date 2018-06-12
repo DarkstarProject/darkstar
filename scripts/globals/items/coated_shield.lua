@@ -11,9 +11,9 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_SHELL, 9, 0, 1800)) then
-        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_SHELL);
+    if (target:addStatusEffect(dsp.effect.SHELL, 9, 0, 1800)) then
+        target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.SHELL);
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT);
     end
 end;

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --   NPC: Laila
---  Type: Job Quest Giver
+-- Type: Job Quest Giver
 -- @zone 244
 -- !pos -54.045 -1 100.996
 --
@@ -18,17 +18,10 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
@@ -37,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(10111); -- Start quest csid, asks for Key Item Stardust Pebble
     elseif (lakesideMin == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(10119);
-    elseif (player:hasKeyItem(STARDUST_PEBBLE)) then
+    elseif (player:hasKeyItem(dsp.ki.STARDUST_PEBBLE)) then
         player:startEvent(10118); -- Ends Quest
     elseif (lakeProg == 3) then
         player:startEvent(10113);
@@ -46,10 +39,10 @@ function onTrigger(player,npc)
     elseif ((player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_AVAILABLE
         or (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED
         and player:hasItem(19203) == false))
-        and player:getMainJob() == JOBS.DNC and player:getMainLvl()>=40) then
+        and player:getMainJob() == dsp.job.DNC and player:getMainLvl()>=40) then
 
         player:startEvent(10129);
-    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(THE_ESSENCE_OF_DANCE) and player:getMainJob() == JOBS.DNC) then
+    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 5 and player:seenKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE) and player:getMainJob() == dsp.job.DNC) then
         player:startEvent(10133);
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED) then
         player:startEvent(10134);
@@ -57,7 +50,7 @@ function onTrigger(player,npc)
     -- Dancer AF: The Road to Divadom
     elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED
         and player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_AVAILABLE
-        and player:getMainJob() == JOBS.DNC) then
+        and player:getMainJob() == dsp.job.DNC) then
 
         player:startEvent(10136); -- CSID 10136
     elseif (player:getVar("roadToDivadomCS") == 1) then
@@ -70,7 +63,7 @@ function onTrigger(player,npc)
     -- Dancer AF: Comeback Queen
     elseif (player:getQuestStatus(JEUNO,THE_ROAD_TO_DIVADOM) == QUEST_COMPLETED
         and player:getQuestStatus(JEUNO, COMEBACK_QUEEN) == QUEST_AVAILABLE
-        and player:getMainJob() == JOBS.DNC) then
+        and player:getMainJob() == dsp.job.DNC) then
 
         player:startEvent(10143);
     elseif (player:getVar("comebackQueenCS") == 1) then
@@ -91,36 +84,25 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10111 and option == 1) then
         player:addQuest(JEUNO,LAKESIDE_MINUET);
     elseif (csid == 10118) then
         player:setVar("Lakeside_Minuet_Progress",0);
         player:completeQuest(JEUNO,LAKESIDE_MINUET);
-        player:addTitle(TROUPE_BRILIOTH_DANCER);
-        player:unlockJob(JOBS.DNC);
+        player:addTitle(dsp.title.TROUPE_BRILIOTH_DANCER);
+        player:unlockJob(dsp.job.DNC);
         player:messageSpecial(UNLOCK_DANCER);
         player:addFame(JEUNO, 30);
-        player:delKeyItem(STARDUST_PEBBLE);
+        player:delKeyItem(dsp.ki.STARDUST_PEBBLE);
         player:needToZone(true);
     elseif (csid== 10129) then
         if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_COMPLETED) then
             player:delQuest(JEUNO,THE_UNFINISHED_WALTZ);
-            player:delKeyItem(THE_ESSENCE_OF_DANCE);
+            player:delKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE);
         end
         player:addQuest(JEUNO,THE_UNFINISHED_WALTZ)
         player:setVar("QuestStatus_DNC_AF1", 1);
@@ -166,8 +148,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10143) then
         player:setVar("comebackQueenCS", 1);
         player:addQuest(JEUNO, COMEBACK_QUEEN);
-        player:addKeyItem(WYATTS_PROPOSAL);
-        player:messageSpecial( KEYITEM_OBTAINED, WYATTS_PROPOSAL);
+        player:addKeyItem(dsp.ki.WYATTS_PROPOSAL);
+        player:messageSpecial( KEYITEM_OBTAINED, dsp.ki.WYATTS_PROPOSAL);
     elseif (csid == 10147) then
         player:setVar("comebackQueenCS", 3);
         local danceOffTimer = VanadielDayOfTheYear();

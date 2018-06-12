@@ -3,24 +3,22 @@ require("scripts/globals/common");
 require("scripts/globals/status");
 require("scripts/globals/msg");
 
-SUMMONING_MAGIC_SKILL = 38
-
 function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgmodsubsequent,tpeffect,mtp100,mtp200,mtp300)
     returninfo = {};
 
     -- Damage = (D+fSTR) * dmgmod * PDIF
-    -- printf("str: %f, vit: %f", avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
-    fstr = avatarFSTR(avatar:getStat(MOD_STR), target:getStat(MOD_VIT));
+    -- printf("str: %f, vit: %f", avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT));
+    fstr = avatarFSTR(avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT));
 
     lvluser = avatar:getMainLvl();
     lvltarget = target:getMainLvl();
     local master = avatar:getMaster();
-    local bonusacc = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(avatar:getMainLvl(), JOBS.SMN, SUMMONING_SKILL), 0, 200);
+    local bonusacc = utils.clamp(master:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - master:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, dsp.skill.SUMMONING_MAGIC), 0, 200);
     acc = avatar:getACC() + bonusacc;
     eva = target:getEVA();
 
     local base = avatar:getWeaponDmg() + fstr;
-    local ratio = avatar:getStat(MOD_ATT)/target:getStat(MOD_DEF);
+    local ratio = avatar:getStat(dsp.mod.ATT)/target:getStat(dsp.mod.DEF);
 
     lvldiff = lvluser - lvltarget;
 
@@ -73,8 +71,8 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     hitsdone = 1; hitslanded = 0;
 
     -- add on native crit hit rate (guesstimated, it actually follows an exponential curve)
-    nativecrit = (avatar:getStat(MOD_DEX) - target:getStat(MOD_AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
-    nativecrit = nativecrit + (avatar:getMod(MOD_CRITHITRATE)/100);
+    nativecrit = (avatar:getStat(dsp.mod.DEX) - target:getStat(dsp.mod.AGI))*0.005; --assumes +0.5% crit rate per 1 dDEX
+    nativecrit = nativecrit + (avatar:getMod(dsp.mod.CRITHITRATE)/100);
 
     if (nativecrit > 0.2) then --caps!
         nativecrit = 0.2;
@@ -118,7 +116,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod1,dmgm
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     if finaldmg > 0 then
@@ -169,58 +167,58 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.DAMAGE);
+    skill:setMsg(dsp.msg.basic.DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav < 5 and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
-        targShadows = target:getMod(MOD_UTSUSEMI);
-        shadowType = MOD_UTSUSEMI;
+        targShadows = target:getMod(dsp.mod.UTSUSEMI);
+        shadowType = dsp.mod.UTSUSEMI;
         if (targShadows==0) then --try blink, as utsusemi always overwrites blink this is okay
-            targShadows = target:getMod(MOD_BLINK);
-            shadowType = MOD_BLINK;
+            targShadows = target:getMod(dsp.mod.BLINK);
+            shadowType = dsp.mod.BLINK;
         end
 
         if (targShadows>0) then
         -- Blink has a VERY high chance of blocking tp moves, so im assuming its 100% because its easier!
             if (targShadows >= shadowbehav) then --no damage, just suck the shadows
-                skill:setMsg(msgBasic.SHADOW_ABSORB);
+                skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
                 target:setMod(shadowType,(targShadows-shadowbehav));
-                if (shadowType == MOD_UTSUSEMI) then --update icon
-                    effect = target:getStatusEffect(EFFECT_COPY_IMAGE);
+                if (shadowType == dsp.mod.UTSUSEMI) then --update icon
+                    effect = target:getStatusEffect(dsp.effect.COPY_IMAGE);
                     if (effect ~= nil) then
                         if ((targShadows-shadowbehav) == 0) then
-                            target:delStatusEffect(EFFECT_COPY_IMAGE);
-                            target:delStatusEffect(EFFECT_BLINK);
+                            target:delStatusEffect(dsp.effect.COPY_IMAGE);
+                            target:delStatusEffect(dsp.effect.BLINK);
                         elseif ((targShadows-shadowbehav) == 1) then
-                            effect:setIcon(EFFECT_COPY_IMAGE);
+                            effect:setIcon(dsp.effect.COPY_IMAGE);
                         elseif ((targShadows-shadowbehav) == 2) then
-                            effect:setIcon(EFFECT_COPY_IMAGE_2);
+                            effect:setIcon(dsp.effect.COPY_IMAGE_2);
                         elseif ((targShadows-shadowbehav) == 3) then
-                            effect:setIcon(EFFECT_COPY_IMAGE_3);
+                            effect:setIcon(dsp.effect.COPY_IMAGE_3);
                         end
                     end
                 end
                 return shadowbehav;
             else -- less shadows than this move will take, remove all and factor damage down
                 dmg = dmg * ((shadowbehav-targShadows)/shadowbehav);
-                target:setMod(MOD_UTSUSEMI,0);
-                target:setMod(MOD_BLINK,0);
-                target:delStatusEffect(EFFECT_COPY_IMAGE);
-                target:delStatusEffect(EFFECT_BLINK);
+                target:setMod(dsp.mod.UTSUSEMI,0);
+                target:setMod(dsp.mod.BLINK,0);
+                target:delStatusEffect(dsp.effect.COPY_IMAGE);
+                target:delStatusEffect(dsp.effect.BLINK);
             end
         end
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:setMod(MOD_UTSUSEMI,0);
-        target:setMod(MOD_BLINK,0);
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
+        target:setMod(dsp.mod.UTSUSEMI,0);
+        target:setMod(dsp.mod.BLINK,0);
+        target:delStatusEffect(dsp.effect.COPY_IMAGE);
+        target:delStatusEffect(dsp.effect.BLINK);
     end
 
     -- handle Third Eye using shadowbehav as a guide
-    teye = target:getStatusEffect(EFFECT_THIRD_EYE);
+    teye = target:getStatusEffect(dsp.effect.THIRD_EYE);
     if (teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
         if (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
-            target:delStatusEffect(EFFECT_THIRD_EYE);
+            target:delStatusEffect(dsp.effect.THIRD_EYE);
         elseif (shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
             --third eye doesnt care how many shadows, so attempt to anticipate, but reduce
             --chance of anticipate based on previous successful anticipates.
@@ -228,16 +226,16 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             if (prevAnt == 0) then
                 --100% proc
                 teye:setPower(1);
-                skill:setMsg(msgBasic.ANTICIPATE);
+                skill:setMsg(dsp.msg.basic.ANTICIPATE);
                 return 0;
             end
             if ( (math.random()*100) < (80-(prevAnt*10)) ) then
                 --anticipated!
                 teye:setPower(prevAnt+1);
-                skill:setMsg(msgBasic.ANTICIPATE);
+                skill:setMsg(dsp.msg.basic.ANTICIPATE);
                 return 0;
             end
-            target:delStatusEffect(EFFECT_THIRD_EYE);
+            target:delStatusEffect(dsp.effect.THIRD_EYE);
         end
     end
 
@@ -245,47 +243,47 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     --TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 
 
-    if (skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(EFFECT_PHYSICAL_SHIELD)) then
+    if (skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD)) then
         return 0;
     end
 
-    if (skilltype == MOBSKILL_RANGED and target:hasStatusEffect(EFFECT_ARROW_SHIELD)) then
+    if (skilltype == MOBSKILL_RANGED and target:hasStatusEffect(dsp.effect.ARROW_SHIELD)) then
         return 0;
     end
 
     -- handle elemental resistence
-    if (skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(EFFECT_MAGIC_SHIELD)) then
+    if (skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
         return 0;
     end
 
     -- handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
     if (dmg<0) then
         return 0;
     end
 
     --handle invincible
-    if (target:hasStatusEffect(EFFECT_INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
+    if (target:hasStatusEffect(dsp.effect.INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
     -- handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
 
     -- handling stoneskin
-    skin = target:getMod(MOD_STONESKIN);
+    skin = target:getMod(dsp.mod.STONESKIN);
     if (skin>0) then
         if (skin >= dmg) then --absorb all damage
-            target:delMod(MOD_STONESKIN,dmg);
-            if (target:getMod(MOD_STONESKIN)==0) then
-                target:delStatusEffect(EFFECT_STONESKIN);
+            target:delMod(dsp.mod.STONESKIN,dmg);
+            if (target:getMod(dsp.mod.STONESKIN)==0) then
+                target:delStatusEffect(dsp.effect.STONESKIN);
             end
             return 0;
         else -- absorbs some damage then wear
-            target:delMod(MOD_STONESKIN,skin);
-            target:delStatusEffect(EFFECT_STONESKIN);
+            target:delMod(dsp.mod.STONESKIN,skin);
+            target:delStatusEffect(dsp.effect.STONESKIN);
             return dmg - skin;
         end
     end
@@ -297,7 +295,7 @@ end;
 -- used to stop tp move status effects
 function AvatarPhysicalHit(skill, dmg)
     -- if message is not the default. Then there was a miss, shadow taken etc
-    return skill:getMsg() == msgBasic.DAMAGE;
+    return skill:getMsg() == dsp.msg.basic.DAMAGE;
 end;
 
 function avatarFTP(tp,ftp1,ftp2,ftp3)
@@ -317,8 +315,8 @@ end;
 function avatarMiniFightCheck(caster)
     local result = 0;
     local bcnmid;
-    if (caster:hasStatusEffect(EFFECT_BATTLEFIELD) == true) then
-        bcnmid = caster:getStatusEffect(EFFECT_BATTLEFIELD):getPower();
+    if (caster:hasStatusEffect(dsp.effect.BATTLEFIELD) == true) then
+        bcnmid = caster:getStatusEffect(dsp.effect.BATTLEFIELD):getPower();
         if (bcnmid == 418 or bcnmid == 609 or bcnmid == 450 or bcnmid == 482 or bcnmid == 545 or bcnmid == 578) then -- Mini Avatar Fights
             result = 40; -- Cannot use <spell> in this area.
         end

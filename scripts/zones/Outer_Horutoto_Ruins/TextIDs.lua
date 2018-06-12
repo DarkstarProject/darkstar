@@ -4,17 +4,17 @@
  ITEM_CANNOT_BE_OBTAINED = 6586; -- You cannot obtain the item <item>. Come back after sorting your inventory.
            ITEM_OBTAINED = 6592; -- Obtained: <item>.
             GIL_OBTAINED = 6593; -- Obtained <number> gil.
-        KEYITEM_OBTAINED = 6594; -- Obtained key item: <keyitem>.
+        KEYITEM_OBTAINED = 6595; -- Obtained key item: <keyitem>.
 
 -- Treasure Coffer/Chest Dialog
-          CHEST_UNLOCKED = 7277; -- You unlock the chest!
-              CHEST_FAIL = 7278; -- Fails to open the chest.
-              CHEST_TRAP = 7279; -- The chest was trapped!
-              CHEST_WEAK = 7280; -- You cannot open the chest when you are in a weakened state.
-             CHEST_MIMIC = 7281; -- The chest was a mimic!
-            CHEST_MOOGLE = 7282; -- You cannot open the chest while participating in the moogle event.
-          CHEST_ILLUSION = 7283; -- The chest was but an illusion...
-            CHEST_LOCKED = 7284; -- The chest appears to be locked.
+          CHEST_UNLOCKED = 7278; -- You unlock the chest!
+              CHEST_FAIL = 7279; -- Fails to open the chest.
+              CHEST_TRAP = 7280; -- The chest was trapped!
+              CHEST_WEAK = 7281; -- You cannot open the chest when you are in a weakened state.
+             CHEST_MIMIC = 7282; -- The chest was a mimic!
+            CHEST_MOOGLE = 7283; -- You cannot open the chest while participating in the moogle event.
+          CHEST_ILLUSION = 7284; -- The chest was but an illusion...
+            CHEST_LOCKED = 7285; -- The chest appears to be locked.
 
 -- Mission Texts
       ORB_ALREADY_PLACED =    0; -- A dark Mana Orb is already placed here.
@@ -27,15 +27,15 @@ SECOND_DARK_ORB_IN_PLACE =    7; -- The second Mana Orb receptacle is ready for 
 FOURTH_DARK_ORB_IN_PLACE =    9; -- Forth Mana Orb Receptacle is ready for use.
  FIFTH_DARK_ORB_IN_PLACE =   10; -- Fifth Mana Orb Receptacle is ready for use.
  SIXTH_DARK_ORB_IN_PLACE =   11; -- Sixth Mana Orb Receptacle is ready for use.
- DARK_MANA_ORB_RECHARGER =   12; -- This appears to be a device that recharges Mana Orbs.
+ dsp.ki.DARK_MANA_ORB_RECHARGER =   12; -- This appears to be a device that recharges Mana Orbs.
 
-        DOOR_FIRMLY_SHUT = 7252; -- The door is firmly shut.
-    ALL_G_ORBS_ENERGIZED = 7255; -- The six Mana Orbs have been successfully energized with magic!
+        DOOR_FIRMLY_SHUT = 7253; -- The door is firmly shut.
+    ALL_G_ORBS_ENERGIZED = 7256; -- The six Mana Orbs have been successfully energized with magic!
 
 -- conquest Base
            CONQUEST_BASE =   15;
 
 -- Strange Apparatus
       DEVICE_NOT_WORKING =  188; -- The device is not working.
-            SYS_OVERLOAD =  197; -- arning! Sys...verload! Enterin...fety mode. ID eras...d 
-            YOU_LOST_THE =  202; -- You lost the #. 
+            SYS_OVERLOAD =  197; -- arning! Sys...verload! Enterin...fety mode. ID eras...d
+            YOU_LOST_THE =  202; -- You lost the #.

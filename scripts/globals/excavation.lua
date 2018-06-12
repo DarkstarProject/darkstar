@@ -51,18 +51,18 @@ function startExcavation(player,zone,npc,trade,csid)
             getNewExcavationPositionNPC(player,npc,zone);
         end
 
-        if (broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(ELECTROCELL) == false and player:hasKeyItem(ELECTROPOT) == false and player:hasKeyItem(ELECTROLOCOMOTIVE) == false and zone == 68) then
+        if (broke ~= 1 and player:getQuestStatus(AHT_URHGAN,OLDUUM) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ELECTROCELL) == false and player:hasKeyItem(dsp.ki.ELECTROPOT) == false and player:hasKeyItem(dsp.ki.ELECTROLOCOMOTIVE) == false and zone == 68) then
             local randPick = math.random(0,2);
 
             if randPick == 1 then
-                player:addKeyItem(ELECTROCELL);
-                player:messageSpecial(KEYITEM_OBTAINED,ELECTROCELL);
+                player:addKeyItem(dsp.ki.ELECTROCELL);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROCELL);
             elseif randPick == 2 then
-                player:addKeyItem(ELECTROPOT);
-                player:messageSpecial(KEYITEM_OBTAINED,ELECTROPOT);
+                player:addKeyItem(dsp.ki.ELECTROPOT);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROPOT);
             else
-                player:addKeyItem(ELECTROLOCOMOTIVE);
-                player:messageSpecial(KEYITEM_OBTAINED,ELECTROLOCOMOTIVE);
+                player:addKeyItem(dsp.ki.ELECTROLOCOMOTIVE);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROLOCOMOTIVE);
 
             end
         end

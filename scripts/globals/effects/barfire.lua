@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARFIRE
+-- dsp.effect.BARFIRE
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FIRERES,effect:getPower());
+    target:addMod(dsp.mod.FIRERES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_FIRERES,effect:getPower());
+    target:delMod(dsp.mod.FIRERES,effect:getPower());
 end;

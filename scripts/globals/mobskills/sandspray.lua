@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BLINDNESS;
+    local typeEffect = dsp.effect.BLINDNESS;
     local power = 25;
     local duration = 90;
 

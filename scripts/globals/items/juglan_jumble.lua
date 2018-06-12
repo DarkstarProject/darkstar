@@ -13,14 +13,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,300,5923);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,5923);
 end;
 
 -----------------------------------------
@@ -28,15 +28,15 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HPHEAL, 5);
-    target:addMod(MOD_MPHEAL, 8);
-    target:addMod(MOD_BIRD_KILLER, 12);
-    target:addMod(MOD_PARALYZERES, 12);
+    target:addMod(dsp.mod.HPHEAL, 5);
+    target:addMod(dsp.mod.MPHEAL, 8);
+    target:addMod(dsp.mod.BIRD_KILLER, 12);
+    target:addMod(dsp.mod.PARALYZERES, 12);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HPHEAL, 5);
-    target:delMod(MOD_MPHEAL, 8);
-    target:delMod(MOD_BIRD_KILLER, 12);
-    target:delMod(MOD_PARALYZERES, 12);
+    target:delMod(dsp.mod.HPHEAL, 5);
+    target:delMod(dsp.mod.MPHEAL, 8);
+    target:delMod(dsp.mod.BIRD_KILLER, 12);
+    target:delMod(dsp.mod.PARALYZERES, 12);
 end;

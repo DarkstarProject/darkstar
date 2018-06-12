@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Tami
+--  NPC: Tami
 -- Involved In Quest: Groceries
 -- !pos 62.617 0.000 -68.222 234
 -----------------------------------
@@ -14,12 +14,12 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     local groceries = player:getQuestStatus(BASTOK, GROCERIES);
     local groceriesProgress = player:getVar("Groceries");
-    
+
     -- GROCERIES (trade meat jerky)
     if (groceries == QUEST_ACCEPTED and groceriesProgress == 3 and trade:getItemCount() == 1 and trade:hasItemQty(4376,1)) then
         player:startEvent(113);
     end
-end; 
+end;
 
 function onTrigger(player,npc)
     local groceries = player:getQuestStatus(BASTOK, GROCERIES);
@@ -35,7 +35,7 @@ function onTrigger(player,npc)
     elseif (groceries == QUEST_ACCEPTED and groceriesProgress == 3) then
         player:startEvent(111);
 
-    -- DEFAULT DIALOG        
+    -- DEFAULT DIALOG
     else
         player:startEvent(115);
     end
@@ -48,8 +48,8 @@ function onEventFinish(player,csid,option)
     -- GROCERIES
     if (csid == 110) then
         player:addQuest(BASTOK, GROCERIES);
-        player:addKeyItem(TAMIS_NOTE);
-        player:messageSpecial(KEYITEM_OBTAINED, TAMIS_NOTE);
+        player:addKeyItem(dsp.ki.TAMIS_NOTE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TAMIS_NOTE);
         player:setVar("Groceries", 1);
     elseif (csid == 112) then
         player:addFame(BASTOK,8);
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:setVar("Groceries",0);
             player:completeQuest(BASTOK,GROCERIES);
-            player:addFame(BASTOK,75); 
+            player:addFame(BASTOK,75);
             player:addItem(13594); -- Rabbit Mantle
             player:messageSpecial(ITEM_OBTAINED,13594);
         else

@@ -4,8 +4,8 @@
 --  Description: Deals physical damage to enemies in an area of effect. Additional effect: Knockback + Bind
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
---  Range: 
---  Notes: 
+--  Range:
+--  Notes:
 ---------------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -17,7 +17,7 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BIND;
+    local typeEffect = dsp.effect.BIND;
     local duration = 30;
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, duration);
 

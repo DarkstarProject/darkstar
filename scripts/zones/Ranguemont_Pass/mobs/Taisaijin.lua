@@ -2,21 +2,13 @@
 -- Area: Ranguemont Pass
 --  NM:  Taisaijin
 -----------------------------------
-
 require("scripts/zones/Ranguemont_Pass/MobIDs");
 require("scripts/globals/titles");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(BYEBYE_TAISAI);
+    player:addTitle(dsp.title.BYEBYE_TAISAI);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local phIndex = mob:getLocalVar("phIndex");
@@ -26,7 +18,7 @@ function onMobDespawn(mob)
     DisallowRespawn(mob:getID(), true);
     DisallowRespawn(ph:getID(), false);
     ph:setRespawnTime(GetMobRespawnTime(ph:getID()));
-    
+
     -- pick next placeholder
     phIndex = (phIndex % 3) + 1;
     ph = GetMobByID(TAISAIJIN_PH[phIndex]);

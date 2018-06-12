@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Randgrith
 --
---  Description: Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves accuracy. 
+--  Description: Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves accuracy.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     
     local duration = 60;
-    local typeEffect = EFFECT_EVASION_DOWN;
+    local typeEffect = dsp.effect.EVASION_DOWN;
     local power = 32;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);

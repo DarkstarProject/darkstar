@@ -1,5 +1,5 @@
 ----------------------------------
--- Area:  Temple of Uggalipeh
+-- Area: Temple of Uggalipeh
 -- NM:    Manipulator
 -- Notes: Paths around the 2 staircases
 -----------------------------------
@@ -66,13 +66,13 @@ function onMobSpawn(mob)
 end;
 
 function onPath(mob)
-    pathfind.patrol(mob, path);
+    dsp.path.patrol(mob, path);
 end;
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path));
+        mob:pathThrough(dsp.path.first(path));
     end
 end;
 

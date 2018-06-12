@@ -1,7 +1,7 @@
 -----------------------------------
 --
---     EFFECT_MND_DOWN
---     
+--     dsp.effect.MND_DOWN
+--
 -----------------------------------
 
 require("scripts/globals/status");
@@ -11,10 +11,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    if ((target:getStat(MOD_MND) - effect:getPower()) < 0) then
-        effect:setPower(target:getStat(MOD_MND));
+    if ((target:getStat(dsp.mod.MND) - effect:getPower()) < 0) then
+        effect:setPower(target:getStat(dsp.mod.MND));
     end
-    target:addMod(MOD_MND,-effect:getPower());
+    target:addMod(dsp.mod.MND,-effect:getPower());
 end;
 
 -----------------------------------
@@ -26,7 +26,7 @@ function onEffectTick(target,effect)
     local downMND_effect_size = effect:getPower()
     if (downMND_effect_size > 0) then
         effect:setPower(downMND_effect_size - 1)
-        target:delMod(MOD_MND,-1);
+        target:delMod(dsp.mod.MND,-1);
     end
 end;
 
@@ -37,6 +37,6 @@ end;
 function onEffectLose(target,effect)
     local downMND_effect_size = effect:getPower()
     if (downMND_effect_size > 0) then
-        target:delMod(MOD_MND,-downMND_effect_size);
+        target:delMod(dsp.mod.MND,-downMND_effect_size);
     end
 end;

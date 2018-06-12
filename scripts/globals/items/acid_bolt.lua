@@ -14,11 +14,11 @@ function onAdditionalEffect(player,target,damage)
         chance = chance - 5 * (target:getMainLvl() - player:getMainLvl())
         chance = utils.clamp(chance, 5, 95);
     end
-    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,ELE_WIND,0) <= 0.5) then
+    if (math.random(0,99) >= chance or applyResistanceAddEffect(player,target,dsp.magic.ele.WIND,0) <= 0.5) then
         return 0,0,0;
     else
-        target:delStatusEffect(EFFECT_DEFENSE_BOOST);
-        target:addStatusEffect(EFFECT_DEFENSE_DOWN, 1, 0, 60);
-        return SUBEFFECT_DEFENSE_DOWN, msgBasic.ADD_EFFECT_STATUS, EFFECT_DEFENSE_DOWN;
+        target:delStatusEffect(dsp.effect.DEFENSE_BOOST);
+        target:addStatusEffect(dsp.effect.DEFENSE_DOWN, 12, 0, 60);
+        return dsp.subEffect.DEFENSE_DOWN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.DEFENSE_DOWN;
     end
 end;

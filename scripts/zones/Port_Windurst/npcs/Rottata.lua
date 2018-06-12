@@ -1,15 +1,15 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Rottata
+--  NPC: Rottata
 -- Outpost Teleporter NPC
 -- !pos 193.111 -12.999 215.638 240
 -----------------------------------
 require("scripts/globals/conquest");
 
 function onTrigger(player,npc)
-    local regionsControlled = 1073741823 - getTeleAvailable(NATION_WINDURST);
-    local regionsSupplied = 1073741823 - player:getNationTeleport(NATION_WINDURST);
-    if (player:getNation() == NATION_WINDURST) then
+    local regionsControlled = 1073741823 - getTeleAvailable(dsp.nation.WINDURST);
+    local regionsSupplied = 1073741823 - player:getNationTeleport(dsp.nation.WINDURST);
+    if (player:getNation() == dsp.nation.WINDURST) then
         player:startEvent(552,0,0,regionsControlled,0,0,514,player:getMainLvl(),regionsSupplied);
     else
         player:startEvent(552,0,0,0,0,0,512,0,0);

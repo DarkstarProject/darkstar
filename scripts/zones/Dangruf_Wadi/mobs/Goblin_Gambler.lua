@@ -2,11 +2,7 @@
 -- Area: Dangruf Wadi
 --  MOB: Goblin Gambler
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

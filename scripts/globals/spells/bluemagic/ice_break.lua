@@ -33,11 +33,11 @@ function onSpellCast(caster,target,spell)
     
     local params = {};
     
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
+    params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     
-    params.attribute = MOD_INT;
+    params.attribute = dsp.mod.INT;
     
-    params.skillType = BLUE_SKILL;
+    params.skillType = dsp.skill.BLUE_MAGIC;
     
     params.bonus = 1.0;
     
@@ -46,7 +46,7 @@ function onSpellCast(caster,target,spell)
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.multiplier = 2.25;
         params.tMultiplier = 1.0;
-        params.duppercap = 69; 
+        params.duppercap = 69;
         params.str_wsc = 0.0;
         params.dex_wsc = 0.0;
         params.vit_wsc = 0.0;
@@ -58,10 +58,10 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
 
     if (damage > 0 and resist > 0.0625) then
-        local typeEffect = EFFECT_BIND;
+        local typeEffect = dsp.effect.BIND;
         target:delStatusEffect(typeEffect); -- Wiki says it can overwrite itself or other binds
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
     
     return damage;
-end;    
+end;

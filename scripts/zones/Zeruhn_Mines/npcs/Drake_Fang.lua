@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Zeruhn Mines
--- NPC:  Drake Fang
+--  NPC: Drake Fang
 -- Involved in Mission: Bastok 6-1, 8-2
 -- !pos -74 0.1 58 172
 -----------------------------------
@@ -11,17 +11,10 @@ require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
@@ -44,23 +37,10 @@ function onTrigger(player,npc)
     end
 end;
 -- 108  200  201  202  203  204
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 200) then
         player:setVar("MissionStatus",2);
@@ -68,7 +48,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Missionstatus",1);
     elseif (csid == 204) then
         player:setVar("Missionstatus",5);
-        player:delKeyItem(OLD_PIECE_OF_WOOD);
+        player:delKeyItem(dsp.ki.OLD_PIECE_OF_WOOD);
         player:setPos(23,0,4);
     end
 end;

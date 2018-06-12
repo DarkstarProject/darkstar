@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Honoi-Gumoi
+--  NPC: Honoi-Gumoi
 -- Involved In Quest: Crying Over Onions, Hat in Hand
 -- !pos -195 -11 -120 238
 -----------------------------------
@@ -10,9 +10,6 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +22,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     function testflag(set,flag)
@@ -75,23 +68,13 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 774) then
         player:setVar("CryingOverOnions",1);
     elseif (csid == 775) then
@@ -109,7 +92,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 782) then
         player:completeQuest(WINDURST,WILD_CARD);
         player:addFame(WINDURST,135);
-        player:addTitle(DREAM_DWELLER);
+        player:addTitle(dsp.title.DREAM_DWELLER);
         player:setVar("WildCard",0);
         player:needToZone(true);
     elseif (csid == 59) then  -- Show Off Hat
@@ -117,8 +100,8 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
     elseif (csid == 874)    then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",6);
-        player:addKeyItem(CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
-        player:messageSpecial(KEYITEM_OBTAINED,CRACKED_MIMEO_MIRROR);
+        player:addKeyItem(dsp.ki.CRACKED_MIMEO_MIRROR); --Cracked Mimeo Mirror
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRACKED_MIMEO_MIRROR);
     end
 end;
 

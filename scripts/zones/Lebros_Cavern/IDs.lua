@@ -30,7 +30,7 @@ Lebros = {
         TIME_REMAINING_SECONDS  = 7411, -- Time remaining: <number> [second/seconds] (Earth time).
         PARTY_FALLEN            = 7414  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
-    
+
     mobs = {
         -- Wamoura Farm Raid Assault
         [27] = {
@@ -51,7 +51,7 @@ Lebros = {
             RANCH_WAMOURA15 = 17035378
         }
     },
-    
+
     npcs = {
         ANCIENT_LOCKBOX = 17035478,
         RUNE_OF_RELEASE = 17035479

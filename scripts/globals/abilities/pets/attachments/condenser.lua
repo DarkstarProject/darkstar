@@ -1,19 +1,14 @@
 -----------------------------------
 -- Attachment: Condenser
 -----------------------------------
-
 require("scripts/globals/status");
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onEquip(pet)
-    pet:addMod(MOD_PREVENT_OVERLOAD, 1)
+    pet:addMod(dsp.mod.PREVENT_OVERLOAD, 1)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_PREVENT_OVERLOAD, 1)
+    pet:delMod(dsp.mod.PREVENT_OVERLOAD, 1)
 end
 
 function onManeuverGain(pet,maneuvers)

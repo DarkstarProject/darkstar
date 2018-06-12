@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_PROWESS
+-- dsp.effect.PROWESS
 -- From GoV
 -----------------------------------
 
@@ -9,7 +9,7 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_GOV_CLEARS, effect:getPower());
+    target:addMod(dsp.mod.GOV_CLEARS, effect:getPower());
 end;
 
 -----------------------------------
@@ -24,5 +24,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_GOV_CLEARS, effect:getPower());
+    target:delMod(dsp.mod.GOV_CLEARS, effect:getPower());
 end;

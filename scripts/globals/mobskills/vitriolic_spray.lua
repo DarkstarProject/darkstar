@@ -17,14 +17,14 @@ function onMobSkillCheck(target,mob,skill)
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BURN;
+    local typeEffect = dsp.effect.BURN;
     local power = math.random(10,30);
 
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60);
 
     local dmgmod = 1;
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.7,ELE_FIRE,dmgmod,TP_NO_EFFECT);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.7,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS);
     target:delHP(dmg);
     return dmg;

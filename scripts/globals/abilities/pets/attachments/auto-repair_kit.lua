@@ -1,19 +1,14 @@
 -----------------------------------
 -- Attachment: Auto-repair Kit
 -----------------------------------
-
 require("scripts/globals/status");
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onEquip(pet)
-    pet:addMod(MOD_HPP, 6)
+    pet:addMod(dsp.mod.HPP, 6)
 end
 
 function onUnequip(pet)
-    pet:delMod(MOD_HPP, 6)
+    pet:delMod(dsp.mod.HPP, 6)
 end
 
 function onManeuverGain(pet,maneuvers)
@@ -21,11 +16,11 @@ function onManeuverGain(pet,maneuvers)
     local frame = pet:getAutomatonFrame()
     if frame == 0x20 or frame == 0x21 then bonus = 1 end
     if (maneuvers == 1) then
-        pet:addMod(MOD_REGEN, 3 + bonus);
+        pet:addMod(dsp.mod.REGEN, 3 + bonus);
     elseif (maneuvers == 2) then
-        pet:addMod(MOD_REGEN, 4); 
+        pet:addMod(dsp.mod.REGEN, 4);
     elseif (maneuvers == 3) then
-        pet:addMod(MOD_REGEN, 4 + bonus);
+        pet:addMod(dsp.mod.REGEN, 4 + bonus);
     end
 end
 
@@ -34,10 +29,10 @@ function onManeuverLose(pet,maneuvers)
     local frame = pet:getAutomatonFrame()
     if frame == 0x20 or frame == 0x21 then bonus = 1 end
     if (maneuvers == 1) then
-        pet:delMod(MOD_REGEN, 3 + bonus);
+        pet:delMod(dsp.mod.REGEN, 3 + bonus);
     elseif (maneuvers == 2) then
-        pet:delMod(MOD_REGEN, 4); 
+        pet:delMod(dsp.mod.REGEN, 4);
     elseif (maneuvers == 3) then
-        pet:delMod(MOD_REGEN, 4 + bonus);
+        pet:delMod(dsp.mod.REGEN, 4 + bonus);
     end
 end

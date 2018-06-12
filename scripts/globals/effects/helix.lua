@@ -1,7 +1,7 @@
 -----------------------------------
 --
---     EFFECT_HELIX
---     
+--     dsp.effect.HELIX
+--
 -----------------------------------
 
 require("scripts/globals/status");

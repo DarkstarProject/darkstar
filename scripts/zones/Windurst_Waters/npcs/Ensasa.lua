@@ -1,26 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Ensasa
+--  NPC: Ensasa
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     onHalloweenTrade(player,trade,npc);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,ENSASA_SHOP_DIALOG);
@@ -42,25 +35,13 @@ function onTrigger(player,npc)
         0x0763,   576,3,     --Sea Foliage
         0x005C,   905,3,     --Tarutaru Stool
         0x006E,  4744,3      --White Jar
-    } 
-    showNationShop(player, NATION_WINDURST, stock);
+    }
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

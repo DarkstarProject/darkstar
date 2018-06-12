@@ -5,24 +5,17 @@
 -- !pos 22.700 -8.804 -45.591 50
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-
 -----------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
 
     local TOAUM3_DAY = player:getVar("TOAUM3_STARTDAY");
@@ -83,7 +76,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(TOAU) == FANGS_OF_THE_LION) then
         player:startEvent(3138,0,0,0,0,0,0,0,0,0);
-    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(MYTHRIL_MIRROR) == false) then
+    elseif (player:getCurrentMission(TOAU) == NASHMEIRAS_PLEA and player:hasKeyItem(dsp.ki.MYTHRIL_MIRROR) == false) then
         player:startEvent(3149,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == RAGNAROK) then
         player:startEvent(3139,0,0,0,0,0,0,0,0,0);
@@ -100,22 +93,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 73) then
         player:setVar("AhtUrganStatus", 2);
         player:setVar("TOAUM3_DAY", os.date("%j")); -- %M for next minute, %j for next day
@@ -124,9 +105,9 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,IMMORTAL_SENTRIES);
         player:addMission(TOAU,PRESIDENT_SALAHEEM);
         player:addCurrency("imperial_standing", 150);
-        player:addTitle(PRIVATE_SECOND_CLASS);
-        player:addKeyItem(PSC_WILDCAT_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,PSC_WILDCAT_BADGE);
+        player:addTitle(dsp.title.PRIVATE_SECOND_CLASS);
+        player:addKeyItem(dsp.ki.PSC_WILDCAT_BADGE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PSC_WILDCAT_BADGE);
     elseif (csid == 3020) then
         player:setVar("AhtUrganStatus",0);
         player:completeMission(TOAU,PRESIDENT_SALAHEEM);
@@ -179,9 +160,9 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,TESTING_THE_WATERS);
     elseif (csid == 3138) then
         player:completeMission(TOAU,FANGS_OF_THE_LION);
-        player:addKeyItem(MYTHRIL_MIRROR);
-        player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
-        player:setTitle(NASHMEIRAS_LOYALIST);
+        player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
+        player:setTitle(dsp.title.NASHMEIRAS_LOYALIST);
         player:addMission(TOAU,NASHMEIRAS_PLEA);
     elseif (csid == 3139) then
         player:completeMission(TOAU,RAGNAROK);
@@ -192,8 +173,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED,16070);
         player:addMission(TOAU,ETERNAL_MERCENARY);
     elseif (csid == 3149) then
-        player:messageSpecial(KEYITEM_OBTAINED,MYTHRIL_MIRROR);
-        player:addKeyItem(MYTHRIL_MIRROR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
+        player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     end

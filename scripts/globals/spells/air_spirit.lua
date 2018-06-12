@@ -11,17 +11,17 @@ require("scripts/globals/msg");
 function onMagicCastingCheck(caster,target,spell)
     local result = 0;
     if (caster:hasPet()) then
-        result = msgBasic.ALREADY_HAS_A_PET;
+        result = dsp.msg.basic.ALREADY_HAS_A_PET;
     elseif (not caster:canUsePet()) then
-        result = msgBasic.CANT_BE_USED_IN_AREA;
-    elseif (caster:getObjType() == TYPE_PC) then
+        result = dsp.msg.basic.CANT_BE_USED_IN_AREA;
+    elseif (caster:getObjType() == dsp.objType.PC) then
         result = avatarMiniFightCheck(caster);
     end
     return result;
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnPet(PET_AIR_SPIRIT);
+    caster:spawnPet(dsp.pet.id.AIR_SPIRIT);
 
     return 0;
 end;

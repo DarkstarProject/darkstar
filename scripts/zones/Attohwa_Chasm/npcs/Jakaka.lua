@@ -1,18 +1,14 @@
 -----------------------------------
---  Area: Attohwa Chasm
---  NPC:  Jakaka
---  Type: ENM
+-- Area: Attohwa Chasm
+--  NPC: Jakaka
+-- Type: ENM
 -- !pos -144.711 6.246 -250.309 7
 -----------------------------------
 package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Attohwa_Chasm/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,22 +19,18 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local MiasmaFilterCD = player:getVar("[ENM]MiasmaFilter");
 
-    if (player:hasKeyItem(MIASMA_FILTER)) then
+    if (player:hasKeyItem(dsp.ki.MIASMA_FILTER)) then
         player:startEvent(11);
     else
         if (MiasmaFilterCD >= os.time()) then
             -- Both Vanadiel time and unix timestamps are based on seconds. Add the difference to the event.
             player:startEvent(14, VanadielTime()+(MiasmaFilterCD-os.time()));
         else
-            if (player:hasItem(1778)==true or player:hasItem(1777)==true) then -- Parradamo Stones, Flaxen Pouch
+            if (player:hasItem(1778) == true or player:hasItem(1777) == true) then -- Parradamo Stones, Flaxen Pouch
                 player:startEvent(15);
             else
                 player:startEvent(13);
@@ -47,25 +39,13 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 12) then
-        player:addKeyItem(MIASMA_FILTER);
-        player:messageSpecial(KEYITEM_OBTAINED,MIASMA_FILTER);
+        player:addKeyItem(dsp.ki.MIASMA_FILTER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MIASMA_FILTER);
         player:setVar("[ENM]MiasmaFilter",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then

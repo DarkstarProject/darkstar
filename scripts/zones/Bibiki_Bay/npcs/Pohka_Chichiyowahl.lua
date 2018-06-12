@@ -1,25 +1,17 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  Pohka Chichiyowahl
+--  NPC: Pohka Chichiyowahl
 -- Type: Standard Merchant NPC
 -- !pos -415 -2 -430 4
 -----------------------------------
-
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,POHKA_SHOP_DIALOG);
@@ -30,25 +22,13 @@ function onTrigger(player,npc)
         0x1034,   290, 3  -- Antidote
     }
 
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;

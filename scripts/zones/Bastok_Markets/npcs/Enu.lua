@@ -9,15 +9,12 @@ package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/weather");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
       if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
         if (player:getVar("WishUponAStar_Status") == 3) then
-            if (player:getWeather() == WEATHER_NONE and  (VanadielTOTD() == TIME_NIGHT or VanadielTOTD() == TIME_MIDNIGHT)) then
+            if (player:getWeather() == dsp.weather.NONE and  (VanadielTOTD() == dsp.time.NIGHT or VanadielTOTD() == dsp.time.MIDNIGHT)) then
                 player:startEvent(334); -- Trade accepeted
             else
                 player:startEvent(337); -- Player has to wait for clear weather
@@ -25,10 +22,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(BASTOK, WISH_UPON_A_STAR) == QUEST_COMPLETED) then -- Quest: Wish Upon a Star - Quest has been completed.
@@ -42,18 +35,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf ("CSID: %u",csid);

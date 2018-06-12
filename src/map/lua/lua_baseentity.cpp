@@ -88,6 +88,7 @@
 #include "../packets/char_job_extra.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
+#include "../packets/char_mounts.h"
 #include "../packets/char_recast.h"
 #include "../packets/char_skills.h"
 #include "../packets/char_spells.h"
@@ -157,25 +158,6 @@ CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 CLuaBaseEntity::CLuaBaseEntity(CBaseEntity* PEntity)
 {
     m_PBaseEntity = PEntity;
-}
-
-/************************************************************************
-*  Function: SendRevision()
-*  Purpose : Sends the current Git version to the character via message
-*  Example : player:SendRevision()
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::SendRevision(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    char version[100];
-    strcpy(version, "Revision is: ");
-    strcat(version, get_git_revision());
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, version));
-
-    return 0;
 }
 
 /************************************************************************
@@ -1708,7 +1690,7 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
         lua_rawgeti(L, 1, i + 1);
         lua_rawgeti(L, 1, i + 2);
 
-        points.push_back({0, (float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0});
+        points.push_back({(float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0, 0});
 
         lua_pop(L, 3);
     }
@@ -2733,6 +2715,44 @@ inline int32 CLuaBaseEntity::resetPlayer(lua_State *L)
 }
 
 /************************************************************************
+*  Function: goToEntity()
+*  Purpose : Transports PC to a Mob or NPC; works across multiple servers
+*  Example : player:goToEntity(ID, Option)
+*  Notes   : Option 0: Spawned/Unspawned | Option 1: Spawned only
+************************************************************************/
+
+int32 CLuaBaseEntity::goToEntity(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        bool spawnedOnly  = !lua_isnil(L, 2) ? lua_tonumber(L, 2) : 0;
+
+        uint32 targetID   = (uint32)lua_tonumber(L, 1);
+        uint16 targetZone = (targetID >> 12) & 0x0FFF;
+        uint16 playerID   = m_PBaseEntity->id;
+        uint16 playerZone = PChar->loc.zone->GetID();
+
+        char buf[12];
+        memset(&buf[0], 0, sizeof(buf));
+
+        ref<bool>  (&buf,  0) = true; // Toggle for message routing; goes to entity server first
+        ref<bool>  (&buf,  1) = spawnedOnly; // Specification for Spawned Only or Any
+        ref<uint16>(&buf,  2) = targetZone;
+        ref<uint16>(&buf,  4) = playerZone;
+        ref<uint32>(&buf,  6) = targetID;
+        ref<uint16>(&buf, 10) = playerID;
+
+        message::send(MSG_SEND_TO_ENTITY, &buf[0], sizeof(buf), nullptr);
+    }
+    return 0;
+}
+
+/************************************************************************
 *  Function: gotoPlayer()
 *  Purpose : Transports PC to another PC
 *  Example : player:gotoPlayer(playername)
@@ -2959,13 +2979,19 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     /* FORMAT:
-    player:addItem(Item ID,
-                            Quantity (or bool for silent addition of 1 Qty),
-                             Augment 1, A1 Value,
-                             Augment 2, A2 Value,
-                             Augment 3, A3 Value,
-                             Augment 4, A4 Value,
-                             Trial Number)
+    player:addItem(itemID, quantity) -- add quantity of itemID
+
+    player:addItem(itemID, true) -- silently add 1 of itemID
+
+    player:addItem(itemID, quantity, true) -- silently add quantity of itemID
+
+    player:addItem(itemID,
+                   quantity,
+                   Augment 1, A1 Value,
+                   Augment 2, A2 Value,
+                   Augment 3, A3 Value,
+                   Augment 4, A4 Value,
+                   Trial Number)
     */
 
     bool silence = false;
@@ -2979,8 +3005,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         silence = (uint32)lua_toboolean(L, 2);
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    else if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    {
         quantity = (uint32)lua_tointeger(L, 2);
+        if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+            silence = (uint32)lua_toboolean(L, 3);
+    }
 
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
         augment0 = (uint16)lua_tointeger(L, 3);
@@ -3397,8 +3427,7 @@ inline int32 CLuaBaseEntity::confirmTrade(lua_State *L)
         if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF && PChar->TradeContainer->getConfirmedStatus(slotID))
         {
             uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            auto quantity = (int32)std::max<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
-
+            auto quantity = (int32)std::min<uint32>(PChar->TradeContainer->getQuantity(slotID), PChar->TradeContainer->getConfirmedStatus(slotID));
             charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
         }
     }
@@ -3729,7 +3758,7 @@ inline int32 CLuaBaseEntity::clearGearSetMods(lua_State *L)
 *  Function: getStorageItem()
 *  Purpose : Returns object data for an item in a container
 *  Example : player:getStorageItem(0, 0, SLOT_RANGED)
-*  Notes   : Used exlusively for Eagle Eye Shot
+*  Notes   :
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
@@ -3761,7 +3790,6 @@ inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
-    ShowError(CL_RED"Lua::getItem: unable to find item! Slot: %i Container: %i\n" CL_RESET, equipID > 0 ? equipID : slotID, container);
     lua_pushnil(L);
     return 1;
 }
@@ -4117,7 +4145,7 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
             PChar->status != STATUS_DISAPPEAR)
         {
             PChar->m_Costum = costum;
-            PChar->updatemask |= UPDATE_HP;
+            PChar->updatemask |= UPDATE_POS;
         }
         return 0;
     }
@@ -4370,7 +4398,7 @@ inline int32 CLuaBaseEntity::getNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_isNewPlayer);
+    lua_pushboolean(L, (((CCharEntity*)m_PBaseEntity)->menuConfigFlags.flags & NFLAG_NEWPLAYER) == 0);
     return 1;
 }
 
@@ -4388,7 +4416,10 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_isNewPlayer = lua_toboolean(L, 1);
+    if (lua_toboolean(L, 1))
+        PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+    else
+        PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
     PChar->updatemask |= UPDATE_HP;
     charutils::SaveCharJob(PChar, PChar->GetMJob());
     return 0;
@@ -4407,7 +4438,7 @@ inline int32 CLuaBaseEntity::getMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    lua_pushnumber(L, PChar->m_mentor);
+    lua_pushnumber(L, PChar->m_mentorUnlocked ? 1 : 0);
     return 1;
 }
 
@@ -4425,8 +4456,12 @@ inline int32 CLuaBaseEntity::setMentor(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-    PChar->m_mentor = (uint8)lua_tonumber(L, 1);
-    charutils::mentorMode(PChar);
+    if ((uint8)lua_tonumber(L, 1) == 1)
+        PChar->m_mentorUnlocked = true;
+    else
+        PChar->m_mentorUnlocked = false;
+
+    charutils::SaveMentorFlag(PChar);
     PChar->updatemask |= UPDATE_HP;
     return 0;
 }
@@ -5646,13 +5681,12 @@ inline int32 CLuaBaseEntity::getQuestStatus(lua_State *L)
 }
 
 /************************************************************************
-*  Function: hasCompleteQuest()
+*  Function: hasCompletedQuest()
 *  Purpose : Returns true if a player has completed a quest
-*  Example : if (player:hasCompleteQuest(JEUNO,BEYOND_INFINITY)) then
-*  Notes   : To Do: Change to hasComplete(d)Quest()? Oh well...
+*  Example : if (player:hasCompletedQuest(JEUNO,BEYOND_INFINITY)) then
 ************************************************************************/
 
-inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
+inline int32 CLuaBaseEntity::hasCompletedQuest(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
@@ -5675,7 +5709,7 @@ inline int32 CLuaBaseEntity::hasCompleteQuest(lua_State *L)
         lua_pushboolean(L, (complete != 0));
         return 1;
     }
-    ShowError(CL_RED"Lua::hasCompleteQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
+    ShowError(CL_RED"Lua::hasCompletedQuest: questLogID %i or QuestID %i is invalid\n" CL_RESET, questLogID, questID);
     lua_pushboolean(L, false);
     return 1;
 }
@@ -6089,10 +6123,15 @@ inline int32 CLuaBaseEntity::addKeyItem(lua_State *L)
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
 
     uint16 KeyItemID = (uint16)lua_tointeger(L, 1);
+    uint8 table = KeyItemID >> 9;
 
     charutils::addKeyItem(PChar, KeyItemID);
-    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)(KeyItemID >> 9)));
+    PChar->pushPacket(new CKeyItemsPacket(PChar, (KEYS_TABLE)table));
 
+    if (table == 6)
+    {
+        PChar->pushPacket(new CCharMountsPacket(PChar));
+    }
     charutils::SaveKeyItems(PChar);
     return 0;
 }
@@ -7354,7 +7393,7 @@ inline int32 CLuaBaseEntity::capAllSkills(lua_State* L)
         PChar->WorkingSkills.skill[i] = maxSkill / 10;
         PChar->WorkingSkills.skill[i] |= 0x8000; //set blue capped flag
     }
-    charutils::CheckWeaponSkill(PChar, SKILL_NON);
+    charutils::CheckWeaponSkill(PChar, SKILL_NONE);
     PChar->pushPacket(new CCharSkillsPacket(PChar));
     return 0;
 }
@@ -7575,6 +7614,30 @@ inline int32 CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
     charutils::SaveLearnedAbilities(PChar);
     PChar->pushPacket(new CCharAbilitiesPacket(PChar));
     return 0;
+}
+
+/************************************************************************
+*  Function: addWeaponSkillPoints()
+*  Purpose : Removes a learned weaponskill from the player
+*  Example : player:addWeaponSkillPoints(dsp.slot.MAIN,300)
+*  Notes   : Returns true if points were successfully added.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addWeaponSkillPoints(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    SLOTTYPE slot = (SLOTTYPE)lua_tointeger(L, 1);
+    uint16 points = (uint16)lua_tointeger(L, 2);
+
+    lua_pushboolean(L, charutils::AddWeaponSkillPoints(PChar, slot, points));
+    return 1;
 }
 
 /************************************************************************
@@ -9913,7 +9976,7 @@ int32 CLuaBaseEntity::transferEnmity(lua_State* L)
     {
         for (auto&& mob_pair : PIterEntity->SpawnMOBList)
         {
-            if (distance(mob_pair.second->loc.p, PEntity->loc.p) < range)
+            if (distanceSquared(mob_pair.second->loc.p, PEntity->loc.p) < (range * range))
             {
                 battleutils::TransferEnmity(static_cast<CBattleEntity*>(PEntity),
                     static_cast<CBattleEntity*>(m_PBaseEntity),static_cast<CMobEntity*>(mob_pair.second), percent);
@@ -10053,7 +10116,7 @@ inline int32 CLuaBaseEntity::updateClaim(lua_State *L)
 }
 
 /************************************************************************
-*  Function: addStatusEffect()
+*  Function: addStatusEffect(effect, power, tick, duration)
 *  Purpose : Adds a specified Status Effect to the Entity
 *  Example : target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60)
 *  Notes   :
@@ -10360,7 +10423,7 @@ inline int32 CLuaBaseEntity::delStatusEffect(lua_State *L)
 *  Function: delStatusEffectsByFlag()
 *  Purpose : Removes all Status Effects of a specified flag
 *  Example : target:delEffectsByFlag(FLAG)
-*  Notes   : Not currently used in any script
+*  Notes   : Used for removal of multiple effects with matching flag
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
@@ -10378,7 +10441,7 @@ inline int32 CLuaBaseEntity::delStatusEffectsByFlag(lua_State *L)
 *  Function: delStatusEffectSilent()
 *  Purpose : Removes a Status Effect from the Entity without showing a message
 *  Example : target:delStatusEffectSilent(EFFECT_SANDSTORM)
-*  Notes   : Used specifly for Status Effects that are not supposed to show a message once worn
+*  Notes   : Used specifically for Status Effects that are not supposed to show a message once worn
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::delStatusEffectSilent(lua_State* L)
@@ -10489,21 +10552,23 @@ inline int32 CLuaBaseEntity::stealStatusEffect(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
-    CStatusEffect* PStatusEffect = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->StealStatusEffect();
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
-    if (PStatusEffect == nullptr)
-        lua_pushnil(L);
+    EFFECTFLAG flag = EFFECTFLAG_DISPELABLE;
+    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+        flag = (EFFECTFLAG)lua_tointeger(L, 2);
+
+    if (CStatusEffect* PStatusEffect = ((CBattleEntity*)PEntity->m_PBaseEntity)->StatusEffectContainer->StealStatusEffect(flag))
+    {
+        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PStatusEffect);
+        lua_pushinteger(L, PStatusEffect->GetStatusID());
+    }
     else
     {
-        lua_getglobal(L, CLuaStatusEffect::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)PStatusEffect);
-        lua_pcall(L, 2, 1, 0);
-
-        delete PStatusEffect;
+        lua_pushinteger(L, 0);
     }
+
     return 1;
 }
 
@@ -10653,9 +10718,9 @@ inline int32 CLuaBaseEntity::addCorsairRoll(lua_State *L)
         (EFFECT)lua_tointeger(L, 3), // Effect ID
         (uint16)lua_tointeger(L, 3), // Effect Icon (Associated with ID)
         (uint16)lua_tointeger(L, 4), // Power
-        (uint16)lua_tointeger(L, 5), // Tick
-        (uint16)lua_tointeger(L, 6), // Duration
-        (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0),  // SubID or 0
+        (uint32)lua_tointeger(L, 5), // Tick
+        (uint32)lua_tointeger(L, 6), // Duration
+        (n >= 7 ? (uint32)lua_tointeger(L, 7) : 0),  // SubID or 0
         (n >= 8 ? (uint16)lua_tointeger(L, 8) : 0),  // SubPower or 0
         (n >= 9 ? (uint16)lua_tointeger(L, 9) : 0)); // Tier or 0
     uint8 maxRolls = 2;
@@ -10780,7 +10845,7 @@ inline int32 CLuaBaseEntity::addBardSong(lua_State *L)
     {
         CCharEntity* PCaster = (CCharEntity*)PEntity->m_PBaseEntity;
         CItemWeapon* PItem = (CItemWeapon*)PCaster->getEquip(SLOT_RANGED);
-        if (PItem == nullptr || PItem->getID() == 65535 || !(PItem->getSkillType() == SKILL_STR || PItem->getSkillType() == SKILL_WND))
+        if (PItem == nullptr || PItem->getID() == 65535 || !(PItem->getSkillType() == SKILL_STRING_INSTRUMENT || PItem->getSkillType() == SKILL_WIND_INSTRUMENT))
         {
             maxSongs = 1;
         }
@@ -10896,6 +10961,11 @@ inline int32 CLuaBaseEntity::getStat(lua_State *L)
         case Mod::CHR:  lua_pushinteger(L, PEntity->CHR()); break;
         case Mod::ATT:  lua_pushinteger(L, PEntity->ATT()); break;
         case Mod::DEF:  lua_pushinteger(L, PEntity->DEF()); break;
+        case Mod::EVA:  lua_pushinteger(L, PEntity->EVA()); break;
+        // TODO: support getStat for ACC/RACC/RATT
+        //case Mod::ACC:  lua_pushinteger(L, PEntity->ACC()); break;
+        //case Mod::RACC: lua_pushinteger(L, PEntity->RACC()); break;
+        //case Mod::RATT: lua_pushinteger(L, PEntity->RATT()); break;
         default: lua_pushnil(L);
     }
     return 1;
@@ -11378,7 +11448,7 @@ inline int32 CLuaBaseEntity::getWeaponSkillLevel(lua_State *L)
 /************************************************************************
 *  Function: getWeaponSkillType()
 *  Purpose : Returns the primary type of a weapon in a slot
-*  Example : if (attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_H2H)
+*  Example : if (attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_HAND_TO_HAND)
 *  Notes   : Used to identify which type of weapon it is (Katana, Sword, etc)
 ************************************************************************/
 
@@ -11433,15 +11503,16 @@ inline int32 CLuaBaseEntity::getWeaponSubSkillType(lua_State *L)
 
         if (weapon == nullptr)
         {
-            ShowDebug(CL_CYAN"lua::getWeaponSubskillType weapon in specified slot is NULL!\n" CL_RESET);
-            return 0;
+            lua_pushinteger(L, 0);
+            return 1;
         }
 
         lua_pushinteger(L, weapon->getSubSkillType());
         return 1;
     }
     ShowError(CL_RED"lua::getWeaponSubskillType :: Invalid slot specified!" CL_RESET);
-    return 0;
+    lua_pushinteger(L, 0);
+    return 1;
 }
 
 /************************************************************************
@@ -12194,27 +12265,6 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
     PEntity->StatusEffectContainer->RemoveAllManeuvers();
 
     return 0;
-}
-
-/************************************************************************
-*  Function: canUseChocobo()
-*  Purpose : Returns true if player can use a Chocobo
-*  Example : if (player:canUseChocobo()) then -- kew
-*  Notes   : Checks for Chocobo License and if Chocos are allowed in area
-************************************************************************/
-
-inline int32 CLuaBaseEntity::canUseChocobo(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    if (m_PBaseEntity->animation == ANIMATION_CHOCOBO || !charutils::hasKeyItem((CCharEntity*)m_PBaseEntity, 138)) //keyitem CHOCOBO_LICENSE
-    {
-        lua_pushinteger(L, 445);
-        return 1;
-    }
-    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_CHOCOBO) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
-    return 1;
 }
 
 /************************************************************************
@@ -13445,7 +13495,7 @@ int32 CLuaBaseEntity::getDropID(lua_State* L)
 
 /************************************************************************
 *  Function: setDropID()
-*  Purpose : Changes the Drop ID assigned to a Mob (temporary?)
+*  Purpose : Permanently changes the Drop ID assigned to a Mob
 *  Example : target:setDropID(2408)
 *  Notes   : Useful for situations where drops only occur from conditions
 ************************************************************************/
@@ -13505,20 +13555,81 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
 
-    DropList_t* DropList = itemutils::GetDropList(((CMobEntity*)m_PBaseEntity)->m_DropID);
-
-    if (!(((CMobEntity*)m_PBaseEntity)->m_ItemStolen) && (DropList != nullptr && DropList->size()))
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
     {
-        for (uint8 i = 0; i < DropList->size(); ++i)
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+
+        if (PDropList && !PMob->m_ItemStolen)
         {
-            if (DropList->at(i).DropType == DROP_STEAL)
+            for (const DropItem_t& drop : *PDropList)
             {
-                lua_pushinteger(L, DropList->at(i).ItemID);
-                return 1;
+                if (drop.DropType == DROP_STEAL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
             }
         }
     }
+
     lua_pushinteger(L, 0);
+    return 1;
+}
+
+/************************************************************************
+*  Function: getDespoilItem()
+*  Purpose : Used to return the Item ID of a mob's item which can be despoiled
+*  Example : despoilItem = target:getDespoilItem()
+*  Notes   : Defaults to getStealItem() if no despoil item exists
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+    if (PMob)
+    {
+        DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
+        if (PDropList && !PMob->m_ItemStolen)
+        {
+            for (const DropItem_t& drop : *PDropList)
+            {
+                if (drop.DropType == DROP_DESPOIL)
+                {
+                    lua_pushinteger(L, drop.ItemID);
+                    return 1;
+                }
+            }
+        }
+    }
+
+    return getStealItem(L);
+}
+
+/************************************************************************
+*  Function: getDespoilDebuff()
+*  Purpose : Used to get a status effect id to apply to a mob on successful despoil
+*  Example : effect = player:getDespoilDebuff()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getDespoilDebuff(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 effectId = luautils::GetDespoilDebuff((uint16)lua_tointeger(L, 1));
+    if (effectId > 0)
+    {
+        lua_pushinteger(L, effectId);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+
     return 1;
 }
 
@@ -13545,8 +13656,6 @@ const char CLuaBaseEntity::className[] = "CBaseEntity";
 
 Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 {
-
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,SendRevision),
 
     // Messaging System
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showText),
@@ -13663,6 +13772,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,teleport),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetPlayer),
 
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,goToEntity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,gotoPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,bringPlayer),
 
@@ -13789,7 +13899,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getQuestStatus),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompleteQuest),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasCompletedQuest),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,completeQuest),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addMission),
@@ -13882,6 +13992,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedWeaponskill),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addWeaponSkillPoints),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedAbility),
@@ -14115,8 +14227,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseChocobo),
-
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
@@ -14185,6 +14295,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setDropID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addTreasure),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getStealItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
 
     {nullptr,nullptr}

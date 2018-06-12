@@ -1,29 +1,22 @@
 -----------------------------------
 -- Area: Windurst Woods
--- NPC: Orlaine
+--  NPC: Orlaine
 -- Chocobo Vendor
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/chocobo");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local level = player:getMainLvl();
     local gil = player:getGil();
 
-    if (player:hasKeyItem(CHOCOBO_LICENSE) and level >= 15) then
+    if (player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) and level >= 15) then
         local price = getChocoboPrice(player);
         player:setLocalVar("chocoboPriceOffer",price);
 
@@ -37,22 +30,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local price = player:getLocalVar("chocoboPriceOffer");
 
@@ -61,11 +42,11 @@ function onEventFinish(player,csid,option)
             updateChocoboPrice(player, price);
 
             if (player:getMainLvl() >= 20) then
-                local duration = 1800 + (player:getMod(MOD_CHOCOBO_RIDING_TIME) * 60)
+                local duration = 1800 + (player:getMod(dsp.mod.CHOCOBO_RIDING_TIME) * 60)
 
-                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,duration,true);
+                player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
             else
-                player:addStatusEffectEx(EFFECT_MOUNTED,EFFECT_MOUNTED,0,0,900,true);
+                player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,900,true);
             end
 
             player:setPos(-122,-4,-520,0,0x74);

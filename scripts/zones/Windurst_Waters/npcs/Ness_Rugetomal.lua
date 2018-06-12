@@ -1,26 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Ness Rugetomal
+--  NPC: Ness Rugetomal
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-require("scripts/zones/Windurst_Waters/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     onHalloweenTrade(player,trade,npc);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
@@ -40,24 +33,12 @@ function onTrigger(player,npc)
         0x119D,    10,3,     --Distilled Water
         0x11BA,   846,3      --Roast Pipira
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

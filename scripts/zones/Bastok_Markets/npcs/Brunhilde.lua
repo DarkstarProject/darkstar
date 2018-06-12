@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Bastok Markets
--- NPC: Brunhilde
+--  NPC: Brunhilde
 -- Standard Merchant NPC
 -- !pos -305.775 -10.319 -152.173 235
 -----------------------------------
@@ -27,5 +27,5 @@ function onTrigger(player,npc)
         12544, 45208, 1,    -- Breastplate
         12672, 23846, 1,    -- Gauntlets
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end; 
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
+end;

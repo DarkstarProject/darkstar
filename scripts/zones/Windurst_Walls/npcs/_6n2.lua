@@ -13,17 +13,10 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
@@ -41,21 +34,21 @@ function onTrigger(player,npc)
             player:startEvent(385,1125,1125,1125,1125,1125,1125,1125,1125);
         ----------------------------------------------------
         -- The Puppet Master (AF weapon)
-        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
+        elseif (player:getMainLvl() >= AF1_QUEST_LEVEL and player:getMainJob() == dsp.job.SMN and ThePuppetMaster == QUEST_AVAILABLE and player:needToZone() == false and ClassReunion ~= QUEST_ACCEPTED and CarbuncleDebacle ~= QUEST_ACCEPTED) then -- you need to be on SMN as well to repeat the quest
             player:startEvent(402); -- Carby asks for your help, visit Juroro
         elseif (player:getQuestStatus(WINDURST,THE_PUPPET_MASTER) == QUEST_ACCEPTED and player:getVar("ThePuppetMasterProgress") == 1) then
             player:startEvent(403); -- reminder to visit Juroro
         ----------------------------------------------------
         -- Class Reunion (AF pants)
-        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
+        elseif (player:getMainLvl() >= AF2_QUEST_LEVEL and player:getMainJob() == dsp.job.SMN and ThePuppetMaster == QUEST_COMPLETED and ClassReunion == QUEST_AVAILABLE and player:needToZone() == false) then
             player:startEvent(413); -- Carby asks for your help again.
         ----------------------------------------------------
         -- Carbuncle Debacle (AF head)
-        elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == JOBS.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
+        elseif (player:getMainLvl() >= AF3_QUEST_LEVEL and player:getMainJob() == dsp.job.SMN and ClassReunion == QUEST_COMPLETED and CarbuncleDebacle == QUEST_AVAILABLE and player:needToZone() == false) then
             player:startEvent(415); -- Carby begs for your help
         ----------------------------------------------------
-        elseif (player:hasKeyItem(JOKER_CARD)) then
-            player:startEvent(387,0,JOKER_CARD);
+        elseif (player:hasKeyItem(dsp.ki.JOKER_CARD)) then
+            player:startEvent(387,0,dsp.ki.JOKER_CARD);
         elseif (player:getVar("WildCard") == 1) then
             player:startEvent(386);
         elseif (player:getVar("OnionRings") == 1) then
@@ -70,30 +63,20 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 288) then
         player:setVar("KnowOnesOnions",2);
     elseif (csid == 289) then
         player:completeQuest(WINDURST,ONION_RINGS);
         player:addFame(WINDURST,100);
-        player:addTitle(STAR_ONION_BRIGADIER);
-        player:delKeyItem(OLD_RING);
+        player:addTitle(dsp.title.STAR_ONION_BRIGADIER);
+        player:delKeyItem(dsp.ki.OLD_RING);
         player:setVar("OnionRingsTime",0);
         player:setVar("OnionRings",2);
     elseif (csid == 384) then
@@ -101,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 386) then
         player:setVar("WildCard",2);
     elseif (csid == 387) then
-        player:delKeyItem(JOKER_CARD);
+        player:delKeyItem(dsp.ki.JOKER_CARD);
         player:addGil(GIL_RATE*8000);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
     elseif (csid == 337) then
@@ -117,8 +100,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 413) then
         player:setVar("ClassReunionProgress",1);
         player:addQuest(WINDURST,CLASS_REUNION);
-        player:addKeyItem(CARBUNCLES_TEAR);
-        player:messageSpecial(KEYITEM_OBTAINED,CARBUNCLES_TEAR);
+        player:addKeyItem(dsp.ki.CARBUNCLES_TEAR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CARBUNCLES_TEAR);
     elseif (csid == 415) then
         player:addQuest(WINDURST,CARBUNCLE_DEBACLE);
         player:setVar("CarbuncleDebacleProgress",1);

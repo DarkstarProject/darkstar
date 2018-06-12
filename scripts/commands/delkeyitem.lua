@@ -23,7 +23,7 @@ function onTrigger(player, keyId, target)
         error(player, "You must supply a key item ID.");
         return;
     end
-    keyId = tonumber(keyId) or _G[string.upper(keyId)];
+    keyId = tonumber(keyId) or dsp.ki[string.upper(keyId)];
     if (keyId == nil or keyId < 1) then
         error(player, "Invalid Key Item ID.");
         return;

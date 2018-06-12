@@ -2,11 +2,7 @@
 -- Area: RoMaeve
 --  MOB: Cursed Puppet
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

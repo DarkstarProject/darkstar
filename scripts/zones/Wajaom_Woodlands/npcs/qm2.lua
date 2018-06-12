@@ -6,44 +6,21 @@
 package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Wajaom_Woodlands/MobIDs");
 
 function onTrade(player,npc,trade)
-    local mobID = 16986429;
-    if (trade:hasItemQty(2577,1) and trade:getItemCount() == 1) then -- Trade Senorita Pamamas
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if (trade:hasItemQty(2577,1) and trade:getItemCount() == 1 and not GetMobByID(IRIZ_IMA):isSpawned()) then -- Trade Senorita Pamamas
+        player:tradeComplete();
+        SpawnMob(IRIZ_IMA):updateClaim(player);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_HAPPENS);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

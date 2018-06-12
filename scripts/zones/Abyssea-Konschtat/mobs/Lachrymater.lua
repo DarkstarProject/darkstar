@@ -3,10 +3,6 @@
 --  Mob: Lachrymater
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob,target)
     local DayofWeek = VanadielDayElement();
 
@@ -14,16 +10,8 @@ function onMobSpawn(mob,target)
 
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

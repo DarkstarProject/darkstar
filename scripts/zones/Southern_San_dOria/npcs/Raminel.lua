@@ -1,15 +1,16 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Raminel
+--  NPC: Raminel
 -- Involved in Quests: Riding on the Clouds
 -- !pos -56 2 -21 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/zones/Southern_San_dOria/MobIDs");
 require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/globals/pathfind");
+require("scripts/globals/quests");
 
 local path =
 {
@@ -58,20 +59,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 
     -- test fromStart
-    local start = pathfind.fromStart(path, 2);
-    local startFirst = pathfind.get(path, 3);
+    local start = dsp.path.fromStart(path, 2);
+    local startFirst = dsp.path.get(path, 3);
 
     if (start[1] ~= startFirst[1] or start[2] ~= startFirst[2] or start[3] ~= startFirst[3]) then
         printf("[Error] start path is not right %f %f %f actually = %f %f %f", startFirst[1], startFirst[2], startFirst[3], start[1], start[2], start[3]);
     end
 
     -- test fromEnd
-    -- local endPt = pathfind.fromEnd(path, 2);
-    -- local endFirst = pathfind.get(path, 37);
+    -- local endPt = dsp.path.fromEnd(path, 2);
+    -- local endFirst = dsp.path.get(path, 37);
 
     -- if (endPt[1] ~= endFirst[1] or endPt[2] ~= endFirst[2] or endPt[3] ~= endFirst[3]) then
     --     printf("[Error] endPt path is not right %f %f %f actually = %f %f %f", endFirst[1], endFirst[2], endFirst[3], endPt[1], endPt[2], endPt[3]);
@@ -79,37 +80,23 @@ function onSpawn(npc)
 end;
 
 function onPath(npc)
-
-    if (npc:atPoint(pathfind.get(path, 23))) then
-        local arp = GetNPCByID(17719409);
-
-        npc:lookAt(arp:getPos());
+    if (npc:atPoint(dsp.path.get(path, 23))) then
+        npc:lookAt(GetNPCByID(ARPETION):getPos());
         npc:wait();
-    elseif (npc:atPoint(pathfind.get(path, -1))) then
-        local lus = GetNPCByID(17719350);
-
-        -- give package to Lusiane
+    elseif (npc:atPoint(dsp.path.get(path, -1))) then
+        -- give package to Lusiane, wait 4 seconds, then continue
+        local lus = GetNPCByID(LUSIANE);
         lus:showText(npc, RAMINEL_DELIVERY);
         npc:showText(lus, LUSIANE_THANK);
-
-        -- wait default duration 4 seconds
-        -- then continue path
         npc:wait();
-    elseif (npc:atPoint(pathfind.last(path))) then
-        local lus = GetNPCByID(17719350);
-
+    elseif (npc:atPoint(dsp.path.last(path))) then
         -- when I walk away stop looking at me
-        lus:clearTargID();
+        GetNPCByID(LUSIANE):clearTargID();
     end
 
     -- go back and forth the set path
-    pathfind.patrol(npc, path);
-
+    dsp.path.patrol(npc, path);
 end;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -123,38 +110,21 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(614);
-
     npc:wait();
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     npc:wait(0);
 end;

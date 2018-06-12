@@ -62,6 +62,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint16>(0x1A) = PChar->m_TargID << 1;
                 ref<uint8>(0x1C) = PChar->GetSpeed();
                 ref<uint8>(0x1D) = PChar->speedsub;
+                ref<uint16>(0x30) = PChar->m_Costum;
             }
 
             if (updatemask & UPDATE_HP)
@@ -100,18 +101,19 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint8>(0x29) = PChar->allegiance;
                 
                 // Mentor flag..
-                if (PChar->m_mentor >= 2)
+                if (PChar->menuConfigFlags.flags & NFLAG_MENTOR)
                     ref<uint8>(0x2B) = 0x01;
                 else
                     ref<uint8>(0x2B) = 0x00;
 
                 // New Player Flag..
-                if (PChar->m_isNewPlayer)
+                if (PChar->isNewPlayer())
                     ref<uint8>(0x2A) |= 0x80;
 
-                ref<uint16>(0x30) = PChar->m_Costum;
-
                 ref<uint32>(0x34) = 0x010CA248; // black chocobo
+
+                if (PChar->animation == ANIMATION_MOUNT)
+                    ref<uint16>(0x44) = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_MOUNTED)->GetPower() << 4;
             }
             if (PChar->PPet != nullptr)
             {
@@ -123,7 +125,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
                 ref<uint8>(0x48) = look->face;
                 ref<uint8>(0x49) = look->race;
-                ref<uint16>(0x4A) = look->head + 0x1000;
+                ref<uint16>(0x4A) = PChar->menuConfigFlags.flags & NFLAG_DISPLAY_HEAD ? 0 : look->head + 0x1000;
                 ref<uint16>(0x4C) = look->body + 0x2000;
                 ref<uint16>(0x4E) = look->hands + 0x3000;
                 ref<uint16>(0x50) = look->legs + 0x4000;

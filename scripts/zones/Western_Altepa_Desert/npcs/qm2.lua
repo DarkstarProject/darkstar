@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Western Altepa Desert
--- NPC:  qm2 (???)
+--  NPC: qm2 (???)
 -- Involved in Mission: Bastok 6-1
 -- !pos -325 0 -111 125
 -----------------------------------
 package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Western_Altepa_Desert/TextIDs");
 require("scripts/zones/Western_Altepa_Desert/MobIDs");
 require("scripts/globals/keyitems");
@@ -17,11 +16,11 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 2 and
-        player:hasKeyItem(ALTEPA_MOONPEBBLE) == false) then
+        player:hasKeyItem(dsp.ki.ALTEPA_MOONPEBBLE) == false) then
         if (not GetMobByID(EASTERN_SPHINX):isSpawned() and not GetMobByID(WESTERN_SPHINX):isSpawned()) then
             if (player:getVar("Mission6-1MobKilled") > 0) then
-                player:addKeyItem(ALTEPA_MOONPEBBLE);
-                player:messageSpecial(KEYITEM_OBTAINED,ALTEPA_MOONPEBBLE);
+                player:addKeyItem(dsp.ki.ALTEPA_MOONPEBBLE);
+                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ALTEPA_MOONPEBBLE);
                 player:setVar("Mission6-1MobKilled",0);
                 player:setVar("MissionStatus",3);
             else
@@ -35,11 +34,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

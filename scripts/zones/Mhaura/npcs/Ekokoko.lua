@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Ekokoko
+--  NPC: Ekokoko
 -- Gouvernor of Mhaura
 -- Involved in Quest: Riding on the Clouds
 -- !pos -78 -24 28 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,16 +18,12 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
-            player:addKeyItem(SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SOMBER_STONE);
+            player:addKeyItem(dsp.ki.SOMBER_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -42,20 +34,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

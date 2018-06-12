@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Bibiki Bay
--- NPC:  Toh Zonikki
+--  NPC: Toh Zonikki
 -- Type: Clamming NPC
 -- !pos -371 -1 -421 4
 -----------------------------------
-
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
-
+-----------------------------------
 require("scripts/zones/Bibiki_Bay/TextIDs");
 require("scripts/globals/keyitems");
-
 -----------------------------------
 -- Local Variables
 -----------------------------------
@@ -79,20 +77,12 @@ local function owePlayerClammedItems(player)
     return false;
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    if ( player:hasKeyItem(CLAMMING_KIT)) then -- Player has clamming kit
+    if ( player:hasKeyItem(dsp.ki.CLAMMING_KIT)) then -- Player has clamming kit
 
         if (player:getVar("ClammingKitBroken") == 1) then -- Broken bucket
             player:startEvent(30, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -109,13 +99,7 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 28) then
         local enoughMoney = 2; -- Not enough money
@@ -123,7 +107,7 @@ function onEventUpdate(player,csid,option)
             enoughMoney = 1; --Player has enough Money
         end
 
-        player:updateEvent(CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
+        player:updateEvent(dsp.ki.CLAMMING_KIT, enoughMoney, 0, 0, 0, 500, 0, 0);
     elseif  (csid == 29) then
         local clammingKitSize = player:getVar("ClammingKitSize");
 
@@ -131,28 +115,22 @@ function onEventUpdate(player,csid,option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 28) then
         if (option == 1) then -- Give 50pz clamming kit
             player:setVar("ClammingKitSize", 50);
-            player:addKeyItem(CLAMMING_KIT);
+            player:addKeyItem(dsp.ki.CLAMMING_KIT);
             player:delGil(500);
-            player:messageSpecial(KEYITEM_OBTAINED,CLAMMING_KIT);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CLAMMING_KIT);
         end
     elseif (csid == 29) then
         if (option == 2) then -- Give player clammed items
 
             player:setVar("ClammingKitSize", 0);
             player:setVar("ClammingKitWeight", 0);
-            player:delKeyItem(CLAMMING_KIT);
-            player:messageSpecial(YOU_RETURN_THE,CLAMMING_KIT);
+            player:delKeyItem(dsp.ki.CLAMMING_KIT);
+            player:messageSpecial(YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
 
             giveClammedItems(player);
 
@@ -166,7 +144,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ClammingKitSize", 0);
         player:setVar("ClammingKitBroken", 0);
         player:setVar("ClammingKitWeight", 0);
-        player:delKeyItem(CLAMMING_KIT);
-        player:messageSpecial(YOU_RETURN_THE,CLAMMING_KIT);
+        player:delKeyItem(dsp.ki.CLAMMING_KIT);
+        player:messageSpecial(YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
     end
 end;

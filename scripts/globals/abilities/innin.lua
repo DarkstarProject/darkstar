@@ -5,24 +5,16 @@
 -- Recast Time: 3:00
 -- Duration: 5:00
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     return 0,0;
 end;
 
------------------------------------
--- onUseAbility
------------------------------------
-
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(EFFECT_INNIN);
-    target:delStatusEffect(EFFECT_YONIN);
-    target:addStatusEffect(EFFECT_INNIN,30,15,300,0,20);
+    target:delStatusEffect(dsp.effect.INNIN);
+    target:delStatusEffect(dsp.effect.YONIN);
+    target:addStatusEffect(dsp.effect.INNIN,30,15,300,0,20);
 end;

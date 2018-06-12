@@ -3,19 +3,11 @@
 --  MOB: Picklix Longindex
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

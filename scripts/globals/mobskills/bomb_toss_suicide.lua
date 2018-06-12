@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
     if (mob:isMobType(MOBTYPE_NOTORIOUS) or mob:isInDynamis()) then
         return 1;
     end
-    if (mob:getMainJob() ~= JOBS.THF and math.random() < 0.2) then
+    if (mob:getMainJob() ~= dsp.job.THF and math.random() < 0.2) then
         return 1;
     end
     return 0;
@@ -26,11 +26,11 @@ function onMobWeaponSkill(target, mob, skill)
     local power = math.random(12,18);
 
     -- thfs drop bombs like crazy
-    if (job == JOBS.THF) then
+    if (job == dsp.job.THF) then
         power = power + 4;
     end
 
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*power*BOMB_TOSS_HPP,ELE_FIRE,dmgmod,TP_MAB_BONUS,1);
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*power*BOMB_TOSS_HPP,dsp.magic.ele.FIRE,dmgmod,TP_MAB_BONUS,1);
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS);
 
     mob:setHP(0);

@@ -2,11 +2,7 @@
 -- Area: Qufim Island
 --  MOB: Acrophies
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

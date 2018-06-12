@@ -127,7 +127,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
     ref<uint8>(0x44) = look->face;
     ref<uint8>(0x45) = look->race;
-    ref<uint16>(0x46) = look->head   + 0x1000;
+    ref<uint16>(0x46) = PChar->menuConfigFlags.flags & NFLAG_DISPLAY_HEAD ? 0 : look->head + 0x1000;
     ref<uint16>(0x48) = look->body   + 0x2000;
     ref<uint16>(0x4A) = look->hands  + 0x3000;
     ref<uint16>(0x4C) = look->legs   + 0x4000;
@@ -146,7 +146,7 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     ref<uint8>(0x58) = PChar->PInstance ? PChar->PInstance->GetBackgroundMusicNight() : PChar->loc.zone->GetBackgroundMusicNight();
     ref<uint8>(0x5A) = PChar->PInstance ? PChar->PInstance->GetSoloBattleMusic() : PChar->loc.zone->GetSoloBattleMusic();
     ref<uint8>(0x5C) = PChar->PInstance ? PChar->PInstance->GetPartyBattleMusic() : PChar->loc.zone->GetPartyBattleMusic();
-    ref<uint8>(0x5E) = 0xD4; // 0xD4 for chocobo and 0x54 for mounts
+    ref<uint8>(0x5E) = PChar->animation == ANIMATION_MOUNT ? 0x54 : 0xD4;
 
     ref<uint16>(0x60) = PChar->loc.boundary;
     ref<uint16>(0x68) = PChar->loc.zone->GetWeather();

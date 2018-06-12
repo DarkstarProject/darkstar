@@ -13,24 +13,20 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_SMITHING_IMAGERY) == true) then
+    if (target:hasStatusEffect(dsp.effect.SMITHING_IMAGERY) == true) then
         result = 237;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_SMITHING_IMAGERY,3,0,120);
+    target:addStatusEffect(dsp.effect.SMITHING_IMAGERY,3,0,120);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_SMT, 1);
+    target:addMod(dsp.mod.SMITH, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_SMT, 1);
+    target:delMod(dsp.mod.SMITH, 1);
 end;

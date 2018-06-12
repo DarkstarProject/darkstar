@@ -7,23 +7,16 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     -- The wyvern must be present in order to use Spirit Surge
     if (target:getPet() == nil) then
-        return msgBasic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0;
     else
         return 0,0;
     end
 end;
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     -- Spirit Surge increases dragoon's MAX HP increases by 25% of wyvern MaxHP
@@ -36,7 +29,7 @@ function onUseAbility(player,target,ability)
     pet:delTP(petTP); -- remove TP from pet
     -- Spirit Surge increases dragoon's Strength
     local strBoost = 0;
-    if (target:getMainJob() == JOBS.DRG) then
+    if (target:getMainJob() == dsp.job.DRG) then
         strBoost = (1 + target:getMainLvl()/5); -- Use Mainjob Lvl
     else
         strBoost = (1 + target:getSubLvl()/5);  -- Use Subjob Lvl
@@ -46,9 +39,9 @@ function onUseAbility(player,target,ability)
 
     target:despawnPet();
     -- All Jump recast times are reset
-    target:resetRecast(RECAST_ABILITY,158); -- Jump
-    target:resetRecast(RECAST_ABILITY,159); -- High Jump
-    target:resetRecast(RECAST_ABILITY,160); -- Super Jump
+    target:resetRecast(dsp.recast.ABILITY,158); -- Jump
+    target:resetRecast(dsp.recast.ABILITY,159); -- High Jump
+    target:resetRecast(dsp.recast.ABILITY,160); -- Super Jump
 
-    target:addStatusEffect(EFFECT_SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
+    target:addStatusEffect(dsp.effect.SPIRIT_SURGE, mhp_boost, 0, duration, 0, strBoost);
 end;

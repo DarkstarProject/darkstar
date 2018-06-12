@@ -10,18 +10,11 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1,-462,-4,-420,-455,-1,-392); -- approach the Cutter
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -43,47 +36,27 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1");
     player:entityVisualPacket("2pb1");
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
-    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
+    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(8);
     elseif (player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(14);
-    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(EPHRAMADIAN_GOLD_COIN)) then
+    elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
         player:startEvent(15);
     elseif (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
         player:startEvent(237);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 8) then
         player:setVar("AhtUrganStatus",1);
         player:startEvent(34,1,1,1,1,1,1,1,1);
@@ -95,8 +68,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 14) then
         player:completeMission(TOAU,PREVALENCE_OF_PIRATES);
         player:setVar("AhtUrganStatus",0);
-        player:addKeyItem(PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
         player:addMission(TOAU,SHADES_OF_VENGEANCE);
     elseif (csid == 15) then
         player:setVar("AhtUrganStatus",1);

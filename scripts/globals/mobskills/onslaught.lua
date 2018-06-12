@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Onslaught
 --
---  Description: Lowers target's accuracy. Guttler/Ogre Killer: Temporarily increases Attack. 
+--  Description: Lowers target's accuracy. Guttler/Ogre Killer: Temporarily increases Attack.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     
     local duration = 60;
-    local typeEffect = EFFECT_ACCURACY_DOWN;
+    local typeEffect = dsp.effect.ACCURACY_DOWN;
     local power = 30;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);

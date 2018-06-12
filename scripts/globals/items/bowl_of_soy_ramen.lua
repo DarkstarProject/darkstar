@@ -16,14 +16,14 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,6458);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6458);
 end;
 
 -----------------------------------------
@@ -31,25 +31,25 @@ end;
 -----------------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 50);
-    target:addMod(MOD_STR, 5);
-    target:addMod(MOD_VIT, 5);
-    target:addMod(MOD_AGI, 3);
-    target:addMod(MOD_FOOD_ATTP, 10);
-    target:addMod(MOD_FOOD_ATT_CAP, 170);
-    target:addMod(MOD_FOOD_RATTP, 10);
-    target:addMod(MOD_FOOD_RATT_CAP, 170);
-    target:addMod(MOD_SLOWRES, 10);
+    target:addMod(dsp.mod.HP, 50);
+    target:addMod(dsp.mod.STR, 5);
+    target:addMod(dsp.mod.VIT, 5);
+    target:addMod(dsp.mod.AGI, 3);
+    target:addMod(dsp.mod.FOOD_ATTP, 10);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 170);
+    target:addMod(dsp.mod.FOOD_RATTP, 10);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 170);
+    target:addMod(dsp.mod.SLOWRES, 10);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 50);
-    target:delMod(MOD_STR, 5);
-    target:delMod(MOD_VIT, 5);
-    target:delMod(MOD_AGI, 3);
-    target:delMod(MOD_FOOD_ATTP, 10);
-    target:delMod(MOD_FOOD_ATT_CAP, 170);
-    target:delMod(MOD_FOOD_RATTP, 10);
-    target:delMod(MOD_FOOD_RATT_CAP, 170);
-    target:delMod(MOD_SLOWRES, 10);
+    target:delMod(dsp.mod.HP, 50);
+    target:delMod(dsp.mod.STR, 5);
+    target:delMod(dsp.mod.VIT, 5);
+    target:delMod(dsp.mod.AGI, 3);
+    target:delMod(dsp.mod.FOOD_ATTP, 10);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 170);
+    target:delMod(dsp.mod.FOOD_RATTP, 10);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 170);
+    target:delMod(dsp.mod.SLOWRES, 10);
 end;

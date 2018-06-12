@@ -14,9 +14,6 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
 local itemMap =
 {
     -- itemid, abundance, requirement
@@ -31,6 +28,7 @@ local itemMap =
     { 703, 6, DIGREQ_NONE },
     { 885, 9, DIGREQ_NONE },
     { 4096, 100, DIGREQ_NONE },  -- all crystals
+    { 1255, 10, DIGREQ_NONE }, -- all ores
     { 2364, 120, DIGREQ_BURROW },
     { 2235, 42, DIGREQ_BURROW },
     { 1237, 24, DIGREQ_BURROW },
@@ -44,9 +42,6 @@ local itemMap =
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
@@ -78,7 +73,6 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
-
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers();
 
@@ -91,8 +85,6 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 13) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
@@ -105,8 +97,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10) then
         player:setPos( 578, 25, -376, 126);

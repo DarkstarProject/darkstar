@@ -16,9 +16,9 @@ function onMagicCastingCheck(caster,target,spell)
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:delStatusEffect(EFFECT_PAX);
+    caster:delStatusEffect(dsp.effect.PAX);
 
-    local effect = EFFECT_ENMITY_BOOST;
+    local effect = dsp.effect.ENMITY_BOOST;
     caster:addStatusEffect(effect,30,0,300);
     return effect;
 end;

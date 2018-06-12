@@ -16,36 +16,36 @@ require("scripts/globals/status");
 
 function onItemCheck(target)
     local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
         result = 246;
     end
     return result;
 end;
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,14400,4295);
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4295);
 end;
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_STR, 5);
-    target:addMod(MOD_AGI, 1);
-    target:addMod(MOD_INT, -2);
-    target:addMod(MOD_FOOD_ATTP, 22);
-    target:addMod(MOD_FOOD_ATT_CAP, 80);
-    target:addMod(MOD_FOOD_RATTP, 22);
-    target:addMod(MOD_FOOD_RATT_CAP, 80);
-    target:addMod(MOD_STUNRES, 4);
-    target:addMod(MOD_HPHEAL, 1);
+    target:addMod(dsp.mod.STR, 5);
+    target:addMod(dsp.mod.AGI, 1);
+    target:addMod(dsp.mod.INT, -2);
+    target:addMod(dsp.mod.FOOD_ATTP, 22);
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 80);
+    target:addMod(dsp.mod.FOOD_RATTP, 22);
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 80);
+    target:addMod(dsp.mod.STUNRES, 4);
+    target:addMod(dsp.mod.HPHEAL, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_STR, 5);
-    target:delMod(MOD_AGI, 1);
-    target:delMod(MOD_INT, -2);
-    target:delMod(MOD_FOOD_ATTP, 22);
-    target:delMod(MOD_FOOD_ATT_CAP, 80);
-    target:delMod(MOD_FOOD_RATTP, 22);
-    target:delMod(MOD_FOOD_RATT_CAP, 80);
-    target:delMod(MOD_STUNRES, 4);
-    target:delMod(MOD_HPHEAL, 1);
+    target:delMod(dsp.mod.STR, 5);
+    target:delMod(dsp.mod.AGI, 1);
+    target:delMod(dsp.mod.INT, -2);
+    target:delMod(dsp.mod.FOOD_ATTP, 22);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 80);
+    target:delMod(dsp.mod.FOOD_RATTP, 22);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 80);
+    target:delMod(dsp.mod.STUNRES, 4);
+    target:delMod(dsp.mod.HPHEAL, 1);
 end;

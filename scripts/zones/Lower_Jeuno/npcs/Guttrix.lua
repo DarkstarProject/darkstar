@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Guttrix
+--  NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
 -- @zone 245
 -- !pos -36.010 4.499 -139.714
@@ -54,16 +54,8 @@ function getRSE(player, option)
     return -1;
 end;
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local pFame = player:getFameLevel(JEUNO);
@@ -78,7 +70,7 @@ function onTrigger(player,npc)
         if (rseGear < 15 ) then
             if (questStatus == QUEST_AVAILABLE) then
                 player:startEvent(10016,rseLocation,rseRace);
-            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(MAGICAL_PATTERN) and rseRace == pRace) then
+            elseif (questStatus >= QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MAGICAL_PATTERN) and rseRace == pRace) then
                 player:startEvent(10018,rseGear);
             else
                 player:startEvent(10017,rseLocation,rseRace);
@@ -91,22 +83,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local questStatus = player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR);
 
     if (csid == 10016) then
@@ -122,7 +102,7 @@ function onEventFinish(player,csid,option)
                 player:completeQuest(JEUNO,THE_GOBLIN_TAILOR);
             end
 
-            player:delKeyItem(MAGICAL_PATTERN);
+            player:delKeyItem(dsp.ki.MAGICAL_PATTERN);
             player:addItem(rseGear);
             player:messageSpecial(ITEM_OBTAINED,rseGear);
         end

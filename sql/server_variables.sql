@@ -49,16 +49,6 @@ INSERT INTO `server_variables` VALUES ('[BF]Shattering_Stars_job13_record', '600
 INSERT INTO `server_variables` VALUES ('[BF]Shattering_Stars_job14_record', '600');
 INSERT INTO `server_variables` VALUES ('[BF]Shattering_Stars_job15_record', '600');
 INSERT INTO `server_variables` VALUES ('[BF]Zilart_Mission_4_record', '600');
-INSERT INTO `server_variables` VALUES ('Main-to-Seiryu-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Seiryu-to-Genbu-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Genbu-to-Byakko-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Byakko-to-Suzaku-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Suzaku-to-Main-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Main-to-Suzaku-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Suzaku-to-Byakko-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Byakko-to-Genbu-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Genbu-to-Seiryu-BlueTeleport', '0');
-INSERT INTO `server_variables` VALUES ('Seiryu-to-Main-BlueTeleport', '0');
 INSERT INTO `server_variables` VALUES ('[TEMP]Respawn_qm1_for_curtana', '0');
 INSERT INTO `server_variables` VALUES ('[TEMP]Respawn_qm1_for_rattle', '0');
 INSERT INTO `server_variables` VALUES ('[TEMP]Respawn_qm2_for_offering', '0');

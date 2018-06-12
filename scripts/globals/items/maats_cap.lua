@@ -12,5 +12,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_MAAT,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.MAAT,0,1);
 end;

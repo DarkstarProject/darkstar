@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Metatron Torment
 --
---  Description: Lowers target's defense. Bravura/Abaddon Killer: Temporarily lowers damage taken from enemies. 
+--  Description: Lowers target's defense. Bravura/Abaddon Killer: Temporarily lowers damage taken from enemies.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded);
     
     local duration = 60;
-    local typeEffect = EFFECT_DEFENSE_DOWN;
+    local typeEffect = dsp.effect.DEFENSE_DOWN;
     local power = 19;
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration);

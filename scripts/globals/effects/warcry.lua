@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     EFFECT_WARCRY
+--     dsp.effect.WARCRY
 --
 -- Notes:
 -- Savagery TP bonus not cut in half like ffxclopedia says.
@@ -16,8 +16,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ATTP,effect:getPower());
-    target:addMod(MOD_TP_BONUS,effect:getSubPower());
+    target:addMod(dsp.mod.ATTP,effect:getPower());
+    target:addMod(dsp.mod.TP_BONUS,effect:getSubPower());
 end;
 
 -----------------------------------
@@ -32,6 +32,6 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,effect:getPower());
-    target:delMod(MOD_TP_BONUS,effect:getSubPower());
+    target:delMod(dsp.mod.ATTP,effect:getPower());
+    target:delMod(dsp.mod.TP_BONUS,effect:getSubPower());
 end;

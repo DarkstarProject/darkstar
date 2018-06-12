@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_BARBLIZZARD
+-- dsp.effect.BARBLIZZARD
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ICERES,effect:getPower());
+    target:addMod(dsp.mod.ICERES,effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ICERES,effect:getPower());
+    target:delMod(dsp.mod.ICERES,effect:getPower());
 end;

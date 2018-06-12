@@ -72,9 +72,9 @@ end
 -- Unlocks a mog locker for a player. Returns the 'expired' timestamp (-1)
 function unlockMogLocker(player)
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
-    local currentSize = player:getContainerSize(LOC_MOGLOCKER)
+    local currentSize = player:getContainerSize(dsp.inv.MOGLOCKER)
     if currentSize == 0 then -- we do this check in case some servers auto-set 80 slots for mog locker items
-        player:changeContainerSize(LOC_MOGLOCKER, 30)
+        player:changeContainerSize(dsp.inv.MOGLOCKER, 30)
     end
     return -1
 end
@@ -116,7 +116,7 @@ function addMogLockerExpiryTime(player, numBronze)
 
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
     -- send an invent size packet to enable the items if they weren't
-    player:changeContainerSize(LOC_MOGLOCKER, 0)
+    player:changeContainerSize(dsp.inv.MOGLOCKER, 0)
     return true
 end
 

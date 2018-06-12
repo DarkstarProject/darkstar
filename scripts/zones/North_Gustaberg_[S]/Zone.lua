@@ -5,20 +5,12 @@
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/zones/North_Gustaberg_[S]/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -31,32 +23,16 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
-        player:addKeyItem(CLUMP_OF_ANIMAL_HAIR);
-        player:messageSpecial(KEYITEM_OBTAINED,CLUMP_OF_ANIMAL_HAIR);
+        player:addKeyItem(dsp.ki.CLUMP_OF_ANIMAL_HAIR);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CLUMP_OF_ANIMAL_HAIR);
     end
 end;

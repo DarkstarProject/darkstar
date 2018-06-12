@@ -38,7 +38,7 @@ MOBDRAIN_TP = 2;
 
 --skillparam (MAGICAL)
 -- this is totally useless and should be removed
--- add resistence using ELE_FIRE, see bomb_toss.lua
+-- add resistence using dsp.magic.ele.FIRE, see bomb_toss.lua
 MOBPARAM_FIRE = 6;
 MOBPARAM_EARTH = 7;
 MOBPARAM_WATER = 8;
@@ -91,7 +91,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local returninfo = {};
 
     --get dstr (bias to monsters, so no fSTR)
-    local dstr = mob:getStat(MOD_STR) - target:getStat(MOD_VIT);
+    local dstr = mob:getStat(dsp.mod.STR) - target:getStat(dsp.mod.VIT);
     if (dstr < -10) then
         dstr = -10;
     end
@@ -104,8 +104,8 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     local lvltarget = target:getMainLvl();
     local acc = mob:getACC();
     local eva = target:getEVA();
-    if (target:hasStatusEffect(EFFECT_YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
-        eva = eva + target:getStatusEffect(EFFECT_YONIN):getPower();
+    if (target:hasStatusEffect(dsp.effect.YONIN) and mob:isFacing(target, 23)) then -- Yonin evasion boost if mob is facing target
+        eva = eva + target:getStatusEffect(dsp.effect.YONIN):getPower();
     end
 
     --apply WSC
@@ -116,10 +116,10 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
 
     --work out and cap ratio
     if (offcratiomod == nil) then -- default to attack. Pretty much every physical mobskill will use this, Cannonball being the exception.
-        offcratiomod = mob:getStat(MOD_ATT);
+        offcratiomod = mob:getStat(dsp.mod.ATT);
         -- print ("Nothing passed, defaulting to attack");
     end;
-    local ratio = offcratiomod/target:getStat(MOD_DEF);
+    local ratio = offcratiomod/target:getStat(dsp.mod.DEF);
 
     local lvldiff = lvluser - lvltarget;
     if lvldiff < 0 then
@@ -234,7 +234,7 @@ function MobPhysicalMove(mob,target,skill,numberofhits,accmod,dmgmod,tpeffect,mt
     if (hitslanded == 0 or finaldmg == 0) then
         finaldmg = 0;
         hitslanded = 0;
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
     end
 
     returninfo.dmg = finaldmg;
@@ -255,7 +255,7 @@ end
 -- 2 = TP_MAB_BONUS
 -- 3 = TP_DMG_BONUS
 -- tpvalue affects the strength of having more TP along the following lines:
--- TP_NO_EFFECT -> tpvalue has no effect.
+-- TP_NO_EFFECT -> tpvalue has no dsp.effect.
 -- TP_MACC_BONUS -> direct multiplier to macc (1 for default)
 -- TP_MAB_BONUS -> direct multiplier to mab (1 for default)
 -- TP_DMG_BONUS -> direct multiplier to damage (V+dINT) (1 for default)
@@ -271,11 +271,11 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     local resist = 1;
 
     local mdefBarBonus = 0;
-    if (element > 0 and element <= 6 and target:hasStatusEffect(barSpells[element])) then -- bar- spell magic defense bonus
-        mdefBarBonus = target:getStatusEffect(barSpells[element]):getSubPower();
+    if (element > 0 and element <= 6 and target:hasStatusEffect(dsp.magic.barSpell[element])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[element]):getSubPower();
     end
     -- plus 100 forces it to be a number
-    mab = (100 + mob:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus);
+    mab = (100 + mob:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus);
 
     if (mab > 1.3) then
         mab = 1.3;
@@ -298,10 +298,10 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
     if (mob:isPet() and mob:getMaster() ~= nil) then
         local master = mob:getMaster();
         if (master:getPetID() >= 0 and master:getPetID() <= 20) then -- check to ensure pet is avatar
-            avatarAccBonus = utils.clamp(master:getSkillLevel(SKILL_SUM) - master:getMaxSkillLevel(mob:getMainLvl(), JOBS.SMN, SUMMONING_SKILL), 0, 200);
+            avatarAccBonus = utils.clamp(master:getSkillLevel(dsp.skill.SUMMONING_MAGIC) - master:getMaxSkillLevel(mob:getMainLvl(), dsp.job.SMN, dsp.skill.SUMMONING_MAGIC), 0, 200);
         end
     end
-    resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),avatarAccBonus,element);
+    resist = applyPlayerResistance(mob,nil,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),avatarAccBonus,element);
 
     local magicDefense = getElementalDamageReduction(target, element);
 
@@ -314,8 +314,8 @@ function MobMagicalMove(mob,target,skill,damage,element,dmgmod,tpeffect,tpvalue)
 end
 
 -- mob version
--- effect = EFFECT_WHATEVER if enfeeble
--- statmod = the stat to account for resist (INT,MND,etc) e.g. MOD_INT
+-- effect = dsp.effect.WHATEVER if enfeeble
+-- statmod = the stat to account for resist (INT,MND,etc) e.g. dsp.mod.INT
 -- This determines how much the monsters ability resists on the player.
 function applyPlayerResistance(mob,effect,target,diff,bonus,element)
     local percentBonus = 0;
@@ -347,31 +347,31 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
 
     dayWeatherBonus = 1.00;
 
-    if caster:getWeather() == singleWeatherStrong[ele] then
+    if caster:getWeather() == dsp.magic.singleWeatherStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif caster:getWeather() == singleWeatherWeak[ele] then
+    elseif caster:getWeather() == dsp.magic.singleWeatherWeak[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus - 0.10;
         end
-    elseif caster:getWeather() == doubleWeatherStrong[ele] then
+    elseif caster:getWeather() == dsp.magic.doubleWeatherStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.25;
         end
-    elseif caster:getWeather() == doubleWeatherWeak[ele] then
+    elseif caster:getWeather() == dsp.magic.doubleWeatherWeak[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus - 0.25;
         end
     end
 
-    if VanadielDayElement() == dayStrong[ele] then
+    if VanadielDayElement() == dsp.magic.dayStrong[ele] then
         if math.random() < 0.33 then
             dayWeatherBonus = dayWeatherBonus + 0.10;
         end
-    elseif VanadielDayElement() == dayWeak[ele] then
+    elseif VanadielDayElement() == dsp.magic.dayWeak[ele] then
         if math.random() < 0.33 then
-            dayWeatherBonus = dayWeatherBonus + 0.10;
+            dayWeatherBonus = dayWeatherBonus - 0.10;
         end
     end
 
@@ -391,14 +391,14 @@ function mobAddBonuses(caster, spell, target, dmg, ele)
     dmg = math.floor(dmg * burst);
 
     local mdefBarBonus = 0;
-    if (ele > 0 and ele <= 6 and target:hasStatusEffect(barSpells[ele])) then -- bar- spell magic defense bonus
-        mdefBarBonus = target:getStatusEffect(barSpells[ele]):getSubPower();
+    if (ele > 0 and ele <= 6 and target:hasStatusEffect(dsp.magic.barSpell[ele])) then -- bar- spell magic defense bonus
+        mdefBarBonus = target:getStatusEffect(dsp.magic.barSpell[ele]):getSubPower();
     end
-    mab = (100 + caster:getMod(MOD_MATT)) / (100 + target:getMod(MOD_MDEF) + mdefBarBonus) ;
+    mab = (100 + caster:getMod(dsp.mod.MATT)) / (100 + target:getMod(dsp.mod.MDEF) + mdefBarBonus) ;
 
     dmg = math.floor(dmg * mab);
 
-    magicDmgMod = (256 + target:getMod(MOD_DMGMAGIC)) / 256;
+    magicDmgMod = (256 + target:getMod(dsp.mod.DMGMAGIC)) / 256;
 
     dmg = math.floor(dmg * magicDmgMod);
 
@@ -459,7 +459,7 @@ function MobBreathMove(mob, target, percent, base, element, cap)
     -- elemental resistence
     if (element ~= nil and element > 0) then
         -- no skill available, pass nil
-        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(MOD_INT)-target:getStat(MOD_INT),0,element);
+        local resist = applyPlayerResistance(mob,nil,target,mob:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT),0,element);
 
         -- get elemental damage reduction
         local defense = getElementalDamageReduction(target, element)
@@ -480,15 +480,15 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handle pd
-    if ((target:hasStatusEffect(EFFECT_PERFECT_DODGE) or target:hasStatusEffect(EFFECT_ALL_MISS) )
+    if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
             and skilltype==MOBSKILL_PHYSICAL) then
-        skill:setMsg(msgBasic.SKILL_MISS);
+        skill:setMsg(dsp.msg.basic.SKILL_MISS);
         return 0;
     end
 
     -- set message to damage
     -- this is for AoE because its only set once
-    skill:setMsg(msgBasic.DAMAGE);
+    skill:setMsg(dsp.msg.basic.DAMAGE);
 
     --Handle shadows depending on shadow behaviour / skilltype
     if (shadowbehav ~= MOBPARAM_WIPE_SHADOWS and shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --remove 'shadowbehav' shadows.
@@ -501,23 +501,23 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
 
         -- dealt zero damage, so shadows took hit
         if (dmg == 0) then
-            skill:setMsg(msgBasic.SHADOW_ABSORB);
+            skill:setMsg(dsp.msg.basic.SHADOW_ABSORB);
             return shadowbehav;
         end
 
     elseif (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --take em all!
-        target:delStatusEffect(EFFECT_COPY_IMAGE);
-        target:delStatusEffect(EFFECT_BLINK);
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effect.COPY_IMAGE);
+        target:delStatusEffect(dsp.effect.BLINK);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
     if (skilltype == MOBSKILL_PHYSICAL and skill:isSingle() == false) then
-        target:delStatusEffect(EFFECT_THIRD_EYE);
+        target:delStatusEffect(dsp.effect.THIRD_EYE);
     end
 
     --handle Third Eye using shadowbehav as a guide
     if (skilltype == MOBSKILL_PHYSICAL and utils.thirdeye(target)) then
-        skill:setMsg(msgBasic.ANTICIPATE);
+        skill:setMsg(dsp.msg.basic.ANTICIPATE);
         return 0;
     end
 
@@ -540,7 +540,7 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     end
 
     --handling phalanx
-    dmg = dmg - target:getMod(MOD_PHALANX);
+    dmg = dmg - target:getMod(dsp.mod.PHALANX);
 
     if (dmg < 0) then
         return 0;
@@ -588,7 +588,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delMP(drain);
             mob:addMP(drain);
 
-            return msgBasic.SKILL_DRAIN_MP;
+            return dsp.msg.basic.SKILL_DRAIN_MP;
         elseif (drainType == MOBDRAIN_TP) then
             -- can't go over limited tp
             if (target:getTP() < drain) then
@@ -598,7 +598,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delTP(drain);
             mob:addTP(drain);
 
-            return msgBasic.SKILL_DRAIN_TP;
+            return dsp.msg.basic.SKILL_DRAIN_TP;
         elseif (drainType == MOBDRAIN_HP) then
             -- can't go over limited hp
             if (target:getHP() < drain) then
@@ -608,7 +608,7 @@ function MobDrainMove(mob, target, drainType, drain)
             target:delHP(drain);
             mob:addHP(drain);
 
-            return msgBasic.SKILL_DRAIN_HP;
+            return dsp.msg.basic.SKILL_DRAIN_HP;
         end
     else
         -- it's undead so just deal damage
@@ -618,10 +618,10 @@ function MobDrainMove(mob, target, drainType, drain)
         end
 
         target:delHP(drain);
-        return msgBasic.DAMAGE;
+        return dsp.msg.basic.DAMAGE;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobPhysicalDrainMove(mob, target, skill, drainType, drain)
@@ -629,64 +629,58 @@ function MobPhysicalDrainMove(mob, target, skill, drainType, drain)
         return MobDrainMove(mob, target, drainType, drain);
     end
 
-    return msgBasic.SKILL_MISS;
+    return dsp.msg.basic.SKILL_MISS;
 end;
 
 function MobDrainAttribute(mob, target, typeEffect, power, tick, duration)
     local positive = nil;
-    if (typeEffect == EFFECT_STR_DOWN) then
-        positive = EFFECT_STR_BOOST;
-    elseif (typeEffect == EFFECT_DEX_DOWN) then
-        positive = EFFECT_DEX_BOOST;
-    elseif (typeEffect == EFFECT_AGI_DOWN) then
-        positive = EFFECT_AGI_BOOST;
-    elseif (typeEffect == EFFECT_VIT_DOWN) then
-        positive = EFFECT_VIT_BOOST;
-    elseif (typeEffect == EFFECT_MND_DOWN) then
-        positive = EFFECT_MND_BOOST;
-    elseif (typeEffect == EFFECT_INT_DOWN) then
-        positive = EFFECT_INT_BOOST;
-    elseif (typeEffect == EFFECT_CHR_DOWN) then
-        positive = EFFECT_CHR_BOOST;
+    if (typeEffect == dsp.effect.STR_DOWN) then
+        positive = dsp.effect.STR_BOOST;
+    elseif (typeEffect == dsp.effect.DEX_DOWN) then
+        positive = dsp.effect.DEX_BOOST;
+    elseif (typeEffect == dsp.effect.AGI_DOWN) then
+        positive = dsp.effect.AGI_BOOST;
+    elseif (typeEffect == dsp.effect.VIT_DOWN) then
+        positive = dsp.effect.VIT_BOOST;
+    elseif (typeEffect == dsp.effect.MND_DOWN) then
+        positive = dsp.effect.MND_BOOST;
+    elseif (typeEffect == dsp.effect.INT_DOWN) then
+        positive = dsp.effect.INT_BOOST;
+    elseif (typeEffect == dsp.effect.CHR_DOWN) then
+        positive = dsp.effect.CHR_BOOST;
     end
 
     if (positive ~= nil) then
         local results = MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
 
-        if (results == msgBasic.SKILL_ENFEEB_IS) then
+        if (results == dsp.msg.basic.SKILL_ENFEEB_IS) then
             mob:addStatusEffect(positive, power, tick, duration);
 
-            return msgBasic.ATTR_DRAINED;
+            return dsp.msg.basic.ATTR_DRAINED;
         end
 
-        return msgBasic.SKILL_MISS;
+        return dsp.msg.basic.SKILL_MISS;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobDrainStatusEffectMove(mob, target)
     -- try to drain buff
-    local effect = target:stealStatusEffect();
-    local dmg = 0;
+    local effect = mob:stealStatusEffect(target);
 
-    if (effect ~= nil) then
-        if (mob:hasStatusEffect(effect:getType()) == false) then
-            -- add to myself
-            mob:addStatusEffect(effect:getType(), effect:getPower(), effect:getTickCount(), effect:getDuration());
-        end
-        -- add buff to myself
-        return msgBasic.EFFECT_DRAINED;
+    if (effect ~= 0) then
+        return dsp.msg.basic.EFFECT_DRAINED;
     end
 
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 -- Adds a status effect to a target
 function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
 
     if (target:canGainStatusEffect(typeEffect, power)) then
-        local statmod = MOD_INT;
+        local statmod = dsp.mod.INT;
         local element = mob:getStatusEffectElement(typeEffect);
 
         local resist = applyPlayerResistance(mob,typeEffect,target,mob:getStat(statmod)-target:getStat(statmod),0,element);
@@ -696,12 +690,12 @@ function MobStatusEffectMove(mob, target, typeEffect, power, tick, duration)
             local totalDuration = utils.clamp(duration * resist, 1);
             target:addStatusEffect(typeEffect, power, tick, totalDuration);
 
-            return msgBasic.SKILL_ENFEEB_IS;
+            return dsp.msg.basic.SKILL_ENFEEB_IS;
         end
 
-        return msgBasic.SKILL_MISS; -- resist !
+        return dsp.msg.basic.SKILL_MISS; -- resist !
     end
-    return msgBasic.SKILL_NO_EFFECT; -- no effect
+    return dsp.msg.basic.SKILL_NO_EFFECT; -- no effect
 end;
 
 -- similar to status effect move except, this will not land if the attack missed
@@ -711,7 +705,7 @@ function MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, tick
         return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
 
-    return msgBasic.SKILL_MISS;
+    return dsp.msg.basic.SKILL_MISS;
 end;
 
 -- similar to statuseffect move except it will only take effect if facing
@@ -719,15 +713,15 @@ function MobGazeMove(mob, target, typeEffect, power, tick, duration)
     if (target:isFacing(mob)) then
         return MobStatusEffectMove(mob, target, typeEffect, power, tick, duration);
     end
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobBuffMove(mob, typeEffect, power, tick, duration)
 
     if (mob:addStatusEffect(typeEffect,power,tick,duration)) then
-        return msgBasic.SKILL_GAIN_EFFECT;
+        return dsp.msg.basic.SKILL_GAIN_EFFECT;
     end
-    return msgBasic.SKILL_NO_EFFECT;
+    return dsp.msg.basic.SKILL_NO_EFFECT;
 end;
 
 function MobHealMove(target, heal)
@@ -750,7 +744,7 @@ function MobTakeAoEShadow(mob, target, max)
 
     -- this is completely crap and should be using actual nin skill
     -- TODO fix this
-    if (target:getMainJob() == JOBS.NIN and math.random() < 0.6) then
+    if (target:getMainJob() == dsp.job.NIN and math.random() < 0.6) then
         max = max - 1;
         if (max < 1) then
             max = 1;

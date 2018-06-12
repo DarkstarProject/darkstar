@@ -3,21 +3,11 @@
 --  MOB: Suzaku (Pet version)
 -----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
 function onMobSpawn(mob)
 end;
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
------------------------------------
--- onMonsterMagicPrepare
------------------------------------
 
 -- Return the selected spell ID.
 function onMonsterMagicPrepare(mob, target)

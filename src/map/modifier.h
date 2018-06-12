@@ -206,8 +206,15 @@ enum class Mod
     CRITHITRATE               = 165, // Raises chance to crit
     CRIT_DMG_INCREASE         = 421, // Raises the damage of critcal hit by percent %
     ENEMYCRITRATE             = 166, // Raises chance enemy will crit
+    CRIT_DEF_BONUS            = 908, // Reduces crit hit damage
     MAGIC_CRITHITRATE         = 562, // Raises chance to magic crit
     MAGIC_CRIT_DMG_INCREASE   = 563, // Raises damage done when criting with magic
+
+    FENCER_TP_BONUS           = 903, // TP Bonus to weapon skills from Fencer Trait
+    FENCER_CRITHITRATE        = 904, // Increased Crit chance from Fencer Trait
+
+    SMITE                     = 898, // Raises attack when using H2H or 2H weapons (256 scale)
+    TACTICAL_GUARD            = 899, // Tp increase when guarding
 
     HASTE_MAGIC               = 167, // Haste (and Slow) from magic - 1024 base! (448 cap) Truncate at decimal, do not round.
     HASTE_ABILITY             = 383, // Haste (and Slow) from abilities - 1024 base! (256 cap?) Truncate at decimal, do not round.
@@ -217,6 +224,7 @@ enum class Mod
     FASTCAST                  = 170, // Increases Spell Cast Time (TRAIT)
     UFASTCAST                 = 407, // uncapped fast cast
     CURE_CAST_TIME            = 519, // cure cast time reduction
+    ELEMENTAL_CELERITY        = 901, // Quickens Elemental Magic Casting
     DELAY                     = 171, // Increase/Decrease Delay
     RANGED_DELAY              = 172, // Increase/Decrease Ranged Delay
     MARTIAL_ARTS              = 173, // The integer amount of delay to reduce from H2H weapons' base delay. (TRAIT)
@@ -304,6 +312,7 @@ enum class Mod
     AOE_NA                    = 524, // Set to 1 to make -na spells/erase always AoE w/ Divine Veil
     REGEN_MULTIPLIER          = 838, // Multiplier to base regen rate
     CURE2MP_PERCENT           = 860, // Converts % of "Cure" amount to MP
+    DIVINE_BENISON            = 910, // Adds fast cast and enmity reduction to -Na spells (includes Erase). Enmity reduction is half of the fast cast amount
 
     // Black Mage
     CLEAR_MIND                = 295, // Used in conjunction with HEALMP to increase amount between tics
@@ -317,10 +326,16 @@ enum class Mod
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds
     STEAL                     = 298, // Increase/Decrease THF Steal chance
+    DESPOIL                   = 896, // Increases THF Despoil chance
+    PERFECT_DODGE             = 883, // Increases Perfect Dodge duration in seconds
     TRIPLE_ATTACK             = 302, // Percent chance
     TREASURE_HUNTER           = 303, // Percent chance
+    SNEAK_ATK_DEX             = 874, // % DEX boost to Sneak Attack (if gear mod, needs to be equipped on hit)
     TRICK_ATK_AGI             = 520, // % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
     MUG_EFFECT                = 835, // Mug effect as multiplier
+    ACC_COLLAB_EFFECT         = 884, // Increases amount of enmity transferred for Accomplice/Collaborator
+    HIDE_DURATION             = 885, // Hide duration increase (percentage based)
+    GILFINDER                 = 897, // Gilfinder, duh
 
     // Paladin
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
@@ -329,10 +344,13 @@ enum class Mod
     ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
+    SHIELD_DEF_BONUS          = 905, // Shield Defense Bonus
 
     // Dark Knight
-    ARCANE_CIRCLE_DURATION    = 858,  // Arcane Circle extended duration in seconds
+    ARCANE_CIRCLE_DURATION    = 858, // Arcane Circle extended duration in seconds
     SOULEATER_EFFECT          = 96,  // Souleater power in percents
+    DESPERATE_BLOWS           = 906, // Adds ability haste to Last Resort
+    STALWART_SOUL             = 907, // Reduces damage taken from Souleater
 
     // Beastmaster
     TAME                      = 304, // Additional percent chance to charm
@@ -391,8 +409,10 @@ enum class Mod
 
     // Ninja
     UTSUSEMI                  = 307, // Everyone's favorite --tracks shadows.
+    UTSUSEMI_BONUS            = 900, // Extra shadows from gear
     NINJA_TOOL                = 308, // Percent chance to not use a tool.
     NIN_NUKE_BONUS            = 522, // magic attack bonus for NIN nukes
+    DAKEN                     = 911, // chance to throw a shuriken without consuming it
 
     // Dragoon
     ANCIENT_CIRCLE_DURATION   = 859, // Ancient Circle extended duration in seconds
@@ -435,9 +455,22 @@ enum class Mod
     ROLL_PUPPET               = 329, // Tracks totals
     ROLL_DANCERS              = 330, // Tracks totals
     ROLL_SCHOLARS             = 331, // Tracks totals
+    ROLL_BOLTERS              = 869, // Tracks totals
+    ROLL_CASTERS              = 870, // Tracks totals
+    ROLL_COURSERS             = 871, // Tracks totals
+    ROLL_BLITZERS             = 872, // Tracks totals
+    ROLL_TACTICIANS           = 873, // Tracks totals
+    ROLL_ALLIES               = 874, // Tracks totals
+    ROLL_MISERS               = 875, // Tracks totals
+    ROLL_COMPANIONS           = 876, // Tracks totals
+    ROLL_AVENGERS             = 877, // Tracks totals
+    ROLL_NATURALISTS          = 878, // Tracks totals
+    ROLL_RUNEISTS             = 879, // Tracks totals
     BUST                      = 332, // # of busts
     QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
     QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
+    PHANTOM_ROLL              = 881, // Phantom Roll+ Effect from SOA Rings.
+    PHANTOM_DURATION          = 882, // Phantom Roll Duration +.
 
     // Puppetmaster
     MANEUVER_BONUS            = 504, // Maneuver Stat Bonus
@@ -495,6 +528,7 @@ enum class Mod
     SPIKES_DMG                = 344, // stores the base damage of the spikes before reductions
 
     TP_BONUS                  = 345, //
+    SAVETP                    = 880, // SAVETP Effect for Miser's Roll / ATMA / Hagakure.
 
     // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
@@ -606,6 +640,15 @@ enum class Mod
     EXTRA_DMG_CHANCE          = 506, // Proc rate of OCC_DO_EXTRA_DMG. 111 would be 11.1%
     OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
 
+    REM_OCC_DO_DOUBLE_DMG     = 863, // Proc rate for REM Aftermaths that apply "Occasionally do double damage"
+    REM_OCC_DO_TRIPLE_DMG     = 864, // Proc rate for REM Aftermaths that apply "Occasionally do triple damage"
+
+    REM_OCC_DO_DOUBLE_DMG_RANGED = 867, // Ranged attack specific
+    REM_OCC_DO_TRIPLE_DMG_RANGED = 868, // Ranged attack specific
+
+    MYTHIC_OCC_ATT_TWICE      = 865, // Proc rate for "Occasionally attacks twice"
+    MYTHIC_OCC_ATT_THRICE     = 866, // Proc rate for "Occasionally attacks thrice"
+
     EAT_RAW_FISH              = 412, //
     EAT_RAW_MEAT              = 413, //
 
@@ -636,6 +679,10 @@ enum class Mod
     AUGMENTS_CONVERT          = 525, // Convert HP to MP Ratio Multiplier. Value = MP multiplier rate.
     AUGMENTS_SA               = 526, // Adds Critical Attack Bonus to Sneak Attack, percentage based.
     AUGMENTS_TA               = 527, // Adds Critical Attack Bonus to Trick Attack, percentage based.
+    AUGMENTS_FEINT            = 873, // Feint will give another -10 Evasion per merit level
+    AUGMENTS_ASSASSINS_CHARGE = 886, // Gives Assassin's Charge +1% Critical Hit Rate per merit level
+    AUGMENTS_AMBUSH           = 887, // Gives +1% Triple Attack per merit level when Ambush conditions are met
+    AUGMENTS_AURA_STEAL       = 889, // 20% chance of 2 effects to be dispelled or stolen per merit level
     ENHANCES_REFRESH          = 529, // "Enhances Refresh" adds +1 per modifier to spell's tick result.
     NO_SPELL_MP_DEPLETION     = 530, // % to not deplete MP on spellcast.
     FORCE_FIRE_DWBONUS        = 531, // Set to above 0 to force fire day/weather spell bonus/penalty.
@@ -654,6 +701,15 @@ enum class Mod
     RAPTURE_AMOUNT            = 568, // Bonus amount added to Rapture effect
     EBULLIENCE_AMOUNT         = 569, // Bonus amount added to Ebullience effect
     AQUAVEIL_COUNT            = 832, // Modifies the amount of hits that Aquaveil absorbs before being removed
+    ENH_MAGIC_DURATION        = 890, // Enhancing Magic Duration increase %
+    ENHANCES_COURSERS_ROLL    = 891, // Courser's Roll Bonus % chance
+    ENHANCES_CASTERS_ROLL     = 892, // Caster's Roll Bonus % chance
+    ENHANCES_BLITZERS_ROLL    = 893, // Blitzer's Roll Bonus % chance
+    ENHANCES_ALLIES_ROLL      = 894, // Allies' Roll Bonus % chance
+    ENHANCES_TACTICIANS_ROLL  = 895, // Tactician's Roll Bonus % chance
+    OCCULT_ACUMEN             = 902, // Grants bonus TP when dealing damage with elemental or dark magic
+
+    QUICK_MAGIC               = 909, // Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
 
     // Crafting food effects
     SYNTH_SUCCESS             = 851, // Rate of synthesis success
@@ -672,9 +728,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 863, // stuff
-    // SPARE = 864, // stuff
-    // SPARE = 865, // stuff
+    // SPARE = 912, // stuff
+    // SPARE = 913, // stuff
+    // SPARE = 914, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

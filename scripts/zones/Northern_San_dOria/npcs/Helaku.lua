@@ -11,17 +11,10 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
@@ -55,7 +48,7 @@ function onTrigger(player,npc)
             player:startEvent(537);
         elseif (missionStatus == 9) then
             player:startEvent(542);
-        elseif (player:hasKeyItem(KINDRED_CREST)) then
+        elseif (player:hasKeyItem(dsp.ki.KINDRED_CREST)) then
             player:startEvent(545);
         end
     else
@@ -63,22 +56,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 536) then
         player:setVar("MissionStatus",3);
@@ -91,8 +72,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 545) then
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",11);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
-        player:delKeyItem(KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
     end
 end;

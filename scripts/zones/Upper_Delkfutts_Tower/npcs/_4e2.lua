@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(DELKFUTT_KEY)) then
+    if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(6);
     else
         player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);
@@ -24,19 +24,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 6) then
-        if (player:hasKeyItem(DELKFUTT_KEY) == false) then
+        if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:addKeyItem(DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+            player:addKeyItem(dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
         end
     end
 end;

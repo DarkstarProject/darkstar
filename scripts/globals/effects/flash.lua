@@ -1,6 +1,6 @@
 -----------------------------------
 --
--- EFFECT_FLASH
+-- dsp.effect.FLASH
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ACC,-effect:getPower());
+    target:addMod(dsp.mod.ACC,-effect:getPower());
 end;
 
 -----------------------------------
@@ -26,5 +26,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ACC,-effect:getPower());
+    target:delMod(dsp.mod.ACC,-effect:getPower());
 end;

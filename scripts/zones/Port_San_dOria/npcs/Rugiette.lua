@@ -9,9 +9,6 @@ package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,16 +23,12 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local WildcatSandy = player:getVar("WildcatSandy");
@@ -48,22 +41,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 746) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",14,true);

@@ -1,12 +1,7 @@
 -----------------------------------
 -- Attachment: Flame Holder
 -----------------------------------
-
 require("scripts/globals/status")
-
------------------------------------
--- onUseAbility
------------------------------------
 
 local validskills = {
     [1940] = true,
@@ -27,7 +22,7 @@ function onEquip(pet)
     pet:addListener("WEAPONSKILL_STATE_ENTER", "AUTO_FLAME_HOLDER_START", function(pet, skill)
         if not validskills[skill] then return end
         local master = pet:getMaster()
-        local maneuvers = master:countEffect(EFFECT_FIRE_MANEUVER)
+        local maneuvers = master:countEffect(dsp.effect.FIRE_MANEUVER)
         local amount = 0
         if maneuvers == 1 then
             amount = 25
@@ -41,7 +36,7 @@ function onEquip(pet)
         else
             return
         end
-        pet:addMod(MOD_WEAPONSKILL_DAMAGE_BASE, amount)
+        pet:addMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE, amount)
         pet:setLocalVar("flameholder", amount)
     end)
     pet:addListener("WEAPONSKILL_STATE_EXIT", "AUTO_FLAME_HOLDER_END", function(pet, skill)
@@ -49,9 +44,9 @@ function onEquip(pet)
         local toremove = pet:getLocalVar("flameholdermaneuvers")
         if toremove == 0 then return end
         for i = 1, toremove do
-            master:delStatusEffectSilent(EFFECT_FIRE_MANEUVER)
+            master:delStatusEffectSilent(dsp.effect.FIRE_MANEUVER)
         end
-        pet:delMod(MOD_WEAPONSKILL_DAMAGE_BASE, pet:getLocalVar("flameholder"))
+        pet:delMod(dsp.mod.WEAPONSKILL_DAMAGE_BASE, pet:getLocalVar("flameholder"))
         pet:setLocalVar("flameholder", 0)
         pet:setLocalVar("flameholdermaneuvers", 0)
     end)

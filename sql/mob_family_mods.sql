@@ -210,11 +210,6 @@ INSERT INTO `mob_family_mods` VALUES (404,@roam_distance,15,1);
 INSERT INTO `mob_family_mods` VALUES (404,@roam_cool,35,1);
 INSERT INTO `mob_family_mods` VALUES (404,@roam_rate,30,1);
 
-INSERT INTO `mob_family_mods` VALUES (405,@roam_turns,3,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_distance,15,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_cool,35,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_rate,30,1);
-
 -- Sheep
 INSERT INTO `mob_family_mods` VALUES (226,@roam_turns,5,1);
 INSERT INTO `mob_family_mods` VALUES (226,@roam_distance,15,1);

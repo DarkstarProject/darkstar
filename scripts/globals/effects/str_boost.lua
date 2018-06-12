@@ -1,6 +1,6 @@
 -----------------------------------
 --
---  EFFECT_STR_BOOST
+-- dsp.effect.STR_BOOST
 --
 -----------------------------------
 
@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR,effect:getPower());
+    target:addMod(dsp.mod.STR,effect:getPower());
 end;
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostSTR_effect_size = effect:getPower();
     if (boostSTR_effect_size > 0) then
         effect:setPower(boostSTR_effect_size - 1)
-        target:delMod(MOD_STR,1); 
+        target:delMod(dsp.mod.STR,1);
     end
 end;
 
@@ -34,6 +34,6 @@ end;
 function onEffectLose(target,effect)
     local boostSTR_effect_size = effect:getPower();
     if (boostSTR_effect_size > 0) then
-        target:delMod(MOD_STR,boostSTR_effect_size);
+        target:delMod(dsp.mod.STR,boostSTR_effect_size);
     end
 end;

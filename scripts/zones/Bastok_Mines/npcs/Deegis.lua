@@ -1,23 +1,16 @@
 -----------------------------------
 -- Area: Bastok Mines
--- NPC: Deegis
+--  NPC: Deegis
 -- Standard Merchant NPC
 -----------------------------------
-
 require("scripts/globals/shop");
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
-
 -----------------------------------
--- onTrade Action
+require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     player:showText(npc,DEEGIS_SHOP_DIALOG);
@@ -41,24 +34,12 @@ function onTrigger(player,npc)
         0x31A0,   126,3,     --Bronze Mittens
         0x3188,  7614,3         --Chain Mittens
     }
-    showNationShop(player, NATION_BASTOK, stock);
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -11,12 +11,12 @@ function onBcnmRegister(player,instance)
     SetServerVariable("[DynaTavnazia]UniqueID",os.time());
     SetServerVariable("[DynaTavnazia]Boss_Trigger",0);
     SetServerVariable("[DynaTavnazia]Already_Received",0);
-    
+
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    
+
     player:setVar("DynamisID",GetServerVariable("[DynaTavnazia]UniqueID"));
     local realDay = os.time();
     if (DYNA_MIDNIGHT_RESET == true) then
@@ -24,10 +24,10 @@ function onBcnmEnter(player,instance)
     end
     local dynaWaitxDay = player:getVar("dynaWaitxDay");
 
-    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 24 * 60 * 60)) < realDay) then
+    if ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay) then
         player:setVar("dynaWaitxDay",realDay);
     end
-    
+
 end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
@@ -40,5 +40,5 @@ function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 4) then
         SetServerVariable("[DynaTavnazia]UniqueID",0);
     end
-    
+
 end;
