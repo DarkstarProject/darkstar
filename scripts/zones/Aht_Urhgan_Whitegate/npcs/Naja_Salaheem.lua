@@ -16,7 +16,6 @@ require("scripts/globals/npc_util");
 
 function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 2163) and player:getVar("Promotion") == 1) then -- Rank to PFC
-        player:confirmTrade()
         player:startEvent(5002,0,0,0,0,0,0,0,0,0);
     end
 end;
@@ -191,6 +190,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 5000 then
         player:setVar("Promotion", 1)
     elseif csid == 5002 then
+        player:confirmTrade()
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE);
         player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE);
         player:setVar("Promotion", 0)
