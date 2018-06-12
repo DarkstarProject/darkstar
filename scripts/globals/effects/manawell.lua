@@ -11,7 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:delStatusEffect(EFFECT_SPONTANEITY);
+   target:delStatusEffect(dsp.effect.SPONTANEITY);
 end;
 
 -----------------------------------
