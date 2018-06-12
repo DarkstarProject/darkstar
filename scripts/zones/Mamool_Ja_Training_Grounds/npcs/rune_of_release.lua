@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
                 v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5);
             end
             v:startEvent(102);
-		end
+        end
     end
     if (csid == 102) then
         player:setPos(0,0,0,0,52);

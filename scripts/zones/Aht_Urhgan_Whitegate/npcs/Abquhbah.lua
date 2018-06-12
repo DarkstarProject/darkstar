@@ -13,6 +13,8 @@ end;
 
 function onTrigger(player,npc)
     local PROMOTION = player:getVar("AssaultPromotion");
+    local RANK = 0
+    
     if PROMOTION <= 7 then
         RANK = 1
     elseif PROMOTION >= 8 and PROMOTION <= 11 then

@@ -19,8 +19,8 @@ function onInstanceCreated(instance)
         SpawnMob(v, instance);
     end
 
-    local rune = instance:getEntity(bit.band(Mamool.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Mamool.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Mamool.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Mamool.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setPos(-57, 1, -101,49);
     box:setPos(-57, 1, -104,49);
 
@@ -56,8 +56,8 @@ function onInstanceComplete(instance)
         v:messageSpecial(Mamool.text.RUNE_UNLOCKED_POS, 8, 8);
     end
 
-    local rune = instance:getEntity(bit.band(Mamool.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Mamool.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Mamool.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Mamool.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setStatus(dsp.status.NORMAL);
     box:setStatus(dsp.status.NORMAL);
 

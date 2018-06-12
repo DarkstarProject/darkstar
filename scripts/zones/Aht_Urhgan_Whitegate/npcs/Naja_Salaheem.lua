@@ -188,7 +188,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
-        elseif csid == 5000 then
+    elseif csid == 5000 then
         player:setVar("Promotion", 1)
     elseif csid == 5002 then
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE);
