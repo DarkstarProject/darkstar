@@ -33,8 +33,8 @@ ITEM_CANNOT_BE_OBTAINED =  6381; -- You cannot obtain the item <item>. Come back
        PARIKE_PORANKE_9 =  8968; -- Consider this a petite present from your pal Parike-Poranke!
       PARIKE_PORANKE_10 =  8972; -- Wait a minute... Don't tell me you came to Parike-Poranke on an empty stomach! This is terrible! The minister will have my head!
       PARIKE_PORANKE_12 =  8974; -- Phew! That was close... What were you thinking, crazy adventurer!
-      PARIKE_PORANKE_13 =  8977; -- Speaker Name's all in the name of science skill rises 0.1 points.
-      PARIKE_PORANKE_14 =  8978; -- Speaker Name's all in the name of science skill rises one level.
+      PARIKE_PORANKE_13 =  8977; -- ≺Possible Special Code: 1F≻≺BAD CHAR: 81≻≺Speaker Name≻'s “all in the name of science�? skill rises 0.1 points.≺Possible Special Code: 00≻
+      PARIKE_PORANKE_14 =  8978; -- ≺Possible Special Code: 1F≻≺BAD CHAR: 81≻≺Speaker Name≻'s “all in the name of science�? skill rises one level.≺Possible Special Code: 00≻
       PARIKE_PORANKE_15 =  8979; -- You know, I've learned a lot from my mist--er, I mean, less-than-successful attempts at weight-loss consulting.
       PARIKE_PORANKE_16 =  8980; -- To show you my gratitude, let me try out this new spell I thought up yesterday while I was taking a nap!
 

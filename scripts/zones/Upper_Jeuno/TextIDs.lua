@@ -39,5 +39,5 @@ YOU_CAN_NOW_BECOME_A_BEASTMASTER =  7181 -- You can now become a beastmaster.
                    CONQUEST_BASE =     0
 
 -- WS Quest
-              DECIMATION_LEARNED =  8193 -- You have learned the weapon skill ‚ÄúDecimation‚Äù!
+              DECIMATION_LEARNED =  8193 -- You have learned the weapon skill ìDecimationî!
 
