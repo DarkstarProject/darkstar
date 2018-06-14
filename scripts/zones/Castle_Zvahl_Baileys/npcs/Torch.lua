@@ -26,6 +26,7 @@ function onTrigger(player,npc)
 
     -- attempt to spawn Dark Spark from torch
     elseif
+        player:getVar("BorghertzSparkKilled") == 0 and
         player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) and
         not player:hasKeyItem(dsp.ki.SHADOW_FLAMES) and
         player:getVar("BorghertzCS") >= 2 and
