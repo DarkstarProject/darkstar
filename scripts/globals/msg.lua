@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-dsp = dsp or {};
-dsp.msg = dsp.msg or {};
+dsp = dsp or {}
+dsp.msg = dsp.msg or {}
 
 ------------------------------------
 -- Message Channels
@@ -41,7 +41,7 @@ dsp.msg.channel =
     NS_LINKSHELL3  = 31, -- (assumed as it follows pattern and color)
     UNKNOWN_32     = 32, -- Looks the same as 31
     UNITY          = 33
-};
+}
 
 ------------------------------------
 -- Message Basic
@@ -283,4 +283,4 @@ dsp.msg.basic =
     DESPOIL_EVA_DOWN        = 597,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Evasion Down.
     DESPOIL_ACC_DOWN        = 598,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Accuracy Down.
     DESPOIL_SLOW            = 599,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Slow.
-};
+}
