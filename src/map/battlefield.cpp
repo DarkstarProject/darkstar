@@ -250,7 +250,7 @@ void CBattlefield::capPlayerToBCNM()
         {
             cap = 99;
         }
-        else if (cap < 99 && cap > 1)
+        else if (cap < 99 && cap > 0)
         {
             cap = cap + map_config.Battle_cap_tweak;
         }
