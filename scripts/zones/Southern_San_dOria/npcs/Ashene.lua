@@ -47,16 +47,12 @@ function onTrigger(player,npc)
              0x4097,241,3,        --Bronze Sword
              0x40b5,1674,3}        --Spatha
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

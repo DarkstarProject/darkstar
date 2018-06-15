@@ -9,7 +9,7 @@
 -- Level: 66
 -- Casting Time: 5 seconds
 -- Recast Time: 30 seconds
--- 
+--
 -- Combos: Clear Mind
 -----------------------------------------
 

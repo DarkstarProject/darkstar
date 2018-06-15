@@ -27,11 +27,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(TAVNAZIANARCH);
+    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH);
     local cop = 40; --player:getVar("chainsOfPromathiaMissions");
 
     if (cop >= 40) then
-        if (RegionOwner ~= NATION_SANDORIA) then
+        if (RegionOwner ~= dsp.nation.SANDORIA) then
             player:showText(npc,DEGUERENDARS_CLOSED_DIALOG);
         else
             player:showText(npc,DEGUERENDARS_OPEN_DIALOG);
@@ -43,7 +43,7 @@ function onTrigger(player,npc)
                 17005,  99,  -- Lufaise Fly
                 5195,  233   -- Misareaux Parsley
             }
-            showShop(player,SANDORIA,stock);
+            dsp.shop.general(player, stock, SANDORIA);
         end
     else
         player:showText(npc,DEGUERENDARS_COP_NOT_COMPLETED);
@@ -51,11 +51,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

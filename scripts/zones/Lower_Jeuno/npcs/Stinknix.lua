@@ -26,16 +26,12 @@ function onTrigger(player,npc)
      0x43A1,1107,        -- Grenade
      0x0b31,10000        -- Dutchy Waystone
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

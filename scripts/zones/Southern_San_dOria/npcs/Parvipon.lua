@@ -46,13 +46,9 @@ TheMerchantsBidding = player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 90 and option == 1) then
         player:addQuest(SANDORIA,THE_MERCHANT_S_BIDDING);

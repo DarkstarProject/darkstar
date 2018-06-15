@@ -4,7 +4,7 @@
 --
 -- Contains variable-ized definitions of things like core enums for use in lua scripts.
 ------------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 ------------------------------------
 -- Zone Misc Flags
@@ -23,7 +23,7 @@ dsp.zoneMisc =
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
     YELL       = 0x0400, -- Send and receive /yell commands
-};
+}
 
 ------------------------------------
 -- Job IDs
@@ -54,8 +54,8 @@ dsp.job =
     SCH             = 20,
     GEO             = 21,
     RUN             = 22,
-};
-dsp.MAX_JOB_TYPE = 23;
+}
+dsp.MAX_JOB_TYPE = 23
 
 ------------------------------------
 -- STATUSES
@@ -66,12 +66,12 @@ dsp.status =
     NORMAL          =  0,
     UPDATE          =  1,
     DISAPPEAR       =  2,
-    STATUS_3        =  3,
+    INVISIBLE       =  3,
     STATUS_4        =  4,
     CUTSCENE_ONLY   =  6,
     STATUS_18       = 18,
     SHUTDOWN        = 20,
-};
+}
 
 ------------------------------------
 -- These codes represent the subeffects for
@@ -144,7 +144,7 @@ dsp.subEffect =
     SCISSION            = 12,
     DETONATION          = 13,
     IMPACTION           = 14,
-};
+}
 
 ------------------------------------
 -- These codes represent the actual status effects.
@@ -798,7 +798,7 @@ dsp.effect =
     -- PLACEHOLDER              = 802, -- Description
     -- 802-1022
     -- PLACEHOLDER             = 1023 -- The client dat file seems to have only this many "slots", results of exceeding that are untested.
-};
+}
 
 ----------------------------------
 -- SC masks (not currently used in code base)
@@ -842,24 +842,19 @@ dsp.effectFlag =
     BLOODPACT       = 0x200000,
     ON_JOBCHANGE    = 0x400000,
     NO_CANCEL       = 0x800000,
-};
+}
 
 ------------------------------------
 
 function removeSleepEffects(target)
-    target:delStatusEffect(dsp.effect.SLEEP_I);
-    target:delStatusEffect(dsp.effect.SLEEP_II);
-    target:delStatusEffect(dsp.effect.LULLABY);
-end;
+    target:delStatusEffect(dsp.effect.SLEEP_I)
+    target:delStatusEffect(dsp.effect.SLEEP_II)
+    target:delStatusEffect(dsp.effect.LULLABY)
+end
 
 function hasSleepEffects(target)
-    if (target:hasStatusEffect(dsp.effect.SLEEP_I) or
-        target:hasStatusEffect(dsp.effect.SLEEP_II) or
-        target:hasStatusEffect(dsp.effect.LULLABY)) then
-        return true;
-    end
-    return false;
-end;
+    return target:hasStatusEffect(dsp.effect.SLEEP_I) or target:hasStatusEffect(dsp.effect.SLEEP_II) or target:hasStatusEffect(dsp.effect.LULLABY)
+end
 
 ------------------------------------
 -- These values are the codes that represent any statistic possible on an entity.
@@ -964,6 +959,8 @@ dsp.mod =
     MEDITATE_DURATION               = 94,  -- Meditate duration in seconds
     WARDING_CIRCLE_DURATION         = 95,  -- Warding Circle duration in seconds
     SOULEATER_EFFECT                = 96,  -- Souleater power in percents
+    DESPERATE_BLOWS                 = 906, -- Adds ability haste to Last Resort
+    STALWART_SOUL                   = 907, -- Reduces damage taken from Souleater
     BOOST_EFFECT                    = 97,  -- Boost power in tenths
     CAMOUFLAGE_DURATION             = 98,  -- Camouflage duration in percents
     AUTO_MELEE_SKILL                = 101,
@@ -1020,6 +1017,7 @@ dsp.mod =
     CRITHITRATE                     = 165,
     CRIT_DMG_INCREASE               = 421,
     ENEMYCRITRATE                   = 166,
+    CRIT_DEF_BONUS                  = 908, -- Reduces crit hit damage
     MAGIC_CRITHITRATE               = 562,
     MAGIC_CRIT_DMG_INCREASE         = 563,
     HASTE_MAGIC                     = 167,
@@ -1289,6 +1287,7 @@ dsp.mod =
     ALL_SONGS_EFFECT                = 452, --
     MAXIMUM_SONGS_BONUS             = 453, --
     SONG_DURATION_BONUS             = 454, --
+    SONG_SPELLCASTING_TIME          = 455, --
 
     QUICK_DRAW_DMG                  = 411, --
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
@@ -1382,6 +1381,7 @@ dsp.mod =
     SNEAK_ATK_DEX                   = 874, -- % DEX boost to Sneak Attack (if gear mod, needs to be equipped on hit)
     TRICK_ATK_AGI                   = 520, -- % AGI boost to Trick Attack (if gear mod, needs to be equipped on hit)
     NIN_NUKE_BONUS                  = 522, -- magic attack bonus for NIN nukes
+    DAKEN                           = 911, -- Chance to throw shuriken on attack
     AMMO_SWING                      = 523, -- Extra swing rate w/ ammo (ie. Jailer weapons). Use gearsets, and does nothing for non-players.
     AMMO_SWING_TYPE                 = 826, -- For the handedness of the weapon - 1h (1) vs. 2h/h2h (2). h2h can safely use the same function as 2h.
     ROLL_RANGE                      = 528, -- Additional range for COR roll abilities.
@@ -1418,6 +1418,8 @@ dsp.mod =
     ENHANCES_ALLIES_ROLL            = 894, -- Allies' Roll Bonus % chance
     ENHANCES_TACTICIANS_ROLL        = 895, -- Tactician's Roll Bonus % chance
     OCCULT_ACUMEN                   = 902, -- Grants bonus TP when dealing damage with elemental or dark magic
+
+    QUICK_MAGIC                     = 909, -- Percent chance spells cast instantly (also reduces recast to 0, similar to Chainspell)
 
     -- Automaton mods
     AUTO_DECISION_DELAY             = 842, -- Reduces the Automaton's global decision delay
@@ -1461,6 +1463,7 @@ dsp.mod =
 
     -- Other
     CURE2MP_PERCENT                 = 860, -- Converts % of "Cure" amount to MP
+    DIVINE_BENISON                  = 910, -- Adds fast cast and enmity reduction to -Na spells (includes Erase). Enmity reduction is half of the fast cast amount
     SAVETP                          = 880, -- SAVETP Effect for Miser's Roll / ATMA / Hagakure.
     SMITE                           = 898, -- Att increase with H2H or 2H weapons
     TACTICAL_GUARD                  = 899, -- Tp gain increase when guarding
@@ -1470,73 +1473,73 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 906, -- stuff
-    -- SPARE = 907, -- stuff
-    -- SPARE = 908, -- stuff
-};
+    -- SPARE = 912, -- stuff
+    -- SPARE = 913, -- stuff
+    -- SPARE = 914, -- stuff
+}
 
 ------------------------------------
 -- Merits
 ------------------------------------
 
-local MCATEGORY_HP_MP      = 0x0040;
-local MCATEGORY_ATTRIBUTES = 0x0080;
-local MCATEGORY_COMBAT     = 0x00C0;
-local MCATEGORY_MAGIC      = 0x0100;
-local MCATEGORY_OTHERS     = 0x0140;
+local MCATEGORY_HP_MP      = 0x0040
+local MCATEGORY_ATTRIBUTES = 0x0080
+local MCATEGORY_COMBAT     = 0x00C0
+local MCATEGORY_MAGIC      = 0x0100
+local MCATEGORY_OTHERS     = 0x0140
 
-local MCATEGORY_WAR_1 = 0x0180;
-local MCATEGORY_MNK_1 = 0x01C0;
-local MCATEGORY_WHM_1 = 0x0200;
-local MCATEGORY_BLM_1 = 0x0240;
-local MCATEGORY_RDM_1 = 0x0280;
-local MCATEGORY_THF_1 = 0x02C0;
-local MCATEGORY_PLD_1 = 0x0300;
-local MCATEGORY_DRK_1 = 0x0340;
-local MCATEGORY_BST_1 = 0x0380;
-local MCATEGORY_BRD_1 = 0x03C0;
-local MCATEGORY_RNG_1 = 0x0400;
-local MCATEGORY_SAM_1 = 0x0440;
-local MCATEGORY_NIN_1 = 0x0480;
-local MCATEGORY_DRG_1 = 0x04C0;
-local MCATEGORY_SMN_1 = 0x0500;
-local MCATEGORY_BLU_1 = 0x0540;
-local MCATEGORY_COR_1 = 0x0580;
-local MCATEGORY_PUP_1 = 0x05C0;
-local MCATEGORY_DNC_1 = 0x0600;
-local MCATEGORY_SCH_1 = 0x0640;
+local MCATEGORY_WAR_1 = 0x0180
+local MCATEGORY_MNK_1 = 0x01C0
+local MCATEGORY_WHM_1 = 0x0200
+local MCATEGORY_BLM_1 = 0x0240
+local MCATEGORY_RDM_1 = 0x0280
+local MCATEGORY_THF_1 = 0x02C0
+local MCATEGORY_PLD_1 = 0x0300
+local MCATEGORY_DRK_1 = 0x0340
+local MCATEGORY_BST_1 = 0x0380
+local MCATEGORY_BRD_1 = 0x03C0
+local MCATEGORY_RNG_1 = 0x0400
+local MCATEGORY_SAM_1 = 0x0440
+local MCATEGORY_NIN_1 = 0x0480
+local MCATEGORY_DRG_1 = 0x04C0
+local MCATEGORY_SMN_1 = 0x0500
+local MCATEGORY_BLU_1 = 0x0540
+local MCATEGORY_COR_1 = 0x0580
+local MCATEGORY_PUP_1 = 0x05C0
+local MCATEGORY_DNC_1 = 0x0600
+local MCATEGORY_SCH_1 = 0x0640
 
-local MCATEGORY_WS = 0x0680;
+local MCATEGORY_WS = 0x0680
 
-local MCATEGORY_UNK_0 = 0x06C0;
-local MCATEGORY_UNK_1 = 0x0700;
-local MCATEGORY_UNK_2 = 0x0740;
-local MCATEGORY_UNK_3 = 0x0780;
-local MCATEGORY_UNK_4 = 0x07C0;
+local MCATEGORY_UNK_0 = 0x06C0
+local MCATEGORY_UNK_1 = 0x0700
+local MCATEGORY_UNK_2 = 0x0740
+local MCATEGORY_UNK_3 = 0x0780
+local MCATEGORY_UNK_4 = 0x07C0
 
-local MCATEGORY_WAR_2 = 0x0800;
-local MCATEGORY_MNK_2 = 0x0840;
-local MCATEGORY_WHM_2 = 0x0880;
-local MCATEGORY_BLM_2 = 0x08C0;
-local MCATEGORY_RDM_2 = 0x0900;
-local MCATEGORY_THF_2 = 0x0940;
-local MCATEGORY_PLD_2 = 0x0980;
-local MCATEGORY_DRK_2 = 0x09C0;
-local MCATEGORY_BST_2 = 0x0A00;
-local MCATEGORY_BRD_2 = 0x0A40;
-local MCATEGORY_RNG_2 = 0x0A80;
-local MCATEGORY_SAM_2 = 0x0AC0;
-local MCATEGORY_NIN_2 = 0x0B00;
-local MCATEGORY_DRG_2 = 0x0B40;
-local MCATEGORY_SMN_2 = 0x0B80;
-local MCATEGORY_BLU_2 = 0x0BC0;
-local MCATEGORY_COR_2 = 0x0C00;
-local MCATEGORY_PUP_2 = 0x0C40;
-local MCATEGORY_DNC_2 = 0x0C80;
-local MCATEGORY_SCH_2 = 0x0CC0;
+local MCATEGORY_WAR_2 = 0x0800
+local MCATEGORY_MNK_2 = 0x0840
+local MCATEGORY_WHM_2 = 0x0880
+local MCATEGORY_BLM_2 = 0x08C0
+local MCATEGORY_RDM_2 = 0x0900
+local MCATEGORY_THF_2 = 0x0940
+local MCATEGORY_PLD_2 = 0x0980
+local MCATEGORY_DRK_2 = 0x09C0
+local MCATEGORY_BST_2 = 0x0A00
+local MCATEGORY_BRD_2 = 0x0A40
+local MCATEGORY_RNG_2 = 0x0A80
+local MCATEGORY_SAM_2 = 0x0AC0
+local MCATEGORY_NIN_2 = 0x0B00
+local MCATEGORY_DRG_2 = 0x0B40
+local MCATEGORY_SMN_2 = 0x0B80
+local MCATEGORY_BLU_2 = 0x0BC0
+local MCATEGORY_COR_2 = 0x0C00
+local MCATEGORY_PUP_2 = 0x0C40
+local MCATEGORY_DNC_2 = 0x0C80
+local MCATEGORY_SCH_2 = 0x0CC0
 
-local MCATEGORY_START = 0x0040;
-local MCATEGORY_COUNT = 0x0D00;
+local MCATEGORY_START = 0x0040
+local MCATEGORY_COUNT = 0x0D00
 
 dsp.merit =
 {
@@ -1893,7 +1896,7 @@ dsp.merit =
     EQUANIMITY                  = MCATEGORY_SCH_2 + 0x06,
     ENLIGHTENMENT               = MCATEGORY_SCH_2 + 0x08,
     STORMSURGE                  = MCATEGORY_SCH_2 + 0x0A,
-};
+}
 
 ------------------------------------
 -- Inventory locations
@@ -1914,8 +1917,8 @@ dsp.inventoryLocation =
     WARDROBE2       = 10,
     WARDROBE3       = 11,
     WARDROBE4       = 12,
-};
-dsp.inv = dsp.inventoryLocation;
+}
+dsp.inv = dsp.inventoryLocation
 
 ------------------------------------
 -- Equipment Slots
@@ -1939,18 +1942,21 @@ dsp.slot =
     RING1  = 13,
     RING2  = 14,
     BACK   = 15,
-};
+}
 dsp.MAX_SLOTID  = 15
 
 ----------------------------------
 -- Objtype Definitions
 ----------------------------------
 
-TYPE_PC   = 0x01
-TYPE_NPC  = 0x02
-TYPE_MOB  = 0x04
-TYPE_PET  = 0x08
-TYPE_SHIP = 0x10
+dsp.objType =
+{
+    PC   = 0x01,
+    NPC  = 0x02,
+    MOB  = 0x04,
+    PET  = 0x08,
+    SHIP = 0x10,
+}
 
 ----------------------------------
 -- Drop Type (not currently used in code base)
@@ -2044,7 +2050,7 @@ dsp.mobMod =
     CHARMABLE           = 64,
     NO_MOVE             = 65,
     MULTI_HIT           = 66,
-};
+}
 
 ------------------------------------
 -- Job Specials (1hr / 2hr moves)
@@ -2152,8 +2158,8 @@ dsp.jobSpecialAbility =
     -- ELEMENTAL_SFORZO     = 3265,
     -- ELEMENTAL_SFORZO     = 3479,
     -- BOLSTER              = 3482,
-};
-dsp.jsa = dsp.jobSpecialAbility;
+}
+dsp.jsa = dsp.jobSpecialAbility
 
 ------------------------------------
 -- Skills
@@ -2223,7 +2229,32 @@ dsp.skill =
     DIG          = 59,
     -- 60~63 unused
     -- MAX_SKILLTYPE = 64
-};
+}
+
+------------------------------------
+-- Craft Skill Ranks
+------------------------------------
+
+dsp.craftRank =
+{
+    AMATEUR     = 0,
+    RECRUIT     = 1,
+    INITIATE    = 2,
+    NOVICE      = 3,
+    APPRENTICE  = 4,
+    JOURNEYMAN  = 5,
+    CRAFTSMAN   = 6,
+    ARTISAN     = 7,
+    ADEPT       = 8,
+    VETERAN     = 9,
+    EXPERT      = 10,
+    AUTHORITY   = 11,
+    LUMINARY    = 12,
+    MASTER      = 13,
+    GRANDMASTER = 14,
+    LEGEND      = 15
+    -- 16+ invalid
+}
 
 ------------------------------------
 -- Recast IDs
@@ -2234,7 +2265,7 @@ dsp.recast =
     ITEM     = 0,
     MAGIC    = 1,
     ABILITY  = 2,
-};
+}
 
 ------------------------------------
 -- ACTION IDs
@@ -2279,8 +2310,8 @@ dsp.action =
     MOBABILITY_USING     = 34,
     MOBABILITY_INTERRUPT = 35,
     LEAVE                = 36,
-};
-dsp.act = dsp.action;
+}
+dsp.act = dsp.action
 
 ------------------------------------
 -- ECOSYSTEM IDs
@@ -2310,8 +2341,8 @@ dsp.ecosystem =
     UNDEAD         = 19,
     VERMIN         = 20,
     VORAGEAN       = 21,
-};
-dsp.eco = dsp.ecosystem;
+}
+dsp.eco = dsp.ecosystem
 
 ------------------------------------
 -- Behavior bits
@@ -2325,29 +2356,36 @@ dsp.behavior =
     RAISABLE     = 0x004, -- mob can be raised via Raise spells
     AGGRO_AMBUSH = 0x200, -- mob aggroes by ambush
     NO_TURN      = 0x400, -- mob does not turn to face target
-};
+}
 
 ------------------------------------
 -- Elevator IDs
 ------------------------------------
 
-ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 0;
-ELEVATOR_PORT_BASTOK_DRWBRDG       = 2;
-ELEVATOR_DAVOI_LIFT                = 3;
-ELEVATOR_PALBOROUGH_MINES_LIFT     = 4;
+dsp.elevator =
+{
+    KUFTAL_TUNNEL_DSPPRNG_RCK = 0,
+    PORT_BASTOK_DRWBRDG       = 2,
+    DAVOI_LIFT                = 3,
+    PALBOROUGH_MINES_LIFT     = 4,
+}
 
 ------------------------------------
 -- Item Type
 -----------------------------------
-ITEM_BASIC       = 0x00;
-ITEM_GENERAL     = 0x01;
-ITEM_USABLE      = 0x02;
-ITEM_PUPPET      = 0x04;
-ITEM_ARMOR       = 0x08;
-ITEM_WEAPON      = 0x10;
-ITEM_CURRENCY    = 0x20;
-ITEM_FURNISHING  = 0x40;
-ITEM_LINKSHELL   = 0x80;
+
+dsp.itemType =
+{
+    BASIC       = 0x00,
+    GENERAL     = 0x01,
+    USABLE      = 0x02,
+    PUPPET      = 0x04,
+    ARMOR       = 0x08,
+    WEAPON      = 0x10,
+    CURRENCY    = 0x20,
+    FURNISHING  = 0x40,
+    LINKSHELL   = 0x80,
+}
 
 ------------------------------------
 -- Animations
@@ -2391,8 +2429,8 @@ dsp.animation =
     -- 73 through 83 sitting on air (guessing future use for more chairs..)
     MOUNT                   = 85,
     -- TRUST                = 90, -- This is the animation for a trust NPC spawning in.
-};
-dsp.anim = dsp.animation;
+}
+dsp.anim = dsp.animation
 
 ------------------------------------
 -- Mounts
@@ -2421,11 +2459,15 @@ dsp.mount =
     SPECTRAL_CHAIR = 18,
     SPHEROID       = 19,
     OMEGA          = 20,
-};
+}
 
 ------------------------------------
 -- Item Check Params
 ------------------------------------
-ITEMCHECK_NONE      = 0;
-ITEMCHECK_EQUIP     = 1;
-ITEMCHECK_UNEQUIP   = 2;
+
+dsp.itemCheck =
+{
+    NONE    = 0,
+    EQUIP   = 1,
+    UNEQUIP = 2,
+}

@@ -36,10 +36,6 @@ require("scripts/zones/Waughroon_Shrine/TextIDs");
     ---- 19: The Palborough Project
     ---- 20: Shell Shocked
     ---- 21: Beyond infinity
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -47,10 +43,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -60,10 +52,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

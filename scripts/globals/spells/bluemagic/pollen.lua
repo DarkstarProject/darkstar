@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
 
     final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100));
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         --Applying server mods....
         final = final * CURE_POWER;
     end
@@ -51,7 +51,7 @@ function onSpellCast(caster,target,spell)
     end
     target:addHP(final);
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         caster:updateEnmityFromCure(target,final);
     end
     spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);

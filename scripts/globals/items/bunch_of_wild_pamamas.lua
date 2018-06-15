@@ -9,7 +9,7 @@
 -- HP 50
 -- MP 50
 -- CHR 14
--- Additional Effect with Kinkobo or 
+-- Additional Effect with Kinkobo or
 -- Primate Staff
 -- DELAY -90
 -- ACC 10

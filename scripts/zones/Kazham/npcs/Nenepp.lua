@@ -18,12 +18,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 
@@ -78,13 +78,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 241) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();

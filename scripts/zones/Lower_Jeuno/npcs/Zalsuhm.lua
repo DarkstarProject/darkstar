@@ -42,8 +42,8 @@ function onTrade(player,npc,trade)
                 end
 
                 return;
-            end         
-        end 
+            end
+        end
     end
 
 end;
@@ -101,7 +101,7 @@ function onEventFinish(player,csid,option)
     -- printf("\tRESULT: %u", option);
 
     -- Zalsuhm wants to research the player's Nyzul Weapon
-    if (csid == 10086) then 
+    if (csid == 10086) then
         -- The player chose "He has shifty eyes" (turns down the quest)
         if (option == 53) then
             player:setVar("Upset_Zalsuhm", 1);

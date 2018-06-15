@@ -876,7 +876,6 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     }
     ShowDebug(CL_CYAN"CLIENT %s PERFORMING ACTION %02hX\n" CL_RESET, PChar->GetName(), action);
-    return;
 }
 
 /************************************************************************
@@ -2219,6 +2218,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             PItem->setCharPrice(price); // not sure setCharPrice is right
             PChar->pushPacket(new CAuctionHousePacket(action, PItem, quantity, price));
         }
@@ -2277,6 +2281,11 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             !(PItem->isSubType(ITEM_LOCKED)) &&
             !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
         {
+            if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                PChar->pushPacket(new CAuctionHousePacket(action, 197, 0, 0));
+                return;
+            }
             uint32 auctionFee = 0;
             if (quantity == 0)
             {
@@ -3737,16 +3746,6 @@ void SmallPacket0x096(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
     }
 
-    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
-    {
-        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
-        if (slotid != 0xFF)
-        {
-            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
-            PItem->setReserve(PItem->getReserve() + 1);
-        }
-    }
-
     synthutils::startSynth(PChar);
     return;
 }
@@ -5145,14 +5144,21 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint16 ItemID = data.ref<uint16>(0x04);
 
     if (ItemID == 0)
+    {
         return;
+    }
 
-    uint8  slotID = data.ref<uint8>(0x06);
-    uint8  containerID = data.ref<uint8>(0x07);
-    uint8  col = data.ref<uint8>(0x09);
-    uint8  level = data.ref<uint8>(0x0A);
-    uint8  row = data.ref<uint8>(0x0B);
-    uint8  rotation = data.ref<uint8>(0x0C);
+    uint8 slotID = data.ref<uint8>(0x06);
+    uint8 containerID = data.ref<uint8>(0x07);
+    uint8 col = data.ref<uint8>(0x09);
+    uint8 level = data.ref<uint8>(0x0A);
+    uint8 row = data.ref<uint8>(0x0B);
+    uint8 rotation = data.ref<uint8>(0x0C);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemFurnishing* PItem = (CItemFurnishing*)PChar->getStorage(containerID)->GetItem(slotID);
 
@@ -5181,9 +5187,9 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             "UPDATE char_inventory "
             "SET "
             "extra = '%s' "
-            "WHERE location = 1 AND slot = %u AND charid = %u";
+            "WHERE location = %u AND slot = %u AND charid = %u";
 
-        if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
+        if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0 && !wasInstalled)
         {
             PChar->getStorage(LOC_STORAGE)->AddBuff(PItem->getStorage());
 
@@ -5210,8 +5216,13 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    uint8  slotID = data.ref<uint8>(0x06);
+    uint8 slotID = data.ref<uint8>(0x06);
     uint8 containerID = data.ref<uint8>(0x07);
+
+    if (containerID != LOC_MOGSAFE && containerID != LOC_MOGSAFE2)
+    {
+        return;
+    }
 
     CItemContainer* PItemContainer = PChar->getStorage(containerID);
 
@@ -5242,9 +5253,9 @@ void SmallPacket0x0FB(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                 "UPDATE char_inventory "
                 "SET "
                 "extra = '%s' "
-                "WHERE location = 1 AND slot = %u AND charid = %u";
+                "WHERE location = %u AND slot = %u AND charid = %u";
 
-            if (Sql_Query(SqlHandle, Query, extra, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
+            if (Sql_Query(SqlHandle, Query, extra, containerID, slotID, PChar->id) != SQL_ERROR && Sql_AffectedRows(SqlHandle) != 0)
             {
                 uint8 NewSize = PItemContainer->GetSize() - RemovedSize;
                 for (uint8 SlotID = PItemContainer->GetSize(); SlotID > NewSize; --SlotID)
@@ -5798,6 +5809,44 @@ void SmallPacket0x111(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  /sitchair                                                            *
+*                                                                       *
+************************************************************************/
+void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PrintPacket(data);
+
+    if (PChar->status != STATUS_NORMAL)
+        return;
+
+    if (PChar->StatusEffectContainer->HasPreventActionEffect())
+        return;
+    
+    uint8 type = data.ref<uint8>(0x04);
+    if (type == 2)
+    {
+        PChar->animation = ANIMATION_NONE;
+        PChar->updatemask |= UPDATE_HP;
+        return;
+    }
+    
+    uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
+    if (chairId < 63 || chairId > 83)
+        return;
+
+    // Validate key item ownership for 64 through 83
+    if (chairId != 63 && !charutils::hasKeyItem(PChar, chairId + 0xACA))
+    {
+        chairId = ANIMATION_SITCHAIR_0;
+    }
+
+    PChar->animation = PChar->animation == chairId ? ANIMATION_NONE : chairId;
+    PChar->updatemask |= UPDATE_HP;
+    return;
+}
+
+/************************************************************************
 *                                                                        *
 *  Request Currency2 tab                                                  *
 *                                                                        *
@@ -5921,6 +5970,7 @@ void PacketParserInitialize()
     PacketSize[0x110] = 0x0A; PacketParser[0x110] = &SmallPacket0x110;
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
+    PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
     PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }

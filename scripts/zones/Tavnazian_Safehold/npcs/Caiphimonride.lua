@@ -24,16 +24,12 @@ function onTrigger(player,npc)
     0x47C7,93240,    --Falx (COP Chapter 4 Needed; not implemented yet)
     0x4726,51905}    --Voulge (COP Chapter 4 Needed; not implemented yet)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

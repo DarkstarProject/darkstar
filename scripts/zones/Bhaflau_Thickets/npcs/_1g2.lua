@@ -29,8 +29,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local assaultid = player:getCurrentAssault();
 
@@ -68,8 +66,6 @@ function onEventUpdate(player,csid,option,target)
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if csid == 505 and option == 4 then
         player:setPos(0,0,0,0,66);

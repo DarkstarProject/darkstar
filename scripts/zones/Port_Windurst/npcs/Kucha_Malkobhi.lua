@@ -26,15 +26,11 @@ function onTrigger(player,npc)
         0x3257,   236,       --Mithran Loincloth
         0x32d0,   163        --Mithran Gaiters
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

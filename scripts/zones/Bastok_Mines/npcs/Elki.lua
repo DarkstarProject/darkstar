@@ -43,8 +43,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 41 and option == 0) then
         player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);

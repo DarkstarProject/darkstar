@@ -31,15 +31,11 @@ function onTrigger(player,npc)
          0x43a7,4,       --Bone Arrow
          0x43b8,5}       --Crossbow Bolts
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

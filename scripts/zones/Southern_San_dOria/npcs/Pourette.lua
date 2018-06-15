@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(DERFLAND);
+    local RegionOwner = GetRegionOwner(dsp.region.DERFLAND);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,POURETTE_CLOSED_DIALOG);
     else
         player:showText(npc,POURETTE_OPEN_DIALOG);
@@ -39,17 +39,13 @@ function onTrigger(player,npc)
             633,     14, -- Olive Oil
             951,    110  -- Wijnruit
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

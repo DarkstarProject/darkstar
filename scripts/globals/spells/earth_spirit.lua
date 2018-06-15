@@ -14,7 +14,7 @@ function onMagicCastingCheck(caster,target,spell)
         result = dsp.msg.basic.ALREADY_HAS_A_PET;
     elseif (not caster:canUsePet()) then
         result = dsp.msg.basic.CANT_BE_USED_IN_AREA;
-    elseif (caster:getObjType() == TYPE_PC) then
+    elseif (caster:getObjType() == dsp.objType.PC) then
         result = avatarMiniFightCheck(caster);
     end
     return result;

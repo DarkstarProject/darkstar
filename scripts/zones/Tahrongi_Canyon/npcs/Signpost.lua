@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
     local offset = math.floor((npc:getID() - TAHRONGI_SIGNPOST_OFFSET) / 2);
     player:messageSpecial(SIGN_1 + offset);
-end; 
+end;
 
 function onEventUpdate(player,csid,option)
 end;

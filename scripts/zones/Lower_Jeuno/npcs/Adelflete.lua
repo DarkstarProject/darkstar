@@ -29,15 +29,11 @@ function onTrigger(player,npc)
         13327, 1250, -- Silver Earring
         13456, 1250  -- Silver Ring
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

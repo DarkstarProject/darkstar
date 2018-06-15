@@ -55,4 +55,4 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_TIDES);
     end
     
-end;    
+end;

@@ -129,8 +129,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 49 or csid == 53) then
         -- Display Loafers
@@ -164,8 +162,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 49 and option == 0) then
         player:setVar("AF_Loussaire", 1);

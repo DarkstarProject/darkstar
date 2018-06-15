@@ -35,7 +35,7 @@ function onEffectGain(target, effect)
     target:addMod(dsp.mod.FOOD_DEFP, 17);
     target:addMod(dsp.mod.FOOD_DEF_CAP, 50);
     target:addMod(dsp.mod.FOOD_HPP, 5);
-    target:addMod(dsp.mod.FOOD_HP_CAP, 50);    
+    target:addMod(dsp.mod.FOOD_HP_CAP, 50);
 end;
 
 function onEffectLose(target, effect)

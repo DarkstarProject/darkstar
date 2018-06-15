@@ -7,7 +7,7 @@
 -- Dex +4
 -- Vit +4
 -- Chr +4
--- Effect with enhancing equipment (Note: these are latents on gear with the effect) 
+-- Effect with enhancing equipment (Note: these are latents on gear with the effect)
 -- Atk +50
 -- Def +30
 -- Double Attack +5%

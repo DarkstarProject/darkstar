@@ -2,7 +2,7 @@
 -- ID: 4249
 -- Item: Copy of Schultz Stratage
 -- Grants 150 - 500 EXP
--- Does not grant Limit Points. 
+-- Does not grant Limit Points.
 --
 -----------------------------------------
 require("scripts/globals/status");

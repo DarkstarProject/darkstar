@@ -30,9 +30,9 @@ function onTrigger(player,npc)
     else
         local pNation = player:getNation();
 
-        if (pNation == NATION_SANDORIA) then
+        if (pNation == dsp.nation.SANDORIA) then
             player:startEvent(580);
-        elseif (pNation == NATION_WINDURST) then
+        elseif (pNation == dsp.nation.WINDURST) then
             player:startEvent(579);
         else
             player:startEvent(539);
@@ -42,13 +42,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 581) then
         -- This cs should only play if you visit San d'Oria first
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead

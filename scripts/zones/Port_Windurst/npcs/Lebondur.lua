@@ -16,8 +16,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(VOLLBOW);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.VOLLBOW);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,LEBONDUR_CLOSED_DIALOG);
     else
         player:showText(npc,LEBONDUR_OPEN_DIALOG);
@@ -29,18 +29,14 @@ function onTrigger(player,npc)
             936,     14,  -- Rock Salt
             1410,  1656   -- Sweet William
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -3,7 +3,7 @@
 --  Family: Slugs
 --  Description: Deals water damage to an enemy. Additional Effect: Attack Down and Defense Down.
 --  Type: Magical
---  Utsusemi/Blink absorb: Ignores shadows 
+--  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Radial
 --  Notes:
 ---------------------------------------------------

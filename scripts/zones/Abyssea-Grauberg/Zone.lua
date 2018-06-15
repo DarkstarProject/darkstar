@@ -21,8 +21,8 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAyssea") == 0) then
-        player:setVar("1stTimeAyssea",1);
+    and player:getVar("1stTimeAbyssea") == 0) then
+        player:setVar("1stTimeAbyssea",1);
     end
 
     return cs;
@@ -32,11 +32,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

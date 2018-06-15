@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 100 and option == 1) then
         player:setPos(-20,0.624,-355,191,34); -- {R}
     elseif (csid == 164) then

@@ -16,7 +16,7 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_WINDURST) then
+    if (player:getNation() ~= dsp.nation.WINDURST) then
         player:startEvent(87); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
@@ -49,13 +49,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,4,csid,option);
 

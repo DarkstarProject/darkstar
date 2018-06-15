@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.CAMOUFLAGE
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

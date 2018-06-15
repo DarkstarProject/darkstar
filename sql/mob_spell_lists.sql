@@ -2451,6 +2451,40 @@ INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,176,69,255); -- Firaga II
 INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,100,24,255); -- Enfire
 INSERT INTO `mob_spell_lists` VALUES ('Bomb_Queen',295,249,10,255); -- Blaze Spikes
 
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,147,1,255); -- Fire 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,152,1,255); -- Blizzard 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,157,1,255); -- Aero 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,162,1,255); -- Stone 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,167,1,255); -- Thunder 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,172,1,255); -- Water 4
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,176,1,255); -- Firaga 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,181,1,255); -- Blizzaga 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,186,1,255); -- Aeroga 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,191,1,255); -- Stonega 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,196,1,255); -- Thundaga 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,201,1,255); -- Waterga 3
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,251,1,255); -- Shock Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,273,1,255); -- Sleepga
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_BLM',296,274,1,255); -- Sleepga II
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,5,1,255);   -- Cure V
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,10,1,255);  -- Curaga IV
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,14,1,255);  -- Poisona
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,15,1,255);  -- Paralyna
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,16,1,255);  -- Blindna
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,17,1,255);  -- Silena
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,18,1,255);  -- Stona
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,19,1,255);  -- Viruna
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,20,1,255);  -- Cursna
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,21,1,255);  -- Holy
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,40,1,255);  -- Banishga III
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,46,1,255);  -- Protect IV
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,51,1,255);  -- Shell IV
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,55,1,255);  -- Aquaveil
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,57,1,255);  -- Haste
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,59,1,255);  -- Silence
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,61,1,255);  -- Barblizzard
+INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,112,1,255); -- Flash
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

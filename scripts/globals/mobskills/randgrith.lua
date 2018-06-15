@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Randgrith
 --
---  Description: Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves accuracy. 
+--  Description: Lowers target's evasion. Gullintani/Mjollnir: Temporarily improves accuracy.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

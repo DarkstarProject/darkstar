@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         4356, 200,    -- White Bread
         5686, 800,    -- Cheese Sandwich
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

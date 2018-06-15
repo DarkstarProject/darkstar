@@ -23,15 +23,11 @@ function onTrigger(player,npc)
          0x113A,316,  --Roast Mushroom
          0x1169,2700} --Eel Kabob
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

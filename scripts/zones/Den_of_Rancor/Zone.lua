@@ -3,42 +3,37 @@
 -- Zone: Den_of_Rancor (160)
 --
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
+package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Den_of_Rancor/TextIDs");
+require("scripts/zones/Den_of_Rancor/TextIDs")
+require("scripts/zones/Den_of_Rancor/MobIDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17433077);
-end;
+    UpdateTreasureSpawnPoint(RANCOR_TREASURE_COFFER)
+end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
+    local players = zone:getPlayers()
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
     end
-end;
+end
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(196.421,34.595,-60.319,110);
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(196.421,34.595,-60.319,110)
     end
-    return cs;
-end;
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

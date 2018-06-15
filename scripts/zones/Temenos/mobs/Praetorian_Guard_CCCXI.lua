@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos N T    
+-- Area: Temenos N T
 -- NPC:  Praetorian_Guard
 
 -----------------------------------

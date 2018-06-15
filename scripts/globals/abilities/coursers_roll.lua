@@ -1,6 +1,6 @@
 -----------------------------------
 -- Ability: Courser's Roll
--- Enhances "Snapshot" effect for party members within area of effect. 
+-- Enhances "Snapshot" effect for party members within area of effect.
 -- Optimal Job: None
 -- Lucky Number: 3
 -- Unlucky Number: 9
@@ -9,20 +9,20 @@
 --
 -- No Reliable Community Data available. Numbers Based on Blitzer's Roll Values.
 --
--- Die Roll    | Snapshot+   
--- --------    -------  
+-- Die Roll    | Snapshot+
+-- --------    -------
 -- 1           |+2
--- 2           |+3     
--- 3           |+11     
--- 4           |+4     
--- 5           |+5     
--- 6           |+6     
--- 7           |+7     
--- 8           |+8      
--- 9           |+1    
--- 10          |+10     
--- 11          |+12     
--- Bust        |-5    
+-- 2           |+3
+-- 3           |+11
+-- 4           |+4
+-- 5           |+5
+-- 6           |+6
+-- 7           |+7
+-- 8           |+8
+-- 9           |+1
+-- 10          |+10
+-- 11          |+12
+-- Bust        |-5
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/ability");

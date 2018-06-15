@@ -36,15 +36,10 @@ function onTrigger(player,npc)
 end;
 
 -- 25  10002  10003  10004 4569
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10004) then
         player:tradeComplete();

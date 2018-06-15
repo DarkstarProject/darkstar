@@ -1,7 +1,7 @@
 ---------------------------------------------------
 -- Colossal_Blow
 -- Deals damage to a single target.
--- 
+--
 ---------------------------------------------------
 
 require("scripts/globals/settings");

@@ -32,13 +32,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 7) then
         -- You will be transported back to the entrance of Castle Zvahl Baileys
         player:setPos(378.222,-12,-20.299,125,0xA1);

@@ -34,7 +34,7 @@ function onTrigger(player, weather)
         ["gales"]           = 11,
         ["snow"]            = 12,
         ["blizzards"]       = 13,
-        ["thunder"]         = 14, 
+        ["thunder"]         = 14,
         ["thunderstorms"]   = 15,
         ["auroras"]         = 16,
         ["stellar glare"]   = 17,

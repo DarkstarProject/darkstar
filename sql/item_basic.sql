@@ -221,6 +221,7 @@ INSERT INTO `item_basic` VALUES (282,0,'yovra_replica','yovra_replica',1,61520,3
 INSERT INTO `item_basic` VALUES (284,0,'goobbue_statue','goobbue_statue',1,61504,34,1,0);
 INSERT INTO `item_basic` VALUES (286,0,'nanaa_mihgo_statue','nanaa_mihgo_statue',1,61504,34,1,0);
 INSERT INTO `item_basic` VALUES (287,0,'nanaa_mihgo_statue_ii','nanaa_mihgo_s._ii',1,61504,34,1,0);
+INSERT INTO `item_basic` VALUES (294,0,'campfire','campfire',1,61440,99,1,0);
 INSERT INTO `item_basic` VALUES (295,0,'bonfire','bonfire',1,36,34,0,0);
 INSERT INTO `item_basic` VALUES (303,0,'crystal_stakes_gold_cup','cs_gold_cup',1,28736,34,1,0);
 INSERT INTO `item_basic` VALUES (304,0,'crystal_stakes_mythril_cup','cs_mythril_cup',1,28736,34,1,0);
@@ -1299,7 +1300,7 @@ INSERT INTO `item_basic` VALUES (1412,0,'olive_flower','olive_flower',12,4,44,0,
 INSERT INTO `item_basic` VALUES (1413,0,'cattleya','cattleya',12,4,44,0,291);
 INSERT INTO `item_basic` VALUES (1414,0,'piece_of_wisteria_lumber','wisteria_lumber',12,4,43,0,6177);
 INSERT INTO `item_basic` VALUES (1415,0,'pot_of_urushi','urushi',12,4,43,0,4085);
-INSERT INTO `item_basic` VALUES (1416,0,'handful_of_karimata_arrowheads','kari._arrowhd.',99,4,43,0,1299);
+INSERT INTO `item_basic` VALUES (1416,0,'handful_of_karimata_arrowheads','kari._arrowhd.',99,4,43,0,171);
 INSERT INTO `item_basic` VALUES (1417,0,'bag_of_giant_bird_fletchings','g._bird_fltchg.',99,4,43,0,170);
 INSERT INTO `item_basic` VALUES (1418,0,'gem_of_the_east','gem_of_the_east',1,45140,99,1,0);
 INSERT INTO `item_basic` VALUES (1419,0,'springstone','springstone',1,45140,99,1,0);
@@ -3575,6 +3576,8 @@ INSERT INTO `item_basic` VALUES (3715,0,'pot_of_pink_clematis','pink_clematis',1
 INSERT INTO `item_basic` VALUES (3717,0,'birch_tree','birch_tree',1,28736,99,0,0);
 INSERT INTO `item_basic` VALUES (3718,0,'handful_of_adoulinian_tomatoes','ado._tomatoes',1,28752,99,0,0);
 INSERT INTO `item_basic` VALUES (3722,0,'lion_statue','lion_statue',1,61504,99,0,0);
+INSERT INTO `item_basic` VALUES (3723,0,'lilisette_statue','lilisette_statue',1,61504,99,1,0);
+INSERT INTO `item_basic` VALUES (3725,0,'cornelia_statue','cornelia_statue',1,61440,99,1,0);
 INSERT INTO `item_basic` VALUES (3726,0,'aphmau_statue','aphmau_statue',1,61504,99,0,0);
 INSERT INTO `item_basic` VALUES (3727,0,'mumor_statue','mumor_statue',1,61504,99,0,0);
 INSERT INTO `item_basic` VALUES (3728,0,'ullegore_statue','ullegore_statue',1,61504,99,0,0);
@@ -3583,6 +3586,8 @@ INSERT INTO `item_basic` VALUES (3730,0,'bulky_coffer','bulky_coffer',1,36,34,0,
 INSERT INTO `item_basic` VALUES (3731,0,'azure_chest','azure_chest',1,36,34,0,0);
 INSERT INTO `item_basic` VALUES (3735,0,'aurum_coffer','aurum_coffer',1,28752,99,0,0);
 INSERT INTO `item_basic` VALUES (3736,0,'well','well',1,28752,99,0,0);
+INSERT INTO `item_basic` VALUES (3737,0,'doll_stand','doll_stand',1,61456,99,1,0);
+INSERT INTO `item_basic` VALUES (3738,0,'eastern_umbrella','eastern_umbrella',1,61456,99,1,0);
 INSERT INTO `item_basic` VALUES (3840,0,'pulse_cell_mx','pulse_cell_mx',12,4100,46,1,0);
 INSERT INTO `item_basic` VALUES (3841,0,'pulse_cell_an','pulse_cell_an',12,4100,46,1,0);
 INSERT INTO `item_basic` VALUES (3842,0,'pulse_cell_fa','pulse_cell_fa',12,4100,46,1,0);

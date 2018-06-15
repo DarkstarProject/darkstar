@@ -23,14 +23,10 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.BONECRAFT_IMAGERY,3,0,120);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_BON, 1);
+    target:addMod(dsp.mod.BONE, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_BON, 1);
+    target:delMod(dsp.mod.BONE, 1);
 end;

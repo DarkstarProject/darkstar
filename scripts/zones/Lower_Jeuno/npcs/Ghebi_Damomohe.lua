@@ -49,19 +49,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 106 and option == 0) then
         local stock =
         {0x1135,144,  -- Rice Ball
                  0x1169,2700, -- Eel Kabob
                  0x1173,3}       -- Garlic Cracker
-        showShop(player, NORG, stock);
+        dsp.shop.general(player, stock, NORG);
     elseif (csid == 106 and option == 2) then
         player:addQuest(JEUNO,TENSHODO_MEMBERSHIP);
     elseif (csid == 107) then

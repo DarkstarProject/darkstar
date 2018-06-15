@@ -41,7 +41,7 @@ function onTrigger(player,npc)
             player:messageSpecial(NOTHING_FOSSIL);
         end
 
-    -- BLAST FROM THE PAST        
+    -- BLAST FROM THE PAST
     elseif (offset == 8 and player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
         if (not GetMobByID(ICHOROUS_IRE):isSpawned() and not player:hasItem(16511)) then
             SpawnMob(ICHOROUS_IRE):updateClaim(player);

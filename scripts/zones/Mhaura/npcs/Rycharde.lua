@@ -187,16 +187,11 @@ end
 end;
 
 
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
 
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 70 or csid == 71) then  --accept quest 1
         player:setVar("QuestRychardetheChef_var",3); --

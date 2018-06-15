@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
 
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
@@ -46,22 +46,18 @@ function onTrigger(player,npc)
         else
             player:startEvent(107);
         end
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(52);
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(51);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 43) then
         player:setVar("MissionStatus",2);

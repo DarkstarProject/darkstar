@@ -12,16 +12,8 @@ require("scripts/globals/limbus");
 
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local  CofferID = npc:getID();
@@ -42,7 +34,7 @@ function onTrigger(player,npc)
             addtime=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][3];
             DespawnOtherCoffer=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][4];
             MimicID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5];
-            lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6];    
+            lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6];
         end
     end
 
@@ -54,7 +46,7 @@ function onTrigger(player,npc)
     printf("lootID: %u",lootID);
     local coffer = CofferID-16928768;
 
-    if (CofferType == cTIME) then 
+    if (CofferType == cTIME) then
         player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
@@ -73,15 +65,15 @@ function onTrigger(player,npc)
             for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
                 if (ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID) then
                     GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(dsp.status.DISAPPEAR);
-                end      
+                end
             end
         else
             player:BCNMSetLoot(lootID, InstanceRegion, CofferID);
             player:getBCNMloot();
-        end    
-    elseif (CofferType == cRESTORE) then 
+        end
+    elseif (CofferType == cRESTORE) then
         player:RestoreAndHealOnBattlefield(InstanceRegion);
-    elseif (CofferType == cMIMIC) then 
+    elseif (CofferType == cMIMIC) then
         if (coffer == 284) then
             GetMobByID(16928844):setSpawn(X,Y,Z);
             SpawnMob(16928844):setPos(X,Y,Z)
@@ -167,10 +159,6 @@ function onTrigger(player,npc)
     end
     npc:setStatus(dsp.status.DISAPPEAR);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

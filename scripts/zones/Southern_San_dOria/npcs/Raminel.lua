@@ -59,20 +59,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 
     -- test fromStart
-    local start = pathfind.fromStart(path, 2);
-    local startFirst = pathfind.get(path, 3);
+    local start = dsp.path.fromStart(path, 2);
+    local startFirst = dsp.path.get(path, 3);
 
     if (start[1] ~= startFirst[1] or start[2] ~= startFirst[2] or start[3] ~= startFirst[3]) then
         printf("[Error] start path is not right %f %f %f actually = %f %f %f", startFirst[1], startFirst[2], startFirst[3], start[1], start[2], start[3]);
     end
 
     -- test fromEnd
-    -- local endPt = pathfind.fromEnd(path, 2);
-    -- local endFirst = pathfind.get(path, 37);
+    -- local endPt = dsp.path.fromEnd(path, 2);
+    -- local endFirst = dsp.path.get(path, 37);
 
     -- if (endPt[1] ~= endFirst[1] or endPt[2] ~= endFirst[2] or endPt[3] ~= endFirst[3]) then
     --     printf("[Error] endPt path is not right %f %f %f actually = %f %f %f", endFirst[1], endFirst[2], endFirst[3], endPt[1], endPt[2], endPt[3]);
@@ -80,22 +80,22 @@ function onSpawn(npc)
 end;
 
 function onPath(npc)
-    if (npc:atPoint(pathfind.get(path, 23))) then
+    if (npc:atPoint(dsp.path.get(path, 23))) then
         npc:lookAt(GetNPCByID(ARPETION):getPos());
         npc:wait();
-    elseif (npc:atPoint(pathfind.get(path, -1))) then
+    elseif (npc:atPoint(dsp.path.get(path, -1))) then
         -- give package to Lusiane, wait 4 seconds, then continue
         local lus = GetNPCByID(LUSIANE);
         lus:showText(npc, RAMINEL_DELIVERY);
         npc:showText(lus, LUSIANE_THANK);
         npc:wait();
-    elseif (npc:atPoint(pathfind.last(path))) then
+    elseif (npc:atPoint(dsp.path.last(path))) then
         -- when I walk away stop looking at me
         GetNPCByID(LUSIANE):clearTargID();
     end
 
     -- go back and forth the set path
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)

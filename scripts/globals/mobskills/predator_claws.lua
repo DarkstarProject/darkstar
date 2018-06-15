@@ -1,6 +1,6 @@
 ---------------------------------------------------
 -- Predator Claws
--- Delivers a threefold attack. 
+-- Delivers a threefold attack.
 ---------------------------------------------------
 
 require("scripts/globals/settings");
