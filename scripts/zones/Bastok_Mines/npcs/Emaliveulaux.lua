@@ -1,48 +1,46 @@
 -----------------------------------
 -- Area: Bastok Mines
 --  NPC: Emaliveulaux
--- Only sells when Bastok controls the Tavnazian Archipelago
--- Only available to those with CoP Ch. 4.1 or higher
+-- Tavnazian Archipelago Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/events/harvest_festivals");
-require("scripts/zones/Bastok_Mines/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
------------------------------------
+require("scripts/globals/events/harvest_festivals")
+require("scripts/zones/Bastok_Mines/TextIDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-    onHalloweenTrade(player,trade,npc)
-end;
+    onHalloweenTrade(player, trade, npc)
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH);
-    local cop = 40; -- player:getVar("chainsOfPromathiaMissions");
+    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH)
+    local MissionProgress = player:getCurrentMission(COP)
 
-    if (cop >= 40) then
-        if (RegionOwner ~= dsp.nation.BASTOK) then
-            player:showText(npc,EMALIVEULAUX_CLOSED_DIALOG);
+    if MissionProgress >= THE_SAVAGE then
+        if RegionOwner ~= dsp.nation.BASTOK then
+            player:showText(npc, EMALIVEULAUX_CLOSED_DIALOG)
         else
-            player:showText(npc,EMALIVEULAUX_OPEN_DIALOG);
-
             local stock =
             {
-                1523,  290,  -- Apple Mint
-                5164,  1945, -- Ground Wasabi
-                17005, 99,   -- Lufaise Fly
-                5195,  233   -- Misareaux Parsley
+                1523,  290,    -- Apple Mint
+                5164, 1945,    -- Ground Wasabi
+                17005,  99,    -- Lufaise Fly
+                5195,  233     -- Misareaux Parsley
             }
-            dsp.shop.general(player, stock, BASTOK);
+
+            player:showText(npc, EMALIVEULAUX_OPEN_DIALOG)
+            dsp.shop.general(player, stock, BASTOK)
         end
     else
-        player:showText(npc,EMALIVEULAUX_COP_NOT_COMPLETED);
+        player:showText(npc, EMALIVEULAUX_COP_NOT_COMPLETED)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end
