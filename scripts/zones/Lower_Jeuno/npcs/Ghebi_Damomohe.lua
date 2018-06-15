@@ -24,7 +24,7 @@ function onTrade(player,npc,trade)
     elseif player:getCurrentMission(COP) == DARKNESS_NAMED and
            not player:hasKeyItem(dsp.ki.PSOXJA_PASS) and
            player:getVar("PXPassGetGems") == 1 and
-           npcUtil.tradeHas(trade, 1692) or npcUtil.tradeHas(trade, 1694) or npcUtil.tradeHas(trade, 1693) then
+           (npcUtil.tradeHas(trade, 1692) or npcUtil.tradeHas(trade, 1694) or npcUtil.tradeHas(trade, 1693)) then
         player:startEvent(52, 500 * GIL_RATE)
     end
 end
