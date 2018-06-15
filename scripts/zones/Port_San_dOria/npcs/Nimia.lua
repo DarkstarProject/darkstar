@@ -26,9 +26,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
+    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOLOWLANDS);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,NIMIA_CLOSED_DIALOG);
     else
         player:showText(npc,NIMIA_OPEN_DIALOG);
@@ -43,16 +43,12 @@ function onTrigger(player,npc)
             632,   110, -- Kukuru Bean
             1411, 1656  -- Phalaenopsis
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -19,12 +19,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("RESULT: %d",option);
 
     if (csid == 648 and bit.band(option, 0x80000000) ~= 0) then

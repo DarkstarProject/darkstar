@@ -32,16 +32,12 @@ function onTrigger(player,npc)
         0x3228,   915,       -- Sitabaki
         0x32A8,   584        -- Kyahan
     }
-    showShop(player, WINDURST, stock);
+    dsp.shop.general(player, stock, WINDURST);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

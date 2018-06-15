@@ -66,12 +66,10 @@ end;
 
 function onEventUpdate(player,csid,option)
     -- printf("Update CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     -- printf("Finish CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 48 and option == 0) then
         player:addQuest(WINDURST,THE_POSTMAN_ALWAYS_KO_S_TWICE);

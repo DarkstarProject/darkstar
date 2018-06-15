@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         0x439C, 60,     -- Hawkeye
         0x43A8, 8,      -- Iron Arrow
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

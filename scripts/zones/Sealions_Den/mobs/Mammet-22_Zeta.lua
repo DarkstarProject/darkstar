@@ -11,7 +11,7 @@ function onMobDeath(mob, player, isKiller)
     local inst = math.floor((mob:getID() - ONE_TO_BE_FEARED_OFFSET) / 7);
     local instOffset = ONE_TO_BE_FEARED_OFFSET + (7 * (inst));
     
-    -- if all five mammets in this instance are dead, start event    
+    -- if all five mammets in this instance are dead, start event
     local allMammetsDead = true;
     for i = instOffset + 0, instOffset + 4 do
         if (not GetMobByID(i):isDead()) then

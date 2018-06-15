@@ -5,7 +5,7 @@
 --  Type: Magical
 --  Wipe Shadows
 --  Range: 10.0' AoE
---  Notes: 
+--  Notes:
 ---------------------------------------------
 
 require("scripts/globals/settings");

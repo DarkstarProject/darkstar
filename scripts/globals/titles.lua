@@ -3,7 +3,7 @@
 --     TITLES IDs
 --
 -----------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.title =
 {
@@ -925,4 +925,4 @@ dsp.title =
     BRINGER_OF_THE_DAWN                       = 932,
     THE_ONE_TRUE_PIONEER                      = 933,
     BRINGER_OF_HOPE                           = 934,
-};
+}

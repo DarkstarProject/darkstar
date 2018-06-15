@@ -7,20 +7,20 @@
 -- Level: 76
 -- Phantom Roll +1 Value: 4
 --
--- Die Roll    | %   
--- --------    -------  
--- 1           |+6     
--- 2           |+6     
--- 3           |+16     
--- 4           |+8     
--- 5           |+8     
--- 6           |+10     
--- 7           |+10     
--- 8           |+12      
--- 9           |+4     
--- 10          |+14     
--- 11          |+20     
--- Bust        |0     
+-- Die Roll    | %
+-- --------    -------
+-- 1           |+6
+-- 2           |+6
+-- 3           |+16
+-- 4           |+8
+-- 5           |+8
+-- 6           |+10
+-- 7           |+10
+-- 8           |+12
+-- 9           |+4
+-- 10          |+14
+-- 11          |+20
+-- Bust        |0
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/ability");
@@ -55,7 +55,7 @@ function applyRoll(caster,target,ability,action,total)
 -- Apply Additional Phantom Roll+ Buff
     local phantomBase = 4; -- Base increment buff
     local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
--- Check if COR Main or Sub    
+-- Check if COR Main or Sub
     if (caster:getMainJob() == dsp.job.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then

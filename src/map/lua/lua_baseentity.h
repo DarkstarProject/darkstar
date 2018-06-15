@@ -380,6 +380,8 @@ public:
     int32 hasLearnedWeaponskill(lua_State*);
     int32 delLearnedWeaponskill(lua_State*);
 
+    int32 addWeaponSkillPoints(lua_State*); // Adds weapon skill points to an equipped weapon
+
     int32 addLearnedAbility(lua_State*);    // Add spell to Entity spell list
     int32 hasLearnedAbility(lua_State*);    // Check to see if character has item in spell list
     int32 canLearnAbility(lua_State*);      // Check to see if character can learn spell, 0 if so

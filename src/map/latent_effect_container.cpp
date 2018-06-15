@@ -775,7 +775,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         {
         case 0:
             //daytime: 06:00 to 18:00
-            expression = VanadielHour > 5 && VanadielHour < 18;
+            expression = VanadielHour >= 6 && VanadielHour < 18;
             break;
         case 1:
             //nighttime: 18:00 to 06:00
@@ -799,7 +799,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
             break;
         case 2:
             //dawn
-            expression = VanadielHour == 6;
+            expression = VanadielHour >= 6 && VanadielHour < 7;
             break;
         case 3:
             //day
@@ -815,7 +815,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
             break;
         case 6:
             //dead of night
-            expression = VanadielHour < 4 || VanadielHour <= 20;
+            expression = VanadielHour >= 20 || VanadielHour < 4;
             break;
         }
         break;

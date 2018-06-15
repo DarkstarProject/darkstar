@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Pyric Blast
 --
---  Description: Deals Fire damage to enemies within a fan-shaped area. Additional effect: Plague 
+--  Description: Deals Fire damage to enemies within a fan-shaped area. Additional effect: Plague
 --  Type: Breath
 --  Ignores Shadows
 --  Range: Unknown Cone

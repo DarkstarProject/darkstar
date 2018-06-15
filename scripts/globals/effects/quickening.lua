@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.QUICKENING
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

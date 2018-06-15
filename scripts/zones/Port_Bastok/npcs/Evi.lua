@@ -36,8 +36,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 104 and player:getVar("PastPerfectVar") == 0) then
         player:setVar("PastPerfectVar",1);

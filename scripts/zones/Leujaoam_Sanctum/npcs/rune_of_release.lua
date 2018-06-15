@@ -28,8 +28,8 @@ function onEventFinish(player,csid,option)
     local chars = instance:getChars();
     local id = instance:getID();
     local points = 0;
-	local playerpoints = ((#chars -3)*100);
-	
+    local playerpoints = ((#chars -3)*100);
+
     if (csid == 100 and option == 1) then
         if (id == 1) then
             points = 1000 - math.max(0, playerpoints);

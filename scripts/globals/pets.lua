@@ -3,8 +3,8 @@
 --  PETS ID
 --
 -----------------------------------
-dsp = dsp or {};
-dsp.pet = dsp.pet or {};
+dsp = dsp or {}
+dsp.pet = dsp.pet or {}
 
 -----------------------------------
 -- Pet types
@@ -19,7 +19,7 @@ dsp.pet.type =
     AUTOMATON          = 4,
     ADVENTURING_FELLOW = 5,
     CHOCOBO            = 6,
-};
+}
 
 
 -----------------------------------
@@ -85,7 +85,7 @@ dsp.pet.id =
 
     --  Puppetmaster
     AUTOMATON             = 69,
-};
+}
 
 -----------------------------------
 -- Pet names
@@ -1219,5 +1219,4 @@ dsp.pet.name =
     TURBULENTE    = 1124,
     DESTRUCTION   = 1125,
     FIRECRACKER   = 1126,
-};
-
+}

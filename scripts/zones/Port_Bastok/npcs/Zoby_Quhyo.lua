@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ELSHIMOLOWLANDS);
-    if (RegionOwner ~= NATION_BASTOK) then
+    local RegionOwner = GetRegionOwner(dsp.region.ELSHIMOLOWLANDS);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,ZOBYQUHYO_CLOSED_DIALOG);
     else
         player:showText(npc,ZOBYQUHYO_OPEN_DIALOG);
@@ -31,18 +31,14 @@ function onTrigger(player,npc)
             630,     88,  -- Ogre Pumpkin
             1411,  1656   -- Phalaenopsis
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

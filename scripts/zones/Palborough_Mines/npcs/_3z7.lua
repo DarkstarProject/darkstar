@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    RunElevator(ELEVATOR_PALBOROUGH_MINES_LIFT);
+    RunElevator(dsp.elevator.PALBOROUGH_MINES_LIFT);
 end;
 
 function onEventUpdate(player,csid,option)
@@ -22,6 +22,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

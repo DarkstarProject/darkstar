@@ -3,15 +3,17 @@
 --  MOB: Gambilox Wanderling
 -- Quest NM - "As Thick as Thieves"
 -----------------------------------
+require("scripts/globals/status")
+-----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+end
 
 function onMobDeath(mob, player, isKiller)
+    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
 
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
-
-    if (thickAsThievesGamblingCS == 5) then
+    if thickAsThievesGamblingCS == 5 then
         player:setVar("thickAsThievesGamblingCS",6)
     end
-end;
+end

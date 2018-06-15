@@ -59,6 +59,6 @@ function onEffectLose(target,effect)
         target:delMod(dsp.mod.BLACK_MAGIC_RECAST, 20);
         target:delMod(dsp.mod.LIGHT_ARTS_REGEN, regen);
         target:delMod(dsp.mod.REGEN_DURATION, regen*2);
-    end    
+    end
     target:recalculateSkillsTable();
 end;

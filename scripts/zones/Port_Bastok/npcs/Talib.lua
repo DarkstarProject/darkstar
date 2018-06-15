@@ -48,8 +48,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 2 and option == 0) then
         player:addQuest(BASTOK,BEAUTY_AND_THE_GALKA);

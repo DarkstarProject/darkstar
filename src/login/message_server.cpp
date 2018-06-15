@@ -71,7 +71,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
         memcpy(newPacket.data(), packet->data(), packet->size());
         zSocket->send(newPacket);
     }
-    catch (zmq::error_t e)
+    catch (zmq::error_t& e)
     {
         ShowError("Message: %s\n", e.what());
     }
@@ -247,7 +247,7 @@ void message_server_listen()
                 }
             }
         }
-        catch (zmq::error_t e)
+        catch (zmq::error_t& e)
         {
             // Context was terminated
             // Exit loop
@@ -293,7 +293,7 @@ void message_server_init()
     {
         zSocket->bind(server.c_str());
     }
-    catch (zmq::error_t err)
+    catch (zmq::error_t& err)
     {
         ShowFatalError("Unable to bind chat socket: %s\n", err.what());
     }

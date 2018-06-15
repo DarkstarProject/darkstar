@@ -34,13 +34,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 151) then
         player:addKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TENSHODO_APPLICATION_FORM);

@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(MOVALPOLOS);
+    local RegionOwner = GetRegionOwner(dsp.region.MOVALPOLOS);
 
-if (RegionOwner ~= NATION_SANDORIA) then
+if (RegionOwner ~= dsp.nation.SANDORIA) then
     player:showText(npc,VENDAVOQ_CLOSED_DIALOG);
 else
     player:showText(npc,VENDAVOQ_OPEN_DIALOG);
@@ -40,17 +40,13 @@ else
              0x0672,6500, --Kopparnickel Ore
              0x142d,736}  --Movalpolos Water
 
-    showShop(player,SANDORIA,stock);
+    dsp.shop.general(player, stock, SANDORIA);
 end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_BASTOK) then
+    if (GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.BASTOK) then
         player:showText(npc,TAKIYAH_CLOSED_DIALOG);
     else
         player:showText(npc,TAKIYAH_OPEN_DIALOG);
@@ -23,17 +23,13 @@ function onTrigger(player,npc)
         local stock =
         {0x03ba,4121}        -- Magic Pot Shard
 
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

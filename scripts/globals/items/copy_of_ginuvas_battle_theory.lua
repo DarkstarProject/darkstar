@@ -2,7 +2,7 @@
 -- ID: 4198
 -- Item: Copy of "Ginuva's Battle Theory"
 -- Grants 50 - 200 EXP
--- Does not grant Limit Points. 
+-- Does not grant Limit Points.
 --
 -----------------------------------------
 require("scripts/globals/status");

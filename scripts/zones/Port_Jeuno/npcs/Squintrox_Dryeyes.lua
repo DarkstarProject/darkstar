@@ -61,13 +61,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     -- uncommented printf till we have all optionIDs mapped out.
     local now = tonumber(os.date("%j"));
     local ACPm = player:getCurrentMission(ACP);

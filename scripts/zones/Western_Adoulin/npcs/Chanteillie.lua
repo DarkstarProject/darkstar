@@ -58,7 +58,7 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.INVENTORS_COALITION_PICKAXE);
         player:setVar("DNGITL_Status", 0);
 
-    -- VEGETABLE VEGETABLE CRISIS   
+    -- VEGETABLE VEGETABLE CRISIS
     elseif (csid == 5089) then
         player:confirmTrade();
         player:setVar("VVC_Status", 2);

@@ -9,10 +9,6 @@ package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 
 require("scripts/zones/Apollyon/TextIDs");
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
 if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
@@ -36,10 +32,6 @@ if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
  local instancelist ={};
  local limbusbitmap = 0 ;
@@ -47,9 +39,9 @@ function onTrigger(player,npc)
  local currentlimbus= TryTobackOnCurrentLimbus(player);
 
   if ( npc:getID() == 16933242) then
-         instancelist = APPOLLYON_SE_NE_BCNM_LIST;
+         instancelist = APOLLYON_SE_NE_BCNM_LIST;
   else
-         instancelist = APPOLLYON_NW_SW_BCNM_LIST;
+         instancelist = APOLLYON_NW_SW_BCNM_LIST;
  end
 printf("currentlimbus: %u",currentlimbus);
 
@@ -132,10 +124,6 @@ printf("currentlimbus: %u",currentlimbus);
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 
 
@@ -156,13 +144,7 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
    if (csid == 32000) then
 
    end

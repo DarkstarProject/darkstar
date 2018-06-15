@@ -17,5 +17,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,FIREFLIES_AZOUPH,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.AZOUPH,0,1);
 end;

@@ -45,15 +45,11 @@ function onTrigger(player,npc)
          0x1036,2387,3, --Eye Drops
          0x349d,1150,3} --Leather Ring
 
-showNationShop(player, NATION_SANDORIA, stock);
+dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

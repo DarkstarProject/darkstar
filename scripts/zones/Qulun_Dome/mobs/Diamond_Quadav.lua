@@ -5,7 +5,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}; 
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/zones/Qulun_Dome/TextIDs");
 require("scripts/zones/Qulun_Dome/MobIDs");
 require("scripts/globals/status");

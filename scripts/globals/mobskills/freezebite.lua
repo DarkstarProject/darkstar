@@ -1,21 +1,21 @@
------------------------------------    
--- Freezebite    
--- Great Sword weapon skill    
--- Skill Level: 100    
--- Delivers an ice elemental attack. Damage varies with TP.    
--- Aligned with the Snow Gorget & Breeze Gorget.    
--- Aligned with the Snow Belt & Breeze Belt.    
--- Element: Ice    
--- Modifiers: STR:30% ; INT:20%    
--- 100%TP    200%TP    300%TP    
--- 1.00      1.50      3.00    
------------------------------------    
+-----------------------------------
+-- Freezebite
+-- Great Sword weapon skill
+-- Skill Level: 100
+-- Delivers an ice elemental attack. Damage varies with TP.
+-- Aligned with the Snow Gorget & Breeze Gorget.
+-- Aligned with the Snow Belt & Breeze Belt.
+-- Element: Ice
+-- Modifiers: STR:30% ; INT:20%
+-- 100%TP    200%TP    300%TP
+-- 1.00      1.50      3.00
+-----------------------------------
     
-require("scripts/globals/status");    
-require("scripts/globals/settings");    
-require("scripts/globals/weaponskills");    
+require("scripts/globals/status");
+require("scripts/globals/settings");
+require("scripts/globals/weaponskills");
 require("scripts/globals/monstertpmoves");
------------------------------------    
+-----------------------------------
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;

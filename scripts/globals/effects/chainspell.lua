@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.CHAINSPELL
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

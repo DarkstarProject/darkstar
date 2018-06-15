@@ -30,16 +30,12 @@ function onTrigger(player,npc)
      0x43B8,6,        -- Crossbow Bolt
      0x4752,248}        -- Throwing Tomahawk
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

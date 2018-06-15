@@ -174,7 +174,7 @@ INSERT INTO `abilities` VALUES (134,'tomahawk',1,75,4,180,7,0,0,244,2000,0,3,20.
 INSERT INTO `abilities` VALUES (135,'mantra',2,75,1,600,19,441,0,155,2000,0,6,20.0,1,1,60,2112,1,'TOAU');
 INSERT INTO `abilities` VALUES (136,'formless_strikes',2,75,1,600,20,0,0,156,2000,0,6,20.0,0,1,300,2114,1,'TOAU');
 INSERT INTO `abilities` VALUES (137,'martyr',3,75,2,600,27,102,0,157,2000,0,6,20.0,0,1,300,2176,1,'TOAU');
-INSERT INTO `abilities` VALUES (138,'devotion',3,75,2,600,28,224,0,158,2000,0,6,10.0,0,1,300,2178,1,'TOAU');
+INSERT INTO `abilities` VALUES (138,'devotion',3,75,2,600,28,451,0,158,2000,0,6,10.0,0,1,300,2178,1,'TOAU');
 INSERT INTO `abilities` VALUES (139,'assassins_charge',6,75,1,300,67,0,0,160,2000,0,6,20.0,0,1,300,2368,1,'TOAU');
 INSERT INTO `abilities` VALUES (140,'feint',6,75,1,120,68,0,0,159,2000,0,6,20.0,0,1,300,2370,1,'TOAU');
 INSERT INTO `abilities` VALUES (141,'fealty',7,75,1,600,78,0,0,148,2000,0,6,20.0,0,1,300,2432,1,'TOAU');
@@ -264,8 +264,8 @@ INSERT INTO `abilities` VALUES (225,'focalization',20,75,1,1,231,0,0,212,2000,0,
 INSERT INTO `abilities` VALUES (226,'tranquility',20,75,1,1,231,0,0,211,2000,0,6,20.0,0,1,80,3268,17,'WOTG');
 INSERT INTO `abilities` VALUES (227,'equanimity',20,75,1,1,231,0,0,213,2000,0,6,20.0,0,1,80,3270,33,'WOTG');
 INSERT INTO `abilities` VALUES (228,'enlightenment',20,75,1,300,235,0,0,214,2000,0,6,20.0,0,1,80,3272,1,'WOTG');
-INSERT INTO `abilities` VALUES (229,'afflatus_solace',3,40,1,60,29,0,0,216,2000,0,6,20.0,0,1,80,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (230,'afflatus_misery',3,40,1,60,30,0,0,217,2000,0,6,20.0,0,1,80,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (229,'afflatus_solace',3,40,1,60,29,0,0,216,2000,0,6,20.0,0,1,80,0,4,'WOTG');
+INSERT INTO `abilities` VALUES (230,'afflatus_misery',3,40,1,60,30,0,0,217,2000,0,6,20.0,0,1,80,0,4,'WOTG');
 INSERT INTO `abilities` VALUES (231,'composure',5,50,1,300,50,0,0,215,2000,0,6,20.0,0,1,80,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (232,'yonin',13,40,1,180,146,0,0,218,2000,0,6,20.0,0,1,600,0,4,'WOTG');
 INSERT INTO `abilities` VALUES (233,'innin',13,40,1,180,147,0,0,219,2000,0,6,20.0,0,1,60,0,4,'WOTG');

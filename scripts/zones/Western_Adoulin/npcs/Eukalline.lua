@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         0x17CD, 703800, -- Scroll of Indi-Fade
         0x17F3, 709716, -- Scroll of Indi-Haste
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     
     -- ENTER THE TALEKEEPER
     if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER) then
-        local missionStatus = player:getVar("MissionStatus");        
+        local missionStatus = player:getVar("MissionStatus");
         local anyGhostsAlive = false;
         for i = 0, 2 do
             if (GetMobByID(TALEKEEPER_OFFSET + i):isAlive()) then
