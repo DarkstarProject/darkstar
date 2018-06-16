@@ -154,8 +154,7 @@ end;
 
 function onMobDeath(mob, player)
     local master = mob:getMaster();
-    local pet = master:getPet()
-    local numLvls = pet:getLocalVar("level_Ups")
+    local numLvls = mob:getLocalVar("level_Ups")
     if numLvls ~= 0 then
         master:delMod(dsp.mod.ATTP, 4 * numLvls)
         master:delMod(dsp.mod.DEFP, 4 * numLvls)
