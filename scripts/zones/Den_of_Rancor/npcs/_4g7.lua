@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Den of Rancor
---  NPC: Lantern (SE)
--- !pos -59 45 24 160
+--  NPC: Lantern (Red)
+-- !pos -142.956 4.637 -173.018 160
 -----------------------------------
 require("scripts/zones/Den_of_Rancor/globals")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    DEN_OF_RANCOR.onTradeLanternChamber(player, npc, trade)
+    DEN_OF_RANCOR.onTradeLanternBoss(player, npc, trade)
 end
 
 function onTrigger(player,npc)

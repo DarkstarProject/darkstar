@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Den of Rancor
---  NPC: Drop Gate (by Sacrificial Chamber)
--- !pos -60 46 32 160
+--  NPC: Drop Gate (by Hakutaku)
+-- !pos 5.044 23.590 -299.976 160
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil
 -----------------------------------
