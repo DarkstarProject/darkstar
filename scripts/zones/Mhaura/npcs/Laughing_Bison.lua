@@ -19,20 +19,20 @@ function onTrigger(player,npc)
     local direction = 0; -- Arrive, 1 for depart
     local waiting = 216; -- Offset for Selbina
 
-   -- Next ferry is Al Zhabi for higher values.
+    -- Next ferry is Al Zhabi for higher values.
     if (timer >= 576) then
-      destination = 1;
-      timer = timer - 576;
-      waiting = 193;
-    else if (destination == 0) then
+        destination = 1;
+        timer = timer - 576;
+        waiting = 193;
+        elseif (destination == 0) then
+        end
     end
-	end
 	
-	   -- Logic to manipulate cutscene results.
+    -- Logic to manipulate cutscene results.
     if (timer <= waiting) then
-      direction = 1; -- Ship arrived, switch dialog from "arrive" to "depart"
-   else
-      timer = timer - waiting; -- Ship hasn't arrived, subtract waiting time to get time to arrival
+        direction = 1; -- Ship arrived, switch dialog from "arrive" to "depart"
+    else
+        timer = timer - waiting; -- Ship hasn't arrived, subtract waiting time to get time to arrival
     end
 
 player:startEvent(333,timer,direction,0,destination); -- timer arriving/departing ??? destination
