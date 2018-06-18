@@ -394,3 +394,26 @@ function npcUtil.fishingAnimation(npc, phaseDuration, func)
         npcUtil.fishingAnimation(npc, nextAnimationDuration, func)
     end)
 end
+
+function npcUtil.castingAnimation(npc, magicType, phaseDuration, func)
+    func = func or function(npc)
+        -- return true to not loop again
+        return false
+    end
+
+    if func(npc) then
+        return
+    end
+    npc:timer(phaseDuration * 1000, function(npc)
+        local anims =
+        {
+            [dsp.magic.spellGroup.BLACK] = { start = "cabk", duration = 2000, stop = "shbk" },
+            [dsp.magic.spellGroup.WHITE] = { start = "cawh", duration = 1800, stop = "shwh" },
+        }
+        npc:entityAnimationPacket(anims[magicType].start)
+        npc:timer(anims[magicType].duration, function(npc)
+            npc:entityAnimationPacket(anims[magicType].stop)
+        end)
+        npcUtil.castingAnimation(npc, magicType, phaseDuration, func)
+    end)
+end
