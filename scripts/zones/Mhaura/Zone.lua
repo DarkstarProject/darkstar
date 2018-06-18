@@ -13,6 +13,24 @@ require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 -----------------------------------
+function onGameHour(zone)
+    -- Script for Laughin Bison sign flip animations
+    local timer = 1152 - ((os.time() - 1009810802)%1152);
+    local destination = 0; -- Selbina, set to 1 for Al Zhabi
+    local direction = 0; -- Arrive, 1 for depart
+    local waiting = 216; -- Offset for Selbina
+    
+    -- Next ferry is Al Zhabi for higher values.
+    if (timer >= 576) then
+        destination = 1;
+        GetNPCByID(17797183):AnimationSub(1)
+        timer = timer - 576;
+        waiting = 193;
+    elseif (destination == 0) then
+        GetNPCByID(17797183):AnimationSub(0)
+    end
+	end
+end;
 
 function onInitialize(zone)
     SetExplorerMoogles(MHAURA_EXPLORER_MOOGLE);
