@@ -2364,10 +2364,11 @@ dsp.behavior =
 
 dsp.elevator =
 {
-    KUFTAL_TUNNEL_DSPPRNG_RCK = 0,
+    TIMED_AUTOMATIC           = 0,
     PORT_BASTOK_DRWBRDG       = 2,
     DAVOI_LIFT                = 3,
     PALBOROUGH_MINES_LIFT     = 4,
+    FORT_GHELSBA_LIFT         = 5
 }
 
 ------------------------------------
