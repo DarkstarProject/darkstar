@@ -3,26 +3,33 @@
 --  NPC: Elevator Lever (lower)
 -- !pos  -0.652 -28.996 100.445 141
 -----------------------------------
+require("scripts/globals/status")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
+    -- local vars to reduce repeat calls..
+    local lever = npc:getID()
+    local gear = GetNPCByID(lever +2)
+    local bigWinch = GetNPCByID(lever -1)
+
     -- Animate lever
     npc:openDoor(1)
 
-    -- Animate lever's Gear
-    if GetNPCByID(npc:getID()+2):getAnimation() == 8 then
-        GetNPCByID(npc:getID()+2):setAnimation(9)
+    -- Animate lever's Gear - do not use openDoor() / closeDoor() here!
+    if gear:getAnimation() == dsp.animation.OPEN_DOOR then
+        gear:setAnimation(dsp.animation.CLOSE_DOOR)
     else
-        GetNPCByID(npc:getID()+2):setAnimation(8)
+        gear:setAnimation(dsp.animation.OPEN_DOOR)
     end
 
-    -- Animate bigWinch
-    if GetNPCByID(npc:getID()-1):getAnimation() == 8 then
-        GetNPCByID(npc:getID()-1):setAnimation(9)
+    -- Animate bigWinch - do not use openDoor() / closeDoor() here!
+    if bigWinch:getAnimation() == dsp.animation.OPEN_DOOR then
+        bigWinch:setAnimation(dsp.animation.CLOSE_DOOR)
     else
-        GetNPCByID(npc:getID()-1):setAnimation(8)
+        bigWinch:setAnimation(dsp.animation.OPEN_DOOR)
     end
 
     -- Move platform
