@@ -12954,21 +12954,21 @@ inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
             uint16 droprate = 1000;
             if (!lua_isnil(L,3) && lua_isnumber(L,2))
             {
-                droprate = lua_tointeger(L, 3);
+                droprate = (uint16)lua_tointeger(L, 3);
             }
             // The specified PEntity can be a Mob or NPC
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
             CBaseEntity* PEntity = PLuaBaseEntity->GetBaseEntity();
-            charutils::DistributeItem(PChar, PEntity, lua_tointeger(L, 1), droprate);
+            charutils::DistributeItem(PChar, PEntity, (uint16)lua_tointeger(L, 1), droprate);
         }
         else // Entity can be nullptr - this is intentional
         {
             uint16 droprate = 1000;
             if (!lua_isnil(L,2) && lua_isnumber(L,1))
             {
-                droprate = lua_tointeger(L, 2);
+                droprate = (uint16)lua_tointeger(L, 2);
             }
-            charutils::DistributeItem(PChar, nullptr, lua_tointeger(L, 1), droprate);
+            charutils::DistributeItem(PChar, nullptr, (uint16)lua_tointeger(L, 1), droprate);
         }
     }
 
