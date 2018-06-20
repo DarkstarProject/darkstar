@@ -806,23 +806,11 @@ void CMobEntity::DropItems()
             DropList_t* DropList = itemutils::GetDropList(m_DropID);
             //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
 
-            if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
+            if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS))
             {
-                for (uint8 i = 0; i < DropList->size(); ++i)
+                for (const auto& drop : *DropList)
                 {
-                    //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-                    uint8 tries = 0;
-                    uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-                    uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
-                    while (tries < maxTries)
-                    {
-                        if (DropList->at(i).DropRate > 0 && dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
-                        {
-                            PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, this);
-                            break;
-                        }
-                        tries++;
-                    }
+                    charutils::DistributeItem(PChar, this, drop.ItemID, drop.DropRate);
                 }
             }
 

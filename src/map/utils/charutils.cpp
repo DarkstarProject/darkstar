@@ -3138,6 +3138,29 @@ namespace charutils
         }
     }
 
+    void DistributeItem(CCharEntity* PChar, CBaseEntity* PEntity, uint16 itemid, uint16 droprate)
+    {
+        uint8 tries = 0;
+        uint8 maxTries = 1;
+        uint8 bonus = 0;
+        if (auto PMob = dynamic_cast<CMobEntity*>(PEntity))
+        {
+            //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
+            tries = 0;
+            maxTries = 1 + (PMob->m_THLvl > 2 ? 2 : PMob->m_THLvl);
+            bonus = (PMob->m_THLvl > 2 ? (PMob->m_THLvl - 2) * 10 : 0);
+        }
+        while (tries < maxTries)
+        {
+            if (droprate > 0 && dsprand::GetRandomNumber(1000) < droprate * map_config.drop_rate_multiplier + bonus)
+            {
+                PChar->PTreasurePool->AddItem(itemid, PEntity);
+                break;
+            }
+            tries++;
+        }
+    }
+
     /************************************************************************
     *                                                                       *
     *  Allocate experience points                                           *

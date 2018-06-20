@@ -59,6 +59,7 @@ namespace charutils
     void	DelExperiencePoints(CCharEntity* PChar, float retainpct, uint16 forcedXpLoss);
     void	DistributeExperiencePoints(CCharEntity* PChar, CMobEntity* PMob);
     void	DistributeGil(CCharEntity* PChar, CMobEntity* PMob);
+    void	DistributeItem(CCharEntity* PChar, CBaseEntity* PEntity, uint16 itemid, uint16 droprate);
     void	AddExperiencePoints(bool expFromRaise, CCharEntity* PChar, CBaseEntity* PMob, uint32 exp, uint32 baseexp = 0, bool isexpchain = false);
 
     void	TrySkillUP(CCharEntity* PChar, SKILLTYPE SkillID, uint8 lvl);

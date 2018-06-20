@@ -947,3 +947,35 @@ end;
 function dynamis.extendTimeLimit(battlefield, minutes)
     dsp.battlefield.ExtendTimeLimit(battlefield, minutes, msgBasic.TIME_DYNAMIS_EXTENDED)
 end
+
+-- todo: fix these to use tables
+function dynamis.getExtensions(player)
+    local count = 0
+    for i=dsp.ki.CRIMSON_GRANULES_OF_TIME, dsp.ki.OBSIDIAN_GRANULES_OF_TIME do
+        if player:hasKeyItem(i) then count = count + 1 end
+    end
+    return count
+end
+
+function dynamis.procMonster(mob, player)
+    local extensions = dynamis.getExtensions(player)
+    if extensions > 2 then
+        if player:getSubJob() == JOBS.NONE and math.random(0,99) == 0 then
+            mob:setLocalVar("dynamis_proc", 4)
+            mob:weaknessTrigger(3)
+            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+        elseif extensions == 5 then
+            mob:setLocalVar("dynamis_proc", 3)
+            mob:weaknessTrigger(2)
+            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+        elseif extensions == 4 then
+            mob:setLocalVar("dynamis_proc", 2)
+            mob:weaknessTrigger(1)
+            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+        elseif extensions == 3 then
+            mob:setLocalVar("dynamis_proc", 1)
+            mob:weaknessTrigger(0)
+            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+        end
+    end
+end

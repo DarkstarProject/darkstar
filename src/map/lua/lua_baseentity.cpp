@@ -12937,7 +12937,6 @@ int32 CLuaBaseEntity::setDropID(lua_State* L)
 *  Function: addTreasure()
 *  Purpose : Manually adds treasure to a party's treasure pool
 *  Example : targ:addTreasure(itemId, dropper)
-*  Notes   : Exclusively used for addtreasure.lua GM command
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
@@ -12952,14 +12951,24 @@ inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
     {
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
+            uint16 droprate = 1000;
+            if (!lua_isnil(L,3) && lua_isnumber(L,2))
+            {
+                droprate = lua_tointeger(L, 3);
+            }
             // The specified PEntity can be a Mob or NPC
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
             CBaseEntity* PEntity = PLuaBaseEntity->GetBaseEntity();
-            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), PEntity);
+            charutils::DistributeItem(PChar, PEntity, lua_tointeger(L, 1), droprate);
         }
         else // Entity can be nullptr - this is intentional
         {
-            PChar->PTreasurePool->AddItem((uint16)lua_tointeger(L, 1), nullptr);
+            uint16 droprate = 1000;
+            if (!lua_isnil(L,2) && lua_isnumber(L,1))
+            {
+                droprate = lua_tointeger(L, 2);
+            }
+            charutils::DistributeItem(PChar, nullptr, lua_tointeger(L, 1), droprate);
         }
     }
 
