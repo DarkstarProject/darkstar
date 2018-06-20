@@ -2817,6 +2817,13 @@ namespace battleutils
             case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
             default: break;
         }
+
+        // Add intimidation rate from Bully
+        if (CStatusEffect* PDoubtEffect = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBT))
+        {
+            KillerEffect += PDoubtEffect->GetPower();
+        }
+
         return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
 
