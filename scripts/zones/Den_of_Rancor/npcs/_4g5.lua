@@ -7,7 +7,7 @@ require("scripts/zones/Den_of_Rancor/globals")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    DEN_OF_RANCOR.onTradeLantern(player, npc, trade)
+    DEN_OF_RANCOR.onTradeLanternChamber(player, npc, trade)
 end
 
 function onTrigger(player,npc)
