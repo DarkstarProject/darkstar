@@ -3,7 +3,9 @@
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+
+YAGUDO_AVATAR = 17396134
 
 MEE_DEGGI_THE_PUNISHER_PH =
 {
@@ -54,7 +56,7 @@ OZ_HANDLE_TABLE =
     [6] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
     [7] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
     [8] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-};
+}
 
 OZ_PASSWORD_TABLE =
 {
@@ -73,8 +75,5 @@ FIRST_PASSWORD_STATUE   = 17396168
 SECOND_PASSWORD_STATUE  = 17396173
 THIRD_PASSWORD_STATUE   = 17396178
 FINAL_PASSWORD_STATUE   = 17396192
-
-YAGUDO_AVATAR           = 17396134;
-
-OZTROJA_TREASURE_CHEST  = 17396210;
-OZTROJA_TREASURE_COFFER = 17396211;
+OZTROJA_TREASURE_CHEST  = 17396210
+OZTROJA_TREASURE_COFFER = 17396211
