@@ -39,8 +39,8 @@ function onZoneIn(player,prevZone)
         player:messageSpecial(DYNAMIS_TIME_EXPIRED)
     end)
 
-    if not player:hasStatusEffect(EFFECT_DYNAMIS) then
-        player:addStatusEffectEx(EFFECT_DYNAMIS, 0, 0, 0, 3600)
+    if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
+        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 0, 3600)
     end
 
     return cs;

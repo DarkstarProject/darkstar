@@ -960,7 +960,7 @@ end
 function dynamis.procMonster(mob, player)
     local extensions = dynamis.getExtensions(player)
     if extensions > 2 then
-        if player:getSubJob() == JOBS.NONE and math.random(0,99) == 0 then
+        if player:getSubJob() == dsp.job.NONE and math.random(0,99) == 0 then
             mob:setLocalVar("dynamis_proc", 4)
             mob:weaknessTrigger(3)
             mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
