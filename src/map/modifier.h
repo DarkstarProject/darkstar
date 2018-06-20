@@ -683,6 +683,7 @@ enum class Mod
     AUGMENTS_ASSASSINS_CHARGE = 886, // Gives Assassin's Charge +1% Critical Hit Rate per merit level
     AUGMENTS_AMBUSH           = 887, // Gives +1% Triple Attack per merit level when Ambush conditions are met
     AUGMENTS_AURA_STEAL       = 889, // 20% chance of 2 effects to be dispelled or stolen per merit level
+    AUGMENTS_CONSPIRATOR      = 912, // Applies Conspirator benefits to player at the top of the hate list
     ENHANCES_REFRESH          = 529, // "Enhances Refresh" adds +1 per modifier to spell's tick result.
     NO_SPELL_MP_DEPLETION     = 530, // % to not deplete MP on spellcast.
     FORCE_FIRE_DWBONUS        = 531, // Set to above 0 to force fire day/weather spell bonus/penalty.
@@ -728,9 +729,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 912, // stuff
     // SPARE = 913, // stuff
     // SPARE = 914, // stuff
+    // SPARE = 915, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
