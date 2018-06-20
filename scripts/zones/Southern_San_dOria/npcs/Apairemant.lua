@@ -25,9 +25,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(GUSTABERG);
+    local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,APAIREMANT_CLOSED_DIALOG);
     else
         player:showText(npc,APAIREMANT_OPEN_DIALOG);
@@ -39,16 +39,12 @@ function onTrigger(player,npc)
             611,   36,  -- Rye Flour
             4388,  40   -- Eggplant
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

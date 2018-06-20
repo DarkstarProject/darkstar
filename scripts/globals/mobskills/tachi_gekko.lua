@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tachi: Gekko
 --
---  Description:  Silences target. Damage varies with TP. 
+--  Description:  Silences target. Damage varies with TP.
 --  Type: Physical
 --  Shadow per hit
 --  Range: Melee

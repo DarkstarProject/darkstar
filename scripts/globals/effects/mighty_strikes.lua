@@ -1,7 +1,7 @@
 -----------------------------------
 --
 --     dsp.effect.MIGHTY_STRIKES
---     
+--
 -----------------------------------
 
 require("scripts/globals/status");

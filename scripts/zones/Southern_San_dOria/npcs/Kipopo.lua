@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 651 and option == 1) then
         player:messageSpecial(LEATHER_SUPPORT,0,5,1);
         player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120);

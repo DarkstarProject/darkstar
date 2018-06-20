@@ -23,7 +23,7 @@ function onEffectTick(target,effect)
     local boostMND_effect_size = effect:getPower();
     if (boostMND_effect_size > 0) then
         effect:setPower(boostMND_effect_size - 1)
-        target:delMod(dsp.mod.MND,1); 
+        target:delMod(dsp.mod.MND,1);
     end
 end;
 

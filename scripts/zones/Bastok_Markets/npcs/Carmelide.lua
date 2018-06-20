@@ -4,14 +4,12 @@
 -- Standard Merchant NPC
 -- !pos -151.693 -4.819 -69.635 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+require("scripts/zones/Bastok_Markets/TextIDs")
+require("scripts/globals/shop")
 
 function onTrigger(player,npc)
-    player:showText(npc,CARMELIDE_SHOP_DIALOG);
     local stock =
     {
         806, 1713, 2,    -- Tourmaline
@@ -24,5 +22,7 @@ function onTrigger(player,npc)
         796, 1713, 2,    -- Light Opal
         13454, 69, 3,    -- Copper Ring
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end;
+
+    player:showText(npc, CARMELIDE_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end

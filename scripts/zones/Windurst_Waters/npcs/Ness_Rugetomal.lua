@@ -33,16 +33,12 @@ function onTrigger(player,npc)
         0x119D,    10,3,     --Distilled Water
         0x11BA,   846,3      --Roast Pipira
     }
-    showNationShop(player, NATION_WINDURST, stock);
+    dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

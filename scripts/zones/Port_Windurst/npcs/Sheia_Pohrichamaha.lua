@@ -15,9 +15,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(FAUREGANDI);
+    local RegionOwner = GetRegionOwner(dsp.region.FAUREGANDI);
 
-    if (RegionOwner ~= NATION_WINDURST) then
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,SHEIAPOHRICHAMAHA_CLOSED_DIALOG);
     else
         player:showText(npc,SHEIAPOHRICHAMAHA_OPEN_DIALOG);
@@ -28,18 +28,14 @@ function onTrigger(player,npc)
             4363,   39,  -- Faerie Apple
             691,    54   -- Maple Log
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

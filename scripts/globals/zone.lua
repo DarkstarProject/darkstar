@@ -4,7 +4,10 @@
 -- related to area specific things
 --
 ------------------------------------
-dsp = dsp or {};
+require('scripts/globals/settings')
+------------------------------------
+
+dsp = dsp or {}
 
 dsp.zoneType =
 {
@@ -15,7 +18,7 @@ dsp.zoneType =
     BATTLEFIELD    = 4,
     DYNAMIS        = 5,
     INSTANCED      = 6,
-};
+}
 
 dsp.continent =
 {
@@ -23,7 +26,7 @@ dsp.continent =
     THE_ARADJIAH_CONTINENT  = 2,
     THE_SHADOWREIGN_ERA     = 3,
     OTHER_AREAS             = 4,
-};
+}
 
 dsp.region =
 {
@@ -45,7 +48,7 @@ dsp.region =
     ELSHIMOUPLANDS   = 15,
     TULIA            = 16,
     MOVALPOLOS       = 17,
-    TAVNAZIA         = 18,
+    TAVNAZIANARCH    = 18,
     SANDORIA         = 19,
     BASTOK           = 20,
     WINDURST         = 21,
@@ -74,19 +77,28 @@ dsp.region =
     ADOULIN_ISLANDS  = 44,
     EAST_ULBUKA      = 45,
     UNKNOWN          = 255,
-};
+}
+
+dsp.nation =
+{
+    SANDORIA = 0,
+    BASTOK   = 1,
+    WINDURST = 2,
+    BEASTMEN = 3,
+    OTHER    = 4,
+}
 
 -----------------------------------
 -- SetExplorerMoogles
 ----------------------------------
 
 function SetExplorerMoogles(moogle)
-    if (EXPLORER_MOOGLE == 1) then
-        local npc = GetNPCByID(moogle);
-        if (npc == nil) then
-            printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle);
+    if EXPLORER_MOOGLE == 1 then
+        local npc = GetNPCByID(moogle)
+        if npc == nil then
+            printf("'SetExplorerMoogles' Error trying to load undefined npc (%d)", moogle)
         else
-            npc:setStatus(0);
+            npc:setStatus(0)
         end
     end
-end;
+end

@@ -4,7 +4,7 @@
 -- Food Effect: 5 Min, All Races
 -----------------------------------------
 -- Agility -3
--- Intelligence +1 
+-- Intelligence +1
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------

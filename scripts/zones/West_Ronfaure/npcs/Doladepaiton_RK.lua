@@ -9,9 +9,9 @@ package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = RONFAURE;
+local region      = dsp.region.RONFAURE;
 local csid        = 0x7ffb;
 
 function onTrade(player,npc,trade)
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

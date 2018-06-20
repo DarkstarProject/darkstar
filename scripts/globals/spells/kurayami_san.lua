@@ -18,7 +18,7 @@ function onSpellCast(caster,target,spell)
     local duration = 420;
     local params = {};
     params.attribute = dsp.mod.INT;
-    params.skillType = NINJUTSU_SKILL;
+    params.skillType = dsp.skill.NINJUTSU;
     params.bonus = 0;
     duration = duration * applyResistance(caster, target, spell, params);
     --Kurayami base power is 30 and is not affected by resistaces.

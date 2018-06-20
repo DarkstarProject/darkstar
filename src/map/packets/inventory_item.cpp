@@ -34,40 +34,51 @@
 
 CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8 SlotID) 
 {
-	this->type = 0x20;
-	this->size = 0x16;
+    this->type = 0x20;
+    this->size = 0x16;
 
-	ref<uint8>(0x0E) = LocationID;
-	ref<uint8>(0x0F) = SlotID;	
+    ref<uint8>(0x0E) = LocationID;
+    ref<uint8>(0x0F) = SlotID;    
 
-	if (PItem != nullptr)
-	{
-		ref<uint32>(0x04) = PItem->getQuantity();
-		ref<uint32>(0x08) = PItem->getCharPrice();
-		ref<uint16>(0x0C) = PItem->getID();
+    if (PItem != nullptr)
+    {
+        ref<uint32>(0x04) = PItem->getQuantity();
+        ref<uint32>(0x08) = PItem->getCharPrice();
+        ref<uint16>(0x0C) = PItem->getID();
         memcpy(data + 0x11 , PItem->m_extra, sizeof(PItem->m_extra));
 
-		if (PItem->isSubType(ITEM_CHARGED))
-		{
-			ref<uint8>(0x11) = 0x01;
+        if (PItem->isSubType(ITEM_CHARGED))
+        {
+            ref<uint8>(0x11) = 0x01;
+
+            uint8 flags = 0x80; // Tests showed high bit always set.
+            if (((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+            {
+                flags |= 0x10; // Partial charges mask
+            }
 
             if (((CItemUsable*)PItem)->getCurrentCharges() > 0)
             {
                 if (((CItemUsable*)PItem)->getReuseTime() == 0)
                 {
-                    ref<uint8>(0x14) = 0xD0;
+                    flags |= 0x40; // Ready to use
                 }
                 else
                 {
-                    ref<uint8>(0x14) = 0x90;
-
                     uint32 CurrentTime = CVanaTime::getInstance()->getVanaTime();
-
                     ref<uint32>(0x15) = ((CItemUsable*)PItem)->getNextUseTime();
+
+                    // Not sent if the item is unequipped.
+
                     ref<uint32>(0x19) = ((CItemUsable*)PItem)->getUseDelay() + CurrentTime;
                 }
             }
-		}
+            else
+            {
+                flags |= 0x20; // Empty charges
+            }
+            ref<uint8>(0x14) = flags;
+        }
 
         if (PItem->isType(ITEM_WEAPON) && ((CItemWeapon*)PItem)->isUnlockable())
         {
@@ -98,5 +109,5 @@ CInventoryItemPacket::CInventoryItemPacket(CItem* PItem, uint8 LocationID, uint8
         {
             ref<uint8>(0x19) = ((CItemLinkshell*)PItem)->GetLSType();
         }
-	}
+    }
 }

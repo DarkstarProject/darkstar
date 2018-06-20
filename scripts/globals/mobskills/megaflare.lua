@@ -1,10 +1,10 @@
 ---------------------------------------------
 --  Megaflare
 --  Family: Bahamut
---  Description: Deals heavy Fire damage to enemies within a fan-shaped area. 
+--  Description: Deals heavy Fire damage to enemies within a fan-shaped area.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
---  Range: 
+--  Range:
 --  Notes: Used by Bahamut every 10% of its HP (except at 10%), but can use at will when under 10%.
 ---------------------------------------------
 require("scripts/globals/settings");
@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local MegaFlareQueue = mob:getLocalVar("MegaFlareQueue") - 1; -- decrement the amount of queued Megaflares.
     mob:setLocalVar("MegaFlareQueue", MegaFlareQueue);
     mob:setLocalVar("FlareWait", 0); -- reset the variables for Megaflare.
-    mob:setLocalVar("tauntShown", 0); 
+    mob:setLocalVar("tauntShown", 0);
     mob:SetMobAbilityEnabled(true); -- re-enable the other actions on success
     mob:SetMagicCastingEnabled(true);
     mob:SetAutoAttackEnabled(true);

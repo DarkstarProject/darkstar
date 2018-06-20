@@ -1,10 +1,10 @@
 ---------------------------------------------
 --  Gigaflare
 --  Family: Bahamut
---  Description: Deals massive Fire damage to enemies within a fan-shaped area. 
+--  Description: Deals massive Fire damage to enemies within a fan-shaped area.
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
---  Range: 
+--  Range:
 --  Notes: Used by Bahamut when at 10% of its HP, and can use anytime afterwards at will.
 ---------------------------------------------
 require("scripts/globals/settings");

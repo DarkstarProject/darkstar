@@ -120,13 +120,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 586) then
         if (player:getFreeSlotsCount() == 0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option) == true)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option);

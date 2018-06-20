@@ -2,7 +2,7 @@
 --  meteorite
 --
 --  Description: Carbuncle deals Light damage to an enemy.
---  
+--
 ---------------------------------------------
 
 require("scripts/globals/settings");

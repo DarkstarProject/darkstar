@@ -6,7 +6,7 @@
 -- HP +12
 -- Dex +3
 -- Vit +3
--- hHP +2 
+-- hHP +2
 -- Effect with enhancing equipment (Note: these are latents on gear with the effect)
 -- Atk +40
 -- Def +40

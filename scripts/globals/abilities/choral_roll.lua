@@ -58,7 +58,7 @@ function applyRoll(caster,target,ability,action,total)
 -- Apply Additional Phantom Roll+ Buff
     local phantomBase = 4; -- Base increment buff
     local effectpower = effectpower + (phantomBase * phantombuffMultiple(caster))
--- Check if COR Main or Sub   
+-- Check if COR Main or Sub
     if (caster:getMainJob() == dsp.job.COR and caster:getMainLvl() < target:getMainLvl()) then
         effectpower = effectpower * (caster:getMainLvl() / target:getMainLvl());
     elseif (caster:getSubJob() == dsp.job.COR and caster:getSubLvl() < target:getMainLvl()) then

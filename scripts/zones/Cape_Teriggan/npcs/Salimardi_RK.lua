@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Cape_Teriggan/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = VOLLBOW;
+local region      = dsp.region.VOLLBOW;
 local csid        = 0x7ffb;
 
 function onTrade(player,npc,trade)
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

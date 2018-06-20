@@ -6,12 +6,10 @@
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-
-    if (player:getVar("aCraftsmanWork") == 1) then
-        player:setVar("Decurio_I_IIIKilled",1);
+    if player:getVar("aCraftsmanWork") == 1 then
+        player:setVar("Decurio_I_IIIKilled", 1)
     end
-
-end;
+end

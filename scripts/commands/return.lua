@@ -26,7 +26,7 @@ function onTrigger(player, target)
             error(player, string.format( "Player named '%s' not found!", target ) );
             return;
         end
-    end    
+    end
 
     -- get previous zone
     zoneId = targ:getPreviousZone();

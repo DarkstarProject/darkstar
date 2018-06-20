@@ -28,15 +28,11 @@ function onTrigger(player,npc)
         4914, 25038  -- Scroll of Frazzle
     }
     player:showText(npc,TYAPADOLIH_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -1,12 +1,5 @@
-require("scripts/globals/log_ids");
-
------------------------------------
---  Nation IDs
------------------------------------
-
-NATION_SANDORIA = 0;
-NATION_BASTOK   = 1;
-NATION_WINDURST = 2;
+require("scripts/globals/log_ids")
+require("scripts/globals/zone")
 
 -----------------------------------
 --
@@ -239,7 +232,7 @@ CATCH_IT_IF_YOU_CAN             = 21; -- + --
 ALL_AT_SEA                      = 23;
 THE_ALL_NEW_C_2000              = 24; -- ± --
 MIHGO_S_AMIGO                   = 25; -- + --
-ROCK_RACKETTER                  = 26; -- + --
+ROCK_RACKETEER                  = 26; -- + --
 CHOCOBILIOUS                    = 27; -- + --
 TEACHER_S_PET                   = 28; -- + --
 REAP_WHAT_YOU_SOW               = 29; -- + --

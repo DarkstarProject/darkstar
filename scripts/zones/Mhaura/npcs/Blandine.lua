@@ -34,13 +34,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 125) then
         player:addQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
         player:setVar("theSandCharmVar",1);

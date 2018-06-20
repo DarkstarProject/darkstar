@@ -16,8 +16,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(NORVALLEN);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.NORVALLEN);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,POSSORUHBINI_CLOSED_DIALOG);
     else
         player:showText(npc,POSSORUHBINI_OPEN_DIALOG);
@@ -29,18 +29,14 @@ function onTrigger(player,npc)
             618,    25,  -- Blue Peas
             621,    25   -- Crying Mustard
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

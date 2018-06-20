@@ -221,7 +221,7 @@ INSERT INTO `merits` VALUES (2372,'aura_steal',5,20,32,7,36);
 INSERT INTO `merits` VALUES (2374,'ambush',5,3,32,7,36);
 INSERT INTO `merits` VALUES (2432,'fealty',5,5,64,7,37);
 INSERT INTO `merits` VALUES (2434,'chivalry',5,5,64,7,37);
-INSERT INTO `merits` VALUES (2436,'iron_will',5,20,64,7,37);
+INSERT INTO `merits` VALUES (2436,'iron_will',5,19,64,7,37);
 INSERT INTO `merits` VALUES (2438,'guardian',5,19,64,7,37);
 INSERT INTO `merits` VALUES (2496,'dark_seal',5,1,128,7,38);
 INSERT INTO `merits` VALUES (2498,'diabolic_eye',5,5,128,7,38);

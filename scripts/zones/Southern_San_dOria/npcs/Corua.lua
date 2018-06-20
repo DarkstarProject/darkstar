@@ -27,9 +27,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(RONFAURE);
+    local RegionOwner = GetRegionOwner(dsp.region.RONFAURE);
     -- player:startEvent(849) - are you the chicks owner
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,CORUA_CLOSED_DIALOG);
     else
         player:showText(npc,CORUA_OPEN_DIALOG);
@@ -41,17 +41,13 @@ function onTrigger(player,npc)
         639,  110, -- Chestnut
         610,   55  -- San d'Orian Flour
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

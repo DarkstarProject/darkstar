@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Polar Blast
 --
---  Description: Deals Ice damage to enemies within a fan-shaped area. Additional effect: Paralyze 
+--  Description: Deals Ice damage to enemies within a fan-shaped area. Additional effect: Paralyze
 --  Type: Breath
 --  Ignores Shadows
 --  Range: Unknown Cone

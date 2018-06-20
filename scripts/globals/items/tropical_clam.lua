@@ -4,7 +4,7 @@
 -- Food Effect: 5Min, Mithra only
 -----------------------------------------
 -- Vitality 4
--- Dexterity -5 
+-- Dexterity -5
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------

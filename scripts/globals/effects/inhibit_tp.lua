@@ -2,7 +2,7 @@
 --
 -- INHIBIT_TP
 -- Reduces TP Gain By a % Factor
---     
+--
 -----------------------------------
 
 -----------------------------------
@@ -17,7 +17,7 @@ end;
 -- onEffectTick Action
 -----------------------------------
 
-function onEffectTick(target,effect)    
+function onEffectTick(target,effect)
 end;
 
 -----------------------------------

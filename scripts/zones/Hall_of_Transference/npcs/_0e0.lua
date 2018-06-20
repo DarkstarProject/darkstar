@@ -23,13 +23,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 150 and option == 1) then
         player:setPos(92.033, 0, 80.380, 255, 16); -- To Promyvion Holla {R}
     end

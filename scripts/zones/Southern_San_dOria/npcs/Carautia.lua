@@ -46,16 +46,12 @@ function onTrigger(player,npc)
              0x32a1,1116,3,     --Brass Leggings
              0x3298,302,3}         --Leather Highboots
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -25,16 +25,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 300 and option == 1) then
-        toMisareauxCoast(player);
+        dsp.teleport.to(player, dsp.teleport.id.MISAREAUX_VORTEX);
     end
 
 end;

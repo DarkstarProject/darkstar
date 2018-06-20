@@ -11,21 +11,13 @@ require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/zones/Cloister_of_Gales/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
         return;
     end
     
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     
@@ -34,14 +26,10 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);                    
+        player:messageSpecial(PROTOCRYSTAL);
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
@@ -52,10 +40,6 @@ function onEventUpdate(player,csid,option)
     end
     
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     --printf("onFinish CSID: %u",csid);

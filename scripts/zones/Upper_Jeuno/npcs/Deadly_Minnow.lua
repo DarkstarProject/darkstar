@@ -36,18 +36,14 @@ function onTrigger(player,npc)
                  0x318A,35673}    --Mufflers
 
 
-        showShop(player, STATIC, stock);
+        dsp.shop.general(player, stock);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

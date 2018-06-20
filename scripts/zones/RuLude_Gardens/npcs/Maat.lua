@@ -98,15 +98,12 @@ function onTrigger(player,npc)
 end;
 
 -- Maat cap: 74
-
 function onEventUpdate(player,csid,option)
     -- printf("upCSID: %u",csid);
     -- printf("upRESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 117) then
         player:setVar("BeatAroundTheBushin",6);

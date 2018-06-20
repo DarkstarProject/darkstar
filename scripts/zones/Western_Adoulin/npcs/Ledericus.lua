@@ -35,7 +35,7 @@ function onTrigger(player,npc)
         0x1254, 396825, -- Scroll of Haste II
         0x13F1, 396825, -- Scroll of Flurry II
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

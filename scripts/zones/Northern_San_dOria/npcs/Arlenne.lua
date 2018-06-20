@@ -45,16 +45,12 @@ function onTrigger(player,npc)
              16833,792,3,   --Bronze Spear
              16768,309,3}   --Bronze Zaghnal
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -45,13 +45,9 @@ pLevel = player:getMainLvl();
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 174) then
         player:addQuest(BASTOK,THE_WISDOM_OF_ELDERS);

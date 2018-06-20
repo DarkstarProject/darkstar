@@ -68,7 +68,7 @@ function onTrigger(player,npc)
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
 
-    -- DEFAULT    
+    -- DEFAULT
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
 

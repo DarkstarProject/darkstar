@@ -27,13 +27,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:addQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
         player:addKeyItem(dsp.ki.CLUMP_OF_ANIMAL_HAIR);

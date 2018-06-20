@@ -22,10 +22,6 @@ require("scripts/zones/Ghelsba_Outpost/TextIDs");
     ---- 5:
     ---- 6:
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
   if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -33,10 +29,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -53,10 +45,6 @@ function onTrigger(player,npc)
   end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

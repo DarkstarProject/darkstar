@@ -44,13 +44,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 73 and option == 0) then -- first part of long CS -- declines questgiver
         player:setVar("has_seen_drgaf1_quest_already",1);

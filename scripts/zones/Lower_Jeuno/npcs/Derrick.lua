@@ -44,8 +44,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 10) then
         if (player:delGil(500000)) then
@@ -59,8 +57,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 10) then
         if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true) then

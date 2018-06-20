@@ -11,35 +11,27 @@ require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
  local  CofferID = npc:getID();
  local  CofferType=0;
  local  lootID=0;
- local  InstanceRegion=0;  
+ local  InstanceRegion=0;
  local  addtime=0;
  local  DespawnOtherCoffer=false;
  local  MimicID=0;
  
-  for coffer = 1,#ARMOURY_CRATES_LIST_APPOLLYON,2 do
-      if (ARMOURY_CRATES_LIST_APPOLLYON[coffer]== CofferID-16932864) then      
-         CofferType=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][1];
-         InstanceRegion=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][2];
-         addtime=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][3];
-         DespawnOtherCoffer=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][4];
-         MimicID=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][5];
-         lootID=ARMOURY_CRATES_LIST_APPOLLYON[coffer+1][6];                          
-      end      
+  for coffer = 1,#ARMOURY_CRATES_LIST_APOLLYON,2 do
+      if (ARMOURY_CRATES_LIST_APOLLYON[coffer]== CofferID-16932864) then
+         CofferType=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][1];
+         InstanceRegion=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][2];
+         addtime=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][3];
+         DespawnOtherCoffer=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][4];
+         MimicID=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][5];
+         lootID=ARMOURY_CRATES_LIST_APOLLYON[coffer+1][6];
+      end
   end
   
 -- printf("CofferID : %u",CofferID-16932864);
@@ -50,15 +42,15 @@ function onTrigger(player,npc)
 -- printf("lootID: %u",lootID);
  
  
-    if (CofferType == cTIME) then 
+    if (CofferType == cTIME) then
             player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
     elseif (CofferType == cITEM) then
             player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
             player:getBCNMloot();
-    elseif (CofferType == cRESTORE) then 
+    elseif (CofferType == cRESTORE) then
             player:RestoreAndHealOnBattlefield(InstanceRegion);
-    elseif (CofferType == cMIMIC) then 
-         if (CofferID==16932864+210) then 
+    elseif (CofferType == cMIMIC) then
+         if (CofferID==16932864+210) then
                 GetNPCByID(16932864+195):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
                 GetNPCByID(16932864+195):setStatus(dsp.status.NORMAL);
          elseif (CofferID==16932864+211) then
@@ -77,24 +69,20 @@ function onTrigger(player,npc)
                 GetNPCByID(16932864+197):setStatus(dsp.status.NORMAL);
          elseif (CofferID==16932864+215) then
                          GetMobByID(16932898):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
-                        GetMobByID(16932898):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());    
+                        GetMobByID(16932898):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
                         GetMobByID(16932898):updateClaim(player);
-         elseif (CofferID==16932864+216) then    
+         elseif (CofferID==16932864+216) then
                           GetMobByID(16932899):setPos(npc:getXPos(),npc:getYPos(),npc:getZPos());
                         GetMobByID(16932899):setSpawn(npc:getXPos(),npc:getYPos(),npc:getZPos());
                         GetMobByID(16932899):updateClaim(player);
-         end        
-    end  
+         end
+    end
     if (DespawnOtherCoffer==true) then
-        HideArmouryCrates(InstanceRegion,APPOLLYON_SE_NE);
+        HideArmouryCrates(InstanceRegion,APOLLYON_SE_NE);
     end
     
    npc:setStatus(dsp.status.DISAPPEAR);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

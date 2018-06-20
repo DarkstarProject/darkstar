@@ -1,17 +1,15 @@
 -----------------------------------
 -- Area: FeiYin
---  NM:  Dabotz's Ghost
+--   NM: Dabotz's Ghost
 -----------------------------------
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-
-    if (player:hasKeyItem(dsp.ki.AQUAFLORA3)) then
-        player:setVar("DabotzKilled",1);
+    if player:hasKeyItem(dsp.ki.AQUAFLORA3) then
+        player:setVar("DabotzKilled", 1)
     end
-
-end;
+end

@@ -75,8 +75,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 774) then
         player:setVar("CryingOverOnions",1);
     elseif (csid == 775) then

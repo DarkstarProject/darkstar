@@ -27,6 +27,7 @@ local itemMap =
                     { 4447, 38, DIGREQ_NONE },
                     { 695, 45, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 690, 15, DIGREQ_BORE },
                     { 1446, 8, DIGREQ_BORE },
                     { 702, 23, DIGREQ_BORE },
@@ -85,16 +86,12 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 15) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     end
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 15) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 14) then

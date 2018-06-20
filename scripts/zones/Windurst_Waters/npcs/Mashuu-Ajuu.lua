@@ -65,13 +65,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (((csid == 463 and option == 3) or (csid == 479 and option == 3)) and player:getFreeSlotsCount() == 0) then  -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED - INVENTORY FULL
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,572);
     elseif (csid == 463 and option == 3) then                      -- REAP WHAT YOU SOW + HERB SEEDS: QUEST START - ACCEPTED
