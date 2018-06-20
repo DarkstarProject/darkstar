@@ -1441,6 +1441,7 @@ dsp.mod =
     AUGMENTS_ASSASSINS_CHARGE       = 886, -- Gives Assassin's Charge +1% Critical Hit Rate per merit level
     AUGMENTS_AMBUSH                 = 887, -- Gives +1% Triple Attack per merit level when Ambush conditions are met
     AUGMENTS_AURA_STEAL             = 889, -- 20% chance of 2 effects to be dispelled or stolen per merit level
+    AUGMENTS_CONSPIRATOR            = 912, -- Applies Conspirator benefits to player at the top of the hate list
     JUG_LEVEL_RANGE                 = 564, -- Decreases the level range of spawned jug pets. Maxes out at 2.
     FORCE_JUMP_CRIT                 = 828, -- Critical hit rate bonus for jump and high jump
     QUICK_DRAW_DMG_PERCENT          = 834, -- Percentage increase to QD damage
@@ -1473,10 +1474,10 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 912, -- stuff
     -- SPARE = 913, -- stuff
     -- SPARE = 914, -- stuff
-}
+    -- SPARE = 915, -- stuff
+};
 
 ------------------------------------
 -- Merits
