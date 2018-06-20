@@ -16,5 +16,5 @@ end
 
 function onUseAbility(player,target,ability)
     target:addStatusEffectEx(dsp.effect.DOUBT, dsp.effect.INTIMIDATE, 15, 0, 30)
-    return dsp.effect.INTIMIDATE;
+    return dsp.effect.INTIMIDATE
 end
