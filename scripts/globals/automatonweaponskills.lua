@@ -54,7 +54,7 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
     local ccmax = 0;
     local hasMightyStrikes = attacker:hasStatusEffect(dsp.effect.MIGHTY_STRIKES);
     local isSneakValid = attacker:hasStatusEffect(dsp.effect.SNEAK_ATTACK);
-    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE))) then
+    if (isSneakValid and not (attacker:isBehind(target) or attacker:hasStatusEffect(dsp.effect.HIDE) or target:hasStatusEffect(dsp.effect.DOUBT))) then
         isSneakValid = false;
     end
     attacker:delStatusEffectsByFlag(dsp.effectFlag.DETECTABLE);

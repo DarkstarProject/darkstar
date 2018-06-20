@@ -443,7 +443,8 @@ void CAttack::ProcessDamage()
         m_isFirstSwing &&
         m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK) &&
         ((abs(m_victim->loc.p.rotation - m_attacker->loc.p.rotation) < 23) ||
-            m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE)))
+            m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_HIDE) ||
+            m_victim->StatusEffectContainer->HasStatusEffect(EFFECT_DOUBT)))
     {
         m_trickAttackDamage += m_attacker->DEX() * (1 + m_attacker->getMod(Mod::SNEAK_ATK_DEX) / 100);
     }
