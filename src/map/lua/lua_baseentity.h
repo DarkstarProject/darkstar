@@ -682,6 +682,7 @@ public:
     int32 getDespoilItem(lua_State*);       // gets ItemID of droplist despoil item from mob (steal item if no despoil item)
     int32 getDespoilDebuff(lua_State*);     // gets the status effect id to apply to the mob on successful despoil
     int32 itemStolen(lua_State*);           // sets mob's ItemStolen var = true
+    int32 getTHlevel(lua_State*);           // Returns the Monster's current Treasure Hunter Tier
 };
 
 #endif
