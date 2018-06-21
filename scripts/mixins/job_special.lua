@@ -1,4 +1,14 @@
--- for mobs with job-specific special ability
+--[[
+Mobs with job-specific special ability.  Controlled by following vars that can be set onMobSpawn:
+
+localVar            default     description
+--------            -------     -----------
+mainSpec            by job      Which special will mob use. default to mob's main job. Must be explicitly set for rangers.
+useMainSpecAtHPP    40 to 60    HP percent at which main special will be used.
+waitJobSpec         0           Mob must wait this many seconds before using its special, regardless of HPP.
+mainQuote           0           special message displayed when mob uses main special.
+subQuote            0           special message displayed when mob uses sub special.
+--]]
 
 require("scripts/globals/mixins");
 require("scripts/globals/status");
@@ -31,9 +41,13 @@ g_mixins.job_special = function(mob)
             [dsp.job.SMN] = dsp.jsa.ASTRAL_FLOW,
         };
 
-        if (mob:getLocalVar("usedMainSpec") == 0 and mob:getHPP() < mob:getLocalVar("useMainSpecAtHPP")) then
+        if (mob:getLocalVar("usedMainSpec") == 0 and mob:getHPP() < mob:getLocalVar("useMainSpecAtHPP") and mob:getBattleTime() > mob:getLocalVar("waitJobSpec")) then
             local default = defaultAbility[mob:getMainJob()];
             local spec = mob:getLocalVar("mainSpec");
+            local quote = mob:getLocalVar("mainQuote");
+            if (quote > 0) then
+                mob:messageText(mob, quote)
+            end
             if (spec > 0) then
                 mob:useMobAbility(spec);
             elseif (default ~= nil) then
@@ -42,9 +56,13 @@ g_mixins.job_special = function(mob)
             mob:setLocalVar("usedMainSpec", 1);
         end
 
-        if (mob:getLocalVar("usedSubSpec") == 0 and mob:getHPP() < mob:getLocalVar("useSubSpecAtHPP")) then
+        if (mob:getLocalVar("usedSubSpec") == 0 and mob:getHPP() < mob:getLocalVar("useSubSpecAtHPP") and mob:getBattleTime() > mob:getLocalVar("waitJobSpec")) then
             local default = defaultAbility[mob:getSubJob()];
             local spec = mob:getLocalVar("subSpec");
+            local quote = mob:getLocalVar("subQuote");
+            if (quote > 0) then
+                mob:messageText(mob, quote)
+            end
             if (spec > 0) then
                 mob:useMobAbility(spec);
             elseif (default ~= nil) then

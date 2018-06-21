@@ -1,16 +1,39 @@
 -----------------------------------
 -- Area: Carpenters' Landing
---  MOB: Cryptonberry_Executor
+--   NM: Cryptonberry_Executor
+-- !pos 120.615 -5.457 -390.133 2
+-----------------------------------
+package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil
+-----------------------------------
+require("scripts/zones/Carpenters_Landing/TextIDs")
+require("scripts/zones/Carpenters_Landing/MobIDs")
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/missions")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180) -- 3 minutes
+end
 
-function onMobFight(mob,target)
-end;
+function onMobSpawn(mob)
+    mob:setLocalVar("waitJobSpec", 180) -- will not use Mijin Gakure for 3 minutes, regardless of HPP.
+    mob:setLocalVar("useMainSpecAtHPP", 100)
+    mob:setLocalVar("mainQuote", CRYPTONBERRY_EXECUTOR_2HR)
+end
+
+function onMobFight(mob, target)
+    -- spawn Assassins when enmity is gained against Executor
+    if mob:getLocalVar("spawnedAssassins") == 0 and mob:getCE(target) > 0 then
+        mob:setLocalVar("spawnedAssassins", 1)
+        SpawnMob(CRYPTONBERRY_EXECUTOR + 1)
+        SpawnMob(CRYPTONBERRY_EXECUTOR + 2)
+        SpawnMob(CRYPTONBERRY_EXECUTOR + 3)
+    end
+end
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") == 0) then
-        player:setVar("Cryptonberry_Executor_KILL",1);
+    mob:messageText(mob, CRYPTONBERRY_EXECUTOR_DIE)
+    if player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
+        player:setVar("Cryptonberry_Executor_KILL", 1)
     end
-end;
+end
