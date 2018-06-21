@@ -3,6 +3,7 @@
 
 require("scripts/globals/mixins")
 require("scripts/globals/dynamis")
+require("scripts/globals/status")
 
 g_mixins = g_mixins or {}
 
@@ -13,21 +14,21 @@ g_mixins = g_mixins or {}
 
 g_mixins.dynamis_beastmen = function(mob)
     local procjobs = {
-        [dsp.jobs.WAR] = "ws",
-        [dsp.jobs.MNK] = "ja",
-        [dsp.jobs.WHM] = "ma",
-        [dsp.jobs.BLM] = "ma",
-        [dsp.jobs.RDM] = "ma",
-        [dsp.jobs.THF] = "ja",
-        [dsp.jobs.PLD] = "ws",
-        [dsp.jobs.DRK] = "ws",
-        [dsp.jobs.BST] = "ja",
-        [dsp.jobs.BRD] = "ma",
-        [dsp.jobs.RNG] = "ja",
-        [dsp.jobs.SAM] = "ws",
-        [dsp.jobs.NIN] = "ja",
-        [dsp.jobs.DRG] = "ws",
-        [dsp.jobs.SMN] = "ma"
+        [dsp.job.WAR] = "ws",
+        [dsp.job.MNK] = "ja",
+        [dsp.job.WHM] = "ma",
+        [dsp.job.BLM] = "ma",
+        [dsp.job.RDM] = "ma",
+        [dsp.job.THF] = "ja",
+        [dsp.job.PLD] = "ws",
+        [dsp.job.DRK] = "ws",
+        [dsp.job.BST] = "ja",
+        [dsp.job.BRD] = "ma",
+        [dsp.job.RNG] = "ja",
+        [dsp.job.SAM] = "ws",
+        [dsp.job.NIN] = "ja",
+        [dsp.job.DRG] = "ws",
+        [dsp.job.SMN] = "ma"
     }
     mob:addListener("MAGIC_TAKE", "DYNAMIS_MAGIC_PROC_CHECK", function(mob, caster, spell, action)
         if procjobs[mob:getMainJob()] == "ma" and math.random(0,99) < 8 and mob:getLocalVar("dynamis_proc") == 0 then
