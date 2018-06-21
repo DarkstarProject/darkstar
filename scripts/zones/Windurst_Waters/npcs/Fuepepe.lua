@@ -52,13 +52,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 442 and option == 1) then -- Quest Start
         player:addQuest(WINDURST,MAKING_THE_GRADE);
     elseif (csid == 455) then -- Quest Progress: Test Papers Shown and told to deliver them to principal

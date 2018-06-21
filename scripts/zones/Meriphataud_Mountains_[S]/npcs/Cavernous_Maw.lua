@@ -24,17 +24,13 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (option == 1) then
         if (csid == 102) then
             player:addNationTeleport(MAW,32);
         end
-        toMaw(player,18);
+        dsp.teleport.toMaw(player,18);
     end
 end;

@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 836) then
        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
        player:setVar("threemenandaclosetCS",2);

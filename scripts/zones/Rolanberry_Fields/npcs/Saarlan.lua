@@ -52,13 +52,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u", csid);
-    -- printf("RESULT: %u", option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u", csid);
-    -- printf("RESULT: %u", option);
     local GIL = player:getGil();
     local LP = player:getCurrency("legion_point");
     local LP_COST = 0;

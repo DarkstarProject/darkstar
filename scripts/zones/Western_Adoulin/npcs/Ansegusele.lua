@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         0x1125, 32, -- San D'Or. Carrot
         0x0276, 96, -- Ogre Pumpkin
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

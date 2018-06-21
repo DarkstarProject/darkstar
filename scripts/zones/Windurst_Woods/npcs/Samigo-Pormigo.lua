@@ -85,17 +85,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
     if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     elseif (csid == 10023) then

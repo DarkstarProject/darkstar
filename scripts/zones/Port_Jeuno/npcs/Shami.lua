@@ -207,15 +207,10 @@ end;
 -- 0x0019 : Un seul échange autorisé par semaine
 -- 321 : trade sceau + nombre player:startEvent(321,0,15);
 --          0 shbete, 1 s-confrerie, 2 s-demons, 3 s-seigneurdes hombre
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local BeastmensSeal = player:getSeals(0);
     local KindredsSeal = player:getSeals(1);
     local KindredsCrest = player:getSeals(2);

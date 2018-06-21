@@ -192,8 +192,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 368 and option == 0) then
         player:addQuest(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);

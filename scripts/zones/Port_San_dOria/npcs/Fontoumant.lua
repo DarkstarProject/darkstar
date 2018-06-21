@@ -73,13 +73,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local freeSlots = player:getFreeSlotsCount();
     if (csid == 509 and option == 0) then
         if (freeSlots ~= 0) then

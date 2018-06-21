@@ -45,16 +45,10 @@ end;
 -- 0x00af  5  2  3  169  172  0x00ce  0x00eb
 -- 0x00af  0x0000  2  3  0x0004  0x0007  0x0008  0x0009  0x000a  98  0x0063  0x001d  0x000c  0x000d
 -- 0x0092  0x009e  0x00a4  169  0x00aa  0x00ab  172  0x00ad  0x00b0  0x00b1  0x00e8  0x00e9  0x00ea
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
-
     if (csid == 2 and option == 0) then
         player:completeMission(ZILART,WELCOME_TNORG);
         player:addMission(ZILART,KAZAMS_CHIEFTAINESS);

@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Appolyon
--- Name: 
+-- Name:
 -----------------------------------
 require("scripts/globals/limbus");
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)        
+function onBcnmRegister(player,instance)
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
@@ -15,7 +15,7 @@ end;
 
 -- Leaving the Dynamis by every mean possible, given by the LeaveCode
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish 
+-- 4=Finish
 
 function onBcnmLeave(player,instance,leavecode)
 --print("leave code "..leavecode);

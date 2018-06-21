@@ -76,7 +76,7 @@ INSERT INTO `bcnm_info` VALUES (64,144,'rank_2_mission','Shitstain',1,18,1800,25
 INSERT INTO `bcnm_info` VALUES (65,144,'worms_turn','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (66,144,'grimshell_shocktroopers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (67,144,'on_my_way','Shitstain',1,18,1800,99,6,0,5);
-INSERT INTO `bcnm_info` VALUES (68,144,'thief_in_norg','Shitstain',1,18,1800,99,6,0,6);
+INSERT INTO `bcnm_info` VALUES (68,144,'thief_in_norg','Your mother',1,18,1800,99,6,0,5);
 INSERT INTO `bcnm_info` VALUES (69,144,'3_2_1','Shitstain',1,18,1800,50,6,0,15);
 INSERT INTO `bcnm_info` VALUES (70,144,'shattering_stars','Shitstain',1,18,600,99,1,0,22);
 INSERT INTO `bcnm_info` VALUES (71,144,'shattering_stars','Shitstain',1,18,600,99,1,0,22);

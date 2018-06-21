@@ -5,7 +5,7 @@
 --  Type: Magical (lightning)
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Cone
---  Notes: 
+--  Notes:
 ---------------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");

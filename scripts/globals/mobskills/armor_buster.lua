@@ -1,6 +1,6 @@
 ---------------------------------------------------
 --  Armor_Buster
---  Description: 
+--  Description:
 --  Type: Magical
 --  additional effect :WEIGHT
 

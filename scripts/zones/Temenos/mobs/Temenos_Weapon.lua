@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos Central 1floor    
+-- Area: Temenos Central 1floor
 -- NPC: Temenos_Weapon
 
 -----------------------------------

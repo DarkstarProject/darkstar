@@ -43,13 +43,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10160 and option == 1) then
         if (player:hasKeyItem(dsp.ki.MAGIAN_TRIAL_LOG) == false) then
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGIAN_LEARNERS_LOG);

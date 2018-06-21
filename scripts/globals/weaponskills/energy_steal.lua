@@ -1,5 +1,5 @@
 ------------------------
---    Energy Steal    -- 
+--    Energy Steal    --
 ------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)

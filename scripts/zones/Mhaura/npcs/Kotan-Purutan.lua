@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 141) then
         player:addKeyItem(dsp.ki.SMALL_BAG);
         player:setVar("Kenapa_Overnight_Day_var",VanadielDayOfTheYear());

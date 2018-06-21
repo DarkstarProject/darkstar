@@ -24,10 +24,6 @@ function onTrade(player,npc,trade)
     
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
@@ -35,10 +31,6 @@ function onTrigger(player,npc)
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

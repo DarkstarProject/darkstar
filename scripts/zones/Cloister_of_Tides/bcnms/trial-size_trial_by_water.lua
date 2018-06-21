@@ -59,4 +59,4 @@ function onEventFinish(player,csid,option)
         player:addFame(NORG,30);
         player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
     end
-end;    
+end;

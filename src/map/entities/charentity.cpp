@@ -832,7 +832,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    {
+                        charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    }
                 }
             }
         }
@@ -1186,14 +1189,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                float pdif = battleutils::GetRangedPDIF(this, PTarget);
+                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
-                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
+                if (isCritical)
                 {
-                    pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
-                    pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
                 }
@@ -1514,7 +1514,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         if (PItem->getCurrentCharges() != 0)
         {
-            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID(), PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
         }
     }
     else // разблокируем все предметы, кроме экипирвоки

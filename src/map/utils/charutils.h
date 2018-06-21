@@ -180,7 +180,7 @@ namespace charutils
     std::string GetConquestPointsName(CCharEntity* PChar);
     void    SendToZone(CCharEntity* PChar, uint8 type, uint64 ipp);
     void    HomePoint(CCharEntity* PChar);
-    void    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
+    bool    AddWeaponSkillPoints(CCharEntity*, SLOTTYPE, int);
 
     int32   GetVar(CCharEntity* PChar, const char* var);
 };

@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target, param, caster)
     
-    if (target:getNation() ~= NATION_SANDORIA) then
+    if (target:getNation() ~= dsp.nation.SANDORIA) then
         return dsp.msg.basic.ITEM_CANNOT_USE_ON
     end
     

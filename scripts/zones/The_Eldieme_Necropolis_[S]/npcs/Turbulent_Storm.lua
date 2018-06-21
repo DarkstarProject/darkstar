@@ -32,13 +32,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 7 and option == 0) then
         player:addKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_RECOMMENDATION_LETTER);

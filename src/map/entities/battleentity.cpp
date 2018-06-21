@@ -251,9 +251,9 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = (getMod(Mod::HASTE_MAGIC) > 448) ? 448 : getMod(Mod::HASTE_MAGIC);
-        int16 hasteAbility = (getMod(Mod::HASTE_ABILITY) > 256) ? 256 : getMod(Mod::HASTE_ABILITY);
-        int16 hasteGear = (getMod(Mod::HASTE_GEAR) > 256) ? 256 : getMod(Mod::HASTE_GEAR);
+        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -448, 448);
+        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -256, 256);
+        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -256, 256);
         WeaponDelay = (uint16)(WeaponDelay * ((1024.0f - hasteMagic - hasteAbility - hasteGear) / 1024.0f));
     }
     WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
@@ -1487,7 +1487,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
-                    actionTarget.messageID = 67;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 353 : 67;
 
                     if (PTarget->objtype == TYPE_MOB)
                     {
@@ -1499,7 +1499,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_HIT;
-                    actionTarget.messageID = 1;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 352 : 1;
                 }
 
                 // Guarded. TODO: Stuff guards that shouldn't.

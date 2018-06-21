@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos W T    
+-- Area: Temenos W T
 -- NPC: Enhanced_Vulture
 
 -----------------------------------

@@ -4,7 +4,7 @@
 -- Food Effect: 30Min, All Races
 -----------------------------------------
 -- Increases rate of synthesis success +7%
--- Increases synthesis skill gain rate +7% 
+-- Increases synthesis skill gain rate +7%
 -----------------------------------------
 require("scripts/globals/status");
 -----------------------------------------

@@ -29,16 +29,12 @@ function onTrigger(player,npc)
      0x0275,44,        -- Millioncorn        (COP 4+ only)
      0x05f3,290}        -- Apple Mint        (COP 4+ only)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

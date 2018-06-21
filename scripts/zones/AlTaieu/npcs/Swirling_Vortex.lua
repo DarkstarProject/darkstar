@@ -26,9 +26,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 160 and option == 1 ) then
         ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_NW_SW);
+        LimbusEntrance(player,APOLLYON_NW_SW);
     elseif (csid == 159 and option == 1 ) then
         ResetPlayerLimbusVariable(player);
-        LimbusEntrance(player,APPOLLYON_SE_NE);
+        LimbusEntrance(player,APOLLYON_SE_NE);
     end
 end;

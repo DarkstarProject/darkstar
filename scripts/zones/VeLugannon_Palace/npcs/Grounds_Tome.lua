@@ -14,13 +14,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     updateGov(player,csid,option,743,744,745,746,747,748,0,0,0,0);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     finishGov(player,csid,option,743,744,745,746,747,748,0,0,0,0,GOV_MSG_VELUGANNON_PALACE);
 end;

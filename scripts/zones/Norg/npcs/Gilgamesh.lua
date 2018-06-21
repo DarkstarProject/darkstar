@@ -48,15 +48,10 @@ end;
 -- 0x0062  99 mission bastok
 -- 0x000c parle de kuzotz ? parle de bijoux aussi
 -- 0x000a parle de zitah
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 99) then
         player:tradeComplete();

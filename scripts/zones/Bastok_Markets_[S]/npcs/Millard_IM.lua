@@ -21,7 +21,7 @@ function onTrigger(player,npc)
     local bonusEffects = 0; -- 1 = regen, 2 = refresh, 4 = meal duration, 8 = exp loss reduction, 15 = all
     local timeStamp = 0; -- getSigilTimeStamp(player);
     -- todo add in Throne Room controls
-    
+
     -- if ( medal_rank > 25 and nation controls Throne_Room_S ) then
         -- medal_rank = 32;
         -- this decides if allied ring is in the Allied Notes item list.
@@ -36,8 +36,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local itemid = 0;
     local canEquip = 2; -- Faking it for now.
     -- 0 = Wrong job, 1 = wrong level, 2 = Everything is in order, 3 or greater = menu exits...
@@ -48,8 +46,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local medalRank = getMedalRank(player);
     if (csid == 13) then
         -- Note: the event itself already verifies the player has enough AN, so no check needed here.
@@ -90,10 +86,10 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effects.SIGIL);
-            player:delStatusEffect(dsp.effects.SANCTION);
-            player:delStatusEffect(dsp.effects.SIGNET);
-            player:addStatusEffect(dsp.effects.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:delStatusEffect(dsp.effect.SIGIL);
+            player:delStatusEffect(dsp.effect.SANCTION);
+            player:delStatusEffect(dsp.effect.SIGNET);
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
             player:messageSpecial(ALLIED_SIGIL);
 
             if (cost > 0) then

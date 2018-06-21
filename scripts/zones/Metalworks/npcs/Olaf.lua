@@ -22,16 +22,12 @@ function onTrigger(player,npc)
         0x43BC,90,3,        -- Bullet
         0x03A0,463,3}        -- Bomb Ash
 
-showNationShop(player, NATION_BASTOK, stock);
+dsp.shop.nation(player, stock, dsp.nation.BASTOK);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

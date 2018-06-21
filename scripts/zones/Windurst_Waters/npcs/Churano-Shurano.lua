@@ -24,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1080 and option == 1) then
         player:setVar("Astrolabe", 1);
     elseif (csid == 1081 and option == 1 and player:delGil(10000)) then

@@ -13,7 +13,7 @@ require("scripts/globals/zone");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (target:getCurrentRegion() == dsp.region.TAVNAZIA) then
+    if (target:getCurrentRegion() == dsp.region.TAVNAZIANARCH) then
         return 0;
     end
 

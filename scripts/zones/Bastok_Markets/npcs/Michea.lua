@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
     elseif (fatherFigure == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 744)) then
         player:startEvent(241);
     end;
-end; 
+end;
 
 function onTrigger(player,npc)
     local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
@@ -61,15 +61,15 @@ function onTrigger(player,npc)
     -- DEFAULT DIALOG
     else
         player:startEvent(125);
-    end;    
-end; 
+    end;
+end;
 
 function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
 
-    -- THE ELVAAN GOLDSMITH    
+    -- THE ELVAAN GOLDSMITH
     if (csid == 215) then
         player:addQuest(BASTOK,THE_ELVAAN_GOLDSMITH);
     elseif (csid == 216) then

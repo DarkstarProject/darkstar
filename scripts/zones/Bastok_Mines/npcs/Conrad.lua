@@ -7,9 +7,9 @@
 require("scripts/globals/conquest");
 
 function onTrigger(player,npc)
-    local regionsControlled = 1073741823 - getTeleAvailable(NATION_BASTOK);
-    local regionsSupplied = 1073741823 - player:getNationTeleport(NATION_BASTOK);
-    if (player:getNation() == NATION_BASTOK) then
+    local regionsControlled = 1073741823 - getTeleAvailable(dsp.nation.BASTOK);
+    local regionsSupplied = 1073741823 - player:getNationTeleport(dsp.nation.BASTOK);
+    if (player:getNation() == dsp.nation.BASTOK) then
         player:startEvent(581,0,0,regionsControlled,0,0,514,player:getMainLvl(),regionsSupplied);
     else
         player:startEvent(581,0,0,0,0,0,256,0,0);

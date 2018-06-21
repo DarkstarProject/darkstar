@@ -36,16 +36,10 @@ end;
 --  player:startEvent(80); -- Quest Finish - Gives Mulsum
 --  player:startEvent(79); -- After Quest but before zoning: "it's certainly gotten quiet around here..."
 
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-printf("CSID: %u",csid);
-printf("RESULT: %u",option);
-
     if (csid == 67) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full

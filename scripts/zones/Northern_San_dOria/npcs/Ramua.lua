@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 625 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,1,2);
         player:addStatusEffect(dsp.effect.WOODWORKING_IMAGERY,1,0,120);
