@@ -1158,17 +1158,17 @@ INSERT INTO `mob_groups` VALUES (1109,4454,38,0,128,0,3000,500,64,68,0); -- Yagu
 INSERT INTO `mob_groups` VALUES (1110,4513,38,0,128,4410,11000,0,80,85,0); -- Zlatorog
 
 -- Dynamis Valkurm
-INSERT INTO `mob_groups` VALUES (1111,5111,39,0,128,842,1000,1000,78,80,0); -- Adamantking_Image
+INSERT INTO `mob_groups` VALUES (1111,5111,39,85,0,842,1000,1000,78,80,0); -- Adamantking_Image (TE-2)
 INSERT INTO `mob_groups` VALUES (1112,730,39,0,128,530,37000,0,85,85,0); -- Cirrate_Christelle
-INSERT INTO `mob_groups` VALUES (1113,1103,39,0,128,919,20000,0,82,82,0); -- Dragontrap
+INSERT INTO `mob_groups` VALUES (1113,4649,39,600,0,3791,4000,0,77,79,0); -- Vanguard_Dragontamer
 INSERT INTO `mob_groups` VALUES (1114,1281,39,0,128,919,20000,0,82,82,0); -- Fairy_Ring
-INSERT INTO `mob_groups` VALUES (1115,1707,39,0,128,1434,1000,1000,77,79,0); -- Goblin_Replica
-INSERT INTO `mob_groups` VALUES (1116,2550,39,600,0,2191,1000,1000,78,80,0); -- Avatar_Icon
+INSERT INTO `mob_groups` VALUES (1115,1707,39,300,0,1434,1000,1000,77,79,0); -- Goblin_Replica
+INSERT INTO `mob_groups` VALUES (1116,295,39,85,0,2191,1000,1000,78,80,0); -- Avatar_Idol (TE-3)
 INSERT INTO `mob_groups` VALUES (1117,2807,39,0,128,4477,20000,0,82,82,0); -- Nant_ina
 INSERT INTO `mob_groups` VALUES (1118,2852,39,600,0,2438,5000,0,78,80,0); -- Nightmare_Fly
 INSERT INTO `mob_groups` VALUES (1119,2854,39,600,0,2440,5000,0,78,80,0); -- Nightmare_Hippogryph
 INSERT INTO `mob_groups` VALUES (1120,2860,39,600,0,2446,5000,0,78,80,0); -- Nightmare_Manticore
-INSERT INTO `mob_groups` VALUES (1121,2861,39,600,0,0,10000,0,78,80,0); -- Nightmare_Morbol
+INSERT INTO `mob_groups` VALUES (1121,1716,39,85,128,1434,1000,1000,78,80,0); -- Goblin_Statue (TE-1)
 INSERT INTO `mob_groups` VALUES (1122,2865,39,600,0,2450,5000,0,78,80,0); -- Nightmare_Sabotender
 INSERT INTO `mob_groups` VALUES (1123,2867,39,600,0,2452,5000,0,78,80,0); -- Nightmare_Sheep
 INSERT INTO `mob_groups` VALUES (1124,3760,39,0,128,4476,20000,0,82,82,0); -- Stcemqestcint
@@ -1237,7 +1237,7 @@ INSERT INTO `mob_groups` VALUES (1186,4196,39,600,0,3966,4000,0,77,79,0); -- Van
 INSERT INTO `mob_groups` VALUES (1187,4197,39,600,0,3971,4000,0,77,79,0); -- Vanguard_Vindicator
 INSERT INTO `mob_groups` VALUES (1188,4198,39,600,0,3976,4000,0,77,79,0); -- Vanguard_Visionary
 INSERT INTO `mob_groups` VALUES (1189,4199,39,600,0,3981,4000,0,77,79,0); -- Vanguard_Welldigger
-INSERT INTO `mob_groups` VALUES (1190,4289,39,600,0,4073,1000,1000,78,80,0); -- Warchief_Tombstone
+INSERT INTO `mob_groups` VALUES (1190,4289,39,85,0,4073,1000,1000,78,80,0); -- Warchief_Tombstone (TE-4)
 
 -- Dynamis Buburimu
 INSERT INTO `mob_groups` VALUES (1191,43,40,120,0,842,1000,1000,77,79,0); -- Adamantking_Effigy
@@ -10907,21 +10907,21 @@ INSERT INTO `mob_groups` VALUES (11012,5314,222,0,128,0,0,9999,99,99,0);
 INSERT INTO `mob_groups` VALUES (11135,5106,36,0,128,0,0,12000,75,75,0); -- Promathia
 
 -- dyna Valkurm
-INSERT INTO `mob_groups` VALUES (11136,1716,39,0,128,1434,1000,1000,78,80,0); -- Goblin_Statue
-INSERT INTO `mob_groups` VALUES (11137,295,39,0,128,2191,1000,1000,77,77,0); -- Avatar_Idol
-INSERT INTO `mob_groups` VALUES (11138,294,39,0,128,2191,1000,1000,77,79,0); -- Manifest_Icon
-INSERT INTO `mob_groups` VALUES (11139,43,39,0,128,842,1000,1000,77,79,0); -- Adamantking_Effigy
-INSERT INTO `mob_groups` VALUES (11140,3548,39,0,128,4073,1000,1000,77,79,0); -- Serjeant_Tombstone
-INSERT INTO `mob_groups` VALUES (11141,4289,39,0,128,4073,1000,1000,78,80,0); -- Warchief Tombstone
+INSERT INTO `mob_groups` VALUES (11136,1716,39,0,128,1434,1000,1000,95,97,0); -- Goblin_Statue H (TE-5)
+INSERT INTO `mob_groups` VALUES (11137,295,39,0,128,2191,1000,1000,95,97,0); -- Avatar_Idol H (TE-5)
+INSERT INTO `mob_groups` VALUES (11138,294,39,300,0,2191,1000,1000,77,79,0); -- Manifest_Icon
+INSERT INTO `mob_groups` VALUES (11139,43,39,300,0,842,1000,1000,77,79,0); -- Adamantking_Effigy
+INSERT INTO `mob_groups` VALUES (11140,3548,39,300,0,4073,1000,1000,77,79,0); -- Serjeant_Tombstone
+INSERT INTO `mob_groups` VALUES (11141,4289,39,0,128,4073,1000,1000,95,97,0); -- Warchief Tombstone H (TE-5)
 INSERT INTO `mob_groups` VALUES (11142,1281,39,0,128,0,0,0,100,100,0); --  Lost_Fairy_Ring
 INSERT INTO `mob_groups` VALUES (11143,3760,39,0,128,0,0,0,100,100,0); -- Lost_Stcemqestcint
 INSERT INTO `mob_groups` VALUES (11144,2807,39,0,128,0,0,0,100,100,0); -- Lost_Nant_ina
 INSERT INTO `mob_groups` VALUES (11145,730,39,0,128,0,0,0,105,105,0); -- Arch_Christelle
-INSERT INTO `mob_groups` VALUES (11146,4649,39,0,128,3791,4000,0,77,79,0); -- Vanguard_Dragontamer
-INSERT INTO `mob_groups` VALUES (11147,1832,39,0,128,4342,5000,0,78,80,0); -- Nightmare_Treant
-INSERT INTO `mob_groups` VALUES (11148,5109,39,0,128,4343,5000,0,78,80,0); -- Nightmare_Flytrap
-INSERT INTO `mob_groups` VALUES (11149,5110,39,0,128,4344,5000,0,78,80,0); -- Nightmare_Goobbue
-INSERT INTO `mob_groups` VALUES (11150,5107,39,0,128,4345,5000,0,78,80,0); -- Nightmare_Funguar
+INSERT INTO `mob_groups` VALUES (11146,4649,39,600,0,3791,4000,0,95,97,0); -- Vanguard_Dragontamer H
+INSERT INTO `mob_groups` VALUES (11147,1832,39,600,0,4342,5000,0,78,80,0); -- Nightmare_Treant
+INSERT INTO `mob_groups` VALUES (11148,5109,39,600,0,4343,5000,0,78,80,0); -- Nightmare_Flytrap
+INSERT INTO `mob_groups` VALUES (11149,5110,39,600,0,4344,5000,0,78,80,0); -- Nightmare_Goobbue
+INSERT INTO `mob_groups` VALUES (11150,5107,39,600,0,4345,5000,0,78,80,0); -- Nightmare_Funguar
 
 -- dyna Buburimu
 INSERT INTO `mob_groups` VALUES (11151,5122,40,0,128,2191,1000,1000,77,79,0); -- 'Manifest_Icon'
@@ -11079,6 +11079,87 @@ INSERT INTO `mob_groups` VALUES (11365,5824,129,0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (11366,5814,129,0,128,0,0,0,76,77,0);
 INSERT INTO `mob_groups` VALUES (11367,5815,129,0,128,0,0,0,75,75,0);
 INSERT INTO `mob_groups` VALUES (11368,5786,129,0,128,0,0,0,75,75,1);
+
+-- Dynamis Valkurm
+INSERT INTO `mob_groups` VALUES (11369,294,39,300,0,2191,1000,1000,95,97,0); -- Manifest_Icon H
+INSERT INTO `mob_groups` VALUES (11370,43,39,300,0,842,1000,1000,95,97,0); -- Adamantking_Effigy H
+INSERT INTO `mob_groups` VALUES (11371,3548,39,300,0,4073,1000,1000,95,97,0); -- Serjeant_Tombstone H
+INSERT INTO `mob_groups` VALUES (11372,1832,39,600,0,4342,5000,0,95,97,0); -- Nightmare_Treant H
+INSERT INTO `mob_groups` VALUES (11373,5109,39,600,0,4343,5000,0,95,97,0); -- Nightmare_Flytrap H
+INSERT INTO `mob_groups` VALUES (11374,5110,39,600,0,4344,5000,0,95,97,0); -- Nightmare_Goobbue H
+INSERT INTO `mob_groups` VALUES (11375,5107,39,600,0,4345,5000,0,95,97,0); -- Nightmare_Funguar H
+INSERT INTO `mob_groups` VALUES (11376,5111,39,85,0,842,1000,1000,95,97,0); -- Adamantking_Image H (TE-5)
+INSERT INTO `mob_groups` VALUES (11377,1707,39,300,0,1434,1000,1000,95,97,0); -- Goblin_Replica H
+INSERT INTO `mob_groups` VALUES (11378,2852,39,600,0,2438,5000,0,95,97,0); -- Nightmare_Fly H
+INSERT INTO `mob_groups` VALUES (11379,2854,39,600,0,2440,5000,0,95,97,0); -- Nightmare_Hippogryph H
+INSERT INTO `mob_groups` VALUES (11380,2860,39,600,0,2446,5000,0,95,97,0); -- Nightmare_Manticore H
+INSERT INTO `mob_groups` VALUES (11381,2865,39,600,0,2450,5000,0,95,97,0); -- Nightmare_Sabotender H
+INSERT INTO `mob_groups` VALUES (11382,2867,39,600,0,2452,5000,0,95,97,0); -- Nightmare_Sheep H
+INSERT INTO `mob_groups` VALUES (11383,4133,39,600,0,3687,4000,0,95,97,0); -- Vanguard_Alchemist H
+INSERT INTO `mob_groups` VALUES (11384,4134,39,600,0,3692,4000,0,95,97,0); -- Vanguard_Ambusher H
+INSERT INTO `mob_groups` VALUES (11385,4135,39,600,0,3697,4000,0,95,97,0); -- Vanguard_Amputator H
+INSERT INTO `mob_groups` VALUES (11386,4136,39,600,0,3702,4000,0,95,97,0); -- Vanguard_Armorer H
+INSERT INTO `mob_groups` VALUES (11387,4137,39,600,0,3707,4000,0,95,97,0); -- Vanguard_Assassin H
+INSERT INTO `mob_groups` VALUES (11388,4138,39,600,0,3712,4000,0,95,97,0); -- Vanguard_Backstabber H
+INSERT INTO `mob_groups` VALUES (11389,4139,39,600,0,3717,4000,0,95,97,0); -- Vanguard_Beasttender H
+INSERT INTO `mob_groups` VALUES (11390,4140,39,600,0,3722,4000,0,95,97,0); -- Vanguard_Bugler H
+INSERT INTO `mob_groups` VALUES (11391,4141,39,600,0,3727,4000,0,95,97,0); -- Vanguard_Chanter H
+INSERT INTO `mob_groups` VALUES (11392,4142,39,600,0,3732,4000,0,95,97,0); -- Vanguard_Constable H
+INSERT INTO `mob_groups` VALUES (11393,4143,39,600,0,3737,4000,0,95,97,0); -- Vanguard_Defender H
+INSERT INTO `mob_groups` VALUES (11394,4144,39,600,0,3742,4000,0,95,97,0); -- Vanguard_Dollmaster H
+INSERT INTO `mob_groups` VALUES (11395,4146,39,600,0,3748,4000,0,95,97,0); -- Vanguard_Drakekeeper H
+INSERT INTO `mob_groups` VALUES (11396,4147,39,600,0,3753,4000,0,95,97,0); -- Vanguard_Enchanter H
+INSERT INTO `mob_groups` VALUES (11397,4148,39,600,0,3758,4000,0,95,97,0); -- Vanguard_Exemplar H
+INSERT INTO `mob_groups` VALUES (11398,4150,39,600,0,3766,4000,0,95,97,0); -- Vanguard_Footsoldier H
+INSERT INTO `mob_groups` VALUES (11399,4151,39,600,0,3771,4000,0,95,97,0); -- Vanguard_Grappler H
+INSERT INTO `mob_groups` VALUES (11400,4152,39,600,0,3776,4000,0,95,97,0); -- Vanguard_Gutslasher H
+INSERT INTO `mob_groups` VALUES (11401,4153,39,600,0,3781,4000,0,95,97,0); -- Vanguard_Hatamoto H
+INSERT INTO `mob_groups` VALUES (11402,4154,39,600,0,3786,4000,0,95,97,0); -- Vanguard_Hawker H
+INSERT INTO `mob_groups` VALUES (11403,4155,39,600,0,3791,4000,0,95,97,0); -- Vanguard_Hitman H
+INSERT INTO `mob_groups` VALUES (11404,4156,39,600,0,3796,4000,0,95,97,0); -- Vanguard_Impaler H
+INSERT INTO `mob_groups` VALUES (11405,4157,39,600,0,3801,4000,0,95,97,0); -- Vanguard_Inciter H
+INSERT INTO `mob_groups` VALUES (11406,4158,39,600,0,3806,4000,0,95,97,0); -- Vanguard_Kusa H
+INSERT INTO `mob_groups` VALUES (11407,4159,39,600,0,3811,4000,0,95,97,0); -- Vanguard_Liberator H
+INSERT INTO `mob_groups` VALUES (11408,4160,39,600,0,3816,4000,0,95,97,0); -- Vanguard_Maestro H
+INSERT INTO `mob_groups` VALUES (11409,4161,39,600,0,3821,4000,0,95,97,0); -- Vanguard_Mason H
+INSERT INTO `mob_groups` VALUES (11410,4162,39,600,0,3826,4000,0,95,97,0); -- Vanguard_Mesmerizer H
+INSERT INTO `mob_groups` VALUES (11411,4163,39,600,0,3831,4000,0,95,97,0); -- Vanguard_Militant H
+INSERT INTO `mob_groups` VALUES (11412,4164,39,600,0,3836,4000,0,95,97,0); -- Vanguard_Minstrel H
+INSERT INTO `mob_groups` VALUES (11413,4165,39,600,0,3841,4000,0,95,97,0); -- Vanguard_Neckchopper H
+INSERT INTO `mob_groups` VALUES (11414,4166,39,600,0,3846,4000,0,95,97,0); -- Vanguard_Necromancer H
+INSERT INTO `mob_groups` VALUES (11415,4167,39,600,0,3851,4000,0,95,97,0); -- Vanguard_Ogresoother H
+INSERT INTO `mob_groups` VALUES (11416,4168,39,600,0,3856,4000,0,95,97,0); -- Vanguard_Oracle H
+INSERT INTO `mob_groups` VALUES (11417,4169,39,600,0,3861,4000,0,95,97,0); -- Vanguard_Partisan H
+INSERT INTO `mob_groups` VALUES (11418,4170,39,600,0,3866,4000,0,95,97,0); -- Vanguard_Pathfinder H
+INSERT INTO `mob_groups` VALUES (11419,4171,39,600,0,3871,4000,0,95,97,0); -- Vanguard_Persecutor H
+INSERT INTO `mob_groups` VALUES (11420,4172,39,600,0,3876,4000,0,95,97,0); -- Vanguard_Pillager H
+INSERT INTO `mob_groups` VALUES (11421,4173,39,600,0,3881,4000,0,95,97,0); -- Vanguard_Pitfighter H
+INSERT INTO `mob_groups` VALUES (11422,4174,39,600,0,3886,4000,0,95,97,0); -- Vanguard_Predator H
+INSERT INTO `mob_groups` VALUES (11423,4175,39,600,0,3891,4000,0,95,97,0); -- Vanguard_Prelate H
+INSERT INTO `mob_groups` VALUES (11424,4176,39,600,0,3896,4000,0,95,97,0); -- Vanguard_Priest H
+INSERT INTO `mob_groups` VALUES (11425,4177,39,600,0,3901,4000,0,95,97,0); -- Vanguard_Protector H
+INSERT INTO `mob_groups` VALUES (11426,4178,39,600,0,3906,4000,0,95,97,0); -- Vanguard_Purloiner H
+INSERT INTO `mob_groups` VALUES (11427,4179,39,600,0,3911,4000,0,95,97,0); -- Vanguard_Ronin H
+INSERT INTO `mob_groups` VALUES (11428,4180,39,600,0,3916,4000,0,95,97,0); -- Vanguard_Salvager H
+INSERT INTO `mob_groups` VALUES (11429,4181,39,600,0,3921,4000,0,95,97,0); -- Vanguard_Sentinel H
+INSERT INTO `mob_groups` VALUES (11430,4182,39,600,0,3926,4000,0,95,97,0); -- Vanguard_Shaman H
+INSERT INTO `mob_groups` VALUES (11431,4183,39,600,0,3931,4000,0,95,97,0); -- Vanguard_Skirmisher H
+INSERT INTO `mob_groups` VALUES (11432,4184,39,600,0,3936,4000,0,95,97,0); -- Vanguard_Smithy H
+INSERT INTO `mob_groups` VALUES (11433,4185,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Avatar H
+INSERT INTO `mob_groups` VALUES (11434,4186,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Crow H
+INSERT INTO `mob_groups` VALUES (11435,4187,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Hecteyes H
+INSERT INTO `mob_groups` VALUES (11436,4188,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Scorpion H
+INSERT INTO `mob_groups` VALUES (11437,4189,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Slime H
+INSERT INTO `mob_groups` VALUES (11438,4190,39,600,0,0,2400,1000,95,97,0); -- Vanguard_s_Wyvern H
+INSERT INTO `mob_groups` VALUES (11439,4191,39,600,0,3941,4000,0,95,97,0); -- Vanguard_Thaumaturge H
+INSERT INTO `mob_groups` VALUES (11440,4192,39,600,0,3946,4000,0,95,97,0); -- Vanguard_Tinkerer H
+INSERT INTO `mob_groups` VALUES (11441,4193,39,600,0,3951,4000,0,95,97,0); -- Vanguard_Trooper H
+INSERT INTO `mob_groups` VALUES (11442,4194,39,600,0,3956,4000,0,95,97,0); -- Vanguard_Undertaker H
+INSERT INTO `mob_groups` VALUES (11443,4195,39,600,0,3961,4000,0,95,97,0); -- Vanguard_Vexer H
+INSERT INTO `mob_groups` VALUES (11444,4196,39,600,0,3966,4000,0,95,97,0); -- Vanguard_Vigilante H
+INSERT INTO `mob_groups` VALUES (11445,4197,39,600,0,3971,4000,0,95,97,0); -- Vanguard_Vindicator H
+INSERT INTO `mob_groups` VALUES (11446,4198,39,600,0,3976,4000,0,95,97,0); -- Vanguard_Visionary H
+INSERT INTO `mob_groups` VALUES (11447,4199,39,600,0,3981,4000,0,95,97,0); -- Vanguard_Welldigger H
 
 -- available up to 12949
 
