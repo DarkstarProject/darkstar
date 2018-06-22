@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 132 then
         player:confirmTrade()
         player:setVar("IndomitableSpiritVar", os.date("%j")) -- %M for next minute, %j for next day
-    elseif csid == 134 and npcUtil.completeQuest(player, OUTLANDS, INDOMITABLE_SPIRIT, {item=17011, fameArea=RABAO, fame=100, title=dsp.title.INDOMITABLE_FISHER }) then
-        player:confirmTrade()
+    elseif csid == 134 then
+        npcUtil.completeQuest(player, OUTLANDS, INDOMITABLE_SPIRIT, {item=17011, fameArea=RABAO, fame=100, title=dsp.title.INDOMITABLE_FISHER})
     end
 end
