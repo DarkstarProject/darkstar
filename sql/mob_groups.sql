@@ -1168,7 +1168,7 @@ INSERT INTO `mob_groups` VALUES (1117,2807,39,0,128,4477,20000,0,82,82,0); -- Na
 INSERT INTO `mob_groups` VALUES (1118,2852,39,600,0,2438,5000,0,78,80,0); -- Nightmare_Fly
 INSERT INTO `mob_groups` VALUES (1119,2854,39,600,0,2440,5000,0,78,80,0); -- Nightmare_Hippogryph
 INSERT INTO `mob_groups` VALUES (1120,2860,39,600,0,2446,5000,0,78,80,0); -- Nightmare_Manticore
-INSERT INTO `mob_groups` VALUES (1121,1716,39,85,128,1434,1000,1000,78,80,0); -- Goblin_Statue (TE-1)
+INSERT INTO `mob_groups` VALUES (1121,1716,39,85,0,1434,1000,1000,78,80,0); -- Goblin_Statue (TE-1)
 INSERT INTO `mob_groups` VALUES (1122,2865,39,600,0,2450,5000,0,78,80,0); -- Nightmare_Sabotender
 INSERT INTO `mob_groups` VALUES (1123,2867,39,600,0,2452,5000,0,78,80,0); -- Nightmare_Sheep
 INSERT INTO `mob_groups` VALUES (1124,3760,39,0,128,4476,20000,0,82,82,0); -- Stcemqestcint
