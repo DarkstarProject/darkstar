@@ -11,10 +11,10 @@ require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
-    for i,v in pairs (TE5_RANDOM) do
+    for i,v in ipairs (TE5_RANDOM) do
         DisallowRespawn(v, true)
     end
-    local randomTE5 = math.random(0,3)
+    local randomTE5 = math.random(#TE5_RANDOM)
     DisallowRespawn(TE5_RANDOM[randomTE5], false)
     SpawnMob(TE5_RANDOM[randomTE5])
 end
