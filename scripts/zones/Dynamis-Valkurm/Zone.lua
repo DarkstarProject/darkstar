@@ -3,22 +3,21 @@
 -- Zone: Dynamis-Valkurm
 -- 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
+package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
-
------------------------------------
---  onInitialize
+require("scripts/zones/Dynamis-Valkurm/TextIDs")
+require("scripts/zones/Dynamis-Valkurm/MobIDs")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
-end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
+    for i,v in pairs (TE5_RANDOM) do
+        DisallowRespawn(v, true)
+    end
+    local randomTE5 = math.random(0,3)
+    DisallowRespawn(TE5_RANDOM[randomTE5], false)
+    SpawnMob(TE5_RANDOM[randomTE5])
+end
 
 function onConquestUpdate(zone, updatetype)
     local players = zone:getPlayers()
@@ -26,11 +25,7 @@ function onConquestUpdate(zone, updatetype)
     for name, player in pairs(players) do
         conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
     end
-end;
-
------------------------------------
--- onZoneIn
------------------------------------
+end
 
 function onZoneIn(player,prevZone)
     local cs = -1
@@ -44,32 +39,16 @@ function onZoneIn(player,prevZone)
     end
 
     return cs
-end;
-
------------------------------------
--- onRegionEnter
------------------------------------
+end
 
 function onRegionEnter(player,region)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if csid == 100 then
         player:setPos(117,-9,132,162,103)
     end
-end;
+end
