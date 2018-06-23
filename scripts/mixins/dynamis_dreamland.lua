@@ -10,6 +10,7 @@ g_mixins = g_mixins or {}
 --  t.whiteshell: 1449
 --  o. bronzepiece: 1452
 --  1 byne bill: 1455
+--  random: 0
 
 g_mixins.dynamis_dreamland = function(mob)
     local proctimes = {
@@ -58,15 +59,20 @@ g_mixins.dynamis_dreamland = function(mob)
 
     mob:addListener("DEATH", "DYNAMIS_ITEM_DISTRIBUTION", function(mob, killer)
         if killer then
+            local currency = mob:getLocalVar("dynamis_currency")
+            if currency == 0 then
+                cur_t = {1449, 1452, 1455}
+                currency = cur_t[math.random(#cur_t)]
+            end
             -- just guessing on this until I can find better data (10% on low level mobs, 15% on higher)
             local chance = 100
             if mob:getMainLvl() > 90 then
                 chance = 150
             end
-            if mob:getLocalVar("dynamis_proc") >= 4 then killer:addTreasure(mob:getLocalVar("dynamis_currency")+1, mob) end
-            if mob:getLocalVar("dynamis_proc") >= 3 then killer:addTreasure(mob:getLocalVar("dynamis_currency"), mob) end
-            if mob:getLocalVar("dynamis_proc") >= 2 then killer:addTreasure(mob:getLocalVar("dynamis_currency"), mob, chance) end
-            if mob:getLocalVar("dynamis_proc") >= 1 then killer:addTreasure(mob:getLocalVar("dynamis_currency"), mob, chance) end
+            if mob:getLocalVar("dynamis_proc") >= 4 then killer:addTreasure(currency+1, mob) end
+            if mob:getLocalVar("dynamis_proc") >= 3 then killer:addTreasure(currency, mob) end
+            if mob:getLocalVar("dynamis_proc") >= 2 then killer:addTreasure(currency, mob, chance) end
+            if mob:getLocalVar("dynamis_proc") >= 1 then killer:addTreasure(currency, mob, chance) end
             killer:addTreasure(mob:getLocalVar("dynamis_currency"), mob, chance)
         end
     end)
