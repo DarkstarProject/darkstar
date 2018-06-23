@@ -2,23 +2,17 @@
 -- Area: Dynamis Valkurm
 --  MOB: Goblin_Statue
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
+package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/keyitems");
-require("scripts/globals/npc_util");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/zones/Dynamis-Valkurm/TextIDs")
+require("scripts/zones/Dynamis-Valkurm/MobIDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+end
 
 function onMobDeath(mob, player, isKiller)
 local mobID = mob:getID();
@@ -36,6 +30,10 @@ local mobID = mob:getID();
                 effect:setDuration(effect:getDuration() * 1000 + 20 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
             end
+            DisallowRespawn(mob:getID(), true)
+            local newTEMob = math.random(0,3) -- Randomly select new TE5 mob
+            DisallowRespawn(TE5_RANDOM[newTEMob], false)
+            GetMobByID(TE5_RANDOM[newTEMob]):setRespawnTime(85)
         end
     end
-end;
+end
