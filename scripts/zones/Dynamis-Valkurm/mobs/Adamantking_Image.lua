@@ -29,10 +29,13 @@ function onMobDeath(mob, player, isKiller)
                 effect:setDuration(effect:getDuration() * 1000 + 20 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
             end
-            DisallowRespawn(mob:getID(), true)
-            local newTEMob = math.random(0,3) -- Randomly select new TE5 mob
-            DisallowRespawn(TE5_RANDOM[newTEMob], false)
-            GetMobByID(TE5_RANDOM[newTEMob]):setRespawnTime(85)
         end
+    end
+
+    if mob:getMainLvl() > 85 then
+        DisallowRespawn(mob:getID(), true)
+        local newTEMob = TE5_RANDOM[math.random(#TE5_RANDOM)] -- Randomly select new TE5 mob
+        DisallowRespawn(newTEMob, false)
+        GetMobByID(newTEMob):setRespawnTime(85)
     end
 end
