@@ -14,9 +14,9 @@ function onInitialize(zone)
     for i,v in ipairs (TE5_RANDOM) do
         DisallowRespawn(v, true)
     end
-    local randomTE5 = math.random(#TE5_RANDOM)
-    DisallowRespawn(TE5_RANDOM[randomTE5], false)
-    SpawnMob(TE5_RANDOM[randomTE5])
+    local randomTE5 = TE5_RANDOM[math.random(#TE5_RANDOM)]
+    DisallowRespawn(randomTE5, false)
+    SpawnMob(randomTE5)
 end
 
 function onConquestUpdate(zone, updatetype)
