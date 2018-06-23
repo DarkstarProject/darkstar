@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),128));
         end
     elseif (csid == 16 and option == 0) then
-        player:setVar("enteringDynamis",1);
+        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 0, 3600)
         player:setPos(100,-8,131,47,0x27);
     end
 

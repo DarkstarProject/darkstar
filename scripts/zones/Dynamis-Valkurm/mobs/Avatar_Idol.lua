@@ -6,6 +6,7 @@ package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/npc_util");
 require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
@@ -20,16 +21,18 @@ end;
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    local effect = player:getStatusEffect(EFFECT_DYNAMIS)
+    local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
     if effect then
         if mob:getMainLvl() < 85 then
-            if not player:hasKeyItem(AMBER_GRANULES_OF_TIME) then
-                effect:setDuration(effect:getDuration() + 10 * 60 * 1000)
+            if not player:hasKeyItem(dsp.ki.AMBER_GRANULES_OF_TIME) then
+                npcUtil.giveKeyItem(player, dsp.ki.AMBER_GRANULES_OF_TIME)
+                effect:setDuration(effect:getDuration() * 1000 + 10 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
             end
         else
-            if not player:hasKeyItem(OBSIDIAN_GRANULES_OF_TIME) then
-                effect:setDuration(effect:getDuration() + 20 * 60 * 1000)
+            if not player:hasKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME) then
+                npcUtil.giveKeyItem(player, dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
+                effect:setDuration(effect:getDuration() * 1000 + 20 * 60 * 1000)
                 player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
             end
         end

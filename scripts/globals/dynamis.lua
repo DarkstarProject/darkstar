@@ -958,24 +958,26 @@ function dynamis.getExtensions(player)
 end
 
 function dynamis.procMonster(mob, player)
-    local extensions = dynamis.getExtensions(player)
-    if extensions > 2 then
-        if player:getSubJob() == dsp.job.NONE and math.random(0,99) == 0 then
-            mob:setLocalVar("dynamis_proc", 4)
-            mob:weaknessTrigger(3)
-            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
-        elseif extensions == 5 then
-            mob:setLocalVar("dynamis_proc", 3)
-            mob:weaknessTrigger(2)
-            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
-        elseif extensions == 4 then
-            mob:setLocalVar("dynamis_proc", 2)
-            mob:weaknessTrigger(1)
-            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
-        elseif extensions == 3 then
-            mob:setLocalVar("dynamis_proc", 1)
-            mob:weaknessTrigger(0)
-            mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+    if player and player:getAllegiance() == 1 then
+        local extensions = dynamis.getExtensions(player)
+        if extensions > 2 then
+            if player:getSubJob() == dsp.job.NONE and math.random(0,99) == 0 then
+                mob:setLocalVar("dynamis_proc", 4)
+                mob:weaknessTrigger(3)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 5 then
+                mob:setLocalVar("dynamis_proc", 3)
+                mob:weaknessTrigger(2)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 4 then
+                mob:setLocalVar("dynamis_proc", 2)
+                mob:weaknessTrigger(1)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            elseif extensions == 3 then
+                mob:setLocalVar("dynamis_proc", 1)
+                mob:weaknessTrigger(0)
+                mob:addStatusEffect(dsp.effect.TERROR, 0, 0, 30)
+            end
         end
     end
 end

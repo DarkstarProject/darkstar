@@ -4309,9 +4309,8 @@ inline int32 CLuaBaseEntity::setNation(lua_State *L)
 
 /************************************************************************
 *  Function: getAllegiance()
-*  Purpose : Not really sure...used as a comparison between caster and mob
+*  Purpose : Gets allegiance of entity (mob/player/ballista team)
 *  Example : if (target:getAllegiance() == caster:getAllegiance()) then
-*  Notes   : Only used in cure formulas (blue spells too)
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
@@ -4325,9 +4324,8 @@ inline int32 CLuaBaseEntity::getAllegiance(lua_State* L)
 
 /************************************************************************
 *  Function: setAllegiance()
-*  Purpose : Maybe in determining if a cure spell/ability will heal the mob?
+*  Purpose : Sets allegiance of entity (mob/player/ballista team)
 *  Example : target:setAllegiance(???)
-*  Notes   : Not currently implemented in any script
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setAllegiance(lua_State* L)
@@ -12952,7 +12950,7 @@ inline int32 CLuaBaseEntity::addTreasure(lua_State *L)
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
             uint16 droprate = 1000;
-            if (!lua_isnil(L,3) && lua_isnumber(L,2))
+            if (!lua_isnil(L,3) && lua_isnumber(L,3))
             {
                 droprate = (uint16)lua_tointeger(L, 3);
             }

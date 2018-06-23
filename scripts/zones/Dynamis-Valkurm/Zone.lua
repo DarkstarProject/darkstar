@@ -21,10 +21,10 @@ end;
 -----------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
+    local players = zone:getPlayers()
     
     for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
     end
 end;
 
@@ -33,17 +33,17 @@ end;
 -----------------------------------
 
 function onZoneIn(player,prevZone)
-    local cs = -1;
+    local cs = -1
 
     player:addListener("DYNAMIS_EXPIRE", "DYNAMIS_EXPIRE", function(player)
         player:messageSpecial(DYNAMIS_TIME_EXPIRED)
     end)
 
     if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
-        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 0, 3600)
+        cs = 100
     end
 
-    return cs;
+    return cs
 end;
 
 -----------------------------------

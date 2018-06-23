@@ -670,7 +670,7 @@ INSERT INTO `status_effects` VALUES (796,'haste_samba_haste_effect',320,0,0,0,0,
 INSERT INTO `status_effects` VALUES (797,'teleport',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (798,'chainbound',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (799,'skillchain',32,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (800,'dynamis',256,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (800,'dynamis',16777216,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (801,'meditate',32,0,0,0,0,0,7,0);
 /*!40000 ALTER TABLE `status_effects` ENABLE KEYS */;
 UNLOCK TABLES;

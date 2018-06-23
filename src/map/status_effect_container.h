@@ -116,6 +116,7 @@ private:
 
     // void ReplaceStatusEffect(EFFECT effect); //this needs to be implemented
     void RemoveStatusEffect(uint32 id, bool silent = false);	// удаляем эффект по его номеру в контейнере
+    void RemoveStatusEffect(CStatusEffect* PEffect, bool silent = false);	// удаляем эффект по его номеру в контейнере
     void DeleteStatusEffects();
     void SetEffectParams(CStatusEffect* StatusEffect);			// устанавливаем имя эффекта
 
