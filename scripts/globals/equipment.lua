@@ -24,7 +24,7 @@ BaseNyzulWeapons = {
                    };
 
 -----------------------------------
--- Place convenience functions 
+-- Place convenience functions
 -- related to equipment here
 -----------------------------------
 
@@ -56,7 +56,7 @@ function isBaseNyzulWeapon(itemId)
     for i, wepId in pairs(BaseNyzulWeapons) do
         if (itemId == wepId) then
             return true;
-        end  
+        end
     end
     
     return false;

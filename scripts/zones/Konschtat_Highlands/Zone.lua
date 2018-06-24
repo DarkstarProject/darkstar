@@ -29,6 +29,7 @@ function onChocoboDig(player, precheck)
         { 868, 45, DIGREQ_NONE },
         { 642, 71, DIGREQ_NONE },
         { 4096, 100, DIGREQ_NONE },  -- all crystals
+        { 1255, 10, DIGREQ_NONE }, -- all ores
         { 845, 28, DIGREQ_BORE },
         { 842, 27, DIGREQ_BORE },
         { 843, 23, DIGREQ_BORE },

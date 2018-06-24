@@ -11,17 +11,9 @@ require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/zones/Cloister_of_Flames/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -35,17 +27,9 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     --printf("onFinish CSID: %u",csid);

@@ -47,13 +47,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 37) then
         player:setVar("Cryptonberry_Executor_KILL",2);
         player:setVar("Cryptonberry_Assassins-1_KILL",0);

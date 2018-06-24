@@ -1,14 +1,14 @@
 -----------------------------------
--- Area: Qu'Bia Arena
+-- Area: Chamber of Oracles
 -- Name: Shattering stars - Maat Fight
 -- !pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
+package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil
 -------------------------------------
-
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+require("scripts/zones/Chamber_of_Oracles/TextIDs");
 require("scripts/globals/battlefield")
-
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
@@ -33,7 +33,7 @@ end;
 -- from the core when a player disconnects or the time limit is up, etc
 
 function onBattlefieldLeave(player,battlefield,leavecode)
--- print("leave code "..leavecode);
+    -- print("leave code "..leavecode);
 
     if leavecode == dsp.battlefield.leaveCode.WON then -- play end CS. Need time and battle id for record keeping + storage
         local name, clearTime, partySize = battlefield:getRecord()
@@ -41,28 +41,23 @@ function onBattlefieldLeave(player,battlefield,leavecode)
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
         player:startEvent(32002);
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
-end;
+end
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-
-    if (csid == 32001) then
-        if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
-            player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181);
+    if csid == 32001 then
+        if player:getQuestStatus(JEUNO, SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0 then
+            player:addItem(4181)
+            player:messageSpecial(ITEM_OBTAINED, 4181)
         end
-        local pjob = player:getMainJob();
-        player:setVar("maatDefeated",pjob);
+        local pjob = player:getMainJob()
+        player:setVar("maatDefeated", pjob)
         local maatsCap = player:getVar("maatsCap")
-        if (bit.band(maatsCap, bit.lshift(1, (pjob -1))) ~= 1) then
-            player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (pjob -1))))
+        if bit.band(maatsCap, bit.lshift(1, (pjob - 1))) ~= 1 then
+            player:setVar("maatsCap", bit.bor(maatsCap, bit.lshift(1, (pjob - 1))))
         end
-        player:addTitle(dsp.title.MAAT_MASHER);
+        player:addTitle(dsp.title.MAAT_MASHER)
     end
-
-end;
+end

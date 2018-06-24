@@ -346,16 +346,8 @@ local loot =
     }
 }
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
@@ -363,10 +355,6 @@ function onTrigger(player,npc)
         dsp.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
     end
 end
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end

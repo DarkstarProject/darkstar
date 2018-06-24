@@ -18,14 +18,17 @@ function onSpellCast(caster, target, spell)
     local spellParams = {};
     spellParams.hasMultipleTargetReduction = false;
     spellParams.resistBonus = 1.0;
+    spellParams.V = 710;
     spellParams.V0 = 800;
     spellParams.V50 = 900;
     spellParams.V100 = 1000;
     spellParams.V200 = 1200;
+    spellParams.M = 2;
     spellParams.M0 = 2;
     spellParams.M50 = 2;
     spellParams.M100 = 2;
     spellParams.M200 = 2;
+    spellParams.I = 780;
     if (caster:getMerit(dsp.merit.FREEZE_II) ~= 0) then
         spellParams.AMIIburstBonus = (caster:getMerit(dsp.merit.FREEZE_II) - 1) * 0.03;
         spellParams.AMIIaccBonus = (caster:getMerit(dsp.merit.FREEZE_II) - 1) * 5;

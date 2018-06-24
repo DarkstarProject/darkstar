@@ -30,15 +30,10 @@ function onTrigger(player,npc)
 end;
 
 -- 0x0029  without addons (ZM) ?
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 37) then
         Z = player:getZPos();

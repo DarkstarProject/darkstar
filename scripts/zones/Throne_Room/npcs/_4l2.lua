@@ -5,25 +5,13 @@
 
 require("scripts/globals/bcnm");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

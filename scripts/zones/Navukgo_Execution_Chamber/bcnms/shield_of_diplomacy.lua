@@ -4,11 +4,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/battlefield")
 require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
-
+require("scripts/globals/battlefield")
+require("scripts/globals/keyitems");
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

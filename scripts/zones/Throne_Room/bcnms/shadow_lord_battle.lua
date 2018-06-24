@@ -6,9 +6,9 @@
 package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
 -------------------------------------
 require("scripts/zones/Throne_Room/TextIDs");
+require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/globals/battlefield")
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
@@ -51,7 +51,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 7d01) then
+    if csid == 32001 then
         if (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3) then
             if ((not player:hasCompletedMission(ZILART, THE_NEW_FRONTIER)) and (player:getCurrentMission(ZILART) ~= THE_NEW_FRONTIER)) then
                 -- Don't add missions we already completed..Players who change nation will hit this.
@@ -59,9 +59,10 @@ function onEventFinish(player,csid,option)
             end
             player:startEvent(7);
         end
-    elseif (csid==7) then
+    elseif csid == 7 then
         player:addKeyItem(dsp.ki.SHADOW_FRAGMENT);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHADOW_FRAGMENT);
         player:setVar("MissionStatus",4);
+        player:setPos(378, -12, -20, 125, 161);
     end
 end;

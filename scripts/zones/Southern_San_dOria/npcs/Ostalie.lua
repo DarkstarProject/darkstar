@@ -45,7 +45,7 @@ function onTrigger(player,npc)
              0x3138,216,3,    -- Robe
              0x3238,172,3}    -- Slops
 
-    rank = getNationRank(NATION_SANDORIA);
+    rank = getNationRank(dsp.nation.SANDORIA);
 
         if (rank ~= 1) then
             table.insert(stock,0x03fe); --Thief's Tools
@@ -58,16 +58,12 @@ function onTrigger(player,npc)
             table.insert(stock,3);
         end
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

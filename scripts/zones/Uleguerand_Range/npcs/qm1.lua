@@ -7,12 +7,12 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
     -- Trade Haunted Muleta
-    if (not GetMobByID(GEUSH_URVAN):isSpawned() and trade:hasItemQty(1824,1) and trade:getItemCount() == 1) then 
+    if (not GetMobByID(GEUSH_URVAN):isSpawned() and trade:hasItemQty(1824,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
         SpawnMob(GEUSH_URVAN):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
-end; 
+end;
 
 function onTrigger(player,npc)
 end;

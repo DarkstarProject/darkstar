@@ -2,12 +2,12 @@
 -- Area: Bearclaw Pinnacle
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
+package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil
 -------------------------------------
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
+require("scripts/zones/Bearclaw_Pinnacle/TextIDs")
 require("scripts/globals/battlefield")
+require("scripts/globals/titles")
+require("scripts/globals/quests")
 -----------------------------------
 local loot =
 {
@@ -30,7 +30,7 @@ local loot =
             {itemid = 4748, droprate = 116},  -- Scroll of Raise III
         },
     },
-		
+
     -- ENM: When Hell Freezes Over (Wiki showed ???% for droprate, these are guesses based on other ENMs)
     [642] =
     {
@@ -114,34 +114,19 @@ local loot =
         },
     }
 }
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
     if battlefield then
         dsp.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
     end
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

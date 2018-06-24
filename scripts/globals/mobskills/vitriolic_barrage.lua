@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Vitrolic Barrage
 --
---  Description: Bombards nearby targets with acid, dealing fixed Water damage. Additional effect: Poison 
+--  Description: Bombards nearby targets with acid, dealing fixed Water damage. Additional effect: Poison
 --  Type: ??? (Water)
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: AoE 10'

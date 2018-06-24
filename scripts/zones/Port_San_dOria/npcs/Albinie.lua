@@ -32,16 +32,12 @@ stock =
     0x02ba,86,3,   --Ash Log
     0x0001,1800,3  --Chocobo Bedding
 }
-showNationShop(player, NATION_SANDORIA, stock);
+dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         0x1145, 1560,   -- Melon Pie
         0x1146, 200,    -- Orange Juice
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

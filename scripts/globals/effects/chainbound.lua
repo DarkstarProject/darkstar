@@ -1,7 +1,7 @@
 -----------------------------------
 --
 -- dsp.effect.CHAINBOUND
---    
+--
 -----------------------------------
  
 require("scripts/globals/status");

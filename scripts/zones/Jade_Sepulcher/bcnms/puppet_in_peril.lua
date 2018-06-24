@@ -4,11 +4,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/battlefield")
 require("scripts/zones/Jade_Sepulcher/TextIDs");
-
+require("scripts/globals/battlefield")
+require("scripts/globals/keyitems");
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

@@ -41,13 +41,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10025 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
@@ -65,6 +61,6 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_OBTAINED,1548);
         end
     elseif (csid == 10026 and option == 1) then
-        toCloisterOfStorms(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_STORMS);
     end
 end;

@@ -18,17 +18,17 @@ function onInstanceCreated(instance)
         SpawnMob(v, instance);
     end
 
-    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setPos(-495,-9.899,-72,0);
     box:setPos(-495,-9.695,-75,0);
 
-    instance:getEntity(bit.band(Periqia.npcs.EXCALIACE, 0xFFF), TYPE_NPC):setStatus(1);
-    instance:getEntity(bit.band(Periqia.npcs._1K6, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._1KX, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._1KZ, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._JK1, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._JK3, 0xFFF), TYPE_NPC):setAnimation(8);
+    instance:getEntity(bit.band(Periqia.npcs.EXCALIACE, 0xFFF), dsp.objType.NPC):setStatus(1);
+    instance:getEntity(bit.band(Periqia.npcs._1K6, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(Periqia.npcs._1KX, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(Periqia.npcs._1KZ, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(Periqia.npcs._JK1, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(Periqia.npcs._JK3, 0xFFF), dsp.objType.NPC):setAnimation(8);
 
 end;
 
@@ -122,12 +122,13 @@ function onInstanceComplete(instance)
         v:messageSpecial(Periqia.text.RUNE_UNLOCKED_POS, 8, 8);
     end
 
-    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setStatus(dsp.status.NORMAL);
     box:setStatus(dsp.status.NORMAL);
 
 end;
+
 function onEventUpdate(player,csid,option)
 end
 

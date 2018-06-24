@@ -66,7 +66,7 @@ function onTrigger(player,npc)
             4405, 160,   -- Rice Ball
             5676, 76475, -- Mushroom Sautee
         }
-        showShop(player, STATIC, stock);
+        dsp.shop.general(player, stock);
 
         if (exoticDelicacies ~= QUEST_COMPLETED) then
             player:setVar("Flapano_Odd_Even", 0);

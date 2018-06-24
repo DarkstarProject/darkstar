@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10012 and option == 1) then
         player:messageSpecial(FISHING_SUPPORT,0,0,1);
         player:addStatusEffect(dsp.effect.FISHING_IMAGERY,1,0,3600);

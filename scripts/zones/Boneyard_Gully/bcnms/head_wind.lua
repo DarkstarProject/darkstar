@@ -5,11 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/missions");
 require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
-
+require("scripts/globals/missions");
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
@@ -44,18 +42,18 @@ function onBattlefieldLeave(player,battlefield,leavecode)
             player:startEvent(32001, battlefield:getArea(), clearTime, partySize, battlefield:getTimeInside(), 1, battlefield:getLocalVar("[cs]bit"), 1)
         end
     elseif leavecode == dsp.battlefield.leaveCode.LOST then
-           player:startEvent(32002);
-   end
+        player:startEvent(32002);
+    end
 
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
      player:addExp(1000);
     end
-end;
+end

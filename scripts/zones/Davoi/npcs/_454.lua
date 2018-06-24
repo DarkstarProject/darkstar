@@ -9,7 +9,7 @@ function onSpawn(npc)
 
     local elevator =
     {
-        id = ELEVATOR_DAVOI_LIFT,    -- id is usually 0, but im needed in a script
+        id = dsp.elevator.DAVOI_LIFT,    -- id is usually 0, but im needed in a script
         lowerDoor = npc:getID() - 2, -- lowerDoor's npcid
         upperDoor = npc:getID(),     -- upperDoor usually has a smaller id than lowerDoor
         elevator = npc:getID() - 3,  -- actual elevator npc's id is usually the smallest

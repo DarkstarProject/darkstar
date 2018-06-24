@@ -31,8 +31,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 300) then
         if (player:delGil(148000)) then
             player:addKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
@@ -42,8 +40,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 300) then
         if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM) == true) then
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);

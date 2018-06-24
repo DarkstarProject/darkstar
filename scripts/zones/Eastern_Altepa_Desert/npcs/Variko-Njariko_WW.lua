@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
-local guardnation = NATION_WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = KUZOTZ;
+local region      = dsp.region.KUZOTZ;
 local csid        = 0x7ff7;
 
 function onTrade(player,npc,trade)
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

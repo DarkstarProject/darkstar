@@ -7,25 +7,13 @@
 
 require("scripts/globals/bcnm");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     EventTriggerBCNM(player,npc);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);

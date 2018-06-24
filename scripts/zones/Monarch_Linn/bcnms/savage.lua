@@ -2,10 +2,10 @@
 -- Area: Monarch Linn
 -- Name: savage
 -----------------------------------
-
-require("scripts/globals/titles");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
+require("scripts/globals/titles");
+-----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBattlefieldRegister(player,battlefield)

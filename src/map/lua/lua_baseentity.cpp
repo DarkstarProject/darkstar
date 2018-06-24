@@ -1691,7 +1691,7 @@ inline int32 CLuaBaseEntity::pathThrough(lua_State* L)
         lua_rawgeti(L, 1, i + 1);
         lua_rawgeti(L, 1, i + 2);
 
-        points.push_back({0, (float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0});
+        points.push_back({(float)lua_tointeger(L, -3), (float)lua_tointeger(L, -2), (float)lua_tointeger(L, -1), 0, 0});
 
         lua_pop(L, 3);
     }
@@ -2980,13 +2980,19 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
     /* FORMAT:
-    player:addItem(Item ID,
-                            Quantity (or bool for silent addition of 1 Qty),
-                             Augment 1, A1 Value,
-                             Augment 2, A2 Value,
-                             Augment 3, A3 Value,
-                             Augment 4, A4 Value,
-                             Trial Number)
+    player:addItem(itemID, quantity) -- add quantity of itemID
+
+    player:addItem(itemID, true) -- silently add 1 of itemID
+
+    player:addItem(itemID, quantity, true) -- silently add quantity of itemID
+
+    player:addItem(itemID,
+                   quantity,
+                   Augment 1, A1 Value,
+                   Augment 2, A2 Value,
+                   Augment 3, A3 Value,
+                   Augment 4, A4 Value,
+                   Trial Number)
     */
 
     bool silence = false;
@@ -3000,8 +3006,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
 
     if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
         silence = (uint32)lua_toboolean(L, 2);
-    if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    else if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
+    {
         quantity = (uint32)lua_tointeger(L, 2);
+        if (!lua_isnil(L, 3) && lua_isboolean(L, 3))
+            silence = (uint32)lua_toboolean(L, 3);
+    }
 
     if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
         augment0 = (uint16)lua_tointeger(L, 3);
@@ -3781,7 +3791,6 @@ inline int32 CLuaBaseEntity::getStorageItem(lua_State *L)
         lua_pcall(L, 2, 1, 0);
         return 1;
     }
-    ShowError(CL_RED"Lua::getItem: unable to find item! Slot: %i Container: %i\n" CL_RESET, equipID > 0 ? equipID : slotID, container);
     lua_pushnil(L);
     return 1;
 }
@@ -7607,6 +7616,30 @@ inline int32 CLuaBaseEntity::delLearnedWeaponskill(lua_State *L)
 }
 
 /************************************************************************
+*  Function: addWeaponSkillPoints()
+*  Purpose : Removes a learned weaponskill from the player
+*  Example : player:addWeaponSkillPoints(dsp.slot.MAIN,300)
+*  Notes   : Returns true if points were successfully added.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addWeaponSkillPoints(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+    SLOTTYPE slot = (SLOTTYPE)lua_tointeger(L, 1);
+    uint16 points = (uint16)lua_tointeger(L, 2);
+
+    lua_pushboolean(L, charutils::AddWeaponSkillPoints(PChar, slot, points));
+    return 1;
+}
+
+/************************************************************************
 *  Function: addLearnedAbility()
 *  Purpose : Adds a new learned ability to the player
 *  Example : target:addLearnedAbility(89) -- Chaos Roll
@@ -9537,7 +9570,7 @@ inline int32 CLuaBaseEntity::updateClaim(lua_State *L)
 }
 
 /************************************************************************
-*  Function: addStatusEffect()
+*  Function: addStatusEffect(effect, power, tick, duration)
 *  Purpose : Adds a specified Status Effect to the Entity
 *  Example : target:addStatusEffect(EFFECT_ACCURACY_DOWN,20,3,60)
 *  Notes   :
@@ -13080,6 +13113,23 @@ inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
     return 1;
 }
 
+/************************************************************************
+*  Function: getTHlevel()
+*  Purpose : Returns the Monster's current Treasure Hunter Tier
+*  Example : local TH = target:getTHlevel()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
+    lua_pushinteger(L, PMob->m_THLvl);
+    return 1;
+}
+
 //=======================================================//
 
 const char CLuaBaseEntity::className[] = "CBaseEntity";
@@ -13423,6 +13473,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedWeaponskill),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLearnedWeaponskill),
 
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addWeaponSkillPoints),
+
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLearnedAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasLearnedAbility),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canLearnAbility),
@@ -13704,6 +13756,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilItem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTHlevel),
 
     {nullptr,nullptr}
 };

@@ -51,22 +51,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 124 and option == 1) then
         player:addNationTeleport(AHTURHGAN,2);
-        toChamberOfPassage(player);
+        dsp.teleport.toChamberOfPassage(player);
     elseif (csid == 125 and option == 1) then
         player:addNationTeleport(AHTURHGAN,4);
-        toChamberOfPassage(player);
+        dsp.teleport.toChamberOfPassage(player);
     elseif ((csid == 134 or 131) and option == 1) then
-        toChamberOfPassage(player);
+        dsp.teleport.toChamberOfPassage(player);
     end
 
 end;

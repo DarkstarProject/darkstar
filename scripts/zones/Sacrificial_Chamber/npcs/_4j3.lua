@@ -10,17 +10,9 @@ require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -29,10 +21,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);

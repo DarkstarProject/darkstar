@@ -18,5 +18,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_DEM,0,1);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.DEM,0,1);
 end;

@@ -31,13 +31,9 @@ function onTrigger(player,npc)
 end;
 --
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 89) then
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);

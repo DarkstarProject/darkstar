@@ -493,7 +493,7 @@ INSERT INTO `status_effects` VALUES (458,'earthen_armor',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (459,'divine_caress',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (460,'blood_rage',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (461,'impetus',32,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (462,'conspirator',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (462,'conspirator',33,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (463,'sepulcher',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (464,'arcane_crest',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (465,'hamanoha',32,0,0,0,0,0,0,0);

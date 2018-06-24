@@ -33,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 80 and option == 70) then
         player:addQuest(OTHER_AREAS_LOG,THE_RESCUE);
     elseif (csid == 81) then

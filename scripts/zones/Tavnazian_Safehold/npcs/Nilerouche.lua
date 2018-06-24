@@ -25,16 +25,12 @@ function onTrigger(player,npc)
      0x121e,66000,        -- Scroll of Banish III
      0x0b37,9200}        -- Safehold Waystone
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

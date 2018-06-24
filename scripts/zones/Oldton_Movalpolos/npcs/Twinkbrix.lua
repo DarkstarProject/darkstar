@@ -33,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
- -- printf("CSID: %u",csid);
- -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
- -- printf("CSID: %u",csid);
- -- printf("RESULT: %u",option);
 
  if (csid == 55 and option == 1) then
        player:addKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL);
@@ -49,7 +45,7 @@ function onEventFinish(player,csid,option)
      player:tradeComplete();
  elseif (csid == 56 and option == 1) then
      player:tradeComplete();
-     toMineShaft2716(player);
+     dsp.teleport.to(player, dsp.teleport.id.MINESHAFT);
  end
 
 end;

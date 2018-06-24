@@ -28,13 +28,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local SOJOURN = getAbyssiteTotal(player,"SOJOURN");
     local duration = 0;
     local prevtime = player:getVar("Abyssea_Time"); -- Gets reduced by Visitants "on tic".

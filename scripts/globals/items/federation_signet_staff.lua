@@ -11,7 +11,7 @@ require("scripts/globals/msg");
 
 function onItemCheck(target, param, caster)
    
-    if (target:getNation() ~= NATION_WINDURST) then
+    if (target:getNation() ~= dsp.nation.WINDURST) then
         return dsp.msg.basic.ITEM_CANNOT_USE_ON
     end
     

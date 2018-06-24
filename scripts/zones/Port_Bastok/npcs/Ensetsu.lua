@@ -54,15 +54,10 @@ function onTrigger(player,npc)
 end;
 
 -- 27  0x00f0  242  243  245  246  247  262  263  264  265  0x0105
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 242) then
         player:setVar("AyameAndKaede_Event", 2);

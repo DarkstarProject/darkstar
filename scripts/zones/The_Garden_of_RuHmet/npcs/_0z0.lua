@@ -11,10 +11,6 @@ require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     
     if (TradeBCNM(player,npc,trade)) then
@@ -22,10 +18,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     --player:addMission(COP, WHEN_ANGELS_FALL);
@@ -38,10 +30,6 @@ function onTrigger(player,npc)
     end
   return 1;
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);

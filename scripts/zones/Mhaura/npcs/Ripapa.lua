@@ -56,13 +56,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10016 and option == 1) then
         if (player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then

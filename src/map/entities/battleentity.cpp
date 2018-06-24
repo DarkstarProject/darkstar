@@ -1487,7 +1487,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
-                    actionTarget.messageID = 67;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 353 : 67;
 
                     if (PTarget->objtype == TYPE_MOB)
                     {
@@ -1499,7 +1499,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 {
                     actionTarget.reaction = REACTION_HIT;
                     actionTarget.speceffect = SPECEFFECT_HIT;
-                    actionTarget.messageID = 1;
+                    actionTarget.messageID = attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN ? 352 : 1;
                 }
 
                 // Guarded. TODO: Stuff guards that shouldn't.

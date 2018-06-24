@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tachi: Yukikaze
 --
---  Description:  Blinds target. Damage varies with TP. 
+--  Description:  Blinds target. Damage varies with TP.
 --  Type: Physical
 --  Shadow per hit
 --  Range: Melee

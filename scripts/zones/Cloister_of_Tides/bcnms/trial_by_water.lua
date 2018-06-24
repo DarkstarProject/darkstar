@@ -4,12 +4,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Tides/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
 require("scripts/zones/Cloister_of_Tides/TextIDs");
 require("scripts/globals/battlefield")
-
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)
@@ -54,7 +52,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_WATER);

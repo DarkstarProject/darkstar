@@ -4,11 +4,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
 -------------------------------------
-
-require("scripts/globals/titles");
-require("scripts/globals/quests");
 require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
+require("scripts/globals/titles");
+require("scripts/globals/quests");
 -----------------------------------
 local loot =
 {
@@ -110,20 +109,12 @@ local loot =
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
     if battlefield then
         dsp.battlefield.HandleLootRolls(battlefield, loot[battlefield:getID()], nil, npc)
     end
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

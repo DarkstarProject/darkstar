@@ -10,10 +10,6 @@ require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 require("scripts/zones/Temenos/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
 local InstanceTrade=0;
@@ -47,10 +43,6 @@ if (player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CA
 
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
  local instancelist ={};
@@ -142,10 +134,6 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 
 
@@ -166,13 +154,7 @@ function onEventUpdate(player,csid,option)
 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
    if (csid == 32000) then
 
    end

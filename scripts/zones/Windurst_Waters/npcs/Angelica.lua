@@ -20,7 +20,7 @@ end;
 function onTrigger(player,npc)
     posestatus = player:getQuestStatus(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
     if (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 0 and player:needToZone() == false) then
-        player:startEvent(87);                                                     -- A POSE BY ANY OTHER NAME: Before Quest
+        player:startEvent(87);                                                     -- A POSE BY ANY dsp.nation.OTHER NAME: Before Quest
         player:setVar("QuestAPoseByOtherName_prog",1);
     elseif (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 1) then
         player:setVar("QuestAPoseByOtherName_prog",2);
@@ -67,13 +67,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 92) then -------------------------- QUEST START
         player:addQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
         player:setVar("QuestAPoseByOtherName_time",os.time());

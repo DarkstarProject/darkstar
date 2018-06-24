@@ -56,20 +56,16 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 41) then
         player:setPos(0,-17,135,60,239);
     elseif (csid == 335) then
         player:setVar("MissionStatus",2);
     elseif (csid == 42) then
         -- This cs should only play if you visit Windurst first.
-        if (player:getNation() == NATION_SANDORIA) then
+        if (player:getNation() == dsp.nation.SANDORIA) then
             player:setVar("MissionStatus",4);
         else
             player:setVar("MissionStatus",3);

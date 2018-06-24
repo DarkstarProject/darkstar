@@ -3,7 +3,7 @@
 --
 --  Description: 20'(?) cone ~300 magic damage and Paralysis, ignores Utsusemi
 --  Type: Magical
---  
+--
 --  Range: 20 yalms
 ---------------------------------------------------
 

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos Central 1floor    
+-- Area: Temenos Central 1floor
 -- NPC: Iruci
 
 -----------------------------------
@@ -23,7 +23,7 @@ function onMobEngaged(mob,target)
  if (IsMobDead(16929049)==true) then
      mob:addStatusEffect(dsp.effect.REGAIN,7,3,0);
      mob:addStatusEffect(dsp.effect.REGEN,50,3,0);
- end     
+ end
 end;
 
 -----------------------------------

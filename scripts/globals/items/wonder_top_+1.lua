@@ -15,5 +15,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    toPurgonorgoBibiki(target);
+    dsp.teleport.to(target, dsp.teleport.id.PURGONORGO);
 end;

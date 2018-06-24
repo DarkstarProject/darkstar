@@ -36,13 +36,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 818 and option == 1) then
         if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
             player:addQuest(WINDURST,ECO_WARRIOR_WIN);

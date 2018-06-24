@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KUZOTZ);
-    if (RegionOwner ~= NATION_BASTOK) then
+    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
         player:showText(npc,VATTIAN_CLOSED_DIALOG);
     else
         player:showText(npc,VATTIAN_OPEN_DIALOG);
@@ -27,18 +27,14 @@ function onTrigger(player,npc)
             0x113C,   299,   --Thundermelon
             0x118B,   184    --Watermelon
         }
-        showShop(player,BASTOK,stock);
+        dsp.shop.general(player, stock, BASTOK);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

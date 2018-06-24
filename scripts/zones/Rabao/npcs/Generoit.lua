@@ -28,16 +28,12 @@ function onTrigger(player,npc)
      0x45CA,687,    -- Carrion Broth
      0x13D1,50784}    -- Scroll of Chocobo Mazurka
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

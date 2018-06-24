@@ -6,11 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/missions");
 require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 require("scripts/globals/battlefield")
-
+require("scripts/globals/missions");
 -----------------------------------
 
 
@@ -55,11 +53,11 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
         player:addExp(1000);
     end

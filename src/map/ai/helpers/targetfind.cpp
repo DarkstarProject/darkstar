@@ -337,7 +337,7 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return false;
     }
 
-    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden())
+    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden() || PTarget->status == STATUS_INVISIBLE)
     {
         return false;
     }

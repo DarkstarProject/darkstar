@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Spine Lash
 --  Phaubo
---  Blinkable 1 hit, plague on hit. 
+--  Blinkable 1 hit, plague on hit.
 ---------------------------------------------
 
 require("scripts/globals/settings");

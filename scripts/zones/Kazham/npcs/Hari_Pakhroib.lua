@@ -42,13 +42,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 68 and option == 1) then
         player:addQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
         player:setVar("PamamaVar",0);

@@ -3,12 +3,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Qubia_arena/TextIDs"] = nil;
 -------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
 require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/globals/battlefield")
-
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 -----------------------------------
 
 function onBattlefieldTick(battlefield, tick)

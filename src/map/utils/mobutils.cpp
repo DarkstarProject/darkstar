@@ -595,92 +595,24 @@ void SetupJob(CMobEntity* PMob)
 {
     JOBTYPE mJob = PMob->GetMJob();
     JOBTYPE sJob = PMob->GetSJob();
+    JOBTYPE job;
 
-    switch(mJob)
+    if (grade::GetJobGrade(mJob, 1) > 0) // check if mainjob gives mp
     {
-        case JOB_THF:
-            // thfs drop more gil
-            if (PMob->m_EcoSystem == SYSTEM_BEASTMEN)
-            {
-                // 50% bonus
-                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 150);
-            }
-            break;
-        case JOB_DRG:
-            // drg can use 2 hour multiple times
-            PMob->setMobMod(MOBMOD_MULTI_2HOUR, 1);
+        job = mJob;
+    }
+    else // if mainjob had no MP, use subjob in switch cases.
+    {
+        job = sJob;
+    }
 
-            // only drgs in 3rd expansion calls wyvern as non-NM
-            // include fomors
-            if((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
-            {
-                // 20 min recast
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
-            }
-            break;
-        case JOB_RNG:
-
-            // giga
-            if((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328)
-            {
-                // only used while at range
-                // catapult
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-            }
-            else if (PMob->m_Family == 3)
-            {
-                // aern
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-            }
-            else
-            {
-                // all other rangers
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-                PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
-                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
-            }
-
-            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
-
-            break;
-        case JOB_NIN:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
-            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
-            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
-
-            if (PMob->m_Family == 3)
-            {
-                // aern
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
-            }
-            else
-            {
-                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
-            }
-
-            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
-            break;
-        case JOB_BST:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1017);
-            break;
-        case JOB_PUP:
-            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1901);
-            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
-            break;
+    // This switch falls back to a subjob if a mainjob isn't matched, and is mainly magic stuff
+    switch(job)
+    {
         case JOB_BLM:
-            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 12);
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
             PMob->defaultMobMod(MOBMOD_GA_CHANCE, 40);
             PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 15);
-
-            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
             break;
         case JOB_PLD:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
@@ -711,32 +643,86 @@ void SetupJob(CMobEntity* PMob)
             break;
         case JOB_SMN:
             PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 70);
-            // smn only has "buffs"
-            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 100); // SMN only has "buffs"
+            break;
+        case JOB_NIN:
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 9);
+            PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
+            PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 20);
+            PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 7);
             break;
         default:
             break;
     }
 
-    // Just a fallback at the moment
-    switch(sJob)
+    // This switch is mainjob only and contains mainly non magic related stuff
+    switch(mJob)
     {
-        case JOB_BLM:
-        case JOB_WHM:
-        case JOB_RDM:
-        case JOB_DRK:
-        case JOB_BLU:
-        case JOB_SMN:
-        case JOB_BRD:
-        case JOB_NIN:
-            if(PMob->getMobMod(MOBMOD_MP_BASE))
+        case JOB_THF:
+            // thfs drop more gil
+            if (PMob->m_EcoSystem == SYSTEM_BEASTMEN)
             {
-                PMob->defaultMobMod(MOBMOD_MAGIC_COOL, 35);
-                PMob->defaultMobMod(MOBMOD_GA_CHANCE, 15);
-                PMob->defaultMobMod(MOBMOD_BUFF_CHANCE, 40);
-                PMob->defaultMobMod(MOBMOD_MAGIC_DELAY, 10);
+                // 50% bonus
+                PMob->defaultMobMod(MOBMOD_GIL_BONUS, 150);
             }
             break;
+        case JOB_DRG:
+            // drg can use 2 hour multiple times
+            PMob->setMobMod(MOBMOD_MULTI_2HOUR, 1);
+
+            // only drgs in 3rd expansion calls wyvern as non-NM
+            // include fomors
+            if ((!(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->loc.zone->GetContinentID() == THE_ARADJIAH_CONTINENT) || PMob->m_Family == 115)
+            {
+                // 20 min recast
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 476);
+                PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
+            }
+            break;
+        case JOB_RNG:
+            if ((PMob->m_Family >= 126 && PMob->m_Family <= 130) || PMob->m_Family == 328) // Gigas
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 658); // catapult only used while at range
+            }
+            else if (PMob->m_Family == 3) // Aern
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+            }
+            else
+            {
+                // All other rangers
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+            }
+
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 6);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 12);
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
+            break;
+        case JOB_NIN:
+            if (PMob->m_Family == 3)
+            {
+                // aern
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
+            }
+            else
+            {
+                PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
+            }
+
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
+            break;
+        case JOB_BST:
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 70);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1017);
+            break;
+        case JOB_PUP:
+            PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1901);
+            PMob->defaultMobMod(MOBMOD_SPECIAL_COOL, 720);
+            break;
+        case JOB_BLM:
+            // We don't want to do the mages stand-back part from subjob, so we have it here
+            PMob->defaultMobMod(MOBMOD_STANDBACK_COOL, 12);
+            PMob->defaultMobMod(MOBMOD_HP_STANDBACK, 70);
         default:
             break;
     }

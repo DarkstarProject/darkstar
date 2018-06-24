@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 6) then
         player:addQuest(OUTLANDS,THE_MISSING_PIECE);
     elseif (csid == 8) then -- give the player the key items he needs to complete the quest

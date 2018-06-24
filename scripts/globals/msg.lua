@@ -1,8 +1,8 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-dsp = dsp or {};
-dsp.msg = dsp.msg or {};
+dsp = dsp or {}
+dsp.msg = dsp.msg or {}
 
 ------------------------------------
 -- Message Channels
@@ -41,7 +41,7 @@ dsp.msg.channel =
     NS_LINKSHELL3  = 31, -- (assumed as it follows pattern and color)
     UNKNOWN_32     = 32, -- Looks the same as 31
     UNITY          = 33
-};
+}
 
 ------------------------------------
 -- Message Basic
@@ -55,6 +55,10 @@ dsp.msg.basic =
     -- Magic
     MAGIC_DMG              = 2,   -- <caster> casts <spell>. <target> takes <amount> damage.
     MAGIC_RECOVERS_HP      = 7,   -- <caster> casts <spell>. <target> recovers <amount> HP.
+    MAGIC_UNABLE_TO_CAST   = 17,  -- Unable to cast spells at this time.
+    MAGIC_UNABLE_TO_CAST_2 = 18,  -- Unable to cast spells at this time.
+    MAGIC_CANNOT_CAST      = 47,  -- <caster> cannot cast <spell>.
+    MAGIC_CANNOT_BE_CAST   = 48,  -- <spell> cannot be cast on <target>. (example: tractor)
     MAGIC_NO_EFFECT        = 75,  -- <caster>'s <spell> has no effect on <target>.
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
@@ -75,9 +79,10 @@ dsp.msg.basic =
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
-    MSGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
+    MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
     MAGIC_ABSORB_AILMENT   = 572, -- <caster> casts <spell>. <caster> absorbs <number> of <target>'s status ailments.
+    MAGIC_MUST_ASTRAL_FLOW = 581, -- Unable to cast <spell>. Astral Flow must be in effect to cast this spell.
 
     -- Weaponskill / Mobskill (0-255 WS, 256+ monster skill)
     SKILL_RECOVERS_MP      = 224, -- <user> uses <skill>. <target> recovers <amount> MP.
@@ -129,7 +134,6 @@ dsp.msg.basic =
     DEFEATS_TARG           = 6,   -- The <player> defeats <target>.
     ALREADY_CLAIMED        = 12,  -- Cannot attack. Your target is already claimed.
     IS_INTERRUPTED         = 16,  -- The <player>'s casting is interrupted.
-    UNABLE_TO_CAST         = 18,  -- Unable to cast spells at this time.
     CANNOT_PERFORM         = 71,  -- The <player> cannot perform that action.
     CANNOT_PERFORM_TARG    = 72,  -- That action cannot be performed on <target>.
     UNABLE_TO_USE_JA       = 87,  -- Unable to use job ability.
@@ -155,6 +159,8 @@ dsp.msg.basic =
     MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
     MUG_FAIL               = 244, -- <user> fails to mug <target>.
     FULL_INVENTORY         = 356, --  Cannot execute command. Your inventory is full.
+    OBTAINED_KEY_ITEM      = 758, -- Obtained key item: <key item>.
+    ALREADY_HAVE_KEY_ITEM  = 759, -- You already have key item: <key item>.
 
     -- Distance
     TARG_OUT_OF_RANGE      = 4,   -- <target> is out of range.
@@ -283,4 +289,4 @@ dsp.msg.basic =
     DESPOIL_EVA_DOWN        = 597,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Evasion Down.
     DESPOIL_ACC_DOWN        = 598,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Accuracy Down.
     DESPOIL_SLOW            = 599,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Slow.
-};
+}

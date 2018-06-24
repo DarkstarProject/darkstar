@@ -37,15 +37,10 @@ function onTrigger(player,npc)
     end
 end;
 -- 108  200  201  202  203  204
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 200) then
         player:setVar("MissionStatus",2);

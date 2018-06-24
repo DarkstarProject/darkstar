@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Tempest Wing
 --  Family: Bahamut
---  Description: Turbulence deals Wind damage to enemies within a very wide area of effect. Additional effect: Knockback 
+--  Description: Turbulence deals Wind damage to enemies within a very wide area of effect. Additional effect: Knockback
 --  Type: Magical
 --  Utsusemi/Blink absorb: Wipes shadows
 --  Range: Cone

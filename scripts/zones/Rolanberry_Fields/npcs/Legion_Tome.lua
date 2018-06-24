@@ -22,8 +22,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,target)

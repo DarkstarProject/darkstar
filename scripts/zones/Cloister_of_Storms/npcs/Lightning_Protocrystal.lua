@@ -6,24 +6,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
 -------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/bcnm");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
 require("scripts/zones/Cloister_of_Storms/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/missions");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
+require("scripts/globals/bcnm");
+-------------------------------------
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -36,10 +28,6 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);
 end;
@@ -49,8 +37,8 @@ end;
 -----------------------------------
 
 function onEventFinish(player,csid,option)
-    --printf("onFinish CSID: %u",csid);
-    --printf("onFinish RESULT: %u",option);
+    -- printf("onFinish CSID: %u",csid);
+    -- printf("onFinish RESULT: %u",option);
 
     if (csid==2) then
         player:delKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL);

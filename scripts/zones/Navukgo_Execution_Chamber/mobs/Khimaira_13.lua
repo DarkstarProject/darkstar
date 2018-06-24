@@ -15,7 +15,7 @@ function onMobFight(mob,target)
     local assist = mob:getLocalVar("assist");
 
     if (assist == 0) then
-        startAllyAssist(mob);
+        dsp.ally.startAssist(mob);
         mob:setLocalVar("assist", 1);
     end
 end;
@@ -28,10 +28,8 @@ end;
 
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

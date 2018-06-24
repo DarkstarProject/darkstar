@@ -33,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 293) then
        player:setVar("notmeanttobeCS",1);
        player:addQuest(AHT_URHGAN,NOT_MEANT_TO_BE);

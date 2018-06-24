@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Metatron Torment
 --
---  Description: Lowers target's defense. Bravura/Abaddon Killer: Temporarily lowers damage taken from enemies. 
+--  Description: Lowers target's defense. Bravura/Abaddon Killer: Temporarily lowers damage taken from enemies.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

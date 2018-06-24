@@ -5,10 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil
 -------------------------------------
-require("scripts/globals/titles")
-require("scripts/globals/quests")
 require("scripts/zones/Balgas_Dais/TextIDs")
 require("scripts/globals/battlefield")
+require("scripts/globals/titles")
+require("scripts/globals/quests")
 -----------------------------------
 local loot =
 {
@@ -208,16 +208,8 @@ local loot =
         },
     }
 }
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local battlefield = player:getBattlefield()
@@ -226,16 +218,8 @@ function onTrigger(player,npc)
     end
 end
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
 end

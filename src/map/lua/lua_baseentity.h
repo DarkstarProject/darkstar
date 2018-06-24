@@ -380,6 +380,8 @@ public:
     int32 hasLearnedWeaponskill(lua_State*);
     int32 delLearnedWeaponskill(lua_State*);
 
+    int32 addWeaponSkillPoints(lua_State*); // Adds weapon skill points to an equipped weapon
+
     int32 addLearnedAbility(lua_State*);    // Add spell to Entity spell list
     int32 hasLearnedAbility(lua_State*);    // Check to see if character has item in spell list
     int32 canLearnAbility(lua_State*);      // Check to see if character can learn spell, 0 if so
@@ -658,6 +660,7 @@ public:
     int32 getDespoilItem(lua_State*);       // gets ItemID of droplist despoil item from mob (steal item if no despoil item)
     int32 getDespoilDebuff(lua_State*);     // gets the status effect id to apply to the mob on successful despoil
     int32 itemStolen(lua_State*);           // sets mob's ItemStolen var = true
+    int32 getTHlevel(lua_State*);           // Returns the Monster's current Treasure Hunter Tier
 };
 
 #endif

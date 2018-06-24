@@ -52,6 +52,7 @@ public:
     void						CreateAttacks(CItemWeapon* PWeapon, PHYSICAL_ATTACK_DIRECTION direction);	// Creates up to many attacks for a particular hand.
     void						DeleteAttackSwing();		// Deletes the first attack in the list.
     void						CreateKickAttacks();		// Creates kick attacks for the round.
+    void						CreateDakenAttack();		// Adds daken attacks
 
     uint8						GetAttackSwingCount();		// Returns the attack list count.
     bool						IsH2H();					// Flag: Is the attacker using H2H?

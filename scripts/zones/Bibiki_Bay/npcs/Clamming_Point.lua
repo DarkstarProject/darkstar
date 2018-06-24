@@ -96,8 +96,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 20) then
         if (player:getVar("ClammingKitSize") == 200 and math.random() <= giveReducedIncidents(player)) then
@@ -125,8 +123,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 20) then
         if (player:getLocalVar("SomethingJumpedInBucket") > 0) then
