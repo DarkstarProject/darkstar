@@ -169,7 +169,7 @@ dsp.msg.basic =
     TOO_FAR_AWAY           = 78,  -- <target> is too far away.
 
     -- Weaponskills
-    READIES_WS              = 43,   -- ${actor} readies ${weapon_skill}.
+    READIES_WS             = 43,  -- ${actor} readies ${weapon_skill}.
     CANNOT_USE_WS          = 190, -- The <player> cannot use that weapon ability.
     NOT_ENOUGH_TP          = 192, -- The <player> does not have enough TP.
 
@@ -180,7 +180,7 @@ dsp.msg.basic =
     NO_EFFECT_ON_PET       = 336, -- No effect on that pet.
     NO_JUG_PET_ITEM        = 337, -- You do not have the necessary item equipped to call a beast.
     MUST_HAVE_FOOD         = 347, -- You must have pet food equipped to use that command.
-    STATUS_INCREASED        = 562,  -- The status parameters of ${target} have increased.
+    STATUS_INCREASED       = 562, -- The status parameters of ${target} have increased.
     PET_CANNOT_DO_ACTION   = 574, -- <player>'s pet is currently unable to perform that action.
     PET_NOT_ENOUGH_TP      = 575, -- <player>'s pet does not have enough TP to perform that action.
 
@@ -193,6 +193,7 @@ dsp.msg.basic =
     -- Items
     ITEM_USES               = 28,   -- ${actor} uses a ${item}.
     ITEM_UNABLE_TO_USE      = 55,   -- Unable to use item.
+    ITEM_UNABLE_TO_USE_2    = 56,   -- Unable to use item.
     ITEM_FAILS_TO_ACTIVATE  = 62,   -- The ${item} fails to activate.
     ITEM_NO_PETRAS          = 65,   -- You are not carrying any Petras.${lb}You cannot use the ${item}.
     ITEM_DOES_NOT_HAVE      = 91,   -- ${actor} does not have any ${item}.
