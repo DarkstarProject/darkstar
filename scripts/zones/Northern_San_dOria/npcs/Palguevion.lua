@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, PALGUEVION_OPEN_DIALOG)
-        dsp.shop.general(player, stock, SANDORIA)
+        dsp.shop.general(player, stock, dsp.nation.SANDORIA)
     end
 end
 

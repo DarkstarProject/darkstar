@@ -13,20 +13,18 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.FAUREGANDI)
-
-    if RegionOwner ~= dsp.nation.BASTOK then
+    if GetRegionOwner(dsp.region.FAUREGANDI) ~= dsp.nation.BASTOK then
         player:showText(npc, RODELLIEUX_CLOSED_DIALOG)
     else
         local stock =
         {
             4571,    90,    -- Beaugreens
             4363,    39,    -- Faerie Apple
-            691,     54     -- Maple Log
+            691,     54,     -- Maple Log
         }
 
         player:showText(npc, RODELLIEUX_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK)
+        dsp.shop.general(player, stock, dsp.nation.BASTOK)
     end
 end
 

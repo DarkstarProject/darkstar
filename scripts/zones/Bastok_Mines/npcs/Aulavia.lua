@@ -15,9 +15,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.VOLLBOW)
-
-    if RegionOwner ~= dsp.nation.BASTOK then
+    if GetRegionOwner(dsp.region.VOLLBOW) ~= dsp.nation.BASTOK then
         player:showText(npc, AULAVIA_CLOSED_DIALOG)
     else
         local stock =
@@ -25,11 +23,11 @@ function onTrigger(player,npc)
             636,   119,    -- Chamomile
             864,    88,    -- Fish Scales
             936,    14,    -- Rock Salt
-            1410, 1656     -- Sweet William
+            1410, 1656,     -- Sweet William
         }
 
         player:showText(npc, AULAVIA_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK);
+        dsp.shop.general(player, stock, dsp.nation.BASTOK);
     end
 end
 

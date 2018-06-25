@@ -13,9 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.SARUTABARUTA)
-
-    if RegionOwner ~= dsp.nation.BASTOK then
+    if GetRegionOwner(dsp.region.SARUTABARUTA) ~= dsp.nation.BASTOK then
         player:showText(npc, SOMNPAEMN_CLOSED_DIALOG)
     else
         local stock =
@@ -24,11 +22,11 @@ function onTrigger(player,npc)
             619,  43,    --Popoto
             4444, 22,    --Rarab Tail
             4392, 29,    --Saruta Orange
-            635,  18     --Windurstian Tea Leaves
+            635,  18,     --Windurstian Tea Leaves
         }
 
         player:showText(npc, SOMNPAEMN_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK)
+        dsp.shop.general(player, stock, dsp.nation.BASTOK)
     end
 end
 
