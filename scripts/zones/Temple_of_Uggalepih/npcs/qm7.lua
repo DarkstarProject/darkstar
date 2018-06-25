@@ -11,7 +11,7 @@ require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 
 function onTrade(player,npc,trade)
     -- Trade Bee Larvae
-    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID():isSpawned(DEATH_FROM_ABOVE)) then
+    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID(DEATH_FROM_ABOVE):isSpawned()) then
         player:tradeComplete();
         SpawnMob(DEATH_FROM_ABOVE):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);

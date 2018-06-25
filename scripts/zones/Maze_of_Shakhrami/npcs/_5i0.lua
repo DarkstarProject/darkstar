@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local efao = player:getQuestStatus(AHT_URHGAN,EQUIPED_FOR_ALL_OCCASIONS);
     local efaoStat = player:getVar("EquipedforAllOccasions");
     
-    if (efao == QUEST_ACCEPTED and efaoStat == 1 and not GetMobByID():isSpawned(LOST_SOUL)) then
+    if (efao == QUEST_ACCEPTED and efaoStat == 1 and not GetMobByID(LOST_SOUL):isSpawned()) then
         SpawnMob(LOST_SOUL):updateClaim(player);
     elseif (efao == QUEST_ACCEPTED and efaoStat == 2) then
         player:startEvent(66)
