@@ -59,8 +59,4 @@ function onMobDespawn(mob)
         UpdateNMSpawnPoint(BEHEMOTH)
         GetMobByID(BEHEMOTH):setRespawnTime(math.random(75600,86400))
     end
-
-    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(BEHEMOTH_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
-    end
 end

@@ -45,8 +45,4 @@ function onMobDespawn(mob)
             SetServerVariable("[PH]Nidhogg", kills + 1)
         end
     end
-
-    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(FAFNIR_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
-    end
 end
