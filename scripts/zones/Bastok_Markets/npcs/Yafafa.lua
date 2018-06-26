@@ -13,9 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.KOLSHUSHU)
-
-    if RegionOwner ~= dsp.nation.BASTOK then
+    if GetRegionOwner(dsp.region.KOLSHUSHU) ~= dsp.nation.BASTOK then
         player:showText(npc, YAFAFA_CLOSED_DIALOG)
     else
         local stock =
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
             1120, 1620,    --Casablanca
             4359,  220,    --Dhalmel Meat
             614,    72,    --Mhaura Garlic
-            4445,   40     --Yagudo Cherry
+            4445,   40,     --Yagudo Cherry
         }
 
         player:showText(npc, YAFAFA_OPEN_DIALOG)
