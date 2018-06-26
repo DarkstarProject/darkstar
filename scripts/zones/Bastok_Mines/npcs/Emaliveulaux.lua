@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             }
 
             player:showText(npc, EMALIVEULAUX_OPEN_DIALOG)
-            dsp.shop.general(player, stock, dsp.nation.BASTOK)
+            dsp.shop.general(player, stock, BASTOK)
         end
     else
         player:showText(npc, EMALIVEULAUX_COP_NOT_COMPLETED)

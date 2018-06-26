@@ -30,7 +30,7 @@ function onTrigger(player,npc)
     }
 
     player:showText(npc, ARACHAGNON_SHOP_DIALOG)
-    dsp.shop.general(player, stock, dsp.nation.SANDORIA)
+    dsp.shop.general(player, stock, SANDORIA)
 end
 
 function onEventUpdate(player,csid,option)

@@ -22,7 +22,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, TAKIYAH_OPEN_DIALOG)
-        dsp.shop.general(player, stock, dsp.nation.BASTOK)
+        dsp.shop.general(player, stock, BASTOK)
     end
 
 end

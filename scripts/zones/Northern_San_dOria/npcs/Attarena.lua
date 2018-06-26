@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         }
 
         player:showText(npc, ATTARENA_OPEN_DIALOG)
-        dsp.shop.general(player, stock, dsp.nation.SANDORIA)
+        dsp.shop.general(player, stock, SANDORIA)
     end
 end;
 
