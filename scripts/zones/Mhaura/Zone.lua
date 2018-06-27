@@ -16,10 +16,10 @@ require("scripts/globals/zone");
 
 function onGameHour(zone)
     -- Script for Laughing Bison sign flip animations
-    local timer = 1152 - ((os.time() - 1009810802)%1152);
+    local timer = 1152 - ((os.time() - 1009810802)%1152)
 
     -- Next ferry is Al Zhabi for higher values.
-    if (timer >= 576) then
+    if timer >= 576 then
         GetNPCByID(LAUGHING_BISON):AnimationSub(1)
     else
         GetNPCByID(LAUGHING_BISON):AnimationSub(0)
