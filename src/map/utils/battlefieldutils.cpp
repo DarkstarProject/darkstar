@@ -44,7 +44,7 @@ namespace battlefieldutils {
         a new Battlefield object.
     ****************************************************************/
     CBattlefield* loadBattlefield(CBattlefieldHandler* hand, uint16 bcnmid, BATTLEFIELDTYPE type) {
-        const char* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize \
+        const char* fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, timeLimit, levelCap, lootDropId, rules, partySize, zoneId, fastestPartySize, isMission \
                             FROM bcnm_info \
                             WHERE bcnmId = %u";
 
@@ -68,6 +68,7 @@ namespace battlefieldutils {
             PBattlefield->setMaxParticipants(Sql_GetUIntData(SqlHandle, 8));
             PBattlefield->setZoneId(Sql_GetUIntData(SqlHandle, 9));
             PBattlefield->m_RuleMask = (uint16)Sql_GetUIntData(SqlHandle, 7);
+            PBattlefield->m_isMission = (uint8)Sql_GetUIntData(SqlHandle, 11);
 
             PBattlefield->setRecord((const char*)Sql_GetData(SqlHandle, 2),
                 (uint8)Sql_GetUIntData(SqlHandle, 10),
