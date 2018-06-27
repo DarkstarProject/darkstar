@@ -23,10 +23,10 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(339.996,2.5,-721.286,200);
     end
-    if (prevZone == 69) then
+    if prevZone == 69 then
         player:setPos(495.450,-28.25,-478.43,32);
     end
-    if (prevZone == 56) then
+    if prevZone == 56 then
         player:setPos(-252.715,-7.666,-30.64,128);
     end
 
@@ -52,13 +52,15 @@ end;
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 21) then
+    if csid == 21 then
         player:completeMission(TOAU,SHADES_OF_VENGEANCE);
         player:setVar("AhtUrganStatus", 0);
         player:setVar("TOAUM31_PERMITDAY", 0);
         player:setTitle(dsp.title.NASHMEIRAS_MERCENARY);
         player:addMission(TOAU,IN_THE_BLOOD);
-    elseif (csid == 133) then -- enter instance, warp to periqia
+    elseif csid == 133 then -- enter instance, warp to periqia
         player:setPos(0,0,0,0,56);
+    elseif csid == 130 then
+        player:setPos(0,0,0,0,69);
     end
 end;
