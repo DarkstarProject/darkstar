@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  NPC: DRG Vanguard Drakekeeper + Vanguard's Wyvern
+--  NPC: Vanguard Thaumaturge
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/status");
