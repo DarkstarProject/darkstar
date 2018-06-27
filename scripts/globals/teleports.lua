@@ -140,7 +140,7 @@ end
 dsp.teleport.toLeader = function(player)
     local leader = player:getPartyLeader()
     if leader ~= nil and not leader:isInMogHouse() then
-        player:setPos(leader:getXPos(), leader:getYPos(), leader:getZPos(), leader:getRotPos(), leader:getZoneID())
+        player:gotoPlayer(leader:getName())
     end
 end
 
@@ -258,7 +258,7 @@ end
 
 dsp.teleport.escape = function(player)
     local zone = player:getZoneID()
-    
+
     -- Ronfaure {R}
     if zone == 139 or zone == 140 or zone == 141 or zone == 142 then         -- From Ghelsba Outpost, Fort Ghelsba, Yughott Grotto, Horlais Peak
         player:setPos(-720,-61,600,64,100)                                 -- To West Ronfaure at E-4
