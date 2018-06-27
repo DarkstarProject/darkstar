@@ -45,7 +45,7 @@ CREATE TABLE `bcnm_info` (
 LOCK TABLES `bcnm_info` WRITE;
 /*!40000 ALTER TABLE `bcnm_info` DISABLE KEYS */;
 set autocommit=0;
-INSERT INTO `bcnm_info` VALUES (0,139,'rank_2_mission','Shitstain',1,18,1800,25,6,0,5);
+INSERT INTO `bcnm_info` VALUES (0,139,'rank_2_mission','Shitstain',1,18,1800,99,6,0,5);
 INSERT INTO `bcnm_info` VALUES (1,139,'tails_of_woe','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (2,139,'dismemberment_brigade','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (3,139,'the_secret_weapon','Shitstain',1,18,1800,99,6,0,5);
@@ -72,7 +72,7 @@ INSERT INTO `bcnm_info` VALUES (34,140,'wings_of_fury','Shitstain',1,18,900,20,3
 INSERT INTO `bcnm_info` VALUES (35,140,'petrifying_pair','Shitstain',1,18,900,30,3,35,15);
 INSERT INTO `bcnm_info` VALUES (36,140,'toadal_recall','Shitstain',1,18,1800,30,6,36,15);
 INSERT INTO `bcnm_info` VALUES (37,140,'mirror_mirror','Shitstain',1,18,900,40,3,0,7);
-INSERT INTO `bcnm_info` VALUES (64,144,'rank_2_mission','Shitstain',1,18,1800,25,6,0,5);
+INSERT INTO `bcnm_info` VALUES (64,144,'rank_2_mission','Shitstain',1,18,1800,99,6,0,5);
 INSERT INTO `bcnm_info` VALUES (65,144,'worms_turn','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (66,144,'grimshell_shocktroopers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (67,144,'on_my_way','Shitstain',1,18,1800,99,6,0,5);
@@ -94,7 +94,7 @@ INSERT INTO `bcnm_info` VALUES (82,144,'prehistoric_pigeons','Shitstain',1,18,18
 INSERT INTO `bcnm_info` VALUES (83,144,'palborough_project','Shitstain',1,18,900,0,3,0,15);
 INSERT INTO `bcnm_info` VALUES (84,144,'shell_shocked','Shitstain',1,18,1800,0,6,0,15);
 INSERT INTO `bcnm_info` VALUES (85,144,'beyond_infinity','Shitstain',1,18,600,0,6,0,6);
-INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','Shitstain',1,18,1800,25,6,0,5);
+INSERT INTO `bcnm_info` VALUES (96,146,'rank_2_mission','Shitstain',1,18,1800,99,6,0,5);
 INSERT INTO `bcnm_info` VALUES (97,146,'steamed_sprouts','Shitstain',1,18,1800,40,6,0,15);
 INSERT INTO `bcnm_info` VALUES (98,146,'divine_punishers','Shitstain',1,18,1800,60,6,0,15);
 INSERT INTO `bcnm_info` VALUES (99,146,'saintly_invitation','Shitstain',1,18,1800,99,6,0,5);
