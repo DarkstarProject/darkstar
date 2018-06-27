@@ -12460,12 +12460,12 @@ inline int32 CLuaBaseEntity::spawn(lua_State* L)
 
     if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        PMob->SetDespawnTime(std::chrono::seconds(lua_tointeger(L, 2)));
+        PMob->SetDespawnTime(std::chrono::seconds(lua_tointeger(L, 1)));
     }
 
     if (!lua_isnil(L, 2) && lua_isnumber(L, 2))
     {
-        PMob->m_RespawnTime = (uint32)lua_tointeger(L, 3) * 1000;
+        PMob->m_RespawnTime = (uint32)lua_tointeger(L, 2) * 1000;
         PMob->m_AllowRespawn = true;
     }
     else
