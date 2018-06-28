@@ -186,8 +186,8 @@ function getAFbyZone(zone)
         };
     elseif (zone == 208) then -- Quicksand Caves
         return {
-            dsp.jos.DRG,    BORGHERTZ_S_DRAGON_HANDS,       14102, -- Drachen Greaves
-            dsp.jos.SAM,    BORGHERTZ_S_LOYAL_HANDS,        14225, -- Myochin Haidate
+            dsp.job.DRG,    BORGHERTZ_S_DRAGON_HANDS,       14102, -- Drachen Greaves
+            dsp.job.SAM,    BORGHERTZ_S_LOYAL_HANDS,        14225, -- Myochin Haidate
         };
     end
 end
