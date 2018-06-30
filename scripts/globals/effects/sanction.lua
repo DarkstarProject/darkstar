@@ -18,7 +18,7 @@ function onEffectGain(target,effect)
     if (power == 1) then
         -- target:addLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
     elseif (power == 2) then
-        -- target:addLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
+        -- target:addLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REFRESH, 1);
     elseif (power == 3) then
         -- target:addMod(MOD_FOOD_DURATION), ???);
         -- food duration not implemented.
@@ -45,7 +45,7 @@ function onEffectLose(target,effect)
     if (power == 1) then
         -- target:delLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
     elseif (power == 2) then
-        -- target:delLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REGEN, 1);
+        -- target:delLatent(LATENT_SANCTION_REGEN, subPower, dsp.mod.REFRESH, 1);
     elseif (power == 3) then
         -- target:delMod(MOD_FOOD_DURATION), ???);
         -- food duration not implemented.
