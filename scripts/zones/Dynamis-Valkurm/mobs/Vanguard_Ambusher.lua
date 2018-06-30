@@ -1,20 +1,15 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
+--  MOB: Vanguard_Ambusher
 -----------------------------------
------------------------------------
+mixins = {require("scripts/mixins/dynamis_beastmen")}
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
-mixins = { require("scripts/mixins/dynamis_beastmen") }
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_GOBLIN)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

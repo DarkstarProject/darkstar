@@ -1,21 +1,16 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
+--  MOB: Vanguard_Dollmaster
 -----------------------------------
------------------------------------
+mixins = {require("scripts/mixins/dynamis_beastmen")}
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
-mixins = { require("scripts/mixins/dynamis_beastmen") }
-
------------------------------------
--- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
     mob:setLocalVar("dynamis_currency", 1452)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

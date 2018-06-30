@@ -4,13 +4,12 @@
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
-end;
+function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
+end
 
 function onMobDeath(mob, player, isKiller)
 

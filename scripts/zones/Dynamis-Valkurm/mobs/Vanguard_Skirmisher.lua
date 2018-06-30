@@ -1,21 +1,14 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
+--  MOB: Vanguard_Skirmisher
 -----------------------------------
------------------------------------
-require("scripts/globals/status")
-mixins = { require("scripts/mixins/dynamis_beastmen") }
-
------------------------------------
--- onMobSpawn Action
+mixins = {require("scripts/mixins/dynamis_beastmen")}
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("dynamis_currency", 1449)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

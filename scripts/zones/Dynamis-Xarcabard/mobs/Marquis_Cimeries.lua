@@ -4,13 +4,13 @@
 -----------------------------------
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
-end;
+function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_KINDRED)
+end
 
 function onMobDeath(mob, player, isKiller)
 
