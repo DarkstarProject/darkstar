@@ -1161,7 +1161,7 @@ function finishMissionTimeline(player,guard,csid,option)
                  1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}},                                                 -- MISSION 1-2 [START]
                  1,{0x008f,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,200},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
                  1,{0x0091,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,250},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
-                 2,{0x0095,2},{0x0083,2},{0x006d,2},{0x006f,2},{{1},{2}},                                                 -- MISSION 1-3 [START]
+                 2,{0x0095,2},{0x0087,2},{0x006d,2},{0x006f,2},{{1},{2}},                                                 -- MISSION 1-3 [START]
                  2,{0x009A,0},{0x0094,0},{0x0072,0},{0x0074,0},{{11,2},{14,0},{5,300},{8,1000},{12}},                     -- MISSION 1-3
                  3,{0x00a8,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,350},{12}},                                     -- MISSION 2-1 (Finish (Tosuka-Porika))
                  4,{0x00C9,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,400},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
