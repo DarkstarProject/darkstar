@@ -2,8 +2,11 @@
 -- Area: Dynamis Valkurm
 --  MOB: Vanguard_Mason
 -----------------------------------
-mixins = {require("scripts/mixins/dynamis_beastmen")}
-mixins = {require("scripts/mixins/job_special")}
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 require("scripts/globals/status")
 -----------------------------------
 
