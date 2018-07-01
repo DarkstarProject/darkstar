@@ -8,7 +8,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 55);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 55);
+end;
 
 function onMobSpawn(mob)
 end;
