@@ -4802,7 +4802,7 @@ inline int32 CLuaBaseEntity::unlockJob(lua_State *L)
 *  Function: sjRestriction()
 *  Purpose : Places a sub-job restriction on the PC and recalculates stats
 *  Example : target:sjRestriction(power,false);
-*  Notes   : If true is provided, removes SJ completely; else - sets level
+*  Notes   : 
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
@@ -4811,17 +4811,6 @@ inline int32 CLuaBaseEntity::sjRestriction(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
-
-    uint8 job = (uint8)lua_tonumber(L, 1);
-    bool state = lua_toboolean(L, 2);
-
-    if (state)
-        PChar->SetSJob(JOB_NON);
-    else if (!state && job != JOB_NON)
-    {
-        PChar->SetSJob(job);
-        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
-    }
 
     charutils::BuildingCharSkillsTable(PChar);
     charutils::CalculateStats(PChar);

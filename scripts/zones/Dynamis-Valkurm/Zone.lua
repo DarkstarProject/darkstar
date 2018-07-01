@@ -34,8 +34,18 @@ function onZoneIn(player,prevZone)
         player:messageSpecial(DYNAMIS_TIME_EXPIRED)
     end)
 
-    if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
-        cs = 100
+    if player:getVar("Dynamis_Entry") == 1 then
+        if player:getVar("Dynamis_subjob") == 1 then
+            player:messageBasic(107)
+            player:addStatusEffect(dsp.effect.SJ_RESTRICTION, 0, 0, 0, 7200)
+        end
+        player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 0, 3600)
+        player:messageSpecial(DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS)
+        player:setVar("Dynamis_Entry", 0)
+    else
+        if not player:hasStatusEffect(dsp.effect.DYNAMIS) then
+            cs = 100
+        end
     end
 
     return cs
