@@ -1296,10 +1296,10 @@ void CStatusEffectContainer::LoadStatusEffects()
             if (flags & EFFECTFLAG_OFFLINE_TICK)
             {
                 auto timestamp = (uint32)Sql_GetUIntData(SqlHandle, 9);
-                if (server_clock::now() < time_point() + std::chrono::seconds(timestamp) + std::chrono::milliseconds(duration))
+                if (server_clock::now() < time_point() + std::chrono::seconds(timestamp) + std::chrono::seconds(duration))
                 {
-                    duration = (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(
-                        time_point() + std::chrono::seconds(timestamp) + std::chrono::milliseconds(duration) - server_clock::now()
+                    duration = (uint32)std::chrono::duration_cast<std::chrono::seconds>(
+                        time_point() + std::chrono::seconds(timestamp) + std::chrono::seconds(duration) - server_clock::now()
                     ).count();
                 }
                 else
@@ -1390,7 +1390,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
             {
                 if (PStatusEffect->GetFlag() & EFFECTFLAG_OFFLINE_TICK)
                 {
-                    duration = PStatusEffect->GetDuration();
+                    duration = PStatusEffect->GetDuration() / 1000;
                 }
                 else
                 {
@@ -1402,7 +1402,6 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
                         continue;
                 }
             }
-
             Sql_Query(SqlHandle, Query,
                 m_POwner->id,
                 PStatusEffect->GetStatusID(),
