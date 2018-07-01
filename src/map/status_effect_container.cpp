@@ -1356,7 +1356,7 @@ void CStatusEffectContainer::SaveStatusEffects(bool logout)
     {
         CStatusEffect* PStatusEffect = m_StatusEffectList.at(i);
 
-        if ((logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT) || PStatusEffect->GetFlag() & EFFECTFLAG_ON_ZONE)
+        if ((logout && PStatusEffect->GetFlag() & EFFECTFLAG_LOGOUT) || (!logout && PStatusEffect->GetFlag() & EFFECTFLAG_ON_ZONE))
         {
             RemoveStatusEffect(PStatusEffect, true);
             continue;
