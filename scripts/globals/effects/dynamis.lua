@@ -30,6 +30,7 @@ function onEffectLose(target,effect)
     target:delKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
     if effect:getTimeRemaining() == 0 then
         target:triggerListener("DYNAMIS_EXPIRE", target)
+        target:disengage()
         target:startEvent(100)
     end
 end;
