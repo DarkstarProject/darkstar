@@ -257,7 +257,6 @@ public:
     int32 changeJob(lua_State*);            // changes the job of a char (testing only!)
     int32 changesJob(lua_State*);           // changes the sub job of a char (testing only!)
     int32 unlockJob(lua_State*);            // Unlocks a job for the entity, sets job level to 1
-    int32 sjRestriction(lua_State*);        // Establish/return subjob restriction
 
     int32 getMainLvl(lua_State*);           // Gets Entity Main Job Level
     int32 getSubLvl(lua_State*);            // Get Entity Sub Job Level

@@ -10,7 +10,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:sjRestriction();
+    target:recalculateStats();
 end;
 
 -----------------------------------
@@ -25,5 +25,5 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:sjRestriction();
+    target:recalculateStats();
 end;

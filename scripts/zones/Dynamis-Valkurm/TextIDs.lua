@@ -14,4 +14,4 @@ DYNAMIS_TIME_BEGIN = 7312; -- The sands of the <item> have begun to fall.  You h
 DYNAMIS_TIME_EXTEND = 7313; -- Your stay in Dynamis has been extended by <number> minutes.
 DYNAMIS_TIME_UPDATE_1 = 7314; -- You will be expelled from Dynamis in <number> second/minute.
 DYNAMIS_TIME_UPDATE_2 = 7315; -- You will be expelled from Dynamis in <number> seconds/minutes.
-DYNAMIS_TIME_EXPIRED = 7316; -- You have exceeded your allotted time. Now exiting Dynamis.
+DYNAMIS_TIME_EXPIRED = 7317; -- The sands of the hourglass have emptied...
