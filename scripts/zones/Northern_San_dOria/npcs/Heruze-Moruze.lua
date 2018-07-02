@@ -26,15 +26,15 @@ function onTrigger(player,npc)
     pNation = player:getNation();
     currentMission = player:getCurrentMission(pNation);
 
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and player:getVar("MissionStatus") == 1) then
             player:startEvent(582);
         else
             player:startEvent(554);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(578);
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(577);
     end
 

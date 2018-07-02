@@ -110,7 +110,7 @@ function onPath(npc)
     end
 
     -- go back and forth the set path
-    -- pathfind.patrol(npc, path);
+    -- dsp.path.patrol(npc, path);
 
 end;
 

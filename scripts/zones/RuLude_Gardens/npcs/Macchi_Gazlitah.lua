@@ -38,7 +38,7 @@ function onTrigger(player,npc)
         -- 4850, 150000  -- Refresh II
     }
 
-    showShop(player, JEUNO, stock);
+    dsp.shop.general(player, stock, JEUNO);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         local price = getChocoboPrice(player);
         player:setLocalVar("chocoboPriceOffer",price);
 
-        player:startEvent(910,price,gil);
+        player:startEvent(910,price,gil,1)
     else
         player:startEvent(911);
     end

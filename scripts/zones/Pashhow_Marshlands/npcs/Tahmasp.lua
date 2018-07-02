@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
-local region     = DERFLAND;
+local region     = dsp.region.DERFLAND;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
     -- printf("OPTION: %u",option);
 
     if (option == 1) then
-        ShowOPVendorShop(player);
+        dsp.shop.outpost(player);
     elseif (option == 2) then
         if (player:delGil(OP_TeleFee(player,region))) then
             toHomeNation(player);

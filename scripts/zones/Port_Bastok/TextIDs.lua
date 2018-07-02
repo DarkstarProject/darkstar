@@ -76,4 +76,4 @@ DHENTEVRYUKOH_CLOSED_DIALOG = 8364; -- I'm trrrying to start a business selling 
               CONQUEST_BASE = 6525; -- Tallying conquest results...
 
 -- WS Quest
-       ASURAN_FISTS_LEARNED = 8807; -- You have learned the weapon skill “Asuran Fists”!
+        ASURAN_FISTS_LEARNED = 8807; -- You have learned the weapon skill â€œAsuran Fistsâ€?!â‰ºPromptâ‰»

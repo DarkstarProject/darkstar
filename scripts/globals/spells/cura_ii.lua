@@ -70,7 +70,7 @@ function onSpellCast(caster,target,spell)
     end
 
     if (USE_OLD_CURE_FORMULA == true) then
-        basecure = getBaseCure(power,divisor,constant);
+        basecure = getBaseCureOld(power,divisor,constant);
     else
         basecure = getBaseCure(power,divisor,constant,basepower);
     end

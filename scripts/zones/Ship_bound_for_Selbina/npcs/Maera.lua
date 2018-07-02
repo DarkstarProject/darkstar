@@ -26,7 +26,7 @@ function onTrigger(player,npc)
      0x1036,2595,        -- Eye Drops
      0x1037,800}        -- Echo Drops
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

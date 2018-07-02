@@ -1007,20 +1007,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
 
-    if (npc:atPoint(pathfind.get(path, 288))) then
+    if (npc:atPoint(dsp.path.get(path, 288))) then
         local Colmaie = GetNPCByID(npc:getID() + 4);
         Colmaie:showText(npc, ZOVRIACE_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
 
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 
 end;
 

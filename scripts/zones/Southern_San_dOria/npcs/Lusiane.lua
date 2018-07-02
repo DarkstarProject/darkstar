@@ -38,7 +38,7 @@ function onTrigger(player,npc)
              0x13ca,1265,3,        -- Scroll of Lightning Threnoldy
              0x43ef,66,3}        -- Willow Fishing Rod
 
-    showNationShop(player, NATION_SANDORIA, stock);
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 
 end;
 

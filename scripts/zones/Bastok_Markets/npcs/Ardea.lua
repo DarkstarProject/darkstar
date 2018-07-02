@@ -17,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
+    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETEER);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
     -- Rock Racketeer

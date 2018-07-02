@@ -71,7 +71,7 @@ end;
 
 function onEventFinish(player,csid,option,target)
 
-    if (csid == 130 or (csid == 140 and option == 4)) then
+    if csid == 140 and option == 4 then
         player:setPos(0,0,0,0,69);
     end
 end;

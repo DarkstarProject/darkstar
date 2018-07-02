@@ -1566,7 +1566,7 @@ namespace charutils
 
             if (PItem->isSubType(ITEM_CHARGED))
             {
-                PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID()); // при снятии предмета с таймером удаляем запись о нем из RecastList
+                PChar->PRecastContainer->Del(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID()); // Also remove item from the Recast List no matter what bag its in
             }
             PItem->setSubType(ITEM_UNLOCKED);
 
@@ -2074,6 +2074,16 @@ namespace charutils
         if (PItem && PItem == PChar->getEquip((SLOTTYPE)equipSlotID))
             return;
 
+        if (equipSlotID == SLOT_SUB && PItem && !PItem->IsShield() && ((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
+        {
+            CItemArmor* PMainItem = PChar->getEquip(SLOT_MAIN);
+            if (!PMainItem || !((CItemWeapon*)PMainItem)->isTwoHanded())
+            {
+                PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 0x200));
+                return;
+            }
+        }
+
         if (slotID == 0)
         {
             CItemArmor* PSubItem = PChar->getEquip(SLOT_SUB);
@@ -2101,7 +2111,7 @@ namespace charutils
                     if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)
                     {
                         PItem->setAssignTime(CVanaTime::getInstance()->getVanaTime());
-                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID, PItem->getReuseTime() / 1000);
+                        PChar->PRecastContainer->Add(RECAST_ITEM, slotID << 8 | containerID, PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
 
                         // не забываем обновить таймер при экипировке предмета
 
@@ -2168,32 +2178,37 @@ namespace charutils
         for (uint8 slotID = 0; slotID < 16; ++slotID)
         {
             PItem = PChar->getEquip((SLOTTYPE)slotID);
-
-            if ((PItem != nullptr) && PItem->isType(ITEM_ARMOR))
+            if (PItem == nullptr || !PItem->isType(ITEM_ARMOR))
             {
-                if (slotID == SLOT_SUB && !charutils::hasTrait(PChar, TRAIT_DUAL_WIELD))
-                {
-                    // don't unequip shields
-                    if (PItem->IsShield())
-                        continue;
-
-                    // if the item isn't a grip, unequip it
-                    if (!((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE)
-                        RemoveSub(PChar);
-
-                    continue;
-                }
-
-                if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
-                    (PItem->getReqLvl() <= (map_config.disable_gear_scaling ?
-                    PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()])) &&
-                    (PItem->getEquipSlotId() & (1 << slotID)))
-                {
-                    continue;
-                }
-
-                UnequipItem(PChar, slotID);
+                continue;
             }
+
+            if (PItem->getReqLvl() > (map_config.disable_gear_scaling ?
+                PChar->GetMLevel() : PChar->jobs.job[PChar->GetMJob()]))
+            {
+                UnequipItem(PChar, slotID);
+                continue;
+            }
+
+            if (slotID == SLOT_SUB && !PItem->IsShield())
+            {
+                // Unequip if no main weapon or a non-grip subslot without DW
+                if (!PChar->getEquip(SLOT_MAIN) ||
+                    (!charutils::hasTrait(PChar, TRAIT_DUAL_WIELD) &&
+                     !((CItemWeapon*)PItem)->getSkillType() == SKILL_NONE))
+                {
+                    UnequipItem(PChar, SLOT_SUB);
+                    continue;
+                }
+            }
+
+            if ((PItem->getJobs() & (1 << (PChar->GetMJob() - 1))) &&
+                (PItem->getEquipSlotId() & (1 << slotID)))
+            {
+                continue;
+            }
+        
+            UnequipItem(PChar, slotID);
         }
         // Unarmed H2H weapon check
         if (!PChar->getEquip(SLOT_MAIN) || !PChar->getEquip(SLOT_MAIN)->isType(ITEM_ARMOR) || PChar->m_Weapons[SLOT_MAIN] == itemutils::GetUnarmedH2HItem())
@@ -3582,7 +3597,7 @@ namespace charutils
             //add limit points
             if (PChar->PMeritPoints->AddLimitPoints(exp))
             {
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->PMeritPoints->GetMeritPoints(), 0, 368));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageDebugPacket(PChar, PMob, PChar->PMeritPoints->GetMeritPoints(), 0, 50));
             }
         }
         else

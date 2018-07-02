@@ -48,7 +48,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(ABYSSEA, A_JOURNEY_BEGINS) == QUEST_ACCEPTED) then
         player:startEvent(325);
-    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAyssea") == 1) then
+    elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 1) then
         player:startEvent(327,0,0,MaxKI); -- cs for "The Truth Beckons" completion
     elseif (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) ~= QUEST_COMPLETED) then
         player:startEvent(326); -- Pre "The Truth Beckons" Menu
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 327) then
         player:completeQuest(ABYSSEA, THE_TRUTH_BECKONS);
         player:addQuest(ABYSSEA, DAWN_OF_DEATH);
-        player:setVar("1stTimeAyssea",0);
+        player:setVar("1stTimeAbyssea",0);
     elseif (csid == 328 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then

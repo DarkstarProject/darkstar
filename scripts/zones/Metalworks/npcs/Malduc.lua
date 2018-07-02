@@ -33,7 +33,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_BASTOK) then
+    if (player:getNation() ~= dsp.nation.BASTOK) then
         player:startEvent(1003); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);

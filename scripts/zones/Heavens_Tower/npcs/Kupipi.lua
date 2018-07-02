@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
-    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == NATION_WINDURST and player:getRank() >= 2 and player:hasKeyItem(dsp.ki.PORTAL_CHARM) == false) then -- Trade Rolanberry
+    if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == dsp.nation.WINDURST and player:getRank() >= 2 and player:hasKeyItem(dsp.ki.PORTAL_CHARM) == false) then -- Trade Rolanberry
         if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
             player:startEvent(291); -- Qualifies for the reward immediately
         else
@@ -38,7 +38,7 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(pNation);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (pNation == NATION_SANDORIA) then
+    if (pNation == dsp.nation.SANDORIA) then
         -- San d'Oria Mission 2-3 Part I - Windurst > Bastok
         if (currentMission == JOURNEY_TO_WINDURST) then
             if (MissionStatus == 4) then
@@ -62,7 +62,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(251);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
         if (currentMission == THE_EMISSARY_WINDURST) then
             if (MissionStatus == 3) then
@@ -86,7 +86,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(251);
         end
-    elseif (pNation == NATION_WINDURST) then
+    elseif (pNation == dsp.nation.WINDURST) then
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus == 0) then
             player:startEvent(95,0,0,0,dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         elseif (currentMission == THE_THREE_KINGDOMS and MissionStatus == 11) then
@@ -117,7 +117,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 238) then
-        if (player:getNation() == NATION_BASTOK) then
+        if (player:getNation() == dsp.nation.BASTOK) then
             player:setVar("MissionStatus",4);
             player:addKeyItem(dsp.ki.SWORD_OFFERING);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SWORD_OFFERING);

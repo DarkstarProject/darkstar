@@ -31,4 +31,4 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL = 9084 -- Players who have not reached levelare p
                  CONQUEST_BASE =    0
 
 -- WS Quest
-           RETRIBUTION_LEARNED = 9059 -- You have learned the weapon skill ‚ÄúRetribution‚Äù!
+           RETRIBUTION_LEARNED = 9059 -- You have learned the weapon skill ìRetributionî!

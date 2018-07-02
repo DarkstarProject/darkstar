@@ -448,7 +448,8 @@ local WSQUEST_CONT2 = 2 -- Player has turned in completed trial weapon and recei
 local WSQUEST_FINISH = 3 -- Player has killed NM and received Annals of Truth ('finish')
 
 local function getQuestState(quest,player)
-    if player:getQuestStatus(quest.logId,quest.questId) == QUEST_ACCEPTED then
+    local status = player:getQuestStatus(quest.logId,quest.questId)
+    if status == QUEST_ACCEPTED then
         if player:hasKeyItem(dsp.ki.ANNALS_OF_TRUTH) then
             return WSQUEST_FINISH
         elseif player:hasKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH) then
@@ -456,7 +457,7 @@ local function getQuestState(quest,player)
         else
             return WSQUEST_CONT1
         end
-    else
+    elseif status == QUEST_AVAILABLE then
         local canEquip = player:canEquipItem(quest.trialWeaponId,true)
         local sufficientSkill = player:getCharSkillLevel(quest.skillId) / 10 >= quest.minSkill
         local hasWeapon = player:hasItem(quest.trialWeaponId)
@@ -472,7 +473,6 @@ end
 
 dsp.wsquest.getTradeEvent = function(quest,player,trade)
     local wsPoints = (trade:getItem(0):getWeaponskillPoints())
-
     if getQuestState(quest,player) == WSQUEST_CONT1 and trade:hasItemQty(quest.trialWeaponId,1) and trade:getItemCount() == 1 then
         if wsPoints < 300 then
             return quest.eventIds.tradedUnfinishedWeapon

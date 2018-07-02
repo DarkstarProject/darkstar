@@ -33,7 +33,7 @@ stock =
     0x122F,103882,    --Protect V    (Not Implemented yet)
     0x1234,125069    --Shell V    (Not Implemented yet)
 }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

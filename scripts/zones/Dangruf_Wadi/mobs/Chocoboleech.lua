@@ -3,21 +3,24 @@
 --  Mob: Chocoboleech
 -- !pos: -430.330 4.400 115.100
 -----------------------------------
+require("scripts/zones/Dangruf_Wadi/MobIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    local npc = GetNPCByID(17559876);
+    local npc = GetNPCByID(CHOCOBOLEECH_QM)
+    npc:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
 
-    npc:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-
-    local randpos = math.random(1,3);
-
-    switch (randpos): caseof
+    local positions =
     {
-        [1] = function (x) npc:setPos(-430.330,4.400,115.100); end,
-        [2] = function (x) npc:setPos(-492.926,4.337,-7.936); end,
-        [3] = function (x) npc:setPos(-75.392,2.531,293.357); end,
+        {-430.330, 4.400, 115.100},
+        {-492.926, 4.337,  -7.936},
+        { -75.392, 2.531, 293.357},
     }
-end;
+    local newPosition = npcUtil.pickNewPosition(CHOCOBOLEECH_QM, positions, true)
+    npc:setPos(newPosition.x, newPosition.y, newPosition.z)
+end

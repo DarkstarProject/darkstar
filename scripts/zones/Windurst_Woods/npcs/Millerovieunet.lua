@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_WINDURST) then
+    if (GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.WINDURST) then
         player:showText(npc,MILLEROVIEUNET_CLOSED_DIALOG);
     else
         player:showText(npc,MILLEROVIEUNET_OPEN_DIALOG);
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         {
             954,  4032  -- Magic Pot Shard
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

@@ -26,6 +26,7 @@ local itemMap =
     { 106, 69, DIGREQ_NONE },
     { 4449, 3, DIGREQ_NONE },
     { 4096, 100, DIGREQ_NONE },  -- all crystals
+    { 1255, 10, DIGREQ_NONE }, -- all ores
     { 656, 106, DIGREQ_BURROW },
     { 748, 8, DIGREQ_BURROW },
     { 749, 30, DIGREQ_BURROW },

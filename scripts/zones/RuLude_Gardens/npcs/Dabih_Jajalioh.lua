@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 
 --     Place for difficult script
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

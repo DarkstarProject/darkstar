@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         player:startEvent(564);
     elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(565);
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
         if (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then
             player:startEvent(31);
@@ -103,7 +103,7 @@ function onTrigger(player,npc)
         elseif (currentMission == JOURNEY_ABROAD) then
             player:startEvent(532);
         end
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         -- Bastok 2-3 San -> Win
         if (currentMission == THE_EMISSARY) then
             if (MissionStatus == 3) then
@@ -122,7 +122,7 @@ function onTrigger(player,npc)
         else
             player:showText(npc,HALVER_OFFSET+1092);
         end
-    elseif (pNation == NATION_WINDURST) then
+    elseif (pNation == dsp.nation.WINDURST) then
         -- Windurst 2-3
         if (currentMission == THE_THREE_KINGDOMS and MissionStatus < 3) then
             player:startEvent(532);

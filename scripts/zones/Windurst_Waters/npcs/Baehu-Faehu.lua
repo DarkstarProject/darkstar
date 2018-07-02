@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(SARUTABARUTA);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.SARUTABARUTA);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
     else
         player:showText(npc,BAEHUFAEHU_OPEN_DIALOG);
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
             4392,  29,  -- Saruta Orange
             635,   18   -- Windurstian Tea Leaves
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local new_nation = NATION_SANDORIA;
+    local new_nation = dsp.nation.SANDORIA;
     local old_nation = player:getNation();
     local rank = getNationRank(new_nation);
 
@@ -46,7 +46,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 606 and option == 1) then
-        local new_nation = NATION_SANDORIA;
+        local new_nation = dsp.nation.SANDORIA;
         local rank = getNationRank(new_nation);
         local cost = 0;
 

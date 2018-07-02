@@ -3,31 +3,28 @@
 --  NPC: Matoaka
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
------------------------------------
+require("scripts/zones/Lower_Jeuno/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,MATOAKA_SHOP_DIALOG);
-
     local stock =
     {
-        0x340F,1250, -- Silver Earring
-     0x3490,1250, -- Silver Ring
-     0x3410,4140} -- Mythril Earring
+        13327, 1250,    -- Silver Earring
+        13456, 1250,    -- Silver Ring
+        13328, 4140,    -- Mythril Earring
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, MATOAKA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -8,7 +8,7 @@ package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil
 -----------------------------------
 require("scripts/globals/wsquest")
 require("scripts/zones/Labyrinth_of_Onzozo/TextIDs")
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDS")
+require("scripts/zones/Labyrinth_of_Onzozo/MobIDs")
 
 function onTrigger(player,npc)
     dsp.wsquest.handleQmTrigger(dsp.wsquest.blade_ku,player,MEGAPOD_MEGALOPS)

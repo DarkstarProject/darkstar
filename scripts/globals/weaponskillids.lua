@@ -3,7 +3,7 @@
 --
 -- Contains readable values for Weaponskill IDs
 ------------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.weaponskill =
 {
@@ -267,5 +267,5 @@ dsp.weaponskill =
     NUMBING_SHOT        = 219,
     WILDFIRE            = 220,
     LAST_STAND          = 221,
-};
-dsp.ws = dsp.weaponskill;
+}
+dsp.ws = dsp.weaponskill

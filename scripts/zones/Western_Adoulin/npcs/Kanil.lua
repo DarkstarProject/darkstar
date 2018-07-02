@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         0x14B3, 148,    -- Salsa
         0x05F3, 316,    -- Apple Mint
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -30,7 +30,7 @@ function onTrigger(player,npc)
      0x11CF,4485,    --Herb Quus
      0x0b32,9200}    --Selbina Waystone
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

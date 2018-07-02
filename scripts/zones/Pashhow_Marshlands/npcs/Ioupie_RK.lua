@@ -9,9 +9,9 @@ package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = DERFLAND;
+local region      = dsp.region.DERFLAND;
 local csid        = 0x7ffa;
 
 function onTrade(player,npc,trade)

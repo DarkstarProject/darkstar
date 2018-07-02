@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(LITELOR);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.LITELOR);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,OTETE_CLOSED_DIALOG);
     else
         player:showText(npc,OTETE_OPEN_DIALOG);
@@ -26,7 +26,7 @@ function onTrigger(player,npc)
             623,    119, -- Bay Leaves
             4154,  6440  -- Holy Water
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 
