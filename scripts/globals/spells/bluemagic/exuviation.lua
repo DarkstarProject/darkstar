@@ -55,6 +55,7 @@ function onSpellCast(caster,target,spell)
     target:wakeUp();
     caster:updateEnmityFromCure(target,final);
     spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP);
+    target:eraseStatusEffect();
 
     return final;
 end;
