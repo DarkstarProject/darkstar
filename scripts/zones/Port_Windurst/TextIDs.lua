@@ -74,4 +74,4 @@ SHEIAPOHRICHAMAHA_CLOSED_DIALOG =  4144 -- I'm a traveling merrrchant. There arr
              RETRIEVE_DIALOG_ID = 15874 -- You retrieve$ from the porter moogle's care.
 
 -- WS Quest
-             BLACK_HALO_LEARNED = 12644 -- You have learned the weapon skill ‚ÄúBlack Halo‚Äù!
+             BLACK_HALO_LEARNED = 12644 -- You have learned the weapon skill ìBlack Haloî!

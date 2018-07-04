@@ -27,11 +27,11 @@ function onSpellCast(caster,target,spell)
         divisor = 1;
         constant = 20;
         if (power > 170) then
-                divisor = 35.6666;
-                constant = 87.62;
+            divisor = 35.6666;
+            constant = 87.62;
         elseif (power > 110) then
-                divisor = 2;
-                constant = 47.5;
+            divisor = 2;
+            constant = 47.5;
         end
     else
         power = getCurePower(caster);
@@ -64,7 +64,7 @@ function onSpellCast(caster,target,spell)
 
     if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         if (USE_OLD_CURE_FORMULA == true) then
-            basecure = getBaseCure(power,divisor,constant);
+            basecure = getBaseCureOld(power,divisor,constant);
         else
             basecure = getBaseCure(power,divisor,constant,basepower);
         end

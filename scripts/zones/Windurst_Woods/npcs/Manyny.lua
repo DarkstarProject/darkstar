@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         0x13AD,  1252,       --Spirited Etude
         0x13AE,   990        --Enchanting Etude
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

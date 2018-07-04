@@ -23,7 +23,7 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
-INSERT INTO `item_latents` VALUES(10737, 63, 10, 513, 64); -- Abyss Sollerets +2, Enhances "Last Resort" effect
+INSERT INTO `item_latents` VALUES(10737, 63, 10, 13, 64); -- Abyss Sollerets +2, Enhances "Last Resort" effect
 
 -- -------------------------------------------------------
 -- Oneiros Ring
@@ -603,7 +603,12 @@ INSERT INTO `item_latents` VALUES(15174, 25, 12, 10, 0);
 INSERT INTO `item_latents` VALUES(15174, 384, 40, 10, 0);
 INSERT INTO `item_latents` VALUES(15174,370,-100,10,0);
 
-INSERT INTO `item_latents` VALUES(15532, 370, 1, 12, 3);
+-- -------------------------------------------------------
+-- Shark Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15532, 369, -3, 56, 2); -- Has a hidden effect of draining 3 MP/tick while weapon is drawn.
+INSERT INTO `item_latents` VALUES(15532, 370, 1, 56, 2); -- Latent Effect is triggered when the player's weapon is drawn and has more than 2 MP.
+
 
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 368);
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 369);

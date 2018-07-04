@@ -11317,7 +11317,7 @@ INSERT INTO `item_armor` VALUES (25762,'ayanmo_corazza',99,119,2130452,159,0,0,3
 INSERT INTO `item_armor` VALUES (25763,'ayanmo_corazza_+1',99,119,2130452,159,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25764,'taliah_manteel',99,119,147712,160,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25765,'taliah_manteel_+1',99,119,147712,160,0,0,32,0);
-INSERT INTO `item_armor` VALUES (25776,'bl._chocobo_suit',1,0,4194303,449,0,0,32,464);
+INSERT INTO `item_armor` VALUES (25776,'bl._chocobo_suit',1,0,4194303,449,0,0,32,448);
 INSERT INTO `item_armor` VALUES (25779,'flamma_korazin',99,119,10433,195,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25780,'flamma_korazin_+1',99,119,10433,195,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25781,'mummu_jacket',99,119,332834,196,0,0,32,0);

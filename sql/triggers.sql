@@ -53,7 +53,6 @@ BEGIN
 	DELETE FROM `char_look`      WHERE `charid` = OLD.charid;
 	DELETE FROM `char_merit`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_pet`       WHERE `charid` = OLD.charid;
-	DELETE FROM `char_pet_name`  WHERE `charid` = OLD.charid;
 	DELETE FROM `char_points`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_profile`   WHERE `charid` = OLD.charid;
 	DELETE FROM `char_recast`    WHERE `charid` = OLD.charid;

@@ -3,30 +3,27 @@
 --  NPC: Fayeewah
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,FAYEEWAH_SHOP_DIALOG);
-
     local stock =
     {
-        0x15c2,68,        -- Cup of Chai
-     0x15c4,2075}        -- Irmik Helvasi
+        5570,   68,    -- Cup of Chai
+        5572, 2075     -- Irmik Helvasi
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, FAYEEWAH_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

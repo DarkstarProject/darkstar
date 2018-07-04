@@ -86,4 +86,4 @@ MILLEROVIEUNET_CLOSED_DIALOG =  9979 -- Now that I've finally learned the langua
                CONQUEST_BASE =     0
 
 -- WS Quest
-      EMPYREAL_ARROW_LEARNED =  9724 -- You have learned the weapon skill ‚ÄúEmpyreal Arrow‚Äù!
+      EMPYREAL_ARROW_LEARNED =  9724 -- You have learned the weapon skill ìEmpyreal Arrowî!

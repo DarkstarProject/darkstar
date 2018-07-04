@@ -31,7 +31,7 @@ function onTrigger(player,npc)
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 9);
         elseif (MissionStatus >= 8) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG);
-        elseif (player:getNation() == NATION_SANDORIA) then
+        elseif (player:getNation() == dsp.nation.SANDORIA) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 2);
         else
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 1);

@@ -16,7 +16,7 @@ require("scripts/zones/Windurst_Waters/TextIDs");
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_WINDURST) then
+    if (player:getNation() ~= dsp.nation.WINDURST) then
         player:startEvent(103); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(130);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
-            player:startEvent(131);
+            player:startEvent(135);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(232);
         else

@@ -29,7 +29,7 @@ function onTrigger(player,npc)
      0x131c,185240,        -- Scroll of Aeroja
      0x12ff,126000}        -- Scroll of Break
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

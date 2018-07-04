@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         19252, 250     -- Pet Poultice
     }
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

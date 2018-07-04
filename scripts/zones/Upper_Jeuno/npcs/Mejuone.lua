@@ -22,7 +22,7 @@ function onTrigger(player,npc)
      0x0348,7,        -- Chocobo Feather
      0x439B,9}        -- Dart
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -17,8 +17,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(DERFLAND);
-    if (RegionOwner ~= NATION_WINDURST) then
+    local RegionOwner = GetRegionOwner(dsp.region.DERFLAND);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
         player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);
     else
         player:showText(npc,TARAIHIPERUNHI_OPEN_DIALOG);
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
             633,    14, -- Olive Oil
             951,   110  -- Wijnruit
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 

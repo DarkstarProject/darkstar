@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil
 -----------------------------------
 require("scripts/zones/Dragons_Aery/TextIDs")
 require("scripts/zones/Dragons_Aery/MobIDs")
+require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 -----------------------------------
@@ -19,18 +20,11 @@ function onSpawn(npc)
 end
 
 function onTrade(player,npc,trade)
-    local nq = GetMobByID(FAFNIR)
-    local hq = GetMobByID(NIDHOGG)
-
-    if not nq:isSpawned() and not hq:isSpawned() then
-        if trade:hasItemQty(3339,1) and trade:getItemCount() == 1 and LandKingSystem_NQ ~= 0 then -- Cup of Honey Wine
-            player:tradeComplete()
-            SpawnMob(FAFNIR):updateClaim(player)
-            npc:setStatus(dsp.status.DISAPPEAR)
-        elseif trade:hasItemQty(3340,1) and trade:getItemCount() == 1 and LandKingSystem_HQ ~= 0 then -- Cup of Sweet Tea
-            player:tradeComplete()
-            SpawnMob(NIDHOGG):updateClaim(player)
-            npc:setStatus(dsp.status.DISAPPEAR)
+    if not GetMobByID(FAFNIR):isSpawned() and not GetMobByID(NIDHOGG):isSpawned() then
+        if LandKingSystem_NQ ~= 0 and npcUtil.tradeHas(trade, 3339) and npcUtil.popFromQM(player, npc, FAFNIR) then
+            player:confirmTrade()
+        elseif LandKingSystem_HQ ~= 0 and npcUtil.tradeHas(trade, 3340) and npcUtil.popFromQM(player, npc, NIDHOGG) then
+            player:confirmTrade()        
         end
     end
 end

@@ -70,6 +70,7 @@
 #include "../ai/controllers/pet_controller.h"
 #include "../ai/controllers/player_controller.h"
 #include "../ai/controllers/player_charm_controller.h"
+#include "../ai/states/magic_state.h"
 #include "../utils/petutils.h"
 #include "zoneutils.h"
 
@@ -1468,7 +1469,7 @@ namespace battleutils
             }*/
     }
 
-    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage, int8 accBonus)
     {
         int acc = 0;
         int hitrate = 75;
@@ -1505,6 +1506,9 @@ namespace battleutils
             acc -= PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_YONIN)->GetPower();
         }
 
+        // Add any specific accuracy bonus, e.g. Daken RAcc +100
+        acc += accBonus;
+
         int eva = PDefender->EVA();
         hitrate = hitrate + (acc - eva) / 2 + (PAttacker->GetMLevel() - PDefender->GetMLevel()) * 2;
 
@@ -1512,10 +1516,14 @@ namespace battleutils
         return finalhitrate;
     }
 
-    //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
-    float GetRangedPDIF(CBattleEntity* PAttacker, CBattleEntity* PDefender)
+    uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage)
     {
+        return GetRangedHitRate(PAttacker, PDefender, isBarrage, 0);
+    }
 
+    //todo: need to penalise attacker's RangedAttack depending on distance from mob. (% decrease)
+    float GetRangedDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical)
+    {
         //get ranged attack value
         uint16 rAttack = 1;
 
@@ -1585,7 +1593,17 @@ namespace battleutils
         maxPdif = std::clamp<float>(maxPdif, 0, 3);
 
         //return random number between the two
-        return dsprand::GetRandomNumber(minPdif, maxPdif);
+        float pdif = dsprand::GetRandomNumber(minPdif, maxPdif);
+
+        if (isCritical)
+        {
+            pdif *= 1.25;
+            int16 criticaldamage = PAttacker->getMod(Mod::CRIT_DMG_INCREASE) - PDefender->getMod(Mod::CRIT_DEF_BONUS);
+            criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
+            pdif *= ((100 + criticaldamage) / 100.0f);
+        }
+        
+        return pdif;
     }
 
     int16 CalculateBaseTP(int delay){
@@ -1871,6 +1889,7 @@ namespace battleutils
     int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
     {
         giveTPtoAttacker = giveTPtoAttacker && !PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_MEIKYO_SHISUI);
+        giveTPtoVictim = giveTPtoVictim && attackType != PHYSICAL_ATTACK_TYPE::DAKEN;
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
         int32 baseDamage = damage;
         if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_FORMLESS_STRIKES) && !isCounter)
@@ -2434,7 +2453,8 @@ namespace battleutils
             }
         }
 
-        if (isCritical) {
+        if (isCritical)
+        {
             cRatio += 1;
         }
 
@@ -2797,6 +2817,13 @@ namespace battleutils
             case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
             default: break;
         }
+
+        // Add intimidation rate from Bully
+        if (CStatusEffect* PDoubtEffect = PAttacker->StatusEffectContainer->GetStatusEffect(EFFECT_DOUBT))
+        {
+            KillerEffect += PDoubtEffect->GetPower();
+        }
+
         return (dsprand::GetRandomNumber(100) < KillerEffect);
     }
 
@@ -5016,10 +5043,19 @@ namespace battleutils
         return found;
     }
 
-    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CSpell* PSpell)
+    uint32 CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState)
     {
+        CSpell* PSpell = PMagicState->GetSpell();
         if (PSpell == nullptr)
         {
+            return 0;
+        }
+
+        // Check Quick Magic procs
+        int16 quickMagicRate = PEntity->getMod(Mod::QUICK_MAGIC);
+        if (dsprand::GetRandomNumber(100) < quickMagicRate)
+        {
+            PMagicState->SetInstantCast(true);
             return 0;
         }
 
@@ -5110,7 +5146,7 @@ namespace battleutils
             cast = (uint32)(cast * (1.0f - ((songcasting > 50 ? 50 : songcasting) / 100.0f)));
         }
 
-        auto fastCast = std::clamp<int16>(PEntity->getMod(Mod::FASTCAST), -100, 50);
+        int16 fastCast = std::clamp<int16>(PEntity->getMod(Mod::FASTCAST), -100, 50);
         if (PSpell->getSkillType() == SKILLTYPE::SKILL_ELEMENTAL_MAGIC) // Elemental Celerity reductions
         {
             fastCast += PEntity->getMod(Mod::ELEMENTAL_CELERITY);
@@ -5123,8 +5159,16 @@ namespace battleutils
                 fastCast += ((CCharEntity*)PEntity)->PMeritPoints->GetMeritValue(MERIT_CURE_CAST_TIME, (CCharEntity*)PEntity);
             }
         }
+
         fastCast = std::clamp<int16>(fastCast, -100, 80);
-        auto uncappedFastCast = std::clamp<int16>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
+        int16 uncappedFastCast = std::clamp<int16>(PEntity->getMod(Mod::UFASTCAST), -100, 100);
+
+        // Add in fast cast from Divine Benison
+        if (PSpell->isNa())
+        {
+            uncappedFastCast = std::clamp<int16>(uncappedFastCast + PEntity->getMod(Mod::DIVINE_BENISON), -100, 100);
+        }
+
         float sumFastCast = std::clamp<float>((float)(fastCast + uncappedFastCast), -100.f, 100.f);
 
         return (uint32)(cast * ((100.0f - sumFastCast) / 100.0f));
@@ -5344,7 +5388,7 @@ namespace battleutils
                 {
                     return static_cast<int16>(PSpell->getMPCost() * PChar->getMod(Mod::OCCULT_ACUMEN) / 100.f * (1 + (PChar->getMod(Mod::STORETP) / 100.f)));
                 }
-                
+
             }
         }
 

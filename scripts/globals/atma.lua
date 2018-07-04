@@ -115,7 +115,7 @@ local atmaMods =
     [dsp.ki.ATMA_OF_AQUATIC_ARDOR]              = {dsp.mod.ABSORB_DMG_CHANCE, 6, dsp.mod.MAGIC_ABSORB, 6},
     [dsp.ki.ATMA_OF_THE_FALLEN_ONE]             = {dsp.mod.INT, 30, dsp.mod.MND, 30},
     [dsp.ki.ATMA_OF_FIRES_AND_FLARES]           = {dsp.mod.AGI, 20, dsp.mod.RATT, 40},
-    [dsp.ki.ATMA_OF_THE_APOCALYPSE]             = {dsp.mod.TRIPLE_ATTACK, 15, dsp.mod.RERAISE_III, 1}, -- Quick Magic +10% not yet implimented.
+    [dsp.ki.ATMA_OF_THE_APOCALYPSE]             = {dsp.mod.TRIPLE_ATTACK, 15, dsp.mod.RERAISE_III, 1, dsp.mod.QUICK_MAGIC, 10},
     
     -- GROUP 2
     [dsp.ki.ATMA_OF_THE_HEIR]                   = {},

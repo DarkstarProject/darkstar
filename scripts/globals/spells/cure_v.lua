@@ -24,14 +24,14 @@ function onSpellCast(caster,target,spell)
     local minCure = 450;
     if (USE_OLD_CURE_FORMULA == true) then
         power = getCurePowerOld(caster);
-        rate = 0.6666;
+        divisor = 0.6666;
         constant = 330;
         if (power > 560) then
-                rate = 2.8333;
-                constant = 591.2;
+            divisor = 2.8333;
+            constant = 591.2;
         elseif (power > 320) then
-                rate = 1;
-                constant = 410;
+            divisor = 1;
+            constant = 410;
         end
     else
         power = getCurePower(caster);

@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         0x1396,    98,       --Scroll of Herb Pastoral
         0x0b30,  9200        --Federation Waystone
     }
-    showShop(player, WINDURST, stock);
+    dsp.shop.general(player, stock, WINDURST);
 
 end;
 

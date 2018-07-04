@@ -22,7 +22,7 @@ stock =
     0x0200,8000, -- Linkshell
     0x3f9d,375   -- Pendant Compass
 }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

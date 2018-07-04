@@ -26,7 +26,7 @@ function onTrigger(player,npc)
      0x3c1d,8000000,        -- Vir Subligar (Available after COP Chapter 4 only)
      0x3c1e,8000000}        -- Femina Subligar (Available after COP Chapter 4 only)
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

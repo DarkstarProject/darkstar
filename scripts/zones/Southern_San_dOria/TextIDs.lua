@@ -113,4 +113,4 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL =  7415 -- Players who have not reached level <<<
                  CONQUEST_BASE =  7031 -- Tallying conquest results...
 
 -- WS Quest
-         IMPULSE_DRIVE_LEARNED =  9316 -- You have learned the weapon skill â€œImpulse Driveâ€!
+         IMPULSE_DRIVE_LEARNED =  9316 -- You have learned the weapon skill “Impulse Drive”!

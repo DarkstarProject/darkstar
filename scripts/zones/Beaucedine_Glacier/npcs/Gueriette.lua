@@ -10,7 +10,7 @@ require("scripts/globals/shop");
 require("scripts/globals/conquest");
 require("scripts/zones/Beaucedine_Glacier/TextIDs");
 
-local region     = FAUREGANDI;
+local region     = dsp.region.FAUREGANDI;
 local csid    = 0x7ff4;
 
 function onTrade(player,npc,trade)
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
     -- printf("OPTION: %u",option);
 
     if (option == 1) then
-        ShowOPVendorShop(player);
+        dsp.shop.outpost(player);
     elseif (option == 2) then
         if (player:delGil(OP_TeleFee(player,region))) then
             toHomeNation(player);

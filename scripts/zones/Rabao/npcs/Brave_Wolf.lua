@@ -34,7 +34,7 @@ function onTrigger(player,npc)
     0x3224,23063,    --Iron Subligar
     0x32A2,14327}    --Leggins
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
