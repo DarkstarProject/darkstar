@@ -4407,8 +4407,8 @@ INSERT INTO `item_weapon` VALUES (21702,'kladenets',4,0,242,242,188,2,1,480,260,
 INSERT INTO `item_weapon` VALUES (21703,'kladenets_+1',4,0,242,242,188,2,1,466,261,0);
 INSERT INTO `item_weapon` VALUES (21704,'arasy_tabar',5,0,242,242,188,2,1,288,148,0);
 INSERT INTO `item_weapon` VALUES (21705,'arasy_tabar_+1',5,0,242,242,188,2,1,280,149,0);
-INSERT INTO `item_weapon` VALUES (21706,'barbarity',5,0,242,242,188,0,1,288,188,0);
-INSERT INTO `item_weapon` VALUES (21707,'barbarity_+1',5,0,242,242,188,0,1,280,189,0);
+INSERT INTO `item_weapon` VALUES (21706,'barbarity',5,0,242,242,188,2,1,288,188,0);
+INSERT INTO `item_weapon` VALUES (21707,'barbarity_+1',5,0,242,242,188,2,1,280,189,0);
 INSERT INTO `item_weapon` VALUES (21746,'digirbalag',5,0,242,242,188,2,1,276,159,0);
 INSERT INTO `item_weapon` VALUES (21747,'freydis',5,0,242,242,188,2,1,276,178,0);
 INSERT INTO `item_weapon` VALUES (21748,'habilitator',5,0,242,242,188,2,1,288,166,0);
