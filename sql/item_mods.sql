@@ -25541,6 +25541,10 @@ INSERT INTO `item_mods` VALUES (21276,24,5);
 INSERT INTO `item_mods` VALUES (21284,24,20);
 INSERT INTO `item_mods` VALUES (21284,28,10);
 INSERT INTO `item_mods` VALUES (21287,26,15);
+INSERT INTO `item_mods` VALUES (21298,24,35);    -- Artemis's Arrow (iLvl 119) Ranged Attack+35
+INSERT INTO `item_mods` VALUES (21298,26,25);    -- Ranged Accuracy+25
+INSERT INTO `item_mods` VALUES (21299,24,25);    -- Yoichi's Arrow (iLvl 119) Ranged Attack+25
+INSERT INTO `item_mods` VALUES (21299,26,35);    -- Ranged Accuracy+35
 INSERT INTO `item_mods` VALUES (21304,24,10);
 INSERT INTO `item_mods` VALUES (21305,24,10);
 INSERT INTO `item_mods` VALUES (21305,26,10);
@@ -25549,6 +25553,10 @@ INSERT INTO `item_mods` VALUES (21307,24,20);
 INSERT INTO `item_mods` VALUES (21307,26,20);
 INSERT INTO `item_mods` VALUES (21308,26,5);
 INSERT INTO `item_mods` VALUES (21309,26,5);
+INSERT INTO `item_mods` VALUES (21311,24,30);    -- Quelling Bolt (iLvl 119) Ranged Attack+30
+INSERT INTO `item_mods` VALUES (21311,26,30);    -- Ranged Accuracy+30
+INSERT INTO `item_mods` VALUES (21311,28,30);    -- Magic Attack Bonus+30
+INSERT INTO `item_mods` VALUES (21311,30,20);    -- Magic Accuracy+30
 INSERT INTO `item_mods` VALUES (21314,26,15);     -- Abrasion Bolt (iLvl 117): Ranged Accuracy +15
 INSERT INTO `item_mods` VALUES (21314,431,1);     -- Additional effect: Weakens defense
 INSERT INTO `item_mods` VALUES (21318,24,5);
@@ -25558,6 +25566,12 @@ INSERT INTO `item_mods` VALUES (21319,26,10);
 INSERT INTO `item_mods` VALUES (21320,26,15);
 INSERT INTO `item_mods` VALUES (21321,24,20);
 INSERT INTO `item_mods` VALUES (21321,26,20);
+INSERT INTO `item_mods` VALUES (21325,26,35);    -- Devastating Bullet (iLvl 119) Ranged Accuracy+35
+INSERT INTO `item_mods` VALUES (21325,30,35);    -- Magic Accuracy+35
+INSERT INTO `item_mods` VALUES (21326,28,35);    -- Living Bullet (iLvl 119) Magic Attack Bonus+35
+INSERT INTO `item_mods` VALUES (21326,30,25);    -- Magic Accuracy+25
+INSERT INTO `item_mods` VALUES (21327,24,30);    -- Eradicating Bullet (iLvl 119) Ranged Attack+30
+INSERT INTO `item_mods` VALUES (21327,26,30);    -- Ranged Accuracy+30
 INSERT INTO `item_mods` VALUES (21333,24,5);
 INSERT INTO `item_mods` VALUES (21333,26,5);
 INSERT INTO `item_mods` VALUES (21334,26,40);
