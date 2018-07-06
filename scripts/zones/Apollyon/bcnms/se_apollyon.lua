@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name: SE_Apollyon
+-- Area: Apollyon
+-- Name: SE_Apollyon (Slimes,Crabs,Skeletons,Weapons)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");

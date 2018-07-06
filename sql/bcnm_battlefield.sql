@@ -2796,6 +2796,7 @@ INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932875,1);-- 'FirBholg'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932876,1);-- 'FirBholg'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932877,1);-- 'FirBholg'
 
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932881,1);-- 'Jidra' adding the 8th one to the battlefield
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932882,1);-- 'Jidra'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932883,1);-- 'Jidra'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932884,1);-- 'Jidra'
@@ -2804,13 +2805,13 @@ INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932886,1);-- 'Jidra'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932887,1);-- 'Jidra'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932888,1);-- 'Jidra'
 
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932889,1);-- 'Arboricole_Hornet'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932890,1);-- 'Arboricole_Raven'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932891,1);-- 'Arboricole_Opo-opo'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932892,1);-- 'Arboricole_Spider'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932893,1);-- 'Arboricole_Beetle'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932894,1);-- 'Arboricole_Crawler'
--- INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932895,1);-- 'Apollyon_Sapling'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932889,0);-- 'Arboricole_Hornet'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932890,0);-- 'Arboricole_Raven'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932891,0);-- 'Arboricole_Opo-opo'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932892,0);-- 'Arboricole_Spider'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932893,0);-- 'Arboricole_Beetle'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932894,0);-- 'Arboricole_Crawler'
+INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932895,0);-- 'Apollyon_Sapling'
 
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932896,1);-- 'Armoury_Crate'
 INSERT INTO `bcnm_battlefield` VALUES (1291,2,16932897,1);-- 'Armoury_Crate'
@@ -2886,8 +2887,30 @@ INSERT INTO `bcnm_battlefield` VALUES (1290,1,16932988,1);-- 'Kronprinz_Behemoth
 --               APPOLYON CS
 -- //////////////////////////////////////////////////////////////
 INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933129,1);-- 'Carnagechief_Jackbodokk'
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933130,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933131,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933132,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933133,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933134,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933135,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933136,0);
 INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933137,1);-- 'Na QbaChirurge'
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933138,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933139,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933140,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933141,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933142,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933143,0);
 INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933144,1);-- 'DeeWapatheDe'
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933145,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933146,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933147,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933148,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933149,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933150,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933151,0);
+INSERT INTO `bcnm_battlefield` VALUES (1294,5,16933152,0);
+
 -- //////////////////////////////////////////////////////////////
 --               APPOLYON CENTRAL
 -- //////////////////////////////////////////////////////////////
@@ -2946,28 +2969,42 @@ INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928840,1);-- Fire Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928841,1);-- Fire Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928842,1);-- Fire Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928843,1);-- Fire Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928844,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928849,1);-- Ice Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928850,1);-- Ice Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928851,1);-- Ice Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928852,1);-- Ice Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928853,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928858,1);-- Air Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928859,1);-- Air Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928860,1);-- Air Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928861,1);-- Air Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928862,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928867,1);-- Earth Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928868,1);-- Earth Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928869,1);-- Earth Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928870,1);-- Earth Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928871,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928876,1);-- Thunder Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928877,1);-- Thunder Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928878,1);-- Thunder Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928879,1);-- Thunder Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928880,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928885,1);-- Water Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928886,1);-- Water Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928887,1);-- Water Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928888,1);-- Water Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928889,1);-- Mystic Avatar
+
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928892,1);-- Dark Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928893,1);-- Dark Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1300,3,16928894,1);-- Mystic Avatar
+
 -- ------------------------
 -- Temenos - Western Tower
 -- ------------------------
@@ -3026,6 +3063,24 @@ INSERT INTO `bcnm_battlefield` VALUES (1298,1,16928964,1);-- Enhanced Vulture
 -- Central Temenos - 4th Floor
 -- ----------------------------
 INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928966,1);-- Proto-Ultima
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928986,1);-- Kingslayer Doggvdegg
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928987,1);-- Ji'Gho Ageless
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928988,1);-- Koo Buzu the Theomanic
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928991,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928992,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928993,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928994,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928995,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928996,1);-- Mystic Avatar
+
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928997,1);-- Enhanced Koenigstiger
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928998,1);-- Enhanced Pygmaioi
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16928999,1);-- Enhanced Kettenkaefer
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16929000,1);-- Enhanced Salamander
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16929001,1);-- Enhanced Jelly
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16929002,1);-- Enhanced Makara
+INSERT INTO `bcnm_battlefield` VALUES (1306,8,16929003,1);-- Enhanced Akbaba
+
 -- --------------------------------
 -- Central Temenos - 3rd Floor
 -- --------------------------------
@@ -3064,6 +3119,12 @@ INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929035,1);-- Air Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929036,1);-- Earth Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929037,1);-- Thunder Elemental
 INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929038,1);-- Water Elemental
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929039,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929040,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929041,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929042,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929043,1);-- Mystic Avatar
+INSERT INTO `bcnm_battlefield` VALUES (1304,6,16929044,1);-- Mystic Avatar
 -- -----------------------------
 -- Central Temenos - 1st Floor
 -- -----------------------------
@@ -3109,5 +3170,6 @@ INSERT INTO `bcnm_battlefield` VALUES (1301,4,16929084,1);-- Temenos Aern
 INSERT INTO `bcnm_battlefield` VALUES (1301,4,16929085,1);-- Temenos Aern
 INSERT INTO `bcnm_battlefield` VALUES (1301,4,16929086,1);-- Temenos Aern
 INSERT INTO `bcnm_battlefield` VALUES (1301,4,16929087,1);-- Temenos Aern
+INSERT INTO `bcnm_battlefield` VALUES (1301,4,16929088,1);-- Temenos Ghrah
 
 -- Dump completed on 2017-01-31 10:38:38

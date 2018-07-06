@@ -1,39 +1,29 @@
 -----------------------------------
 -- Area: Temenos N T
 -- NPC:  Telchines_White_Mage
-
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Temenos/TextIDs");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/zones/Temenos/MobIDs");
+mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
-
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
- if (IsMobDead(16928788)==true and IsMobDead(16928789)==true  and IsMobDead(16928792)==true   and IsMobDead(16928793)==true ) then
-       GetNPCByID(16928768+26):setPos(19,80,430);
-    GetNPCByID(16928768+26):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+160):setPos(16,80,430);
-    GetNPCByID(16928768+160):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+211):setPos(22,80,430);
-    GetNPCByID(16928768+211):setStatus(dsp.status.NORMAL);
- end
+    if (GetMobByID(16928788):isDead() and GetMobByID(16928789):isDead() and GetMobByID(16928792):isDead() and 
+        GetMobByID(16928793):isDead()) then
+        GetNPCByID(TEMENOS_BASE_CRATE+26):setPos(19,80,430);
+        GetNPCByID(TEMENOS_BASE_CRATE+26):setStatus(dsp.status.NORMAL);
+        GetNPCByID(TEMENOS_BASE_CRATE+160):setPos(16,80,430);
+        GetNPCByID(TEMENOS_BASE_CRATE+160):setStatus(dsp.status.NORMAL);
+        GetNPCByID(TEMENOS_BASE_CRATE+211):setPos(22,80,430);
+        GetNPCByID(TEMENOS_BASE_CRATE+211):setStatus(dsp.status.NORMAL);
+    end
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name:
+-- Area: Apollyon
+-- Name: Apollyon NW (Bardha,Buffalo,Scavenger,Gorynich,Behemoth)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
@@ -9,7 +9,8 @@ require("scripts/globals/keyitems");
 function onBcnmRegister(player,instance)
     SetServerVariable("[NW_Apollyon]UniqueID",GenerateLimbusKey());
     HideArmouryCrates(GetInstanceRegion(1290),APOLLYON_NW_SW);
-    
+    --print ("spawn coffer");
+    SpawnCofferNW();
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

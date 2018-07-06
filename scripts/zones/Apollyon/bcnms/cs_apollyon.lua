@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name:
+-- Area: Apollyon
+-- Name: Apollyon CS (Orc, Quadav, Yagudo, beastcoins only)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
@@ -16,6 +16,8 @@ function onBcnmRegister(player,instance)
     GetNPCByID(16933247):setAnimation(8);
         despawnLimbusCS();
     player:setVar("Limbus_Trade_Item",0);
+    SetServerVariable("CSApoLink", 0); -- reset so bosses link
+    SetServerVariable("deadHelpers",0); -- reset so helpers spawn
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

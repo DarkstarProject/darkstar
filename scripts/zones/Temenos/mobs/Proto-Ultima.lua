@@ -4,6 +4,7 @@
 -----------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/limbus");
+require("scripts/zones/Temenos/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -32,7 +33,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.TEMENOS_LIBERATOR);
-    GetNPCByID(16928768+79):setPos(-559,5,-357);
-    GetNPCByID(16928768+79):setStatus(dsp.status.NORMAL);
-    GetNPCByID(16928768+474):setStatus(dsp.status.NORMAL);
+    GetNPCByID(TEMENOS_BASE_CRATE+79):setPos(-559,5,-357);
+    GetNPCByID(TEMENOS_BASE_CRATE+79):setStatus(dsp.status.NORMAL);
+    GetNPCByID(16928770+475):setStatus(dsp.status.NORMAL);
 end;

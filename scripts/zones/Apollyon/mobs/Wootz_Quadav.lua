@@ -1,29 +1,21 @@
 -----------------------------------
--- Area: Apollyon SE
---  NPC: Flying_Spear
+-- Area: Apollyon CS
+--  MOB: Wootz_Quadav
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
+mixins = {require("scripts/mixins/job_special")};
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
+function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-     local mobID = mob:getID();
-     if (mobID == 16933034) then -- time
-
-     elseif (mobID == 16933037) then -- recover
-
-     elseif (mobID == 16933040) then -- item
-
-     end
+    local helpers = GetServerVariable("deadQuadHelpers");
+    SetServerVariable("deadQuadHelpers",helpers +1);
 end;

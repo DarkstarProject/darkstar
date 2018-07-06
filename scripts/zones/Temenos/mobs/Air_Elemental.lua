@@ -1,59 +1,48 @@
 -----------------------------------
 -- Area: Temenos E T
 -- NPC: Air_Elemental
-
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Temenos/TextIDs");
-
------------------------------------
--- onMobSpawn Action
+require("scripts/zones/Temenos/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-   local mobID = mob:getID();
-   local mobX = mob:getXPos();
-   local mobY = mob:getYPos();
-   local mobZ = mob:getZPos();
-     switch (mobID): caseof {
-         -- 100 a 106 inclut (Temenos -Northern Tower )
+    local mobID = mob:getID();
+    local mobX = mob:getXPos();
+    local mobY = mob:getYPos();
+    local mobZ = mob:getZPos();
+    switch (mobID): caseof {
+        -- 100 a 106 inclut (Temenos -Northern Tower )
         [16928858] = function (x)
-           GetNPCByID(16928768+181):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+181):setStatus(dsp.status.NORMAL);
+            GetNPCByID(TEMENOS_BASE_CRATE+181):setPos(mobX,mobY,mobZ);
+            GetNPCByID(TEMENOS_BASE_CRATE+181):setStatus(dsp.status.NORMAL);
         end    ,
         [16928859] = function (x)
-           GetNPCByID(16928768+217):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+217):setStatus(dsp.status.NORMAL);
+            GetNPCByID(TEMENOS_BASE_CRATE+217):setPos(mobX,mobY,mobZ);
+            GetNPCByID(TEMENOS_BASE_CRATE+217):setStatus(dsp.status.NORMAL);
         end    ,
         [16928860] = function (x)
-           GetNPCByID(16928768+348):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+348):setStatus(dsp.status.NORMAL);
+            GetNPCByID(TEMENOS_BASE_CRATE+348):setPos(mobX,mobY,mobZ);
+            GetNPCByID(TEMENOS_BASE_CRATE+348):setStatus(dsp.status.NORMAL);
         end    ,
         [16928861] = function (x)
-           GetNPCByID(16928768+46):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+46):setStatus(dsp.status.NORMAL);
+            GetNPCByID(TEMENOS_BASE_CRATE+46):setPos(mobX,mobY,mobZ);
+            GetNPCByID(TEMENOS_BASE_CRATE+46):setStatus(dsp.status.NORMAL);
         end    ,
         [16929035] = function (x)
-           if (IsMobDead(16929036)==false) then
-             DespawnMob(16929036);
-             SpawnMob(16929042);
-           end
+            if (IsMobDead(16929036)==false) then --earth ele
+                DespawnMob(16929036);
+                SpawnMob(16929042); --titan
+            end
         end    ,
      }
 end;

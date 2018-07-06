@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Apollyon SE
 --  NPC: Adamantshell
-
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Apollyon/TextIDs");
+require("scripts/zones/Apollyon/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -19,22 +19,20 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-
-  local mobID = mob:getID();
+    local mobID = mob:getID();
     -- print(mobID);
-      local mobX = mob:getXPos();
+    local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
 
- if (mobID ==16933008) then --
-       GetNPCByID(16932864+232):setPos(108,-1,-518);
-    GetNPCByID(16932864+232):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16933013) then --
-       GetNPCByID(16932864+233):setPos(109,-1,-521);
-    GetNPCByID(16932864+233):setStatus(dsp.status.NORMAL);
- elseif (mobID ==16933007) then --
-      GetNPCByID(16932864+234):setPos(112,-1,-523);
-    GetNPCByID(16932864+234):setStatus(dsp.status.NORMAL);
- end
-
+    if (mobID ==16933008) then --
+        GetNPCByID(APOLLYON_BASE_CRATE+232):setPos(108,-1,-518);
+        GetNPCByID(APOLLYON_BASE_CRATE+232):setStatus(dsp.status.NORMAL);
+    elseif (mobID ==16933013) then --
+        GetNPCByID(APOLLYON_BASE_CRATE+233):setPos(109,-1,-521);
+        GetNPCByID(APOLLYON_BASE_CRATE+233):setStatus(dsp.status.NORMAL);
+    elseif (mobID ==16933007) then --
+        GetNPCByID(APOLLYON_BASE_CRATE+234):setPos(112,-1,-523);
+        GetNPCByID(APOLLYON_BASE_CRATE+234):setStatus(dsp.status.NORMAL);
+    end
 end;

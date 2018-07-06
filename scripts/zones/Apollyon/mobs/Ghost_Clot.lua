@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Apollyon SE
 --  NPC: Ghost_Clot
-
 -----------------------------------
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 -----------------------------------
@@ -23,5 +22,4 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-
 end;
