@@ -130,6 +130,11 @@ bool CBattleEntity::isMounted()
 	return (animation == ANIMATION_CHOCOBO || animation == ANIMATION_MOUNT);
 }
 
+bool CBattleEntity::isSitting()
+{
+    return (animation == ANIMATION_HEALING || animation == ANIMATION_SIT || (animation >= ANIMATION_SITCHAIR_0 && animation <= ANIMATION_SITCHAIR_10));
+}
+
 /************************************************************************
 *                                                                       *
 *  Пересчитываем максимальные значения hp и mp с учетом модификаторов   *

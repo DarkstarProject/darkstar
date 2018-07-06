@@ -478,12 +478,13 @@ public:
 
     uint8           GetSpeed();
 
-    bool		    isDead();					// проверяем, мертва ли сущность
-    bool		    isAlive();
-    bool			isInDynamis();
-    bool			hasImmunity(uint32 imID);
-    bool			isAsleep();
-	bool			isMounted();
+    bool            isDead();					// проверяем, мертва ли сущность
+    bool            isAlive();
+    bool            isInDynamis();
+    bool            hasImmunity(uint32 imID);
+    bool            isAsleep();
+    bool            isMounted();
+    bool            isSitting();
 
     JOBTYPE		    GetMJob();					// главная профессия
     JOBTYPE		    GetSJob();					// дополнительная профессия
