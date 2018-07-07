@@ -48,6 +48,8 @@ function onEventFinish(player,csid,option)
         end
     end
     if (csid == 102) then
-        player:setPos(0,0,0,0,52);
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,52);
+        end
     end
 end;
