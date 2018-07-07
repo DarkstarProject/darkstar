@@ -39,9 +39,9 @@ function onTrigger(player,npc)
     elseif (SayFlowers == QUEST_COMPLETED and NeedToZone == true and FlowerProgress == 0) then -- Must zone to retry quest.
         player:startEvent(521);
     elseif (SayFlowers == QUEST_COMPLETED and NeedToZone == false and FlowerProgress == 0) then
-        player:startEvent(514); -- Repeat Say It with Flowers.
+        player:startEvent(523); -- Repeat Say It with Flowers.
     elseif (SayFlowers == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then
-        player:startEvent(523); -- Begin Say It with Flowers.
+        player:startEvent(514); -- Begin Say It with Flowers.
     else
         player:startEvent(512);
     end
@@ -53,12 +53,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 514 and option == 1) then
-        if (player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS) == QUEST_COMPLETED) then
-            player:setVar("FLOWER_PROGRESS",1);
-        else
-            player:addQuest(WINDURST,SAY_IT_WITH_FLOWERS);
-            player:setVar("FLOWER_PROGRESS",1);
-        end
+        player:setVar("FLOWER_PROGRESS",1);
+        player:addQuest(WINDURST,SAY_IT_WITH_FLOWERS);
     elseif (csid == 520) then -- First completion, Iron Sword awarded.
         if (player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
