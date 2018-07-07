@@ -8,7 +8,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobRoam(mob)
-    local spawnTime = mob:getLocalVar("transformTime");
+    local transformTime = mob:getLocalVar("transformTime");
     local roamChance = math.random(1,100);
     local roamMoonPhase = VanadielMoonPhase();
 
