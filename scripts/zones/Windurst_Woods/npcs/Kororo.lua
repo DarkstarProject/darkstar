@@ -6,11 +6,11 @@
 -- Starts quest: A Greeting Cardian
 -- Involved in quests: Lost Chick
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/titles");
+require("scripts/zones/Windurst_Woods/TextIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -59,17 +59,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true); -- wait one day and zone after next step
     elseif (csid == 298) then
         player:setVar("AGreetingCardian_Event",4);
-    elseif (csid == 303) then
-        if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
-        else
-            player:addItem(13330);
-            player:messageSpecial(ITEM_OBTAINED, 13330); -- Tourmaline Earring
-            player:addFame(WINDURST,30);
-            player:completeQuest(WINDURST,A_GREETING_CARDIAN);
-            player:needToZone(true); -- zone before starting Legendary Plan B
-            player:setVar("AGreetingCardian_timer",0);
-            player:setVar("AGreetingCardian_Event",0); -- finish cleanup of A Greeting Cardian variables
-        end
+    elseif csid == 303 and npcUtil.completeQuest(player, WINDURST, A_GREETING_CARDIAN, {item=13330, var={"AGreetingCardian_timer", "AGreetingCardian_Event"}}) then
+        player:needToZone(true); -- zone before starting Legendary Plan B
     end
 end;

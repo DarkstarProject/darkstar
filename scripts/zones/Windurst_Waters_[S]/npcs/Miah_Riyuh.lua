@@ -3,14 +3,13 @@
 --  NPC: Miah Riyuh
 -- !pos 5.323 -2 37.462 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+require("scripts/zones/Windurst_Waters_[S]/TextIDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,11 +26,11 @@ function onTrigger(player,npc)
 
     if (SteamedRams == QUEST_ACCEPTED or TheFightingFourth == QUEST_ACCEPTED) then
         player:startEvent(122);
-    elseif (SnakeOnThePlains == QUEST_AVAILABLE and GreenLetter == true) then
+    elseif (SnakeOnThePlains == QUEST_AVAILABLE and GreenLetter) then
         player:startEvent(103);
     elseif (SnakeOnThePlains == QUEST_AVAILABLE and player:getVar("GREEN_R_LETTER_USED") == 1) then
         player:startEvent(105);
-    elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:isMaskFull(player:getVar("SEALED_DOORS"),3) == true) then
+    elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:isMaskFull(player:getVar("SEALED_DOORS"),3)) then
         player:startEvent(106);
     elseif (SnakeOnThePlains == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)) then
         local PuttyUsed = 0;
@@ -58,10 +57,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 103 and option == 0) then
         player:addQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-        player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        npcUtil.giveKeyItem(player, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
     elseif (csid == 103 and option == 1) then
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
@@ -71,32 +69,20 @@ function onEventFinish(player,csid,option)
         player:setVar("SEALED_DOORS", 0);
     elseif (csid == 105 and option == 0) then
         player:addQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-        player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        npcUtil.giveKeyItem(player, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
     elseif (csid == 106 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
-        if (player:getVar("Campaign_Nation") == 0) then
-            if (player:getFreeSlotsCount() >= 1) then
-                player:setCampaignAllegiance(3);
-                player:setVar("GREEN_R_LETTER_USED",0);
-                player:addTitle(dsp.title.COBRA_UNIT_MERCENARY);
-                player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
-                player:addItem(15754);
-                player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-                player:setVar("SEALED_DOORS", 0);
-                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
-            else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+        if player:getVar("Campaign_Nation") == 0 then
+            if npcUtil.completeQuest(player, CRYSTAL_WAR, SNAKE_ON_THE_PLAINS,
+                {item=15754, keyItem=dsp.ki.BRONZE_RIBBON_OF_SERVICE, title=dsp.title.COBRA_UNIT_MERCENARY, var={"GREEN_R_LETTER_USED", "SEALED_DOORS"}}
+            ) then
+                player:setCampaignAllegiance(3)
             end
         else
+            npcUtil.completeQuest(player, CRYSTAL_WAR, SNAKE_ON_THE_PLAINS, {title=dsp.title.COBRA_UNIT_MERCENARY, var={"GREEN_R_LETTER_USED", "SEALED_DOORS"}})
             player:setCampaignAllegiance(3);
-            player:setVar("GREEN_R_LETTER_USED",0);
-            player:addTitle(dsp.title.COBRA_UNIT_MERCENARY);
-            player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
-            player:setVar("SEALED_DOORS", 0);
         end
     end
 end;
