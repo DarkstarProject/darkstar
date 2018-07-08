@@ -36357,20 +36357,20 @@ INSERT INTO `item_mods` VALUES (27086,31,21);     -- Magic Evasion +21
 INSERT INTO `item_mods` VALUES (27086,68,11);     -- Evasion +11
 INSERT INTO `item_mods` VALUES (27086,73,8);      -- StoreTP +8
 INSERT INTO `item_mods` VALUES (27086,384,40);    -- Haste +4%
-INSERT INTO `item_mods` VALUES (27086,1,89);      -- Karagoz Guanti +1: DEF 89
-INSERT INTO `item_mods` VALUES (27086,2,25);      -- HP +25
-INSERT INTO `item_mods` VALUES (27086,8,14);      -- STR +14
-INSERT INTO `item_mods` VALUES (27086,9,37);      -- DEX +37
-INSERT INTO `item_mods` VALUES (27086,10,32);     -- VIT +32
-INSERT INTO `item_mods` VALUES (27086,11,9);      -- AGI +9
-INSERT INTO `item_mods` VALUES (27086,12,7);      -- INT +7
-INSERT INTO `item_mods` VALUES (27086,13,28);     -- MND +28
-INSERT INTO `item_mods` VALUES (27086,14,12);     -- CHR +12
-INSERT INTO `item_mods` VALUES (27086,29,1);      -- "Magic Def. Bonus" +1
-INSERT INTO `item_mods` VALUES (27086,31,32);     -- Magic Evasion +32
-INSERT INTO `item_mods` VALUES (27086,68,24);     -- Evasion +24
-INSERT INTO `item_mods` VALUES (27086,73,9);      -- StoreTP +9
-INSERT INTO `item_mods` VALUES (27086,384,51);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (27087,1,89);      -- Karagoz Guanti +1: DEF 89
+INSERT INTO `item_mods` VALUES (27087,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (27087,8,14);      -- STR +14
+INSERT INTO `item_mods` VALUES (27087,9,37);      -- DEX +37
+INSERT INTO `item_mods` VALUES (27087,10,32);     -- VIT +32
+INSERT INTO `item_mods` VALUES (27087,11,9);      -- AGI +9
+INSERT INTO `item_mods` VALUES (27087,12,7);      -- INT +7
+INSERT INTO `item_mods` VALUES (27087,13,28);     -- MND +28
+INSERT INTO `item_mods` VALUES (27087,14,12);     -- CHR +12
+INSERT INTO `item_mods` VALUES (27087,29,1);      -- "Magic Def. Bonus" +1
+INSERT INTO `item_mods` VALUES (27087,31,32);     -- Magic Evasion +32
+INSERT INTO `item_mods` VALUES (27087,68,24);     -- Evasion +24
+INSERT INTO `item_mods` VALUES (27087,73,9);      -- StoreTP +9
+INSERT INTO `item_mods` VALUES (27087,384,51);    -- Haste +5%
 INSERT INTO `item_mods` VALUES (27088,1,64);
 INSERT INTO `item_mods` VALUES (27088,2,12);
 INSERT INTO `item_mods` VALUES (27088,8,9);
