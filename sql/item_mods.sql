@@ -37800,21 +37800,21 @@ INSERT INTO `item_mods` VALUES (27271,31,47);     -- Magic Evasion +47
 INSERT INTO `item_mods` VALUES (27271,68,16);     -- Evasion +16
 INSERT INTO `item_mods` VALUES (27271,173,10);    -- Martial Arts +10
 INSERT INTO `item_mods` VALUES (27271,384,40);    -- Haste +6%
-INSERT INTO `item_mods` VALUES (27271,1,115);     -- Karagoz Pantaloni +1: DEF 115
-INSERT INTO `item_mods` VALUES (27271,2,47);      -- HP +47
-INSERT INTO `item_mods` VALUES (27271,8,35);      -- STR +35
-INSERT INTO `item_mods` VALUES (27271,10,14);     -- VIT +14
-INSERT INTO `item_mods` VALUES (27271,11,21);     -- AGI +21
-INSERT INTO `item_mods` VALUES (27271,12,26);     -- INT +26
-INSERT INTO `item_mods` VALUES (27271,13,20);     -- MND +20
-INSERT INTO `item_mods` VALUES (27271,14,7);      -- CHR +7
-INSERT INTO `item_mods` VALUES (27271,23,19);     -- Attack +19
-INSERT INTO `item_mods` VALUES (27271,25,19);     -- Accuracy +19
-INSERT INTO `item_mods` VALUES (27271,29,4);      -- "Magic Def. Bonus" +4
-INSERT INTO `item_mods` VALUES (27271,31,69);     -- Magic Evasion +69
-INSERT INTO `item_mods` VALUES (27271,68,36);     -- Evasion +36
-INSERT INTO `item_mods` VALUES (27271,173,11);    -- Martial Arts +11
-INSERT INTO `item_mods` VALUES (27271,384,61);    -- Haste +6%
+INSERT INTO `item_mods` VALUES (27272,1,115);     -- Karagoz Pantaloni +1: DEF 115
+INSERT INTO `item_mods` VALUES (27272,2,47);      -- HP +47
+INSERT INTO `item_mods` VALUES (27272,8,35);      -- STR +35
+INSERT INTO `item_mods` VALUES (27272,10,14);     -- VIT +14
+INSERT INTO `item_mods` VALUES (27272,11,21);     -- AGI +21
+INSERT INTO `item_mods` VALUES (27272,12,26);     -- INT +26
+INSERT INTO `item_mods` VALUES (27272,13,20);     -- MND +20
+INSERT INTO `item_mods` VALUES (27272,14,7);      -- CHR +7
+INSERT INTO `item_mods` VALUES (27272,23,19);     -- Attack +19
+INSERT INTO `item_mods` VALUES (27272,25,19);     -- Accuracy +19
+INSERT INTO `item_mods` VALUES (27272,29,4);      -- "Magic Def. Bonus" +4
+INSERT INTO `item_mods` VALUES (27272,31,69);     -- Magic Evasion +69
+INSERT INTO `item_mods` VALUES (27272,68,36);     -- Evasion +36
+INSERT INTO `item_mods` VALUES (27272,173,11);    -- Martial Arts +11
+INSERT INTO `item_mods` VALUES (27272,384,61);    -- Haste +6%
 INSERT INTO `item_mods` VALUES (27273,1,81);
 INSERT INTO `item_mods` VALUES (27273,2,23);
 INSERT INTO `item_mods` VALUES (27273,8,18);
@@ -39252,7 +39252,6 @@ INSERT INTO `item_mods` VALUES (27445,29,1);      -- "Magic Def. Bonus" +1
 INSERT INTO `item_mods` VALUES (27445,31,47);     -- Magic Evasion +47
 INSERT INTO `item_mods` VALUES (27445,68,33);     -- Evasion +33
 INSERT INTO `item_mods` VALUES (27445,384,40);    -- Haste +4%
---INSERT INTO `item_mods` VALUES (27445,NOT_IMPLEMENTED,25);    -- "Tactical Switch" +25
 INSERT INTO `item_mods` VALUES (27446,1,70);      -- Karagoz Scarpe +1: DEF 70
 INSERT INTO `item_mods` VALUES (27446,2,13);      -- HP +13
 INSERT INTO `item_mods` VALUES (27446,8,18);      -- STR +18
@@ -39267,7 +39266,6 @@ INSERT INTO `item_mods` VALUES (27446,29,3);      -- "Magic Def. Bonus" +3
 INSERT INTO `item_mods` VALUES (27446,31,69);     -- Magic Evasion +69
 INSERT INTO `item_mods` VALUES (27446,68,72);     -- Evasion +72
 INSERT INTO `item_mods` VALUES (27446,384,40);    -- Haste +4%
---INSERT INTO `item_mods` VALUES (27446,NOT_IMPLEMENTED,30);    -- "Tactical Switch" +30
 INSERT INTO `item_mods` VALUES (27447,1,50);
 INSERT INTO `item_mods` VALUES (27447,2,7);
 INSERT INTO `item_mods` VALUES (27447,8,8);

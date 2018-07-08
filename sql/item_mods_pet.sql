@@ -247,16 +247,16 @@ INSERT INTO `item_mods_pet` VALUES (26658,369,2,3);     -- Pitre Taj Automaton: 
 INSERT INTO `item_mods_pet` VALUES (26658,370,3,3);     -- Automaton: Regen +3
 INSERT INTO `item_mods_pet` VALUES (26659,369,3,3);     -- Pitre Taj +1 Automaton: Refresh +3
 INSERT INTO `item_mods_pet` VALUES (26659,370,3,3);     -- Automaton: Regen +3
-INSERT INTO `item_mods_pet` VALUES (26659,25,18,3);     -- Pitre Tobe Automaton: Accuracy +18
-INSERT INTO `item_mods_pet` VALUES (26659,26,18,3);     -- Automaton: Ranged Accuracy +18
-INSERT INTO `item_mods_pet` VALUES (26659,73,12,3);     -- Automaton: Store TP +12
-INSERT INTO `item_mods_pet` VALUES (26659,25,21,3);     -- Pitre Tobe +1 Automaton: Accuracy +21
-INSERT INTO `item_mods_pet` VALUES (26659,26,21,3);     -- Automaton: Ranged Accuracy +21
-INSERT INTO `item_mods_pet` VALUES (26659,73,13,3);     -- Automaton: Store TP +13
 INSERT INTO `item_mods_pet` VALUES (26774,345,525,3);   -- Karagoz Capello Automaton: TP Bonus +525
 INSERT INTO `item_mods_pet` VALUES (26775,345,550,3);   -- Karagoz Capello +1 Automaton: TP Bonus +550
 INSERT INTO `item_mods_pet` VALUES (26828,165,8,1);     -- Glyphic Doublet Avatar: Critical hit rate +8%
 INSERT INTO `item_mods_pet` VALUES (26829,165,12,1);    -- Glyphic Doublet +1 Avatar: Critical hit rate +12%
+INSERT INTO `item_mods_pet` VALUES (26834,25,18,3);     -- Pitre Tobe Automaton: Accuracy +18
+INSERT INTO `item_mods_pet` VALUES (26834,26,18,3);     -- Automaton: Ranged Accuracy +18
+INSERT INTO `item_mods_pet` VALUES (26834,73,12,3);     -- Automaton: Store TP +12
+INSERT INTO `item_mods_pet` VALUES (26835,25,21,3);     -- Pitre Tobe +1 Automaton: Accuracy +21
+INSERT INTO `item_mods_pet` VALUES (26835,26,21,3);     -- Automaton: Ranged Accuracy +21
+INSERT INTO `item_mods_pet` VALUES (26835,73,13,3);     -- Automaton: Store TP +13
 INSERT INTO `item_mods_pet` VALUES (26888,27,14,1);     -- Shomonjijoe +1 Avatar: Enmity +14
 INSERT INTO `item_mods_pet` VALUES (27004,25,20,1);     -- Glyphic Bracers Avatar: Accuracy +20
 INSERT INTO `item_mods_pet` VALUES (27004,384,20,1);    -- Avatar: Haste +2%
@@ -279,8 +279,8 @@ INSERT INTO `item_mods_pet` VALUES (27180,30,10,1);     -- Glyphic Spats Avatar:
 INSERT INTO `item_mods_pet` VALUES (27181,30,13,1);     -- Glyphic Spats +1 Avatar: Magic Accuracy+13
 INSERT INTO `item_mods_pet` VALUES (27186,30,15,3);     -- Pitre Churidars Automaton: Magic Accuracy +15
 INSERT INTO `item_mods_pet` VALUES (27186,170,7,3);     -- Automaton: Fast Cast +7%
-INSERT INTO `item_mods_pet` VALUES (27186,30,18,3);     -- Pitre Churidars +1 Automaton: Magic Accuracy +18
-INSERT INTO `item_mods_pet` VALUES (27186,170,8,3);     -- Automaton: Fast Cast +8%
+INSERT INTO `item_mods_pet` VALUES (27187,30,18,3);     -- Pitre Churidars +1 Automaton: Magic Accuracy +18
+INSERT INTO `item_mods_pet` VALUES (27187,170,8,3);     -- Automaton: Fast Cast +8%
 INSERT INTO `item_mods_pet` VALUES (27265,345,550,1);   -- Beckoner's Spats Avatar: TP Bonus +550
 INSERT INTO `item_mods_pet` VALUES (27266,345,600,1);   -- Beck. Spats +1 Avatar: TP Bonus +600
 INSERT INTO `item_mods_pet` VALUES (27356,23,28,1);     -- Glyphic Pigaches Avatar: Attack+25
