@@ -18,13 +18,13 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x119D,10,        -- Distilled Water
-     0x1036,2387,        -- Eye Drops
-     0x1034,290,        -- Antidote
-     0x1037,736,        -- Echo Drops
-     0x1010,837,        -- Potion
-     0x1020,4445,        -- Ether
-     0x103B,22400}        -- Remedy
+        4509,10,        -- Distilled Water
+     4150,2387,        -- Eye Drops
+     4148,290,        -- Antidote
+     4151,736,        -- Echo Drops
+     4112,837,        -- Potion
+     4128,4445,        -- Ether
+     4155,22400}        -- Remedy
 
     dsp.shop.general(player, stock);
 end;

@@ -30,18 +30,18 @@ function onTrigger(player,npc)
 
     player:showText(npc,AVELINE_SHOP_DIALOG);
 
-    local stock = {0x0271,79,1,    --Apple Vinegar
-             0x026f,117,1,    --Bay Leaves
-             0x111e,28,1,    --Frost Turnip
-             0x1128,28,1,    --Saruta Orange
+    local stock = {625,79,1,    --Apple Vinegar
+             623,117,1,    --Bay Leaves
+             4382,28,1,    --Frost Turnip
+             4392,28,1,    --Saruta Orange
 
-             0x110b,39,2,    --Faerie Apple
-             0x110E,21,2,    --La Theine Cabbage
+             4363,39,2,    --Faerie Apple
+             4366,21,2,    --La Theine Cabbage
 
-             0x0279,14,3,    --Olive Oil
-             0x027e,166,3,    --Sage
-             0x1125,28,3,    --San d'Orian Carrot
-             0x114f,68,3}    --San d'Orian Grape
+             633,14,3,    --Olive Oil
+             638,166,3,    --Sage
+             4389,28,3,    --San d'Orian Carrot
+             4431,68,3}    --San d'Orian Grape
 
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 

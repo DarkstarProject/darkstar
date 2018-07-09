@@ -19,8 +19,8 @@ function onTrigger(player,npc)
 
 stock =
 {
-    0x0200,8000, -- Linkshell
-    0x3f9d,375   -- Pendant Compass
+    512,8000, -- Linkshell
+    16285,375   -- Pendant Compass
 }
     dsp.shop.general(player, stock);
 end;

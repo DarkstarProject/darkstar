@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x000c  0x000d  0x0009  0x000a  0x0014  217  0x009f  10021  10022
+-- 12  13  9  10  20  217  159  10021  10022
 function onEventUpdate(player,csid,option)
 end;
 

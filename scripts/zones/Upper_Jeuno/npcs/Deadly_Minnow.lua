@@ -24,16 +24,16 @@ function onTrigger(player,npc)
         player:showText(npc,DEADLYMINNOW_SHOP_DIALOG);
 
         local stock =
-        {0x309A,13179,    --Studded Bandana
-                 0x3089,22800,    --Silver Mask
-                 0x308A,47025,    --Banded Helm
-                 0x311A,20976,    --Studded Vest
-                 0x3109,35200,    --Silver Mail
-                 0x310A,66792,    --Banded Mail
-                 0x319A,11012,    --Studded Gloves
-                 0x3189,18800,    --Silver Mittens
-                 0x3180,23846,    --Gauntlets
-                 0x318A,35673}    --Mufflers
+        {12442,13179,    --Studded Bandana
+                 12425,22800,    --Silver Mask
+                 12426,47025,    --Banded Helm
+                 12570,20976,    --Studded Vest
+                 12553,35200,    --Silver Mail
+                 12554,66792,    --Banded Mail
+                 12698,11012,    --Studded Gloves
+                 12681,18800,    --Silver Mittens
+                 12672,23846,    --Gauntlets
+                 12682,35673}    --Mufflers
 
 
         dsp.shop.general(player, stock);

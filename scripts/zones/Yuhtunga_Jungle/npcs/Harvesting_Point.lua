@@ -9,7 +9,7 @@ require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,0x00CE);
+    startHarvesting(player,player:getZoneID(),npc,trade,206);
 end;
 
 function onTrigger(player,npc)

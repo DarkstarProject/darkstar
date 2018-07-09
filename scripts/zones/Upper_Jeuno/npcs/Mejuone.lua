@@ -18,9 +18,9 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x11C1,62,        -- Gysahl Greens
-     0x0348,7,        -- Chocobo Feather
-     0x439B,9}        -- Dart
+        4545,62,        -- Gysahl Greens
+     840,7,        -- Chocobo Feather
+     17307,9}        -- Dart
 
     dsp.shop.general(player, stock);
 end;

@@ -17,16 +17,16 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x3090, 1450,    -- Faceguard
-        0x30B0, 1936,    -- Headgear
-        0x3110, 2230,    -- Scale Mail
-        0x3130, 2745,    -- Doublet
-        0x3190, 1190,    -- Scale Fng. Gnt.
-        0x31B0, 1515,    -- Gloves
-        0x3210, 1790,    -- Scale Cuisses
-        0x3230, 2110,    -- Brais
-        0x3290, 1085,    -- Scale Greaves
-        0x32B0, 1410,    -- Gaiters
+        12432, 1450,    -- Faceguard
+        12464, 1936,    -- Headgear
+        12560, 2230,    -- Scale Mail
+        12592, 2745,    -- Doublet
+        12688, 1190,    -- Scale Fng. Gnt.
+        12720, 1515,    -- Gloves
+        12816, 1790,    -- Scale Cuisses
+        12848, 2110,    -- Brais
+        12944, 1085,    -- Scale Greaves
+        12976, 1410,    -- Gaiters
     };
 
     dsp.shop.general(player, stock);

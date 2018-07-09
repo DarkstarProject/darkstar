@@ -12,7 +12,7 @@ require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
 local guardnation = dsp.nation.BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;      -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = dsp.region.LITELOR;
-local csid        = 0x7ff9;
+local csid        = 32761;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);

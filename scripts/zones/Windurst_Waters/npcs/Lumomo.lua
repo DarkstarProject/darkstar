@@ -4,7 +4,7 @@
 -- Type: Standard NPC
 --  @zone 238
 -- !pos -55.770 -5.499 18.914
---  0x027e  818 820    822  823
+--  638  818 820    822  823
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;

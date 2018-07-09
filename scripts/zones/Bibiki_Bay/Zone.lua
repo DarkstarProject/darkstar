@@ -65,7 +65,7 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if ((prevZone == 3) and (bibiki == 3)) then
-            cs = 0x000B;
+            cs = 11;
         elseif ((prevZone ==3) and (bibiki == 4)) then
             cs = 10;
         else

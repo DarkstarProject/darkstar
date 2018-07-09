@@ -8,6 +8,7 @@
 package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -45,8 +46,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 256) then
         player:addQuest(BASTOK,THE_BARE_BONES);
     elseif (csid == 258) then
-        player:addKeyItem(0x188);
-        player:messageSpecial(KEYITEM_OBTAINED,0x188);
+        player:addKeyItem(dsp.ki.MAP_OF_THE_DANGRUF_WADI);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_DANGRUF_WADI);
         player:addFame(BASTOK,60);
     end
 end;

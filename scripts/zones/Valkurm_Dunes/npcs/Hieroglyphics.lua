@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 16 and option == 0) then
         player:setVar("enteringDynamis",1);
-        player:setPos(100,-8,131,47,0x27);
+        player:setPos(100,-8,131,47,39);
     end
 
 end;

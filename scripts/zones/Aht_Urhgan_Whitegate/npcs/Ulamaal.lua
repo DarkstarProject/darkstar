@@ -34,7 +34,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if (csid == (0x028)) then
+    if (csid == (40)) then
        player:setVar("deliveringTheGoodsCS",2);
     elseif (csid == 42 and option == 0) then
         player:addQuest(AHT_URHGAN,VANISHING_ACT);

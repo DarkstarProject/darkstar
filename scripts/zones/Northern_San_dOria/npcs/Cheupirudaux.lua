@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     player:startEvent(621,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 621  622  0x02f7  0x0010  0x0000
+-- 621  622  759  16  0
 function onEventUpdate(player,csid,option)
 end;
 

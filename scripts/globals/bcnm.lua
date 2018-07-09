@@ -142,7 +142,7 @@ function TradeBCNM(player, zone, trade, npc)
             npc:messageBasic(246, 0, 0) -- this wont look right in other languages!
             return true
         end
-        player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0)
+        player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
         return true
     end
 end
@@ -153,14 +153,14 @@ function EventTriggerBCNM(player, npc)
 
     if (player:hasStatusEffect(dsp.effect.BATTLEFIELD)) then
         if (player:isInBcnm() == 1) then
-            player:startEvent(0x7d03) -- Run Away or Stay menu
+            player:startEvent(32003) -- Run Away or Stay menu
         else -- You're not in the BCNM but you have the Battlefield dsp.effect. Think: non-trader in a party
             status = player:getStatusEffect(dsp.effect.BATTLEFIELD)
             playerbcnmid = status:getPower()
             playermask = GetBattleBitmask(playerbcnmid, player:getZoneID(), 1)
             if (playermask~=-1) then
                 -- This gives players who did not trade to go in the option of entering the fight
-                player:startEvent(0x7d00, 0, 0, 0, playermask, 0, 0, 0, 0)
+                player:startEvent(32000, 0, 0, 0, playermask, 0, 0, 0, 0)
             else
                 player:messageBasic(94, 0, 0)
             end
@@ -182,14 +182,14 @@ function EventUpdateBCNM(player, csid, option, entrance)
 
     print("UPDATE csid "..csid.." option "..option)
     -- seen: option 2, 3, 0 in that order
-    if (csid == 0x7d03 and option == 2) then -- leaving a BCNM the player is currently in.
+    if (csid == 32003 and option == 2) then -- leaving a BCNM the player is currently in.
         player:updateEvent(3)
         return true
-    elseif (csid == 0x7d03 and option == 3) then -- leaving a BCNM the player is currently in.
+    elseif (csid == 32003 and option == 3) then -- leaving a BCNM the player is currently in.
         player:updateEvent(0)
         return true
     end
-    if (option == 255 and csid == 0x7d00) then -- Clicked yes, try to register bcnmid
+    if (option == 255 and csid == 32000) then -- Clicked yes, try to register bcnmid
         if (player:hasStatusEffect(dsp.effect.BATTLEFIELD)) then
             -- You're entering a bcnm but you already had the battlefield effect, so you want to go to the
             -- instance that your battlefield effect represents.
@@ -214,7 +214,7 @@ function EventUpdateBCNM(player, csid, option, entrance)
             player:setVar("bcnm_instanceid", 255)
             player:setVar("bcnm_instanceid_tick", 0)
         end
-    elseif (option == 0 and csid == 0x7d00) then -- Requesting an Instance
+    elseif (option == 0 and csid == 32000) then -- Requesting an Instance
         -- Increment the instance ticker.
         -- The client will send a total of THREE EventUpdate packets for each one of the free instances.
         -- If the first instance is free, it should respond to the first packet
@@ -298,7 +298,7 @@ function EventFinishBCNM(player, csid, option)
             player:createWornItem(item)
         end
 
-        if csid == 0x7d03 and option == 4 then
+        if csid == 32003 and option == 4 then
             if player:getBattlefield() then
                 player:bcnmLeave(1);
             end
@@ -344,7 +344,7 @@ function CheckMaatFights(player, zone, trade, npc)
             if (maatList[nb] == zone) then
                 for nbi = 1, #maatList[nb + 1], 4 do
                     if (itemid == maatList[nb + 1][nbi] and job == maatList[nb + 1][nbi + 1]) then
-                        player:startEvent(0x7d00, 0, 0, 0, maatList[nb + 1][nbi + 2], 0, 0, 0, 0)
+                        player:startEvent(32000, 0, 0, 0, maatList[nb + 1][nbi + 2], 0, 0, 0, 0)
                         player:setVar("trade_bcnmid", maatList[nb + 1][nbi + 3])
                         player:setVar("trade_itemid", maatList[nb + 1][nbi])
                         break
@@ -603,7 +603,7 @@ function checkNonTradeBCNM(player, npc, mode)
     end;
 
     if mode == 2 then
-        player:startEvent(0x7d00, 0, 0, 0, mask, 0, 0, 0, 0);
+        player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0);
     end
     return mask;
 end

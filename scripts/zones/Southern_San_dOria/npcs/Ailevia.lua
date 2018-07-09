@@ -16,7 +16,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- Adventurer coupon
-    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
+    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
         player:startEvent(655);
     end
     -- "Flyers for Regine" conditional script

@@ -31,7 +31,7 @@ function onZoneIn( player, prevZone)
 
     if (player:hasKeyItem( dsp.ki.VIAL_OF_SHROUDED_SAND) == false and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getVar( "Dynamis_Status") == 0) then
         player:setVar( "Dynamis_Status", 1);
-        cs = 0x000D;
+        cs = 13;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 9;
     elseif (UnbridledPassionCS == 3) then

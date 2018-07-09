@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     else
         -- Standard dialogue
         player:startEvent(501);
-        -- Volgoi also has 0x0243 associated with him, but it's the exact same dialogue
+        -- Volgoi also has 579 associated with him, but it's the exact same dialogue
     end
 end;
 

@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             end
         end
     else
-        startExcavation(player,player:getZoneID(),npc,trade,0x003C);
+        startExcavation(player,player:getZoneID(),npc,trade,60);
     end
 
 end;

@@ -18,16 +18,16 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x1118,110,        -- Meat Jerky
-     0x03a8,14,        -- Rock Salt
-     0x0263,36,        -- Rye Flour
-     0x119d,10,        -- Distilled Water
-     0x0271,91,        -- Apple Vinegar    (COP 4+ only)
-     0x110c,110,        -- Black Bread        (COP 4+ only)
-     0x0262,55,        -- San d'Orian Flour    (COP 4+ only)
-     0x1125,29,        -- San d'Orian Carrot    (COP 4+ only)
-     0x0275,44,        -- Millioncorn        (COP 4+ only)
-     0x05f3,290}        -- Apple Mint        (COP 4+ only)
+        4376,110,        -- Meat Jerky
+     936,14,        -- Rock Salt
+     611,36,        -- Rye Flour
+     4509,10,        -- Distilled Water
+     625,91,        -- Apple Vinegar    (COP 4+ only)
+     4364,110,        -- Black Bread        (COP 4+ only)
+     610,55,        -- San d'Orian Flour    (COP 4+ only)
+     4389,29,        -- San d'Orian Carrot    (COP 4+ only)
+     629,44,        -- Millioncorn        (COP 4+ only)
+     1523,290}        -- Apple Mint        (COP 4+ only)
 
     dsp.shop.general(player, stock);
 end;
