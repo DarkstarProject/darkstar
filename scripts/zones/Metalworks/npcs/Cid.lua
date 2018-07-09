@@ -19,6 +19,14 @@ require("scripts/zones/Metalworks/TextIDs")
 
 local wsQuest = dsp.wsquest.detonator
 
+local function checkThreePaths(player)
+    if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 and player:getVar("COP_Louverance_s_Path") == 10 then
+        player:completeMission(COP, THREE_PATHS)
+        player:addMission(COP, FOR_WHOM_THE_VERSE_IS_SUNG)
+        player:setVar("PromathiaStatus", 0)
+    end
+end
+
 function onTrade(player,npc,trade)
     local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)
 
@@ -154,10 +162,13 @@ function onEventFinish(player,csid,option)
         player:setVar("Promathia_CID_timer",VanadielDayOfTheYear())
     elseif (csid == 855) then
         player:setVar("COP_Ulmia_s_Path",8)
+        checkThreePaths(player)
     elseif (csid == 854) then
         player:setVar("COP_Tenzen_s_Path",11)
+        checkThreePaths(player)
     elseif (csid == 853) then
         player:setVar("COP_Louverance_s_Path",10)
+        checkThreePaths(player)
     elseif (csid == 852) then
         player:setVar("COP_Louverance_s_Path",7)
     elseif (csid == 850) then
@@ -219,13 +230,6 @@ function onEventFinish(player,csid,option)
             player:completeQuest(BASTOK,CID_S_SECRET)
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570)
-        end
-    -- complete chapter "tree path"
-    elseif (csid == 853 or csid == 854 or csid == 855) then
-       if (player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 and player:getVar("COP_Louverance_s_Path") == 10) then
-            player:completeMission(COP,THREE_PATHS)
-            player:addMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG)
-            player:setVar("PromathiaStatus",0)
         end
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
