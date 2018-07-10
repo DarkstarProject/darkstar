@@ -9,7 +9,7 @@ require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x00D3);
+    startMining(player,player:getZoneID(),npc,trade,211);
 end;
 
 function onTrigger(player,npc)

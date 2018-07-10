@@ -21,7 +21,7 @@ function onZoneIn(player,prevZone)
             cs = 281;
             player:setPos(-13,2,-62,194);
         elseif (prevZone == 58) then
-            cs = 0x00C9;
+            cs = 201;
             player:setPos(11,2,-102,128);
         else
             player:setPos(40.658,-7.527,-24.001,128);

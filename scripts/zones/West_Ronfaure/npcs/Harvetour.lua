@@ -11,7 +11,7 @@ require("scripts/globals/conquest");
 require("scripts/zones/West_Ronfaure/TextIDs");
 
 local region    = dsp.region.RONFAURE;
-local csid        = 0x7ff4;
+local csid        = 32756;
 
 function onTrade(player,npc,trade)
 end;

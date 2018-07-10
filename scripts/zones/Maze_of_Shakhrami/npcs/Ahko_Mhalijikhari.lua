@@ -3,7 +3,7 @@
 --  NPC: Ahko Mhalijikhari
 -- Type: Quest NPC
 -- !pos -344.617 -12.226 -166.233 198
---  61  62  0x003f  64  65
+--  61  62  63  64  65
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------

@@ -53,7 +53,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 27  0x00f0  242  243  245  246  247  262  263  264  265  0x0105
+-- 27  240  242  243  245  246  247  262  263  264  265  261
 function onEventUpdate(player,csid,option)
 end;
 

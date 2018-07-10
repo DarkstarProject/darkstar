@@ -9,7 +9,7 @@ require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,0x0046);
+    startHarvesting(player,player:getZoneID(),npc,trade,70);
 end;
 
 function onTrigger(player,npc)

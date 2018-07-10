@@ -17,15 +17,15 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x30B9, 1904,    -- Poet's Circlet
-        0x3140, 1288,    -- Tunic
-        0x3139, 2838,    -- Linen Robe
-        0x31C0, 602,     -- Mitts
-        0x31B9, 1605,    -- Linen Cuffs
-        0x3240, 860,     -- Slacks
-        0x3239, 2318,    -- Linen Slops
-        0x32C0, 556,     -- Solea
-        0x32B9, 1495,    -- Holly Clogs
+        12473, 1904,    -- Poet's Circlet
+        12608, 1288,    -- Tunic
+        12601, 2838,    -- Linen Robe
+        12736, 602,     -- Mitts
+        12729, 1605,    -- Linen Cuffs
+        12864, 860,     -- Slacks
+        12857, 2318,    -- Linen Slops
+        12992, 556,     -- Solea
+        12985, 1495,    -- Holly Clogs
     };
 
     dsp.shop.general(player, stock);

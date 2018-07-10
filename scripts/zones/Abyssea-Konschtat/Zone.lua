@@ -4,10 +4,10 @@
 --
 -----------------------------------
 -- Research
--- EventID 0x0400-0x0405 aura of boundless rage
--- EventID 0x0800-0x0883 The treasure chest will disappear is 180 seconds menu.
--- EventID 0x0884 Teleport?
--- EventID 0x0885 DEBUG Menu
+-- EventID 1024-1029 aura of boundless rage
+-- EventID 2048-2179 The treasure chest will disappear is 180 seconds menu.
+-- EventID 2180 Teleport?
+-- EventID 2181 DEBUG Menu
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------

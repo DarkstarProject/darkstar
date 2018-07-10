@@ -30,22 +30,22 @@ function onTrigger(player,npc)
 
     player:showText(npc,ASH_THADI_ENE_SHOP_DIALOG);
 
-    local stock = {0x4047,4309,1,        --Baselard
-             0x4094,16934,1,    --Gladius
-             0x40a1,21067,1,    --Broadsword
-             0x40c0,35769,1,    --Hunting Sword
-             0x408c,13406,1,    --Fleuret
+    local stock = {16455,4309,1,        --Baselard
+             16532,16934,1,    --Gladius
+             16545,21067,1,    --Broadsword
+             16576,35769,1,    --Hunting Sword
+             16524,13406,1,    --Fleuret
 
-             0x4001,129,2,        --Cesti
-             0x4042,1827,2,        --Dagger
-             0x4098,7128,2,        --Iron Sword
-             0x40b6,8294,2,        --Longsword
+             16385,129,2,        --Cesti
+             16450,1827,2,        --Dagger
+             16536,7128,2,        --Iron Sword
+             16566,8294,2,        --Longsword
 
-             0x4040,140,3,        --Bronze Dagger
-             0x4041,837,3,        --Brass Dagger
-             0x4093,3523,3,        --Brass Xiphos
-             0x4097,241,3,        --Bronze Sword
-             0x40b5,1674,3}        --Spatha
+             16448,140,3,        --Bronze Dagger
+             16449,837,3,        --Brass Dagger
+             16531,3523,3,        --Brass Xiphos
+             16535,241,3,        --Bronze Sword
+             16565,1674,3}        --Spatha
 
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 

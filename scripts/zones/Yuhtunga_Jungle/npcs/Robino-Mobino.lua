@@ -10,7 +10,7 @@ require("scripts/globals/conquest");
 require("scripts/zones/Yuhtunga_Jungle/TextIDs");
 
 local region     = dsp.region.ELSHIMOLOWLANDS;
-local csid    = 0x7ff4;
+local csid    = 32756;
 
 function onTrade(player,npc,trade)
 end;

@@ -18,10 +18,10 @@ function onTrigger(player,npc)
     if ((X >= 1.51 and X <= 9.49) and (Z >= 273.1 and Z <= 281)) then
         if player:hasKeyItem(267) then
             player:startEvent(401);
-        else player:startEvent (0x0108);
+        else player:startEvent (264);
         end
     else
-        player:startEvent (0x018b);
+        player:startEvent (395);
     end
     return 1
 end;

@@ -9,7 +9,7 @@ require("scripts/zones/Yughott_Grotto/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x0064);
+    startMining(player,player:getZoneID(),npc,trade,100);
 end;
 
 function onTrigger(player,npc)

@@ -21,12 +21,12 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x03b4,60,    --Carnation
-     0x027c,119,    --Chamomile
-     0x03be,120,    --Marguerite
-     0x03b5,96,    --Rain Lily
-     0x03ad,80,    --Red Rose
-     0x03b7,110}    --Wijnruit
+        948,60,    --Carnation
+     636,119,    --Chamomile
+     958,120,    --Marguerite
+     949,96,    --Rain Lily
+     941,80,    --Red Rose
+     951,110}    --Wijnruit
 
 --     Place for difficult script
 

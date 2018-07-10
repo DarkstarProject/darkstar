@@ -30,21 +30,21 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x1152,4500,1,    --Mushroom Risotto
-        0x1143,6300,1,    --Mushroom Soup
-        0x118e,2494,1,    --Sah d'Orian Tea
+        4434,4500,1,    --Mushroom Risotto
+        4419,6300,1,    --Mushroom Soup
+        4494,2494,1,    --Sah d'Orian Tea
 
-        0x1104,180,2,    --White Bread
-        0x11b5,1080,2,    --Delicious Puls
-        0x11d0,1355,2,    --Vegetable Soup
-        0x11dc,1633,2,    --Beaugreen Sautee
-        0x1159,837,2,    --Grape Juice
+        4356,180,2,    --White Bread
+        4533,1080,2,    --Delicious Puls
+        4560,1355,2,    --Vegetable Soup
+        4572,1633,2,    --Beaugreen Sautee
+        4441,837,2,    --Grape Juice
 
-        0x110c,108,3,    --Black Bread
-        0x118c,540,3,    --Puls
-        0x1167,180,3,    --Pebble Soup
-        0x119d,10,3,    --Distilled Water
-        0x15a5,1260,3    --Royal Grape
+        4364,108,3,    --Black Bread
+        4492,540,3,    --Puls
+        4455,180,3,    --Pebble Soup
+        4509,10,3,    --Distilled Water
+        5541,1260,3    --Royal Grape
     }
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA);
 

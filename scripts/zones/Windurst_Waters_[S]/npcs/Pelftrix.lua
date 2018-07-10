@@ -18,10 +18,10 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x1014,4500,        -- Hi-Potion
-        0x1024,28000,        -- Hi-Ether
-        0x03FC,300,            -- Sickle
-        0x03FD,500}            -- Hatchet
+        4116,4500,        -- Hi-Potion
+        4132,28000,        -- Hi-Ether
+        1020,300,            -- Sickle
+        1021,500}            -- Hatchet
 
     dsp.shop.general(player, stock);
 end;

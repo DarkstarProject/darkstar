@@ -10,7 +10,7 @@ require("scripts/globals/conquest");
 require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
 
 local region     = dsp.region.KUZOTZ;
-local csid    = 0x7ff4;
+local csid    = 32756;
 
 function onTrade(player,npc,trade)
 end;

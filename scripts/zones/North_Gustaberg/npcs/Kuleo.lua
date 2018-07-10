@@ -11,7 +11,7 @@ require("scripts/globals/conquest");
 require("scripts/zones/North_Gustaberg/TextIDs");
 
 local region     = dsp.region.GUSTABERG;
-local csid    = 0x7ff4;
+local csid    = 32756;
 
 function onTrade(player,npc,trade)
 end;

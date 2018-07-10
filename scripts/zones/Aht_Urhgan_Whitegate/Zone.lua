@@ -27,11 +27,11 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 46) then
-            cs = 0x00c9;
+            cs = 201;
         elseif (prevZone == 59) then
-            cs = 0x00cc;
+            cs = 204;
         elseif (prevZone == 58) then
-            cs = 0x00cc;
+            cs = 204;
         else
             -- MOG HOUSE EXIT
             local position = math.random(1,5) - 83;

@@ -18,11 +18,11 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x426d,108,        -- Lufaise Fly
-     0x43e7,2640,        -- Clothespole
-     0x02b0,200,        -- Arrowwood Log
-     0x02b2,7800,        -- Elm Log
-     0x0b37,10000}        -- Safehold Waystone
+        17005,108,        -- Lufaise Fly
+     17383,2640,        -- Clothespole
+     688,200,        -- Arrowwood Log
+     690,7800,        -- Elm Log
+     2871,10000}        -- Safehold Waystone
 
     dsp.shop.general(player, stock);
 end;

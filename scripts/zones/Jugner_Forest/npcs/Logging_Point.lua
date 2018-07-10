@@ -9,7 +9,7 @@ require("scripts/zones/Jugner_Forest/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x0014);
+    startLogging(player,player:getZoneID(),npc,trade,20);
 end;
 
 function onTrigger(player,npc)

@@ -41,7 +41,7 @@ function onEventFinish(player,csid,option)
 
             player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
 
-            player:setPos(340,24,608,0x70,0x6E);
+            player:setPos(340,24,608,112,110);
         end
     end
 end;

@@ -160,14 +160,14 @@ end
 ----------------------------------------------------------------------
 local function storeItems(player, storableItemIds, slipId, e)
     if (#storableItemIds > 0) then
-        local param0 = 0x0;
-        local param1 = 0x0;
+        local param0 = 0;
+        local param1 = 0;
         if (#storableItemIds == 1) then
             param0 = storableItemIds[1];
-            param1 = 0x00;
+            param1 = 0;
         else
             param0 = #storableItemIds;
-            param1 = 0x01;
+            param1 = 1;
         end
         
         -- idk

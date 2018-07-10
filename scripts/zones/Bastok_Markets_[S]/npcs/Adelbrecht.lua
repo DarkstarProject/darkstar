@@ -10,8 +10,8 @@
 -- 142 = 142 = Mid quest, after second npc in N Gust
 -- 143 = 143 = Complete quest, get bronze ribbon
 -- 162 = 162 = After cs143, before heading over to talk to next person
--- 359 = 0x0167 = A CS where player is looking for Lilisette, with flashback of Lilisette asking about player
--- 361 = 0x0169 = After asking in CS 359
+-- 359 = 359 = A CS where player is looking for Lilisette, with flashback of Lilisette asking about player
+-- 361 = 361 = After asking in CS 359
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;

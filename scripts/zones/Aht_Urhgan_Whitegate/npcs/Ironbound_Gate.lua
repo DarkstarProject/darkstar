@@ -29,9 +29,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 131 and option == 1) then
-        player:setPos(690,-18.5,220,128,0x33);        --> Wajaom Woodlands, at northeastern tower
+        player:setPos(690,-18.5,220,128,51);        --> Wajaom Woodlands, at northeastern tower
     elseif (csid == 130 and option == 1) then
-         player:setPos(570.5,-10.5,140,128,0x34);    --> Bhaflau Thickets, at southeastern tower
+         player:setPos(570.5,-10.5,140,128,52);    --> Bhaflau Thickets, at southeastern tower
     end
 
 end;

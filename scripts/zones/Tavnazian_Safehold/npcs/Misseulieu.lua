@@ -18,13 +18,13 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x3121,2485,        -- Brass Harness
-     0x32b9,1625,        -- Holly Clogs
-     0x37ed,4042200,        -- Barone Cosciales (Available after COP Chapter 4 only)
-     0x3bc9,25210200,        -- Barone Gambieras (Available after COP Chapter 4 only)
-     0x3a00,7276200,        -- Barone Manopolas (Available after COP Chapter 4 only)
-     0x3c1d,8000000,        -- Vir Subligar (Available after COP Chapter 4 only)
-     0x3c1e,8000000}        -- Femina Subligar (Available after COP Chapter 4 only)
+        12577,2485,        -- Brass Harness
+     12985,1625,        -- Holly Clogs
+     14317,4042200,        -- Barone Cosciales (Available after COP Chapter 4 only)
+     15305,25210200,        -- Barone Gambieras (Available after COP Chapter 4 only)
+     14848,7276200,        -- Barone Manopolas (Available after COP Chapter 4 only)
+     15389,8000000,        -- Vir Subligar (Available after COP Chapter 4 only)
+     15390,8000000}        -- Femina Subligar (Available after COP Chapter 4 only)
 
     dsp.shop.general(player, stock);
 end;

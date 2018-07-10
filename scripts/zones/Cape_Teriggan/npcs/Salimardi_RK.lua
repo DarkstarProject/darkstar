@@ -12,7 +12,7 @@ require("scripts/zones/Cape_Teriggan/TextIDs");
 local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = dsp.region.VOLLBOW;
-local csid        = 0x7ffb;
+local csid        = 32763;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);

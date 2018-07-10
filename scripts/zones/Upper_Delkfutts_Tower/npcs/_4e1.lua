@@ -25,7 +25,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 2 and option == 1) then
-        player:setPos(524, 16, 20, 0, 0xB8);    -- to Lower Delkfutt's Tower
+        player:setPos(524, 16, 20, 0, 184);    -- to Lower Delkfutt's Tower
     end
 
 end;

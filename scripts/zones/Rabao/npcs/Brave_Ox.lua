@@ -18,20 +18,20 @@ function onTrigger(player,npc)
 
 stock =
 {
-    0x122E,77350,    --Protect IV
-    0x1280,73710,    --Protectra IV
-    0x1304,63700,    --Dispel
-    0x12FC,31850,    --Stun
-    0x1270,31850,    --Flash
-    0x128E,546000,    --Reraise III
-    0x121E,78260,    --Banish III
-    0x125D,20092,    --Cura
-    0x125E,62192,    --Sacrifice
-    0x125F,64584,    --Esuna
-    0x1260,30967,    --Auspice
-    0x1206,141137,    --Cure VI    (Not Implemented yet)
-    0x122F,103882,    --Protect V    (Not Implemented yet)
-    0x1234,125069    --Shell V    (Not Implemented yet)
+    4654,77350,    --Protect IV
+    4736,73710,    --Protectra IV
+    4868,63700,    --Dispel
+    4860,31850,    --Stun
+    4720,31850,    --Flash
+    4750,546000,    --Reraise III
+    4638,78260,    --Banish III
+    4701,20092,    --Cura
+    4702,62192,    --Sacrifice
+    4703,64584,    --Esuna
+    4704,30967,    --Auspice
+    4614,141137,    --Cure VI    (Not Implemented yet)
+    4655,103882,    --Protect V    (Not Implemented yet)
+    4660,125069    --Shell V    (Not Implemented yet)
 }
     dsp.shop.general(player, stock);
 end;
