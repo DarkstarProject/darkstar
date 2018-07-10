@@ -193,18 +193,18 @@ function onTrigger(player,npc)
     end
 end;
 
--- 0x0032 : 30 sceau conférie : choix entre clotho et lachésis
--- 0x0018 : Après achat d'un orb (qu'bia, yughott, palborough, giddeus)
--- 0x0008 : Après achat d'un orb (yughott, palborough, giddeus, qu'bia, ghelsba)
--- 0x0004 : Après achat d'un orb (yughott, palborough, giddeus, ghelsba)
--- 0x000a : Après achat d'un orb (yughott, palborough, giddeus)
+-- 50 : 30 sceau conférie : choix entre clotho et lachésis
+-- 24 : Après achat d'un orb (qu'bia, yughott, palborough, giddeus)
+-- 8 : Après achat d'un orb (yughott, palborough, giddeus, qu'bia, ghelsba)
+-- 4 : Après achat d'un orb (yughott, palborough, giddeus, ghelsba)
+-- 10 : Après achat d'un orb (yughott, palborough, giddeus)
 -- 9 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
 -- 5 : Trade d'un orb ? (yughott, palborough, giddeus, ghelsba)
 -- 11 : Trade d'un orb ? (yughott, palborough, giddeus)
--- 0x001a : Trade d'un orb ? (qu'bia, yughott, palborough, giddeus)
--- 0x001b : Trade d'un orb ? (qu'bia, chambre des oracles)
+-- 26 : Trade d'un orb ? (qu'bia, yughott, palborough, giddeus)
+-- 27 : Trade d'un orb ? (qu'bia, chambre des oracles)
 -- 22 : Trade d'un orb utilisé (il le recup)
--- 0x0019 : Un seul échange autorisé par semaine
+-- 25 : Un seul échange autorisé par semaine
 -- 321 : trade sceau + nombre player:startEvent(321,0,15);
 --          0 shbete, 1 s-confrerie, 2 s-demons, 3 s-seigneurdes hombre
 function onEventUpdate(player,csid,option)

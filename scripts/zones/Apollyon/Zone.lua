@@ -230,9 +230,9 @@ end;
 
 function onEventFinish(player,csid,option)
    if (csid == 100 and option == 1) then
-    player:setPos(557,-1,441,128,0x21);  -- APOLLYON_SE_NE exit
+    player:setPos(557,-1,441,128,33);  -- APOLLYON_SE_NE exit
    elseif (csid == 101 and option == 1) then
-    player:setPos(-561,0,443,242,0x21); -- APOLLYON_NW_SW exit
+    player:setPos(-561,0,443,242,33); -- APOLLYON_NW_SW exit
    end
 end;
 

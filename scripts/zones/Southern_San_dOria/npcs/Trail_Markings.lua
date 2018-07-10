@@ -63,6 +63,6 @@ function onEventFinish(player,csid,option)
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),2));
         end
         player:setVar("enteringDynamis",1);
-        player:setPos(161.838,-2.000,161.673,93,0xb9);
+        player:setPos(161.838,-2.000,161.673,93,185);
     end
 end;

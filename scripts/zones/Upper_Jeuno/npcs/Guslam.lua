@@ -121,7 +121,7 @@ end;
 -- 155 Start Quest
 -- 43 During Quest before KI obtained
 -- 26 Dialog avec Old Gauntlets KI
--- 0x009c During Quest after Old Gauntlets KI ?
+-- 156 During Quest after Old Gauntlets KI ?
 function onEventUpdate(player,csid,option)
 end;
 

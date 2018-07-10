@@ -19,7 +19,7 @@ function onZoneIn(player,prevZone)
         position = math.random(1,5) - 33;
         player:setPos(-177,-8,position,127);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end

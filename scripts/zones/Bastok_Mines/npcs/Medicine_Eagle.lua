@@ -24,10 +24,10 @@ function onTrigger(player,npc)
 end;
 
 -- if Bastok Mission 8-1
--- 0x00b0
+-- 176
 -- player:startEvent(180);
 -- player:startEvent(181);
---0x0001  25  0x00b0  181  180
+--1  25  176  181  180
 function onEventUpdate(player,csid,option)
 end;
 

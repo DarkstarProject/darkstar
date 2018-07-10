@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x0029  without addons (ZM) ?
+-- 41  without addons (ZM) ?
 function onEventUpdate(player,csid,option)
 end;
 

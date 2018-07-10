@@ -68,14 +68,14 @@ function onEventFinish(player,csid,option)
 end;
 
 --------Other CS
---0x7fb4
---0x0000
---0x0295  Standard dialog
+--32692
+--0
+--661  Standard dialog
 --663
 --664
 --665
---0x02d5
---0x02eb
---0x02ec
+--725
+--747
+--748
 --807  Lure of the Wildcat
---0x03b1  CS with small mythra dancer
+--945  CS with small mythra dancer

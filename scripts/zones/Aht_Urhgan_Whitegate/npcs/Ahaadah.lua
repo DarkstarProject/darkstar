@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:startEvent(870); -- or 0x0001
+    player:startEvent(870); -- or 1
 end;
 
 function onEventUpdate(player,csid,option)

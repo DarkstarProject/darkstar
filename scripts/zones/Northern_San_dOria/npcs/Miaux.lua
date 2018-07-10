@@ -87,18 +87,18 @@ end;
 -- Ranchuriome : "I've really been feeling my years lately... No matter.  I'm sure I'll perk up
 -- once I start working."
 -- Miaux : "I'm most grateful to you!"
--- 0x0048 Miaux : "You don't see many people with that kind of integrity around anymore.  If my
+-- 72 Miaux : "You don't see many people with that kind of integrity around anymore.  If my
 -- father was still alive, they would have struck up a solid friendship, I'm sure."
--- 0x0042 Miaux : "Oh, that shiny earring came in handy after all?  That's wonderful!  I'm glad
+-- 66 Miaux : "Oh, that shiny earring came in handy after all?  That's wonderful!  I'm glad
 -- I could help someone out in the same way that you and Ranchuriome helped me.
 -- Miaux: I don't think I'm suited for a career as a detective, though... I think I'll concentrate
 -- on helping people in a way that's more within my capabilities."
--- (10)0x000A Miaux : "Thanks to your help, my father's breastplate is looking like new, but...
+-- (10)10 Miaux : "Thanks to your help, my father's breastplate is looking like new, but...
 -- That nice old man, Ranchuriome, has passed away.
 -- Miaux : "I can't help but think it's my fault in some way...that the repairs he did for me were
 -- too strenuous.  When I attended the funeral to pay my respects, though, his features seemed to
 -- be at peace."
--- (67)0x0043 Miaux : "I attended Ranchuriome's funeral to pay my respects and express my thanks for
+-- (67)67 Miaux : "I attended Ranchuriome's funeral to pay my respects and express my thanks for
 -- his kindness.  During the ceremony, I was distracted by an unusal lady among the mourners.
 -- Miaux : "Something about this woman seemed out of place.  I tried to follow her after the funeral
 -- ended, but... I lost sight of her not long after.  I searched around, trying to find her again.
@@ -106,8 +106,8 @@ end;
 -- and thankfully, he soon regained consciousness.  I found this lying nearby.
 -- Miaux : "This shiny earring might be a clue as to what happened. It's probably just my overactive
 -- imagination, but perhaps it will help in some way.  Here, you should hold onto it, just in case."
--- (68)0x0044 Miaux : "A suspicious woman and a shiny earring... Probably just my overactive imagination."
--- (535)0x0217 City - The fortress of sandy... But now, her reign of glory... The sun set on the kingdom
+-- (68)68 Miaux : "A suspicious woman and a shiny earring... Probably just my overactive imagination."
+-- (535)535 City - The fortress of sandy... But now, her reign of glory... The sun set on the kingdom
 -- of knights... Yet young Elvaan knights still venture proudly... On this particular day there comes a new...
 -- The king wishes to bolster his ranks, and <Character>... Should fortune favor her, bards across the land...
 -- Of course, she has only begun her rise to glory... Never before has she set foot within the Elvaan Capital...

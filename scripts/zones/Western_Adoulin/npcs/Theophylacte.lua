@@ -19,13 +19,13 @@ function onTrigger(player,npc)
     player:showText(npc, THEOPHYLACTE_SHOP_TEXT);
     local stock =
     {
-        0x1010, 910,    -- Potion
-        0x1014, 4500,   -- Hi-Potion
-        0x1020, 4832,   -- Ether
-        0x1024, 28000,  -- Hi-Ether
-        0x1034, 316,    -- Antidote
-        0x1037, 800,    -- Echo Drops
-        0x103B, 3360,   -- Remedy
+        4112, 910,    -- Potion
+        4116, 4500,   -- Hi-Potion
+        4128, 4832,   -- Ether
+        4132, 28000,  -- Hi-Ether
+        4148, 316,    -- Antidote
+        4151, 800,    -- Echo Drops
+        4155, 3360,   -- Remedy
     }
     dsp.shop.general(player, stock);
 end;
