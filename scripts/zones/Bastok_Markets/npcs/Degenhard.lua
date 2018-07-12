@@ -20,7 +20,6 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local BareBones = player:getQuestStatus(BASTOK,THE_BARE_BONES)
     if player:getVar("BeatAroundTheBushin") == 3 then
         player:startEvent(342)
     elseif player:getQuestStatus(BASTOK,THE_BARE_BONES) == QUEST_AVAILABLE then
