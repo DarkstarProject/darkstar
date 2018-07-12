@@ -49,7 +49,11 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(dsp.ki.MOON_BAUBLE)) then -- Default text after acquiring moon bauble and before fighting Fenrir
             player:startEvent(845,0,1125,334);
         elseif (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)) then -- First turn-in
-            player:startEvent(846,0,13399,1208,1125,0,18165,13572);
+            local availRewards = 0
+            if (not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE)) then availRewards = availRewards + 128; end -- Mount Pact
+-- TODO: add logic to determine if player has already / or can obtain Mount to remove it from list of rewards
+
+            player:startEvent(846,0,13399,1208,1125,availRewards,18165,13572);
         elseif (player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES) and
             player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS) and
             player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES) and
@@ -73,6 +77,8 @@ function onTrigger(player,npc)
             if (player:hasItem(13399)) then availRewards = availRewards + 8; end -- Fenrir's Earring
             if (player:hasItem(1208)) then availRewards = availRewards + 16; end -- Ancient's Key
             if (player:hasSpell(297)) then availRewards = availRewards + 64; end -- Pact
+            if (not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE)) then availRewards = availRewards + 128; end -- Mount Pact
+-- TODO: add logic to determine if player has already / or can obtain Mount to remove it from list of rewards
 
             player:startEvent(850,0,13399,1208,1125,availRewards,18165,13572);
         elseif (realday ~= player:getVar("MoonlitPath_date")) then --24 hours have passed, flag a new fight
@@ -125,8 +131,8 @@ function onEventFinish(player,csid,option)
         elseif (option == 4) then reward = 13399; -- Fenrir's Earring
         elseif (option == 5) then reward = 1208; -- Ancient's Key
         elseif (option == 6) then
-            player:addGil(GIL_RATE*10000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+            player:addGil(GIL_RATE*15000);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
         elseif (option == 8) then
@@ -161,7 +167,7 @@ function onEventFinish(player,csid,option)
         elseif (option == 4) then reward = 13399; -- Fenrir's Earring
         elseif (option == 5) then reward = 1208; -- Ancient's Key
         elseif (option == 6) then
-            player:addGil(GIL_RATE*10000);
+            player:addGil(GIL_RATE*15000);
             player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
         elseif (option == 7) then
             player:addSpell(297) -- Pact
