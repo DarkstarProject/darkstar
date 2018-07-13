@@ -50,8 +50,8 @@ function onTrigger(player,npc)
             player:startEvent(845,0,1125,334);
         elseif (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON)) then -- First turn-in
             local availRewards = 0
-            if (not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE)) then availRewards = availRewards + 128; end -- Mount Pact
--- TODO: add logic to determine if player has already / or can obtain Mount to remove it from list of rewards
+            if not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE) or
+                player:hasKeyItem(dsp.ki.FENRIR_WHISTLE) then availRewards = availRewards + 128; end -- Mount Pact
 
             player:startEvent(846,0,13399,1208,1125,availRewards,18165,13572);
         elseif (player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES) and
@@ -77,8 +77,8 @@ function onTrigger(player,npc)
             if (player:hasItem(13399)) then availRewards = availRewards + 8; end -- Fenrir's Earring
             if (player:hasItem(1208)) then availRewards = availRewards + 16; end -- Ancient's Key
             if (player:hasSpell(297)) then availRewards = availRewards + 64; end -- Pact
-            if (not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE)) then availRewards = availRewards + 128; end -- Mount Pact
--- TODO: add logic to determine if player has already / or can obtain Mount to remove it from list of rewards
+            if not player:hasKeyItem(dsp.ki.TRAINERS_WHISTLE) or
+                player:hasKeyItem(dsp.ki.FENRIR_WHISTLE) then availRewards = availRewards + 128; end -- Mount Pact
 
             player:startEvent(850,0,13399,1208,1125,availRewards,18165,13572);
         elseif (realday ~= player:getVar("MoonlitPath_date")) then --24 hours have passed, flag a new fight
