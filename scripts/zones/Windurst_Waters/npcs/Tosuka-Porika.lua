@@ -23,11 +23,11 @@ end;
 function onTrigger(player,npc)
 
     -- cs notes
-    -- 0x172 (370) = You have no mission, gtfo
-    -- 0x17b (379) = Not sure yet (Adventurer from the other day?)
-    -- 0x17c (380) = About the book of gods and "some adventurer"
-    -- 0xa0 (160) = 1st cutscene of Windurst Mission 2-1
-    -- 0xa1 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
+    -- 370 (370) = You have no mission, gtfo
+    -- 379 (379) = Not sure yet (Adventurer from the other day?)
+    -- 380 (380) = About the book of gods and "some adventurer"
+    -- 160 (160) = 1st cutscene of Windurst Mission 2-1
+    -- 161 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
 
     local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     local glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
@@ -84,13 +84,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 55) then  -- Show Off Hat
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);

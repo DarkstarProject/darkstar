@@ -127,9 +127,9 @@ function aftermathLost(target, effect)
 end
 
 function onItemCheck(player, param, caster)
-    if (param == ITEMCHECK_EQUIP) then
+    if (param == dsp.itemCheck.EQUIP) then
         player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
-    elseif (param == ITEMCHECK_UNEQUIP) then
+    elseif (param == dsp.itemCheck.UNEQUIP) then
         -- Make sure we clean up the effect and mods
         if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
             aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
@@ -139,3 +139,8 @@ function onItemCheck(player, param, caster)
     
     return 0;
 end
+
+function onItemUse(target)
+    target:addItem(21311,99);
+    target:messageSpecial(ITEMS_OBTAINED,21311,99);
+end;

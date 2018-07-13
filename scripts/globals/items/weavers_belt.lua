@@ -23,14 +23,10 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY,3,0,120);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_CLT, 1);
+    target:addMod(dsp.mod.CLOTH, 1);
 end;
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_CLT, 1);
+    target:delMod(dsp.mod.CLOTH, 1);
 end;

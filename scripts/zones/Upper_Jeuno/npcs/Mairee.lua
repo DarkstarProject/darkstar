@@ -27,13 +27,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local price = player:getLocalVar("chocoboPriceOffer");
 
@@ -45,7 +41,7 @@ function onEventFinish(player,csid,option)
 
             player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,duration,true);
 
-            player:setPos(486,8,-160,0x80,0x69);
+            player:setPos(486,8,-160,128,105);
         end
     end
 end;

@@ -36,7 +36,7 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 224) then
-            cs = 0x0049;
+            cs = 73;
             player:setPos(-36.000, 7.000, -58.000, 194);
         else
             position = math.random(1,5) + 57;
@@ -71,13 +71,9 @@ function onTransportEvent(player,transport)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:messageSpecial(ITEM_OBTAINED,536);
     elseif (csid == 71) then

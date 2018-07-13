@@ -3,7 +3,7 @@
 --
 -- Contains readable values for Weaponskill IDs
 ------------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.weaponskill =
 {
@@ -153,7 +153,7 @@ dsp.weaponskill =
     VORPAL_THRUST       = 117,
     SKEWER              = 118,
     WHEELING_THRUST     = 119,
-    IMPULSE_DIVE        = 120,
+    IMPULSE_DRIVE       = 120,
     GEIRSKOGUL          = 121,
     DRAKESBANE          = 122,
     SONIC_THRUST        = 123,
@@ -267,5 +267,5 @@ dsp.weaponskill =
     NUMBING_SHOT        = 219,
     WILDFIRE            = 220,
     LAST_STAND          = 221,
-};
-dsp.ws = dsp.weaponskill;
+}
+dsp.ws = dsp.weaponskill

@@ -1,6 +1,6 @@
 --------------------------------------
 --     Spell: Embrava
---     Consumes 20% of your maximum MP. Gradually restores 
+--     Consumes 20% of your maximum MP. Gradually restores
 --  target party member's HP and MP and increases attack speed.
 --------------------------------------
  

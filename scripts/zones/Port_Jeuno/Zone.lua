@@ -25,16 +25,16 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 223) then
-            cs = 0x2722;
+            cs = 10018;
             player:setPos(-87.000, 12.000, 116.000, 128);
         elseif (prevZone == 224) then
-            cs = 0x2724;
+            cs = 10020;
             player:setPos(-50.000, 12.000, -116.000, 0);
         elseif (prevZone == 225) then
-            cs = 0x2723;
+            cs = 10019;
             player:setPos(16.000, 12.000, -117.000, 0);
         elseif (prevZone == 226) then
-            cs = 0x2725;
+            cs = 10021;
             player:setPos(-24.000, 12.000, 116.000, 128);
         else
             local position = math.random(1,3) - 2;
@@ -73,13 +73,9 @@ function onTransportEvent(player,transport)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10010) then
         player:setPos(0,0,0,0,223);
     elseif (csid == 10011) then

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Blade Metsu
 --
---  Description: Additional effect: Paralysis Kikoku/Yoshimitsu: Temporarily enhances Subtle Blow dsp.effect. 
+--  Description: Additional effect: Paralysis Kikoku/Yoshimitsu: Temporarily enhances Subtle Blow dsp.effect.
 --  Type: Physical
 --  Range: Melee
 ---------------------------------------------

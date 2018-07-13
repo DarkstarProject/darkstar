@@ -26,9 +26,9 @@ end;
 
 function onTrigger(player,npc)
 
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
+    local RegionOwner = GetRegionOwner(dsp.region.ZULKHEIM);
 
-    if (RegionOwner ~= NATION_SANDORIA) then
+    if (RegionOwner ~= dsp.nation.SANDORIA) then
         player:showText(npc,PHAMELISE_CLOSED_DIALOG);
     else
         player:showText(npc,PHAMELISE_OPEN_DIALOG);
@@ -43,17 +43,13 @@ function onTrigger(player,npc)
             4366,    22, -- La Theine Cabbage
             4378,    55  -- Selbina Milk
         }
-        showShop(player,SANDORIA,stock);
+        dsp.shop.general(player, stock, SANDORIA);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

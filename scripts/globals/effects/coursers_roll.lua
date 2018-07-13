@@ -3,14 +3,16 @@
 --
 --
 -----------------------------------
+require("scripts/globals/status");
+-----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SNAPSHOT, effect:getPower());
+    -- target:addMod(dsp.mod.SNAPSHOT, effect:getPower());
 end;
 
 function onEffectTick(target,effect)
 end;
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SNAPSHOT, effect:getPower());
+    -- target:delMod(dsp.mod.SNAPSHOT, effect:getPower());
 end;

@@ -19,12 +19,12 @@ function onInstanceCreated(instance)
         SpawnMob(v, instance);
     end
 
-    local rune = instance:getEntity(bit.band(Leujaoam.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Leujaoam.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Leujaoam.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Leujaoam.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setPos(476,8.479,39,49);
     box:setPos(476,8.479,40,49);
 
-    instance:getEntity(bit.band(Leujaoam.npcs._1XN, 0xFFF), TYPE_NPC):setAnimation(8);
+    instance:getEntity(bit.band(Leujaoam.npcs._1XN, 0xFFF), dsp.objType.NPC):setAnimation(8);
 
 end;
 
@@ -58,8 +58,8 @@ function onInstanceComplete(instance)
         v:messageSpecial(Leujaoam.text.RUNE_UNLOCKED_POS, 8, 8);
     end
 
-    local rune = instance:getEntity(bit.band(Leujaoam.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Leujaoam.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(Leujaoam.npcs.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(Leujaoam.npcs.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setStatus(dsp.status.NORMAL);
     box:setStatus(dsp.status.NORMAL);
 

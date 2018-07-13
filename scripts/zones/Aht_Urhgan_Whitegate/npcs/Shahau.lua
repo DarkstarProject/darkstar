@@ -30,13 +30,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 638 and option == 1) then
         player:messageSpecial(ALCHEMY_SUPPORT,0,7,2);
         player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,1,0,120);

@@ -1,6 +1,6 @@
 -----------------------------------------
 -- Spell: Stoneja
--- Deals earth damage to enemies within area of effect. 
+-- Deals earth damage to enemies within area of effect.
 -- Successive use enhances spell potency.
 -----------------------------------------
 

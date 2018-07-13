@@ -25,7 +25,7 @@ end;
 function onTrigger(player,npc)
 
     pNation = player:getNation();
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
@@ -65,13 +65,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 546) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_SANDORIA);

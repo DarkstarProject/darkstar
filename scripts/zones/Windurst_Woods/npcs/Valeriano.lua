@@ -33,16 +33,12 @@ function onTrigger(player,npc)
         5059, 28520, -- Scroll of Water Carol II
         4996,123880  -- Scroll of Mage's Ballad III
     }
-    showShop(player, WINDURST, stock);
+    dsp.shop.general(player, stock, WINDURST);
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

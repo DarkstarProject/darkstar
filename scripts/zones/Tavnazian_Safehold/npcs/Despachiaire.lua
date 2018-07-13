@@ -56,13 +56,9 @@ end;
 --Despachiaire     617 XX
 --Despachiaire     618 XX
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 102 or csid == 108) then
         player:setVar("PromathiaStatus",2);

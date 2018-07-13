@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Thunderstrike
 --
---  Description: Deals Lightning damage in an area of effect. Additional effect: Stun 
+--  Description: Deals Lightning damage in an area of effect. Additional effect: Stun
 --  Type: Magical
 --  Ignores Shadows
 --  Range: 13' radial

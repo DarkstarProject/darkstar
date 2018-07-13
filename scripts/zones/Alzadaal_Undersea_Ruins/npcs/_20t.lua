@@ -30,8 +30,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-     printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
     local instanceid = bit.rshift(option, 19) + 70
 
     local party = player:getParty();
@@ -59,9 +57,6 @@ function onEventUpdate(player,csid,option,target)
 end;
 
 function onEventFinish(player,csid,option,target)
-      printf("CSID: %u",csid);
-      printf("RESULT: %u",option);
-
     if ((csid == 410 and option == 4) or csid == 116) then
         player:setPos(0,0,0,0,76);
     end

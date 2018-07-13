@@ -4,10 +4,10 @@
 --
 -----------------------------------
 -- Research
--- EventID 0x0400-0x0405 aura of boundless rage
--- EventID 0x0800-0x0883 The treasure chest will disappear is 180 seconds menu.
--- EventID 0x0884 Teleport?
--- EventID 0x0885 DEBUG Menu
+-- EventID 1024-1029 aura of boundless rage
+-- EventID 2048-2179 The treasure chest will disappear is 180 seconds menu.
+-- EventID 2180 Teleport?
+-- EventID 2181 DEBUG Menu
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
@@ -27,8 +27,8 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAyssea") == 0) then
-        player:setVar("1stTimeAyssea",1);
+    and player:getVar("1stTimeAbyssea") == 0) then
+        player:setVar("1stTimeAbyssea",1);
     end
 
     return cs;
@@ -38,11 +38,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -31,14 +31,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-     printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == (0x028)) then
+    if (csid == (40)) then
        player:setVar("deliveringTheGoodsCS",2);
     elseif (csid == 42 and option == 0) then
         player:addQuest(AHT_URHGAN,VANISHING_ACT);

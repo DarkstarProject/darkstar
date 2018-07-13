@@ -73,13 +73,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local freeSlots = player:getFreeSlotsCount();
     if (csid == 509 and option == 0) then
         if (freeSlots ~= 0) then
@@ -110,8 +106,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete()
     elseif (csid == 515) then
         if (freeSlots ~= 0) then
-            player:addItem(0x3001);
-            player:messageSpecial(ITEM_OBTAINED,0x3001);
+            player:addItem(12289);
+            player:messageSpecial(ITEM_OBTAINED,12289);
             player:addTitle(dsp.title.COURIER_EXTRAORDINAIRE);
             player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,30);

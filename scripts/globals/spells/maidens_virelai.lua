@@ -28,7 +28,7 @@ function onSpellCast(caster,target,spell)
     local params = {};
     params.diff = nil;
     params.attribute = dsp.mod.CHR;
-    params.skillType = SINGING_SKILL;
+    params.skillType = dsp.skill.SINGING;
     params.bonus = bonus;
     params.effect = dsp.effect.CHARM_I;
     local resist = applyResistanceEffect(caster, target, spell, params);

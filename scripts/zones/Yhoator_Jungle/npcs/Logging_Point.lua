@@ -9,7 +9,7 @@ require("scripts/zones/Yhoator_Jungle/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x000A);
+    startLogging(player,player:getZoneID(),npc,trade,10);
 end;
 
 function onTrigger(player,npc)
@@ -17,11 +17,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

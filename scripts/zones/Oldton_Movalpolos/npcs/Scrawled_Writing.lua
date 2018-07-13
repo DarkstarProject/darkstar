@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
         local x = npc:getXPos();
         local y = npc:getYPos();
         local z = npc:getZPos();
-        mob:setPos(x-1,y,z);
+        mob:setSpawn(x-1,y,z)
         SpawnMob(GOBLIN_WOLFMAN):updateClaim(player);
     end
 end;

@@ -48,16 +48,11 @@ function onTrigger(player,npc)
     end
 end;
 
--- 648  649  0x02f8  0x02f9  0x02fa  0x02fb  0x02fc  0x02fd  0x0302  0x0303  0x0304  0x0305  0x0306  0x0307  944  0x0392
-
+-- 648  649  760  761  762  763  764  765  770  771  772  773  774  775  944  914
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 648 and option == 1) then
         local crystal = 4103; -- dark crystal
 

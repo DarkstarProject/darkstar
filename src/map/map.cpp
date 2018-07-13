@@ -990,7 +990,7 @@ int32 map_config_default()
     map_config.all_mobs_gil_bonus = 0;
     map_config.max_gil_bonus = 9999;
     map_config.Battle_cap_tweak = 0;
-    map_config.CoP_Battle_cap = 1;
+    map_config.lv_cap_mission_bcnm = 0;
     map_config.max_merit_points = 30;
     map_config.yell_cooldown = 30;
     map_config.audit_gm_cmd = 0;
@@ -1269,9 +1269,9 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.Battle_cap_tweak = atoi(w2);
         }
-        else if (strcmp(w1, "CoP_Battle_cap") == 0)
+        else if (strcmp(w1, "lv_cap_mission_bcnm") == 0)
         {
-            map_config.CoP_Battle_cap = atoi(w2);
+            map_config.lv_cap_mission_bcnm = atoi(w2);
         }
         else if (strcmp(w1, "max_merit_points") == 0)
         {

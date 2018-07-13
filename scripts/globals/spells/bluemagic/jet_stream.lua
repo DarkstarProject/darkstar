@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
         params.tp150 = 1.2;
         params.tp300 = 1.4;
         params.azuretp = 1.5;
-        params.duppercap = 39; --guesstimated acc % bonuses  
+        params.duppercap = 39; --guesstimated acc % bonuses
         params.str_wsc = 0.0;
         params.dex_wsc = 0.0;
         params.vit_wsc = 0.0;

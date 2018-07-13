@@ -26,13 +26,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 130 and option ~= 1073741824) then -- Player didn't cancel out
       player:delGil(9800);
       player:setVar("ChangedWyvernName",1);

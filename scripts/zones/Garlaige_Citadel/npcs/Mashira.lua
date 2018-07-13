@@ -29,13 +29,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
 MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
     if (csid == 11 and option == 1 and RubbishDay == QUEST_ACCEPTED) then

@@ -9,10 +9,10 @@ package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
 
-local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;      -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = QUFIMISLAND;
-local csid        = 0x7ff8;
+local region      = dsp.region.QUFIMISLAND;
+local csid        = 32760;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

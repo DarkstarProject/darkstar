@@ -21,7 +21,7 @@ function onZoneIn(player,prevZone)
 
     if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         if (prevZone == 220) then
-            cs = 0x00ca;
+            cs = 202;
             player:setPos(32.500,-2.500,-45.500,192);
         else
             player:setPos(17.981,-16.806,99.83,64);

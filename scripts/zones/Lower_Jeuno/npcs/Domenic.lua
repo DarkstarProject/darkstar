@@ -23,17 +23,13 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10115) then
         if (option == 1 and player:getGil() >= 750) then
             player:delGil(750);
-            toGhelsba(player);
+            dsp.teleport.to(player, dsp.teleport.id.GHELSBA_HUT);
         elseif (option == 2 and player:getGil() >= 750) then
             player:delGil(750);
             player:setPos(0, 0, 0, 0, 139);

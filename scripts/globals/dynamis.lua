@@ -889,7 +889,7 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
 
                     if (mobNBR <= 20) then
                         -- Spawn random mob by job
-                        if (mobNBR == 0) then 
+                        if (mobNBR == 0) then
                             -- Spawn random Vanguard (TEMPORARY)
                             mobNBR = math.random(1,15);
                         end

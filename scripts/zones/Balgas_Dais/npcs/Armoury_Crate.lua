@@ -12,24 +12,12 @@ require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:getBCNMloot();
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

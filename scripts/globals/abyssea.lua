@@ -311,7 +311,7 @@ function getNewBlueWeakness(mob)
         table = 1
     elseif time >= 14 and time < 22 then
         table = 2
-    end 
+    end
     return blue_weakness[table][math.random(#blue_weakness[table])]
 end
 
@@ -334,7 +334,7 @@ function abysseaOnTrade(player,npc,trade)
     -- validate QM pop data
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
     package.loaded[MobIDs] = nil;
-    require(MobIDs); 
+    require(MobIDs);
     local pop = NM_POPS[npc:getID()];
     if (pop == nil) then
         return false;
@@ -374,7 +374,7 @@ function abysseaOnTrigger(player,npc)
     local events = POP_EVENTS[player:getZoneID()];
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
     package.loaded[MobIDs] = nil;
-    require(MobIDs); 
+    require(MobIDs);
     local pop = NM_POPS[npc:getID()];
     if (pop == nil) then
         return false;
@@ -389,7 +389,7 @@ function abysseaOnTrigger(player,npc)
     -- validate trade-to-pop
     local t = pop[2];
     if (#t > 0) then
-        for i = 1, 8, 1 do 
+        for i = 1, 8, 1 do
             if (t[i] == nil) then
                 t[i] = 0;
             end
@@ -414,7 +414,7 @@ function abysseaOnTrigger(player,npc)
     end
 
     -- infill kis
-    for i = 1, 8, 1 do 
+    for i = 1, 8, 1 do
         if (kis[i] == nil) then
             kis[i] = 0;
         end
@@ -440,7 +440,7 @@ function abysseaOnEventFinish(player,csid,option)
     local events = POP_EVENTS[player:getZoneID()];
     local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
     package.loaded[MobIDs] = nil;
-    require(MobIDs); 
+    require(MobIDs);
     local pop = NM_POPS[player:getLocalVar("abysseaQM")];
     player:setLocalVar("abysseaQM", 0);
     if (pop == nil) then

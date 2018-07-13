@@ -42,21 +42,16 @@ function onTrigger(player,npc)
 
 end;
 
---0x00af  0x0000  0x0002  0x0003  0x0004  7  8  9  0x000a  0x0062  99  0x001d  0x000c
---13  0x0092  0x009e  0x00a4  0x00a9  170  171  0x00ac  173  0x00b0  177  0x00e8  0x00e9
---0x00ea
--- 0x0062  99 mission bastok
--- 0x000c parle de kuzotz ? parle de bijoux aussi
--- 0x000a parle de zitah
-
+--175  0  2  3  4  7  8  9  10  98  99  29  12
+--13  146  158  164  169  170  171  172  173  176  177  232  233
+--234
+-- 98  99 mission bastok
+-- 12 parle de kuzotz ? parle de bijoux aussi
+-- 10 parle de zitah
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 99) then
         player:tradeComplete();

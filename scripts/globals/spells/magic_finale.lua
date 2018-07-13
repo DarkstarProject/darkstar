@@ -21,7 +21,7 @@ function onSpellCast(caster,target,spell)
 
     params.attribute = dsp.mod.CHR;
 
-    params.skillType = SINGING_SKILL;
+    params.skillType = dsp.skill.SINGING;
 
     params.bonus = caster:getMod(dsp.mod.FINALE_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT);
 

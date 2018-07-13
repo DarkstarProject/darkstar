@@ -34,15 +34,11 @@ function onTrigger(player,npc)
         21393, 100100  -- Arasy Sachet
     }
     player:showText(npc,ANTONIA_SHOP_DIALOG);
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

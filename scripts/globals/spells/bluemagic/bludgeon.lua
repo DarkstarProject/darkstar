@@ -41,7 +41,7 @@ function onSpellCast(caster,target,spell)
         params.tp150 = 1.05;
         params.tp300 = 1.1;
         params.azuretp = 1.2;
-        params.duppercap = 21; 
+        params.duppercap = 21;
         params.str_wsc = 0.0;
         params.dex_wsc = 0.0;
         params.vit_wsc = 0.0;

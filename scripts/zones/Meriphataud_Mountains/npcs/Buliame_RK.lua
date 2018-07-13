@@ -9,10 +9,10 @@ package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
-local guardnation = NATION_SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = ARAGONEU;
-local csid        = 0x7ffa;
+local region      = dsp.region.ARAGONEU;
+local csid        = 32762;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

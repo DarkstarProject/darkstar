@@ -20,22 +20,18 @@ function onTrigger(player,npc)
 
     local stock =
     {
-        0x1010,910,        -- Potion
-     0x1020,4832,        -- Ether
-     0x1034,316,        -- Antidote
-     0x1036,2595,        -- Eye Drops
-     0x1037,800}        -- Echo Drops
+        4112,910,        -- Potion
+     4128,4832,        -- Ether
+     4148,316,        -- Antidote
+     4150,2595,        -- Eye Drops
+     4151,800}        -- Echo Drops
 
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

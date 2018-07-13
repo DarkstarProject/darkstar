@@ -44,13 +44,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 47) then
         player:addQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
     elseif (csid == 23) then

@@ -56,14 +56,10 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 0) then
-        player:setPos(-217.000,1.000,-119.000,94,0xEF);
+        player:setPos(-217.000,1.000,-119.000,94,239);
     end
 end;

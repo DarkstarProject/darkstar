@@ -43,12 +43,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("updateRESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
     if (csid == 134) then
         player:setVar("DynaBeaucedine_Win",0);
@@ -57,6 +55,6 @@ function onEventFinish(player,csid,option)
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),32));
         end
         player:setVar("enteringDynamis",1);
-        player:setPos(-284.751,-39.923,-422.948,235,0x86);
+        player:setPos(-284.751,-39.923,-422.948,235,134);
     end
 end;

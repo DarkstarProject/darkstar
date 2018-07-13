@@ -88,10 +88,10 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effects.SIGIL);
-            player:delStatusEffect(dsp.effects.SANCTION);
-            player:delStatusEffect(dsp.effects.SIGNET);
-            player:addStatusEffect(dsp.effects.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:delStatusEffect(dsp.effect.SIGIL);
+            player:delStatusEffect(dsp.effect.SANCTION);
+            player:delStatusEffect(dsp.effect.SIGNET);
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
             player:messageSpecial(ALLIED_SIGIL);
 
             if (cost > 0) then

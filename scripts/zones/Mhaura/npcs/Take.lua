@@ -64,13 +64,9 @@ end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 60) then
         player:setVar("QuestRychardetheChef_var",2); -- second stage on quest
     elseif (csid == 61) then  -- accept quest EXPERTICE

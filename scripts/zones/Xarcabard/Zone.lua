@@ -31,7 +31,7 @@ function onZoneIn( player, prevZone)
 
     if (player:hasKeyItem( dsp.ki.VIAL_OF_SHROUDED_SAND) == false and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getVar( "Dynamis_Status") == 0) then
         player:setVar( "Dynamis_Status", 1);
-        cs = 0x000D;
+        cs = 13;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 9;
     elseif (UnbridledPassionCS == 3) then
@@ -55,8 +55,6 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 9) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 11) then
@@ -69,8 +67,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 9) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 4) then

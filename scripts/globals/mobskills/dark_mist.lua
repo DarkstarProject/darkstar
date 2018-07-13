@@ -3,7 +3,7 @@
 --  Family: Gargouille
 --  Description: Deals dark damage to an enemy. Additional effect: Weight
 --  Type: Magical (dark)
---  Utsusemi/Blink absorb: Ignores shadows 
+--  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Radial
 --  Notes: Only used when flying
 ---------------------------------------------

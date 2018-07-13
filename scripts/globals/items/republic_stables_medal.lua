@@ -16,5 +16,5 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,TELEPORT_CHOCOBASTOK,0,4);
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.CHOCOBASTOK,0,4);
 end;

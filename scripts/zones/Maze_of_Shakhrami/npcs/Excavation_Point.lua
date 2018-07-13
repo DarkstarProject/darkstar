@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
             end
         end
     else
-        startExcavation(player,player:getZoneID(),npc,trade,0x003C);
+        startExcavation(player,player:getZoneID(),npc,trade,60);
     end
 
 end;
@@ -33,11 +33,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

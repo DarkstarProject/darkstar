@@ -42,7 +42,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local enmityMult = 1;
     local damage = 0;
 
-    if (target:getObjType() ~= TYPE_MOB) then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
+    if (target:getObjType() ~= dsp.objType.MOB) then -- this isn't correct but might as well use what was originally here if someone uses this on a non-mob
         if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
             params.ftp100 = 1; params.ftp200 = 1.5; params.ftp300 = 2.0;
         end

@@ -3,7 +3,7 @@
 --  NPC: Ahko Mhalijikhari
 -- Type: Quest NPC
 -- !pos -344.617 -12.226 -166.233 198
---  61  62  0x003f  64  65
+--  61  62  63  64  65
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -33,12 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
      printf("RESULT: %u",option);
     if (csid == 62 and option == 1) then
         player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,20,0,0);

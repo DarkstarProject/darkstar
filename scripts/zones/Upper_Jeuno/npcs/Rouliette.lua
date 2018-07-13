@@ -33,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 36 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then
         player:addQuest(JEUNO,CANDLE_MAKING);
     elseif (csid == 37) then

@@ -747,6 +747,8 @@ enum class SpellID : uint16
     Flurry_II               = 846
 };
 
+#define MAX_SPELL_ID 1024U
+
 class CSpell
 {
 public:

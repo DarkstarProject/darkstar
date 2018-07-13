@@ -40,12 +40,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("updateRESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
 
     if (csid == 40) then
@@ -54,6 +52,6 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 22 and option == 0) then
         player:setVar("enteringDynamis",1);
-        player:setPos(155,-1,-169,170,0x28);
+        player:setPos(155,-1,-169,170,40);
     end
 end;

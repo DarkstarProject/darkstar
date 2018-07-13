@@ -16,7 +16,7 @@ require("scripts/zones/Full_Moon_Fountain/TextIDs");
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 

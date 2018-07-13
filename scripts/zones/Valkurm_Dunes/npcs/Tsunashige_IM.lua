@@ -9,10 +9,10 @@ package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
 require("scripts/globals/conquest");
 require("scripts/zones/Valkurm_Dunes/TextIDs");
 
-local guardnation = NATION_BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
+local guardnation = dsp.nation.BASTOK; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;      -- 1: city, 2: foreign, 3: outpost, 4: border
-local region      = ZULKHEIM;
-local csid        = 0x7ff9;
+local region      = dsp.region.ZULKHEIM;
+local csid        = 32761;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);
@@ -41,12 +41,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (option == 1) then

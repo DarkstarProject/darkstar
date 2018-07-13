@@ -23,10 +23,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     --printf("npcID : %u",npcID);
 
@@ -52,10 +48,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

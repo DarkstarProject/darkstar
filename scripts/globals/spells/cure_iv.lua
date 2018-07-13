@@ -23,14 +23,14 @@ function onSpellCast(caster,target,spell)
     local minCure = 270;
     if (USE_OLD_CURE_FORMULA == true) then
         power = getCurePowerOld(caster);
-        rate = 0.6666;
+        divisor = 0.6666;
         constant = 165;
         if (power > 460) then
-                rate = 6.5;
-                constant = 354.6666;
+            divisor = 6.5;
+            constant = 354.6666;
         elseif (power > 220) then
-                rate = 2;
-                constant = 275;
+            divisor = 2;
+            constant = 275;
         end
     else
         power = getCurePower(caster);
@@ -56,9 +56,9 @@ function onSpellCast(caster,target,spell)
             basepower = 0;
         end
     end
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         if (USE_OLD_CURE_FORMULA == true) then
-            basecure = getBaseCure(power,divisor,constant);
+            basecure = getBaseCureOld(power,divisor,constant);
         else
             basecure = getBaseCure(power,divisor,constant,basepower)
         end
@@ -111,7 +111,7 @@ function onSpellCast(caster,target,spell)
             final = dmg;
             target:delHP(final);
             target:updateEnmityFromDamage(caster,final);
-        elseif (caster:getObjType() == TYPE_PC) then
+        elseif (caster:getObjType() == dsp.objType.PC) then
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
         else
             -- e.g. monsters healing themselves.

@@ -31,16 +31,11 @@ function onTrigger(player,npc)
     player:startEvent(10011,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 10011  10012  0x02bc  0x02bd  0x02be  0x02bf  0x02c0  0x02c1  0x0340  0x02fd
-
+-- 10011  10012  700  701  702  703  704  705  832  765
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10011 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4099);

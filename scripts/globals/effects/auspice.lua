@@ -17,9 +17,9 @@ function onEffectGain(target,effect)
     local subtleBlowBonus = 10 + target:getMod(dsp.mod.AUSPICE_EFFECT);
     --printf("AUSPICE: Adding Subtle Blow +%d!", subtleBlowBonus);
     effect:setSubPower(subtleBlowBonus);
-    target:addMod(dsp.mod.SUBTLE_BLOW, subtleBlowBonus);    
+    target:addMod(dsp.mod.SUBTLE_BLOW, subtleBlowBonus);
 
-    --Afflatus Misery Bonuses    
+    --Afflatus Misery Bonuses
     if (target:hasStatusEffect(dsp.effect.AFFLATUS_MISERY)) then
         target:getStatusEffect(dsp.effect.AFFLATUS_MISERY):setSubPower(0);
         target:addMod(dsp.mod.ENSPELL,18);
