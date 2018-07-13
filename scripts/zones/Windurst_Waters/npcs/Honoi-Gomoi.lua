@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         player:startEvent(783);
     elseif (WildCard == QUEST_ACCEPTED) then
         WildCardVar = player:getVar("WildCard");
-        JokerCard   = player:hasKeyItem(264);
+        JokerCard   = player:hasKeyItem(dsp.ki.JOKER_CARD);
         if (WildCardVar == 3 and JokerCard == false) then
             player:startEvent(782);
         else

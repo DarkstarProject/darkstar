@@ -11,6 +11,7 @@ require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 -- Items in trades
@@ -195,7 +196,7 @@ function onTrigger(player,npc)
 
     local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
-    local Automaton = player:hasKeyItem(798)
+    local Automaton = player:hasKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     local automatonName = player:getAutomatonName()
     local CreationStarted_Day = player:getVar("CreationStarted_Day")
     local currentDay = VanadielDayOfTheYear()
@@ -322,7 +323,7 @@ function onEventFinish(player,csid,option)
         player:setVar("CreationStarted_Day",VanadielDayOfTheYear())
         player:setVar("CreationStarted_Year",VanadielYear())
         player:setVar("NoStringsAttachedProgress",5)
-        player:delKeyItem(798)
+        player:delKeyItem(dsp.ki.ANTIQUE_AUTOMATON)
     elseif csid == 265 then
         player:setVar("NoStringsAttachedProgress",6)
         player:setVar("CreationStarted_Day",0)

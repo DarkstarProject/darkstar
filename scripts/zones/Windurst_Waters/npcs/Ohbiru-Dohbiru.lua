@@ -159,8 +159,8 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
-        player:messageSpecial(KEYITEM_OBTAINED,267);
-        player:addKeyItem(267); -- Rhinostery Certificate
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_CERTIFICATE);
+        player:addKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE); -- Rhinostery Certificate
     elseif (csid == 791 and turmoil == QUEST_ACCEPTED) then -- Completes Toraimarai turmoil - first time
         player:addGil(GIL_RATE*4500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);

@@ -104,7 +104,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14222);
         else
             player:setVar("ANewDawn_Event",6);
-            player:delKeyItem(217);
+            player:delKeyItem(dsp.ki.TAMERS_WHISTLE);
             player:addTitle(196);
             player:addItem(14222,1);
             player:messageSpecial(ITEM_OBTAINED,14222);

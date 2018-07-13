@@ -3,6 +3,7 @@
 --  NPC: Hae Jakkya
 -- Working 100%
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -12,12 +13,12 @@ end;
 function onTrigger(player,npc)
 
     chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-    if (player:hasKeyItem(126) ==true) then
+    if (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) ==true) then
         player:startEvent(406);
     elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
         player:startEvent(403);
 
-    elseif (player:hasKeyItem(149)) then
+    elseif (player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION)) then
         player:startEvent(402); -- Neeed CS here
 
     else

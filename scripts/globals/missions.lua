@@ -1,3 +1,4 @@
+require("scripts/globals/keyitems")
 require("scripts/globals/log_ids")
 require("scripts/globals/zone")
 
@@ -817,7 +818,7 @@ function getMissionMask(player)
             -- first_mission = first_mission + 8192;
         end
         if (rank == 5) then
-            if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
+            if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
                 first_mission = first_mission + 16384;
             end
             if (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then

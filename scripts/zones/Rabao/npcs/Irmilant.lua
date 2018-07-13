@@ -10,6 +10,7 @@ require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/zones/Rabao/TextIDs")
 require("scripts/globals/npc_util")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,7 +31,7 @@ function onTrigger(player,npc)
 
     if player:hasItem(489) == true and (ImmortalLuShang == QUEST_AVAILABLE or ImmortalLuShang == QUEST_COMPLETED) then
         player:startEvent(77) --Offer the quest if the player has the broken rod
-    elseif player:hasKeyItem(1977) == true and (Indomitable == QUEST_AVAILABLE or Indomitable == QUEST_COMPLETED) then
+    elseif player:hasKeyItem(dsp.ki.SERPENT_RUMORS) == true and (Indomitable == QUEST_AVAILABLE or Indomitable == QUEST_COMPLETED) then
         player:startEvent(131) --Begins Indomitable Spirit
     elseif (Indomitable == QUEST_ACCEPTED or Indomitable == QUEST_COMPLETED) and realday == player:getVar("IndomitableSpiritVar") then
         player:startEvent(133) --Asks the player to wait

@@ -67,7 +67,7 @@ function onTrigger(player,npc)
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
         player:startEvent(412);
-    elseif (player:hasKeyItem(149) ==true) then
+    elseif (player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) ==true) then
         player:startEvent(412);
     elseif (chasingStatus == QUEST_ACCEPTED) then
         player:startEvent(406); --  Add follow up cutscene
