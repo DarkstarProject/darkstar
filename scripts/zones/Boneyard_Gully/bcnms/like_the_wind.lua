@@ -54,5 +54,6 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32002) and player:getVar("ENM_WIN") == 1 then
         player:addExp(2000);
+        player:setVar("EMN_WIN",0)
     end
 end;
