@@ -33,7 +33,7 @@ function onTrigger(player,npc)
     local wonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS) --Third and final quest in series
     local pfame = player:getFameLevel(WINDURST)
     local needToZone = player:needToZone()
-    local brokenWand = player:hasKeyItem(128)
+    local brokenWand = player:hasKeyItem(dsp.ki.BROKEN_WAND)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)

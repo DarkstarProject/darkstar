@@ -72,9 +72,9 @@ end;
 ------------------------------------------------------------------
 
 function getMapBitmask(player)
-    if (player:hasKeyItem(1862)) then mamook = 1 else mamook = 0 end -- Map of Mammok
-    if (player:hasKeyItem(1863)) then halvung = 1 else halvung = 0 end -- Map of Halvung
-    if (player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
+    if (player:hasKeyItem(dsp.ki.MAP_OF_MAMOOK)) then mamook = 1 else mamook = 0 end -- Map of Mammok
+    if (player:hasKeyItem(dsp.ki.MAP_OF_HALVUNG)) then halvung = 1 else halvung = 0 end -- Map of Halvung
+    if (player:hasKeyItem(dsp.ki.MAP_OF_ARRAPAGO_REEF)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
     local maps = mamook + 2 * halvung + 4 * arrapago;
 
     return maps;

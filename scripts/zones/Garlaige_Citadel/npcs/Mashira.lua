@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then
         player:startEvent(11,1); -- For the quest "Rubbish day"
     elseif (player:getQuestStatus(WINDURST,MAKING_AMENS) == QUEST_ACCEPTED) then
-        if (player:hasKeyItem(128) == true) then
+        if (player:hasKeyItem(dsp.ki.BROKEN_WAND) == true) then
             player:startEvent(11,3);
         else player:startEvent(11,0); -- Making Amens dialogue
         end
@@ -38,8 +38,8 @@ MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
         player:delKeyItem(dsp.ki.MAGIC_TRASH);
         player:setVar("RubbishDayVar",1);
     elseif (csid == 11 and option == 0 and MakingAmens == QUEST_ACCEPTED) then
-        player:addKeyItem(128); --Broken Wand
-        player:messageSpecial(KEYITEM_OBTAINED,128);
+        player:addKeyItem(dsp.ki.BROKEN_WAND); --Broken Wand
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BROKEN_WAND);
         player:tradeComplete();
     end
 end;

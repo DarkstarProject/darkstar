@@ -169,7 +169,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("AhtUrganStatus",1)
             player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
-            player:setTitle(483);
+            player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
             player:addItem(2185,1);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
             player:messageSpecial(ITEM_OBTAINED,2185);

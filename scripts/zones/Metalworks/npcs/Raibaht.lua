@@ -40,7 +40,7 @@ function onTrigger(player,npc)
         player:startEvent(751); -- Start Quest "Dark Legacy"
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(755); -- Finish Quest "Dark Legacy"
-    elseif (player:hasKeyItem(127) and player:getVar("TheUsual_Event") ~= 1) then
+    elseif (player:hasKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION) and player:getVar("TheUsual_Event") ~= 1) then
         player:startEvent(510);
     else
         player:startEvent(501);

@@ -268,7 +268,7 @@ function supplyRunFresh(player)
     local started = player:getVar("supplyQuest_started");
     local region = player:getVar("supplyQuest_region");
 
-    if ((fresh <= os.time() and (region > 0 or player:hasKeyItem(75))) or
+    if ((fresh <= os.time() and (region > 0 or player:hasKeyItem(dsp.ki.RONFAURE_SUPPLIES))) or
       started <= 400) then -- Legacy support to remove supplies from the old system, otherwise they'd never go away.
         return 0;
     else

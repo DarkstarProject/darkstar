@@ -19,9 +19,9 @@ function onTrigger(player,npc)
 
     Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
 
-    if (Vault == QUEST_ACCEPTED and player:hasKeyItem(295) == false) then
-        player:addKeyItem(295);
-        player:messageSpecial(KEYITEM_OBTAINED,295);
+    if (Vault == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEALED_IRON_BOX) == false) then
+        player:addKeyItem(dsp.ki.SEALED_IRON_BOX);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEALED_IRON_BOX);
     end
 end;
 

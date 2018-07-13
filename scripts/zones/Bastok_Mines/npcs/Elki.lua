@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12840);
         else
-            player:addTitle(84);
+            player:addTitle(dsp.title.PURSUER_OF_THE_PAST);
             player:addItem(12840);
             player:messageSpecial(ITEM_OBTAINED,12840);
             player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
