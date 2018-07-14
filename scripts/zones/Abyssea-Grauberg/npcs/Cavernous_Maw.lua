@@ -4,24 +4,19 @@
 -- !pos -564.000, 30.300, -760.000 254
 -- Teleports Players to North Gustaberg
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(200);
-end;
+    player:startEvent(200)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 200 and option == 1) then
-        player:setPos(-71,0.001,601,126,106);
+    if csid == 200 and option == 1 then
+        player:setPos(-71,0.001,601,126,106)
     end
-end;
+end
