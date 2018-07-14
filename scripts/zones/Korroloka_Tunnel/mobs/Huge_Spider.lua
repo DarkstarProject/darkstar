@@ -8,7 +8,7 @@ require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,279,1);
+    checkGoVregime(player,mob,729,1);
 end;
 
 function onMobDespawn(mob)
