@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - Konschtat
 --   NM: Bakka
---   ID: 16839045
 -----------------------------------
 
 function onCriticalHit(mob)
