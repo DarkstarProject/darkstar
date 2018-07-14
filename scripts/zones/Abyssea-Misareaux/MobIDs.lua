@@ -1,4 +1,4 @@
-require("scripts/globals/keyitems");
+require("scripts/globals/keyitems")
 
 -- [QM] = {'name', {list of required trades}, {list of required KIs}, nmID}
 -- uncomment lines as NMs are implemented

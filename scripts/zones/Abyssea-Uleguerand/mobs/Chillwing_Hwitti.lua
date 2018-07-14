@@ -1,14 +1,13 @@
 -----------------------------------
 -- Area: Abyssea - Uleguerand
 --   NM: Chillwing Hwitti
---   ID: 17813939
 -----------------------------------
 
 function onCriticalHit(mob)
-    if (math.random(100) < 20 and mob:AnimationSub() == 0) then  -- 20% change to break that horn on crit
-        mob:AnimationSub(1);
+    if math.random(100) < 20 and mob:AnimationSub() == 0 then  -- 20% change to break that horn on crit
+        mob:AnimationSub(1)
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

@@ -6,17 +6,17 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(200);
-end;
+    player:startEvent(200)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 200 and option == 1) then
-        player:setPos(91,-68,-582,237,108);
+    if csid == 200 and option == 1 then
+        player:setPos(91,-68,-582,237,108)
     end
-end;
+end

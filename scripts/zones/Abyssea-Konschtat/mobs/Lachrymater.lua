@@ -4,10 +4,10 @@
 -----------------------------------
 
 function onMobSpawn(mob,target)
-    local DayofWeek = VanadielDayElement();
+    local DayofWeek = VanadielDayElement()
 
-    mob:setSpellList(188 + DayofWeek);
-end;
+    mob:setSpellList(188 + DayofWeek)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

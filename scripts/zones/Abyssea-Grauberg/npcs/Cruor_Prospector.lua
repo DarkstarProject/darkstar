@@ -4,23 +4,20 @@
 -- Type: Cruor NPC
 -- !pos ? ? ? 254 (missing from DSP database)
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
-require("scripts/globals/abyssea");
+require("scripts/globals/abyssea")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local cruor = player:getCurrency("cruor");
-    local demilune = getDemiluneAbyssite(player);
-    player:startEvent(2002, cruor, demilune);
-end;
+    local cruor = player:getCurrency("cruor")
+    local demilune = getDemiluneAbyssite(player)
+    player:startEvent(2002, cruor, demilune)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
