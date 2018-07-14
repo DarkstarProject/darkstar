@@ -3,18 +3,15 @@
 --  NPC: Victoire
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+require("scripts/zones/Southern_San_dOria/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,CARAUTIA_SHOP_DIALOG);
-
     local stock =
     {
         12432, 1450,    -- Faceguard
@@ -27,13 +24,14 @@ function onTrigger(player,npc)
         12848, 2110,    -- Brais
         12944, 1085,    -- Scale Greaves
         12976, 1410,    -- Gaiters
-    };
+    }
 
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc, CARAUTIA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

@@ -4,34 +4,31 @@
 -- Type: Standard Merchant NPC
 -- !pos -1.139 -2.101 -9.000 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
+package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
------------------------------------
+require("scripts/zones/Ship_bound_for_Selbina/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,MAERA_SHOP_DIALOG);
-
     local stock =
     {
-        4112,910,        -- Potion
-     4128,4832,        -- Ether
-     4148,316,        -- Antidote
-     4150,2595,        -- Eye Drops
-     4151,800}        -- Echo Drops
+        4112,  910,    -- Potion
+        4128, 4832,    -- Ether
+        4148,  316,    -- Antidote
+        4150, 2595,    -- Eye Drops
+        4151,  800,    -- Echo Drops
+    }
 
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc, MAERA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
 
