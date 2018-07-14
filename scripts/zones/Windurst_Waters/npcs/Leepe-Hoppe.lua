@@ -136,7 +136,8 @@ function onEventFinish(player,csid,option)
         elseif (option == 7) then
             player:addSpell(297) -- Pact
         elseif (option == 8) then
-            reward = nil;
+            player:addKeyItem(dsp.ki.FENRIR_WHISTLE)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FENRIR_WHISTLE)
             -- Pact as Mount
         end
 
@@ -172,7 +173,8 @@ function onEventFinish(player,csid,option)
         elseif (option == 7) then
             player:addSpell(297) -- Pact
         elseif (option == 8) then
-            reward = nil;
+            player:addKeyItem(dsp.ki.FENRIR_WHISTLE)
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FENRIR_WHISTLE)
             -- Pact as Mount
         end
 
