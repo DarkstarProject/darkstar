@@ -1101,6 +1101,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             state.ApplyEnmity();
         }
         PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast);
+
+        uint16 recastID = PAbility->getRecastId();
+        if (map_config.blood_pact_shared_timer && (recastID == 173 || recastID == 174))
+        {
+            PRecastContainer->Add(RECAST_ABILITY, (recastID == 173 ? 174 : 173), action.recast);
+        }
+
         pushPacket(new CCharRecastPacket(this));
 
         //#TODO: refactor
