@@ -1,13 +1,11 @@
 -----------------------------------
 -- Area: Abyssea - Grauberg
 --  NPC: Dominion Tactician
---
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/abyssea");
 require("scripts/zones/Abyssea-Grauberg/TextIDs");
+require("scripts/globals/abyssea");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,8 +36,8 @@ function onEventFinish(player,csid,option)
     local v2 = 0;
     local v3 = 0;
     local v4 = 0;
------------------------------------
--- Spending Dominion Notes
+
+    -- Spending Dominion Notes
     if (option == 257) then -- Unkai Domaru
         Price = 1500;
         ItemID = 12039;
@@ -110,7 +108,7 @@ function onEventFinish(player,csid,option)
 
     if (option > 256 and option < 2818) then
         if (player:getDominionNotes() > Price) then
-            if (TempItem == true) then
+            if (TempItem) then
                 if (player:addTempItem(ItemID,1)) then
                     player:delCurrency("dominion_note",Price);
                     player:messageSpecial(ITEM_OBTAINED,ItemID);
@@ -127,12 +125,11 @@ function onEventFinish(player,csid,option)
             end
         end
     end
------------------------------------
- -- Trophy trades for gear
+
+    -- Trophy trades for gear
     -- if (option == 65796) then
     --     .
     -- elseif (option ==
     --     .
     -- end
-
 end;

@@ -7,9 +7,6 @@
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Abyssea-Grauberg/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/keyitems");
 require("scripts/globals/abyssea");
 -----------------------------------
 
@@ -17,9 +14,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local Cruor = player:getCurrency("cruor");
-    local Demilune = getDemiluneAbyssite(player);
-    player:startEvent(2002, Cruor, Demilune);
+    local cruor = player:getCurrency("cruor");
+    local demilune = getDemiluneAbyssite(player);
+    player:startEvent(2002, cruor, demilune);
 end;
 
 function onEventUpdate(player,csid,option)

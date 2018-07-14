@@ -1,13 +1,13 @@
 -----------------------------------
 -- Area: Abyssea - Grauberg
 --  NPC: Conflux Surveyor
---
 -----------------------------------
 package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
 -----------------------------------
+require("scripts/zones/Abyssea-Grauberg/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)

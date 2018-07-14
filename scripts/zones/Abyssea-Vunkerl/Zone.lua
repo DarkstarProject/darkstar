@@ -3,11 +3,7 @@
 -- Zone: Abyssea - Vunkerl
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Vunkerl/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Vunkerl/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -20,8 +16,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-351,-46.750,699.5,10);
     end
 
-    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAbyssea") == 0) then
+    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0) then
         player:setVar("1stTimeAbyssea",1);
     end
 

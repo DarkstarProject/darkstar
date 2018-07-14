@@ -7,10 +7,10 @@
 package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Abyssea-Konschtat/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/settings");
 require("scripts/globals/abyssea");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)

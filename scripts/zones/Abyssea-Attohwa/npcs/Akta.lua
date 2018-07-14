@@ -3,10 +3,6 @@
 --  NPC: Akta
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Attohwa/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

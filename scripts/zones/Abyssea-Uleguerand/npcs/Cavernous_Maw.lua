@@ -4,11 +4,6 @@
 -- !pos -246.000, -40.600, -520.000 253
 -- Notes: Teleports Players to Xarcabard
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Uleguerand/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Abyssea-Uleguerand/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

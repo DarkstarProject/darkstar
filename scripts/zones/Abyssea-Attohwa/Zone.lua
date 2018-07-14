@@ -3,11 +3,7 @@
 -- Zone: Abyssea - Attohwa
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Attohwa/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Abyssea-Attohwa/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -20,8 +16,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-134,-20,-182,108);
     end
 
-    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED
-    and player:getVar("1stTimeAbyssea") == 0) then
+    if (player:getQuestStatus(ABYSSEA, THE_TRUTH_BECKONS) == QUEST_ACCEPTED and player:getVar("1stTimeAbyssea") == 0) then
         player:setVar("1stTimeAbyssea",1);
     end
 

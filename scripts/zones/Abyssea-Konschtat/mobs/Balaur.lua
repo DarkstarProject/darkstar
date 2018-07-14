@@ -1,20 +1,9 @@
 -----------------------------------
 -- Area: Abyssea - Konschtat (15)
---   Mob: Balaur
--- TODO: When its HP is under 50%, Balaur has a chance to gain
--- a spikes effect after using Breath attacks (matches element of breath)
+--   NM: Balaur
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
-
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob, target)
-end;
 
 function onMobFight(mob, target)
     -- Uses different upgraded breath attack starting at 50% hp.

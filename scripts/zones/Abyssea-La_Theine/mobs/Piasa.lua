@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Abyssea - La Theine
---  MOB: Piasa
+--   NM: Piasa
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

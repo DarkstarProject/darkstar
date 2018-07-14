@@ -3,10 +3,6 @@
 --  NPC: Soni-Muni
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-AttohwaTextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Attohwa/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

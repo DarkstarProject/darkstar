@@ -5,8 +5,8 @@
 -----------------------------------
 package.loaded["scripts/zones/Abdhaljs_Isle-Purgonorgo/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/keyitems");
 require("scripts/zones/Abdhaljs_Isle-Purgonorgo/TextIDs");
+require("scripts/globals/keyitems");
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,10 +3,6 @@
 --  NPC: Romaa Mihgo
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Uleguerand/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Abyssea-Uleguerand/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

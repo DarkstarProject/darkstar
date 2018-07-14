@@ -1,19 +1,10 @@
 -----------------------------------
 -- Area: Abyssea - Vunkerl
---  Mob: Sippoy
+--   NM: Sippoy
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
-
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
 
 function onMobFight(mob,target)
     if (mob:getHPP() < 50) then

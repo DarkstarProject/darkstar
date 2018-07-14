@@ -1,14 +1,11 @@
 -----------------------------------
 -- Zone: Abyssea - Konschtat
 --  NPC: Conflux Surveyor
--- Type:
 -- !pos 133.000 -72.738 -824.000 15
------------------------------------
-package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Konschtat/TextIDs");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,7 +22,6 @@ function onTrigger(player,npc)
     end
 
     player:startEvent(2001,0,visitant,prevtime,STONES,SOJOURN,0,0,0);
-
 end;
 
 function onEventUpdate(player,csid,option)
@@ -43,7 +39,7 @@ function onEventFinish(player,csid,option)
         duration = prevtime;
     end
 
-    duration = duration+(SOJOURN *180);
+    duration = duration + (SOJOURN * 180);
 
     if (csid == 2001) then
         if (option == 2) then -- Use no stones, use previous remaining time
@@ -80,5 +76,4 @@ function onEventFinish(player,csid,option)
             spendTravStones(player,4);
         end
     end
-
 end;

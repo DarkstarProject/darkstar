@@ -3,12 +3,6 @@
 --  NPC: Atma Infusionist
 --
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
