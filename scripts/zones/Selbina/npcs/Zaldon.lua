@@ -23,9 +23,9 @@ local fishRewards =
         gil = 350,
         items =
         {
-            {cutoff =  50, itemId = 13445}, -- Gold Ring (guessing 5%. Wiki unknown.)
-            {cutoff = 100, itemId = 13446}, -- Mythril Ring (guessing 5%. Wiki unknown.)
-            {cutoff = 150, itemId = 13456}, -- Silver Ring (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 13445}, -- Gold Ring (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 13446}, -- Mythril Ring (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 13456}, -- Silver Ring (guessing 5%. Wiki unknown.)
         }
     },
     [4305] = -- Ryugu Titan
@@ -33,7 +33,7 @@ local fishRewards =
         gil = 800,
         items =
         {
-            {cutoff = 13, itemId = 18377}, -- Mercurial Sword
+            {chance = 1.3, itemId = 18377}, -- Mercurial Sword
         }
     },
     [4306] = -- Giant Donko
@@ -41,7 +41,7 @@ local fishRewards =
         gil = 96,
         items =
         {
-            {cutoff = 47, itemId = 1833}, -- Broken Halcyon Fishing Rod
+            {chance = 4.7, itemId = 1833}, -- Broken Halcyon Fishing Rod
         }
     },
     [4307] = -- Jungle Catfish
@@ -49,7 +49,7 @@ local fishRewards =
         gil = 300,
         items =
         {
-            {cutoff = 30, itemId = 1832}, -- Broken Hume Fishing Rod
+            {chance = 3, itemId = 1832}, -- Broken Hume Fishing Rod
         }
     },
     [4308] = -- Giant Chirai
@@ -57,7 +57,7 @@ local fishRewards =
         gil = 550,
         items =
         {
-            {cutoff = 12, itemId = 1278}, -- Spool of Twinthread
+            {chance = 1.2, itemId = 1278}, -- Spool of Twinthread
         }
     },
     [4309] = -- Cave Cherax
@@ -65,7 +65,7 @@ local fishRewards =
         gil = 800,
         items =
         {
-            {cutoff = 262, itemId = 17007}, -- Dwarf Pugil
+            {chance = 26.2, itemId = 17007}, -- Dwarf Pugil
         }
     },
     [4316] = -- Armored Pisces
@@ -73,7 +73,7 @@ local fishRewards =
         gil = 475,
         items = 
         {
-            {cutoff = 4, itemId = 13736}, -- Stolid Breastplate
+            {chance = 0.4, itemId = 13736}, -- Stolid Breastplate
         }
     },
     [4319] = -- Tricorn
@@ -81,7 +81,7 @@ local fishRewards =
         gil = 810,
         items =
         {
-            {cutoff = 40, itemId = 645}, -- Chunk of Darksteel Ore (guessing 4%. Wiki unknown.)
+            {chance = 4, itemId = 645}, -- Chunk of Darksteel Ore (guessing 4%. Wiki unknown.)
         }
     },
     [4385] = -- Zafmlug Bass
@@ -89,7 +89,7 @@ local fishRewards =
         gil = 15,
         items =
         {
-            {cutoff = 14, itemId = 770}, -- Blue Rock
+            {chance = 1.4, itemId = 770}, -- Blue Rock
         }
     },
     [4462] = -- Monke-Onke
@@ -97,7 +97,7 @@ local fishRewards =
         gil = 150,
         items =
         {
-            {cutoff = 100, itemId = 943, min = 1, max = 6}, -- Pinch of Poison Dust (guessing 10%. Wiki unknown.)
+            {chance = 10, itemId = 943, min = 1, max = 6}, -- Pinch of Poison Dust (guessing 10%. Wiki unknown.)
         }
     },
     [4428] = -- Dark Bass
@@ -105,7 +105,7 @@ local fishRewards =
         gil = 10,
         items =
         {
-            {cutoff = 46, itemId = 772}, -- Green Rock
+            {chance = 4.6, itemId = 772}, -- Green Rock
         }
     },
     [4451] = -- Silver Shark
@@ -114,7 +114,7 @@ local fishRewards =
         title = dsp.title.ACE_ANGLER,
         items =
         {
-            {cutoff = 14, itemId = 16837}, -- Trident
+            {chance = 1.4, itemId = 16837}, -- Trident
         }
     },
     [4454] = -- Emperor Fish
@@ -122,7 +122,7 @@ local fishRewards =
         gil = 300,
         items =
         {
-            {cutoff = 10, itemId = 12955}, -- Cuir Highboots (guessing 1%. Wiki says 0%.)
+            {chance = 1, itemId = 12955}, -- Cuir Highboots (guessing 1%. Wiki says 0%.)
         }
     },
     [4463] = -- Takitaro
@@ -130,7 +130,7 @@ local fishRewards =
         gil = 350,
         items =
         {
-            {cutoff = 24, itemId = 942}, -- Philosopher's Stone
+            {chance = 2.4, itemId = 942}, -- Philosopher's Stone
         }
     },
     [4471] = -- Bladefish
@@ -138,7 +138,7 @@ local fishRewards =
         gil = 200,
         items =
         {
-            {cutoff = 117, itemId = 17002}, -- Robber Rig
+            {chance = 11.7, itemId = 17002}, -- Robber Rig
         }
     },
     [4474] = -- Gigant Squid
@@ -146,7 +146,7 @@ local fishRewards =
         gil = 300,
         items =
         {
-            {cutoff = 25, itemId = 12317}, -- Flame Shield (guessing 2.5%. Wiki unknown.)
+            {chance = 2.5, itemId = 12317}, -- Flame Shield (guessing 2.5%. Wiki unknown.)
         }
     },
     [4475] = -- Sea Zombie
@@ -154,7 +154,7 @@ local fishRewards =
         gil = 350,
         items =
         {
-            {cutoff = 261, itemId = 17006}, -- Drill Calamary
+            {chance = 26.1, itemId = 17006}, -- Drill Calamary
         }
     },
     [4476] = -- Titanictus
@@ -163,8 +163,8 @@ local fishRewards =
         title = dsp.title.LU_SHANGLIKE_FISHER_KING,
         items =
         {
-            {cutoff = 13, itemId = 16533}, -- Ancient Sword
-            {cutoff = 63, itemId =   888}, -- Seashell (guessing 5%. Wiki unknown.)
+            {chance = 1.3, itemId = 16533}, -- Ancient Sword
+            {chance = 5, itemId = 888}, -- Seashell (guessing 5%. Wiki unknown.)
         }
     },
     [4477] = -- Gavial Fish
@@ -172,7 +172,7 @@ local fishRewards =
         gil = 250,
         items =
         {
-            {cutoff = 49, itemId = 13361}, -- Drone Earring
+            {chance = 4.9, itemId = 13361}, -- Drone Earring
         }
     },
     [4478] = -- Three-eyed Fish
@@ -180,7 +180,7 @@ local fishRewards =
         gil = 250,
         items =
         {
-            {cutoff = 100, itemId = 945, min = 1, max = 10}, -- Pinch of Paralysis Dust (guessing 10%. Wiki unknown.)
+            {chance = 10, itemId = 945, min = 1, max = 10}, -- Pinch of Paralysis Dust (guessing 10%. Wiki unknown.)
         }
     },
     [4479] = -- Bhefhel Marlin
@@ -188,8 +188,8 @@ local fishRewards =
         gil = 150,
         items =
         {
-            {cutoff = 143, itemId = 1873}, -- Brigand's Chart
-            {cutoff = 187, itemId = 1874}, -- Pirate's Chart
+            {chance = 14.3, itemId = 1873}, -- Brigand's Chart
+            {chance = 4.4, itemId = 1874}, -- Pirate's Chart
         }
     },
     [4480] = -- Gugru Tuna
@@ -197,7 +197,7 @@ local fishRewards =
         gil = 50,
         items =
         {
-            {cutoff = 25, itemId = 19186}, -- Tiny Tathlum
+            {chance = 2.5, itemId = 19186}, -- Tiny Tathlum
         }
     },
     [4481] = -- Ogre Eel
@@ -206,7 +206,7 @@ local fishRewards =
         title = dsp.title.CORDON_BLEU_FISHER,
         items =
         {
-            {cutoff = 25, itemId = 13480}, -- Turquoise Ring
+            {chance = 2.5, itemId = 13480}, -- Turquoise Ring
         }
     },
     [5120] = -- Titanic Sawfish
@@ -214,7 +214,7 @@ local fishRewards =
         gil = 810,
         items =
         {
-            {cutoff = 7, itemId = 19290}, -- Aizenkunitoshi
+            {chance = 0.7, itemId = 19290}, -- Aizenkunitoshi
         }
     },
     [5127] = -- Gugrusaurus
@@ -222,7 +222,7 @@ local fishRewards =
         gil = 880,
         items =
         {
-            {cutoff = 4, itemId = 1837}, -- Saber Shoot
+            {chance = 0.4, itemId = 1837}, -- Saber Shoot
         }
     },
     [5129] = -- Lik
@@ -230,7 +230,7 @@ local fishRewards =
         gil = 880,
         items =
         {
-            {cutoff = 5, itemId = 1826}, -- Spool of Opal Silk
+            {chance = 0.5, itemId = 1826}, -- Spool of Opal Silk
         }
     },
     [5133] = -- Pterygotus
@@ -238,7 +238,7 @@ local fishRewards =
         gil = 390,
         items =
         {
-            {cutoff = 67, itemId = 795}, -- Lapis Lazuli
+            {chance = 6.7, itemId = 795}, -- Lapis Lazuli
         }
     },
     [5134] = -- Mola Mola
@@ -246,7 +246,7 @@ local fishRewards =
         gil = 487,
         items =
         {
-            {cutoff = 18, itemId = 16850}, -- Mercurial Spear
+            {chance = 1.8, itemId = 16850}, -- Mercurial Spear
         }
     },
     [5135] = -- Rhinochimera
@@ -254,7 +254,7 @@ local fishRewards =
         gil = 300,
         items =
         {
-            {cutoff = 32, itemId = 11624}, -- Solon Torque
+            {chance = 3.2, itemId = 11624}, -- Solon Torque
         }
     },
     [5136] = -- Istavrit
@@ -262,7 +262,7 @@ local fishRewards =
         gil = 50,
         items =
         {
-            {cutoff = 100, itemId = 944, min = 1, max = 6}, -- Pinch of Venom Dust
+            {chance = 10, itemId = 944, min = 1, max = 6}, -- Pinch of Venom Dust (guessing 10%. Wiki unknown.)
         }
     },
     [5137] = -- Turnabaligi
@@ -270,9 +270,9 @@ local fishRewards =
         gil = 340,
         items =
         {
-            {cutoff = 10, itemId = 1262}, -- Chunk of Dark Ore
-            {cutoff = 24, itemId = 1256}, -- Chunk of Ice Ore
-            {cutoff = 38, itemId = 1260}, -- Chunk of Water Ore
+            {chance = 1, itemId = 1262}, -- Chunk of Dark Ore
+            {chance = 1.4, itemId = 1256}, -- Chunk of Ice Ore
+            {chance = 1.4, itemId = 1260}, -- Chunk of Water Ore
         }
     },
     [5140] = -- Kalkanbaligi
@@ -280,7 +280,7 @@ local fishRewards =
         gil = 390,
         items =
         {
-            {cutoff = 33, itemId = 16184}, -- Flat Shield
+            {chance = 3.3, itemId = 16184}, -- Flat Shield
         }
     },
     [5141] = -- Veydal Wrasse
@@ -288,8 +288,8 @@ local fishRewards =
         gil = 225,
         items =
         {
-            {cutoff =  50, itemId = 4361}, -- Nebimonite (guessing 5%. Wiki unknown.)
-            {cutoff = 100, itemId =  888}, -- Seashell (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 4361}, -- Nebimonite (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 888}, -- Seashell (guessing 5%. Wiki unknown.)
         }
     },
     [5450] = -- Lakerda
@@ -297,8 +297,8 @@ local fishRewards =
         gil = 51,
         items =
         {
-            {cutoff = 60, itemId = 792}, -- Pearl
-            {cutoff = 79, itemId = 793}, -- Black Pearl
+            {chance = 6, itemId = 792}, -- Pearl
+            {chance = 1.9, itemId = 793}, -- Black Pearl
         }
     },
     [5451] = -- Kilicbaligi
@@ -306,7 +306,7 @@ local fishRewards =
         gil = 150,
         items =
         {
-            {cutoff = 25, itemId = 16606}, -- Rusty Greatsword (guessing 2.5%. Wiki unknown.)
+            {chance = 2.5, itemId = 16606}, -- Rusty Greatsword (guessing 2.5%. Wiki unknown.)
         }
     },
     [5455] = -- Ahtapot
@@ -314,8 +314,8 @@ local fishRewards =
         gil = 350,
         items =
         {
-            {cutoff = 185, itemId = 2886}, -- Mildewy Ingot
-            {cutoff = 287, itemId = 2887}, -- Decayed Ingot
+            {chance = 18.5, itemId = 2886}, -- Mildewy Ingot
+            {chance = 10.2, itemId = 2887}, -- Decayed Ingot
         }
     },
     [5462] = -- Morinabaligi
@@ -323,7 +323,7 @@ local fishRewards =
         gil = 300,
         items =
         {
-            {cutoff = 50, itemId = 12699}, -- Cuir Gloves (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 12699}, -- Cuir Gloves (guessing 5%. Wiki unknown.)
         }
     },
     [5463] = -- Yayinbaligi
@@ -331,7 +331,7 @@ local fishRewards =
         gil = 50,
         items =
         {
-            {cutoff = 50, itemId = 14649}, -- Telluric Ring (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 14649}, -- Telluric Ring (guessing 5%. Wiki unknown.)
         }
     },
     [5467] = -- Megalodon
@@ -339,8 +339,8 @@ local fishRewards =
         gil = 532,
         items =
         {
-            {cutoff = 30, itemId =   483}, -- Broken Mithran Fishing Rod (guessing 3%. Wiki unknown.)
-            {cutoff = 30, itemId = 17380}, -- Mithran Fishing Rod (guessing 3%. Wiki unknown.)
+            {chance = 3, itemId = 483}, -- Broken Mithran Fishing Rod (guessing 3%. Wiki unknown.)
+            {chance = 3, itemId = 17380}, -- Mithran Fishing Rod (guessing 3%. Wiki unknown.)
         }
     },
     [5468] = -- Matsya
@@ -348,7 +348,7 @@ local fishRewards =
         gil = 12592,
         items =
         {
-            {cutoff = 12, itemId = 11009}, -- Shaper's Shawl
+            {chance = 1.2, itemId = 11009}, -- Shaper's Shawl
         }
     },
     [5470] = -- Pirarucu
@@ -356,8 +356,8 @@ local fishRewards =
         gil = 516,
         items =
         {
-            {cutoff = 50, itemId = 1122}, -- Wyvern Skin (guessing 5%. Wiki unknown.)
-            {cutoff = 75, itemId = 2523}, -- Peiste Skin (guessing 2.5%. Wiki unknown.)
+            {chance = 5, itemId = 1122}, -- Wyvern Skin (guessing 5%. Wiki unknown.)
+            {chance = 2.5, itemId = 2523}, -- Peiste Skin (guessing 2.5%. Wiki unknown.)
         }
     },
     [5471] = -- Gerrothorax
@@ -365,7 +365,7 @@ local fishRewards =
         gil = 423,
         items =
         {
-            {cutoff = 12, itemId = 11492}, -- Risky Patch
+            {chance = 1.2, itemId = 11492}, -- Risky Patch
         }
     },
     [5475] = -- Gigant Octopus
@@ -373,7 +373,7 @@ local fishRewards =
         gil = 119,
         items =
         {
-            {cutoff = 100, itemId = 929, min = 1, max = 6}, -- Jar of Black Ink (guessing 10%. Wiki unknown.)
+            {chance = 10, itemId = 929, min = 1, max = 6}, -- Jar of Black Ink (guessing 10%. Wiki unknown.)
         }
     },
     [5476] = -- Abaia
@@ -381,10 +381,10 @@ local fishRewards =
         gil = 690,
         items =
         {
-            {cutoff = 125, itemId =  5818, min = 1, max = 1}, -- Aurora Bass x3
-            {cutoff = 203, itemId =  5818, min = 2, max = 2}, -- Aurora Bass x2
-            {cutoff = 218, itemId =  5818, min = 3, max = 3}, -- Aurora Bass x1
-            {cutoff = 225, itemId = 10372}, -- Plumb Boots
+            {chance = 1.5, itemId = 5818, min = 1, max = 1}, -- Aurora Bass x3
+            {chance = 7.8, itemId = 5818, min = 2, max = 2}, -- Aurora Bass x2
+            {chance = 12.5, itemId = 5818, min = 3, max = 3}, -- Aurora Bass x1
+            {chance = 0.7, itemId = 10372}, -- Plumb Boots
         }
     },
     [5537] = -- Soryu
@@ -392,7 +392,7 @@ local fishRewards =
         gil = 1512,
         items =
         {
-            {cutoff = 468, itemId = 9099}, -- Soryu's Liver
+            {chance = 46.8, itemId = 9099}, -- Soryu's Liver
         }
     },
     [5538] = -- Sekiryu
@@ -400,7 +400,7 @@ local fishRewards =
         gil = 1512,
         items =
         {
-            {cutoff = 481, itemId = 9100}, -- Sekiryu's Liver (guessing 48.1%. Wiki unknown.)
+            {chance = 48.1, itemId = 9100}, -- Sekiryu's Liver (guessing 48.1%. Wiki unknown.)
         }
     },
     [5539] = -- Hakuryu
@@ -408,7 +408,7 @@ local fishRewards =
         gil = 1512,
         items =
         {
-            {cutoff = 481, itemId = 9101}, -- Hakuryu's Liver
+            {chance = 48.1, itemId = 9101}, -- Hakuryu's Liver
         }
     },
     [5799] = -- Giant Catfish
@@ -417,7 +417,7 @@ local fishRewards =
         title = dsp.title.CORDON_BLEU_FISHER,
         items =
         {
-            {cutoff = 62, itemId = 17076}, -- Earth Wand
+            {chance = 6.2, itemId = 17076}, -- Earth Wand
         }
     },
     [5813] = -- Dorado Gar
@@ -425,7 +425,7 @@ local fishRewards =
         gil = 568,
         items =
         {
-            {cutoff = 50, itemId = 745, min = 1, max = 4}, -- Gold Ingot (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 745, min = 1, max = 4}, -- Gold Ingot (guessing 5%. Wiki unknown.)
         }
     },
     [5814] = -- Crocodilos
@@ -433,7 +433,7 @@ local fishRewards =
         gil = 1763,
         items =
         {
-            {cutoff = 23, itemId = 11654}, -- Puffin Ring
+            {chance = 2.3, itemId = 11654}, -- Puffin Ring
         }
     },
     [5815] = -- Pelazoea
@@ -441,7 +441,7 @@ local fishRewards =
         gil = 360,
         items =
         {
-            {cutoff = 18, itemId = 11655}, -- Noddy Ring
+            {chance = 1.8, itemId = 11655}, -- Noddy Ring
         }
     },
     [6489] = -- Far East Puffer
@@ -449,7 +449,7 @@ local fishRewards =
         gil = 735,
         items =
         {
-            {cutoff = 50, itemId = 25864}, -- Stinky Subligar (guessing 5%. Wiki unknown.)
+            {chance = 5, itemId = 25864}, -- Stinky Subligar (guessing 5%. Wiki unknown.)
         }
     },
 }
@@ -459,11 +459,13 @@ local function tradeFish(player, fishId)
     player:setVar("insideBellyItemIdx", 0)
     
     local rewards = fishRewards[fishId].items
-    local roll = math.random(1000)
+    local roll = math.random(1000) / 10
     local found = false
+    local sum = 0
 
     for i = 1, #rewards do
-        if roll <= rewards[i].cutoff then
+        sum = sum + rewards[i].chance
+        if roll <= sum then
             found = true
             player:setVar("insideBellyItemIdx", i)
             player:startEvent(166, 0, rewards[i].itemId)
