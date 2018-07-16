@@ -19,9 +19,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local doorCoolDown = npc:getLocalVar("doorCoolDown")
-
-    if doorCoolDown > os.time() then
+    if npc:getLocalVar("doorCoolDown") > os.time() then
         return
     elseif player:getZPos() >= -15 then
         player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE)
