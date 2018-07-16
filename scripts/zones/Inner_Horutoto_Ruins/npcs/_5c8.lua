@@ -21,10 +21,10 @@ end
 function onTrigger(player,npc)
     local doorCoolDown = npc:getLocalVar("doorCoolDown")
 
-    if player:getZPos() >= -15 then
-        player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE)
-    elseif doorCoolDown > os.time() then
+    if doorCoolDown > os.time() then
         return
+    elseif player:getZPos() >= -15 then
+        player:messageSpecial(PORTAL_NOT_OPEN_THAT_SIDE)
     else
         if player:hasKeyItem(dsp.ki.PORTAL_CHARM) then
         GetNPCByID(PORTAL_CIRCLE_BASE):openDoor(30)
