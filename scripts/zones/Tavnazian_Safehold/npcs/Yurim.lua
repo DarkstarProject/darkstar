@@ -64,7 +64,7 @@ function onTrade(player,npc,trade)
     local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
     
     if itemInProgress > 0 and npcUtil.tradeHas(trade, nosTrades[itemInProgress].organs) then
-        player:setVar("NAME_OF_SCIENCE_complete", itemInProgress)
+        player:setLocalVar("NAME_OF_SCIENCE_complete", itemInProgress)
         player:startEvent(529, gorget, earring, obi)
     elseif (nameOfScience == QUEST_ACCEPTED or nameOfScience == QUEST_COMPLETED) and npcUtil.tradeHas(trade, 4413) and itemInProgress > 0 then -- apple pie hint
         player:startEvent(531, 4413, 0, nosTrades[itemInProgress].hint)
@@ -119,10 +119,11 @@ function onEventFinish(player,csid,option)
         player:confirmTrade()
     elseif csid == 529 then
         local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
-        local itemComplete   = player:getVar("NAME_OF_SCIENCE_complete")
+        local itemComplete   = player:getLocalVar("NAME_OF_SCIENCE_complete")
         
         if itemComplete > 0 and itemInProgress == itemComplete then
-            if npcUtil.completeQuest(player, OTHER_AREAS_LOG, IN_THE_NAME_OF_SCIENCE, {item=itemComplete, var={"NAME_OF_SCIENCE_target", "NAME_OF_SCIENCE_complete"}}) then
+            player:setLocalVar("NAME_OF_SCIENCE_complete", 0)
+            if npcUtil.completeQuest(player, OTHER_AREAS_LOG, IN_THE_NAME_OF_SCIENCE, {item=itemComplete, var={"NAME_OF_SCIENCE_target"}}) then
                 player:confirmTrade()
             end
         else
