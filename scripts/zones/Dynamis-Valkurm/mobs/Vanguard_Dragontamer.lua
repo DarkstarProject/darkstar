@@ -1,20 +1,13 @@
 -----------------------------------
 -- Area: Dynamis Valkurm
+--  MOB: Vanguard_Dragontamer
 -----------------------------------
------------------------------------
-require("scripts/globals/status")
-mixins = { require("scripts/mixins/dynamis_beastmen") }
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
