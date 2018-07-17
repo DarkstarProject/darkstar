@@ -131,6 +131,7 @@ This file is part of DarkStar-server source code.
 #include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
+#include "packets/release_special.h"
 #include "packets/server_ip.h"
 #include "packets/server_message.h"
 #include "packets/shop_appraise.h"
@@ -4908,6 +4909,21 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Special Release Request                                              *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0EB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    if (PChar->m_event.EventID == -1)
+        return;
+
+    PChar->pushPacket(new CSpecialReleasePacket(PChar));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Cancel Status Effect                                                 *
 *                                                                       *
 ************************************************************************/
@@ -5951,6 +5967,7 @@ void PacketParserInitialize()
     PacketSize[0x0E7] = 0x04; PacketParser[0x0E7] = &SmallPacket0x0E7;
     PacketSize[0x0E8] = 0x04; PacketParser[0x0E8] = &SmallPacket0x0E8;
     PacketSize[0x0EA] = 0x00; PacketParser[0x0EA] = &SmallPacket0x0EA;
+    PacketSize[0x0EB] = 0x00; PacketParser[0x0EB] = &SmallPacket0x0EB;
     PacketSize[0x0F1] = 0x00; PacketParser[0x0F1] = &SmallPacket0x0F1;
     PacketSize[0x0F2] = 0x00; PacketParser[0x0F2] = &SmallPacket0x0F2;
     PacketSize[0x0F4] = 0x04; PacketParser[0x0F4] = &SmallPacket0x0F4;
