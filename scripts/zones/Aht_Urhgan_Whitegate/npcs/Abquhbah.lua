@@ -12,7 +12,20 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:startEvent(254);
+    local PROMOTION = player:getVar("AssaultPromotion");
+    local RANK = 0
+    
+    if PROMOTION <= 7 then
+        RANK = 1
+    elseif PROMOTION >= 8 and PROMOTION <= 11 then
+        RANK = 2
+    elseif PROMOTION >= 12 and PROMOTION <= 18 then
+        RANK = 3
+    elseif PROMOTION >= 19 then
+        RANK = 4
+    end
+     
+    player:startEvent(255,RANK);
 end;
 
 function onEventUpdate(player,csid,option)

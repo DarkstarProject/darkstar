@@ -11,9 +11,13 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    if (npcUtil.tradeHas(trade, 2163) and player:getVar("Promotion") == 1) then -- Rank to PFC
+        player:startEvent(5002,0,0,0,0,0,0,0,0,0);
+    end
 end;
 
 function onTrigger(player,npc)
@@ -22,7 +26,9 @@ function onTrigger(player,npc)
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local needToZone = player:needToZone();
 
-    if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false) then
+        player:startEvent(5000,0,0,0,0,0,0,0,0,0); -- PFC rank is available
+    elseif (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(73,0,0,0,0,0,0,0,0,0);
@@ -177,5 +183,13 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
+    elseif csid == 5000 then
+        player:setVar("Promotion", 1)
+    elseif csid == 5002 then
+        player:confirmTrade()
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE);
+        player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE);
+        player:setVar("Promotion", 0)
+        player:setVar("AssaultPromotion", 0)
     end
 end;

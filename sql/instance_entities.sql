@@ -59,6 +59,33 @@ INSERT INTO `instance_entities` VALUES (1,17060138);
 INSERT INTO `instance_entities` VALUES (1,17060146);
 INSERT INTO `instance_entities` VALUES (1,17060147);
 
+-- Preemtive Strike
+-- Mobs
+INSERT INTO `instance_entities` VALUES (12, 17047570);
+INSERT INTO `instance_entities` VALUES (12, 17047571);
+INSERT INTO `instance_entities` VALUES (12, 17047572);
+INSERT INTO `instance_entities` VALUES (12, 17047573);
+INSERT INTO `instance_entities` VALUES (12, 17047574);
+INSERT INTO `instance_entities` VALUES (12, 17047575);
+INSERT INTO `instance_entities` VALUES (12, 17047576);
+INSERT INTO `instance_entities` VALUES (12, 17047577);
+INSERT INTO `instance_entities` VALUES (12, 17047578);
+INSERT INTO `instance_entities` VALUES (12, 17047579);
+INSERT INTO `instance_entities` VALUES (12, 17047580);
+INSERT INTO `instance_entities` VALUES (12, 17047581);
+INSERT INTO `instance_entities` VALUES (12, 17047582);
+INSERT INTO `instance_entities` VALUES (12, 17047583);
+INSERT INTO `instance_entities` VALUES (12, 17047584);
+INSERT INTO `instance_entities` VALUES (12, 17047585);
+INSERT INTO `instance_entities` VALUES (12, 17047586);
+INSERT INTO `instance_entities` VALUES (12, 17047587);
+INSERT INTO `instance_entities` VALUES (12, 17047588);
+INSERT INTO `instance_entities` VALUES (12, 17047589);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (12, 17047808);
+INSERT INTO `instance_entities` VALUES (12, 17047809);
+
+
 -- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);
 INSERT INTO `instance_entities` VALUES (27,17035360);
