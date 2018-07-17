@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Port Bastok
+-- Area: Southern San d'Oria
 --  NPC: Ilita
 --  Linkshell Merchant
 -- !pos -142 -1 -25 236

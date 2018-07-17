@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ru'Avitau Gate
+-- Area: Ru'Aun Gardens
 --  NPC: Goblin Footprint
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;

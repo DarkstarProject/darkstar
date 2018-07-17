@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Carautia
---  NPC: Southern San d'Oria
+-- Area: Southern San d'Oria
+--  NPC: Carautia
 -- Standard Merchant NPC
 -- !pos 70 0 39 230
 -----------------------------------

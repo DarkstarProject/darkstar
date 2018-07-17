@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Sauromugue Champaign
+-- Area: Rolanberry Fields [S]
 --  NPC: Cavernous Maw
 -- !pos -198 8 360 91
 -- Teleports Players to Rolanberry Fields

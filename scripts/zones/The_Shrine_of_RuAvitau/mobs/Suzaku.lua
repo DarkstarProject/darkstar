@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ru'Aun Gardens
+-- Area: The Shrine of Ru'Avitau
 --  MOB: Suzaku (Pet version)
 -----------------------------------
 

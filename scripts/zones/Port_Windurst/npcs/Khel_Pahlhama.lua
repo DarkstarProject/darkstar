@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Port Bastok
+-- Area: Port Windurst
 --  NPC: Khel Pahlhama
 --  Linkshell Merchant
 -- !pos 21 -2 -20 240

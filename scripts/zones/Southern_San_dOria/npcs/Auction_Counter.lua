@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Windurst Woods
+-- Area: Southern San d'Oria
 --  NPC: Auction Counter
 -- Working 100%
 -----------------------------------
