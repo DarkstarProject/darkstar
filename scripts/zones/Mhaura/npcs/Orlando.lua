@@ -34,11 +34,11 @@ function onTrade(player,npc,trade)
         if (QuestStatus == QUEST_ACCEPTED) or (player:getLocalVar("OrlandoRepeat") == 1) then
             if (item[1] == itemID) then
                 if (trade:hasItemQty(itemID, 8) and trade:getItemCount() == 8) then
-                -- Correct amount, valid item.
+                    -- Correct amount, valid item.
                     player:setVar("ANTIQUE_PAYOUT", (GIL_RATE*item[2]));
                     player:startEvent(102, GIL_RATE*item[2], itemID);
                 elseif (trade:getItemCount() < 8) then
-                 -- Wrong amount, but valid item.
+                    -- Wrong amount, but valid item.
                     player:startEvent(104);
                 end
             end

@@ -28,7 +28,7 @@ function onTrigger(player,npc)
     elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then
         if (player:getVar("CooksPrideVar") == 0) then
             player:startEvent(189); -- Start quest "Cook's pride" Long CS
-         else
+        else
             player:startEvent(188); -- Start quest "Cook's pride" Short CS
         end
     elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == false) then

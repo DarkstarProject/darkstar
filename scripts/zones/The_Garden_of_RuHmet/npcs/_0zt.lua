@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
-       player:startEvent(204);
+        player:startEvent(204);
     end
 end;
 
@@ -27,8 +27,8 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);
     -- printf("onFinish RESULT: %u",option);
     if (csid==204) then
-              player:completeMission(COP,WHEN_ANGELS_FALL);
+        player:completeMission(COP,WHEN_ANGELS_FALL);
         player:addMission(COP,DAWN);
-      player:setVar("PromathiaStatus",0);
+        player:setVar("PromathiaStatus",0);
     end
 end;

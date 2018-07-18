@@ -23,9 +23,9 @@ end;
 
 function onTrigger(player,npc)
 
-    ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
+    local ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
 
-     if (player:getFameLevel(BASTOK) >= 2 and ForevertoHold == QUEST_AVAILABLE) then
+    if (player:getFameLevel(BASTOK) >= 2 and ForevertoHold == QUEST_AVAILABLE) then
         player:startEvent(123);
     elseif (ForevertoHold == QUEST_ACCEPTED and player:getVar("ForevertoHold_Event") == 3) then
         player:startEvent(126);

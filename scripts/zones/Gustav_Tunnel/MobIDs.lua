@@ -4,8 +4,8 @@
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
 
- BUNE        = 17645578;
- GIGAPLASM   = 17645794;
+BUNE         = 17645578;
+GIGAPLASM    = 17645794;
 BARONIAL_BAT = 17645809
 
 GOBLINSAVIOR_HERONOX_PH =

@@ -21,7 +21,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onTransportEvent(player,transport)
-  player:startEvent(100);
+    player:startEvent(100);
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -37,6 +37,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 100) then
-    player:setPos(0,0,0,0,4);
+        player:setPos(0,0,0,0,4);
     end
 end;

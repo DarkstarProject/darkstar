@@ -55,48 +55,48 @@ function onTrigger(player,npc)
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
     elseif (currentCOPMission == DAWN and player:getVar("PromathiaStatus")==3 and player:getVar("Promathia_kill_day")~=currentday and player:getVar("COP_tenzen_story")== 0 ) then
-       player:startEvent(897) -- COP event
+        player:startEvent(897) -- COP event
     elseif (currentCOPMission == CALM_BEFORE_THE_STORM and player:hasKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE) == false and player:getVar("COP_Dalham_KILL") == 2 and player:getVar("COP_Boggelmann_KILL") == 2 and player:getVar("Cryptonberry_Executor_KILL")==2) then
         player:startEvent(892) -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==2 and player:getVar("Promathia_CID_timer")~=VanadielDayOfTheYear()) then
         player:startEvent(890) -- COP event
     elseif (currentCOPMission == FIRE_IN_THE_EYES_OF_MEN and player:getVar("PromathiaStatus")==1) then
-          player:startEvent(857) -- COP event
+        player:startEvent(857) -- COP event
     elseif (currentCOPMission == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(856) -- COP event
     elseif (currentCOPMission == THREE_PATHS and LouverancePath == 6 ) then
         player:startEvent(852) -- COP event
     elseif (currentCOPMission == THREE_PATHS and LouverancePath == 9 ) then
         if (TenzenPath==11 and UlmiaPath==8) then
-           TreePathAv=6
+            TreePathAv=6
         elseif (TenzenPath==11) then
-           TreePathAv=2
+            TreePathAv=2
         elseif (UlmiaPath==8) then
-           TreePathAv=4
+            TreePathAv=4
         else
-           TreePathAv=1
+            TreePathAv=1
         end
         player:startEvent(853,TreePathAv) -- COP event
     elseif (currentCOPMission == THREE_PATHS and TenzenPath == 10 ) then
         if (UlmiaPath==8 and LouverancePath==10) then
-           TreePathAv=5
+            TreePathAv=5
         elseif (LouverancePath==10) then
-           TreePathAv=3
+            TreePathAv=3
         elseif (UlmiaPath==8) then
-           TreePathAv=4
+            TreePathAv=4
         else
-           TreePathAv=1
+            TreePathAv=1
         end
         player:startEvent(854,TreePathAv) -- COP event
     elseif (currentCOPMission == THREE_PATHS and UlmiaPath == 7 ) then
         if (TenzenPath==11 and LouverancePath==10) then
-           TreePathAv=3
+            TreePathAv=3
         elseif (LouverancePath==10) then
-           TreePathAv=1
+            TreePathAv=1
         elseif (TenzenPath==11) then
-           TreePathAv=2
+            TreePathAv=2
         else
-           TreePathAv=0
+            TreePathAv=0
         end
         player:startEvent(855,TreePathAv) -- COP event
     elseif (currentCOPMission == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus") > 8) then

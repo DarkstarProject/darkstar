@@ -14,14 +14,14 @@ function onTrigger(player,npc)
 
     local ZilartMission = player:getCurrentMission(ZILART);
     local currentMission = player:getCurrentMission(BASTOK);
-   local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartStatus = player:getVar("ZilartStatus");
 
-   -- Checked here to be fair to new players
-   local DMEarrings = 0;
-   for i=14739, 14743 do
-      if (player:hasItem(i)) then
-         DMEarrings = DMEarrings + 1;
-      end
+    -- Checked here to be fair to new players
+    local DMEarrings = 0;
+    for i=14739, 14743 do
+        if (player:hasItem(i)) then
+            DMEarrings = DMEarrings + 1;
+        end
     end
 
     if (ZilartMission == WELCOME_TNORG) then

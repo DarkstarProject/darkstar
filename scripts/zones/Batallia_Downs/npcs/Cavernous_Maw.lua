@@ -26,9 +26,9 @@ function onTrigger(player,npc)
         (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
-        player:startEvent(501);
+            player:startEvent(501);
         else
-        player:startEvent(910);
+            player:startEvent(910);
         end
     else
         player:messageSpecial(NOTHING_HAPPENS);

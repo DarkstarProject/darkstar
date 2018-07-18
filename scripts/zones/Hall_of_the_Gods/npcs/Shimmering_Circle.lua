@@ -15,8 +15,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-   local ZilartProgress = player:getCurrentMission(ZILART);
-   local ZVar = player:getVar("ZilartStatus");
+    local ZilartProgress = player:getCurrentMission(ZILART);
+    local ZVar = player:getVar("ZilartStatus");
 
     if (player:getZPos() < 200) then
         if (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar == 0) then
@@ -24,8 +24,8 @@ function onTrigger(player,npc)
         elseif (ZilartProgress ~= 255 and ZilartProgress > THE_GATE_OF_THE_GODS or -- If player has not done any ZM, Progress == 255
          (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar > 0)) then
             player:startEvent(10);
-      else
-         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        else
+            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
         end
     else
         player:startEvent(11);

@@ -24,13 +24,13 @@ function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
 
     if (ratRaceProg == 5) then
-       player:startEvent(263);
+        player:startEvent(263);
     elseif (ratRaceProg == 6) then
-       player:startEvent(316);
+        player:startEvent(316);
     elseif (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_COMPLETED) then
-       player:startEvent(317);
+        player:startEvent(317);
     else
-       player:startEvent(263);
+        player:startEvent(263);
     end
 
 end;
@@ -40,8 +40,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 311) then
-       player:tradeComplete();
-       player:setVar("ratraceCS",6);
+        player:tradeComplete();
+        player:setVar("ratraceCS",6);
     end
 end;
 

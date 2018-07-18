@@ -20,8 +20,8 @@ end;
 
 function onMobFight(mob,target)
 
-   -- Summons a guard every 15 seconds.
-   -- TODO: Summon animations
+    -- Summons a guard every 15 seconds.
+    -- TODO: Summon animations
 
     local gurfurlur = mob:getID()
     if (mob:getBattleTime() % 15 < 2 and mob:getBattleTime() > 2) then

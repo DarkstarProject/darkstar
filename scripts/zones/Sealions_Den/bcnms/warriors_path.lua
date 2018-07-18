@@ -53,7 +53,7 @@ function onBcnmLeave(player,instance,leavecode)
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
         end
     elseif (leavecode == 4) then
-           player:startEvent(32002);
+        player:startEvent(32002);
     end
 
 end;
@@ -65,7 +65,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-       player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
-       player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE);
+        player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
+        player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE);
     end
 end;
