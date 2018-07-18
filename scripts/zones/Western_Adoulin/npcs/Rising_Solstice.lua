@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Rising Solstice
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved With, and Finishes Quest: 'A Certain Substitute Patrolman'
---  @zone 256
---  !pos -154 4 -29 256
+-- Starts, Involved With, and Finishes Quest: 'A Certain Substitute Patrolman'
+-- !pos -154 4 -29 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

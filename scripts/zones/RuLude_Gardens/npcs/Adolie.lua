@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
 --  NPC: Adolie
--- @zone 243
--- !pos -35 2 59
+-- !pos -35 2 59 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

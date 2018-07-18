@@ -2,7 +2,7 @@
 -- Area: Open sea route to Mhaura
 --  NPC: Pashi Maccaleh
 -- Guild Merchant NPC: Fishing Guild
--- @zone 4.986 -2.101 -12.026 47
+-- !pos 4.986 -2.101 -12.026 47
 -----------------------------------
 package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
 -----------------------------------

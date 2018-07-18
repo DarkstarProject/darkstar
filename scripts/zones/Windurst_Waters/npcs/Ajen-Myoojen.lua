@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --   NPC: Ajen-Myoojen
 -- Type: Standard NPC
--- @zone 238
--- !pos -44.542 -5.999 238.996
+-- !pos -44.542 -5.999 238.996 238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

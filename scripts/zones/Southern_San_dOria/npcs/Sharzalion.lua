@@ -3,8 +3,7 @@
 --  NPC: Sharzalion
 -- Starts and Finishes Quest: The Crimson Trial
 -- Involved in Quest: Peace for the Spirit
--- @zone 230
--- !pos 95 0 111
+-- !pos 95 0 111 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

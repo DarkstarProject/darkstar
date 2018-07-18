@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Guslam
 -- Starts Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 244
--- !pos -5 1 48
+-- !pos -5 1 48 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

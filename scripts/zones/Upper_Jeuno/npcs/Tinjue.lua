@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --   NPC: Tinjue
 -- Type: Past Event Watcher
--- @zone 244
--- !pos -73.790 -1 148.181
+-- !pos -73.790 -1 148.181 244
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

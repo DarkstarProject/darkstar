@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Constance
 -- Involved in Quests: Save the Clock Tower
--- @zone 244
--- !pos -48 0 4
+-- !pos -48 0 4 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

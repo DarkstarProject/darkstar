@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Zedduva
--- @zone 246
--- !pos -61 7 -54
+-- !pos -61 7 -54 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

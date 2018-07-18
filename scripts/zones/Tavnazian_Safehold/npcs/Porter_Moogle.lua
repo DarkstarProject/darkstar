@@ -1,9 +1,8 @@
 -----------------------------------
--- Area:   Tavnazian_Safehold
---  NPC:  Porter Moogle
--- Type:   Storage Moogle
---  @zone 26
--- !pos TODO
+-- Area: Tavnazian_Safehold
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

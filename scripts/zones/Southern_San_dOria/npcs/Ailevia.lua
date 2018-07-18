@@ -4,8 +4,7 @@
 -- Adventurer's Assistant
 -- Only recieving Adv.Coupon and simple talk event are scripted
 -- This NPC participates in Quests and Missions
--- @zone 230
--- !pos -8 1 1
+-- !pos -8 1 1 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Purequane
--- @zone 246
--- !pos -76 8 54
+-- !pos -76 8 54 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

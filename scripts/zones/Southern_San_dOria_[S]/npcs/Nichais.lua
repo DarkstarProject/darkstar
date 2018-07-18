@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Nichais
--- @zone 80
--- !pos 133 0 81
+-- !pos 133 0 81 80
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

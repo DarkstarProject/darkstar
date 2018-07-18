@@ -2,8 +2,7 @@
 -- Area: Giddeus
 --  NPC: Giddeus Spring
 -- Involved in Quest "Water Way to Go"
--- !pos -258 -2 -249
--- @zone 145
+-- !pos -258 -2 -249 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------

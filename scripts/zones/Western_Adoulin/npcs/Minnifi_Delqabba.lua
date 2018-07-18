@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Minnifi Delqabba
 -- Type: Shop NPC
---  @zone 256
---  !pos 77 4 -125 256
+-- !pos 77 4 -125 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

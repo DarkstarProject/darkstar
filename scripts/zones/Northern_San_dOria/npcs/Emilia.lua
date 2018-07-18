@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Emilia
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -39.840 -2.000 -5.403
+-- !pos -39.840 -2.000 -5.403 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

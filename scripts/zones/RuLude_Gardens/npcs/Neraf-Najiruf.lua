@@ -2,8 +2,7 @@
 -- Area: Ru'Lud Gardens
 --  NPC: Neraf-Najiruf
 -- Involved in Quests: Save my Sister
--- @zone 243
--- !pos -36 2 60
+-- !pos -36 2 60 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

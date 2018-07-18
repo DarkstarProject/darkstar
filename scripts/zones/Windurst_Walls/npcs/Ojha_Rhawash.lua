@@ -2,8 +2,7 @@
 -- Area: Windurst Walls
 --  NPC: Ojha Rhawash
 -- Starts and Finishes Quest: Flower Child
--- @zone 239
--- !pos -209 0 -134
+-- !pos -209 0 -134 239
 
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;

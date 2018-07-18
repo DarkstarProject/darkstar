@@ -2,8 +2,7 @@
 -- Area: Rabao
 --  NPC: Spirit Singer
 -- Type: Item Deliverer
---  @zone 247
--- !pos 140.337    7.999    80.661
+-- !pos 140.337 7.999 80.661 247
 --
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;

@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: Maturiri
 -- Type: Item Deliverer
---  @zone 26
--- !pos -77.366    -20    -71.128
+-- !pos -77.366 -20 -71.128 26
 --
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

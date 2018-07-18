@@ -3,8 +3,7 @@
 --  NPC: Maat
 -- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
--- @zone 243
--- !pos 8 3 118
+-- !pos 8 3 118 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

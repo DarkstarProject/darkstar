@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: King Ranperres Tomb
 --  NPC: Treasure Chest
--- @zone 190
+-- !zone 190
 -----------------------------------
 package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
 -----------------------------------

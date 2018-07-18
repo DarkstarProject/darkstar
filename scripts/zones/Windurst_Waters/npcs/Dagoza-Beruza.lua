@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --   NPC: Dagoza-Beruza
 -- Type: Mission NPC
--- @zone 238
--- !pos -54.523 -6 229.271
+-- !pos -54.523 -6 229.271 238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

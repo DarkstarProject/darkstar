@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Illeuse
--- @zone 80
--- !pos -44.203 2 -36.216
+-- !pos -44.203 2 -36.216 80
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

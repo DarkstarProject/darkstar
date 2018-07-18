@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Tevigogo
 -- Type: Shop NPC
---  @zone 256
---  !pos -151 3 -36 256
+-- !pos -151 3 -36 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

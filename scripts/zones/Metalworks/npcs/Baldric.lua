@@ -2,8 +2,7 @@
 -- Area: Metalworks
 --   NPC: Baldric
 -- Type: Quest Giver
--- @zone 237
--- !pos -50.858 1.777 -31.141
+-- !pos -50.858 1.777 -31.141 237
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

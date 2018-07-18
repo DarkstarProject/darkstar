@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Ishvad
 -- Type: Shop NPC
---  @zone 256
---  !pos 44 32 125 256
+-- !pos 44 32 125 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

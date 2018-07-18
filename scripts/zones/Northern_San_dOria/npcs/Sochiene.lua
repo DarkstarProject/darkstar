@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Sochiene
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos 4.000 0.000 -28.000
+-- !pos 4.000 0.000 -28.000 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

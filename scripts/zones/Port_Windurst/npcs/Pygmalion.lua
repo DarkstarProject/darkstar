@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --   NPC: Pygmalion
 -- Type: Standard NPC
--- @zone 240
--- !pos 228.710 -7 93.314
+-- !pos 228.710 -7 93.314 240
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

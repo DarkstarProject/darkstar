@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Dalba
 -- Type: Past Event Watcher
--- @zone 236
--- !pos -174.101 -7 -19.611
+-- !pos -174.101 -7 -19.611 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

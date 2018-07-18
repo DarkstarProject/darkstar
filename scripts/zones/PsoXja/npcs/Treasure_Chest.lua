@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Pso'Xja
 --  NPC: Treasure Chest
--- @zone 9
+-- !zone 9
 -----------------------------------
 package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------

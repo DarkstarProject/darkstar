@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Geltpix
--- @zone 80
--- !pos 154 -2 103
+-- !pos 154 -2 103 80
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

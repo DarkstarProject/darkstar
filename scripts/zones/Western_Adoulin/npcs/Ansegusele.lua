@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Ansegusele
 -- Type: Shop NPC
---  @zone 256
---  !pos 74 4 -126 256
+-- !pos 74 4 -126 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

@@ -3,8 +3,7 @@
 --  NPC: Trodden Snow
 -- Mission: ASA - THAT_WHICH_CURDLES_BLOOD
 -- Mission: ASA - SUGAR_COATED_DIRECTIVE
--- @zone 126
--- !pos -19 -17 104
+-- !pos -19 -17 104 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------

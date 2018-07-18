@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
--- @zone 252
--- !pos -2.251 -1 21.654
+-- !pos -2.251 -1 21.654 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

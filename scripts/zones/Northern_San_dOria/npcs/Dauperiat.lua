@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
--- @zone 231
--- !pos
+-- !zone 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

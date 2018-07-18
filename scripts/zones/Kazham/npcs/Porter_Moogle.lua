@@ -1,9 +1,8 @@
 -----------------------------------
--- Area:   Kazham
---  NPC:  Porter Moogle
--- Type:   Storage Moogle
---  @zone 250
--- !pos TODO
+-- Area: Kazham
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------

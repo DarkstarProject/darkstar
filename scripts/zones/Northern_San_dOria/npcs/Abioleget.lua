@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Abioleget
 -- Type: Quest Giver (Her Memories: The Faux Pas and The Vicasque's Sermon) / Merchant
---  @zone 231
--- !pos 128.771 0.000 118.538
+-- !pos 128.771 0.000 118.538 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

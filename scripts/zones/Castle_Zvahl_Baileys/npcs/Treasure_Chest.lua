@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
 --  NPC: Treasure Chest
--- @zone 161
+-- !zone 161
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 -----------------------------------

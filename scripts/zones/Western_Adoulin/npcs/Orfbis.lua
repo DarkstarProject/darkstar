@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Orfbis
 -- Type: Standard NPC
---  @zone 256
--- !pos -13 0 -44
+-- !pos -13 0 -44 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

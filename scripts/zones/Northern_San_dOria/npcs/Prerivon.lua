@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Prerivon
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos 142.324 0.000 132.515
+-- !pos 142.324 0.000 132.515 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

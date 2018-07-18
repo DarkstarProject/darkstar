@@ -2,8 +2,7 @@
 -- Area: Bastok Mines
 --  NPC: Virnage
 -- Starts Quest: Altana's Sorrow
--- @zone 234
--- !pos 0 0 51
+-- !pos 0 0 51 234
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Ruth
 -- Type: Standard NPC and Quest NPC
---  Involved With Quest: 'A Pioneers Best (Imaginary) Friend'
---  @zone 256
---  !pos -144 4 -10 256
+-- Involved With Quest: 'A Pioneers Best (Imaginary) Friend'
+-- !pos -144 4 -10 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

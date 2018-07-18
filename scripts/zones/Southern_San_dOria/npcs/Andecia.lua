@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Andecia
 -- Starts and Finishes Quest: Grave Concerns
--- @zone 230
--- !pos 167 0 45
+-- !pos 167 0 45 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Lumomo
 -- Type: Standard NPC
---  @zone 238
--- !pos -55.770 -5.499 18.914
+-- !pos -55.770 -5.499 18.914 238
 --  638  818 820    822  823
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

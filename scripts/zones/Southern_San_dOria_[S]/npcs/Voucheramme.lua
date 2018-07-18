@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Voucheramme
--- @zone 80
--- !pos 28 2 -29
+-- !pos 28 2 -29 80
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

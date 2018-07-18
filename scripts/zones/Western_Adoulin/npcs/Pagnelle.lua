@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Pagnelle
 -- Type: Standard NPC and Quest NPC
---  Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
---  @zone 256
---  !pos -8 0 -100 256
+-- Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
+-- !pos -8 0 -100 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

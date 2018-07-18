@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Ambleon
 -- Type: NPC World Pass Dealer
--- @zone 232
--- !pos 71.622 -17 -137.134
+-- !pos 71.622 -17 -137.134 232
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

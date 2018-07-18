@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Joachim
--- @zone 246
--- !pos -52.844 0.000 -9.978
+-- !pos -52.844 0.000 -9.978 246
 -- CS/Event ID's:
 -- 324 = on zoning in
 -- 325 = 1st chat, get 1st stone,

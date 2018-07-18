@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Rodaillece
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -246.943 7.000 46.836
+-- !pos -246.943 7.000 46.836 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

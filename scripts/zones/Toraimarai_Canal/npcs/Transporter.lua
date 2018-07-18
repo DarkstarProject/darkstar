@@ -2,7 +2,6 @@
 -- Area: Toraimarai Canal
 --  NPC: Transporter
 -- Involved In Windurst Mission 7-1
--- @zone 169
 -- !pos 182 11 -60 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;

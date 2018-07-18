@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Charutata
 -- Type: Standard NPC
---  @zone 256
--- !pos -17 0 -90
+-- !pos -17 0 -90 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --   NPC: Dabido-Sorobido
 -- Type: Standard NPC
--- @zone 238
--- !pos -93.586 -4.499 19.321
+-- !pos -93.586 -4.499 19.321 238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

@@ -3,8 +3,7 @@
 --  NPC: Villion
 -- Type: Adventurer's Assistant NPC
 --  Involved in Quest: Flyers for Regine
---  @zone 231
--- !pos -157.524 4.000 263.818
+-- !pos -157.524 4.000 263.818 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

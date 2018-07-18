@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Anton
--- @zone 232
--- !pos -19 -8 27
+-- !pos -19 -8 27 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

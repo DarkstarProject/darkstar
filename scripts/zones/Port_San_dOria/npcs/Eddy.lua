@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Eddy
 -- Type: NPC Quest Giver
--- @zone 232
--- !pos -5.209 -8.999 39.833
+-- !pos -5.209 -8.999 39.833 232
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Shivivi
 -- Starts Quest: Secret of the Damp Scroll
--- @zone 252
--- !pos 68.729 -6.281 -6.432
+-- !pos 68.729 -6.281 -6.432 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
