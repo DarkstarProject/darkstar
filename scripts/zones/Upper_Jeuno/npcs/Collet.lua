@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Collet
 -- Involved in Quests: A Clock Most Delicate, Save the Clock Tower
--- @zone 244
--- !pos -44 0 107
+-- !pos -44 0 107 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Palborough Mines
 --  NPC: Treasure Chest
--- @zone 143
+-- !zone 143
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------

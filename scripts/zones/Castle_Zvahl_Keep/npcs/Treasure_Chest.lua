@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Castle Zvahl Keep
 --  NPC: Treasure Chest
--- @zone 162
+-- !zone 162
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
 -----------------------------------

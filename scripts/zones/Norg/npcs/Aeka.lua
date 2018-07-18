@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Aeka
 -- Involved in Quest: Forge Your Destiny
--- @zone 252
--- !pos 4 0 -4
+-- !pos 4 0 -4 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------

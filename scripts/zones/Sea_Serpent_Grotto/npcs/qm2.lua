@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: ??? Used for Norg quest "The Sahagin's Stash"
--- @zone 176
--- !pos 295.276 27.129 213.043
+-- !pos 295.276 27.129 213.043 176
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------

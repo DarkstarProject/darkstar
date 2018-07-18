@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: ???
 -- Involved in Quest: Unforgiven
--- @zone 26
--- !pos 110.714 -40.856 -53.154
+-- !pos 110.714 -40.856 -53.154 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

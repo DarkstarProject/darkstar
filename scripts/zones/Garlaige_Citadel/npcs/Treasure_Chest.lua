@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Garlaige Citadel
 --  NPC: Treasure Chest
--- @zone 200
+-- !zone 200
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
 -----------------------------------

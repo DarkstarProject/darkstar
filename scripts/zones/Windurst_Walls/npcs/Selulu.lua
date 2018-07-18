@@ -2,8 +2,7 @@
 -- Area: Windurst Walls
 --  NPC: Selulu
 -- Type: Item Deliverer
---  @zone 239
--- !pos 58.027 -2.5 -60.548
+-- !pos 58.027 -2.5 -60.548 239
 --
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;

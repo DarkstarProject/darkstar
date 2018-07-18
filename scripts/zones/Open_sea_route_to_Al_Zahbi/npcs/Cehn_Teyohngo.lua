@@ -2,7 +2,7 @@
 -- Area: Open sea route to Al Zahbi
 --  NPC: Cehn Teyohngo
 -- Guild Merchant NPC: Fishing Guild
--- @zone 4.986 -2.101 -12.026 46
+-- !pos 4.986 -2.101 -12.026 46
 -----------------------------------
 package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
 -----------------------------------

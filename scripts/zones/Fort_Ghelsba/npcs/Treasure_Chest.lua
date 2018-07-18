@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Fort Ghelsba
 --  NPC: Treasure Chest
--- @zone 141
+-- !zone 141
 -----------------------------------
 package.loaded["scripts/zones/Fort_Ghelsba/TextIDs"] = nil;
 -----------------------------------

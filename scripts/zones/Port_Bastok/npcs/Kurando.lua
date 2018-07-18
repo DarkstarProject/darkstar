@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Kurando
 -- Type: Quest Giver
--- @zone 236
--- !pos -23.887 3.898 0.870
+-- !pos -23.887 3.898 0.870 236
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

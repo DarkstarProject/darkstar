@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Gilipese
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -155.088 0.000 120.300
+-- !pos -155.088 0.000 120.300 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

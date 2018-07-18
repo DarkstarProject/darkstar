@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --   NPC: Pursuivant
 -- Type: Pursuivant
--- @zone 238
--- !pos 113.971 -3.077 51.524
+-- !pos 113.971 -3.077 51.524 238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

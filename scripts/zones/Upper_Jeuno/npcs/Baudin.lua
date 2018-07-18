@@ -3,8 +3,7 @@
 --  NPC: Baudin
 -- Starts and Finishes Quest: Crest of Davoi, Save My Sister
 -- Involved in Quests: Save the Clock Tower
--- @zone 244
--- !pos -75 0 80
+-- !pos -75 0 80 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

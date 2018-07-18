@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: The Eldieme Necropolis
 --  NPC: Treasure Chest
--- @zone 195
+-- !zone 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

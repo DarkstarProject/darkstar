@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Cochal-Monchal
 -- Involved in Quest: Dark Legacy
--- @zone 238
--- !pos -52 -6 110
+-- !pos -52 -6 110 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

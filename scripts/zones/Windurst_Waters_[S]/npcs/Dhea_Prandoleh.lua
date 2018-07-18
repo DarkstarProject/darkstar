@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Dhea Prandoleh
 -- Type: Standard NPC
--- @zone 94
--- !pos 1 -1 15
+-- !pos 1 -1 15 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

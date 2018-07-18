@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: Pradiulot
 -- Involved in Quest: Unforgiven
--- @zone 26
--- !pos -20.814 -22 8.399
+-- !pos -20.814 -22 8.399 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

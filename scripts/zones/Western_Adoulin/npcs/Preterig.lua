@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Preterig
 -- Type: Shop NPC
---  @zone 256
---  !pos 6 0 -53 256
+-- !pos 6 0 -53 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

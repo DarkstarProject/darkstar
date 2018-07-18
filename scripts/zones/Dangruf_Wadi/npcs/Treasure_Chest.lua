@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Dangruf Wadi
 --  NPC: Treasure Chest
--- @zone 191
+-- !zone 191
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------

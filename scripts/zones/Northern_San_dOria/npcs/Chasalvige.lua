@@ -4,8 +4,7 @@
 -- Type: Standard Info NPC
 --  Involved in Mission: The Road Forks
 --  Involved in Mission: Promathia Mission 5 - Three Paths
---  @zone 231
--- !pos 96.432 -0.520 134.046
+-- !pos 96.432 -0.520 134.046 231
 --
 -----------------------------------
 require("scripts/globals/missions");

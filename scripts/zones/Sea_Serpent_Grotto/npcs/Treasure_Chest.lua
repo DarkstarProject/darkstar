@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Treasure Chest
--- @zone 176
+-- !zone 176
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------

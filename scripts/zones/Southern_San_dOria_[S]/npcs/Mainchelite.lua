@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Mainchelite
--- @zone 80
--- !pos -16 1 -30
+-- !pos -16 1 -30 80
 -- CS IDs:
 -- 5 = Generic Greeting for Iron Ram members
 -- 6 = Mid Initiation of other nation

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Rohn Ehlbalna
 -- Type: Standard NPC
--- @zone 94
--- !pos -43.473 -4.5 46.496
+-- !pos -43.473 -4.5 46.496 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

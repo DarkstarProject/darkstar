@@ -2,8 +2,7 @@
 -- Area: Kazham
 --   NPC: Romaa Mihgo
 -- Type: Standard NPC
--- @zone 250
--- !pos 29.000 -13.023 -176.500
+-- !pos 29.000 -13.023 -176.500 250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

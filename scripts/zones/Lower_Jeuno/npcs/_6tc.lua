@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Door: "Neptune's Spire"
 -- Starts and Finishes Quest: Beat Around the Bushin
--- @zone 245
--- !pos 35 0 -15
+-- !pos 35 0 -15 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

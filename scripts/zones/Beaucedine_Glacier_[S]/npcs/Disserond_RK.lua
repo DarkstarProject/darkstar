@@ -2,8 +2,7 @@
 -- Area: Beaucedine Glacier (S)
 --   NPC: Disserond, R.K.
 -- Type: Campaign Arbiter
--- @zone 136
--- !pos 76.178 -60.763 -48.775
+-- !pos 76.178 -60.763 -48.775 136
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

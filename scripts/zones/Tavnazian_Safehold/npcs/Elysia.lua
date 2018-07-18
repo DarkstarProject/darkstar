@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: Elysia
 -- Starts Quest: Unforgiven
--- @zone 26
--- !pos -50.410 -22.204 -41.640
+-- !pos -50.410 -22.204 -41.640 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------

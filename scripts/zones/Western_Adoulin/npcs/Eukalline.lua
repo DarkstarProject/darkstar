@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Eukalline
 -- Type: Shop NPC
---  @zone 256
---  !pos 40 32 121 256
+-- !pos 40 32 121 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

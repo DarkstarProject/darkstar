@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
---   NPC: Burute-Sorute
+--  NPC: Burute-Sorute
 -- Type: Title Change NPC
--- @zone 239
 -- !pos 0.080 -10.765 5.394 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)

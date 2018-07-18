@@ -3,8 +3,7 @@
 --  NPC: Sobane
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword, Riding on the Clouds
--- @zone 230
--- !pos -190 -3 97
+-- !pos -190 -3 97 230
 -- csid: 52  732  733  734  735  736  737  738  739  740  741
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

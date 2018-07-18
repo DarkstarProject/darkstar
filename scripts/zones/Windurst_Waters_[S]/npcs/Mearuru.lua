@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Mearuru
 -- Type: Standard NPC
--- @zone 94
--- !pos 153.798 -1 153.712
+-- !pos 153.798 -1 153.712 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

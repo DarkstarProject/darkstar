@@ -3,8 +3,7 @@
 --  NPC: Vola
 -- Starts and Finishes Quest: Fistful of Fury
 -- Involved in Quests: Beat Around the Bushin (before the quest)
--- @zone 245
--- !pos 43 3 -45
+-- !pos 43 3 -45 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

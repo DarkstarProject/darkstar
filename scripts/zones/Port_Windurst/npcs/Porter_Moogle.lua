@@ -1,9 +1,8 @@
 -----------------------------------
--- Area:   Port Windurst
---  NPC:  Porter Moogle
--- Type:   Storage Moogle
---  @zone 240
--- !pos TODO
+-- Area: Port Windurst
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

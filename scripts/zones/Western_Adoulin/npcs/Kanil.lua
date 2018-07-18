@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Kanil
 -- Type: Shop NPC
---  @zone 256
---  !pos 154 4 -5 256
+-- !pos 154 4 -5 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

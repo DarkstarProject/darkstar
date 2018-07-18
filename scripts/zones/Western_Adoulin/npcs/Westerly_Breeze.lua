@@ -2,11 +2,10 @@
 -- Area: Western Adoulin
 --  NPC: Westerly Breeze
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
---                                              'The Starving'
---                                              'Always More, Quoth the Ravenous'
---  @zone 256
---  !pos 62 32 123 256
+-- Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
+--                                             'The Starving'
+--                                             'Always More, Quoth the Ravenous'
+-- !pos 62 32 123 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

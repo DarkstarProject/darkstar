@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Upper Jeuno
 --  NPC: Luto Mewrilah
--- @zone 244
--- !pos -53 0 45
+-- !pos -53 0 45 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

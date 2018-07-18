@@ -2,8 +2,7 @@
 -- Area: The Sanctuary of Zitah
 -- NPC:  ???
 -- Involved In Quest: The Sacred Katana
--- @zone 121
--- !pos -416 0 46
+-- !pos -416 0 46 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------

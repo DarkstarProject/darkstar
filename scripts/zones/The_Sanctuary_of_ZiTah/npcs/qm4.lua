@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of Zitah
 --  NPC: ???
 -- Finishes Quest: Lovers in the Dusk
--- @zone 121
+-- !zone 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------

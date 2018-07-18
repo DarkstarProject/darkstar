@@ -2,7 +2,7 @@
 -- Area: Gusgen Mines
 --  NPC: Treasure Chest
 -- Involved In Quest: The Goblin Tailor
--- @zone 196
+-- !zone 196
 -----------------------------------
 package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
 -----------------------------------
