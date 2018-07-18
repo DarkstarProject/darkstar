@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Inner Horutoto Ruins
+-- Area: Outer Horutoto Ruins
 --  NPC: Ancient Magical Gizmo #2 (F out of E, F, G, H, I, J)
 --  Involved In Mission: The Heart of the Matter
 -----------------------------------
