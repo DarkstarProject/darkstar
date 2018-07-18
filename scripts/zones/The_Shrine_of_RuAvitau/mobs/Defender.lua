@@ -21,9 +21,9 @@ function onMobFight(mob,target)
     local AuraGear = Defender + 1;
     local ExtraVar = GetMobByID(Defender):getLocalVar("1");
 
-   -- Summons a Defender every 15 seconds.
-   -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
-   -- Defenders can also still spawn the AuraGears while sleeping, etc.
+    -- Summons a Defender every 15 seconds.
+    -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
+    -- Defenders can also still spawn the AuraGears while sleeping, etc.
 
     if (GetMobAction(AuraGear) == 16) then
         GetMobByID(AuraGear):updateEnmity(target);

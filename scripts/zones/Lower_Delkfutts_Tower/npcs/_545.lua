@@ -30,7 +30,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-     if (csid == 25) then
-         player:setVar("COP_Tenzen_s_Path",8);
-     end
+    if (csid == 25) then
+        player:setVar("COP_Tenzen_s_Path",8);
+    end
 end;

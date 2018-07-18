@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA,30)
             player:completeQuest(SANDORIA,A_SQUIRE_S_TEST)
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565) -- Spatha
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16565) -- Spatha
         end
     elseif (csid == 625 or csid == 630) then
         player:addQuest(SANDORIA,A_SQUIRE_S_TEST_II)
@@ -144,7 +144,7 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA,30)
             player:completeQuest(SANDORIA,A_KNIGHT_S_TEST)
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306) -- Kite Shield
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 12306) -- Kite Shield
         end
     elseif (csid == 63) then
         player:setVar("KnightStalker_Progress",3)

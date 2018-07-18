@@ -196,11 +196,11 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.GHOSTIE_BUSTER);
         player:needToZone(true);
     elseif (csid == 918) then    --diablos start
-               player:addKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_DREAM_INCENSE);
+        player:addKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_DREAM_INCENSE);
     elseif (csid == 920) then    --diablos reward
-    local item = 0;
-    local addspell = 0;
+        local item = 0;
+        local addspell = 0;
         if (option == 1 and player:hasItem(17599)==false) then item = 17599;--diaboloss-pole
 
         elseif (option == 2 and player:hasItem(14814)==false) then item = 14814;--diaboloss-earring
@@ -211,32 +211,32 @@ function onEventFinish(player,csid,option)
 
 
         elseif (option == 5) then
-                player:addGil(GIL_RATE*15000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
-                player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-                player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
-                player:completeQuest(WINDURST,WAKING_DREAMS);
+            player:addGil(GIL_RATE*15000);
+            player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
+            player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
+            player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
+            player:completeQuest(WINDURST,WAKING_DREAMS);
 
         elseif (option == 6 and player:hasSpell(304)==false) then
-                player:addSpell(304); -- diabolos Spell
-                player:messageSpecial(DIABOLOS_UNLOCKED,0,0,0);
-                addspell=1;
+            player:addSpell(304); -- diabolos Spell
+            player:messageSpecial(DIABOLOS_UNLOCKED,0,0,0);
+            addspell=1;
         end
         if (addspell==1) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
-         elseif (item > 0 and player:getFreeSlotsCount()~=0) then
+        elseif (item > 0 and player:getFreeSlotsCount()~=0) then
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
             player:addItem(item);
             player:messageSpecial(ITEM_OBTAINED,item); -- Item
-         elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount() == 0) ) ) then
+        elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount() == 0) ) ) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
         end
-        elseif (csid == 736) then
-            player:setVar("MissionStatus",2);
+    elseif (csid == 736) then
+        player:setVar("MissionStatus",2);
 
     end
 

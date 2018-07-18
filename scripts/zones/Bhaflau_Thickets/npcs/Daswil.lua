@@ -69,8 +69,8 @@ function onEventFinish(player,csid,option)
 
     -- ASSAULT
     elseif (csid == 512 and option == 1) then
-       player:delCurrency("imperial_standing", 50);
-       player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
-       player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
+        player:delCurrency("imperial_standing", 50);
+        player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

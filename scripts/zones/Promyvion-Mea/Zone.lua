@@ -47,7 +47,7 @@ function onZoneIn(player,prevZone)
         cs = 50;
     end
 
-     return cs;
+    return cs;
 end;
 
 function afterZoneIn(player)

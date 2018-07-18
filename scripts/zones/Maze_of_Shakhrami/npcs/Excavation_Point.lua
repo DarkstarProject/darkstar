@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
                 player:addItem(1159);
                 player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg
             else
-               player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
             end
         end
     else

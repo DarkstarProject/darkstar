@@ -31,9 +31,9 @@ end;
 
 function onTrigger(player,npc)
 
- pFame = player:getFameLevel(BASTOK);
- ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
- TilldeathdousPart = player:getQuestStatus(BASTOK,TILL_DEATH_DO_US_PART);
+    local pFame = player:getFameLevel(BASTOK);
+    local ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
+    local TilldeathdousPart = player:getQuestStatus(BASTOK,TILL_DEATH_DO_US_PART);
 
     if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getVar("ForevertoHold_Event") == 3) then
         player:startEvent(128);

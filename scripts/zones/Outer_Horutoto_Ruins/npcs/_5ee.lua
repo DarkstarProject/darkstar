@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     -- Check if we are on Windurst Mission 1-2
     if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
-        MissionStatus = player:getVar("MissionStatus");
+        local MissionStatus = player:getVar("MissionStatus");
 
         if (MissionStatus == 2) then
             -- Entered a Dark Orb
@@ -50,7 +50,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 46) then
-        orb_value = player:getVar("MissionStatus_orb1");
+        local orb_value = player:getVar("MissionStatus_orb1");
 
         if (orb_value == 1) then
             player:setVar("MissionStatus_orb1",2);

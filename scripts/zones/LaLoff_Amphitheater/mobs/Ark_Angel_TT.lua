@@ -18,7 +18,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobEngaged(mob,target)
-   local mobid = mob:getID()
+    local mobid = mob:getID()
 
     for member = mobid-5, mobid+2 do
         if (GetMobAction(member) == 16) then

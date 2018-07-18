@@ -22,7 +22,7 @@ function onTrigger(player,npc)
                 player:startEvent(105);
             end;
         else
-          player:messageSpecial(STAIRWAY_LOCKED);
+            player:messageSpecial(STAIRWAY_LOCKED);
         end;
     else
         player:messageSpecial(STAIRWAY_ONLY_CITIZENS);

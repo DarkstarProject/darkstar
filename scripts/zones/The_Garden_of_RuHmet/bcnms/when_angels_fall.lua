@@ -57,13 +57,13 @@ function onBcnmLeave(player,instance,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-  if (csid== 32001) then
-    player:setPos(420,0,445,192);
-end
+    -- print("bc finish csid "..csid.." and option "..option);
+    if (csid== 32001) then
+        player:setPos(420,0,445,192);
+    end
  
 end;

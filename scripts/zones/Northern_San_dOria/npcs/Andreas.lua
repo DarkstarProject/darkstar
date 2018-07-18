@@ -27,7 +27,7 @@ local keyitems = {
         rank = 3,
         cost = 10000
     },
-     [3] = {
+    [3] = {
         id = dsp.ki.BOLTMAKER,
         rank = 3,
         cost = 10000
