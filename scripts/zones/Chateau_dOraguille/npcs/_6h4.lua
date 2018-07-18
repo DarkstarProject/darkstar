@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
     -- Mission San D'Oria 9-2 The Heir to the Light
     if (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 5) then
-         player:startEvent(8);
+        player:startEvent(8);
     -- Mission San D'Oria 9-1 Breaking Barriers
     elseif (currentMission == BREAKING_BARRIERS and MissionStatus == 4) then
         if (player:hasKeyItem(dsp.ki.FIGURE_OF_TITAN) and player:hasKeyItem(dsp.ki.FIGURE_OF_GARUDA) and player:hasKeyItem(dsp.ki.FIGURE_OF_LEVIATHAN)) then

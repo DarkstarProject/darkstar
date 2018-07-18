@@ -27,7 +27,7 @@ local keyitems = {
         rank = 9,
         cost = 115000
     },
-     [3] = {
+    [3] = {
         id = dsp.ki.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000

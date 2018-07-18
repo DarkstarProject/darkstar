@@ -24,7 +24,7 @@ function onTrigger(player,npc)
     if (player:getZPos() > -280) then
         player:startEvent(164);
     -- Zhayolm -> Ruins
-   else
+    else
         player:startEvent(162);
     end
 end;

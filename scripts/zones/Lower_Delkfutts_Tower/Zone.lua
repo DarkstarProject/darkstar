@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:startEvent(38);
     elseif (csid == 38) then
-         player:startEvent(39);
+        player:startEvent(39);
     elseif (csid == 39) then
         player:completeMission(COP,ANCIENT_FLAMES_BECKON);
         player:addMission(COP,THE_RITES_OF_LIFE);

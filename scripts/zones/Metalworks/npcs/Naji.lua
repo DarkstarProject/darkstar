@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_DOORMAN);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
     elseif (csid == 710) then
         player:delKeyItem(dsp.ki.ZERUHN_REPORT);

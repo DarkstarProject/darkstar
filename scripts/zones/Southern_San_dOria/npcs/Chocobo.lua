@@ -14,7 +14,7 @@ function onTrigger(player,npc)
     -- player:startEvent(599)
     -- player:startEvent(862) -- cool choco debug menu
     -- player:startEvent(819)
-     player:startEvent(818)
+    player:startEvent(818)
 end;
 
 function onEventUpdate(player,csid,option)

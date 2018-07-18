@@ -36,7 +36,6 @@ function onTrigger(player,npc)
     else
         player:startEvent(47);
     end
-
 end;
 
 function onEventUpdate(player,csid,option)
@@ -48,16 +47,15 @@ function onEventFinish(player,csid,option)
         player:setVar("deliveringTheGoodsCS",1);
     elseif (csid == 41) then
         if (player:getFreeSlotsCount() == 0) then
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2184,3);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2184,3);
         else
-           player:setVar("deliveringTheGoodsCS",0);
-           player:addItem(2184,3);
-           player:messageSpecial(ITEM_OBTAINEDX,2184,3);
-           player:completeQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
-           player:setVar("VANISHING_ACT_waitJPMidnight",getMidnight());
+            player:setVar("deliveringTheGoodsCS",0);
+            player:addItem(2184,3);
+            player:messageSpecial(ITEM_OBTAINEDX,2184,3);
+            player:completeQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
+            player:setVar("VANISHING_ACT_waitJPMidnight",getMidnight());
         end
     elseif (csid == 43) then
-           player:setVar("vanishingactCS",3);
+        player:setVar("vanishingactCS",3);
     end
 end;
-

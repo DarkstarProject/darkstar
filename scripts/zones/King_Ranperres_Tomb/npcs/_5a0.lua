@@ -27,13 +27,13 @@ function onTrigger(player,npc)
             SpawnMob(CORRUPTED_ULBRIG);
         end
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 2) then
-         player:startEvent(6);
+        player:startEvent(6);
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 3) then
-         player:startEvent(7);
+        player:startEvent(7);
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 8) then
-         player:startEvent(5);
+        player:startEvent(5);
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 6) then
-         player:startEvent(14);
+        player:startEvent(14);
 
     else
         player:messageSpecial(HEAVY_DOOR);

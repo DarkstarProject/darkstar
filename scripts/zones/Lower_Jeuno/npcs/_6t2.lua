@@ -95,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,SAVE_MY_SON);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
         end
     elseif (csid == 132) then
         player:setVar("SaveMySon_Event",0);

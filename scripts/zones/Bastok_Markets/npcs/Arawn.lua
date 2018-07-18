@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,50);
             player:completeQuest(BASTOK,STAMP_HUNT);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
         end
     elseif (csid == 429) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);

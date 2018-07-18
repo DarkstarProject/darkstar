@@ -36,7 +36,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-     printf("RESULT: %u",option);
+    printf("RESULT: %u",option);
     if (csid == 62 and option == 1) then
         player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,20,0,0);
     elseif (csid == 65) then

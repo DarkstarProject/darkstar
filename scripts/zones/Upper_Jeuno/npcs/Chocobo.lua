@@ -15,21 +15,21 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == 0) then
         player:startEvent(62);
     elseif (ChocobosWounds == 1) then
-        count = trade:getItemCount();
-        gil = trade:getGil();
+        local count = trade:getItemCount();
+        local gil = trade:getGil();
 
         if (trade:hasItemQty(4545,1)) then
             player:startEvent(76);
         elseif (trade:hasItemQty(534,1) and gil == 0 and count == 1) then
             --Check feeding status.
-            feed = player:getVar("ChocobosWounds_Event");
-            feedMin = player:getVar("ChocobosWounds_Min");
-             feedReady = (feedMin <= os.time())
+            local feed = player:getVar("ChocobosWounds_Event");
+            local feedMin = player:getVar("ChocobosWounds_Min");
+            local feedReady = (feedMin <= os.time())
 
             if (feed == 1) then
                 player:startEvent(57);
@@ -54,13 +54,13 @@ function onTrade(player,npc,trade)
     else
         if (trade:hasItemQty(4545,1)) then
             player:startEvent(38);
-         end
+        end
     end
 end;
 
 function onTrigger(player,npc)
 
-    ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
+    local ChocobosWounds = player:getQuestStatus(JEUNO,CHOCOBO_S_WOUNDS);
 
     if (ChocobosWounds == QUEST_COMPLETED and player:hasKeyItem(dsp.ki.CHOCOBO_LICENSE) == false) then
         -- this is a quick hack to let people get their license if it was lost
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
     elseif (ChocobosWounds == QUEST_AVAILABLE) then
         player:startEvent(62);
     elseif (ChocobosWounds == QUEST_ACCEPTED) then
-        feed = player:getVar("ChocobosWounds_Event");
+        local feed = player:getVar("ChocobosWounds_Event");
 
         if (feed == 1) then
             player:startEvent(103);
