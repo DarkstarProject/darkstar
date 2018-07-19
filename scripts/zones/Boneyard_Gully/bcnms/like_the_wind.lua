@@ -35,7 +35,8 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
+        player:startEvent(32002,1,1,1,instance:getTimeInside(),1,0,0);
+        player:setVar("ENM_Win",1)
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
@@ -51,7 +52,8 @@ end;
     
 function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
-    if (csid == 32001) then
+    if (csid == 32002) and player:getVar("ENM_WIN") == 1 then
         player:addExp(2000);
+        player:setVar("EMN_WIN",0)
     end
 end;
