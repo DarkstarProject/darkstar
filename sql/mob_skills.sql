@@ -1072,12 +1072,12 @@ INSERT INTO `mob_skills` VALUES (1249,940,'spirit_tap',0,7.0,2000,1500,4,0,0,0,0
 INSERT INTO `mob_skills` VALUES (1250,941,'binary_tap',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1251,941,'trinary_tap',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1252,943,'shadow_spread',1,15.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1253,872,'vanity_strike',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1254,872,'wanion',1,10.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1255,873,'occultation',0,7.0,2000,1500,1,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1256,874,'empty_crush',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1253,956,'vanity_strike',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1254,957,'wanion',1,10.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1255,958,'occultation',0,7.0,2000,1500,1,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1256,959,'empty_crush',0,7.0,2000,1500,4,0,0,2,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1257,1001,'special_attack',0,7.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1258,876,'lamentation',1,10.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1258,961,'lamentation',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1259,944,'wire_cutter',0,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1260,945,'antimatter',0,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1261,946,'equalizer',2,10.0,2000,1500,4,0,0,0,0,0,0);
