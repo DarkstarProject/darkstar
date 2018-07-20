@@ -1,64 +1,80 @@
 -----------------------------------
 -- Area: Port Jeuno
---  NPC: Red Ghost
--- Standard Info NPC
+-- !pos: -97 0 -4 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/pathfind");
+require("scripts/zones/Port_Jeuno/TextIDs")
+require("scripts/globals/pathfind")
+require("scripts/globals/quests")
 -----------------------------------
 
 local path =
 {
--96.823616, 0.001000, -3.722488,
--96.761887, 0.001000, -2.632236,
--96.698341, 0.001000, -1.490001,
--96.636963, 0.001000, -0.363672,
--96.508736, 0.001000, 2.080966,
--96.290009, 0.001000, 6.895948,
--96.262505, 0.001000, 7.935584,
--96.282127, 0.001000, 6.815756,
--96.569176, 0.001000, -7.781419,
--96.256729, 0.001000, 8.059505,
--96.568405, 0.001000, -7.745419,
--96.254066, 0.001000, 8.195477,
--96.567200, 0.001000, -7.685426
-};
+-97, 0, -4,
+-96, 0, 8,
+-97, 0, -8,
+}
+
 function onSpawn(npc)
-    npc:initNpcAi();
-    npc:setPos(dsp.path.first(path));
-    onPath(npc);
-end;
+    npc:initNpcAi()
+    npc:setPos(pathfind.first(path))
+    onPath(npc)
+end
 
 function onPath(npc)
-    dsp.path.patrol(npc, path);
-end;
+    pathfind.patrol(npc, path)
+    if npc:isFollowingPath() == false then
+        npc:pathThrough(pathfind.first(path), PATHFLAG_WALK)
+    end
+end
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local WildcatJeuno = player:getVar("WildcatJeuno");
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,15) == false) then
-        player:startEvent(314);
+    local WildcatJeuno = player:getVar("WildcatJeuno")
+    local FellowQuest = player:getVar("[Quest]Unlisted_Qualities")
+    local FellowName = player:getFellowNameId()
+    if player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,15) == false then
+        player:startEvent(314)
+    elseif player:getQuestStatus(JEUNO,UNLISTED_QUALITIES) == QUEST_ACCEPTED and player:getMaskBit(FellowQuest,1) == false then
+        player:startEvent(320,0,0,0,0,0,0,0,FellowName)
     else
-        player:startEvent(34);
+        player:startEvent(34)
     end
-
     -- wait until event is over
-    npc:wait();
-end;
+    -- npc:wait()
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option,npc)
-    if (csid == 314) then
-        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true);
+    if csid == 314 then
+        player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
+    elseif csid == 320 then
+        player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",1,true)
+        player:setFellowPersonality(option)
     end
+--[[
+Adventuring Fellow Personality Options:
+    Male:
+        0   Sullen
+        1   Passionate
+        2   Calm and collected
+        3   Serious
+        4   Childish
+        5   Suave
+    Female:
+        6   Sisterly
+        7   Lively
+        8   Agreeable
+        9   Naive
+        10  Serious
+        11  Domineering
+--]]
 
-    npc:wait(0);
+    -- npc:wait(0)
 
-end;
+end
