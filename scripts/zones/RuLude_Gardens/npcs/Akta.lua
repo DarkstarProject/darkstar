@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local FellowQuest = player:getVar("[Quest]Unlisted_Qualities")
-    local FellowName = player:getFellowNameId()
+    local FellowName = player:getFellowValue("fellowNameId")
     if player:getQuestStatus(JEUNO,UNLISTED_QUALITIES) == QUEST_ACCEPTED and player:getMaskBit(FellowQuest,0) == false then
         player:startEvent(10103,0,0,0,0,0,0,0,FellowName)
     else
@@ -27,7 +27,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 10103 then
         player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",0,true)
-        player:setFellowSize(option)
+        player:setFellowValue("size", option)
     end
 --[[
 Adventuring Fellow Size Options:
