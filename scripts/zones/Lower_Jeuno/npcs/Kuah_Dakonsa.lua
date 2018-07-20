@@ -13,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     local FellowQuest = player:getVar("[Quest]Unlisted_Qualities");
-    local FellowName = player:getFellowNameId()
+    local FellowName = player:getFellowValue("fellowNameId")
     if (player:getQuestStatus(JEUNO,UNLISTED_QUALITIES) == QUEST_ACCEPTED and player:getMaskBit(FellowQuest,2) == false) then
         player:startEvent(20000,0,0,0,0,0,0,0,FellowName)
     else
@@ -27,7 +27,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 20000 then
         player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",2,true)
-        player:setFellowFace(option)
+        player:setFellowValue("face", option)
     end
 --[[
 Adventuring Fellow Face Options:
