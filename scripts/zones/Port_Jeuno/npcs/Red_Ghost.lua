@@ -35,7 +35,7 @@ end
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno")
     local FellowQuest = player:getVar("[Quest]Unlisted_Qualities")
-    local FellowName = player:getFellowNameId()
+    local FellowName = player:getFellowValue("fellowNameId")
     if player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,15) == false then
         player:startEvent(314)
     elseif player:getQuestStatus(JEUNO,UNLISTED_QUALITIES) == QUEST_ACCEPTED and player:getMaskBit(FellowQuest,1) == false then
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option,npc)
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
     elseif csid == 320 then
         player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",1,true)
-        player:setFellowPersonality(option)
+        player:setFellowValue("personality", option)
     end
 --[[
 Adventuring Fellow Personality Options:
