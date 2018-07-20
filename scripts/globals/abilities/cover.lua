@@ -13,7 +13,7 @@ local bonusTime = utils.clamp(math.floor((player:getMod(dsp.mod.VIT) + player:ge
 local duration = baseDuration + bonusTime;
 
 player:addStatusEffect(player,dsp.effect.COVER,0,0,duration)
-  if player:physicalDmgTaken >= 0 then
+  if player:physicalDmgTaken() >= 0 then
     player.addMod(dsp.mod.Enmity, +200)
     target:lowerEnmity(target, 10)
   end
