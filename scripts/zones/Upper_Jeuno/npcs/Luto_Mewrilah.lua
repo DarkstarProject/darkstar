@@ -40,7 +40,7 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",7,true)
     elseif csid == 10031 then
         player:addQuest(JEUNO,UNLISTED_QUALITIES)
-        player:setFellowNameId(option)
+        player:setFellowValue("fellowNameId",option)
 --[[
 Adventuring Fellow Name Options:
     Male Hume:

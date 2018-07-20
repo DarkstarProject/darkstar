@@ -21,9 +21,9 @@ function DECtoHEX(IN)
 end
 
 function fellowParam(player)
-    local FellowPersona = player:getFellowPersonality()
-    local faceHEX = DECtoHEX(player:getFellowFace())
-    local sizeHEX = DECtoHEX(player:getFellowSize()*4)
+    local FellowPersona = player:getFellowValue("personality")
+    local faceHEX = DECtoHEX(player:getFellowValue("face"))
+    local sizeHEX = DECtoHEX(player:getFellowValue("size")*4)
     local personaHEX  -- these aren't in any kind of sensical pattern that I can find : SE Logic
     if (FellowPersona == 0) then
         personaHEX = "04"  -- 4 {R}
@@ -50,15 +50,15 @@ function fellowParam(player)
     elseif (FellowPersona == 11) then
         personaHEX = "30"  -- 48 {R}
     end
-    local nameHEX = DECtoHEX(player:getFellowNameId())
+    local nameHEX = DECtoHEX(player:getFellowValue("fellowNameId"))
     local HEXparam = "0x"..faceHEX..""..sizeHEX..""..personaHEX..""..nameHEX..""
     return HEXparam
 end
 function onTrigger(player,npc)
-    local FellowName = player:getFellowNameId()
-    local FellowPersona = player:getFellowPersonality()
-    local FellowFace = player:getFellowFace()
-    local FellowSize = player:getFellowSize()
+    local FellowName = player:getFellowValue("fellowNameId")
+    local FellowPersona = player:getFellowValue("personality")
+    local FellowFace = player:getFellowValue("face")
+    local FellowSize = player:getFellowValue("size")
 
 print("FellowParam = " .. fellowParam(player))
 
