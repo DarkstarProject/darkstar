@@ -611,6 +611,15 @@ public:
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
 
+    int32 getFellowNameId(lua_State*);
+    int32 setFellowNameId(lua_State*);
+    int32 getFellowFace(lua_State*);
+    int32 setFellowFace(lua_State*);
+    int32 getFellowSize(lua_State*);
+    int32 setFellowSize(lua_State*);
+    int32 getFellowPersonality(lua_State*);
+    int32 setFellowPersonality(lua_State*);
+
     // Mob Entity-Specific
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);

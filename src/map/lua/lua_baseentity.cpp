@@ -12267,6 +12267,190 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 }
 
 /************************************************************************
+*  Function: getFellowNameId()
+*  Purpose : Returns the Id of a player's adventuring fellow
+*  Example : local name = player:getFellowNameId()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getFellowNameId(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    const char* Query =
+        "SELECT fellowNameId FROM char_fellow WHERE charid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle, Query, m_PBaseEntity->id);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        lua_pushinteger(L, Sql_GetIntData(SqlHandle, 0));
+        return 1;
+    }
+return 0;
+}
+
+/************************************************************************
+*  Function: setFellowNameId()
+*  Purpose : Passes an int to name a new Adventuring Fellow
+*  Example : player:setFellowNameId(option)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setFellowNameId(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 fellowName = (uint8)lua_tointeger(L, 1);
+
+    Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, fellowNameId = %u ON DUPLICATE KEY UPDATE fellowNameId = %u;", m_PBaseEntity->id, fellowName, fellowName);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: getFellowFace()
+*  Purpose : Returns the face Id of a player's adventuring fellow
+*  Example : local name = player:getFellowFace()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getFellowFace(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    const char* Query =
+        "SELECT face FROM char_fellow WHERE charid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle, Query, m_PBaseEntity->id);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        lua_pushinteger(L, Sql_GetIntData(SqlHandle, 0));
+        return 1;
+    }
+return 0;
+}
+
+/************************************************************************
+*  Function: setFellowFace()
+*  Purpose : Passes an int to set the face of a new Adventuring Fellow
+*  Example : player:setFellowFace(option)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setFellowFace(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 fellowFace = (uint8)lua_tointeger(L, 1);
+
+    Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, face = %u ON DUPLICATE KEY UPDATE face = %u;", m_PBaseEntity->id, fellowFace, fellowFace);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: getFellowSize()
+*  Purpose : Returns the size Id of a player's adventuring fellow
+*  Example : local name = player:getFellowSize()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getFellowSize(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    const char* Query =
+        "SELECT size FROM char_fellow WHERE charid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle, Query, m_PBaseEntity->id);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        lua_pushinteger(L, Sql_GetIntData(SqlHandle, 0));
+        return 1;
+    }
+return 0;
+}
+
+/************************************************************************
+*  Function: setFellowSize()
+*  Purpose : Passes an int to set the size of a new Adventuring Fellow
+*  Example : player:setFellowSize(option)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setFellowSize(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 fellowSize = (uint8)lua_tointeger(L, 1);
+
+    Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, size = %u ON DUPLICATE KEY UPDATE size = %u;", m_PBaseEntity->id, fellowSize, fellowSize);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: getFellowPersonality()
+*  Purpose : Returns the personality Id of a player's adventuring fellow
+*  Example : local name = player:getFellowPersonality()
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getFellowPersonality(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    const char* Query =
+        "SELECT personality FROM char_fellow WHERE charid = %u;";
+
+    int32 ret = Sql_Query(SqlHandle, Query, m_PBaseEntity->id);
+
+    if (ret != SQL_ERROR &&
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+    {
+        lua_pushinteger(L, Sql_GetIntData(SqlHandle, 0));
+        return 1;
+    }
+return 0;
+}
+
+/************************************************************************
+*  Function: setFellowPersonality()
+*  Purpose : Passes an int to set the personality of a new Adventuring Fellow
+*  Example : player:setFellowPersonality(option)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setFellowPersonality(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint8 fellowPersonality = (uint8)lua_tointeger(L, 1);
+
+    Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, personality = %u ON DUPLICATE KEY UPDATE personality = %u;", m_PBaseEntity->id, fellowPersonality, fellowPersonality);
+
+    return 0;
+}
+
+/************************************************************************
 *  Function: getSystem()
 *  Purpose : Returns integer value of system associated with an Entity
 *  Example : if (pet:getSystem() ~= 5) then -- Not an avatar
@@ -14242,6 +14426,15 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFellowNameId),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFellowNameId),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFellowFace),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFellowFace),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFellowSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFellowSize),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFellowPersonality),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFellowPersonality),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
