@@ -18,14 +18,14 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi()
-    npc:setPos(pathfind.first(path))
+    npc:setPos(dsp.path.first(path))
     onPath(npc)
 end
 
 function onPath(npc)
-    pathfind.patrol(npc, path)
+    dsp.path.patrol(npc, path)
     if npc:isFollowingPath() == false then
-        npc:pathThrough(pathfind.first(path), PATHFLAG_WALK)
+        npc:pathThrough(dsp.path.first(path), PATHFLAG_WALK)
     end
 end
 
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
         player:startEvent(34)
     end
     -- wait until event is over
-    -- npc:wait()
+    npc:wait()
 end
 
 function onEventUpdate(player,csid,option)
@@ -75,6 +75,6 @@ Adventuring Fellow Personality Options:
         11  Domineering
 --]]
 
-    -- npc:wait(0)
+    npc:wait(0)
 
 end
