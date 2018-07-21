@@ -50,6 +50,7 @@ public:
     int32 showText(lua_State*);             // Displays Dialog for npc
     int32 messageText(lua_State* L);
     int32 PrintToPlayer(lua_State* L);      // for sending debugging messages/command confirmations to the player's client
+    int32 PrintToArea(lua_State* L);        // for sending area messages to multiple players at once
     int32 messageBasic(lua_State*);         // Sends Basic Message
     int32 messagePublic(lua_State*);        // Sends a public Basic Message
     int32 messageSpecial(lua_State*);       // Sends Special Message

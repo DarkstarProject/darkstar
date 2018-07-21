@@ -43,6 +43,16 @@ dsp.msg.channel =
     UNITY          = 33
 }
 
+-- used by PrintToArea
+dsp.msg.area =
+{
+    SYSTEM      = 0  // Server wide like the purple stuff :)
+    SAY         = 1, // Will display in small area around player
+    SHOUT       = 2, // Will display in wide area around player
+    PARTY       = 3, // Will display to players entire party/alliance
+    YELL        = 4, // If yell is enabled in zone, will display.
+}
+
 ------------------------------------
 -- Message Basic
 ------------------------------------
