@@ -168,10 +168,14 @@ INSERT INTO `augments` VALUES (120, 0, 28, 1, 1, 1); -- Avatar: Mag.Atk.Bns.+1
 INSERT INTO `augments` VALUES (121, 0, 0, 0, 1, 0); -- Pet: Breath +1
 INSERT INTO `augments` VALUES (122, 0, 345, 20, 1, 0); -- Pet: TP Bonus +20
 INSERT INTO `augments` VALUES (123, 0, 288, 1, 1, 0); -- Pet: Dbl.Att.+1
-INSERT INTO `augments` VALUES (124, 0, 0, 0, 0, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
-INSERT INTO `augments` VALUES (125, 0, 0, 0, 0, 0); -- Pet: Mag.Acc.+1/Mag.Dmg.+1
-INSERT INTO `augments` VALUES (126, 0, 0, 0, 0, 0); -- Pet: Magic Damage +1
-INSERT INTO `augments` VALUES (127, 0, 0, 0, 0, 0); -- Pet: Magic Damage Taken -1%
+INSERT INTO `augments` VALUES (124, 0, 23, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 24, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 25, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 26, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (125, 0, 30, 1, 1, 0); -- Pet: Mag.Acc.+1/Mag.Dmg.+1
+INSERT INTO `augments` VALUES (125, 0, 311, 1, 1, 0); -- Pet: Mag.Acc.+1/Mag.Dmg.+1
+INSERT INTO `augments` VALUES (126, 0, 311, 1, 1, 0); -- Pet: Magic Damage +1
+INSERT INTO `augments` VALUES (127, 0, 163, -1, 1, 0); -- Pet: Magic Damage Taken -1%
 INSERT INTO `augments` VALUES (128, 0, 0, 0, 0, 0); -- 128 doesnt seem to be a valid Augment, incomplete or garbled text displays
 INSERT INTO `augments` VALUES (129, 0, 25, 1, 0, 0); -- Accuracy+1 Rng.Acc.+1
 INSERT INTO `augments` VALUES (129, 0, 26, 1, 0, 0); -- Cont.
@@ -1093,8 +1097,8 @@ INSERT INTO `augments` VALUES (892, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (893, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (894, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (895, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (896, 0, 0, 0, 0, 0); -- Sword Enhancement Spell Damage +1
-INSERT INTO `augments` VALUES (897, 0, 0, 0, 0, 0); -- Enhances Souleater Effect +1%
+INSERT INTO `augments` VALUES (896, 0, 432, 1, 0, 0); -- Sword Enhancement Spell Damage +1
+INSERT INTO `augments` VALUES (897, 0, 96, 1, 0, 0); -- Enhances Souleater Effect +1%
 INSERT INTO `augments` VALUES (898, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (899, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (900, 0, 0, 0, 0, 0);
@@ -1420,12 +1424,12 @@ INSERT INTO `augments` VALUES (1150, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1151, 0, 0, 0, 0, 0);
 -- End unused block
 
-INSERT INTO `augments` VALUES (1152, 0, 0, 0, 0, 0); -- DEF +10
-INSERT INTO `augments` VALUES (1153, 0, 0, 0, 0, 0); -- Evasion +3
-INSERT INTO `augments` VALUES (1154, 0, 0, 0, 0, 0); -- Mag. Evasion +3
-INSERT INTO `augments` VALUES (1155, 0, 0, 0, 0, 0); -- Physical Damage Taken -2%
-INSERT INTO `augments` VALUES (1156, 0, 0, 0, 0, 0); -- Magic Damage Taken -2%
-INSERT INTO `augments` VALUES (1157, 0, 0, 0, 0, 0); -- Spell Interruption Rate Down 2%
+INSERT INTO `augments` VALUES (1152, 0, 1, 10, 0, 0); -- DEF +10
+INSERT INTO `augments` VALUES (1153, 0, 68, 3, 0, 0); -- Evasion +3
+INSERT INTO `augments` VALUES (1154, 0, 31, 3, 0, 0); -- Mag. Evasion +3
+INSERT INTO `augments` VALUES (1155, 0, 161, -2, 0, 0); -- Physical Damage Taken -2%
+INSERT INTO `augments` VALUES (1156, 0, 163, -2, 0, 0); -- Magic Damage Taken -2%
+INSERT INTO `augments` VALUES (1157, 0, 168, 2, 0, 0); -- Spell Interruption Rate Down 2%
 INSERT INTO `augments` VALUES (1158, 0, 0, 0, 0, 0); -- Occ. Resistance to Status Ailments +2
 
 -- 1159 to 1248 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
@@ -1518,8 +1522,8 @@ INSERT INTO `augments` VALUES (1244, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1245, 0, 0, 0, 0, 0);
 -- End unused block
 
-INSERT INTO `augments` VALUES (1246, 0, 0, 0, 0, 0); -- Pet: Phy. Dmg. Taken -2%
-INSERT INTO `augments` VALUES (1247, 0, 0, 0, 0, 0); -- Pet: Magic Dmg. Taken -2%
+INSERT INTO `augments` VALUES (1246, 0, 161, -2, 1, 0); -- Pet: Phy. Dmg. Taken -2%
+INSERT INTO `augments` VALUES (1247, 0, 163, -2, 1, 0); -- Pet: Magic Dmg. Taken -2%
 INSERT INTO `augments` VALUES (1248, 0, 0, 0, 0, 0); -- Enhancing Magic Effect Duration +1: Mod undefined as of yet so leaving blank.
 INSERT INTO `augments` VALUES (1249, 0, 477, 1, 0, 0); -- Helix Effect Duration+1
 INSERT INTO `augments` VALUES (1250, 0, 0, 0, 0, 0); -- Indi Effect Duration+1: Mod undefined as of yet so leaving blank.
@@ -1760,7 +1764,7 @@ INSERT INTO `augments` VALUES (1470, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1471, 0, 0, 0, 0, 0);
 -- End unused block
 
-INSERT INTO `augments` VALUES (1472, 0, 0, 0, 0, 0); -- Parrying rate +1%
+INSERT INTO `augments` VALUES (1472, 0, 0, 0, 0, 0); -- Parrying rate +1% (not +skill)
 
 -- 1473 to 1791 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1473, 0, 0, 0, 0, 0);
