@@ -78,8 +78,8 @@ function onInstanceCreated(player,target,instance)
         player:setVar("AssaultCap", 0)
         player:setInstance(instance)
         player:instanceEntry(target,4)
---        player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS)
---        player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
+        player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS)
+        player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
 
         local party = player:getParty()
         if (party ~= nil) then
