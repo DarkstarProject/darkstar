@@ -5,10 +5,10 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local promotion = player:getVar("AssaultPromotion");
+    local promotion = player:getVar("AssaultPromotion")
     local rank = 0
     
     if promotion <= 7 then
@@ -21,11 +21,11 @@ function onTrigger(player,npc)
         rank = 4
     end
      
-    player:startEvent(255, rank);
-end;
+    player:startEvent(255, rank)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
