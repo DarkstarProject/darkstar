@@ -3,6 +3,9 @@
 --  NPC: Abda Lurabda
 -- Standard Info NPC
 -----------------------------------
+package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
+-----------------------------------
+require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/pets");
 -----------------------------------
@@ -29,6 +32,6 @@ function onEventFinish(player,csid,option)
         local page = bit.band(option, 0xF);
         local val = bit.rshift(bit.band(option, 0xFFFFF0), 4);
         player:setPetName(dsp.pet.type.AUTOMATON,86 + val + page*32);
-        player:messageSpecial(5747);
+        player:messageSpecial(AUTOMATON_RENAME);
     end
 end;
