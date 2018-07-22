@@ -54,8 +54,11 @@ function onEventFinish(player,csid,option,npc)
     if csid == 314 then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true)
     elseif csid == 320 then
+        local FellowLook = player:getFellowValue("look")
+        local personality = {4,8,12,16,40,44,20,24,28,32,36,48}
+        player:setFellowValue("look", FellowLook + bit.lshift(personality[option+1],8))
+        player:setFellowValue("personality", personality[option+1])
         player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",1,true)
-        player:setFellowValue("personality", option)
     end
 --[[
 Adventuring Fellow Personality Options:
