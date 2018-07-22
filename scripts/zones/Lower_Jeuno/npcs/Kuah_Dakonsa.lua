@@ -26,8 +26,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 20000 then
-        player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",2,true)
+        local FellowLook = player:getFellowValue("look")
+        player:setFellowValue("look", FellowLook + bit.lshift(option,20))
         player:setFellowValue("face", option)
+        player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",2,true)
     end
 --[[
 Adventuring Fellow Face Options:
