@@ -50,49 +50,25 @@ function onEventFinish(player,csid,option)
             local item = bit.rshift(option,14);
             local itemID = 0;
             local price = 0;
-
-            -- Copy/pasted from Famad, TODO: fill in the actual IDs/prices for Isdebaaq
-            --[[if (item == 1) then
-                itemID = 15972;
-                price = 3000;
-            elseif (item == 2) then
-                itemID = 15777;
-                price = 5000;
-            elseif (item == 3) then
-                itemID = 15523;
-                price = 8000;
-            elseif (item == 4) then
-                itemID = 15886;
-                price = 10000;
-            elseif (item == 5) then
-                itemID = 15492;
-                price = 10000;
-            elseif (item == 6) then
-                itemID = 18583;
-                price = 10000;
-            elseif (item == 7) then
-                itemID = 18388;
-                price = 15000;
-            elseif (item == 8) then
-                itemID = 18417;
-                price = 15000;
-            elseif (item == 9) then
-                itemID = 14940;
-                price = 15000;
-            elseif (item == 10) then
-                itemID = 15690;
-                price = 20000;
-            elseif (item == 11) then
-                itemID = 14525;
-                price = 20000;
-            else
-                return;
+            local items =
+            {
+                [1]  = {itemid = 15971, price = 3000},
+                [2]  = {itemid = 15776, price = 5000},
+                [3]  = {itemid = 15522, price = 8000},
+                [4]  = {itemid = 15885, price = 10000},
+                [5]  = {itemid = 15491, price = 10000},
+                [6]  = {itemid = 17715, price = 15000},
+                [7]  = {itemid = 18113, price = 15000},
+                [8]  = {itemid = 17591, price = 15000},
+                [9]  = {itemid = 14935, price = 20000},
+                [10] = {itemid = 15688, price = 20000},
+                [11] = {itemid = 15609, price = 20000},
+            }
+               
+            local choice = items[item]
+            if choice and npcUtil.giveItem(player, choice.itemid) then
+                player:delAssaultPoint(MAMOOL_ASSAULT_POINT, choice.price)
             end
-
-            player:addItem(itemID);
-            player:messageSpecial(ITEM_OBTAINED,itemID);
-            player:delAssaultPoint(LEBROS_ASSAULT_POINT,price);]]
         end
     end
 end;
-

@@ -1,8 +1,8 @@
 -----------------------------------
 --  NPC: ??? (QM3)
 -- Type: Saltvix dice roll game part 2
---  @zone 191
---  Involved in quest "As Thick As Thieves"
+-- !zone 191
+-- Involved in quest "As Thick As Thieves"
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------

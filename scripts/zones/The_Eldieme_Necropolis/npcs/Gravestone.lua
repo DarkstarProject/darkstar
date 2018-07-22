@@ -2,7 +2,7 @@
 -- Area: The Eldieme Necropolis
 --  NPC: Gravestone
 -- Involved in Quests: fire and brimstone (Rng AF2)
--- @zone 195
+-- !zone 195
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
+    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
         player:startEvent(631);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();

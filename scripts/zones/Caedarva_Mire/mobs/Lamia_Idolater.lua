@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Arrapago Reef
+-- Area: Caedarva Mire
 --  Mob: Lamia Idolater
 -----------------------------------
 require("scripts/globals/status")

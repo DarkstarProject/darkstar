@@ -1,13 +1,14 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  NPC: Vanguard Mason
+--  MOB: Vanguard_Mason
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
+-----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_QUADAV);
-end;
+    mob:setLocalVar("mainSpec", dsp.jsa.EES_QUADAV)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

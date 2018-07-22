@@ -23,7 +23,7 @@ function onTrigger(player,npc)
 
         local rank = getNationRank(dsp.nation.WINDURST);
         if (rank ~= 3) then
-            table.insert(stock,0x0730); --Semolina
+            table.insert(stock,1840); --Semolina
             table.insert(stock,1840);
         end
 

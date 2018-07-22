@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Guslam
 -- Starts Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 244
--- !pos -5 1 48
+-- !pos -5 1 48 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -23,7 +22,7 @@ end;
 
 function nbHandsQuestsCompleted(player)
 
-    questNotAvailable = 0;
+    local questNotAvailable = 0;
 
     for nb = 1, 15, 1 do
         if (player:getQuestStatus(JEUNO,43 + nb) ~= QUEST_AVAILABLE) then
@@ -121,14 +120,14 @@ end;
 -- 155 Start Quest
 -- 43 During Quest before KI obtained
 -- 26 Dialog avec Old Gauntlets KI
--- 0x009c During Quest after Old Gauntlets KI ?
+-- 156 During Quest after Old Gauntlets KI ?
 function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
 
     if (csid == 155) then
-        NumQuest = 43 + player:getMainJob();
+        local NumQuest = 43 + player:getMainJob();
         player:addQuest(JEUNO,NumQuest);
         player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
     end

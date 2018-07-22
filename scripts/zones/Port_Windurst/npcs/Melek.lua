@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Melek
 -- Involved in Mission 2-3
--- @zone 240
--- !pos -80 -5 158
+-- !pos -80 -5 158 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

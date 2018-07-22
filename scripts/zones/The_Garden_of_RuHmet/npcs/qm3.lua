@@ -11,7 +11,7 @@ require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-     --Trade 1 High-Quality Euvhi Organ
+    --Trade 1 High-Quality Euvhi Organ
     if (GetMobAction(Jailer_of_Faith) == 0 and trade:hasItemQty(1899,1) and trade:getItemCount() == 1) then
         local qm3 = GetNPCByID(Jailer_of_Faith_QM);
         player:tradeComplete();

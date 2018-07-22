@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Eastern Altepa Desert
+-- Area: Yhoator Jungle
 --  NPC: Beastmen_s_Banner
 -- !pos 366.014 -0.185 -394.801 124
 -----------------------------------

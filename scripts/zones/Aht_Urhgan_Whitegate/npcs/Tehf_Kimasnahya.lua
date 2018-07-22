@@ -45,30 +45,28 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 520) then
-       player:addQuest(AHT_URHGAN,GOT_IT_ALL);
-       player:setVar("gotitallCS",1);
+        player:addQuest(AHT_URHGAN,GOT_IT_ALL);
+        player:setVar("gotitallCS",1);
     elseif (csid == 525 and option == 0) then
-       player:setVar("gotitallCS",5);
-       player:delKeyItem(dsp.ki.VIAL_OF_LUMINOUS_WATER);
+        player:setVar("gotitallCS",5);
+        player:delKeyItem(dsp.ki.VIAL_OF_LUMINOUS_WATER);
     elseif (csid == 527) then
-       player:setVar("gotitallCS",7);
-       player:setVar("Wait1DayForgotitallCS_date", getMidnight());
-       player:needToZone(true);
+        player:setVar("gotitallCS",7);
+        player:setVar("Wait1DayForgotitallCS_date", getMidnight());
+        player:needToZone(true);
     elseif (csid == 539) then
-       player:setVar("gotitallCS",8);
-
+        player:setVar("gotitallCS",8);
     elseif (csid == 528) then
         if (player:getFreeSlotsCount() == 0) then
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18257);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18257);
         else
-           player:setVar("Wait1DayForgotitallCS_date",0);
-           player:setVar("gotitallCS",0);
-           player:addItem(18257); -- Bibiki Seashell
-           player:messageSpecial(ITEM_OBTAINED,18257);
-           player:completeQuest(AHT_URHGAN,GOT_IT_ALL);
+            player:setVar("Wait1DayForgotitallCS_date",0);
+            player:setVar("gotitallCS",0);
+            player:addItem(18257); -- Bibiki Seashell
+            player:messageSpecial(ITEM_OBTAINED,18257);
+            player:completeQuest(AHT_URHGAN,GOT_IT_ALL);
         end
     elseif (csid == 843 and option == 1) then
         player:setVar("threemenandaclosetCS",6);
     end
 end;
-

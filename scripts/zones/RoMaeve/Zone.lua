@@ -32,7 +32,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-0.008,-33.595,123.478,62);
     end
     if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
-        cs = 0x0003; -- doll telling "you're in the right area"
+        cs = 3; -- doll telling "you're in the right area"
     end
     return cs;
 end;

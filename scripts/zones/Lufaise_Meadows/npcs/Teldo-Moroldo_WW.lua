@@ -12,7 +12,7 @@ require("scripts/zones/Lufaise_Meadows/TextIDs");
 local guardnation = dsp.nation.WINDURST; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 3;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = dsp.region.TAVNAZIANARCH;
-local csid        = 0x7ff7;
+local csid        = 32759;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);

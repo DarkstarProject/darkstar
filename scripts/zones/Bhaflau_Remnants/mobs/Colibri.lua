@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Mamook
+-- Area: Bhaflau Remnants
 --  MOB: Colibri
 -----------------------------------
 require("scripts/globals/status");

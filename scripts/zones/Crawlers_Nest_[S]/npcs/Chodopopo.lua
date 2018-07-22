@@ -2,9 +2,7 @@
 -- Area: Crawlers' Nest [S]
 --  NPC: Chodopopo
 -- Type: Item Deliverer
---  @zone 171
--- !pos 100.528    -32.272    -58.739
-
+-- !pos 100.528 -32.272 -58.739 171
 --
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;

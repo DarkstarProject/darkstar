@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Chanpau
 -- Optional Involvement in Quest: A Squire's Test II
--- @zone 230
--- !pos -152 -2 55
+-- !pos -152 -2 55 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

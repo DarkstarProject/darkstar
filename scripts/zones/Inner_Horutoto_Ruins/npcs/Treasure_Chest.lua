@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Horutoto Ruins
 --  NPC: Treasure Chest
--- @zone 192
+-- !zone 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------

@@ -192,8 +192,16 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
+            // array to store fish ids that i can get
+            std::vector<int32> fishIDs((int32)Sql_NumRows(SqlHandle));
+            int32 fishCounter = 0;
+            bool caughtQuestedFish = false;
+            
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
+                // store fish id
+                fishIDs[fishCounter] = Sql_GetIntData(SqlHandle, 0);
+                
                 // ловля предметов, необходимых для поисков
 
                 uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
@@ -210,10 +218,23 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 					    PChar->UContainer->SetType(UCONTAINER_FISHING);
 					    PChar->UContainer->SetItem(0, PFish);
+                        
+                        // got my quested fish
+                        caughtQuestedFish = true;
 					    break;
                     }
 	            }
+                fishCounter++;
                 // TODO: ловля простых предметов
+            }
+            
+            if (!caughtQuestedFish)
+            {
+                int32 luckyFish = dsprand::GetRandomNumber((int32)Sql_NumRows(SqlHandle));
+                PFish = new CItemFish(*itemutils::GetItemPointer(fishIDs[luckyFish]));
+
+                PChar->UContainer->SetType(UCONTAINER_FISHING);
+                PChar->UContainer->SetItem(0, PFish);
             }
 		}						
 	}

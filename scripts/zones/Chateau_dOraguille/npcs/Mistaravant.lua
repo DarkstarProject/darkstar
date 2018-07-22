@@ -2,8 +2,7 @@
 -- Area: Chateau d'Oraguille
 --   NPC: Mistaravant
 -- Type: Standard NPC
--- @zone 233
--- !pos 7.097 -3.999 67.988
+-- !pos 7.097 -3.999 67.988 233
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

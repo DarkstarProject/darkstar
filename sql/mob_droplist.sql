@@ -30815,7 +30815,6 @@ INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,816,80);
 INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,839,160);
 INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,4357,10);
 INSERT INTO `mob_droplist` VALUES (4187,0,0,1000,816,118);
-INSERT INTO `mob_droplist` VALUES (4187,0,0,1000,3550,62);
 INSERT INTO `mob_droplist` VALUES (4187,4,0,1000,4357,0);
 INSERT INTO `mob_droplist` VALUES (4188,0,0,1000,925,90);
 INSERT INTO `mob_droplist` VALUES (4188,0,0,1000,2164,340);
@@ -32942,6 +32941,8 @@ INSERT INTO `mob_droplist` VALUES (4597,2,0,1000,926,0); -- Lizard Tail (Steal)
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,926,200); -- Lizard Tail (20%)
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,3552,70); -- Squamous Hide (7%)
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,4362,60); -- Lizard Egg (6%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

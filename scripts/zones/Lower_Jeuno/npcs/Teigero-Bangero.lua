@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Teigero Bangero
 -- Involved in Quests: Save the Clock Tower, The Lost Cardian
--- @zone 245
--- !pos -58 0 -143
+-- !pos -58 0 -143 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

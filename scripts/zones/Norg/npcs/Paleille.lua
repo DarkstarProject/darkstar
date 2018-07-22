@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Paleille
 -- Type: Item Deliverer
---  @zone 252
--- !pos -82.667    -5.414    52.421
+-- !pos -82.667 -5.414 52.421 252
 --
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

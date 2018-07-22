@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 4 and player:getVar("DontForgetAntidoteVar") == 1) then --If completing for the first time
         player:setVar("DontForgetAntidoteVar",0);
         player:tradeComplete();
-        player:addTitle(262);
+        player:addTitle(dsp.title.DESERT_HUNTER);
         player:addItem(16974); -- Dotanuki
         player:messageSpecial(ITEM_OBTAINED, 16974);
         player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);

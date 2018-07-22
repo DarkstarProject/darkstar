@@ -1,10 +1,7 @@
 -----------------------------------
--- Area: Caedarva Mire
---  MOB: Khimaira
+-- Area: Wajaom Woodlands
+--  MOB: Jaded Jody
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
 end;

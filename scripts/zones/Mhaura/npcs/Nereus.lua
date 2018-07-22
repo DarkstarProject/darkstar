@@ -32,13 +32,13 @@ function onTrigger(player,npc)
         player:startEvent(114,569) -- get me dish_of_gusgen_clay  as soon as you can
     elseif player:getQuestStatus(OTHER_AREAS_LOG,A_POTTER_S_PREFERENCE) == QUEST_COMPLETED then
         if player:getVar("QuestAPotterPrefeCompDay_var")+7 < VanadielDayOfTheYear() or player:getVar("QuestAPotterPrefeCompYear_var") < VanadielYear() then
-        -- seven days after copletition, allow to do the quest again
+            -- seven days after copletition, allow to do the quest again
             player:startEvent(112) -- repeat quest
         else
             player:startEvent(115) -- i have enough for now, come later
         end
     else
-         player:startEvent(110) --standar dialog
+        player:startEvent(110) --standar dialog
     end
 end
 

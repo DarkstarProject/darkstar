@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Gulemont
 -- Type: Quest Giver
--- @zone 232
--- !pos -69 -5 -38
+-- !pos -69 -5 -38 232
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------

@@ -17,14 +17,14 @@ end;
 
 function onTrigger(player,npc)
 
-  GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
-  itemEquipped = player:getEquipID(dsp.slot.MAIN);
+    local GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
+    local itemEquipped = player:getEquipID(dsp.slot.MAIN);
 
-  if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
-    player:startEvent(57);
-  else
-      player:startEvent(29);
-  end
+    if (GuestofHauteur == QUEST_ACCEPTED and player:getVar("GuestofHauteur_Event") ~= 1 and (itemEquipped == 17045 or itemEquipped == 17426)) then -- Maul / Replica Maul
+        player:startEvent(57);
+    else
+        player:startEvent(29);
+    end
 end;
 
 function onEventUpdate(player,csid,option)

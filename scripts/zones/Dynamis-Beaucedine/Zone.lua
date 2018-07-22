@@ -60,6 +60,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-        player:setPos(-284.751,-39.923,-422.948,235,0x6F);
+        player:setPos(-284.751,-39.923,-422.948,235,111);
     end
 end;

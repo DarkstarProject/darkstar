@@ -139,3 +139,8 @@ function onItemCheck(player, param, caster)
     
     return 0;
 end
+
+function onItemUse(target)
+    target:addItem(21326,99);
+    target:messageSpecial(ITEMS_OBTAINED,21326,99);
+end;

@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: West Ronfaure
---  NPC:  Signpost
---  @zone 100
+-- Area: West Ronfaure
+--  NPC: Signpost
+-- !zone 100
 -----------------------------------
 require("scripts/zones/West_Sarutabaruta/MobIDs");
 

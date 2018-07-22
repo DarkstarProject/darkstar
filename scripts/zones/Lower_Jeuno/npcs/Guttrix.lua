@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Guttrix
 -- Starts and Finishes Quest: The Goblin Tailor
--- @zone 245
--- !pos -36.010 4.499 -139.714
+-- !pos -36.010 4.499 -139.714 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -16,14 +15,17 @@ Description:
     rse = race, { [1] body, [2] hands, [3] legs, [4] feet }
 --]]-----------------------------------------------
 
-local rse_map = { 1,{12654,12761,12871,13015}, -- Male Hume
-                  2,{12655,12762,12872,13016}, -- Female Hume
-                  3,{12656,12763,12873,13017}, -- Male Elvaan
-                  4,{12657,12764,12874,13018}, -- Female Elvaan
-                  5,{12658,12765,12875,13019}, -- Male Taru-Taru
-                  6,{12658,12765,12875,13019}, -- Female Taru-Taru
-                  7,{12659,12766,12876,13020}, -- Mithra
-                  8,{12660,12767,12877,13021}};-- Galka
+local rse_map =
+{
+    1,{12654,12761,12871,13015}, -- Male Hume
+    2,{12655,12762,12872,13016}, -- Female Hume
+    3,{12656,12763,12873,13017}, -- Male Elvaan
+    4,{12657,12764,12874,13018}, -- Female Elvaan
+    5,{12658,12765,12875,13019}, -- Male Taru-Taru
+    6,{12658,12765,12875,13019}, -- Female Taru-Taru
+    7,{12659,12766,12876,13020}, -- Mithra
+    8,{12660,12767,12877,13021}, -- Galka
+}
 
 function hasRSE(player)
     local rse = 0;

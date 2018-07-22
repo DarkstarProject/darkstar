@@ -2,8 +2,7 @@
 -- Area: Rabao
 --   NPC: Mileon
 -- Type: Lucky Roll Gambler
--- @zone 247
--- !pos 26.080 8.201 65.297
+-- !pos 26.080 8.201 65.297 247
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -72,8 +72,8 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x02c6  711  700  713  714  0x02cb  0x02cd  720  721  750  0x03f0  0x03f1  761
--- 762  0x030e  0x0325  0x034d  0x036d  0x03aa  0x03ab  0x03ac  0x03ad  0x03ae  0x03cb  0x03c9  0x03ca
+-- 710  711  700  713  714  715  717  720  721  750  1008  1009  761
+-- 762  782  805  845  877  938  939  940  941  942  971  969  970
 function onEventUpdate(player,csid,option)
 end;
 
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_DOORMAN);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
     elseif (csid == 710) then
         player:delKeyItem(dsp.ki.ZERUHN_REPORT);

@@ -14,6 +14,7 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/keyitems")
 
 
 --   player:startEvent(74); -- first quest completed ok
@@ -146,7 +147,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_AVAILA
         player:startEvent(75); -- nothing to do
     end
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED) then
-    if (player:hasKeyItem(90)) then
+    if (player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA)) then
         player:startEvent(87);-- forth quest   not done yet
     else
         player:startEvent(88);-- forth quest   done!

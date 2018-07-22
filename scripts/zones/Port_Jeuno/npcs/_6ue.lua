@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Door: Departures Exit (for Windurst)
--- @zone 246
--- !pos 3 7 -54
+-- !pos 3 7 -54 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -12,7 +12,7 @@ require("scripts/zones/Meriphataud_Mountains/TextIDs");
 local guardnation = dsp.nation.SANDORIA; -- SANDORIA, BASTOK, WINDURST, 4 = jeuno
 local guardtype   = 4;        -- 1: city, 2: foreign, 3: outpost, 4: border
 local region      = dsp.region.ARAGONEU;
-local csid        = 0x7ffa;
+local csid        = 32762;
 
 function onTrade(player,npc,trade)
     tradeConquestGuard(player,npc,trade,guardnation,guardtype);

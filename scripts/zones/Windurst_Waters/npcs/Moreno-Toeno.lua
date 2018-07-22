@@ -52,11 +52,11 @@ function onTrigger(player,npc)
             elseif (alreadyCompleted == false and seconds_passed >= 3312) then
                 killcount = player:getVar("testingTime_crea_count");
                 if (killcount >= 35) then
-                    event = 0x00C9;
+                    event = 201;
                 elseif (killcount >= 30) then
                     event = 200;
                 elseif (killcount >= 19) then
-                    event = 0x00C7;
+                    event = 199;
                 else
                     event = 198;
                 end;
@@ -65,7 +65,7 @@ function onTrigger(player,npc)
             elseif (alreadyCompleted and seconds_passed >= 6768) then
                 killcount = player:getVar("testingTime_crea_count");
                 if (killcount >= 35) then
-                    event = 0x00CE;
+                    event = 206;
                 elseif (killcount >= 30) then
                     event = 209;
                 else
@@ -140,7 +140,7 @@ function onEventFinish(player,csid,option)
         player:setVar("testingTime_start_day",VanadielDayOfTheYear());
         player:setVar("testingTime_start_hour",VanadielHour());
         player:setVar("testingTime_start_time",os.time());
-    elseif (csid == 198 or csid == 0x00C7 or csid == 202 or csid == 208) then -- failed testing time
+    elseif (csid == 198 or csid == 199 or csid == 202 or csid == 208) then -- failed testing time
         player:delKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:messageSpecial(KEYITEM_OBTAINED + 1,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",0);
@@ -149,14 +149,14 @@ function onEventFinish(player,csid,option)
         player:setVar("testingTime_start_hour",0);
         player:setVar("testingTime_start_time",0);
         player:delMission(WINDURST,A_TESTING_TIME);
-    elseif (csid == 200 or csid == 0x00C9) then -- first time win
+    elseif (csid == 200 or csid == 201) then -- first time win
         finishMissionTimeline(player,1,csid,option);
 
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
         player:setVar("testingTime_start_hour",0);
         player:setVar("testingTime_start_time",0);
-    elseif (csid == 209 or csid == 0x00CE) then -- succesfull repeat attempt (Buburimu).
+    elseif (csid == 209 or csid == 206) then -- succesfull repeat attempt (Buburimu).
         finishMissionTimeline(player,1,csid,option);
 
         player:setVar("testingTime_crea_count",0);

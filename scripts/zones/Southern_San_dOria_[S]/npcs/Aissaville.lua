@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Aissaville
--- @zone 80
--- !pos -3 -2 44
+-- !pos -3 -2 44 80
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

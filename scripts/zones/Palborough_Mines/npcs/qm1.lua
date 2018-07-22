@@ -2,8 +2,7 @@
 -- Area: Palborough Mines
 --  NPC: ???
 -- Involved In Quest: The Talekeeper's Truth
--- @zone 143
--- !pos 15 -31 -94
+-- !pos 15 -31 -94 143
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------

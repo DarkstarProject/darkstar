@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:delGil(player:getVar("MAGRIFFON_GIL_REQUEST"));
         player:setVar("MAGRIFFON_GIL_REQUEST", 0);
         player:addFame(KAZHAM, 30);
-        player:setTitle(285);                                     -- Global Variable not working for this quest
+        player:setTitle(dsp.title.GULLIBLES_TRAVELS);
         player:completeQuest(OUTLANDS, GULLIBLES_TRAVELS);
         player:needToZone(true);
     elseif (csid == 148 and option == 1) then                  -- Even More Guillible's Travels First CS
@@ -75,8 +75,8 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:delGil(35000);
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 1);
-        player:setTitle(286);
-        player:addKeyItem(256);
+        player:setTitle(dsp.title.EVEN_MORE_GULLIBLES_TRAVELS);
+        player:addKeyItem(dsp.ki.TREASURE_MAP);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
     elseif (csid == 152) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);

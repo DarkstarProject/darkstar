@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local cs = math.random(0x014,0x016)
+    local cs = math.random(20,22)
     player:startEvent(cs);
 
 end;

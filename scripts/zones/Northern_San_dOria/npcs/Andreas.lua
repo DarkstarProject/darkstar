@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Andreas
 -- Type: Guildworker's Union Representative
---  @zone 231
--- !pos -189.282 10.999 262.626
+-- !pos -189.282 10.999 262.626 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +26,7 @@ local keyitems = {
         rank = 3,
         cost = 10000
     },
-     [3] = {
+    [3] = {
         id = dsp.ki.BOLTMAKER,
         rank = 3,
         cost = 10000

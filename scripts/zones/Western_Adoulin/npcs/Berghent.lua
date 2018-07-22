@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Berghent
 -- Type: Standard NPC and Quest NPC
---  Starts, Involved with, and Finishes Quest: 'Flavors of our Lives'
---  @zone 256
---  !pos 95 0 -28 256
+-- Starts, Involved with, and Finishes Quest: 'Flavors of our Lives'
+-- !pos 95 0 -28 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

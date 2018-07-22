@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000)
-        player:setTitle(296)
+        player:setTitle(dsp.title.HERO_AMONG_HEROES)
     elseif (csid == 956) then
         player:setVar("FiresOfDiscProg",2)
     else

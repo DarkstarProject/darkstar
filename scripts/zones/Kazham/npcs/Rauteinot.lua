@@ -2,8 +2,7 @@
 -- Area: Kazham
 --  NPC: Rauteinot
 -- Starts and Finishes Quest: Missionary Man
--- @zone 250
--- !pos -42 -10 -89
+-- !pos -42 -10 -89 250
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------

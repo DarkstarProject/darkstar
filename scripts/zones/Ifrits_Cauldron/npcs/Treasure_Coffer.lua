@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
 --  NPC: Treasure Coffer
--- @zone 205
--- !pos 188 0 -28
+-- !pos 188 0 -28 205
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------

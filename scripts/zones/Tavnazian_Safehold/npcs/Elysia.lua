@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: Elysia
 -- Starts Quest: Unforgiven
--- @zone 26
--- !pos -50.410 -22.204 -41.640
+-- !pos -50.410 -22.204 -41.640 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
@@ -35,10 +34,10 @@ local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
     elseif (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
         player:startEvent(203); -- Dialogue if player hasn't talked to Pradiulot (2nd stage of Quest)
 
-    elseif (Unforgiven == 1 and player:hasKeyItem(609) == false) then
+    elseif (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
         player:startEvent(201); -- Dialogue if player doesn't have keyitem
 
-    elseif (Unforgiven == 1 and player:hasKeyItem(609) == true) then
+    elseif (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == true) then
         player:startEvent(202); -- Dialogue if player has keyitem (1st stage of Quest)
 
     else

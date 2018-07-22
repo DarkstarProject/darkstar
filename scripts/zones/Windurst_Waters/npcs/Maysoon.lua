@@ -3,8 +3,7 @@
 --  NPC: Maysoon
 -- Starts and Finishes Quest: Hoist the Jelly, Roger
 -- Involved in Quests: Cook's Pride
--- @zone 238
--- !pos -105 -2 69
+-- !pos -105 -2 69 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

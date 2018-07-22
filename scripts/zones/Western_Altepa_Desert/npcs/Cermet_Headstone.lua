@@ -20,9 +20,9 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE) then
         if (player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) == false) then
             player:startEvent(200,dsp.ki.EARTH_FRAGMENT);
-        elseif (player:hasKeyItem(239) and player:hasKeyItem(240) and player:hasKeyItem(241) and
-            player:hasKeyItem(242) and player:hasKeyItem(243) and player:hasKeyItem(244) and
-            player:hasKeyItem(245) and player:hasKeyItem(246)) then
+        elseif (player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) and player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
+            player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
+            player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT) and player:hasKeyItem(dsp.ki.DARK_FRAGMENT)) then
             player:messageSpecial(ALREADY_HAVE_ALL_FRAGS);
         elseif (player:hasKeyItem(dsp.ki.EARTH_FRAGMENT)) then
             player:messageSpecial(ALREADY_OBTAINED_FRAG,dsp.ki.EARTH_FRAGMENT);

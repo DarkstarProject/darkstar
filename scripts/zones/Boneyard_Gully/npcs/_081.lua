@@ -21,9 +21,9 @@ function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then
         return 1;
-        else
+    else
         return 1;
-   end
+    end
     
 end;
 

@@ -29,9 +29,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-25,-1 ,-620 ,33);
     end
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 0) then
-       cs=1;
+        cs=1;
     elseif (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 0) then
-      cs=167;
+        cs=167;
     end
     return cs;
 end;

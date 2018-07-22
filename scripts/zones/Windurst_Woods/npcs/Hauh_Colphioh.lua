@@ -11,7 +11,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 
 local keyitems = {
-     [0] = {
+    [0] = {
         id = dsp.ki.CLOTH_PURIFICATION,
         rank = 3,
         cost = 40000

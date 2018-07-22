@@ -2,7 +2,7 @@
 -- Area: Cloister of Gales
 -- NPC:  Wind Protocrystal
 -- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
--- @zone -361 1 -381 201
+-- !pos -361 1 -381 201
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 -----------------------------------

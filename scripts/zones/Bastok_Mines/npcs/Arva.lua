@@ -10,7 +10,7 @@ package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 require("scripts/zones/Bastok_Mines/TextIDs");
 
 function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
+    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
         player:startEvent(4);
         player:addGil(GIL_RATE*50);
         player:tradeComplete();

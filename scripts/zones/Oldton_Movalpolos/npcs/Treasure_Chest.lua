@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Oldton Movalpolos
 --  NPC: Treasure Chest
--- @zone 11
+-- !zone 11
 -----------------------------------
 package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
 -----------------------------------

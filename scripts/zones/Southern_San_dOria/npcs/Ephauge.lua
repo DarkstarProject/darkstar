@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Ephauge
 --  General Info NPC
---  @zone 230
--- !pos -2 -2 45
+-- !pos -2 -2 45 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

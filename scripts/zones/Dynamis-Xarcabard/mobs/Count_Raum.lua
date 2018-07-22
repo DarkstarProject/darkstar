@@ -5,6 +5,7 @@
 require("scripts/globals/status");
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobEngaged(mob,target)

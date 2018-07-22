@@ -11,7 +11,7 @@ require("scripts/globals/conquest");
 require("scripts/zones/Meriphataud_Mountains/TextIDs");
 
 local region     = dsp.region.ARAGONEU;
-local csid    = 0x7ff4;
+local csid    = 32756;
 
 function onTrade(player,npc,trade)
 end;

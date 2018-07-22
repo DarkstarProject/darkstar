@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Honorio
--- @zone 240
--- !pos 218 -5 114
+-- !pos 218 -5 114 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

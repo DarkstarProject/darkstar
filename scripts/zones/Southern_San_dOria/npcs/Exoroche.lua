@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Exoroche
 -- Involved in Quests: Father and Son, A Boy's Dream
--- @zone 230
--- !pos 72 -1 60
+-- !pos 72 -1 60 230
 
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

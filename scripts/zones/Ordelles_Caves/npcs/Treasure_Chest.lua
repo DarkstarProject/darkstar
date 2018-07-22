@@ -2,7 +2,7 @@
 -- Area: Ordelles Caves
 --  NPC: Treasure Chest
 -- Involved In Quest: Signed In Blood and The Goblin Tailor
--- @zone 193
+-- !zone 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------

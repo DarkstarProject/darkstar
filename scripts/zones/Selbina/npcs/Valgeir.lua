@@ -8,6 +8,7 @@
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Selbina/TextIDs");
+require("scripts/globals/keyitems")
 
 --player:startEvent(100);-- His name is Valgeir quest
 --player:startEvent(101); -- I have nothing to say to you
@@ -33,7 +34,7 @@ end;
 
 function onTrigger(player,npc)
 
-if (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
+if (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA)) then -- if quest accepted and has pizza
     player:startEvent(100);-- His name is Valgeir quest
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
     if (player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked

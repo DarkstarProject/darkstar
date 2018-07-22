@@ -7,6 +7,8 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 local path =
@@ -95,7 +97,7 @@ function onEventFinish(player,csid,option,npc)
             player:setVar("OPO_OPO_PROGRESS",0);
             player:setVar("OPO_OPO_FAILED", 0);
             player:setVar("OPO_OPO_RETRY", 0);
-            player:setTitle(257);
+            player:setTitle(dsp.title.KING_OF_THE_OPOOPOS);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         end

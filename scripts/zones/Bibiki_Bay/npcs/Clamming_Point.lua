@@ -11,37 +11,38 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 -- clammingItems = item id, weight, drop rate, improved drop rate
-local clammingItems = { 1311,  6, 0.001, 0.003, -- Oxblood
-            885,   6, 0.002, 0.006, -- Turtle Shell
-            1193,  6, 0.003, 0.009, -- HQ Crab Shell
-            1446,  6, 0.004, 0.012, -- Lacquer Tree Log
-            4318,  6, 0.005, 0.015, -- Bibiki Urchin
-            1586,  6, 0.008, 0.024, -- Titanictus Shell
-            5124, 20, 0.011, 0.033, -- Tropical Clam
-            690,   6, 0.014, 0.042, -- Elm Log
-            887,   6, 0.017, 0.051, -- Coral Fragment
-            703,   6, 0.021, 0.063, -- Petrified Log
-            691,   6, 0.025, 0.075, -- Maple Log
-            4468,  6, 0.029, 0.087, -- Pamamas
-            3270,  6, 0.033, 0.099, -- HQ Pugil Scales
-            888,   6, 0.038, 0.114, -- Seashell
-            4328,  6, 0.044, 0.132, -- Hobgoblin Bread
-            485,   6, 0.051, 0.153, -- Broken Willow Rod
-            510,   6, 0.058, 0.174, -- Goblin Armor
-            5187,  6, 0.065, 0.195, -- Elshimo Coconut
-            507,   6, 0.073, 0.219, -- Goblin Mail
-            881,   6, 0.081, 0.243, -- Crab Shell
-            4325,  6, 0.089, 0.267, -- Hobgoblin Pie
-            936,   6, 0.098, 0.294, -- Rock Salt
-            4361,  6, 0.107, 0.321, -- Nebimonite
-            864,   6, 0.119, 0.357, -- Fish Scales
-            4484,  6, 0.140, 0.420, -- Shall Shell
-            624,   6, 0.178, 0.534, -- Pamtam Kelp
-            1654, 35, 0.225, 0.675, -- Igneous Rock
-            17296, 7, 0.377, 0.784, -- Pebble
-            5123, 11, 0.628, 0.892, -- Jacknife
-            5122,  3, 1.000, 1.000  -- Bibiki Slug
-              };
+local clammingItems = {
+    1311,  6, 0.001, 0.003, -- Oxblood
+    885,   6, 0.002, 0.006, -- Turtle Shell
+    1193,  6, 0.003, 0.009, -- HQ Crab Shell
+    1446,  6, 0.004, 0.012, -- Lacquer Tree Log
+    4318,  6, 0.005, 0.015, -- Bibiki Urchin
+    1586,  6, 0.008, 0.024, -- Titanictus Shell
+    5124, 20, 0.011, 0.033, -- Tropical Clam
+    690,   6, 0.014, 0.042, -- Elm Log
+    887,   6, 0.017, 0.051, -- Coral Fragment
+    703,   6, 0.021, 0.063, -- Petrified Log
+    691,   6, 0.025, 0.075, -- Maple Log
+    4468,  6, 0.029, 0.087, -- Pamamas
+    3270,  6, 0.033, 0.099, -- HQ Pugil Scales
+    888,   6, 0.038, 0.114, -- Seashell
+    4328,  6, 0.044, 0.132, -- Hobgoblin Bread
+    485,   6, 0.051, 0.153, -- Broken Willow Rod
+    510,   6, 0.058, 0.174, -- Goblin Armor
+    5187,  6, 0.065, 0.195, -- Elshimo Coconut
+    507,   6, 0.073, 0.219, -- Goblin Mail
+    881,   6, 0.081, 0.243, -- Crab Shell
+    4325,  6, 0.089, 0.267, -- Hobgoblin Pie
+    936,   6, 0.098, 0.294, -- Rock Salt
+    4361,  6, 0.107, 0.321, -- Nebimonite
+    864,   6, 0.119, 0.357, -- Fish Scales
+    4484,  6, 0.140, 0.420, -- Shall Shell
+    624,   6, 0.178, 0.534, -- Pamtam Kelp
+    1654, 35, 0.225, 0.675, -- Igneous Rock
+    17296, 7, 0.377, 0.784, -- Pebble
+    5123, 11, 0.628, 0.892, -- Jacknife
+    5122,  3, 1.000, 1.000  -- Bibiki Slug
+};
 
 -----------------------------------
 -- Local Functions

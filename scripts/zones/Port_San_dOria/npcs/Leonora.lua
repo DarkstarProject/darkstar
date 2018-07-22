@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --  NPC: Leonora
 -- Involved in Quest:
--- @zone 232
--- !pos -24 -8 15
+-- !pos -24 -8 15 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

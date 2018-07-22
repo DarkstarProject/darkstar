@@ -16,8 +16,8 @@ end;
 
 function onTrigger(player,npc)
 
-   local ZilartMission = player:getCurrentMission(ZILART);
-   local ZilartStatus = player:getVar("ZilartStatus");
+    local ZilartMission = player:getCurrentMission(ZILART);
+    local ZilartStatus = player:getVar("ZilartStatus");
 
     if (player:hasKeyItem(dsp.ki.LETTERS_TO_ALDO)) then
         player:startEvent(152);

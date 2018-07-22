@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Belgidiveau
 -- Starts and Finishes Quest: Trouble at the Sluice
--- @zone 231
--- !pos -98 0 69
+-- !pos -98 0 69 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

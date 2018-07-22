@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: ???
 -- Finish Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 246
--- !pos -51 8 -4
+-- !pos -51 8 -4 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;

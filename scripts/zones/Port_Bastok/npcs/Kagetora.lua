@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --  NPC: Kagetora
 -- Involved in Quest: Ayame and Kaede, 20 in Pirate Years
--- @zone 236
--- !pos -96 -2 29
+-- !pos -96 -2 29 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------

@@ -81,9 +81,9 @@ function onEffectLose(target, effect)
         target:delMod(dsp.mod.DEX, 2);
         target:delMod(dsp.mod.INT, -3);
         target:delMod(dsp.mod.MND, 4);
-        target:delMod(dsp.mod.FOOD_ATTP, 22);
+        target:delMod(dsp.mod.FOOD_ATTP, 20);
         target:delMod(dsp.mod.FOOD_ATT_CAP, 65);
-        target:delMod(dsp.mod.FOOD_RATTP, 22);
+        target:delMod(dsp.mod.FOOD_RATTP, 20);
         target:delMod(dsp.mod.FOOD_RATT_CAP, 65);
     end
 end;
