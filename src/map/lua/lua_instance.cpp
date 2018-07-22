@@ -231,7 +231,7 @@ inline int32 CLuaInstance::getWipeTime(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
 
-    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaInstance->GetWipeTime() - get_server_start_time()).count());
+    lua_pushinteger(L, (lua_Integer)std::chrono::duration_cast<std::chrono::milliseconds>(m_PLuaInstance->GetWipeTime()).count());
 
     return 1;
 }
@@ -311,7 +311,7 @@ inline int32 CLuaInstance::setWipeTime(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaInstance == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    m_PLuaInstance->SetWipeTime(get_server_start_time() + std::chrono::milliseconds(lua_tointeger(L, 1)));
+    m_PLuaInstance->SetWipeTime(std::chrono::milliseconds(lua_tointeger(L, 1)));
 
     return 0;
 }
