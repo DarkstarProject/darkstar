@@ -26,8 +26,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 10103 then
+        local FellowLook = player:getFellowValue("look")
+        player:setFellowValue("look", FellowLook + bit.lshift(option*4,16))
+        player:setFellowValue("size", option*4)
         player:setMaskBit(player:getVar("[Quest]Unlisted_Qualities"),"[Quest]Unlisted_Qualities",0,true)
-        player:setFellowValue("size", option)
     end
 --[[
 Adventuring Fellow Size Options:
