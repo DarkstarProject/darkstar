@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     if player:hasKeyItem(dsp.ki.TEMPLE_KNIGHT_KEY) then
         GetNPCByID(npc:getID() - 2):openDoor(15)
     else
-        player:messageSpecial(LARGE_KEYHOLE)
+        player:messageSpecial(LARGE_KEYHOLE_DESCRIPTION)
     end
 end
 

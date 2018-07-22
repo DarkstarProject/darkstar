@@ -15,7 +15,7 @@ function onTrigger(player,npc)
     if player:hasKeyItem(dsp.ki.TEMPLE_KNIGHT_KEY) then
         GetNPCByID(npc:getID() - 3):openDoor(15)
     else
-        player:messageSpecial(SMALL_KEYHOLE)
+        player:messageSpecial(SMALL_KEYHOLE_DESCRIPTION)
     end
 end
 
@@ -31,13 +31,11 @@ function onTrade(player,npc,trade)
 end
 
 function onEventUpdate(player,csid,option)
-    if csid == 100 and option == 2 then
-        GetNPCByID(SMALL_KEYHOLE):setLocalVar("canTradeSecondKey", 0)
-    end
 end
 
 function onEventFinish(player,csid,option)
     if csid == 100 then
+        GetNPCByID(SMALL_KEYHOLE):setLocalVar("canTradeSecondKey", 0)
         player:messageSpecial(CORAL_KEY_BREAKS, 0, 1659)
         player:confirmTrade()
     end
