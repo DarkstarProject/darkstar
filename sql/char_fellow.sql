@@ -18,6 +18,7 @@ CREATE TABLE `char_fellow` (
   `face` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `size` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `personality` tinyint(2) unsigned NOT NULL DEFAULT '0',
+  `look` int(11) unsigned NOT NULL DEFAULT '0',
   `race` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `head` smallint(4) unsigned NOT NULL DEFAULT '0',
   `body` smallint(4) unsigned NOT NULL DEFAULT '8',
