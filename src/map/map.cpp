@@ -146,7 +146,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 
 int32 do_init(int32 argc, char** argv)
 {
-    ShowStatus("do_init: begin server initialization...\n");
+    ShowStatus("do_init: begin server initialization...");
     map_ip.s_addr = 0;
 
     for (int i = 1; i < argc; i++)
@@ -164,7 +164,7 @@ int32 do_init(int32 argc, char** argv)
 
     map_config_default();
     map_config_read((const int8*)MAP_CONF_FILENAME);
-    ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
+    ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
     ShowStatus("do_init: map_config is reading");
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 

@@ -37,7 +37,7 @@ function onSpellCast(caster,target,spell)
     -- get the resisted damage
     dmg = dmg*resist;
     -- add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
-    dmg = addBonuses(caster,spell,target,dmg);
+    dmg = addBonuses(caster,spell,target,dmg,{});
     -- add in target adjustment
     dmg = adjustForTarget(target,dmg,spell:getElement());
     -- add in final adjustments including the actual damage dealt
