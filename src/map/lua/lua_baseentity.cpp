@@ -12310,7 +12310,7 @@ inline int32 CLuaBaseEntity::setFellowValue(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     const char* option = lua_tostring(L, 1);
-    uint8 value = (uint8)lua_tointeger(L, 2);
+    uint32 value = (uint32)lua_tointeger(L, 2);
 
     Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, %s = %u ON DUPLICATE KEY UPDATE %s = %u;", m_PBaseEntity->id, option, value, option, value);
 
