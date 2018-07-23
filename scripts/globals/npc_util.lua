@@ -20,7 +20,7 @@ npcUtil = {}
     Pop mob(s) from question mark NPC.
     If any mob is already spawned, return false.
     Optionally assign claim to player. (default true)
-    Optionally hide the QM for hideDuration seconds. (default QM_RESET_TIME)
+    Optionally hide the QM for hideDuration seconds. (default FORCE_SPAWN_QM_RESET_TIME)
 ******************************************************************************* --]]
 function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
     local qmId = qm:getID()
@@ -30,7 +30,7 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
         claim = true
     end
     if hideDuration == nil then
-        hideDuration = QM_RESET_TIME
+        hideDuration = FORCE_SPAWN_QM_RESET_TIME
     end
 
     -- get list of mobs to pop
