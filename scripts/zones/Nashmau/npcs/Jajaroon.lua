@@ -25,11 +25,11 @@ function onTrigger(player,npc)
         5870, 10000,    -- Trump Card Case
         5488, 35200,    -- Samurai Die
         5489,   600,    -- Ninja Die
-        5490, 82500,    -- Dragoon Die
+        5490,  9216,    -- Dragoon Die
         5491, 40000,    -- Summoner Die
         5492,  3525,    -- Blue Mage Die
-        5493,   316,    -- Corsar Die
-        5494,  9216,    -- Puppetmaster Die
+        5493,   316,    -- Corsair Die
+        5494, 82500     -- Puppetmaster Die
     }
 
     player:showText(npc, JAJAROON_SHOP_DIALOG)
