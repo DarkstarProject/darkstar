@@ -1124,7 +1124,7 @@ function doElementalNuke(caster, spell, target, spellParams)
     local V = 0;
     local M = 0;
 
-    if (USE_OLD_MAGIC_DAMAGE) then
+    if (USE_OLD_MAGIC_DAMAGE and spellParams.V ~= nil and spellParams.M ~= nil) then
         V = spellParams.V;
         M = spellParams.M;
         local I = spellParams.I; -- inflection point
