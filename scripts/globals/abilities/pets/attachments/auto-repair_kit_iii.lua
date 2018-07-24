@@ -4,49 +4,31 @@
 require("scripts/globals/status");
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.HPP, 19)
+    pet:addMod(dsp.mod.HPP, 15)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.HPP, 19)
+    pet:delMod(dsp.mod.HPP, 15)
 end
 
+-- regen values from http://wiki.ffo.jp/html/8619.html
+local prefix = "autoRepairKit3_"
+local regenValues =
+{
+    [1] = {base=9, pct=1.8},
+    [2] = {base=3, pct=0.6},
+    [3] = {base=3, pct=0.6},
+}
+
 function onManeuverGain(pet,maneuvers)
-    local bonus = 0
-    local frame = pet:getAutomatonFrame()
-    if (maneuvers == 1) then
-        if frame == 32 then bonus = 4 end
-        if frame == 33 then bonus = 6 end
-        if frame == 34 then bonus = 2 end
-        pet:addMod(dsp.mod.REGEN, 37 + bonus);
-    elseif (maneuvers == 2) then
-        if frame == 32 then bonus = 3 end
-        if frame == 33 then bonus = 4 end
-        if frame == 34 then bonus = 1 end
-        pet:addMod(dsp.mod.REGEN, 10 + bonus);
-    elseif (maneuvers == 3) then
-        if frame == 32 then bonus = 3 end
-        if frame == 33 then bonus = 4 end
-        pet:addMod(dsp.mod.REGEN, 10 + bonus);
-    end
+    local rVals = regenValues[maneuvers]
+    local power = math.floor(rVals.base + (pet:getMaxHP() * rVals.pct / 100))
+
+    pet:setLocalVar(prefix .. maneuvers, power)
+    pet:addMod(dsp.mod.REGEN, power)
 end
 
 function onManeuverLose(pet,maneuvers)
-    local bonus = 0
-    local frame = pet:getAutomatonFrame()
-    if (maneuvers == 1) then
-        if frame == 32 then bonus = 4 end
-        if frame == 33 then bonus = 6 end
-        if frame == 34 then bonus = 2 end
-        pet:delMod(dsp.mod.REGEN, 37 + bonus);
-    elseif (maneuvers == 2) then
-        if frame == 32 then bonus = 3 end
-        if frame == 33 then bonus = 4 end
-        if frame == 34 then bonus = 1 end
-        pet:delMod(dsp.mod.REGEN, 10 + bonus);
-    elseif (maneuvers == 3) then
-        if frame == 32 then bonus = 3 end
-        if frame == 33 then bonus = 4 end
-        pet:delMod(dsp.mod.REGEN, 10 + bonus);
-    end
+    pet:delMod(dsp.mod.REGEN, pet:getLocalVar(prefix .. maneuvers))
+    pet:setLocalVar(prefix .. maneuvers, 0)
 end
