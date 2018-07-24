@@ -35,7 +35,6 @@ function onSpellCast(caster, target, spell)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
     end
-
     
     return stolen
 end
