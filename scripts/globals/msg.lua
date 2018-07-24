@@ -83,6 +83,7 @@ dsp.msg.basic =
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
     MAGIC_ABSORB_AILMENT   = 572, -- <caster> casts <spell>. <caster> absorbs <number> of <target>'s status ailments.
     MAGIC_MUST_ASTRAL_FLOW = 581, -- Unable to cast <spell>. Astral Flow must be in effect to cast this spell.
+    MAGIC_STEAL            = 430,
 
     -- Weaponskill / Mobskill (0-255 WS, 256+ monster skill)
     SKILL_RECOVERS_MP      = 224, -- <user> uses <skill>. <target> recovers <amount> MP.
