@@ -12538,6 +12538,7 @@ INSERT INTO `mob_groups` VALUES (14628,830,22,1056,0,591,0,0,52,54,0);  -- Promy
 INSERT INTO `mob_groups` VALUES (14629,830,22,1056,0,591,0,0,54,56,0);  -- Promyvion-Vahzl Level 2
 INSERT INTO `mob_groups` VALUES (14630,830,22,1056,0,591,0,0,56,58,0);  -- Promyvion-Vahzl Level 3
 INSERT INTO `mob_groups` VALUES (14631,830,22,1056,0,591,0,0,58,60,0);  -- Promyvion-Vahzl Level 4/5
+INSERT INTO `mob_groups` VALUES (14632,5842,61,0,32,4599,0,0,80,82,0);  -- Ignamoth
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
