@@ -5,8 +5,8 @@
 -- Recast Time: 3:00
 -- Duration: 0:15-0:30
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/globals/status");
+require("scripts/globals/utils");
 require("scripts/globals/msg");
 -----------------------------------
 function onAbilityCheck(player,target,ability)
@@ -14,7 +14,7 @@ function onAbilityCheck(player,target,ability)
         return dsp.msg.basic.CANNOT_ON_THAT_TARG, 0;
     else
         return 0, 0;
-    end
+    end;
 end;
 
 function onUseAbility(player,target,ability)
@@ -24,6 +24,6 @@ function onUseAbility(player,target,ability)
     local duration = baseDuration + bonusTime;
     
     player:addStatusEffect(dsp.effect.COVER,0,0,duration);
-    player.addMod(dsp.mod.Enmity, +200);
+    player.addMod(dsp.mod.Enmity, 200);
     target:lowerEnmity(target, 10);
 end;
