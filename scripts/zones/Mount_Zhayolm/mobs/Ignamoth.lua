@@ -18,13 +18,13 @@ function onAdditionalEffect(mob, target, damage)
     
     
     if ((math.random(1,100) >= 75) or (target:hasStatusEffect(dsp.effect.PARALYSIS) == true)) then
-        return 0,0,0;
+        return 0,0,0
     else
-        local duration = math.random(10,30);
-        local message = dsp.msg.basic.ADD_EFFECT_DMG;
-        target:addStatusEffect(dsp.effect.PARALYSIS,5,3,duration);
+        local duration = math.random(10,30)
+        local message = dsp.msg.basic.ADD_EFFECT_DMG
+        target:addStatusEffect(dsp.effect.PARALYSIS,5,3,duration)
         
-        return dsp.subEffect.ICE_DAMAGE,message,dmg;
+        return dsp.subEffect.ICE_DAMAGE,message,dmg
     end
 end
 
