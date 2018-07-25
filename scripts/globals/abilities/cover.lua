@@ -1,3 +1,14 @@
+-----------------------------------
+-- Ability: Cover
+-- Allows you to protect party members by placing yourself between them and the enemy.
+-- Obtained: Paladin Level 35
+-- Recast Time: 3:00
+-- Duration: 0:15-0:30
+-----------------------------------
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/msg");
+-----------------------------------
 function onAbilityCheck(player,target,ability)
     if (target == nil or target:getID() == player:getID() or not target:isPC()) then
         return dsp.msg.basic.CANNOT_ON_THAT_TARG, 0;
