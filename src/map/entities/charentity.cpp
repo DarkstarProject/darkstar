@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -54,6 +54,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
+#include "fellowentity.h"  // NPCFELLOW
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
@@ -464,6 +465,16 @@ bool CCharEntity::ReloadParty()
 {
     return m_reloadParty;
 }
+
+// ----------------- NPCFELLOW -------------------vv
+void CCharEntity::RemoveFellow(CFellowEntity* PFellow)
+{
+    if (!PFellow->PAI->IsSpawned())
+        return;
+
+    PFellow->PAI->Despawn();
+}
+// ------------------ NPCFELLOW -------^^
 
 void CCharEntity::PostTick()
 {

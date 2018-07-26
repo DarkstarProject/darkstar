@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2018 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -40,6 +40,7 @@ This file is part of DarkStar-server source code.
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
 
+class CFellowEntity;  // NPCFELLOW
 struct jobs_t
 {
     uint32 unlocked;				// битовая маска профессий, доступных персонажу (первый бит - дополнительная профессия)
@@ -204,7 +205,7 @@ public:
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
 
-
+    std::vector<CFellowEntity*> PFellow;  // NPCFELLOW
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
 
@@ -313,7 +314,7 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
-
+    void        RemoveFellow(CFellowEntity*);  // NPCFELLOW
     void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;
