@@ -34,6 +34,7 @@ GENBU_QM                = 17310103;
 SUZAKU_QM               = 17310051;
 BYAKKO_QM               = 17310052;
 SEIRYU_QM               = 17310053;
+OVERSEER_BASE_16        = 17310080
 
 RUAUN_PINCERSTONES =
 {
