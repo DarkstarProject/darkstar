@@ -21,11 +21,11 @@ CREATE TABLE `char_fellow` (
   `look` int(11) unsigned NOT NULL DEFAULT '0',
   `race` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `head` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `body` smallint(4) unsigned NOT NULL DEFAULT '8',
-  `hands` smallint(4) unsigned NOT NULL DEFAULT '8',
-  `legs` smallint(4) unsigned NOT NULL DEFAULT '8',
-  `feet` smallint(4) unsigned NOT NULL DEFAULT '8',
-  `main` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `sub` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `body` smallint(4) unsigned NOT NULL DEFAULT '28',
+  `hands` smallint(4) unsigned NOT NULL DEFAULT '28',
+  `legs` smallint(4) unsigned NOT NULL DEFAULT '28',
+  `feet` smallint(4) unsigned NOT NULL DEFAULT '28',
+  `main` smallint(4) unsigned NOT NULL DEFAULT '264',
+  `sub` smallint(4) unsigned NOT NULL DEFAULT '37',
   PRIMARY KEY (`charId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
