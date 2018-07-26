@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2018 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -645,7 +645,8 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
     }
     else if (targid < 0x800)
     {
-        if (filter & TYPE_PET)
+//        if (filter & TYPE_PET)
+        if (filter & TYPE_PET || filter & TYPE_FELLOW)  // NPCFELLOW
         {
             EntityList_t::const_iterator it = m_petList.find(targid);
             if (it != m_petList.end())

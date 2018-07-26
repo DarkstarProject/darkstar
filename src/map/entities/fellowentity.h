@@ -21,27 +21,25 @@
 ===========================================================================
 */
 
-#ifndef _CCHARHEALTHPACKET_H
-#define _CCHARHEALTHPACKET_H
+#ifndef _CFELLOWENTITY_H
+#define _CFELLOWENTITY_H
 
-#include "../../common/cbasetypes.h"
-
-#include "basic.h"
-
-/************************************************************************
-*																		*
-*  																		*
-*																		*
-************************************************************************/
+#include "mobentity.h"
 
 class CCharEntity;
-class CFellowEntity;  // NPCFELLOW
-class CCharHealthPacket : public CBasicPacket
+class CFellowEntity : public CMobEntity
 {
 public:
+    CFellowEntity(CCharEntity*);
+	~CFellowEntity();
+	uint8 m_Element;
+	uint32 m_PetID;
 
-	CCharHealthPacket(CCharEntity* PChar);
-    CCharHealthPacket(CFellowEntity* PFellow);  // NPCFELLOW
+    virtual void PostTick() override;
+    virtual void FadeOut() override;
+    virtual void Die() override;
+    virtual void Spawn() override;
+    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 };
 
 #endif

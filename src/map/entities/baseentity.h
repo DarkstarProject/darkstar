@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -37,6 +37,8 @@ enum ENTITYTYPE
     TYPE_MOB    = 0x04,
     TYPE_PET    = 0x08,
     TYPE_SHIP   = 0x10
+    TYPE_TRUST  = 0X20,
+    TYPE_FELLOW = 0X40  // NPCFELLOW WIGGO
 };
 
 enum STATUSTYPE

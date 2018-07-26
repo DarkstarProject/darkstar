@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -106,6 +106,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         break;
         case TYPE_MOB:
         case TYPE_PET:
+        case TYPE_FELLOW:  // NPCFELLOW
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -159,6 +160,18 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         }
     }
 
+// NPCFELLOW -----------------------------------vv
+    if (PEntity->objtype == TYPE_FELLOW)
+    {
+        ref<uint8>(0x21) = 0x1b;
+        ref<uint8>(0x2B) = 0x02;
+        ref<uint8>(0x2A) = 0x00;
+        ref<uint8>(0x25) = 0x0c;
+        ref<uint8>(0x27) = 0x28;
+        ref<uint8>(0x28) = 0x40;
+        memcpy(data + (0x44), PEntity->GetName(), PEntity->name.size());
+    }
+// NPCFELLOW -----------------------------------^^
     switch (PEntity->look.size)
     {
         case MODEL_STANDARD:
@@ -171,7 +184,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         case MODEL_EQUIPED:
         case MODEL_CHOCOBO:
         {
-            this->size = 0x24;
+            this->size = 0x28; // Some names are this big
 
             memcpy(data + (0x30), &(PEntity->look), 20);
         }

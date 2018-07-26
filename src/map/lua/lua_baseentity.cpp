@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -11572,6 +11572,31 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     return 1;
 }
 
+// NPCFELLOW ---------------------------------------------------------vv
+/************************************************************************
+*  Function: spawnFellow()
+*  Purpose : Spawns an NPC Fellow
+*  Example : caster:spawnFellow(NPC_FELLOW)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::spawnFellow(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        uint8 fellowId = (uint8)lua_tointeger(L, 1);
+        petutils::SpawnFellow((CCharEntity*)m_PBaseEntity, fellowId);
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaBaseEntity::spawnFellow : FellowID is NULL\n" CL_RESET);
+    }
+    return 0;
+}
+// NPCFELLOW -------------------------------------------^^
 /************************************************************************
 *  Function: spawnPet()
 *  Purpose : Spawns a pet if a few correct conditions are met
@@ -11901,12 +11926,14 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
                 puppetutils::LoadAutomaton((CCharEntity*)m_PBaseEntity);
             }
         }
-        /*
+// NPCFELLOW ----------------vv
+
         else if (petType == PETTYPE_ADVENTURING_FELLOW)
         {
             Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
         }
-        */
+// NPCFELLOW ----------------^^
+
     }
     else if (n == 3)
     {
@@ -14205,6 +14232,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
 
     // Pets and Automations
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnFellow),  // NPCFELLOW
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 

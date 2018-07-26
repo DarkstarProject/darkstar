@@ -1139,3 +1139,76 @@ INSERT INTO `pet_name` VALUES (1123, 'Tranquille');
 INSERT INTO `pet_name` VALUES (1124, 'Turbulente');
 INSERT INTO `pet_name` VALUES (1125, 'Destruction');
 INSERT INTO `pet_name` VALUES (1126, 'Firecracker');
+-- NPC Fellow
+-- Male Hume
+INSERT INTO `pet_name` VALUES (1127, 'Feliz');
+INSERT INTO `pet_name` VALUES (1128, 'Ferdinand');
+INSERT INTO `pet_name` VALUES (1129, 'Gunnar');
+INSERT INTO `pet_name` VALUES (1130, 'Massimo');
+INSERT INTO `pet_name` VALUES (1131, 'Oldrich');
+INSERT INTO `pet_name` VALUES (1132, 'Siegward');
+INSERT INTO `pet_name` VALUES (1133, 'Theobald');
+INSERT INTO `pet_name` VALUES (1134, 'Zenji');
+-- Female Hume
+INSERT INTO `pet_name` VALUES (1143, 'Amerita');
+INSERT INTO `pet_name` VALUES (1144, 'Beatrice');
+INSERT INTO `pet_name` VALUES (1145, 'Henrietta');
+INSERT INTO `pet_name` VALUES (1146, 'Jesimae');
+INSERT INTO `pet_name` VALUES (1147, 'Karyn');
+INSERT INTO `pet_name` VALUES (1148, 'Nanako');
+INSERT INTO `pet_name` VALUES (1149, 'Sharlene');
+INSERT INTO `pet_name` VALUES (1150, 'Sieghilde');
+-- Male Elvaan
+INSERT INTO `pet_name` VALUES (1159, 'Chanandit');
+INSERT INTO `pet_name` VALUES (1160, 'Deulmaeux');
+INSERT INTO `pet_name` VALUES (1161, 'Demresinaux');
+INSERT INTO `pet_name` VALUES (1162, 'Ephealgaux');
+INSERT INTO `pet_name` VALUES (1163, 'Gauldeval');
+INSERT INTO `pet_name` VALUES (1164, 'Grauffemart');
+INSERT INTO `pet_name` VALUES (1165, 'Migaifongut');
+INSERT INTO `pet_name` VALUES (1166, 'Romidiant');
+-- Female Elvaan
+INSERT INTO `pet_name` VALUES (1175, 'Armittie');
+INSERT INTO `pet_name` VALUES (1176, 'Cadepure');
+INSERT INTO `pet_name` VALUES (1177, 'Clearite');
+INSERT INTO `pet_name` VALUES (1178, 'Epilleve');
+INSERT INTO `pet_name` VALUES (1179, 'Liabelle');
+INSERT INTO `pet_name` VALUES (1180, 'Nauthima');
+INSERT INTO `pet_name` VALUES (1181, 'Radille');
+INSERT INTO `pet_name` VALUES (1182, 'Vimechue');
+-- Male Taru
+INSERT INTO `pet_name` VALUES (1191, 'Balu-Falu');
+INSERT INTO `pet_name` VALUES (1192, 'Burg-Ladarg');
+INSERT INTO `pet_name` VALUES (1193, 'Ehgo-Ryuhgo');
+INSERT INTO `pet_name` VALUES (1194, 'Kolui-Pelui');
+INSERT INTO `pet_name` VALUES (1195, 'Nokum-Akkum');
+INSERT INTO `pet_name` VALUES (1196, 'Savul-Kivul');
+INSERT INTO `pet_name` VALUES (1197, 'Vinja-Kanja');
+INSERT INTO `pet_name` VALUES (1198, 'Yarga-Umiga');
+-- Female Taru
+INSERT INTO `pet_name` VALUES (1207, 'Cupapa');
+INSERT INTO `pet_name` VALUES (1208, 'Jajuju');
+INSERT INTO `pet_name` VALUES (1209, 'Kalokoko');
+INSERT INTO `pet_name` VALUES (1210, 'Mahoyaya');
+INSERT INTO `pet_name` VALUES (1211, 'Pakurara');
+INSERT INTO `pet_name` VALUES (1212, 'Ripokeke');
+INSERT INTO `pet_name` VALUES (1213, 'Yawawa');
+INSERT INTO `pet_name` VALUES (1214, 'Yufafa');
+-- Mithra
+INSERT INTO `pet_name` VALUES (1223, 'Fhig');
+INSERT INTO `pet_name` VALUES (1224, 'Khuma');
+INSERT INTO `pet_name` VALUES (1225, 'Pimy');
+INSERT INTO `pet_name` VALUES (1226, 'Raka');
+INSERT INTO `pet_name` VALUES (1227, 'Sahyu');
+INSERT INTO `pet_name` VALUES (1228, 'Sufhi');
+INSERT INTO `pet_name` VALUES (1229, 'Tsuim');
+INSERT INTO `pet_name` VALUES (1230, 'Yoli');
+-- Galka
+INSERT INTO `pet_name` VALUES (1239, 'Durib');
+INSERT INTO `pet_name` VALUES (1240, 'Dzapiwa');
+INSERT INTO `pet_name` VALUES (1241, 'Jugowa');
+INSERT INTO `pet_name` VALUES (1242, 'Mugido');
+INSERT INTO `pet_name` VALUES (1243, 'Voldai');
+INSERT INTO `pet_name` VALUES (1244, 'Wagwei');
+INSERT INTO `pet_name` VALUES (1245, 'Zayag');
+INSERT INTO `pet_name` VALUES (1246, 'Zoldof');
