@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -64,13 +64,15 @@ enum PETID
 
 
 class CBattleEntity;
-
+class CPetEntity;  // NPCFELLOW
+class CFellowEntity;  // NPCFELLOW
 namespace petutils
 {
 	void LoadPetList();
 	void FreePetList();
 
 	void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
+    void SpawnFellow(CCharEntity * PMaster, uint32 FellowID);  // NPCFELLOW
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID);
     void DetachPet(CBattleEntity* PMaster);
     void DespawnPet(CBattleEntity* PMaster);
@@ -82,6 +84,7 @@ namespace petutils
     void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize);
     void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet);
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod);
+    CFellowEntity* LoadFellow(CCharEntity* PMaster, uint32 FellowID); // NPCFELLOW
 };
 
 #endif

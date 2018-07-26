@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-Copyright (c) 2010-2015 Darkstar Dev Teams
+Copyright (c) 2010-2018 Darkstar Dev Teams
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -36,6 +36,7 @@ This file is part of DarkStar-server source code.
 #include "petutils.h"
 #include "zoneutils.h"
 #include "../entities/mobentity.h"
+#include "../entities/fellowentity.h"  // NPCFELLOW
 #include "../entities/automatonentity.h"
 #include "../ability.h"
 #include "../status_effect_container.h"
@@ -55,7 +56,7 @@ This file is part of DarkStar-server source code.
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
 #include "../packets/pet_sync.h"
-
+#include "../packets/fellow_sync.h"  // NPCFELLOW
 struct Pet_t
 {
     look_t		look;		// внешний вид
@@ -616,6 +617,192 @@ namespace petutils
         }
     }
 
+// NPCFELLOW --------------------------------------vv
+    void LoadFellowStats(CFellowEntity* PFellow)
+    {
+        // These will need to be fixed and refined, stealing them for now.
+
+        float raceStat = 0;         // конечное число HP для уровня на основе расы.
+        float jobStat = 0;          // конечное число HP для уровня на основе первичной профессии.
+        float sJobStat = 0;         // коенчное число HP для уровня на основе вторичной профессии.
+        int32 bonusStat = 0;            // бонусное число HP которое добавляется при соблюдении некоторых условий.
+
+        int32 baseValueColumn = 0;  // номер колонки с базовым количеством HP
+        int32 scaleTo60Column = 1;  // номер колонки с модификатором до 60 уровня
+        int32 scaleOver30Column = 2;    // номер колонки с модификатором после 30 уровня
+        int32 scaleOver60Column = 3;    // номер колонки с модификатором после 60 уровня
+        int32 scaleOver75Column = 4;    // номер колонки с модификатором после 75 уровня
+        int32 scaleOver60 = 2;          // номер колонки с модификатором для расчета MP после 60 уровня
+        int32 scaleOver75 = 3;          // номер колонки с модификатором для расчета Статов после 75-го уровня
+
+        uint8 grade;
+
+        uint8 mlvl = PFellow->GetMLevel();
+        uint8 slvl = PFellow->GetSLevel();
+        JOBTYPE mjob = PFellow->GetMJob();
+        JOBTYPE sjob = PFellow->GetSJob();
+
+        uint8 race = 0;                 //Human
+
+        switch (PFellow->look.race)
+        {
+        case 3:
+        case 4: race = 1; break;    //Elvaan
+        case 5:
+        case 6: race = 2; break;    //Tarutaru
+        case 7: race = 3; break;    //Mithra
+        case 8: race = 4; break;    //Galka
+        }
+
+        // Расчет прироста HP от main job
+
+        int32 mainLevelOver30 = std::clamp(mlvl - 30, 0, 30);          // Расчет условия +1HP каждый лвл после 30 уровня
+        int32 mainLevelUpTo60 = (mlvl < 60 ? mlvl - 1 : 59);        // Первый режим рассчета до 60 уровня (Используется так же и для MP)
+        int32 mainLevelOver60To75 = std::clamp(mlvl - 60, 0, 15);      // Второй режим расчета после 60 уровня
+        int32 mainLevelOver75 = (mlvl < 75 ? 0 : mlvl - 75);            // Третий режим расчета после 75 уровня
+
+                                                                        //Расчет бонусного количества HP
+
+        int32 mainLevelOver10 = (mlvl < 10 ? 0 : mlvl - 10);            // +2HP на каждом уровне после 10
+        int32 mainLevelOver50andUnder60 = std::clamp(mlvl - 50, 0, 10);    // +2HP на каждом уровне в промежутке от 50 до 60 уровня
+        int32 mainLevelOver60 = (mlvl < 60 ? 0 : mlvl - 60);
+
+        // Расчет прироста HP от дополнительной профессии
+
+        int32 subLevelOver10 = std::clamp(slvl - 10, 0, 20);               // +1HP на каждый уровень после 10 (/2)
+        int32 subLevelOver30 = (slvl < 30 ? 0 : slvl - 30);             // +1HP на каждый уровень после 30
+
+                                                                        // Расчет raceStat jobStat bonusStat sJobStat
+                                                                        // Расчет по расе
+
+        grade = grade::GetRaceGrades(race, 0);
+
+        raceStat = grade::GetHPScale(grade, baseValueColumn) +
+            (grade::GetHPScale(grade, scaleTo60Column) * mainLevelUpTo60) +
+            (grade::GetHPScale(grade, scaleOver30Column) * mainLevelOver30) +
+            (grade::GetHPScale(grade, scaleOver60Column) * mainLevelOver60To75) +
+            (grade::GetHPScale(grade, scaleOver75Column) * mainLevelOver75);
+
+        // raceStat = (int32)(statScale[grade][baseValueColumn] + statScale[grade][scaleTo60Column] * (mlvl - 1));
+
+        // Расчет по main job
+        grade = grade::GetJobGrade(mjob, 0);
+
+        jobStat = grade::GetHPScale(grade, baseValueColumn) +
+            (grade::GetHPScale(grade, scaleTo60Column) * mainLevelUpTo60) +
+            (grade::GetHPScale(grade, scaleOver30Column) * mainLevelOver30) +
+            (grade::GetHPScale(grade, scaleOver60Column) * mainLevelOver60To75) +
+            (grade::GetHPScale(grade, scaleOver75Column) * mainLevelOver75);
+
+        // Расчет бонусных HP
+        bonusStat = (mainLevelOver10 + mainLevelOver50andUnder60) * 2;
+
+        // Расчет по support job
+        if (slvl > 0)
+        {
+            grade = grade::GetJobGrade(sjob, 0);
+
+            sJobStat = grade::GetHPScale(grade, baseValueColumn) +
+                (grade::GetHPScale(grade, scaleTo60Column) * (slvl - 1)) +
+                (grade::GetHPScale(grade, scaleOver30Column) * subLevelOver30) +
+                subLevelOver30 + subLevelOver10;
+            sJobStat = sJobStat / 2;
+        }
+
+
+        PFellow->health.maxhp = (int16)(map_config.player_hp_multiplier * (raceStat + jobStat + bonusStat + sJobStat));
+
+        //Начало расчера MP
+
+        raceStat = 0;
+        jobStat = 0;
+        sJobStat = 0;
+
+        // Расчет MP расе.
+        grade = grade::GetRaceGrades(race, 1);
+
+        //Если у main job нет МП рейтинга, расчитиваем расовый бонус на основе уровня subjob уровня(при условии, что у него есть МП рейтинг)
+        if (grade::GetJobGrade(mjob, 1) == 0)
+        {
+            if (grade::GetJobGrade(sjob, 1) != 0 && slvl > 0)                   // В этом выражении ошибка
+            {
+                raceStat = (grade::GetMPScale(grade, 0) + grade::GetMPScale(grade, scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;   // Вот здесь ошибка
+            }
+        }
+        else {
+            //Расчет нормального расового бонуса
+            raceStat = grade::GetMPScale(grade, 0) +
+                grade::GetMPScale(grade, scaleTo60Column) * mainLevelUpTo60 +
+                grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
+        }
+
+        //Для главной профессии
+        grade = grade::GetJobGrade(mjob, 1);
+        if (grade > 0)
+        {
+            jobStat = grade::GetMPScale(grade, 0) +
+                grade::GetMPScale(grade, scaleTo60Column) * mainLevelUpTo60 +
+                grade::GetMPScale(grade, scaleOver60) * mainLevelOver60;
+        }
+
+        //Для дополнительной профессии
+        if (slvl > 0)
+        {
+            grade = grade::GetJobGrade(sjob, 1);
+            sJobStat = (grade::GetMPScale(grade, 0) + grade::GetMPScale(grade, scaleTo60Column) * (slvl - 1)) / map_config.sj_mp_divisor;
+        }
+
+        PFellow->health.maxmp = (int16)(map_config.player_mp_multiplier * (raceStat + jobStat + sJobStat)); // результат расчета MP
+
+        uint8 counter = 0;
+
+        for (uint8 StatIndex = 2; StatIndex <= 8; ++StatIndex)
+        {
+            // расчет по расе
+            grade = grade::GetRaceGrades(race, StatIndex);
+            raceStat = grade::GetStatScale(grade, 0) + grade::GetStatScale(grade, scaleTo60Column) * mainLevelUpTo60;
+
+            if (mainLevelOver60 > 0)
+            {
+                raceStat += grade::GetStatScale(grade, scaleOver60) * mainLevelOver60;
+
+                if (mainLevelOver75 > 0)
+                {
+                    raceStat += grade::GetStatScale(grade, scaleOver75) * mainLevelOver75 - (mlvl >= 75 ? 0.01f : 0);
+                }
+            }
+
+            // расчет по профессии
+            grade = grade::GetJobGrade(mjob, StatIndex);
+            jobStat = grade::GetStatScale(grade, 0) + grade::GetStatScale(grade, scaleTo60Column) * mainLevelUpTo60;
+
+            if (mainLevelOver60 > 0)
+            {
+                jobStat += grade::GetStatScale(grade, scaleOver60) * mainLevelOver60;
+
+                if (mainLevelOver75 > 0)
+                {
+                    jobStat += grade::GetStatScale(grade, scaleOver75) * mainLevelOver75 - (mlvl >= 75 ? 0.01f : 0);
+                }
+            }
+
+            // расчет по дополнительной профессии
+            if (slvl > 0)
+            {
+                grade = grade::GetJobGrade(sjob, StatIndex);
+                sJobStat = (grade::GetStatScale(grade, 0) + grade::GetStatScale(grade, scaleTo60Column) * (slvl - 1)) / 2;
+            }
+            else {
+                sJobStat = 0;
+            }
+
+            // Вывод значения
+            ref<uint16>(&PFellow->stats, counter) = (uint16)((raceStat + jobStat + sJobStat));
+            counter += 2;
+        }
+    }
+// NPCFELLOW -------------------------------------------------^^
+
     void LoadAvatarStats(CPetEntity* PPet)
     {
         // Объявление переменных, нужных для рассчета.
@@ -816,6 +1003,16 @@ namespace petutils
             static_cast<CCharEntity*>(PMaster)->resetPetZoningInfo();
         }
     }
+
+// NPCFELLOW ------------------------------------------------vv
+    void SpawnFellow(CCharEntity* PMaster, uint32 FellowID)
+    {
+        CFellowEntity* PFellow = LoadFellow(PMaster, FellowID);
+        PMaster->StatusEffectContainer->CopyConfrontationEffect(PFellow);
+        PMaster->loc.zone->InsertPET(PFellow);
+    }
+// NPCFELLOW -------------------------------------------^^
+
 
     void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID)
     {
@@ -1417,6 +1614,77 @@ namespace petutils
 
         PMaster->PPet = PPet;
     }
+
+  // NPCFELLOW ----------------------------------------------------vv
+    CFellowEntity* LoadFellow(CCharEntity* PMaster, uint32 FellowID)
+    {
+        DSP_DEBUG_BREAK_IF(FellowID >= g_PPetList.size());
+
+        Pet_t* PPetData = g_PPetList.at(FellowID);
+        CFellowEntity* PFellow = new CFellowEntity(PMaster);
+        PFellow->loc = PMaster->loc;
+        PFellow->m_OwnerID.id = PMaster->id;
+        PFellow->m_OwnerID.targid = PMaster->targid;
+
+        // spawn me randomly around master
+        PFellow->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
+        Pet_t* fellow = g_PPetList.at(FellowID);
+        PFellow->look = fellow->look;
+
+        const char* Query =
+                "SELECT\
+                pet_name.name,\
+                char_pet.adventuringfellowid\
+                FROM pet_name, char_pet\
+                WHERE pet_name.id = char_pet.adventuringfellowid AND \
+                char_pet.charid = %u";
+        if (Sql_Query(SqlHandle, Query, PMaster->id) != SQL_ERROR &&
+        ShowDebug("PMaster id = %u . \n", PMaster->id);
+        Sql_NumRows(SqlHandle) != 0 &&
+        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
+        {
+            uint16 adventuringfellowid = (uint16)Sql_GetIntData(SqlHandle, 1);
+            ShowDebug("adventuringfellowid = %u . \n", adventuringfellowid);
+            if (adventuringfellowid != 0)
+            {
+                g_PPetList.at(FellowID)->name.clear();
+                g_PPetList.at(FellowID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                ShowDebug("name = %s . \n", g_PPetList.at(FellowID)->name);
+            }
+        }
+
+        PFellow->name = fellow->name;
+        PFellow->m_name_prefix = fellow->name_prefix;
+        PFellow->m_Family = fellow->m_Family;
+        PFellow->m_MobSkillList = fellow->m_MobSkillList;
+        PFellow->SetMJob(fellow->mJob);
+        PFellow->SetSJob(fellow->mJob);
+        PFellow->m_Element = fellow->m_Element;
+        PFellow->m_PetID = FellowID;
+        PFellow->status = STATUS_NORMAL;
+        PFellow->m_ModelSize = fellow->size;
+        PFellow->m_EcoSystem = SYSTEM_HUMANOID;
+
+        // TODO: Need to pull level from database
+        PFellow->SetMLevel(PMaster->GetMLevel());
+        PFellow->SetSLevel(PMaster->GetSLevel());
+
+        // TODO: Proper stats per fellow
+        PFellow->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PFellow->GetMLevel()));
+        PFellow->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PFellow->GetMLevel()));
+        PFellow->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PFellow->GetMLevel())); // Throwing??
+        PFellow->setModifier(Mod::DEF, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PFellow->GetMLevel()));
+        PFellow->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PFellow->GetMLevel()));
+        LoadFellowStats(PFellow);
+
+        PFellow->health.tp = 0;
+        PFellow->UpdateHealth();
+        PFellow->health.hp = PFellow->GetMaxHP();
+        PFellow->health.mp = PFellow->GetMaxMP();
+
+        return PFellow;
+    }
+// NPCFELLOW -----------------------------------------------^^
 
     void LoadWyvernStatistics(CBattleEntity* PMaster, CPetEntity* PPet, bool finalize) {
         //set the wyvern job based on master's SJ
