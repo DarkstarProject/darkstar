@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -11572,6 +11572,31 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     return 1;
 }
 
+// NPCFELLOW ---------------------------------------------------------vv
+/************************************************************************
+*  Function: spawnFellow()
+*  Purpose : Spawns an NPC Fellow
+*  Example : caster:spawnFellow(NPC_FELLOW)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::spawnFellow(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        uint8 fellowId = (uint8)lua_tointeger(L, 1);
+        petutils::SpawnFellow((CCharEntity*)m_PBaseEntity, fellowId);
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaBaseEntity::spawnFellow : FellowID is NULL\n" CL_RESET);
+    }
+    return 0;
+}
+// NPCFELLOW -------------------------------------------^^
 /************************************************************************
 *  Function: spawnPet()
 *  Purpose : Spawns a pet if a few correct conditions are met
@@ -11901,12 +11926,14 @@ inline int32 CLuaBaseEntity::setPetName(lua_State *L)
                 puppetutils::LoadAutomaton((CCharEntity*)m_PBaseEntity);
             }
         }
-        /*
+// NPCFELLOW ----------------vv
+
         else if (petType == PETTYPE_ADVENTURING_FELLOW)
         {
             Sql_Query(SqlHandle, "INSERT INTO char_pet SET charid = %u, adventuringfellowid = %u ON DUPLICATE KEY UPDATE adventuringfellowid = %u;", m_PBaseEntity->id, value, value);
         }
-        */
+// NPCFELLOW ----------------^^
+
     }
     else if (n == 3)
     {
@@ -12262,57 +12289,6 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
     CBattleEntity* PEntity = (CBattleEntity*)m_PBaseEntity;
 
     PEntity->StatusEffectContainer->RemoveAllManeuvers();
-
-    return 0;
-}
-
-/************************************************************************
-*  Function: getFellowValue()
-*  Purpose : Returns the value for the passed column value option
-*  Example : local name = player:getFellowValue("personality")
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::getFellowValue(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-
-    const char* Query =
-        "SELECT %s FROM char_fellow WHERE charid = %u;";
-
-    const char* option = lua_tostring(L, 1);
-    int32 ret = Sql_Query(SqlHandle, Query, option, m_PBaseEntity->id);
-
-    if (ret != SQL_ERROR &&
-        Sql_NumRows(SqlHandle) != 0 &&
-        Sql_NextRow(SqlHandle) == SQL_SUCCESS)
-    {
-        lua_pushinteger(L, Sql_GetIntData(SqlHandle, 0));
-        return 1;
-    }
-return 0;
-}
-
-/************************************************************************
-*  Function: setFellowValue()
-*  Purpose : char_fellow value manipulation
-*  Example : player:setFellowValue("personality",option)
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::setFellowValue(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-
-    const char* option = lua_tostring(L, 1);
-    uint32 value = (uint32)lua_tointeger(L, 2);
-
-    Sql_Query(SqlHandle, "INSERT INTO char_fellow SET charId = %u, %s = %u ON DUPLICATE KEY UPDATE %s = %u;", m_PBaseEntity->id, option, value, option, value);
 
     return 0;
 }
@@ -14256,6 +14232,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeWeaponskillDamage),
 
     // Pets and Automations
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnFellow),  // NPCFELLOW
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 
@@ -14293,9 +14270,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
-
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFellowValue),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setFellowValue),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),

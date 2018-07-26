@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -574,6 +574,7 @@ public:
     int32 takeWeaponskillDamage(lua_State* L);
 
     // Pets and Automations
+    int32 spawnFellow(lua_State*);           // Spawns NPC Fellow  // NPCFELLOW
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
 
