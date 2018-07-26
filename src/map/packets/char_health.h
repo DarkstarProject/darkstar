@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -35,12 +35,13 @@
 ************************************************************************/
 
 class CCharEntity;
-
+class CFellowEntity;  // NPCFELLOW
 class CCharHealthPacket : public CBasicPacket
 {
 public:
 
 	CCharHealthPacket(CCharEntity* PChar);
+    CCharHealthPacket(CFellowEntity* PFellow);  // NPCFELLOW
 };
 
 #endif

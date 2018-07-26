@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -81,6 +81,12 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     {
         ref<uint16>(0x34) = PChar->PPet->targid << 3;
     }
+
+//    if (PChar->PFellow != nullptr)  // NPCFELLOW
+//    {
+//        ref<uint16>(0x48) = PChar->PFellow->targid;  // NPCFELLOW
+//    }
+
     //Status flag: bit 4: frozen anim (terror),
     //  bit 6/7/8 related to Ballista (6 set - normal, 7 set san d'oria, 6+7 set bastok, 8 set windurst)
     uint8 flag = (PChar->allegiance << 5);
