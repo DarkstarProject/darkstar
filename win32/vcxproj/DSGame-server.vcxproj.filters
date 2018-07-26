@@ -866,6 +866,15 @@
     <ClInclude Include="..\..\src\map\packets\release_special.h">
       <Filter>Header Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\entities\fellowentity.h">
+      <Filter>Header Files\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\ai\controllers\fellow_controller.h">
+      <Filter>Header Files\ai\controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\fellow_sync.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1586,6 +1595,15 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\release_special.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\entities\fellowentity.cpp">
+      <Filter>Source Files\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\ai\controllers\fellow_controller.cpp">
+      <Filter>Source Files\ai\controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\fellow_sync.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>
