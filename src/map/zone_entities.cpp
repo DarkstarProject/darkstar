@@ -304,6 +304,11 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
     }
 
+    if (PChar->PFellow)
+    {
+        PChar->RemoveFellow();
+    }
+
     //remove bcnm status
     if (m_zone->m_BattlefieldHandler != nullptr && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_BATTLEFIELD))
     {
@@ -645,8 +650,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
     }
     else if (targid < 0x800)
     {
-//        if (filter & TYPE_PET)
-        if (filter & TYPE_PET || filter & TYPE_FELLOW)  // NPCFELLOW
+        if (filter & TYPE_PET)
         {
             EntityList_t::const_iterator it = m_petList.find(targid);
             if (it != m_petList.end())

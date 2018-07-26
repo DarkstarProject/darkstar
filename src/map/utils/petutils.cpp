@@ -1008,8 +1008,10 @@ namespace petutils
     void SpawnFellow(CCharEntity* PMaster, uint32 FellowID)
     {
         CFellowEntity* PFellow = LoadFellow(PMaster, FellowID);
+        PFellow->PMaster = PMaster;
         PMaster->StatusEffectContainer->CopyConfrontationEffect(PFellow);
         PMaster->loc.zone->InsertPET(PFellow);
+        PMaster->PFellow = PFellow;
     }
 // NPCFELLOW -------------------------------------------^^
 
@@ -1621,7 +1623,7 @@ namespace petutils
         DSP_DEBUG_BREAK_IF(FellowID >= g_PPetList.size());
 
         Pet_t* PPetData = g_PPetList.at(FellowID);
-        CFellowEntity* PFellow = new CFellowEntity(PMaster);
+        CFellowEntity* PFellow = new CFellowEntity();
         PFellow->loc = PMaster->loc;
         PFellow->m_OwnerID.id = PMaster->id;
         PFellow->m_OwnerID.targid = PMaster->targid;

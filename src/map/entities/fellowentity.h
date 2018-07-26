@@ -24,22 +24,18 @@
 #ifndef _CFELLOWENTITY_H
 #define _CFELLOWENTITY_H
 
-#include "mobentity.h"
+#include "petentity.h"
 
-class CCharEntity;
-class CFellowEntity : public CMobEntity
+class CFellowEntity : public CPetEntity
 {
 public:
-    CFellowEntity(CCharEntity*);
-	~CFellowEntity();
+    CFellowEntity();
+	virtual ~CFellowEntity() = default;
 	uint8 m_Element;
 	uint32 m_PetID;
 
     virtual void PostTick() override;
-    virtual void FadeOut() override;
     virtual void Die() override;
-    virtual void Spawn() override;
-    virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 };
 
 #endif

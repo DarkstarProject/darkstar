@@ -34,14 +34,13 @@
 *																		*
 ************************************************************************/
 
-class CCharEntity;
+class CBattleEntity;
 class CFellowEntity;  // NPCFELLOW
 class CCharHealthPacket : public CBasicPacket
 {
 public:
 
-	CCharHealthPacket(CCharEntity* PChar);
-    CCharHealthPacket(CFellowEntity* PFellow);  // NPCFELLOW
+	CCharHealthPacket(CBattleEntity* PChar);
 };
 
 #endif

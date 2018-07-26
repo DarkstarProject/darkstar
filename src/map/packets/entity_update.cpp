@@ -106,7 +106,6 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         break;
         case TYPE_MOB:
         case TYPE_PET:
-        case TYPE_FELLOW:  // NPCFELLOW
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -161,7 +160,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
     }
 
 // NPCFELLOW -----------------------------------vv
-    if (PEntity->objtype == TYPE_FELLOW)
+    if (auto PPet = dynamic_cast<CPetEntity*>(PEntity); PPet && PPet->getPetType() == PETTYPE_ADVENTURING_FELLOW)
     {
         ref<uint8>(0x21) = 0x1b;
         ref<uint8>(0x2B) = 0x02;

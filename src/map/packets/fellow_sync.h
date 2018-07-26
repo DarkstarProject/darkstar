@@ -35,13 +35,12 @@ This file is part of DarkStar-server source code.
 ************************************************************************/
 
 class CCharEntity;
-class CFellowEntity;
 
 class CFellowSyncPacket : public CBasicPacket
 {
 public:
 
-    CFellowSyncPacket(CCharEntity* PChar, CFellowEntity* PFellow);
+    CFellowSyncPacket(CCharEntity* PChar);
 };
 
 #endif

@@ -54,7 +54,7 @@
 
 #include "charentity.h"
 #include "automatonentity.h"
-#include "fellowentity.h"  // NPCFELLOW
+#include "fellowentity.h"
 #include "../ability.h"
 #include "../conquest_system.h"
 #include "../spell.h"
@@ -180,6 +180,7 @@ CCharEntity::CCharEntity()
     PWideScanTarget = nullptr;
 
     PAutomaton = nullptr;
+    PFellow = nullptr;
     PRecastContainer = std::make_unique<CCharRecastContainer>(this);
     PLatentEffectContainer = new CLatentEffectContainer(this);
 
@@ -467,7 +468,7 @@ bool CCharEntity::ReloadParty()
 }
 
 // ----------------- NPCFELLOW -------------------vv
-void CCharEntity::RemoveFellow(CFellowEntity* PFellow)
+void CCharEntity::RemoveFellow()
 {
     if (!PFellow->PAI->IsSpawned())
         return;

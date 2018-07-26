@@ -37,8 +37,6 @@ enum ENTITYTYPE
     TYPE_MOB    = 0x04,
     TYPE_PET    = 0x08,
     TYPE_SHIP   = 0x10
-    TYPE_TRUST  = 0X20,
-    TYPE_FELLOW = 0X40  // NPCFELLOW WIGGO
 };
 
 enum STATUSTYPE

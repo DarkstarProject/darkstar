@@ -21,22 +21,23 @@ This file is part of DarkStar-server source code.
 ===========================================================================
 */
 
-#include "../../common/socket.h"
 #include "fellow_sync.h"
 #include "../entities/charentity.h"
 #include "../entities/fellowentity.h"
 
-CFellowSyncPacket::CFellowSyncPacket(CCharEntity* PChar, CFellowEntity* PFellow)
+CFellowSyncPacket::CFellowSyncPacket(CCharEntity* PChar)
 {
     this->type = 0x67;
     this->size = 0x14;
+
+    DSP_DEBUG_BREAK_IF(PChar->PFellow == nullptr);
 
     ref<uint8>(0x04) = 0x02;
     ref<uint8>(0x05) = 0x09;
 
     ref<uint16>(0x06) = PChar->targid;
     ref<uint32>(0x08) = PChar->id;
-    ref<uint16>(0x0C) = PFellow->targid;
+    ref<uint16>(0x0C) = PChar->PFellow->targid;
 
     ref<uint8>(0x25) = 0x50;
 }

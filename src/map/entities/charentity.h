@@ -154,6 +154,7 @@ class CAbilityState;
 class CRangeState;
 class CItemState;
 class CItemUsable;
+class CFellowEntity;
 
 typedef std::deque<CBasicPacket*> PacketList_t;
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
@@ -204,8 +205,8 @@ public:
 
     UnlockedAttachments_t	m_unlockedAttachments;			// Unlocked Automaton Attachments (1 bit per attachment)
     CAutomatonEntity*       PAutomaton;                     // Automaton statistics
+    CFellowEntity*          PFellow;                        // adventuring fellow
 
-    std::vector<CFellowEntity*> PFellow;  // NPCFELLOW
     // Эти миссии не нуждаются в списке пройденных, т.к. клиент автоматически
     // отображает более ранние миссии выплненными
 
@@ -314,7 +315,7 @@ public:
     void		ReloadPartyInc();
     void        ReloadPartyDec();
     bool        ReloadParty();
-    void        RemoveFellow(CFellowEntity*);  // NPCFELLOW
+    void        RemoveFellow();  // NPCFELLOW
     void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;

@@ -25,26 +25,26 @@
 
 #include "char_health.h"
 
+#include "../entities/battleentity.h"
 #include "../entities/charentity.h"
-#include "../entities/fellowentity.h"  // NPCFELLOW
 
-CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
+CCharHealthPacket::CCharHealthPacket(CBattleEntity* PEntity)
 {
 	this->type = 0xDF;
 	this->size = 0x12;
 
-	ref<uint32>(0x04) = PChar->id;
+	ref<uint32>(0x04) = PEntity->id;
 
-	ref<uint32>(0x08) = PChar->health.hp;
-	ref<uint32>(0x0C) = PChar->health.mp;
-	ref<uint32>(0x10) = PChar->health.tp;
+	ref<uint32>(0x08) = PEntity->health.hp;
+	ref<uint32>(0x0C) = PEntity->health.mp;
+	ref<uint32>(0x10) = PEntity->health.tp;
 
-	ref<uint16>(0x14) = PChar->targid;
+	ref<uint16>(0x14) = PEntity->targid;
 
-	ref<uint8>(0x16) = PChar->GetHPP();
-	ref<uint8>(0x17) = PChar->GetMPP();
+	ref<uint8>(0x16) = PEntity->GetHPP();
+	ref<uint8>(0x17) = PEntity->GetMPP();
 
-    if (!(PChar->nameflags.flags & FLAG_ANON))
+    if (auto PChar = dynamic_cast<CCharEntity*>(PEntity); !PChar || !(PChar->nameflags.flags & FLAG_ANON))
     {
         ref<uint8>(0x20) = PChar->GetMJob();
         ref<uint8>(0x21) = PChar->GetMLevel();
@@ -52,26 +52,3 @@ CCharHealthPacket::CCharHealthPacket(CCharEntity* PChar)
         ref<uint8>(0x23) = PChar->GetSLevel();
     }
 }
-// NPCFELLOW --------------------------------------------vv
-CCharHealthPacket::CCharHealthPacket(CFellowEntity* PFellow)
-{
-    this->type = 0xDF;
-    this->size = 0x12;
-
-    ref<uint32>(0x04) = PFellow->id;
-
-    ref<uint32>(0x08) = PFellow->health.hp;
-    ref<uint32>(0x0C) = PFellow->health.mp;
-    ref<uint32>(0x10) = PFellow->health.tp;
-
-    ref<uint16>(0x14) = PFellow->targid;
-
-    ref<uint8>(0x16) = PFellow->GetHPP();
-    ref<uint8>(0x17) = PFellow->GetMPP();
-
-    ref<uint8>(0x20) = PFellow->GetMJob();
-    ref<uint8>(0x21) = PFellow->GetMLevel();
-    ref<uint8>(0x22) = PFellow->GetSJob();
-    ref<uint8>(0x23) = PFellow->GetSLevel();
-}
-// NPCFELLOW -----------------------------^^

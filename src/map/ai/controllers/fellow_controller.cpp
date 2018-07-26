@@ -25,13 +25,12 @@ This file is part of DarkStar-server source code.
 
 #include "../ai_container.h"
 #include "../../status_effect_container.h"
-#include "../../ai/states/despawn_state.h"
 #include "../../entities/charentity.h"
 #include "../../entities/fellowentity.h"
 #include "../../packets/char.h"
 #include "../../../common/utils.h"
 
-CFellowController::CFellowController(CCharEntity* PChar, CFellowEntity* PFellow) : CController(PFellow)
+CFellowController::CFellowController(CFellowEntity* PFellow) : CController(PFellow)
 {
     POwner->PAI->PathFind = std::make_unique<CPathFind>(PFellow);
 }
@@ -100,6 +99,11 @@ void CFellowController::DoCombatTick(time_point tick)
 
 void CFellowController::DoRoamTick(time_point tick)
 {
+    if ((POwner->PMaster == nullptr || POwner->PMaster->isDead()) && POwner->isAlive()) {
+        POwner->Die();
+        return;
+    }
+
     if (POwner->PMaster->PAI->IsEngaged())
     {
         POwner->PAI->Internal_Engage(POwner->PMaster->GetBattleTargetID());

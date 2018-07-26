@@ -26,13 +26,12 @@ This file is part of DarkStar-server source code.
 
 #include "controller.h"
 
-class CCharEntity;
 class CFellowEntity;
 
 class CFellowController : public CController
 {
 public:
-    CFellowController(CCharEntity*, CFellowEntity*);
+    CFellowController(CFellowEntity*);
     virtual ~CFellowController();
 
     virtual void Tick(time_point) override;

@@ -23,36 +23,24 @@ This file is part of DarkStar-server source code.
 
 #include <string.h>
 
-#include "fellowentity.h"
+#include "../ai/ai_container.h"
+#include "../ai/controllers/fellow_controller.h"
+#include "../ai/helpers/pathfind.h"
+#include "../ai/helpers/targetfind.h"
 #include "../mob_spell_container.h"
 #include "../mob_spell_list.h"
 #include "../packets/char_health.h"
 #include "../packets/entity_update.h"
 #include "../packets/fellow_sync.h"
-#include "../ai/ai_container.h"
-#include "../ai/controllers/fellow_controller.h"
-#include "../ai/helpers/pathfind.h"
-#include "../ai/helpers/targetfind.h"
-#include "../ai/states/ability_state.h"
 #include "../utils/battleutils.h"
-#include "../utils/petutils.h"
-#include "../utils/mobutils.h"
-#include "../../common/utils.h"
-#include "../mob_modifier.h"
+#include "fellowentity.h"
 
-CFellowEntity::CFellowEntity(CCharEntity* PChar)
+CFellowEntity::CFellowEntity() : CPetEntity(PETTYPE_ADVENTURING_FELLOW)
 {
-    objtype = TYPE_FELLOW;
     m_EcoSystem = SYSTEM_HUMANOID;
     allegiance = ALLEGIANCE_PLAYER;
     m_MobSkillList = 0;
-    PMaster = PChar;
-    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CFellowController>(PChar, this),
-        std::make_unique<CTargetFind>(this));
-}
-
-CFellowEntity::~CFellowEntity()
-{
+    PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CFellowController>(this), std::make_unique<CTargetFind>(this));
 }
 
 void CFellowEntity::PostTick()
@@ -61,19 +49,14 @@ void CFellowEntity::PostTick()
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
-/*        if (PMaster && PMaster->PFellow == this)
+        if (auto PChar = dynamic_cast<CCharEntity*>(PMaster); PChar && PChar->PFellow == this)
         {
-            ((CCharEntity*)PMaster)->pushPacket(new CFellowSyncPacket((CCharEntity*)PMaster, this));
+            {
+                PChar->pushPacket(new CFellowSyncPacket(PChar));
+            }
+            updatemask = 0;
         }
-*/
-        updatemask = 0;
     }
-}
-
-void CFellowEntity::FadeOut()
-{
-    CMobEntity::FadeOut();
-    loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_DESPAWN, UPDATE_NONE));
 }
 
 void CFellowEntity::Die()
@@ -85,24 +68,6 @@ void CFellowEntity::Die()
     if (PMaster->objtype == TYPE_PC)
     {
         CCharEntity* PChar = (CCharEntity*)PMaster;
-        PChar->RemoveFellow(this);
+        PChar->RemoveFellow();
     }
-}
-
-void CFellowEntity::Spawn()
-{
-    //we need to skip CMobEntity's spawn because it calculates stats (and our stats are already calculated)
-
-    CBattleEntity::Spawn();
-    ((CCharEntity*)PMaster)->pushPacket(new CFellowSyncPacket((CCharEntity*)PMaster, this));
-    luautils::OnMobSpawn(this);
-}
-
-bool CFellowEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
-{
-    if (targetFlags & TARGET_PLAYER && PInitiator->allegiance == allegiance)
-    {
-        return false;
-    }
-    return CMobEntity::ValidTarget(PInitiator, targetFlags);
 }
