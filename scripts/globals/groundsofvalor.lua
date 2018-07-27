@@ -9,7 +9,6 @@
 require("scripts/globals/regimereward");
 require("scripts/globals/regimeinfo");
 require("scripts/globals/teleports");
-require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/common");
 require("scripts/globals/status");
@@ -239,7 +238,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
     if (option == GOV_MENU_REPATRIATION) then -- Send to home nation
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            toHomeNation(player);
+            player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.HOME_NATION, 0, 1, 0, region)
         end
     elseif (option == GOV_MENU_CIRCUMSPECTION) then -- Sneak + Invis
         if (tabs >= 5) then

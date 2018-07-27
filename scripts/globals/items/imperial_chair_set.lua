@@ -18,5 +18,5 @@ end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6377,keyItemId);
+    target:messageBasic(dsp.msg.basic.OBTAINED_KEY_ITEM,6377,keyItemId);
 end

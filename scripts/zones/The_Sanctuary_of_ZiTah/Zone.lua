@@ -12,6 +12,7 @@ require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
+-----------------------------------
 
 -----------------------------------
 -- Chocobo Digging vars
@@ -54,15 +55,11 @@ end;
 function onInitialize(zone)
     GetMobByID(NOBLE_MOLD):setLocalVar("pop",os.time() + math.random(43200, 57600)); -- 12 to 16 hr
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn( player, prevZone)
