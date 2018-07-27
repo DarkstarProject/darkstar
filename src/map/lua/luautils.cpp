@@ -570,21 +570,18 @@ namespace luautils
             return -1;
         }
 
-        int TableIndex = 0;
-        TableIndex = lua_gettop(LuaHandle);
-        lua_getfield(LuaHandle,TableIndex,"conquest");
+        lua_getfield(LuaHandle,-1,"conquest");
         if (lua_isnil(LuaHandle, -1))
         {
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 2);
             ShowError("luautils::SetRegionalConquestOverseers: undefined field dsp.conquest\n");
             return -1;
         }
 
-        TableIndex = lua_gettop(LuaHandle);
-        lua_getfield(LuaHandle,TableIndex,"setRegionalConquestOverseers");
+        lua_getfield(LuaHandle,-1,"setRegionalConquestOverseers");
         if (lua_isnil(LuaHandle, -1))
         {
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 3);
             ShowError("luautils::SetRegionalConquestOverseers: undefined procedure dsp.conquest.setRegionalConquestOverseers\n");
             return -1;
         }
@@ -594,8 +591,12 @@ namespace luautils
         if (lua_pcall(LuaHandle, 1, 0, 0))
         {
             ShowError("luautils::SetRegionalConquestOverseers: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 3);
             return -1;
+        }
+        else
+        {
+            lua_pop(LuaHandle, 2);
         }
 
         return 0;
