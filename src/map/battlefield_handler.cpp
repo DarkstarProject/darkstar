@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -103,10 +103,9 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             return BATTLEFIELD_RETURN_CODE_CUTSCENE;
         }
 
-        auto fmtQuery = "SELECT name, bcnmId, fastestName, fastestTime, fastestPartySize, timeLimit, levelCap, lootDropId, rules, partySize, \
-                            zoneId \
-						    FROM bcnm_info i\
-							WHERE bcnmId = %u";
+        auto fmtQuery = "SELECT name, fastestName, fastestTime, fastestPartySize, timeLimit, levelCap, lootDropId, partySize, rules\
+                            FROM bcnm_info i\
+                            WHERE bcnmId = %u";
 
         auto ret = Sql_Query(SqlHandle, fmtQuery, battlefieldID);
 
@@ -120,15 +119,14 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
         else
         {
             auto name = Sql_GetData(SqlHandle, 0);
-
-            auto recordholder = Sql_GetData(SqlHandle, 2);
-            auto recordtime = std::chrono::seconds(Sql_GetUIntData(SqlHandle, 3));
-            auto recordPartySize = Sql_GetUIntData(SqlHandle, 4);
-            auto timelimit = std::chrono::seconds(Sql_GetUIntData(SqlHandle, 5));
-            auto levelcap = Sql_GetUIntData(SqlHandle, 6);
-            auto lootid = Sql_GetUIntData(SqlHandle, 7);
-            auto maxplayers = Sql_GetUIntData(SqlHandle, 8);
-            auto rulemask = Sql_GetUIntData(SqlHandle, 9);
+            auto recordholder = Sql_GetData(SqlHandle, 1);
+            auto recordtime = std::chrono::seconds(Sql_GetUIntData(SqlHandle, 2));
+            auto recordPartySize = Sql_GetUIntData(SqlHandle, 3);
+            auto timelimit = std::chrono::seconds(Sql_GetUIntData(SqlHandle, 4));
+            auto levelcap = Sql_GetUIntData(SqlHandle, 5);
+            auto lootid = Sql_GetUIntData(SqlHandle, 6);
+            auto maxplayers = Sql_GetUIntData(SqlHandle, 7);
+            auto rulemask = Sql_GetUIntData(SqlHandle, 8);
 
             auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
 
