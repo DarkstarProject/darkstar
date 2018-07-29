@@ -326,7 +326,8 @@ bool CBattlefield::InsertEntity(CBaseEntity* PEntity, bool enter, BATTLEFIELDMOB
                 // todo: this is retarded, why the fuck did past me do this
                 if (mob.PMob->isAlive())
                     mob.PMob->Die();
-                mob.PMob->Spawn();
+                if (mob.condition & CONDITION_SPAWNED_AT_START)
+                    mob.PMob->Spawn();
             }
         }
         // ally
@@ -536,7 +537,7 @@ void CBattlefield::Cleanup()
 
     for (auto mob : tempEnemies)
         RemoveEntity(mob.PMob);
-    for (auto mob : tempEnemies)
+    for (auto mob : tempEnemies2)
         RemoveEntity(mob.PMob);
     for (auto npc : tempNpcs)
         RemoveEntity(npc);
