@@ -62,6 +62,9 @@ public:
 
     int32 getName(lua_State*);              // get the item's name
 
+    int32 getSignature(lua_State*);         // get inscribed signature on item
+    int32 setSignature(lua_State*);         // inscribe signature on item
+
     int32 getMod(lua_State*);               // get the power of a mod
     int32 addMod(lua_State*);               // add mod to item (or add to a mod already applied on item)
     int32 delMod(lua_State*);               // remove power from mod

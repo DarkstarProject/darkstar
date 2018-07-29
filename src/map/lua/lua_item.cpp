@@ -28,6 +28,12 @@ This file is part of DarkStar-server source code.
 #include "../items/item_armor.h"
 #include "../items/item_weapon.h"
 #include "../items/item_general.h"
+#include "../../map/map.h"
+#include "../../map/lua/lua_baseentity.h"
+#include "../../map/entities/baseentity.h"
+#include "../../map/entities/charentity.h"
+#include "../../map/packets/inventory_item.h"
+#include "../../map/packets/inventory_finish.h"
 
 
 CLuaItem::CLuaItem(lua_State* L)
@@ -139,6 +145,40 @@ inline int32 CLuaItem::getName(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
 
     lua_pushstring(L, (const char*)m_PLuaItem->getName());
+    return 1;
+}
+
+inline int32 CLuaItem::getSignature(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    int8 signature[21];
+    DecodeStringSignature((int8*)m_PLuaItem->getSignature(), signature);
+    lua_pushstring(L, (const char*)signature);
+
+    return 1;
+}
+
+// item:setSignature(player, player:getName());
+inline int32 CLuaItem::setSignature(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isstring(L, 2));
+    
+    CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
+    const char* signature = lua_tostring(L, 2);
+
+    int8 EncodedString[13];
+    EncodeStringSignature((int8*)signature, EncodedString);
+    m_PLuaItem->setSignature(EncodedString);
+
+    char fmtQuery[] = "UPDATE char_inventory SET signature = '%s' WHERE charid = %u AND location = %u AND slot = %u;\0";
+    Sql_Query(SqlHandle, fmtQuery, signature, (uint32)PLuaBaseEntity->GetBaseEntity()->id, m_PLuaItem->getLocationID(), m_PLuaItem->getSlotID());
+
+    ((CCharEntity*)PLuaBaseEntity->GetBaseEntity())->pushPacket(new CInventoryItemPacket(m_PLuaItem, m_PLuaItem->getLocationID(), m_PLuaItem->getSlotID()));
+    ((CCharEntity*)PLuaBaseEntity->GetBaseEntity())->pushPacket(new CInventoryFinishPacket());
+
     return 1;
 }
 
@@ -298,6 +338,8 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,isType),
     LUNAR_DECLARE_METHOD(CLuaItem,isSubType),
     LUNAR_DECLARE_METHOD(CLuaItem,getName),
+    LUNAR_DECLARE_METHOD(CLuaItem,getSignature),
+    LUNAR_DECLARE_METHOD(CLuaItem,setSignature),
     LUNAR_DECLARE_METHOD(CLuaItem,getMod),
     LUNAR_DECLARE_METHOD(CLuaItem,addMod),
     LUNAR_DECLARE_METHOD(CLuaItem,delMod),
