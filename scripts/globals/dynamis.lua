@@ -981,3 +981,13 @@ function dynamis.procMonster(mob, player)
         end
     end
 end
+
+function dynamis.addExtension(player, keyitem, duration)
+    if not player:hasKeyItem(keyitem) then
+        npcUtil.giveKeyItem(player, keyitem)
+        local old_duration = effect:getDuration()
+        effect:setDuration((old_duration + (duration * 60)) * 1000)
+        player:setLocalVar("dynamis_lasttimeupdate", (old_duration / 60) + duration)
+        player:messageSpecial(DYNAMIS_TIME_EXTEND, duration)
+    end
+end

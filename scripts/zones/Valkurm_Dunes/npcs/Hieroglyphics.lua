@@ -43,7 +43,7 @@ end;
 
 function onEventFinish(player,csid,option)
     -- printf("finishRESULT: %u",option);
-    -- print(option)
+     print(option)
 
     if csid == 58 then
         if (checkFirstDyna(player,7)) then
@@ -52,6 +52,8 @@ function onEventFinish(player,csid,option)
         if option == 0 or option == 1 then
             if option == 1 then
                 player:setVar("Dynamis_subjob", 1)
+            else
+                player:setVar("Dynamis_subjob", 0)
             end
             player:setVar("Dynamis_Entry", 1)
             local realDay = os.time();

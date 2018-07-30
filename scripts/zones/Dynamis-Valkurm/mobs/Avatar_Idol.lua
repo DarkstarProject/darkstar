@@ -18,17 +18,9 @@ function onMobDeath(mob, player, isKiller)
     local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
     if effect then
         if mob:getMainLvl() < 85 then
-            if not player:hasKeyItem(dsp.ki.AMBER_GRANULES_OF_TIME) then
-                npcUtil.giveKeyItem(player, dsp.ki.AMBER_GRANULES_OF_TIME)
-                effect:setDuration(effect:getDuration() * 1000 + 10 * 60 * 1000)
-                player:messageSpecial(DYNAMIS_TIME_EXTEND,10)
-            end
+            dynamis.addExtension(player, dsp.ki.AMBER_GRANULES_OF_TIME, 10)
         else
-            if not player:hasKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME) then
-                npcUtil.giveKeyItem(player, dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
-                effect:setDuration(effect:getDuration() * 1000 + 20 * 60 * 1000)
-                player:messageSpecial(DYNAMIS_TIME_EXTEND,20)
-            end
+            dynamis.addExtension(player, dsp.ki.OBSIDIAN_GRANULES_OF_TIME, 20)
         end
     end
 

@@ -9,6 +9,7 @@ require("scripts/globals/keyitems")
 -----------------------------------
 
 function onEffectGain(target,effect)
+    target:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
 end;
 
 -----------------------------------
@@ -16,6 +17,26 @@ end;
 -----------------------------------
 
 function onEffectTick(target,effect)
+    local lastTimeUpdate = target:getLocalVar("dynamis_lasttimeupdate")
+    local remainingTimeLimit = effect:getTimeRemaining() / 1000
+    local message = 0
+
+    if lastTimeUpdate > 600 and remainingTimeLimit < 600 then
+        message = 600;
+    elseif lastTimeUpdate > 300 and remainingTimeLimit < 300 then
+        message = 300;
+    elseif lastTimeUpdate > 60 and remainingTimeLimit < 60 then
+        message = 60;
+    elseif lastTimeUpdate > 30 and remainingTimeLimit < 30 then
+        message = 30;
+    elseif lastTimeUpdate > 10 and remainingTimeLimit < 10 then
+        message = 10;
+    end
+
+    if message ~= 0 then
+        target:triggerListener("DYNAMIS_TIME_UPDATE", target, message)
+        target:setLocalVar("dynamis_lasttimeupdate", message)
+    end
 end;
 
 -----------------------------------
