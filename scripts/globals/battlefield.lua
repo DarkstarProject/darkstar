@@ -60,7 +60,7 @@ dsp.battlefield.leaveCode =
 
 function dsp.battlefield.onBattlefieldTick(battlefield, timeinside, players)
     local killedallmobs = true
-    local mobs = battlefield:getMobs(true, true)
+    local mobs = battlefield:getMobs(true, false)
     local status = battlefield:getStatus()
     local leavecode = -1
     local players = battlefield:getPlayers()
