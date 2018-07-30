@@ -48,7 +48,7 @@ function onEventFinish(player,csid,option)
     if csid == 39 then
         player:setVar("DynaValkurm_Win", 0)
     elseif csid == 58 then
-        if checkFirstDyna(player,7) then
+        if checkFirstDyna(player,7) ~= 3 and checkFirstDyna(player,7) ~= 65539 then
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),128))
         end
         if option == 0 or option == 1 then
