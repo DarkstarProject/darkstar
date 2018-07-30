@@ -35,12 +35,15 @@ function onZoneIn(player,prevZone)
     end)
 
     player:addListener("DYNAMIS_TIME_UPDATE", "DYNAMIS_TIME_UPDATE", function(player, time)
-        local minutes = 1
-        if time <= 60 then minutes = 0 end
+        local minutes = 0
+        if time > 60 then
+            minutes = 1
+            time = time / 60
+        end
         if time == 60 then
-            player:messageSpecial(DYNAMIS_TIME_UPDATE_1, time / 60, minutes)
+            player:messageSpecial(DYNAMIS_TIME_UPDATE_1, time, minutes)
         else
-            player:messageSpecial(DYNAMIS_TIME_UPDATE_2, time / 60, minutes)
+            player:messageSpecial(DYNAMIS_TIME_UPDATE_2, time, minutes)
         end
     end)
 
