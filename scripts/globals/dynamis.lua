@@ -985,6 +985,7 @@ end
 function dynamis.addExtension(player, keyitem, duration)
     if not player:hasKeyItem(keyitem) then
         npcUtil.giveKeyItem(player, keyitem)
+        local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
         local old_duration = effect:getDuration()
         effect:setDuration((old_duration + (duration * 60)) * 1000)
         player:setLocalVar("dynamis_lasttimeupdate", (old_duration / 60) + duration)
