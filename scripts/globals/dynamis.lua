@@ -706,33 +706,43 @@ end;
 
 --------------------------------------------------
 -- checkFirstDyna
--- true if the first dyna
+--[[ CS Option params
+        1 = First CS - if first time visiting ANY dyna zone
+        2 = Second CS - if first time visiting THIS dyna zone
+        3 = Completed CS - if second time or more visiting THIS dyna zone
+        Add 65536 if obtained KI that removes dyna wait time restriction (Rhapsody in Azure) --]]
 --------------------------------------------------
 
 function checkFirstDyna(player,number)
 
-    local dynaVar = 0;
-    local bit = {};
+    local dynaVar = 0
+    local bit = {}
+    local timeKI = 0
+    if player:hasKeyItem(dsp.ki.RHAPSODY_IN_AZURE) then timeKI = 65536 end
 
-    dynaVar = player:getVar("Dynamis_Status");
+    dynaVar = player:getVar("Dynamis_Status")
 
-    for i = 7,0,-1 do
-        twop = 2^i;
-        if (dynaVar >= twop) then
-            bit[i+1] = 1;
-            dynaVar = dynaVar - twop;
-        else
-            bit[i+1] = 0;
-        end;
-        --printf("bit %u: %u\n",i,bit[i+1]);
-    end;
-    --printf("received %u",bit[number+1]);
-    if (bit[number+1] == 0) then
-        return true;
+    if dynaVar == 0 then
+        return 1+timeKI
     else
-        return false;
+        for i = 7,0,-1 do
+            twop = 2^i
+            if dynaVar >= twop then
+                bit[i+1] = 1
+                dynaVar = dynaVar - twop
+            else
+                bit[i+1] = 0
+            end
+            -- printf("bit %u: %u\n",i,bit[i+1])
+        end
+        -- printf("received %u",bit[number+1])
+        if bit[number+1] == 0 then
+            return 2+timeKI
+        else
+            return 3+timeKI
+        end
     end
-end;
+end
 
 --------------------------------------------------
 -- alreadyReceived
@@ -988,7 +998,7 @@ function dynamis.addExtension(player, keyitem, duration)
         local effect = player:getStatusEffect(dsp.effect.DYNAMIS)
         local old_duration = effect:getDuration()
         effect:setDuration((old_duration + (duration * 60)) * 1000)
-        player:setLocalVar("dynamis_lasttimeupdate", (old_duration / 60) + duration)
+        player:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
         player:messageSpecial(DYNAMIS_TIME_EXTEND, duration)
     end
 end
