@@ -3,6 +3,8 @@
 -- Zone: Bastok-Jeuno_Airship
 --
 -----------------------------------
+local ID = require("scripts/zones/Bastok-Jeuno_Airship/IDs.lua")
+-----------------------------------
 
 function onInitialize(zone)
 end;

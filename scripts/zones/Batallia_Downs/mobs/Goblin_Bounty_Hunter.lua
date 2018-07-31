@@ -2,12 +2,10 @@
 -- Area: Batallia Downs
 --  MOB: Goblin Bounty Hunter
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Batallia_Downs/TextIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -17,7 +15,7 @@ function onMobDeath(mob, player, isKiller)
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             player:addKeyItem(dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD);
         end
     end
 

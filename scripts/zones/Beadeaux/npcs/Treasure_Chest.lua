@@ -3,9 +3,7 @@
 --  NPC: Treasure Chest
 -- !zone 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs");
+local ID = require("scripts/zones/Beadeaux/IDs.lua");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
 
@@ -37,7 +35,7 @@ function onTrade(player,npc,trade)
 
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(ID.text.CHEST_UNLOCKED);
                 player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
                 local loot = chestLoot(zone,npc);
@@ -47,11 +45,11 @@ function onTrade(player,npc,trade)
 
                 if (loot[1]=="gil") then
                     player:addGil(loot[2]*GIL_RATE);
-                    player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
+                    player:messageSpecial(ID.text.GIL_OBTAINED,loot[2]*GIL_RATE);
                 else
                     -- Item
                     player:addItem(loot[2]);
-                    player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,loot[2]);
                 end
 
                 UpdateTreasureSpawnPoint(npc:getID());
@@ -61,7 +59,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1034);
+    player:messageSpecial(ID.text.CHEST_LOCKED,1034);
 end;
 
 function onEventUpdate(player,csid,option)

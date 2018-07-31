@@ -2,7 +2,7 @@
 -- Area: Behemoths Dominion
 --  MOB: Legendary Weapon
 -----------------------------------
-require("scripts/zones/Behemoths_Dominion/MobIDs");
+local ID = require("scripts/zones/Behemoths_Dominion/IDs.lua");
 require("scripts/globals/fieldsofvalor");
 
 function onMobDisengage(mob)
@@ -11,7 +11,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     checkRegime(player,mob,102,2);
-    if (isKiller and GetMobByID(ANCIENT_WEAPON):isDead()) then
-        GetNPCByID(BEHEMOTHS_CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
+    if (isKiller and GetMobByID(ID.mob.ANCIENT_WEAPON):isDead()) then
+        GetNPCByID(ID.npc.BEHEMOTHS_CERMET_HEADSTONE):setLocalVar("cooldown", os.time() + 900);
     end
 end;

@@ -3,11 +3,9 @@
 --  NPC: Millard IM
 -- Type: Sigil NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/campaign");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/campaign")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -55,9 +53,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.

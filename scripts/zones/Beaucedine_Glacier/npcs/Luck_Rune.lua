@@ -4,10 +4,6 @@
 --  Involved in Quest: Mhaura Fortune
 -- !pos 70.736 -37.778 149.624 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

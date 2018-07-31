@@ -2,10 +2,8 @@
 -- Area: Buburimu Peninsula
 --  NPC: Logging Point
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/logging");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
+    player:messageSpecial(ID.text.LOGGING_IS_POSSIBLE_HERE,1021);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -4,11 +4,8 @@
 -- Balga's Dais Burning Circle
 -- !pos 299 -123 345 146
 -------------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Balgas_Dais/TextIDs");
 
     ---- 0: Rank 2 Final Mission for Bastok "The Emissary" and Sandy "Journey Abroad"
     ---- 1: Steamed Sprouts (BCNM 40, Star Orb)

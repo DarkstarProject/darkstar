@@ -5,14 +5,12 @@
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- !pos 70 -24 21 167
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil
------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/keyitems")
 require("scripts/globals/shop")
 require("scripts/globals/quests")
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs")
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs.lua")
 require("scripts/globals/pathfind")
 require("scripts/globals/wsquest")
 -----------------------------------
@@ -105,24 +103,24 @@ function onEventFinish(player,csid,option,npc)
     elseif (csid == 17) then
         player:tradeComplete()
         player:addKeyItem(dsp.ki.NEUTRALIZER)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NEUTRALIZER)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEUTRALIZER)
         player:setVar("troubleAtTheSluiceVar",0)
         player:setVar("theHolyCrestCheck",0)
     elseif (csid == 13 and option == 1) then
         player:addQuest(SANDORIA,THE_RUMOR)
     elseif (csid == 12) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853) -- Scroll of Drain
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4853) -- Scroll of Drain
         else
             player:tradeComplete()
             player:addItem(4853)
-            player:messageSpecial(ITEM_OBTAINED, 4853) -- Scroll of Drain
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 4853) -- Scroll of Drain
 
             player:addFame(SANDORIA,30)
             player:completeQuest(SANDORIA,THE_RUMOR)
         end
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,SPIRAL_HELL_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.SPIRAL_HELL_LEARNED)
     end
 
     npc:wait(0)

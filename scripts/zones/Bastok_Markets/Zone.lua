@@ -3,13 +3,11 @@
 -- Zone: Bastok_Markets (235)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/chocobo");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
 -----------------------------------
 
 function onInitialize(zone)
@@ -61,9 +59,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 0) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     end
 end;

@@ -3,7 +3,7 @@
 --  MOB: Stalking Sapling
 -- Note: PH for Tottering Toby
 -----------------------------------
-require("scripts/zones/Batallia_Downs/MobIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,TOTTERING_TOBY_PH,20,3600); -- 1 hour
+    phOnDespawn(mob,ID.mob.TOTTERING_TOBY_PH,20,3600); -- 1 hour
 end;

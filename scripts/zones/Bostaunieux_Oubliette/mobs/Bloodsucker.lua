@@ -3,7 +3,7 @@
 --  MOB: Bloodsucker (NM)
 -- !pos -21.776 16.983 -231.477 167
 -----------------------------------
-require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs.lua");
 require("scripts/globals/groundsofvalor");
 
 function onMobDeath(mob, player, isKiller)
@@ -11,7 +11,7 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    if (mob:getID() == BLOODSUCKER) then
+    if (mob:getID() == ID.mob.BLOODSUCKER) then
         UpdateNMSpawnPoint(mob);
         mob:setRespawnTime(3600);
     end

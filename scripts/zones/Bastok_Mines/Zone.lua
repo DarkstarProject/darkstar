@@ -3,11 +3,8 @@
 -- Zone: Bastok_Mines (234)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
+local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Bastok_Mines/TextIDs")
-require("scripts/zones/Bastok_Mines/MobIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
@@ -15,7 +12,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(BASTOK_MINES_EXPLORER_MOOGLE)
+    SetExplorerMoogles(ID.npc.BASTOK_MINES_EXPLORER_MOOGLE)
 
     applyHalloweenNpcCostumes(zone:getID())
 end
@@ -62,10 +59,10 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 1 then
-        player:messageSpecial(ITEM_OBTAINED, 536) -- adventurer coupon
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 536) -- adventurer coupon
     elseif csid == 30004 and option == 0 then
         player:setHomePoint()
-        player:messageSpecial(HOMEPOINT_SET)
+        player:messageSpecial(ID.text.HOMEPOINT_SET)
     elseif csid == 176 then
         finishMissionTimeline(player, 1, csid, option)
     end
