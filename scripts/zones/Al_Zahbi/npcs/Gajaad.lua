@@ -4,9 +4,7 @@
 -- Type: Donation Taker
 -- !pos 40.781 -1.398 116.261 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs");
+local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,17 +16,17 @@ function onTrade(player,npc,trade)
             if (player:addItem(15270)) then
                 player:setVar("walahraCoinCount", walahraCoinCount - (1000 - TradeCount));
                 player:tradeComplete();
-                player:messageSpecial(ITEM_OBTAINED,15270);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,15270);
                 player:startEvent(102, 2184, 0, TradeCount);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15270);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,15270);
             end
         else -- turning in less than the amount needed to finish the quest
             if (TradeCount >= 100) then -- give bonus walahra water - only one water per trade, regardless of the amount.
                 player:tradeComplete();
                 player:setVar("walahraCoinCount", walahraCoinCount + TradeCount);
                 player:addItem(5354);
-                player:messageSpecial(ITEM_OBTAINED,5354);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,5354);
                 player:startEvent(102, 2184, 0, TradeCount);
             else
                 player:tradeComplete();

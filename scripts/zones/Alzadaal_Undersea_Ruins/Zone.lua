@@ -3,9 +3,7 @@
 -- Zone: Alzadaal_Undersea_Ruins (72)
 --
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/globals/settings");
@@ -163,7 +161,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.ASTRAL_COMPASS);
         player:completeMission(TOAU,UNDERSEA_SCOUTING);
         player:addMission(TOAU,ASTRAL_WAVES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASTRAL_COMPASS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASTRAL_COMPASS);
     elseif (csid == 7) then
         player:completeMission(TOAU,PATH_OF_DARKNESS);
         player:setTitle(dsp.title.NAJAS_COMRADEINARMS);

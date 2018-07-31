@@ -3,14 +3,11 @@
 -- Zone: Arrapago_Reef (54)
 --
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs")
-require("scripts/globals/missions")
-require("scripts/globals/quests")
+local ID = require("scripts/zones/Arrapago_Reef/IDs.lua")
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 require("scripts/globals/settings")
-require("scripts/globals/zone")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -73,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,PREVALENCE_OF_PIRATES)
         player:setVar("AhtUrganStatus",0)
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
         player:addMission(TOAU,SHADES_OF_VENGEANCE)
     elseif (csid == 15) then
         player:setVar("AhtUrganStatus",1)

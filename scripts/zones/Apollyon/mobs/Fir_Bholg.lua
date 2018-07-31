@@ -3,10 +3,7 @@
 --  NPC: Fir Bholg
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)

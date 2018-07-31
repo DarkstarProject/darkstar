@@ -4,12 +4,10 @@
 -- Type: Standard NPC
 -- !pos -13.043 0.999 103.423 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +36,7 @@ function onEventFinish(player,csid,option)
         player:setVar("gotitallCS",2);
     elseif (csid == 524) then
         player:addKeyItem(dsp.ki.VIAL_OF_LUMINOUS_WATER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_LUMINOUS_WATER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_LUMINOUS_WATER);
         player:setVar("gotitallCS",4);
     end
 end;

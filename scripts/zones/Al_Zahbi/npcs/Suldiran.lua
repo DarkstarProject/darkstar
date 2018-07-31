@@ -4,9 +4,6 @@
 -- Type: NPC Quest
 -- !pos 42 -7 -43 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/titles");

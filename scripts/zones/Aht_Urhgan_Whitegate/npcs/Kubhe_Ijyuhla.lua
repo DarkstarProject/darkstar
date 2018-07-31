@@ -4,11 +4,9 @@
 -- Standard Info NPC
 -- !pos 23.257 0.000 21.532 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -45,11 +43,11 @@ function onEventFinish(player,csid,option)
         player:setVar("threemenandaclosetCS",4);
     elseif (csid == 845) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2184);
         else
             player:setVar("threemenandaclosetCS",0);
             player:addItem(2184,1);
-            player:messageSpecial(ITEM_OBTAINEDX,2184,1);
+            player:messageSpecial(ID.text.ITEM_OBTAINEDX,2184,1);
             player:completeQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
         end
     end

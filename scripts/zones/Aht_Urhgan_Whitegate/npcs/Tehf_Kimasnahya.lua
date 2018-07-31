@@ -4,12 +4,10 @@
 -- Type: Standard NPC
 -- !pos -89.897 -1 6.199 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -58,12 +56,12 @@ function onEventFinish(player,csid,option)
         player:setVar("gotitallCS",8);
     elseif (csid == 528) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,18257);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,18257);
         else
             player:setVar("Wait1DayForgotitallCS_date",0);
             player:setVar("gotitallCS",0);
             player:addItem(18257); -- Bibiki Seashell
-            player:messageSpecial(ITEM_OBTAINED,18257);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,18257);
             player:completeQuest(AHT_URHGAN,GOT_IT_ALL);
         end
     elseif (csid == 843 and option == 1) then

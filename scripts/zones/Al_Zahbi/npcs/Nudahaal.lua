@@ -4,11 +4,9 @@
 -- Type: Bonecraft Normal/Adv. Image Support
 -- !pos -57.056 -7 -88.377 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Al_Zahbi/TextIDs");
+local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:startEvent(225,8,0,0,0,188,0,6,0);
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, ID.text.IMAGE_SUPPORT_ACTIVE);
             end
         end
     end
@@ -46,10 +44,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 224 and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,6,1);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,6,1);
         player:addStatusEffect(dsp.effect.BONECRAFT_IMAGERY,1,0,120);
     elseif (csid == 225) then
-        player:messageSpecial(IMAGE_SUPPORT,0,6,0);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,6,0);
         player:addStatusEffect(dsp.effect.BONECRAFT_IMAGERY,3,0,480);
     end
 end;

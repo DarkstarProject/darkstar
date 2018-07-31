@@ -3,10 +3,8 @@
 --  NPC: HomePoint#2
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

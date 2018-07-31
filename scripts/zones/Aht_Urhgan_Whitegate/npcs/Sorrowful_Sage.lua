@@ -4,10 +4,8 @@
 -- Type: Assault Mission Giver
 -- !pos 134.096 0.161 -30.401 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 require("scripts/globals/besieged");
 require("scripts/globals/missions");
 -----------------------------------
@@ -58,7 +56,7 @@ function onEventFinish(player,csid,option)
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
         end
     end
 end;

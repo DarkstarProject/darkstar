@@ -5,9 +5,7 @@
 --  Involved in quest: No Strings Attached
 -- !pos 101.329 -6.999 -29.042 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -22,7 +20,7 @@ function onTrade(player,npc,trade)
     if (player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and player:hasItem(17859) == false) then
         if (trade:getGil() == 10000 and trade:getItemCount() == 1 and player:getFreeSlotsCount() >= 1) then
             player:addItem(17859);
-            player:messageSpecial(ITEM_OBTAINED,17859); -- animator
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17859); -- animator
         end
     elseif (OperationTeatimeProgress == 1) then
         if (trade:hasItemQty(4161,1) and trade:hasItemQty(5570,1)) then -- Trade Chai and Sleeping Potion
@@ -98,14 +96,14 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.PROUD_AUTOMATON_OWNER);
             player:unlockJob(dsp.job.PUP);
             player:addItem(17859);
-            player:messageSpecial(ITEM_OBTAINED,17859); -- animator
-            player:messageSpecial(YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster."
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17859); -- animator
+            player:messageSpecial(ID.text.YOU_CAN_BECOME_PUP); -- "You can now become a puppetmaster."
             player:setVar("NoStringsAttachedProgress",0);
             player:setPetName(dsp.pet.type.AUTOMATON, option+118);
             player:unlockAttachment(8224); --Harlequin Frame
             player:unlockAttachment(8193); --Harlequin Head
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17859);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17859);
         end
     elseif (csid == 774) then
         player:setVar("TheWaywardAutomationProgress",1);
@@ -114,10 +112,10 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:completeQuest(AHT_URHGAN,THE_WAYWARD_AUTOMATION);
             player:addItem(17858); --Turbo Animator
-            player:messageSpecial(ITEM_OBTAINED,17858); -- Turbo Animator
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17858); -- Turbo Animator
             player:setVar("TheWaywardAutomationProgress",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17858);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17858);
         end
     elseif (csid == 778) then
         player:setVar("OperationTeatimeProgress",1);

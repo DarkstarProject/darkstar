@@ -4,14 +4,12 @@
 -- Standard Info NPC
 -- !pos 75.225 -6.000 -137.203 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -53,15 +51,15 @@ function onEventFinish(player,csid,option)
         local AFgun = 18702;
         if (player:getFreeSlotsCount() >= 1) then
             player:addItem(AFgun) -- Receive Af1 Trump Gun
-            player:messageSpecial(ITEM_OBTAINED,AFgun);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,AFgun);
             player:completeQuest(AHT_URHGAN,EQUIPPED_FOR_ALL_OCCASIONS);
             player:setVar("EquippedforAllOccasions",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,AFgun);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,AFgun);
         end
     elseif (csid == 604) then
         player:addKeyItem(dsp.ki.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.LIFE_FLOAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LIFE_FLOAT);
     end
 end;
 

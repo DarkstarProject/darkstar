@@ -4,10 +4,8 @@
 -- Type: Standard NPC
 -- !pos -73.212 -1 -5.842 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -40,12 +38,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 4) then
         player:addKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
         player:addQuest(AHT_URHGAN, OLDUUM);
     elseif (csid == 6 or csid == 8) then
         if (player:getFreeSlotsCount() >= 1) then
             player:addItem(2217);
-            player:messageSpecial(ITEM_OBTAINED, 2217);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 2217);
             player:delKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL);
             player:delKeyItem(dsp.ki.ELECTROLOCOMOTIVE);
             player:delKeyItem(dsp.ki.ELECTROPOT);
@@ -54,7 +52,7 @@ function onEventFinish(player,csid,option)
                 player:completeQuest(AHT_URHGAN, OLDUUM);
             end
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 2217);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2217);
         end
 
     end

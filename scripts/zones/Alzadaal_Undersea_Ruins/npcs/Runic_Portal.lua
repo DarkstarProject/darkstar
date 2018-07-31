@@ -5,9 +5,7 @@
 -- !pos 206.500 -1.220 33.500 72
 -- !pos 206.500 -1.220 6.500 72
 -----------------------------------
-package.loaded["scripts/zones/Alzadaal_Undersea_Ruins/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Alzadaal_Undersea_Ruins/TextIDs");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
                 player:startEvent(121);
             end
         else
-            player:messageSpecial(RESPONSE);
+            player:messageSpecial(ID.text.RESPONSE);
         end
     else
         -- Southern portal.
@@ -44,7 +42,7 @@ function onTrigger(player,npc)
                 player:startEvent(122);
             end
         else
-            player:messageSpecial(RESPONSE);
+            player:messageSpecial(ID.text.RESPONSE);
         end
     end
 

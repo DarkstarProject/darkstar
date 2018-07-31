@@ -3,9 +3,7 @@
 --  NPC: Runic Portal
 -- Aht Urhgan Teleporter to Other Areas
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 require("scripts/globals/teleports");
 require("scripts/globals/besieged");
 require("scripts/globals/keyitems");
@@ -19,14 +17,14 @@ function onTrigger(player,npc)
     local hasAssault, keyitem = hasAssaultOrders(player);
 
     if (hasAssault > 0) then
-        player:messageSpecial(RUNIC_PORTAL + 9, keyitem);
+        player:messageSpecial(ID.text.RUNIC_PORTAL + 9, keyitem);
         player:startEvent(hasAssault);
     else
         if (player:hasKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT)) then
-            player:messageSpecial(RUNIC_PORTAL + 2,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
+            player:messageSpecial(ID.text.RUNIC_PORTAL + 2,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
             player:startEvent(101,0,player:getNationTeleport(AHTURHGAN));
         else
-            player:messageSpecial(RUNIC_PORTAL);
+            player:messageSpecial(ID.text.RUNIC_PORTAL);
         end
     end
 

@@ -5,11 +5,9 @@
 -- !pos 2.897 -1 -10.781 50
 --  Quest: Delivering the Goods
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -47,11 +45,11 @@ function onEventFinish(player,csid,option)
         player:setVar("deliveringTheGoodsCS",1);
     elseif (csid == 41) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2184,3);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINEDX,2184,3);
         else
             player:setVar("deliveringTheGoodsCS",0);
             player:addItem(2184,3);
-            player:messageSpecial(ITEM_OBTAINEDX,2184,3);
+            player:messageSpecial(ID.text.ITEM_OBTAINEDX,2184,3);
             player:completeQuest(AHT_URHGAN,DELIVERING_THE_GOODS);
             player:setVar("VANISHING_ACT_waitJPMidnight",getMidnight());
         end
