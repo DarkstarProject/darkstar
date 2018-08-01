@@ -638,7 +638,11 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             PNpc->PAI->Trigger(PChar->targid);
         }
-
+        // Releasing an NPC Fellow
+        if (PChar->PFellow != nullptr)
+        {
+            PChar->RemoveFellow();
+        }
         if (PChar->m_event.EventID == -1)
         {
             PChar->m_event.reset();
