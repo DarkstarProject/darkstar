@@ -2,7 +2,7 @@
 -- Area: Al'Taieu
 --  MOB: Ru_aern
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 

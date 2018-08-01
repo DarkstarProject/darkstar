@@ -3,7 +3,7 @@
 -- Zone: Beaucedine_Glacier (111)
 --
 -----------------------------------
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua")
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/missions")
 require("scripts/globals/conquest")

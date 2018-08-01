@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 --  HNM: King Behemoth
 -----------------------------------
-local ID = require("scripts/zones/Behemoths_Dominion/IDs.lua")
+local ID = require("scripts/zones/Behemoths_Dominion/IDs")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")

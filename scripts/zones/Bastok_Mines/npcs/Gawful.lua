@@ -4,7 +4,7 @@
 -- Type: Item Deliverer
 -- !pos -22.416 -3.999 -56.076 234
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

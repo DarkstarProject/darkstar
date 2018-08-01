@@ -5,7 +5,7 @@
 -- !pos 120.967 0.161 -44.002 50
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/besieged");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");

@@ -5,7 +5,7 @@
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
 -- !pos ? ? ? 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");

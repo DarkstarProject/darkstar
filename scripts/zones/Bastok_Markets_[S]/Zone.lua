@@ -3,7 +3,7 @@
 -- Zone: Bastok_Markets_[S] (87)
 --
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets_[S]/IDs.lua")
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

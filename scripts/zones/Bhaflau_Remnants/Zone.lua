@@ -3,7 +3,7 @@
 -- Zone: Bhaflau_Remnants
 --
 -----------------------------------
-local ID = require("scripts/zones/Bhaflau_Remnants/IDs.lua")
+local ID = require("scripts/zones/Bhaflau_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)

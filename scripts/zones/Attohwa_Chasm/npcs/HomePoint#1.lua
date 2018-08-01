@@ -4,7 +4,7 @@
 -- !pos
 -----------------------------------
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

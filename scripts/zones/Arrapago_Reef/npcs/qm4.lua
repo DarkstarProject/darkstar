@@ -3,7 +3,7 @@
 --  NPC: ??? (Spawn Nuhn(ZNM T3))
 -- !pos -451 -7 389 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2596,1) and trade:getItemCount() == 1) then -- Trade Rose Scampi

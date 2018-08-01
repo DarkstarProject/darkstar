@@ -4,7 +4,7 @@
 -- !pos 390 1 349 68
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Aydeewa_Subterrane/IDs.lua");
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -4,7 +4,7 @@
 -- Type: Standard NPC
 -- !pos -27.443 -1 -636.850 33
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

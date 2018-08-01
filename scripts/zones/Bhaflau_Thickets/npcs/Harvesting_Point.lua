@@ -2,7 +2,7 @@
 -- Area: Bhaflau Thickets
 --  NPC: Harvesting Point
 -----------------------------------
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua")
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs")
 require("scripts/globals/harvesting");
 -----------------------------------
 

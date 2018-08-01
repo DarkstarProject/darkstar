@@ -4,7 +4,7 @@
 --  Involved in Mission 9-1 (San dOria)
 --  !pos 210 17 -615 105
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 

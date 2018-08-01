@@ -7,7 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

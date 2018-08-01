@@ -3,7 +3,7 @@
 --  NPC: Excavation Point
 -----------------------------------
 require("scripts/globals/excavation");
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

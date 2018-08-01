@@ -10,7 +10,7 @@ require("scripts/globals/titles")
 require("scripts/globals/keyitems")
 require("scripts/globals/shop")
 require("scripts/globals/quests")
-local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs.lua")
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs")
 require("scripts/globals/pathfind")
 require("scripts/globals/wsquest")
 -----------------------------------

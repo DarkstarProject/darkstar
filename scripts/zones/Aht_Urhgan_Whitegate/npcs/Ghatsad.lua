@@ -8,7 +8,7 @@ require("scripts/globals/common")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/globals/status")
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/keyitems")
 -----------------------------------
 

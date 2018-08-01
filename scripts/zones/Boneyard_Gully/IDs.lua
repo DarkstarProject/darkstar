@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Boneyard_Gully
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

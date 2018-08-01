@@ -4,7 +4,7 @@
 -- Type: Standard Merchant NPC
 -- !pos -415 -2 -430 4
 -----------------------------------
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua")
+local ID = require("scripts/zones/Bibiki_Bay/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)

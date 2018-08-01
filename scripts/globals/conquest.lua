@@ -59,23 +59,23 @@ end
 -----------------------------------
 
 local outposts = {
-    [dsp.region.RONFAURE]        = {ki = dsp.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
-    [dsp.region.ZULKHEIM]        = {ki = dsp.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
-    [dsp.region.NORVALLEN]       = {ki = dsp.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
-    [dsp.region.GUSTABERG]       = {ki = dsp.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
-    [dsp.region.DERFLAND]        = {ki = dsp.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.SARUTABARUTA]    = {ki = dsp.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
-    [dsp.region.KOLSHUSHU]       = {ki = dsp.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
-    [dsp.region.ARAGONEU]        = {ki = dsp.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.FAUREGANDI]      = {ki = dsp.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
-    [dsp.region.VALDEAUNIA]      = {ki = dsp.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
-    [dsp.region.QUFIMISLAND]     = {ki = dsp.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
-    [dsp.region.LITELOR]         = {ki = dsp.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
-    [dsp.region.KUZOTZ]          = {ki = dsp.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
-    [dsp.region.VOLLBOW]         = {ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
-    [dsp.region.ELSHIMOLOWLANDS] = {ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
-    [dsp.region.ELSHIMOUPLANDS]  = {ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TAVNAZIANARCH]   = {ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
+    [dsp.region.RONFAURE]        = {zone = 100, ki = dsp.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
+    [dsp.region.ZULKHEIM]        = {zone = 103, ki = dsp.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
+    [dsp.region.NORVALLEN]       = {zone = 104, ki = dsp.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
+    [dsp.region.GUSTABERG]       = {zone = 106, ki = dsp.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
+    [dsp.region.DERFLAND]        = {zone = 109, ki = dsp.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [dsp.region.SARUTABARUTA]    = {zone = 115, ki = dsp.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
+    [dsp.region.KOLSHUSHU]       = {zone = 118, ki = dsp.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
+    [dsp.region.ARAGONEU]        = {zone = 119, ki = dsp.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [dsp.region.FAUREGANDI]      = {zone = 111, ki = dsp.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
+    [dsp.region.VALDEAUNIA]      = {zone = 112, ki = dsp.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
+    [dsp.region.QUFIMISLAND]     = {zone = 126, ki = dsp.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
+    [dsp.region.LITELOR]         = {zone = 121, ki = dsp.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
+    [dsp.region.KUZOTZ]          = {zone = 114, ki = dsp.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
+    [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
+    [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
+    [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
+    [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
 }
 
 local function hasOutpost(player, region)
@@ -858,14 +858,13 @@ dsp.conquest.canTeleportToOutpost = function(player, region)
 end
 
 dsp.conquest.setRegionalConquestOverseers = function(region)
-    local npcs = overseerOffsets[region]
+    local zone = outposts[region].zone
 
-    -- make sure we have a valid region
-    if npcs then 
-        local base = _G['OVERSEER_BASE_' .. region]
-
-        -- make sure zone exists on current server (prevent error spam for multi-server setups)
-        if base then
+    if zone then 
+        local base = zones[zone].npc.OVERSEER_BASE
+        local npcs = overseerOffsets[region]
+        
+        if base and npcs then
 
             -- update the npcs
             local owner = GetRegionOwner(region)

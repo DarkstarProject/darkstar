@@ -3,7 +3,7 @@
 --  NPC: Runic Portal
 -- Aht Urhgan Teleporter to Other Areas
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/besieged");
 require("scripts/globals/keyitems");

@@ -3,7 +3,7 @@
 --  MOB: Stalking Sapling
 -- Note: PH for Tottering Toby
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 

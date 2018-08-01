@@ -3,7 +3,7 @@
 --  MOB: Tundra Tiger
 -- Note: PH for Nue, Kirata
 -----------------------------------
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 

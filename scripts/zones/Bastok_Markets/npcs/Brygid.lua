@@ -5,7 +5,7 @@
 -- Involved in Quests: Riding on the Clouds
 -- !pos -90 -4 -108 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/equipment");

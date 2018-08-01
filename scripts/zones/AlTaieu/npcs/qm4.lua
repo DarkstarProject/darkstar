@@ -5,7 +5,7 @@
 -- Allows players to spawn Absolute Virtue by killing Jailer of Love.
 -- !pos , 431 -0 -603
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

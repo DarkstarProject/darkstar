@@ -4,7 +4,7 @@
 -- The ship for The Black Coffin Battle (TOAU-15)
 -- !pos -462 -2 -394 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------

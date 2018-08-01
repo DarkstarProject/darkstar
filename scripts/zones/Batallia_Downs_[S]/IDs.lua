@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Batallia_Downs_[S]
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok_Mines
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

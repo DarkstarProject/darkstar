@@ -3,7 +3,7 @@
 --  NPC: Treasure Coffer
 -- !pos 215 40 69 147
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");

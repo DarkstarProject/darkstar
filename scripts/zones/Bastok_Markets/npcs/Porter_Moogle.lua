@@ -5,7 +5,7 @@
 -- !zone 235
 -- !pos TODO
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/porter_moogle_util");
 
 local e =

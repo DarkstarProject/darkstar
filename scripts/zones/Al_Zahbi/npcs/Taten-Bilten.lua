@@ -6,7 +6,7 @@
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -3,7 +3,7 @@
 --  NPC: ??? (Spawn Wulgaru(ZNM T2))
 -- !pos -22 -4 204 72
 -----------------------------------
-local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2597,1) and trade:getItemCount() == 1) then -- Trade Opalus Gem

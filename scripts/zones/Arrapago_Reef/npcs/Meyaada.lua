@@ -9,7 +9,7 @@ require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

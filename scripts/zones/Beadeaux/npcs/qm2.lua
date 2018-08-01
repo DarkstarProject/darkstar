@@ -5,7 +5,7 @@
 -- !pos -79 1 -99 147
 --------------------------
 
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/weather");
 -----------------------------------

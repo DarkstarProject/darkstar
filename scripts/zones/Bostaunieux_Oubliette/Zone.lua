@@ -3,7 +3,7 @@
 -- Zone: Bostaunieux_Oubliette (167)
 --
 -----------------------------------
-local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs.lua");
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs");
 require("scripts/globals/zone");
 -----------------------------------
 

@@ -2,7 +2,7 @@
 -- Area: Abyssea-Konschtat
 -----------------------------------
 require("scripts/globals/keyitems")
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

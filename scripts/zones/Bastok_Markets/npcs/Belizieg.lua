@@ -5,7 +5,7 @@
 -- !zone
 -- !pos -323.673 -16.001 -49.930 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

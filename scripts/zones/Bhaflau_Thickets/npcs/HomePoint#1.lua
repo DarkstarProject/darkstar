@@ -4,7 +4,7 @@
 -- !pos  -98 -10 -493 52
 -----------------------------------
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

@@ -3,7 +3,7 @@
 --  NPC: Treasure Chest
 -- !zone 147
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/treasure");
 

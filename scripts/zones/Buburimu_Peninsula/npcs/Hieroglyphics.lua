@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

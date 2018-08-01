@@ -3,7 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos -89 0 -374 111
 -----------------------------------
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 

@@ -3,7 +3,7 @@
 -- NPC:  ??? COP mission spawn Dalham
 -- !pos
 -----------------------------------
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)

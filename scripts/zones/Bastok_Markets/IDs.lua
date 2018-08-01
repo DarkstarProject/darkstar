@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bastok_Markets
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}
@@ -50,7 +50,7 @@ zones[dsp.zone.BASTOK_MARKETS] =
         RAGHD_SHOP_DIALOG           = 7688, -- Give a smile to that special someone! Welcome to Carmelide's.
         HORTENSE_SHOP_DIALOG        = 7689, -- Hello there! We have instruments and music sheets at Harmodios's!
         OGGODETT_OPEN_DIALOG        = 7690, -- Hello there! Might I interest you in some specialty goods from Aragoneu?
-        YAFAFA_OPEN_DIALOG          = 7691 -- Hello! I've got some goods from Kolshushu--interested?,
+        YAFAFA_OPEN_DIALOG          = 7691, -- Hello! I've got some goods from Kolshushu--interested?,
         SOMNPAEMN_OPEN_DIALOG       = 7692, -- Welcome! I have goods straight from Sarutabaruta! What say you?
         CONQUEST                    = 7783, -- You've earned conquest points!
         EXTENDED_MISSION_OFFSET     = 8145, -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.

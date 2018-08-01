@@ -6,7 +6,7 @@
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 
-local ID = require("scripts/zones/Apollyon/IDs.lua");
+local ID = require("scripts/zones/Apollyon/IDs");
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
 if (player:hasKeyItem(dsp.ki.COSMOCLEANSE)) then

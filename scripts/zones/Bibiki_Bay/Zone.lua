@@ -3,7 +3,7 @@
 -- Zone: Bibiki_Bay (4)
 --
 -----------------------------------
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");

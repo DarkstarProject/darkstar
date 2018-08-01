@@ -4,7 +4,7 @@
 -- Entry NPC for Dynamis Divergence
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 
 function onTrade(player,npc,trade)
 end

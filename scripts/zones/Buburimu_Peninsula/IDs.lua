@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Buburimu_Peninsula
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}
@@ -54,7 +54,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
     },
     npc =
     {
-        OVERSEER_BASE_6          = 17261148,
+        OVERSEER_BASE            = 17261148,
         BUBURIMU_SIGNPOST_OFFSET = 17261163,
     },
 }

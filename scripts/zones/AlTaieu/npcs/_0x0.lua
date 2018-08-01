@@ -3,7 +3,7 @@
 --  NPC: Crystalline Field
 -- !pos .1 -10 -464 33
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 

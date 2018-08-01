@@ -6,7 +6,7 @@
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 

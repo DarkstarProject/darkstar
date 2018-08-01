@@ -5,7 +5,7 @@
 -- !pos -344 25 43 152
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Altar_Room/IDs.lua");
+local ID = require("scripts/zones/Altar_Room/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

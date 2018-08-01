@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Arrapago_Remnants
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}
@@ -23,7 +23,7 @@ zones[dsp.zone.ARRAPAGO_REMNANTS] =
         MISSION_FAILED             = 7442, -- The mission has failed. Leaving area.
         TIME_REMAINING_MINUTES     = 7446, -- Time remaining: <number> [minute/minutes] (Earth time).
         TIME_REMAINING_SECONDS     = 7447, -- Time remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN               = 7449  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        PARTY_FALLEN               = 7449, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
         DOOR_IS_SEALED             = 7460, -- The door is sealed...
         DOOR_IS_SEALED_MYSTERIOUS  = 7463, -- The door is sealed by some mysterious force...
     },

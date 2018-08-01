@@ -3,7 +3,7 @@
 --  NPC: Boytz
 -- Standard Merchant NPC
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 

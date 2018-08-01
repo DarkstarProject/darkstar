@@ -3,7 +3,7 @@
 -- Zone: Alzadaal_Undersea_Ruins (72)
 --
 -----------------------------------
-local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
 require("scripts/globals/settings");

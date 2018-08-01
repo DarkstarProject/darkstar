@@ -3,7 +3,7 @@
 --  NPC: Door_House (Corsair's Bottes)
 -- !pos 10 0 -16 234
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------

@@ -2,7 +2,7 @@
 -- Area: Batallia Downs
 --  MOB: Vegnix Greenthumb
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 
 function onMobDeath(mob, player, isKiller)

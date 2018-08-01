@@ -4,7 +4,7 @@
 -- 20 -30 597 z 52
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

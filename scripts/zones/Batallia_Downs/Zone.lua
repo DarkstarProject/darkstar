@@ -3,7 +3,7 @@
 -- Zone: Batallia_Downs (105)
 --
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua")
+local ID = require("scripts/zones/Batallia_Downs/IDs")
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/missions");

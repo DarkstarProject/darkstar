@@ -7,7 +7,7 @@
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/quests")
-local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua")
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs")
 -----------------------------------
 
 local PARCHMENT = 917

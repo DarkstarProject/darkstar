@@ -3,7 +3,7 @@
 --  NPC: Karine
 -- Map Seller NPC
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/magic_maps");
 -----------------------------------
 

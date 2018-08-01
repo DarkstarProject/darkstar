@@ -6,7 +6,7 @@
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

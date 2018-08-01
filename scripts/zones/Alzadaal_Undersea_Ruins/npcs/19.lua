@@ -2,7 +2,7 @@
 -- Area: Alzadaal Undersea Ruins
 --  NPC: 19 (no name)
 -----------------------------------
-local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

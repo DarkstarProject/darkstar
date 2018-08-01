@@ -5,7 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Balgas_Dais/IDs.lua");
+local ID = require("scripts/zones/Balgas_Dais/IDs");
 require("scripts/globals/missions");
 
 -----------------------------------

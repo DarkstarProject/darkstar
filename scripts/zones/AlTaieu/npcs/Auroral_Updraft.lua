@@ -3,7 +3,7 @@
 --  NPC:  Auroral Updraft
 --  Type: Standard NPC
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 
 function onTrade(player,npc,trade)
 end;

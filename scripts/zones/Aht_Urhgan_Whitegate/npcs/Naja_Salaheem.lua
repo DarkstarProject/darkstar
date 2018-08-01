@@ -5,7 +5,7 @@
 -- !pos 22.700 -8.804 -45.591 50
 -----------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");

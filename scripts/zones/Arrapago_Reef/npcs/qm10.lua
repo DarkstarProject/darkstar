@@ -4,7 +4,7 @@
 -- Involved in quests: "No Strings Attached"
 -- !pos 457.128 -8.249 60.795 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------

@@ -4,7 +4,7 @@
 -- Note: Pet for JOL and JOJ
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onMobSpawn(mob)

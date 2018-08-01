@@ -8,7 +8,7 @@ require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/wsquest")
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.ground_strike

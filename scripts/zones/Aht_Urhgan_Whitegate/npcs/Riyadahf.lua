@@ -3,7 +3,7 @@
 --  NPC: Riyadahf
 -- Map Seller NPC
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/magic_maps");
 -----------------------------------
 

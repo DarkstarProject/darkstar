@@ -3,7 +3,7 @@
 -- Zone: Buburimu_Peninsula (118)
 --
 -----------------------------------
-local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua")
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs")
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -53,7 +53,6 @@ end;
 
 function onInitialize(zone)
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
-
 end;
 
 function onZoneIn( player, prevZone)

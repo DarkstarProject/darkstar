@@ -3,7 +3,7 @@
 --  NPC: qm4 (???)
 --
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------

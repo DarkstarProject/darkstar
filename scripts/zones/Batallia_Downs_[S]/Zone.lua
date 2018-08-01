@@ -3,7 +3,7 @@
 -- Zone: Batallia_Downs_[S] (84)
 --
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs_[S]/IDs.lua")
+local ID = require("scripts/zones/Batallia_Downs_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

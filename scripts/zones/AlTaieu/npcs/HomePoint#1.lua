@@ -3,7 +3,7 @@
 --  NPC: HomePoint#1
 -- !pos 7 0 709 33
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/homepoint");
 require("scripts/globals/settings");
 -----------------------------------

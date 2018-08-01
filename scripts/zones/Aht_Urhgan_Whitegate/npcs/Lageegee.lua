@@ -4,7 +4,7 @@
 -- Type: Assault Mission Giver
 -- !pos 120.808 0.161 -30.435
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/besieged")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

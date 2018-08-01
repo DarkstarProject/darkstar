@@ -3,7 +3,7 @@
 -- Zone: Behemoths_Dominion (127)
 --
 -----------------------------------
-local ID = require("scripts/zones/Behemoths_Dominion/IDs.lua");
+local ID = require("scripts/zones/Behemoths_Dominion/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 -----------------------------------

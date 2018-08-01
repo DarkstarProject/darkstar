@@ -3,7 +3,7 @@
 -- Door: Iron Gate (Lamian Fang Key)
 -- !pos 580 -17 120
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/status")
 -----------------------------------

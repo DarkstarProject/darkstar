@@ -3,7 +3,7 @@
 --  MOB: Old Quadav
 -- PH for Ge'Dha Evileye
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

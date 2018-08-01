@@ -3,7 +3,7 @@
 --  NPC: Malfud
 -- Standard Merchant NPC
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)

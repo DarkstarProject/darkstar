@@ -4,7 +4,7 @@
 -- Type: Quest NPC
 -- !pos -253.673 -13 -92.326 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/quests");
 -----------------------------------

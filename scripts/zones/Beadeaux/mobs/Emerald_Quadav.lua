@@ -3,7 +3,7 @@
 --  Mob: Emerald Quadav
 -- Note: PH for Ga'Bhu Unvanquished
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

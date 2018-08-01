@@ -4,7 +4,7 @@
 -- Type: Item Deliverer
 -- !pos -27.551 0 -141.095 48
 -----------------------------------
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

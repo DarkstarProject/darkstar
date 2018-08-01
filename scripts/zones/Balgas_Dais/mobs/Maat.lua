@@ -3,7 +3,7 @@
 --  MOB: Maat
 -- Genkai 5 Fight
 -----------------------------------
-local ID = require("scripts/zones/Balgas_Dais/IDs.lua");
+local ID = require("scripts/zones/Balgas_Dais/IDs");
 -----------------------------------
 
 function onMobSpawn(mob)

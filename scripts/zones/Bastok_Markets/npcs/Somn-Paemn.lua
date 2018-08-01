@@ -3,7 +3,7 @@
 --  NPC: Somn-Paemn
 -- Sarutabaruta Regional Goods
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 

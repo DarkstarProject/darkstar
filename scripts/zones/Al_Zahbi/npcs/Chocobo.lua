@@ -2,7 +2,7 @@
 -- Area: Al Zahbi
 --  NPC: Chocobo
 -----------------------------------
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

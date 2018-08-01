@@ -3,7 +3,7 @@
 --  MOB: Zu
 -- Note: PH for Helldiver
 -----------------------------------
-local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

@@ -3,7 +3,7 @@
 --  NPC: Logging Point
 -----------------------------------
 require("scripts/globals/logging");
-local ID = require("scripts/zones/Buburimu_Peninsula/IDs.lua");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

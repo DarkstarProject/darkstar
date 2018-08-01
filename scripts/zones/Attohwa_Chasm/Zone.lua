@@ -3,7 +3,7 @@
 -- Zone: Attohwa_Chasm (7)
 --
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 -----------------------------------

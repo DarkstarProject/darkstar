@@ -10,7 +10,7 @@ require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

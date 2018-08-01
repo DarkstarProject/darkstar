@@ -3,7 +3,7 @@
 --  NPC: qm2 (???)
 --  Pop for the quest "Chasing Quotas"
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 
 function onTrigger(player,npc)

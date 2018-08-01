@@ -3,7 +3,7 @@
 -- Zone: Beadeaux (147)
 --
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua")
+local ID = require("scripts/zones/Beadeaux/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")

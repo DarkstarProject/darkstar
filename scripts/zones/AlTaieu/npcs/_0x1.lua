@@ -3,7 +3,7 @@
 --  NPC: Rubious Crystal (South Tower)
 -- !pos 0 -6.250 -736.912 33
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 

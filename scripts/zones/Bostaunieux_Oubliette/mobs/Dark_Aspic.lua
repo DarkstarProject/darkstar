@@ -3,7 +3,7 @@
 --  Mob: Dark_Aspic
 -- Note: PH for Sewer Syrup
 -----------------------------------
-local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs.lua");
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 

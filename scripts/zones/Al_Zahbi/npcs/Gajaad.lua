@@ -4,7 +4,7 @@
 -- Type: Donation Taker
 -- !pos 40.781 -1.398 116.261 48
 -----------------------------------
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

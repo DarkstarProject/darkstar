@@ -3,7 +3,7 @@
 --  MOB: Qn'hpemde
 -- Jailor of Love Pet version
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onMobSpawn(mob)

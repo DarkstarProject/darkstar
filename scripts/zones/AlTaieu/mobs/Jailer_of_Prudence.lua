@@ -5,7 +5,7 @@
 -- AnimationSubs: 0 - Normal, 3 - Mouth Open
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Jailer_of_Prudence
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/status");
 -----------------------------------
 

@@ -3,7 +3,7 @@
 --  MOB: Marid
 -- Note: Place holder Mahishasura
 -----------------------------------
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

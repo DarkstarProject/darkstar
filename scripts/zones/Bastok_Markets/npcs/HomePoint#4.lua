@@ -3,7 +3,7 @@
 --  NPC: HomePoint#4
 -- !pos -191 -6 -68 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/homepoint");
 require("scripts/globals/settings");
 -----------------------------------

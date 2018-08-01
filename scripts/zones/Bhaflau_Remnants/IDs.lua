@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bhaflau_Remnants
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

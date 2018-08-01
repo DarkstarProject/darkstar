@@ -3,7 +3,7 @@
 --  NPC: Tateeya
 -- Automaton Attachment Unlocks
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/status");
 -----------------------------------
 

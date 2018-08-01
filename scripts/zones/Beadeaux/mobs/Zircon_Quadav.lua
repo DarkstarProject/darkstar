@@ -3,7 +3,7 @@
 --  Mob: Zircon Quadav
 -- Note: PH for Zo'Khu Blackcloud
 -----------------------------------
-local ID = require("scripts/zones/Beadeaux/IDs.lua");
+local ID = require("scripts/zones/Beadeaux/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

@@ -3,7 +3,7 @@
 --  NPC: ??? (Spawn Velionis(ZNM T1))
 -- !pos 311 -3 27 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2600,1) and trade:getItemCount() == 1) then -- Trade Golden Teeth

@@ -4,7 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -25.749 -0.044 52.360 234
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
 

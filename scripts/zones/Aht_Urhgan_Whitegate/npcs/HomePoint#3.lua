@@ -4,7 +4,7 @@
 -- !pos  -108 -6 -108 50
 -----------------------------------
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

@@ -2,7 +2,7 @@
 -- Area: Attohwa Chasm
 --  NPC: Cradle_of_Rebirth
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 -----------------------------------

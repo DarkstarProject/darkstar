@@ -4,7 +4,7 @@
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
 -- !pos -211 -11 -818 52
 -----------------------------------
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");

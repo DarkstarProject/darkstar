@@ -3,7 +3,7 @@
 --  NPC: ??? (Spawn Armed Gears(ZNM T3))
 -- !pos -42 -4 -169 72
 -----------------------------------
-local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(2574,1) and trade:getItemCount() == 1) then -- Trade Ferrite

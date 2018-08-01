@@ -8,7 +8,7 @@ require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/besieged");
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

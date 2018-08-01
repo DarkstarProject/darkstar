@@ -4,7 +4,7 @@
 -- Allows players to spawn the Jailer of Hope by trading the First Virtue, Deed of Placidity and HQ Phuabo Organ to a ???.
 -- !pos -693 -1 -62 33
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs.lua");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

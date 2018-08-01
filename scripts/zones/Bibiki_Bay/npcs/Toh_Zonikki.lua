@@ -4,7 +4,7 @@
 -- Type: Clamming NPC
 -- !pos -371 -1 -421 4
 -----------------------------------
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- Local Variables

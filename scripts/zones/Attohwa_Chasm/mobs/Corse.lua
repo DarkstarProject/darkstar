@@ -3,7 +3,7 @@
 --  MOB: Corse
 -- Note: PH for Citipati
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)

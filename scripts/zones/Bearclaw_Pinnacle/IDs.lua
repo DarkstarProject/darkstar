@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Bearclaw_Pinnacle
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

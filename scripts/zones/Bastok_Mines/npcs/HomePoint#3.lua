@@ -4,7 +4,7 @@
 -- !pos 87 7 1 234
 -----------------------------------
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

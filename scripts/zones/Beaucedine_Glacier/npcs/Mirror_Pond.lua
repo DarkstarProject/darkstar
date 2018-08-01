@@ -4,7 +4,7 @@
 -- Involved In Quest: Love And Ice
 -- !zone 223
 -----------------------------------
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 

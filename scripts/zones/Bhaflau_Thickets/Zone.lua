@@ -3,7 +3,7 @@
 -- Zone: Bhaflau_Thickets (52)
 --
 -----------------------------------
-local ID = require("scripts/zones/Bhaflau_Thickets/IDs.lua");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/zone");
 -----------------------------------

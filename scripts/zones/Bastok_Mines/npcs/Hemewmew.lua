@@ -4,7 +4,7 @@
 -- Type: Guildworker's Union Representative
 -- !pos 117.970 1.017 -10.438 234
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Mines/IDs.lua");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 

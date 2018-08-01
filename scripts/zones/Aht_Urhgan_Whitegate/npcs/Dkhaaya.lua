@@ -5,7 +5,7 @@
 -- !pos -73.212 -1 -5.842 50
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs.lua");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 

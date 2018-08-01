@@ -7,7 +7,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

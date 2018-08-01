@@ -7,7 +7,7 @@
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Beaucedine_Glacier/IDs.lua");
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 

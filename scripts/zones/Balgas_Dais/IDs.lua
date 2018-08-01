@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Balgas_Dais
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

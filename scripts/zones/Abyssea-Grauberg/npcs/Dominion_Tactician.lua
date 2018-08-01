@@ -2,7 +2,7 @@
 -- Area: Abyssea - Grauberg
 --  NPC: Dominion Tactician
 -----------------------------------
-local ID = require("scripts/zones/Abyssea-Grauberg/IDs.lua")
+local ID = require("scripts/zones/Abyssea-Grauberg/IDs")
 require("scripts/globals/abyssea")
 -----------------------------------
 

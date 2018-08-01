@@ -2,7 +2,7 @@
 -- Area: Bibiki Bay
 --  NPC: Clamming Point
 -----------------------------------
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- Local Variables

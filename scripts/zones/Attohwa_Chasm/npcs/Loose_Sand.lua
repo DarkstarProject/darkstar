@@ -2,7 +2,7 @@
 --  Area: Attohwa Chasm
 --  NPC:  Loose sand
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs.lua");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 

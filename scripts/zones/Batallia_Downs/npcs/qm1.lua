@@ -4,7 +4,7 @@
 -- !pos -407.526 -23.507 412.544 105
 -- Notes: Spawns Vegnix Greenthumb for ACP mission "Gatherer of Light (I)"
 -----------------------------------
-local ID = require("scripts/zones/Batallia_Downs/IDs.lua");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)

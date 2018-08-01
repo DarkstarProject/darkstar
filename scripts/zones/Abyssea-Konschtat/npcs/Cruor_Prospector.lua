@@ -4,7 +4,7 @@
 -- Type: Cruor NPC
 -- !pos 132.000,-75.856,-822.000 15
 -----------------------------------
-local ID = require("scripts/zones/Abyssea-Konschtat/IDs.lua")
+local ID = require("scripts/zones/Abyssea-Konschtat/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 require("scripts/globals/abyssea")

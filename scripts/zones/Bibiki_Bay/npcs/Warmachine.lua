@@ -4,7 +4,7 @@
 -- !pos -345.236 -3.188 -976.563 4
 -----------------------------------
 require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 

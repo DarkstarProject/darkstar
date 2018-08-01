@@ -4,7 +4,7 @@
 -- Involved In Quest: The Talekeeper's Gift
 -- !pos 211 4 -79 127
 -----------------------------------
-local ID = require("scripts/zones/Behemoths_Dominion/IDs.lua")
+local ID = require("scripts/zones/Behemoths_Dominion/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)

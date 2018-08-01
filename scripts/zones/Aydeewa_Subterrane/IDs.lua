@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Aydeewa_Subterrane
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

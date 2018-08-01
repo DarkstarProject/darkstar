@@ -6,7 +6,7 @@
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
-local ID = require("scripts/zones/Bibiki_Bay/IDs.lua");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

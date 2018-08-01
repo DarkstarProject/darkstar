@@ -6,7 +6,7 @@
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/besieged");
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

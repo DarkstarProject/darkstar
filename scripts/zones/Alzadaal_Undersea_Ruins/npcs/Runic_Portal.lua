@@ -5,7 +5,7 @@
 -- !pos 206.500 -1.220 33.500 72
 -- !pos 206.500 -1.220 6.500 72
 -----------------------------------
-local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs.lua");
+local ID = require("scripts/zones/Alzadaal_Undersea_Ruins/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");

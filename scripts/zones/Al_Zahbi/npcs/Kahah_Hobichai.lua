@@ -5,7 +5,7 @@
 -- TODO: Stock needs to be modified based on
 --       status of Astral Candescence
 -----------------------------------
-local ID = require("scripts/zones/Al_Zahbi/IDs.lua")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)

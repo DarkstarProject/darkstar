@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Beaucedine_Glacier
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}
@@ -45,7 +45,7 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
     npc =
     {
         MIRROR_POND_J8  = 17232196,
-        OVERSEER_BASE_8 = 17232207,
+        OVERSEER_BASE   = 17232207,
     },
 }
 

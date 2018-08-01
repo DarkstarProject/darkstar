@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Altar_Room
 -----------------------------------
-require("scripts/globals/zones")
+require("scripts/globals/zone")
 -----------------------------------
 
 zones = zones or {}

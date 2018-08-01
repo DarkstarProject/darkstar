@@ -4,7 +4,7 @@
 -- !pos -293.048 -10 -102.558 235
 -----------------------------------
 require("scripts/globals/settings");
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

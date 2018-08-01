@@ -4,7 +4,7 @@
 -- Spawns Behemoth or King Behemoth
 -- !pos -267 -19 74 127
 -----------------------------------
-local ID = require("scripts/zones/Behemoths_Dominion/IDs.lua")
+local ID = require("scripts/zones/Behemoths_Dominion/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/status")

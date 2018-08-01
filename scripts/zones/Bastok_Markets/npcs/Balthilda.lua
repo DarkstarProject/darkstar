@@ -4,7 +4,7 @@
 -- Type: Merchant
 -- !pos -300 -10 -161 235
 -----------------------------------
-local ID = require("scripts/zones/Bastok_Markets/IDs.lua")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
