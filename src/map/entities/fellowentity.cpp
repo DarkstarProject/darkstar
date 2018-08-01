@@ -27,8 +27,6 @@ This file is part of DarkStar-server source code.
 #include "../ai/controllers/fellow_controller.h"
 #include "../ai/helpers/pathfind.h"
 #include "../ai/helpers/targetfind.h"
-#include "../mob_spell_container.h"
-#include "../mob_spell_list.h"
 #include "../packets/char_health.h"
 #include "../packets/entity_update.h"
 #include "../packets/fellow_sync.h"
@@ -51,11 +49,9 @@ void CFellowEntity::PostTick()
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
         if (auto PChar = dynamic_cast<CCharEntity*>(PMaster); PChar && PChar->PFellow == this)
         {
-            {
-                PChar->pushPacket(new CFellowSyncPacket(PChar));
-            }
-            updatemask = 0;
+            PChar->pushPacket(new CFellowSyncPacket(PChar));
         }
+        updatemask = 0;
     }
 }
 
@@ -65,9 +61,8 @@ void CFellowEntity::Die()
     PAI->Internal_Die(0s);
     luautils::OnMobDeath(this, nullptr);
     CBattleEntity::Die();
-    if (PMaster->objtype == TYPE_PC)
+    if (auto PChar = dynamic_cast<CCharEntity*>(PMaster); PChar && PChar->PFellow == this)
     {
-        CCharEntity* PChar = (CCharEntity*)PMaster;
         PChar->RemoveFellow();
     }
 }

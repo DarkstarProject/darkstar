@@ -470,10 +470,10 @@ bool CCharEntity::ReloadParty()
 // ----------------- NPCFELLOW -------------------vv
 void CCharEntity::RemoveFellow()
 {
-    if (!PFellow->PAI->IsSpawned())
-        return;
-
-    PFellow->PAI->Despawn();
+    auto fellow = PFellow;
+    PFellow = nullptr;
+    if (!fellow->isDead())
+        fellow->Die();
 }
 // ------------------ NPCFELLOW -------^^
 
