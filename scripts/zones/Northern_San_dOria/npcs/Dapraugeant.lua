@@ -3,8 +3,6 @@
 --  NPC: Dapraugeant
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------");
 local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");

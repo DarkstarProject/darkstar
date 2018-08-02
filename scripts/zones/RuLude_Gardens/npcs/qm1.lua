@@ -3,8 +3,8 @@
 --  NPC: ???
 -- NPC for Dynamis Divergence Quest
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil
 local ID = require("scripts/zones/RuLude_Gardens/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end

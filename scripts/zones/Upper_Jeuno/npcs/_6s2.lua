@@ -4,21 +4,18 @@
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
 -- !pos -80 0 104 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
+    local aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
 
     if (aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 1) then
         player:startEvent(119); -- Start long cs quest with option "a clock most delicate"

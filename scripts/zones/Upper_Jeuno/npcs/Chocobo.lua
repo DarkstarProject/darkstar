@@ -3,15 +3,12 @@
 --  NPC: Chocobo
 -- Finishes Quest: Chocobo's Wounds
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

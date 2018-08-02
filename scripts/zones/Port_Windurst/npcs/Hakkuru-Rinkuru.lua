@@ -5,15 +5,12 @@
 -- Starts and Ends Quest: Wonder Wands
 -- !pos -111 -4 101 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

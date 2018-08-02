@@ -3,9 +3,6 @@
 --  NPC: Barricade
 -- Involved in Quests: The Fighting Fourth
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
 require("scripts/globals/quests");
 -----------------------------------
 

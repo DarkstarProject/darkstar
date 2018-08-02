@@ -5,9 +5,6 @@
 -- Starts and Finishes Quest: Tenshodo Membership
 -- !pos 16 0 -5 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
-package.loaded["scripts/globals/settings"] = nil
------------------------------------
 local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
@@ -15,6 +12,7 @@ require("scripts/globals/npc_util")
 require("scripts/globals/titles")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) ~= QUEST_COMPLETED and npcUtil.tradeHas(trade, 548) then

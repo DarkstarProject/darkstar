@@ -2,11 +2,8 @@
 -- Area: Wajaom Woodlands
 --  NPC: Harvesting Point
 -----------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
-package.loaded["scripts/globals/harvesting"] = nil;
--------------------------------------
-require("scripts/globals/harvesting");
 local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
+require("scripts/globals/harvesting");
 -----------------------------------
 
 function onTrade(player,npc,trade)

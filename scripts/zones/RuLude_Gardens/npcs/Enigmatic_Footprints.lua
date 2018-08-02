@@ -3,8 +3,8 @@
 --  NPC: Enigmatic Footprints
 -- Entry NPC for Dynamis Divergence
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil
 local ID = require("scripts/zones/RuLude_Gardens/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end

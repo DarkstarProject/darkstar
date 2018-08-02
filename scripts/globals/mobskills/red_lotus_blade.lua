@@ -20,13 +20,9 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4006) then -- Trion@QuBia_Arena only
-        package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil
-        require("scripts/zones/Qubia_Arena/TextIDs")
-        target:showText(mob,RLB_LAND)
+        target:showText(mob,zones[dsp.zone.QUBIA_ARENA].text.RLB_LAND)
     elseif (mob:getPool() == 4249) then -- Volker@Throne_Room only
-        package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil
-        require("scripts/zones/Throne_Room/TextIDs")
-        target:showText(mob,FEEL_MY_PAIN)
+        target:showText(mob,zones[dsp.zone.THRONE_ROOM].text.FEEL_MY_PAIN)
     end
 
     local dmgmod = 1.25

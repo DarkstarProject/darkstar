@@ -4,11 +4,8 @@
 -- Involved in Quests
 -- !pos -26 -31 364
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
-require("scripts/globals/quests");
 local ID = require("scripts/zones/Vunkerl_Inlet_[S]/IDs");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)

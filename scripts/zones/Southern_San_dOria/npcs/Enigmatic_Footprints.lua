@@ -3,8 +3,8 @@
 --  NPC: Enigmatic Footprints
 -- Entry NPC for Dynamis Divergence
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
 local ID = require("scripts/zones/Southern_San_dOria/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end

@@ -4,14 +4,11 @@
 -- Finishes Quest: Path of the Bard
 -- !pos -721 -7 102 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

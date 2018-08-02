@@ -2,8 +2,8 @@
 -- Area: Southern San d'Oria [S]
 --  NPC: Moogle
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil
 require("scripts/globals/moghouse")
+-----------------------------------
 
 function onTrade(player,npc,trade)
     moogleTrade(player,npc,trade)

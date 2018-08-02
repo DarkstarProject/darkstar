@@ -4,13 +4,10 @@
 -- Involved in Mission: San d'Oria 3-3, 4-1
 -- !pos -32 9 -49 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

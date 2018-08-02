@@ -133,7 +133,6 @@ end
         { {640,2}, 641 }    -- copper ore x2, tin ore x1
 ******************************************************************************* --]]
 function npcUtil.giveItem(player, items)
-    -- require zone TextIDs
     local ID = zones[player:getZoneID()]
 
     -- create table of items, with key/val of itemId/itemQty
@@ -183,7 +182,6 @@ end
         {dsp.ki.BLUE_ACIDITY_TESTER, dsp.ki.RED_ACIDITY_TESTER}
 ******************************************************************************* --]]
 function npcUtil.giveKeyItem(player, keyitems)
-    -- require zone TextIDs
     local ID = zones[player:getZoneID()]
     
     -- create table of keyitems

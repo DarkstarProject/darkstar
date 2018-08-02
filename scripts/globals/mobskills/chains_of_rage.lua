@@ -2,9 +2,7 @@
 -- Chains of Rage
 --
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
@@ -18,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
             if (race == 8) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_ALTAIEU) then
-                mob:showText(mob, PROMATHIA_TEXT + 4)
+                mob:showText(mob, ID.text.PROMATHIA_TEXT + 4)
                 return 0
             end
         end

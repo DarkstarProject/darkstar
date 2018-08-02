@@ -4,14 +4,11 @@
 -- Starts Windurst Missions
 -- !pos -227 -8 184 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)

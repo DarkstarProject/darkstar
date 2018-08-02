@@ -3,8 +3,8 @@
 --  NPC: Enigmatic Footprints
 -- Entry NPC for Dynamis Divergence
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil
 local ID = require("scripts/zones/Windurst_Walls/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end
