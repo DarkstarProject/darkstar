@@ -2,6 +2,7 @@
 -- Area: The Garden of Ru'Hmet
 --  MOB: Ix'aern (drg)
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -37,6 +38,6 @@ function onMobDespawn( mob )
     DespawnMob(mob:getID()+3);
 
     -- Pick a new PH for Ix'Aern (DRG)
-    local groups = AWAERN_DRG_GROUPS
+    local groups = ID.mob.AWAERN_DRG_GROUPS
     SetServerVariable("[SEA]IxAernDRG_PH", groups[math.random(1, #groups)] + math.random(0, 2));
 end

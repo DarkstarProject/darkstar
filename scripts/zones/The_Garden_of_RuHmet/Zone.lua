@@ -3,12 +3,10 @@
 -- Zone: The_Garden_of_RuHmet (35)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/conquest")
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -54,24 +52,24 @@ function onInitialize(zone)
     zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2
 
     -- Give the Fortitude ??? a random spawn
-    local qm1 = GetNPCByID(JAILER_OF_FORTITUDE_QM);
+    local qm1 = GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM);
     local qm1position = math.random(1,5);
-    qm1:setPos(JAILER_OF_FORTITUDE_QM_POS[qm1position][1], JAILER_OF_FORTITUDE_QM_POS[qm1position][2], JAILER_OF_FORTITUDE_QM_POS[qm1position][3]);
+    qm1:setPos(ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][1], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][2], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][3]);
 
     -- Give the Ix'Aern DRK ??? a random spawn
-    local qm2 = GetNPCByID(IXAERN_DRK_QM);
+    local qm2 = GetNPCByID(ID.npc.IXAERN_DRK_QM);
     local qm2position = math.random(1,4);
     qm2:setLocalVar("position",qm2position);
-    qm2:setPos(IXAERN_DRK_QM_POS[qm2position][1], IXAERN_DRK_QM_POS[qm2position][2], IXAERN_DRK_QM_POS[qm2position][3]);
+    qm2:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
     qm2:setLocalVar("hatedPlayer",0);
 
     -- Give the Faith ??? a random spawn
-    local qm3 = GetNPCByID(JAILER_OF_FAITH_QM);
+    local qm3 = GetNPCByID(ID.npc.JAILER_OF_FAITH_QM);
     local qm3position = math.random(1,5);
-    qm3:setPos(JAILER_OF_FAITH_QM_POS[qm3position][1], JAILER_OF_FAITH_QM_POS[qm3position][2], JAILER_OF_FAITH_QM_POS[qm3position][3]);
+    qm3:setPos(ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][1], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][2], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][3]);
 
     -- Give Ix'DRG a random placeholder by picking one of the four groups at random, then adding a random number of 0-2 for the specific mob.
-    local groups = AWAERN_DRG_GROUPS
+    local groups = ID.mob.AWAERN_DRG_GROUPS
     SetServerVariable("[SEA]IxAernDRG_PH", groups[math.random(1, #groups)] + math.random(0, 2));
 end;
 
@@ -92,8 +90,8 @@ end;
 
 function onGameHour(zone)
     local VanadielHour = VanadielHour();
-    local qm2 = GetNPCByID(IXAERN_DRK_QM); -- Ix'aern drk
-    local qm3 = GetNPCByID(JAILER_OF_FAITH_QM); -- Jailer of Faith
+    local qm2 = GetNPCByID(ID.npc.IXAERN_DRK_QM); -- Ix'aern drk
+    local qm3 = GetNPCByID(ID.npc.JAILER_OF_FAITH_QM); -- Jailer of Faith
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
 
     -- Jailer of Faith spawn randomiser
@@ -104,7 +102,7 @@ function onGameHour(zone)
         -- Get a new random position from the possible places
         local qm3position = math.random(1,5);
         -- Set the new ??? place
-        qm3:setPos(JAILER_OF_FAITH_QM_POS[qm3position][1], JAILER_OF_FAITH_QM_POS[qm3position][2], JAILER_OF_FAITH_QM_POS[qm3position][3]);
+        qm3:setPos(ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][1], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][2], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][3]);
     end
 
     -- Ix'DRK spawn randomiser
@@ -112,7 +110,7 @@ function onGameHour(zone)
         qm2:hideNPC(30);
         local qm2position = math.random(1,4);
         qm2:setLocalVar("position",qm2position);
-        qm2:setPos(IXAERN_DRK_QM_POS[qm2position][1], IXAERN_DRK_QM_POS[qm2position][2], IXAERN_DRK_QM_POS[qm2position][3]);
+        qm2:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
     end
 end;
 
