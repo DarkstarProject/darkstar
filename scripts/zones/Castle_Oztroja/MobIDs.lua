@@ -44,36 +44,12 @@ YAA_HAQA_THE_PROFANE_PH =
     [17395953] = 17395954, -- -32.302 -16.250 -139.169
 }
 
-local hdl = 17396196 -- Base handle for OZ_HANDLE_TABLE
-OZ_HANDLE_TABLE =
-{
-    [0] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
-    [1] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-    [2] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-    [3] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-    [4] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
-    [5] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
-    [6] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.OPEN_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-    [7] = {[hdl] = dsp.anim.CLOSE_DOOR, [hdl+1] = dsp.anim.CLOSE_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.OPEN_DOOR},
-    [8] = {[hdl] = dsp.anim.OPEN_DOOR, [hdl+1] = dsp.anim.OPEN_DOOR, [hdl+2] = dsp.anim.CLOSE_DOOR, [hdl+3] = dsp.anim.CLOSE_DOOR},
-}
-
-OZ_PASSWORD_TABLE =
-{
-    [0] = {[1] = {15, "Deggi"}, [2] = {16, "Haqa"}, [3] = {17, "Mjuu"}},
-    [1] = {[1] = {18, "Puqu"}, [2] = {19, "Ouzi"}, [3] = {20, "Duzu"}},
-    [2] = {[1] = {21, "Gadu"}, [2] = {22, "Mong"}, [3] = {23, "Buxu"}},
-    [3] = {[1] = {24, "Xicu"}, [2] = {17, "Mjuu"}, [3] = {21, "Gadu"}},
-    [4] = {[1] = {16, "Haqa"}, [2] = {20, "Duzu"}, [3] = {21, "Gadu"}},
-    [5] = {[1] = {21, "Gadu"}, [2] = {18, "Puqu"}, [3] = {22, "Mong"}},
-    [6] = {[1] = {21, "Gadu"}, [2] = {23, "Buxu"}, [3] = {20, "Duzu"}},
-    [7] = {[1] = {20, "Duzu"}, [2] = {15, "Deggi"}, [3] = {19, "Ouzi"}},
-    [8] = {[1] = {17, "Mjuu"}, [2] = {19, "Ouzi"}, [3] = {23, "Buxu"}},
-}
-
+HANDLE_DOOR_FLOOR_2     = 17396160
 FIRST_PASSWORD_STATUE   = 17396168
 SECOND_PASSWORD_STATUE  = 17396173
 THIRD_PASSWORD_STATUE   = 17396178
+TRAP_DOOR_FLOOR_4       = 17396191
 FINAL_PASSWORD_STATUE   = 17396192
+HINT_HANDLE_OFFSET      = 17396196 -- (_47q) the four levers that reveal the combination for brass door on floor 2
 OZTROJA_TREASURE_CHEST  = 17396210
 OZTROJA_TREASURE_COFFER = 17396211
