@@ -3,10 +3,10 @@
 --  NPC: HomePoint#1
 -- !pos -58 40 14 10
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
+package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
+require("scripts/zones/PsoXja/TextIDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

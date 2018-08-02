@@ -3,7 +3,7 @@
 -- Zone: Xarcabard (112)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Xarcabard/TextIDs"] = nil;
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/icanheararainbow");
 require("scripts/zones/Xarcabard/TextIDs");

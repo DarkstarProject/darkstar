@@ -7,7 +7,7 @@ package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Sauromugue_Champaign/TextIDs");
 require("scripts/zones/Sauromugue_Champaign/MobIDs");
-require( "scripts/globals/icanheararainbow");
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");

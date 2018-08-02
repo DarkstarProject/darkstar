@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
 -----------------------------------
-require( "scripts/zones/The_Shrine_of_RuAvitau/TextIDs" );
+require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 require("scripts/globals/status");
 -----------------------------------
 

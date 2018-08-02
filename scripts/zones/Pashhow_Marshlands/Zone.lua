@@ -3,7 +3,7 @@
 -- Zone: Pashhow_Marshlands (109)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
+package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
 require("scripts/zones/Pashhow_Marshlands/MobIDs");

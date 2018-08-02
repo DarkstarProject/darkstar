@@ -12,7 +12,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 
 function onTrade(player,npc,trade)

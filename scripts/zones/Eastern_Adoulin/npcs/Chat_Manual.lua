@@ -4,8 +4,6 @@
 -- Type: Tutorial NPC
 -- !zone: 257
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Adoulin/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

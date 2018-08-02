@@ -39,7 +39,8 @@ zones[dsp.zone.BEADEAUX] =
         {
             [17379426] = 17379427, -- -71.480 0.490 -62.882
         },
-        GE_DHA_EVILEYE_PH      =  {
+        GE_DHA_EVILEYE_PH      =
+        {
             [17379447] = 17379450, -- -242.709 0.5 -188.01
         },
         ZO_KHU_BLACKCLOUD_PH   = 

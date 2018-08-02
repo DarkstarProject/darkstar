@@ -8,7 +8,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 -------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 
 function onTrade(player,npc,trade)
