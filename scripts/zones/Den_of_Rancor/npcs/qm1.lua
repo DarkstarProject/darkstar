@@ -3,18 +3,15 @@
 --  NPC: ??? - HakuTaku spawn
 -- !pos 24 25 -306 160
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Den_of_Rancor/TextIDs")
-require("scripts/zones/Den_of_Rancor/MobIDs")
+local ID = require("scripts/zones/Den_of_Rancor/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 1298) and not GetMobByID(HAKUTAKU):isSpawned() then
+    if npcUtil.tradeHas(trade, 1298) and not GetMobByID(ID.mob.HAKUTAKU):isSpawned() then
         player:confirmTrade()
-        SpawnMob(HAKUTAKU):updateClaim(player)
+        SpawnMob(ID.mob.HAKUTAKU):updateClaim(player)
         npc:setStatus(dsp.status.DISAPPEAR)
     end
 end

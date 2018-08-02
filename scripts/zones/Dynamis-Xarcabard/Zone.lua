@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Xarcabard
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
