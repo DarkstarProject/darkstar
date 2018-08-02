@@ -1794,3 +1794,11 @@ INSERT INTO `bcnm_loot` VALUES ('180','17277','163','2');
 INSERT INTO `bcnm_loot` VALUES ('180','17707','167','2');
 INSERT INTO `bcnm_loot` VALUES ('180','18098','153','2');
 INSERT INTO `bcnm_loot` VALUES ('180','4748','271','2');
+
+-- LIMBUS (last chest in Temenos Basement)
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','0');
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','1');
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','2');
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','3');
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','4');
+INSERT INTO `bcnm_loot` VALUES ('202','1875','1000','5');

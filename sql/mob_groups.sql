@@ -1077,7 +1077,7 @@ INSERT INTO `mob_groups` VALUES (1029,4430,37,0,128,4414,0,0,75,80,0);  -- Yagud
 INSERT INTO `mob_groups` VALUES (1030,4443,37,0,128,4414,0,0,75,80,0);  -- Yagudo_Prelatess
 INSERT INTO `mob_groups` VALUES (1031,4453,37,0,128,0,0,0,60,64,0);  -- Yagudo_s_Avatar
 INSERT INTO `mob_groups` VALUES (1032,4454,37,0,128,0,2000,500,60,64,0);  -- Yagudo_s_Elemental        ok
--- appolyon                                       dropp,HP,PM
+-- apollyon                                       dropp,HP,PM
 INSERT INTO `mob_groups` VALUES (1033,45,38,0,128,4411,8500,500,75,80,0); -- Adamantshell
 INSERT INTO `mob_groups` VALUES (1034,71,38,0,128,4414,8000,2000,75,80,0); -- Air_Elemental
 INSERT INTO `mob_groups` VALUES (1035,200,38,0,128,4411,8500,800,75,80,0); -- Apollyon_Cleaner
@@ -12538,6 +12538,16 @@ INSERT INTO `mob_groups` VALUES (14628,830,22,1056,0,591,0,0,52,54,0);  -- Promy
 INSERT INTO `mob_groups` VALUES (14629,830,22,1056,0,591,0,0,54,56,0);  -- Promyvion-Vahzl Level 2
 INSERT INTO `mob_groups` VALUES (14630,830,22,1056,0,591,0,0,56,58,0);  -- Promyvion-Vahzl Level 3
 INSERT INTO `mob_groups` VALUES (14631,830,22,1056,0,591,0,0,58,60,0);  -- Promyvion-Vahzl Level 4/5
+
+-- limbus additions
+INSERT INTO `mob_groups` VALUES (14632,5842,37,0,128,4411,9500,0,75,80,0);    -- Praetorian_Guard_CCXX  
+INSERT INTO `mob_groups` VALUES (14633,5843,37,0,128,4411,9000,0,75,80,0);    -- Praetorian_Guard_CXLVIII 
+INSERT INTO `mob_groups` VALUES (14634,5844,37,0,128,4411,8000,500,75,80,0);  -- Praetorian_Guard_LXXIII
+INSERT INTO `mob_groups` VALUES (14635,5845,38,0,128,0,6000,0,80,85,0);       -- Jidra2 Apollyon SW
+INSERT INTO `mob_groups` VALUES (14636,5846,38,0,128,4409,5000,2500,75,80,0); -- Fir Bholg PLD Apollyon
+INSERT INTO `mob_groups` VALUES (14637,5847,38,0,128,4409,2500,5000,75,80,0); -- Fir Bholg BLM Apollyon
+INSERT INTO `mob_groups` VALUES (14638,5848,38,0,128,4409,3000,4000,75,80,0); -- Fir Bholg RDM Apollyon
+INSERT INTO `mob_groups` VALUES (14639,5849,38,0,128,4409,4000,0,75,80,0);    -- Fir Bholg THF Apollyon
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;

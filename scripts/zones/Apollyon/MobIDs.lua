@@ -1,0 +1,1 @@
+APOLLYON_BASE_CRATE            = 16932864;

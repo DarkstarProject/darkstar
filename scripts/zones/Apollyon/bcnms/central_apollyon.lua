@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name:
+-- Area: Apollyon
+-- Name: Central_Apollyon (Proto-Omega)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
@@ -10,8 +10,10 @@ function onBcnmRegister(player,instance)
     SetServerVariable("[Central_Apollyon]UniqueID",GenerateLimbusKey());
     HideArmouryCrates(GetInstanceRegion(1296),APOLLYON_SE_NE);
     GetNPCByID(16933248):setAnimation(8);
-    if (IsMobDead(16933125)==false) then DespawnMob(16933125);end
-     player:setVar("Limbus_Trade_Item",0);
+        if (IsMobDead(16933125)==false) then 
+            DespawnMob(16933125);
+        end
+        player:setVar("Limbus_Trade_Item",0);
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

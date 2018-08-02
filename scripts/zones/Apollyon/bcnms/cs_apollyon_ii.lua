@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Appolyon
+-- Area: Apollyon
 -- Name:
 -----------------------------------
 require("scripts/globals/limbus");
@@ -18,10 +18,10 @@ end;
 -- 4=Finish
 
 function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
+    --print("leave code "..leavecode);
     
     if (leavecode == 2 or leavecode == 3 or leavecode == 4) then
-     --    player:setPos(0,0,0,0,0);
+        --player:setPos(0,0,0,0,0);
     end
     if (leavecode == 4) then
         --SetServerVariable("[]UniqueID",0);

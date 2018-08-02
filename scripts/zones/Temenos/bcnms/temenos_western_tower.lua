@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Temenos
--- Name:
+-- Name: Western Tower
 -----------------------------------
-
-
+require("scripts/globals/limbus");
+require("scripts/globals/keyitems");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
@@ -23,13 +23,13 @@ end;
 
 -- Leaving  by every mean possible, given by the LeaveCode
 -- 3=Disconnected or warped out (if dyna is empty: launch 4 after 3)
--- 4=Finish he dynamis
+-- 4=Finish the dynamis
 
 function onBcnmLeave(player,instance,leavecode)
---print("leave code "..leavecode);
+    --print("leave code "..leavecode);
 
     if (leavecode == 4) then
-         player:setPos(580,-1.5,4.452,192);
+        player:setPos(580,-1.5,4.452,192);
         ResetPlayerLimbusVariable(player)
     end
 end;

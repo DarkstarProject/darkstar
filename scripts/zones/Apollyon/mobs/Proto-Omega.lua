@@ -10,6 +10,7 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
+require("scripts/zones/Apollyon/MobIDs");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -84,6 +85,6 @@ function onMobDespawn(mob)
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
-    GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+39):setStatus(dsp.status.NORMAL);
+    GetNPCByID(APOLLYON_BASE_CRATE+39):setPos(mobX,mobY,mobZ);
+    GetNPCByID(APOLLYON_BASE_CRATE+39):setStatus(dsp.status.NORMAL);
 end;

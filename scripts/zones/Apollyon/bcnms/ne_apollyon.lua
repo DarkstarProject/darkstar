@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name: NE_Apollyon
+-- Area: Apollyon
+-- Name: NE_Apollyon (Mandragora,Birds,Magic Pots, Opo-opos,Dhalmel)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
@@ -9,6 +9,8 @@ require("scripts/globals/keyitems");
 function onBcnmRegister(player,instance)
     SetServerVariable("[NE_Apollyon]UniqueID",GenerateLimbusKey());
     HideArmouryCrates(GetInstanceRegion(1292),APOLLYON_SE_NE);
+    --print ("spawn coffer");
+    SpawnCofferNE();
 end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)

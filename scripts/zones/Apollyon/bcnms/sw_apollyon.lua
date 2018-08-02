@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Appolyon
--- Name:
+-- Area: Apollyon
+-- Name: Apollyon SW (Fomors,Treants,Mimics,Elementals)
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");

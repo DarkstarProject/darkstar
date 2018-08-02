@@ -5,6 +5,7 @@
 -----------------------------------
 
 require("scripts/globals/settings");
+require("scripts/globals/missions");
 package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
 require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
@@ -26,35 +27,35 @@ function onInitialize(zone)
 zone:registerRegion(1,  637,-4,-642,642,4,-637);  -- APOLLYON_SE_NE exit
 zone:registerRegion(2, -642,-4,-642,-637,4,-637);  -- APOLLYON_NW_SW exit
 
-zone:registerRegion(3, 468,-4,-637,  478,4,-622); -- appolyon SE register
-zone:registerRegion(4, 421,-4,-98,   455,4,-78); -- appolyon NE register
-zone:registerRegion(5, -470,-4,-629,  -459,4,-620); -- appolyon SW register
-zone:registerRegion(6, -455,-4,-95,   -425,4,-67); -- appolyon NW register
+zone:registerRegion(3, 468,-4,-637,  478,4,-622); -- apollyon SE register
+zone:registerRegion(4, 421,-4,-98,   455,4,-78); -- apollyon NE register
+zone:registerRegion(5, -470,-4,-629,  -459,4,-620); -- apollyon SW register
+zone:registerRegion(6, -455,-4,-95,   -425,4,-67); -- apollyon NW register
 
-zone:registerRegion(7, -3,-4,-214,   3,4,-210); -- appolyon CS register
-zone:registerRegion(8, -3,-4, 207,   3,4, 215); -- appolyon Center register
+zone:registerRegion(7, -3,-4,-214,   3,4,-210); -- apollyon CS register
+zone:registerRegion(8, -3,-4, 207,   3,4, 215); -- apollyon Center register
 
-zone:registerRegion(20,   396,-4,-522,   403,4,-516); -- appolyon SE telporter floor1 to floor2
-zone:registerRegion(21,   116,-4,-443,   123,4,-436); -- appolyon SE telporter floor2 to floor3
-zone:registerRegion(22,   276,-4,-283,   283,4,-276); -- appolyon SE telporter floor3 to floor4
-zone:registerRegion(23,   517,-4,-323,   523,4,-316); -- appolyon SE telporter floor4 to entrance
+zone:registerRegion(20,   396,-4,-522,   403,4,-516); -- apollyon SE teleporter floor1 to floor2
+zone:registerRegion(21,   116,-4,-443,   123,4,-436); -- apollyon SE teleporter floor2 to floor3
+zone:registerRegion(22,   276,-4,-283,   283,4,-276); -- apollyon SE teleporter floor3 to floor4
+zone:registerRegion(23,   517,-4,-323,   523,4,-316); -- apollyon SE teleporter floor4 to entrance
 
-zone:registerRegion(24,   396,-4,76,   403,4,83); -- appolyon NE telporter floor1 to floor2
-zone:registerRegion(25,   276,-4,356,   283,4,363); -- appolyon NE telporter floor2 to floor3
-zone:registerRegion(26,   236,-4,517,   243,4,523); -- appolyon NE telporter floor3 to floor4
-zone:registerRegion(27,   517,-4,637,   523,4,643); -- appolyon NE telporter floor4 to floor5
-zone:registerRegion(28,   557,-4,356,   563,4,363); -- appolyon NE telporter floor5 to entrance
+zone:registerRegion(24,   396,-4,76,   403,4,83); -- apollyon NE teleporter floor1 to floor2
+zone:registerRegion(25,   276,-4,356,   283,4,363); -- apollyon NE teleporter floor2 to floor3
+zone:registerRegion(26,   236,-4,517,   243,4,523); -- apollyon NE teleporter floor3 to floor4
+zone:registerRegion(27,   517,-4,637,   523,4,643); -- apollyon NE teleporter floor4 to floor5
+zone:registerRegion(28,   557,-4,356,   563,4,363); -- apollyon NE teleporter floor5 to entrance
 
-zone:registerRegion(29, -403,-4,-523,  -396,4,-516); -- appolyon SW telporter floor1 to floor2
-zone:registerRegion(30, -123,-4,-443,  -116,4,-436); -- appolyon SW telporter floor2 to floor3
-zone:registerRegion(31, -283,-4,-283,  -276,4,-276); -- appolyon SW telporter floor3 to floor4
-zone:registerRegion(32, -523,-4,-323,  -517,4,-316); -- appolyon SW telporter floor4 to entrance
+zone:registerRegion(29, -403,-4,-523,  -396,4,-516); -- apollyon SW teleporter floor1 to floor2
+zone:registerRegion(30, -123,-4,-443,  -116,4,-436); -- apollyon SW teleporter floor2 to floor3
+zone:registerRegion(31, -283,-4,-283,  -276,4,-276); -- apollyon SW teleporter floor3 to floor4
+zone:registerRegion(32, -523,-4,-323,  -517,4,-316); -- apollyon SW teleporter floor4 to entrance
 
-zone:registerRegion(33, -403,-4,76,   -396,4,83); -- appolyon NW telporter floor1 to floor2
-zone:registerRegion(34, -283,-4,356,  -276,4,363); -- appolyon NW telporter floor2 to floor3
-zone:registerRegion(35, -243,-4,516,  -236,4,523); -- appolyon NW telporter floor3 to floor4
-zone:registerRegion(36, -523,-4,636,  -516,4,643); -- appolyon NW telporter floor4 to floor5
-zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floor5 to entrance
+zone:registerRegion(33, -403,-4,76,   -396,4,83); -- apollyon NW teleporter floor1 to floor2
+zone:registerRegion(34, -283,-4,356,  -276,4,363); -- apollyon NW teleporter floor2 to floor3
+zone:registerRegion(35, -243,-4,516,  -236,4,523); -- apollyon NW teleporter floor3 to floor4
+zone:registerRegion(36, -523,-4,636,  -516,4,643); -- apollyon NW teleporter floor4 to floor5
+zone:registerRegion(37, -563,-4,356,  -556,4,363); -- apollyon NW teleporter floor5 to entrance
                                                                 
 end;
 
@@ -105,71 +106,71 @@ function onRegionEnter(player,region)
         [3] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1293);
-              end   --create instance appolyon SE
+              end   --create instance apollyon SE
         end,
         [4] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1292);
-              end   --create instance appolyon NE
+              end   --create instance apollyon NE
         end,
         [5] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1291);
-              end   --create instance appolyon SW
+              end   --create instance apollyon SW
         end,
         [6] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1290);
-              end   --create instance appolyon NW
+              end   --create instance apollyon NW
         end,
         [7] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1294);
-              end   --create instance appolyon CS
+              end   --create instance apollyon CS
         end,
         [8] = function (x)
               if (player:hasStatusEffect(dsp.effect.BATTLEFIELD) == false) then
                   RegisterLimbusInstance(player,1296);
-              end   --create instance appolyon CENTER
+              end   --create instance apollyon CENTER
         end,
         
         -- ///////////////////////APOLLYON SE TELEPORTER///////////////////////////////////////////
         [20] = function (x)
-             -- print("SE_telporter_f1_to_f2");
+             -- print("SE_teleporter_f1_to_f2");
              if (IsMobDead(16932992)==true and player:getAnimation()==0) then player:startEvent(219);end
         end,
         [21] = function (x)
-             -- print("SE_telporter_f2_to_f3");
+             -- print("SE_teleporter_f2_to_f3");
               if (IsMobDead(16933006)==true and player:getAnimation()==0) then player:startEvent(218);end
         end,
         [22] = function (x)
-            --  print("SE_telporter_f3_to_f4");
+            --  print("SE_teleporter_f3_to_f4");
               if (IsMobDead(16933020)==true and player:getAnimation()==0) then player:startEvent(216);end
          end,
         [23] = function (x)
-             -- print("SE_telporter_f3_to_entrance");
+             -- print("SE_teleporter_f3_to_entrance");
               if (IsMobDead(16933032)==true and player:getAnimation()==0) then player:startEvent(217);end
          end,
          -- ///////////////////////////////////////////////////////////////////////////////////////////
          -- /////////////////////    APOLLYON NE TELEPORTER           ////////////////////////////////
         [24] = function (x)
-             -- print("NE_telporter_f1_to_f2");
+             -- print("NE_teleporter_f1_to_f2");
               if (IsMobDead(16933044)==true and player:getAnimation()==0) then player:startEvent(214);end
          end,
          [25] = function (x)
-             -- print("NE_telporter_f2_to_f3");
+             -- print("NE_teleporter_f2_to_f3");
               if (IsMobDead(16933064)==true and player:getAnimation()==0) then player:startEvent(212);end  --212
          end,
          [26] = function (x)
-            --  print("NE_telporter_f3_to_f4");
+            --  print("NE_teleporter_f3_to_f4");
               if (IsMobDead(16933086)==true and player:getAnimation()==0) then player:startEvent(210);end  --210
          end,
          [27] = function (x)
-            --  print("NE_telporter_f4_to_f5");
+            --  print("NE_teleporter_f4_to_f5");
               if (IsMobDead(16933101)==true and player:getAnimation()==0) then player:startEvent(215);end    --215
          end,
          [28] = function (x)
-            --  print("NE_telporter_f5_to_entrance");
+            --  print("NE_teleporter_f5_to_entrance");
               if ( (IsMobDead(16933114)==true or IsMobDead(16933113)==true) and player:getAnimation()==0) then player:startEvent(213);end --213
          end,
          -- //////////////////////////////////////////////////////////////////////////////////////////////////
@@ -178,7 +179,7 @@ function onRegionEnter(player,region)
               if (IsMobDead(16932873)==true and player:getAnimation()==0) then player:startEvent(208);end --208
          end,
          [30] = function (x)
-              if (IsMobDead(16932885)==true and player:getAnimation()==0) then player:startEvent(209);end --209
+              if (IsMobDead(16932881)==true and player:getAnimation()==0) then player:startEvent(209);end --209
               --printf("Mimics should be 0: %u",GetServerVariable("[SW_Apollyon]MimicTrigger"));
          end,
          [31] = function (x)

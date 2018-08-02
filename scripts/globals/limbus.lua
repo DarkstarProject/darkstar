@@ -86,9 +86,9 @@ ARMOURY_CRATES_LIST_APOLLYON =
     2, {cITEM, SE_Apollyon, 0, false, 0, 110}, --  items    SE_Apollyon floor 1
     3, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore    SE_Apollyon floor 1
 
-    14, {cTIME, SW_Apollyon, 10, false, 0, 0}, --  time    SW_Apollyon floor 1
-    15, {cITEM, SW_Apollyon, 0, false, 0, 119}, --  items    SW_Apollyon floor 1
-    16, {cRESTORE, SW_Apollyon, 0, false, 0, 0}, --  restore    SW_Apollyon floor 1
+    14, {cTIME, SW_Apollyon, 10, true, 0, 0}, --  time    SW_Apollyon floor 1
+    15, {cITEM, SW_Apollyon, 0, true, 0, 119}, --  items    SW_Apollyon floor 1
+    16, {cRESTORE, SW_Apollyon, 0, true, 0, 0}, --  restore    SW_Apollyon floor 1
 
     -- 32, {}, -- mimic
     -- 33, {}, -- mimic
@@ -221,7 +221,7 @@ ARMOURY_CRATES_LIST_TEMENOS =
 
 
     --  central 4eme floor -------------------------------
-    79, {cITEM, Central_Temenos_4th_Floor, 0, false, 0, 154},
+    79, {cITEM, Central_Temenos_4th_Floor, 0, true, 0, 154},
     --
     80, {cITEM, Central_Temenos_4th_Floor, 0, false, 1, 155},
     86, {cITEM, Central_Temenos_4th_Floor, 0, false, 1, 155},
@@ -245,7 +245,9 @@ ARMOURY_CRATES_LIST_TEMENOS =
     115, {cITEM, Central_Temenos_4th_Floor, 0, false, 5, 155},
     116, {cITEM, Central_Temenos_4th_Floor, 0, false, 5, 155},
     122, {cITEM, Central_Temenos_4th_Floor, 0, false, 5, 155},
-    --
+    -----------
+    202, {cITEM, Central_Temenos_Basement, 0, false, 0, 202}, -- from ghrah, 6 ancient beastcoins
+    -------------------------------------------
     123, {cMIMIC, Temenos_Eastern_Tower, 0, true, 0, 0},
     127, {cMIMIC, Temenos_Eastern_Tower, 0, true, 0, 0},
     -------------------------------------------
@@ -274,8 +276,6 @@ ARMOURY_CRATES_LIST_TEMENOS =
     199, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
     200, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
     201, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
-    202, {cTIME, Central_Temenos_Basement, 5, false, 0, 0},
-
 
     203, {cRESTORE, Temenos_Western_Tower, 0, false, 0, 0},
     204, {cRESTORE, Temenos_Western_Tower, 0, false, 0, 0},
@@ -350,39 +350,39 @@ end
 
 function HideTemenosDoor(Region)
     if (Region == Temenos_Northern_Tower) then
-        GetNPCByID((450)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((451)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((452)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((453)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((454)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((455)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((456)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Temenos_Eastern_Tower) then
         GetNPCByID((457)+16928770):setStatus(dsp.status.DISAPPEAR)
+    elseif (Region == Temenos_Eastern_Tower) then
         GetNPCByID((458)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((459)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((460)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((461)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((462)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((463)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Temenos_Western_Tower) then
         GetNPCByID((464)+16928770):setStatus(dsp.status.DISAPPEAR)
+    elseif (Region == Temenos_Western_Tower) then
         GetNPCByID((465)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((466)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((467)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((468)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((469)+16928770):setStatus(dsp.status.DISAPPEAR)
         GetNPCByID((470)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Central_Temenos_1st_Floor) then
         GetNPCByID((471)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Central_Temenos_2nd_Floor) then
+    elseif (Region == Central_Temenos_1st_Floor) then
         GetNPCByID((472)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Central_Temenos_3rd_Floor) then
+    elseif (Region == Central_Temenos_2nd_Floor) then
         GetNPCByID((473)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Central_Temenos_4th_Floor) then
+    elseif (Region == Central_Temenos_3rd_Floor) then
         GetNPCByID((474)+16928770):setStatus(dsp.status.DISAPPEAR)
-    elseif (Region == Central_Temenos_Basement) then
+    elseif (Region == Central_Temenos_4th_Floor) then
         GetNPCByID((475)+16928770):setStatus(dsp.status.DISAPPEAR)
+    elseif (Region == Central_Temenos_Basement) then
+        GetNPCByID((476)+16928770):setStatus(dsp.status.DISAPPEAR)
     end
 end
 
@@ -390,35 +390,35 @@ function IselementalDayAreDead()
     local day = GetServerVariable("[SW_Apollyon]ElementalTrigger") - 1
     local daykill=false
     if (day == 0) then  --  fire
-        if (IsMobDead(16932913) == true and IsMobDead(16932921) == true and IsMobDead(16932929) == true) then
+        if (GetMobByID(16932913):isDead() and GetMobByID(16932921):isDead() and GetMobByID(16932929):isDead()) then
             daykill = true
         end
     elseif (day == 1) then --  earth
-        if (IsMobDead(16932912) == true and IsMobDead(16932920) == true and IsMobDead(16932928) == true) then
+        if (GetMobByID(16932912):isDead() and GetMobByID(16932920):isDead() and GetMobByID(16932928):isDead()) then
             daykill = true
         end
     elseif (day == 2) then --  water
-        if (IsMobDead(16932916) == true and IsMobDead(16932924) == true and IsMobDead(16932932) == true) then
+        if (GetMobByID(16932916):isDead() and GetMobByID(16932924):isDead() and GetMobByID(16932932):isDead()) then
             daykill = true
         end
     elseif (day == 3) then --  wind
-        if (IsMobDead(16932910) == true and IsMobDead(16932918) == true and IsMobDead(16932926) == true) then
+        if (GetMobByID(16932910):isDead() and GetMobByID(16932918):isDead() and GetMobByID(16932926):isDead()) then
             daykill = true
         end
     elseif (day == 4) then --  ice
-        if (IsMobDead(16932914) == true and IsMobDead(16932922) == true and IsMobDead(16932930) == true) then
+        if (GetMobByID(16932914):isDead() and GetMobByID(16932922):isDead() and GetMobByID(16932930):isDead()) then
             daykill = true
         end
     elseif (day == 5) then --  lightning
-        if (IsMobDead(16932917) == true and IsMobDead(16932925) == true and IsMobDead(16932933) == true) then
+        if (GetMobByID(16932917):isDead() and GetMobByID(16932925):isDead() and GetMobByID(16932933):isDead()) then
             daykill = true
         end
-    elseif (day == 6) then --  ligth
-        if (IsMobDead(16932931) == true and IsMobDead(16932915) == true and IsMobDead(16932923) == true) then
+    elseif (day == 6) then --  light
+        if (GetMobByID(16932931):isDead() and GetMobByID(16932915):isDead() and GetMobByID(16932923):isDead()) then
             daykill = true
         end
     elseif (day == 7) then  --  dark
-        if (IsMobDead(16932911) == true and IsMobDead(16932919) == true and IsMobDead(16932927) == true) then
+        if (GetMobByID(16932911):isDead() and GetMobByID(16932919):isDead() and GetMobByID(16932927):isDead()) then
             daykill = true
         end
     end
@@ -600,65 +600,143 @@ end
 
 function SpawnCofferSWfloor3()
     --  print("spawn_coffer")
-    GetNPCByID(16932864+210):setPos(MIMICPOSITION[2][1], MIMICPOSITION[2][2], MIMICPOSITION[2][3])
-    GetNPCByID(16932864+210):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+211):setPos(MIMICPOSITION[4][1], MIMICPOSITION[4][2], MIMICPOSITION[4][3])
-    GetNPCByID(16932864+211):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+212):setPos(MIMICPOSITION[6][1], MIMICPOSITION[6][2], MIMICPOSITION[6][3])
-    GetNPCByID(16932864+212):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+213):setPos(MIMICPOSITION[8][1], MIMICPOSITION[8][2], MIMICPOSITION[8][3])
-    GetNPCByID(16932864+213):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+214):setPos(MIMICPOSITION[10][1], MIMICPOSITION[10][2], MIMICPOSITION[10][3])
-    GetNPCByID(16932864+214):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+215):setPos(MIMICPOSITION[12][1], MIMICPOSITION[12][2], MIMICPOSITION[12][3])
-    GetNPCByID(16932864+215):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16932864+216):setPos(MIMICPOSITION[14][1], MIMICPOSITION[14][2], MIMICPOSITION[14][3])
-    GetNPCByID(16932864+216):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+210):setPos(MIMICPOSITION[2][1], MIMICPOSITION[2][2], MIMICPOSITION[2][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+210):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+211):setPos(MIMICPOSITION[4][1], MIMICPOSITION[4][2], MIMICPOSITION[4][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+211):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+212):setPos(MIMICPOSITION[6][1], MIMICPOSITION[6][2], MIMICPOSITION[6][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+212):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+213):setPos(MIMICPOSITION[8][1], MIMICPOSITION[8][2], MIMICPOSITION[8][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+213):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+214):setPos(MIMICPOSITION[10][1], MIMICPOSITION[10][2], MIMICPOSITION[10][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+214):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+215):setPos(MIMICPOSITION[12][1], MIMICPOSITION[12][2], MIMICPOSITION[12][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+215):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+216):setPos(MIMICPOSITION[14][1], MIMICPOSITION[14][2], MIMICPOSITION[14][3])
+    GetNPCByID(APOLLYON_BASE_CRATE+216):setStatus(dsp.status.NORMAL)
     SetServerVariable("[SW_Apollyon]MimicTrigger", 1)
+end
+
+function SpawnCofferNW()
+    --print ("spawn_coffer")
+    GetNPCByID(APOLLYON_BASE_CRATE+40):setPos(-450,0.5,26)
+    GetNPCByID(APOLLYON_BASE_CRATE+40):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+41):setPos(-466,0.5,30)
+    GetNPCByID(APOLLYON_BASE_CRATE+41):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+42):setPos(-447,0.5,-19)
+    GetNPCByID(APOLLYON_BASE_CRATE+42):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+179):setPos(-471,0.5,-7)
+    GetNPCByID(APOLLYON_BASE_CRATE+179):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+43):setPos(-347,0.5,327)
+    GetNPCByID(APOLLYON_BASE_CRATE+43):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+44):setPos(-384,0.5,287)
+    GetNPCByID(APOLLYON_BASE_CRATE+44):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+45):setPos(-340,0.5,264)
+    GetNPCByID(APOLLYON_BASE_CRATE+45):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+264):setPos(-328,0.5,205)
+    GetNPCByID(APOLLYON_BASE_CRATE+264):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+97):setPos(-214,0.5,542)
+    GetNPCByID(APOLLYON_BASE_CRATE+97):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+98):setPos(-317,0.5,612)
+    GetNPCByID(APOLLYON_BASE_CRATE+98):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+177):setPos(-297,0.5,543)
+    GetNPCByID(APOLLYON_BASE_CRATE+177):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+289):setPos(-316,0.5,544)
+    GetNPCByID(APOLLYON_BASE_CRATE+289):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+189):setPos(-540,0.5,540)
+    GetNPCByID(APOLLYON_BASE_CRATE+189):setStatus(dsp.status.NORMAL) 
+    GetNPCByID(APOLLYON_BASE_CRATE+190):setPos(-608,0.5,567)
+    GetNPCByID(APOLLYON_BASE_CRATE+190):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+262):setPos(-599,0.5,604)
+    GetNPCByID(APOLLYON_BASE_CRATE+262):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+327):setPos(-561,0.5,571)
+    GetNPCByID(APOLLYON_BASE_CRATE+327):setStatus(dsp.status.NORMAL)
+end
+
+function SpawnCofferNE()
+    --print ("spawn_coffer")
+    GetNPCByID(APOLLYON_BASE_CRATE+81):setPos(453,0,31)
+    GetNPCByID(APOLLYON_BASE_CRATE+81):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+82):setPos(459,0,29)
+    GetNPCByID(APOLLYON_BASE_CRATE+82):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+118):setPos(452,0,15)
+    GetNPCByID(APOLLYON_BASE_CRATE+118):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+120):setPos(470,0,32)
+    GetNPCByID(APOLLYON_BASE_CRATE+120):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+83):setPos(333,0,228)
+    GetNPCByID(APOLLYON_BASE_CRATE+83):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+84):setPos(410,0,279)
+    GetNPCByID(APOLLYON_BASE_CRATE+84):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+125):setPos(316,0,363)
+    GetNPCByID(APOLLYON_BASE_CRATE+125):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+127):setPos(369,0,325)
+    GetNPCByID(APOLLYON_BASE_CRATE+127):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+85):setPos(211,0,554)
+    GetNPCByID(APOLLYON_BASE_CRATE+85):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+94):setPos(307,0,530)
+    GetNPCByID(APOLLYON_BASE_CRATE+94):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+139):setPos(362,0,556)
+    GetNPCByID(APOLLYON_BASE_CRATE+139):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+141):setPos(363,0,538)
+    GetNPCByID(APOLLYON_BASE_CRATE+141):setStatus(dsp.status.NORMAL)
+
+    GetNPCByID(APOLLYON_BASE_CRATE+95):setPos(587,0,536)
+    GetNPCByID(APOLLYON_BASE_CRATE+95):setStatus(dsp.status.NORMAL) 
+    GetNPCByID(APOLLYON_BASE_CRATE+96):setPos(560,0,580)
+    GetNPCByID(APOLLYON_BASE_CRATE+96):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+153):setPos(558,0,644)
+    GetNPCByID(APOLLYON_BASE_CRATE+153):setStatus(dsp.status.NORMAL)
+    GetNPCByID(APOLLYON_BASE_CRATE+155):setPos(585,0,597)
+    GetNPCByID(APOLLYON_BASE_CRATE+155):setStatus(dsp.status.NORMAL)
 end
 
 function SpawnCofferTemenosCFloor4()
     --  print("spawn_coffer")
-    GetNPCByID(16928768+80):setPos(-560, -6, -459)
-    GetNPCByID(16928768+80):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+86):setPos(-540, -6, -459)
-    GetNPCByID(16928768+86):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+87):setPos(-576, -6, -459)
-    GetNPCByID(16928768+87):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+88):setPos(-528, -6, -459)
-    GetNPCByID(16928768+88):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+80):setPos(-560, -6, -459)
+    GetNPCByID(TEMENOS_BASE_CRATE+80):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+86):setPos(-540, -6, -459)
+    GetNPCByID(TEMENOS_BASE_CRATE+86):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+87):setPos(-576, -6, -459)
+    GetNPCByID(TEMENOS_BASE_CRATE+87):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+88):setPos(-528, -6, -459)
+    GetNPCByID(TEMENOS_BASE_CRATE+88):setStatus(dsp.status.NORMAL)
 
-    GetNPCByID(16928768+89):setPos(-592, -6, -487)
-    GetNPCByID(16928768+89):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+95):setPos(-566, -6, -486)
-    GetNPCByID(16928768+95):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+96):setPos(-566, -6, -513)
-    GetNPCByID(16928768+96):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+97):setPos(-592, -6, -513)
-    GetNPCByID(16928768+97):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+89):setPos(-592, -6, -487)
+    GetNPCByID(TEMENOS_BASE_CRATE+89):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+95):setPos(-566, -6, -486)
+    GetNPCByID(TEMENOS_BASE_CRATE+95):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+96):setPos(-566, -6, -513)
+    GetNPCByID(TEMENOS_BASE_CRATE+96):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+97):setPos(-592, -6, -513)
+    GetNPCByID(TEMENOS_BASE_CRATE+97):setStatus(dsp.status.NORMAL)
 
-    GetNPCByID(16928768+98):setPos(-531, -0.5, -501)
-    GetNPCByID(16928768+98):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+104):setPos(-527, -6, -512)
-    GetNPCByID(16928768+104):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+105):setPos(-552, -6, -512)
-    GetNPCByID(16928768+105):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+106):setPos(-552, -6, -488)
-    GetNPCByID(16928768+106):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+98):setPos(-531, -0.5, -501)
+    GetNPCByID(TEMENOS_BASE_CRATE+98):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+104):setPos(-527, -6, -512)
+    GetNPCByID(TEMENOS_BASE_CRATE+104):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+105):setPos(-552, -6, -512)
+    GetNPCByID(TEMENOS_BASE_CRATE+105):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+106):setPos(-552, -6, -488)
+    GetNPCByID(TEMENOS_BASE_CRATE+106):setStatus(dsp.status.NORMAL)
 
-    GetNPCByID(16928768+107):setPos(-488, 2, -510)
-    GetNPCByID(16928768+107):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+113):setPos(-486, 2, -491)
-    GetNPCByID(16928768+113):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+114):setPos(-508, 2, -513)
-    GetNPCByID(16928768+114):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+107):setPos(-488, 2, -510)
+    GetNPCByID(TEMENOS_BASE_CRATE+107):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+113):setPos(-486, 2, -491)
+    GetNPCByID(TEMENOS_BASE_CRATE+113):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+114):setPos(-508, 2, -513)
+    GetNPCByID(TEMENOS_BASE_CRATE+114):setStatus(dsp.status.NORMAL)
 
-    GetNPCByID(16928768+115):setPos(-488, 2, -408)
-    GetNPCByID(16928768+115):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+116):setPos(-485, 2, -423)
-    GetNPCByID(16928768+116):setStatus(dsp.status.NORMAL)
-    GetNPCByID(16928768+122):setPos(-506, 2, -406)
-    GetNPCByID(16928768+122):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+115):setPos(-488, 2, -408)
+    GetNPCByID(TEMENOS_BASE_CRATE+115):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+116):setPos(-485, 2, -423)
+    GetNPCByID(TEMENOS_BASE_CRATE+116):setStatus(dsp.status.NORMAL)
+    GetNPCByID(TEMENOS_BASE_CRATE+122):setPos(-506, 2, -406)
+    GetNPCByID(TEMENOS_BASE_CRATE+122):setStatus(dsp.status.NORMAL)
 end
 
 function Randomcoffer(Floor, region)

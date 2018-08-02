@@ -4,50 +4,49 @@
 -- !pos
 -----------------------------------
 require("scripts/globals/limbus");
+
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-   player:startEvent(121,511);
-
+    player:startEvent(121,511);
 end;
 
 function onEventUpdate(player,csid,option)
-   printf("RESULT: %u",option);
-   Xtime=0;
---=player:getSpecialBattlefieldLeftTime();
- switch (option): caseof {
+    printf("RESULT: %u",option);
+    Xtime=0;
+    --=player:getSpecialBattlefieldLeftTime();
+    switch (option): caseof {
         [1] = function (x) -- N
-Xtime=player:getSpecialBattlefieldLeftTime(2);
+            Xtime=player:getSpecialBattlefieldLeftTime(2);
         end,
         [2] = function (x) -- E
-Xtime=player:getSpecialBattlefieldLeftTime(1);
+            Xtime=player:getSpecialBattlefieldLeftTime(1);
         end,
         [3] = function (x) -- O
-Xtime=player:getSpecialBattlefieldLeftTime(3);
+            Xtime=player:getSpecialBattlefieldLeftTime(3);
         end,
         [4] = function (x) -- 4E
-Xtime=player:getSpecialBattlefieldLeftTime(8);
+            Xtime=player:getSpecialBattlefieldLeftTime(8);
         end,
         [5] = function (x) -- 3E
-Xtime=player:getSpecialBattlefieldLeftTime(7);
+            Xtime=player:getSpecialBattlefieldLeftTime(7);
         end,
         [6] = function (x) -- 2E
-Xtime=player:getSpecialBattlefieldLeftTime(6);
+            Xtime=player:getSpecialBattlefieldLeftTime(6);
         end,
         [7] = function (x) -- 1E
-Xtime=player:getSpecialBattlefieldLeftTime(5);
+            Xtime=player:getSpecialBattlefieldLeftTime(5);
         end,
         [8] = function (x) -- SS
-Xtime=player:getSpecialBattlefieldLeftTime(4);
+            Xtime=player:getSpecialBattlefieldLeftTime(4);
         end,
-                             }
- player:updateEvent(0,Xtime,0,0,0,0,0,0);
+    }
+    player:updateEvent(0,Xtime,0,0,0,0,0,0);
 end;
 
 function onEventFinish(player,csid,option)
-   if (csid == 0) then
+    if (csid == 0) then
 
-   end
+    end
 end;

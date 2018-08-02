@@ -61,7 +61,7 @@ function onTrigger(player,npc)
                 player:BCNMSetLoot(lootID,InstanceRegion,CofferID);
                 player:getBCNMloot();
             end
-            -- despawn les coffer du meme groupe
+            -- despawn coffers of the same type
             for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
                 if (ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID) then
                     GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(dsp.status.DISAPPEAR);

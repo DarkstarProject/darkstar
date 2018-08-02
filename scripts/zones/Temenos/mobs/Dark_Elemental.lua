@@ -1,19 +1,18 @@
 -----------------------------------
 -- Area: Temenos E T
 --  NPC: Dark_Elemental
-
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/zones/Temenos/TextIDs");
+require("scripts/zones/Temenos/MobIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
 end;
 
 function onMobEngaged(mob,target)
-
 end;
 
 function onMobDeath(mob, player, isKiller)
@@ -24,12 +23,12 @@ function onMobDeath(mob, player, isKiller)
      switch (mobID): caseof {
          -- 100 a 106 inclut (Temenos -Northern Tower )
         [16928892] = function (x)
-           GetNPCByID(16928768+70):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+70):setStatus(dsp.status.NORMAL);
+           GetNPCByID(TEMENOS_BASE_CRATE+70):setPos(mobX,mobY,mobZ);
+           GetNPCByID(TEMENOS_BASE_CRATE+70):setStatus(dsp.status.NORMAL);
         end    ,
         [16928893] = function (x)
-           GetNPCByID(16928768+123):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+123):setStatus(dsp.status.NORMAL);
+           GetNPCByID(TEMENOS_BASE_CRATE+123):setPos(mobX,mobY,mobZ);
+           GetNPCByID(TEMENOS_BASE_CRATE+123):setStatus(dsp.status.NORMAL);
         end    ,
      }
 end;
