@@ -23,6 +23,6 @@ function onTrigger(player,npc)
         SpawnMob(ID.mob.SPLINTERSPINE_GRUKJUK):updateClaim(player);
     else
         player:messageSpecial(ID.text.YOU_CAN_SEE_FOR_MALMS);
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;

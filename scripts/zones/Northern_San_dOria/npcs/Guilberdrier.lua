@@ -13,7 +13,7 @@ require("scripts/globals/quests");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeGuilberdrier") == 0) then
-            player:messageSpecial(11936);
+            player:messageSpecial(ID.text.CAPIRIA_DIALOG); -- gave this NPC a generic response to flyer. I don't see a unique one in the extract. need retail capture.
             player:setVar("FFR",player:getVar("FFR") - 1);
             player:setVar("tradeGuilberdrier",1);
             player:messageSpecial(ID.text.FLYER_ACCEPTED);

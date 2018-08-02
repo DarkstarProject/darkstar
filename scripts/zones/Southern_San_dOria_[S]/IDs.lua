@@ -16,6 +16,7 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA_S] =
         KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>
         MOG_LOCKER_OFFSET       = 7359, -- Your Mog Locker lease is valid until <timestamp>, kupo.
         WYATT_DIALOG            = 11078, -- Ahhh, sorry, sorry. The name's Wyatt, an' I be an armor merchant from Jeuno. Ended up 'ere in San d'Oria some way or another, though.
+        HOMEPOINT_SET           = 11108, -- Home point set!
         ITEM_DELIVERY_DIALOG    = 11209, -- If'n ye have goods tae deliver, then Nembet be yer man!
         ALLIED_SIGIL            = 12910, -- You have received the Allied Sigil!
         RETRIEVE_DIALOG_ID      = 15573, -- You retrieve$ from the porter moogle's care.

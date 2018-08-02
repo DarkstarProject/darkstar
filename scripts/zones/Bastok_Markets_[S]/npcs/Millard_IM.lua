@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:delStatusEffect(dsp.effect.SANCTION);
             player:delStatusEffect(dsp.effect.SIGNET);
             player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
-            player:messageSpecial(ALLIED_SIGIL);
+            player:messageSpecial(ID.text.ALLIED_SIGIL);
 
             if (cost > 0) then
                 player:delCurrency("allied_notes", cost);

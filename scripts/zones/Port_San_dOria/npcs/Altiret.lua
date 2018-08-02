@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
         elseif (giltGlasses == false) then
             player:startEvent(551);
         else
-            player:messageSpecial(6402, 579); -- CANNOT_OBTAIN_ITEM
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 579);
         end;
     -- "Flyers for Regine"
     elseif (FlyerForRegine == 1) then

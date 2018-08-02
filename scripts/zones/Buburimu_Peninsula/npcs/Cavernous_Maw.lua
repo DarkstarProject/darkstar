@@ -4,6 +4,7 @@
 -- !pos -334 -24 52
 -- Teleports Players to Abyssea - Attohwa
 -----------------------------------
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -23,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(61,0,1); -- No param = no entry.
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 

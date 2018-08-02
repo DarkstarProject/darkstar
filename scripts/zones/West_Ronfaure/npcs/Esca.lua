@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
             player:startEvent(121);
             player:setVar("thePickpocketGiltGlasses", 1); -- used to get eventID 128
         else
-            player:messageSpecial(6378, 579); -- CANNOT_OBTAIN_ITEM
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 579);
         end;
     end;
 end;

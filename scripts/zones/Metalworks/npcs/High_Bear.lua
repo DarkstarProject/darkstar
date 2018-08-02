@@ -38,7 +38,6 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,30);
             player:delKeyItem(dsp.ki.CORRUPTED_DIRT);
             player:addItem(17284,1);
-            player:messageSpecial(QUEST_COMPLETED);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17284);
             player:completeQuest(BASTOK,BEADEAUX_SMOG);
             player:setTitle(dsp.title.BEADEAUX_SURVEYOR);

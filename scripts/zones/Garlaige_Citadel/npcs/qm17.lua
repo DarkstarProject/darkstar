@@ -17,7 +17,7 @@ function onTrigger(player,npc)
         player:addKeyItem(dsp.ki.POUCH_OF_WEIGHTED_STONES);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.POUCH_OF_WEIGHTED_STONES);
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

@@ -41,7 +41,7 @@ function onTrigger(player,npc)
         
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_THE_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

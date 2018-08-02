@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             player:messageSpecial(ID.text.ITEM_OBTAINED, TREMORSTONE);
         end
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

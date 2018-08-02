@@ -24,6 +24,7 @@ zones[dsp.zone.VALKURM_DUNES] =
         SIGNPOST2                      = 7358, -- Northeast: La Theine Plateau Southeast: Konschtat Highlands West: Selbina
         SIGNPOST1                      = 7359, -- Northeast: La Theine Plateau Southeast: Konschtat Highlands Southwest: Selbina
         CONQUEST                       = 7369, -- You've earned conquest points!
+        NOTHING_HAPPENS                = 7716, -- Nothing happens...
         NOTHING_OUT_OF_ORDINARY        = 7733, -- There is nothing out of the ordinary here.
         AN_EMPTY_LIGHT_SWIRLS          = 7750, -- An empty light swirls about the cave, eating away at the surroundings..
         MONSTERS_KILLED_ADVENTURERS    = 7826, -- Long ago, monsters killed many adventurers and merchants just off the coast here. If you find any vestige of the victims and return it to the sea, perhaps it would appease the spirits of the dead.

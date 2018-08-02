@@ -34,7 +34,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         CHEST_MOOGLE                = 7329, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION              = 7330, -- The chest was but an illusion...
         CHEST_LOCKED                = 7331, -- The chest appears to be locked.
-        NOTHING_OUT_OF_THE_ORDINARY = 7450, -- There is nothing out of the ordinary here.
+        NOTHING_OUT_OF_ORDINARY     = 7450, -- There is nothing out of the ordinary here.
     },
     mob =
     {

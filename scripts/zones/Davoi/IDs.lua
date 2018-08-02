@@ -16,6 +16,7 @@ zones[dsp.zone.DAVOI] =
         KEYITEM_OBTAINED            = 6390, -- Obtained key item: <keyitem>.
         NOT_ENOUGH_GIL              = 6392, -- You do not have enough gil.
         ITEMS_OBTAINED              = 6396, -- You obtain
+        NOTHING_OUT_OF_ORDINARY     = 6401, -- There is nothing out of the ordinary here.
         CONQUEST_BASE               = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET      = 7207, -- You can't fish here.
         CAVE_HAS_BEEN_SEALED_OFF    = 7351, -- The cave has been sealed off by some sort of barrier.

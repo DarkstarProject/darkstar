@@ -15,6 +15,7 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         ITEM_OBTAINED               = 6387, -- Obtained: <item>.
         GIL_OBTAINED                = 6388, -- Obtained <number> gil.
         KEYITEM_OBTAINED            = 6390, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY     = 6401, -- There is nothing out of the ordinary here.
         CONQUEST_BASE               = 7048, -- Tallying conquest results...
         BEASTMEN_BANNER             = 7129, -- There is a beastmen's banner.
         CONQUEST                    = 7216, -- You've earned conquest points!

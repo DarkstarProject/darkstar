@@ -25,7 +25,7 @@ function onTrigger(player,npc)
             player:messageSpecial(ID.text.ITEM_OBTAINED, GUSGENCLAY);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

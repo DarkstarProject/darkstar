@@ -26,6 +26,7 @@ zones[dsp.zone.WINDURST_WATERS_S] =
         EZURAROMAZURA_SHOP_DIALOG  = 10881, -- A potent spelly-well or two can be the key to survival in this time of war. But can you mastaru my magic, or will it master you
         MIKHE_ARYOHCHA_DIALOG      = 12460, -- Do you like the headpiece? I made it from my firrrst victim. I wear it to let everrryone know what happens when they cross Mikhe Aryohcha!
         LUTETE_DIALOG              = 12462, -- Mastering these Near Eastern magics can be quite taxing. If I had a choice, I'd rather be back in bed, relaxing...
+        ALLIED_SIGIL               = 12906, -- You have received the Allied Sigil!
         RETRIEVE_DIALOG_ID         = 14973, -- You retrieve$ from the porter moogle's care.
     },
     mob =

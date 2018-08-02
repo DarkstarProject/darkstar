@@ -16,6 +16,7 @@ zones[dsp.zone.XARCABARD] =
         KEYITEM_OBTAINED               = 6403, -- Obtained key item: <keyitem>.
         CONQUEST_BASE                  = 7061, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7140, -- There was a curse on the beastmen's banner!
+        NOTHING_HAPPENS                = 7226, -- Nothing happens...
         NOTHING_OUT_OF_ORDINARY        = 7348, -- There is nothing out of the ordinary here.
         ALREADY_OBTAINED_TELE          = 7370, -- You already possess the gate crystal for this telepoint.
         CONQUEST                       = 7383, -- You've earned conquest points!

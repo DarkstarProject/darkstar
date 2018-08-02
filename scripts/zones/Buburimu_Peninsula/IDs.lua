@@ -20,6 +20,7 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         FISHING_MESSAGE_OFFSET         = 7248, -- You can't fish here.
         DIG_THROW_AWAY                 = 7261, -- You dig up$, but your inventory is full. You regretfully throw the # away.
         FIND_NOTHING                   = 7263, -- You dig and you dig, but find nothing.
+        NOTHING_HAPPENS                = 7348, -- Nothing happens...
         SONG_RUNES_DEFAULT             = 7368, -- An old momument. A melancholy song of two separated lovers is written upon it.
         SONG_RUNES_REQUIRE             = 7382, -- If only you had ≺Possible Special Code: 01≻≺Possible Special Code: 01≻≺Possible Special Code: 01≻ ≺Possible Special Code: 01≻≺Possible Special Code: 05≻$≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻, you could jot down the lyrics.≺Prompt≻
         SONG_RUNES_WRITING             = 7383, -- You write down the lyrics on the ≺Possible Special Code: 01≻≺Possible Special Code: 05≻#≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻.≺Prompt≻

@@ -14,15 +14,10 @@ local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local flyersForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
 
-    -- FLYERS FOR REGINE (magicmart flyer)
-    if (flyersForRegine == QUEST_ACCEPTED and trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
-        player:messageSpecial(FLYER_REFUSED);
-
     -- HER MAJESTY'S GARDEN (derfland humus)
-    elseif (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
+    if (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
         player:startEvent(83);
 
     end;

@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     if player:getVar("NoStringsAttachedProgress") == 3 then
         player:startEvent(214)
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_THE_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

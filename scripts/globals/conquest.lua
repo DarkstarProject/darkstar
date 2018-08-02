@@ -159,7 +159,7 @@ local function areSuppliesRotten(player, npc, guardType)
         end
         local ki = outposts[region].ki
         player:delKeyItem(ki)
-        player:messageSpecial(KEYITEM_LOST, ki)
+        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_LOST, ki)
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
@@ -800,7 +800,7 @@ local function canBuyExpRing(player, item)
     if ALLOW_MULTIPLE_EXP_RINGS ~= 1 then
         for i = 15761, 15763 do
             if player:hasItem(i) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, item)
                 return false
             end
         end
@@ -808,7 +808,7 @@ local function canBuyExpRing(player, item)
 
     -- one exp ring per conquest tally
     if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_TIMER") > os.time() then
-        player:messageSpecial(CONQUEST + 60, 0, 0, item)
+        player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 60, 0, 0, item)
         return false
     end
 
@@ -1077,7 +1077,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
-        player:messageSpecial(CONQUEST) -- "You've earned conquest points!"
+        player:messageSpecial(zones[player:getZoneID()].text.CONQUEST) -- "You've earned conquest points!"
         player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
@@ -1087,9 +1087,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     elseif option == 4 then
         if player:delGil(setHomepointFee(player, guardNation)) then
             player:setHomePoint()
-            player:messageSpecial(CONQUEST + 94) -- "Your home point has been set."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 94) -- "Your home point has been set."
         else
-            player:messageSpecial(CONQUEST + 95) -- "You do not have enough gil to set your home point here."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 95) -- "You do not have enough gil to set your home point here."
         end
 
     -- PURCHASE CP ITEM
@@ -1109,7 +1109,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         
         -- validate rank
         if stock.rank and pRank < stock.rank then
-            player:messageSpecial(CONQUEST + 61, stock.item) -- "Your rank is too low to purchase the <item>."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 61, stock.item) -- "Your rank is too low to purchase the <item>."
             return
         end
         
@@ -1123,7 +1123,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
             end
         end
         if player:getCP() < price then
-            player:messageSpecial(CONQUEST + 62, 0, 0, stock.item) -- "You do not have enough conquest points to purchase the <item>."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 62, 0, 0, stock.item) -- "You do not have enough conquest points to purchase the <item>."
             return
         end
 

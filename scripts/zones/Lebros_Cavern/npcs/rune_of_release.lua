@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Lebros Cavern
 -----------------------------------
-require("scripts/zones/Lebros_Cavern/IDs");
+local ID = require("scripts/zones/Lebros_Cavern/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +29,7 @@ function onEventFinish(player,csid,option)
 
         for i,v in pairs(chars) do
             -- TODO: calcualte assault points, add assault points
-            v:messageSpecial(Lebros.text.ASSAULT_POINTS_OBTAINED,0);
+            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,0);
             -- v:addAssaultPoint(LEBROS_ASSAULT_POINT,points);
             v:setVar("AssaultComplete",1);
             v:startEvent(102);

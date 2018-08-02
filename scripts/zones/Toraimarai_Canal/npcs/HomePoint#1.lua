@@ -3,6 +3,7 @@
 --  NPC: HomePoint#1
 -- !pos -257.5 24 82 169
 -----------------------------------
+local ID = require("scripts/zones/Toraimarai_Canal/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/homepoint");
 -----------------------------------
@@ -24,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

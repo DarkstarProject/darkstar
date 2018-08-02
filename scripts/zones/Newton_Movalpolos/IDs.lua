@@ -15,6 +15,7 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
         GIL_OBTAINED            = 6388, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
+        COME_CLOSER             = 7229, -- H0000! C0mE cL0SEr! C0mE cL0SEr! CAn'T TrAdE fr0m S0 fAr AwAy!
         MINING_IS_POSSIBLE_HERE = 7237, -- Mining is possible here if you have
         CHEST_UNLOCKED          = 7251, -- You unlock the chest!
         CHEST_FAIL              = 7252, -- Fails to open the chest.

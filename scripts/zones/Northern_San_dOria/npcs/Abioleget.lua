@@ -59,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,THE_VICASQUE_S_SERMON );
     elseif (csid == 591) then
         player:addItem(618);
-        player:messageSpecial(6567, 618);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 618);
     end
 end;
 

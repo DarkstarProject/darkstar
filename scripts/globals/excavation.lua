@@ -56,18 +56,18 @@ function startExcavation(player,zone,npc,trade,csid)
 
             if randPick == 1 then
                 player:addKeyItem(dsp.ki.ELECTROCELL);
-                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROCELL);
+                player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.ELECTROCELL);
             elseif randPick == 2 then
                 player:addKeyItem(dsp.ki.ELECTROPOT);
-                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROPOT);
+                player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.ELECTROPOT);
             else
                 player:addKeyItem(dsp.ki.ELECTROLOCOMOTIVE);
-                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ELECTROLOCOMOTIVE);
+                player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.ELECTROLOCOMOTIVE);
 
             end
         end
     else
-        player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+        player:messageSpecial(zones[player:getZoneID()].text.MINING_IS_POSSIBLE_HERE,605);
     end
 
 end

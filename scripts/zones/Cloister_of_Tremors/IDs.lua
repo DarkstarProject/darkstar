@@ -18,7 +18,7 @@ zones[dsp.zone.CLOISTER_OF_TREMORS] =
         YOU_CANNOT_ENTER_THE_BATTLEFIELD = 7209, -- You cannot enter the battlefield at present.
         PROTOCRYSTAL                     = 7233, -- It is a giant crystal.
         TITAN_UNLOCKED                   = 7673, -- You are now able to summon
-        NOTHING_OUT_OF_THE_ORDINARY      = 7689, -- There is nothing out of the ordinary here.
+        NOTHING_OUT_OF_ORDINARY          = 7689, -- There is nothing out of the ordinary here.
     },
     mob =
     {

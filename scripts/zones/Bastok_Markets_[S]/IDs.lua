@@ -20,6 +20,7 @@ zones[dsp.zone.BASTOK_MARKETS_S] =
         HOMEPOINT_SET            = 10826, -- Home point set!
         KARLOTTE_DELIVERY_DIALOG = 10860, -- I am here to help with all your parcel delivery needs.
         WELDON_DELIVERY_DIALOG   = 10861, -- Do you have something you wish to send?
+        ALLIED_SIGIL             = 12349, -- You have received the Allied Sigil!
         SILKE_SHOP_DIALOG        = 12801, -- You wouldn't happen to be a fellow scholar, by any chance? The contents of these pages are beyond me, but perhaps you might glean something from them. They could be yours...for a nominal fee.
         RETRIEVE_DIALOG_ID       = 14713, -- You retrieve$ from the porter moogle's care.
     },

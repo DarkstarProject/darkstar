@@ -234,9 +234,9 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
         player:setVar('[GUILD]currentGuild',guildID + 1);
 
         if (oldGuild == -1) then
-            player:messageSpecial(GUILD_NEW_CONTRACT, guildID);
+            player:messageSpecial(zones[player:getZoneID()].text.GUILD_NEW_CONTRACT, guildID);
         else
-            player:messageSpecial(GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
+            player:messageSpecial(zones[player:getZoneID()].text.GUILD_TERMINATE_CONTRACT, guildID, oldGuild);
             player:setVar('[GUILD]daily_points',-1);
         end
     elseif (category == 3) then -- keyitem
@@ -245,7 +245,7 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             if (player:getCurrency(currency) >= ki.cost) then
                 player:delCurrency(currency, ki.cost);
                 player:addKeyItem(ki.id);
-                player:messageSpecial(KEYITEM_OBTAINED, ki.id);
+                player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED, ki.id);
             else
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
             end
@@ -261,12 +261,12 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
                 for count = 1, quantity do -- addItem does not appear to honor quantity if the item doesn't stack.
                     if (player:addItem(i.id, true)) then
                         player:delCurrency(currency, i.cost);
-                        player:messageSpecial(ITEM_OBTAINED, i.id);
+                        player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, i.id);
                         delivered = delivered + 1;
                     end
                 end
                 if (delivered == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                    player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
@@ -280,9 +280,9 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
             if (player:getCurrency(currency) >= cost) then
                 if (player:addItem(i.id, quantity)) then
                     player:delCurrency(currency, cost);
-                    player:messageSpecial(ITEM_OBTAINED, i.id);
+                    player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, i.id);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, i.id);
+                    player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, i.id);
                 end
             else
                player:messageText(target, NOT_HAVE_ENOUGH_GP, false, 6);
