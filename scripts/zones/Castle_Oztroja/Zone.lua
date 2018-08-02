@@ -4,23 +4,20 @@
 --
 -----------------------------------
 local CASTLE_OZTROJA = require("scripts/zones/Castle_Oztroja/globals")
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/zones/Castle_Oztroja/MobIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(YAGUDO_AVATAR)
-    GetMobByID(YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.YAGUDO_AVATAR)
+    GetMobByID(ID.mob.YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800))
 
     CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
     CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
 
-    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_COFFER)
+    UpdateTreasureSpawnPoint(ID.npc.OZTROJA_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(ID.npc.OZTROJA_TREASURE_COFFER)
 end
 
 function onZoneIn(player,prevZone)

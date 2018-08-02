@@ -4,14 +4,12 @@
 -- Type: Assault
 -- !pos -274.334 -9.287 -64.255 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local ID = require("scripts/zones/Caedarva_Mire/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -70,17 +68,17 @@ function onEventFinish(player,csid,option)
     elseif (csid == 22) then
         player:setVar("TOAUM31_PERMITDAY",vanaDay());
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT);
 
     -- BEGINNINGS
     elseif (csid == 10) then
         player:addKeyItem(dsp.ki.BRAND_OF_THE_GALESERPENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_GALESERPENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_GALESERPENT);
 
     -- ASSAULT
     elseif (csid == 148 and option == 1) then
         player:delCurrency("imperial_standing", 50);
         player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

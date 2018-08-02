@@ -3,9 +3,6 @@
 --  NPC: _476 (Brass Door)
 -- !pos 145.005 -19.989 -140.000 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

@@ -3,9 +3,6 @@
 -- Name: Zilart Mission 6
 -- !pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Chamber_of_Oracles/TextIDs")
 require("scripts/globals/missions")
 -----------------------------------
 

@@ -4,12 +4,10 @@
 -- Involved in Mission: ZM5 Headstone Pilgrimage (Ice Fragment)
 -- !pos 566 0 606 203
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Frost/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,14 +21,14 @@ function onTrigger(player,npc)
         elseif (player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) and player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and
             player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and player:hasKeyItem(dsp.ki.ICE_FRAGMENT) and
             player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT) and player:hasKeyItem(dsp.ki.DARK_FRAGMENT)) then
-            player:messageSpecial(ALREADY_HAVE_ALL_FRAGS);
+            player:messageSpecial(ID.text.ALREADY_HAVE_ALL_FRAGS);
         elseif (player:hasKeyItem(dsp.ki.ICE_FRAGMENT)) then
-            player:messageSpecial(ALREADY_OBTAINED_FRAG,dsp.ki.ICE_FRAGMENT);
+            player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG,dsp.ki.ICE_FRAGMENT);
         end
     elseif (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE)) then
-        player:messageSpecial(ZILART_MONUMENT);
+        player:messageSpecial(ID.text.ZILART_MONUMENT);
     else
-        player:messageSpecial(CANNOT_REMOVE_FRAG);
+        player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG);
     end
 
 end;
@@ -45,12 +43,12 @@ function onEventFinish(player,csid,option)
         -- Check and see if all fragments have been found (no need to check ice and dark frag)
         if (player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) and player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) and player:hasKeyItem(dsp.ki.WATER_FRAGMENT) and
            player:hasKeyItem(dsp.ki.WIND_FRAGMENT) and player:hasKeyItem(dsp.ki.LIGHTNING_FRAGMENT) and player:hasKeyItem(dsp.ki.LIGHT_FRAGMENT)) then
-            player:messageSpecial(FOUND_ALL_FRAGS,dsp.ki.ICE_FRAGMENT);
+            player:messageSpecial(ID.text.FOUND_ALL_FRAGS,dsp.ki.ICE_FRAGMENT);
             player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS);
             player:completeMission(ZILART,HEADSTONE_PILGRIMAGE);
             player:addMission(ZILART,THROUGH_THE_QUICKSAND_CAVES);
         else
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ICE_FRAGMENT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ICE_FRAGMENT);
         end
     end
 

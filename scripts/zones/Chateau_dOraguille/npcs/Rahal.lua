@@ -4,12 +4,10 @@
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
 -- !pos -28 0.1 -6 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -76,7 +74,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 60) then
         player:addKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DRAGON_CURSE_REMEDY);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DRAGON_CURSE_REMEDY);
     elseif (csid == 559) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
     elseif (csid == 121) then
@@ -100,7 +98,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("MissionStatus",2);
             player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
         end
     end
 end;

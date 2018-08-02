@@ -4,6 +4,7 @@
 -- Involved in Quest: Trial by Wind
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
+local ID = require("scripts/zones/Cloister_of_Gales/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
@@ -66,7 +67,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
         player:addKeyItem(dsp.ki.WHISPER_OF_GALES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
     end
 
 end;

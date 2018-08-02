@@ -1,10 +1,7 @@
 -- Zone: Castle Oztroja (151)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/zones/Castle_Oztroja/MobIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/status")
 -----------------------------------
 
@@ -34,8 +31,8 @@ local CASTLE_OZTROJA = {
 
         -- set combination
         for i = 0, 3 do
-            local realLever = GetNPCByID(HANDLE_DOOR_FLOOR_2 + 2 + i)
-            local hintLever = GetNPCByID(HINT_HANDLE_OFFSET + i)
+            local realLever = GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i)
+            local hintLever = GetNPCByID(ID.npc.HINT_HANDLE_OFFSET + i)
             realLever:setAnimation(dsp.anim.CLOSE_DOOR)
             hintLever:setAnimation(combo[i])
         end
@@ -45,7 +42,7 @@ local CASTLE_OZTROJA = {
         pick a new password for the trap door on floor 4
         ..............................................................................................]]
     pickNewPassword = function()
-        GetNPCByID(TRAP_DOOR_FLOOR_4):setLocalVar("password", math.random(0,8))
+        GetNPCByID(ID.npc.TRAP_DOOR_FLOOR_4):setLocalVar("password", math.random(0,8))
     end,
 
     --[[..............................................................................................
@@ -62,17 +59,17 @@ local CASTLE_OZTROJA = {
         npc:timer(1500, function(npc)
             local comboFound = true
             for i = 0, 3 do
-                local realLever = GetNPCByID(HANDLE_DOOR_FLOOR_2 + 2 + i)
-                local hintLever = GetNPCByID(HINT_HANDLE_OFFSET + i)
+                local realLever = GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i)
+                local hintLever = GetNPCByID(ID.npc.HINT_HANDLE_OFFSET + i)
                 if realLever:getAnimation() ~= hintLever:getAnimation() then
                     comboFound = false
                     break
                 end
             end
             if comboFound then
-                GetNPCByID(HANDLE_DOOR_FLOOR_2):openDoor(6)
+                GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2):openDoor(6)
                 for i = 0, 3 do
-                    GetNPCByID(HANDLE_DOOR_FLOOR_2 + 2 + i):setAnimation(dsp.anim.CLOSE_DOOR)
+                    GetNPCByID(ID.npc.HANDLE_DOOR_FLOOR_2 + 2 + i):setAnimation(dsp.anim.CLOSE_DOOR)
                 end
             end
         end)

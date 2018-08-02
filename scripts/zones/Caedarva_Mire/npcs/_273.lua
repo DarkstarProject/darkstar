@@ -3,12 +3,10 @@
 -- Door: Runic Seal
 -- !pos -353 -3 -20 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local ID = require("scripts/zones/Caedarva_Mire/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         end
         player:startEvent(143, assaultid, -4, 0, recommendedLevel, 3, armband);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
@@ -54,10 +52,10 @@ function onEventUpdate(player,csid,option,target)
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if (not (v:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT))) then
-                    player:messageText(target,MEMBER_NO_REQS, false);
+                    player:messageText(target,ID.text.MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                 elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
-                    player:messageText(target,MEMBER_TOO_FAR, false);
+                    player:messageText(target,ID.text.MEMBER_TOO_FAR, false);
                     player:instanceEntry(target,1);
                     return;
                 end
@@ -69,11 +67,11 @@ function onEventUpdate(player,csid,option,target)
         if (party ~= nil) then
             for i,v in ipairs(party) do
                 if (not (v:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
-                    player:messageText(target,MEMBER_NO_REQS, false);
+                    player:messageText(target,ID.text.MEMBER_NO_REQS, false);
                     player:instanceEntry(target,1);
                     return;
                 elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
-                    player:messageText(target,MEMBER_TOO_FAR, false);
+                    player:messageText(target,ID.text.MEMBER_TOO_FAR, false);
                     player:instanceEntry(target,1);
                     return;
                 end
@@ -129,7 +127,7 @@ function onInstanceCreated(player,target,instance)
             end
         end
     else
-        player:messageText(target,CANNOT_ENTER, false);
+        player:messageText(target,ID.text.CANNOT_ENTER, false);
         player:instanceEntry(target,3);
     end
 end;

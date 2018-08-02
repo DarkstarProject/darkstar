@@ -7,10 +7,7 @@
 -- !pos -60 22 -100 151            (3)
 -- !pos -100 -72 -19 151           (4)
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/zones/Castle_Oztroja/MobIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 -----------------------------------
 
 local passwordTable =
@@ -31,26 +28,26 @@ end
 
 function onTrigger(player,npc)
     local statue = npc:getID()
-    local passwordIndex = GetNPCByID(TRAP_DOOR_FLOOR_4):getLocalVar("password")
+    local passwordIndex = GetNPCByID(ID.npc.TRAP_DOOR_FLOOR_4):getLocalVar("password")
     local password = passwordTable[passwordIndex]
 
-    if statue == FIRST_PASSWORD_STATUE then
-        player:messageSpecial(FIRST_WORD)
+    if statue == ID.npc.FIRST_PASSWORD_STATUE then
+        player:messageSpecial(ID.text.FIRST_WORD)
         player:messageSpecial(password[1][1])
-    elseif statue == SECOND_PASSWORD_STATUE then
-        player:messageSpecial(SECOND_WORD)
+    elseif statue == ID.npc.SECOND_PASSWORD_STATUE then
+        player:messageSpecial(ID.text.SECOND_WORD)
         player:messageSpecial(password[2][1])
-    elseif statue == THIRD_PASSWORD_STATUE then
-        player:messageSpecial(THIRD_WORD)
+    elseif statue == ID.npc.THIRD_PASSWORD_STATUE then
+        player:messageSpecial(ID.text.THIRD_WORD)
         player:messageSpecial(password[3][1])
-    elseif statue == FINAL_PASSWORD_STATUE then
+    elseif statue == ID.npc.FINAL_PASSWORD_STATUE then
         player:startEvent(13)
     end
 end
 
 function onEventUpdate(player,csid,option)
     local passwordGuess = player:getLocalVar("passwordGuess")
-    local passwordIndex = GetNPCByID(TRAP_DOOR_FLOOR_4):getLocalVar("password")
+    local passwordIndex = GetNPCByID(ID.npc.TRAP_DOOR_FLOOR_4):getLocalVar("password")
     local password = passwordTable[passwordIndex]
 
     if csid == 13 and option == password[1][2] and passwordGuess == 0 then
@@ -63,7 +60,7 @@ function onEventUpdate(player,csid,option)
         player:updateEvent(3)
         player:setLocalVar("passwordGuess", 3)
     else
-        player:messageSpecial(INCORRECT)
+        player:messageSpecial(ID.text.INCORRECT)
         player:setLocalVar("passwordGuess", 0)
     end
 end
@@ -72,7 +69,7 @@ function onEventFinish(player,csid,option)
     local passwordGuess = player:getLocalVar("passwordGuess")
 
     if csid == 13 and passwordGuess == 3 then
-        GetNPCByID(TRAP_DOOR_FLOOR_4):openDoor(6)
+        GetNPCByID(ID.npc.TRAP_DOOR_FLOOR_4):openDoor(6)
         player:setLocalVar("passwordGuess", 0)
     end
 end

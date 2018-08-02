@@ -4,12 +4,9 @@
 -- Starts and Finishes Quest: Prelude of Black and White (Start), Pieuje's Decision (Start)
 -- !pos -37 -3 31 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
