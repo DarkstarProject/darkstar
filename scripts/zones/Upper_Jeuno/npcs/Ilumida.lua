@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: A Candlelight Vigil
 -- !pos -75 -1 58 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -75,12 +73,12 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 194) then --finish quest
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13094);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13094);
         else
             player:addTitle(dsp.title.ACTIVIST_FOR_KINDNESS);
             player:delKeyItem(dsp.ki.HOLY_CANDLE);
             player:addItem(13094);
-            player:messageSpecial(ITEM_OBTAINED,13094);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13094);
             player:needToZone(true);
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,A_CANDLELIGHT_VIGIL);
@@ -97,12 +95,12 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 198) then --finish quest, note: no title granted
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4882);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4882);
         else
             player:delKeyItem(dsp.ki.MOONDROP);
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*3000)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*3000)
             player:addItem(4882);
-            player:messageSpecial(ITEM_OBTAINED,4882);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4882);
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,SEARCHING_FOR_THE_RIGHT_WORDS);
             player:setVar("SearchingForRightWords_postcs", -2);

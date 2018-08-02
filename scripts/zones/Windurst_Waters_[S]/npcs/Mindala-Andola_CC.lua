@@ -4,11 +4,9 @@
 -- Type: Sigil NPC
 -- !pos -31.869 -6.009 226.793 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/campaign");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -57,9 +55,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.

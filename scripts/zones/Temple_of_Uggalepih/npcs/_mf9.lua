@@ -4,16 +4,14 @@
 -- Notes: Opens with Prelate Key
 -- !pos -60 -8 -99 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
     if (trade:hasItemQty(1137,1) and trade:getItemCount() == 1) then -- Trade Prelate Key
         player:tradeComplete();
-        player:messageSpecial(YOUR_KEY_BREAKS,0000,1137);
+        player:messageSpecial(ID.text.YOUR_KEY_BREAKS,0000,1137);
         npc:openDoor(6.5);
     end
 
@@ -22,7 +20,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getXPos() > -62) then
-        player:messageSpecial(THE_DOOR_IS_LOCKED,1137);
+        player:messageSpecial(ID.text.THE_DOOR_IS_LOCKED,1137);
     else
         npc:openDoor(11); -- retail timed
     end

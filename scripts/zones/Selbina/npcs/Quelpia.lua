@@ -3,9 +3,7 @@
 --  NPC: Quelpia
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Selbina/TextIDs")
+local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         4713,  6366,    -- Scroll of Enwater
     }
 
-    player:showText(npc, QUELPIA_SHOP_DIALOG)
+    player:showText(npc, ID.text.QUELPIA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

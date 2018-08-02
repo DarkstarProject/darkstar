@@ -3,10 +3,6 @@
 --  NPC: Komulili
 -- Warps players to Port Windurst
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

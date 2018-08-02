@@ -4,11 +4,9 @@
 -- Starts and Finishes Quest: Atelloune's Lament
 -- !pos 122 0 82 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
     -----lady bug
@@ -57,10 +55,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,ATELLOUNE_S_LAMENT);
     elseif (csid == 891) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,15008); -- Trainee Gloves
         else
             player:addItem(15008);
-            player:messageSpecial(ITEM_OBTAINED,15008); -- Trainee Gloves
+            player:messageSpecial(ID.text.ITEM_OBTAINED,15008); -- Trainee Gloves
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,ATELLOUNE_S_LAMENT);
         end

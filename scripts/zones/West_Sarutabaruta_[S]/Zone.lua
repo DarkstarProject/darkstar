@@ -3,10 +3,7 @@
 -- Zone: West_Sarutabaruta_[S] (95)
 --
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
+local ID = require("scripts/zones/West_Sarutabaruta_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

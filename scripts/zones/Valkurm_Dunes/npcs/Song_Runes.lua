@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
+local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,7 +24,7 @@ function onTrigger(player,npc)
 
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(SONG_RUNES_DEFAULT);
+        player:messageSpecial(ID.text.SONG_RUNES_DEFAULT);
     end;
 end;
 
@@ -34,10 +34,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2) then
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         player:addTitle(dsp.title.WANDERING_MINSTREL);
         player:unlockJob(dsp.job.BRD); -- Bard
-        player:messageSpecial(UNLOCK_BARD);  --You can now become a bard!
+        player:messageSpecial(ID.text.UNLOCK_BARD);  --You can now become a bard!
         player:setVar("PathOfTheBard_Event",0);
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,PATH_OF_THE_BARD);

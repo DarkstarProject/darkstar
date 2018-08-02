@@ -9,7 +9,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
 
     -- events:
     -- 7D00 : BC menu

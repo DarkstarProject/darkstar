@@ -4,11 +4,9 @@
 --  Title Change NPC
 -- !pos 83 0 120 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 local title2 = { dsp.title.NEW_ADVENTURER , dsp.title.BEAN_CUISINE_SALTER , dsp.title.DAYBREAK_GAMBLER , dsp.title.ENTRANCE_DENIED , dsp.title.RABBITER , dsp.title.ROYAL_GRAVE_KEEPER ,
                 dsp.title.COURIER_EXTRAORDINAIRE , dsp.title.RONFAURIAN_RESCUER , dsp.title.PICKPOCKET_PINCHER , dsp.title.THE_PURE_ONE , dsp.title.LOST_CHILD_OFFICER , dsp.title.SILENCER_OF_THE_LAMBS ,
@@ -39,7 +37,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;

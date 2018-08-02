@@ -3,12 +3,8 @@
 -- Zone: Sacrificial_Chamber (163)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local ID = require("scripts/zones/Sacrificial_Chamber/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

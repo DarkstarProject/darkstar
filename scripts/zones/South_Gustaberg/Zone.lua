@@ -3,11 +3,10 @@
 -- Zone: South_Gustaberg (107)
 --
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/South_Gustaberg/TextIDs");
+local ID = require("scripts/zones/South_Gustaberg/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
@@ -39,7 +38,7 @@ local itemMap =
                     { 575, 14, DIGREQ_NIGHT },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);

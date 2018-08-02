@@ -3,10 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos -365 -176.5 -36 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

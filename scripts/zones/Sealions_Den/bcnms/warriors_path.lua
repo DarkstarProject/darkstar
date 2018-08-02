@@ -3,12 +3,9 @@
 -- Name: warriors_path
 -- bcnmID : 993
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
  --Tarutaru
 --Tenzen                                                    group 860   3875

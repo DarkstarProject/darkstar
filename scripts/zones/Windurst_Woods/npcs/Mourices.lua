@@ -4,9 +4,6 @@
 -- Involved In Mission: Journey Abroad
 -- !pos -50.646 -0.501 -27.642 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")

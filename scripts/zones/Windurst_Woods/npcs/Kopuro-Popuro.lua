@@ -6,9 +6,6 @@
 -- Starts Quests: The All-New C-2000, Legendary Plan B, The All-New C-3000
 -- Involved in quests: Lost Chick
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")

@@ -6,9 +6,7 @@
 -- !pos -116 -3 52  238
 -- (outside the shop he is in)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -93,7 +91,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 267) then -- A Crisis in the Making: Quest Finish
         player:addGil(GIL_RATE*400);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
         player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,75);
@@ -101,7 +99,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 268) then -- A Crisis in the Making: Repeatable Quest Finish
         player:addGil(GIL_RATE*400);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
         player:setVar("QuestCrisisMaking_var",0);
         player:delKeyItem(dsp.ki.OFF_OFFERING);
         player:addFame(WINDURST,8);
@@ -114,7 +112,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("IASvar",4);
         player:addKeyItem(dsp.ki.RANPIMONPIS_SPECIAL_STEW);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RANPIMONPIS_SPECIAL_STEW);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RANPIMONPIS_SPECIAL_STEW);
 
     end
 end;

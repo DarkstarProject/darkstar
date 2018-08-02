@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -62,7 +62,7 @@ printf("RESULT: %u",option);
         player:addTitle(dsp.title.FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 111 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
     if (csid == 837) then
         player:setVar("WWatersRTenText",1);

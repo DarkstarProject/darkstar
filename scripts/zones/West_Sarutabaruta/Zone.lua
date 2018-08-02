@@ -3,10 +3,7 @@
 -- Zone: West_Sarutabaruta (115)
 --
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/West_Sarutabaruta/TextIDs");
-require("scripts/zones/West_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/West_Sarutabaruta/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -38,7 +35,7 @@ local itemMap =
                     { 1237, 10, DIGREQ_NIGHT },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);

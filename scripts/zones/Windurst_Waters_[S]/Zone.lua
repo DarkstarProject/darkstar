@@ -3,10 +3,7 @@
 -- Zone: Windurst_Waters_[S] (94)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

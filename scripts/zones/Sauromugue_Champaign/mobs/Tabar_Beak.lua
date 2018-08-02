@@ -2,7 +2,7 @@
 -- Area: Sauromugue Champaign
 --  MOB: Tabar Beak
 -----------------------------------
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,DEADLY_DODO_PH,33,3600); -- 1 hour
+    phOnDespawn(mob,ID.mob.DEADLY_DODO_PH,33,3600); -- 1 hour
 end;

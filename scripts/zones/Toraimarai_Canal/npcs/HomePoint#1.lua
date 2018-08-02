@@ -3,10 +3,7 @@
 --  NPC: HomePoint#1
 -- !pos -257.5 24 82 169
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Toraimarai_Canal/TextIDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 

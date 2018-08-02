@@ -4,9 +4,7 @@
 -- Type: Warp NPC
 -- !pos -25.655 1.749 -60.651 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/teleports")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
@@ -86,7 +84,7 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.GREEN_SENTINEL_BADGE)
     elseif csid == 739 and npcUtil.completeQuest(player, WINDURST, LURE_OF_THE_WILDCAT_WINDURST, {fame=150, keyItem=dsp.ki.GREEN_INVITATION_CARD, var="WildcatWindurst"}) then
         player:delKeyItem(dsp.ki.GREEN_SENTINEL_BADGE)
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE)
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.GREEN_SENTINEL_BADGE)
     elseif csid == 794 then
         player:confirmTrade()
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE)

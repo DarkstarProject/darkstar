@@ -3,8 +3,7 @@
 --  MOB: Valaineral_R_Davilles
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

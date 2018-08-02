@@ -3,6 +3,8 @@
 -- Zone: San_dOria-Jeuno_Airship
 --
 -----------------------------------
+local ID = require("scripts/zones/San_dOria-Jeuno_Airship/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end;

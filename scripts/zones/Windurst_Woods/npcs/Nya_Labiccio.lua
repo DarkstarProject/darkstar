@@ -4,9 +4,7 @@
 -- Only sells when Windurst controlls Gustaberg Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -17,9 +15,9 @@ end;
 function onTrigger(player,npc)
     local RegionOwner = GetRegionOwner(dsp.region.GUSTABERG);
     if (RegionOwner ~= dsp.nation.WINDURST) then
-        player:showText(npc,NYALABICCIO_CLOSED_DIALOG);
+        player:showText(npc,ID.text.NYALABICCIO_CLOSED_DIALOG);
     else
-        player:showText(npc,NYALABICCIO_OPEN_DIALOG);
+        player:showText(npc,ID.text.NYALABICCIO_OPEN_DIALOG);
 
         local stock =
         {

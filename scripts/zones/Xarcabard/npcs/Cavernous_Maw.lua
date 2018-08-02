@@ -4,13 +4,10 @@
 -- !pos 270 -9 -70
 -- Teleports Players to Abyssea - Uleguerand
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Xarcabard/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

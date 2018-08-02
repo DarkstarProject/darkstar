@@ -4,10 +4,11 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/Windurst_Walls/IDs")
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/globals/quests");
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)

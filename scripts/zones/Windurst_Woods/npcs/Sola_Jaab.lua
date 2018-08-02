@@ -4,9 +4,6 @@
 -- Involved in Quest: Riding on the Clouds
 -- !pos 109 -5 -25 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")

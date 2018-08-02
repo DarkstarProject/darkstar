@@ -5,10 +5,8 @@
 -- !pos 305.882 26.768 234.279 176
 --
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -57,12 +55,12 @@ function onEventFinish(player,csid,option)
         player:setVar("SahaginKeyProgress",3); --Mark the quest progress
         player:setVar("SahaginKeyItems",0);
         player:addItem(1197); -- Sahagin Key
-        player:messageSpecial(ITEM_OBTAINED, 1197);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 1197);
     elseif (csid == 107 and player:getVar("SahaginKeyProgress") == 3) then
         player:tradeComplete();
         player:setVar("SahaginKeyItems",0);
         player:addItem(1197); -- Sahagin Key
-        player:messageSpecial(ITEM_OBTAINED, 1197);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 1197);
     end
 end;
 

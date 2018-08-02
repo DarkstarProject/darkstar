@@ -14,7 +14,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -85,7 +85,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 74) then
         player:setVar("COP_Tenzen_s_Path",3);
         player:addKeyItem(dsp.ki.ENVELOPE_FROM_MONBERAUX);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
         player:addKeyItem(dsp.ki.MYSTERIOUS_AMULET_DRAINED);
@@ -107,9 +107,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.TWOS_COMPANY);
         player:setVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addKeyItem(dsp.ki.TWO_OF_SWORDS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TWO_OF_SWORDS); -- Two of Swords (Key Item)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TWO_OF_SWORDS); -- Two of Swords (Key Item)
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,THE_LOST_CARDIAN);
         player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"

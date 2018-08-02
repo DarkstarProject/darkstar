@@ -4,9 +4,7 @@
 -- Type: Guildworker's Union Representative
 -- !pos -38.173 -1.25 -113.679 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 
@@ -99,6 +97,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 4, "guild_weaving", keyitems, items);
     elseif (csid == 10025) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

@@ -4,10 +4,8 @@
 -- Type: NPC
 -- !pos 116.484 -1 91.554 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 local GAME_WON = 0;
 local GAME_LOST = 2;
@@ -60,17 +58,17 @@ function onEventFinish(player,csid,option)
         if (option == GAME_WON) then
             if (exitTheGambler == QUEST_ACCEPTED) then
                 player:completeQuest(SANDORIA,EXIT_THE_GAMBLER);
-                player:showText(npc,VARCHET_KEEP_PROMISE);
+                player:showText(npc,ID.text.VARCHET_KEEP_PROMISE);
             end
             local gilPayout = 10;
             player:addGil(gilPayout);
-            player:messageSpecial(GIL_OBTAINED,gilPayout);
+            player:messageSpecial(ID.text.GIL_OBTAINED,gilPayout);
         elseif (option == GAME_TIE) then
             local gilPayout = 5;
             player:addGil(gilPayout);
-            player:messageSpecial(GIL_OBTAINED,gilPayout);
+            player:messageSpecial(ID.text.GIL_OBTAINED,gilPayout);
         else
-            player:messageSpecial(VARCHET_BET_LOST);
+            player:messageSpecial(ID.text.VARCHET_BET_LOST);
         end
     end
 end;

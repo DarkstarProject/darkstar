@@ -4,7 +4,7 @@
 -- Spawned for Quest: The Three Magi
 -- !pos -335.245 -26.403 -49.190 112
 -----------------------------------
-require("scripts/zones/Xarcabard/MobIDs");
+local ID = require("scripts/zones/Xarcabard/IDs");
 require("scripts/globals/settings");
 
 function onMobSpawn(mob)
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(CHAOS_ELEMENTAL_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.CHAOS_ELEMENTAL_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

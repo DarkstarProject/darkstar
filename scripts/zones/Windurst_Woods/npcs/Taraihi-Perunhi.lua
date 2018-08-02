@@ -4,10 +4,8 @@
 -- Only sells when Windurst controlls Derfland Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -19,9 +17,9 @@ end;
 function onTrigger(player,npc)
     local RegionOwner = GetRegionOwner(dsp.region.DERFLAND);
     if (RegionOwner ~= dsp.nation.WINDURST) then
-        player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);
+        player:showText(npc,ID.text.TARAIHIPERUNHI_CLOSED_DIALOG);
     else
-        player:showText(npc,TARAIHIPERUNHI_OPEN_DIALOG);
+        player:showText(npc,ID.text.TARAIHIPERUNHI_OPEN_DIALOG);
 
         local stock =
         {

@@ -3,14 +3,14 @@
 -- NPC:  ???
 -- !pos -300 -175 22 158
 -----------------------------------
-require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs");
 require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
     -- Trade moldy buckler
-    if (not GetMobByID(ALKYONEUS):isSpawned() and trade:hasItemQty(2385,1) and trade:getItemCount() == 1) then
+    if (not GetMobByID(ID.mob.ALKYONEUS):isSpawned() and trade:hasItemQty(2385,1) and trade:getItemCount() == 1) then
         player:tradeComplete();
-        SpawnMob(ALKYONEUS):updateClaim(player);
+        SpawnMob(ID.mob.ALKYONEUS):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;

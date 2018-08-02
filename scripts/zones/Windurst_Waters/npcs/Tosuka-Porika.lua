@@ -13,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -103,13 +103,13 @@ function onEventFinish(player,csid,option)
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         player:setVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end
