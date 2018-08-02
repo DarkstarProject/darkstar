@@ -5,9 +5,6 @@
 -- Working 100%
 -------------------------------------
 require("scripts/globals/settings");
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then

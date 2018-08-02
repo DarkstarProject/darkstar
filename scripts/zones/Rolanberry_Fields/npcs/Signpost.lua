@@ -2,17 +2,17 @@
 -- Area: Rolanberry Fields
 --  NPC: Signpost
 -----------------------------------
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Rolanberry_Fields/IDs")
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(SIGN);
+    player:messageSpecial(ID.text.SIGN);
 end;
 
 function onTrade(player,npc,trade)
 end;
 
-function onEventUpdate(player,csid,menuchoice)
+function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)

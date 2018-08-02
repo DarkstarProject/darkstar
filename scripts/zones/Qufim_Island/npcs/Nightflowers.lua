@@ -4,10 +4,8 @@
 -- Involved in Quest: Save My Son (Beastmaster Flag #1)
 -- !pos -264.775 -3.718 28.767 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Qufim_Island/TextIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,10 +19,10 @@ function onTrigger(player,npc)
         if (player:getQuestStatus(JEUNO,SAVE_MY_SON) == QUEST_ACCEPTED and player:getVar("SaveMySon_Event") == 0) then
             player:startEvent(0);
         else
-            player:messageSpecial(NOW_THAT_NIGHT_HAS_FALLEN);
+            player:messageSpecial(ID.text.NOW_THAT_NIGHT_HAS_FALLEN);
         end
     else
-        player:messageSpecial(THESE_WITHERED_FLOWERS);
+        player:messageSpecial(ID.text.THESE_WITHERED_FLOWERS);
     end
 
 end;

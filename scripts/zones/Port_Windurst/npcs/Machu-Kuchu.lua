@@ -3,10 +3,6 @@
 -- Machu-Kuchu
 -- Warps players to Windurst Walls
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -5,9 +5,7 @@
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box
 -- !pos 33 -6 67 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -67,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SEALED_DAGGER);
         player:addTitle(dsp.title.SHADOW_WALKER);
         player:unlockJob(dsp.job.NIN);
-        player:messageSpecial(UNLOCK_NINJA);
+        player:messageSpecial(ID.text.UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,AYAME_AND_KAEDE);

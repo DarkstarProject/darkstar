@@ -3,10 +3,6 @@
 --  NPC: Blank Card
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -3,7 +3,7 @@
 --  MOB: Golden-Tongued Culberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
-require("scripts/zones/PsoXja/MobIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 require("scripts/globals/settings");
 
 function onMobFight(mob,target)
@@ -16,5 +16,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(GOLDEN_TONGUED_CULBERRY_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.GOLDEN_TONGUED_CULBERRY_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

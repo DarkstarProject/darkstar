@@ -9,7 +9,6 @@ package.loaded["scripts/globals/magiantrials"] = nil;
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/magiantrials");
 -----------------------------------
 

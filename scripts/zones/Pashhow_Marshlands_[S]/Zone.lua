@@ -3,10 +3,7 @@
 -- Zone: Pashhow_Marshlands_[S] (90)
 --
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
-require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -27,7 +24,7 @@ end;
 
 function onZoneWeatherChange(weather)
 
-    local npc = GetNPCByID(PASHHOW_S_MARKINGS_OFFSET + 1); -- Indescript Markings (BOOTS)
+    local npc = GetNPCByID(ID.npc.PASHHOW_S_MARKINGS_OFFSET + 1); -- Indescript Markings (BOOTS)
     if (npc ~= nil) then
         if (weather == dsp.weather.RAIN or weather == dsp.weather.THUNDER) then
             npc:setStatus(dsp.status.DISAPPEAR);
@@ -36,7 +33,7 @@ function onZoneWeatherChange(weather)
         end
     end
 
-    npc = GetNPCByID(PASHHOW_S_MARKINGS_OFFSET + 2); -- Indescript Markings (BODY)
+    npc = GetNPCByID(ID.npc.PASHHOW_S_MARKINGS_OFFSET + 2); -- Indescript Markings (BODY)
     if (npc ~= nil) then
         if (weather == dsp.weather.RAIN) then
             npc:setStatus(dsp.status.DISAPPEAR);

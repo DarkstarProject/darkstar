@@ -11,7 +11,7 @@ require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.NEW_BEST_OF_THE_WEST_RECRUIT);
     elseif (csid == 78 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
     if (csid == 567) then
         player:setVar("WWatersRTenText",1);

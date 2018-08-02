@@ -3,9 +3,7 @@
 --  NPC: Altiret
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -39,7 +37,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         elseif (MagicFlyer == false) then
             player:startEvent(551);
         end
@@ -75,6 +73,6 @@ function onEventFinish(player,csid,option)
     -- "The Pickpocket" reward with light axe, done with quest
     if (csid == 550) then
         player:addItem(16667);
-        player:messageSpecial(ITEM_OBTAINED, 16667);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 16667);
     end;
 end;

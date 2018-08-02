@@ -2,9 +2,6 @@
 -- Elevator in Palborough
 -- Notes: Used to operate Elevator @3z0
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Palborough_Mines/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 -----------------------------------

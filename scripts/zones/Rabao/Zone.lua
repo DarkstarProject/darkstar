@@ -3,10 +3,8 @@
 -- Zone: Rabao (247)
 --
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

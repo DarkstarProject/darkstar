@@ -4,8 +4,6 @@
 -- Type: Tutorial NPC
 -- !pos -22.420 0.004 -46.880 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

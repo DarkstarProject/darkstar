@@ -4,11 +4,9 @@
 -- Type: Magian Trials NPC (Weapon/Empyrean Armor)
 -- !pos -11 2.453 118 64
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/magiantrials");
 -----------------------------------
 
@@ -50,7 +48,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10122 and option == 1) then
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGIAN_TRIAL_LOG);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGIAN_TRIAL_LOG);
         player:addKeyItem(dsp.ki.MAGIAN_TRIAL_LOG);
     --elseif
         --

@@ -2,10 +2,8 @@
 -- Area: Pso'Xja
 --  NPC: Stone Gate
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/PsoXja/TextIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
     elseif (player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR)or player:hasCompletedMission(COP,THE_LAST_VERSE)) then
         player:startEvent(50); -- Start Floor 1
     else
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(ID.text.DOOR_LOCKED);
     end
     return 1;
 end;

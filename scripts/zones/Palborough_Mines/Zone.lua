@@ -3,15 +3,12 @@
 -- Zone: Palborough_Mines (143)
 --
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Palborough_Mines/TextIDs");
-require("scripts/zones/Palborough_Mines/MobIDs");
+local ID = require("scripts/zones/Palborough_Mines/IDs");
 require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(PALBOROUGH_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.npc.PALBOROUGH_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)
