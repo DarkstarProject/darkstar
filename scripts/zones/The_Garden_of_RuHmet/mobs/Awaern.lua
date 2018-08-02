@@ -12,8 +12,9 @@ function onMobSpawn(mob)
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, and the if the actual PH/NM isn't up. Then, set it.
-    if (GetMobAction(IxAernDRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
-        IxAernDRG_PH = AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
+    if (GetMobAction(IXAERN_DRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+        local groups = AWAERN_DRG_GROUPS
+        IxAernDRG_PH = groups[math.random(1, #groups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
     end;
 end;
@@ -21,7 +22,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     -- Ix'Aern DRK animosity mechanic
     if (isKiller) then
-        local qm2 = GetNPCByID(Ix_Aern_DRK_QM);
+        local qm2 = GetNPCByID(IXAERN_DRK_QM);
         local hatedPlayer = qm2:getLocalVar("hatedPlayer");
         local isInTime = qm2:getLocalVar("hateTimer") > os.time();
 
@@ -33,9 +34,9 @@ function onMobDeath(mob, player, isKiller)
             end;
 
             -- if aern belongs to QM group, chance for sheer animosity
-            local position = GetNPCByID(Ix_Aern_DRK_QM):getLocalVar("position");
+            local position = GetNPCByID(IXAERN_DRK_QM):getLocalVar("position");
             local currentMobID = mob:getID();
-            if (currentMobID >= AwAernDRKGroups[position] and currentMobID <= AwAernDRKGroups[position] + 2) then
+            if (currentMobID >= AWAERN_DRK_GROUPS[position] and currentMobID <= AWAERN_DRK_GROUPS[position] + 2) then
                 if (math.random(1,8) == 1) then
                     qm2:setLocalVar("hatedPlayer",player:getID());
                     qm2:setLocalVar("hateTimer",os.time() + 600); -- player with animosity has 10 minutes to touch QM
@@ -56,17 +57,17 @@ function onMobDespawn(mob)
     -- If the mob killed was the randomized PH, then Ix'Aern (DRG) in the specific spot, unclaimed and not aggroed.
     if (IxAernDRG_PH == currentMobID) then
         -- Select spawn location based on ID
-        local offset = currentMobID - AwAernDRGGroups[1];
+        local offset = currentMobID - AWAERN_DRG_GROUPS[1];
         if (offset >=0 and offset <=3) then
-            GetMobByID(IxAernDRG):setSpawn(-520, 5, -520, 225); -- Bottom Left
+            GetMobByID(IXAERN_DRG):setSpawn(-520, 5, -520, 225); -- Bottom Left
         elseif (offset >= 4 and offset <= 7) then
-            GetMobByID(IxAernDRG):setSpawn(-520, 5, -359, 30); -- Top Left
+            GetMobByID(IXAERN_DRG):setSpawn(-520, 5, -359, 30); -- Top Left
         elseif (offset >= 8 and offset <= 11) then
-            GetMobByID(IxAernDRG):setSpawn(-319, 5, -359, 95); -- Top Right
+            GetMobByID(IXAERN_DRG):setSpawn(-319, 5, -359, 95); -- Top Right
         elseif (offset >= 12 and offset <= 15) then
-            GetMobByID(IxAernDRG):setSpawn(-319, 5, -520, 156); -- Bottom Right
+            GetMobByID(IXAERN_DRG):setSpawn(-319, 5, -520, 156); -- Bottom Right
         end;
-        SpawnMob(IxAernDRG);
+        SpawnMob(IXAERN_DRG);
         SetServerVariable("[SEA]IxAernDRG_PH", 0); -- Clear the variable because it is spawned!
     end;
 

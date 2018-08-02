@@ -30,8 +30,8 @@ function onMobDeath(mob)
 end
 
 function onMobDespawn(mob)
-    local qm3 = GetNPCByID(Jailer_of_Faith_QM)
+    local qm3 = GetNPCByID(JAILER_OF_FAITH_QM)
     qm3:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
     local qm3position = math.random(1,5)
-    qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3])
+    qm3:setPos(JAILER_OF_FAITH_QM_POS[qm3position][1], JAILER_OF_FAITH_QM_POS[qm3position][2], JAILER_OF_FAITH_QM_POS[qm3position][3])
 end

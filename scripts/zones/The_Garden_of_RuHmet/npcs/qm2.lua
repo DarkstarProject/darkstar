@@ -41,14 +41,14 @@ function onTrigger(player,npc)
         npc:setStatus(dsp.status.DISAPPEAR);
         local qm2position = math.random(1,4);
         npc:setLocalVar("position",qm2position);
-        npc:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+        npc:setPos(IXAERN_DRK_QM_POS[qm2position][1], IXAERN_DRK_QM_POS[qm2position][2], IXAERN_DRK_QM_POS[qm2position][3]);
         npc:setLocalVar("hatedPlayer",0);
         npc:setLocalVar("hateTimer",0);
 
         -- spawn Ix'Aern DRK and its two minions
         player:messageSpecial(MENACING_CREATURES);
-        GetMobByID(IxAernDRK):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(IxAernDRK):updateClaim(player);
+        GetMobByID(IXAERN_DRK):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
+        SpawnMob(IXAERN_DRK):updateClaim(player);
         GetMobByID(QnAernA):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
         SpawnMob(QnAernA):updateClaim(player);
         GetMobByID(QnAernB):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.

@@ -37,5 +37,6 @@ function onMobDespawn( mob )
     DespawnMob(mob:getID()+3);
 
     -- Pick a new PH for Ix'Aern (DRG)
-    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
+    local groups = AWAERN_DRG_GROUPS
+    SetServerVariable("[SEA]IxAernDRG_PH", groups[math.random(1, #groups)] + math.random(0, 2));
 end

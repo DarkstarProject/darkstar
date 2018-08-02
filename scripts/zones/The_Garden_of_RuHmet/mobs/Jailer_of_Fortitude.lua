@@ -27,7 +27,7 @@ function onMobFight(mob, target)
         mob:setLocalVar("delay", 0);
     end;
 
-    if (not GetMobByID(Kf_Ghrah_WHM):isDead() or not GetMobByID(Kf_Ghrah_BLM):isDead()) then -- check for kf'ghrah
+    if (not GetMobByID(KFGHRAH_WHM):isDead() or not GetMobByID(KFGHRAH_BLM):isDead()) then -- check for kf'ghrah
         if (spell > 0 and not mob:hasStatusEffect(dsp.effect.SILENCE)) then
             if (delay >= 3) then
                 mob:castSpell(spell);
@@ -54,15 +54,15 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     -- Despawn the pets if alive
-    DespawnMob(Kf_Ghrah_WHM);
-    DespawnMob(Kf_Ghrah_BLM);
+    DespawnMob(KFGHRAH_WHM);
+    DespawnMob(KFGHRAH_BLM);
 end;
 
 function onMobDespawn(mob)
-    local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+    local qm1 = GetNPCByID(JAILER_OF_FORTITUDE_QM);
     qm1:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 
     -- Move it to a random location
     local qm1position = math.random(1,5);
-    qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+    qm1:setPos(JAILER_OF_FORTITUDE_QM_POS[qm1position][1], JAILER_OF_FORTITUDE_QM_POS[qm1position][2], JAILER_OF_FORTITUDE_QM_POS[qm1position][3]);
 end;
