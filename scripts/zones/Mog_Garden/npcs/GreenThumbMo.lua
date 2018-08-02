@@ -1,7 +1,5 @@
 
-package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mog_Garden/TextIDs");
+local ID = require("scripts/zones/Mog_Garden/IDs");
 require("scripts/globals/moghouse")
 require("scripts/globals/shop");
 -----------------------------------
@@ -25,9 +23,9 @@ function onEventFinish(player, csid, option)
         local lockerLease = getMogLockerExpiryTimestamp(player);
         if (lockerLease ~= nil) then
             if (lockerLease == -1) then -- Lease expired..
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
+                player:messageSpecial(ID.text.MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
             else
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
+                player:messageSpecial(ID.text.MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
             end
         end
 

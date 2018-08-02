@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Monarch_Linn/TextIDs");
+local ID = require("scripts/zones/Monarch_Linn/IDs");
 
 -----------------------------------
 -- onTrade
@@ -44,7 +44,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
         return 1;
     else
-        player:messageSpecial(GLOWING_MIST); -- needs confirmation
+        player:messageSpecial(ID.text.GLOWING_MIST); -- needs confirmation
     end
 
 end;

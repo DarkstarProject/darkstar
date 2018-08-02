@@ -3,9 +3,7 @@
 --  NPC: Nereus
 -- Starts and ends repeteable quest A_POTTER_S_PREFERENCE
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Mhaura/TextIDs")
+local ID = require("scripts/zones/Mhaura/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -52,7 +50,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade()
         player:addFame(WINDURST,120)
         player:addGil(GIL_RATE*2160)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2160)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2160)
         player:setVar("QuestAPotterPrefeRepeat_var",0)
         player:setVar("QuestAPotterPrefeCompDay_var",VanadielDayOfTheYear())
         player:setVar("QuestAPotterPrefeCompYear_var",VanadielYear())

@@ -4,10 +4,8 @@
 -- Entrance to Riverne Site #B01
 -- !pos -259 -30 276 178
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local ID = require("scripts/zones/Misareaux_Coast/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(COP) > AN_ETERNAL_MELODY or player:hasCompletedMission(COP,THE_LAST_VERSE)) then
         player:startEvent(552);
     else
-        player:messageSpecial(DOOR_CLOSED);
+        player:messageSpecial(ID.text.DOOR_CLOSED);
     end
 end;
 

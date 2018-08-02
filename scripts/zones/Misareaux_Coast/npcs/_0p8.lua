@@ -3,10 +3,8 @@
 --  NPC: Iron Gate
 --  Entrance to Sacrarium
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local ID = require("scripts/zones/Misareaux_Coast/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
     elseif (player:hasCompletedMission(COP,THE_LAST_VERSE) or (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus >= 2)or(currentCoP > THE_SECRETS_OF_WORSHIP)) then
         player:startEvent(502);
     else
-        player:messageSpecial(DOOR_CLOSED);
+        player:messageSpecial(ID.text.DOOR_CLOSED);
     end
     return 1;
 end;

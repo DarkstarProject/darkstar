@@ -9,7 +9,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
 
 function onTrade(player,npc,trade)
 end;

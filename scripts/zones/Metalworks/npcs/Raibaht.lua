@@ -5,12 +5,10 @@
 -- Involved in Quest: The Usual, Riding on the Clouds
 -- !pos -27 -10 -1 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -60,11 +58,11 @@ function onEventFinish(player,csid,option)
         player:setVar("darkLegacyCS",1);
     elseif (csid == 755) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
         else
             player:delKeyItem(dsp.ki.DARKSTEEL_FORMULA);
             player:addItem(16798);
-            player:messageSpecial(ITEM_OBTAINED, 16798); -- Raven Scythe
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16798); -- Raven Scythe
             player:setVar("darkLegacyCS",0);
             player:addFame(BASTOK,AF1_FAME);
             player:completeQuest(BASTOK,DARK_LEGACY);

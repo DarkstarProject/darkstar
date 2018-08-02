@@ -3,9 +3,9 @@
 --  NPC: Answald
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+require("scripts/zones/Port_San_dOria/TextIDs");
 require("scripts/globals/quests");
 
 

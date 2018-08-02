@@ -3,9 +3,7 @@
 -- Zone: Open_sea_route_to_Al_Zahbi (46)
 --
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Open_sea_route_to_Al_Zahbi/TextIDs");
+local ID = require("scripts/zones/Open_sea_route_to_Al_Zahbi/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,7 +20,7 @@ end;
 
 function onTransportEvent(player,transport)
     player:startEvent(1028);
-    player:messageSpecial(DOCKING_IN_AL_ZAHBI);
+    player:messageSpecial(ID.text.DOCKING_IN_AL_ZAHBI);
 end;
 
 function onRegionEnter(player,region)

@@ -3,10 +3,6 @@
 --  NPC: Sleakachiq
 -- !pos 162.504 14.999 136.901 12
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Newton_Movalpolos/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 

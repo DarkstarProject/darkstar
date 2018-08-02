@@ -3,9 +3,7 @@
 --  NPC: Nogga
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Metalworks/TextIDs")
+local ID = require("scripts/zones/Metalworks/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         2792,    92, 3,    -- Catalytic Oil
     }
 
-    player:showText(npc, NOGGA_SHOP_DIALOG)
+    player:showText(npc, ID.text.NOGGA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

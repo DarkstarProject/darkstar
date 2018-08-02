@@ -9,7 +9,6 @@ package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -4,11 +4,8 @@
 -- Involved in Missions: Wading Beasts
 -- !pos 96 -20 14 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

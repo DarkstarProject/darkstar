@@ -3,9 +3,7 @@
 --  NPC: Chichiroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Nashmau/TextIDs")
+local ID = require("scripts/zones/Nashmau/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         6369,  73920,    -- Rune Fencer Die
     }
 
-    player:showText(npc, CHICHIROON_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHICHIROON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

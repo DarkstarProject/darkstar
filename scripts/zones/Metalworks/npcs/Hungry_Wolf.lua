@@ -7,9 +7,7 @@
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -- Updated for "Smoke on the Mountain" by EccentricAnata 03.22.13
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -43,7 +41,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 429) then
         player:tradeComplete();
         player:addGil(GIL_RATE*300)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*300);
         player:addTitle(dsp.title.HOT_DOG);
         if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
             player:addFame(BASTOK,30);

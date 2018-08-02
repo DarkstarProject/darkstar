@@ -6,7 +6,7 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------

@@ -4,6 +4,7 @@
 -- Type: Quest Giver
 -- !pos 25.231 -14.999 4.552 237
 -----------------------------------
+local ID = require("scripts/zones/Metalworks/IDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -38,7 +39,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.CORRUPTED_DIRT);
             player:addItem(17284,1);
             player:messageSpecial(QUEST_COMPLETED);
-            player:messageSpecial(ITEM_OBTAINED,17284);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17284);
             player:completeQuest(BASTOK,BEADEAUX_SMOG);
             player:setTitle(dsp.title.BEADEAUX_SURVEYOR);
     end

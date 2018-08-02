@@ -4,10 +4,8 @@
 -- Used in Quest: The Holy Crest
 -- !pos 234 0.1 -110 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/excavation");
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local ID = require("scripts/zones/Maze_of_Shakhrami/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,9 +15,9 @@ function onTrade(player,npc,trade)
             if (player:getFreeSlotsCount(0) >= 1) then
                 player:tradeComplete();
                 player:addItem(1159);
-                player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 1159); -- Wyvern Egg
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
             end
         end
     else
@@ -29,7 +27,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -5,9 +5,7 @@
 --  Involved in Quest: Flyers for Regine, Exit the Gambler
 -- !pos -159.082 12.000 253.794 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -18,10 +16,10 @@ function onTrade(player,npc,trade)
             player:messageSpecial(11936);
             player:setVar("FFR",player:getVar("FFR") - 1);
             player:setVar("tradeGuilberdrier",1);
-            player:messageSpecial(FLYER_ACCEPTED);
+            player:messageSpecial(ID.text.FLYER_ACCEPTED);
             player:tradeComplete();
         elseif (player:getVar("tradeGuilberdrier") ==1) then
-            player:messageSpecial(FLYER_ALREADY);
+            player:messageSpecial(ID.text.FLYER_ALREADY);
         end
     end
 end;

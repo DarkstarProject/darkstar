@@ -4,10 +4,8 @@
 -- Involved in Mission: The Rescue Drill
 -- !pos -70 1 607 193
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Ordelles_Caves/TextIDs");
+local ID = require("scripts/zones/Ordelles_Caves/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,13 +26,13 @@ function onTrigger(player,npc)
         if (MissionStatus == 7) then
             player:startEvent(1);
         elseif (MissionStatus >= 10 or player:hasCompletedMission(SANDORIA,THE_RESCUE_DRILL)) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 9);
+            player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG + 9);
         elseif (MissionStatus >= 8) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG);
+            player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG);
         elseif (player:getNation() == dsp.nation.SANDORIA) then
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 2);
+            player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG + 2);
         else
-            player:showText(npc, RUILLONT_INITIAL_DIALOG + 1);
+            player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG + 1);
         end
     end
 

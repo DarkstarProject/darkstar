@@ -3,9 +3,7 @@
 --  NPC: Jajaroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Nashmau/TextIDs")
+local ID = require("scripts/zones/Nashmau/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         5494, 82500     -- Puppetmaster Die
     }
 
-    player:showText(npc, JAJAROON_SHOP_DIALOG)
+    player:showText(npc, ID.text.JAJAROON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

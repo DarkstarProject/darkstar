@@ -13,7 +13,7 @@ require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
@@ -40,7 +40,7 @@ function onTrigger(player,npc)
     if (player:getVar("theSandCharmVar") == 3) then
         player:startEvent(126,13095); -- During quest "The Sand Charm" - 3rd dialog
     elseif (player:sendGuild(528,8,23,4)) then
-        player:showText(npc,GOLDSMITHING_GUILD);
+        player:showText(npc,ID.text.GOLDSMITHING_GUILD);
     end
 
 end;
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theSandCharmVar",0);
         player:setVar("SmallDialogByBlandine",1);
         player:addKeyItem(dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
         player:addFame(MHAURA,30);
         player:completeQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
     end
