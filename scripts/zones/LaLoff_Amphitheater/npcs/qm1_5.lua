@@ -11,7 +11,6 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
 -- Death cutscenes:
 

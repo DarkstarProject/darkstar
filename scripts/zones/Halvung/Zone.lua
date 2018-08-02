@@ -3,6 +3,8 @@
 -- Zone: Halvung (62)
 --
 -----------------------------------
+local ID = require("scripts/zones/Halvung/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end;

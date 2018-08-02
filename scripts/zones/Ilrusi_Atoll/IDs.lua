@@ -1,13 +1,19 @@
-Ilrusi = {
+-----------------------------------
+-- Area: Ilrusi_Atoll
+-----------------------------------
+require("scripts/globals/zone")
+-----------------------------------
 
-    text = {
-        -- General Texts
-ITEM_CANNOT_BE_OBTAINED         = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED         = 6387; -- Obtained: <item>
-           GIL_OBTAINED         = 6388; -- Obtained <number> gil
-       KEYITEM_OBTAINED         = 6390; -- Obtained key item: <keyitem>
+zones = zones or {}
 
-        -- Assault Texts
+zones[dsp.zone.ILRUSI_ATOLL] =
+{
+    text =
+    {
+        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the item <item> come back again after sorting your inventory
+        ITEM_OBTAINED           = 6387, -- Obtained: <item>
+        GIL_OBTAINED            = 6388, -- Obtained <number> gil
+        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>
         ASSAULT_41_START        = 7486, -- Commencing <assault>! Objective: Rescue the Agent
         ASSAULT_42_START        = 7487, -- Commencing <assault>! Objective: Destroy the Assasins
         ASSAULT_43_START        = 7488, -- Commencing <assault>! Objective: Defeat Sagelord Molaal Ja
@@ -25,14 +31,14 @@ ITEM_CANNOT_BE_OBTAINED         = 6381; -- You cannot obtain the item <item> com
         ASSAULT_POINTS_OBTAINED = 7510, -- You gain <number> [Assault point/Assault points]!
         TIME_REMAINING_MINUTES  = 7511, -- Time remaining: <number> [minute/minutes] (Earth time).
         TIME_REMAINING_SECONDS  = 7512, -- Time remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN            = 7514,  -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
-        CHEST                   = 7524, --The chest contains...
-        GOLDEN                  = 7525, --..a golden figurehead!
-        },
-
-    mobs = {
-        -- Golden Savage
-        [1] = {
+        PARTY_FALLEN            = 7514, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        CHEST                   = 7524, -- The chest contains...
+        GOLDEN                  = 7525, -- ..a golden figurehead!
+    },
+    mob =
+    {
+        [1] =
+        {
             PERCIPIENT_FISH1 = 17002497,
             PERCIPIENT_FISH2 = 17002498,
             PERCIPIENT_FISH3 = 17002499,
@@ -42,7 +48,8 @@ ITEM_CANNOT_BE_OBTAINED         = 6381; -- You cannot obtain the item <item> com
             PERCIPIENT_FISH7 = 17002503,
             PERCIPIENT_FISH8 = 17002504,
         },
-        [2] = {
+        [2] =
+        {
             CURSED_CHEST1  = 17002505,
             CURSED_CHEST2  = 17002506,
             CURSED_CHEST3  = 17002507,
@@ -55,31 +62,29 @@ ITEM_CANNOT_BE_OBTAINED         = 6381; -- You cannot obtain the item <item> com
             CURSED_CHEST10 = 17002514,
             CURSED_CHEST11 = 17002515,
             CURSED_CHEST12 = 17002516,
-        }
+        },
     },
-
-    npcs = {
-                --golden salvage
-
-        ILRUSI_CURSED_CHEST_OFFSET  = 17002505,
-        ANCIENT_LOCKBOX             = 17002654,
-        RUNE_OF_RELEASE             = 17002655,
-        CURSED_CHEST1               = 17002505,
-        CURSED_CHEST2               = 17002506,
-        CURSED_CHEST3               = 17002507,
-        CURSED_CHEST4               = 17002508,
-        CURSED_CHEST5               = 17002509,
-        CURSED_CHEST6               = 17002510,
-        CURSED_CHEST7               = 17002511,
-        CURSED_CHEST8               = 17002512,
-        CURSED_CHEST9               = 17002513,
-        CURSED_CHEST10              = 17002514,
-        CURSED_CHEST11              = 17002515,
-        CURSED_CHEST12              = 17002516,
-        _1jp                        = 17002731,
-        _jja                        = 17002752,
-        _jjb                        = 17002753,
-    }
+    npc =
+    {
+        ILRUSI_CURSED_CHEST_OFFSET = 17002505,
+        ANCIENT_LOCKBOX            = 17002654,
+        RUNE_OF_RELEASE            = 17002655,
+        CURSED_CHEST1              = 17002505,
+        CURSED_CHEST2              = 17002506,
+        CURSED_CHEST3              = 17002507,
+        CURSED_CHEST4              = 17002508,
+        CURSED_CHEST5              = 17002509,
+        CURSED_CHEST6              = 17002510,
+        CURSED_CHEST7              = 17002511,
+        CURSED_CHEST8              = 17002512,
+        CURSED_CHEST9              = 17002513,
+        CURSED_CHEST10             = 17002514,
+        CURSED_CHEST11             = 17002515,
+        CURSED_CHEST12             = 17002516,
+        _1jp                       = 17002731,
+        _jja                       = 17002752,
+        _jjb                       = 17002753,
+    },
 }
 
-return Ilrusi
+return zones[dsp.zone.ILRUSI_ATOLL]

@@ -2,9 +2,7 @@
 -- Area: Halvung
 --  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Halvung/TextIDs");
+local ID = require("scripts/zones/Halvung/IDs");
 require("scripts/globals/mining");
 -----------------------------------
 
@@ -13,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE, 605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE, 605);
 end;
 
 function onEventUpdate(player,csid,option)

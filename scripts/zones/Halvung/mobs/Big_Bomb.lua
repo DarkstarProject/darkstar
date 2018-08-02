@@ -2,7 +2,7 @@
 -- Area: Halvung
 --  MOB: Big Bomb
 -----------------------------------
-require("scripts/zones/Halvung/MobIDs");
+local ID = require("scripts/zones/Halvung/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(BIG_BOMB_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.BIG_BOMB_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

@@ -53,7 +53,7 @@ function onEventFinish(player,csid,option)
         local battlefield = player:getBattlefield();
         if (battlefield) then
             local inst = battlefield:getBattlefieldNumber();
-            local instOffset = MOON_READING_OFFSET + (6 * (inst - 1));
+            local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1));
             local allyPos =
             {
                 [1] = { ajidoPos = {340.117,   48.752, -383.747, 64}, playerPos = { 340.220,  48.557, -386.114, 190} },

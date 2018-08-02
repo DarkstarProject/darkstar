@@ -3,9 +3,7 @@
 -- Zone: Windurst_Walls (239)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -60,7 +58,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,-22.40,192,242);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 510) then
         player:startEvent(514);
     elseif (csid == 514) then
@@ -72,9 +70,9 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",0);
         player:setRank(10);
         player:addGil(GIL_RATE*100000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000);
         player:addItem(183);
-        player:messageSpecial(ITEM_OBTAINED,183);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,183);
         player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
     end
 end;

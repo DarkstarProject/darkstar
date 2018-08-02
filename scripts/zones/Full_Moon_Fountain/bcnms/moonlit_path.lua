@@ -2,11 +2,10 @@
 -- Area: Full Moon Fountain
 -- Name: The Moonlit Path
 -----------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-local ID = require("scripts/zones/Full_Moon_Fountain/IDs");
-
+local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 -- What should go here:

@@ -3,10 +3,8 @@
 -- Zone: LaLoff_Amphitheater (180)
 --
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local ID = require("scripts/zones/LaLoff_Amphitheater/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,9 +3,6 @@
 --  NPC: Caruvinda
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

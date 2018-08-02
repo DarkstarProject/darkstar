@@ -3,11 +3,9 @@
 -- Zone: Heavens_Tower
 --
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Heavens_Tower/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Heavens_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos 60.087 -0.602 -11.847 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Jugner_Forest/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

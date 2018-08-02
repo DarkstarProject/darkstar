@@ -3,7 +3,7 @@
 --  MOB: Sand Lizard
 -- Note: Place Holder for Amemet
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,AMEMET_PH,5,math.random(7200,43200)); -- 2 to 12 hours
+    phOnDespawn(mob,ID.mob.AMEMET_PH,5,math.random(7200,43200)); -- 2 to 12 hours
 end;

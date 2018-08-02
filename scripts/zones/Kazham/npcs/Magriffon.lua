@@ -4,13 +4,11 @@
 -- Involved in Quest: Gullible's Travels, Even More Gullible's Travels,
 -- Location: (I-7)
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 
 
 function onTrade(player,npc,trade)
@@ -77,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 1);
         player:setTitle(dsp.title.EVEN_MORE_GULLIBLES_TRAVELS);
         player:addKeyItem(dsp.ki.TREASURE_MAP);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
     elseif (csid == 152) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);
         player:addFame(KAZHAM, 30);

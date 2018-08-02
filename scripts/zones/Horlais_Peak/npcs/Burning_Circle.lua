@@ -4,13 +4,10 @@
 -- Horlais Peak Burning Circle
 -- !pos -509 158 -211 139
 -------------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Horlais_Peak/TextIDs");
 
     --- 0: The Rank 2 Final Mission
     --- 1: Tails of Woe

@@ -11,7 +11,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/bcnm");
-require("scripts/zones/Jade_Sepulcher/TextIDs");
 
 function onTrade(player,npc,trade)
 end;

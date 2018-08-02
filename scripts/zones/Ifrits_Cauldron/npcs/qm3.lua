@@ -4,12 +4,9 @@
 -- Quests: Blood and Glory (Retribution WSNM "Cailleach Bheur")
 -- !pos 119 20 144 205
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil
------------------------------------
 require("scripts/globals/wsquest")
-require("scripts/zones/Ifrits_Cauldron/TextIDs")
-require("scripts/zones/Ifrits_Cauldron/MobIDs")
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.retribution,player,CAILLEACH_BHEUR)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.retribution,player,ID.mob.CAILLEACH_BHEUR)
 end
