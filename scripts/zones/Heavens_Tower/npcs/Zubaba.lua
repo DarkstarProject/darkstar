@@ -49,6 +49,8 @@ function onTrigger(player,npc)
         player:startEvent(157);
     elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(194); -- her reaction after 5-1.
+    elseif (player:getCurrentMission(WINDURST) == MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, MOON_READING))) then
+        player:startEvent(387);
     else
         player:startEvent(56);
     end
@@ -68,6 +70,8 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",3);
     elseif (csid == 135 or csid == 151) then
         finishMissionTimeline(player,1,csid,option);
+    elseif (csid == 387) then
+        player:setVar("WindurstSecured",0);
     end
 
 end;

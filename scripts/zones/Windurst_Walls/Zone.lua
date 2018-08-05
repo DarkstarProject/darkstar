@@ -8,6 +8,7 @@ package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -28,6 +29,8 @@ function onZoneIn(player,prevZone)
     elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
         and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
         cs = 510;
+    elseif (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") == 4) then
+        cs = 443;
     end
 
     return cs;
@@ -64,5 +67,14 @@ function onEventFinish(player,csid,option)
         player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
         player:addMission(ASA,BURGEONING_DREAD);
         player:setVar("ASA_Status",0);
+    elseif (csid == 443) then
+        player:completeMission(WINDURST,MOON_READING);
+        player:setVar("MissionStatus",0);
+        player:setRank(10);
+        player:addGil(GIL_RATE*100000);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000);
+        player:addItem(183);
+        player:messageSpecial(ITEM_OBTAINED,183);
+        player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
     end
 end;
