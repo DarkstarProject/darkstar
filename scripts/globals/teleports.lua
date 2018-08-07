@@ -1,6 +1,7 @@
 -----------------------------------
 -- A collection of frequently needed teleport shortcuts.
 -----------------------------------
+require("scripts/globals/zone")
 
 dsp = dsp or {}
 dsp.teleport = dsp.teleport or {}

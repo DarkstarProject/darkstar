@@ -860,25 +860,31 @@ end
 dsp.conquest.setRegionalConquestOverseers = function(region)
     local npcs = overseerOffsets[region]
 
-    if npcs then
+    -- make sure we have a valid region
+    if npcs then 
         local base = _G['OVERSEER_BASE_' .. region]
-        local owner = GetRegionOwner(region)
 
-        for _, v in pairs(npcs) do
-            local npc = GetNPCByID(base + v.offset)
+        -- make sure zone exists on current server (prevent error spam for multi-server setups)
+        if base then
 
-            if (npc ~= nil) then
-                if v.nation == owner then
-                    npc:setStatus(dsp.status.NORMAL)
-                else
-                    npc:setStatus(dsp.status.DISAPPEAR)
-                end
+            -- update the npcs
+            local owner = GetRegionOwner(region)
+            for _, v in pairs(npcs) do
+                local npc = GetNPCByID(base + v.offset)
 
-                if v.nation == dsp.nation.OTHER then
-                    if owner ~= dsp.nation.BEASTMEN then
+                if npc then
+                    if v.nation == owner then
                         npc:setStatus(dsp.status.NORMAL)
                     else
                         npc:setStatus(dsp.status.DISAPPEAR)
+                    end
+
+                    if v.nation == dsp.nation.OTHER then
+                        if owner ~= dsp.nation.BEASTMEN then
+                            npc:setStatus(dsp.status.NORMAL)
+                        else
+                            npc:setStatus(dsp.status.DISAPPEAR)
+                        end
                     end
                 end
             end
