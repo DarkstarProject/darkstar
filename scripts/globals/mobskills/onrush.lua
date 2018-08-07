@@ -3,11 +3,9 @@
 -- Deals damage based off TP.
 -- 100% TP: ??? / 250% TP: ??? / 300% TP: ???
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)

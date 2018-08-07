@@ -19,10 +19,6 @@ function onItemUse(target)
     end;
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.ARCANA_KILLER, 20);
 end;

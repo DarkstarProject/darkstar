@@ -4,17 +4,10 @@
 --
 -----------------------------------
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     local complete = false;
@@ -26,14 +19,14 @@ function onEffectTick(target,effect)
     end
     local basemp = math.floor((level - 15)/10);
     local bonus = target:getMod(dsp.mod.SUBLIMATION_BONUS);
-    
+
     local dmg = 2 + bonus;
-    
+
     local store = effect:getPower() + basemp + bonus;
-    
+
     local limit = math.floor((target:getBaseHP() + target:getMod(dsp.mod.HP) + target:getMerit(dsp.merit.MAX_HP)) / 4) +
         target:getMerit(dsp.merit.MAX_SUBLIMATION);
-    
+
     if not (target:getHPP() < 51 ) then
         if (target:hasStatusEffect(dsp.effect.STONESKIN)) then
             local skin = target:getMod(dsp.mod.STONESKIN);
@@ -57,24 +50,20 @@ function onEffectTick(target,effect)
     else
         complete = true;
     end
-    
+
     if store > limit then
         store = limit;
         complete = true;
     end
-    
+
     if (complete) then
         target:delStatusEffectSilent(dsp.effect.SUBLIMATION_ACTIVATED);
         target:addStatusEffect(dsp.effect.SUBLIMATION_COMPLETE,store,0,7200);
     else
         effect:setPower(store);
     end
-    
-end;
 
------------------------------------
--- onEffectLose Action
------------------------------------
+end;
 
 function onEffectLose(target,effect)
 end;

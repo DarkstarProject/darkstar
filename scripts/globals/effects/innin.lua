@@ -5,17 +5,11 @@
 -----------------------------------
 require("scripts/globals/status");
 -----------------------------------
--- onEffectGain Action
------------------------------------
 
 function onEffectGain(target,effect) --power=30 initially, subpower=20 for enmity
     target:addMod(dsp.mod.EVA,-effect:getPower());
     target:addMod(dsp.mod.ENMITY,-effect:getSubPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     --tick down the effect and reduce the overall power
@@ -26,10 +20,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.ENMITY,-1);
     end;
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     --remove the remaining power

@@ -1,12 +1,8 @@
 -----------------------------------------
 -- Spell: Barsleepra
 -----------------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/spells/barstatus");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

@@ -4,15 +4,11 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:recalculateAbilitiesTable();
     local bonus = effect:getPower();
     local regen = effect:getSubPower();
-    
+
     target:addMod(dsp.mod.WHITE_MAGIC_COST, -bonus);
     target:addMod(dsp.mod.WHITE_MAGIC_CAST, -bonus);
     target:addMod(dsp.mod.WHITE_MAGIC_RECAST, -bonus);
@@ -30,26 +26,18 @@ function onEffectGain(target,effect)
     target:recalculateSkillsTable();
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:recalculateAbilitiesTable();
     local bonus = effect:getPower();
     local regen = effect:getSubPower();
-    
+
     target:delMod(dsp.mod.WHITE_MAGIC_COST, -bonus);
     target:delMod(dsp.mod.WHITE_MAGIC_CAST, -bonus);
     target:delMod(dsp.mod.WHITE_MAGIC_RECAST, -bonus);
-    
+
     if not (target:hasStatusEffect(dsp.effect.TABULA_RASA)) then
         target:delMod(dsp.mod.WHITE_MAGIC_COST, -10);
         target:delMod(dsp.mod.WHITE_MAGIC_CAST, -10);

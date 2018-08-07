@@ -6,25 +6,13 @@
 -- Normal power is 5.
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2));
     target:addMod(dsp.mod.REGAIN_DOWN, effect:getPower()*10);
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2));

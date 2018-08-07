@@ -12,25 +12,16 @@
 -- Skillchain Element(s): Lightning (can open Liquefaction or Detonation; can close Impaction or Fusion)
 -- Combos: Max HP Boost
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
         params.tpmod = TPMOD_ATTACK;
@@ -51,6 +42,6 @@ function onSpellCast(caster,target,spell)
         params.chr_wsc = 0.0;
     damage = BluePhysicalSpell(caster, target, spell, params);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-   
+
     return damage;
 end;

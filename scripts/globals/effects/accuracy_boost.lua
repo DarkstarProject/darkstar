@@ -3,20 +3,12 @@
 -- dsp.effect.ACCURACY_BOOST
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.ACC,effect:getPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     -- the effect loses accuracy of 1 every 3 ticks depending on the source of the acc boost
@@ -26,10 +18,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.ACC,1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local boostACC_effect_size = effect:getPower();

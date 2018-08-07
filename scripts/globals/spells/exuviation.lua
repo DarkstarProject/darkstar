@@ -4,14 +4,10 @@
 -- Can be used with Diffusion.
 -- Shamelessly stolen from http://members.shaw.ca/pizza_steve/cure/Cure_Calculator.html
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

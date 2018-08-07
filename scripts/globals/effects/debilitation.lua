@@ -4,10 +4,18 @@
 --
 -----------------------------------
 
-local stats_bits = {dsp.mod.STR, dsp.mod.DEX, dsp.mod.VIT, dsp.mod.AGI, dsp.mod.INT, dsp.mod.MND, dsp.mod.CHR, dsp.mod.HPP, dsp.mod.MPP}
------------------------------------
--- onEffectGain Action
------------------------------------
+local stats_bits =
+{
+    dsp.mod.STR,
+    dsp.mod.DEX,
+    dsp.mod.VIT,
+    dsp.mod.AGI,
+    dsp.mod.INT,
+    dsp.mod.MND,
+    dsp.mod.CHR,
+    dsp.mod.HPP,
+    dsp.mod.MPP
+}
 
 function onEffectGain(target,effect)
     local power = effect:getPower();
@@ -23,16 +31,8 @@ function onEffectGain(target,effect)
     target:setStatDebilitation(power)
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local power = effect:getPower();

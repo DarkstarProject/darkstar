@@ -10,9 +10,6 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -20,16 +17,8 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.TP_BONUS,effect:getSubPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.ATTP,effect:getPower());

@@ -3,21 +3,13 @@
 -- Deals dark damage to an enemy and
 -- decreases all 7 base stats by 20%
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- onMagicCastingCheck
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
 
 function onSpellCast(caster,target,spell)
     local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);

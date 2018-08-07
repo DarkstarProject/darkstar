@@ -15,21 +15,13 @@
 require("scripts/globals/bluemagic");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     params.multiplier = 1.5625;

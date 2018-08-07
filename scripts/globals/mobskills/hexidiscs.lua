@@ -7,10 +7,9 @@
 --  Range: Unknown cone
 --  Notes: Only used in "ball" form.
 ---------------------------------------------
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
-
 ---------------------------------------------
 
 ---------------------------------------------------

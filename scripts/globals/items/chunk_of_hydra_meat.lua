@@ -30,10 +30,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,300,5564);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.HP, 10);
     target:addMod(dsp.mod.MP, -10);
@@ -41,10 +37,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.INT, -8);
     target:addMod(dsp.mod.DEMON_KILLER, 10);
 end;
-
------------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.HP, 10);

@@ -26,10 +26,6 @@ function onEffectGain(target, effect)
     target:addMod(dsp.mod.VIT,-4);
 end;
 
------------------------------------
--- onEffectLose Action
------------------------------------
-
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.AGI, 2);
     target:delMod(dsp.mod.VIT,-4);

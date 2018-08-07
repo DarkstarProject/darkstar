@@ -11,17 +11,9 @@ require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/zones/FeiYin/TextIDs");
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:setVar("SEED_AFTERGLOW_TIMER",1);
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     local Half_Minutes = target:getVar("SEED_AFTERGLOW_TIMER");
@@ -38,10 +30,6 @@ function onEffectTick(target,effect)
         target:setVar("SEED_AFTERGLOW_TIMER",(Half_Minutes+1));
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     if (target:hasKeyItem(dsp.ki.MARK_OF_SEED) == false and player:hasKeyItem(dsp.ki.AZURE_KEY) == false) then

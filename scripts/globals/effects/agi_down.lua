@@ -1,13 +1,9 @@
 -----------------------------------
 --
---     dsp.effect.AGI_DOWN
+-- dsp.effect.AGI_DOWN
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -17,10 +13,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.AGI,-effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
     -- the effect restore agility of 1 every 3 ticks.
     local downAGI_effect_size = effect:getPower()
@@ -29,10 +21,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.AGI,-1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local downAGI_effect_size = effect:getPower()

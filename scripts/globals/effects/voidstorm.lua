@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.STR,math.floor(effect:getPower()/2));
     target:addMod(dsp.mod.DEX,math.floor(effect:getPower()/2));
@@ -18,16 +14,8 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.CHR,math.floor(effect:getPower()/2));
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.STR,math.floor(effect:getPower()/2));

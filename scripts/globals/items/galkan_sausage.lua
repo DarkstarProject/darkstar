@@ -33,10 +33,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,1800,4395);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     if (target:getRace() ~= 8) then
         target:addMod(dsp.mod.STR, 3);

@@ -22,10 +22,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,180,4510);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.AQUAN_KILLER, 10);
     target:addMod(dsp.mod.SILENCERES, 10);

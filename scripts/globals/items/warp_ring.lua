@@ -3,10 +3,8 @@
 -- Warp Ring
 --  Transports the user to their Home Point
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/teleports");
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)

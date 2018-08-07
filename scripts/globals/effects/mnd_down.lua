@@ -3,11 +3,7 @@
 --     dsp.effect.MND_DOWN
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -17,10 +13,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.MND,-effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
     -- the effect restore mind of 1 every 3 ticks.
     local downMND_effect_size = effect:getPower()
@@ -29,10 +21,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.MND,-1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local downMND_effect_size = effect:getPower()

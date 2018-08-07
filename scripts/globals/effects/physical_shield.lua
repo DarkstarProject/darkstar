@@ -3,11 +3,7 @@
 -- Blocks all physical attacks
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -18,16 +14,8 @@ function onEffectGain(target,effect)
     end
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     if (effect:getPower() < 2) then

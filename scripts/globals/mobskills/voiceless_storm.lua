@@ -2,22 +2,15 @@
 --  Voiceless Storm
 --  Description: AOE Damage, Silence, strips Utsusemi (MOBPARAM_WIPE_SHADOWS)
 ---------------------------------------------
-
+require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
 ---------------------------------------------
 
----------------------------------------------
--- onMobSkillCheck no animation check required
----------------------------------------------
 function onMobSkillCheck(target,mob,skill)
     return 0;
 end;
 
----------------------------------------------
--- onMobSkillCheck no animation check required
----------------------------------------------
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.SILENCE;
 

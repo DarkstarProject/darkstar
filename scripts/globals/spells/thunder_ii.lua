@@ -2,12 +2,8 @@
 -- Spell: Thunder II
 -- Deals lightning damage to an enemy.
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

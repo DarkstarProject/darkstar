@@ -22,10 +22,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,300,4520);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.MPHEAL, 6);
     target:addMod(dsp.mod.VERMIN_KILLER, 12);

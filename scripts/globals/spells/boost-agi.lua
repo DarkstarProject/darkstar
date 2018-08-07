@@ -1,15 +1,11 @@
 --------------------------------------
---     Spell: Boost-AGI
+-- Spell: Boost-AGI
 --     Boosts AGI for Allies in AoE
 --------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

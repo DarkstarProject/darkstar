@@ -5,10 +5,8 @@
 -----------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/msg");
+-----------------------------------------
 
------------------------------------
--- onAdditionalEffect Action
------------------------------------
 function onAdditionalEffect(player,target,damage)
     if (VanadielHour() >= 18 or VanadielHour() <= 6) then
         local chance = 15;

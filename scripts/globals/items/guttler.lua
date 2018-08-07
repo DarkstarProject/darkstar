@@ -3,11 +3,11 @@
 -- Item: Guttler
 -- Additional Effect: Choke
 -----------------------------------------
+require("scripts/globals/weaponskillids");
+require("scripts/globals/weaponskills");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-require("scripts/globals/weaponskillids");
-require("scripts/globals/weaponskills");
 -----------------------------------
 
 local NAME_WEAPONSKILL = "AFTERMATH_GUTTLER";
@@ -94,7 +94,7 @@ function onItemCheck(player, param, caster)
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
-    
+
     return 0;
 end
 

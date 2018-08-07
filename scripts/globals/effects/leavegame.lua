@@ -4,18 +4,10 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:setAnimation(33);
     target:messageSystem(effect:getPower(),30);
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     if (effect:getTickCount() > 5) then
@@ -24,10 +16,6 @@ function onEffectTick(target,effect)
         target:messageSystem(effect:getPower(),30-effect:getTickCount()*5);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:setAnimation(0);

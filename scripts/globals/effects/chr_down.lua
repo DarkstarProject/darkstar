@@ -1,13 +1,9 @@
 -----------------------------------
 --
---     dsp.effect.CHR_DOWN
+-- dsp.effect.CHR_DOWN
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -17,10 +13,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.CHR,-effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
     -- the effect restore charism of 1 every 3 ticks.
     local downCHR_effect_size = effect:getPower()
@@ -29,10 +21,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.CHR,-1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     downCHR_effect_size = effect:getPower()

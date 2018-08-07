@@ -12,25 +12,16 @@
 -- Magic Bursts on: Liquefaction, Fusion, Light
 -- Combos: None
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
     params.multiplier = 1.375;
     params.tMultiplier = 1.0;

@@ -3,10 +3,8 @@
 -- Azouph Fireflies
 --  Transports the user to Azouph Isle
 -----------------------------------------
-require("scripts/globals/status");
 require("scripts/globals/teleports");
------------------------------------------
--- OnItemCheck
+require("scripts/globals/status");
 -----------------------------------------
 
 function onItemCheck(target)

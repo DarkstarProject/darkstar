@@ -10,14 +10,10 @@
 -- Effect Sub Power: Damage Reduction % (In this case, 100%)
 --
 ---------------------------------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

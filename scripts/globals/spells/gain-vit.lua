@@ -1,15 +1,11 @@
 --------------------------------------
---     Spell: Gain-VIT
+-- Spell: Gain-VIT
 --     Boosts VIT for the Caster
 --------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

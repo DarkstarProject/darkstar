@@ -12,35 +12,27 @@
 -- Magic Bursts on: Detonation, Fragmentation, Light
 -- Combos: Max MP Boost
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-    
+
     local params = {};
-    
+
     params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
-    
+
     params.attribute = dsp.mod.INT;
-    
+
     params.skillType = dsp.skill.BLUE_MAGIC;
-    
+
     params.bonus = 1.0;
-    
+
     local resist = applyResistance(caster, target, spell, params);
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
@@ -62,6 +54,6 @@ function onSpellCast(caster,target,spell)
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,5,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     return damage;
 end;

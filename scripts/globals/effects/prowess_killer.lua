@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.VERMIN_KILLER, effect:getPower());
     target:addMod(dsp.mod.BIRD_KILLER, effect:getPower());
@@ -26,16 +22,8 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.LUMINION_KILLER, effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.VERMIN_KILLER, effect:getPower());

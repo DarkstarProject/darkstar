@@ -4,10 +4,6 @@
 -- From FoV and GoV
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     if (effect:getPower() == 1) then -- Dried Meat
         target:addMod(dsp.mod.STR, 4);
@@ -41,16 +37,8 @@ function onEffectGain(target,effect)
     end
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     if (effect:getPower() == 1) then -- Dried Meat

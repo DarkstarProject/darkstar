@@ -1,16 +1,12 @@
 --------------------------------------
---     Spell: Luminohelix
---     Deals light damage that gradually reduces
---  a target's HP. Damage dealt is greatly affected by the weather.
+-- Spell: Luminohelix
+-- Deals light damage that gradually reduces
+-- a target's HP. Damage dealt is greatly affected by the weather.
 --------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

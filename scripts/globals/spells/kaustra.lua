@@ -3,22 +3,14 @@
 -- Consumes 20% of your maximum MP. Relentless
 -- dark damage slowly devours an enemy.
 --------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- onMagicCastingCheck
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
 
 function onSpellCast(caster,target,spell)
     local skill = caster:getSkillLevel(dsp.skill.DARK_MAGIC);

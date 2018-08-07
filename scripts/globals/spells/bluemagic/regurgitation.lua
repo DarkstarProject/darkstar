@@ -12,25 +12,16 @@
 -- Magic Bursts on: Reverberation, Distortion, and Darkness
 -- Combos: Resist Gravity
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
         params.multiplier = 1.83;
         params.tMultiplier = 2.0;
@@ -62,7 +53,6 @@ function onSpellCast(caster,target,spell)
         target:delStatusEffect(typeEffect);
         target:addStatusEffect(typeEffect,1,0,getBlueEffectDuration(caster,resist,typeEffect));
     end
-    
+
     return damage;
 end;
-    

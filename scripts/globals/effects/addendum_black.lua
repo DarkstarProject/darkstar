@@ -4,15 +4,11 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:recalculateAbilitiesTable();
     local bonus = effect:getPower();
     local helix = effect:getSubPower();
-    
+
     target:addMod(dsp.mod.BLACK_MAGIC_COST, -bonus);
     target:addMod(dsp.mod.BLACK_MAGIC_CAST, -bonus);
     target:addMod(dsp.mod.BLACK_MAGIC_RECAST, -bonus);
@@ -30,22 +26,14 @@ function onEffectGain(target,effect)
     target:recalculateSkillsTable();
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:recalculateAbilitiesTable();
     local bonus = effect:getPower();
     local helix = effect:getSubPower();
-    
+
     target:delMod(dsp.mod.BLACK_MAGIC_COST, -bonus);
     target:delMod(dsp.mod.BLACK_MAGIC_CAST, -bonus);
     target:delMod(dsp.mod.BLACK_MAGIC_RECAST, -bonus);

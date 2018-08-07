@@ -19,10 +19,6 @@ function onItemUse(target)
     end;
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.MOVE, 15);
 end;

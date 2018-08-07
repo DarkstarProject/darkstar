@@ -1,11 +1,11 @@
------------------------------------------
+---------------------------------------
 -- ID: 18287
 -- Item: Ogre Killer
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
 require("scripts/globals/weaponskillids");
 require("scripts/globals/weaponskills");
+require("scripts/globals/status");
+require("scripts/globals/msg");
 -----------------------------------
 
 local NAME_WEAPONSKILL = "AFTERMATH_OGRE_KILLER";
@@ -73,6 +73,6 @@ function onItemCheck(player, param, caster)
         end
         player:removeListener(NAME_WEAPONSKILL);
     end
-    
+
     return 0;
 end

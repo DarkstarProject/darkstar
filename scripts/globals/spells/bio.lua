@@ -2,13 +2,9 @@
 -- Spell: Bio
 -- Deals dark damage that weakens an enemy's attacks and gradually reduces its HP.
 -----------------------------------------
-
 require("scripts/globals/settings");
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
@@ -25,6 +21,10 @@ function onSpellCast(caster,target,spell)
     params.skillType = dsp.skill.DARK_MAGIC;
     params.attribute = dsp.mod.INT;
     params.hasMultipleTargetReduction = false;
+    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
+    params.attribute = dsp.mod.INT;
+    params.skillType = dsp.skill.DARK_MAGIC;
+    params.bonus = 1.0;
 
     local dmg = calculateMagicDamage(caster, target, spell, params);
 
@@ -37,11 +37,6 @@ function onSpellCast(caster,target,spell)
     end
 
     --get resist multiplier (1x if no resist)
-    local params = {};
-    params.diff = caster:getStat(dsp.mod.INT)-target:getStat(dsp.mod.INT);
-    params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.DARK_MAGIC;
-    params.bonus = 1.0;
     local resist = applyResistance(caster, target, spell, params);
     --get the resisted damage
     dmg = dmg*resist;
@@ -77,5 +72,4 @@ function onSpellCast(caster,target,spell)
     end
 
     return final;
-
 end;

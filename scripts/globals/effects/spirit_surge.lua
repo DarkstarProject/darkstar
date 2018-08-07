@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     -- The dragoon's MAX HP increases by % of wyvern MaxHP
     target:addMod(dsp.mod.HP,effect:getPower());
@@ -24,16 +20,8 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.HASTE_ABILITY, 256);
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     -- The dragoon's MAX HP returns to normal (when the MAXHP boost in onEffectGain() gets implemented)

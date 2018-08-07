@@ -3,26 +3,15 @@
 -- dsp.effect.CHAINBOUND
 --
 -----------------------------------
- 
-require("scripts/globals/status");
 
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
 end;

@@ -8,12 +8,9 @@
 -- Strength 6
 -- Intelligence -6
 -----------------------------------------
-
 require("scripts/globals/status");
+-----------------------------------------
 
------------------------------------------
--- OnItemCheck
------------------------------------------
 function onItemCheck(target)
     local result = 0;
     if (target:getRace() ~= 8) then
@@ -31,10 +28,6 @@ end;
 function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5565);
 end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.HP, 10);

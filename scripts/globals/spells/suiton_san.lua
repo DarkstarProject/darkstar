@@ -2,12 +2,8 @@
 -- Spell: Suiton: San
 -- Deals water damage to an enemy and lowers its resistance against lightning.
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

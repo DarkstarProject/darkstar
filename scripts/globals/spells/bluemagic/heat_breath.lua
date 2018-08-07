@@ -12,25 +12,16 @@
 -- Magic Bursts on: Liquefaction, Fusion, Light
 -- Combos: Magic Attack Bonus
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local multi = 6.38;
     local params = {};
     params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
@@ -52,10 +43,10 @@ function onSpellCast(caster,target,spell)
         params.chr_wsc = 0.0;
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-    
+
     if (caster:hasStatusEffect(dsp.effect.AZURE_LORE)) then
         multi = multi + 0.50;
     end
-    
+
     return damage;
 end;

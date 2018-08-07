@@ -3,11 +3,7 @@
 -- dsp.effect.SENTINEL
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -15,10 +11,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.ENMITY, 100);
     target:addMod(dsp.mod.ENMITY_LOSS_REDUCTION, effect:getSubPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
    local power = effect:getPower();
@@ -36,10 +28,6 @@ function onEffectTick(target,effect)
       target:delMod(dsp.mod.UDMGPHYS,-decayby);
    end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.UDMGPHYS,-effect:getPower());

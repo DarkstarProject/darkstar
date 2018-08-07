@@ -4,10 +4,8 @@
 --
 -----------------------------------
 require("scripts/globals/status");
-
 -----------------------------------
--- onEffectGain Action
-----------------------------------
+
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.QUAD_ATTACK, effect:getPower());
     target:addMod(dsp.mod.TRIPLE_ATTACK, 100);
@@ -16,15 +14,9 @@ function onEffectGain(target,effect)
     end
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
 function onEffectTick(target,effect)
 end;
 
------------------------------------
--- onEffectLose Action
------------------------------------
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.QUAD_ATTACK, effect:getPower());
     target:delMod(dsp.mod.TRIPLE_ATTACK, 100);

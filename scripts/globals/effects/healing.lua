@@ -8,17 +8,9 @@
 require("scripts/globals/status");
 require("scripts/globals/settings");
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:setAnimation(33);
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
 
@@ -46,10 +38,6 @@ function onEffectTick(target,effect)
     end
 
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:setAnimation(0);

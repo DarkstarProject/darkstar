@@ -6,9 +6,6 @@
 
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -21,13 +18,9 @@ function onEffectGain(target,effect)
         target:delMod(dsp.mod.DOUBLE_ATTACK, 10);
     end
     target:addMod(dsp.mod.DOUBLE_ATTACK,effect:getPower());
-    
+
     target:delStatusEffect(dsp.effect.FAN_DANCE);
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
    local power = effect:getPower();
@@ -39,10 +32,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.DOUBLE_ATTACK,decayby);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local saberDanceMerits = target:getMerit(dsp.merit.SABER_DANCE);

@@ -1,12 +1,8 @@
 -----------------------------------------
 -- Spell: BARWATERA
 -----------------------------------------
-
-require("scripts/globals/status");
 require("scripts/globals/spells/barspell");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/status");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

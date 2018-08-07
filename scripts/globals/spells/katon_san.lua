@@ -2,12 +2,8 @@
 -- Spell: Katon: San
 -- Deals fire damage to an enemy and lowers its resistance against water.
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

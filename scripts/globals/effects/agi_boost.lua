@@ -3,20 +3,12 @@
 -- dsp.effect.AGI_BOOST
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.AGI,effect:getPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     -- the effect loses agility of 1 every 3 ticks depending on the source of the agi boost
@@ -26,10 +18,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.AGI,1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local boostAGI_effect_size = effect:getPower();

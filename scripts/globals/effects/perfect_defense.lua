@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     print(target:getMod(dsp.mod.UDMGMAGIC));
     print(target:getMod(dsp.mod.UDMGPHYS));
@@ -27,10 +23,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.STUNRES, effect:getPower());
     target:addMod(dsp.mod.CHARMRES, effect:getPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     if (effect:getTickCount() > ((effect:getDuration() / effect:getTick())/2)) then
@@ -54,10 +46,6 @@ function onEffectTick(target,effect)
         end
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.UDMGPHYS, -effect:getPower());

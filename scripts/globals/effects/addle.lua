@@ -4,25 +4,13 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.FASTCAST, -effect:getPower()); -- Yes we are subtracting in addMod()
     target:addMod(dsp.mod.MACC, -effect:getSubPower()); -- This is intentional
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.FASTCAST, -effect:getPower());

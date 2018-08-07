@@ -3,20 +3,12 @@
 -- dsp.effect.STR_BOOST
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.STR,effect:getPower());
 end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
     -- the effect loses strengh of 1 every 3 ticks depending on the source of the boost
@@ -26,10 +18,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.STR,1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local boostSTR_effect_size = effect:getPower();

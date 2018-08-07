@@ -4,14 +4,10 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Bio III value per point is '30' This is a constant set in the table 'merits'
 -----------------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

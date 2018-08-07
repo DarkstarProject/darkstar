@@ -3,11 +3,7 @@
 --     dsp.effect.STR_DOWN
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -17,10 +13,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.STR,-effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
     -- the effect restore strengh of 1 every 3 ticks.
     local downSTR_effect_size = effect:getPower()
@@ -29,10 +21,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.STR,-1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local downSTR_effect_size = effect:getPower()

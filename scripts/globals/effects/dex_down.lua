@@ -1,13 +1,9 @@
 -----------------------------------
 --
---     dsp.effect.DEX_DOWN
+-- dsp.effect.DEX_DOWN
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -17,10 +13,6 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.DEX,-effect:getPower());
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
     -- the effect restore dexterity of 1 every 3 ticks.
     local downDEX_effect_size = effect:getPower()
@@ -29,10 +21,6 @@ function onEffectTick(target,effect)
         target:delMod(dsp.mod.DEX,-1);
     end
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     downDEX_effect_size = effect:getPower()

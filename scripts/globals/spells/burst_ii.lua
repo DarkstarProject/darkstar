@@ -2,12 +2,8 @@
 -- Spell: Burst II
 -- Deals lightning damage to an enemy and lowers its resistance against earth.
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

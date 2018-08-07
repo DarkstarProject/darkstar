@@ -21,10 +21,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5980);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.CHR, -3);
     target:addMod(dsp.mod.FOOD_DEFP, 25);

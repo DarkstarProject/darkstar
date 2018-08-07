@@ -19,10 +19,6 @@ function onItemUse(target)
     target:addStatusEffect(dsp.effect.ACCURACY_BOOST,0,0,1800,18067);
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.ACC, 3);
 end;

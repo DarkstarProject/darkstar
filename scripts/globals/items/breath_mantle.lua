@@ -27,10 +27,6 @@ function onItemUse(target)
     end;
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.HP, 18);
     target:addMod(dsp.mod.ENMITY, 3);

@@ -1,22 +1,18 @@
 --------------------------------------
---     Spell: Firestorm
+-- Spell: Firestorm
 --     Changes the weather around target party member to "hot."
 --------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-    
+
     target:delStatusEffectSilent(dsp.effect.FIRESTORM);
     target:delStatusEffectSilent(dsp.effect.SANDSTORM);
     target:delStatusEffectSilent(dsp.effect.RAINSTORM);
@@ -32,6 +28,6 @@ function onSpellCast(caster,target,spell)
         power = merit + caster:getMod(dsp.mod.STORMSURGE_EFFECT) + 2;
     end
     target:addStatusEffect(dsp.effect.FIRESTORM,power,0,180);
-    
+
     return dsp.effect.FIRESTORM;
 end;

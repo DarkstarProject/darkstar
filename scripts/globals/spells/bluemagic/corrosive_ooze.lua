@@ -12,25 +12,16 @@
 --
 -- Combos: Clear Mind
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
     local multi = 2.125;
@@ -69,6 +60,6 @@ function onSpellCast(caster,target,spell)
         target:addStatusEffect(typeEffectOne,5,0,duration);
         target:addStatusEffect(typeEffectTwo,5,0,duration);
     end
-    
+
     return damage;
 end;

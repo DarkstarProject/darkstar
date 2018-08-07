@@ -12,25 +12,16 @@
 -- Magic Bursts On: Detonation, Fragmentation, and Light
 -- Combos: Max HP Boost
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
 require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/status");
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
 end;
 
------------------------------------------
--- OnSpellCast
------------------------------------------
-
 function onSpellCast(caster,target,spell)
-
     local params = {};
         params.multiplier = 2.775;
         params.tMultiplier = 2.912;
@@ -44,6 +35,6 @@ function onSpellCast(caster,target,spell)
         params.chr_wsc = 0.2;
     damage = BlueMagicalSpell(caster, target, spell, params, MND_BASED);
     damage = BlueFinalAdjustments(caster, target, spell, damage, params);
-        
+
     return damage;
 end;

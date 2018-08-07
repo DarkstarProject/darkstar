@@ -2,12 +2,8 @@
 -- Spell: Tornado
 -- Deals wind damage to an enemy and lowers its resistance against ice.
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

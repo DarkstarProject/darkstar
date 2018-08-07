@@ -10,12 +10,14 @@ require("scripts/globals/status");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 1; -- The mob that uses this is not in database yet so returns 1 , when mob is added to game do a check for mob ID and return 0 if it matches nightmare sheep
+    -- The mob that uses this is not in database yet so returns 1
+    -- when mob is added to game return zero and give that mob a skill list not shared with normal sheep..
+    -- DO NOT check mobID.
+    return 1;
 end;
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.SLOW;
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 128, 0, 120));
+    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 120));
 
     return typeEffect;
 end;

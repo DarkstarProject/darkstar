@@ -2,12 +2,8 @@
 -- Spell: Huton: San
 -- Deals wind damage to an enemy and lowers its resistance against ice.
 -----------------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)

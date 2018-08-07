@@ -3,11 +3,7 @@
 --     dsp.effect.SUPER_BUFF
 --
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
@@ -20,16 +16,8 @@ function onEffectGain(target,effect)
     target:AnimationSub(2);
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local power = effect:getPower();

@@ -3,12 +3,8 @@
 -- Deals dark damage to an enemy.
 -- Successive use enhances spell potency.
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

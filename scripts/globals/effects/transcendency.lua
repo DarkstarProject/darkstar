@@ -2,10 +2,6 @@
 require("scripts/globals/status");
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.HP, 9000);
     target:addMod(dsp.mod.MP, 9000);
@@ -28,16 +24,8 @@ function onEffectGain(target,effect)
     target:addMod(dsp.mod.RATT, 9000);
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.HP, 9000);

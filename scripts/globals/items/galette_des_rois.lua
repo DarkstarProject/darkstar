@@ -30,10 +30,6 @@ function onItemUse(target)
     target:addItem(rand); -- Random Jewel
 end;
 
------------------------------------------
--- onEffectGain Action
------------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.HP, 8);
     target:addMod(dsp.mod.FOOD_MPP, 3);

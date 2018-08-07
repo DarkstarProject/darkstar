@@ -1,15 +1,11 @@
 --------------------------------------
---     Spell: Myoshu: Ichi
+-- Spell: Myoshu: Ichi
 --     Grants Subtle Blow +10 for Caster
 --------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;

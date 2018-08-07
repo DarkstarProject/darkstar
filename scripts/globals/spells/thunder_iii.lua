@@ -2,12 +2,8 @@
 -- Spell: Thunder III
 -- Deals lightning damage to an enemy.
 -----------------------------------------
-
-require("scripts/globals/magic");
 require("scripts/globals/status");
-
------------------------------------------
--- OnSpellCast
+require("scripts/globals/magic");
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)
@@ -29,6 +25,6 @@ function onSpellCast(caster, target, spell)
     spellParams.M100 = 1.75;
     spellParams.M200 = 1;
     spellParams.I = 381;
-    
+
     return doElementalNuke(caster, spell, target, spellParams);
 end;

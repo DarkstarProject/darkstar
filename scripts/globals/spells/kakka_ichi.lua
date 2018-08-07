@@ -1,15 +1,11 @@
 --------------------------------------
---     Spell: Kakka: Ichi
+-- Spell: Kakka: Ichi
 --     Grants Store TP +10 for Caster
 --------------------------------------
- 
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+--------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
     return 0;
