@@ -7,19 +7,19 @@
 -- Range: Self
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = math.random(20, 30);
-    local duration = 180;
-    local typeEffect = dsp.effect.SHOCK_SPIKES;
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180));
-    return typeEffect;
-end;
+    local power = math.random(20, 30)
+    local duration = 180
+    local typeEffect = dsp.effect.SHOCK_SPIKES
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, 180))
+    return typeEffect
+end

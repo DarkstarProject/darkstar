@@ -7,14 +7,14 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2));
-    target:addMod(dsp.mod.REGAIN_DOWN, effect:getPower()*10);
-end;
+    target:addMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2))
+    target:addMod(dsp.mod.REGAIN_DOWN, effect:getPower()*10)
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2));
-    target:delMod(dsp.mod.REGAIN_DOWN, effect:getPower()*10);
-end;
+    target:delMod(dsp.mod.REFRESH_DOWN, math.ceil(effect:getPower() / 2))
+    target:delMod(dsp.mod.REGAIN_DOWN, effect:getPower()*10)
+end

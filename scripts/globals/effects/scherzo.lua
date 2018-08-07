@@ -5,10 +5,10 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-end;
+end

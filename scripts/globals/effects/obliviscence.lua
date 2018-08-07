@@ -6,11 +6,11 @@
 
 function onEffectGain(target,effect)
     target:recalculateStats()
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
     target:recalculateStats()
-end;
+end

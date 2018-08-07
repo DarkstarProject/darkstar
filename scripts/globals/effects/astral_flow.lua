@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:recalculateAbilitiesTable();
-end;
+    target:recalculateAbilitiesTable()
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:recalculateAbilitiesTable();
-end;
+    target:recalculateAbilitiesTable()
+end

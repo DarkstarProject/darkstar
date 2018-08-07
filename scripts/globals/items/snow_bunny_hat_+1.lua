@@ -3,13 +3,13 @@
 -- Snow bunny Hat +1
 -- Enchantment: 60Min, Costume - White Rarab
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canUseCostume();
-end;
+    return target:canUseCostume()
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.COSTUME,270,0,3600);
-end;
+    target:addStatusEffect(dsp.effect.COSTUME,270,0,3600)
+end

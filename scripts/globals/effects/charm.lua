@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:setTP(0);
-    target:uncharm();
-end;
+    target:setTP(0)
+    target:uncharm()
+end

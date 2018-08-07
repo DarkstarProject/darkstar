@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(effect:getSubPower(), effect:getPower());
-end;
+    target:addMod(effect:getSubPower(), effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:delMod(effect:getSubPower(), effect:getPower());
-end;
+    target:delMod(effect:getSubPower(), effect:getPower())
+end

@@ -8,7 +8,7 @@
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/pets")
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 
 local idStrengths = {
     [18731] = 1, -- Automaton Oil

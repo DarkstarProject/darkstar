@@ -3,16 +3,16 @@
 --    dsp.effect.MAMBO
 --
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.EVA, effect:getPower());
-end;
+    target:addMod(dsp.mod.EVA, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.EVA, effect:getPower());
-end;
+    target:delMod(dsp.mod.EVA, effect:getPower())
+end

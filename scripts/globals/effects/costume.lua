@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:costume(effect:getPower());
-end;
+    target:costume(effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:costume(0);
-end;
+    target:costume(0)
+end

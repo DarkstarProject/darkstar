@@ -6,15 +6,15 @@
 
 function onEffectGain(target,effect)
     if (target:getPet()) then
-        target:getPet():addStatusEffect(effect);
+        target:getPet():addStatusEffect(effect)
     end
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.PENNANT);
+        target:getPet():delStatusEffect(dsp.effect.PENNANT)
     end
-end;
+end

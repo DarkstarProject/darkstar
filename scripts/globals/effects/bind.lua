@@ -5,13 +5,13 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    effect:setPower(target:speed());
-    target:speed(0);
-end;
+    effect:setPower(target:speed())
+    target:speed(0)
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:speed(effect:getPower());
-end;
+    target:speed(effect:getPower())
+end

@@ -3,14 +3,14 @@
 --     dsp.effect.MANAFONT
 --
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-end;
+end

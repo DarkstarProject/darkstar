@@ -5,12 +5,12 @@
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:levelRestriction(effect:getPower());
-end;
+    target:levelRestriction(effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:levelRestriction(0);
-end;
+    target:levelRestriction(0)
+end
