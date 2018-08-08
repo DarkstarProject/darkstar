@@ -1441,7 +1441,8 @@ namespace petutils
         }
     }
 
-    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet)
+    {
         //set C magic evasion
         PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PPet->GetMLevel()));
         PPet->health.tp = 0;
@@ -1449,6 +1450,22 @@ namespace petutils
         PPet->UpdateHealth();
         PPet->health.hp = PPet->GetMaxHP();
         PPet->health.mp = PPet->GetMaxMP();
+
+        // Stout Servant - Can't really tie it ot a real mod since it applies to the pet
+        if (CCharEntity* PCharMaster = dynamic_cast<CCharEntity*>(PMaster))
+        {
+            if (charutils::hasTrait(PCharMaster, TRAIT_STOUT_SERVANT))
+            {
+                for (CTrait* trait : PCharMaster->TraitList)
+                {
+                    if (trait->getID() == TRAIT_STOUT_SERVANT)
+                    {
+                        PPet->addModifier(Mod::DMG, -trait->getValue());
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)

@@ -453,7 +453,8 @@ INSERT INTO `item_mods` VALUES (10369,5,35);
 INSERT INTO `item_mods` VALUES (10369,23,12);
 INSERT INTO `item_mods` VALUES (10369,27,8);
 INSERT INTO `item_mods` VALUES (10369,384,30);
-INSERT INTO `item_mods` VALUES (10370,1,29);
+INSERT INTO `item_mods` VALUES (10370,1,29);    -- Shedir Crackows: DEF:29
+INSERT INTO `item_mods` VALUES (10370,913,3);   -- "Blood Boon"+3
 INSERT INTO `item_mods` VALUES (10371,1,22);
 INSERT INTO `item_mods` VALUES (10371,2,25);
 INSERT INTO `item_mods` VALUES (10371,5,25);
@@ -3584,9 +3585,10 @@ INSERT INTO `item_mods` VALUES (11137,8,9);
 INSERT INTO `item_mods` VALUES (11137,10,9);
 INSERT INTO `item_mods` VALUES (11137,23,18);
 INSERT INTO `item_mods` VALUES (11137,421,10);
-INSERT INTO `item_mods` VALUES (11138,1,40);
-INSERT INTO `item_mods` VALUES (11138,5,45);
-INSERT INTO `item_mods` VALUES (11138,117,6);
+INSERT INTO `item_mods` VALUES (11138,1,40);        -- Caller's Spats +2: DEF:40
+INSERT INTO `item_mods` VALUES (11138,5,45);        -- MP+45
+INSERT INTO `item_mods` VALUES (11138,117,6);       -- Summoning magic skill +6
+INSERT INTO `item_mods` VALUES (11138,913,10);      -- "Blood Boon"+7
 INSERT INTO `item_mods` VALUES (11139,1,47);
 INSERT INTO `item_mods` VALUES (11139,8,8);
 INSERT INTO `item_mods` VALUES (11139,9,8);
@@ -4059,8 +4061,9 @@ INSERT INTO `item_mods` VALUES (11237,8,7);
 INSERT INTO `item_mods` VALUES (11237,10,7);
 INSERT INTO `item_mods` VALUES (11237,23,12);
 INSERT INTO `item_mods` VALUES (11237,421,5);
-INSERT INTO `item_mods` VALUES (11238,1,38);
-INSERT INTO `item_mods` VALUES (11238,5,33);
+INSERT INTO `item_mods` VALUES (11238,1,38);        -- Caller's Spats +1: DEF:38
+INSERT INTO `item_mods` VALUES (11238,5,33);        -- MP+33
+INSERT INTO `item_mods` VALUES (11238,913,7);       -- "Blood Boon"+7
 INSERT INTO `item_mods` VALUES (11239,1,45);
 INSERT INTO `item_mods` VALUES (11239,8,5);
 INSERT INTO `item_mods` VALUES (11239,9,5);
@@ -5590,6 +5593,7 @@ INSERT INTO `item_mods` VALUES (11699,24,4);
 INSERT INTO `item_mods` VALUES (11699,26,4);
 INSERT INTO `item_mods` VALUES (11700,5,45);      -- gifted_earring MP+45
 INSERT INTO `item_mods` VALUES (11700,296,3);     -- Conserve MP+3
+INSERT INTO `item_mods` VALUES (11700,913,3);	  -- "Blood Boon"+3
 INSERT INTO `item_mods` VALUES (11701,5,10);
 INSERT INTO `item_mods` VALUES (11701,14,3);
 INSERT INTO `item_mods` VALUES (11702,23,10);
@@ -5724,6 +5728,7 @@ INSERT INTO `item_mods` VALUES (11751,1,6);
 INSERT INTO `item_mods` VALUES (11751,9,6);
 INSERT INTO `item_mods` VALUES (11751,384,61);
 INSERT INTO `item_mods` VALUES (11752,1,3);       -- diaboloss_rope DEF:+3
+INSERT INTO `item_mods` VALUES (11752,913,3);     -- "Blood Boon"+3
 INSERT INTO `item_mods` VALUES (11753,1,5);       -- Emphatikos Rope: DEF 5
 INSERT INTO `item_mods` VALUES (11753,5,20);      -- MP +20
 INSERT INTO `item_mods` VALUES (11753,168,12);    -- Spell interruption rate down 12%
@@ -6932,8 +6937,9 @@ INSERT INTO `item_mods` VALUES (12080,25,3);
 INSERT INTO `item_mods` VALUES (12081,1,47);
 INSERT INTO `item_mods` VALUES (12081,8,3);
 INSERT INTO `item_mods` VALUES (12081,10,3);
-INSERT INTO `item_mods` VALUES (12082,1,35);
-INSERT INTO `item_mods` VALUES (12082,5,16);
+INSERT INTO `item_mods` VALUES (12082,1,35);        -- Caller's Spats: DEF:35
+INSERT INTO `item_mods` VALUES (12082,5,16);        -- MP+16
+INSERT INTO `item_mods` VALUES (12082,913,3);       -- "Blood Boon"+3
 INSERT INTO `item_mods` VALUES (12083,1,42);
 INSERT INTO `item_mods` VALUES (12083,8,2);
 INSERT INTO `item_mods` VALUES (12083,9,2);
@@ -20489,7 +20495,8 @@ INSERT INTO `item_mods` VALUES (17094,5,10);
 INSERT INTO `item_mods` VALUES (17101,61,15);
 INSERT INTO `item_mods` VALUES (17102,23,8);
 INSERT INTO `item_mods` VALUES (17102,25,4);
-INSERT INTO `item_mods` VALUES (17105,117,7);
+INSERT INTO `item_mods` VALUES (17105,117,7);     -- Souscourge: Summoning magic skill +7
+INSERT INTO `item_mods` VALUES (17105,913,5);     -- "Blood Boon"+5
 INSERT INTO `item_mods` VALUES (17108,5,50);
 INSERT INTO `item_mods` VALUES (17108,374,10);
 INSERT INTO `item_mods` VALUES (17110,384,20);    -- Celeritas Pole: Haste+2%
@@ -37722,6 +37729,7 @@ INSERT INTO `item_mods` VALUES (27265,31,73);     -- MEVA
 INSERT INTO `item_mods` VALUES (27265,68,15);     -- EVA
 INSERT INTO `item_mods` VALUES (27265,117,15);    -- Summ. Magic Skill
 INSERT INTO `item_mods` VALUES (27265,384,40);    -- Haste
+INSERT INTO `item_mods` VALUES (27265,913,11);    -- "Blood Boon"+11
 INSERT INTO `item_mods` VALUES (27266,1,102);     -- Beck. Spats +1: DEF
 INSERT INTO `item_mods` VALUES (27266,2,41);      -- HP
 INSERT INTO `item_mods` VALUES (27266,5,116);     -- MP
@@ -37736,6 +37744,7 @@ INSERT INTO `item_mods` VALUES (27266,31,107);    -- MEVA
 INSERT INTO `item_mods` VALUES (27266,68,33);     -- EVA
 INSERT INTO `item_mods` VALUES (27266,117,20);    -- Summ. Magic Skill
 INSERT INTO `item_mods` VALUES (27266,384,51);    -- Haste
+INSERT INTO `item_mods` VALUES (27266,913,12);    -- "Blood Boon"+12
 INSERT INTO `item_mods` VALUES (27267,1,78);
 INSERT INTO `item_mods` VALUES (27267,2,21);
 INSERT INTO `item_mods` VALUES (27267,5,26);
@@ -47986,7 +47995,8 @@ INSERT INTO `item_mods` VALUES (28457,1,10);
 INSERT INTO `item_mods` VALUES (28457,25,5);
 INSERT INTO `item_mods` VALUES (28457,68,5);
 INSERT INTO `item_mods` VALUES (28457,384,61);
-INSERT INTO `item_mods` VALUES (28458,5,30);
+INSERT INTO `item_mods` VALUES (28458,5,30);       -- Jaq'ij Sash: MP+30
+INSERT INTO `item_mods` VALUES (28458,913,5);      -- "Blood Bood"+5
 INSERT INTO `item_mods` VALUES (28459,8,7);
 INSERT INTO `item_mods` VALUES (28459,10,5);
 INSERT INTO `item_mods` VALUES (28459,375,5);
