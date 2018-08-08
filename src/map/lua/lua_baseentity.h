@@ -52,6 +52,7 @@ public:
     int32 PrintToPlayer(lua_State* L);      // for sending debugging messages/command confirmations to the player's client
     int32 PrintToArea(lua_State* L);        // for sending area messages to multiple players at once
     int32 messageBasic(lua_State*);         // Sends Basic Message
+    int32 messageName(lua_State* L);        // Sends a Message with a Name
     int32 messagePublic(lua_State*);        // Sends a public Basic Message
     int32 messageSpecial(lua_State*);       // Sends Special Message
     int32 messageSystem(lua_State*);        // Sends System Message

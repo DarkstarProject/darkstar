@@ -116,6 +116,7 @@
 #include "../packets/menu_merit.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/message_basic.h"
+#include "../packets/message_name.h"
 #include "../packets/message_special.h"
 #include "../packets/message_standard.h"
 #include "../packets/message_system.h"
@@ -368,6 +369,53 @@ inline int32 CLuaBaseEntity::messageBasic(lua_State* L)
     {//broadcast in range
         m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageBasicPacket(m_PBaseEntity, PTarget, param0, param1, messageID));
     }
+    return 0;
+}
+
+/************************************************************************
+*  Function: messageName()
+*  Purpose : Message displayed with an entity's name in it
+*  Example : target:messageName(messageID, entity, param0, param1, param2, param3, chatType);
+*  Notes   : Used in Doom countdown messages, as an example
+************************************************************************/
+
+inline int32 CLuaBaseEntity::messageName(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(!m_PBaseEntity);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    uint16 messageID = (uint16)lua_tointeger(L, 1);
+
+    CLuaBaseEntity* PLuaEntity = Lunar<CLuaBaseEntity>::check(L, 2);
+    CBaseEntity* PNameEntity = PLuaEntity ? PLuaEntity->m_PBaseEntity : nullptr;
+
+    int32 param0 = 0;
+    int32 param1 = 0;
+    int32 param2 = 0;
+    int32 param3 = 0;
+
+    if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+        param0 = (int32)lua_tointeger(L, 3);
+    if (!lua_isnil(L, 4) && lua_isnumber(L, 4))
+        param1 = (int32)lua_tointeger(L, 4);
+    if (!lua_isnil(L, 5) && lua_isnumber(L, 5))
+        param2 = (int32)lua_tointeger(L, 5);
+    if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
+        param3 = (int32)lua_tointeger(L, 6);
+
+    int32 chatType = 4;
+    if (!lua_isnil(L, 7) && lua_isnumber(L, 7))
+        chatType = (int32)lua_tointeger(L, 7);
+
+    if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
+    {
+        PChar->pushPacket(new CMessageNamePacket(PChar, messageID, PNameEntity, param0, param1, param2, param3, chatType));
+    }
+    else
+    {
+        m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageNamePacket(m_PBaseEntity, messageID, PNameEntity, param0, param1, param2, param3, chatType));
+    }
+
     return 0;
 }
 
@@ -13726,6 +13774,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToPlayer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,PrintToArea),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageBasic),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageName),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messagePublic),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSpecial),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,messageSystem),
