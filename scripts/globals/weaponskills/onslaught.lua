@@ -14,10 +14,11 @@
 -- 100%TP    200%TP    300%TP
 -- 2.75      2.75      2.75
 -----------------------------------
-require("scripts/globals/weaponskills
-require("scripts/globals/settings")")
+require("scripts/globals/weaponskills")
+require("scripts/globals/settings")
 require("scripts/globals/status")
 -----------------------------------
+
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     local params = {}
     params.numHits = 1
