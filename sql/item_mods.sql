@@ -3588,7 +3588,7 @@ INSERT INTO `item_mods` VALUES (11137,421,10);
 INSERT INTO `item_mods` VALUES (11138,1,40);        -- Caller's Spats +2: DEF:40
 INSERT INTO `item_mods` VALUES (11138,5,45);        -- MP+45
 INSERT INTO `item_mods` VALUES (11138,117,6);       -- Summoning magic skill +6
-INSERT INTO `item_mods` VALUES (11138,913,10);      -- "Blood Boon"+7
+INSERT INTO `item_mods` VALUES (11138,913,10);      -- "Blood Boon"+10
 INSERT INTO `item_mods` VALUES (11139,1,47);
 INSERT INTO `item_mods` VALUES (11139,8,8);
 INSERT INTO `item_mods` VALUES (11139,9,8);
