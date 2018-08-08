@@ -31,7 +31,7 @@ MAP_OBJ = obj_map/map.o obj_map/baseentity.o obj_map/battleentity.o obj_map/char
      obj_map/packets/chat_message.o obj_map/packets/char.o obj_map/packets/char_update.o                                                       \
      obj_map/packets/wide_scan.o obj_map/packets/message_text.o obj_map/packets/event.o                                                        \
      obj_map/packets/message_system.o obj_map/packets/char_health.o obj_map/packets/message_standard.o                                         \
-     obj_map/packets/bazaar_message.o obj_map/packets/cs_position.o obj_map/packets/message_special.o                                          \
+     obj_map/packets/bazaar_message.o obj_map/packets/cs_position.o obj_map/packets/message_name.o obj_map/packets/message_special.o           \
      obj_map/packets/position.o obj_map/packets/menu_mog.o obj_map/packets/synth_message.o                                                     \
      obj_map/packets/chocobo_music.o obj_map/packets/shop_items.o obj_map/packets/bazaar_item.o                                                \
      obj_map/packets/shop_buy.o obj_map/packets/message_basic.o obj_map/packets/shop_menu.o                                                    \
@@ -71,7 +71,7 @@ MAP_H    = map.h baseentity.h battleentity.h charentity.h mobentity.h npcentity.
    packets/chat_message.h packets/char.h packets/char_update.h                                                                                 \
    packets/message_text.h packets/event.h packets/message_system.h                                                                             \
    packets/char_health.h packets/message_standard packets/bazaar_message.h                                                                     \
-   packets/cs_position.h packets/message_special.h packets/position.h                                                                          \
+   packets/cs_position.h packets/message_name.h packets/message_special.h packets/position.h                                                   \
    packets/menu_mog.h packets/synth_message.h packets/chocobo_music.h                                                                          \
    packets/shop_items.h packets/bazaar_item.h packets/shop_buy.h                                                                               \
    packets/message_basic.h packets/shop_menu.h packets/synth_animation.h                                                                       \
