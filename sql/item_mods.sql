@@ -43576,8 +43576,24 @@ INSERT INTO `item_mods` VALUES (27991,30,10); -- 10 Macc
 INSERT INTO `item_mods` VALUES (27991,68,22); -- 22 Eva
 INSERT INTO `item_mods` VALUES (27991,31,37); -- 37 Meva
 INSERT INTO `item_mods` VALUES (27991,29,3); -- 3 Mdef
-INSERT INTO `item_mods` VALUES (27991,384,30); -- 3% Gear Haste
+INSERT INTO `item_mods` VALUES (27991,384,31); -- 3% Gear Haste
 INSERT INTO `item_mods` VALUES (27991,374,13); -- 13% Cure Potency
+INSERT INTO `item_mods` VALUES (27992,1,84);    -- Revealer's Mitts +1: DEF: 84
+INSERT INTO `item_mods` VALUES (27992,2,22);    -- HP+22
+INSERT INTO `item_mods` VALUES (27992,5,44);    -- MP+44
+INSERT INTO `item_mods` VALUES (27992,8,6);     -- STR+6
+INSERT INTO `item_mods` VALUES (27992,9,28);    -- DEX+28
+INSERT INTO `item_mods` VALUES (27992,10,25);   -- VIT+25
+INSERT INTO `item_mods` VALUES (27992,11,5);    -- AGI+5
+INSERT INTO `item_mods` VALUES (27992,12,19);   -- INT+19
+INSERT INTO `item_mods` VALUES (27992,13,39);   -- MND+39
+INSERT INTO `item_mods` VALUES (27992,14,25);   -- CHR+25
+INSERT INTO `item_mods` VALUES (27992,29,3);    -- "Magic Def. Bonus"+3
+INSERT INTO `item_mods` VALUES (27992,30,11);   -- Magic Accuracy+11
+INSERT INTO `item_mods` VALUES (27992,31,37);   -- Magic Evasion+37
+INSERT INTO `item_mods` VALUES (27992,68,22);   -- Evasion+22
+INSERT INTO `item_mods` VALUES (27992,374,14);  -- "Cure" potency +14%
+INSERT INTO `item_mods` VALUES (27992,384,31);  -- Haste+3%
 INSERT INTO `item_mods` VALUES (27994,1,102);
 INSERT INTO `item_mods` VALUES (27994,2,29);
 INSERT INTO `item_mods` VALUES (27994,8,10);
