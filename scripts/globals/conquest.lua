@@ -76,7 +76,7 @@ local outposts =
     [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TULIA]           = {zone = 130},
+    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 0, fee = 0},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
     [dsp.region.MOVALPOLOS]      = {zone =  11},
 }
@@ -128,7 +128,7 @@ local function suppliesAvailableBitmask(player, nation)
     end
 
     for k, v in pairs(outposts) do
-        if player:hasKeyItem(v.ki) then
+        if v.ki and player:hasKeyItem(v.ki) then
             mask = -1
             break
         end
@@ -851,7 +851,6 @@ dsp.conquest.canTeleportToOutpost = function(player, region)
     local outpost = outposts[region]
     if
         outpost == nil or
-        outpost.ki == nil or
         player:getMainLvl() < outpost.lvl or
         not hasOutpost(player, region) or
         (region == dsp.region.TAVNAZIANARCH and not player:hasCompletedMission(COP, DARKNESS_NAMED))
