@@ -12539,6 +12539,8 @@ INSERT INTO `mob_groups` VALUES (14629,830,22,1056,0,591,0,0,54,56,0);  -- Promy
 INSERT INTO `mob_groups` VALUES (14630,830,22,1056,0,591,0,0,56,58,0);  -- Promyvion-Vahzl Level 3
 INSERT INTO `mob_groups` VALUES (14631,830,22,1056,0,591,0,0,58,60,0);  -- Promyvion-Vahzl Level 4/5
 
+INSERT INTO `mob_groups` VALUES (14632,5842,122,7200,0,0,0,0,77,79,0); -- Nargun
+
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
