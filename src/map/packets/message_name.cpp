@@ -42,9 +42,10 @@ CMessageNamePacket::CMessageNamePacket(
     ref<int32>(0x04) = PActor->id;
     ref<uint16>(0x08) = PActor->targid;
 
-    ref<uint16>(0x0A) = messageID;
     if (!showSender)
         messageID |= 0x8000;
+
+    ref<uint16>(0x0A) = messageID;
 
     ref<int32>(0x0C) = chatType;
     ref<int32>(0x10) = param0;
