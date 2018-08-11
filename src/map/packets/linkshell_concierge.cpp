@@ -176,7 +176,7 @@ CLinkshellConciergePacket::CLinkshellConciergePacket(CCharEntity* PChar, uint32 
 
 
 				// Start of encoding of LS options
-				byte optionsOffset = 0x70 + (i * 4);
+				uint16 optionsOffset = 0x70 + (i * 4);
 			    
 				uint8 lsLanguageFlags = 0x00;
 				// Could probably just replace this with a shift
