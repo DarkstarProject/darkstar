@@ -50,3 +50,9 @@ SOVEREIGN_WITHOUT_AN_APPOINTMENT = 10166; -- Nobody sees the sovereign without a
 
 -- conquest Base
                    CONQUEST_BASE =     0;
+
+-- Linkshell Concierges
+        LS_CONCIERGE_REGISTERED1 = 15735 -- Your registration is officially complete.
+        LS_CONCIERGE_REGISTERED2 = 15736 -- May your journeys lead you to many as-yet-unmet friends, and may the bonds you forge last a lifetime.
+     LS_CONCIERGE_ALREADY_LISTED = 15737 -- Another member of that linkshell currently has an active registration. Please wait until that registration expires and try again.
+     LS_CONCIERGE_LISTING_CANCEL = 15683 -- It was my pleasure to meet with you this fine day. May you encounter many friendly faces throughout your travels.
