@@ -61,7 +61,7 @@ function processDebuff(player, target, ability, debuff)
     elseif debuff == dsp.effect.DEFENSE_DOWN then
         ability:setMsg(dsp.msg.basic.DESPOIL_DEF_DOWN)
         power = 30
-    elseif debuff == dsp.effect.MAGIC_ATK_DOWN)then
+    elseif debuff == dsp.effect.MAGIC_ATK_DOWN then
         ability:setMsg(dsp.msg.basic.DESPOIL_MATT_DOWN)
     elseif debuff == dsp.effect.MAGIC_DEF_DOWN then
         ability:setMsg(dsp.msg.basic.DESPOIL_MDEF_DOWN)
