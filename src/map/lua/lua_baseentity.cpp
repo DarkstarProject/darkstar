@@ -13808,7 +13808,7 @@ inline int32 CLuaBaseEntity::getLinkShellID(lua_State *L)
 /************************************************************************
 *  Function: lsConciergeUpdate()
 *  Purpose : Returns the LinkShell List for Concierges onEventUpdate
-*  Example : player:lsConciergeUpdate(csid,option)
+*  Example : player:lsConciergeUpdate(csid,option,LINKSHELL_CONCIERGE_SHARE)
 *  Notes   :
 ************************************************************************/
 
@@ -13955,7 +13955,7 @@ inline int32 CLuaBaseEntity::lsConciergeUpdate(lua_State *L)
 /************************************************************************
 *  Function: lsConciergeRegister()
 *  Purpose : Registered specific Linkshell ID for specified Linkshell Concierge NPC
-*  Example : res = player:lsConciergeRegister(myLinkShellID, player:getEventTarget():getID(), vLang, vCount, vDays, vTimeZone, vTimeOfDay);
+*  Example : res = player:lsConciergeRegister(myLinkShellID, player:getEventTarget():getID(), vLang, vCount, vDays, vTimeZone, vTimeOfDay, LINKSHELL_CONCIERGE_SHARE);
 *  Notes   : returns 3 on success, 99 when already registered, 0xFF for other fails
 ************************************************************************/
 
@@ -14022,7 +14022,7 @@ inline int32 CLuaBaseEntity::lsConciergeRegister(lua_State *L)
 /************************************************************************
 *  Function: lsConciergeCancel()
 *  Purpose : Cancel specific Linkshell ID for specified Linkshell Concierge NPC
-*  Example : res = player:lsConciergeCancel(myLinkShellID,npcid);
+*  Example : res = player:lsConciergeCancel(myLinkShellID,npcid,LINKSHELL_CONCIERGE_SHARE);
 *  Notes   : returns 3 on successfull cancel, 0xFF for fails
 ************************************************************************/
 
@@ -14033,6 +14033,9 @@ inline int32 CLuaBaseEntity::lsConciergeCancel(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    uint8 conciergeShareSetting = (uint8)lua_tointeger(L, 3);
 
     std::string qStr;
     int32 ret = SQL_ERROR;
@@ -14046,8 +14049,11 @@ inline int32 CLuaBaseEntity::lsConciergeCancel(lua_State *L)
 
         qStr = ("DELETE FROM linkshell_concierge WHERE linkshellid = ");
         qStr += std::to_string(myLinkshellID);
-        qStr += " AND npcid = ";
-        qStr += std::to_string(npcid);
+        if (conciergeShareSetting == 0)
+        {
+            qStr += " AND npcid = ";
+            qStr += std::to_string(npcid);
+        }
         qStr += " LIMIT 1 ";
 
         ret = Sql_Query(SqlHandle, qStr.c_str()); // We don't really care what this returns, but we check it anyway

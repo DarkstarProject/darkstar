@@ -77,7 +77,7 @@ function LinkShellConciergeEventFinish(player,csid,option)
 	elseif (lsCmd == 1) then
 		-- option 1 when "selling" pearls (is always LinkShell #1 that is used)
 		
-		player:PrintToPlayer(string.format("LSCon-Finish: CSID is %u   Option is: %u -> Finished selling pearls - %u", csid,option,lsOptions), 4 );
+		-- player:PrintToPlayer(string.format("LSCon-Finish: CSID is %u   Option is: %u -> Finished selling pearls - %u", csid,option,lsOptions), 4 );
 		
 		local vLang = 0 ; -- What we'll use for None/Other
 		local vLangFlags = lsOptions % 0x20 ; -- J E _ _ O
