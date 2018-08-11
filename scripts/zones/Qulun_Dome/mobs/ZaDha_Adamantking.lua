@@ -26,7 +26,7 @@ function onAdditionalEffect(mob, player)
     if resist <= 0.5 then
         return 0,0,0
     else
-        local power = 300
+        local power = 3000
         local duration = 30
         if mob:getMainLvl() > player:getMainLvl() then
             duration = duration + (mob:getMainLvl() - player:getMainLvl())

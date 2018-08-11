@@ -42,7 +42,7 @@ function onEffectGain(target, effect)
     target:addPetMod(dsp.mod.FOOD_ACC_CAP, 75);
     target:addPetMod(dsp.mod.FOOD_RACCP, 10);
     target:addPetMod(dsp.mod.FOOD_RACC_CAP, 75);
-    target:addPetMod(dsp.mod.HASTE_GEAR, 31);
+    target:addPetMod(dsp.mod.HASTE_GEAR, 300);
 end;
 
 function onEffectLose(target, effect)
@@ -58,5 +58,5 @@ function onEffectLose(target, effect)
     target:delPetMod(dsp.mod.FOOD_ACC_CAP, 75);
     target:delPetMod(dsp.mod.FOOD_RACCP, 10);
     target:delPetMod(dsp.mod.FOOD_RACC_CAP, 75);
-    target:delPetMod(dsp.mod.HASTE_GEAR, 31);
+    target:delPetMod(dsp.mod.HASTE_GEAR, 300);
 end;

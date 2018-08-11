@@ -2,28 +2,16 @@
 -- Haste Samba Haste Effect
 -- JA Haste 5-10%
 -----------------------------------
+require("scripts/globals/status")
 
-require("scripts/globals/status");
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.HASTE_ABILITY, effect:getPower())
+end
 
------------------------------------
--- onEffectGain Action
------------------------------------
+function onEffectTick(target, effect)
+end
 
-function onEffectGain(target,effect)
-    target:addMod(dsp.mod.HASTE_ABILITY,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
-
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.HASTE_ABILITY,effect:getPower());
-end;
+    target:delMod(dsp.mod.HASTE_ABILITY, effect:getPower())
+end
