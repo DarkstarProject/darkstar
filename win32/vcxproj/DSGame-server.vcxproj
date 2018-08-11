@@ -23,6 +23,7 @@
     <ProjectGuid>{89A19910-84DB-454D-9C7F-0A47A293867B}</ProjectGuid>
     <RootNamespace>DSGameserver</RootNamespace>
     <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -370,6 +371,7 @@
     <ClInclude Include="..\..\src\map\packets\inventory_modify.h" />
     <ClInclude Include="..\..\src\map\packets\inventory_size.h" />
     <ClInclude Include="..\..\src\map\packets\key_items.h" />
+    <ClInclude Include="..\..\src\map\packets\linkshell_concierge.h" />
     <ClInclude Include="..\..\src\map\packets\linkshell_message.h" />
     <ClInclude Include="..\..\src\map\packets\linkshell_equip.h" />
     <ClInclude Include="..\..\src\map\packets\lock_on.h" />
@@ -613,6 +615,7 @@
     <ClCompile Include="..\..\src\map\packets\inventory_modify.cpp" />
     <ClCompile Include="..\..\src\map\packets\inventory_size.cpp" />
     <ClCompile Include="..\..\src\map\packets\key_items.cpp" />
+    <ClCompile Include="..\..\src\map\packets\linkshell_concierge.cpp" />
     <ClCompile Include="..\..\src\map\packets\linkshell_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\linkshell_equip.cpp" />
     <ClCompile Include="..\..\src\map\packets\lock_on.cpp" />

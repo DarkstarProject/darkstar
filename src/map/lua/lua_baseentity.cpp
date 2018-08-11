@@ -141,6 +141,9 @@
 #include "../utils/puppetutils.h"
 #include "../utils/zoneutils.h"
 
+#include "../packets/linkshell_concierge.h"
+#include "../linkshell.h"
+
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
     if (!lua_isnil(L, 1))
@@ -13761,6 +13764,310 @@ inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
     return 1;
 }
 
+
+/************************************************************************
+*  Function: getLinkShellID()
+*  Purpose : Returns the LinkShell ID and Type for an equipped LinkShell
+*  Example : lsID, lsType = player:getLinkShellID(0)
+*  Notes   : zero-offset linkshell number, returns 0,0 if none equipped
+*            lsType is the itemID minus 0x200:  1 = Shell, 3 = pearl, ect ...
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getLinkShellID(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
+
+        DSP_DEBUG_BREAK_IF(SLOT > 2);
+
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+
+        CItem* PItem = PChar->getEquip((SLOTTYPE)(SLOT + SLOT_LINK1));
+
+        if ((PItem != nullptr) && PItem->isType(ITEM_LINKSHELL))
+        {
+            CItemLinkshell* PLinkShell = (CItemLinkshell*)PItem;
+            lua_pushinteger(L, PLinkShell->GetLSID());
+            lua_pushinteger(L, PLinkShell->GetLSType());
+            return 2;
+        }
+
+    }
+    lua_pushinteger(L, 0);
+    lua_pushinteger(L, 0);
+    return 2;
+}
+
+
+/************************************************************************
+*  Function: lsConciergeUpdate()
+*  Purpose : Returns the LinkShell List for Concierges onEventUpdate
+*  Example : player:lsConciergeUpdate(csid,option)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::lsConciergeUpdate(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || lua_isnil(L, 2) || lua_isnil(L, 3) || !lua_isnumber(L, 1) || !lua_isnumber(L, 2) || !lua_isnumber(L, 3));
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        uint32 csid = (uint32)lua_tointeger(L, 1);
+        uint32 option = (uint32)lua_tointeger(L, 2);
+        uint8 conciergeShareSettings = (uint8)lua_tointeger(L, 3);
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        uint32 conciergeID = PChar->m_event.Target->id;
+        uint8 lsAmountListed = 0;
+
+        CLinkshellConciergePacket* PPacket;
+        CEventUpdatePacket* EUPacket;
+
+        uint16 optionLSID = option >> 16;
+        uint16 optionMode = option & 0x0000FFFF;
+
+        CLinkshell* newlinkShell = nullptr;
+        CItem* PItem = nullptr;
+        uint8 SlotID = ERROR_SLOTID;
+        std::string qStr;
+        int32 ret = SQL_ERROR;
+
+        int8 DecodedName[21];
+
+        switch (optionMode)
+        {
+        case 0: // do stuff
+                // Actually not sure why it even needs this first one, but that's what retail does ...
+            PPacket = new CLinkshellConciergePacket(PChar, conciergeID, csid, option, conciergeShareSettings);
+            PChar->pushPacket(PPacket);
+            break;
+        case 1: // 1 to 4 is for requesting packet 1 to 4 containing 4 linkshells each
+        case 2:
+        case 3:
+        case 4:
+            PPacket = new CLinkshellConciergePacket(PChar, conciergeID, csid, option, conciergeShareSettings);
+            lsAmountListed = PPacket->linkshellEntriesListed;
+            PChar->pushPacket(PPacket);
+
+            // Needs a accompanying Dialog Information packet, or it won't list anything
+            EUPacket = new CEventUpdatePacket(
+                0x1ED0B3C7 + option, // No idea what this is, seems to increment every time, maybe it's supposed to be a timestamp of some sort ?
+                2, // Seems like always 2
+                0, 0, 0, 0, // Sometimes contains junk ?
+                lsAmountListed, // Number of LS entries used in previous 0x048 packet (from 0 to 4), just setting this to 4 all the time will also work, the clients filters the empty ones
+                0);
+            PChar->pushPacket(EUPacket);
+
+            break;
+        case 5: // "purchases" a linkpearl, contains Linkshell ID in the higher word of option
+
+                // ToDo: add safety check if we still have stock at this point
+
+            newlinkShell = linkshell::LoadLinkshell(optionLSID);
+
+            if ((PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) && (optionLSID != 0) && (newlinkShell) && (newlinkShell->getID() != 0))
+            {
+                PItem = itemutils::GetItem(0x0203); // <-- linkpearl
+
+                if ((PItem != nullptr) && (PItem->isType(ITEM_LINKSHELL)))
+                {
+                    PItem->setQuantity(1);
+
+                    CItemLinkshell* linkPearl = (CItemLinkshell*)PItem;
+
+                    linkPearl->SetLSID(newlinkShell->getID());
+                    linkPearl->SetLSColor(newlinkShell->getColor());
+                    linkPearl->setSignature((int8*)newlinkShell->getName()); // <-- this is probably wrong
+
+                    SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, false);
+
+                    if (SlotID != ERROR_SLOTID)
+                    {
+                        DecodeStringLinkshell((int8*)newlinkShell->getName(), DecodedName);
+                        ShowNotice(CL_CYAN"lsConciergeUpdate: %s aquired Linkpearl for %s \n" CL_RESET, PChar->GetName(), DecodedName);
+                        // update SQL to lower pearl count by 1
+                        // UPDATE linkshell_concierge SET lspearlcount = lspearlcount - 1 WHERE linkshellid = 6 and npcid = 17764609 LIMIT 1
+
+                        qStr = ("UPDATE linkshell_concierge SET lspearlcount = lspearlcount - 1  ");
+                        qStr += "WHERE linkshellid = ";
+                        qStr += std::to_string(optionLSID);
+                        qStr += " ";
+                        if (conciergeShareSettings == 0)
+                        {
+                            qStr += "AND npcid = ";
+                            qStr += std::to_string(conciergeID);
+                            qStr += " ";
+                        }
+                        qStr += "LIMIT 1";
+
+                        ret = Sql_Query(SqlHandle, qStr.c_str());
+                        if (ret != SQL_SUCCESS)
+                        {
+                            ShowNotice(CL_YELLOW"lsConciergeUpdate: Failed to update pearlcount for %s \n" CL_RESET, newlinkShell->getName());
+                        }
+
+                        qStr = ("DELETE FROM linkshell_concierge WHERE lspearlcount < 1 ");
+                        Sql_Query(SqlHandle, qStr.c_str()); // We don't really care what this returns, it's simply to perform cleanups
+
+                    }
+
+                }
+                else
+                {
+                    ShowWarning(CL_YELLOW"lsConciergeUpdate: Item Linkpearl is not found in a database? What are you doing ?\n" CL_RESET);
+                }
+            }
+            else {
+                ShowWarning(CL_YELLOW"lsConciergeUpdate: Cannot add Linkpearl for %s, no more free space or linkshell not found\n" CL_RESET, PChar->GetName());
+                lua_pushinteger(L, 98);
+                return 1;
+            }
+
+
+
+            break;
+        case 6: // 6 and 7 are called after purchases, but don't seem to contain any useful information
+        case 7: // not sure why these are even called
+            break;
+        default:
+            // Unknown option ?
+            DSP_DEBUG_BREAK_IF(true);
+            lua_pushinteger(L, 0);
+            return 1;
+        }
+
+        lua_pushinteger(L, optionMode);
+        return 1;
+
+    }
+    lua_pushinteger(L, 0);
+    return 1;
+}
+
+/************************************************************************
+*  Function: lsConciergeRegister()
+*  Purpose : Registered specific Linkshell ID for specified Linkshell Concierge NPC
+*  Example : res = player:lsConciergeRegister(myLinkShellID, player:getEventTarget():getID(), vLang, vCount, vDays, vTimeZone, vTimeOfDay);
+*  Notes   : returns 3 on success, 99 when already registered, 0xFF for other fails
+************************************************************************/
+
+inline int32 CLuaBaseEntity::lsConciergeRegister(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isnumber(L, 7));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 8) || !lua_isnumber(L, 8));
+
+    std::string qStr;
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        uint16 myLinkshellID = (uint16)lua_tointeger(L, 1);
+        uint32 npcid = (uint32)lua_tointeger(L, 2);
+        uint8 vLang = (uint8)lua_tointeger(L, 3);
+        uint8 vCount = (uint8)lua_tointeger(L, 4);
+        uint8 vDays = (uint8)lua_tointeger(L, 5);
+        uint8 vTimeZone = (uint8)lua_tointeger(L, 6);
+        uint8 vTimeOfDay = (uint8)lua_tointeger(L, 7);
+        uint8 conciergeShareSetting = (uint8)lua_tointeger(L, 8);
+
+        // Check if we are already registered at this NPC
+        qStr = "SELECT listingid FROM linkshell_concierge WHERE linkshellid = %u ";
+        if (conciergeShareSetting == 0)
+        {
+            qStr += " AND npcid = %u";
+        }
+
+        if ((Sql_Query(SqlHandle, qStr.c_str(), myLinkshellID, npcid) == SQL_SUCCESS) && (Sql_NumRows(SqlHandle) > 0))
+        {
+            ShowDebug(CL_WHITE"linkshell_concierge" CL_RESET": error adding Linkshell %u by player: %u already registered !\n", myLinkshellID, m_PBaseEntity->id);
+
+            lua_pushinteger(L, 99);
+            return 1;
+        }
+
+        qStr = "INSERT INTO linkshell_concierge(npcid, linkshellid, lslanguage, lspearlcount, lsactivedays, lstimezone, lstimeofday, madebyplayerid) VALUES(%u,%u,%u,%u,%u,%u,%u,%u);";
+        if (Sql_Query(SqlHandle, qStr.c_str(), npcid, myLinkshellID, vLang, vCount, vDays, vTimeZone, vTimeOfDay, m_PBaseEntity->id) == SQL_ERROR)
+        {
+            ShowDebug(CL_WHITE"linkshell_concierge" CL_RESET": error adding Linkshell %u by player: %u\n", myLinkshellID, m_PBaseEntity->id);
+
+            lua_pushinteger(L, 99);
+            return 1;
+        }
+
+        lua_pushinteger(L, 1);
+        return 1;
+
+    }
+    lua_pushinteger(L, 0xFF); // not used from withing a player object
+    return 1;
+}
+
+
+/************************************************************************
+*  Function: lsConciergeCancel()
+*  Purpose : Cancel specific Linkshell ID for specified Linkshell Concierge NPC
+*  Example : res = player:lsConciergeCancel(myLinkShellID,npcid);
+*  Notes   : returns 3 on successfull cancel, 0xFF for fails
+************************************************************************/
+
+inline int32 CLuaBaseEntity::lsConciergeCancel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    std::string qStr;
+    int32 ret = SQL_ERROR;
+
+    // ToDo: test me
+
+    if (m_PBaseEntity->objtype == TYPE_PC)
+    {
+        uint16 myLinkshellID = (uint16)lua_tointeger(L, 1);
+        uint32 npcid = (uint32)lua_tointeger(L, 2);
+
+        qStr = ("DELETE FROM linkshell_concierge WHERE linkshellid = ");
+        qStr += std::to_string(myLinkshellID);
+        qStr += " AND npcid = ";
+        qStr += std::to_string(npcid);
+        qStr += " LIMIT 1 ";
+
+        ret = Sql_Query(SqlHandle, qStr.c_str()); // We don't really care what this returns, but we check it anyway
+
+        if (ret == SQL_SUCCESS)
+        {
+            lua_pushinteger(L, 3);
+            return 1;
+        }
+        else {
+            lua_pushinteger(L, 0xFF);
+            return 1;
+        }
+
+    }
+    lua_pushinteger(L, 0xFF); // not used from a player object
+    return 1;
+}
+
+
 //=======================================================//
 
 const char CLuaBaseEntity::className[] = "CBaseEntity";
@@ -14412,6 +14719,11 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTHlevel),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, getLinkShellID),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, lsConciergeUpdate),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, lsConciergeRegister),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, lsConciergeCancel),
 
     {nullptr,nullptr}
 };
