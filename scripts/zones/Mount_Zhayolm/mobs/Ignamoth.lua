@@ -10,6 +10,7 @@ function onMobSpawn(mob)
     mob:addMod(dsp.mod.REGAIN, 50)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
 end
+
 function onMobFight(mob,target)
 end
 
