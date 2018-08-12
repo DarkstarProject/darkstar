@@ -43,6 +43,16 @@ dsp.msg.channel =
     UNITY          = 33
 }
 
+-- used by PrintToArea
+dsp.msg.area =
+{
+    SYSTEM      = 0, -- Server wide like the purple stuff :)
+    SAY         = 1, -- Will display in small area around player
+    SHOUT       = 2, -- Will display in wide area around player
+    PARTY       = 3, -- Will display to players entire party/alliance
+    YELL        = 4  -- If yell is enabled in zone, will display.
+}
+
 ------------------------------------
 -- Message Basic
 ------------------------------------
@@ -78,6 +88,7 @@ dsp.msg.basic =
     MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
+    MAGIC_STEAL            = 430, -- <caster> casts <spell>. 1 of <target>'s effects is drained.
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
     MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
