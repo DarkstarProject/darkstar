@@ -15,17 +15,18 @@ function onMobFight(mob,target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    local dmg = math.random(300,400)
-    
-    
-    if ((math.random(1,100) >= 75) or (target:hasStatusEffect(dsp.effect.PARALYSIS) == true)) then
+    -- Todo adding damage on addition effect
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS)
+    if resist <= 0.5 then
         return 0,0,0
     else
-        local duration = math.random(10,30)
-        local message = dsp.msg.basic.ADD_EFFECT_DMG
-        target:addStatusEffect(dsp.effect.PARALYSIS,5,3,duration)
-        
-        return dsp.subEffect.ICE_DAMAGE,message,dmg
+        local duration = 60
+        local power = 20
+        duration = duration * resist
+        if not player:hasStatusEffect(dsp.effect.PARALYSIS) then
+            player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration)
+        end
+        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS
     end
 end
 
