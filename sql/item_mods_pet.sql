@@ -372,7 +372,7 @@ INSERT INTO `item_mods_pet` VALUES (28588,25,15,3);     -- Automaton: Accuracy +
 INSERT INTO `item_mods_pet` VALUES (28588,68,10,3);     -- Automaton: Evasion +10
 INSERT INTO `item_mods_pet` VALUES (28605,25,7,1);      -- Samanisi Cape Avatar: Accuracy +7
 INSERT INTO `item_mods_pet` VALUES (28605,30,7,1);      -- Avatar: Magic Accuracy +7
-INSERT INTO `item_mods_pet` VALUES (28643,12,8,30);     -- Refraction Cape Automaton: INT+8
+INSERT INTO `item_mods_pet` VALUES (28643,12,8,3);     -- Refraction Cape Automaton: INT+8
 INSERT INTO `item_mods_pet` VALUES (28643,13,8,3);      -- Automaton: MND+8
 INSERT INTO `item_mods_pet` VALUES (28643,30,3,3);      -- Automaton: Magic Accuracy+3
 

@@ -14,7 +14,7 @@ function onItemCheck(target)
     local result = 0;
     local region = target:getCurrentRegion();
 
-    if (hasOutpost(target, target:getCurrentRegion()) == dsp.region.UNKNOWN or GetRegionOwner(region) ~= target:getNation()) then
+    if not dsp.conq.canTeleportToOutpost(target, region) then
         result = dsp.msg.basic.CANT_BE_USED_IN_AREA;
     end
 
@@ -22,5 +22,6 @@ function onItemCheck(target)
 end;
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.HOMING,0,1);
+    local region = target:getCurrentRegion()
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.OUTPOST,0,1,0,region)
 end;

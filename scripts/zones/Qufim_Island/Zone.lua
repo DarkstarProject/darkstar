@@ -5,24 +5,21 @@
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/zones/Qufim_Island/TextIDs");
+require("scripts/zones/Qufim_Island/MobIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
+require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

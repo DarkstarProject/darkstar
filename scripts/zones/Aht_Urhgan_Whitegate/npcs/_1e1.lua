@@ -13,7 +13,7 @@ function onTrigger(player,npc)
     if player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") > 0 then
         return
     end
-    npc:openDoor(npc:getID())
+    npc:openDoor()
 end
 
 function onEventUpdate(player,csid,option)
