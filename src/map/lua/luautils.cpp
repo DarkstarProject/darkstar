@@ -3188,6 +3188,20 @@ namespace luautils
             return 0;
         }
 
+        // Bloodpact SkillUp Hack
+        if ((PMob->objtype == TYPE_PET) && (map_config.skillup_bloodpact != 0)) // Do I even need to check this ?
+            {
+            CPetEntity* PPet = (CPetEntity*)PMob;
+            if ((PPet->getPetType() == PETTYPE_AVATAR) && (PPet->PMaster->objtype == TYPE_PC))
+            {
+                CCharEntity* PMaster = (CCharEntity*)PPet->PMaster;
+                uint8 smnLvl = 0;
+                if (PMaster->GetSJob() == 15) smnLvl = PMaster->GetSLevel();
+                if (PMaster->GetMJob() == 15) smnLvl = PMaster->GetMLevel();
+                charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, smnLvl);
+            }
+        }
+
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
         return retVal;
