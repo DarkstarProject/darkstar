@@ -19,11 +19,11 @@ end
 function onTrigger(player,npc)
     local TheFumblingFriar = player:getQuestStatus(CRYSTAL_WAR,THE_FUMBLING_FRIAR)
 	
-	 -- Change to BRASS_RIBBON_OF_SERVICE later when Campaign has been added.
+    -- Change to BRASS_RIBBON_OF_SERVICE later when Campaign has been added.
     if TheFumblingFriar == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE) and player:getMainLvl() >= 30 then
         player:startEvent(26) -- Start quest "The Fumbling Friar"
     elseif TheFumblingFriar == QUEST_ACCEPTED then
-        if player:hasKeyItem(dsp.ki.ORNATE_PACKAGE) == true then
+        if player:hasKeyItem(dsp.ki.ORNATE_PACKAGE) then
             player:startEvent(28) -- During quest "The Fumbling Friar" (with Ornate Package KI)
         else
             player:startEvent(27) -- During quest "The Fumbling Friar" (before retrieving KI Ornate Package)

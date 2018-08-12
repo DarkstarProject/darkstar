@@ -19,7 +19,7 @@ end
 function onTrigger(player,npc)
     local Eati = player:getQuestStatus(CRYSTAL_WAR,EVIL_AT_THE_INLET)
 
-    if Eati == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.EVIL_WARDING_SEAL) == true then
+    if Eati == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.EVIL_WARDING_SEAL) then
         player:startEvent(112)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY)

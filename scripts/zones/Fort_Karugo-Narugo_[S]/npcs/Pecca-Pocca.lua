@@ -33,6 +33,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 234 then
-	    npcUtil.giveKeyItem(player, dsp.ki.SHEAF_OF_HANDMADE_INCENSE)
+        npcUtil.giveKeyItem(player, dsp.ki.SHEAF_OF_HANDMADE_INCENSE)
     end
 end

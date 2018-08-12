@@ -18,7 +18,7 @@ end
 
 function onTrigger(player,npc)
     if player:getQuestStatus(CRYSTAL_WAR,THE_FUMBLING_FRIAR) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ORNATE_PACKAGE) == false then
-		npcUtil.giveKeyItem(player, dsp.ki.ORNATE_PACKAGE)
+        npcUtil.giveKeyItem(player, dsp.ki.ORNATE_PACKAGE)
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
     end
