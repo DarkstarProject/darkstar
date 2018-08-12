@@ -32944,6 +32944,7 @@ INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,3552,70); -- Squamous Hide (7%)
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,4362,60); -- Lizard Egg (6%)
 INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
 INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,19232,148);
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
