@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Cahaurme
 -- Involved in Quest: A Knight's Test, Lost Chick
--- @zone 230
--- !pos 55.749 -8.601 -29.354
+-- !pos 55.749 -8.601 -29.354 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -38,13 +37,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 633) then
         player:addKeyItem(dsp.ki.BOOK_OF_THE_EAST);

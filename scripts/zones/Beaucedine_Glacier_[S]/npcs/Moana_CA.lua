@@ -2,8 +2,7 @@
 -- Area: Beaucedine Glacier (S)
 --   NPC: Moana, C.A.
 -- Type: Campaign Arbiter
--- @zone 136
--- !pos -27.237 -60.888 -48.111
+-- !pos -27.237 -60.888 -48.111 136
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

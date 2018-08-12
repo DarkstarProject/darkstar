@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Mhoti Pyiahrs
 -- Type: Allegiance
--- @zone 94
--- !pos 6.356 -2 26.677
+-- !pos 6.356 -2 26.677 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

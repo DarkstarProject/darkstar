@@ -26,7 +26,7 @@ function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
         pet:delMod(dsp.mod.AUTO_DECISION_DELAY, 20);
     elseif (maneuvers == 2) then
-        pet:delMod(dsp.mod.AUTO_DECISION_DELAY, 15); 
+        pet:delMod(dsp.mod.AUTO_DECISION_DELAY, 15);
     elseif (maneuvers == 3) then
         pet:delMod(dsp.mod.AUTO_DECISION_DELAY, 30);
     end

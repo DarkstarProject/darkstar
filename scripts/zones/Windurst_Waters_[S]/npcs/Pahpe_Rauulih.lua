@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Pahpe Rauulih
 -- Type: Standard NPC
--- @zone 94
--- !pos -39.740 -4.499 53.223
+-- !pos -39.740 -4.499 53.223 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

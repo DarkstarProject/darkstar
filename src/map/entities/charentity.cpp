@@ -867,7 +867,10 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                         }
                     }
                     // check for ws points
-                    charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    if (charutils::GetRealExp(this->GetMLevel(), PTarget->GetMLevel()) > 0)
+                    {
+                        charutils::AddWeaponSkillPoints(this, damslot, wspoints);
+                    }
                 }
             }
         }
@@ -1001,14 +1004,31 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 auto PPetTarget = PTarget->targid;
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
-                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
-                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    // Blood Pact mp cost stored in animation ID
+                    float mpCost = PAbility->getAnimationID();
+
+                    if (StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                    {
+                        mpCost *= 1.5f;
+                        StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
-                    else {
-                        addMP(-PAbility->getAnimationID()); // TODO: ...
+
+                    // Blood Boon (does not affect Astra Flow BPs)
+                    if ((PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW) == 0)
+                    {
+                        int16 bloodBoonRate = getMod(Mod::BLOOD_BOON);
+                        if (dsprand::GetRandomNumber(100) < bloodBoonRate)
+                        {
+                            mpCost *= dsprand::GetRandomNumber(8.f, 16.f) / 16.f;
+                        }
                     }
-                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
+
+                    addMP((int32)-mpCost);
+
+                    if (PAbility->getValidTarget() == TARGET_SELF)
+                    {
+                        PPetTarget = PPet->targid;
+                    }
                 }
                 else
                 {
@@ -1133,6 +1153,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             state.ApplyEnmity();
         }
         PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast);
+
+        uint16 recastID = PAbility->getRecastId();
+        if (map_config.blood_pact_shared_timer && (recastID == 173 || recastID == 174))
+        {
+            PRecastContainer->Add(RECAST_ABILITY, (recastID == 173 ? 174 : 173), action.recast);
+        }
+
         pushPacket(new CCharRecastPacket(this));
 
         //#TODO: refactor
@@ -1221,14 +1248,11 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             }
             else
             {
-                float pdif = battleutils::GetRangedPDIF(this, PTarget);
+                bool isCritical = dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true);
+                float pdif = battleutils::GetRangedDamageRatio(this, PTarget, isCritical);
 
-                if (dsprand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, true))
+                if (isCritical)
                 {
-                    pdif *= 1.25; //uncapped
-                    int16 criticaldamage = getMod(Mod::CRIT_DMG_INCREASE);
-                    criticaldamage = std::clamp<int16>(criticaldamage, 0, 100);
-                    pdif *= ((100 + criticaldamage) / 100.0f);
                     actionTarget.speceffect = SPECEFFECT_CRITICAL_HIT;
                     actionTarget.messageID = 353;
                 }
@@ -1549,7 +1573,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 
         if (PItem->getCurrentCharges() != 0)
         {
-            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID(), PItem->getReuseTime() / 1000);
+            this->PRecastContainer->Add(RECAST_ITEM, PItem->getSlotID() << 8 | PItem->getLocationID(), PItem->getReuseTime() / 1000); // add recast timer to Recast List from any bag
         }
     }
     else // разблокируем все предметы, кроме экипирвоки

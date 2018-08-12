@@ -4,8 +4,7 @@
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Order Up'
 --                        'The Curious Case of Melvien'
---  @zone 256
--- !pos -9 0 67
+-- !pos -9 0 67 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

@@ -3,7 +3,7 @@
 --  Family: Slugs
 --  Description: A dusky slime inflicts encumberance and weight.
 --  Type: Magical
---  Utsusemi/Blink absorb: Ignores shadows 
+--  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Cone
 --  Notes:
 ---------------------------------------------------

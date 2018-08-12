@@ -3,7 +3,7 @@
 --  KEYITEMS IDS
 --
 ---------------------------------------------
-dsp = dsp or {};
+dsp = dsp or {}
 
 dsp.keyItem =
 {
@@ -3000,5 +3000,5 @@ dsp.keyItem =
     AFTERPARTY_PASS                          = 3153,
     REASSEMBLING_TECHNIQUE                   = 3154,
     EMPTY_HOURGLASS                          = 3156,
-};
-dsp.ki = dsp.keyItem;
+}
+dsp.ki = dsp.keyItem

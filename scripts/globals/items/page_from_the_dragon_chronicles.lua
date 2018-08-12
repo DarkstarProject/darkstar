@@ -2,7 +2,7 @@
 -- ID: 4198
 -- Item: Page from the Dragon Chronicles
 -- Grants 500 - 1,000 EXP
--- Does not grant Limit Points. 
+-- Does not grant Limit Points.
 --
 -----------------------------------------
 require("scripts/globals/status");

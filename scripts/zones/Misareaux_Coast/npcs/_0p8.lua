@@ -28,13 +28,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 9 and option == 1) then
         player:setVar("PromathiaStatus",2);
         player:setPos(-220.075,-15.999,79.634,62,28); -- To Sacrarium {R}

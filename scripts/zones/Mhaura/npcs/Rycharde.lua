@@ -14,6 +14,7 @@ require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Mhaura/TextIDs");
+require("scripts/globals/keyitems")
 
 
 --   player:startEvent(74); -- first quest completed ok
@@ -146,7 +147,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_AVAILA
         player:startEvent(75); -- nothing to do
     end
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED) then
-    if (player:hasKeyItem(90)) then
+    if (player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA)) then
         player:startEvent(87);-- forth quest   not done yet
     else
         player:startEvent(88);-- forth quest   done!
@@ -187,16 +188,11 @@ end
 end;
 
 
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
 
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 70 or csid == 71) then  --accept quest 1
         player:setVar("QuestRychardetheChef_var",3); --

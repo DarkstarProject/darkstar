@@ -2,8 +2,7 @@
 -- Area: Windurst Walls
 --   NPC: Four of Diamonds
 -- Type: Standard NPC
--- @zone 239
--- !pos -187.184 -3.545 151.092
+-- !pos -187.184 -3.545 151.092 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Dhea Prandoleh
 -- Type: Standard NPC
--- @zone 94
--- !pos 1 -1 15
+-- !pos 1 -1 15 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -35,13 +34,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 128) then
         player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STIRS);
     elseif (csid == 133) then

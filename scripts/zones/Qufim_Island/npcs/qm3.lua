@@ -2,8 +2,7 @@
 -- Area: Qufim Island
 --  NPC: ??? (qm3)
 -- Mission: ACP - The Echo Awakens
--- @zone 126
--- !pos -120.342 -19.471 306.661
+-- !pos -120.342 -19.471 306.661 126
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------
@@ -63,13 +62,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 31) then
         player:completeMission(ACP,THE_ECHO_AWAKENS);
         player:addMission(ACP,GATHERER_OF_LIGHT_I);

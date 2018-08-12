@@ -6,6 +6,7 @@
 package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
+require("scripts/zones/Buburimu_Peninsula/MobIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -26,6 +27,7 @@ local itemMap =
                     { 641, 134, DIGREQ_NONE },
                     { 885, 12, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 845, 125, DIGREQ_BURROW },
                     { 843, 1, DIGREQ_BURROW },
                     { 844, 64, DIGREQ_BURROW },
@@ -53,7 +55,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 
 end;
 
@@ -74,19 +76,13 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 5) then
@@ -99,8 +95,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end

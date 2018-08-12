@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Quartermaster
 -- Type: Standard NPC
--- @zone 94
--- !pos -60.200 -4.7 32.500
+-- !pos -60.200 -4.7 32.500 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

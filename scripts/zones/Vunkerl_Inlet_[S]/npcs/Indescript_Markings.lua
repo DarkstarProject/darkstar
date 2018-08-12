@@ -1,5 +1,5 @@
 ----------------------------------
--- Area: Meriphataud_Mountains_[S]
+-- Area: Vunkerl Inlet [S]
 --  NPC: Indescript Markings
 -- Type: Quest
 -- !pos -629.179 -49.002 -429.104 1 83
@@ -32,12 +32,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

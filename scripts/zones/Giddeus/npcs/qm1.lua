@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (
         (darkLegacyCS == 3 or darkLegacyCS == 4) and
-        npcUtil.tradeHas(trade, 4445) and 
+        npcUtil.tradeHas(trade, 4445) and
         not GetMobByID(VAA_HUJA_THE_ERUDITE):isSpawned()
     ) then -- Yagudo Cherries
         player:confirmTrade();

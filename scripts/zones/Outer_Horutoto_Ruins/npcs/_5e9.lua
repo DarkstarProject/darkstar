@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Inner Horutoto Ruins
+-- Area: Outer Horutoto Ruins
 --  NPC: Gate: Magical Gizmo
 -- Involved In Mission: The Heart of the Matter
 -- !pos 584 0 -660 194
@@ -29,13 +29,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- If we just finished the cutscene for Windurst Mission 1-2
     if (csid == 44) then

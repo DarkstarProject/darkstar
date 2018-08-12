@@ -9,24 +9,16 @@ require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
 require("scripts/zones/Temenos/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    local GateID =  npc:getID();  
+    local GateID =  npc:getID();
     local GateOffset = 16929221;
     -- print("GateID " ..GateID);
     -- player:PrintToPlayer(npc:getID());
     
-    switch (GateID): caseof 
+    switch (GateID): caseof
     {
          -- 100-106 : Northern Tower
         [GateOffset] = function (x)
@@ -113,18 +105,8 @@ function onTrigger(player,npc)
     }
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)  
+function onEventUpdate(player,csid,option)
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
--- printf("CSID: %u",csid);
--- printf("RESULT: %u",option);
 end;

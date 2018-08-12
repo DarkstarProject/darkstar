@@ -25,9 +25,9 @@ function onTrigger(player,npc)
         (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
-        player:startEvent(501);
+            player:startEvent(501);
         else
-        player:startEvent(904);
+            player:startEvent(904);
         end
     else
         player:messageSpecial(NOTHING_HAPPENS);
@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
     if (csid == 500) then
         local r = math.random(1,3);
         player:addKeyItem(dsp.ki.PURE_WHITE_FEATHER);

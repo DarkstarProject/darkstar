@@ -562,11 +562,27 @@ namespace luautils
             return -1;
         }
 
-        lua_getglobal(LuaHandle, "SetRegionalConquestOverseers");
+        lua_getglobal(LuaHandle, "dsp");
         if (lua_isnil(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 1);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure SetRegionalConquestOverseers\n");
+            ShowError("luautils::SetRegionalConquestOverseers: undefined global dsp\n");
+            return -1;
+        }
+
+        lua_getfield(LuaHandle,-1,"conquest");
+        if (lua_isnil(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 2);
+            ShowError("luautils::SetRegionalConquestOverseers: undefined field dsp.conquest\n");
+            return -1;
+        }
+
+        lua_getfield(LuaHandle,-1,"setRegionalConquestOverseers");
+        if (lua_isnil(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 3);
+            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure dsp.conquest.setRegionalConquestOverseers\n");
             return -1;
         }
 
@@ -575,8 +591,12 @@ namespace luautils
         if (lua_pcall(LuaHandle, 1, 0, 0))
         {
             ShowError("luautils::SetRegionalConquestOverseers: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 3);
             return -1;
+        }
+        else
+        {
+            lua_pop(LuaHandle, 2);
         }
 
         return 0;
@@ -1920,13 +1940,13 @@ namespace luautils
     *                                                                       *
     ************************************************************************/
 
-    int32 OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param, CBaseEntity* PCaster)
+    std::tuple<int32, int32, int32> OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param, CBaseEntity* PCaster)
     {
         lua_prepscript("scripts/globals/items/%s.lua", PItem->getName());
 
         if (prepFile(File, "onItemCheck"))
         {
-            return 56;
+            return { 56, 0, 0 };
         }
 
         CLuaBaseEntity LuaBaseEntityTarget(PTarget);
@@ -1937,16 +1957,19 @@ namespace luautils
 
         Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntityCaster);
 
-        if (lua_pcall(LuaHandle, 3, 1, 0))
+        if (lua_pcall(LuaHandle, 3, 3, 0))
         {
             ShowError("luautils::onItemCheck: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
-            return 56;
+            return { 56, 0, 0 };
         }
 
-        uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
-        lua_pop(LuaHandle, 1);
-        return retVal;
+        uint32 messageId = (!lua_isnil(LuaHandle, -3) && lua_isnumber(LuaHandle, -3) ? (int32)lua_tonumber(LuaHandle, -3) : 0);
+        uint32 param1 = (!lua_isnil(LuaHandle, -2) && lua_isnumber(LuaHandle, -2) ? (int32)lua_tonumber(LuaHandle, -2) : 0);
+        uint32 param2 = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
+        lua_pop(LuaHandle, 3);
+
+        return { messageId, param1, param2 };
     }
 
     /************************************************************************

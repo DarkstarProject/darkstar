@@ -2,8 +2,7 @@
 -- Area: Bastok Mines
 --   NPC: Wobke
 -- Type: Quest NPC
--- @zone 234
--- !pos 29.028 -0.126 -111.626
+-- !pos 29.028 -0.126 -111.626 234
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

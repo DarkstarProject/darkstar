@@ -30,20 +30,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 
     if (csid == 20 and option == 1) then
         player:addQuest(OUTLANDS,OPEN_SESAME);
     elseif (csid == 22) then
         player:tradeComplete();
-        player:addKeyItem(2051);
-        player:messageSpecial(KEYITEM_OBTAINED,2051);
+        player:addKeyItem(dsp.ki.LOADSTONE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LOADSTONE);
         player:addFame(RABAO,30);
         player:completeQuest(OUTLANDS,OPEN_SESAME);
     end

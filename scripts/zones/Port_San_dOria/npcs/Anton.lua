@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Anton
--- @zone 232
--- !pos -19 -8 27
+-- !pos -19 -8 27 232
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -39,13 +38,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 604) then
         X = player:getXPos();

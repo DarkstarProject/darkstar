@@ -22,12 +22,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 5) then
-     player:setVar("COP_Tenzen_s_Path",10);
+        player:setVar("COP_Tenzen_s_Path",10);
     end
 end;

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Sauromugue Champaign
+-- Area: Pashhow Marshlands [S]
 --  NPC: Cavernous Maw
 -- !pos 418 25 27 90
 -- Teleports Players to Pashhow_Marshlands
@@ -24,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (option == 1) then
         if (csid == 100) then
             player:addNationTeleport(MAW,16);

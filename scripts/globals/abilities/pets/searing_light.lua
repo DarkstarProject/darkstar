@@ -32,5 +32,5 @@ function onPetAbility(target, pet, skill, master)
     target:updateEnmityFromDamage(pet,damage);
     master:setMP(0);
 
-    return damage; 
+    return damage;
 end

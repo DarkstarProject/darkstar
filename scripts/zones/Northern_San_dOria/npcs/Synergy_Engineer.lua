@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Synergy Engineer
 -- Type: Standard NPC
--- @zone 231
--- !pos -123.000 10.5 244.000
+-- !pos -123.000 10.5 244.000 231
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

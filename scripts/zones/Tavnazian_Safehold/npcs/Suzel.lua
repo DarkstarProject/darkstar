@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: Suzel
 -- Type: Item Deliverer
---  @zone 26
--- !pos -72.701 -20.25 -64.058
+-- !pos -72.701 -20.25 -64.058 26
 --
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

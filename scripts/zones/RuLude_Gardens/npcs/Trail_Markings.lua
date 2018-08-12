@@ -46,12 +46,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("updateRESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("finishRESULT: %u",option);
 
     if (csid == 10016) then
@@ -65,6 +63,6 @@ function onEventFinish(player,csid,option)
             player:setVar("Dynamis_Status",bit.bor(player:getVar("Dynamis_Status"),16));
         end
         player:setVar("enteringDynamis",1);
-        player:setPos(48.930,10.002,-71.032,195,0xBC);
+        player:setPos(48.930,10.002,-71.032,195,188);
     end
 end;

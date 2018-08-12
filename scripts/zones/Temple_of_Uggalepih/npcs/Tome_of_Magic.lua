@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local cs = math.random(0x014,0x016)
+    local cs = math.random(20,22)
     player:startEvent(cs);
 
 end;
@@ -27,7 +27,5 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;

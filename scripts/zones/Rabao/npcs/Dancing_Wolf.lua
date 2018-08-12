@@ -2,8 +2,7 @@
 -- Area: Rabao
 --   NPC: Dancing Wolf
 -- Type: Standard NPC
--- @zone 247
--- !pos 7.619 7 81.209
+-- !pos 7.619 7 81.209 247
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -28,13 +27,9 @@ end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 102) then
 player:setVar("BASTOK91",2);
 elseif (csid == 104) then

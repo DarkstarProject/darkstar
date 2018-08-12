@@ -47,8 +47,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 195) then
         player:addQuest(BASTOK,SILENCE_OF_THE_RAMS);
     elseif (csid == 196) then

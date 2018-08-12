@@ -2,8 +2,7 @@
 -- Area: Metalworks
 --   NPC: High Bear
 -- Type: Quest Giver
--- @zone 237
--- !pos 25.231 -14.999 4.552
+-- !pos 25.231 -14.999 4.552 237
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -28,13 +27,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 731) then
             player:addQuest(BASTOK,BEADEAUX_SMOG);

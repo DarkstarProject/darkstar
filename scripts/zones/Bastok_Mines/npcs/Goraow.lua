@@ -46,15 +46,13 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 106) then
         player:addQuest(BASTOK, VENGEFUL_WRATH);
     elseif (csid == 107) then
         Vengeful = player:getQuestStatus(BASTOK, VENGEFUL_WRATH);
         if (Vengeful == QUEST_ACCEPTED) then
-            player:addTitle(95);
+            player:addTitle(dsp.title.AVENGER);
             player:addFame(BASTOK,120);
         else
             player:addFame(BASTOK,8);

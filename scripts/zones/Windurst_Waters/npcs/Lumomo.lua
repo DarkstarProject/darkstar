@@ -2,9 +2,8 @@
 -- Area: Windurst Waters
 --  NPC: Lumomo
 -- Type: Standard NPC
---  @zone 238
--- !pos -55.770 -5.499 18.914
---  0x027e  818 820    822  823
+-- !pos -55.770 -5.499 18.914 238
+--  638  818 820    822  823
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
@@ -36,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 818 and option == 1) then
         if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) == QUEST_AVAILABLE) then
             player:addQuest(WINDURST,ECO_WARRIOR_WIN);

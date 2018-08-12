@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Crawler Nest
 --  NPC: Treasure Coffer
--- @zone 197
--- !pos -94 0 207
+-- !pos -94 0 207 197
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------
@@ -101,11 +100,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

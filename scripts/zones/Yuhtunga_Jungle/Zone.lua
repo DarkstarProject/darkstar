@@ -54,15 +54,11 @@ end;
 function onInitialize(zone)
     GetMobByID(ROSE_GARDEN):setLocalVar("1",os.time() + math.random((36000), (37800)));
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn( player, prevZone)
@@ -83,8 +79,6 @@ function onRegionEnter( player, region)
 end;
 
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 11) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
@@ -92,8 +86,6 @@ function onEventUpdate( player, csid, option)
 end;
 
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 11) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow

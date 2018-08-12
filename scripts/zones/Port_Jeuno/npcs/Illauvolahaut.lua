@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Illauvolahaut
--- @zone 246
--- !pos -12 8 54
+-- !pos -12 8 54 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -29,16 +28,11 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x0029  without addons (ZM) ?
-
+-- 41  without addons (ZM) ?
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 37) then
         Z = player:getZPos();

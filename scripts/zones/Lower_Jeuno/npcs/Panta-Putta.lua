@@ -3,8 +3,7 @@
 --  NPC: Panta-Putta
 -- Starts and Finishes Quest: The Wonder Magic Set, The kind cardian
 -- Involved in Quests: The Lost Cardian
--- @zone 245
--- !pos -61 0 -140
+-- !pos -61 0 -140 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -51,15 +50,10 @@ end;
 -- 78 oh zut j'ai besoin de cette marmite
 -- 30 j'ai été trop dur avec two... et percé la marmite
 -- 40 du moment que j'ai cette boite et la marmite je vais enfin battre ce gars
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 77 and option == 1) then
         player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
     elseif (csid == 33) then

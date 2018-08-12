@@ -3,8 +3,7 @@
 --  NPC: Maat
 -- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
--- @zone 243
--- !pos 8 3 118
+-- !pos 8 3 118 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -98,15 +97,12 @@ function onTrigger(player,npc)
 end;
 
 -- Maat cap: 74
-
 function onEventUpdate(player,csid,option)
     -- printf("upCSID: %u",csid);
     -- printf("upRESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 117) then
         player:setVar("BeatAroundTheBushin",6);

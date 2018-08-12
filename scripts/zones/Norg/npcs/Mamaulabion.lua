@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Mamaulabion
 -- Starts and finishes Quest: Mama Mia
--- @zone 252
--- !pos -57 -9 68 (88)
+-- !pos -57 -9 68 252
 
 --CSIDs for Mamaulabion
 --93 / 93 = Standard
@@ -157,13 +156,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 191) then
         player:addQuest(OUTLANDS,MAMA_MIA);

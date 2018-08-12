@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-      local SinHunting = player:getVar("sinHunting");-- RNG AF1
+    local SinHunting = player:getVar("sinHunting");-- RNG AF1
 
     if (SinHunting == 4) then
         player:startEvent(13, 0, 1107);
@@ -24,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 13) then
         player:setVar("sinHunting",5);

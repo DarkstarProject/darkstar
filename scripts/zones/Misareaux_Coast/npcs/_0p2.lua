@@ -30,19 +30,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 6 or csid == 12) then
         player:setVar("PromathiaStatus",1);
     elseif (csid == 559) then
         player:setVar('StormsOfFate',1);
     elseif (csid == 8 and option == 1) then
         player:setVar("PromathiaStatus",1);
-        player:setPos(729,-20,410,88,0x1D); -- Go to Riverne #B01
+        player:setPos(729,-20,410,88,29); -- Go to Riverne #B01
     end
 end;

@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Digaga
 -- Type: Item Deliverer
---  @zone 246
--- !pos -52.865    7.999    1.134
+-- !pos -52.865 7.999 1.134 246
 --
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

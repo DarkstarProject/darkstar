@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Dalba
 -- Type: Past Event Watcher
--- @zone 236
--- !pos -174.101 -7 -19.611
+-- !pos -174.101 -7 -19.611 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -148,8 +147,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (player:delGil(10) == false) then
         player:setLocalVar("Dalba_PlayCutscene", 2) ; -- Cancel the cutscene.
@@ -160,8 +157,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (player:getLocalVar("Dalba_PlayCutscene") < 2) then
         if (   option ==   1) then        -- Fetichism.

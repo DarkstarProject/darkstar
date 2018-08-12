@@ -34,20 +34,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 2 and option == 1) then
         player:addQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:setVar("DontForgetAntidoteVar",1);
     elseif (csid == 4 and player:getVar("DontForgetAntidoteVar") == 1) then --If completing for the first time
         player:setVar("DontForgetAntidoteVar",0);
         player:tradeComplete();
-        player:addTitle(262);
+        player:addTitle(dsp.title.DESERT_HUNTER);
         player:addItem(16974); -- Dotanuki
         player:messageSpecial(ITEM_OBTAINED, 16974);
         player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);

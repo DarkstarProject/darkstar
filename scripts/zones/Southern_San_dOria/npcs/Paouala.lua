@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Paouala
 -- Starts and Finishes Quest: Sleepless Nights
--- @zone 230
--- !pos 158 -6 17
+-- !pos 158 -6 17 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -40,13 +39,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 85 and option == 1) then
         player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);

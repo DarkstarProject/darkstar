@@ -2,7 +2,6 @@
 -- Area: Toraimarai Canal
 --  NPC: Transporter
 -- Involved In Windurst Mission 7-1
--- @zone 169
 -- !pos 182 11 -60 169
 -----------------------------------
 package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
@@ -29,8 +28,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 71 and option == 1) then
         player:setPos(0,0,-22,192,242);

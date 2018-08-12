@@ -33,16 +33,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10005) then
-      player:setVar("PromathiaStatus",0);
-      player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
-      player:addMission(COP,ONE_TO_BE_FEARED);
+        player:setVar("PromathiaStatus",0);
+        player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
+        player:addMission(COP,ONE_TO_BE_FEARED);
     end
 end;

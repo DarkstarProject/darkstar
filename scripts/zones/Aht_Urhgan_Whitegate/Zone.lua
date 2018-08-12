@@ -27,11 +27,11 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 46) then
-            cs = 0x00c9;
+            cs = 201;
         elseif (prevZone == 59) then
-            cs = 0x00cc;
+            cs = 204;
         elseif (prevZone == 58) then
-            cs = 0x00cc;
+            cs = 204;
         else
             -- MOG HOUSE EXIT
             local position = math.random(1,5) - 83;
@@ -118,8 +118,6 @@ function onTransportEvent(player,transport)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3050 and option == 1) then
         if (player:getLocalVar("A_MERCENARY_LIFE") == 0) then
             player:setLocalVar("A_MERCENARY_LIFE", 1);
@@ -138,8 +136,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 44) then
         player:setVar("vanishingactCS",4);
         player:setPos(-80,-6,122,5);
@@ -173,7 +169,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("AhtUrganStatus",1)
             player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
-            player:setTitle(483);
+            player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
             player:addItem(2185,1);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
             player:messageSpecial(ITEM_OBTAINED,2185);

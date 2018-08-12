@@ -3,8 +3,7 @@
 --  NPC: Baudin
 -- Starts and Finishes Quest: Crest of Davoi, Save My Sister
 -- Involved in Quests: Save the Clock Tower
--- @zone 244
--- !pos -75 0 80
+-- !pos -75 0 80 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -18,7 +17,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
+        local a = player:getVar("saveTheClockTowerNPCz2"); -- NPC Zone2
         if (a == 0 or (a ~= 32 and a ~= 96 and a ~= 160 and a ~= 288 and a ~= 544 and a ~= 224 and a ~= 800 and a ~= 352 and
            a ~= 672 and a ~= 416 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 928 and a ~= 992)) then
             player:startEvent(177,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
@@ -29,8 +28,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
-    SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
+    local CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
+    local SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
 
     -- You need to talk to Aldo before you can obtain the Crest of Davoi or Yagudo Torch
     if (player:hasKeyItem(dsp.ki.SILVER_BELL) and CrestOfDavoi == QUEST_AVAILABLE) then
@@ -53,13 +52,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 177) then --1
         player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
         player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 32);

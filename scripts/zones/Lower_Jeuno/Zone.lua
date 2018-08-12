@@ -50,10 +50,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -79,7 +76,7 @@ function onGameHour(zone)
 
     -- 8PM: make quest available
     -- notify anyone in zone with membership card that zauko is recruiting
-    elseif (VanadielHour == 20) then
+    elseif (VanadielHour == 18) then
         SetServerVariable("[JEUNO]CommService",0);
         local players = zone:getPlayers();
         for name, player in pairs(players) do
@@ -97,15 +94,15 @@ function onGameHour(zone)
 
     -- 1AM: if nobody has accepted the quest yet, NPC Vhana Ehgaklywha takes up the task
     -- she starts near Zauko and paths all the way to the Rolanberry exit.
-    -- PATHFLAG_WALLHACK because she gets stuck on some terrain otherwise.
+    -- dsp.path.flag.WALLHACK because she gets stuck on some terrain otherwise.
     elseif (VanadielHour == 1) then
         if (playerOnQuestId == 0) then
             local npc = GetNPCByID(VHANA_EHGAKLYWHA);
             npc:clearPath();
             npc:setStatus(0);
             npc:initNpcAi();
-            npc:setPos(pathfind.first(LOWER_JEUNO.lampPath));
-            npc:pathThrough(pathfind.fromStart(LOWER_JEUNO.lampPath), bit.bor(PATHFLAG_RUN,PATHFLAG_WALLHACK));
+            npc:setPos(dsp.path.first(LOWER_JEUNO.lampPath));
+            npc:pathThrough(dsp.path.fromStart(LOWER_JEUNO.lampPath), bit.bor(dsp.path.flag.RUN,dsp.path.flag.WALLHACK));
         end
 
     end

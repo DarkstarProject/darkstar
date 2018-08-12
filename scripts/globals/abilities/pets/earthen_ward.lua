@@ -1,5 +1,5 @@
 ---------------------------------------------
--- Aerial Armor
+-- Earthen Ward
 ---------------------------------------------
 require("scripts/globals/monstertpmoves");
 require("scripts/globals/settings");

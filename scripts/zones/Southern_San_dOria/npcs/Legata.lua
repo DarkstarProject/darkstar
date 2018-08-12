@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Legata
 -- Starts and Finishes Quest: Starting a Flame (R)
--- @zone 230
--- !pos 82 0 116
+-- !pos 82 0 116 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 37 and option == 1) then
         player:addQuest(SANDORIA,STARTING_A_FLAME);

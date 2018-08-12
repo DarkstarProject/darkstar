@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Preterig
 -- Type: Shop NPC
---  @zone 256
---  !pos 6 0 -53 256
+-- !pos 6 0 -53 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -19,12 +18,12 @@ function onTrigger(player,npc)
     player:showText(npc, PRETERIG_SHOP_TEXT);
     local stock =
     {
-        0x1147, 300,    -- Apple Juice
-        0x1738, 125,    -- Frontier Soda
-        0x1145, 1560,   -- Melon Pie
-        0x1146, 200,    -- Orange Juice
+        4423, 300,    -- Apple Juice
+        5944, 125,    -- Frontier Soda
+        4421, 1560,   -- Melon Pie
+        4422, 200,    -- Orange Juice
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

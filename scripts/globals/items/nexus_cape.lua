@@ -3,19 +3,19 @@
 -- Item: Nexus Cape
 -- Enchantment: "Teleport" (Party Leader)
 -----------------------------------------
-require("scripts/globals/teleports");
-require("scripts/globals/status");
+require("scripts/globals/teleports")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 56; -- Default is fail.
-    local leader = target:getPartyLeader();
+    local result = dsp.msg.basic.ITEM_UNABLE_TO_USE -- Default is fail.
+    local leader = target:getPartyLeader()
     -- In a party and we were able to find the leader
     -- (currently fails in cross map server situations)
-    if (leader ~= nil and not leader:isInMogHouse()) then
+    if leader ~= nil and not leader:isInMogHouse() then
         -- Don't try to teleport to self!
         if (target:getID() ~= leader:getID()) then
-            local leaderZone = leader:getZoneID();
+            local leaderZone = leader:getZoneID()
             local validZoneList =
             {
                 5,7,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,
@@ -24,16 +24,16 @@ function onItemCheck(target)
             }
             -- Make sure we can actually tele to that zone..
             for _, validZone in ipairs(validZoneList) do
-                if (validZone == leaderZone) then
-                    result = 0;
+                if validZone == leaderZone then
+                    result = 0
                 end
             end
         end
     end
 
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.TO_LEADER,0,1);
-end;
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.LEADER,0,1)
+end

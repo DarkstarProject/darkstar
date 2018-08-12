@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --   NPC: Ajen-Myoojen
 -- Type: Standard NPC
--- @zone 238
--- !pos -44.542 -5.999 238.996
+-- !pos -44.542 -5.999 238.996 238
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

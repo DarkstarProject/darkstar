@@ -77,13 +77,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 164 and option == 0) then
         player:addQuest(JEUNO, SAVE_MY_SON);
@@ -99,7 +95,7 @@ function onEventFinish(player,csid,option)
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,SAVE_MY_SON);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
         end
     elseif (csid == 132) then
         player:setVar("SaveMySon_Event",0);

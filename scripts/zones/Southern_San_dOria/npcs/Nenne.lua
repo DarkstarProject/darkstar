@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Nenne
 -- Starts and Finishes Quest: To Cure a Cough
--- @zone 230
--- !pos -114 -6 102
+-- !pos -114 -6 102 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -34,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 538) then
         player:setVar("toCureaCough",1);

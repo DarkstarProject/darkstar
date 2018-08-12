@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Qhum_Knaidjn
 -- Type: Guildworker's Union Representative
---  @zone 238
--- !pos -112.561 -2 55.205
+-- !pos -112.561 -2 55.205 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------
@@ -91,16 +90,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10024) then
         unionRepresentativeTriggerFinish(player, option, target, 8, "guild_cooking", keyitems, items);
     elseif (csid == 10025) then

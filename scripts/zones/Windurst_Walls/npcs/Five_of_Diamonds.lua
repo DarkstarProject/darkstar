@@ -2,8 +2,7 @@
 -- Area: Windurst Walls
 --   NPC: Five of Diamonds
 -- Type: Standard NPC
--- @zone 239
--- !pos -220.954 -0.001 -122.708
+-- !pos -220.954 -0.001 -122.708 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

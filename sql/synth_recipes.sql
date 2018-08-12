@@ -1465,7 +1465,7 @@ INSERT INTO `synth_recipes` VALUES (1350,1,0,0,0,0,0,42,0,0,0,4096,4238,736,737,
 INSERT INTO `synth_recipes` VALUES (1351,1,0,0,0,85,0,0,0,0,0,4099,4241,820,2539,2539,0,0,0,0,0,2537,2537,2537,2537,1,1,1,1); -- cilice (cloth 85) https://www.bg-wiki.com/bg/Cilice
 INSERT INTO `synth_recipes` VALUES (1352,1,2018,0,0,0,0,0,81,0,0,4103,4245,635,635,635,2129,2523,2523,2523,4509,2538,2538,2538,2538,3,3,3,3); -- peiste leather (requires 3x leaves) https://www.bg-wiki.com/bg/Peiste_Leather
 INSERT INTO `synth_recipes` VALUES (1353,1,0,0,0,0,0,0,81,0,0,4103,4245,695,2523,4509,0,0,0,0,0,2538,2538,2538,2538,1,1,1,1);
-INSERT INTO `synth_recipes` VALUES (1354,1,0,0,0,0,0,0,29,0,0,4098,4240,857,857,857,0,0,0,0,0,2539,2539,2539,2539,1,2,2,2);
+INSERT INTO `synth_recipes` VALUES (1354,1,0,0,0,0,0,0,29,0,0,4098,4240,857,857,857,0,0,0,0,0,2539,2539,2539,2539,1,2,3,4);
 INSERT INTO `synth_recipes` VALUES (1355,1,0,0,0,0,0,6,0,0,0,4098,4240,2531,0,0,0,0,0,0,0,2546,2546,2546,2546,6,8,10,12);
 INSERT INTO `synth_recipes` VALUES (1356,1,0,0,0,0,0,14,0,0,0,4098,4240,2531,2531,0,0,0,0,0,0,2547,2547,2547,2547,6,8,10,12);
 INSERT INTO `synth_recipes` VALUES (1357,1,2011,0,0,62,0,0,0,0,0,4098,4240,2145,2522,2522,2522,2522,2522,2522,0,2548,2548,2548,2548,18,24,30,36);
@@ -4644,6 +4644,12 @@ INSERT INTO `synth_recipes` VALUES (4529,1,0,45,0,0,0,0,0,0,0,4100,4242,8897,0,0
 INSERT INTO `synth_recipes` VALUES (4530,0,0,0,0,0,0,0,0,73,0,4100,4242,16652,0,0,0,0,0,0,0,707,707,654,654,1,1,1,1); -- Darksteel Pick (desynth)
 INSERT INTO `synth_recipes` VALUES (4531,0,0,0,0,90,0,0,0,0,0,4100,4242,13208,0,0,0,0,0,0,0,823,821,0,0,1,1,0,0); -- Rainbow Obi (desynth)
 INSERT INTO `synth_recipes` VALUES (4532,0,0,0,0,0,0,0,33,0,0,4100,4242,13571,0,0,0,0,0,0,0,858,858,820,0,1,1,1,0); -- Wolf Mantle (desynth)
+INSERT INTO `synth_recipes` VALUES (4533,0,0,0,0,46,0,0,0,0,0,4100,4242,12723,0,0,0,0,0,0,0,834,820,820,820,2,5,6,7); -- Wool Bracers (desynth)
+INSERT INTO `synth_recipes` VALUES (4534,0,0,0,0,0,0,31,0,0,0,4100,4242,18868,0,0,0,0,0,0,0,650,0,0,0,1,0,0,0); -- Lady Bell (desynth)
+INSERT INTO `synth_recipes` VALUES (4535,0,0,0,0,0,0,85,0,0,0,4100,4242,13356,0,0,0,0,0,0,0,746,812,0,0,1,1,0,0); -- Death Earring (desynth)
+INSERT INTO `synth_recipes` VALUES (4536,0,0,0,0,19,0,0,0,0,0,4100,4242,12849,0,0,0,0,0,0,0,850,818,818,818,1,5,6,7); -- Cotton Brais (desynth)
+INSERT INTO `synth_recipes` VALUES (4537,0,0,0,0,0,0,0,0,100,0,4100,4242,17252,0,0,0,0,0,0,0,1231,717,654,655,1,1,1,1); -- Culverin (desynth)
+INSERT INTO `synth_recipes` VALUES (4538,0,0,0,67,0,0,0,0,0,0,4100,4242,12838,0,0,0,0,0,0,0,826,851,896,896,1,1,1,1); -- Scorpion Subligar (desynth)
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)

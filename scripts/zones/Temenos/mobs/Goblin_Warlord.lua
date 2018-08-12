@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Temenos N T    
+-- Area: Temenos N T
 -- NPC: Goblin_Warlord
 -----------------------------------
 package.loaded["scripts/zones/Temenos/TextIDs"] = nil;

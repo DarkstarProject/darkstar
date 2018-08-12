@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Tillecoe
 -- Type: Standard NPC
--- @zone 243
--- !pos 38.528 -0.997 -6.363
+-- !pos 38.528 -0.997 -6.363 243
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

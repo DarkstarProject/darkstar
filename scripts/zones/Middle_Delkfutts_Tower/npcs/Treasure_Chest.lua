@@ -2,7 +2,7 @@
 -- Area: Middle Delkfutt's Tower
 --  NPC: Treasure Chest
 -- Involved In Quest: Wings of Gold
--- @zone 157
+-- !zone 157
 -----------------------------------
 package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
@@ -83,11 +83,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

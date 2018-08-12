@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-      if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
+    if (trade:hasItemQty(1192, 1) and trade:getItemCount() == 1) then -- Quest: Wish Upon a Star - Trade Fallen Star
         if (player:getVar("WishUponAStar_Status") == 3) then
             if (player:getWeather() == dsp.weather.NONE and  (VanadielTOTD() == dsp.time.NIGHT or VanadielTOTD() == dsp.time.MIDNIGHT)) then
                 player:startEvent(334); -- Trade accepeted
@@ -36,8 +36,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

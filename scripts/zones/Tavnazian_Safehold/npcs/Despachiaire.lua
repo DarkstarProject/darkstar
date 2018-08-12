@@ -10,8 +10,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
- local currentCOPMission = player:getCurrentMission(COP);
- local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
+    local currentCOPMission = player:getCurrentMission(COP);
+    local LouverancePathStatut = player:getVar("COP_Louverance_s_Path");
 
     if (currentCOPMission  == THE_LOST_CITY and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(102);
@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 0) then
         player:startEvent(118);
     elseif (currentCOPMission  == THREE_PATHS and LouverancePathStatut == 1 ) then
-         player:startEvent(134);
+        player:startEvent(134);
     else
         player:startEvent(106);
     end
@@ -56,13 +56,9 @@ end;
 --Despachiaire     617 XX
 --Despachiaire     618 XX
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 102 or csid == 108) then
         player:setVar("PromathiaStatus",2);

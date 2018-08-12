@@ -21,10 +21,13 @@ function onEffectLose(target,effect)
         target:warp();
     elseif (destination == dsp.teleport.id.ESCAPE) then
         dsp.teleport.escape(target);
-    elseif (destination == dsp.teleport.id.HOMING) then
-        dsp.teleport.homingRing(target);
+    elseif (destination == dsp.teleport.id.OUTPOST) then
+        local region = effect:getSubPower()
+        dsp.teleport.toOutpost(target, region)
     elseif (destination == dsp.teleport.id.LEADER) then
         dsp.teleport.toLeader(target);
+    elseif (destination == dsp.teleport.id.HOME_NATION) then
+        dsp.teleport.toHomeNation(target);
     else
         dsp.teleport.to(target, destination);
     end

@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Grin
 -- Type: Quest Giver
--- @zone 236
--- !pos -56.533 1.392 -29.432
+-- !pos -56.533 1.392 -29.432 236
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

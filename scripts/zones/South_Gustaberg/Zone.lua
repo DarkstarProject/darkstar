@@ -27,6 +27,7 @@ local itemMap =
                     { 847, 23, DIGREQ_NONE },
                     { 644, 5, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 4545, 5, DIGREQ_BURROW },
                     { 636, 63, DIGREQ_BURROW },
                     { 617, 63, DIGREQ_BORE },
@@ -66,19 +67,13 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 901) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 37) then
@@ -93,8 +88,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 906) then
         if (player:getCurrentMission(COP) == A_TRANSIENT_DREAM) then
             player:completeMission(COP,A_TRANSIENT_DREAM);

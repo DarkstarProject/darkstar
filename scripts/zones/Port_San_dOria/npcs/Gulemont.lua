@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Gulemont
 -- Type: Quest Giver
--- @zone 232
--- !pos -69 -5 -38
+-- !pos -69 -5 -38 232
 --
 -- Starts and Finishes Quest: The Dismayed Customer
 -----------------------------------
@@ -44,13 +43,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Dismayed Customer"
     if (csid == 605 and option == 0) then

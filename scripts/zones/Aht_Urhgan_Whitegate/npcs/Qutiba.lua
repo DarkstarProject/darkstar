@@ -18,33 +18,29 @@ end;
 function onTrigger(player,npc)
     local vanishProg = player:getVar("vanishingactCS");
     if (player:getVar("deliveringTheGoodsCS") == 1) then
-       player:startEvent(40);
+        player:startEvent(40);
     elseif (player:getQuestStatus(AHT_URHGAN,DELIVERING_THE_GOODS) == QUEST_COMPLETED and vanishProg == 1) then
-       player:startEvent(42);
+        player:startEvent(42);
     elseif (vanishProg == 2) then
-       player:startEvent(54);
+        player:startEvent(54);
     elseif (vanishProg == 4 and player:hasKeyItem(dsp.ki.RAINBOW_BERRY)) then
-       player:startEvent(45);
+        player:startEvent(45);
     else
-       player:startEvent(51);
+        player:startEvent(51);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-     printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == (0x028)) then
-       player:setVar("deliveringTheGoodsCS",2);
+    if (csid == (40)) then
+        player:setVar("deliveringTheGoodsCS",2);
     elseif (csid == 42 and option == 0) then
         player:addQuest(AHT_URHGAN,VANISHING_ACT);
         player:setVar("vanishingactCS",2);
     elseif (csid == 45) then
-         if (player:getFreeSlotsCount() == 0) then
+        if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:setVar("vanishingactCS",0);
@@ -55,4 +51,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-

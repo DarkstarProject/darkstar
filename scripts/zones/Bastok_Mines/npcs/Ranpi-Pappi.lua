@@ -2,8 +2,7 @@
 -- Area: Bastok Mines
 --   NPC: Ranpi-Pappi
 -- Type: Standard NPC
--- @zone 234
--- !pos -4.535 -1.044 49.881
+-- !pos -4.535 -1.044 49.881 234
 --
 -- Auto-Script: Requires Verification (Verified by Brando)
 -----------------------------------
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -18,15 +18,11 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-  if (csid == 110 and option==1) then
-      player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_DAWN);
-      player:addKeyItem(dsp.ki.BRAND_OF_DAWN);
-  end
+    if (csid == 110 and option==1) then
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_DAWN);
+        player:addKeyItem(dsp.ki.BRAND_OF_DAWN);
+    end
 end;

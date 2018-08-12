@@ -810,6 +810,17 @@ int32 startSynth(CCharEntity* PChar)
         return 0;
     }
 
+    // Reserve the items after we know we have the right recipe
+    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
+    {
+        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
+        if (slotid != 0xFF)
+        {
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
+            PItem->setReserve(PItem->getReserve() + 1);
+        }
+    }
+
     // удаляем кристалл
     auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->CraftContainer->getInvSlotID(0));
     PItem->setReserve(PItem->getReserve() - 1);

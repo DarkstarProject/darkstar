@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Merleg
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'A Pioneers Best (Imaginary) Friend'
---  @zone 256
---  !pos 34 0 -131 256
+-- Starts, Involved with, and Finishes Quest: 'A Pioneers Best (Imaginary) Friend'
+-- !pos 34 0 -131 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: ???
 -- Finish Quest: Borghertz's Hands (AF Hands, Many job)
--- @zone 246
--- !pos -51 8 -4
+-- !pos -51 8 -4 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -33,13 +32,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 20 and option == 1) then
         player:setVar("BorghertzCS",2);
     elseif (csid == 48) then

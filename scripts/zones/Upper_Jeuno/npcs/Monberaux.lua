@@ -19,7 +19,7 @@ require("scripts/zones/Upper_Jeuno/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
+        local a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
         if (a == 0 or (a ~= 4 and a ~= 5 and a ~= 6 and a ~= 12 and a ~= 20 and a ~= 7 and a ~= 28 and a ~= 13 and a ~= 22 and
            a ~= 14 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 29 and a ~= 30 and a ~= 31)) then
             player:startEvent(91,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
@@ -77,13 +77,9 @@ end;
 --Tenzen     10011
 --Tenzen     10012
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 6) then
         player:setVar("COP_Tenzen_s_Path",5);
     elseif (csid == 74) then

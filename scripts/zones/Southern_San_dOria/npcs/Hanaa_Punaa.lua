@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Hanaa Punaa
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
--- @zone 230
--- !pos
+-- !zone 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -94,13 +93,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Seamstress" Quest
     if ((csid == 528 or csid == 531) and option == 0) then

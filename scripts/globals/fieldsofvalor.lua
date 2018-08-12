@@ -3,7 +3,7 @@
 -------------------------------------------------
 require("scripts/globals/regimereward");
 require("scripts/globals/regimeinfo");
-require("scripts/globals/conquest");
+require("scripts/globals/teleports");
 require("scripts/globals/settings");
 require("scripts/globals/common");
 require("scripts/globals/status");
@@ -45,68 +45,68 @@ FOV_MENU_ELITE_CHAP7     = 148;
 
 
 -- MESSAGE ID CONSTANTS (msg id of "new training regime registered!": change this if msg ids break!)
-FOV_MSG_EAST_RONFAURE   = 9862;
-FOV_MSG_WEST_RONFAURE   = 10418;
-FOV_MSG_NORTH_GUSTABERG = 10390;
-FOV_MSG_SOUTH_GUSTABERG = 9890;
-FOV_MSG_WEST_SARUTA     = 10180;
-FOV_MSG_EAST_SARUTA     = 9916;
-FOV_MSG_KONSCHTAT       = 9777;
-FOV_MSG_TAHRONGI        = 9815;
-FOV_MSG_LA_THEINE       = 10115;
-FOV_MSG_PASHHOW         = 10703;
-FOV_MSG_JUGNER          = 10849;
-FOV_MSG_MERIPH          = 10582;
-FOV_MSG_BATALLIA        = 9973;
-FOV_MSG_SAUROMAGUE      = 9803;
-FOV_MSG_ROLANBERRY      = 9764;
-FOV_MSG_VALKURM         = 10257;
-FOV_MSG_BUBURIMU        = 10283;
-FOV_MSG_QUFIM           = 10325;
-FOV_MSG_RUAUN_GARDENS   = 9722;
-FOV_MSG_BEAUCEDINE      = 10741;
-FOV_MSG_YUHTUNGA        = 10043;
-FOV_MSG_YHOATOR         = 9994;
-FOV_MSG_WEST_ALTEPA     = 9804;
-FOV_MSG_EAST_ALTEPA     = 9942;
-FOV_MSG_XARCABARD       = 10343;
-FOV_MSG_BEHEMOTH        = 9526;
-FOV_MSG_ZITAH           = 10260;
-FOV_MSG_ROMAEVE         = 9609;
-FOV_MSG_TERIGGAN        = 10103;
-FOV_MSG_SORROWS         = 9681;
+FOV_MSG_EAST_RONFAURE   = 9867;
+FOV_MSG_WEST_RONFAURE   = 10423;
+FOV_MSG_NORTH_GUSTABERG = 10395;
+FOV_MSG_SOUTH_GUSTABERG = 9895;
+FOV_MSG_WEST_SARUTA     = 10185;
+FOV_MSG_EAST_SARUTA     = 9921;
+FOV_MSG_KONSCHTAT       = 9782;
+FOV_MSG_TAHRONGI        = 9820;
+FOV_MSG_LA_THEINE       = 10120;
+FOV_MSG_PASHHOW         = 10708;
+FOV_MSG_JUGNER          = 10854;
+FOV_MSG_MERIPH          = 10587;
+FOV_MSG_BATALLIA        = 9978;
+FOV_MSG_SAUROMAGUE      = 9808;
+FOV_MSG_ROLANBERRY      = 9769;
+FOV_MSG_VALKURM         = 10262;
+FOV_MSG_BUBURIMU        = 10288;
+FOV_MSG_QUFIM           = 10330;
+FOV_MSG_RUAUN_GARDENS   = 9724;
+FOV_MSG_BEAUCEDINE      = 10746;
+FOV_MSG_YUHTUNGA        = 10048;
+FOV_MSG_YHOATOR         = 9999;
+FOV_MSG_WEST_ALTEPA     = 9809;
+FOV_MSG_EAST_ALTEPA     = 9947;
+FOV_MSG_XARCABARD       = 10348;
+FOV_MSG_BEHEMOTH        = 9528;
+FOV_MSG_ZITAH           = 10265;
+FOV_MSG_ROMAEVE         = 9611;
+FOV_MSG_TERIGGAN        = 10105;
+FOV_MSG_SORROWS         = 9683;
 
 -- Event IDs
-FOV_EVENT_RUAUN_GARDENS   = 0x0049;
-FOV_EVENT_EAST_RONFAURE   = 0x003d;
-FOV_EVENT_WEST_RONFAURE   = 0x003d;
-FOV_EVENT_WEST_SARUTA     = 0x0034;
-FOV_EVENT_EAST_SARUTA     = 0x003d;
-FOV_EVENT_NORTH_GUSTABERG = 0x010a;
-FOV_EVENT_SOUTH_GUSTABERG = 0x003d;
-FOV_EVENT_LA_THEINE       = 0x003d;
-FOV_EVENT_KONSCHTAT       = 0x003d;
-FOV_EVENT_TAHRONGI        = 0x003d;
-FOV_EVENT_PASHHOW         = 0x001c;
-FOV_EVENT_JUGNER          = 0x0020;
-FOV_EVENT_MERIPH          = 0x002e;
-FOV_EVENT_BATALLIA        = 0x003d;
-FOV_EVENT_SAUROMAGUE      = 0x003d;
-FOV_EVENT_ROLANBERRY      = 0x003d;
-FOV_EVENT_VALKURM         = 0x002f;
-FOV_EVENT_BUBURIMU        = 0x0033;
-FOV_EVENT_QUFIM           = 0x0021;
-FOV_EVENT_YUHTUNGA        = 0x003d;
-FOV_EVENT_YHOATOR         = 0x003d;
-FOV_EVENT_WEST_ALTEPA     = 0x003d;
-FOV_EVENT_EAST_ALTEPA     = 0x003d; -- test
-FOV_EVENT_BEAUCEDINE      = 0x00da;
-FOV_EVENT_XARCABARD       = 0x0030;
-FOV_EVENT_BEHEMOTH        = 0x003d;
-FOV_EVENT_ZITAH           = 0x003d;
-FOV_EVENT_ROMAEVE         = 0x003d;
-FOV_EVENT_TERIGGAN        = 0x003d; -- test
-FOV_EVENT_SORROWS         = 0x003d;
+FOV_EVENT_RUAUN_GARDENS   = 73;
+FOV_EVENT_EAST_RONFAURE   = 61;
+FOV_EVENT_WEST_RONFAURE   = 61;
+FOV_EVENT_WEST_SARUTA     = 52;
+FOV_EVENT_EAST_SARUTA     = 61;
+FOV_EVENT_NORTH_GUSTABERG = 266;
+FOV_EVENT_SOUTH_GUSTABERG = 61;
+FOV_EVENT_LA_THEINE       = 61;
+FOV_EVENT_KONSCHTAT       = 61;
+FOV_EVENT_TAHRONGI        = 61;
+FOV_EVENT_PASHHOW         = 28;
+FOV_EVENT_JUGNER          = 32;
+FOV_EVENT_MERIPH          = 46;
+FOV_EVENT_BATALLIA        = 61;
+FOV_EVENT_SAUROMAGUE      = 61;
+FOV_EVENT_ROLANBERRY      = 61;
+FOV_EVENT_VALKURM         = 47;
+FOV_EVENT_BUBURIMU        = 51;
+FOV_EVENT_QUFIM           = 33;
+FOV_EVENT_YUHTUNGA        = 61;
+FOV_EVENT_YHOATOR         = 61;
+FOV_EVENT_WEST_ALTEPA     = 61;
+FOV_EVENT_EAST_ALTEPA     = 61; -- test
+FOV_EVENT_BEAUCEDINE      = 218;
+FOV_EVENT_XARCABARD       = 48;
+FOV_EVENT_BEHEMOTH        = 61;
+FOV_EVENT_ZITAH           = 61;
+FOV_EVENT_ROMAEVE         = 61;
+FOV_EVENT_TERIGGAN        = 61; -- test
+FOV_EVENT_SORROWS         = 61;
 
 ----------------------------------
 -- Start FoV onTrigger
@@ -269,7 +269,7 @@ function finishFov(player, csid, option, r1, r2, r3, r4, r5, msg_offset)
         -- Decrease tabs
         if (tabs >= 50) then
             player:delCurrency("valor_point", 50);
-            toHomeNation(player); -- Needs an entry in scripts/globals/teleports.lua?
+            player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.HOME_NATION, 0, 1, 0, region)
         end
 
     elseif (option == FOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)

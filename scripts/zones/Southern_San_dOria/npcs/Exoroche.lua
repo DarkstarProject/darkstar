@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Exoroche
 -- Involved in Quests: Father and Son, A Boy's Dream
--- @zone 230
--- !pos 72 -1 60
+-- !pos 72 -1 60 230
 
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -54,13 +53,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 542) then
         player:setVar("QuestfatherAndSonVar",1);
     elseif (csid == 50) then

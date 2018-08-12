@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Windurst Woods
---   NPC: Chat Manual
+--  NPC: Chat Manual
 -- Type: Tutorial NPC
--- @zone: 241
---  !pos 10.928 1.915 -40.094
+-- !pos 10.928 1.915 -40.094 241
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
@@ -16,12 +15,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

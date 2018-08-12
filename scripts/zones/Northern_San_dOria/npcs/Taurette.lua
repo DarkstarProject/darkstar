@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Taurette
 -- Involved in Quests: Riding on the Clouds
--- @zone 231
--- !pos -159 0 91
+-- !pos -159 0 91 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -37,11 +36,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -2,8 +2,7 @@
 -- Area: Fort Karugo Narugo [S]
 --  NPC: Indescript Markings
 -- Type: Quest
---  @zone 96
--- !pos -63 -75 4
+-- !pos -63 -75 4 96
 -----------------------------------
 package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
 -----------------------------------
@@ -49,11 +48,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Qu'Bia Arena   
+-- Area: Qu'Bia Arena
 -- MOB: Nephiyl Keepcollapser
 -- Fight:  Demolition Squad
 -----------------------------------

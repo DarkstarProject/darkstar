@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Windurst Waters
+-- Area: Port Windurst
 --  NPC: Sigismund
 -- Starts and Finishes Quest: To Catch a Falling Star
 -- !pos -110 -10 82 240
@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 196) then
         player:addQuest(WINDURST,TO_CATCH_A_FALLIHG_STAR);
     elseif (csid == 199) then

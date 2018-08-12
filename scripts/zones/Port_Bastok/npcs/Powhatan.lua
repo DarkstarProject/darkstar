@@ -17,11 +17,11 @@ end;
 
 function onTrigger(player,npc)
 
- WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
- GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
+    local WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
+    local GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
 
     if (WelcometoBastok ~= QUEST_COMPLETED) then
-        wtbStatus = player:getVar("WelcometoBastok_Event");
+        local wtbStatus = player:getVar("WelcometoBastok_Event");
 
         if (WelcometoBastok == QUEST_AVAILABLE) then
             player:startEvent(50);
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
             end
         end
     elseif (GuestofHauteur ~= QUEST_COMPLETED and WelcometoBastok == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 3 and player:getMainLvl() >= 31) then
-         gohStatus = player:getVar("GuestofHauteur_Event");
+        local gohStatus = player:getVar("GuestofHauteur_Event");
 
         if (GuestofHauteur == QUEST_AVAILABLE) then
             player:startEvent(55);
@@ -51,13 +51,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 50 and option == 0) then
         player:addQuest(BASTOK,WELCOME_TO_BASTOK);

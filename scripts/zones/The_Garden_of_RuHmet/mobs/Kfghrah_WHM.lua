@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Grand Palace of Hu'Xzoi
+-- Area: The Garden of Ru'Hmet
 --  MOB: Kf'ghrah WHM
 -----------------------------------
 require("scripts/globals/status");

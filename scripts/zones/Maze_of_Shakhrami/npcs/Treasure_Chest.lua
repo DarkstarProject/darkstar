@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 --  NPC: Treasure Chest
 -- Involved In Quest: The Goblin Tailor
--- @zone 198
+-- !zone 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------
@@ -84,11 +84,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -31,7 +31,7 @@ end;
 
 function onSpellCast(caster,target,spell)
 
-    local params = {};    
+    local params = {};
         params.multiplier = 1.83;
         params.tMultiplier = 2.0;
         params.duppercap = 69;

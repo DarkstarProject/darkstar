@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Adjutant
 -- Type: Standard NPC
--- @zone 94
--- !pos -67.819 -4.499 58.997
+-- !pos -67.819 -4.499 58.997 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

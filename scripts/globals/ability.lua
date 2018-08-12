@@ -495,7 +495,7 @@ function checkForElevenRoll(caster)
         end
         if (effect:getType() == dsp.effect.RUNEISTS_ROLL and
                 effect:getSubPower() == 11) then
-            return true 
+            return true
         end
     end
     return false

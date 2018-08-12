@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Goggehn
 -- Involved in Mission: Bastok 3-3, 4-1
--- @zone 243
--- !pos 3 9 -76
+-- !pos 3 9 -76 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;
@@ -43,9 +42,9 @@ function onTrigger(player,npc)
         player:startEvent(35);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK)) then
         player:startEvent(55);
-    elseif (pNation == NATION_WINDURST) then
+    elseif (pNation == dsp.nation.WINDURST) then
         player:startEvent(4);
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(2);
     else
         player:startEvent(101);
@@ -54,13 +53,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 41) then
         player:setVar("MissionStatus",2);

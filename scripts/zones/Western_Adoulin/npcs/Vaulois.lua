@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Vaulois
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'Transporting'
---  @zone 256
---  !pos 20 0 85 256
+-- Starts, Involved with, and Finishes Quest: 'Transporting'
+-- !pos 20 0 85 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

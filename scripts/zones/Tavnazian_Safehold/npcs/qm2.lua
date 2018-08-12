@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --  NPC: ???
 -- Involved in Quest: Unforgiven
--- @zone 26
--- !pos 110.714 -40.856 -53.154
+-- !pos 110.714 -40.856 -53.154 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
@@ -26,19 +25,16 @@ function onTrigger(player,npc)
 
 local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
 
-    if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
-        player:addKeyItem(609);
-        player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
+    if (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
+        player:addKeyItem(dsp.ki.ALABASTER_HAIRPIN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ALABASTER_HAIRPIN) -- ALABASTER HAIRPIN for Unforgiven Quest
 
     end
 end
+
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end

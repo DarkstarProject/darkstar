@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Scotwick
 -- Type: Allied Notes Notorious Monsters
--- @zone 94
--- !pos 153.785 -3.134 9.895
+-- !pos 153.785 -3.134 9.895 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

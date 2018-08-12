@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Jorin
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'The Old Man and the Harpoon'
---  @zone 256
---  !pos 92 32 152 256
+-- Starts, Involved with, and Finishes Quest: 'The Old Man and the Harpoon'
+-- !pos 92 32 152 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

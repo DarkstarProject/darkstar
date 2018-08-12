@@ -1,12 +1,6 @@
-require("scripts/globals/log_ids");
-
------------------------------------
---  Nation IDs
------------------------------------
-
-NATION_SANDORIA = 0;
-NATION_BASTOK   = 1;
-NATION_WINDURST = 2;
+require("scripts/globals/keyitems")
+require("scripts/globals/log_ids")
+require("scripts/globals/zone")
 
 -----------------------------------
 --  San d'Oria (0)
@@ -678,7 +672,7 @@ function getMissionMask(player)
     first_mission = 0;
     repeat_mission = 0;
 
-    if (nation == NATION_WINDURST) then
+    if (nation == dsp.nation.WINDURST) then
         if (rank >= 1) then
             if (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Windurst
@@ -775,7 +769,7 @@ function getMissionMask(player)
                 first_mission = first_mission + 8388608;
             end
         end
-    elseif (nation == NATION_SANDORIA) then
+    elseif (nation == dsp.nation.SANDORIA) then
         if (rank >= 1) then
             if (player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then -- The first mission is repeatable in San d'Oria
                 -- 1-1
@@ -824,7 +818,7 @@ function getMissionMask(player)
             -- first_mission = first_mission + 8192;
         end
         if (rank == 5) then
-            if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(69) == false) then
+            if (player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) == false and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA) == false) then
                 first_mission = first_mission + 16384;
             end
             if (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) == false and player:hasCompletedMission(SANDORIA,THE_RUINS_OF_FEI_YIN) and getMissionRankPoints(player,15) == 1) then
@@ -873,7 +867,7 @@ function getMissionMask(player)
 
             end
         end
-    elseif (nation == NATION_BASTOK) then
+    elseif (nation == dsp.nation.BASTOK) then
         if (rank >= 1) then
             if (player:hasCompletedMission(BASTOK,THE_ZERUHN_REPORT) == false) then
                 -- 1-1 NOTE: This mission will not be listed in the Mission List for Bastok
@@ -983,10 +977,10 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
     offset = 0; cs = 0; params = {0,0,0,0,0,0,0,0};
     nation = player:getNation();
 
-    if (nation == NATION_SANDORIA) then
+    if (nation == dsp.nation.SANDORIA) then
 
-            if (guard == 1) then GuardCS = {0x03fe,0x03fd,0x0401,0x03ec,0x0400,0x03ed,0x03ee,0x0404,0x0405,0x03f4,0x0407};
-        elseif (guard == 2) then GuardCS = {0x07e6,0x07e5,0x07e9,0x07d4,0x07e8,0x07d5,0x07d6,0x07ec,0x07ed,0x07dc,0x07ef};
+            if (guard == 1) then GuardCS = {1022,1021,1025,1004,1024,1005,1006,1028,1029,1012,1031};
+        elseif (guard == 2) then GuardCS = {2022,2021,2025,2004,2024,2005,2006,2028,2029,2012,2031};
         end
 
         switch (pMission) : caseof {
@@ -1006,11 +1000,11 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
             [11] = function (x) if (MissionStatus == 0) then offset = 68;
                             elseif (MissionStatus == 2) then cs = GuardCS[11]; end end,
             [12] = function (x) if (MissionStatus == 0) then offset = 74; end end,
-            [14] = function (x) if (MissionStatus == 0) then cs = 0x003D; end end,
+            [14] = function (x) if (MissionStatus == 0) then cs = 61; end end,
         }
         return cs, params, offset;
 
-    elseif (nation == NATION_BASTOK) then
+    elseif (nation == dsp.nation.BASTOK) then
 
         switch (pMission) : caseof {
             [0] = function (x) offset = 0; end,
@@ -1022,7 +1016,7 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
             [10] = function (x) offset = 27; end,
             [11] = function (x) offset = 30; end,
             [12] = function (x) offset = 35; end,
-            [14] = function (x) cs = 0x03EF; end,
+            [14] = function (x) cs = 1007; end,
             [15] = function (x) offset = 39; end,
             [16] = function (x) offset = 0; end,
             [17] = function (x) offset = 3; end,
@@ -1035,12 +1029,12 @@ function getMissionOffset(player,guard,pMission,MissionStatus)
         }
         return cs, params, offset;
 
-    elseif (nation == NATION_WINDURST) then
+    elseif (nation == dsp.nation.WINDURST) then
 
-            if (guard == 1) then GuardCS = {0x007F,0x0088,0x0096,0x009A,0x00A0,0x01D9,0x00b1};
-        elseif (guard == 2) then GuardCS = {0x007b,0x0083,0x0136,0x0094,0x009c,0x00b1,0x00d7};
-        elseif (guard == 3) then GuardCS = {0x0059,0x0069,0x006e,0x0072,0x0078,0x0085,0x008a};
-        elseif (guard == 4) then GuardCS = {0x0063,0x006b,0x0070,0x0074,0x007a,0x007f,0x0086};
+            if (guard == 1) then GuardCS = {127,136,150,154,160,473,177};
+        elseif (guard == 2) then GuardCS = {123,131,310,148,156,177,215};
+        elseif (guard == 3) then GuardCS = {89,105,110,114,120,133,138};
+        elseif (guard == 4) then GuardCS = {99,107,112,116,122,127,134};
         end
 
         switch (pMission) : caseof {
@@ -1077,120 +1071,120 @@ function finishMissionTimeline(player,guard,csid,option)
     -- 13: player:addTitle(number);
     -- 14: player:setVar("MissionStatus",value);
 
-    if (nation == NATION_SANDORIA) then
-        if ((csid == 0x03f1 or csid == 0x07d9) and option ~= 1073741824 and option ~= 31) then
+    if (nation == dsp.nation.SANDORIA) then
+        if ((csid == 1009 or csid == 2009) and option ~= 1073741824 and option ~= 31) then
             if (option > 100) then
                 badoption = {101,1,102,2,104,4,110,10,111,11};
                 for op = 1, #badoption, 2 do
                     if (option == badoption[op]) then
-                    timeline = {badoption[op+1],{0x03f1,badoption[op]},{0x07d9,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
+                    timeline = {badoption[op+1],{1009,badoption[op]},{2009,badoption[op]},{0,0},{0,0},{{1},{2}}}; end
                 end
             elseif (option == 14) then
-                timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2},{3,"MissionStatus",9}}};
+                timeline = {option,{1009,option},{2009,option},{0,0},{0,0},{{1},{2},{3,"MissionStatus",9}}};
             else
-                timeline = {option,{0x03f1,option},{0x07d9,option},{0,0},{0,0},{{1},{2}}};
+                timeline = {option,{1009,option},{2009,option},{0,0},{0,0},{{1},{2}}};
             end
         else
             timeline =
             {
                  -- MissionID,{Guard#1 DialogID, option},{Guard#2 DialogID, option},{NPC#1 DialogID, option},{NPC#2 DialogID, option},{function list}
-                 0,{0x03e8,0},{0x07d0,0},{0,0},        {0,0},{{1},{2}},                                                     -- MISSION 1-1 (First Mission [START])
-                 0,{0x03fc,0},{0x07e4,0},{0,0},        {0,0},{{4},{5,150},{12},{14,0}},                                     -- MISSION 1-1
-                 0,{0x03ea,0},{0x07d2,0},{0,0},        {0,0},{{4},{5,150},{12}},                                            -- MISSION 1-1 [Repeat]
-                 1,{0x03ff,0},{0x07e7,0},{0,0},        {0,0},{{4},{14,0},{5,200},{12}},                                     -- MISSION 1-2
-                 1,{0x03eb,0},{0x07d3,0},{0,0},        {0,0},{{4},{14,0},{5,200},{12}},                                    -- MISSION 1-2 [Repeat]
-                 2,{0x03ec,0},{0x07d4,0},{0,0},        {0,0},{{11,2},{3,"OptionalCSforSTC",1},{14,0},{6},{8,1000},{12}},     -- MISSION 1-3
-                 2,{0x0400,0},{0x07e8,0},{0,0},        {0,0},{{14,0},{5,250},{12}},                                        -- MISSION 1-3 [Repeat]
-                 3,{0x03ed,0},{0x07d5,0},{0,0},        {0,0},{{9,65},{14,0},{5,300},{12}},                                 -- MISSION 2-1
-                 4,{0,0},      {0,0},     {0x02b7,0},{0,0},{{9,44},{14,0},{5,350},{12}},                                 -- MISSION 2-2 (Papal Chambers)
-                 5,{0,0},      {0,0},     {0x01fb,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},     -- MISSION 2-3 (Halver)
-                10,{0,0},      {0,0},     {0x022a,0},{0,0},{{9,237},{14,0},{5,400},{12}},                                 -- MISSION 3-1 (Prince Trion (door))
-                10,{0x03f4,0},{0x07dc,0},{0,0},        {0,0},{{14,0},{5,300},{12}},                                         -- MISSION 3-1 (Guard)[Repeat]
-                11,{0x0406,0},{0x07ee,0},{0,0},        {0,0},{{4},{14,2}},                                                 -- MISSION 3-2 (dialog with the guard after trade)
-                11,{0,0},      {0,0},     {0x022c,0},{0,0},{{14,0},{5,400},{12}},                                         -- MISSION 3-2 (Chalvatot)
-                11,{0x03f5,0},{0x07dd,0},{0,0},        {0,0},{{4},{14,0},{5,400},{12}},                                     -- MISSION 3-2 (Guard)[Repeat]
-                12,{0,0},      {0,0},     {0x0027,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},                             -- MISSION 3-3 (Finish (Nelcabrit))
-                13,{0,0},      {0,0},     {0x0024,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12},{1,14}},     -- MISSION 4-1 (Finish (Nelcabrit))
-                14,{0,0},      {0,0},     {0x0215,0},{0,0},{{10,72},{14,10}},                                             -- MISSION 5-1 (Finish (Halver))
-                14,{0,0},      {0,0},     {0x0216,0},{0,0},{{9,73},{5,400},{14,0},{13,10},{12}},                         -- MISSION 5-1 (Finish (Halver))
-                15,{0,0},      {0,0},     {0x0224,0},{0,0},{{11,6},{14,5}},                                                -- MISSION 5-2 (Finish 1st Part (Halver))
-                15,{0,0},      {0,0},     {0x003D,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}},                             -- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
-                16,{0,0},      {0,0},     {0x006f,0},{0,0},{{14,0},{9,268},{10,270},{12}},                                 -- MISSION 6-1 (Finish (Chalvatot))
-                17,{0x040a,0},{0x0409,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},                                -- MISSION 6-2 (Finish (Guard))
-                18,{0,0},      {0,0},     {0x0007,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
-                18,{0,0},      {0,0},     {0x0008,0},{0,0},{{14,0},{9,283},{5,1000},{12}},                                 -- MISSION 7-1 (Finish (Door: Papal Chambers))
-                19,{0x0414,0},{0x0413,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
-                20,{0,0},      {0,0},     {0x0066,0},{0,0},{{14,0},{9,288},{5,800},{12}},                                    -- MISSION 8-1 (Finish)
-                21,{0,0},     {0,0},     {0x0068,0},{0,0},{{14,0},{9,284},{11,9},{8,80000},{6},{12}},                    -- MISSION 8-2 (Finish (Door: Great Hall))
-                22,{0,0},      {0,0},     {0x004c,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}                    -- MISSION 9-1 (Finish (Door: Great Hall))
+                 0,{1000,0},{2000,0},{0,0},        {0,0},{{1},{2}},                                                     -- MISSION 1-1 (First Mission [START])
+                 0,{1020,0},{2020,0},{0,0},        {0,0},{{4},{5,150},{12},{14,0}},                                     -- MISSION 1-1
+                 0,{1002,0},{2002,0},{0,0},        {0,0},{{4},{5,150},{12}},                                            -- MISSION 1-1 [Repeat]
+                 1,{1023,0},{2023,0},{0,0},        {0,0},{{4},{14,0},{5,200},{12}},                                     -- MISSION 1-2
+                 1,{1003,0},{2003,0},{0,0},        {0,0},{{4},{14,0},{5,200},{12}},                                    -- MISSION 1-2 [Repeat]
+                 2,{1004,0},{2004,0},{0,0},        {0,0},{{11,2},{3,"OptionalCSforSTC",1},{14,0},{6},{8,1000},{12}},     -- MISSION 1-3
+                 2,{1024,0},{2024,0},{0,0},        {0,0},{{14,0},{5,250},{12}},                                        -- MISSION 1-3 [Repeat]
+                 3,{1005,0},{2005,0},{0,0},        {0,0},{{9,65},{14,0},{5,300},{12}},                                 -- MISSION 2-1
+                 4,{0,0},      {0,0},     {695,0},{0,0},{{9,44},{14,0},{5,350},{12}},                                 -- MISSION 2-2 (Papal Chambers)
+                 5,{0,0},      {0,0},     {507,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},     -- MISSION 2-3 (Halver)
+                10,{0,0},      {0,0},     {554,0},{0,0},{{9,237},{14,0},{5,400},{12}},                                 -- MISSION 3-1 (Prince Trion (door))
+                10,{1012,0},{2012,0},{0,0},        {0,0},{{14,0},{5,300},{12}},                                         -- MISSION 3-1 (Guard)[Repeat]
+                11,{1030,0},{2030,0},{0,0},        {0,0},{{4},{14,2}},                                                 -- MISSION 3-2 (dialog with the guard after trade)
+                11,{0,0},      {0,0},     {556,0},{0,0},{{14,0},{5,400},{12}},                                         -- MISSION 3-2 (Chalvatot)
+                11,{1013,0},{2013,0},{0,0},        {0,0},{{4},{14,0},{5,400},{12}},                                     -- MISSION 3-2 (Guard)[Repeat]
+                12,{0,0},      {0,0},     {39,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},                             -- MISSION 3-3 (Finish (Nelcabrit))
+                13,{0,0},      {0,0},     {36,0},{0,0},{{11,5},{14,0},{13,212},{10,69},{6},{8,10000},{12},{1,14}},     -- MISSION 4-1 (Finish (Nelcabrit))
+                14,{0,0},      {0,0},     {533,0},{0,0},{{10,72},{14,10}},                                             -- MISSION 5-1 (Finish (Halver))
+                14,{0,0},      {0,0},     {534,0},{0,0},{{9,73},{5,400},{14,0},{13,10},{12}},                         -- MISSION 5-1 (Finish (Halver))
+                15,{0,0},      {0,0},     {548,0},{0,0},{{11,6},{14,5}},                                                -- MISSION 5-2 (Finish 1st Part (Halver))
+                15,{0,0},      {0,0},     {61,0},{0,0},{{14,0},{9,74},{8,20000},{6},{12}},                             -- MISSION 5-2 (Finish 2nd Part (Trion in Great Hall))
+                16,{0,0},      {0,0},     {111,0},{0,0},{{14,0},{9,268},{10,270},{12}},                                 -- MISSION 6-1 (Finish (Chalvatot))
+                17,{1034,0},{1033,0},{0,0},{0,0},{{14,0},{11,7},{8,40000},{6},{12}},                                -- MISSION 6-2 (Finish (Guard))
+                18,{0,0},      {0,0},     {7,0},{0,0},{{14,1}},                                                     -- MISSION 7-1 (setVar("MissionStatus",1) (Door: Papal Chambers))
+                18,{0,0},      {0,0},     {8,0},{0,0},{{14,0},{9,283},{5,1000},{12}},                                 -- MISSION 7-1 (Finish (Door: Papal Chambers))
+                19,{1044,0},{1043,0},{0,0},{0,0},{{14,0},{6},{3,"SecretWeaponStatus",0},{9,284},{11,8},{8,60000},{12}}, -- MISSION 7-2 (Finish)
+                20,{0,0},      {0,0},     {102,0},{0,0},{{14,0},{9,288},{5,800},{12}},                                    -- MISSION 8-1 (Finish)
+                21,{0,0},     {0,0},     {104,0},{0,0},{{14,0},{9,284},{11,9},{8,80000},{6},{12}},                    -- MISSION 8-2 (Finish (Door: Great Hall))
+                22,{0,0},      {0,0},     {76,0},{0,0},{{14,0},{9,481},{9,482},{9,483},{5,900},{12}}                    -- MISSION 9-1 (Finish (Door: Great Hall))
                 --[[0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0},
                 0,{0,0},{0,0},{0,0},{0,0},{0},{0,0},{0,0},{0,0},{0,0},{0}, ]]--
             };
         end
-    elseif (nation == NATION_BASTOK) then
-        if (csid == 0x03E9 and option ~= 1073741824 and option ~= 31) then
-            timeline = {option,{0x03E9,option},{0,0},{0,0},{0,0},{{1},{2}}};
+    elseif (nation == dsp.nation.BASTOK) then
+        if (csid == 1001 and option ~= 1073741824 and option ~= 31) then
+            timeline = {option,{1001,option},{0,0},{0,0},{0,0},{{1},{2}}};
         else
             timeline =
             {
-                 0,{0x03e8,0},{0,0},{0,0},{0,0},{{1},{2}},                                                                 -- MISSION 1-1 (First Mission [START])
-                 1,{0x01f8,0},{0,0},{0,0},{0,0},{{9,4},{12}},                                                             -- MISSION 1-2 (Finish Mission)
-                 2,{0x03F0,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},                                             -- MISSION 1-3
-                 2,{0x03ED,0},{0,0},{0,0},{0,0},{{4},{8,1000},{12}},                                                     -- MISSION 1-3 [Repeat]
-                 3,{0x02c8,0},{0,0},{0,0},{0,0},{{9,12},{14,0},{5,200},{12}},                                             -- MISSION 2-1 (Finish (Ayame))
-                 4,{0x0174,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois))
-                 4,{0x0175,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois)) [Repeat]
-                 5,{0x02ca,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},                 -- MISSION 2-3 (Finish (Naji))
-                10,{0x000b,0},{0,0},{0,0},{0,0},{{14,0},{5,350},{12}},                                                     -- MISSION 3-1 (Pashhow Marshlands Zone)
-                11,{0x03F2,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}},                                                     -- MISSION 3-2
-                11,{0x03EE,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}},                                                     -- MISSION 3-2 [Repeat]
-                12,{0x0026,0},{0,0},{0,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},                                         -- MISSION 3-3 (Finish (Goggehn))
-                13,{0x0023,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12},{1,14}},             -- MISSION 4-1 (Finish (Goggehn))
-                14,{0x02d2,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},                                             -- MISSION 5-1 (Finish (Naji))
-                15,{0x025b,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}},                                 -- MISSION 5-2 (Finish (Karst))
-                16,{0x00b6,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}},                                             -- MISSION 6-1 (Finish (Tall Mountain))
-                17,{0x02fa,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}},                                     -- MISSION 6-2 (Finish (Naji))
-                18,{0x02fc,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}},                                             -- MISSION 7-1 (Finish (Cid))
-                19,{0x02fe,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}},             -- MISSION 7-2 (Finish (Karst))
-                20,{0x0300,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}},                                                 -- MISSION 8-1 (Finish (Iron Eater))
-                21,{0x00b0,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))
+                 0,{1000,0},{0,0},{0,0},{0,0},{{1},{2}},                                                                 -- MISSION 1-1 (First Mission [START])
+                 1,{504,0},{0,0},{0,0},{0,0},{{9,4},{12}},                                                             -- MISSION 1-2 (Finish Mission)
+                 2,{1008,0},{0,0},{0,0},{0,0},{{4},{11,2},{8,1000},{12}},                                             -- MISSION 1-3
+                 2,{1005,0},{0,0},{0,0},{0,0},{{4},{8,1000},{12}},                                                     -- MISSION 1-3 [Repeat]
+                 3,{712,0},{0,0},{0,0},{0,0},{{9,12},{14,0},{5,200},{12}},                                             -- MISSION 2-1 (Finish (Ayame))
+                 4,{372,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois))
+                 4,{373,0},{0,0},{0,0},{0,0},{{4},{5,250},{12}},                                                     -- MISSION 2-2 (Finish (Alois)) [Repeat]
+                 5,{714,0},{0,0},{0,0},{0,0},{{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},                 -- MISSION 2-3 (Finish (Naji))
+                10,{11,0},{0,0},{0,0},{0,0},{{14,0},{5,350},{12}},                                                     -- MISSION 3-1 (Pashhow Marshlands Zone)
+                11,{1010,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}},                                                     -- MISSION 3-2
+                11,{1006,0},{0,0},{0,0},{0,0},{{4},{5,400},{12}},                                                     -- MISSION 3-2 [Repeat]
+                12,{38,0},{0,0},{0,0},{0,0},{{11,4},{14,0},{6},{8,5000},{12}},                                         -- MISSION 3-3 (Finish (Goggehn))
+                13,{35,0},{0,0},{0,0},{0,0},{{11,5},{14,0},{13,212},{10,70},{6},{8,10000},{12},{1,14}},             -- MISSION 4-1 (Finish (Goggehn))
+                14,{722,0},{0,0},{0,0},{0,0},{{14,0},{9,73},{5,600},{12}},                                             -- MISSION 5-1 (Finish (Naji))
+                15,{603,0},{0,0},{0,0},{0,0},{{11,6},{14,0},{9,74},{8,20000},{6},{12}},                                 -- MISSION 5-2 (Finish (Karst))
+                16,{182,0},{0,0},{0,0},{0,0},{{14,0},{9,266},{5,650},{12}},                                             -- MISSION 6-1 (Finish (Tall Mountain))
+                17,{762,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,7},{8,40000},{12}},                                     -- MISSION 6-2 (Finish (Naji))
+                18,{764,0},{0,0},{0,0},{0,0},{{14,0},{9,289},{5,700},{12}},                                             -- MISSION 7-1 (Finish (Cid))
+                19,{766,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,8},{8,60000},{3,"OptionalCSforOMW",1},{12}},             -- MISSION 7-2 (Finish (Karst))
+                20,{768,0},{0,0},{0,0},{0,0},{{14,0},{5,1133},{12}},                                                 -- MISSION 8-1 (Finish (Iron Eater))
+                21,{176,0},{0,0},{0,0},{0,0},{{14,0},{6},{11,9},{9,293},{8,80000},{12}},                                     -- MISSION 8-2 (Finish (Bastok Mines))
             };
         end
-    elseif (nation == NATION_WINDURST) then
-        guardlist = {0x0072,0x006f,0x004e,0x005d};
+    elseif (nation == dsp.nation.WINDURST) then
+        guardlist = {114,111,78,93};
         if (csid == guardlist[guard] and option ~= 1073741824 and option ~= 31) then
             timeline = {option,{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{guardlist[guard],option},{{1},{2}}};
         else
             timeline =
             {
-                 0,{0x0079,1},{0x0076,1},{0x0053,1},{0x0060,1},{{1},{2}},                                                 -- MISSION 1-1 (First Mission [START])
-                 0,{0x005e,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,150},{9,28},{12}},                             -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
-                 1,{0x0084,1},{0x0082,1},{0x0068,1},{0x006a,1},{{1},{2}},                                                 -- MISSION 1-2 [START]
-                 1,{0x008f,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,200},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
-                 1,{0x0091,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,250},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
-                 2,{0x0095,2},{0x0083,2},{0x006d,2},{0x006f,2},{{1},{2}},                                                 -- MISSION 1-3 [START]
-                 2,{0x009A,0},{0x0094,0},{0x0072,0},{0x0074,0},{{11,2},{14,0},{5,300},{8,1000},{12}},                     -- MISSION 1-3
-                 3,{0x00a8,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,350},{12}},                                     -- MISSION 2-1 (Finish (Tosuka-Porika))
-                 4,{0x00C9,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,400},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
-                 4,{0x00CE,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,400},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed) [Repeat]
-                 4,{0x00C8,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,250},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
-                 4,{0x00D1,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,250},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed) [Repeat]
-                 5,{0x0065,0},{0,0},     {0,0},        {0,0},       {{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},-- MISSION 2-3 (Finish (Kupipi))
-                10,{0,0},      {0x0072,0},{0,0},        {0,0},       {{5,450},{14,0},{12}},                                     -- MISSION 3-1 (Finish (Rhy Epocan))
-                11,{0x0087,0},{0,0},     {0,0},        {0,0},       {{5,500},{14,0},{12}},                                     -- MISSION 3-2 (Finish (Zubaba))
-                11,{0x0097,0},{0,0},     {0,0},        {0,0},       {{5,400},{14,0},{12}},                                    -- MISSION 3-2 (Finish (Zubaba)) [Repeat]
-                12,{0x0028,0},{0,0},     {0,0},        {0,0},       {{11,4},{9,30},{14,0},{6},{8,5000},{12}},                 -- MISSION 3-3 (Finish (Ambassador's door))
-                13,{0x0025,0},{0,0},     {0,0},        {0,0},       {{11,5},{14,0},{13,212},{10,71},{6},{8,10000},{12}},     -- MISSION 4-1 (Finish (Pakh Jatalfih))
-                14,{0x00C0,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,73},{5,600},{12}},                             -- MISSION 5-1 (Finish (Star Sibyl))
-                15,{0x00D8,0},{0,0},     {0,0},        {0,0},       {{11,6},{14,0},{9,74},{8,20000},{6},{12}},                 -- MISSION 5-2 (Finish (Star Sibyl))
-                16,{0,0},      {0,0},     {0x0032,0},{0,0},       {{14,0},{5,650},{0,0},{0,0},{0,0},{12}},                    -- MISSION 6-1 (Finish (Zone: Full Moon Fountain))
-                17,{0,0},      {0,0},     {0x0138,0},{0,0},       {{14,0},{11,7},{8,40000},{6},{0,0},{12}},                -- MISSION 6-2 (Finish (Star Sibyl))
-                18,{0,0},      {0,0},     {0x02d4,0},{0,0},       {{14,0},{5,700},{10,251},{0,0},{0,0},{12}},                -- MISSION 7-1 (Finish (Tosuka-Porika))
-                19,{0,0},      {0,0},     {0x02E6,0},{0,0},       {{14,0},{11,8},{8,60000},{6},{0,0},{12}},                    -- MISSION 7-2 (Finish (Leepe-Hoppe))
-                20,{0,0},      {0,0},     {0x02F6,0},{0,0},       {{14,0},{5,750},{0,0},{0},{0,0},{12}},                    -- MISSION 8-1 (Finish (Morno-Toeno))
-                21,{0,0},      {0,0},     {0x0261,0},{0,0},       {{14,0},{11,9},{8,80000},{6},{0,0},{12}},                    -- MISSION 8-2 (Finish (Apururu))
-                22,{0,0},     {0,0},     {0x003D,0},{0,0},     {{14,0},{5,800},{13,293},{0},{0,0},{12}},                    -- MISSION 9-1 (Finish (Zone: Full Moon Fountain))
-                23,{0,0},      {0,0},     {0x0197,0},{0,0},       {{13,294},{11,10},{8,100000},{6},{0,0},{12}}                    -- MISSION 9-2 (Finish (Vestal Chamber))
+                 0,{121,1},{118,1},{83,1},{96,1},{{1},{2}},                                                 -- MISSION 1-1 (First Mission [START])
+                 0,{94,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,150},{9,28},{12}},                             -- MISSION 1-1 (Finish (Hakkuru-Rinkuru))
+                 1,{132,1},{130,1},{104,1},{106,1},{{1},{2}},                                                 -- MISSION 1-2 [START]
+                 1,{143,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,200},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITHOUT ORB]
+                 1,{145,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,250},{12}},                                     -- MISSION 1-2 (Finish (Apururu)) [WITH ORB]
+                 2,{149,2},{135,2},{109,2},{111,2},{{1},{2}},                                                 -- MISSION 1-3 [START]
+                 2,{154,0},{148,0},{114,0},{116,0},{{11,2},{14,0},{5,300},{8,1000},{12}},                     -- MISSION 1-3
+                 3,{168,0},{0,0},     {0,0},        {0,0},       {{14,0},{5,350},{12}},                                     -- MISSION 2-1 (Finish (Tosuka-Porika))
+                 4,{201,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,400},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed)
+                 4,{206,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,400},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (+35 mob killed) [Repeat]
+                 4,{200,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,250},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed)
+                 4,{209,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,38},{5,250},{12}},                             -- MISSION 2-2 (Finish (Moreno-Toeno)) (30-34 mob killed) [Repeat]
+                 5,{101,0},{0,0},     {0,0},        {0,0},       {{10,35},{6},{13,207},{8,3000},{11,3},{9,29},{14,0},{12}},-- MISSION 2-3 (Finish (Kupipi))
+                10,{0,0},      {114,0},{0,0},        {0,0},       {{5,450},{14,0},{12}},                                     -- MISSION 3-1 (Finish (Rhy Epocan))
+                11,{135,0},{0,0},     {0,0},        {0,0},       {{5,500},{14,0},{12}},                                     -- MISSION 3-2 (Finish (Zubaba))
+                11,{151,0},{0,0},     {0,0},        {0,0},       {{5,400},{14,0},{12}},                                    -- MISSION 3-2 (Finish (Zubaba)) [Repeat]
+                12,{40,0},{0,0},     {0,0},        {0,0},       {{11,4},{9,30},{14,0},{6},{8,5000},{12}},                 -- MISSION 3-3 (Finish (Ambassador's door))
+                13,{37,0},{0,0},     {0,0},        {0,0},       {{11,5},{14,0},{13,212},{10,71},{6},{8,10000},{12}},     -- MISSION 4-1 (Finish (Pakh Jatalfih))
+                14,{192,0},{0,0},     {0,0},        {0,0},       {{14,0},{9,73},{5,600},{12}},                             -- MISSION 5-1 (Finish (Star Sibyl))
+                15,{216,0},{0,0},     {0,0},        {0,0},       {{11,6},{14,0},{9,74},{8,20000},{6},{12}},                 -- MISSION 5-2 (Finish (Star Sibyl))
+                16,{0,0},      {0,0},     {50,0},{0,0},       {{14,0},{5,650},{0,0},{0,0},{0,0},{12}},                    -- MISSION 6-1 (Finish (Zone: Full Moon Fountain))
+                17,{0,0},      {0,0},     {312,0},{0,0},       {{14,0},{11,7},{8,40000},{6},{0,0},{12}},                -- MISSION 6-2 (Finish (Star Sibyl))
+                18,{0,0},      {0,0},     {724,0},{0,0},       {{14,0},{5,700},{10,251},{0,0},{0,0},{12}},                -- MISSION 7-1 (Finish (Tosuka-Porika))
+                19,{0,0},      {0,0},     {742,0},{0,0},       {{14,0},{11,8},{8,60000},{6},{0,0},{12}},                    -- MISSION 7-2 (Finish (Leepe-Hoppe))
+                20,{0,0},      {0,0},     {758,0},{0,0},       {{14,0},{5,750},{0,0},{0},{0,0},{12}},                    -- MISSION 8-1 (Finish (Morno-Toeno))
+                21,{0,0},      {0,0},     {609,0},{0,0},       {{14,0},{11,9},{8,80000},{6},{0,0},{12}},                    -- MISSION 8-2 (Finish (Apururu))
+                22,{0,0},     {0,0},     {61,0},{0,0},     {{14,0},{5,800},{13,293},{0},{0,0},{12}},                    -- MISSION 9-1 (Finish (Zone: Full Moon Fountain))
+                23,{0,0},      {0,0},     {407,0},{0,0},       {{13,294},{11,10},{8,100000},{6},{0,0},{12}}                    -- MISSION 9-2 (Finish (Vestal Chamber))
             };
         end
     end

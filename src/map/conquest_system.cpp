@@ -97,7 +97,7 @@ namespace conquest
                 continue;
             }
 
-            auto loss = std::min<int>(points * influences[i] / 5000 - influences[nation], influences[i]);
+            auto loss = std::min<int>(points * influences[i] / (5000 - influences[nation]), influences[i]);
             influences[i] -= loss;
             lost += loss;
         }

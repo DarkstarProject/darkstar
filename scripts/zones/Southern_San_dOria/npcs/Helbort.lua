@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Helbort
 --  Starts and Finished Quest: A purchase of Arms
---  @zone 230
--- !pos  71 -1 65
+-- !pos 71 -1 65 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -32,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
 
     if (csid == 594 and option == 0) then
         player:addQuest(SANDORIA, A_PURCHASE_OF_ARMS);

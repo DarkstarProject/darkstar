@@ -22,7 +22,7 @@ function onTrigger(player,npc)
                 player:startEvent(105);
             end;
         else
-          player:messageSpecial(STAIRWAY_LOCKED);
+            player:messageSpecial(STAIRWAY_LOCKED);
         end;
     else
         player:messageSpecial(STAIRWAY_ONLY_CITIZENS);
@@ -33,11 +33,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

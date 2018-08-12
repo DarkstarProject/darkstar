@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Mythril Beastcoin Door
--- @zone 176
--- !pos 40 8.6 20.012
+-- !pos 40 8.6 20.012 176
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------
@@ -55,11 +54,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

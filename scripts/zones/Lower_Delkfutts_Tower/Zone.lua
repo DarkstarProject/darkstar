@@ -17,11 +17,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -63,13 +59,9 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 15) then
         player:setVar("ZilartStatus",2);
@@ -92,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:startEvent(38);
     elseif (csid == 38) then
-         player:startEvent(39);
+        player:startEvent(39);
     elseif (csid == 39) then
         player:completeMission(COP,ANCIENT_FLAMES_BECKON);
         player:addMission(COP,THE_RITES_OF_LIFE);

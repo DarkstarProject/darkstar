@@ -34,8 +34,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local passwordGuess = player:getLocalVar("passwordGuess");
 
     if (csid == 13 and option == OZ_PASSWORD_TABLE[Oz_passwordSet][1][2] and passwordGuess == 0) then
@@ -54,8 +52,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local passwordGuess = player:getLocalVar("passwordGuess");
 
     if (csid == 13 and passwordGuess == 3) then

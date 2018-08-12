@@ -30,13 +30,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if ((csid == 50 or csid == 51) and option == 1) then
         player:messageSpecial(THE_3_ITEMS_GLOW_FAINTLY,dsp.ki.SILVER_BELL,dsp.ki.CORUSCANT_ROSARY,dsp.ki.BLACK_MATINEE_NECKLACE);

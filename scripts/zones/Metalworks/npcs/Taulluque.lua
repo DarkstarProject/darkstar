@@ -2,8 +2,7 @@
 -- Area: Metalworks
 --   NPC: Taulluque
 -- Type: Past Event Watcher
--- @zone 237
--- !pos 39.907 -14.999 -21.083
+-- !pos 39.907 -14.999 -21.083 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Rosel
 -- Starts and Finishes Quest: Rosel the Armorer
--- @zone 230
--- !pos
+-- !zone 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -48,13 +47,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Rosel the Armorer, get quest and receipt for prince
     if ((csid == 523 or csid == 524) and option == 0) then

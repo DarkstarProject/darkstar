@@ -10,7 +10,6 @@ require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/shop");
 
 function onTrigger(player,npc)
-    player:showText(npc,CHARGINGCHOCOBO_SHOP_DIALOG);
     local stock =
     {
         12832,   191, 3,    -- Bronze Subligar
@@ -28,5 +27,7 @@ function onTrigger(player,npc)
         12929, 36735, 1,    -- Mythril Leggings
         13198, 20037, 1,    -- Swordbelt
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end;
+
+    player:showText(npc, CHARGINGCHOCOBO_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end

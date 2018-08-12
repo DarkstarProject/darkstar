@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Qulun Dome
 --  NPC: The Mute
--- @zone 148
--- !pos <many>
+-- !zone 148
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------
@@ -21,11 +20,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Guddal
 -- Starts and Finishes Quest: Kazham Airship Pass (This quest does not appear in your quest log)
--- @zone 246
--- !pos -14 8 44
+-- !pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -31,8 +30,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 300) then
         if (player:delGil(148000)) then
             player:addKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
@@ -42,8 +39,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 300) then
         if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM) == true) then
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);

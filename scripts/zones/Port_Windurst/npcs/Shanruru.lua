@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Shanruru
 -- Involved in Quest: Riding on the Clouds
--- @zone 240
--- !pos -1 -6 187
+-- !pos -1 -6 187 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -68,6 +67,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

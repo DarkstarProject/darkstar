@@ -23,5 +23,5 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-     player:showText(npc, SHOWMAN_TRIGGER);
+    player:showText(npc, SHOWMAN_TRIGGER);
 end;

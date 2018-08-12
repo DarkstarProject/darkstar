@@ -1,7 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.6.17, for Win64 (x86_64)
 --
--- Host: localhost    Database: dspdb
--- ------------------------------------------------------
+-- Host: localhost    Database: -- ------------------------------------------------------
 -- Server version   5.6.21-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -1791,12 +1790,22 @@ INSERT INTO `item_usable` VALUES (6343,'grape_daifuku',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6344,'grape_daifuku_+1',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6368,'geomancer_die',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6369,'rune_fencer_die',1,1,55,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6377,'imperial_chair_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6378,'decorative_chair_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6379,'ornate_stool_set',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6380,'refined_chair_set',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6394,'pork_cutlet',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6395,'pork_cutlet_+1',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6396,'cutlet_sandwich',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6397,'cutlet_sandwich_+1',1,1,24,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6406,'pork_cutlet_rice_bowl',1,1,28,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6407,'pork_cutlet_rice_bowl_+1',1,1,28,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6409,'ephramadian_throne',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6408,'portable_container',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6410,'shadow_throne',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6411,'chocobo_chair',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6412,'leaf_bench',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (6413,'astral_cube',1,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6447,'sasuke_shuriken_pouch',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6448,'sasuke_shuriken_pouch_+1',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (6458,'bowl_of_soy_ramen',1,1,28,0,0,0,0,0);
@@ -2180,6 +2189,12 @@ INSERT INTO `item_usable` VALUES (18945,'jet_sickle',1,3,0,0,100,30,600,0);
 INSERT INTO `item_usable` VALUES (19181,'moogles_largesse',1,12,0,0,9,10,259200,0);
 INSERT INTO `item_usable` VALUES (19204,'fiendtrapper',20,0,0,0,12,10,30,0);
 INSERT INTO `item_usable` VALUES (19246,'moggiebag',1,3,0,0,8,10,259200,0);
+INSERT INTO `item_usable` VALUES (21266,'gastraphetes',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21267,'annihilator',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21268,'death_penalty',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (21269,'armageddon',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22115,'yoichinoyumi',1,1,55,0,1,10,3600,0);
+INSERT INTO `item_usable` VALUES (22116,'gandiva',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (26720,'sheep_cap_+1',1,2,55,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (27556,'echad_ring',1,3,76,0,1,5,7200,0);
 INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,80,3,1,8,600,0);

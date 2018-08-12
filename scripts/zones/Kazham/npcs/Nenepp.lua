@@ -7,6 +7,8 @@ package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 local path =
@@ -18,12 +20,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 
@@ -78,13 +80,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 241) then    -- correct trade, finished quest and receive opo opo crown and 3 pamamas
         local FreeSlots = player:getFreeSlotsCount();
@@ -99,7 +97,7 @@ function onEventFinish(player,csid,option,npc)
             player:setVar("OPO_OPO_PROGRESS",0);
             player:setVar("OPO_OPO_FAILED", 0);
             player:setVar("OPO_OPO_RETRY", 0);
-            player:setTitle(257);
+            player:setTitle(dsp.title.KING_OF_THE_OPOOPOS);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
         end

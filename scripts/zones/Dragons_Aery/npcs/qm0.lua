@@ -4,54 +4,37 @@
 -- Spawns Fafnir or Nidhogg
 -- !pos -81 32 2 178
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
+package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Dragons_Aery/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/zones/Dragons_Aery/TextIDs")
+require("scripts/zones/Dragons_Aery/MobIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onSpawn(npc)
-    if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
-        npc:setStatus(dsp.status.DISAPPEAR);
+    if LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1 then
+        npc:setStatus(dsp.status.DISAPPEAR)
     end
-end;
+end
 
 function onTrade(player,npc,trade)
-    local Fafnir = GetMobAction(17408018);
-    local Nidhogg = GetMobAction(17408019);
-
-    if ((Nidhogg == dsp.act.NONE or Nidhogg == dsp.act.SPAWN)
-    and (Fafnir == dsp.act.NONE or Fafnir == dsp.act.SPAWN)) then
-        -- Trade Cup of Honey Wine
-        if (trade:hasItemQty(3339,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_NQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17408018):updateClaim(player);
-                npc:setStatus(dsp.status.DISAPPEAR);
-            end
-        -- Trade Cup of Sweet Tea
-        elseif (trade:hasItemQty(3340,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_HQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17408019):updateClaim(player);
-                npc:setStatus(dsp.status.DISAPPEAR);
-            end
+    if not GetMobByID(FAFNIR):isSpawned() and not GetMobByID(NIDHOGG):isSpawned() then
+        if LandKingSystem_NQ ~= 0 and npcUtil.tradeHas(trade, 3339) and npcUtil.popFromQM(player, npc, FAFNIR) then
+            player:confirmTrade()
+        elseif LandKingSystem_HQ ~= 0 and npcUtil.tradeHas(trade, 3340) and npcUtil.popFromQM(player, npc, NIDHOGG) then
+            player:confirmTrade()        
         end
     end
-
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
+    player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

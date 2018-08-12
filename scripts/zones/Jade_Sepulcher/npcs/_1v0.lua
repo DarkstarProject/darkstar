@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Jade Sepulcher
--- NPC:  Ornamental Door
+-- NPC: Ornamental Door
 -- Involved in Missions: TOAU-29
--- @zone 299 0 -199 67
+-- !pos 299 0 -199 67
 -----------------------------------
 package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;
@@ -13,16 +13,8 @@ require("scripts/globals/missions");
 require("scripts/globals/bcnm");
 require("scripts/zones/Jade_Sepulcher/TextIDs");
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
 
@@ -34,10 +26,6 @@ function onTrigger(player,npc)
     
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
@@ -47,10 +35,6 @@ function onEventUpdate(player,csid,option)
     end
     
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- printf("onFinish CSID: %u",csid);

@@ -19,11 +19,11 @@ function onTrade(player,npc,trade)
                 player:addItem(1159);
                 player:messageSpecial(ITEM_OBTAINED, 1159); -- Wyvern Egg
             else
-               player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
+                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1159); -- Wyvern Egg
             end
         end
     else
-        startExcavation(player,player:getZoneID(),npc,trade,0x003C);
+        startExcavation(player,player:getZoneID(),npc,trade,60);
     end
 
 end;
@@ -33,11 +33,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

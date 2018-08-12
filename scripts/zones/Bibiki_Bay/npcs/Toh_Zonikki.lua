@@ -12,37 +12,38 @@ require("scripts/globals/keyitems");
 -- Local Variables
 -----------------------------------
 
-local clammingItems = { 1311,  -- Oxblood
-            885,   -- Turtle Shell
-            1193,  -- HQ Crab Shell
-            1446,  -- Lacquer Tree Log
-            4318,  -- Bibiki Urchin
-            1586,  -- Titanictus Shell
-            5124,  -- Tropical Clam
-            690,   -- Elm Log
-            887,   -- Coral Fragment
-            703,   -- Petrified Log
-            691,   -- Maple Log
-            4468,  -- Pamamas
-            3270,  -- HQ Pugil Scales
-            888,   -- Seashell
-            4328,  -- Hobgoblin Bread
-            485,   -- Broken Willow Rod
-            510,   -- Goblin Armor
-            5187,  -- Elshimo Coconut
-            507,   -- Goblin Mail
-            881,   -- Crab Shell
-            4325,  -- Hobgoblin Pie
-            936,   -- Rock Salt
-            4361,  -- Nebimonite
-            864,   -- Fish Scales
-            4484,  -- Shall Shell
-            624,   -- Pamtam Kelp
-            1654,  -- Igneous Rock
-            17296, -- Pebble
-            5123,  -- Jacknife
-            5122   -- Bibiki Slug
-              };
+local clammingItems = {
+    1311,  -- Oxblood
+    885,   -- Turtle Shell
+    1193,  -- HQ Crab Shell
+    1446,  -- Lacquer Tree Log
+    4318,  -- Bibiki Urchin
+    1586,  -- Titanictus Shell
+    5124,  -- Tropical Clam
+    690,   -- Elm Log
+    887,   -- Coral Fragment
+    703,   -- Petrified Log
+    691,   -- Maple Log
+    4468,  -- Pamamas
+    3270,  -- HQ Pugil Scales
+    888,   -- Seashell
+    4328,  -- Hobgoblin Bread
+    485,   -- Broken Willow Rod
+    510,   -- Goblin Armor
+    5187,  -- Elshimo Coconut
+    507,   -- Goblin Mail
+    881,   -- Crab Shell
+    4325,  -- Hobgoblin Pie
+    936,   -- Rock Salt
+    4361,  -- Nebimonite
+    864,   -- Fish Scales
+    4484,  -- Shall Shell
+    624,   -- Pamtam Kelp
+    1654,  -- Igneous Rock
+    17296, -- Pebble
+    5123,  -- Jacknife
+    5122   -- Bibiki Slug
+};
 
 -----------------------------------
 -- Local Functions
@@ -100,8 +101,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 28) then
         local enoughMoney = 2; -- Not enough money
@@ -118,8 +117,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 28) then
         if (option == 1) then -- Give 50pz clamming kit

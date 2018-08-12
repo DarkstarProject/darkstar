@@ -44,13 +44,13 @@ end;
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.FOOD_HPP, 14);
-    target:delMod(dsp.mod.FOOD_HP_CAP, 65);
-    target:delMod(dsp.mod.STR, 4);
-    target:delMod(dsp.mod.VIT, -1);
-    target:delMod(dsp.mod.INT, -1);
+    target:delMod(dsp.mod.FOOD_HP_CAP, 70);
+    target:delMod(dsp.mod.STR, 5);
+    target:delMod(dsp.mod.VIT, -2);
+    target:delMod(dsp.mod.INT, -2);
     target:delMod(dsp.mod.HPHEAL, 1);
     target:delMod(dsp.mod.FOOD_ATTP, 22);
-    target:delMod(dsp.mod.FOOD_ATT_CAP, 65);
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 70);
     target:delMod(dsp.mod.FOOD_RATTP, 22);
-    target:delMod(dsp.mod.FOOD_RATT_CAP, 65);
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 70);
 end;

@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Mainchelite
--- @zone 80
--- !pos -16 1 -30
+-- !pos -16 1 -30 80
 -- CS IDs:
 -- 5 = Generic Greeting for Iron Ram members
--- 0x006 = Mid Initiation of other nation
+-- 6 = Mid Initiation of other nation
 -- 7 = Ask player to Join Iron Rams
 -- 8 = Ask if changed mind about joining Iron rams (after player has declined)
 -- 9 = Mid Initiation of other nation
@@ -13,7 +12,7 @@
 -- 11 = Player works for another nation, offer to switch +give quest
 -- 12 = Complete investigation
 -- 13 = "How fares the search, <player>?"
--- 0x00E = "How fares the search, <player>?"
+-- 14 = "How fares the search, <player>?"
 -- 15 = No Red Recommendation Letter and has no nation affiliation
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
 -----------------------------------
@@ -60,13 +59,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 7 and option == 0) then
         player:addQuest(CRYSTAL_WAR,STEAMED_RAMS);
         player:setVar("RED_R_LETTER_USED",1);

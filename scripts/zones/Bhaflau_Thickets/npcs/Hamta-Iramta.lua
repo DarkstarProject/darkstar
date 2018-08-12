@@ -2,8 +2,7 @@
 -- Area: Bhaflau Thickets
 --   NPC: Hamta-Iramta
 -- Type: Alzadaal Undersea Ruins
--- @zone 52
--- !pos -459.942 -20.048 -4.999
+-- !pos -459.942 -20.048 -4.999 52
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -41,12 +40,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

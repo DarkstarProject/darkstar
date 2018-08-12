@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Sauromugue Champaign
+-- Area: Rolanberry Fields [S]
 --  NPC: Cavernous Maw
 -- !pos -198 8 360 91
 -- Teleports Players to Rolanberry Fields
@@ -29,13 +29,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
     if (csid == 101 and option == 1) then
         player:addNationTeleport(MAW,2);
         dsp.teleport.toMaw(player,4);

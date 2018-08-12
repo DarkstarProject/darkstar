@@ -6,7 +6,7 @@
 --  Can be dispelled: N/A
 --  Utsusemi/Blink absorb: Ignores shadows
 --  Range: Unknown cone
---  Notes: Water Damage Knockback. 
+--  Notes: Water Damage Knockback.
 ---------------------------------------------
 
 require("scripts/globals/settings");

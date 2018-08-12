@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Miageau
 -- Type: Quest Giver NPC
--- @zone 231
--- !pos 115 0 108
+-- !pos 115 0 108 231
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------
@@ -49,13 +48,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 515) then
         if (player:getFreeSlotsCount() == 0) then

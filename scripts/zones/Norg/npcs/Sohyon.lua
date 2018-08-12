@@ -2,8 +2,7 @@
 -- Area: Norg
 --   NPC: Sohyon
 -- Type: Standard NPC
--- @zone 252
--- !pos 47.286 -7.282 13.873
+-- !pos 47.286 -7.282 13.873 252
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

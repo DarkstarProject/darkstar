@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Fennella
 -- Type: Guildworker's Union Representative
---  @zone 240
--- !pos -177.811 -2.835 65.639
+-- !pos -177.811 -2.835 65.639 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
@@ -27,7 +26,7 @@ local keyitems = {
         rank = 9,
         cost = 115000
     },
-     [3] = {
+    [3] = {
         id = dsp.ki.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000
@@ -86,16 +85,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     elseif (csid == 10021) then

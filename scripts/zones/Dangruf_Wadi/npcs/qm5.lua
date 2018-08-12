@@ -1,8 +1,8 @@
 -----------------------------------
 --  NPC: ??? (QM5)
---     Type: Eggblix dice roll game part 3
---     @zone 191
---     Involved in quest "As Thick As Thieves"
+-- Type: Eggblix dice roll game part 3
+-- !zone 191
+-- Involved in quest "As Thick As Thieves"
 -----------------------------------
 package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
 -----------------------------------
@@ -33,14 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
     if (csid == 141 and option == 1) then -- player looses dice game
         player:tradeComplete();
         player:setVar("thickAsThievesGamblingCS",2);

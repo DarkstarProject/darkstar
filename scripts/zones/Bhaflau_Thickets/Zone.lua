@@ -62,6 +62,9 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-100,-13.5,-479.514,60);
     end
+    if (prevZone == 66) then
+        player:setPos(-186,-10,-802,80);
+    end
     return cs;
 end;
 
@@ -74,13 +77,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 108) then
         player:setPos(0,0,0,0,66);
     end

@@ -33,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 225 and option == 0) then
         player:addQuest(BASTOK,STAMP_HUNT);
@@ -55,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:addFame(BASTOK,50);
             player:completeQuest(BASTOK,STAMP_HUNT);
         else
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13081);
         end
     elseif (csid == 429) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",11,true);

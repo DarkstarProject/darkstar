@@ -26,12 +26,10 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(DOOR_LOCKED);
     end
-  return 1;
+    return 1;
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

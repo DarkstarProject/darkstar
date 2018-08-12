@@ -76,7 +76,7 @@ function onTrade(player,npc,trade)
         elseif (trade:hasItemQty(Vice_of_Aspersion,1)) then
             item = Vice_of_Aspersio;reward = ASTUTE_CAPE;
 
-  --------------virtue stones------------------------
+        --------------virtue stones------------------------
         elseif (trade:hasItemQty(AERN_ORGAN,1)) then
             item =AERN_ORGAN; reward = VIRTUE_STONE_POUCH;
         elseif (trade:hasItemQty(EUVHI_ORGAN,1)) then
@@ -96,6 +96,7 @@ function onTrade(player,npc,trade)
         end
 
         if (reward > 0) then
+            player:setLocalVar("meretReward", reward)
             player:startEvent(586,item,reward);
         end
     end
@@ -120,20 +121,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid == 586) then
+    if (csid == 586 and option==player:getLocalVar("meretReward")) then
+        player:setLocalVar("meretReward", 0)
         if (player:getFreeSlotsCount() == 0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option) == true)) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option);
         else
-        player:tradeComplete();
-        player:addItem(option);
-        player:messageSpecial(ITEM_OBTAINED,option); -- Item
+            player:tradeComplete();
+            player:addItem(option);
+            player:messageSpecial(ITEM_OBTAINED,option); -- Item
         end
     end
 end;

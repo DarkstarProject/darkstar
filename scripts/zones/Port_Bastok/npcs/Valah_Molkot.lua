@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --  NPC: Valah Molkot
 -- Starts and Finishes Quest: A Lady's Heart
--- @zone 236
--- !pos 59 8 -221
+-- !pos 59 8 -221 236
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -70,13 +69,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 160 and option == 2002) then
         player:tradeComplete();

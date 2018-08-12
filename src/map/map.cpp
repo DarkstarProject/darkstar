@@ -146,7 +146,7 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 
 int32 do_init(int32 argc, char** argv)
 {
-    ShowStatus("do_init: begin server initialization...\n");
+    ShowStatus("do_init: begin server initialization...");
     map_ip.s_addr = 0;
 
     for (int i = 1; i < argc; i++)
@@ -164,7 +164,7 @@ int32 do_init(int32 argc, char** argv)
 
     map_config_default();
     map_config_read((const int8*)MAP_CONF_FILENAME);
-    ShowMessage("\t\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
+    ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
     ShowStatus("do_init: map_config is reading");
     ShowMessage("\t\t - " CL_GREEN"[OK]" CL_RESET"\n");
 
@@ -982,6 +982,7 @@ int32 map_config_default()
     map_config.mob_stat_multiplier = 1.0f;
     map_config.player_stat_multiplier = 1.0f;
     map_config.ability_recast_multiplier = 1.0f;
+    map_config.blood_pact_shared_timer = 0;
     map_config.vanadiel_time_offset = 0;
     map_config.lightluggage_block = 4;
     map_config.max_time_lastupdate = 60000;
@@ -990,7 +991,7 @@ int32 map_config_default()
     map_config.all_mobs_gil_bonus = 0;
     map_config.max_gil_bonus = 9999;
     map_config.Battle_cap_tweak = 0;
-    map_config.CoP_Battle_cap = 1;
+    map_config.lv_cap_mission_bcnm = 0;
     map_config.max_merit_points = 30;
     map_config.yell_cooldown = 30;
     map_config.audit_gm_cmd = 0;
@@ -1169,6 +1170,10 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.ability_recast_multiplier = (float)atof(w2);
         }
+        else if (strcmp(w1, "blood_pact_shared_timer") == 0)
+        {
+            map_config.blood_pact_shared_timer = atoi(w2);
+        }
         else if (strcmp(w1, "drop_rate_multiplier") == 0)
         {
             map_config.drop_rate_multiplier = (float)atof(w2);
@@ -1269,9 +1274,9 @@ int32 map_config_read(const int8* cfgName)
         {
             map_config.Battle_cap_tweak = atoi(w2);
         }
-        else if (strcmp(w1, "CoP_Battle_cap") == 0)
+        else if (strcmp(w1, "lv_cap_mission_bcnm") == 0)
         {
-            map_config.CoP_Battle_cap = atoi(w2);
+            map_config.lv_cap_mission_bcnm = atoi(w2);
         }
         else if (strcmp(w1, "max_merit_points") == 0)
         {

@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Door: Departures Exit
--- @zone 236
--- !pos -62 1 -8
+-- !pos -62 1 -8 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
@@ -26,13 +25,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 141) then
         local X = player:getXPos();

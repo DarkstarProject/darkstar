@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Windurst Walls
---   NPC: Burute-Sorute
+--  NPC: Burute-Sorute
 -- Type: Title Change NPC
--- @zone 239
 -- !pos 0.080 -10.765 5.394 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
@@ -42,13 +41,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid)
-    -- printf("RESULT: %u",option)
     if (csid==10004) then
         if (option > 0 and option <29) then
             if (player:delGil(200)) then

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ru'Avitau Gate
+-- Area: Ru'Aun Gardens
 --  NPC: Goblin Footprint
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
@@ -15,11 +15,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

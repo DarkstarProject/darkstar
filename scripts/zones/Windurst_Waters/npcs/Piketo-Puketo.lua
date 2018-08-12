@@ -31,16 +31,11 @@ function onTrigger(player,npc)
     player:startEvent(10013,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x03d2  0x03d7  0x03d4  0x03d5  10013  10014
-
+-- 978  983  980  981  10013  10014
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10013 and option == 1) then
         local crystal = 4096; -- fire crystal
 

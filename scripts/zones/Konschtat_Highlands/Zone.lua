@@ -29,6 +29,7 @@ function onChocoboDig(player, precheck)
         { 868, 45, DIGREQ_NONE },
         { 642, 71, DIGREQ_NONE },
         { 4096, 100, DIGREQ_NONE },  -- all crystals
+        { 1255, 10, DIGREQ_NONE }, -- all ores
         { 845, 28, DIGREQ_BORE },
         { 842, 27, DIGREQ_BORE },
         { 843, 23, DIGREQ_BORE },
@@ -64,10 +65,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

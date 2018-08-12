@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ampiro-Mapiro
 -- Type: Standard NPC
--- @zone 94
--- !pos 131.380 -6.75 174.169
+-- !pos 131.380 -6.75 174.169 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -1,7 +1,7 @@
 ---------------------------------------------
 --  Reactor Overload
 --  Zedi, while in Animation form 3 (Rings)
---  Blinkable 1-3 hit, addtional effect Silence on hit. 
+--  Blinkable 1-3 hit, addtional effect Silence on hit.
 ---------------------------------------------
 
 require("scripts/globals/settings");

@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Sattal-Mansal
 -- Starts and Finishes Quest: Mysteries of Beadeaux I & II
--- @zone 245
--- !pos 40 3 -53
+-- !pos 40 3 -53 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -31,13 +30,9 @@ function onTrigger(player,npc)
 end;
 --
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 89) then
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_I);
         player:addQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);

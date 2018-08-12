@@ -51,7 +51,7 @@ function onTrigger(player,npc)
         if (playerOnQuestId ~= player:getID()) then
             player:startEvent(119); -- quest left over from previous day. fail quest.
         else
-            if (hour >= 20 and hour < 21) then
+            if (hour >= 18 and hour < 21) then
                 player:startEvent(115); -- tell player it's too early to start lighting lamps.
             elseif (allLampsLit) then
                 player:startEvent(117,doneCommService); -- all lamps are lit. win quest.
@@ -64,7 +64,7 @@ function onTrigger(player,npc)
         end
 
     -- quest is available to player, nobody is currently on it, and the hour is right
-    elseif (player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 20 or hour < 1)) then
+    elseif (player:getFameLevel(JEUNO) >= 1 and playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
         player:startEvent(116,doneCommService);
 
     -- default dialog including option to drop membership card
@@ -83,7 +83,7 @@ function onEventUpdate(player,csid,option)
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
 
-        if (playerOnQuestId == 0 and (hour >= 20 or hour < 1)) then
+        if (playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
             player:addQuest(JEUNO,COMMUNITY_SERVICE);

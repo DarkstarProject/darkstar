@@ -1,5 +1,5 @@
 ------------------------
---    Energy Drain    -- 
+--    Energy Drain    --
 ------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)

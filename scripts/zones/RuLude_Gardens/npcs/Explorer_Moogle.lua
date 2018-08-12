@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Explorer Moogle
 -- Type: Mog Tablet
--- @zone 243
--- !pos 1.000 -1 0.000
+-- !pos 1.000 -1 0.000 243
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

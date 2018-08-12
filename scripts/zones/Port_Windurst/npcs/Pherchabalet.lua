@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --   NPC: Pherchabalet
 -- Type: Standard NPC
--- @zone 240
--- !pos 34.683 -5.999 137.447
+-- !pos 34.683 -5.999 137.447 240
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

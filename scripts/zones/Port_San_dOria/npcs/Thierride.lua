@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Thierride
 -- Type: Quest Giver
--- @zone 232
--- !pos -67 -5 -28
+-- !pos -67 -5 -28 232
 --
 -- Starts and Finishes Quest: A Taste For Meat
 -----------------------------------
@@ -46,13 +45,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 526) then
         if (player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT) == QUEST_AVAILABLE) then

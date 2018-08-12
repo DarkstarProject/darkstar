@@ -17656,11 +17656,11 @@ INSERT INTO `mob_droplist` VALUES (2999,0,0,1000,926,180);
 INSERT INTO `mob_droplist` VALUES (2999,0,0,1000,4362,30);
 INSERT INTO `mob_droplist` VALUES (3000,2,0,1000,926,0);
 INSERT INTO `mob_droplist` VALUES (3000,0,0,1000,926,190);
-INSERT INTO `mob_droplist` VALUES (3001,0,0,1000,852,30);
+
+-- Rock Lizard, Dangruf Wadi (http://www.ffxidb.com/zones/191/rock-lizard)
 INSERT INTO `mob_droplist` VALUES (3001,2,0,1000,926,0);
-INSERT INTO `mob_droplist` VALUES (3001,0,0,1000,926,310);
-INSERT INTO `mob_droplist` VALUES (3001,0,0,1000,3552,82);
-INSERT INTO `mob_droplist` VALUES (3001,0,0,1000,4362,82);
+INSERT INTO `mob_droplist` VALUES (3001,0,0,1000,926,280);
+
 INSERT INTO `mob_droplist` VALUES (3002,0,0,1000,2640,80);
 INSERT INTO `mob_droplist` VALUES (3002,0,0,1000,2888,30);
 INSERT INTO `mob_droplist` VALUES (3003,0,0,1000,920,560);
@@ -19471,6 +19471,7 @@ INSERT INTO `mob_droplist` VALUES (3330,0,0,1000,894,90);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,846,100);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,894,70);
+INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,15852,107);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,846,320);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,894,120);
@@ -30815,7 +30816,6 @@ INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,816,80);
 INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,839,160);
 INSERT INTO `mob_droplist` VALUES (4186,0,0,1000,4357,10);
 INSERT INTO `mob_droplist` VALUES (4187,0,0,1000,816,118);
-INSERT INTO `mob_droplist` VALUES (4187,0,0,1000,3550,62);
 INSERT INTO `mob_droplist` VALUES (4187,4,0,1000,4357,0);
 INSERT INTO `mob_droplist` VALUES (4188,0,0,1000,925,90);
 INSERT INTO `mob_droplist` VALUES (4188,0,0,1000,2164,340);
@@ -32936,6 +32936,14 @@ INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
 INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- 4.9% Wilhelm's Earring off Goblintrap
 INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
 
+-- Drachenlizard (http://www.ffxidb.com/zones/88/drachenlizard)
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,852,40); -- Lizard Skin (4%)
+INSERT INTO `mob_droplist` VALUES (4597,2,0,1000,926,0); -- Lizard Tail (Steal)
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,926,200); -- Lizard Tail (20%)
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,3552,70); -- Squamous Hide (7%)
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,4362,60); -- Lizard Egg (6%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

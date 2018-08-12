@@ -10,7 +10,7 @@ end;
 
 function onItemUse(target)
     local nation = target:getNation(target);
-    if (nation == 0) then -- San d'Oria    
+    if (nation == 0) then -- San d'Oria
         target:setPos(126, 0, -1, 122, 231);
         return;
     end
@@ -21,6 +21,6 @@ function onItemUse(target)
     if (nation == 2) then -- Windurst
         target:setPos(197, -12, 224, 65, 240);
         return;
-    end    
+    end
     print( "Unable to fetch target's nation." );
 end

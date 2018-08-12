@@ -2,8 +2,7 @@
 -- Area: Norg
 --  NPC: Laisrean
 -- Starts and Ends Quest: The Sahagin's Stash
--- @zone 252
--- !pos -2.251 -1 21.654
+-- !pos -2.251 -1 21.654 252
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
@@ -36,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 33 and option == 1) then
         player:addQuest(OUTLANDS,THE_SAHAGINS_STASH);
     elseif (csid == 35) then

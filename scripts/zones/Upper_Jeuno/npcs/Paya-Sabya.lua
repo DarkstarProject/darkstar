@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Paya-Sabya
 -- Involved in Mission: Magicite
--- @zone 244
--- !pos 9 1 70
+-- !pos 9 1 70 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -25,13 +24,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 80) then
         player:setVar("YagudoTorchCS",1);

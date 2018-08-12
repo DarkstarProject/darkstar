@@ -3,40 +3,55 @@
 --  NPC: Rune of Release
 -- !pos 412 -9 54 55
 -----------------------------------
-require("scripts/zones/Ilrusi_Atoll/globals");
-require("scripts/zones/Ilrusi_Atoll/MobIDs");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
+require("scripts/globals/besieged")
+require("scripts/zones/Ilrusi_Atoll/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if (npc:getID() == ILRUSI_RUNE_OF_RELEASE) then
-        player:startEvent(100,4);
+
+    local instance = npc:getInstance()
+
+    if (instance:completed()) then
+        player:startEvent(100,4)
     end
-end;
+
+    return 1
+
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 100 and option==1) then
-        ILRUSI_ATOLL.respawnChests();
-        ILRUSI_ATOLL.randomizeFigurehead();
 
-        local points = 1000;
-        if (player:hasCompletedMission(ASSAULT, GOLDEN_SALVAGE)) then
-            if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
-                player:delKeyItem(dsp.ki.ASSAULT_ARMBAND);
-                points = 1100;
-            end
-            player:addAssaultPoint(ILRUSI_ASSAULT_POINT, points);
-            player:delMission(ASSAULT, GOLDEN_SALVAGE);
-            player:delKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS);
+	local instance = player:getInstance()
+    local chars = instance:getChars()
+    local id = instance:getID()
+    local points = 0
+	local playerpoints = ((#chars -3)*100)
+	
+    if (csid == 100 and option == 1) then
+        if id == 41 then
+            points = 1000 - math.max(playerpoints, 0)
         end
-
-        player:setPos(28,-7,620,138,54);
+        for i,v in pairs(chars) do
+            v:messageSpecial(Ilrusi.text.ASSAULT_POINTS_OBTAINED,points)
+            v:addAssaultPoint(ILRUSI_ASSAULT_POINT,points)
+            v:setVar("AssaultComplete",1)
+            if (v:hasCompletedAssault(v:getCurrentAssault())) then
+                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+1)
+            else
+                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5)
+            end
+            v:startEvent(102)
+        end
     end
-end;
+    if csid == 102 then
+        for i,v in pairs(chars) do
+            v:setPos(0,0,0,0,54)
+        end
+    end
+end

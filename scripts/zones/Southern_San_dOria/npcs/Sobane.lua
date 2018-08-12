@@ -3,9 +3,8 @@
 --  NPC: Sobane
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword, Riding on the Clouds
--- @zone 230
--- !pos -190 -3 97
--- csid: 52  732  733  0x02de  735  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5
+-- !pos -190 -3 97 230
+-- csid: 52  732  733  734  735  736  737  738  739  740  741
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -------------------------------------
@@ -64,13 +63,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 732 and option == 1) then
         player:addQuest(SANDORIA,SIGNED_IN_BLOOD);

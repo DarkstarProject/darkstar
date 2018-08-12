@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --   NPC: Chimh Dlesbah
 -- Type: Event Scene Replayer
--- @zone 245
--- !pos -71.995 -1 -115.882
+-- !pos -71.995 -1 -115.882 245
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

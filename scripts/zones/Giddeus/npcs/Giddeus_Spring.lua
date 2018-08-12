@@ -2,8 +2,7 @@
 -- Area: Giddeus
 --  NPC: Giddeus Spring
 -- Involved in Quest "Water Way to Go"
--- !pos -258 -2 -249
--- @zone 145
+-- !pos -258 -2 -249 145
 -----------------------------------
 package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
 -----------------------------------
@@ -24,13 +23,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 55) then
         player:tradeComplete();
         player:addItem(4351);

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Fort Ghelsba
 --  NPC: Treasure Chest
--- @zone 141
+-- !zone 141
 -----------------------------------
 package.loaded["scripts/zones/Fort_Ghelsba/TextIDs"] = nil;
 -----------------------------------
@@ -65,11 +65,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

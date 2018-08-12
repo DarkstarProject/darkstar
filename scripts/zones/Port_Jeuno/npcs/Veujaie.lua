@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Veujaie
 -- Type: Item Deliverer
---  @zone 246
--- !pos -20.349    7.999    -2.888
+-- !pos -20.349 7.999 -2.888 246
 --
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

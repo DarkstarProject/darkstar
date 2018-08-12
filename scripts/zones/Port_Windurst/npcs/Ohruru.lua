@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Windurst Waters
+-- Area: Port Windurst
 --  NPC: Ohruru
 -- Starts & Finishes Repeatable Quest: Catch me if you can
 -- Involved in Quest: Wonder Wands
@@ -68,13 +68,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 231) then
         player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then

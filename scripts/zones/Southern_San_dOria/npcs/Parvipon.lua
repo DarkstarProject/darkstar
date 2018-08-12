@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Parvipon
 -- Starts and Finishes Quest: The Merchant's Bidding (R)
--- @zone 230
--- !pos -169 -1 13
+-- !pos -169 -1 13 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -46,13 +45,9 @@ TheMerchantsBidding = player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 90 and option == 1) then
         player:addQuest(SANDORIA,THE_MERCHANT_S_BIDDING);

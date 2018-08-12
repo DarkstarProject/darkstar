@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Yassi-Possi
 -- Type: Item Deliverer
--- @zone 94
--- !pos 153.992 -0.001 -18.687
+-- !pos 153.992 -0.001 -18.687 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -21,12 +20,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

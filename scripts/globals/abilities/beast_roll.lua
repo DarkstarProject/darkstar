@@ -6,7 +6,7 @@
 -- Unlucky Number: 8
 -- Level: 34
 -- Phantom Roll +1 Value: 3
--- 
+--
 -- Die Roll |No BST     |With BST
 -- -------- --------    -----------
 -- 1        |16         |41

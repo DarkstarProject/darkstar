@@ -50,20 +50,16 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(300, 4401, 4289); -- 4401 = Moat Carp, 4289 = Forest Carp
     elseif (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
-        player:messageSpecial(GALLIJAUX_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"), 0, 0, true);
+        player:showText(npc, GALLIJAUX_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
     elseif ((player:getQuestStatus(SANDORIA,THE_COMPETITION)) == QUEST_ACCEPTED) then
-        player:messageSpecial(GALLIJAUX_HELP_OTHER_BROTHER, 0, 0, 0, 0, true);
+        player:showText(npc, GALLIJAUX_HELP_OTHER_BROTHER);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 303) then
         if (player:getFreeSlotsCount() == 0) then

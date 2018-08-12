@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Garnev
 -- Starts and Finishes Quest: Deal with Tenshodo
--- @zone 245
--- !pos 30 4 -36
+-- !pos 30 4 -36 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -35,13 +34,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 167) then
         player:addQuest(JEUNO,DEAL_WITH_TENSHODO);
     elseif (csid == 166) then

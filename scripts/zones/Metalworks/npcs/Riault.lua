@@ -2,8 +2,7 @@
 -- Area: Metalworks
 --   NPC: Riault
 -- Type: Standard NPC
--- @zone 237
--- !pos 26.988 -17.39 -41.931
+-- !pos 26.988 -17.39 -41.931 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

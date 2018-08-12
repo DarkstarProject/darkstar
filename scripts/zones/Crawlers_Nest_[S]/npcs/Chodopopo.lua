@@ -2,9 +2,7 @@
 -- Area: Crawlers' Nest [S]
 --  NPC: Chodopopo
 -- Type: Item Deliverer
---  @zone 171
--- !pos 100.528    -32.272    -58.739
-
+-- !pos 100.528 -32.272 -58.739 171
 --
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
@@ -21,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

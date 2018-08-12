@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --   NPC: Laila
 -- Type: Job Quest Giver
--- @zone 244
--- !pos -54.045 -1 100.996
+-- !pos -54.045 -1 100.996 244
 --
 --TODO--
 -- make sure the surrounding npcs react to the player accordingly after each quest. There are a few event IDs that I don't recall using
@@ -85,13 +84,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10111 and option == 1) then
         player:addQuest(JEUNO,LAKESIDE_MINUET);
     elseif (csid == 10118) then

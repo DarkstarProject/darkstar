@@ -2,11 +2,7 @@
 -- Area: The Eldieme Necropolis
 --  NPC: ???
 -- Involved in Quests: Acting in Good Faith
--- @zone 195
--- !pos -17 0 59 (I-10)
--- !pos
--- !pos
--- !pos
+-- !pos -17 0 59 195 (I-10)
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------
@@ -30,13 +26,9 @@ function onTrigger(player,npc)
 end;
 --
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 50 and option == 0) then
         player:messageSpecial(dsp.ki.SPIRIT_INCENSE_EMITS_PUTRID_ODOR,dsp.ki.SPIRIT_INCENSE);
         player:delKeyItem(dsp.ki.SPIRIT_INCENSE);

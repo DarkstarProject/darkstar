@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Soimin-Oimin, C.C.
 -- Type: Retrace
--- @zone 94
--- !pos -51.010 -6.276 213.678
+-- !pos -51.010 -6.276 213.678 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

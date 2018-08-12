@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Galmut's door
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
--- @zone 244
--- !pos -80 0 104
+-- !pos -80 0 104 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;
@@ -41,13 +40,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 119 and option == 1) then
         player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);

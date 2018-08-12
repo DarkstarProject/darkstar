@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Eastern Altepa Desert
+-- Area: Yhoator Jungle
 --  NPC: Beastmen_s_Banner
 -- !pos 366.014 -0.185 -394.801 124
 -----------------------------------
@@ -16,11 +16,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
     -- printf("OPTION: %u",option);
 end;

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Prucco-Lurucco
 -- Type: Standard NPC
--- @zone 94
--- !pos 140.772 -3.499 132.942
+-- !pos 140.772 -3.499 132.942 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

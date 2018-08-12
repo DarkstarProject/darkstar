@@ -63,6 +63,7 @@ function onTrigger(player,npc)
     local overnightDelivery = player:getQuestStatus(WINDURST,OVERNIGHT_DELIVERY);
     local SayFlowers = player:getQuestStatus(WINDURST,SAY_IT_WITH_FLOWERS);
     local FlowerProgress = player:getVar("FLOWER_PROGRESS");
+    local blueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES)
 
     if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
         player:startEvent(872);
@@ -111,7 +112,7 @@ function onTrigger(player,npc)
     --
     -- Begin Toraimarai Turmoil Section
     --
-    elseif (turmoil == QUEST_AVAILABLE and pfame >= 6 and needToZone == false) then
+    elseif blueRibbonBlues == QUEST_COMPLETED and turmoil == QUEST_AVAILABLE and pfame >= 6 and needToZone == false then
         player:startEvent(785,4500,267,906);
     elseif (turmoil == QUEST_ACCEPTED) then
         player:startEvent(786,4500,267,906); -- Reminder of needed items
@@ -124,13 +125,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     local tabre =
     {
@@ -162,8 +159,8 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
-        player:messageSpecial(KEYITEM_OBTAINED,267);
-        player:addKeyItem(267); -- Rhinostery Certificate
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_CERTIFICATE);
+        player:addKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE); -- Rhinostery Certificate
     elseif (csid == 791 and turmoil == QUEST_ACCEPTED) then -- Completes Toraimarai turmoil - first time
         player:addGil(GIL_RATE*4500);
         player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);

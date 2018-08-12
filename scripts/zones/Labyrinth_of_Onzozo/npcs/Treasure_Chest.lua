@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
 --  NPC: Treasure Chest
--- @zone 213
+-- !zone 213
 -----------------------------------
 package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
 -----------------------------------
@@ -84,11 +84,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

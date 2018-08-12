@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --   NPC: Sniggnix
 -- Type: Standard NPC
--- @zone 245
--- !pos -45.832 4.498 -135.029
+-- !pos -45.832 4.498 -135.029 245
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -41,13 +40,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10024 and option == 1) then                -- player won first dice game
         player:setVar("thickAsThievesGamblingCS",2);

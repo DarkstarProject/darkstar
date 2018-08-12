@@ -2,8 +2,7 @@
 -- Area: Bastok Mines
 --   NPC: Zopago
 -- Type: VCS Chocobo Trainer
--- @zone 234
--- !pos 51.706 -0.126 -109.065
+-- !pos 51.706 -0.126 -109.065 234
 --
 -- Auto-Script: Requires Verification
 -----------------------------------
@@ -23,11 +22,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

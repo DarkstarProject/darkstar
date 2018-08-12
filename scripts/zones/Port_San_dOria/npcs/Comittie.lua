@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Comittie
 -- Type: Standard NPC
--- @zone 232
--- !pos -6.570 -9.8 -147.952
+-- !pos -6.570 -9.8 -147.952 232
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -21,12 +20,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

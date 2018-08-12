@@ -2,7 +2,7 @@
 -- Area: The Sanctuary of Zitah
 --  NPC: ???
 -- Finishes Quest: Lovers in the Dusk
--- @zone 121
+-- !zone 121
 -----------------------------------
 package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
 -----------------------------------
@@ -28,13 +28,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 204) then
         if (player:getFreeSlotsCount() == 0) then

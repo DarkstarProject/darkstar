@@ -1,9 +1,8 @@
 -----------------------------------
--- Area:   Mhaura
---  NPC:  Porter Moogle
--- Type:   Storage Moogle
---  @zone 249
--- !pos TODO
+-- Area: Mhaura
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------

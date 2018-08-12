@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Rouliette
 -- Starts and Finishes Quest: Candle-making
--- @zone 244
--- !pos -24 -2 11
+-- !pos -24 -2 11 244
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -33,13 +32,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 36 and player:getQuestStatus(JEUNO,CANDLE_MAKING) == QUEST_AVAILABLE) then
         player:addQuest(JEUNO,CANDLE_MAKING);
     elseif (csid == 37) then

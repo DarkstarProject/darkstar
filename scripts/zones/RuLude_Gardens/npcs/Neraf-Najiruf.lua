@@ -2,8 +2,7 @@
 -- Area: Ru'Lud Gardens
 --  NPC: Neraf-Najiruf
 -- Involved in Quests: Save my Sister
--- @zone 243
--- !pos -36 2 60
+-- !pos -36 2 60 243
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -30,13 +29,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 98) then
         player:addQuest(JEUNO,SAVE_MY_SISTER);
         player:setVar("saveMySisterVar", 0);

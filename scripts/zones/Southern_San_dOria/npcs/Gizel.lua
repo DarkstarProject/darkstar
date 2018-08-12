@@ -2,8 +2,7 @@
 -- Area: Southern San dOria
 --  NPC: Gizel
 -- Type: Event Scene Replayer NPC
--- @zone 230
--- !pos -34.412 0.000 33.362
+-- !pos -34.412 0.000 33.362 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -30,11 +29,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

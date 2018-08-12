@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Raifa
 -- Type: Quest Giver
--- @zone 236
--- !pos -166.416 -8.48 7.153
+-- !pos -166.416 -8.48 7.153 236
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

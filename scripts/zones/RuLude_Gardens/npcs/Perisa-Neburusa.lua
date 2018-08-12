@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Perisa-Neburusa
 -- Type: Residence Renter
--- @zone 243
--- !pos 54.651 8.999 -74.372
+-- !pos 54.651 8.999 -74.372 243
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

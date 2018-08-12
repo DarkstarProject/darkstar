@@ -2,8 +2,7 @@
 -- Area: Upper Jeuno
 --  NPC: Koriso-Manriso
 -- Type: Item Deliverer
---  @zone 244
--- !pos -64.39    1    23.704
+-- !pos -64.39 1 23.704 244
 --
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
@@ -20,12 +19,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

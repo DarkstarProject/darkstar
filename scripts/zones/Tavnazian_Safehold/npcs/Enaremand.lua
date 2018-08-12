@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --   NPC: Enaremand
 -- Type: Standard NPC
--- @zone 26
--- !pos 95.962 -42.003 51.613
+-- !pos 95.962 -42.003 51.613 26
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

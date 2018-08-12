@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Derrick
 -- Involved in Quests and finish : Save the Clock Tower
--- @zone 245
--- !pos -32 -1 -7
+-- !pos -32 -1 -7 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -44,8 +43,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 10) then
         if (player:delGil(500000)) then
@@ -59,8 +56,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 230 and option == 10) then
         if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true) then

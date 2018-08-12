@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Khea Mhyyih
 -- Type: Standard NPC
--- @zone 94
--- !pos -53.927 -4.499 56.215
+-- !pos -53.927 -4.499 56.215 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -18,12 +17,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

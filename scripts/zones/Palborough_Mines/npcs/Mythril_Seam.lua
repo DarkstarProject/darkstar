@@ -3,8 +3,8 @@
 --  NPC: Mythril Seam
 -- Involved In Mission: Journey Abroad
 -- Involved in quest: Rock Racketeer
--- @zone 143
--- !pos -68 -7 173  //  Rock Racketeer !pos 210 -32 -63
+-- !pos -68 -7 173 143
+-- Rock Racketeer !pos 210 -32 -63 143
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------
@@ -52,8 +52,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Vamorcote
 -- Starts and Finishes Quest: The Setting Sun
--- @zone 231
--- !pos -137.070 10.999 161.855
+-- !pos -137.070 10.999 161.855 231
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -42,13 +41,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 654 and option == 1) then --Player accepts the quest
         player:addQuest(SANDORIA,THE_SETTING_SUN);

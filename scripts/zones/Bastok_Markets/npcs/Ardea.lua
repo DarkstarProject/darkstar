@@ -17,7 +17,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
+    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETEER);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
     -- Rock Racketeer
@@ -35,13 +35,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Rock Racketeer
     if (csid == 261 and option ~= 1) then

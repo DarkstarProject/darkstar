@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
 --  NPC: Treasure Coffer
--- @zone 205
--- !pos 188 0 -28
+-- !pos 188 0 -28 205
 -----------------------------------
 package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
 -----------------------------------
@@ -111,11 +110,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
