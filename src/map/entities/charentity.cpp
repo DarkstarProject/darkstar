@@ -969,14 +969,31 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 auto PPetTarget = PTarget->targid;
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
-                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
-                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    // Blood Pact mp cost stored in animation ID
+                    float mpCost = PAbility->getAnimationID();
+
+                    if (StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                    {
+                        mpCost *= 1.5f;
+                        StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
-                    else {
-                        addMP(-PAbility->getAnimationID()); // TODO: ...
+
+                    // Blood Boon (does not affect Astra Flow BPs)
+                    if ((PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW) == 0)
+                    {
+                        int16 bloodBoonRate = getMod(Mod::BLOOD_BOON);
+                        if (dsprand::GetRandomNumber(100) < bloodBoonRate)
+                        {
+                            mpCost *= dsprand::GetRandomNumber(8.f, 16.f) / 16.f;
+                        }
                     }
-                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
+
+                    addMP((int32)-mpCost);
+
+                    if (PAbility->getValidTarget() == TARGET_SELF)
+                    {
+                        PPetTarget = PPet->targid;
+                    }
                 }
                 else
                 {

@@ -430,6 +430,7 @@ enum class Mod
     BP_DELAY                  = 357, // stores blood pact delay reduction
     ENHANCES_ELEMENTAL_SIPHON = 540, // Bonus Base MP added to Elemental Siphon skill.
     BP_DELAY_II               = 541, // Blood Pact Delay Reduction II
+    BLOOD_BOON                = 913, // Occasionally cuts down MP cost of Blood Pact abilities. Does not affect abilities that require Astral Flow.
 
     // Blue Mage
     BLUE_POINTS               = 309, // Tracks extra blue points
@@ -729,9 +730,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 913, // stuff
     // SPARE = 914, // stuff
     // SPARE = 915, // stuff
+    // SPARE = 916, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
