@@ -7,10 +7,6 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
 
-function onMobSpawn(mob)
-    mob:setMod(dsp.mod.STORETP, 20);
-end;
-
 function onAdditionalEffect(mob, player)
     local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.WIND,dsp.effect.SILENCE);
     if (resist <= 0.5) then
