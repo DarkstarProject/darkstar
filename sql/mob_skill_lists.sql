@@ -3633,5 +3633,5 @@ INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
 -- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind
-INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1005,1952);
-INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1005,1956);
+INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
+INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
