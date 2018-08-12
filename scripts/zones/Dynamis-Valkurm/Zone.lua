@@ -7,6 +7,7 @@ package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil
 -----------------------------------
 require("scripts/zones/Dynamis-Valkurm/TextIDs")
 require("scripts/zones/Dynamis-Valkurm/MobIDs")
+require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 -----------------------------------
 
@@ -49,11 +50,11 @@ function onZoneIn(player,prevZone)
 
     if player:getVar("Dynamis_Entry") == 1 then
         if player:getVar("Dynamis_subjob") == 1 then
-            player:messageBasic(107)
+            player:timer(5000, function(player) player:messageBasic(107) end)
             player:addStatusEffect(dsp.effect.SJ_RESTRICTION, 0, 0, 0, 7200)
         end
         player:addStatusEffectEx(dsp.effect.DYNAMIS, 0, 0, 3, 3600)
-        player:messageSpecial(DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS)
+        player:timer(5500, function(player) player:messageSpecial(DYNAMIS_TIME_BEGIN, 60, dsp.ki.PRISMATIC_HOURGLASS) end)
         player:setVar("Dynamis_Entry", 0)
         player:setVar("Dynamis_subjob", 0)
     else
