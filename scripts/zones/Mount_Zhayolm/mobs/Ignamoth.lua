@@ -7,7 +7,7 @@ require("scripts/globals/status")
 
 function onMobSpawn(mob)
     mob:addMod(dsp.mod.DOUBLE_ATTACK, 50)
-    mob:addMod(dsp.mod.REGAIN, 50)
+    mob:addMod(dsp.mod.REGAIN, 200)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
 end
 
