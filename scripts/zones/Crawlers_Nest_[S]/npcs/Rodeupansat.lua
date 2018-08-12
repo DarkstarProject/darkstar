@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local Eati = player:getQuestStatus(CRYSTAL_WAR,EVIL_AT_THE_INLET)
 
      -- Change to BRASS_RIBBON_OF_SERVICE later when Campaign has been added.
-    if Eati == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE and player:getMainLvl() >= 30 then
+    if Eati == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE) and player:getMainLvl() >= 30 then
         player:startEvent(107) -- Start quest "Evil at the Inlet"
     elseif Eati == QUEST_ACCEPTED then
         if player:hasKeyItem(dsp.ki.EVIL_WARDING_SEAL) == true then
@@ -41,8 +41,8 @@ end
 function onEventFinish(player,csid,option)
     if csid == 107 then
         player:addQuest(CRYSTAL_WAR,EVIL_AT_THE_INLET)
-		npc_util.addKeyItem(player, dsp.ki.EVIL_WARDING_SEAL)
+		npcUtil.giveKeyItem(player, dsp.ki.EVIL_WARDING_SEAL)
     elseif csid == 109 then 
-       npc_util.completeQuest(player, CRYSTAL_WAR, EVIL_AT_THE_INLET, {item = 4687})
+       npcUtil.completeQuest(player, CRYSTAL_WAR, EVIL_AT_THE_INLET, {item = 4687})
     end
 end
