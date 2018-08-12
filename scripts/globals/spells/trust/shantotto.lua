@@ -5,11 +5,11 @@
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    print("Trust example onMagicCastingCheck: working");
     return 0;
 end;
 
 function onSpellCast(caster,target,spell)
-    caster:spawnTrust(73);
+     -- This should be done automatic from the spell ID converted to the trust ID without a script command..
+    caster:spawnTrust(73); -- It's a pet ID, 0 will spawn a fire spirit.
     return 0;
 end;
