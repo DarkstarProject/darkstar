@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Ru'Lude Gardens
--- NPC: Linkshell_Concierge
+-- Area: Windurst Woods
+-- NPC: Linkshell_Concierge_B
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,17 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 17772806) then -- the one on the right
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HARDCORE);
-    elseif (npc:getID() == 17772807) then -- the one in the middle
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.ASSIST);
-    elseif (npc:getID() == 17772808) then -- the one on the left
-        LinkShellConciergeEventTrigger(player,npc,2,dsp.lsconciergetype.TRADING);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.EVERYTHING);
 end;
 
 function onEventUpdate(player,csid,option)

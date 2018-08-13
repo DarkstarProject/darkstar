@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Bastok Markets
--- NPC: Linkshell_Concierge
+-- Area: Southern San d'Oria
+-- NPC: Linkshell_Concierge_B
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+require("scripts/zones/Southern_San_dOria/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,15 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 17739958) then -- the one on the right
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.NEWPLAYERS);
-    elseif (npc:getID() == 17739959) then -- the one on the left
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.EVERYTHING);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.EVERYTHING);
 end;
 
 function onEventUpdate(player,csid,option)

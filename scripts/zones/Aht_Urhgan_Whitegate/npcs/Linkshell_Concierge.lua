@@ -13,13 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 16982641) then -- at the center fountain
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HNM);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HNM);
 end;
 
 function onEventUpdate(player,csid,option)

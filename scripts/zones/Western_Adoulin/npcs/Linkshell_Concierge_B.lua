@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Western Adoulin
--- NPC: Linkshell_Concierge
+-- NPC: Linkshell_Concierge_B
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -13,15 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 17826178) then -- the one on the right
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.CASUAL);
-    elseif (npc:getID() == 17826179) then -- the one on the left
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.ASSIST);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.ASSIST);
 end;
 
 function onEventUpdate(player,csid,option)

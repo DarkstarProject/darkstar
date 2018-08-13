@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Eastern Adoulin
--- NPC: Linkshell_Concierge
+-- Area: Ru'Lude Gardens
+-- NPC: Linkshell_Concierge_A
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Adoulin/TextIDs"] = nil;
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Eastern_Adoulin/TextIDs");
+require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,15 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 17830193) then -- the one on the right
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.EVERYTHING);
-    elseif (npc:getID() == 17830192) then -- the one on the left
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HARDCORE);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HARDCORE);
 end;
 
 function onEventUpdate(player,csid,option)

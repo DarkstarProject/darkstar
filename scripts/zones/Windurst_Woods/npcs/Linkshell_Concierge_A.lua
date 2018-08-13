@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Bostaunieux Oubliette
--- NPC: Linkshell_Concierge
+-- Area: Windurst Woods
+-- NPC: Linkshell_Concierge_A
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
+package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.NOTHING);
+    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.NEWPLAYERS);
 end;
 
 function onEventUpdate(player,csid,option)

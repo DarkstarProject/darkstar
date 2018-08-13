@@ -7,6 +7,7 @@ require("scripts/globals/settings");
 
 dsp = dsp or {};
 dsp.lsconciergetype = dsp.lsconciergetype or {};
+LINKSHELL_CONCIERGE_SHARE = LINKSHELL_CONCIERGE_SHARE or 0 ;
 
 ------------------------------------
 -- Concierge Types

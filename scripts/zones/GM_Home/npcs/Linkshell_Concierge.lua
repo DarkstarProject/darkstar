@@ -13,18 +13,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    -- no real way to know what type these would on retail, so I just copied Ru'Lude's settings as it also has 3
-    if (npc:getID() == 17637620) then
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.HARDCORE);
-    elseif (npc:getID() == 17637621) then
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.ASSIST);
-    elseif (npc:getID() == 17637622) then
-        LinkShellConciergeEventTrigger(player,npc,2,dsp.lsconciergetype.TRADING);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    -- no real way to know what type these would on retail, so I just same dummy setting for all 3
+    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.EVERYTHING);
 end;
 
 function onEventUpdate(player,csid,option)

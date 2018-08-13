@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Bostaunieux Oubliette
--- NPC: Linkshell_Concierge
+-- Area: Ru'Lude Gardens
+-- NPC: Linkshell_Concierge_B
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
+package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
+require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.NOTHING);
+    LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.ASSIST);
 end;
 
 function onEventUpdate(player,csid,option)

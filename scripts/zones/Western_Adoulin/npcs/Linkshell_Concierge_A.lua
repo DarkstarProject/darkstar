@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Southern San d'Oria
--- NPC: Linkshell_Concierge
+-- Area: Western Adoulin
+-- NPC: Linkshell_Concierge_A
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/zones/Western_Adoulin/TextIDs");
 require("scripts/globals/concierge");
 require("scripts/globals/settings");
 -----------------------------------
@@ -13,15 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (npc:getID() == 17719643) then -- the one on the right
-        LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.NEWPLAYERS);
-    elseif (npc:getID() == 17719644) then -- the one on the left
-        LinkShellConciergeEventTrigger(player,npc,1,dsp.lsconciergetype.EVERYTHING);
-    else
-        player:PrintToPlayer(string.format("Unknown LSConcierge -- %s's ID is: %u ", npc:getName(),npc:getID()));
-    end
-
+    LinkShellConciergeEventTrigger(player,npc,0,dsp.lsconciergetype.CASUAL);
 end;
 
 function onEventUpdate(player,csid,option)
