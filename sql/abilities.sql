@@ -14,7 +14,13 @@ CREATE TABLE `abilities` (
   `name` tinytext,
   `job` tinyint(2) unsigned NOT NULL DEFAULT '0',
   `level` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `validTarget` smallint(3) unsigned NOT NULL DEFAULT '0',
+--
+-- `validTarget` values:
+--   0   0   0   0   0   0   0
+--  NPC DED PLY PAL ENM PAR SLF
+--  e.g. 3 is Self and Player Party. 4 is Enemy only. etc. 
+--
+  `validTarget` smallint(3) unsigned NOT NULL DEFAULT '0', 
   `recastTime` smallint(5) unsigned NOT NULL DEFAULT '0',
   `recastId` smallint(5) unsigned NOT NULL DEFAULT '0',
   `message1` smallint(5) unsigned NOT NULL DEFAULT '0',
@@ -25,8 +31,8 @@ CREATE TABLE `abilities` (
   `actionType` tinyint(2) unsigned NOT NULL DEFAULT '6',
   `range` float(3,1) unsigned NOT NULL DEFAULT '0.0',
   `isAOE` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `CE` smallint(5) NOT NULL DEFAULT '0',
-  `VE` smallint(5) NOT NULL DEFAULT '0',
+  `CE` smallint(5) NOT NULL DEFAULT '0', -- Cumulative Enmity
+  `VE` smallint(5) NOT NULL DEFAULT '0', -- Volatile Enmity
   `meritModID` smallint(4) NOT NULL DEFAULT '0',
   `addType` smallint(2) NOT NULL DEFAULT '0',
   `content_tag` varchar(7) DEFAULT NULL,
@@ -272,6 +278,7 @@ INSERT INTO `abilities` VALUES (233,'innin',13,40,1,180,147,0,0,219,2000,0,6,20.
 INSERT INTO `abilities` VALUES (235,'ready',9,25,1,0,102,0,0,83,2000,0,6,18.0,0,0,0,902,64,NULL);
 INSERT INTO `abilities` VALUES (241,'double_shot',11,79,1,180,126,0,0,225,2000,0,6,20.0,0,1,300,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (243,'futae',13,77,1,180,148,0,0,227,2000,0,6,20.0,0,1,0,0,0,'ABYSSEA');
+INSERT INTO `abilities` VALUES (257,'manawell',4,95,3,600,35,0,0,257,2000,0,6,20.0,0,1,80,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (258,'saboteur',5,83,1,300,36,0,0,258,2000,0,6,20.0,0,1,80,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (259,'spontaneity',5,95,3,600,37,0,0,259,2000,0,6,20.0,0,1,80,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (260,'conspirator',6,87,1,300,40,0,0,237,2000,0,6,14.0,1,1,80,0,4,'ABYSSEA');

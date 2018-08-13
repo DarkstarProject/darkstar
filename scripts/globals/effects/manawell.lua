@@ -1,6 +1,6 @@
 -----------------------------------
 --
---     dsp.effect.SPONTANEITY
+--     EFFECT_MANAWELL
 --
 -----------------------------------
 
@@ -11,12 +11,7 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onEffectGain(target,effect)
-
-
-    target:addMod(dsp.mod.UFASTCAST,150);
-    effect:setFlag(dsp.effectFlag.MAGIC_BEGIN);
-    target:delStatusEffect(dsp.effect.MANAWELL);
-
+   target:delStatusEffect(dsp.effect.SPONTANEITY);
 end;
 
 -----------------------------------
@@ -31,5 +26,4 @@ end;
 -----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.UFASTCAST,150);
 end;
