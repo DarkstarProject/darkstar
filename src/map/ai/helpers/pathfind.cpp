@@ -381,12 +381,15 @@ bool CPathFind::FindClosestPath(const position_t& start, const position_t& end)
 {
     m_points = m_PTarget->loc.zone->m_navMesh->findPath(start, end);
     m_currentPoint = 0;
+    m_points.push_back(end);  // this prevents exploits with navmesh / impassible terrain
 
+/* this check requirement is never met as intended since m_points are never empty when mob has a path
     if (m_points.empty())
     {
         // this is a trick to make mobs go up / down impassible terrain
         m_points.push_back(end);
     }
+*/
 
     return true;
 }

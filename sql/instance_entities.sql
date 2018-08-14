@@ -148,6 +148,8 @@ INSERT INTO `instance_entities` VALUES (31,17006870);
 INSERT INTO `instance_entities` VALUES (31,17006872);
 INSERT INTO `instance_entities` VALUES (31,17006874);
 
+-- Golden Salvage
+-- mobs
 INSERT INTO `instance_entities` VALUES (41,17002497);
 INSERT INTO `instance_entities` VALUES (41,17002498);
 INSERT INTO `instance_entities` VALUES (41,17002499);
@@ -168,6 +170,12 @@ INSERT INTO `instance_entities` VALUES (41,17002513);
 INSERT INTO `instance_entities` VALUES (41,17002514);
 INSERT INTO `instance_entities` VALUES (41,17002515);
 INSERT INTO `instance_entities` VALUES (41,17002516);
+-- npc
+INSERT INTO `instance_entities` VALUES (41,17002654);
+INSERT INTO `instance_entities` VALUES (41,17002655);
+INSERT INTO `instance_entities` VALUES (41,17002731);
+INSERT INTO `instance_entities` VALUES (41,17002752);
+INSERT INTO `instance_entities` VALUES (41,17002753);
 
 -- Ashu Talif
 -- npc
