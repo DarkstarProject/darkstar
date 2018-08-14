@@ -3,7 +3,7 @@
 -- Door: Runic Seal
 -- !pos 36 -10 620 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs.lua")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/besieged")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
