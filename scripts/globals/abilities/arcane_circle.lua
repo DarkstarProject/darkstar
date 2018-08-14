@@ -5,22 +5,14 @@
 -- Recast Time: 5:00 minutes
 -- Duration: 3:00 minutes
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local duration = 180 + player:getMod(MOD_ARCANE_CIRCLE_DURATION);
-    target:addStatusEffect(EFFECT_ARCANE_CIRCLE,15,0,duration);
-end;
+    local duration = 180 + player:getMod(dsp.mod.ARCANE_CIRCLE_DURATION)
+    target:addStatusEffect(dsp.effect.ARCANE_CIRCLE,15,0,duration)
+end

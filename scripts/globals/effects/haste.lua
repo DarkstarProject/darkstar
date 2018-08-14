@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_HASTE
---     
+--     dsp.effect.HASTE
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_HASTE_MAGIC,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+   target:addMod(dsp.mod.HASTE_MAGIC,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_HASTE_MAGIC,effect:getPower());
-end;
+   target:delMod(dsp.mod.HASTE_MAGIC,effect:getPower())
+end

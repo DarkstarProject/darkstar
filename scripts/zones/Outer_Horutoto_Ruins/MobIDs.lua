@@ -16,18 +16,8 @@ AH_PUCH_PH =
     [17571900] = 17571903, -- -417,-1,661
 };
 
--- Bomb King
-Bomb_King = 17572146;
+BALLOON_NM_OFFSET           = 17572141;
+FULL_MOON_FOUNTAIN_OFFSET   = 17572197;
+JESTER_WHO_D_BE_KING_OFFSET = 17572201;
 
--- Doppelganger Gog
-Doppelganger_Gog = 17572147;
-
--- Doppelganger Dio
-Doppelganger_Dio = 17572144;
-
-MultiNM_Zone_194_PH =
-{
-    [17572141] = '1', -- 509.000, -1.000, 709.000
-    [17572145] = '1', -- 549.000, -1.000, 769.000
-};
-
+OUTER_HORUTOTO_TREASURE_CHEST   = 17572290;

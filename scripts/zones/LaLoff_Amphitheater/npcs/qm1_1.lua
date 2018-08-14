@@ -31,10 +31,6 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 -- param 7: skip (0 - no skip, 1 - prompt, 2 - force)
 -- param 8: 0
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -43,10 +39,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (EventTriggerBCNM(player,npc)) then
@@ -54,10 +46,6 @@ function onTrigger(player,npc)
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 -- printf("onUpdate CSID: %u",csid);

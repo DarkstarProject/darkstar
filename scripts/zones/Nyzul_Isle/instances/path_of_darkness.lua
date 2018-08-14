@@ -3,13 +3,9 @@
 -- TOAU-42: Path of Darkness
 --
 -----------------------------------
-
 require("scripts/globals/instance")
 require("scripts/globals/keyitems");
 require("scripts/zones/Nyzul_Isle/IDs");
-
------------------------------------
--- afterInstanceRegister
 -----------------------------------
 
 function afterInstanceRegister(player)
@@ -17,26 +13,14 @@ function afterInstanceRegister(player)
     player:messageSpecial(NyzulIsle.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
------------------------------------
--- onInstanceCreated
------------------------------------
-
 function onInstanceCreated(instance)
     SpawnMob(NyzulIsle.mobs[58].AMNAF_BLU, instance);
     SpawnMob(NyzulIsle.mobs[58].NAJA, instance);
 end;
 
------------------------------------
--- onInstanceTimeUpdate
------------------------------------
-
 function onInstanceTimeUpdate(instance, elapsed)
     updateInstanceTime(instance, elapsed, NyzulIsle.text)
 end;
-
------------------------------------
--- onInstanceFailure
------------------------------------
 
 function onInstanceFailure(instance)
     local chars = instance:getChars();
@@ -46,10 +30,6 @@ function onInstanceFailure(instance)
         v:startEvent(1);
     end
 end;
-
------------------------------------
--- onInstanceProgressUpdate
------------------------------------
 
 function onInstanceProgressUpdate(instance, progress)
     if(progress >= 10 and progress < 20) then
@@ -80,10 +60,6 @@ function onInstanceProgressUpdate(instance, progress)
         instance:complete();
     end
 end;
-
------------------------------------
--- onInstanceComplete
------------------------------------
 
 function onInstanceComplete(instance)
 

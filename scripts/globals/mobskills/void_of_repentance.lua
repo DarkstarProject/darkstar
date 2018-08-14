@@ -11,17 +11,17 @@
 -- The gate to salvation...lies before thee...
 -- Revelation...is within thy reach..."
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    skill:setMsg(MobStatusEffectMove(mob, target, EFFECT_TERROR, 1, 0, 30));
+    skill:setMsg(MobStatusEffectMove(mob, target, dsp.effect.TERROR, 1, 0, 30))
 
-    return EFFECT_TERROR;
-end;
+    return dsp.effect.TERROR
+end

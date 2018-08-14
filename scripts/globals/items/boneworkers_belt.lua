@@ -8,29 +8,25 @@
 -- Duration: 2Min
 -- Bonecraft Skill +3
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_BONECRAFT_IMAGERY) == true) then
-        result = 241;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.BONECRAFT_IMAGERY) == true) then
+        result = 241
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_BONECRAFT_IMAGERY,3,0,120);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.BONECRAFT_IMAGERY,3,0,120)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_BON, 1);
-end;
+    target:addMod(dsp.mod.BONE, 1)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_BON, 1);
-end;
+    target:delMod(dsp.mod.BONE, 1)
+end

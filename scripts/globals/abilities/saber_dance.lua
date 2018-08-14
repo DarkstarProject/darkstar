@@ -5,21 +5,13 @@
 -- Recast Time: 3 minutes
 -- Duration: 5 minutes
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_SABER_DANCE,50,3,300);
-end;
+    player:addStatusEffect(dsp.effect.SABER_DANCE,50,3,300)
+end

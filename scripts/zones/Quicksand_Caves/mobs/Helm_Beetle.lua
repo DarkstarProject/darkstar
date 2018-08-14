@@ -2,11 +2,7 @@
 -- Area: Quicksand Caves
 --  MOB: Helm Beetle
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -6,9 +6,6 @@
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Metalworks/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,11 +17,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:getVar("TOO_MANY_CHEFS") == 1) then
         player:startEvent(948); -- part 2 Too Many Chefs
@@ -33,22 +25,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 948) then
         player:setVar("TOO_MANY_CHEFS",2);
     elseif (csid == 950) then

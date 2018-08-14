@@ -1,27 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC: Chomoro-Kyotoro
+--  NPC: Chomoro-Kyotoro
 -- Involved in Quest: Making the Grade
 -- !pos 133 -5 167 238
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    -- needs check for TATTERED_TEST_SHEET then sets to var 3
+    -- needs check for dsp.ki.TATTERED_TEST_SHEET then sets to var 3
     if (player:getQuestStatus(WINDURST,MAKING_THE_GRADE) == QUEST_ACCEPTED) then
         local prog = player:getVar("QuestMakingTheGrade_prog");
         if (prog == 0) then
@@ -38,24 +30,12 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 460) then
         player:setVar("QuestMakingTheGrade_prog",3);
-        player:delKeyItem(TATTERED_TEST_SHEET);
+        player:delKeyItem(dsp.ki.TATTERED_TEST_SHEET);
     end
 end;

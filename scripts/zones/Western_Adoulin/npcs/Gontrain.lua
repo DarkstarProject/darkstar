@@ -1,23 +1,15 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Gontrain
---  Type: Standard NPC and Quest NPC
---  Involved with Quest: 'Raptor Rapture'
---  @zone 256
---  !pos 13 0 -143 256
+-- Type: Standard NPC and Quest NPC
+-- Involved with Quest: 'Raptor Rapture'
+-- !pos 13 0 -143 256
 -----------------------------------
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, RAPTOR_RAPTURE);
@@ -31,16 +23,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5034) then

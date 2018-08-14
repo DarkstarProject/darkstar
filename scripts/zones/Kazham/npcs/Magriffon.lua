@@ -1,21 +1,17 @@
 -----------------------------------
 -- Area: Kazham
--- NPC: Magriffon
+--  NPC: Magriffon
 -- Involved in Quest: Gullible's Travels, Even More Gullible's Travels,
 -- Location: (I-7)
 -----------------------------------
-
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+-----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/zones/Kazham/TextIDs");
 
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS) == QUEST_ACCEPTED) then
@@ -28,10 +24,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local gulliblesTravelsStatus = player:getQuestStatus(OUTLANDS, GULLIBLES_TRAVELS);
@@ -60,20 +52,11 @@ function onTrigger(player,npc)
     else
         player:startEvent(143);
     end
-    
+
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 144 and option == 1)  then                     -- Gullible's Travels: First CS
@@ -83,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:delGil(player:getVar("MAGRIFFON_GIL_REQUEST"));
         player:setVar("MAGRIFFON_GIL_REQUEST", 0);
         player:addFame(KAZHAM, 30);
-        player:setTitle(285);                                     -- Global Variable not working for this quest
+        player:setTitle(dsp.title.GULLIBLES_TRAVELS);
         player:completeQuest(OUTLANDS, GULLIBLES_TRAVELS);
         player:needToZone(true);
     elseif (csid == 148 and option == 1) then                  -- Even More Guillible's Travels First CS
@@ -92,9 +75,9 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:delGil(35000);
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 1);
-        player:setTitle(286);
-        player:addKeyItem(256);
-        player:messageSpecial(KEYITEM_OBTAINED,TREASURE_MAP);
+        player:setTitle(dsp.title.EVEN_MORE_GULLIBLES_TRAVELS);
+        player:addKeyItem(dsp.ki.TREASURE_MAP);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TREASURE_MAP);
     elseif (csid == 152) then
         player:setVar("EVEN_MORE_GULLIBLES_PROGRESS", 0);
         player:addFame(KAZHAM, 30);

@@ -1,19 +1,19 @@
 -----------------------------------
 --
---     EFFECT_INVISIBLE
---     
+--     dsp.effect.INVISIBLE
+--
 -----------------------------------
 require("scripts/globals/msg")
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectTick(target,effect)
-    local tick = effect:getLastTick();
+    local tick = effect:getLastTick()
     if (tick < 4 and tick ~= 0) then
-        target:messageBasic(msgBasic.ABOUT_TO_WEAR_OFF, effect:getType());
+        target:messageBasic(dsp.msg.basic.ABOUT_TO_WEAR_OFF, effect:getType())
     end
-end;
+end
 
 function onEffectLose(target,effect)
-end;
+end

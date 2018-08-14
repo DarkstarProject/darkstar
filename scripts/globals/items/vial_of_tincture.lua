@@ -3,21 +3,21 @@
 -- Item: Tincture
 -- Item Effect: This potion remedies disease and plague
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
 
-    if (target:hasStatusEffect(EFFECT_PLAGUE) == true) then
-        target:delStatusEffect(EFFECT_PLAGUE);
+    if (target:hasStatusEffect(dsp.effect.PLAGUE) == true) then
+        target:delStatusEffect(dsp.effect.PLAGUE)
     end
 
-    if (target:hasStatusEffect(EFFECT_DISEASE) == true) then
-        target:delStatusEffect(EFFECT_DISEASE);
+    if (target:hasStatusEffect(dsp.effect.DISEASE) == true) then
+        target:delStatusEffect(dsp.effect.DISEASE)
     end
-end;
+end
 

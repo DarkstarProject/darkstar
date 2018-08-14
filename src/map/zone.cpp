@@ -847,12 +847,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     //remove temp items
     charutils::ClearTempItems(PChar);
 
-    if (PChar->animation == ANIMATION_MOUNT && m_zoneType != ZONETYPE_DUNGEON) // Can summon mounts in outdoor area's chocobo can't go.
-    {
-        PChar->animation = ANIMATION_NONE;
-        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
-    }
-    else if (PChar->animation == ANIMATION_CHOCOBO && !CanUseMisc(MISC_CHOCOBO)) // Retail just prevents zoning instead.
+    if (PChar->isMounted() && !CanUseMisc(MISC_MOUNT))
     {
         PChar->animation = ANIMATION_NONE;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);

@@ -6,16 +6,16 @@
 -----------------------------------------
 
 
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    local duration = 900;
-    target:delStatusEffect(EFFECT_STR_BOOST);
-    target:addStatusEffect(EFFECT_STR_BOOST,3,0,duration);
-end;
+    local duration = 900
+    target:delStatusEffect(dsp.effect.STR_BOOST)
+    target:addStatusEffect(dsp.effect.STR_BOOST,3,0,duration)
+end

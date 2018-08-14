@@ -5,21 +5,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Port_San_dOria/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -34,7 +26,7 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 223) then
-            cs = 0x02BE;
+            cs = 702;
             player:setPos(-1.000, 0.000, 44.000, 0);
         else
             player:setPos(80,-16,-135,165);
@@ -46,48 +38,24 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 1) then
-             cs =4;
+        cs =4;
     end
 
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onTransportEvent
------------------------------------
 
 function onTransportEvent(player,transport)
     player:startEvent(700);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 500) then
         player:messageSpecial(ITEM_OBTAINED,536);
     elseif (csid == 700) then

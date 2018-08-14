@@ -1,28 +1,16 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Enhanced "Cure" potency
+-- dsp.effect.PROWESS : Enhanced "Cure" potency
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_CURE_POTENCY, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.CURE_POTENCY, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_CURE_POTENCY, effect:getPower());
-end;
+    target:delMod(dsp.mod.CURE_POTENCY, effect:getPower())
+end

@@ -12,12 +12,11 @@ require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 646, 4, DIGREQ_NONE },
                     { 845, 12, DIGREQ_NONE },
                     { 640, 112, DIGREQ_NONE },
@@ -29,6 +28,7 @@ local itemMap = {
                     { 17296, 162, DIGREQ_NONE },
                     { 771, 21, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 678, 5, DIGREQ_BURROW },
                     { 645, 9, DIGREQ_BURROW },
                     { 737, 5, DIGREQ_BURROW },
@@ -46,20 +46,13 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
-
------------------------------------
--- onInitialize
------------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(WARAXE_BEAK);
@@ -68,12 +61,8 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(COO_KEJA_THE_UNSEEN);
     GetMobByID(COO_KEJA_THE_UNSEEN):setRespawnTime(math.random(900, 10800));
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -91,32 +80,14 @@ function onZoneIn( player, prevZone)
     return cs;
 end;
 
-
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter( player, region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 31) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 34) then
@@ -128,13 +99,7 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 31) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end

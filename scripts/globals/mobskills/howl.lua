@@ -6,21 +6,21 @@
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self and nearby mobs of same family and/or force up to 20'.
 -----------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = 25;
-    local duration = 180;
+    local power = 25
+    local duration = 180
 
-    local typeEffect = EFFECT_WARCRY;
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
+    local typeEffect = dsp.effect.WARCRY
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

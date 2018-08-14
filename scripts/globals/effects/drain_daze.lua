@@ -1,27 +1,17 @@
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
 -----------------------------------
-
+--
 -----------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
+require("scripts/globals/magic")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ENSPELL_DMG, 0);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ENSPELL_DMG, 0)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:setMod(MOD_ENSPELL_DMG, 0);
-end;
+    target:setMod(dsp.mod.ENSPELL_DMG, 0)
+end

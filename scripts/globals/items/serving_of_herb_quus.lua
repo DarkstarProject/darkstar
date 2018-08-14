@@ -8,31 +8,31 @@
 -- Ranged ACC % 7
 -- Ranged ACC Cap 10
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
+        result = 246
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,10800,4559);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,10800,4559)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_DEX, 1);
-    target:addMod(MOD_MND, -1);
-    target:addMod(MOD_FOOD_RACCP, 7);
-    target:addMod(MOD_FOOD_RACC_CAP, 10);
-end;
+    target:addMod(dsp.mod.DEX, 1)
+    target:addMod(dsp.mod.MND, -1)
+    target:addMod(dsp.mod.FOOD_RACCP, 7)
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 10)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_DEX, 1);
-    target:delMod(MOD_MND, -1);
-    target:delMod(MOD_FOOD_RACCP, 7);
-    target:delMod(MOD_FOOD_RACC_CAP, 10);
-end;
+    target:delMod(dsp.mod.DEX, 1)
+    target:delMod(dsp.mod.MND, -1)
+    target:delMod(dsp.mod.FOOD_RACCP, 7)
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 10)
+end

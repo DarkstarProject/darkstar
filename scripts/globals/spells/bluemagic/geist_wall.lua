@@ -12,32 +12,32 @@
 -- Magic Bursts on: Compression, Gravitation, Darkness
 -- Combos: None
 -----------------------------------------
-require("scripts/globals/bluemagic");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local params = {};
-    params.attribute = MOD_INT;
-    params.skillType = BLUE_SKILL;
-    local resist = applyResistance(caster, target, spell, params);
-    local effect = EFFECT_NONE;
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    local resist = applyResistance(caster, target, spell, params)
+    local effect = dsp.effect.NONE
 
     if (resist > 0.0625) then
-        spell:setMsg(msgBasic.MAGIC_ERASE);
-        effect = target:dispelStatusEffect();
-        if (effect == EFFECT_NONE) then
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_ERASE)
+        effect = target:dispelStatusEffect()
+        if (effect == dsp.effect.NONE) then
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return effect;
-end;
+    return effect
+end

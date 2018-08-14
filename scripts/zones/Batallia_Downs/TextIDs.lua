@@ -9,11 +9,11 @@ NOTHING_OUT_OF_ORDINARY = 6423; -- There is nothing out of the ordinary here.
  FISHING_MESSAGE_OFFSET = 7229; -- You can't fish here.
 
 -- Other Dialog
-NOTHING_HAPPENS = 7329; -- Nothing happens...
+        NOTHING_HAPPENS = 7329; -- Nothing happens...
 
 -- conquest Base
-CONQUEST_BASE = 7070; -- Tallying conquest results...
+          CONQUEST_BASE = 7070; -- Tallying conquest results...
 
 --chocobo digging
-DIG_THROW_AWAY = 7242; -- You dig up$, but your inventory is full. You regretfully throw the # away.
-FIND_NOTHING = 7244; -- You dig and you dig, but find nothing.
+         DIG_THROW_AWAY = 7242; -- You dig up$, but your inventory is full. You regretfully throw the # away.
+           FIND_NOTHING = 7244; -- You dig and you dig, but find nothing.

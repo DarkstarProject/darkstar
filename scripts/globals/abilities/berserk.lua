@@ -5,24 +5,16 @@
 -- Recast Time: 5:00
 -- Duration: 3:00
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(EFFECT_BERSERK,1,0,180);
+    player:addStatusEffect(dsp.effect.BERSERK,1,0,180)
 
-    return EFFECT_BERSERK;
-end;
+    return dsp.effect.BERSERK
+end

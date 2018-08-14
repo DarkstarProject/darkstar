@@ -12,56 +12,41 @@
 -- Magic Bursts on: Detonation, Fragmentation, Light
 -- Combos: Max MP Boost
 -----------------------------------------
-
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
+    local params = {}
+        params.diff = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+        params.attribute = dsp.mod.INT
+        params.skillType = dsp.skill.BLUE_MAGIC
+        params.bonus = 1.0
+        -- This data should match information on https://www.bg-wiki.com/bg/Calculating_Blue_Magic_Damage
+        params.multiplier = 2.0
+        params.tMultiplier = 1.0
+        params.duppercap = 56
+        params.str_wsc = 0.0
+        params.dex_wsc = 0.0
+        params.vit_wsc = 0.0
+        params.agi_wsc = 0.0
+        params.int_wsc = 0.0
+        params.mnd_wsc = 0.0
+        params.chr_wsc = 0.3
 
-    local params = {};
-
-    params.diff = caster:getStat(MOD_INT) - target:getStat(MOD_INT);
-
-    params.attribute = MOD_INT;
-
-    params.skillType = BLUE_SKILL;
-
-    params.bonus = 1.0;
-
-    local resist = applyResistance(caster, target, spell, params);
-    local params = {};
-    -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-        params.multiplier = 2.0;
-        params.tMultiplier = 1.0;
-        params.duppercap = 56;
-        params.str_wsc = 0.0;
-        params.dex_wsc = 0.0;
-        params.vit_wsc = 0.0;
-        params.agi_wsc = 0.0;
-        params.int_wsc = 0.0;
-        params.mnd_wsc = 0.0;
-        params.chr_wsc = 0.2;
-    damage = BlueMagicalSpell(caster, target, spell, params, CHR_BASED);
-    damage = BlueFinalAdjustments(caster, target, spell, damage, params);
+    local resist = applyResistance(caster, target, spell, params)
+    local damage = BlueMagicalSpell(caster, target, spell, params, CHR_BASED)
+    damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     if (damage > 0 and resist > 0.0625) then
-        local typeEffect = EFFECT_WEIGHT;
-        target:delStatusEffect(typeEffect);
-        target:addStatusEffect(typeEffect,4,0,getBlueEffectDuration(caster,resist,typeEffect));
+        target:delStatusEffect(dsp.effect.WEIGHT)
+        target:addStatusEffect(dsp.effect.WEIGHT,4,0,getBlueEffectDuration(caster,resist,dsp.effect.WEIGHT))
     end
-    
-    return damage;
-end;
+
+    return damage
+end

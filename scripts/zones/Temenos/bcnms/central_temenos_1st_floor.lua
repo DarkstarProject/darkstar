@@ -1,14 +1,14 @@
 -----------------------------------
 -- Area: Temenos
--- Name: 
+-- Name:
 -----------------------------------
 
 
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
-function onBcnmRegister(player,instance)        
+function onBcnmRegister(player,instance)
     SetServerVariable("[C_Temenos_1st]UniqueID",GenerateLimbusKey());
-    HideArmouryCrates(GetInstanceRegion(1303),TEMENOS);        
+    HideArmouryCrates(GetInstanceRegion(1303),TEMENOS);
     HideTemenosDoor(GetInstanceRegion(1303));
     player:setVar("Limbus_Trade_Item-T",0);
 end;
@@ -17,9 +17,9 @@ end;
 function onBcnmEnter(player,instance)
     player:setVar("limbusbitmap",0);
     player:setVar("characterLimbusKey",GetServerVariable("[C_Temenos_1st]UniqueID"));
-    player:setVar("LimbusID",1303);    
-    player:delKeyItem(COSMOCLEANSE);
-    player:delKeyItem(WHITE_CARD);
+    player:setVar("LimbusID",1303);
+    player:delKeyItem(dsp.ki.COSMOCLEANSE);
+    player:delKeyItem(dsp.ki.WHITE_CARD);
 end;
 
 -- Leaving by every mean possible, given by the LeaveCode

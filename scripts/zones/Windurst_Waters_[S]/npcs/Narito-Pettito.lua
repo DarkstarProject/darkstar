@@ -1,45 +1,24 @@
 -----------------------------------
---  Area: Windurst Waters (S)
+-- Area: Windurst Waters (S)
 --   NPC: Narito-Pettito
---  Type: Standard NPC
--- @zone 94
--- !pos -52.674 -5.999 90.403
+-- Type: Standard NPC
+-- !pos -52.674 -5.999 90.403 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(425);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

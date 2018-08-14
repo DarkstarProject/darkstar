@@ -3,17 +3,17 @@
 -- Item: Protect Ring
 -- Item Effect: Protect II
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_PROTECT, 40, 0, 1800)) then
-        target:messageBasic(msgBasic.GAINS_EFFECT_OF_STATUS, EFFECT_PROTECT);
+    if (target:addStatusEffect(dsp.effect.PROTECT, 40, 0, 1800)) then
+        target:messageBasic(dsp.msg.basic.GAINS_EFFECT_OF_STATUS, dsp.effect.PROTECT)
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
+end

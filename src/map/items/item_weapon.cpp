@@ -38,7 +38,7 @@ CItemWeapon::CItemWeapon(uint16 id) : CItemArmor(id)
 {
 	setType(ITEM_WEAPON);
 
-	m_skillType		= SKILL_NON;
+	m_skillType		= SKILL_NONE;
 	m_subSkillType	= SUBSKILL_XBO;
     m_iLvlSkill     = 0;
     m_iLvlParry     = 0;
@@ -63,18 +63,22 @@ void CItemWeapon::resetDelay()
 
 /************************************************************************
 *                                                                       *
-*  Оружие для атаки с дистанции (Range)                                 *
+*  Is Ranged Weapon?                                                    *
 *                                                                       *
 ************************************************************************/
-
-bool CItemWeapon::isThrowing()
-{
-    return m_ranged && getSkillType() == SKILL_THR;
-}
-
 bool CItemWeapon::isRanged()
 {
     return m_ranged;
+}
+
+bool CItemWeapon::isThrowing()
+{
+    return isRanged() && getSkillType() == SKILL_THROWING;
+}
+
+bool CItemWeapon::isShuriken()
+{
+    return isThrowing() && getSubSkillType() == SUBSKILL_SHURIKEN;
 }
 
 /************************************************************************
@@ -88,6 +92,16 @@ bool CItemWeapon::isTwoHanded()
     return m_twoHanded;
 }
 
+/************************************************************************
+*                                                                       *
+*  Is H2H Weapon                                                        *
+*                                                                       *
+************************************************************************/
+
+bool CItemWeapon::isHandToHand()
+{
+    return getSkillType() == SKILL_HAND_TO_HAND;
+}
 
 /************************************************************************
 *                                                                       *
@@ -97,7 +111,7 @@ bool CItemWeapon::isTwoHanded()
 
 bool CItemWeapon::isUnlockable()
 {
-    if(m_skillType == SKILL_NON) return false;
+    if(m_skillType == SKILL_NONE) return false;
 
 	return ( m_wsunlockpoints > 0 ? true : false );
 }
@@ -131,17 +145,17 @@ void CItemWeapon::setSkillType(uint8 skillType)
 {
     switch (skillType)
     {
-	    case SKILL_GSD:
-	    case SKILL_GAX:
-	    case SKILL_SYH:
-	    case SKILL_POL:
-	    case SKILL_GKT:
-	    case SKILL_STF:
+	    case SKILL_GREAT_SWORD:
+	    case SKILL_GREAT_AXE:
+	    case SKILL_SCYTHE:
+	    case SKILL_POLEARM:
+	    case SKILL_GREAT_KATANA:
+	    case SKILL_STAFF:
             m_twoHanded = true;
 		break;
-        case SKILL_ARC:
-        case SKILL_MRK:
-        case SKILL_THR:
+        case SKILL_ARCHERY:
+        case SKILL_MARKSMANSHIP:
+        case SKILL_THROWING:
             m_ranged = true;
         break;
 	}

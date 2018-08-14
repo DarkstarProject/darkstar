@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Southern Sandoria
+-- Area: Southern Sandoria
 --   NPC: Ominous Cloud
---  Type: Ninjutsu Toolbag Maker
+-- Type: Ninjutsu Toolbag Maker
 -- !pos -41.550 1.999 -2.845 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
@@ -9,7 +9,7 @@ package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 require("scripts/zones/Southern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
-    local toolList = 
+    local toolList =
     {
         {1161, 5308}, -- uchitake
         {1164, 5309}, -- tsurara
@@ -67,7 +67,7 @@ function onTrade(player,npc,trade)
         player:messageSpecial(CLOUD_BAD_COUNT, 951);
         return;
     end
-    
+
     -- check for enough inventory space
     if (player:getFreeSlotsCount() < fruitNeeded) then
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, giveToPlayer[1][1]);
@@ -88,11 +88,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

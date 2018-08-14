@@ -31,14 +31,14 @@ function onTrigger(player, arg1, arg2)
         id = arg2;
     end
 
-    -- validate target    
+    -- validate target
     if (targ == nil) then
         error(player, string.format("Player named '%s' not found!", arg1));
         return;
     end
 
     -- validate effect
-    id = tonumber(id) or _G[string.upper(id)];
+    id = tonumber(id) or dsp.effect[string.upper(id)];
     if (id == nil) then
         error(player, "Invalid effect.");
         return;

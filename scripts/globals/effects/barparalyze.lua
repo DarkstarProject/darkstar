@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_BARAMNESIA
+-- dsp.effect.BARAMNESIA
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_PARALYZERES,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.PARALYZERES,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_PARALYZERES,effect:getPower());
-end;
+    target:delMod(dsp.mod.PARALYZERES,effect:getPower())
+end

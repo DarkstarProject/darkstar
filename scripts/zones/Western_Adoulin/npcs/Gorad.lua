@@ -1,37 +1,20 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Gorad
---  Type: Standard NPC
---  @zone 256
--- !pos 23 0 -115
------------------------------------
-
------------------------------------
--- onTrade Action
+-- Type: Standard NPC
+-- !pos 23 0 -115 256
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Standard dialogue
     player:startEvent(542);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

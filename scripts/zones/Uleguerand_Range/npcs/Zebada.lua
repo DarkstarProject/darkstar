@@ -1,16 +1,13 @@
 -----------------------------------
---  Area: Uleguerand Range
---  NPC:  Zebada
---  Type: ENM Quest Activator
+-- Area: Uleguerand Range
+--  NPC: Zebada
+-- Type: ENM Quest Activator
 -- !pos -308.112 -42.137 -570.096 5
 -----------------------------------
 package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Uleguerand_Range/TextIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,15 +18,11 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local ZephyrFanCD = player:getVar("[ENM]ZephyrFan");
 
-    if (player:hasKeyItem(ZEPHYR_FAN)) then
+    if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
         player:startEvent(12);
     else
         if (ZephyrFanCD >= os.time()) then
@@ -45,25 +38,13 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 13) then
-        player:addKeyItem(ZEPHYR_FAN);
-        player:messageSpecial(KEYITEM_OBTAINED,ZEPHYR_FAN);
+        player:addKeyItem(dsp.ki.ZEPHYR_FAN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ZEPHYR_FAN);
         player:setVar("[ENM]ZephyrFan",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 14) then
         if (player:getFreeSlotsCount() == 0) then

@@ -8,25 +8,18 @@
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/pets")
-require("scripts/globals/msg");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if not player:getPet() then
-        return msgBasic.REQUIRES_A_PET, 0
+        return dsp.msg.basic.REQUIRES_A_PET, 0
     elseif not player:getPetID() or not (player:getPetID() >= 69 and player:getPetID() <= 72) then
-        return msgBasic.NO_EFFECT_ON_PET, 0
+        return dsp.msg.basic.NO_EFFECT_ON_PET, 0
     else
         return 0, 0
     end
 end
-
------------------------------------
--- onUseAbility
------------------------------------
 
 function onUseAbility(player,target,ability)
     local pet = player:getPet()
@@ -42,7 +35,7 @@ function onUseAbility(player,target,ability)
         end
 
         if playerfound and petfound then
-            local bonus = (player:getMerit(MERIT_VENTRILOQUY)-5)/100
+            local bonus = (player:getMerit(dsp.merit.VENTRILOQUY)-5)/100
 
             local playerCE = target:getCE(player)
             local playerVE = target:getVE(player)

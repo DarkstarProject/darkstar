@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_MIGHTY_STRIKES
---     
+--     dsp.effect.MIGHTY_STRIKES
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-target:addMod(MOD_CRITHITRATE,100)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+target:addMod(dsp.mod.CRITHITRATE,100)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-target:addMod(MOD_CRITHITRATE,-100)
-end;
+target:addMod(dsp.mod.CRITHITRATE,-100)
+end

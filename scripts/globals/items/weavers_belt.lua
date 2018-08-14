@@ -8,29 +8,25 @@
 -- Duration: 2Min
 -- Clothcraft Skill +3
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY) == true) then
-        result = 239;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY) == true) then
+        result = 239
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_CLOTHCRAFT_IMAGERY,3,0,120);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY,3,0,120)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SKILL_CLT, 1);
-end;
+    target:addMod(dsp.mod.CLOTH, 1)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SKILL_CLT, 1);
-end;
+    target:delMod(dsp.mod.CLOTH, 1)
+end

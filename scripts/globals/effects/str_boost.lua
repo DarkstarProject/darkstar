@@ -1,39 +1,27 @@
 -----------------------------------
 --
---  EFFECT_STR_BOOST
+-- dsp.effect.STR_BOOST
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.STR,effect:getPower())
+end
 
 function onEffectTick(target,effect)
     -- the effect loses strengh of 1 every 3 ticks depending on the source of the boost
-    local boostSTR_effect_size = effect:getPower();
+    local boostSTR_effect_size = effect:getPower()
     if (boostSTR_effect_size > 0) then
         effect:setPower(boostSTR_effect_size - 1)
-        target:delMod(MOD_STR,1); 
+        target:delMod(dsp.mod.STR,1)
     end
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    local boostSTR_effect_size = effect:getPower();
+    local boostSTR_effect_size = effect:getPower()
     if (boostSTR_effect_size > 0) then
-        target:delMod(MOD_STR,boostSTR_effect_size);
+        target:delMod(dsp.mod.STR,boostSTR_effect_size)
     end
-end;
+end

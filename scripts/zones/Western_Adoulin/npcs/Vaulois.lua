@@ -1,26 +1,18 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Vaulois
---  Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'Transporting'
---  @zone 256
---  !pos 20 0 85 256
+-- Type: Standard NPC and Quest Giver
+-- Starts, Involved with, and Finishes Quest: 'Transporting'
+-- !pos 20 0 85 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Transporting = player:getQuestStatus(ADOULIN, TRANSPORTING);
@@ -36,16 +28,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2590) then

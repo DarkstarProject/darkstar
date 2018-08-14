@@ -1,38 +1,18 @@
 -----------------------------------
 -- Area: Nashmau
--- NPC:  Mumuroon
+--  NPC: Mumuroon
 -- Standard Info NPC
 -----------------------------------
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
-function onTrigger(player,npc)
-player:startEvent(262);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
+function onTrigger(player,npc)
+    player:startEvent(262);
+end;
+
+function onEventUpdate(player,csid,option)
+end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

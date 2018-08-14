@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Korroloka Tunnel
--- NPC:  ??? (qm2)
+--  NPC: ??? (qm2)
 -- Involved In Quest: Ayame and Kaede
 -- !pos -208 -9 176 173
 -----------------------------------
 package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/zones/Korroloka_Tunnel/TextIDs");
 require("scripts/zones/Korroloka_Tunnel/MobIDs");
 require("scripts/globals/settings");
@@ -19,13 +18,13 @@ end;
 function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_ACCEPTED) then
-        if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+        if (player:getVar("AyameAndKaede_Event") == 2 and player:hasKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL) == false) then
 
             if (not GetMobByID(KORROLOKA_LEECH_I):isSpawned() and not GetMobByID(KORROLOKA_LEECH_II):isSpawned()
             and not GetMobByID(KORROLOKA_LEECH_III):isSpawned()) then
                 if (player:getVar("KorrolokaLeeches_Killed") > 0) then
-                    player:addKeyItem(STRANGELY_SHAPED_CORAL);
-                    player:messageSpecial(KEYITEM_OBTAINED,STRANGELY_SHAPED_CORAL);
+                    player:addKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STRANGELY_SHAPED_CORAL);
                     player:setVar("KorrolokaLeeches_Killed",0);
 
                     if (player:getVar("KorrolokaLeeches_SpawningPC") > 0) then
@@ -52,11 +51,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

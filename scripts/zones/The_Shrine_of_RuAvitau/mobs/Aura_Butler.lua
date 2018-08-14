@@ -2,11 +2,7 @@
 -- Area: Shrine of Ru'Avitau
 --  MOB: Aura Butler
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

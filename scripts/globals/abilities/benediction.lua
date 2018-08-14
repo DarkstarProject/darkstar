@@ -6,45 +6,37 @@
 -- Duration: Instant
 -----------------------------------
 
------------------------------------
--- onAbilityCheck
------------------------------------
-
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
     -- To Do: Benediction can remove Charm only while in Assault Mission Lamia No.13
-    local removables = {EFFECT_FLASH, EFFECT_BLINDNESS, EFFECT_MAX_HP_DOWN, EFFECT_MAX_MP_DOWN, EFFECT_PARALYSIS, EFFECT_POISON,
-                        EFFECT_CURSE_I, EFFECT_CURSE_II, EFFECT_DISEASE, EFFECT_PLAGUE, EFFECT_WEIGHT, EFFECT_BIND, 
-                        EFFECT_BIO, EFFECT_DIA, EFFECT_BURN, EFFECT_FROST, EFFECT_CHOKE, EFFECT_RASP, EFFECT_SHOCK, EFFECT_DROWN, 
-                        EFFECT_STR_DOWN, EFFECT_DEX_DOWN, EFFECT_VIT_DOWN, EFFECT_AGI_DOWN, EFFECT_INT_DOWN, EFFECT_MND_DOWN,
-                        EFFECT_CHR_DOWN, EFFECT_ADDLE, EFFECT_SLOW, EFFECT_HELIX, EFFECT_ACCURACY_DOWN, EFFECT_ATTACK_DOWN,
-                        EFFECT_EVASION_DOWN, EFFECT_DEFENSE_DOWN, EFFECT_MAGIC_ACC_DOWN, EFFECT_MAGIC_ATK_DOWN, EFFECT_MAGIC_EVASION_DOWN,
-                        EFFECT_MAGIC_DEF_DOWN, EFFECT_MAX_TP_DOWN, EFFECT_SILENCE};
+    local removables = {dsp.effect.FLASH, dsp.effect.BLINDNESS, dsp.effect.MAX_HP_DOWN, dsp.effect.MAX_MP_DOWN, dsp.effect.PARALYSIS, dsp.effect.POISON,
+                        dsp.effect.CURSE_I, dsp.effect.CURSE_II, dsp.effect.DISEASE, dsp.effect.PLAGUE, dsp.effect.WEIGHT, dsp.effect.BIND,
+                        dsp.effect.BIO, dsp.effect.DIA, dsp.effect.BURN, dsp.effect.FROST, dsp.effect.CHOKE, dsp.effect.RASP, dsp.effect.SHOCK, dsp.effect.DROWN,
+                        dsp.effect.STR_DOWN, dsp.effect.DEX_DOWN, dsp.effect.VIT_DOWN, dsp.effect.AGI_DOWN, dsp.effect.INT_DOWN, dsp.effect.MND_DOWN,
+                        dsp.effect.CHR_DOWN, dsp.effect.ADDLE, dsp.effect.SLOW, dsp.effect.HELIX, dsp.effect.ACCURACY_DOWN, dsp.effect.ATTACK_DOWN,
+                        dsp.effect.EVASION_DOWN, dsp.effect.DEFENSE_DOWN, dsp.effect.MAGIC_ACC_DOWN, dsp.effect.MAGIC_ATK_DOWN, dsp.effect.MAGIC_EVASION_DOWN,
+                        dsp.effect.MAGIC_DEF_DOWN, dsp.effect.MAX_TP_DOWN, dsp.effect.SILENCE}
 
     for i, effect in ipairs(removables) do
         if (target:hasStatusEffect(effect)) then
-            target:delStatusEffect(effect);
-        end;
-    end;
-
-    local heal = (target:getMaxHP() * player:getMainLvl()) / target:getMainLvl();
-
-    local maxHeal = target:getMaxHP() - target:getHP();
-
-    if (heal > maxHeal) then
-        heal = maxHeal;
+            target:delStatusEffect(effect)
+        end
     end
 
-    player:updateEnmityFromCure(target,heal);
-    target:addHP(heal);
-    target:wakeUp();
+    local heal = (target:getMaxHP() * player:getMainLvl()) / target:getMainLvl()
 
-    return heal;
-end;
+    local maxHeal = target:getMaxHP() - target:getHP()
+
+    if (heal > maxHeal) then
+        heal = maxHeal
+    end
+
+    player:updateEnmityFromCure(target,heal)
+    target:addHP(heal)
+    target:wakeUp()
+
+    return heal
+end

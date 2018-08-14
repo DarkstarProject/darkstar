@@ -4,19 +4,19 @@
 -- Enchantment: "Teleport-Altep"
 -----------------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/keyitems");
-require("scripts/globals/teleports");
+require("scripts/globals/status")
+require("scripts/globals/keyitems")
+require("scripts/globals/teleports")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasKeyItem(ALTEPA_GATE_CRYSTAL) == false) then
-        result = 445;
+    local result = 0
+    if (target:hasKeyItem(dsp.ki.ALTEPA_GATE_CRYSTAL) == false) then
+        result = 445
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_ALTEP,0,1);
-end;
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.ALTEP,0,1)
+end

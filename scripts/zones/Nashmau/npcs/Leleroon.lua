@@ -11,9 +11,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +21,6 @@ function onTrade(player,npc,trade)
         end
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) >= QUEST_ACCEPTED) then
@@ -55,34 +48,22 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 282) then
         if (option == 1) then
-            player:addKeyItem(LELEROONS_LETTER_GREEN);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_GREEN)
+            player:addKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
             player:setVar("LeleroonsLetterGreen",1);
         elseif (option == 2) then
-            player:addKeyItem(LELEROONS_LETTER_BLUE);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_BLUE)
+            player:addKeyItem(dsp.ki.LELEROONS_LETTER_BLUE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
             player:setVar("LeleroonsLetterBlue",1);
         elseif (option == 3) then
-            player:addKeyItem(LELEROONS_LETTER_RED);
-            player:messageSpecial(KEYITEM_OBTAINED,LELEROONS_LETTER_RED)
+            player:addKeyItem(dsp.ki.LELEROONS_LETTER_RED);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
             player:setVar("LeleroonsLetterRed",1);
         end;
     end;

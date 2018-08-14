@@ -1,28 +1,18 @@
 -----------------------------------
---  Area: Nashmau
---  NPC:  Fhe Maksojha
---  Type: Standard NPC
+-- Area: Nashmau
+--  NPC: Fhe Maksojha
+-- Type: Standard NPC
 -- !pos 19.084 -7 71.287 53
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Nashmau/TextIDs");
-
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local notmeanttobe = player:getQuestStatus(AHT_URHGAN,NOT_MEANT_TO_BE);
@@ -42,35 +32,23 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 293) then
-       player:setVar("notmeanttobeCS",1);
-       player:addQuest(AHT_URHGAN,NOT_MEANT_TO_BE);
+        player:setVar("notmeanttobeCS",1);
+        player:addQuest(AHT_URHGAN,NOT_MEANT_TO_BE);
     elseif (csid == 294) then
-       player:setVar("notmeanttobeCS",3);
+        player:setVar("notmeanttobeCS",3);
     elseif (csid == 297) then
         if (player:getFreeSlotsCount() == 0) then
-           player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2187,3);
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINEDX,2187,3);
         else
-           player:setVar("notmeanttobeCS",0);
-           player:addItem(2187,3);
-           player:messageSpecial(ITEM_OBTAINEDX,2187,3);
-           player:completeQuest(AHT_URHGAN,NOT_MEANT_TO_BE);
+            player:setVar("notmeanttobeCS",0);
+            player:addItem(2187,3);
+            player:messageSpecial(ITEM_OBTAINEDX,2187,3);
+            player:completeQuest(AHT_URHGAN,NOT_MEANT_TO_BE);
         end
     end
 end;

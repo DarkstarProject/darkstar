@@ -3,16 +3,14 @@
 -- Warp Ring
 --  Transports the user to their Home Point
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/teleports");
------------------------------------------
--- OnItemCheck
+require("scripts/globals/teleports")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_WARP,0,1);
-end;
+    target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.WARP,0,1)
+end

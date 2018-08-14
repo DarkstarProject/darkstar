@@ -8,17 +8,10 @@ package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local TooManyChefs = player:getQuestStatus(BASTOK,TOO_MANY_CHEFS);
@@ -32,22 +25,11 @@ function onTrigger(player,npc)
         player:startEvent(420); -- Standard
     end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 946 and option == 0) then
         player:addQuest(BASTOK,TOO_MANY_CHEFS);
         player:setVar("TOO_MANY_CHEFS",1);

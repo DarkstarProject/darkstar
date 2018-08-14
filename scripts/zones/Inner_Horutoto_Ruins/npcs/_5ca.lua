@@ -1,28 +1,20 @@
 -----------------------------------
 -- Area: Inner Horutoto Ruins
--- NPC:  Mahogany Door
+--  NPC: Mahogany Door
 -- Involved In Quest: Making Headlines
 -- Involved in Mission 2-1
 -- !pos -11 0 20 192
 -----------------------------------
 package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -41,7 +33,7 @@ function onTrigger(player,npc)
 
         local prog = player:getVar("QuestMakingHeadlines_var");
         if (testflag(tonumber(prog),16) == false and testflag(tonumber(prog),8) == true) then
-            player:messageSpecial(7208,1,WINDURST_WOODS_SCOOP); -- Confirm Story
+            player:messageSpecial(7208,1,dsp.ki.WINDURST_WOODS_SCOOP); -- Confirm Story
             player:setVar("QuestMakingHeadlines_var",prog+16);
         else
             player:startEvent(44); -- "The door is firmly shut"
@@ -54,22 +46,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 46) then
         -- Mark the progress

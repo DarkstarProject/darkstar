@@ -5,14 +5,10 @@
 -----------------------------------
 package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 require("scripts/globals/missions");
 require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -20,27 +16,15 @@ function onInitialize(zone)
     zone:registerRegion(2, 390, -34, -49, 397, -33, -43); -- Third Floor F-10 porter to Middle Delkfutt's Tower "1"
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
 
     local cs = -1;
 
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
+    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(460.022,-1.77,-103.442,188);
     end
     if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1) then
@@ -54,10 +38,6 @@ function onZoneIn(player,prevZone)
     return cs;
 
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 
@@ -75,29 +55,13 @@ function onRegionEnter(player,region)
 
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 15) then
         player:setVar("ZilartStatus",2);
@@ -120,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:startEvent(38);
     elseif (csid == 38) then
-         player:startEvent(39);
+        player:startEvent(39);
     elseif (csid == 39) then
         player:completeMission(COP,ANCIENT_FLAMES_BECKON);
         player:addMission(COP,THE_RITES_OF_LIFE);

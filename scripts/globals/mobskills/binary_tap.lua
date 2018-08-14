@@ -6,49 +6,40 @@
 -- Range: Melee
 -- Notes: Can be any (positive) buff, including food. Will drain about 100HP if it can't take any buffs
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
     -- try to drain buff
-    local effectFirst = target:stealStatusEffect();
-    local effectSecond = target:stealStatusEffect();
-    local dmg = 0;
+    local effectFirst = mob:stealStatusEffect(target, dsp.effectFlag.DISPELABLE+dsp.effectFlag.FOOD)
+    local effectSecond = mob:stealStatusEffect(target, dsp.effectFlag.DISPELABLE+dsp.effectFlag.FOOD)
+    local dmg = 0
 
-    if (effectFirst ~= nil) then
+    if (effectFirst ~= 0) then
+        local count = 1
 
-        local count = 1;
-
-            -- add to myself
-        mob:addStatusEffect(effectFirst:getType(), effectFirst:getPower(), effectFirst:getTickCount(), effectFirst:getDuration());
-
-        if (effectSecond ~= nil) then
-            count = count + 1;
-                -- add to myself
-            mob:addStatusEffect(effectSecond:getType(), effectSecond:getPower(), effectSecond:getTickCount(), effectSecond:getDuration());
-
+        if (effectSecond ~= 0) then
+            count = count + 1
         end
 
+        skill:setMsg(dsp.msg.basic.EFFECT_DRAINED)
 
-        -- add buff to myself
-        skill:setMsg(msgBasic.EFFECT_DRAINED);
-
-        return count;
+        return count
     else
         -- time to drain HP. 100-200
-        local power = math.random(0, 101) + 100;
-        dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS);
+        local power = math.random(0, 101) + 100
+        dmg = MobFinalAdjustments(power,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS)
 
-        skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg));
-        return dmg;
+        skill:setMsg(MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_HP, dmg))
+        return dmg
     end
 
-end;
+end

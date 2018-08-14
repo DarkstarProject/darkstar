@@ -1,22 +1,14 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Andrival
---  Type: Standard NPC
---  @zone 256
--- !pos 26 0 127
+-- Type: Standard NPC
+-- !pos 26 0 127 256
 -----------------------------------
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
@@ -30,16 +22,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

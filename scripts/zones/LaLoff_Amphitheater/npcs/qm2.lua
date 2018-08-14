@@ -12,16 +12,16 @@ require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 
-    ---- 0: 
-    ---- 1: 
-    ---- 2: 
-    ---- 3: 
-    ---- 4: 
-    ---- 5: 
-    ---- 6: 
-    ---- 7: 
-    ---- 8: 
-    ---- 9: 
+    ---- 0:
+    ---- 1:
+    ---- 2:
+    ---- 3:
+    ---- 4:
+    ---- 5:
+    ---- 6:
+    ---- 7:
+    ---- 8:
+    ---- 9:
 -- Death cutscenes:
 
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0); -- hume
@@ -32,10 +32,6 @@ require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,5,0); -- divine might
 --    player:startEvent(32001,1,1,1,instance:getTimeInside(),1,6,0); -- skip ending cs
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -44,20 +40,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (EventTriggerBCNM(player,npc)) then
         return;
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 -- printf("onUpdate CSID: %u",csid);

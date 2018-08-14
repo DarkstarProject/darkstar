@@ -1,33 +1,21 @@
 -----------------------------------
 --
--- EFFECT_VISITANT
+-- dsp.effect.VISITANT
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
     --[[
-    local duration = effect:getDuration();
+    local duration = effect:getDuration()
     if (target:getVar("Abyssea_Time") >= 3) then
-        target:setVar("Abyssea_Time",duration);
+        target:setVar("Abyssea_Time",duration)
     end
     Some messages about remaining time.will need to handled outside of this effect (zone ejection warnings after visitant is gone).
     ]]
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end

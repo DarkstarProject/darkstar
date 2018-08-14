@@ -4,49 +4,34 @@
 -- Involved in Quests: The Three Magi
 -- !pos -331 -29 -49 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
+package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil
 -----------------------------------
-
-require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/zones/Xarcabard/TextIDs")
+require("scripts/zones/Xarcabard/MobIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    if (player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and player:hasItem(1104) == false) then
-        if (trade:hasItemQty(613,1) and trade:getItemCount() == 1) then -- Trade Faded Crystal
-            player:tradeComplete();
-            SpawnMob(17236201):updateClaim(player);
-            npc:setStatus(STATUS_DISAPPEAR);
-        end
+    if
+        player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and
+        npcUtil.tradeHas(trade, 613) and
+        not player:hasItem(1104) and
+        not GetMobByID(CHAOS_ELEMENTAL):isSpawned()
+    then
+        player:confirmTrade()
+        SpawnMob(CHAOS_ELEMENTAL):updateClaim(player)
+        npc:setStatus(dsp.status.DISAPPEAR)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

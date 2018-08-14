@@ -2,42 +2,42 @@
 -- Spell: Breakga
 -- Temporarily blinds an enemy, greatly lowering its accuracy.
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local params = {};
-    params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = 35;
-    params.bonus = 0;
-    params.effect = EFFECT_PETRIFICATION;
-    local resist = applyResistanceEffect(caster, target, spell, params);
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = 35
+    params.bonus = 0
+    params.effect = dsp.effect.PETRIFICATION
+    local resist = applyResistanceEffect(caster, target, spell, params)
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 30 * resist;
+    local duration = 30 * resist
 
     if (resist > 0.5) then
-        if (caster:hasStatusEffect(EFFECT_SABOTEUR)) then
-            duration = duration * 2;
-            caster:delStatusEffect(EFFECT_SABOTEUR);
+        if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
+            duration = duration * 2
+            caster:delStatusEffect(dsp.effect.SABOTEUR)
         end
 
-        if (target:addStatusEffect(EFFECT_PETRIFICATION,1,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (target:addStatusEffect(dsp.effect.PETRIFICATION,1,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return EFFECT_PETRIFICATION;
-end;
+    return dsp.effect.PETRIFICATION
+end

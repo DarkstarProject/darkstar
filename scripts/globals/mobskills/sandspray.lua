@@ -7,21 +7,21 @@
 -- Range: Unknown
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_BLINDNESS;
-    local power = 25;
-    local duration = 90;
+    local typeEffect = dsp.effect.BLINDNESS
+    local power = 25
+    local duration = 90
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

@@ -49,7 +49,10 @@ struct queueAction_t
         func(_func) {}
 };
 
-inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
+inline bool operator< (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return lhs.start_time + lhs.delay < rhs.start_time + rhs.delay; }
+inline bool operator> (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return rhs < lhs; }
+inline bool operator<= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return !(lhs > rhs); }
+inline bool operator>= (const queueAction_t& lhs, const queueAction_t& rhs) noexcept { return !(lhs < rhs); }
 
 class CAIActionQueue
 {
@@ -64,8 +67,8 @@ public:
     bool isEmpty();
 private:
     CBaseEntity* PEntity;
-    std::priority_queue<queueAction_t> actionQueue;
-    std::priority_queue<queueAction_t> timerQueue;
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> actionQueue;
+    std::priority_queue<queueAction_t, std::vector<queueAction_t>, std::greater<queueAction_t>> timerQueue;
 };
 
 #endif

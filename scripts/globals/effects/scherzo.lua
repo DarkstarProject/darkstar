@@ -1,26 +1,14 @@
 -----------------------------------
 --
---      EFFECT_CAROL
+--      dsp.effect.CAROL
 --  TODO: MOD_CRITICAL_DAMAGE_REDUCTION
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end

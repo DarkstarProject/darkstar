@@ -34,7 +34,7 @@ function onTrigger(player, weather)
         ["gales"]           = 11,
         ["snow"]            = 12,
         ["blizzards"]       = 13,
-        ["thunder"]         = 14, 
+        ["thunder"]         = 14,
         ["thunderstorms"]   = 15,
         ["auroras"]         = 16,
         ["stellar glare"]   = 17,
@@ -47,7 +47,7 @@ function onTrigger(player, weather)
         error(player, "You must supply a weather ID.");
         return;
     end
-    weather = tonumber(weather) or _G[string.upper(weather)] or weatherList[string.lower(weather)];
+    weather = tonumber(weather) or dsp.weather[string.upper(weather)] or weatherList[string.lower(weather)];
     if (weather == nil or weather < 0 or weather > 19) then
         error(player, "Invalid weather ID.");
         return;

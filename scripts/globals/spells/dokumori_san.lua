@@ -1,46 +1,46 @@
 -----------------------------------------
 -- Spell: Dokumori: San
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local effect = EFFECT_POISON;
+    local effect = dsp.effect.POISON
     -- Base Stats
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
     --Duration Calculation
-    local duration = 360;
-    local params = {};
-    params.attribute = MOD_INT;
-    params.skillType = NINJUTSU_SKILL;
-    params.bonus = 0;
-    duration = duration * applyResistance(caster, target, spell, params);
-    local power = 20;
+    local duration = 360
+    local params = {}
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.NINJUTSU
+    params.bonus = 0
+    duration = duration * applyResistance(caster, target, spell, params)
+    local power = 20
 
     --Calculates resist chanve from Reist Blind
     if (target:hasStatusEffect(effect)) then
-        spell:setMsg(msgBasic.MAGIC_NO_EFFECT); -- no effect
-        return effect;
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect
+        return effect
     end
 
-    if (math.random(0,100) >= target:getMod(MOD_POISONRES)) then
+    if (math.random(0,100) >= target:getMod(dsp.mod.POISONRES)) then
         if (duration >= 120) then
             if (target:addStatusEffect(effect,power,3,duration)) then
-                spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
             else
-                spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
             end
         else
-            spell:setMsg(msgBasic.MAGIC_RESIST);
+            spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
     end
-    return effect;
-end;
+    return effect
+end

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC:  Ripapa
+--  NPC: Ripapa
 -- Starts and Finishes Quest: Trial by Lightning
 -- !pos 29 -15 55 249
 -----------------------------------
@@ -12,22 +12,15 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    local TrialByLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING);
-    local WhisperOfStorms = player:hasKeyItem(WHISPER_OF_STORMS);
+    local TrialByLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
+    local WhisperOfStorms = player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
     local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
@@ -41,11 +34,11 @@ function onTrigger(player,npc)
     ---------------------------------------------------------------------
     -- Trial by Lightning
     elseif ((TrialByLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 6) or (TrialByLightning == QUEST_COMPLETED and realday ~= player:getVar("TrialByLightning_date"))) then
-        player:startEvent(10016,0,TUNING_FORK_OF_LIGHTNING); -- Start and restart quest "Trial by Lightning"
-    elseif (TrialByLightning == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_LIGHTNING) == false and WhisperOfStorms == false) then
-        player:startEvent(10024,0,TUNING_FORK_OF_LIGHTNING); -- Defeat against Ramuh : Need new Fork
+        player:startEvent(10016,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Start and restart quest "Trial by Lightning"
+    elseif (TrialByLightning == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING) == false and WhisperOfStorms == false) then
+        player:startEvent(10024,0,dsp.ki.TUNING_FORK_OF_LIGHTNING); -- Defeat against Ramuh : Need new Fork
     elseif (TrialByLightning == QUEST_ACCEPTED and WhisperOfStorms == false) then
-        player:startEvent(10017,0,TUNING_FORK_OF_LIGHTNING,5);
+        player:startEvent(10017,0,dsp.ki.TUNING_FORK_OF_LIGHTNING,5);
     elseif (TrialByLightning == QUEST_ACCEPTED and WhisperOfStorms) then
         numitem = 0;
 
@@ -55,41 +48,29 @@ function onTrigger(player,npc)
         if (player:hasItem(1206)) then numitem = numitem + 8; end   -- Elder Branch
         if (player:hasSpell(303)) then numitem = numitem + 32; end  -- Ability to summon Ramuh
 
-        player:startEvent(10019,0,TUNING_FORK_OF_LIGHTNING,5,0,numitem);
+        player:startEvent(10019,0,dsp.ki.TUNING_FORK_OF_LIGHTNING,5,0,numitem);
     else
         player:startEvent(10020); -- Standard dialog
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10016 and option == 1) then
-        if (player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
-            player:delQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+        if (player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING) == QUEST_COMPLETED) then
+            player:delQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         end
-        player:addQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+        player:addQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         player:setVar("TrialByLightning_date", 0);
-        player:addKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
+        player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10024) then
-        player:addKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_LIGHTNING);
+        player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10019) then
         item = 0;
         if (option == 1) then item = 17531;         -- Ramuh's Staff
@@ -111,11 +92,11 @@ function onEventFinish(player,csid,option)
                 player:addItem(item);
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
-            player:addTitle(HEIR_OF_THE_GREAT_LIGHTNING);
-            player:delKeyItem(WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
+            player:addTitle(dsp.title.HEIR_OF_THE_GREAT_LIGHTNING);
+            player:delKeyItem(dsp.ki.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
             player:setVar("TrialByLightning_date", os.date("%j")); -- %M for next minute, %j for next day
-            player:addFame(OTHER_AREAS,30);
-            player:completeQuest(OTHER_AREAS,TRIAL_BY_LIGHTNING);
+            player:addFame(MHAURA,30);
+            player:completeQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         end
     elseif (csid == 10022 or csid == 10023) then
         if (player:getFreeSlotsCount() ~= 0) then

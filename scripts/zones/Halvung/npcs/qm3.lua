@@ -6,44 +6,22 @@
 package.loaded["scripts/zones/Halvung/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Halvung/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+require("scripts/zones/Halvung/MobIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 17031599;
-    if (trade:hasItemQty(2588,1) and trade:getItemCount() == 1) then -- Trade Bone Charcoal
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if (npcUtil.tradeHas(trade, 2588) and not GetMobByID(REACTON):isSpawned()) then -- Bone Charcoal
+        player:confirmTrade();
+        SpawnMob(REACTON):updateClaim(player);
     end
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:messageSpecial(NOTHING_HAPPENS);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

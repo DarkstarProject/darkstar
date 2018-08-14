@@ -1,12 +1,11 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  Treasure Chest
+--  NPC: Treasure Chest
 -- Involved In Quest: Wings of Gold
 -- !pos -380 -143 23 158
 -----------------------------------
 package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
@@ -16,10 +15,6 @@ require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
 local TreasureType = "Chest";
 local TreasureLvL = 43;
 local TreasureMinLvL = 33;
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -33,7 +28,7 @@ function onTrade(player,npc,trade)
     if ((trade:hasItemQty(1036,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and trade:getItemCount() == 1) then
         local zone = player:getZoneID();
         -- IMPORTANT ITEM: WINGS OF GOLD QUEST -----------
-        if (player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and player:hasKeyItem(GUIDING_BELL) == false) then
+        if (player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.GUIDING_BELL) == false) then
             questItemNeeded = 1;
         end
         --------------------------------------
@@ -55,8 +50,8 @@ function onTrade(player,npc,trade)
                 player:messageSpecial(CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
-                    player:addKeyItem(GUIDING_BELL);
-                    player:messageSpecial(KEYITEM_OBTAINED,GUIDING_BELL); -- Guiding Bell (KI)
+                    player:addKeyItem(dsp.ki.GUIDING_BELL);
+                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GUIDING_BELL); -- Guiding Bell (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
@@ -82,28 +77,12 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:messageSpecial(CHEST_LOCKED,1036);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -1,10 +1,10 @@
 -- Variable TextID   Description text
 
 -- General Texts
-ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
-          ITEM_OBTAINED = 6387; -- Obtained: <item>
-           GIL_OBTAINED = 6388; -- Obtained <number> gil
-       KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
+     ITEM_CANNOT_BE_OBTAINED = 6381; -- You cannot obtain the item <item> come back again after sorting your inventory
+               ITEM_OBTAINED = 6387; -- Obtained: <item>
+                GIL_OBTAINED = 6388; -- Obtained <number> gil
+            KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
 
     ANIMATED_KNUCKLES_DIALOG = 7296; -- I am known as the Fists of Mystics. Come, show me your fighting spirit.
       ANIMATED_DAGGER_DIALOG = 7328; -- I am called the Ornate Blade. Now, show me your strength.
@@ -26,4 +26,4 @@ PRISON_OF_SOULS_HAS_SET_FREE = 7808; -- prison of souls has set free its captive
 
 
 -- conquest Base
-CONQUEST_BASE = 7054; -- Tallying conquest results...
+               CONQUEST_BASE = 7054; -- Tallying conquest results...

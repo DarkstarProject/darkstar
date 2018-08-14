@@ -1,50 +1,30 @@
 -----------------------------------
 -- Area: Lower Jeuno
--- NPC: Morefie
+--  NPC: Morefie
 -- Standard Merchant NPC
 -----------------------------------
-
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-require("scripts/zones/Lower_Jeuno/TextIDs");
-
+package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
 -----------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Lower_Jeuno/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-player:showText(npc,MOREFIE_SHOP_DIALOG);
+    local stock =
+    {
+        13327, 1250,    -- Silver Earring
+        13456, 1250,    -- Silver Ring
+        13328, 4140,    -- Mythril Earring
+    }
 
-stock = {0x340F,1250, -- Silver Earring
-     0x3490,1250, -- Silver Ring
-     0x3410,4140} -- Mythril Earring 
- 
-showShop(player, STATIC, stock);
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, MOREFIE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

@@ -1,33 +1,17 @@
 -----------------------------------
 -- Area: Dynamis San d'Oria
--- NPC:  Reapertongue Gadgquok
+--  NPC: Reapertongue Gadgquok
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status");
 
 function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
 end;
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

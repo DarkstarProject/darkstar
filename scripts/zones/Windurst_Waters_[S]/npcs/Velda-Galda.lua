@@ -1,45 +1,24 @@
 -----------------------------------
---  Area: Windurst Waters (S)
+-- Area: Windurst Waters (S)
 --   NPC: Velda-Galda
---  Type: Mission NPC
--- @zone 94
--- !pos 138.631 -3.112 61.658
+-- Type: Mission NPC
+-- !pos 138.631 -3.112 61.658 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(177);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

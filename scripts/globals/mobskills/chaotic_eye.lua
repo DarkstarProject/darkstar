@@ -6,19 +6,19 @@
 --
 --
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_SILENCE;
+    local typeEffect = dsp.effect.SILENCE
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 120));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 120))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_ABYSSEA_AGI
+-- dsp.effect.ABYSSEA_AGI
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_AGI,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.AGI,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_AGI,effect:getPower());
-end;
+    target:delMod(dsp.mod.AGI,effect:getPower())
+end

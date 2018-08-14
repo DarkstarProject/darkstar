@@ -14,32 +14,30 @@
 -- 100%TP    200%TP    300%TP
 -- 2.75      2.75      2.75
 -----------------------------------
-require("scripts/globals/status");
-require("scripts/globals/settings");
-require("scripts/globals/weaponskills");
+require("scripts/globals/weaponskills")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
-function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
-    local params = {};
-    params.numHits = 1;
-    params.ftp100 = 2.75; params.ftp200 = 2.75; params.ftp300 = 2.75;
-    params.str_wsc = 0.0; params.dex_wsc = 0.6; params.vit_wsc = 0.0; params.agi_wsc = 0.0; params.int_wsc = 0.0; params.mnd_wsc = 0.0; params.chr_wsc = 0.0;
-    params.crit100 = 0.0; params.crit200 = 0.0; params.crit300 = 0.0;
-    params.canCrit = false;
-    params.acc100 = 0.0; params.acc200= 0.0; params.acc300= 0.0;
-    params.atkmulti = 1;
+function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
+    local params = {}
+    params.numHits = 1
+    params.ftp100 = 2.75 params.ftp200 = 2.75 params.ftp300 = 2.75
+    params.str_wsc = 0.0 params.dex_wsc = 0.6 params.vit_wsc = 0.0 params.agi_wsc = 0.0 params.int_wsc = 0.0 params.mnd_wsc = 0.0 params.chr_wsc = 0.0
+    params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
+    params.canCrit = false
+    params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
+    params.atkmulti = 1
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
-        params.dex_wsc = 0.8;
+        params.dex_wsc = 0.8
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params);
-    -- TODO: Whoever codes those level 85 weapons with the latent that grants this WS needs to code a check to not give the aftermath effect.
-    if (damage > 0) then
-        local amDuration = 20 * math.floor(tp/1000);
-        player:addStatusEffect(EFFECT_AFTERMATH, 10, 0, amDuration, 0, 4);
-        target:addStatusEffect(EFFECT_ACCURACY_DOWN, 20, 0, 60);
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    if (damage > 0 and target:hasStatusEffect(dsp.effect.ACCURACY_DOWN) == false) then
+        local duration = (tp/1000 * 20) * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0)
+        target:addStatusEffect(dsp.effect.ACCURACY_DOWN, 20, 0, duration)
     end
 
-    return tpHits, extraHits, criticalHit, damage;
+    return tpHits, extraHits, criticalHit, damage
 end

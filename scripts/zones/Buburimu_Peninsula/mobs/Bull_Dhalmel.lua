@@ -2,11 +2,7 @@
 -- Area: Buburimu Peninsula
 --  MOB: Bull Dhalmel
 -----------------------------------
-
 require("scripts/globals/fieldsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: ???
+--  NPC: ???
 -- Involved in Quest: Unforgiven
--- @zone 26
--- !pos 110.714 -40.856 -53.154
+-- !pos 110.714 -40.856 -53.154 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -15,45 +15,26 @@ require("scripts/globals/keyitems");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
-
------------------------------------
--- onTrade Action
------------------------------------
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
 
-    if (Unforgiven == 1 and player:hasKeyItem(609) == false) then
-        player:addKeyItem(609);
-        player:messageSpecial(KEYITEM_OBTAINED,609) -- ALABASTER HAIRPIN for Unforgiven Quest
+    if (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
+        player:addKeyItem(dsp.ki.ALABASTER_HAIRPIN);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ALABASTER_HAIRPIN) -- ALABASTER HAIRPIN for Unforgiven Quest
 
     end
 end
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end

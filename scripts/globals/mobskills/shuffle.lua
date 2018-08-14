@@ -2,23 +2,23 @@
 -- Shuffle
 -- Dispels a single buff at random (which could be food)<-Pending verification. It does not reset hate.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local effect = target:dispelStatusEffect();
+    local effect = target:dispelStatusEffect()
 
-    if (effect == EFFECT_NONE) then
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+    if (effect == dsp.effect.NONE) then
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT) -- no effect
     else
-        skill:setMsg(msgBasic.SKILL_ERASE);
+        skill:setMsg(dsp.msg.basic.SKILL_ERASE)
     end
-    return effect;
+    return effect
 end

@@ -1,55 +1,34 @@
 -----------------------------------
 -- Area: Ship bound for Selbina
--- NPC:  Maera
+--  NPC: Maera
 -- Type: Standard Merchant NPC
 -- !pos -1.139 -2.101 -9.000 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
+package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil
 -----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/shop");
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Ship_bound_for_Selbina/TextIDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local stock =
+    {
+        4112,  910,    -- Potion
+        4128, 4832,    -- Ether
+        4148,  316,    -- Antidote
+        4150, 2595,    -- Eye Drops
+        4151,  800,    -- Echo Drops
+    }
 
-player:showText(npc,MAERA_SHOP_DIALOG);
-
-stock = {0x1010,910,        -- Potion
-     0x1020,4832,        -- Ether
-     0x1034,316,        -- Antidote
-     0x1036,2595,        -- Eye Drops
-     0x1037,800}        -- Echo Drops
-
-showShop(player, STATIC, stock);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, MAERA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 

@@ -1,29 +1,13 @@
 -----------------------------------
 -- Area: Abyssea-Konschtat
---  Mob: Lachrymater
------------------------------------
-
------------------------------------
--- onMobSpawn Action
+--   NM: Lachrymater
 -----------------------------------
 
 function onMobSpawn(mob,target)
-    local DayofWeek = VanadielDayElement();
+    local DayofWeek = VanadielDayElement()
 
-    mob:setSpellList(188 + DayofWeek);
-
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
-
-function onMobFight(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+    mob:setSpellList(188 + DayofWeek)
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

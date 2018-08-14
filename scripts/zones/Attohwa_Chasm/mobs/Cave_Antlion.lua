@@ -3,6 +3,7 @@
 --  MOB: Cave Antlion
 -----------------------------------
 mixins = {require("scripts/mixins/families/antlion_ambush")}
+-----------------------------------
 
 function onMobSpawn(mob)
 end;

@@ -4,12 +4,12 @@
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
     local master = automaton:getMaster()
-    return master:countEffect(EFFECT_DARK_MANEUVER)
+    return master:countEffect(dsp.effect.DARK_MANEUVER)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
@@ -17,8 +17,8 @@ function onPetAbility(target, automaton, skill, master, action)
         numHits = 1,
         atkmulti = 20.0,
         accBonus = 1000,
-        weaponDamage = automaton:getSkillLevel(22),
-        weaponType = SKILL_SWD,
+        weaponDamage = automaton:getSkillLevel(dsp.skill.AUTOMATON_MELEE),
+        weaponType = dsp.skill.SWORD,
         ftp100 = 0.25,
         ftp200 = 0.4,
         ftp300 = 0.6,
@@ -61,7 +61,7 @@ function onPetAbility(target, automaton, skill, master, action)
     if damage > 0 then
         if not target:isUndead() then
             automaton:addHP(damage)
-            skill:setMsg(msgBasic.SKILL_DRAIN_HP)
+            skill:setMsg(dsp.msg.basic.SKILL_DRAIN_HP)
         end
     end
 

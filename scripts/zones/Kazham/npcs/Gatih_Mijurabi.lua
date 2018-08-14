@@ -1,25 +1,16 @@
 -----------------------------------
---  Area: Kazham
+-- Area: Kazham
 --   NPC: Gatih Mijurabi
---  Type: Standard NPC
--- @zone 250
--- !pos 58.249 -13.086 -49.084
+-- Type: Standard NPC
+-- !pos 58.249 -13.086 -49.084 250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if player:getVar("BathedInScent") == 1 then
@@ -37,22 +28,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 191) then
         player:addQuest(OUTLANDS, PERSONAL_HYGIENE);
     elseif (csid == 193) then

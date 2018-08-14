@@ -1,21 +1,14 @@
 -----------------------------------
 -- Area: Windurst Waters
--- NPC:  Orn
+--  NPC: Orn
 -- !pos -68 -9 30 238
 -----------------------------------
-
+require("scripts/globals/keyitems")
 require("scripts/globals/settings");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -30,7 +23,7 @@ function onTrigger(player,npc)
     elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 1) then
         player:startEvent(396);
 
-    elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(10) == true) then
+    elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS) == true) then
         player:startEvent(395);
 
     else
@@ -39,22 +32,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 395) then
         player:setVar("EARLY_BIRD_TRACK_BOOK",1);

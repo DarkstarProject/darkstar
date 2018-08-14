@@ -6,20 +6,20 @@
 -- Range: Single gaze
 -- Notes: Nightmare Cockatrice extends this to a fan-shaped AOE.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_CURSE_I;
+    local typeEffect = dsp.effect.CURSE_I
 
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 30, 0, 360));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 30, 0, 360))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

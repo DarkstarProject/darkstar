@@ -6,20 +6,12 @@
 -----------------------------------
 package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/Misareaux_Coast/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THE_SAVAGE and player:getVar("PromathiaStatus") == 0) then
@@ -37,28 +29,16 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 6 or csid == 12) then
         player:setVar("PromathiaStatus",1);
     elseif (csid == 559) then
         player:setVar('StormsOfFate',1);
     elseif (csid == 8 and option == 1) then
         player:setVar("PromathiaStatus",1);
-        player:setPos(729,-20,410,88,0x1D); -- Go to Riverne #B01
+        player:setPos(729,-20,410,88,29); -- Go to Riverne #B01
     end
 end;

@@ -1,16 +1,16 @@
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:hasStatusEffect(EFFECT_IMPAIRMENT) then
-        return 0;
+    if target:hasStatusEffect(dsp.effect.IMPAIRMENT) then
+        return 0
     end
     return -1
-end;
+end
 
 function onItemUse(target)
-    target:delStatusEffectSilent(EFFECT_IMPAIRMENT)
+    target:delStatusEffectSilent(dsp.effect.IMPAIRMENT)
     target:messageText(target, 7217)
-end;
+end
 

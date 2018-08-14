@@ -6,31 +6,27 @@
 -- High-quality success rate +3
 -- Synthesis failure rate -6%
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(EFFECT_FOOD) == true or target:hasStatusEffect(EFFECT_FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
+        result = 246
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(EFFECT_FOOD,0,0,1800,5784);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5784)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SYNTH_HQ_RATE, 3);
-    target:addMod(MOD_SYNTH_FAIL_RATE, -6);
-end;
+    target:addMod(dsp.mod.SYNTH_HQ_RATE, 3)
+    target:addMod(dsp.mod.SYNTH_FAIL_RATE, -6)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_SYNTH_HQ_RATE, 3);
-    target:delMod(MOD_SYNTH_FAIL_RATE, -6);
-end;
+    target:delMod(dsp.mod.SYNTH_HQ_RATE, 3)
+    target:delMod(dsp.mod.SYNTH_FAIL_RATE, -6)
+end

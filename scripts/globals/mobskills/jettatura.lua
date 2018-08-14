@@ -7,20 +7,20 @@
 -- Range: Cone gaze
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_TERROR;
-    local duration = 10;
+    local typeEffect = dsp.effect.TERROR
+    local duration = 10
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, duration))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

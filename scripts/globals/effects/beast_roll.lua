@@ -4,27 +4,15 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
-    target:addPetMod(MOD_ATTP, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addPetMod(dsp.mod.ATTP, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delPetMod(MOD_ATTP, effect:getPower());
-end;
+    target:delPetMod(dsp.mod.ATTP, effect:getPower())
+end

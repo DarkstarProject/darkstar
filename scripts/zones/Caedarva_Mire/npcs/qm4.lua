@@ -3,47 +3,26 @@
 --  NPC: ??? (Spawn Tyger(ZNM T4))
 -- !pos -766 -12 632 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
+package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+require("scripts/zones/Caedarva_Mire/TextIDs")
+require("scripts/zones/Caedarva_Mire/MobIDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 17101203;
-    if (trade:hasItemQty(2593,1) and trade:getItemCount() == 1) then -- Trade Singed Buffalo
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if npcUtil.tradeHas(trade, 2593) and not GetMobByID(TYGER):isSpawned() then -- Singed Buffalo
+        player:confirmTrade()
+        SpawnMob(TYGER):updateClaim(player)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(NOTHING_HAPPENS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

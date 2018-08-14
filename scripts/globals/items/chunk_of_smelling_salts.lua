@@ -4,32 +4,32 @@
 -- Item Effect: Recover Pets from Sleep
 -- Duration: 180 Secs Medicated
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    pet = target:getPet();
+    pet = target:getPet()
     if (pet == nil) then
-        return msgBasic.REQUIRES_A_PET;
-    elseif (pet:hasStatusEffect(EFFECT_MEDICINE)) then
-        return msgBasic.ITEM_NO_USE_MEDICATED;
+        return dsp.msg.basic.REQUIRES_A_PET
+    elseif (pet:hasStatusEffect(dsp.effect.MEDICINE)) then
+        return dsp.msg.basic.ITEM_NO_USE_MEDICATED
     end
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    if (target:addStatusEffect(EFFECT_MEDICINE,0,0,180,5320)) then
-        target:messageBasic(GAINS_EFFECT_OF_STATUS, EFFECT_MEDICINE);
-        pet:delStatusEffect(EFFECT_SLEEP_I);
-        pet:delStatusEffect(EFFECT_SLEEP_II);
-        pet:delStatusEffect(EFFECT_LULLABY);
+    if (target:addStatusEffect(dsp.effect.MEDICINE,0,0,180,5320)) then
+        target:messageBasic(GAINS_EFFECT_OF_STATUS, dsp.effect.MEDICINE)
+        pet:delStatusEffect(dsp.effect.SLEEP_I)
+        pet:delStatusEffect(dsp.effect.SLEEP_II)
+        pet:delStatusEffect(dsp.effect.LULLABY)
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
+end
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-end;
+end

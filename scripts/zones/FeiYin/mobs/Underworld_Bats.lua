@@ -2,11 +2,7 @@
 -- Area: Fei'Yin
 --  MOB: Underworld Bats
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

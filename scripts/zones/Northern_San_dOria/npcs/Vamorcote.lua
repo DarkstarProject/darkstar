@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Vamorcote
 -- Starts and Finishes Quest: The Setting Sun
--- @zone 231
--- !pos -137.070 10.999 161.855
+-- !pos -137.070 10.999 161.855 231
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -12,9 +11,6 @@ package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +21,6 @@ function onTrade(player,npc,trade)
         end;
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     -- Look at the "The Setting Sun" quest status and San d'Oria player's fame
@@ -48,22 +40,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 654 and option == 1) then --Player accepts the quest
         player:addQuest(SANDORIA,THE_SETTING_SUN);

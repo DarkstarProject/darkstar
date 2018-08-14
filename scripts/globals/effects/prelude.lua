@@ -1,28 +1,16 @@
 -----------------------------------
 --
---    EFFECT_PRELUDE
+--    dsp.effect.PRELUDE
 -- getPower returns the TIER (e.g. 1,2,3,4)
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_RACC, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.RACC, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_RACC, effect:getPower());
-end;
+    target:delMod(dsp.mod.RACC, effect:getPower())
+end

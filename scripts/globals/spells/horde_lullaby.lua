@@ -1,41 +1,41 @@
 -----------------------------------------
 -- Spell: Horde Lullaby
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local duration = 30;
-    local pCHR = caster:getStat(MOD_CHR);
-    local mCHR = target:getStat(MOD_CHR);
-    local dCHR = (pCHR - mCHR);
-    local params = {};
-    params.diff = nil;
-    params.attribute = MOD_CHR;
-    params.skillType = SINGING_SKILL;
-    params.bonus = 0;
-    params.effect = EFFECT_LULLABY;
-    resm = applyResistanceEffect(caster, target, spell, params);
+    local duration = 30
+    local pCHR = caster:getStat(dsp.mod.CHR)
+    local mCHR = target:getStat(dsp.mod.CHR)
+    local dCHR = (pCHR - mCHR)
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.CHR
+    params.skillType = dsp.skill.SINGING
+    params.bonus = 0
+    params.effect = dsp.effect.LULLABY
+    resm = applyResistanceEffect(caster, target, spell, params)
 
     if (resm < 0.5) then
-        spell:setMsg(msgBasic.MAGIC_RESIST); -- resist message
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST) -- resist message
     else
-        local iBoost = caster:getMod(MOD_LULLABY_EFFECT) + caster:getMod(MOD_ALL_SONGS_EFFECT);
+        local iBoost = caster:getMod(dsp.mod.LULLABY_EFFECT) + caster:getMod(dsp.mod.ALL_SONGS_EFFECT)
 
-        duration = duration * ((iBoost * 0.1) + (caster:getMod(MOD_SONG_DURATION_BONUS)/100) + 1);
+        duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1)
 
-        if (target:addStatusEffect(EFFECT_LULLABY,1,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB);
+        if (target:addStatusEffect(dsp.effect.LULLABY,1,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     end
 
-    return EFFECT_LULLABY;
-end;
+    return dsp.effect.LULLABY
+end

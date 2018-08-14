@@ -3,47 +3,26 @@
 --  NPC: ??? (Spawn Lividroot Amooshah(ZNM T2))
 -- !pos 334 -10 184 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
+package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
-require("scripts/globals/status");
-
------------------------------------
--- onTrade Action
+require("scripts/zones/Bhaflau_Thickets/TextIDs")
+require("scripts/zones/Bhaflau_Thickets/MobIDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mobID = 16990473;
-    if (trade:hasItemQty(2578,1) and trade:getItemCount() == 1) then -- Trade Oily Blood
-        if (GetMobAction(mobID) == ACTION_NONE) then
-            player:tradeComplete();
-            SpawnMob(mobID):updateClaim(player);
-        end
+    if npcUtil.tradeHas(trade, 2578) and not GetMobByID(LIVIDROOT_AMOOSHAH):isSpawned() then -- Oily Blood
+        player:confirmTrade()
+        SpawnMob(LIVIDROOT_AMOOSHAH):updateClaim(player)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(NOTHING_HAPPENS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

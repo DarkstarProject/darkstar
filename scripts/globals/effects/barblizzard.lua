@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_BARBLIZZARD
+-- dsp.effect.BARBLIZZARD
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ICERES,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ICERES,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ICERES,effect:getPower());
-end;
+    target:delMod(dsp.mod.ICERES,effect:getPower())
+end

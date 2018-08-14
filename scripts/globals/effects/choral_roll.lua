@@ -4,27 +4,15 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SPELLINTERRUPT, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.SPELLINTERRUPT, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SPELLINTERRUPT, effect:getPower());
-end;
+    target:delMod(dsp.mod.SPELLINTERRUPT, effect:getPower())
+end

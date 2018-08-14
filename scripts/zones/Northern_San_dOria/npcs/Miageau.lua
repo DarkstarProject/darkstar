@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Northern San d'Oria
 --   NPC: Miageau
---  Type: Quest Giver NPC
--- @zone 231
--- !pos 115 0 108
+-- Type: Quest Giver NPC
+-- !pos 115 0 108 231
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------
@@ -13,9 +12,6 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,10 +30,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     watersOfTheCheval = player:getQuestStatus(SANDORIA,WATER_OF_THE_CHEVAL);
@@ -55,22 +47,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 515) then
         if (player:getFreeSlotsCount() == 0) then
@@ -80,7 +60,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13183);
             player:messageSpecial(ITEM_OBTAINED, 13183);
             player:addFame(SANDORIA,30);
-            player:addTitle(THE_PURE_ONE);
+            player:addTitle(dsp.title.THE_PURE_ONE);
             player:completeQuest(SANDORIA,WATER_OF_THE_CHEVAL);
         end;
     elseif (csid == 504) then

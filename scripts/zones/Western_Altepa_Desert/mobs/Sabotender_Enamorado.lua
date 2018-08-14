@@ -2,11 +2,10 @@
 -- Area: Western Altepa Desert
 --  MOB: Sabotender Enamorado
 -----------------------------------
-
 require("scripts/globals/missions");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobDeath(mob, player, isKiller)

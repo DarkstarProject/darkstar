@@ -1,17 +1,13 @@
 -----------------------------------
 -- Area: Ordelles Caves
--- NPC:  Ruillont
+--  NPC: Ruillont
 -- Involved in Mission: The Rescue Drill
 -- !pos -70 1 607 193
 -----------------------------------
 package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/missions");
 require("scripts/zones/Ordelles_Caves/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,10 +20,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL) then
@@ -39,7 +31,7 @@ function onTrigger(player,npc)
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 9);
         elseif (MissionStatus >= 8) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG);
-        elseif (player:getNation() == NATION_SANDORIA) then
+        elseif (player:getNation() == dsp.nation.SANDORIA) then
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 2);
         else
             player:showText(npc, RUILLONT_INITIAL_DIALOG + 1);
@@ -48,22 +40,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 1) then
         local rand = math.random(1,3);

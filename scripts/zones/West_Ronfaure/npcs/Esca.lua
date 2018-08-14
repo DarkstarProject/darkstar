@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: West Ronfaure
--- NPC:  Esca
+--  NPC: Esca
 -- Involved in Quest "The Pickpocket"
 -- !pos -624.231 -51.499 278.369 100
 -----------------------------------
 package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/West_Ronfaure/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,10 +33,6 @@ function onTrade(player,npc,trade)
     end;
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     -- "The Pickpocket" Quest status
@@ -63,22 +55,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- "The Pickpocket" recieving Gilt Glasses
     if (csid == 121) then
@@ -86,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ITEM_OBTAINED, 579);
     elseif (csid == 137) then
         player:setVar("ChasingQuotas_Progress",5);
-        player:delKeyItem(SHINY_EARRING);
+        player:delKeyItem(dsp.ki.SHINY_EARRING);
     end;
 end;
 

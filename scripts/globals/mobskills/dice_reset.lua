@@ -6,21 +6,21 @@
 --
 --
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    target:resetRecasts();
+    target:resetRecasts()
 
-    skill:setMsg(msgBasic.ABILITIES_RECHARGED);
+    skill:setMsg(dsp.msg.basic.ABILITIES_RECHARGED)
 
-    return 1;
-end;
+    return 1
+end

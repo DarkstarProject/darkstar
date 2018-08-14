@@ -32,7 +32,7 @@ function onTrigger(player, mobId)
         end
     end
 
-    -- report mob action    
+    -- report mob action
     local action = GetMobAction(targ:getID());
     player:PrintToPlayer(string.format("%s %i current action ID is %i.", targ:getName(), targ:getID(), action));
     

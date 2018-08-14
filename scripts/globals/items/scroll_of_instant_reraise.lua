@@ -3,26 +3,26 @@
 --  Scroll of Instant ReRaise
 --  Brings you back from the dead~!
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    local power = 1;
-    local duration = 1800;
-    if (target:hasStatusEffect(EFFECT_RERAISE)) then
-        local effect = target:getStatusEffect(EFFECT_RERAISE);
-        local oPower = effect:getPower();
+    local power = 1
+    local duration = 1800
+    if (target:hasStatusEffect(dsp.effect.RERAISE)) then
+        local effect = target:getStatusEffect(dsp.effect.RERAISE)
+        local oPower = effect:getPower()
         if (oPower > power) then
-            target:messageBasic(msgBasic.NO_EFFECT);
+            target:messageBasic(dsp.msg.basic.NO_EFFECT)
         else
-            target:delStatusEffect(EFFECT_RERAISE);
-            target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
+            target:delStatusEffect(dsp.effect.RERAISE)
+            target:addStatusEffect(dsp.effect.RERAISE,power,0,duration)
         end
     else
-        target:addStatusEffect(EFFECT_RERAISE,power,0,duration);
+        target:addStatusEffect(dsp.effect.RERAISE,power,0,duration)
     end
-end;
+end

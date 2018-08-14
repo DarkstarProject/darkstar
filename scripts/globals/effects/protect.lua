@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_PROTECT
---     
+--     dsp.effect.PROTECT
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DEF,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+   target:addMod(dsp.mod.DEF,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DEF,effect:getPower());
-end;
+   target:delMod(dsp.mod.DEF,effect:getPower())
+end

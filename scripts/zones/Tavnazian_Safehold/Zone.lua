@@ -5,13 +5,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 -----------------------------------
-
+require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,20 +15,9 @@ function onInitialize(zone)
     zone:registerRegion(2, 104, -42, -88, 113, -38, -77);
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -54,10 +39,6 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 
     switch (region:GetRegionID()): caseof
@@ -77,27 +58,13 @@ function onRegionEnter(player,region)
 
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
 function onRegionLeave(player,region)
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101) then
         player:completeMission(COP,AN_INVITATION_WEST);

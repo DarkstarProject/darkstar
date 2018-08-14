@@ -1,40 +1,40 @@
 -----------------------------------------
 -- Spell: Gravity
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
 
     -- Pull base stats.
-    local dINT = (caster:getStat(MOD_INT) - target:getStat(MOD_INT));
-    local power = 50; -- 50% reduction
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local power = 50 -- 50% reduction
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 120;
-    local params = {};
-    params.diff = nil;
-    params.attribute = MOD_INT;
-    params.skillType = 35;
-    params.bonus = 0;
-    params.effect = EFFECT_WEIGHT;
-    duration = duration * applyResistanceEffect(caster, target, spell, params);
+    local duration = 120
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = 35
+    params.bonus = 0
+    params.effect = dsp.effect.WEIGHT
+    duration = duration * applyResistanceEffect(caster, target, spell, params)
 
     if (duration >= 30) then --Do it!
-        if (target:addStatusEffect(EFFECT_WEIGHT,power,0,duration)) then
-            spell:setMsg(msgBasic.MAGIC_ENFEEB_IS);
+        if (target:addStatusEffect(dsp.effect.WEIGHT,power,0,duration)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(msgBasic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(msgBasic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
     end
 
-    return EFFECT_WEIGHT;
-end;
+    return dsp.effect.WEIGHT
+end

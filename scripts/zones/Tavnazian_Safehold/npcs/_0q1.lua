@@ -8,17 +8,10 @@ package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
 require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(COP) == THE_LOST_CITY and player:getVar("PromathiaStatus") > 0) then
@@ -34,22 +27,10 @@ function onTrigger(player,npc)
     return 1;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 103) then
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,THE_LOST_CITY);

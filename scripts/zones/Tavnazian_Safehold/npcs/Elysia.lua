@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Tavnazian Safehold
--- NPC: Elysia
+--  NPC: Elysia
 -- Starts Quest: Unforgiven
--- @zone 26
--- !pos -50.410 -22.204 -41.640
+-- !pos -50.410 -22.204 -41.640 26
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+-----------------------------------
 require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -19,33 +19,25 @@ require("scripts/globals/titles");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS,UNFORGIVEN) == QUEST AVAILABLE
-
------------------------------------
--- onTrade Action
------------------------------------
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
     if (Unforgiven == 0) then
         player:startEvent(200); -- Quest Start Dialogue
 
     elseif (Unforgiven == 1 and player:getVar("UnforgivenVar") == 1) then
         player:startEvent(203); -- Dialogue if player hasn't talked to Pradiulot (2nd stage of Quest)
 
-    elseif (Unforgiven == 1 and player:hasKeyItem(609) == false) then
+    elseif (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
         player:startEvent(201); -- Dialogue if player doesn't have keyitem
 
-    elseif (Unforgiven == 1 and player:hasKeyItem(609) == true) then
+    elseif (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == true) then
         player:startEvent(202); -- Dialogue if player has keyitem (1st stage of Quest)
 
     else
@@ -53,24 +45,13 @@ local Unforgiven = player:getQuestStatus(OTHER_AREAS,UNFORGIVEN);
 
         end
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 if (csid == 200) then
-    player:addQuest(OTHER_AREAS,UNFORGIVEN);
+    player:addQuest(OTHER_AREAS_LOG,UNFORGIVEN);
 
 elseif (csid == 202) then
     player:setVar("UnforgivenVar",1); -- SET THE VAR

@@ -1,26 +1,13 @@
 -----------------------------------
 -- Area: Riverne - Site B01
--- NPC:  Unstable Cluster
+--  NPC: Unstable Cluster
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+require("scripts/zones/Riverne-Site_B01/MobIDs");
+require("scripts/globals/settings");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-    GetNPCByID(16896175):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(UNSTABLE_CLUSTER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

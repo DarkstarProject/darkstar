@@ -1,25 +1,16 @@
 -----------------------------------
---  Area: Upper Jeuno
+-- Area: Upper Jeuno
 --   NPC: Olgald
---  Type: Standard NPC
--- @zone 244
--- !pos -53.072 -1 103.380
+-- Type: Standard NPC
+-- !pos -53.072 -1 103.380 244
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -36,22 +27,10 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10167) then
         player:setVar("dancerTailorCS", 2);
     end;

@@ -4,7 +4,7 @@
 require("scripts/globals/automatonweaponskills")
 require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, automaton, skill)
@@ -12,13 +12,13 @@ function onMobSkillCheck(target, automaton, skill)
 end
 
 function onPetAbility(target, automaton, skill, master, action)
-    automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
-    local maneuvers = master:countEffect(EFFECT_DARK_MANEUVER)
+    automaton:addRecast(dsp.recast.ABILITY, skill:getID(), 180)
+    local maneuvers = master:countEffect(dsp.effect.DARK_MANEUVER)
     local amount = math.floor(automaton:getMaxMP() * 0.2 * maneuvers)
-    skill:setMsg(msgBasic.SKILL_RECOVERS_MP)
+    skill:setMsg(dsp.msg.basic.SKILL_RECOVERS_MP)
 
     for i = 1, maneuvers do
-        master:delStatusEffectSilent(EFFECT_DARK_MANEUVER)
+        master:delStatusEffectSilent(dsp.effect.DARK_MANEUVER)
     end
 
     return automaton:addMP(amount)

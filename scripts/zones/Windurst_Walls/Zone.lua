@@ -5,23 +5,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
-
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
 require("scripts/zones/Windurst_Walls/TextIDs");
-
------------------------------------
--- onInitialize
+require("scripts/globals/settings");
+require("scripts/globals/keyitems");
+require("scripts/globals/missions");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -2,-17,140, 2,-16,142);
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -36,25 +29,16 @@ function onZoneIn(player,prevZone)
     elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
         and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
         cs = 510;
+    elseif (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") == 4) then
+        cs = 443;
     end
 
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     switch (region:GetRegionID()): caseof
@@ -65,29 +49,13 @@ function onRegionEnter(player,region)
     }
 end;
 
------------------------------------
--- onRegionLeave
------------------------------------
-
 function onRegionLeave(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 86) then
         player:setPos(0,0,-22.40,192,242);
     elseif (csid == 30004 and option == 0) then
@@ -99,5 +67,14 @@ function onEventFinish(player,csid,option)
         player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
         player:addMission(ASA,BURGEONING_DREAD);
         player:setVar("ASA_Status",0);
+    elseif (csid == 443) then
+        player:completeMission(WINDURST,MOON_READING);
+        player:setVar("MissionStatus",0);
+        player:setRank(10);
+        player:addGil(GIL_RATE*100000);
+        player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000);
+        player:addItem(183);
+        player:messageSpecial(ITEM_OBTAINED,183);
+        player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
     end
 end;

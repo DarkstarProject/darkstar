@@ -1,40 +1,26 @@
 -----------------------------------
 -- Area: Port Windurst
--- NPC:  Rachuchu
+--  NPC: Rachuchu
 -- Working 100%
 -----------------------------------
-
-require("scripts/globals/settings");
-
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/magic")
 -----------------------------------
--- onTrade Action
------------------------------------
+
+function onSpawn(npc)
+    npcUtil.castingAnimation(npc, dsp.magic.spellGroup.WHITE, 10.5)
+end
 
 function onTrade(player,npc,trade)
-end; 
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:startEvent(234);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:startEvent(234)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

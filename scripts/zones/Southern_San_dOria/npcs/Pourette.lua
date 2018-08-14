@@ -1,70 +1,45 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC: Pourette
--- Only sells when San d'Oria controlls Derfland Region
+--  NPC: Pourette
+-- Derfland Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Southern_San_dOria/TextIDs")
+require("scripts/globals/events/harvest_festivals")
+require("scripts/globals/conquest")
+require("scripts/globals/npc_util")
+require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == 1) then
-        if (trade:hasItemQty(532,1) == true and trade:getItemCount() == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(FLYER_REFUSED)
     else
-        onHalloweenTrade(player,trade,npc);
+        onHalloweenTrade(player, trade, npc)
     end
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-
-    local RegionOwner = GetRegionOwner(DERFLAND);
-    
-    if (RegionOwner ~= NATION_SANDORIA) then
-        player:showText(npc,POURETTE_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.DERFLAND) ~= dsp.nation.SANDORIA then
+        player:showText(npc, POURETTE_CLOSED_DIALOG)
     else
-        player:showText(npc,POURETTE_OPEN_DIALOG);
-        
         local stock =
         {
-            0x1100,128,  --Derfland Pear
-            0x0269,142,  --Ginger
-            0x11c1,62,       --Gysahl Greens
-            0x0584,1656, --Olive Flower
-            0x0279,14,       --Olive Oil
-            0x03b7,110  --Wijnruit
+            4352,  128,    -- Derfland Pear
+            617,   142,    -- Ginger
+            4545,   62,    -- Gysahl Greens
+            1412, 1656,    -- Olive Flower
+            633,    14,    -- Olive Oil
+            951,   110,    -- Wijnruit
         }
-        showShop(player,SANDORIA,stock);
+
+        player:showText(npc, POURETTE_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
     end
-
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

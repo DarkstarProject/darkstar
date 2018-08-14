@@ -1,30 +1,21 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:  Illauvolahaut
--- @zone 246
--- !pos -12 8 54
+--  NPC: Illauvolahaut
+-- !pos -12 8 54 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/zones/Port_Jeuno/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    KazhPass = player:hasKeyItem(AIRSHIP_PASS_FOR_KAZHAM);
+    KazhPass = player:hasKeyItem(dsp.ki.AIRSHIP_PASS_FOR_KAZHAM);
     Gil = player:getGil();
 
     if (KazhPass == false) then
@@ -37,24 +28,11 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x0029  without addons (ZM) ?
-
------------------------------------
--- onEventUpdate
------------------------------------
-
+-- 41  without addons (ZM) ?
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 37) then
         Z = player:getZPos();

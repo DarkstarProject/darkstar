@@ -5,18 +5,13 @@
 -- !pos
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
 -----------------------------------
-
+require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
-require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,16 +20,12 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
+    local teacherstatus = player:getQuestStatus(WINDURST,TEACHER_S_PET);
 
     if (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") == 0) then
-        player:startEvent(752,0,STAR_SEEKER);
+        player:startEvent(752,0,dsp.ki.STAR_SEEKER);
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") >= 1) then
         if (player:getVar("MissionStatus") < 4) then
             player:startEvent(753);
@@ -42,8 +33,8 @@ function onTrigger(player,npc)
             player:startEvent(758);
         end
     elseif (player:getCurrentMission(WINDURST) == A_TESTING_TIME) then
-        MissionStatus = player:getVar("MissionStatus");
-        alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
+        local MissionStatus = player:getVar("MissionStatus");
+        local alreadyCompleted = player:hasCompletedMission(WINDURST,A_TESTING_TIME);
         if (MissionStatus == 0) then
             if (alreadyCompleted == false) then
                 player:startEvent(182); -- First start at tahrongi
@@ -61,11 +52,11 @@ function onTrigger(player,npc)
             elseif (alreadyCompleted == false and seconds_passed >= 3312) then
                 killcount = player:getVar("testingTime_crea_count");
                 if (killcount >= 35) then
-                    event = 0x00C9;
+                    event = 201;
                 elseif (killcount >= 30) then
                     event = 200;
                 elseif (killcount >= 19) then
-                    event = 0x00C7;
+                    event = 199;
                 else
                     event = 198;
                 end;
@@ -74,7 +65,7 @@ function onTrigger(player,npc)
             elseif (alreadyCompleted and seconds_passed >= 6768) then
                 killcount = player:getVar("testingTime_crea_count");
                 if (killcount >= 35) then
-                    event = 0x00CE;
+                    event = 206;
                 elseif (killcount >= 30) then
                     event = 209;
                 else
@@ -123,22 +114,10 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 438 and option == 0) then
         player:addQuest(WINDURST,TEACHER_S_PET);
@@ -155,29 +134,29 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,8);
         end
     elseif (csid == 182 or csid == 687) and option ~= 1 then -- start
-        player:addKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED,CREATURE_COUNTER_MAGIC_DOLL);
+        player:addKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",1);
         player:setVar("testingTime_start_day",VanadielDayOfTheYear());
         player:setVar("testingTime_start_hour",VanadielHour());
         player:setVar("testingTime_start_time",os.time());
-    elseif (csid == 198 or csid == 0x00C7 or csid == 202 or csid == 208) then -- failed testing time
-        player:delKeyItem(CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED + 1,CREATURE_COUNTER_MAGIC_DOLL);
+    elseif (csid == 198 or csid == 199 or csid == 202 or csid == 208) then -- failed testing time
+        player:delKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(KEYITEM_OBTAINED + 1,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",0);
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
         player:setVar("testingTime_start_hour",0);
         player:setVar("testingTime_start_time",0);
         player:delMission(WINDURST,A_TESTING_TIME);
-    elseif (csid == 200 or csid == 0x00C9) then -- first time win
+    elseif (csid == 200 or csid == 201) then -- first time win
         finishMissionTimeline(player,1,csid,option);
 
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
         player:setVar("testingTime_start_hour",0);
         player:setVar("testingTime_start_time",0);
-    elseif (csid == 209 or csid == 0x00CE) then -- succesfull repeat attempt (Buburimu).
+    elseif (csid == 209 or csid == 206) then -- succesfull repeat attempt (Buburimu).
         finishMissionTimeline(player,1,csid,option);
 
         player:setVar("testingTime_crea_count",0);
@@ -186,9 +165,9 @@ function onEventFinish(player,csid,option)
         player:setVar("testingTime_start_time",0);
     elseif (csid == 752) then
         player:setVar("MissionStatus",1);
-        player:addKeyItem(STAR_SEEKER);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_SEEKER);
-        player:addTitle(FUGITIVE_MINISTER_BOUNTY_HUNTER);
+        player:addKeyItem(dsp.ki.STAR_SEEKER);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_SEEKER);
+        player:addTitle(dsp.title.FUGITIVE_MINISTER_BOUNTY_HUNTER);
 
     elseif (csid == 758) then
         finishMissionTimeline(player,3,csid,option);

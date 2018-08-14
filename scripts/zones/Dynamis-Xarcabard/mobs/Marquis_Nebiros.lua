@@ -2,27 +2,15 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Marquis Decarabia
 -----------------------------------
-
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobFight Action
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
 -----------------------------------
 
-function onMobFight(mob,target)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
+end
 
 function onMobDeath(mob, player, isKiller)
 

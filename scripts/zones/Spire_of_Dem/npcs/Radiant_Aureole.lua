@@ -1,36 +1,20 @@
 -----------------------------------
 -- Area: Spire of Dem
--- NPC:  Radiant Aureole
+--  NPC: Radiant Aureole
 -- !pos 0.044 -119.249 -360.028 19
------------------------------------
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(14)
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);
     -- printf("onUpdate RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
 printf("onFinish CSID: %u",csid);

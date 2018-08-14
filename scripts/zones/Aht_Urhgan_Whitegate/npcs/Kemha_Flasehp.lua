@@ -6,13 +6,9 @@
 -----------------------------------
 package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/crafting");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +16,7 @@ function onTrade(player,npc,trade)
 
     if (guildMember == 1) then
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
-            if (player:hasStatusEffect(EFFECT_FISHING_IMAGERY) == false) then
+            if (player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false) then
                 player:tradeComplete();
                 player:startEvent(643,8,0,0,0,188,0,6,0);
             else
@@ -30,16 +26,12 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,5);
-    local SkillLevel = player:getSkillLevel(SKILL_FISHING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.FISHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(EFFECT_FISHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false) then
             player:startEvent(642,8,0,0,511,1,0,0,2184);
         else
             player:startEvent(642,8,0,0,511,1,19267,0,2184);
@@ -49,27 +41,15 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 642 and option == 1) then
         player:messageSpecial(IMAGE_SUPPORT,0,0,1);
-        player:addStatusEffect(EFFECT_FISHING_IMAGERY,1,0,3600);
+        player:addStatusEffect(dsp.effect.FISHING_IMAGERY,1,0,3600);
     elseif (csid == 643) then
         player:messageSpecial(IMAGE_SUPPORT,0,0,0);
-        player:addStatusEffect(EFFECT_FISHING_IMAGERY,2,0,7200);
+        player:addStatusEffect(dsp.effect.FISHING_IMAGERY,2,0,7200);
     end
 end;

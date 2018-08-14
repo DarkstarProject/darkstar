@@ -1,35 +1,9 @@
 -----------------------------------
--- Area: 
---  MOB: Chigoe
+-- Area: Abyssea-Attohwa
+--   NM: Tunga
 -----------------------------------
-
---require("scripts/globals/titles");
-mixins = { require("scripts/mixins/families/chigoe") }
-
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
-
-function onMobEngaged(mob, target)
-end;
-
------------------------------------
--- onMobDisengage
------------------------------------
-
-function onMobDisengage(mob)
-end;
-
------------------------------------
--- onMobDeath
+mixins = {require("scripts/mixins/families/chigoe")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end

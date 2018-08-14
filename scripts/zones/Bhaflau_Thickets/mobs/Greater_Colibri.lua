@@ -2,12 +2,8 @@
 -- Area: Bhaflau Thickets
 --  MOB: Greater Colibri
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/magic");
-
------------------------------------
--- onMobFight Action
 -----------------------------------
 
 function onMobFight(mob, target)
@@ -21,7 +17,7 @@ function onMobFight(mob, target)
             mob:AnimationSub(0);
         end
 
-        if (spell > 0 and mob:hasStatusEffect(EFFECT_SILENCE) == false) then
+        if (spell > 0 and mob:hasStatusEffect(dsp.effect.SILENCE) == false) then
             if (delay >= 3) then
                 mob:castSpell(spell);
                 mob:setLocalVar("COPY_SPELL", 0);
@@ -34,12 +30,8 @@ function onMobFight(mob, target)
     end
 end;
 
------------------------------------
--- onMagicHit
------------------------------------
-
 function onMagicHit(caster, target, spell)
-    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= SPELLGROUP_BLUE ) then
+    if (spell:tookEffect() and (caster:isPC() or caster:isPet()) and spell:getSpellGroup() ~= dsp.magic.spellGroup.BLUE ) then
         target:setLocalVar("COPY_SPELL", spell:getID());
         target:setLocalVar("LAST_CAST", target:getBattleTime());
         target:AnimationSub(1);
@@ -47,10 +39,6 @@ function onMagicHit(caster, target, spell)
 
     return 1;
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

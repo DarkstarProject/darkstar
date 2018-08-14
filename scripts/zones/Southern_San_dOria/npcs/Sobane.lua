@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Southern San d'Oria
--- NPC:  Sobane
+--  NPC: Sobane
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword, Riding on the Clouds
--- @zone 230
--- !pos -190 -3 97
--- csid: 52  732  733  0x02de  735  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5
+-- !pos -190 -3 97 230
+-- csid: 52  732  733  734  735  736  737  738  739  740  741
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -------------------------------------
@@ -15,9 +14,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,15 +35,11 @@ function onTrade(player,npc,trade)
         if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_1") == 2) then
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
-end
-
------------------------------------
--- onTrigger Action
------------------------------------
+end;
 
 function onTrigger(player,npc)
     local blood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD);
@@ -69,29 +61,18 @@ function onTrigger(player,npc)
     end
 
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 732 and option == 1) then
         player:addQuest(SANDORIA,SIGNED_IN_BLOOD);
 
     elseif (csid == 736) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:delKeyItem(TORN_OUT_PAGES);
+            player:delKeyItem(dsp.ki.TORN_OUT_PAGES);
             player:addItem(14760,1);
             player:messageSpecial(ITEM_OBTAINED,14760);
             player:addFame(SANDORIA,30);

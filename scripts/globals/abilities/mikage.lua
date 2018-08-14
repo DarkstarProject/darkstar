@@ -5,21 +5,13 @@
 -- Recast Time: 1:00:00
 -- Duration: 45 seconds
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onAbilityCheck
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
-
------------------------------------
--- onUseAbility
------------------------------------
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    target:addStatusEffect(EFFECT_MIKAGE,0,0,45);
-end;
+    target:addStatusEffect(dsp.effect.MIKAGE,0,0,45)
+end

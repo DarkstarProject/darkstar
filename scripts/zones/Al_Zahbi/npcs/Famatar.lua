@@ -6,21 +6,13 @@
 -----------------------------------
 package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/besieged");
 require("scripts/zones/Al_Zahbi/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local merc_rank = getMercenaryRank(player);
@@ -38,38 +30,26 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 218 and option >= 1 and option <= 2049) then
         itemid = getISPItem(option);
         player:updateEvent(0,0,0,canEquip(player,itemid));
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 218) then
         if (option == 0 or option == 16 or option == 32 or option == 48) then -- player chose sanction.
             if (option ~= 0) then
                 player:delCurrency("imperial_standing", 100);
             end
 
-            player:delStatusEffect(EFFECT_SIGIL);
-            player:delStatusEffect(EFFECT_SANCTION);
-            player:delStatusEffect(EFFECT_SIGNET);
+            player:delStatusEffect(dsp.effect.SIGIL);
+            player:delStatusEffect(dsp.effect.SANCTION);
+            player:delStatusEffect(dsp.effect.SIGNET);
             local duration = getSanctionDuration(player);
             local subPower = 0; -- getImperialDefenseStats()
-            player:addStatusEffect(EFFECT_SANCTION,option / 16,0,duration,subPower); -- effect size 1 = regen, 2 = refresh, 3 = food.
+            player:addStatusEffect(dsp.effect.SANCTION,option / 16,0,duration,subPower); -- effect size 1 = regen, 2 = refresh, 3 = food.
             player:messageSpecial(SANCTION);
 
         elseif (option % 256 == 17) then -- player bought one of the maps

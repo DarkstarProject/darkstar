@@ -1,26 +1,17 @@
 -----------------------------------
 -- Area: Dynamis Windurst
--- NPC:  Haa Pevi the Stentorian
+--  NPC: Haa Pevi the Stentorian
 -- Boss Trigger for RDM NM
 -----------------------------------
-
------------------------------------
--- onMobSpawn Action
------------------------------------
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/globals/status");
 
 function onMobSpawn(mob)
+    mob:setLocalVar("mainSpec", dsp.jsa.ASTRAL_FLOW_MAAT)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
 

@@ -7,63 +7,44 @@
 package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/globals/missions");
+require("scripts/zones/Caedarva_Mire/MobIDs");
 require("scripts/globals/keyitems");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     if (player:hasCompletedMission(TOAU,LOST_KINGDOM)) then
-        if(player:hasKeyItem(EPHRAMADIAN_GOLD_COIN) == false) then
-            player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
-            player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
+        if (not player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
+            player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         end
     elseif (player:getCurrentMission(TOAU) == LOST_KINGDOM) then
-        if (player:hasKeyItem(VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
+        if (player:hasKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT) and player:getVar("AhtUrganStatus") == 0) then
             player:startEvent(8);
         elseif (player:getVar("AhtUrganStatus") == 1) then
-            if (GetMobAction(17101146) == 0) then
-                SpawnMob(17101146):updateEnmity(player);
+            if (not GetMobByID(JAZARAAT):isSpawned()) then
+                SpawnMob(JAZARAAT):updateEnmity(player);
             end
         elseif (player:getVar("AhtUrganStatus") == 2) then
             player:startEvent(9);
         elseif (player:getVar("AhtUrganStatus") == 3) then
             player:setVar("AhtUrganStatus", 0);
-            player:addKeyItem(EPHRAMADIAN_GOLD_COIN);
+            player:addKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
             player:completeMission(TOAU,LOST_KINGDOM);
             player:addMission(TOAU,THE_DOLPHIN_CREST);
-            player:messageSpecial(KEYITEM_OBTAINED,EPHRAMADIAN_GOLD_COIN);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EPHRAMADIAN_GOLD_COIN);
         else
             player:messageSpecial(JAZARAATS_HEADSTONE);
         end
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 8) then
         player:setVar("AhtUrganStatus", 1);
     elseif (csid == 9) then

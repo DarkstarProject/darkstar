@@ -1,52 +1,54 @@
 -----------------------------------
 -- Area: Castle Oztroja
---  MOB: Tzee Xicu the Manifest
+--   NM: Tzee Xicu the Manifest
+-- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/zones/Castle_Oztroja/TextIDs")
+require("scripts/globals/status")
+require("scripts/globals/titles")
+-----------------------------------
 
------------------------------------
--- onMobSpawn Action
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
------------------------------------
--- onMobEngaged
------------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
 
 function onMobEngaged(mob,target)
-    -- Needs to be zone wide message
-    -- mob:messagePublic(mob,YAGUDO_KING_ENGAGE);
-end;
+    mob:showText(mob, YAGUDO_KING_ENGAGE)
+end
 
------------------------------------
--- onMobDeath
------------------------------------
+function onAdditionalEffect(mob, player)
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS)
+    if resist <= 0.5 then
+        return 0,0,0
+    else
+        local duration = 60
+        local power = 20
+        duration = duration * resist
+        if not player:hasStatusEffect(dsp.effect.PARALYSIS) then
+            player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration)
+        end
+        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS
+    end
+end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(DEITY_DEBUNKER);
-    -- Needs to be zone wide message
-    -- mob:messagePublic(mob,YAGUDO_KING_DEATH);
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
+    player:addTitle(dsp.title.DEITY_DEBUNKER)
+    if isKiller then
+        mob:showText(mob, YAGUDO_KING_DEATH)
+    end
+end
 
 function onMobDespawn(mob)
+    -- reset hqnm system back to the nm placeholder
+    local nqId = mob:getID() - 3
+    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time() + 259200) -- 3 days
+    SetServerVariable("[PH]Tzee_Xicu_the_Manifest", 0)
+    DisallowRespawn(mob:getID(), true)
+    DisallowRespawn(nqId, false)
+    UpdateNMSpawnPoint(nqId)
+    GetMobByID(nqId):setRespawnTime(math.random(75600, 86400))
+end
 
-    -- Set Tzee_Xicu_the_Manifest's Window Open Time
-    SetServerVariable("[POP]Tzee_Xicu_the_Manifest", os.time() + 72 * 3600); -- 3 days
-
-    -- Set Yagudo_Avatar's spawnpoint and respawn time (21-24 hours)
-    SetServerVariable("[PH]Tzee_Xicu_the_Manifest", 0);
-    Yagudo_Avatar = 17396134;
-    DisallowRespawn(Yagudo_Avatar, false);
-    UpdateNMSpawnPoint(Yagudo_Avatar);
-    GetMobByID(Yagudo_Avatar):setRespawnTime(math.random(75600,86400));
-
-end;

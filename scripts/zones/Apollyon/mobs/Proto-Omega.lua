@@ -10,30 +10,18 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
-
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT,mob:getShortID());
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-    mob:setMod(MOD_UDMGPHYS, -75);
-    mob:setMod(MOD_UDMGRANGE, -75);
-    mob:setMod(MOD_UDMGMAGIC, 0);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    mob:setMod(dsp.mod.UDMGPHYS, -75);
+    mob:setMod(dsp.mod.UDMGRANGE, -75);
+    mob:setMod(dsp.mod.UDMGMAGIC, 0);
 end;
-
------------------------------------
--- onMobFight Action
------------------------------------
 
 function onMobFight(mob,target)
     local mobID = mob:getID();
@@ -46,9 +34,9 @@ function onMobFight(mob,target)
         mob:setLocalVar("form", currentForm)
         mob:AnimationSub(2);
         formTime = os.time() + 60;
-        mob:setMod(MOD_UDMGPHYS, 0);
-        mob:setMod(MOD_UDMGRANGE, 0);
-        mob:setMod(MOD_UDMGMAGIC, -75);
+        mob:setMod(dsp.mod.UDMGPHYS, 0);
+        mob:setMod(dsp.mod.UDMGRANGE, 0);
+        mob:setMod(dsp.mod.UDMGMAGIC, -75);
     end
 
     if (currentForm == 1) then
@@ -63,51 +51,39 @@ function onMobFight(mob,target)
 
         if (lifePercent < 30) then
             mob:AnimationSub(2);
-            mob:setMod(MOD_UDMGPHYS, -50);
-            mob:setMod(MOD_UDMGRANGE, -50);
-            mob:setMod(MOD_UDMGMAGIC, -50);
-            mob:addStatusEffect(EFFECT_REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(EFFECT_REGAIN):setFlag(32);
+            mob:setMod(dsp.mod.UDMGPHYS, -50);
+            mob:setMod(dsp.mod.UDMGRANGE, -50);
+            mob:setMod(dsp.mod.UDMGMAGIC, -50);
+            mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
+            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
             currentForm = 2;
             mob:setLocalVar("form", currentForm)
         end
     end
 end;
 
------------------------------------
--- onAdditionalEffect
------------------------------------
-
 function onAdditionalEffect(mob, player)
     local chance = 20; -- wiki lists ~20% stun chance
-    local resist = applyResistanceAddEffect(mob,player,ELE_THUNDER,EFFECT_STUN);
+    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.THUNDER,dsp.effect.STUN);
     if (math.random(0,99) >= chance or resist <= 0.5) then
         return 0,0,0;
     else
         local duration = 5 * resist;
-        if (player:hasStatusEffect(EFFECT_STUN) == false) then
-            player:addStatusEffect(EFFECT_STUN, 0, 0, duration);
+        if (player:hasStatusEffect(dsp.effect.STUN) == false) then
+            player:addStatusEffect(dsp.effect.STUN, 0, 0, duration);
         end
-        return SUBEFFECT_STUN, msgBasic.ADD_EFFECT_STATUS, EFFECT_STUN;
+        return dsp.subEffect.STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
     end
 end;
 
------------------------------------
--- onMobDeath
------------------------------------
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(APOLLYON_RAVAGER);
+    player:addTitle(dsp.title.APOLLYON_RAVAGER);
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     local mobX = mob:getXPos();
     local mobY = mob:getYPos();
     local mobZ = mob:getZPos();
     GetNPCByID(16932864+39):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+39):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+39):setStatus(dsp.status.NORMAL);
 end;

@@ -4,19 +4,19 @@
 -- Description: Inflicts Doom upon an enemy.
 -- Type: Magical (Dark)
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_DOOM;
+    local typeEffect = dsp.effect.DOOM
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 30));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 10, 3, 30))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

@@ -3,18 +3,14 @@
 --
 --
 -----------------------------------
-
+require("scripts/globals/gear_sets");
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/shop");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-require("scripts/globals/gear_sets");
-
------------------------------------
--- onGameIn
+require("scripts/globals/shop");
 -----------------------------------
 
 function onGameIn(player, firstlogin, zoning)
@@ -33,29 +29,29 @@ function onGameIn(player, firstlogin, zoning)
 
     if (player:getVar("GodMode") == 1) then
         -- Add bonus effects to the player..
-        player:addStatusEffect(EFFECT_MAX_HP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MAX_MP_BOOST,1000,0,0);
-        player:addStatusEffect(EFFECT_MIGHTY_STRIKES,1,0,0);
-        player:addStatusEffect(EFFECT_HUNDRED_FISTS,1,0,0);
-        player:addStatusEffect(EFFECT_CHAINSPELL,1,0,0);
-        player:addStatusEffect(EFFECT_PERFECT_DODGE,1,0,0);
-        player:addStatusEffect(EFFECT_INVINCIBLE,1,0,0);
-        player:addStatusEffect(EFFECT_ELEMENTAL_SFORZO,1,0,0);
-        player:addStatusEffect(EFFECT_MANAFONT,1,0,0);
-        player:addStatusEffect(EFFECT_REGAIN,300,0,0);
-        player:addStatusEffect(EFFECT_REFRESH,99,0,0);
-        player:addStatusEffect(EFFECT_REGEN,99,0,0);
+        player:addStatusEffect(dsp.effect.MAX_HP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MAX_MP_BOOST,1000,0,0);
+        player:addStatusEffect(dsp.effect.MIGHTY_STRIKES,1,0,0);
+        player:addStatusEffect(dsp.effect.HUNDRED_FISTS,1,0,0);
+        player:addStatusEffect(dsp.effect.CHAINSPELL,1,0,0);
+        player:addStatusEffect(dsp.effect.PERFECT_DODGE,1,0,0);
+        player:addStatusEffect(dsp.effect.INVINCIBLE,1,0,0);
+        player:addStatusEffect(dsp.effect.ELEMENTAL_SFORZO,1,0,0);
+        player:addStatusEffect(dsp.effect.MANAFONT,1,0,0);
+        player:addStatusEffect(dsp.effect.REGAIN,300,0,0);
+        player:addStatusEffect(dsp.effect.REFRESH,99,0,0);
+        player:addStatusEffect(dsp.effect.REGEN,99,0,0);
 
         -- Add bonus mods to the player..
-        player:addMod(MOD_RACC,2500);
-        player:addMod(MOD_RATT,2500);
-        player:addMod(MOD_ACC,2500);
-        player:addMod(MOD_ATT,2500);
-        player:addMod(MOD_MATT,2500);
-        player:addMod(MOD_MACC,2500);
-        player:addMod(MOD_RDEF,2500);
-        player:addMod(MOD_DEF,2500);
-        player:addMod(MOD_MDEF,2500);
+        player:addMod(dsp.mod.RACC,2500);
+        player:addMod(dsp.mod.RATT,2500);
+        player:addMod(dsp.mod.ACC,2500);
+        player:addMod(dsp.mod.ATT,2500);
+        player:addMod(dsp.mod.MATT,2500);
+        player:addMod(dsp.mod.MACC,2500);
+        player:addMod(dsp.mod.RDEF,2500);
+        player:addMod(dsp.mod.DEF,2500);
+        player:addMod(dsp.mod.MDEF,2500);
 
         -- Heal the player from the new buffs..
         player:addHP(50000);
@@ -70,10 +66,6 @@ function onGameIn(player, firstlogin, zoning)
     player:setLocalVar("ZoneInTime", os.time());
 end;
 
------------------------------------
--- CharCreate
------------------------------------
-
 function CharCreate(player)
     local race = player:getRace();
     local body = nil;
@@ -86,66 +78,66 @@ function CharCreate(player)
     {
         -- HUME MALE
         [1] = function (x)
-            body = 0x3157;
-            hand = 0x31D2;
-            leg = 0x3253;
-            feet = 0x32CD;
+            body = 12631;
+            hand = 12754;
+            leg = 12883;
+            feet = 13005;
         end,
 
         -- HUME FEMALE
         [2] = function (x)
-            body = 0x3158;
-            hand = 0x31D8;
-            leg = 0x3254;
-            feet = 0x32D2;
+            body = 12632;
+            hand = 12760;
+            leg = 12884;
+            feet = 13010;
         end,
 
         -- ELVAAN MALE
         [3] = function (x)
-            body = 0x3159;
-            hand = 0x31D3;
-            leg = 0x3255;
-            feet = 0x32CE;
+            body = 12633;
+            hand = 12755;
+            leg = 12885;
+            feet = 13006;
         end,
 
         -- ELVAAN FEMALE
         [4] = function (x)
-            body = 0x315A;
-            hand = 0x31D7;
-            leg = 0x3259;
-            feet = 0x32D3;
+            body = 12634;
+            hand = 12759;
+            leg = 12889;
+            feet = 13011;
         end,
 
         -- TARU MALE
         [5] = function (x)
-            body = 0x315B;
-            hand = 0x31D4;
-            leg = 0x3256;
-            feet = 0x32CF;
+            body = 12635;
+            hand = 12756;
+            leg = 12886;
+            feet = 13007;
         end,
 
         -- TARU FEMALE
         [6] = function (x)
-            body = 0x315B;
-            hand = 0x31D4;
-            leg = 0x3256;
-            feet = 0x32CF;
+            body = 12635;
+            hand = 12756;
+            leg = 12886;
+            feet = 13007;
         end,
 
         -- MITHRA
         [7] = function (x)
-            body = 0x315C;
-            hand = 0x31D5;
-            leg = 0x3257;
-            feet = 0x32D0;
+            body = 12636;
+            hand = 12757;
+            leg = 12887;
+            feet = 13008;
         end,
 
         -- GALKA
         [8] = function (x)
-            body = 0x315D;
-            hand = 0x31D6;
-            leg = 0x3258;
-            feet = 0x32D1;
+            body = 12637;
+            hand = 12758;
+            leg = 12888;
+            feet = 13009;
         end,
 
         default = function (x) end,
@@ -176,56 +168,56 @@ function CharCreate(player)
     switch(player:getMainJob()) : caseof
     {
         -- WARRIOR JOB
-        [0x01]= function (x)
-            if not(player:hasItem(0x4096)) then
-                player:addItem(0x4096);
+        [1]= function (x)
+            if not(player:hasItem(16534)) then
+                player:addItem(16534);
             end
         end,
 
         -- MONK JOB
-        [0x02]= function (x)
-            if not(player:hasItem(0x3380)) then
-                player:addItem(0x3380);
+        [2]= function (x)
+            if not(player:hasItem(13184)) then
+                player:addItem(13184);
             end
         end,
 
         -- WHITE MAGE
-        [0x03]= function(x)
-            if not(player:hasItem(0x42AC)) then
-                player:addItem(0x42AC);
+        [3]= function(x)
+            if not(player:hasItem(17068)) then
+                player:addItem(17068);
             end
 
-            if not(player:hasItem(0x1200)) then
-            player:addItem(0x1200);
+            if not(player:hasItem(4608)) then
+            player:addItem(4608);
             end
         end,
 
         -- BLACK MAGE
-        [0x04] = function(x)
+        [4] = function(x)
 
-            if not(player:hasItem(0x42D0)) then
-                player:addItem(0x42D0);
+            if not(player:hasItem(17104)) then
+                player:addItem(17104);
             end
 
-            if not(player:hasItem(0x11FF)) then
-                player:addItem(0x11FF);
+            if not(player:hasItem(4607)) then
+                player:addItem(4607);
             end
         end,
 
         -- RED MAGE
-        [0x05]= function (x)
-            if not(player:hasItem(0x4062)) then
-                player:addItem(0x4062);
+        [5]= function (x)
+            if not(player:hasItem(16482)) then
+                player:addItem(16482);
             end
-            if not(player:hasItem(0x11FE)) then
-                player:addItem(0x11FE);
+            if not(player:hasItem(4606)) then
+                player:addItem(4606);
             end
         end,
 
         -- THIEF
-        [0x06]= function (x)
-            if not(player:hasItem(0x4063)) then
-                player:addItem(0x4063);
+        [6]= function (x)
+            if not(player:hasItem(16483)) then
+                player:addItem(16483);
             end
         end,
 
@@ -238,25 +230,25 @@ function CharCreate(player)
         -- SANDY CITIZEN
         [0] = function (x)
             if ((race == 3) or (race == 4))
-                then player:addItem(0x34B7);
+                then player:addItem(13495);
             end;
-            player:addKeyItem(MAP_OF_THE_SAN_DORIA_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_SAN_DORIA_AREA);
         end,
 
         -- BASTOK CITIZEN
         [1] = function (x)
             if (((race == 1) or (race == 2) or (race == 8)))
-                then player:addItem(0x34B9);
+                then player:addItem(13497);
             end;
-            player:addKeyItem(MAP_OF_THE_BASTOK_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_BASTOK_AREA);
         end,
 
         -- WINDY CITIZEN
         [2] = function(x)
             if (((race == 5) or (race == 6) or (race == 7)))
-                then player:addItem(0x34B8);
+                then player:addItem(13496);
             end;
-            player:addKeyItem(MAP_OF_THE_WINDURST_AREA);
+            player:addKeyItem(dsp.ki.MAP_OF_THE_WINDURST_AREA);
         end,
 
         default = function (x) end,
@@ -320,10 +312,10 @@ function CharCreate(player)
     end
 
     -- ADD ADVENTURER COUPON
-    player:addItem(0x218);
+    player:addItem(536);
 
     --SET TITLE
-    player:addTitle(NEW_ADVENTURER);
+    player:addTitle(dsp.title.NEW_ADVENTURER);
 
     -- Needs Moghouse Intro
     player:setVar("MoghouseExplication",1);

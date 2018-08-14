@@ -3,16 +3,16 @@
 -- Equip: Twilight Cloak
 -- Able to cast "Impact"
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
 
-local body = target:getEquipID(SLOT_BODY);
+local body = target:getEquipID(dsp.slot.BODY)
 
     if (body == 11363) then
-        target:addSpell(503);
+        target:addSpell(503)
     else
-        target:delSpell(503);
+        target:delSpell(503)
     end
-end;
+end

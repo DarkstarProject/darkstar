@@ -6,32 +6,17 @@
 package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Riverne-Site_A01/TextIDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/status");
-
------------------------------------
---  onInitialize
 -----------------------------------
 
 function onInitialize(zone)
-    SetServerVariable("Heliodromos_ToD", (os.time() + math.random((43200), (54000))));
-    SetServerVariable("[NM]Carmine_Dobsonflies_Killed", 0);
 end;
-
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -43,38 +28,17 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- afterZoneIn
------------------------------------
-
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(EFFECT_LEVEL_RESTRICTION,40,0,0); -- LV40 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
     end
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

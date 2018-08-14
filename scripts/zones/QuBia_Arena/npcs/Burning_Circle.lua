@@ -36,10 +36,6 @@ require("scripts/zones/QuBia_Arena/TextIDs");
     -- 20: Those Who Lurk in the Shadows (III)
     -- 21: Beyond Infinity
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -48,13 +44,9 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    -- if (player:hasKeyItem(MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
+    -- if (player:hasKeyItem(dsp.ki.MARK_OF_SEED) and player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_II) then
         --player:startEvent(5);
     --elseif (EventTriggerBCNM(player,npc)) then
     -- Temp disabled pending fixes for the BCNM mobs.
@@ -64,10 +56,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

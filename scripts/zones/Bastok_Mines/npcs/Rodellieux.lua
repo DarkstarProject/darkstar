@@ -1,56 +1,35 @@
 -----------------------------------
 -- Area: Bastok_Mines
--- NPC: Rodellieux
--- Only sells when Bastok controlls Fauregandi Region
+--  NPC: Rodellieux
+-- Fauregandi Regional Merchant
 -----------------------------------
-
-require("scripts/globals/shop");
-require("scripts/globals/conquest");
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
-require("scripts/zones/Bastok_Mines/TextIDs");
-
+package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
 -----------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Bastok_Mines/TextIDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    RegionOwner = GetRegionOwner(FAUREGANDI);
-    if (RegionOwner ~= NATION_BASTOK) then 
-        player:showText(npc,RODELLIEUX_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.FAUREGANDI) ~= dsp.nation.BASTOK then
+        player:showText(npc, RODELLIEUX_CLOSED_DIALOG)
     else
-        player:showText(npc,RODELLIEUX_OPEN_DIALOG);
-        stock = {
-            0x11db,    90,   --Beaugreens
-            0x110b,    39,   --Faerie Apple
-            0x02b3,    54    --Maple Log
+        local stock =
+        {
+            4571,    90,    -- Beaugreens
+            4363,    39,    -- Faerie Apple
+            691,     54,     -- Maple Log
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, RODELLIEUX_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end; 
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

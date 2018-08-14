@@ -676,6 +676,7 @@ int32 doSynthFail(CCharEntity* PChar)
     uint8 invSlotID  = 0;
     uint8 nextSlotID = 0;
     uint8 lostCount  = 0;
+    uint8 totalCount = 0;
 
     double random   = 0;
     double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
@@ -701,6 +702,7 @@ int32 doSynthFail(CCharEntity* PChar)
             PChar->CraftContainer->setQuantity(slotID, 0);
             lostCount++;
         }
+        totalCount++;
 
         if(invSlotID != nextSlotID)
         {
@@ -709,6 +711,8 @@ int32 doSynthFail(CCharEntity* PChar)
             if (PItem != nullptr)
             {
                 PItem->setSubType(ITEM_UNLOCKED);
+                PItem->setReserve(PItem->getReserve() - totalCount);
+                totalCount = 0;
 
                 if(lostCount > 0)
                 {
@@ -806,7 +810,20 @@ int32 startSynth(CCharEntity* PChar)
         return 0;
     }
 
+    // Reserve the items after we know we have the right recipe
+    for (uint8 container_slotID = 0; container_slotID <= 8; ++container_slotID)
+    {
+        auto slotid = PChar->CraftContainer->getInvSlotID(container_slotID);
+        if (slotid != 0xFF)
+        {
+            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotid);
+            PItem->setReserve(PItem->getReserve() + 1);
+        }
+    }
+
     // удаляем кристалл
+    auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->CraftContainer->getInvSlotID(0));
+    PItem->setReserve(PItem->getReserve() - 1);
     charutils::UpdateItem(PChar, LOC_INVENTORY, PChar->CraftContainer->getInvSlotID(0), -1);
 
     uint8 result = calcSynthResult(PChar);
@@ -886,7 +903,9 @@ int32 doSynthResult(CCharEntity* PChar)
                     #ifdef _DSP_SYNTH_DEBUG_MESSAGES_
                     ShowDebug(CL_CYAN"Removing quantity %u from inventory slot %u\n" CL_RESET,removeCount,invSlotID);
                     #endif
-                    PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID)->setSubType(ITEM_UNLOCKED);
+                    auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
+                    PItem->setSubType(ITEM_UNLOCKED);
+                    PItem->setReserve(PItem->getReserve() - removeCount);
                     charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -(int32)removeCount);
                 }
                 invSlotID   = nextSlotID;

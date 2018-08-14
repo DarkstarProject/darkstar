@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Rahal
+--  NPC: Rahal
 -- Involved in Quests: The Holy Crest, Lure of the Wildcat (San d'Oria)
 -- !pos -28 0.1 -6 233
 -----------------------------------
 package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,14 +22,10 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local CrestProgress = player:getVar("TheHolyCrest_Event");
-    local RemedyKI = player:hasKeyItem(DRAGON_CURSE_REMEDY);
+    local RemedyKI = player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
     local Stalker_Quest = player:getQuestStatus(SANDORIA,KNIGHT_STALKER);
     local StalkerProgress = player:getVar("KnightStalker_Progress");
     local WildcatSandy = player:getVar("WildcatSandy");
@@ -46,7 +38,7 @@ function onTrigger(player,npc)
     elseif (CrestProgress == 5 and RemedyKI == true) then
         player:startEvent(122); -- Reminder to go to Gelsba
      -- Completed AF2, AF3 available, and currently on DRG.  No level check, since they cleared AF2.
-    elseif (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == JOBS.DRG) then
+    elseif (player:getQuestStatus(SANDORIA,CHASING_QUOTAS) == QUEST_COMPLETED and Stalker_Quest == QUEST_AVAILABLE and player:getMainJob() == dsp.job.DRG) then
         if (player:getVar("KnightStalker_Declined") == 0) then
             player:startEvent(121); -- Start AF3
         else
@@ -55,7 +47,7 @@ function onTrigger(player,npc)
     elseif Stalker_Quest == QUEST_ACCEPTED then
         if (StalkerProgress == 0) then
             player:startEvent(119); -- Reminder to go to Brugaire/Ceraulian
-        elseif (player:hasKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS) == true) then
+        elseif (player:hasKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) == true) then
             if (StalkerProgress == 1) then
                 player:startEvent(78); -- Reaction to challenge, go talk to Balasiel
             elseif (StalkerProgress == 2) then
@@ -77,26 +69,14 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 60) then
-        player:addKeyItem(DRAGON_CURSE_REMEDY);
-        player:messageSpecial(KEYITEM_OBTAINED, DRAGON_CURSE_REMEDY);
+        player:addKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DRAGON_CURSE_REMEDY);
     elseif (csid == 559) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",17,true);
     elseif (csid == 121) then
@@ -115,12 +95,12 @@ function onEventFinish(player,csid,option)
     elseif (csid == 118) then
         player:setVar("KnightStalker_Option2",0);
     elseif (csid == 106) then
-        if (player:hasKeyItem(CRYSTAL_DOWSER)) then
-            player:delKeyItem(CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
+        if (player:hasKeyItem(dsp.ki.CRYSTAL_DOWSER)) then
+            player:delKeyItem(dsp.ki.CRYSTAL_DOWSER); -- To prevent them getting a message about already having the keyitem
         else
             player:setVar("MissionStatus",2);
-            player:addKeyItem(CRYSTAL_DOWSER);
-            player:messageSpecial(KEYITEM_OBTAINED,CRYSTAL_DOWSER);
+            player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
+            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
         end
     end
 end;
@@ -131,7 +111,7 @@ end;
 -- 9 - Destin gives an address, Mission CS, Rahal appears
 -- 10 - Destin gives another speech, Mission CS, Claide reports on Rochefogne
 -- 100 - Destin speech, mission, Lightbringer
--- 106 - Take this CRYSTAL_DOWSER and go to Temple of Uggalepih
+-- 106 - Take this dsp.ki.CRYSTAL_DOWSER and go to Temple of Uggalepih
 -- 107 - Short version/reminder for 106
 -- 105 - Unable to locate Lightbringer, but Curilla found it
 -- 42 - Had my doubts about treasure, but Curilla found it.  Why was it on that island?

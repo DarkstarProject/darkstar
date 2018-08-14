@@ -47,7 +47,7 @@ function onTrigger(player, arg1, arg2)
     end;
 
     -- validate animationId
-    animationId = tonumber(animationId) or _G[string.upper(animationId)];
+    animationId = tonumber(animationId) or dsp.anim[string.upper(animationId)];
     if (animationId == nil or animationId < 0) then
         error(player, "Invalid animation ID.");
         return;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC:  Gulmama
+--  NPC: Gulmama
 -- Starts and Finishes Quest: Trial by Ice
 -- Involved in Quest: Class Reunion
 -- !pos -186 0 107 231
@@ -12,22 +12,15 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/zones/Northern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
-    local WhisperOfFrost = player:hasKeyItem(WHISPER_OF_FROST);
+    local WhisperOfFrost = player:hasKeyItem(dsp.ki.WHISPER_OF_FROST);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
@@ -40,11 +33,11 @@ function onTrigger(player,npc)
         player:startEvent(712,0,1171,0,0,0,0,0,0); -- lost the ice pendulum need another one
     ------------------------------------------------------------
     elseif ((TrialByIce == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 6) or (TrialByIce == QUEST_COMPLETED and realday ~= player:getVar("TrialByIce_date"))) then
-        player:startEvent(706,0,TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
-    elseif (TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then
-        player:startEvent(718,0,TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
+        player:startEvent(706,0,dsp.ki.TUNING_FORK_OF_ICE); -- Start and restart quest "Trial by ice"
+    elseif (TrialByIce == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE) == false and WhisperOfFrost == false) then
+        player:startEvent(718,0,dsp.ki.TUNING_FORK_OF_ICE); -- Defeat against Shiva : Need new Fork
     elseif (TrialByIce == QUEST_ACCEPTED and WhisperOfFrost == false) then
-        player:startEvent(707,0,TUNING_FORK_OF_ICE,4);
+        player:startEvent(707,0,dsp.ki.TUNING_FORK_OF_ICE,4);
     elseif (TrialByIce == QUEST_ACCEPTED and WhisperOfFrost) then
         local numitem = 0;
 
@@ -54,29 +47,17 @@ function onTrigger(player,npc)
         if (player:hasItem(1207)) then numitem = numitem + 8; end   -- Rust 'B' Gone
         if (player:hasSpell(302)) then numitem = numitem + 32; end  -- Ability to summon Shiva
 
-        player:startEvent(709,0,TUNING_FORK_OF_ICE,4,0,numitem);
+        player:startEvent(709,0,dsp.ki.TUNING_FORK_OF_ICE,4,0,numitem);
     else
         player:startEvent(710); -- Standard dialog
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 706 and option == 1) then
         if (player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then
@@ -84,11 +65,11 @@ function onEventFinish(player,csid,option)
         end
         player:addQuest(SANDORIA,TRIAL_BY_ICE);
         player:setVar("TrialByIce_date", 0);
-        player:addKeyItem(TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
+        player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
     elseif (csid == 718) then
-        player:addKeyItem(TUNING_FORK_OF_ICE);
-        player:messageSpecial(KEYITEM_OBTAINED,TUNING_FORK_OF_ICE);
+        player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
     elseif (csid == 709) then
         local item = 0;
         if (option == 1) then item = 17492;         -- Shiva's Claws
@@ -110,8 +91,8 @@ function onEventFinish(player,csid,option)
                 player:addItem(item);
                 player:messageSpecial(ITEM_OBTAINED,item); -- Item
             end
-            player:addTitle(HEIR_OF_THE_GREAT_ICE);
-            player:delKeyItem(WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
+            player:addTitle(dsp.title.HEIR_OF_THE_GREAT_ICE);
+            player:delKeyItem(dsp.ki.WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
             player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TRIAL_BY_ICE);

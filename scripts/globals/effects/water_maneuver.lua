@@ -4,31 +4,19 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:addMod(MOD_MND, effect:getPower())
+        pet:addMod(dsp.mod.MND, effect:getPower())
     end
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
     local pet = target:getPet()
     if (pet) then
-        pet:delMod(MOD_MND, effect:getPower())
+        pet:delMod(dsp.mod.MND, effect:getPower())
     end
-end;
+end

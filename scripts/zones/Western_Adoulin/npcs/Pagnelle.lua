@@ -1,27 +1,19 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Pagnelle
---  Type: Standard NPC and Quest NPC
---  Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
---  @zone 256
---  !pos -8 0 -100 256
+-- Type: Standard NPC and Quest NPC
+-- Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
+-- !pos -8 0 -100 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Raptor_Rapture = player:getQuestStatus(ADOULIN, RAPTOR_RAPTURE);
@@ -46,7 +38,7 @@ function onTrigger(player,npc)
             -- Progresses Quest: 'Raptor Rapture', spoke to Ilney.
             player:startEvent(5035);
         elseif (Raptor_Rapture_Status == 6) then
-            local Has_Rockberries = player:hasKeyItem(ROCKBERRY1) and player:hasKeyItem(ROCKBERRY2) and player:hasKeyItem(ROCKBERRY3)
+            local Has_Rockberries = player:hasKeyItem(dsp.ki.ROCKBERRY1) and player:hasKeyItem(dsp.ki.ROCKBERRY2) and player:hasKeyItem(dsp.ki.ROCKBERRY3)
             if (Has_Rockberries) then
                 -- Progresses Quest: 'Raptor Rapture', turning in rockberries.
                 player:startEvent(5037);
@@ -72,16 +64,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 5032) then
@@ -96,9 +80,9 @@ function onEventFinish(player,csid,option)
         player:setVar("Raptor_Rapture_Status", 6);
     elseif (csid == 5037) then
         -- Progresses Quest: 'Raptor Rapture', brought rockberries, now need to go to Rala.
-        player:delKeyItem(ROCKBERRY1);
-        player:delKeyItem(ROCKBERRY2);
-        player:delKeyItem(ROCKBERRY3);
+        player:delKeyItem(dsp.ki.ROCKBERRY1);
+        player:delKeyItem(dsp.ki.ROCKBERRY2);
+        player:delKeyItem(dsp.ki.ROCKBERRY3);
         player:setVar("Raptor_Rapture_Status", 7);
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'

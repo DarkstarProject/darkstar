@@ -1,44 +1,17 @@
 -----------------------------------
 -- Area: Abyssea - Grauberg
--- NPC: Dominion Sergeant
---
------------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/abyssea");
-require("scripts/zones/Abyssea-Grauberg/TextIDs");
-
------------------------------------
--- onTrade Action
+--  NPC: Dominion Sergeant
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
     player:startEvent(500)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

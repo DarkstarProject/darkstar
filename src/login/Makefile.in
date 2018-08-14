@@ -27,37 +27,37 @@ endif
 all: $(ALL_DEPENDS)
 
 clean :
-	rm -rf *.o ../../map-server@EXEEXT@
+    rm -rf *.o ../../map-server@EXEEXT@
 help:
 
 
 ifeq ($(HAVE_MYSQL),yes)
-	@echo "possible targets are 'all' 'clean' 'help'"
+    @echo "possible targets are 'all' 'clean' 'help'"
 else
-	@echo "Couldn't find mysql"
-	@exit 1
+    @echo "Couldn't find mysql"
+    @exit 1
 endif
-	@echo "'all'   - builds all above targets"
-	@echo "'clean' - cleans builds objects"
-	@echo "'help'  - outputs this message"
+    @echo "'all'   - builds all above targets"
+    @echo "'clean' - cleans builds objects"
+    @echo "'help'  - outputs this message"
 
 ############################################################################
 
 needs_mysql:
-	@echo "MySQL not found or disabled by the configure script"
-	@exit 1
+    @echo "MySQL not found or disabled by the configure script"
+    @exit 1
 
 
 server: obj_login server-login
 
 obj_login:
-	-mkdir obj_login
+    -mkdir obj_login
 server-login: $(LOGIN_OBJ) $(COMMON_OBJ) $(COMMON_H) obj_login/socket.o
-	@CXX@ @LDFLAGS@ -o ../../login-server@EXEEXT@ $(COMMON_OBJ) obj_login/socket.o $(LOGIN_OBJ) @LIBS@ @MYSQL_LIBS@ @LUA_LIBS@
+    @CXX@ @LDFLAGS@ -o ../../login-server@EXEEXT@ $(COMMON_OBJ) obj_login/socket.o $(LOGIN_OBJ) @LIBS@ @MYSQL_LIBS@ @LUA_LIBS@
 
 obj_login/socket.o: ../common/socket.cpp ../common/socket.h
-	@CXX@ -DdsTCPSERV @CXXFLAGS@ @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+    @CXX@ -DdsTCPSERV @CXXFLAGS@ @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
 
 obj_login/%.o: %.cpp
-	@CXX@ -DdsTCPSERV @CXXFLAGS@ @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+    @CXX@ -DdsTCPSERV @CXXFLAGS@ @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
 

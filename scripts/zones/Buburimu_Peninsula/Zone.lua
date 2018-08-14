@@ -4,20 +4,18 @@
 --
 -----------------------------------
 package.loaded[ "scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
-package.loaded["scripts/globals/chocobo_digging"] = nil;
 -----------------------------------
-
 require("scripts/zones/Buburimu_Peninsula/TextIDs");
+require("scripts/zones/Buburimu_Peninsula/MobIDs");
 require("scripts/globals/icanheararainbow");
-require("scripts/globals/zone");
-require("scripts/globals/conquest");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
+require("scripts/globals/zone");
+-----------------------------------
 
------------------------------------
--- Chocobo Digging vars
------------------------------------
-local itemMap = {
-                    -- itemid, abundance, requirement
+local itemMap =
+{
+    -- itemid, abundance, requirement
                     { 847, 45, DIGREQ_NONE },
                     { 887, 1, DIGREQ_NONE },
                     { 893, 53, DIGREQ_NONE },
@@ -29,6 +27,7 @@ local itemMap = {
                     { 641, 134, DIGREQ_NONE },
                     { 885, 12, DIGREQ_NONE },
                     { 4096, 100, DIGREQ_NONE },  -- all crystals
+                    { 1255, 10, DIGREQ_NONE }, -- all ores
                     { 845, 125, DIGREQ_BURROW },
                     { 843, 1, DIGREQ_BURROW },
                     { 844, 64, DIGREQ_BURROW },
@@ -47,29 +46,18 @@ local itemMap = {
                     { 4409, 12, DIGREQ_MODIFIER },
                     { 1188, 10, DIGREQ_MODIFIER },
                     { 4532, 12, DIGREQ_MODIFIER },
-                };
+};
 
 local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
------------------------------------
--- onChocoboDig
------------------------------------
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
------------------------------------
--- onInitialize
------------------------------------
-
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn( player, prevZone)
     local cs = -1;
@@ -86,32 +74,15 @@ function onZoneIn( player, prevZone)
 
     return cs;
 end;
------------------------------------
--- onConquestUpdate
------------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 5) then
@@ -123,13 +94,7 @@ function onEventUpdate( player, csid, option)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish( player, csid, option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 3) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     end

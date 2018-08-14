@@ -1,7 +1,7 @@
 -----------------------------------
---  Area: Davoi
---  NPC:  Lootblox
---  Type: Standard NPC
+-- Area: Davoi
+--  NPC: Lootblox
+-- Type: Standard NPC
 -- !pos 218.073 -0.982 -20.746 149
 -----------------------------------
 package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
@@ -23,26 +23,27 @@ local shop = {
     28, 1458, -- Mammoth Tusk
 }
 local maps = {
-    [MAP_OF_DYNAMIS_SANDORIA]   = 10000,
-    [MAP_OF_DYNAMIS_BASTOK]     = 10000,
-    [MAP_OF_DYNAMIS_WINDURST]   = 10000,
-    [MAP_OF_DYNAMIS_JEUNO]      = 10000,
-    [MAP_OF_DYNAMIS_BEAUCEDINE] = 15000,
-    [MAP_OF_DYNAMIS_XARCABARD]  = 20000,
-    [MAP_OF_DYNAMIS_VALKURM]    = 10000,
-    [MAP_OF_DYNAMIS_BUBURIMU]   = 10000,
-    [MAP_OF_DYNAMIS_QUFIM]      = 10000,
-    [MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
+    [dsp.ki.MAP_OF_DYNAMIS_SANDORIA]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BASTOK]     = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_WINDURST]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_JEUNO]      = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BEAUCEDINE] = 15000,
+    [dsp.ki.MAP_OF_DYNAMIS_XARCABARD]  = 20000,
+    [dsp.ki.MAP_OF_DYNAMIS_VALKURM]    = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_BUBURIMU]   = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_QUFIM]      = 10000,
+    [dsp.ki.MAP_OF_DYNAMIS_TAVNAZIA]   = 20000,
 }
+-----------------------------------
 
 function onTrade(player,npc,trade)
     local gil = trade:getGil();
     local count = trade:getItemCount();
 
-    if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+    if (player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND)) then
 
         -- buy prismatic hourglass
-        if (gil == PRISMATIC_HOURGLASS_COST and count == 1 and not player:hasKeyItem(PRISMATIC_HOURGLASS)) then
+        if (gil == PRISMATIC_HOURGLASS_COST and count == 1 and not player:hasKeyItem(dsp.ki.PRISMATIC_HOURGLASS)) then
             player:startEvent(134);
 
         -- return timeless hourglass for refund
@@ -70,13 +71,13 @@ function onTrade(player,npc,trade)
                     break;
                 end
             end
-            
+
         end
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(VIAL_OF_SHROUDED_SAND)) then
+    if (player:hasKeyItem(dsp.ki.VIAL_OF_SHROUDED_SAND)) then
         player:startEvent(133, currency[1], CURRENCY_EXCHANGE_RATE, currency[2], CURRENCY_EXCHANGE_RATE, currency[3], PRISMATIC_HOURGLASS_COST, TIMELESS_HOURGLASS, TIMELESS_HOURGLASS_COST);
     else
         player:startEvent(130);
@@ -98,11 +99,11 @@ function onEventUpdate(player,csid,option)
             player:updateEvent(unpack(shop,1,8));
         elseif (option == 3) then
             player:updateEvent(unpack(shop,9,14));
-            
+
         -- offer to trade down from a 10k
         elseif (option == 10) then
             player:updateEvent(currency[3], currency[2], CURRENCY_EXCHANGE_RATE);
-        
+
         -- main menu (param1 = dynamis map bitmask, param2 = gil)
         elseif (option == 11) then
             player:updateEvent(getDynamisMapList(player), player:getGil());
@@ -118,7 +119,7 @@ function onEventUpdate(player,csid,option)
                 player:messageSpecial(KEYITEM_OBTAINED, option);
             end
             player:updateEvent(getDynamisMapList(player),player:getGil());
-            
+
         end
     end
 end;
@@ -128,8 +129,8 @@ function onEventFinish(player,csid,option)
     -- bought prismatic hourglass
     if (csid == 134) then
         player:tradeComplete();
-        player:addKeyItem(PRISMATIC_HOURGLASS);
-        player:messageSpecial(KEYITEM_OBTAINED,PRISMATIC_HOURGLASS);
+        player:addKeyItem(dsp.ki.PRISMATIC_HOURGLASS);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PRISMATIC_HOURGLASS);
 
     -- refund timeless hourglass
     elseif (csid == 153) then
@@ -146,7 +147,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[2]);
             player:messageSpecial(ITEM_OBTAINED,currency[2]);
         end
-        
+
     -- hundos to 10k pieces
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
@@ -156,7 +157,7 @@ function onEventFinish(player,csid,option)
             player:addItem(currency[3]);
             player:messageSpecial(ITEM_OBTAINED,currency[3]);
         end
-        
+
     -- 10k pieces to hundos
     elseif (csid == 138) then
         local slotsReq = math.ceil(CURRENCY_EXCHANGE_RATE / 99);
@@ -186,5 +187,5 @@ function onEventFinish(player,csid,option)
         end
         player:setLocalVar("hundoItemBought", 0);
 
-   end
+    end
 end;

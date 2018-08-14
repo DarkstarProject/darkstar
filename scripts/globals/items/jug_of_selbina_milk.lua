@@ -1,23 +1,23 @@
 -----------------------------------------
 -- ID: 4378
 -- Item: Jug of Selbina Milk
--- Item Effect: regen: 1 HP/tick x 120sec, x 150sec w/ dream robe +1 
+-- Item Effect: regen: 1 HP/tick x 120sec, x 150sec w/ dream robe +1
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    if (not target:hasStatusEffect(EFFECT_REGEN)) then
-        if (target:getEquipID(SLOT_BODY) == 14520) then -- Dream Robe +1
-            target:addStatusEffect(EFFECT_REGEN,1,3,150);
+    if (not target:hasStatusEffect(dsp.effect.REGEN)) then
+        if (target:getEquipID(dsp.slot.BODY) == 14520) then -- Dream Robe +1
+            target:addStatusEffect(dsp.effect.REGEN,1,3,150)
         else
-            target:addStatusEffect(EFFECT_REGEN,1,3,120);
+            target:addStatusEffect(dsp.effect.REGEN,1,3,120)
         end
     else
-        target:messageBasic(msgBasic.NO_EFFECT);
+        target:messageBasic(dsp.msg.basic.NO_EFFECT)
     end
-end;
+end

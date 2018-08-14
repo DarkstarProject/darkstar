@@ -2,11 +2,7 @@
 -- Area: Shrine of Ru'Avitau
 --  MOB: Water Elemental
 -----------------------------------
-
 require("scripts/globals/groundsofvalor");
-
------------------------------------
--- onMobDeath
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,62 +1,38 @@
 -----------------------------------
 -- Area: Northern San d'Oria
--- NPC: Eugballion
+--  NPC: Eugballion
 -- Only sells when San d'Oria controlls Qufim Region
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/quests");
-require("scripts/globals/shop");
-
------------------------------------
--- onTrade Action
------------------------------------
+require("scripts/zones/Northern_San_dOria/TextIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-
-    -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
-            player:messageSpecial(FLYER_REFUSED);
-        end
+    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(FLYER_REFUSED)
     end
-    
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    
-    if (GetRegionOwner(QUFIMISLAND) ~= NATION_SANDORIA) then 
-        player:showText(npc,EUGBALLION_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.SANDORIA then
+        player:showText(npc, EUGBALLION_CLOSED_DIALOG)
     else
-        player:showText(npc,EUGBALLION_OPEN_DIALOG);
-        
-        local stock = {0x03ba,4121}        -- Magic Pot Shard
-                  
-        showShop(player,SANDORIA,stock);
-    end
-    
-end; 
+        local stock =
+        {
+            954, 4121,    -- Magic Pot Shard
+        }
 
------------------------------------
--- onEventUpdate
------------------------------------
+        player:showText(npc,EUGBALLION_OPEN_DIALOG)
+        dsp.shop.general(player, stock, SANDORIA)
+    end
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

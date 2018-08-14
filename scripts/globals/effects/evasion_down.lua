@@ -1,30 +1,30 @@
 -----------------------------------
 --
---  EFFECT_EVASION_DOWN
+-- dsp.effect.EVASION_DOWN
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_EVA,-effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    if (target:getMod(dsp.mod.EVA) - effect:getPower() < 0) then
+        effect:setPower(target:getStat(dsp.mod.EVA))
+    end
+    target:addMod(dsp.mod.EVA,-effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+    -- Only Feint uses the tick, restore 10 evasion every tick
+    local evaDownAmt = effect:getPower()
+    if (evaDownAmt > 0) then
+        effect:setPower(evaDownAmt - 10)
+        target:delMod(dsp.mod.EVA, -10)
+    end
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_EVA,-effect:getPower());
-end;
+    local evaDownAmt = effect:getPower()
+    if (evaDownAmt > 0) then
+        target:delMod(dsp.mod.EVA,-effect:getPower())
+    end
+end

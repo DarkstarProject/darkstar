@@ -6,24 +6,24 @@
 -- Range: Single gaze
 -- Notes: Nightmare Cockatrice extends this to a fan-shaped AOE.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/zone");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/zone")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (target:getCurrentRegion() == REGION_TAVNAZIA) then
-        return 0;
+    if (target:getCurrentRegion() == dsp.region.TAVNAZIANARCH) then
+        return 0
     end
 
-    return 1;
-end;
+    return 1
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 25));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 25))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

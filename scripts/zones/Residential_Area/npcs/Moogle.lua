@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Residential Area
--- NPC:  Moogle
+--  NPC: Moogle
 -- Defunct Script - Should not be called by anything anymore
 -- Moogle scripts are in each zone, calling a function from moghouse.lua
 -----------------------------------
@@ -15,13 +15,9 @@ function onTrigger(player,npc)
 end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid)
-    -- printf("RESULT: %u",option)
     moogleEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid)
-    -- printf("RESULT: %u",option)
     moogleEventFinish(player,csid,option)
 end

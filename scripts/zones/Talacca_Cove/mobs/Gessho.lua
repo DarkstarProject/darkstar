@@ -2,33 +2,10 @@
 -- Area: Talacca Cove
 -- MOB: Gessho
 -----------------------------------
-
-package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/status");
-require("scripts/zones/Talacca_Cove/TextIDs");
-
------------------------------------
--- onMobInitialize Action
------------------------------------
-
-function onMobInitialize(mob)
-end;
-
------------------------------------
--- onMobEngaged Action
------------------------------------
-
-function onMobEngaged(mob,target)
-end;
-
------------------------------------
--- onMobFight Action
------------------------------------
+require("scripts/zones/Talacca_Cove/MobIDs");
 
 function onMobFight(mob,target)
-    if(mob:getID() == 17010725) then
+    if(mob:getID() == GESSHO) then
         local chance = math.random(1,100);
 
         if (chance == 50) then
@@ -48,31 +25,6 @@ function onMobFight(mob,target)
         end
     end
 end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
-
-function onSpellPrecast(mob, spell)
-end;
-
------------------------------------
--- onSpellPrecast
------------------------------------
-
-function onMonsterMagicPrepare(mob, target)
-end;
-
------------------------------------
--- onMobDespawn
------------------------------------
-
-function onMobDespawn(mob, player, isKiller)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

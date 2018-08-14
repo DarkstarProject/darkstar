@@ -1,28 +1,16 @@
 -----------------------------------
 --
--- EFFECT_PROWESS : Treasure Hunter bonus
+-- dsp.effect.PROWESS : Treasure Hunter bonus
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_TREASURE_HUNTER, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.TREASURE_HUNTER, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_TREASURE_HUNTER, effect:getPower());
-end;
+    target:delMod(dsp.mod.TREASURE_HUNTER, effect:getPower())
+end

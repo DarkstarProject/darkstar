@@ -12,37 +12,37 @@ require("scripts/globals/crafting");
 
 local keyitems = {
     [0] = {
-        id = ANIMA_SYNTHESIS,
+        id = dsp.ki.ANIMA_SYNTHESIS,
         rank = 3,
         cost = 20000
     },
     [1] = {
-        id = ALCHEMIC_PURIFICATION,
+        id = dsp.ki.ALCHEMIC_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = ALCHEMIC_ENSORCELLMENT,
+        id = dsp.ki.ALCHEMIC_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [3] = {
-        id = TRITURATION,
+        id = dsp.ki.TRITURATION,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = CONCOCTION,
+        id = dsp.ki.CONCOCTION,
         rank = 3,
         cost = 20000
     },
     [5] = {
-        id = IATROCHEMISTRY,
+        id = dsp.ki.IATROCHEMISTRY,
         rank = 3,
         cost = 10000
     },
     [6] = {
-        id = WAY_OF_THE_ALCHEMIST,
+        id = dsp.ki.WAY_OF_THE_ALCHEMIST,
         rank = 9,
         cost = 20000
     }
@@ -91,41 +91,21 @@ local items = {
     }
 };
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
     unionRepresentativeTrade(player, npc, trade, 207, 7);
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     unionRepresentativeTrigger(player, 7, 206, "guild_alchemy", keyitems);
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 206) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 206) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
     elseif (csid == 207) then

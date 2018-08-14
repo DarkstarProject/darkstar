@@ -1,15 +1,11 @@
 -----------------------------------
---  Area: Ranguemont Pass
---  NPC:  Perchond
+-- Area: Ranguemont Pass
+--  NPC: Perchond
 -- !pos -182.844 4 -164.948 166
 -----------------------------------
 package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,10 +19,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     local SinHunting = player:getVar("sinHunting");    -- RNG AF1
@@ -38,29 +30,17 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    --printf("CSID: %u",csid);
-    --printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 3) then
         player:setVar("sinHunting",2);
     elseif (csid == 5) then
         player:tradeComplete();
-        player:addKeyItem(PERCHONDS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
+        player:addKeyItem(dsp.ki.PERCHONDS_ENVELOPE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
 

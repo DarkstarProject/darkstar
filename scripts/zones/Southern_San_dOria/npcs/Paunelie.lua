@@ -1,53 +1,32 @@
 -----------------------------------
---  Area: Port Bastok
+-- Area: Southern San d'Oria
 --  NPC: Ilita
---  Linkshell merchant
+--  Linkshell Merchant
 -- !pos -142 -1 -25 236
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
 -----------------------------------
+require("scripts/zones/Southern_San_dOria/TextIDs")
+require("scripts/globals/shop")
 
-require("scripts/globals/shop");
-require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onTrade
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
-
------------------------------------
--- onTrigger
------------------------------------
+end
 
 function onTrigger(player,npc)
+    local stock =
+    {
+        512,  8000,    -- Linkshell
+        16285, 375,    -- Pendant Compass
+    }
 
-player:showText(npc,PAUNELIE_SHOP_DIALOG,513);
-
-stock =
-{
-    0x0200,8000, -- Linkshell
-    0x3f9d,375   -- Pendant Compass
-}
-showShop(player, STATIC, stock);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:showText(npc, PAUNELIE_SHOP_DIALOG, 513)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 

@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_SHELL
+-- dsp.effect.SHELL
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(MOD_DMGMAGIC,-effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+   target:addMod(dsp.mod.DMGMAGIC,-effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-   target:delMod(MOD_DMGMAGIC,-effect:getPower());
-end;
+   target:delMod(dsp.mod.DMGMAGIC,-effect:getPower())
+end

@@ -1,4 +1,5 @@
-require("scripts/globals/log_ids");
+require("scripts/globals/log_ids")
+require("scripts/globals/zone")
 
 dsp = dsp or {}
 dsp.quests = dsp.quests or {}
@@ -203,14 +204,6 @@ dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, quest
     end
     return dsp.quests.check(entity, params)
 end
-
------------------------------------
---  Nation IDs
------------------------------------
-
-NATION_SANDORIA = 0;
-NATION_BASTOK   = 1;
-NATION_WINDURST = 2;
 
 -----------------------------------
 --
@@ -443,7 +436,7 @@ CATCH_IT_IF_YOU_CAN             = 21; -- + --
 ALL_AT_SEA                      = 23;
 THE_ALL_NEW_C_2000              = 24; -- ± --
 MIHGO_S_AMIGO                   = 25; -- + --
-ROCK_RACKETTER                  = 26; -- + --
+ROCK_RACKETEER                  = 26; -- + --
 CHOCOBILIOUS                    = 27; -- + --
 TEACHER_S_PET                   = 28; -- + --
 REAP_WHAT_YOU_SOW               = 29; -- + --
@@ -834,7 +827,7 @@ ROCK_BOTTOM                     = 20;
 BEGINNINGS                      = 21;
 OMENS                           = 22;
 TRANSFORMATIONS                 = 23;
-EQUIPED_FOR_ALL_OCCASIONS       = 24; -- + --
+EQUIPPED_FOR_ALL_OCCASIONS      = 24; -- + --
 NAVIGATING_THE_UNFRIENDLY_SEAS  = 25; -- + --
 AGAINST_ALL_ODDS                = 26;
 THE_WAYWARD_AUTOMATION          = 27;

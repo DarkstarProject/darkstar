@@ -2,42 +2,38 @@
 -- Horrid Roar (Tiamat, Jormungand, Vrtra, Ouryu)
 -- Dispels all buffs including food. Lowers Enmity.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:hasStatusEffect(EFFECT_MIGHTY_STRIKES)) then
-        return 1;
-    elseif (mob:hasStatusEffect(EFFECT_INVINCIBLE)) then
-        return 1;
-    elseif (mob:hasStatusEffect(EFFECT_BLOOD_WEAPON)) then
-        return 1;
+    if (mob:hasStatusEffect(dsp.effect.MIGHTY_STRIKES)) then
+        return 1
+    elseif (mob:hasStatusEffect(dsp.effect.INVINCIBLE)) then
+        return 1
+    elseif (mob:hasStatusEffect(dsp.effect.BLOOD_WEAPON)) then
+        return 1
     elseif (target:isBehind(mob, 48) == true) then
-        return 1;
+        return 1
     elseif (mob:AnimationSub() == 1) then
-        return 1;
+        return 1
     end
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelAllStatusEffect(bit.bor(EFFECTFLAG_DISPELABLE, EFFECTFLAG_FOOD));
+    local dispel =  target:dispelAllStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD))
 
     if (dispel == 0) then
         -- no effect
-        skill:setMsg(msgBasic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT) -- no effect
     else
-        skill:setMsg(msgBasic.DISAPPEAR_NUM);
+        skill:setMsg(dsp.msg.basic.DISAPPEAR_NUM)
     end
 
-    mob:lowerEnmity(target, 70);
+    mob:lowerEnmity(target, 70)
 
-    if (mob:getName() == "Jormungand" and mob:getHPP() <= 30 and mob:actionQueueAbility() == false) then
-        mob:useMobAbility(1296);
-    end
-
-    return dispel;
+    return dispel
 end

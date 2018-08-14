@@ -5,10 +5,10 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    local effect = EFFECT_ENBLIZZARD;
-    doEnspell(target,target,nil,effect);
-end;
+    local effect = dsp.effect.ENBLIZZARD
+    doEnspell(target,target,nil,effect)
+end

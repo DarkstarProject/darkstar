@@ -1,26 +1,18 @@
 -----------------------------------
 -- Area: North Gustaberg (S) (F-8)
--- NPC: ???
+--  NPC: ???
 -- Involved in Quests
 -- !pos -232 41 425
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
-
 require("scripts/globals/quests");
 require("scripts/zones/North_Gustaberg_[S]/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -29,16 +21,10 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 3) then
         player:setVar("BetterPartOfValProg",2);

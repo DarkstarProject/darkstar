@@ -2,27 +2,16 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Marquis Gamygyn
 -----------------------------------
-
 require("scripts/globals/dynamis");
 require("scripts/zones/Dynamis-Xarcabard/TextIDs");
-
------------------------------------
--- onMobEngaged
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobEngaged(mob,target)
 end;
 
------------------------------------
--- onMobFight Action
------------------------------------
-
 function onMobFight(mob,target)
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 

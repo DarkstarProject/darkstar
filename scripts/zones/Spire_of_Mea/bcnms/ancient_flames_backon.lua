@@ -15,13 +15,13 @@ require("scripts/zones/Spire_of_Mea/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -46,16 +46,16 @@ function onBcnmLeave(player,instance,leavecode)
     -- printf("leavecode: %u",leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then    
-            if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then 
+        if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
+            if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then
                 player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,3);
-            elseif (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_DEM)) then 
-                player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,2); 
+            elseif (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then
+                player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,2);
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
-            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,1); 
+            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,0,1);
         else
-            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help 
+            player:startEvent(32001,0,0,0,instance:getTimeInside(),0,0,1); -- can't tell which cs is playing when you're doing it again to help
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -74,20 +74,20 @@ function onEventFinish(player,csid,option)
     
         if (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
     
-            if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM)) then
+            if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM)) then
                 player:addExp(1500);
-                player:addKeyItem(LIGHT_OF_MEA);
-                player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
+                player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
+                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
                 player:completeMission(COP,THE_MOTHERCRYSTALS);
                 player:setVar("PromathiaStatus",0)
                 player:addMission(COP,AN_INVITATION_WEST);
-                player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_LUFAISE,0,1);
-            elseif (not(player:hasKeyItem(LIGHT_OF_MEA))) then
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.LUFAISE,0,1);
+            elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
                 player:setVar("cspromy3",1)
-                player:addKeyItem(LIGHT_OF_MEA);
+                player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
                 player:addExp(1500);
-                player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
-                player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
+                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
+                player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMMEA,0,1);
             end
         
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
@@ -96,12 +96,12 @@ function onEventFinish(player,csid,option)
             player:addMission(COP,THE_MOTHERCRYSTALS)
             player:setVar("cspromy2",1)
             player:setVar("PromathiaStatus",0)
-            player:addKeyItem(LIGHT_OF_MEA);
-            player:messageSpecial(CANT_REMEMBER,LIGHT_OF_MEA);
-            player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
-        else    
+            player:addKeyItem(dsp.ki.LIGHT_OF_MEA);
+            player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_MEA);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMMEA,0,1);
+        else
             player:addExp(1500);
-            player:addStatusEffectEx(EFFECT_TELEPORT,0,TELEPORT_EXITPROMMEA,0,1);
+            player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMMEA,0,1);
         end
     end
 end;

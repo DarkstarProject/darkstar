@@ -23,6 +23,8 @@ CREATE TABLE IF NOT EXISTS `item_latents` (
 
 -- INSERT INTO `item_latents` VALUES(itemID, modId, modValue, latentId, latentParam);
 
+INSERT INTO `item_latents` VALUES(10737, 63, 10, 13, 64); -- Abyss Sollerets +2, Enhances "Last Resort" effect
+
 -- -------------------------------------------------------
 -- Oneiros Ring
 -- -------------------------------------------------------
@@ -48,6 +50,10 @@ INSERT INTO `item_latents` VALUES(13870, 14, 14, 49, 4596); -- CHR +14
 
 INSERT INTO `item_latents` VALUES(14725, 68, 5, 25, 0); -- Melody Earring, EVA+5 song/roll active
 INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EVA+6 song/roll active
+
+INSERT INTO `item_latents` VALUES(15139, 63, 10, 13, 64); -- Abyss Sollerets, Enhances "Last Resort" effect
+INSERT INTO `item_latents` VALUES(15672, 63, 10, 13, 64); -- Abyss Sollerets +1, Enhances "Last Resort" effect
+
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
 INSERT INTO `item_latents` VALUES(16029, 2, 10, 22, 16); -- Booster Earring, HP+10 if BLU is in party
@@ -89,6 +95,9 @@ INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0); -- Orphic Egg, ACC+1 son
 INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0); -- Orphic Egg, ATT+1 song/roll active
 INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0); -- Orphic Egg, EVA+1 song/roll active
 INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 474 (504 - 30) song/roll active
+
+INSERT INTO `item_latents` VALUES(27342, 63, 10, 13, 64); -- Fallen's Sollerets, "Last Resort"+1
+INSERT INTO `item_latents` VALUES(27343, 63, 10, 13, 64); -- Fallen's Sollerets +1, "Last Resort"+1
 
 INSERT INTO `item_latents` VALUES(28235,169,25,26,2);      -- Hachiya Kyahan: Dusk to dawn: Movement speed +25%
 INSERT INTO `item_latents` VALUES(28256,169,25,26,2);      -- Hachiya Kyahan +1: Dusk to dawn: Movement speed +25%
@@ -594,7 +603,12 @@ INSERT INTO `item_latents` VALUES(15174, 25, 12, 10, 0);
 INSERT INTO `item_latents` VALUES(15174, 384, 40, 10, 0);
 INSERT INTO `item_latents` VALUES(15174,370,-100,10,0);
 
-INSERT INTO `item_latents` VALUES(15532, 370, 1, 12, 3);
+-- -------------------------------------------------------
+-- Shark Necklace
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(15532, 369, -3, 56, 2); -- Has a hidden effect of draining 3 MP/tick while weapon is drawn.
+INSERT INTO `item_latents` VALUES(15532, 370, 1, 56, 2); -- Latent Effect is triggered when the player's weapon is drawn and has more than 2 MP.
+
 
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 368);
 INSERT INTO `item_latents` VALUES(19120, 25, 6, 13, 369);
@@ -1298,7 +1312,7 @@ INSERT INTO `item_latents` VALUES(16058, 161, -1, 52, 7); -- physical damage -2%
 -- -------------------------------------------------------
 -- Aesir Ear Pendant
 -- -------------------------------------------------------
--- NEED modID# INSERT INTO `item_latents` VALUES(16057, ??, 6, ??, 0); -- conserve tp+6 during dark weather
+-- NEED modID# INSERT INTO `item_latents` VALUES(16057, ??, 6, 52, 8); -- conserve tp+6 during dark weather
 
 -- -------------------------------------------------------
 -- Fatality Belt
@@ -2684,27 +2698,27 @@ INSERT INTO `item_latents` VALUES(16251, 71, 3, 52, 1); -- Healing MP +3 in Fire
 -- -------------------------------------------------------
 -- Haraldr's Muffler
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(16280, 73, 4, 52, 5); -- cumulative Store TP +5 in Ice weather
+INSERT INTO `item_latents` VALUES(16280, 73, 4, 52, 2); -- cumulative Store TP +5 in Ice weather
 
 -- -------------------------------------------------------
 -- Wurger
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(19222, 24, 3, 52, 3); -- Ranged attack +3 in Water weather
+INSERT INTO `item_latents` VALUES(19222, 24, 3, 52, 6); -- Ranged attack +3 in Water weather
 
 -- -------------------------------------------------------
 -- Rain Hat
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15220, 370, 1, 52, 3); -- Regen 1HP/tick in Water weather
+INSERT INTO `item_latents` VALUES(15220, 370, 1, 52, 6); -- Regen 1HP/tick in Water weather
 
 -- -------------------------------------------------------
 -- Tempest Belt
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15946, 384, 61, 52, 4); -- Haste +6% in Wind weather
+INSERT INTO `item_latents` VALUES(15946, 384, 61, 52, 3); -- Haste +6% in Wind weather
 
 -- -------------------------------------------------------
 -- Raikiri
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(17814, 23, 10, 52, 6); -- Attack +10 in Thunder weather
+INSERT INTO `item_latents` VALUES(17814, 23, 10, 52, 5); -- Attack +10 in Thunder weather
 
 -- -------------------------------------------------------
 -- Desert Boots
@@ -2721,12 +2735,12 @@ INSERT INTO `item_latents` VALUES(15760, 28, 4, 28, 0); -- Firesday: MATT +4
 -- -------------------------------------------------------
 -- Monsoon equips
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13875, 68, 8, 52, 3); -- Jinpachi: Evasion +8 in Water weather
-INSERT INTO `item_latents` VALUES(14122, 68, 8, 52, 3); -- Kyahan: Evasion +8 in Water weather
-INSERT INTO `item_latents` VALUES(14005, 25, 8, 52, 3); -- Tekko: Accuracy +8 in Water weather
-INSERT INTO `item_latents` VALUES(14026, 25, 9, 52, 3); -- Hailstorm Tekko: Accuracy +9 in Water weather
-INSERT INTO `item_latents` VALUES(14027, 25, 10, 52, 3); -- Hailstorm Tekko +1: Accuracy +10 in Water weather
-INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 3); -- Spear: Accuracy +10 in Water weather
+INSERT INTO `item_latents` VALUES(13875, 68, 8, 52, 6); -- Jinpachi: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14122, 68, 8, 52, 6); -- Kyahan: Evasion +8 in Water weather
+INSERT INTO `item_latents` VALUES(14005, 25, 8, 52, 6); -- Tekko: Accuracy +8 in Water weather
+INSERT INTO `item_latents` VALUES(14026, 25, 9, 52, 6); -- Hailstorm Tekko: Accuracy +9 in Water weather
+INSERT INTO `item_latents` VALUES(14027, 25, 10, 52, 6); -- Hailstorm Tekko +1: Accuracy +10 in Water weather
+INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 6); -- Spear: Accuracy +10 in Water weather
 
 -- -------------------------------------------------------
 -- Rune equips
@@ -3078,3 +3092,10 @@ INSERT INTO `item_latents` VALUES(16756,68,20,31,0);
 -- Latent effect: STR+8
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(17810,8,8,6,1);
+
+-- -------------------------------------------------------
+-- Rollers Ring
+-- Latent effect: Refresh +1, Regain +10
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(11667, 369, 1, 57, 0); -- Rollers Ring Refresh +1 with Eleven COR Roll
+INSERT INTO `item_latents` VALUES(11667, 368, 10, 57, 0); -- Rollers Ring Regain +10 with Eleven COR Roll

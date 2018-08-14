@@ -1,46 +1,26 @@
 -----------------------------------
---  Area: Windurst Walls
---  NPC:  Seven of Diamonds
---  Type: Standard NPC
+-- Area: Windurst Walls
+--  NPC: Seven of Diamonds
+-- Type: Standard NPC
 -- !pos 6.612 -3.5 278.553 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-
------------------------------------
--- onTrade Action
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
-    if player:hasKeyItem(267) then
+    if player:hasKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE) then
         player:startEvent(390);
     else
         player:startEvent(264);
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 

@@ -1,13 +1,13 @@
 -----------------------------------------
--- ID: 5477
--- Warrior Die
--- Teaches the job ability Fighter's Roll
+-- ID: 5483
+-- Paladin Die
+-- Teaches the job ability Gallant's Roll
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(88);
-end;
+    return target:canLearnAbility(88)
+end
 
 function onItemUse(target)
-    target:addLearnedAbility(88);
-end;
+    target:addLearnedAbility(88)
+end

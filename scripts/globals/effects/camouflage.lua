@@ -1,30 +1,18 @@
 -----------------------------------
 --
---     EFFECT_CAMOUFLAGE
---     
+-- dsp.effect.CAMOUFLAGE
+--
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_ENMITY,-25);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ENMITY,-25)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_ENMITY,-25);
-end;
+    target:delMod(dsp.mod.ENMITY,-25)
+end

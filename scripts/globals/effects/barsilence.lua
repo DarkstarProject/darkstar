@@ -1,30 +1,18 @@
 -----------------------------------
 --
---  EFFECT_BARSILENCE
+-- dsp.effect.BARSILENCE
 --
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SILENCERES,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.SILENCERES,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SILENCERES,effect:getPower());
-end;
+    target:delMod(dsp.mod.SILENCERES,effect:getPower())
+end

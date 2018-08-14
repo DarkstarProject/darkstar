@@ -2,52 +2,28 @@
 -- Area: Buburimi Peninsula
 --  MOB: Wake Warder Wanda
 -----------------------------------
-
 require("scripts/globals/status");
-
------------------------------------
--- onMobInitialize Action
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_MAGIC_COOL, 50); -- just one spell to spam
-    mob:addMod(MOD_SILENCERES,20);
-    mob:addMod(MOD_BINDRES,20);
+    mob:setMobMod(dsp.mobMod.MAGIC_COOL, 50); -- just one spell to spam
+    mob:addMod(dsp.mod.SILENCERES,20);
+    mob:addMod(dsp.mod.BINDRES,20);
 end;
-
------------------------------------
--- onMobSpawn Action
------------------------------------
 
 function onMobSpawn(mob)
 end;
 
------------------------------------
--- onMobEngaged
------------------------------------
-
 function onMobEngaged(mob,target)
-    mob:setMod(MOD_REGAIN, 25);
+    mob:setMod(dsp.mod.REGAIN, 25);
 end;
-
------------------------------------
--- onMobDisengage
------------------------------------
 
 function onMobDisengage(mob)
-    mob:setMod(MOD_REGAIN,0);
+    mob:setMod(dsp.mod.REGAIN,0);
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
-
------------------------------------
--- onMobDespawn
------------------------------------
 
 function onMobDespawn(mob)
     UpdateNMSpawnPoint(mob:getID());

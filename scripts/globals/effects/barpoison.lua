@@ -1,28 +1,16 @@
 -----------------------------------
 --
---  EFFECT_BARPOISON
+-- dsp.effect.BARPOISON
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(MOD_POISONRES,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.POISONRES,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_POISONRES,effect:getPower());
-end;
+    target:delMod(dsp.mod.POISONRES,effect:getPower())
+end

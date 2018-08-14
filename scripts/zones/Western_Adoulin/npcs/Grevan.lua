@@ -1,23 +1,15 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Grevan
---  Type: Standard NPC and Quest NPC
---  Involved With Quest: 'Order Up'
---  @zone 256
---  !pos 50 0 6 256
+-- Type: Standard NPC and Quest NPC
+-- Involved With Quest: 'Order Up'
+-- !pos 50 0 6 256
 -----------------------------------
 require("scripts/globals/quests");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local Order_Up = player:getQuestStatus(ADOULIN, ORDER_UP);
@@ -42,16 +34,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 69) then

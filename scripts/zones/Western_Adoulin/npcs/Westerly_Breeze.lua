@@ -1,20 +1,16 @@
 -----------------------------------
---  Area: Western Adoulin
+-- Area: Western Adoulin
 --  NPC: Westerly Breeze
---  Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
---                                              'The Starving'
---                                              'Always More, Quoth the Ravenous'
---  @zone 256
---  !pos 62 32 123 256
+-- Type: Standard NPC and Quest Giver
+-- Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
+--                                             'The Starving'
+--                                             'Always More, Quoth the Ravenous'
+-- !pos 62 32 123 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/zones/Western_Adoulin/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -77,10 +73,6 @@ function onTrade(player,npc,trade)
     end
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local HS = player:getQuestStatus(ADOULIN, HUNGER_STRIKES);
     local TS = player:getQuestStatus(ADOULIN, THE_STARVING);
@@ -120,16 +112,8 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     if (csid == 2530) then

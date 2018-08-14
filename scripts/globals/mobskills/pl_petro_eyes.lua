@@ -5,24 +5,24 @@
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Single gaze
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId();
+    local mobSkin = mob:getModelId()
 
     if (mobSkin == 421) then
-        return 0;
+        return 0
     else
-        return 1;
+        return 1
     end
-end;
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 30));
-    return typeEffect;
-end;
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 1, 0, 30))
+    return typeEffect
+end

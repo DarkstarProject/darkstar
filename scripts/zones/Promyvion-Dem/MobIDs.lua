@@ -1,5 +1,5 @@
 -- [receptacle] = {group, numStrays, portal}
-MEMORY_RECEPTACLES = {
+DEM_MEMORY_RECEPTACLES = {
     [16850971] = {1, 3, 16851268},
     [16851025] = {2, 5, 16851272},
     [16851032] = {2, 5, 16851273},
@@ -14,7 +14,7 @@ MEMORY_RECEPTACLES = {
 }
 
 -- [memory stream] = {region, {list of events}}
-MEMORY_STREAMS = {
+DEM_MEMORY_STREAMS = {
     [11]        = { 157, -4,  -82,  161, 4,  -77, {46}},    -- floor 1 return
     [21]        = {-383, -4,   -2, -278, 4,    2, {41}},    -- floor 2 return
     [31]        = {-160, -4,  437, -157, 4,  441, {30}},    -- floor 3 return

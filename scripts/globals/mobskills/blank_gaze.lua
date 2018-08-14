@@ -4,19 +4,19 @@
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: Melee?
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = EFFECT_PARALYSIS;
+    local typeEffect = dsp.effect.PARALYSIS
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 35, 0, 60));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 35, 0, 60))
 
-    return typeEffect;
+    return typeEffect
 end

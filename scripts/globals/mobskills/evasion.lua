@@ -7,21 +7,21 @@
 -- Range: Self
 -- Notes: 25% Evasion Boost.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = 25;
-    local duration = 180;
+    local power = 25
+    local duration = 180
 
-    local typeEffect = EFFECT_EVASION_BOOST;
+    local typeEffect = dsp.effect.EVASION_BOOST
 
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration));
-    return typeEffect;
-end;
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 0, duration))
+    return typeEffect
+end

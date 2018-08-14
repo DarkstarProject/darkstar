@@ -5,24 +5,16 @@
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/zone");
 require("scripts/globals/settings");
 require("scripts/zones/Southern_San_dOria/TextIDs");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -45,21 +37,9 @@ function onZoneIn(player,prevZone)
     return cs;
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
     local regionID =region:GetRegionID();
@@ -67,30 +47,16 @@ function onRegionEnter(player,region)
         player:startEvent(758);
     end
 end;
------------------------------------
--- onRegionLeave
------------------------------------
 
 function onRegionLeave(player,region)
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 503) then
-        player:messageSpecial(ITEM_OBTAINED,0x218);
+        player:messageSpecial(ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);

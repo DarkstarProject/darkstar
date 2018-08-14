@@ -4,36 +4,21 @@
 -- Spawns Cirein-Croin
 -- !pos 39.146 -15.500 519.988 216
 -----------------------------------
-require("scripts/globals/abyssea");
-
------------------------------------
--- onTrade Action
+require("scripts/globals/abyssea")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    abysseaOnTrade(player,npc,trade);
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+    abysseaOnTrade(player,npc,trade)
+end
 
 function onTrigger(player,npc)
-    abysseaOnTrigger(player,npc);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    abysseaOnTrigger(player,npc)
+end
 
 function onEventUpdate(player,csid,option)
-    abysseaOnEventUpdate(player,csid,option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    abysseaOnEventUpdate(player,csid,option)
+end
 
 function onEventFinish(player,csid,option)
-    abysseaOnEventFinish(player,csid,option);
-end;
+    abysseaOnEventFinish(player,csid,option)
+end

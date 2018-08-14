@@ -1,50 +1,35 @@
 -----------------------------------
 -- Area: North Gustaberg
--- NPC: qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quest "The Siren's Tear"
 -- !pos 309.600, 2.600, 324.000 106 | DB start position
 -- !pos 290.000, 0.600, 332.100 106 | alternative start position
 -----------------------------------
 package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/zones/North_Gustaberg/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(10);
 end;
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
     if (csid == 10 and option == 0) then
-        local mainweapon = player:getEquipID(SLOT_MAIN);
-        local subweapon = player:getEquipID(SLOT_SUB);
+        local mainweapon = player:getEquipID(dsp.slot.MAIN);
+        local subweapon = player:getEquipID(dsp.slot.SUB);
 
         if (mainweapon == 0 and subweapon == 0) then
             local freeslots = player:getFreeSlotsCount();

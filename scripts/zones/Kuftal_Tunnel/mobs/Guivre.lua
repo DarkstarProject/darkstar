@@ -372,48 +372,26 @@ local path =
     107.542999, 0.261044, 3.065771
 };
 
------------------------------------
--- onMobSpawn
------------------------------------
-
 function onMobSpawn(mob)
     onMobRoam(mob);
 end;
 
------------------------------------
--- onPath
------------------------------------
-
 function onPath(mob)
-    pathfind.patrol(mob, path);
+    dsp.path.patrol(mob, path);
 end;
-
------------------------------------
--- onMobRoam
------------------------------------
 
 function onMobRoam(mob)
     -- move to start position if not moving
     if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path));
+        mob:pathThrough(dsp.path.first(path));
     end
 end;
-
------------------------------------
--- onMobDeath
------------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
------------------------------------
--- onMobDespawn
------------------------------------
-
 function onMobDespawn(mob)
-
     -- Set Guivre's spawnpoint and respawn time (18-24 hours)
     UpdateNMSpawnPoint(mob:getID());
     mob:setRespawnTime(math.random(64800,86400));
-
 end;

@@ -1,19 +1,15 @@
 -----------------------------------
 -- Area: Port Bastok
--- NPC:  Argus
+--  NPC: Argus
 -- Type: Mission Giver
 -- !pos 132.157 7.496 -2.187 236
 -----------------------------------
 package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/zones/Port_Bastok/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,13 +31,9 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_BASTOK) then
+    if (player:getNation() ~= dsp.nation.BASTOK) then
         player:startEvent(1003); -- For non-Bastokian
     else
         local CurrentMission = player:getCurrentMission(BASTOK);
@@ -60,29 +52,17 @@ function onTrigger(player,npc)
         elseif (CurrentMission ~= 255) then
             player:startEvent(1002); -- Have mission already activated
         else
-             local flagMission, repeatMission = getMissionMask(player);
-             player:startEvent(1001,flagMission,0,0,0,0,repeatMission); -- Mission List
+            local flagMission, repeatMission = getMissionMask(player);
+            player:startEvent(1001,flagMission,0,0,0,0,repeatMission); -- Mission List
         end
     end
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     finishMissionTimeline(player,1,csid,option);
 

@@ -1,9 +1,8 @@
 -----------------------------------
 -- Area: Windurst Walls
--- NPC: Ojha Rhawash
+--  NPC: Ojha Rhawash
 -- Starts and Finishes Quest: Flower Child
--- @zone 239
--- !pos -209 0 -134
+-- !pos -209 0 -134 239
 
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
@@ -12,10 +11,6 @@ require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 
@@ -72,33 +67,14 @@ itemQuality = 0;
 
 end;
 
-
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     player:startEvent(10000, 0, 239, 10);
 end;
 
-
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
-
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10000 and option == 3002) then
         player:tradeComplete();

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Aht Urhgan Whitegate
--- NPC:  Waoud
+--  NPC: Waoud
 -- Standard Info NPC
 -- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1)
 -- !pos 65 -6 -78 50
@@ -12,9 +12,6 @@ require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +24,6 @@ function onTrade(player,npc,trade)
         player:startEvent(67,StoneID); -- get the stone to Aydeewa
     end;
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL);
@@ -61,7 +54,7 @@ function onTrigger(player,npc)
 
     -- BEGINNINGS
     elseif (anEmptyVessel == QUEST_COMPLETED and beginnings == QUEST_AVAILABLE and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES
-            and player:getMainJob() == JOBS.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
+            and player:getMainJob() == dsp.job.BLU and player:getMainLvl() >= ADVANCED_JOB_LEVEL) then
         if (not divinationReady) then
             player:startEvent(63);
         elseif (player:needToZone()) then
@@ -70,11 +63,11 @@ function onTrigger(player,npc)
             player:startEvent(705,player:getGil()); -- start AF1 quest
         end;
     elseif (beginnings == QUEST_ACCEPTED) then
-        local brand1 = player:hasKeyItem(BRAND_OF_THE_SPRINGSERPENT);
-        local brand2 = player:hasKeyItem(BRAND_OF_THE_GALESERPENT);
-        local brand3 = player:hasKeyItem(BRAND_OF_THE_FLAMESERPENT);
-        local brand4 = player:hasKeyItem(BRAND_OF_THE_SKYSERPENT);
-        local brand5 = player:hasKeyItem(BRAND_OF_THE_STONESERPENT);
+        local brand1 = player:hasKeyItem(dsp.ki.BRAND_OF_THE_SPRINGSERPENT);
+        local brand2 = player:hasKeyItem(dsp.ki.BRAND_OF_THE_GALESERPENT);
+        local brand3 = player:hasKeyItem(dsp.ki.BRAND_OF_THE_FLAMESERPENT);
+        local brand4 = player:hasKeyItem(dsp.ki.BRAND_OF_THE_SKYSERPENT);
+        local brand5 = player:hasKeyItem(dsp.ki.BRAND_OF_THE_STONESERPENT);
         if (brand1 and brand2 and brand3 and brand4 and brand5) then
             player:startEvent(707); -- reward immortal's scimitar
         else
@@ -86,10 +79,6 @@ function onTrigger(player,npc)
         player:startEvent(61);
     end;
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- AN EMPTY VESSEL
@@ -134,10 +123,6 @@ function onEventUpdate(player,csid,option)
 
     end;
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- AN EMPTY VESSEL

@@ -134,6 +134,8 @@ INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (236,4,30,1);
+INSERT INTO `mob_family_mods` VALUES (481,41,988,1);
+INSERT INTO `mob_family_mods` VALUES (481,42,989,1);
 
 -- Adjust magic damage taken
 INSERT INTO `mob_family_mods` VALUES (4,389,-25,0);
@@ -209,11 +211,6 @@ INSERT INTO `mob_family_mods` VALUES (404,@roam_turns,3,1);
 INSERT INTO `mob_family_mods` VALUES (404,@roam_distance,15,1);
 INSERT INTO `mob_family_mods` VALUES (404,@roam_cool,35,1);
 INSERT INTO `mob_family_mods` VALUES (404,@roam_rate,30,1);
-
-INSERT INTO `mob_family_mods` VALUES (405,@roam_turns,3,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_distance,15,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_cool,35,1);
-INSERT INTO `mob_family_mods` VALUES (405,@roam_rate,30,1);
 
 -- Sheep
 INSERT INTO `mob_family_mods` VALUES (226,@roam_turns,5,1);

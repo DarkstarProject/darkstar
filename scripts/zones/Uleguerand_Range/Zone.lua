@@ -10,10 +10,8 @@ require("scripts/zones/Uleguerand_Range/MobIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/weather");
+require("scripts/globals/status");
 require("scripts/globals/zone");
-
------------------------------------
--- onInitialize
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,21 +19,9 @@ function onInitialize(zone)
     GetMobByID(JORMUNGAND):setRespawnTime(math.random(86400, 259200));
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = -1;
@@ -43,52 +29,32 @@ function onZoneIn(player,prevZone)
         player:setPos(363.025,16,-60,12);
     end
     if (player:getCurrentMission(COP) == DAWN and player:getVar("COP_louverance_story")== 1 ) then
-      cs=17;
+        cs=17;
     end
     return cs;
 end;
 
------------------------------------
--- onRegionEnter
------------------------------------
-
 function onRegionEnter(player,region)
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 17) then
         player:setVar("COP_louverance_story",2);
     end
 end;
 
------------------------------------
--- onZoneWeatherChange
------------------------------------
-
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(WATERFALL);
-    if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
-        if (waterfall:getAnimation() ~= 9) then
-            waterfall:setAnimation(9);
+    local waterfall = GetNPCByID(ULEGUERAND_WATERFALL);
+    if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
+        if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
+            waterfall:setAnimation(dsp.anim.CLOSE_DOOR);
         end
     else
-        if (waterfall:getAnimation() ~= 8) then
-            waterfall:setAnimation(8);
+        if (waterfall:getAnimation() ~= dsp.anim.OPEN_DOOR) then
+            waterfall:setAnimation(dsp.anim.OPEN_DOOR);
         end
     end
 end;

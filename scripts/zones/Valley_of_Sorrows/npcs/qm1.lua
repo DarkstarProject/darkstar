@@ -4,73 +4,37 @@
 -- Spawns Adamantoise or Aspidochelone
 -- !pos 0 0 -37 59
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
+package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onSpawn Action
+require("scripts/zones/Valley_of_Sorrows/TextIDs")
+require("scripts/zones/Valley_of_Sorrows/MobIDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onSpawn(npc)
-    if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
-        npc:setStatus(STATUS_DISAPPEAR);
+    if LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1 then
+        npc:setStatus(dsp.status.DISAPPEAR)
     end
-end;
-
------------------------------------
--- onTrade Action
------------------------------------
+end
 
 function onTrade(player,npc,trade)
-    local Adamantoise = GetMobAction(17301537);
-    local Aspidochelone = GetMobAction(17301538);
-
-    if ((Aspidochelone == ACTION_NONE or Aspidochelone == ACTION_SPAWN)
-    and (Adamantoise == ACTION_NONE or Adamantoise == ACTION_SPAWN)) then
-        -- Trade Clump of Blue Pondweed
-        if (trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_NQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17301537):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
-            end
-        -- Trade Clump of Red Pondweed
-        elseif (trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_HQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(17301538):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
-            end
+    if not GetMobByID(ADAMANTOISE):isSpawned() and not GetMobByID(ASPIDOCHELONE):isSpawned() then
+        if LandKingSystem_NQ ~= 0 and npcUtil.tradeHas(trade, 3343) and npcUtil.popFromQM(player, npc, ADAMANTOISE) then
+            player:confirmTrade()
+        elseif LandKingSystem_HQ ~= 0 and npcUtil.tradeHas(trade, 3344) and npcUtil.popFromQM(player, npc, ASPIDOCHELONE) then
+            player:confirmTrade()        
         end
     end
-
-end;
-
------------------------------------
--- onTrigger Action
------------------------------------
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+    player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

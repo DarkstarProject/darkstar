@@ -7,13 +7,9 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
-
------------------------------------
--- onMobDeathEx
 -----------------------------------
 
 function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
-
     -- Things that happen only to the person who landed killing blow
     if (isKiller == true) then
         -- DRK quest - Blade Of Darkness
@@ -21,7 +17,7 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
         local BladeofDeath = player:getQuestStatus(BASTOK, BLADE_OF_DEATH);
         local ChaosbringerKills = player:getVar("ChaosbringerKills");
         if (BladeofDarkness == QUEST_ACCEPTED or BladeofDeath == QUEST_ACCEPTED) then
-            if (player:getEquipID(SLOT_MAIN) == 16607 and isWeaponSkillKill == false) then
+            if (player:getEquipID(dsp.slot.MAIN) == 16607 and isWeaponSkillKill == false) then
                 if (ChaosbringerKills < 200) then
                     player:setVar("ChaosbringerKills", ChaosbringerKills + 1);
                 end
@@ -52,7 +48,9 @@ function lotteryPrimed(phList)
 end
 
 -- potential lottery placeholder was killed
-function phOnDespawn(ph,phList,chance,cooldown)
+function phOnDespawn(ph,phList,chance,cooldown,immediate)
+    if (type(immediate) ~= "boolean") then immediate = false; end
+
     local phId = ph:getID();
     local nmId = phList[phId];
     if (nmId ~= nil) then
@@ -66,7 +64,7 @@ function phOnDespawn(ph,phList,chance,cooldown)
                 DisallowRespawn(phId, true);
                 DisallowRespawn(nmId, false);
                 UpdateNMSpawnPoint(nmId);
-                nm:setRespawnTime(GetMobRespawnTime(phId));
+                nm:setRespawnTime(immediate and 1 or GetMobRespawnTime(phId)); -- if immediate is true, spawn the nm immediately (1ms) else use placeholder's timer
 
                 nm:addListener("DESPAWN", "DESPAWN_"..nmId, function(m)
                     -- on NM death, replace NM repop with PH repop
@@ -78,7 +76,10 @@ function phOnDespawn(ph,phList,chance,cooldown)
                     m:removeListener("DESPAWN_"..nmId);
                 end);
 
+                return true;
             end
         end
     end
+
+    return false;
 end

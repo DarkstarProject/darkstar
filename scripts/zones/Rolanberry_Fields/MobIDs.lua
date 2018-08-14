@@ -1,5 +1,5 @@
 -----------------------------------
---  Area: Rolanberry Fields (110)
+-- Area: Rolanberry Fields (110)
 -- Comments: -- posX, posY, posZ
 -- (Taken from 'mob_spawn_points' table)
 -----------------------------------
@@ -18,3 +18,4 @@ ELDRITCH_EDGE_PH =
 
 SILK_CATERPILLAR        = 17227782;
 SIMURGH                 = 17228242;
+CHUGLIX_BERRYPAWS       = 17228249;

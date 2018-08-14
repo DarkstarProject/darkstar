@@ -1,23 +1,19 @@
 -----------------------------------
 -- Area: Mhaura
--- NPC: Vera
+--  NPC: Vera
 -- Finishes Quest: The Old Lady
 -- !pos -49 -5 20 249
 -----------------------------------
 package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
 -----------------------------------
-
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/zones/Mhaura/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    local questStatus = player:getQuestStatus(OTHER_AREAS,THE_OLD_LADY);
+    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG,THE_OLD_LADY);
 
     if (questStatus == QUEST_ACCEPTED and trade:getItemCount() == 1) then
         local VeraOldLadyVar = player:getVar("VeraOldLadyVar");
@@ -32,15 +28,11 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
-    local questStatus = player:getQuestStatus(OTHER_AREAS, THE_OLD_LADY);
+    local questStatus = player:getQuestStatus(OTHER_AREAS_LOG, THE_OLD_LADY);
 
-    if (player:getQuestStatus(OTHER_AREAS, ELDER_MEMORIES) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG, ELDER_MEMORIES) ~= QUEST_AVAILABLE) then
         player:startEvent(130);
     elseif (questStatus == QUEST_COMPLETED) then
         player:startEvent(138);
@@ -63,25 +55,15 @@ function onTrigger(player,npc)
 
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 131 and option == 40) then
-        player:addQuest(OTHER_AREAS, THE_OLD_LADY);
+        player:addQuest(OTHER_AREAS_LOG, THE_OLD_LADY);
         player:setVar("VeraOldLadyVar", 1);
     elseif (csid == 135) then
         player:tradeComplete();
@@ -94,7 +76,7 @@ function onEventFinish(player,csid,option)
         player:unlockJob(0);
         player:setVar("VeraOldLadyVar", 0);
         player:messageSpecial(SUBJOB_UNLOCKED);
-        player:completeQuest(OTHER_AREAS,THE_OLD_LADY);
+        player:completeQuest(OTHER_AREAS_LOG,THE_OLD_LADY);
     end
 
 end;

@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Chateau d'Oraguille
--- NPC:  Chalvatot
+--  NPC: Chalvatot
 -- Finish Mission "The Crystal Spring"
 -- Start & Finishes Quests: Her Majesty's Garden
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
@@ -13,9 +13,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/zones/Chateau_dOraguille/TextIDs");
-
------------------------------------
--- onTrade Action
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -33,10 +30,6 @@ function onTrade(player,npc,trade)
     end;
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
@@ -51,7 +44,7 @@ function onTrigger(player,npc)
         player:startEvent(556);
 
     -- LEAUTE'S LAST WISHES (San d'Oria 6-1)
-    elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(DREAMROSE)) then
+    elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 4 and player:hasKeyItem(dsp.ki.DREAMROSE)) then
         player:startEvent(111);
 
     -- CIRCLE OF TIME (Bard AF3)
@@ -82,16 +75,8 @@ function onTrigger(player,npc)
     end;
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
-
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish
------------------------------------
 
 function onEventFinish(player,csid,option)
     -- SAN D'ORIA MISSIONS
@@ -103,14 +88,14 @@ function onEventFinish(player,csid,option)
         player:setVar("circleTime",6);
     elseif ((csid == 98 or csid == 99) and option == 1) then
         player:setVar("circleTime",7);
-        player:addKeyItem(MOON_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,MOON_RING);
+        player:addKeyItem(dsp.ki.MOON_RING);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MOON_RING);
     elseif (csid == 96) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
             player:messageSpecial(ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
-            player:addTitle(PARAGON_OF_BARD_EXCELLENCE);
+            player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
             player:setVar("circleTime",0);
         else
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
@@ -125,8 +110,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
     elseif (csid == 83) then
         player:tradeComplete();
-        player:addKeyItem(MAP_OF_THE_NORTHLANDS_AREA);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_NORTHLANDS_AREA);
+        player:addKeyItem(dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
 

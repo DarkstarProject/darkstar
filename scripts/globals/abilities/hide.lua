@@ -5,14 +5,16 @@
 -- Recast Time: 5:00
 -- Duration: Random
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+-----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local duration = math.random(30, 300);
-    player:addStatusEffect(EFFECT_HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER));
-end;
+    local duration = math.random(30, 300)
+    duration = duration * (1 + player:getMod(dsp.mod.HIDE_DURATION)/100)
+    player:addStatusEffect(dsp.effect.HIDE, 1, 0, math.floor(duration * SNEAK_INVIS_DURATION_MULTIPLIER))
+end
