@@ -101,6 +101,10 @@ function onTrigger(player,npc)
             player:startEvent(326);
         elseif (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
             player:startEvent(293); -- Kupipi repays your favor
+        elseif (player:getCurrentMission(WINDURST) == MOON_READING and MissionStatus >= 3) then
+            player:startEvent(400); -- Kupipi in disbelief over player becoming Rank 10
+        elseif (pNation == dsp.nation.WINDURST) and (player:getRank() == 10) then
+            player:startEvent(408); -- After achieving Windurst Rank 10, Kupipi has more to say
         else
             player:startEvent(251);
         end
@@ -155,6 +159,10 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PORTAL_CHARM);
     elseif (csid == 326) then
         player:setVar("MissionStatus",4);
+    elseif (csid == 400) then
+        player:setVar("KupipiDisbelief",0);
+    elseif (csid == 408) then
+        player:setVar("KupipiRankTenText",1);
     end
 
 end;
