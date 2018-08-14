@@ -423,7 +423,6 @@ dsp.quests.complete = function(player, quest, reward_set)
 end
 
 local function dsp.quests.check(player, params)
-    local zone = player:getZone()
     local zoneid = player:getZoneID()
 
     local cycle = player:getLocalVar("[quests]cycle")
@@ -438,8 +437,7 @@ local function dsp.quests.check(player, params)
         player:setLocalVar("[quests]cycle", 0)
     end
 
-    for i, quest in pairs(questTable) do
-        local quest = dsp.quests.quests[quest.log_id][quest.name]
+    for i, quest in ipairs(questTable) do
         if quest and cycle < i then
             local exitLoop
             local checks =
