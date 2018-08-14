@@ -5,9 +5,9 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnSpell(474);
-end;
+    return target:canLearnSpell(474)
+end
 
 function onItemUse(target)
-    target:addSpell(474);
-end;
+    target:addSpell(474)
+end

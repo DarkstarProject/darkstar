@@ -5,16 +5,16 @@
 -- Recast Time: 3 minutes
 -- Duration: 1 minute
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local potency = player:getMerit(dsp.merit.SANGE)-1;
+    local potency = player:getMerit(dsp.merit.SANGE)-1
 
-    player:addStatusEffect(dsp.effect.SANGE,potency * 25,0,60);
-end;
+    player:addStatusEffect(dsp.effect.SANGE,potency * 25,0,60)
+end

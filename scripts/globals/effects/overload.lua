@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     local pet = target:getPet()
     if pet then
@@ -18,16 +14,8 @@ function onEffectGain(target,effect)
     end
 end
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     local pet = target:getPet()

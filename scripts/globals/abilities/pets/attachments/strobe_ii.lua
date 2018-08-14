@@ -3,7 +3,7 @@
 -- http://forum.square-enix.com/ffxi/threads/49065?p=565264#post565264
 -- Values are currently PRIOR TO NOVEMBER 2015 UPDATE!
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addMod(dsp.mod.ENMITY, 20)
@@ -23,20 +23,20 @@ end
 
 function onManeuverGain(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:addMod(dsp.mod.ENMITY, 20);
+        pet:addMod(dsp.mod.ENMITY, 20)
     elseif (maneuvers == 2) then
-        pet:addMod(dsp.mod.ENMITY, 25);
+        pet:addMod(dsp.mod.ENMITY, 25)
     elseif (maneuvers == 3) then
-        pet:addMod(dsp.mod.ENMITY, 35);
+        pet:addMod(dsp.mod.ENMITY, 35)
     end
 end
 
 function onManeuverLose(pet,maneuvers)
     if (maneuvers == 1) then
-        pet:delMod(dsp.mod.ENMITY, 20);
+        pet:delMod(dsp.mod.ENMITY, 20)
     elseif (maneuvers == 2) then
-        pet:delMod(dsp.mod.ENMITY, 25);
+        pet:delMod(dsp.mod.ENMITY, 25)
     elseif (maneuvers == 3) then
-        pet:delMod(dsp.mod.ENMITY, 35);
+        pet:delMod(dsp.mod.ENMITY, 35)
     end
 end

@@ -5,21 +5,21 @@
 -- Recast Time: 5 seconds
 -- Duration: Instant
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0
     end
 
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability,action)
-    local pet = player:getPet();
+    local pet = player:getPet()
 
     if (not pet:hasPreventActionEffect()) then
       -- reduce tick speed based on level. but never less than 5 and never
@@ -37,4 +37,4 @@ function onUseAbility(player,target,ability,action)
         pet:addStatusEffectEx(dsp.effect.HEALING, 0, 0, tick, 0)
         pet:setAnimation(0)
     end
-end;
+end

@@ -3,11 +3,11 @@
 -- Item: Refined Chair
 -- Item Effect: Grant Refined chair key item
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/msg")
 
-local keyItemId = dsp.ki.REFINED_CHAIR;
+local keyItemId = dsp.ki.REFINED_CHAIR
 
 function onItemCheck(target)
     if target:hasKeyItem(keyItemId) then
@@ -18,5 +18,5 @@ end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.msg.basic.OBTAINED_KEY_ITEM,6380,keyItemId);
+    target:messageBasic(dsp.msg.basic.OBTAINED_KEY_ITEM,6380,keyItemId)
 end
