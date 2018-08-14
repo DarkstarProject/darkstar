@@ -20,7 +20,7 @@ local despoilDebuffs =
 }
 
 function onAbilityCheck(player, target, ability)
-    if not player:getFreeSlotsCount() then
+    if player:getFreeSlotsCount() == 0 then
         return dsp.msg.basic.FULL_INVENTORY, 0
     end
     

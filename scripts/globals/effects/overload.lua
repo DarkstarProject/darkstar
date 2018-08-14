@@ -20,7 +20,7 @@ end
 
 function onEffectLose(target, effect)
     local pet = target:getPet()
-    if pet and not pet:getLocalVar("overload") then
+    if pet and pet:getLocalVar("overload") ~= 0 then
         pet:setLocalVar("overload", 0)
         pet:delMod(dsp.mod.HASTE_MAGIC, -5000)
         pet:delMod(dsp.mod.MOVE, -50)

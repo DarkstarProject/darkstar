@@ -25,7 +25,7 @@ function onSpellCast(caster,target,spell)
     else
         power = power + dMND * 10
     end
-    power = utils.clamp(power, 750, 3000)
+    power = utils.clamp(power, 730, 2929) -- Lowest 75/1024, Highest 300/1024 ~7.3%-29.2%
 
     if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
         power = power * 2

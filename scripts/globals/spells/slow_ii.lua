@@ -19,7 +19,7 @@ function onSpellCast(caster, target, spell)
     local merits = caster:getMerit(dsp.merit.SLOW_II)
 
     local base = 2440 + merits * 100
-    local potency = utils.clamp(base + dMND * 1160/75, 1250, 3600)
+    local potency = utils.clamp(base + dMND * 1160/75, 1250, 3906) -- Lowest 128/1024 ~12.5%, Highest 400/1024 ~39.06%
 
     if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
         potency = potency * 2

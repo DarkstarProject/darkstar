@@ -11,7 +11,7 @@ function onEffectGain(target, effect)
     target:addMod(dsp.mod.HPP, -75)
     target:addMod(dsp.mod.MPP, -75)
 
-    -- 100% Slow - FIXME: This kinda doesn't work since magic haste is clamped [-43.75%, 43.75%]
+    -- 100% Slow -- FIXME: Weakness should probably be its own source of slow
     target:addMod(dsp.mod.HASTE_MAGIC, -10000)
 
     if effect:getPower() == 2 then

@@ -17,7 +17,7 @@ function onSpellCast(caster, target, spell)
        duration = duration * 3;
     end
 
-    local power = 1500 -- 15%
+    local power = 1465 -- 150/1024 ~14.65%
 
     if not target:addStatusEffect(dsp.effect.HASTE, power, 0, duration) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

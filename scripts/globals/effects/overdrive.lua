@@ -30,7 +30,7 @@ end
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.OVERLOAD_THRESH, 5000)
     local pet = target:getPet()
-    if pet and not pet:getLocalVar("overdrive") then
+    if pet and pet:getLocalVar("overdrive") ~= 0 then
         pet:setLocalVar("overdrive", 0)
         pet:delMod(dsp.mod.HASTE_MAGIC, 2500)
         pet:delMod(dsp.mod.MAIN_DMG_RATING, 30)
