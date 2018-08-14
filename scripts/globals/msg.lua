@@ -73,6 +73,7 @@ dsp.msg.basic =
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
     MAGIC_TELEPORT         = 93,  -- <caster> casts <spell>. <target> vanishes.
+    MAGIC_FAIL             = 114, -- <caster> casts <spell> on <target>, but the spell fails to take effect
     MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
     MAGIC_DRAIN_HP         = 227, -- <caster> casts <spell>. <amount> HP drained from <target>.
     MAGIC_DRAIN_MP         = 228, -- <caster> casts <spell>. <amount> MP drained from <target>.
