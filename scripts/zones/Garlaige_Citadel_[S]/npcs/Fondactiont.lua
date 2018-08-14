@@ -1,24 +1,23 @@
 -----------------------------------
 -- Area: Garlaige Citadel [S]
--- NPC: Fondactiont
+--  NPC: Fondactiont
 -- Starts and Finishes Quest: The Fumbling Friar
 -- !pos -95 0 196 164
 -----------------------------------
 package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/settings")
+require("scripts/zones/Garlaige_Citadel_[S]/TextIDs")
+require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
-require("scripts/globals/npc_util")
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end
 
-function onTrigger(player,npc)
-    local TheFumblingFriar = player:getQuestStatus(CRYSTAL_WAR,THE_FUMBLING_FRIAR)
-	
+function onTrigger(player, npc)
+    local TheFumblingFriar = player:getQuestStatus(CRYSTAL_WAR, THE_FUMBLING_FRIAR)
+
     -- Change to BRASS_RIBBON_OF_SERVICE later when Campaign has been added.
     if TheFumblingFriar == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE) and player:getMainLvl() >= 30 then
         player:startEvent(26) -- Start quest "The Fumbling Friar"
@@ -35,12 +34,12 @@ function onTrigger(player,npc)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 26 then
-        player:addQuest(CRYSTAL_WAR,THE_FUMBLING_FRIAR)
+        player:addQuest(CRYSTAL_WAR, THE_FUMBLING_FRIAR)
     elseif csid == 28 and npcUtil.completeQuest(player, CRYSTAL_WAR, THE_FUMBLING_FRIAR, {item = 4688}) then
         player:delKeyItem(dsp.ki.ORNATE_PACKAGE)
     end

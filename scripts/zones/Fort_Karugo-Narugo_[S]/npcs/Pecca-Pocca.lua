@@ -1,23 +1,22 @@
 -----------------------------------
 -- Area: Fort_Karugo-Narugo_[S]
--- NPC: Pecca-Pocca
+--  NPC: Pecca-Pocca
 -- Involved In Quest: REQUIEM_FOR_THE_DEPARTED
 -- !pos -163 -68 -155 96
 -----------------------------------
 package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil
 -----------------------------------
-require("scripts/globals/settings")
+require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs")
+require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
-require("scripts/globals/npc_util")
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end
 
-function onTrigger(player,npc)
-    if player:getQuestStatus(CRYSTAL_WAR,REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
+function onTrigger(player, npc)
+    if player:getQuestStatus(CRYSTAL_WAR, REQUIEM_FOR_THE_DEPARTED) == QUEST_ACCEPTED then
         if player:hasKeyItem(dsp.ki.SHEAF_OF_HANDMADE_INCENSE) then
             player:startEvent(233) -- standard dialogue after receiving KI
         else
@@ -28,10 +27,10 @@ function onTrigger(player,npc)
     end
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 234 then
         npcUtil.giveKeyItem(player, dsp.ki.SHEAF_OF_HANDMADE_INCENSE)
     end
