@@ -23,11 +23,9 @@ end
 
 function onUseAbility(player, target, ability)
     local chakraRemoval = player:getMod(dsp.mod.CHAKRA_REMOVAL)
-    if chakraRemoval then
-        for k, v in pairs(ChakraStatusEffects) do
-            if bit.band(chakraRemoval, v) == v then
-                player:delStatusEffect(dsp.effect[k])
-            end
+    for k, v in pairs(ChakraStatusEffects) do
+        if bit.band(chakraRemoval, v) == v then
+            player:delStatusEffect(dsp.effect[k])
         end
     end
 
@@ -35,7 +33,7 @@ function onUseAbility(player, target, ability)
     player:setHP(player:getHP() + recover)
 
     local merits = player:getMerit(dsp.merit.INVIGORATE)
-    if (merits >= 1) then
+    if merits > 0 then
         if player:hasStatusEffect(dsp.effect.REGEN) then
             player:delStatusEffect(dsp.effect.REGEN)
         end
