@@ -7,25 +7,25 @@
 -- Range: Radial 12.5'
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dispel =  target:dispelStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD));
+    local dispel =  target:dispelStatusEffect(bit.bor(dsp.effectFlag.DISPELABLE, dsp.effectFlag.FOOD))
 
     if (dispel == dsp.effect.NONE) then
         -- no effect
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT); -- no effect
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT) -- no effect
     else
-        skill:setMsg(dsp.msg.basic.SKILL_ERASE);
+        skill:setMsg(dsp.msg.basic.SKILL_ERASE)
     end
 
-    return dispel;
+    return dispel
 end

@@ -4,10 +4,6 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     target:addMod(dsp.mod.OVERLOAD_THRESH, 5000)
     local pet = target:getPet()
@@ -27,16 +23,8 @@ function onEffectGain(target,effect)
     end
 end
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
 function onEffectTick(target,effect)
 end
-
------------------------------------
--- onEffectLose Action
------------------------------------
 
 function onEffectLose(target,effect)
     target:delMod(dsp.mod.OVERLOAD_THRESH, 5000)

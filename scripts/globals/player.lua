@@ -3,18 +3,14 @@
 --
 --
 -----------------------------------
-
+require("scripts/globals/gear_sets");
+require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/settings");
-require("scripts/globals/shop");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-require("scripts/globals/gear_sets");
-
------------------------------------
--- onGameIn
+require("scripts/globals/shop");
 -----------------------------------
 
 function onGameIn(player, firstlogin, zoning)
@@ -69,10 +65,6 @@ function onGameIn(player, firstlogin, zoning)
     -- Remember time player zoned in (e.g., to support zone-in delays)
     player:setLocalVar("ZoneInTime", os.time());
 end;
-
------------------------------------
--- CharCreate
------------------------------------
 
 function CharCreate(player)
     local race = player:getRace();

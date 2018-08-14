@@ -5,20 +5,20 @@
 -- Recast Time: 10:00
 -- Duration: 1:00, or until the next blue magic spell is cast.
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if player:hasStatusEffect(dsp.effect.DIFFUSION) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.DIFFUSION,1,0,60);
+    player:addStatusEffect(dsp.effect.DIFFUSION,1,0,60)
 
-    return dsp.effect.DIFFUSION;
-end;
+    return dsp.effect.DIFFUSION
+end

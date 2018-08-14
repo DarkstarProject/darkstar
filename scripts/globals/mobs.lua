@@ -7,13 +7,9 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
-
------------------------------------
--- onMobDeathEx
 -----------------------------------
 
 function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
-
     -- Things that happen only to the person who landed killing blow
     if (isKiller == true) then
         -- DRK quest - Blade Of Darkness
@@ -54,7 +50,7 @@ end
 -- potential lottery placeholder was killed
 function phOnDespawn(ph,phList,chance,cooldown,immediate)
     if (type(immediate) ~= "boolean") then immediate = false; end
-    
+
     local phId = ph:getID();
     local nmId = phList[phId];
     if (nmId ~= nil) then
@@ -84,6 +80,6 @@ function phOnDespawn(ph,phList,chance,cooldown,immediate)
             end
         end
     end
-    
+
     return false;
 end

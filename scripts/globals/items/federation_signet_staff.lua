@@ -3,10 +3,10 @@
 -- Item: Federation Signet Staff
 -- Effect: Signet
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/conquest");
-require("scripts/globals/zone");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/conquest")
+require("scripts/globals/zone")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target, param, caster)
@@ -27,12 +27,12 @@ function onItemCheck(target, param, caster)
         end
     end
     
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:delStatusEffect(dsp.effect.SIGIL);
-    target:delStatusEffect(dsp.effect.SANCTION);
-    target:delStatusEffect(dsp.effect.SIGNET);
-    target:addStatusEffect(dsp.effect.SIGNET,0,0,18000);
-end;
+    target:delStatusEffect(dsp.effect.SIGIL)
+    target:delStatusEffect(dsp.effect.SANCTION)
+    target:delStatusEffect(dsp.effect.SIGNET)
+    target:addStatusEffect(dsp.effect.SIGNET,0,0,18000)
+end

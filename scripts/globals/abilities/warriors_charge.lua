@@ -5,15 +5,15 @@
 -- Recast Time: 5:00
 -- Duration: 1:00 or next attack
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local merits = player:getMerit(dsp.merit.WARRIORS_CHARGE);
-    player:addStatusEffect(dsp.effect.WARRIOR_S_CHARGE,merits-5,0,60);
-end;
+    local merits = player:getMerit(dsp.merit.WARRIORS_CHARGE)
+    player:addStatusEffect(dsp.effect.WARRIOR_S_CHARGE,merits-5,0,60)
+end

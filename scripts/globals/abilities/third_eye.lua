@@ -5,17 +5,17 @@
 -- Recast Time: 1:00
 -- Duration: 0:30
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:hasStatusEffect(dsp.effect.SEIGAN)) then
-        ability:setRecast(ability:getRecast()/2);
+        ability:setRecast(ability:getRecast()/2)
     end
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:addStatusEffect(dsp.effect.THIRD_EYE,0,0,30); --power keeps track of procs
-end;
+    player:addStatusEffect(dsp.effect.THIRD_EYE,0,0,30) --power keeps track of procs
+end
