@@ -8,17 +8,305 @@ dsp.quests.enums =
 {
     log_ids =
     {
-        sandoria  = 0, bastok      = 1, windurst = 2,
-        jeuno     = 3, other_areas = 4, outlands = 5,
-        aht_urgan = 6, crystal_war = 7, abyssea  = 8,
-        adoulin   = 9, coalition   = 10
+        SANDORIA  = 0, BASTOK      = 1,  WINDURST = 2,
+        JEUNO     = 3, OTHER_AREAS = 4,  OUTLANDS = 5,
+        AHT_URGAN = 6, CRYSTAL_WAR = 7,  ABYSSEA  = 8,
+        ADOULIN   = 9, COALITION   = 10
     }
 
     var_types =
     {
-        char_var   = 1
-        local_var  = 2,
-        server_var = 3,
+        CHAR_VAR   = 1
+        LOCAL_VAR  = 2,
+        SERVER_VAR = 3,
+    }
+
+    quest_ids =
+    {
+        sandoria =
+        {
+            A_SENTRY_S_PERIL                = 0,  -- ± --
+            WATER_OF_THE_CHEVAL             = 1,  -- ± --
+            ROSEL_THE_ARMORER               = 2,  -- ± --
+            THE_PICKPOCKET                  = 3,  -- ± --
+            FATHER_AND_SON                  = 4,  -- + --
+            THE_SEAMSTRESS                  = 5,  -- + --
+            THE_DISMAYED_CUSTOMER           = 6,  -- + --
+            THE_TRADER_IN_THE_FOREST        = 7,  -- + --
+            THE_SWEETEST_THINGS             = 8,  -- + --
+            THE_VICASQUE_S_SERMON           = 9,  -- + --
+            A_SQUIRE_S_TEST                 = 10, -- + --
+            GRAVE_CONCERNS                  = 11, -- ± --
+            THE_BRUGAIRE_CONSORTIUM         = 12, -- + --
+
+            LIZARD_SKINS                    = 15, -- + --
+            FLYERS_FOR_REGINE               = 16, -- + --
+
+            GATES_TO_PARADISE               = 18, -- + --
+            A_SQUIRE_S_TEST_II              = 19, -- + --
+            TO_CURE_A_COUGH                 = 20, -- + --
+
+            TIGER_S_TEETH                   = 23, -- ± --
+
+            UNDYING_FLAMES                  = 26, -- + --
+            A_PURCHASE_OF_ARMS              = 27, -- + --
+
+            A_KNIGHT_S_TEST                 = 29, -- + --
+            THE_MEDICINE_WOMAN              = 30, -- + --
+            BLACK_TIGER_SKINS               = 31, -- + --
+
+            GROWING_FLOWERS                 = 58, -- ± --
+            TRIAL_BY_ICE                    = 59, -- + --
+            THE_GENERAL_S_SECRET            = 60, -- ± --
+            THE_RUMOR                       = 61, -- ± --
+            HER_MAJESTY_S_GARDEN            = 62, -- + --
+            INTRODUCTION_TO_TEAMWORK        = 63,
+            INTERMEDIATE_TEAMWORK           = 64,
+            ADVANCED_TEAMWORK               = 65,
+            GRIMY_SIGNPOSTS                 = 66, -- + --
+            A_JOB_FOR_THE_CONSORTIUM        = 67,
+            TROUBLE_AT_THE_SLUICE           = 68, -- + --
+            THE_MERCHANT_S_BIDDING          = 69, -- ± --
+            UNEXPECTED_TREASURE             = 70,
+            BLACKMAIL                       = 71, -- + --
+            THE_SETTING_SUN                 = 72, -- + --
+
+            DISTANT_LOYALTIES               = 74,
+            THE_RIVALRY                     = 75, -- ± --
+            THE_COMPETITION                 = 76, -- ± --
+            STARTING_A_FLAME                = 77, -- ± --
+            FEAR_OF_THE_DARK                = 78, -- + --
+            WARDING_VAMPIRES                = 79, -- + --
+            SLEEPLESS_NIGHTS                = 80, -- ± --
+            LUFET_S_LAKE_SALT               = 81, -- ± --
+            HEALING_THE_LAND                = 82, -- ± --
+            SORCERY_OF_THE_NORTH            = 83, -- ± --
+            THE_CRIMSON_TRIAL               = 84, -- ± --
+            ENVELOPED_IN_DARKNESS           = 85, -- ± --
+            PEACE_FOR_THE_SPIRIT            = 86, -- ± --
+            MESSENGER_FROM_BEYOND           = 87, -- ± --
+            PRELUDE_OF_BLACK_AND_WHITE      = 88, -- ± --
+            PIEUJE_S_DECISION               = 89, -- + --
+            SHARPENING_THE_SWORD            = 90, -- ± --
+            A_BOY_S_DREAM                   = 91, -- ± --
+            UNDER_OATH                      = 92,
+            THE_HOLY_CREST                  = 93, -- + --
+            A_CRAFTSMAN_S_WORK              = 94, -- ± --
+            CHASING_QUOTAS                  = 95, -- + --
+            KNIGHT_STALKER                  = 96, -- + --
+            ECO_WARRIOR_SAN                 = 97,
+            METHODS_CREATE_MADNESS          = 98,
+            SOULS_IN_SHADOW                 = 99,
+            A_TASTE_FOR_MEAT                = 100, -- ± --
+            EXIT_THE_GAMBLER                = 101, -- ± --
+            OLD_WOUNDS                      = 102,
+            ESCORT_FOR_HIRE_SAN_D_ORIA      = 103,
+            A_DISCERNING_EYE_SAN_D_ORIA     = 104,
+            A_TIMELY_VISIT                  = 105,
+            FIT_FOR_A_PRINCE                = 106,
+            TRIAL_SIZE_TRIAL_BY_ICE         = 107, -- + --
+            SIGNED_IN_BLOOD                 = 108, -- + --
+            TEA_WITH_A_TONBERRY             = 109,
+            SPICE_GALS                      = 110,
+
+            OVER_THE_HILLS_AND_FAR_AWAY     = 112,
+            LURE_OF_THE_WILDCAT_SAN_D_ORIA  = 113, -- ± --
+            ATELLOUNE_S_LAMENT              = 114,
+
+            THICK_SHELLS                    = 117, -- ± --
+            FOREST_FOR_THE_TREES            = 118,
+        },
+
+        bastok =
+        {
+            THE_SIREN_S_TEAR                = 0,  -- ± --
+            BEAUTY_AND_THE_GALKA            = 1,  -- ± --
+            WELCOME_TO_BASTOK               = 2,  -- + --
+            GUEST_OF_HAUTEUR                = 3,
+            THE_QUADAV_S_CURSE              = 4,  -- ± --
+            OUT_OF_ONE_S_SHELL              = 5,  -- ± --
+            HEARTS_OF_MYTHRIL               = 6,  -- ± --
+            THE_ELEVENTH_S_HOUR             = 7,  -- ± --
+            SHADY_BUSINESS                  = 8,  -- ± --
+            A_FOREMAN_S_BEST_FRIEND         = 9,  -- ± --
+            BREAKING_STONES                 = 10, -- + --
+            THE_COLD_LIGHT_OF_DAY           = 11, -- + --
+            GOURMET                         = 12, -- ± --
+            THE_ELVAAN_GOLDSMITH            = 13, -- ± --
+            A_FLASH_IN_THE_PAN              = 14, -- ± --
+            SMOKE_ON_THE_MOUNTAIN           = 15, -- ± --
+            STAMP_HUNT                      = 16, -- + --
+            FOREVER_TO_HOLD                 = 17, -- ± --
+            TILL_DEATH_DO_US_PART           = 18, -- ± --
+            FALLEN_COMRADES                 = 19, -- ± --
+            RIVALS                          = 20, -- + --
+            MOM_THE_ADVENTURER              = 21, -- + --
+            THE_SIGNPOST_MARKS_THE_SPOT     = 22, -- + --
+            PAST_PERFECT                    = 23, -- ± --
+            STARDUST                        = 24, -- + --
+            MEAN_MACHINE                    = 25, -- ± --
+            CID_S_SECRET                    = 26, -- ± --
+            THE_USUAL                       = 27, -- ± --
+            BLADE_OF_DARKNESS               = 28, -- ± --
+            FATHER_FIGURE                   = 29, -- ± --
+            THE_RETURN_OF_THE_ADVENTURER    = 30, -- ± --
+            DRACHENFALL                     = 31, -- + --
+            VENGEFUL_WRATH                  = 32, -- ± --
+            BEADEAUX_SMOG                   = 33, -- + --
+            THE_CURSE_COLLECTOR             = 34, -- + --
+            FEAR_OF_FLYING                  = 35, -- + --
+            THE_WISDOM_OF_ELDERS            = 36, -- ± --
+            GROCERIES                       = 37, -- ± --
+            THE_BARE_BONES                  = 38, -- ± --
+            MINESWEEPER                     = 39, -- ± --
+            THE_DARKSMITH                   = 40, -- ± --
+            BUCKETS_OF_GOLD                 = 41, -- ± --
+            THE_STARS_OF_IFRIT              = 42, -- ± --
+            LOVE_AND_ICE                    = 43, -- ± --
+            BRYGID_THE_STYLIST              = 44, -- ± --
+            THE_GUSTABERG_TOUR              = 45,
+            BITE_THE_DUST                   = 46, -- ± --
+            BLADE_OF_DEATH                  = 47, -- + --
+            SILENCE_OF_THE_RAMS             = 48, -- ± --
+            ALTANA_S_SORROW                 = 49, -- + --
+            A_LADY_S_HEART                  = 50, -- ± --
+            GHOSTS_OF_THE_PAST              = 51, -- ± --
+            THE_FIRST_MEETING               = 52, -- ± --
+            TRUE_STRENGTH                   = 53, -- ± --
+            THE_DOORMAN                     = 54, -- ± --
+            THE_TALEKEEPER_S_TRUTH          = 55, -- ± --
+            THE_TALEKEEPER_S_GIFT           = 56, -- ± --
+            DARK_LEGACY                     = 57, -- ± --
+            DARK_PUPPET                     = 58, -- ± --
+            BLADE_OF_EVIL                   = 59, -- ± --
+            AYAME_AND_KAEDE                 = 60, -- ± --
+            TRIAL_BY_EARTH                  = 61, -- ± --
+            A_TEST_OF_TRUE_LOVE             = 62, -- ± --
+            LOVERS_IN_THE_DUSK              = 63, -- ± --
+            WISH_UPON_A_STAR                = 64,
+            ECO_WARRIOR_BAS                 = 65,
+            THE_WEIGHT_OF_YOUR_LIMITS       = 66,
+            SHOOT_FIRST_ASK_QUESTIONS_LATER = 67,
+            INHERITANCE                     = 68,
+            THE_WALLS_OF_YOUR_MIND          = 69,
+            ESCORT_FOR_HIRE_BASTOK          = 70,
+            A_DISCERNING_EYE_BASTOK         = 71,
+            TRIAL_SIZE_TRIAL_BY_EARTH       = 72, -- + --
+            FADED_PROMISES                  = 73,
+            BRYGID_THE_STYLIST_RETURNS      = 74, -- ± --
+            OUT_OF_THE_DEPTHS               = 75,
+            ALL_BY_MYSELF                   = 76,
+            A_QUESTION_OF_FAITH             = 77,
+            RETURN_OF_THE_DEPTHS            = 78,
+            TEAK_ME_TO_THE_STARS            = 79,
+            HYPER_ACTIVE                    = 80,
+            THE_NAMING_GAME                 = 81,
+            CHIPS                           = 82,
+            BAIT_AND_SWITCH                 = 83,
+            LURE_OF_THE_WILDCAT_BASTOK      = 84,
+            ACHIEVING_TRUE_POWER            = 85,
+            TOO_MANY_CHEFS                  = 86,
+            A_PROPER_BURIAL                 = 87,
+            FULLY_MENTAL_ALCHEMIST          = 88,
+            SYNERGUSTIC_PURSUITS            = 89,
+            THE_WONDROUS_WHATCHAMACALLIT    = 90,
+        },
+
+        windurst =
+        {
+
+            HAT_IN_HAND                     = 0,  -- + --
+            A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
+            A_CRISIS_IN_THE_MAKING          = 2,  -- + --
+            MAKING_AMENDS                   = 3,  -- + --
+            MAKING_THE_GRADE                = 4,  -- + --
+            IN_A_PICKLE                     = 5,  -- + --
+            WONDERING_MINSTREL              = 6,  -- + --
+            A_POSE_BY_ANY_OTHER_NAME        = 7,  -- + --
+            MAKING_AMENS                    = 8,  -- + --
+            THE_MOONLIT_PATH                = 9,  -- + --
+            STAR_STRUCK                     = 10, -- ± --
+            BLAST_FROM_THE_PAST             = 11, -- + --
+            A_SMUDGE_ON_ONE_S_RECORD        = 12, -- ± --
+            CHASING_TALES                   = 13, -- + --
+            FOOD_FOR_THOUGHT                = 14, -- + --
+            OVERNIGHT_DELIVERY              = 15, -- + --
+            WATER_WAY_TO_GO                 = 16, -- + --
+            BLUE_RIBBON_BLUES               = 17, -- + --
+            THE_ALL_NEW_C_3000              = 18, -- + --
+            THE_POSTMAN_ALWAYS_KO_S_TWICE   = 19, -- + --
+            EARLY_BIRD_CATCHES_THE_BOOKWORM = 20, -- + --
+            CATCH_IT_IF_YOU_CAN             = 21, -- + --
+
+            ALL_AT_SEA                      = 23,
+            THE_ALL_NEW_C_2000              = 24, -- ± --
+            MIHGO_S_AMIGO                   = 25, -- + --
+            ROCK_RACKETEER                  = 26, -- + --
+            CHOCOBILIOUS                    = 27, -- + --
+            TEACHER_S_PET                   = 28, -- + --
+            REAP_WHAT_YOU_SOW               = 29, -- + --
+            GLYPH_HANGER                    = 30, -- + --
+            THE_FANGED_ONE                  = 31, -- + --
+            CURSES_FOILED_AGAIN_1           = 32, -- + --
+            CURSES_FOILED_AGAIN_2           = 33, -- + --
+            MANDRAGORA_MAD                  = 34, -- + --
+            TO_BEE_OR_NOT_TO_BEE            = 35, -- + --
+            TRUTH_JUSTICE_AND_THE_ONION_WAY = 36, -- + --
+            MAKING_HEADLINES                = 37, -- + --
+            SCOOPED                         = 38,
+            CREEPY_CRAWLIES                 = 39, -- + --
+            KNOW_ONE_S_ONIONS               = 40, -- + --
+            INSPECTOR_S_GADGET              = 41, -- + --
+            ONION_RINGS                     = 42, -- + --
+            A_GREETING_CARDIAN              = 43, -- + --
+            LEGENDARY_PLAN_B                = 44, -- + --
+            IN_A_STEW                       = 45, -- + --
+            LET_SLEEPING_DOGS_LIE           = 46,
+            CAN_CARDIANS_CRY                = 47, -- + --
+            WONDER_WANDS                    = 48, -- + --
+            HEAVEN_CENT                     = 49,
+            SAY_IT_WITH_FLOWERS             = 50, -- + --
+            HOIST_THE_JELLY_ROGER           = 51, -- + --
+            SOMETHING_FISHY                 = 52, -- + --
+            TO_CATCH_A_FALLIHG_STAR         = 53, -- + --
+
+            PAYING_LIP_SERVICE              = 60, -- + --
+            THE_AMAZIN_SCORPIO              = 61, -- + --
+            TWINSTONE_BONDING               = 62, -- + --
+            CURSES_FOILED_A_GOLEM           = 63, -- + --
+            ACTING_IN_GOOD_FAITH            = 64, -- ± --
+            FLOWER_CHILD                    = 65, -- ± --
+            THE_THREE_MAGI                  = 66, -- ± --
+            RECOLLECTIONS                   = 67, -- ± --
+            THE_ROOT_OF_THE_PROBLEM         = 68,
+            THE_TENSHODO_SHOWDOWN           = 69, -- + --
+            AS_THICK_AS_THIEVES             = 70, -- + --
+            HITTING_THE_MARQUISATE          = 71, -- + --
+            SIN_HUNTING                     = 72, -- + --
+            FIRE_AND_BRIMSTONE              = 73, -- + --
+            UNBRIDLED_PASSION               = 74, -- + --
+            I_CAN_HEAR_A_RAINBOW            = 75, -- + --
+            CRYING_OVER_ONIONS              = 76, -- + --
+            WILD_CARD                       = 77, -- + --
+            THE_PROMISE                     = 78, -- + --
+            NOTHING_MATTERS                 = 79,
+            TORAIMARAI_TURMOIL              = 80, -- + --
+            THE_PUPPET_MASTER               = 81, -- + --
+            CLASS_REUNION                   = 82, -- + --
+            CARBUNCLE_DEBACLE               = 83, -- + --
+            ECO_WARRIOR_WIN                 = 84, -- + --
+            FROM_SAPLINGS_GROW              = 85,
+            ORASTERY_WOES                   = 86,
+            BLOOD_AND_GLORY                 = 87,
+            ESCORT_FOR_HIRE_WINDURST        = 88,
+            A_DISCERNING_EYE_WINDURST       = 89,
+            TUNING_IN                       = 90,
+            TUNING_OUT                      = 91,
+            ONE_GOOD_DEED                   = 92,
+            WAKING_DREAMS                   = 93, -- + --
+            LURE_OF_THE_WILDCAT_WINDURST    = 94,
+            BABBAN_NY_MHEILLEA              = 95,
+        }
     }
 }
 
@@ -55,10 +343,10 @@ local function handleQuestVar(entity, quest, varname, val, get)
         return ret
     end
 
-    local var, vartype;
+    local var, vartype
     if quest.vars.main == varname then
         var = quest.vars.main
-        vartype = dsp.quests.enums.var_types.char_var
+        vartype = dsp.quests.enums.var_types.CHAR_VAR
     else
         var = quest.vars.additional[varname]
         vartype = var.type
@@ -67,19 +355,19 @@ local function handleQuestVar(entity, quest, varname, val, get)
     if not var then
         ret.message = " unable to find "..varname.." for quest: "..quest.name.." (logid: "..quest.log_id..")"
     else
-        if vartype == dsp.quests.enums.var_types.char_var then
+        if vartype == dsp.quests.enums.var_types.CHAR_VAR then
             if get then
                 ret.val = entity:getVar(varname)
             else
                 entity:setVar(varname, val)
             end
-        elseif vartype == dsp.quests.enums.var_types.local_var then
+        elseif vartype == dsp.quests.enums.var_types.LOCAL_VAR then
             if get then
                 ret.val = entity:getLocalVar(varname)
             else
                 entity:setLocalVar(varname, val)
             end
-        elseif vartype == dsp.quests.enums.var_types.server_var then
+        elseif vartype == dsp.quests.enums.var_types.SERVER_VAR then
             if get then
                 ret.val = GetServerVariable(varname)
             else
@@ -122,7 +410,7 @@ dsp.quests.complete = function(player, quest, reward_set)
             -- todo: check inventory (including stack space), award items, return false if cant complete
         end
 
-        -- clear main char_var if shouldnt be preserved
+        -- clear main CHAR_VAR if shouldnt be preserved
         if not quest.vars.preserve_main_on_complete then
             player:setVar(quest.vars.main, 0)
         end
@@ -139,7 +427,7 @@ local function dsp.quests.check(player, params)
     local zoneid = player:getZoneID()
 
     local cycle = player:getLocalVar("[quests]cycle")
-    local needsCycling = cycle < #questTable
+    local needsCycling = cycle < #params.questTable
     local checkType = params.checkType
 
     local targetName
@@ -170,6 +458,7 @@ local function dsp.quests.check(player, params)
             end
         end
     end
+    return nil
 end
 
 dsp.quests.onTrade = function(player, npc, trade, questTable)
@@ -214,293 +503,6 @@ end
 QUEST_AVAILABLE = 0;
 QUEST_ACCEPTED  = 1;
 QUEST_COMPLETED = 2;
-
------------------------------------
---  San d'Oria - 0
------------------------------------
-
-A_SENTRY_S_PERIL                = 0;  -- ± --
-WATER_OF_THE_CHEVAL             = 1;  -- ± --
-ROSEL_THE_ARMORER               = 2;  -- ± --
-THE_PICKPOCKET                  = 3;  -- ± --
-FATHER_AND_SON                  = 4;  -- + --
-THE_SEAMSTRESS                  = 5;  -- + --
-THE_DISMAYED_CUSTOMER           = 6;  -- + --
-THE_TRADER_IN_THE_FOREST        = 7;  -- + --
-THE_SWEETEST_THINGS             = 8;  -- + --
-THE_VICASQUE_S_SERMON           = 9;  -- + --
-A_SQUIRE_S_TEST                 = 10; -- + --
-GRAVE_CONCERNS                  = 11; -- ± --
-THE_BRUGAIRE_CONSORTIUM         = 12; -- + --
-
-LIZARD_SKINS                    = 15; -- + --
-FLYERS_FOR_REGINE               = 16; -- + --
-
-GATES_TO_PARADISE               = 18; -- + --
-A_SQUIRE_S_TEST_II              = 19; -- + --
-TO_CURE_A_COUGH                 = 20; -- + --
-
-TIGER_S_TEETH                   = 23; -- ± --
-
-UNDYING_FLAMES                  = 26; -- + --
-A_PURCHASE_OF_ARMS              = 27; -- + --
-
-A_KNIGHT_S_TEST                 = 29; -- + --
-THE_MEDICINE_WOMAN              = 30; -- + --
-BLACK_TIGER_SKINS               = 31; -- + --
-
-GROWING_FLOWERS                 = 58; -- ± --
-TRIAL_BY_ICE                    = 59; -- + --
-THE_GENERAL_S_SECRET            = 60; -- ± --
-THE_RUMOR                       = 61; -- ± --
-HER_MAJESTY_S_GARDEN            = 62; -- + --
-INTRODUCTION_TO_TEAMWORK        = 63;
-INTERMEDIATE_TEAMWORK           = 64;
-ADVANCED_TEAMWORK               = 65;
-GRIMY_SIGNPOSTS                 = 66; -- + --
-A_JOB_FOR_THE_CONSORTIUM        = 67;
-TROUBLE_AT_THE_SLUICE           = 68; -- + --
-THE_MERCHANT_S_BIDDING          = 69; -- ± --
-UNEXPECTED_TREASURE             = 70;
-BLACKMAIL                       = 71; -- + --
-THE_SETTING_SUN                 = 72; -- + --
-
-DISTANT_LOYALTIES               = 74;
-THE_RIVALRY                     = 75; -- ± --
-THE_COMPETITION                 = 76; -- ± --
-STARTING_A_FLAME                = 77; -- ± --
-FEAR_OF_THE_DARK                = 78; -- + --
-WARDING_VAMPIRES                = 79; -- + --
-SLEEPLESS_NIGHTS                = 80; -- ± --
-LUFET_S_LAKE_SALT               = 81; -- ± --
-HEALING_THE_LAND                = 82; -- ± --
-SORCERY_OF_THE_NORTH            = 83; -- ± --
-THE_CRIMSON_TRIAL               = 84; -- ± --
-ENVELOPED_IN_DARKNESS           = 85; -- ± --
-PEACE_FOR_THE_SPIRIT            = 86; -- ± --
-MESSENGER_FROM_BEYOND           = 87; -- ± --
-PRELUDE_OF_BLACK_AND_WHITE      = 88; -- ± --
-PIEUJE_S_DECISION               = 89; -- + --
-SHARPENING_THE_SWORD            = 90; -- ± --
-A_BOY_S_DREAM                   = 91; -- ± --
-UNDER_OATH                      = 92;
-THE_HOLY_CREST                  = 93; -- + --
-A_CRAFTSMAN_S_WORK              = 94; -- ± --
-CHASING_QUOTAS                  = 95; -- + --
-KNIGHT_STALKER                  = 96; -- + --
-ECO_WARRIOR_SAN                 = 97;
-METHODS_CREATE_MADNESS          = 98;
-SOULS_IN_SHADOW                 = 99;
-A_TASTE_FOR_MEAT                = 100; -- ± --
-EXIT_THE_GAMBLER                = 101; -- ± --
-OLD_WOUNDS                      = 102;
-ESCORT_FOR_HIRE_SAN_D_ORIA      = 103;
-A_DISCERNING_EYE_SAN_D_ORIA     = 104;
-A_TIMELY_VISIT                  = 105;
-FIT_FOR_A_PRINCE                = 106;
-TRIAL_SIZE_TRIAL_BY_ICE         = 107; -- + --
-SIGNED_IN_BLOOD                 = 108; -- + --
-TEA_WITH_A_TONBERRY             = 109;
-SPICE_GALS                      = 110;
-
-OVER_THE_HILLS_AND_FAR_AWAY     = 112;
-LURE_OF_THE_WILDCAT_SAN_D_ORIA  = 113; -- ± --
-ATELLOUNE_S_LAMENT              = 114;
-
-THICK_SHELLS                    = 117; -- ± --
-FOREST_FOR_THE_TREES            = 118;
-
------------------------------------
---  Bastok - 1
------------------------------------
-
-THE_SIREN_S_TEAR                = 0;  -- ± --
-BEAUTY_AND_THE_GALKA            = 1;  -- ± --
-WELCOME_TO_BASTOK               = 2;  -- + --
-GUEST_OF_HAUTEUR                = 3;
-THE_QUADAV_S_CURSE              = 4;  -- ± --
-OUT_OF_ONE_S_SHELL              = 5;  -- ± --
-HEARTS_OF_MYTHRIL               = 6;  -- ± --
-THE_ELEVENTH_S_HOUR             = 7;  -- ± --
-SHADY_BUSINESS                  = 8;  -- ± --
-A_FOREMAN_S_BEST_FRIEND         = 9;  -- ± --
-BREAKING_STONES                 = 10; -- + --
-THE_COLD_LIGHT_OF_DAY           = 11; -- + --
-GOURMET                         = 12; -- ± --
-THE_ELVAAN_GOLDSMITH            = 13; -- ± --
-A_FLASH_IN_THE_PAN              = 14; -- ± --
-SMOKE_ON_THE_MOUNTAIN           = 15; -- ± --
-STAMP_HUNT                      = 16; -- + --
-FOREVER_TO_HOLD                 = 17; -- ± --
-TILL_DEATH_DO_US_PART           = 18; -- ± --
-FALLEN_COMRADES                 = 19; -- ± --
-RIVALS                          = 20; -- + --
-MOM_THE_ADVENTURER              = 21; -- + --
-THE_SIGNPOST_MARKS_THE_SPOT     = 22; -- + --
-PAST_PERFECT                    = 23; -- ± --
-STARDUST                        = 24; -- + --
-MEAN_MACHINE                    = 25; -- ± --
-CID_S_SECRET                    = 26; -- ± --
-THE_USUAL                       = 27; -- ± --
-BLADE_OF_DARKNESS               = 28; -- ± --
-FATHER_FIGURE                   = 29; -- ± --
-THE_RETURN_OF_THE_ADVENTURER    = 30; -- ± --
-DRACHENFALL                     = 31; -- + --
-VENGEFUL_WRATH                  = 32; -- ± --
-BEADEAUX_SMOG                   = 33; -- + --
-THE_CURSE_COLLECTOR             = 34; -- + --
-FEAR_OF_FLYING                  = 35; -- + --
-THE_WISDOM_OF_ELDERS            = 36; -- ± --
-GROCERIES                       = 37; -- ± --
-THE_BARE_BONES                  = 38; -- ± --
-MINESWEEPER                     = 39; -- ± --
-THE_DARKSMITH                   = 40; -- ± --
-BUCKETS_OF_GOLD                 = 41; -- ± --
-THE_STARS_OF_IFRIT              = 42; -- ± --
-LOVE_AND_ICE                    = 43; -- ± --
-BRYGID_THE_STYLIST              = 44; -- ± --
-THE_GUSTABERG_TOUR              = 45;
-BITE_THE_DUST                   = 46; -- ± --
-BLADE_OF_DEATH                  = 47; -- + --
-SILENCE_OF_THE_RAMS             = 48; -- ± --
-ALTANA_S_SORROW                 = 49; -- + --
-A_LADY_S_HEART                  = 50; -- ± --
-GHOSTS_OF_THE_PAST              = 51; -- ± --
-THE_FIRST_MEETING               = 52; -- ± --
-TRUE_STRENGTH                   = 53; -- ± --
-THE_DOORMAN                     = 54; -- ± --
-THE_TALEKEEPER_S_TRUTH          = 55; -- ± --
-THE_TALEKEEPER_S_GIFT           = 56; -- ± --
-DARK_LEGACY                     = 57; -- ± --
-DARK_PUPPET                     = 58; -- ± --
-BLADE_OF_EVIL                   = 59; -- ± --
-AYAME_AND_KAEDE                 = 60; -- ± --
-TRIAL_BY_EARTH                  = 61; -- ± --
-A_TEST_OF_TRUE_LOVE             = 62; -- ± --
-LOVERS_IN_THE_DUSK              = 63; -- ± --
-WISH_UPON_A_STAR                = 64;
-ECO_WARRIOR_BAS                 = 65;
-THE_WEIGHT_OF_YOUR_LIMITS       = 66;
-SHOOT_FIRST_ASK_QUESTIONS_LATER = 67;
-INHERITANCE                     = 68;
-THE_WALLS_OF_YOUR_MIND          = 69;
-ESCORT_FOR_HIRE_BASTOK          = 70;
-A_DISCERNING_EYE_BASTOK         = 71;
-TRIAL_SIZE_TRIAL_BY_EARTH       = 72; -- + --
-FADED_PROMISES                  = 73;
-BRYGID_THE_STYLIST_RETURNS      = 74; -- ± --
-OUT_OF_THE_DEPTHS               = 75;
-ALL_BY_MYSELF                   = 76;
-A_QUESTION_OF_FAITH             = 77;
-RETURN_OF_THE_DEPTHS            = 78;
-TEAK_ME_TO_THE_STARS            = 79;
-HYPER_ACTIVE                    = 80;
-THE_NAMING_GAME                 = 81;
-CHIPS                           = 82;
-BAIT_AND_SWITCH                 = 83;
-LURE_OF_THE_WILDCAT_BASTOK      = 84;
-ACHIEVING_TRUE_POWER            = 85;
-TOO_MANY_CHEFS                  = 86;
-A_PROPER_BURIAL                 = 87;
-FULLY_MENTAL_ALCHEMIST          = 88;
-SYNERGUSTIC_PURSUITS            = 89;
-THE_WONDROUS_WHATCHAMACALLIT    = 90;
-
------------------------------------
---  Windurst - 2
------------------------------------
-
-HAT_IN_HAND                     = 0;  -- + --
-A_FEATHER_IN_ONE_S_CAP          = 1;  -- + --
-A_CRISIS_IN_THE_MAKING          = 2;  -- + --
-MAKING_AMENDS                   = 3;  -- + --
-MAKING_THE_GRADE                = 4;  -- + --
-IN_A_PICKLE                     = 5;  -- + --
-WONDERING_MINSTREL              = 6;  -- + --
-A_POSE_BY_ANY_OTHER_NAME        = 7;  -- + --
-MAKING_AMENS                    = 8;  -- + --
-THE_MOONLIT_PATH                = 9;  -- + --
-STAR_STRUCK                     = 10; -- ± --
-BLAST_FROM_THE_PAST             = 11; -- + --
-A_SMUDGE_ON_ONE_S_RECORD        = 12; -- ± --
-CHASING_TALES                   = 13; -- + --
-FOOD_FOR_THOUGHT                = 14; -- + --
-OVERNIGHT_DELIVERY              = 15; -- + --
-WATER_WAY_TO_GO                 = 16; -- + --
-BLUE_RIBBON_BLUES               = 17; -- + --
-THE_ALL_NEW_C_3000              = 18; -- + --
-THE_POSTMAN_ALWAYS_KO_S_TWICE   = 19; -- + --
-EARLY_BIRD_CATCHES_THE_BOOKWORM = 20; -- + --
-CATCH_IT_IF_YOU_CAN             = 21; -- + --
-
-ALL_AT_SEA                      = 23;
-THE_ALL_NEW_C_2000              = 24; -- ± --
-MIHGO_S_AMIGO                   = 25; -- + --
-ROCK_RACKETEER                  = 26; -- + --
-CHOCOBILIOUS                    = 27; -- + --
-TEACHER_S_PET                   = 28; -- + --
-REAP_WHAT_YOU_SOW               = 29; -- + --
-GLYPH_HANGER                    = 30; -- + --
-THE_FANGED_ONE                  = 31; -- + --
-CURSES_FOILED_AGAIN_1           = 32; -- + --
-CURSES_FOILED_AGAIN_2           = 33; -- + --
-MANDRAGORA_MAD                  = 34; -- + --
-TO_BEE_OR_NOT_TO_BEE            = 35; -- + --
-TRUTH_JUSTICE_AND_THE_ONION_WAY = 36; -- + --
-MAKING_HEADLINES                = 37; -- + --
-SCOOPED                         = 38;
-CREEPY_CRAWLIES                 = 39; -- + --
-KNOW_ONE_S_ONIONS               = 40; -- + --
-INSPECTOR_S_GADGET              = 41; -- + --
-ONION_RINGS                     = 42; -- + --
-A_GREETING_CARDIAN              = 43; -- + --
-LEGENDARY_PLAN_B                = 44; -- + --
-IN_A_STEW                       = 45; -- + --
-LET_SLEEPING_DOGS_LIE           = 46;
-CAN_CARDIANS_CRY                = 47; -- + --
-WONDER_WANDS                    = 48; -- + --
-HEAVEN_CENT                     = 49;
-SAY_IT_WITH_FLOWERS             = 50; -- + --
-HOIST_THE_JELLY_ROGER           = 51; -- + --
-SOMETHING_FISHY                 = 52; -- + --
-TO_CATCH_A_FALLIHG_STAR         = 53; -- + --
-
-PAYING_LIP_SERVICE              = 60; -- + --
-THE_AMAZIN_SCORPIO              = 61; -- + --
-TWINSTONE_BONDING               = 62; -- + --
-CURSES_FOILED_A_GOLEM           = 63; -- + --
-ACTING_IN_GOOD_FAITH            = 64; -- ± --
-FLOWER_CHILD                    = 65; -- ± --
-THE_THREE_MAGI                  = 66; -- ± --
-RECOLLECTIONS                   = 67; -- ± --
-THE_ROOT_OF_THE_PROBLEM         = 68;
-THE_TENSHODO_SHOWDOWN           = 69; -- + --
-AS_THICK_AS_THIEVES             = 70; -- + --
-HITTING_THE_MARQUISATE          = 71; -- + --
-SIN_HUNTING                     = 72; -- + --
-FIRE_AND_BRIMSTONE              = 73; -- + --
-UNBRIDLED_PASSION               = 74; -- + --
-I_CAN_HEAR_A_RAINBOW            = 75; -- + --
-CRYING_OVER_ONIONS              = 76; -- + --
-WILD_CARD                       = 77; -- + --
-THE_PROMISE                     = 78; -- + --
-NOTHING_MATTERS                 = 79;
-TORAIMARAI_TURMOIL              = 80; -- + --
-THE_PUPPET_MASTER               = 81; -- + --
-CLASS_REUNION                   = 82; -- + --
-CARBUNCLE_DEBACLE               = 83; -- + --
-ECO_WARRIOR_WIN                 = 84; -- + --
-FROM_SAPLINGS_GROW              = 85;
-ORASTERY_WOES                   = 86;
-BLOOD_AND_GLORY                 = 87;
-ESCORT_FOR_HIRE_WINDURST        = 88;
-A_DISCERNING_EYE_WINDURST       = 89;
-TUNING_IN                       = 90;
-TUNING_OUT                      = 91;
-ONE_GOOD_DEED                   = 92;
-WAKING_DREAMS                   = 93; -- + --
-LURE_OF_THE_WILDCAT_WINDURST    = 94;
-BABBAN_NY_MHEILLEA              = 95;
 
 -----------------------------------
 --  Jeuno - 3
