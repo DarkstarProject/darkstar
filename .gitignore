@@ -160,3 +160,5 @@ log/DSP.leaks
 .vs
 /win32/.vs/darkstar/v15
 
+#macOS DS Store file
+.DS_Store
