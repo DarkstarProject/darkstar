@@ -16,40 +16,39 @@ this_quest.vars =
     preserve_main_on_complete = false, -- do we keep main var on quest completion
     additional =
     {
-        ["name"] = { id = 1, type = dsp.quests.enums.var_types.local_var, repeatable = false, preserve_on_complete = false },
+        ["name"] = { id = 1, type = dsp.quests.enums.var_types.LOCAL_VAR, repeatable = false, preserve_on_complete = false },
     }
 }
 
--- todo: properly enum titles too
 this_quest.rewards =
 {
     sets =
     {
         [1] =
         {
-            title = NEW_ADVENTURER, keyitems = { DARK_KEY },
+            title = dsp.title.NEW_ADVENTURER, keyitems = { dsp.ki.DARK_KEY },
             items = { itemid = 17440, qty = 1 }
         }
     }
 }
 
-
--- npcs[zone] = { ["name"] = { onTrade, onTrigger, ..} }
-this_quest.npcs = {}
-
--- south sandy
-this_quest.npcs[dsp.zone.SOUTHERN_SAN_DORIA] =
+this_quest.npcs =
 {
-    ["Amutiyaal"] =
+    [dsp.zone.SOUTHERN_SAN_DORIA] =
     {
-        onTrade = function(player, npc, trade)
-        end,
-        onTrigger = function(player, npc)
-        end,
-        onEventUpdate = function(player, csid, option)
-        end,
-        onEventFinish = function(player, csid, option)
-        end
+        ["Amutiyaal"] =
+        {
+            onTrade = function(player, npc, trade)
+            end,
+            onTrigger = function(player, npc)
+            end,
+            onEventUpdate = function(player, csid, option)
+            end,
+            onEventFinish = function(player, csid, option)
+            end
+        }
     }
 }
+
 dsp.quests.quests[logid][name] = this_quest
+return this_quest
