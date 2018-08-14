@@ -3636,3 +3636,4 @@ INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind
 INSERT INTO `mob_skill_lists` VALUES ('Nargun',1005,677); -- Thunder Break
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
 INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
+INSERT INTO `mob_skill_lists` VALUES ('Ankabut',1007,704);
