@@ -7,7 +7,6 @@ require("scripts/zones/North_Gustaberg_[S]/MobIDs")
 require("scripts/globals/mobs")
 
 function onMobDeath(mob, player, isKiller)
-
 end
 
 function onMobDespawn(mob)
