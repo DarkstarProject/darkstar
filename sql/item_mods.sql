@@ -1915,6 +1915,8 @@ INSERT INTO `item_mods` VALUES (10691,1,20);
 INSERT INTO `item_mods` VALUES (10691,3,4);
 INSERT INTO `item_mods` VALUES (10691,23,21);
 INSERT INTO `item_mods` VALUES (10691,25,21);
+INSERT INTO `item_mods` VALUES (10691,123,8); -- Enhances "Chakra" effect III - Increases VIT mult by 0.8
+INSERT INTO `item_mods` VALUES (10691,124,6); -- Chakra removes Disease and Plague
 INSERT INTO `item_mods` VALUES (10691,289,6);
 INSERT INTO `item_mods` VALUES (10692,1,21);
 INSERT INTO `item_mods` VALUES (10692,2,28);
@@ -8732,6 +8734,8 @@ INSERT INTO `item_mods` VALUES (12639,1,41);
 INSERT INTO `item_mods` VALUES (12639,2,20);
 INSERT INTO `item_mods` VALUES (12639,10,3);
 INSERT INTO `item_mods` VALUES (12639,25,5);
+INSERT INTO `item_mods` VALUES (12639,123,10); -- Enhances Chakra Effect - Increases VIT mult by 1.0
+INSERT INTO `item_mods` VALUES (12639,124,1);  -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (12640,1,40);
 INSERT INTO `item_mods` VALUES (12640,5,15);
 INSERT INTO `item_mods` VALUES (12640,27,-4);
@@ -13998,6 +14002,8 @@ INSERT INTO `item_mods` VALUES (14474,2,20);
 INSERT INTO `item_mods` VALUES (14474,8,6);
 INSERT INTO `item_mods` VALUES (14474,10,6);
 INSERT INTO `item_mods` VALUES (14474,25,5);
+INSERT INTO `item_mods` VALUES (14474,123,10); -- Enhances Chakra Effect - Increases VIT mult by 1.0
+INSERT INTO `item_mods` VALUES (14474,124,1);  -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (14475,1,40);
 INSERT INTO `item_mods` VALUES (14475,5,35);
 INSERT INTO `item_mods` VALUES (14475,27,-4);
@@ -15369,6 +15375,8 @@ INSERT INTO `item_mods` VALUES (14909,27,2);
 INSERT INTO `item_mods` VALUES (14910,1,16);
 INSERT INTO `item_mods` VALUES (14910,3,3);
 INSERT INTO `item_mods` VALUES (14910,23,18);
+INSERT INTO `item_mods` VALUES (14910,123,6); -- Enhances "Chakra" effect II - Increases VIT mult by 0.6
+INSERT INTO `item_mods` VALUES (14910,124,2); -- Chakra removes Disease
 INSERT INTO `item_mods` VALUES (14910,289,5);
 INSERT INTO `item_mods` VALUES (14911,1,17);
 INSERT INTO `item_mods` VALUES (14911,2,20);
@@ -16132,6 +16140,8 @@ INSERT INTO `item_mods` VALUES (15102,27,2);
 INSERT INTO `item_mods` VALUES (15103,1,15);
 INSERT INTO `item_mods` VALUES (15103,3,3);
 INSERT INTO `item_mods` VALUES (15103,23,16);
+INSERT INTO `item_mods` VALUES (15103,123,6); -- Enhances "Chakra" effect II - Increases VIT mult by 0.6
+INSERT INTO `item_mods` VALUES (15103,124,2); -- Chakra removes Disease
 INSERT INTO `item_mods` VALUES (15103,289,4);
 INSERT INTO `item_mods` VALUES (15104,1,16);
 INSERT INTO `item_mods` VALUES (15104,5,20);
@@ -26327,6 +26337,8 @@ INSERT INTO `item_mods` VALUES (23108,25,45);     -- Accuracy+45
 INSERT INTO `item_mods` VALUES (23108,29,4);      -- Magic Defense+4
 INSERT INTO `item_mods` VALUES (23108,31,63);     -- Magic Evasion+63
 INSERT INTO `item_mods` VALUES (23108,68,62);     -- Evasion+62
+INSERT INTO `item_mods` VALUES (23108,123,14);    -- "Chakra"+64 - Increase VIT mult by 1.4 (this is a guess)
+INSERT INTO `item_mods` VALUES (23108,124,1);     -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (23108,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23108,421,4);     -- Critical Hit Damage+4
 INSERT INTO `item_mods` VALUES (23109,1,135);     -- theo._briault_+2 DEF:135
@@ -28317,6 +28329,8 @@ INSERT INTO `item_mods` VALUES (23443,25,55);     -- Accuracy+55
 INSERT INTO `item_mods` VALUES (23443,29,5);      -- Magic Defense+5
 INSERT INTO `item_mods` VALUES (23443,31,73);     -- Magic Evasion+73
 INSERT INTO `item_mods` VALUES (23443,68,72);     -- Evasion+72
+INSERT INTO `item_mods` VALUES (23443,123,16);    -- "Chakra"+66 - Increase VIT mult by 1.6 (this is a guess)
+INSERT INTO `item_mods` VALUES (23443,124,1);     -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (23443,384,40);    -- Haste +40
 INSERT INTO `item_mods` VALUES (23443,421,8);     -- Critical Hit Damage+8
 INSERT INTO `item_mods` VALUES (23444,1,145);     -- theo._briault_+3 DEF:145
@@ -35159,6 +35173,8 @@ INSERT INTO `item_mods` VALUES (26978,23,21);
 INSERT INTO `item_mods` VALUES (26978,25,21);
 INSERT INTO `item_mods` VALUES (26978,31,18);
 INSERT INTO `item_mods` VALUES (26978,68,10);
+INSERT INTO `item_mods` VALUES (26978,123,10); -- "Chakra III"+42 - Increases VIT mult by 1.0 (this is a guess)
+INSERT INTO `item_mods` VALUES (26978,124,6);  -- Chakra removes Disease and Plague
 INSERT INTO `item_mods` VALUES (26978,289,7);
 INSERT INTO `item_mods` VALUES (26978,384,40);
 INSERT INTO `item_mods` VALUES (26979,1,76);
@@ -35176,6 +35192,8 @@ INSERT INTO `item_mods` VALUES (26979,29,1);      -- m.def+1
 INSERT INTO `item_mods` VALUES (26979,31,26);
 INSERT INTO `item_mods` VALUES (26979,68,22);
 INSERT INTO `item_mods` VALUES (26979,289,8);
+INSERT INTO `item_mods` VALUES (26979,123,12); -- "Chakra III"+45 -- Increases VIT mult by 1.2
+INSERT INTO `item_mods` VALUES (26979,124,6);  -- Chakra removes Disease and Plague
 INSERT INTO `item_mods` VALUES (26979,384,40);
 INSERT INTO `item_mods` VALUES (26980,1,61);
 INSERT INTO `item_mods` VALUES (26980,2,40);
@@ -41304,6 +41322,8 @@ INSERT INTO `item_mods` VALUES (27808,25,10);
 INSERT INTO `item_mods` VALUES (27808,29,2);
 INSERT INTO `item_mods` VALUES (27808,31,36);
 INSERT INTO `item_mods` VALUES (27808,68,24);
+INSERT INTO `item_mods` VALUES (27808,123,12); -- Enhances Chakra effect - Increase VIT mult by 1.2
+INSERT INTO `item_mods` VALUES (27808,124,1);  -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (27808,384,40);
 INSERT INTO `item_mods` VALUES (27809,1,89);
 INSERT INTO `item_mods` VALUES (27809,2,25);
@@ -41655,6 +41675,8 @@ INSERT INTO `item_mods` VALUES (27829,25,10);
 INSERT INTO `item_mods` VALUES (27829,29,4);
 INSERT INTO `item_mods` VALUES (27829,31,53);
 INSERT INTO `item_mods` VALUES (27829,68,52);
+INSERT INTO `item_mods` VALUES (27829,123,12); -- "Chakra"+62 -- Increase VIT mult by 1.2 (this is a guess)
+INSERT INTO `item_mods` VALUES (27829,124,1);  -- Chakra removes Paralysis
 INSERT INTO `item_mods` VALUES (27829,384,40);
 INSERT INTO `item_mods` VALUES (27830,1,125);
 INSERT INTO `item_mods` VALUES (27830,2,54);
