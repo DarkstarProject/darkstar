@@ -14,5 +14,3 @@ end
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.HASTE_MAGIC, -effect:getPower())
 end
-    target:delMod(dsp.mod.HASTE_MAGIC,-effect:getPower())
-end
