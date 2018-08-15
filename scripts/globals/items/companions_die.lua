@@ -5,9 +5,9 @@
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canLearnAbility(288);
-end;
+    return target:canLearnAbility(288)
+end
 
 function onItemUse(target)
-    target:addLearnedAbility(288);
-end;
+    target:addLearnedAbility(288)
+end

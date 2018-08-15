@@ -19,6 +19,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.SLOW, 1250, 0, 120)
 
+    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 120)
     local currentHP = target:getHP()
     -- remove all by 5%
     local stab = currentHP * .95

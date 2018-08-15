@@ -13,45 +13,45 @@
 --
 -- Combos: Magic Attack Bonus
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/bluemagic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/bluemagic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
     local typeEffectOne = dsp.effect.ICE_SPIKES
     local typeEffectTwo = dsp.effect.DEFENSE_BOOST
-    local powerOne = 5;
+    local powerOne = 5
     local powerTwo = 12
-    local duration = 120;
-    local returnEffect = typeEffectOne;
+    local duration = 120
+    local returnEffect = typeEffectOne
 
     if (caster:hasStatusEffect(dsp.effect.DIFFUSION)) then
-        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION);
+        local diffMerit = caster:getMerit(dsp.merit.DIFFUSION)
 
         if (diffMerit > 0) then
-            duration = duration + (duration/100)* diffMerit;
-        end;
+            duration = duration + (duration/100)* diffMerit
+        end
 
-        caster:delStatusEffect(dsp.effect.DIFFUSION);
-    end;
+        caster:delStatusEffect(dsp.effect.DIFFUSION)
+    end
 
     if (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false and target:addStatusEffect(typeEffectTwo,powerTwo,0,duration) == false) then -- both statuses fail to apply
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     elseif (target:addStatusEffect(typeEffectOne,powerOne,0,duration) == false) then -- the first status fails to apply
         target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
-        returnEffect = typeEffectTwo;
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+        returnEffect = typeEffectTwo
     else
         target:addStatusEffect(typeEffectOne,powerOne,0,duration)
         target:addStatusEffect(typeEffectTwo,powerTwo,0,duration)
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
+    end
 
-    return returnEffect;
-end;
+    return returnEffect
+end

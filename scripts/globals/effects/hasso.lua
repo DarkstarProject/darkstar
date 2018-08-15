@@ -4,7 +4,6 @@
 -- also -50% FC
 -----------------------------------
 require("scripts/globals/status")
-
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.STR, effect:getPower())
     target:addMod(dsp.mod.HASTE_ABILITY, 1000)
@@ -18,4 +17,8 @@ function onEffectLose(target, effect)
     target:delMod(dsp.mod.STR, effect:getPower())
     target:delMod(dsp.mod.HASTE_ABILITY, 1000)
     target:delMod(dsp.mod.ACC, 10)
+end
+    target:delMod(dsp.mod.STR,effect:getPower())
+    target:delMod(dsp.mod.HASTE_ABILITY,102)
+    target:delMod(dsp.mod.ACC,10)
 end

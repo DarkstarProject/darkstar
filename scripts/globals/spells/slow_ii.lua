@@ -4,6 +4,7 @@
 -- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
 -- Slow II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
+require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
 require("scripts/globals/status")
@@ -26,6 +27,16 @@ function onSpellCast(caster, target, spell)
     end
 
     --Duration, including resistance
+
+    if (merits > 1) then
+        potency = potency + ((merits - 1) * 10)
+    end
+
+    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
+        potency = potency * 2
+    end
+
+    --Duration, including resistance.
     local duration = 180
     local params = {}
     params.diff = nil
@@ -42,6 +53,8 @@ function onSpellCast(caster, target, spell)
         caster:delStatusEffect(dsp.effect.SABOTEUR)
 
         if target:addStatusEffect(dsp.effect.SLOW, potency, 0, duration) then
+        duration = duration * 2
+    caster:delStatusEffect(dsp.effect.SABOTEUR)
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

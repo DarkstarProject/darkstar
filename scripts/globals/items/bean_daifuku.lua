@@ -14,20 +14,20 @@
 -- Ranged Accuracy +10% (cap 75)
 -- Haste +3%
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+        result = 246
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6341);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6341)
+end
 
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.HP, 20);

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Eraser
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 local removable = {
     dsp.effect.PETRIFICATION,

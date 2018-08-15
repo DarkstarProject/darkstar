@@ -5,14 +5,14 @@
 -- Durration: Instant
 -----------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:addTP(100);
-end;
+    target:addTP(100)
+end

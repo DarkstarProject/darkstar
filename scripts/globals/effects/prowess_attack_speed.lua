@@ -6,8 +6,6 @@
 -- doesn't alter JA timers like other sources of haste.
 -----------------------------------
 require("scripts/globals/status")
------------------------------------
-
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.HASTE_ABILITY, effect:getPower())
 end

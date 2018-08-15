@@ -6,15 +6,15 @@
 -- Duration: 2 hours
 -- Restriction: WHM main only
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    target:delStatusEffect(dsp.effect.AFFLATUS_SOLACE);
-    target:delStatusEffect(dsp.effect.AFFLATUS_MISERY);
-    target:addStatusEffect(dsp.effect.AFFLATUS_MISERY,8,0,7200);
-end;
+    target:delStatusEffect(dsp.effect.AFFLATUS_SOLACE)
+    target:delStatusEffect(dsp.effect.AFFLATUS_MISERY)
+    target:addStatusEffect(dsp.effect.AFFLATUS_MISERY,8,0,7200)
+end

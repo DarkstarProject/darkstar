@@ -16,6 +16,7 @@ function onMobSkillCheck(target, mob, skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
+
     local numhits = 1
     local accmod = 1
     local dmgmod = 2.5
@@ -26,6 +27,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1000, 0, 120)
 
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 100, 0, 120)
     target:delHP(dmg)
     return dmg
 end

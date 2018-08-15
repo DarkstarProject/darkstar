@@ -4,6 +4,7 @@
 -- Slow's potency is calculated with the formula (187.5 + dMND*1.5)/1024, and caps at 300/1024 (~29.3%).
 -- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
+require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
 require("scripts/globals/status")
@@ -11,8 +12,8 @@ require("scripts/globals/utils")
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)

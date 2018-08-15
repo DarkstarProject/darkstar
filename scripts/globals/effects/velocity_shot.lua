@@ -4,7 +4,6 @@
 --
 -----------------------------------
 require("scripts/globals/status")
-
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.ATTP, -15)
     target:addMod(dsp.mod.HASTE_ABILITY, -1500)
@@ -20,4 +19,9 @@ function onEffectLose(target, effect)
     target:delMod(dsp.mod.HASTE_ABILITY, -1500)
     target:delMod(dsp.mod.RATTP, 15)
     target:delMod(dsp.mod.RANGED_DELAYP, -10)
+end
+    target:delMod(dsp.mod.ATTP,-15)
+    target:delMod(dsp.mod.HASTE_ABILITY,-150)
+    target:delMod(dsp.mod.RATTP,15)
+    target:delMod(dsp.mod.RANGED_DELAYP,-10)
 end

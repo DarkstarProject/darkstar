@@ -13,8 +13,8 @@
 --
 -- Combos: Dual Wield
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)

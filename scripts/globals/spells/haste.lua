@@ -14,7 +14,7 @@ function onSpellCast(caster, target, spell)
     local duration = 180
 
     if caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
-       duration = duration * 3;
+       duration = duration * 3
     end
 
     local power = 1465 -- 150/1024 ~14.65%

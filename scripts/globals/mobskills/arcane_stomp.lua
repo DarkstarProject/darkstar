@@ -18,4 +18,4 @@ end
 function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MobBuffMove(mob,dsp.effect.MAGIC_SHIELD,3,0,300))
     return dsp.effect.MAGIC_SHIELD
-end;
+end

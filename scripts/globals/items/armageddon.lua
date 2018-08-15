@@ -2,17 +2,17 @@
 -- ID: 19469
 -- Item: Armageddon
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
-require("scripts/globals/weaponskills");
-require("scripts/globals/weaponskillids");
+require("scripts/globals/status")
+require("scripts/globals/msg")
+require("scripts/globals/weaponskills")
+require("scripts/globals/weaponskillids")
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_ARMAGEDDON";
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_ARMAGEDDON";
+local NAME_WEAPONSKILL = "AFTERMATH_ARMAGEDDON"
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_ARMAGEDDON"
 
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
-local aftermathTable = {};
+local aftermathTable = {}
 
 -- Armageddon 85
 aftermathTable[19469] =
@@ -38,13 +38,13 @@ aftermathTable[19469] =
             { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG_RANGED, power = 50 }
         }
     }
-};
-aftermathTable[19547] = aftermathTable[19469]; -- Armageddon (90)
-aftermathTable[19646] = aftermathTable[19469]; -- Armageddon (95)
-aftermathTable[19818] = aftermathTable[19469]; -- Armageddon (99)
-aftermathTable[19866] = aftermathTable[19469]; -- Armageddon (99/II)
-aftermathTable[21264] = aftermathTable[19469]; -- Armageddon (119)
-aftermathTable[21265] = aftermathTable[19469]; -- Armageddon (119/II)
+}
+aftermathTable[19547] = aftermathTable[19469] -- Armageddon (90)
+aftermathTable[19646] = aftermathTable[19469] -- Armageddon (95)
+aftermathTable[19818] = aftermathTable[19469] -- Armageddon (99)
+aftermathTable[19866] = aftermathTable[19469] -- Armageddon (99/II)
+aftermathTable[21264] = aftermathTable[19469] -- Armageddon (119)
+aftermathTable[21265] = aftermathTable[19469] -- Armageddon (119/II)
 
 -- Armageddon (119/III)
 aftermathTable[21269] =
@@ -70,17 +70,17 @@ aftermathTable[21269] =
             { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG_RANGED, power = 50 }
         }
     }
-};
+}
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.WILDFIRE) then -- Wildfire onry
-        local itemId = user:getEquipID(dsp.slot.RANGED);
+        local itemId = user:getEquipID(dsp.slot.RANGED)
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
-                addEmpyreanAftermathEffect(user, tp, aftermathTable[itemId]);
+                addEmpyreanAftermathEffect(user, tp, aftermathTable[itemId])
                 -- Add a listener for when aftermath wears (to remove mods)
-                user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
+                user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost)
             end
         end
     end
@@ -88,31 +88,31 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(dsp.slot.RANGED);
+        local itemId = target:getEquipID(dsp.slot.RANGED)
         if (aftermathTable[itemId]) then
             -- Remove mods
-            removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId]);
+            removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId])
             -- Remove the effect listener
-            target:removeListener(NAME_EFFECT_LOSE);
+            target:removeListener(NAME_EFFECT_LOSE)
         end
     end
 end
 
 function onItemCheck(player, param, caster)
     if (param == dsp.itemCheck.EQUIP) then
-        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
+        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill)
     elseif (param == dsp.itemCheck.UNEQUIP) then
         -- Make sure we clean up the effect and mods
         if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH))
         end
-        player:removeListener(NAME_WEAPONSKILL);
+        player:removeListener(NAME_WEAPONSKILL)
     end
     
-    return 0;
+    return 0
 end
 
 function onItemUse(target)
-    target:addItem(21325,99);
-    target:messageSpecial(ITEMS_OBTAINED,21325,99);
-end;
+    target:addItem(21325,99)
+    target:messageSpecial(ITEMS_OBTAINED,21325,99)
+end

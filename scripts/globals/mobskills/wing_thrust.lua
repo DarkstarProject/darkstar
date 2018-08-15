@@ -7,6 +7,7 @@
 --  Range: Single Target 7.0'
 ---------------------------------------------
 require("scripts/globals/monstertpmoves")
+
 require("scripts/globals/settings")
 require("scripts/globals/status")
 ---------------------------------------------

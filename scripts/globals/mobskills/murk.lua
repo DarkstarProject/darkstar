@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- display slow first, else weight
     if slowed == dsp.msg.basic.SKILL_ENFEEB_IS then
-        typeEffect = dsp.effect.SLOW;
+        typeEffect = dsp.effect.SLOW
     elseif weight == dsp.msg.basic.SKILL_ENFEEB_IS then
         typeEffect = dsp.effect.WEIGHT
     else

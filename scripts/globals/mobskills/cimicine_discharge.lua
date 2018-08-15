@@ -9,8 +9,8 @@ require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.SLOW
@@ -26,8 +26,8 @@ function onMobWeaponSkill(target, mob, skill)
     return typeEffect
 
     --[[ Is there suppsoed to be a message about haste?
-    local typeEffect = dsp.effect.HASTE;
-    skill:setMsg(MobBuffMove(mob, typeEffect, 150, 0, duration));
-    return typeEffect;
+    local typeEffect = dsp.effect.HASTE
+    skill:setMsg(MobBuffMove(mob, typeEffect, 150, 0, duration))
+    return typeEffect
     ]]--
 end

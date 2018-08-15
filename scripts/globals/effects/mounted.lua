@@ -3,7 +3,7 @@
 -- dsp.effect.MOUNTED
 --
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
     --[[
@@ -17,11 +17,11 @@ function onEffectGain(target,effect)
         target:ChangeMusic(4,84)
         target:setAnimation(dsp.anim.MOUNT)
     end
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
     target:setAnimation(dsp.anim.NONE)
-end;
+end

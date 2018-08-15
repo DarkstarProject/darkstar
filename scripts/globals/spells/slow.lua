@@ -4,6 +4,7 @@
 -- Slow's potency is calculated with the formula (187.5 + dMND*1.5)/1024, and caps at 300/1024 (~29.3%).
 -- And MND of 75 is neccessary to reach the hardcap of Slow.
 -----------------------------------------
+require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
 require("scripts/globals/status")
@@ -31,6 +32,8 @@ function onSpellCast(caster,target,spell)
     end
 
     --Duration, including resistance
+
+    --Duration, including resistance.
     local duration = 120
     local params = {}
     params.diff = nil
@@ -47,6 +50,7 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(dsp.effect.SABOTEUR)
 
         if target:addStatusEffect(dsp.effect.SLOW, power, 0, duration, 0, 1) then
+    caster:delStatusEffect(dsp.effect.SABOTEUR)
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

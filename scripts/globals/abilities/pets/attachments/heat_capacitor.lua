@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Heat Capacitor
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:setLocalVar("heat_capacitor", pet:getLocalVar("heat_capacitor") + 1)

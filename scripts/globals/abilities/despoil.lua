@@ -32,7 +32,7 @@ function onUseAbility(player, target, ability, action)
     local despoilMod = player:getMod(dsp.mod.DESPOIL)
     local despoilChance = 50 + despoilMod * 2 + level - target:getMainLvl() -- Same math as Steal
     
-    local stolen = target:getDespoilItem();
+    local stolen = target:getDespoilItem()
     if target:isMob() and math.random(100) < despoilChance and stolen then
         player:addItem(stolen)
         target:itemStolen()

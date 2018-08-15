@@ -7,22 +7,22 @@
 -- Range: 15' radial
 -- Notes:
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PETRIFICATION;
+    local typeEffect = dsp.effect.PETRIFICATION
 
-    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, math.random(12,20)));
+    skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, math.random(12,20)))
 
     -- reset everyones enmity
-    mob:resetEnmity(target);
+    mob:resetEnmity(target)
 
-    return typeEffect;
-end;
+    return typeEffect
+end
