@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     mob:familiar()
 
-    skill:setMsg(dsp.msg.basic.FAMILIAR)
+    skill:setMsg(dsp.msg.basic.FAMILIAR_MOB)
 
     return 0
 end
