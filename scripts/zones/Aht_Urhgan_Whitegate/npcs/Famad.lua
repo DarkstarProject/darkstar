@@ -48,8 +48,7 @@ function onEventFinish(player,csid,option)
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14)
-            local itemID = 0
-            local price = 0
+            local items =
             {
                 [1]  = {itemid = 15972, price = 3000},
                 [2]  = {itemid = 15777, price = 5000},
