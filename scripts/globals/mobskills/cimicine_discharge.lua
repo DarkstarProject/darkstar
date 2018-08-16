@@ -14,12 +14,12 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.SLOW
-    local power = 200
-    local duration = math.random(60,180)
+    local power = 1950
+    local duration = math.random(60, 180)
 
-    if (mob:hasStatusEffect(dsp.effect.HASTE) == false) then
-        mob:addStatusEffect(dsp.effect.HASTE,150,0,duration)
-    end
+    if not mob:hasStatusEffect(dsp.effect.HASTE) then
+        mob:addStatusEffect(dsp.effect.HASTE, 1500, 0, duration)
+    end 
 
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration))
 

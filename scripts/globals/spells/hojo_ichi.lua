@@ -8,14 +8,14 @@ require("scripts/globals/magic")
 require("scripts/globals/msg")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     return 0
 end
 
-function onSpellCast(caster,target,spell)
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+function onSpellCast(caster, target, spell)
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
     --Power for Hojo is a flat 14.6% reduction
-    local power = 150
+    local power = 1500
     --Duration and Resistance calculation
     local duration = 180
     local params = {}
@@ -24,11 +24,10 @@ function onSpellCast(caster,target,spell)
     params.bonus = 0
     duration = duration * applyResistance(caster, target, spell, params)
     --Calculates the resist chance from Resist Blind trait
-    if (math.random(0,100) >= target:getMod(dsp.mod.SLOWRES)) then
+    if math.random(0,100) >= target:getMod(dsp.mod.SLOWRES) then
         -- Spell succeeds if a 1 or 1/2 resist check is achieved
-        if (duration >= 150) then
-
-            if (target:addStatusEffect(dsp.effect.SLOW,power,0,duration)) then
+        if duration >= 150 then
+            if target:addStatusEffect(dsp.effect.SLOW, power, 0, duration) then
                 spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
             else
                 spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
@@ -40,5 +39,6 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
     end
+
     return dsp.effect.SLOW
 end

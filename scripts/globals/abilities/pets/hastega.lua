@@ -9,7 +9,7 @@ require("scripts/globals/msg")
 ---------------------------------------------
 
 function onAbilityCheck(player, target, ability)
-    return 0,0
+    return 0, 0
 end
 
 function onPetAbility(target, pet, skill, summoner)
@@ -18,9 +18,9 @@ function onPetAbility(target, pet, skill, summoner)
     print(bonusTime)
     print(duration)
 
-    -- Garuda's Hastega is a weird exception and uses 153 instead of 15%
+    -- Garuda's Hastega is a weird exception and uses 153/1024 instead of 150/1024 like Haste spell
     -- That's why it overwrites some things regular haste won't.
-    target:addStatusEffect(dsp.effect.HASTE,153,0,duration)
+    target:addStatusEffect(dsp.effect.HASTE, 1494, 0, duration) -- 153/1024 ~14.94%
     skill:setMsg(dsp.msg.basic.SKILL_GAIN_EFFECT)
     return dsp.effect.HASTE
 end

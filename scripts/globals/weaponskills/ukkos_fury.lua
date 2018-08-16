@@ -22,7 +22,6 @@ require("scripts/globals/weaponskills")
 -----------------------------------
 
 function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
-
     local params = {}
     params.numHits = 2
     params.ftp100 = 2 params.ftp200 = 2 params.ftp300 = 2
@@ -33,13 +32,13 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.atkmulti = 1
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
 
-    if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
+    if USE_ADOULIN_WEAPON_SKILL_CHANGES then
         params.str_wsc = 0.8
     end
 
-    if (damage > 0 and target:hasStatusEffect(dsp.effect.SLOW) == false) then
+    if damage > 0 and not target:hasStatusEffect(dsp.effect.SLOW) then
         local duration = 60 * applyResistanceAddEffect(player,target,dsp.magic.ele.EARTH,0)
-        target:addStatusEffect(dsp.effect.SLOW, 150, 0, duration)
+        target:addStatusEffect(dsp.effect.SLOW, 1500, 0, duration)
     end
     return tpHits, extraHits, criticalHit, damage
 end
