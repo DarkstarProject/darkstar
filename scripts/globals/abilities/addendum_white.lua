@@ -13,31 +13,31 @@
 -- 70      |4       |1:00 minute
 -- 90      |5       |48 seconds
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if player:hasStatusEffect(dsp.effect.ADDENDUM_WHITE) then
-        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0;
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(dsp.effect.DARK_ARTS);
-    player:delStatusEffectSilent(dsp.effect.ADDENDUM_BLACK);
-    player:delStatusEffectSilent(dsp.effect.LIGHT_ARTS);
+    player:delStatusEffectSilent(dsp.effect.DARK_ARTS)
+    player:delStatusEffectSilent(dsp.effect.ADDENDUM_BLACK)
+    player:delStatusEffectSilent(dsp.effect.LIGHT_ARTS)
 
-    local skillbonus = player:getMod(dsp.mod.LIGHT_ARTS_SKILL);
-    local effectbonus = player:getMod(dsp.mod.LIGHT_ARTS_EFFECT);
-    local regenbonus = 0;
+    local skillbonus = player:getMod(dsp.mod.LIGHT_ARTS_SKILL)
+    local effectbonus = player:getMod(dsp.mod.LIGHT_ARTS_EFFECT)
+    local regenbonus = 0
     if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
-        regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10);
+        regenbonus = 3 * math.floor((player:getMainLvl() - 10) / 10)
     end
 
-    player:addStatusEffectEx(dsp.effect.ADDENDUM_WHITE,dsp.effect.ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true);
+    player:addStatusEffectEx(dsp.effect.ADDENDUM_WHITE,dsp.effect.ADDENDUM_WHITE,effectbonus,0,7200,0,regenbonus,true)
 
-    return dsp.effect.ADDENDUM_WHITE;
-end;
+    return dsp.effect.ADDENDUM_WHITE
+end

@@ -37,6 +37,18 @@ function onTrigger(player,npc)
         player:startEvent(312);
     elseif (CurrentMission == DOLL_OF_THE_DEAD and MissionStatus == 2) then
         player:startEvent(362);
+    elseif (CurrentMission == MOON_READING and MissionStatus == 0) then
+        player:startEvent(384);
+    elseif (CurrentMission == MOON_READING and MissionStatus == 1 and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA) and player:hasKeyItem(dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)) then
+        player:startEvent(385);
+    elseif (CurrentMission == MOON_READING and MissionStatus == 3) then
+        player:startEvent(386);
+    elseif (CurrentMission == MOON_READING and MissionStatus == 4) then
+        if (player:getFreeSlotsCount() == 0) then
+            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,183);
+        else    
+            player:startEvent(407);
+        end
     else
         player:startEvent(154);
     end
@@ -78,6 +90,14 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 362) then
         player:setVar("MissionStatus",3);
+    elseif (csid == 384) then
+        player:setVar("MissionStatus",1);
+    elseif (csid == 385) then
+        player:setVar("MissionStatus",2);
+    elseif (csid == 386) then
+        player:setVar("MissionStatus",4);
+    elseif (csid == 407) then
+        player:setPos(0,-16.750,130,64,239);
     end
 
 end;

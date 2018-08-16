@@ -6,21 +6,21 @@
 -- Utsusemi/Blink absorb: Ignores shadows
 -- Range: 15' radial
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local message = dsp.msg.basic.SKILL_MISS;
-    local typeEffect = dsp.effect.MAX_MP_DOWN;
+    local message = dsp.msg.basic.SKILL_MISS
+    local typeEffect = dsp.effect.MAX_MP_DOWN
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 42, 0, 120));
+    skill:setMsg(MobGazeMove(mob, target, typeEffect, 42, 0, 120))
 
-    return typeEffect;
-end;
+    return typeEffect
+end

@@ -8,31 +8,31 @@
 --  Notes: The knockback is rather severe. Vulpangue uses an enhanced version that inflicts Weight.
 ---------------------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
     -- dsp.effect.KNOCKBACK
 
 
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 1;
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW);
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 1
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW)
 
-    local typeEffect = dsp.effect.WEIGHT;
+    local typeEffect = dsp.effect.WEIGHT
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:delHP(dmg)
+    return dmg
+end

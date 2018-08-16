@@ -256,10 +256,12 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -448, 448);
-        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -256, 256);
-        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -256, 256);
-        WeaponDelay = (uint16)(WeaponDelay * ((1024.0f - hasteMagic - hasteAbility - hasteGear) / 1024.0f));
+        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -10000, 4375); // 43.75% cap -- handle 100% slow for weakness
+        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -2500, 2500); // 25% cap
+        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -2500, 2500); // 25%
+
+        // Divide by float to get a more accurate reduction, then use int16 cast to truncate
+        WeaponDelay -= (int16)(WeaponDelay * (hasteMagic + hasteAbility + hasteGear) / 10000.f);
     }
     WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
 

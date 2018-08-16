@@ -9,58 +9,51 @@
 -- Level: 63
 -- Casting Time: 1 seconds
 -- Recast Time: 26 seconds
--- Skillchain Element(s): Lightning (can open Liquefaction or Detonation; can close Impaction or Fusion)
+-- Skillchain Element(s): Lightning (can open Liquefaction or Detonation can close Impaction or Fusion)
 -- Combos: Max HP Boost
 -----------------------------------------
-require("scripts/globals/bluemagic");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-
------------------------------------------
--- OnMagicCastingCheck
+require("scripts/globals/bluemagic")
+require("scripts/globals/status")
+require("scripts/globals/magic")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
-
------------------------------------------
--- OnSpellCast
------------------------------------------
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
-    local params = {};
-    params.diff = nil;
-    params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.BLUE_MAGIC;
-    params.bonus = 0;
-    params.effect = dsp.effect.STUN;
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 0
+    params.effect = dsp.effect.STUN
     local resist = applyResistanceEffect(caster, target, spell, params)
-    local params = {};
+    local params = {}
     -- This data should match information on http://wiki.ffxiclopedia.org/wiki/Calculating_Blue_Magic_Damage
-        params.tpmod = TPMOD_ACC;
-        params.dmgtype = DMGTYPE_BLUNT;
-        params.scattr = SC_IMPACTION;
-        params.numhits = 1;
-        params.multiplier = 1.78;
-        params.tp150 = 1.78;
-        params.tp300 = 1.78;
-        params.azuretp = 1.78;
-        params.duppercap = 75;
-        params.str_wsc = 0.2;
-        params.dex_wsc = 0.0;
-        params.vit_wsc = 0.0;
-        params.agi_wsc = 0.0;
-        params.int_wsc = 0.0;
-        params.mnd_wsc = 0.2;
-        params.chr_wsc = 0.0;
-    local damage = BluePhysicalSpell(caster, target, spell, params);
-    damage = BlueFinalAdjustments(caster, target, spell, damage, params);
+        params.tpmod = TPMOD_ACC
+        params.dmgtype = DMGTYPE_BLUNT
+        params.scattr = SC_IMPACTION
+        params.numhits = 1
+        params.multiplier = 1.78
+        params.tp150 = 1.78
+        params.tp300 = 1.78
+        params.azuretp = 1.78
+        params.duppercap = 75
+        params.str_wsc = 0.2
+        params.dex_wsc = 0.0
+        params.vit_wsc = 0.0
+        params.agi_wsc = 0.0
+        params.int_wsc = 0.0
+        params.mnd_wsc = 0.2
+        params.chr_wsc = 0.0
+    local damage = BluePhysicalSpell(caster, target, spell, params)
+    damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     if (resist > 0.5) then -- This line may need adjusting for retail accuracy.
-        target:addStatusEffect(dsp.effect.STUN, 1, 0, 5 * resist); -- pre-resist duration needs confirmed/adjusted
+        target:addStatusEffect(dsp.effect.STUN, 1, 0, 5 * resist) -- pre-resist duration needs confirmed/adjusted
     end
 
-    return damage;
-end;
+    return damage
+end
