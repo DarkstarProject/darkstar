@@ -316,6 +316,7 @@ INSERT INTO `item_mods_pet` VALUES (27845,2,110,3);     -- Foire Tobe +1 Automat
 INSERT INTO `item_mods_pet` VALUES (27845,5,110,3);     -- Automaton: MP +110
 INSERT INTO `item_mods_pet` VALUES (27845,384,300,3);    -- Automaton: Haste +3%
 INSERT INTO `item_mods_pet` VALUES (27957,27,5,1);      -- Con. Bracers Avatar: Enmity+5
+INSERT INTO `item_mods_pet` VALUES (27960,384,300,3);    -- Foire Dastanas Automaton: Haste +3%
 INSERT INTO `item_mods_pet` VALUES (27978,27,5,1);      -- Con. Bracers +1 Avatar: Enmity+5
 INSERT INTO `item_mods_pet` VALUES (27981,384,400,3);    -- Foire Dastanas +1 Automaton: Haste +4%
 INSERT INTO `item_mods_pet` VALUES (28025,25,20,0);     -- Regimen Mittens Pet: Accuracy+20

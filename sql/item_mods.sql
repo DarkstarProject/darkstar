@@ -46291,6 +46291,20 @@ INSERT INTO `item_mods` VALUES (28239,31,47);
 INSERT INTO `item_mods` VALUES (28239,68,33);
 INSERT INTO `item_mods` VALUES (28239,384,400);
 INSERT INTO `item_mods` VALUES (28239,411,5);
+INSERT INTO `item_mods` VALUES (28240,1,51);    -- Foire babouches DEF: 51
+INSERT INTO `item_mods` VALUES (28240,2,36);    -- HP +36
+INSERT INTO `item_mods` VALUES (28240,8,8);     -- STR +8
+INSERT INTO `item_mods` VALUES (28240,9,9);     -- DEX +9
+INSERT INTO `item_mods` VALUES (28240,10,7);    -- VIT +7
+INSERT INTO `item_mods` VALUES (28240,11,21);   -- AGI +21
+INSERT INTO `item_mods` VALUES (28240,13,8);    -- MND +8
+INSERT INTO `item_mods` VALUES (28240,14,18);   -- CHR +18
+INSERT INTO `item_mods` VALUES (28240,25,10);   -- ACC +10
+INSERT INTO `item_mods` VALUES (28240,29,1);    -- MDEF +1
+INSERT INTO `item_mods` VALUES (28240,31,43);   -- MEVA +43
+INSERT INTO `item_mods` VALUES (28240,68,32);   -- EVA +32
+INSERT INTO `item_mods` VALUES (28240,384,400); -- Haste +4
+INSERT INTO `item_mods` VALUES (28240,853,1);   -- Repair Effect +1
 INSERT INTO `item_mods` VALUES (28241,1,51);      -- Maxixi Toe Shoes (male): DEF 51
 INSERT INTO `item_mods` VALUES (28241,2,26);      -- HP +26
 INSERT INTO `item_mods` VALUES (28241,8,8);       -- STR +8
