@@ -46303,7 +46303,7 @@ INSERT INTO `item_mods` VALUES (28240,25,10);   -- ACC +10
 INSERT INTO `item_mods` VALUES (28240,29,1);    -- MDEF +1
 INSERT INTO `item_mods` VALUES (28240,31,43);   -- MEVA +43
 INSERT INTO `item_mods` VALUES (28240,68,32);   -- EVA +32
-INSERT INTO `item_mods` VALUES (28240,384,40);  -- Haste +4
+INSERT INTO `item_mods` VALUES (28240,384,400); -- Haste +4
 INSERT INTO `item_mods` VALUES (28240,853,1);   -- Repair Effect +1
 INSERT INTO `item_mods` VALUES (28241,1,51);      -- Maxixi Toe Shoes (male): DEF 51
 INSERT INTO `item_mods` VALUES (28241,2,26);      -- HP +26
