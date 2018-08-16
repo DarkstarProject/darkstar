@@ -25,7 +25,7 @@ function onUseAbility(player,target,ability)
     player:familiar()
 
     -- pets powers increase!
-    ability:setMsg(dsp.msg.basic.FAMILIAR)
+    ability:setMsg(dsp.msg.basic.FAMILIAR_PC)
 
     return 0
 end
