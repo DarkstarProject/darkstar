@@ -790,6 +790,7 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1));
 
     uint8 size = 0;
+    uint16 fullsize = 0;
     FILE* File = fopen(lua_tostring(L, 1), "rb");
 
     if (File)
@@ -803,10 +804,12 @@ inline int32 CLuaBaseEntity::injectPacket(lua_State *L)
             return 0;
         }
 
-        if (size <= 256)
+        fullsize = (size & 0xFE) * 2;
+
+        if (size <= PACKET_SIZE) // used to be 256, but for example packet 0x119 (ability recast) is 260 bytes long, changed it to PACKET_SIZE for consistency
         {
             fseek(File, 0, SEEK_SET);
-            if (fread(*PPacket, 1, size * 2, File) != size * 2)
+            if (fread(*PPacket, 1, fullsize, File) != fullsize)
             {
                 ShowError(CL_RED"CLuaBaseEntity::injectPacket : Did not read entire packet\n" CL_RESET);
                 return 0;
