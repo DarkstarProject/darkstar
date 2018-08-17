@@ -51,6 +51,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/controllers/automaton_controller.h"
 #include "../ai/states/ability_state.h"
 
+#include "../packets/char_abilities.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
@@ -949,8 +950,11 @@ namespace petutils
             charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
         }
 
+        charutils::BuildingCharAbilityTable(PChar);
         PChar->PPet = nullptr;
         PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+        PChar->pushPacket(new CPetSyncPacket(PChar));
     }
 
     /************************************************************************
