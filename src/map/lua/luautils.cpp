@@ -3188,8 +3188,8 @@ namespace luautils
             return 0;
         }
 
-        // Bloodpact SkillUps
-        if (PMob->objtype == TYPE_PET && map_config.skillup_bloodpact) // Do I even need to check this ?
+        // Bloodpact Skillups
+        if (PMob->objtype == TYPE_PET && map_config.skillup_bloodpact)
         {
             CPetEntity* PPet = (CPetEntity*)PMob;
             if (PPet->getPetType() == PETTYPE_AVATAR && PPet->PMaster->objtype == TYPE_PC)
