@@ -3195,9 +3195,7 @@ namespace luautils
             if (PPet->getPetType() == PETTYPE_AVATAR && PPet->PMaster->objtype == TYPE_PC)
             {
                 CCharEntity* PMaster = (CCharEntity*)PPet->PMaster;
-                uint8 smnLvl = 0;
-                if (PMaster->GetMJob() == JOB_SMN) smnLvl = PMaster->GetMLevel();
-                charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, smnLvl);
+                if (PMaster->GetMJob() == JOB_SMN) charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, PMaster->GetMLevel());
             }
         }
 
