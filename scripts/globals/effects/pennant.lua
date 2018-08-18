@@ -4,29 +4,17 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
     if (target:getPet()) then
-        target:getPet():addStatusEffect(effect);
+        target:getPet():addStatusEffect(effect)
     end
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.PENNANT);
+        target:getPet():delStatusEffect(dsp.effect.PENNANT)
     end
-end;
+end

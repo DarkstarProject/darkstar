@@ -28,12 +28,12 @@ function onSpellCast(caster, target, spell)
     if resist > 0.0625 and StealChance < 90 then
         stolen = caster:stealStatusEffect(target)
         if stolen ~= 0 then
-            spell:setMsg(dsp.msg.basic.MAGIC_STEAL);
+            spell:setMsg(dsp.msg.basic.MAGIC_STEAL)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
     
     return stolen

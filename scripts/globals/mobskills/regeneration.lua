@@ -6,21 +6,21 @@
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = mob:getMainLvl()/10 * 4 + 5;
-    local duration = 60;
+    local power = mob:getMainLvl()/10 * 4 + 5
+    local duration = 60
 
-    local typeEffect = dsp.effect.REGEN;
+    local typeEffect = dsp.effect.REGEN
 
-    skill:setMsg(MobBuffMove(mob, typeEffect, power, 3, duration));
-    return typeEffect;
-end;
+    skill:setMsg(MobBuffMove(mob, typeEffect, power, 3, duration))
+    return typeEffect
+end

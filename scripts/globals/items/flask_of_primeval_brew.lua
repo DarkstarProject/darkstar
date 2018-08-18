@@ -23,17 +23,17 @@
 -- Ranged Accuracy +1000
 -- Ranged Attack +9000
 
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
     if (target:hasStatusEffect(dsp.effect.TRANSCENDENCY)) then
-        return 523;
+        return 523
     else
-        return 0;
+        return 0
     end
-end;
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.TRANSCENDENCY,1,0,180);
-end;
+    target:addStatusEffect(dsp.effect.TRANSCENDENCY,1,0,180)
+end

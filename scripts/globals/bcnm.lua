@@ -542,7 +542,7 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [170] = {
                     [224] = function() return (player:hasKeyItem(dsp.ki.MOON_BAUBLE))  end, -- The Moonlit Path
-                    [225] = function() return ((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("WINDURST92") == 2)  end, -- Moon reading
+                    [225] = function() return ((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("MissionStatus") == 2)  end, -- Windurst 9-2
                 },
         [179] = {
                     [256] = function() return (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3)  end, -- Zilart Mission 8
@@ -708,6 +708,8 @@ function CutsceneSkip(player, npc)
         end
     elseif (Zone == 170) then -- Full Moon Fountain
         if ((player:hasCompletedQuest(WINDURST, THE_MOONLIT_PATH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON))) then -- The Moonlit Path
+            skip = 1
+        elseif ((player:hasCompletedMission(WINDURST, MOON_READING)) or (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") > 2)) then
             skip = 1
         end
     elseif (Zone == 179) then -- Stellar Fulcrum

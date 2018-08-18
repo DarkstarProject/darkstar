@@ -14,20 +14,20 @@
 -- Ranged Accuracy +10% (cap 75)
 -- Haste +3%
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+        result = 246
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6341);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6341)
+end
 
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.HP, 20);
@@ -42,7 +42,7 @@ function onEffectGain(target, effect)
     target:addPetMod(dsp.mod.FOOD_ACC_CAP, 75);
     target:addPetMod(dsp.mod.FOOD_RACCP, 10);
     target:addPetMod(dsp.mod.FOOD_RACC_CAP, 75);
-    target:addPetMod(dsp.mod.HASTE_GEAR, 31);
+    target:addPetMod(dsp.mod.HASTE_GEAR, 300);
 end;
 
 function onEffectLose(target, effect)
@@ -58,5 +58,5 @@ function onEffectLose(target, effect)
     target:delPetMod(dsp.mod.FOOD_ACC_CAP, 75);
     target:delPetMod(dsp.mod.FOOD_RACCP, 10);
     target:delPetMod(dsp.mod.FOOD_RACC_CAP, 75);
-    target:delPetMod(dsp.mod.HASTE_GEAR, 31);
+    target:delPetMod(dsp.mod.HASTE_GEAR, 300);
 end;

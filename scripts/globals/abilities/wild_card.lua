@@ -5,24 +5,24 @@
 -- Recast Time: 1:00:00
 -- Duration: Instant
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/ability");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/ability")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(caster,target,ability,action)
     if (caster:getID() == target:getID()) then
-        local roll = math.random(1,6);
-        caster:setLocalVar("corsairRollTotal", roll);
-        action:speceffect(caster:getID(), roll);
+        local roll = math.random(1,6)
+        caster:setLocalVar("corsairRollTotal", roll)
+        action:speceffect(caster:getID(), roll)
     end
     local total = caster:getLocalVar("corsairRollTotal")
     return applyRoll(caster,target,ability,action,total)
-end;
+end
 
 function applyRoll(caster,target,ability,action,total)
     caster:doWildCard(target,total)

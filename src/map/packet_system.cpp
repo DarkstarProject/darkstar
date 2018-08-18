@@ -2288,7 +2288,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if ((PItem != nullptr) &&
             !(PItem->isSubType(ITEM_LOCKED)) &&
-            !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+            !(PItem->getFlag() & ITEM_FLAG_NOAUCTION) &&
+            PItem->getQuantity() >= quantity)
         {
             if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
             {

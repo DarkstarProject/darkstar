@@ -1,14 +1,14 @@
 -----------------------------------
 -- Attachment: Mana Tank II
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.MPP, 10);
+    pet:addMod(dsp.mod.MPP, 10)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.MPP, 10);
+    pet:delMod(dsp.mod.MPP, 10)
 end
 
 -- refresh values from http://wiki.ffo.jp/html/5330.html

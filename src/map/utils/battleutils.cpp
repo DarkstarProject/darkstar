@@ -5248,12 +5248,12 @@ namespace battleutils
         uint32 base = PSpell->getRecastTime();
         int32 recast = base;
 
-        //apply Fast Cast
+        // Apply Fast Cast
         recast = (int32)(recast * ((100.0f - std::clamp((float)PEntity->getMod(Mod::FASTCAST) / 2.0f, 0.0f, 25.0f)) / 100.0f));
 
+        // Apply Haste (Magic and Gear)
         int16 haste = PEntity->getMod(Mod::HASTE_MAGIC) + PEntity->getMod(Mod::HASTE_GEAR);
-
-        recast = (int32)(recast * ((1024.f - haste) / 1024.f));
+        recast -= (int32)(recast * haste / 10000.f);
 
         if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
         {

@@ -1,28 +1,16 @@
 -----------------------------------
 --
---     dsp.effect.COSTUME
+-- dsp.effect.COSTUME
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:costume(effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:costume(effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:costume(0);
-end;
+    target:costume(0)
+end

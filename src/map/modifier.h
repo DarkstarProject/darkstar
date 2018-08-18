@@ -296,6 +296,8 @@ enum class Mod
 
     // Monk
     BOOST_EFFECT              = 97,  // Boost power in tenths
+    CHAKRA_MULT               = 123, // Chakra multiplier increase (from gear)
+    CHAKRA_REMOVAL            = 124, // Extra statuses removed by Chakra
     SUBTLE_BLOW               = 289, // How much TP to reduce.
     COUNTER                   = 291, // Percent chance to counter
     KICK_ATTACK               = 292, // Percent chance to kick

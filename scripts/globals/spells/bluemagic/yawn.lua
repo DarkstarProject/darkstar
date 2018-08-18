@@ -13,41 +13,41 @@
 -- Magic Bursts on: Transfixion, Fusion, Light
 -- Combos: Resist Sleep
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local typeEffect = dsp.effect.SLEEP_II;
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
-    local params = {};
-    params.diff = nil;
-    params.attribute = dsp.mod.INT;
-    params.skillType = dsp.skill.BLUE_MAGIC;
-    params.bonus = 0;
-    params.effect = typeEffect;
-    local resist = applyResistanceEffect(caster, target, spell, params);
-    local duration = 90 * resist;
+    local typeEffect = dsp.effect.SLEEP_II
+    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    local params = {}
+    params.diff = nil
+    params.attribute = dsp.mod.INT
+    params.skillType = dsp.skill.BLUE_MAGIC
+    params.bonus = 0
+    params.effect = typeEffect
+    local resist = applyResistanceEffect(caster, target, spell, params)
+    local duration = 90 * resist
 
     if (resist > 0.5) then -- Do it!
         if ((target:isFacing(caster))) then -- TODO: Apparently this check shouldn't exist for enemies using this spell? Need more info.
             if (target:addStatusEffect(typeEffect,2,0,duration)) then
-                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
+                spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
             else
-                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-            end;
+                spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+            end
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
-        end;
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST);
-    end;
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

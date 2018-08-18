@@ -33,9 +33,19 @@ local wyvernTypes = {
     [dsp.job.RUN] = WYVERN_MULTI
 }
 
------------------------------------
--- onMobSpawn Action
------------------------------------
+function doHealingBreath(player, threshold, breath)
+    if player:getHPP() < threshold then
+        player:getPet():useJobAbility(breath, player)
+    else
+        local party = player:getParty()
+        for _,member in ipairs(party) do
+            if member:getHPP() < threshold then
+                player:getPet():useJobAbility(breath, member)
+                break
+            end
+        end
+    end
+end
 
 function onMobSpawn(mob)
     local master = mob:getMaster()
@@ -141,7 +151,7 @@ function onMobSpawn(mob)
                 player:messageBasic(dsp.msg.basic.STATUS_INCREASED, 0, 0, pet)
                 master:addMod(dsp.mod.ATTP, 4 * diff)
                 master:addMod(dsp.mod.DEFP, 4 * diff)
-                master:addMod(dsp.mod.HASTE_ABILITY, 20 * diff)
+                master:addMod(dsp.mod.HASTE_ABILITY, 200 * diff)
             end
             pet:setLocalVar("wyvern_exp", prev_exp + exp)
             pet:setLocalVar("level_Ups", pet:getLocalVar("level_Ups") + diff)
@@ -149,36 +159,17 @@ function onMobSpawn(mob)
     end)
 end
 
------------------------------------
--- onMobDespawn Action
------------------------------------
-
 function onMobDeath(mob, player)
     local master = mob:getMaster()
     local numLvls = mob:getLocalVar("level_Ups")
     if numLvls ~= 0 then
         master:delMod(dsp.mod.ATTP, 4 * numLvls)
         master:delMod(dsp.mod.DEFP, 4 * numLvls)
-        master:delMod(dsp.mod.HASTE_ABILITY, 20 * numLvls)
+        master:delMod(dsp.mod.HASTE_ABILITY, 200 * numLvls)
     end
     master:removeListener("PET_WYVERN_WS")
     master:removeListener("PET_WYVERN_MAGIC")
     master:removeListener("PET_WYVERN_ENGAGE")
     master:removeListener("PET_WYVERN_DISENGAGE")
     master:removeListener("PET_WYVERN_EXP")
-end
-
-
-function doHealingBreath(player, threshold, breath)
-    if player:getHPP() < threshold then
-        player:getPet():useJobAbility(breath, player)
-    else
-        local party = player:getParty()
-        for _,member in ipairs(party) do
-            if member:getHPP() < threshold then
-                player:getPet():useJobAbility(breath, member)
-                break
-            end
-        end
-    end
 end

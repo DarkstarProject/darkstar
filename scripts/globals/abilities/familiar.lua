@@ -5,27 +5,27 @@
 -- Recast Time: 1:00:00
 -- Duration: 0:30:00
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    local pet = player:getPet();
+    local pet = player:getPet()
     if not pet then
-        return dsp.msg.basic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0
     elseif not player:isJugPet() and pet:getObjType() ~= dsp.objType.MOB then
-        return dsp.msg.basic.NO_EFFECT_ON_PET,0;
+        return dsp.msg.basic.NO_EFFECT_ON_PET,0
     else
-        return 0,0;
+        return 0,0
     end
-end;
+end
 
 function onUseAbility(player,target,ability)
-    player:familiar();
+    player:familiar()
 
     -- pets powers increase!
-    ability:setMsg(dsp.msg.basic.FAMILIAR);
+    ability:setMsg(dsp.msg.basic.FAMILIAR_PC)
 
-    return 0;
-end;
+    return 0
+end

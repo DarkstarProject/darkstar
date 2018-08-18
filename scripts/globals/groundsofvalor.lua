@@ -332,7 +332,7 @@ function finishGov(player,csid,option,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,msg_offset)
         if (tabs >= 20) then
             player:delCurrency("valor_point", 20);
             player:delStatusEffect(dsp.effect.HASTE);
-            player:addStatusEffect(dsp.effect.HASTE,10,0,600);
+            player:addStatusEffect(dsp.effect.HASTE,1000,0,600);
         end
     elseif (option == GOV_MENU_DRIED_MEAT) then -- Dried Meat: STR+4, Attack +22% (caps at 63)
         if (tabs >= 50) then
@@ -499,42 +499,46 @@ function checkGoVregime(player,mob,rid,index)
                         local GoV_clears = 0;
                         local tabs = (math.floor(reward/10)*TABS_RATE);
                         local VanadielEpoch = vanaDay();
-                        local RandomProwess = (math.random(777,788));
+                        local RandomProwess = math.random(dsp.effect.PROWESS_CASKET_RATE, dsp.effect.PROWESS_KILLER)
                         local power = 0;
                         local ProwessMessage = 0; -- Dummy...Gets set proper below.
 
                         -- Set power of Prowess stuffs, cap at 11 boosts.
-                        if (player:hasStatusEffect(RandomProwess) == true) then
-                            if (RandomProwess == 780) then
-                                power = 1 + player:getStatusEffect(RandomProwess):getPower();
-                                if (power > 11) then
-                                    power = 11;
+                        if player:hasStatusEffect(RandomProwess) then
+                            if RandomProwess == dsp.effect.PROWESS_TH then
+                                power = 1 + player:getStatusEffect(RandomProwess):getPower()
+                                if power > 11 then
+                                    power = 11
                                 end
-                            elseif (RandomProwess == 782) then
-                                power = 1 + player:getStatusEffect(RandomProwess):getPower();
-                                if (power > 14) then
-                                    power = 14;
+                            elseif RandomProwess == dsp.effect.PROWESS_ATTACK_SPEED then
+                                power = 400
+                            elseif RandomProwess == dsp.effect.PROWESS_HP_MP then
+                                power = 1 + player:getStatusEffect(RandomProwess):getPower()
+                                if power > 14 then
+                                    power = 14
                                 end
-                            elseif (RandomProwess == 787) then
-                                power = 2 + player:getStatusEffect(RandomProwess):getPower();
-                                if (power > 22) then
-                                    power = 22;
+                            elseif RandomProwess == dsp.effect.PROWESS_WS_DMG then
+                                power = 2 + player:getStatusEffect(RandomProwess):getPower()
+                                if power > 22 then
+                                    power = 22
                                 end
                             else
-                                power = 4 + player:getStatusEffect(RandomProwess):getPower();
-                                if (power > 44) then
-                                    power = 44;
+                                power = 4 + player:getStatusEffect(RandomProwess):getPower()
+                                if power > 44 then
+                                    power = 44
                                 end
                             end
                         else
-                            if (RandomProwess == 780) then
-                                power = 1;
-                            elseif (RandomProwess == 782) then
+                            if RandomProwess == dsp.effect.PROWESS_TH then
+                                power = 1
+                            elseif RandomProwess == dsp.effect.PROWESS_ATTACK_SPEED then
+                                power = 400
+                            elseif RandomProwess == dsp.effect.PROWESS_HP_MP then
                                 power = 3;
-                            elseif (RandomProwess == 787) then
-                                power = 2;
+                            elseif RandomProwess == dsp.effect.PROWESS_WS_DMG then
+                                power = 2
                             else
-                                power = 4;
+                                power = 4
                             end
                         end
 

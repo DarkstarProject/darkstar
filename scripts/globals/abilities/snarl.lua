@@ -5,24 +5,24 @@
 -- Recast Time: 30 seconds
 -- Duration: N/A
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/pets");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/pets")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
     if (player:getPet() == nil) then
-        return dsp.msg.basic.REQUIRES_A_PET,0;
+        return dsp.msg.basic.REQUIRES_A_PET,0
     else
         if ((player:getPet():getTarget() ~= nil) and (player:isJugPet())) then
-            return 0,0;
+            return 0,0
         else
-            return dsp.msg.basic.PET_CANNOT_DO_ACTION,0;
+            return dsp.msg.basic.PET_CANNOT_DO_ACTION,0
         end
     end
-end;
+end
 
 function onUseAbility(player,target,ability)
     player:transferEnmity(player:getPet(), 99, 11.5)
-end;
+end

@@ -1,10 +1,10 @@
 ---------------------------------------------
 -- Astral Flow
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 local avatarOffsets =
@@ -17,25 +17,25 @@ local avatarOffsets =
 }
 
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.ASTRAL_FLOW;
-    skill:setMsg(dsp.msg.basic.USES);
-    local mobID = mob:getID();
-    local avatar = 0;
+    local typeEffect = dsp.effect.ASTRAL_FLOW
+    skill:setMsg(dsp.msg.basic.USES)
+    local mobID = mob:getID()
+    local avatar = 0
 
     if (avatarOffsets[mobID] ~= nil) then
-        avatar = mob:getID() + avatarOffsets[mobID];
+        avatar = mob:getID() + avatarOffsets[mobID]
     else
-        avatar = mob:getID() + 2; -- default offset
-    end;
+        avatar = mob:getID() + 2 -- default offset
+    end
 
     if (not GetMobByID(avatar):isSpawned()) then
-        GetMobByID(avatar):setSpawn(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1, mob:getRotPos());
-        SpawnMob(avatar):updateEnmity(mob:getTarget());
-    end;
+        GetMobByID(avatar):setSpawn(mob:getXPos()+1, mob:getYPos(), mob:getZPos()+1, mob:getRotPos())
+        SpawnMob(avatar):updateEnmity(mob:getTarget())
+    end
 
-    return typeEffect;
-end;
+    return typeEffect
+end

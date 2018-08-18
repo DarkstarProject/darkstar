@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Auto-repair Kit
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addMod(dsp.mod.HPP, 5)
