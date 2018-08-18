@@ -3196,7 +3196,6 @@ namespace luautils
             {
                 CCharEntity* PMaster = (CCharEntity*)PPet->PMaster;
                 uint8 smnLvl = 0;
-                if (PMaster->GetSJob() == JOB_SMN) smnLvl = PMaster->GetSLevel();
                 if (PMaster->GetMJob() == JOB_SMN) smnLvl = PMaster->GetMLevel();
                 charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, smnLvl);
             }
