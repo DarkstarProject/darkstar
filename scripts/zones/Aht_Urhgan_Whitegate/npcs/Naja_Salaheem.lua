@@ -28,10 +28,10 @@ function onTrigger(player,npc)
 
     if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false) then
         player:startEvent(5000,0,0,0,0,0,0,0,0,0); -- PFC rank is available
+        elseif (player:getVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT)) then
+        player:startEvent(5022,0,0,0,0,0,0,0,0,0); -- Superior Private rank complete
     elseif (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false) then
         player:startEvent(5020,0,0,0,0,0,0,0,0,0); -- Superior Private rank is available
-    elseif (player:getVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT)) then
-        player:startEvent(5022,0,0,0,0,0,0,0,0,0); -- Superior Private rank complete
     elseif (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
