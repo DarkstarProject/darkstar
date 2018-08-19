@@ -31,17 +31,19 @@
 
 
 CMessageSpecialPacket::CMessageSpecialPacket(
-	CBaseEntity* PEntity, 
-	uint16 messageID,  
-	uint32 param0, 
-	uint32 param1, 
-	uint32 param2, 
-	uint32 param3, 
+	CBaseEntity* PEntity,
+	uint16 messageID,
+	uint32 param0,
+	uint32 param1,
+	uint32 param2,
+	uint32 param3,
 	bool ShowName,
 	CBaseEntity* messageEntity)
 {
     this->type = 0x2A;
     this->size = 0x10;
+
+    //DSP_DEBUG_BREAK_IF(PEntity == nullptr);
 
     ref<uint32>(0x04) = PEntity->id;
 
@@ -54,7 +56,7 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 
     if (ShowName)
     {
-		this->size = 0x18;
+        this->size = 0x18;
 
         if (messageEntity != nullptr)
         {
@@ -63,12 +65,12 @@ CMessageSpecialPacket::CMessageSpecialPacket(
         else
         {
             memcpy(data + (0x1E), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
-        }	
+        }
     }
-	else if (PEntity->objtype == TYPE_PC)
-	{
-		messageID += 0x8000;
-	}
+    else if (PEntity->objtype == TYPE_PC)
+    {
+        messageID += 0x8000;
+    }
 
     ref<uint16>(0x1A) = messageID;
 }
