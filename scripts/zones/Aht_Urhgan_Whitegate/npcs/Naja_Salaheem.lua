@@ -15,7 +15,7 @@ require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2163) and player:getVar("Promotion") == 1) then -- Rank to PFC
+    if (npcUtil.tradeHas(trade, 2163) and player:getVar("PromotionPFC") == 1) then -- Rank to PFC
         player:startEvent(5002,0,0,0,0,0,0,0,0,0);
     end
 end;
@@ -28,6 +28,10 @@ function onTrigger(player,npc)
 
     if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false) then
         player:startEvent(5000,0,0,0,0,0,0,0,0,0); -- PFC rank is available
+    elseif (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false) then
+        player:startEvent(5020,0,0,0,0,0,0,0,0,0); -- Superior Private rank is available
+    elseif (player:getVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT)) then
+        player:startEvent(5022,0,0,0,0,0,0,0,0,0); -- Superior Private rank complete
     elseif (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
@@ -110,8 +114,8 @@ function onEventFinish(player,csid,option)
         player:setVar("AhtUrganStatus",0);
         player:completeMission(TOAU,IMMORTAL_SENTRIES);
         player:addMission(TOAU,PRESIDENT_SALAHEEM);
-        player:addCurrency("imperial_standing", 150);
         player:addTitle(dsp.title.PRIVATE_SECOND_CLASS);
+        player:addCurrency("imperial_standing", 150);
         player:addKeyItem(dsp.ki.PSC_WILDCAT_BADGE);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PSC_WILDCAT_BADGE);
     elseif (csid == 3020) then
@@ -184,12 +188,19 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
     elseif csid == 5000 then
-        player:setVar("Promotion", 1)
+        player:setVar("PromotionPFC", 1)
     elseif csid == 5002 then
         player:confirmTrade()
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE);
         player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE);
-        player:setVar("Promotion", 0)
+        player:setVar("PromotionPFC", 0)
+        player:setVar("AssaultPromotion", 0)
+    elseif csid == 5020 then
+        player:setVar("PromotionSP", 1)
+    elseif csid == 5022 then
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
+        player:addKeyItem(dsp.ki.player:SP_WILDCAT_BADGE)
+        player:setVar("PromotionSP", 0)
         player:setVar("AssaultPromotion", 0)
     end
 end;
