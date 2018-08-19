@@ -180,24 +180,36 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
 
     CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 1);
 
+    bool rotateNPC = true;
+
+    if (!lua_isnil(L, 9) && lua_isboolean(L, 9))
+        rotateNPC = lua_toboolean(L, 9);
+
     if (PLuaBaseEntity != nullptr)
     {
         CBaseEntity* PBaseEntity = PLuaBaseEntity->GetBaseEntity();
         if (PBaseEntity->objtype == TYPE_NPC)
         {
             PBaseEntity->m_TargID = m_PBaseEntity->targid;
-            PBaseEntity->loc.p.rotation = getangle(PBaseEntity->loc.p, m_PBaseEntity->loc.p);
+            if (rotateNPC)
+            {
+                PBaseEntity->loc.p.rotation = getangle(PBaseEntity->loc.p, m_PBaseEntity->loc.p);
 
-            PBaseEntity->loc.zone->PushPacket(
-                PBaseEntity,
-                CHAR_INRANGE,
-                new CEntityUpdatePacket(PBaseEntity, ENTITY_UPDATE, UPDATE_POS));
+                PBaseEntity->loc.zone->PushPacket(
+                    PBaseEntity,
+                    CHAR_INRANGE,
+                    new CEntityUpdatePacket(PBaseEntity, ENTITY_UPDATE, UPDATE_POS));
+            } 
         }
 
         uint32 param0 = 0;
         uint32 param1 = 0;
         uint32 param2 = 0;
         uint32 param3 = 0;
+
+        bool showName = 0;
+
+        CBaseEntity* messageEntity = nullptr;
 
         if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
             param0 = (uint32)lua_tointeger(L, 3);
@@ -207,14 +219,19 @@ inline int32 CLuaBaseEntity::showText(lua_State *L)
             param2 = (uint32)lua_tointeger(L, 5);
         if (!lua_isnil(L, 6) && lua_isnumber(L, 6))
             param3 = (uint32)lua_tointeger(L, 6);
+        if (!lua_isnil(L, 7) && lua_isboolean(L, 7))
+            showName = (lua_toboolean(L, 7) == 0 ? false : true);
+        if (!lua_isnil(L, 8) && lua_isuserdata(L, 8))
+            messageEntity = Lunar<CLuaBaseEntity>::check(L, 8)->m_PBaseEntity;
 
+        
         if (m_PBaseEntity->objtype == TYPE_PC)
         {
-            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3));
+            ((CCharEntity*)m_PBaseEntity)->pushPacket(new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3, showName, messageEntity));
         }
         else
         {
-            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param3));
+            m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CMessageSpecialPacket(PBaseEntity, messageID, param0, param1, param2, param3, showName, messageEntity));
         }
     }
     return 0;

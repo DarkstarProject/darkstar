@@ -47,7 +47,8 @@ public:
 		uint32 param1 = 0, 
 		uint32 param2 = 0, 
 		uint32 param3 = 0, 
-		bool ShowName = false);
+		bool ShowName = false,
+		CBaseEntity* messageEntity = nullptr);
 };
 
 #endif
