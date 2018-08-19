@@ -31,7 +31,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    if (csid == 630 and option >= 1 and option <= 2049) then
+    if (csid == 630 and option >= 1 and option <= 57345) then
         itemid = getISPItem(option)
         player:updateEvent(0,0,0,canEquip(player,itemid))
     end
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
             player:addKeyItem(id);
             player:messageSpecial(KEYITEM_OBTAINED,id);
             player:delCurrency("imperial_standing", 1000);
-        elseif (option <= 2049) then -- player bought item
+        elseif (option <= 57345) then -- player bought item
             item, price = getISPItem(option)
             if (player:getFreeSlotsCount() > 0) then
                 player:delCurrency("imperial_standing", price);
