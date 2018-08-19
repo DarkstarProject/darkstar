@@ -11767,7 +11767,7 @@ inline int32 CLuaBaseEntity::spawnTrust(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC); // only PCs can spawn trusts
     if (!lua_isnil(L, 1) && lua_isstring(L, 1))
     {
-        uint8 trustId = (uint8)lua_tointeger(L, 1);
+        uint16 trustId = (uint16)lua_tointeger(L, 1);
         petutils::SpawnTrust((CCharEntity*)m_PBaseEntity, trustId);
     }
     else
