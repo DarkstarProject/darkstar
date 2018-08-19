@@ -199,7 +199,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PromotionSP", 1)
     elseif csid == 5022 then
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
-        player:addKeyItem(dsp.ki.player:SP_WILDCAT_BADGE)
+        player:addKeyItem(dsp.ki.player.SP_WILDCAT_BADGE)
         player:setVar("PromotionSP", 0)
         player:setVar("AssaultPromotion", 0)
     end
