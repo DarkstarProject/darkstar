@@ -5,12 +5,10 @@
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    -- Todo: put Trusts's spawn in dialog here or in entity script?
-    -- Todo: automate entity spawn in core for trust spells?
-    caster:spawnTrust(1019); -- see pet_list.sql
-    return 0;
-end;
+    -- caster:spawnTrust(1019)
+    return 0
+end
