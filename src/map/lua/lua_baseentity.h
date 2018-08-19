@@ -685,6 +685,12 @@ public:
     int32 getDespoilDebuff(lua_State*);     // gets the status effect id to apply to the mob on successful despoil
     int32 itemStolen(lua_State*);           // sets mob's ItemStolen var = true
     int32 getTHlevel(lua_State*);           // Returns the Monster's current Treasure Hunter Tier
+
+    // Linkshell Concierge
+    int32 getLinkShellID(lua_State*);        // Gets the Linkshell Id of of a specified linkshell slot (0 for LS1, 1 for LS2)
+    int32 lsConciergeUpdate(lua_State *L);   // handle Concierge's onEventUpdate (listing and distribution)
+    int32 lsConciergeRegister(lua_State *L); // handle Concierge's Linkshell Registration
+    int32 lsConciergeCancel(lua_State *L);   // handle Concierge's Linkshell Cancellation
 };
 
 #endif

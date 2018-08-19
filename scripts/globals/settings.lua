@@ -166,3 +166,6 @@ DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using 
 
 -- ABYSSEA
 VISITANT_BONUS = 1.00; -- Default: 1.00 - (retail) - Multiplies the base time value of each Traverser Stone.
+
+-- LINKSHELL CONCIERGE
+LINKSHELL_CONCIERGE_SHARE = 0 ; -- 0 = Retail behaviour, each NPC has his/her own list and type  --  1 = Shared Stock, All NPCs share stock, but will only have "Do everything" type  

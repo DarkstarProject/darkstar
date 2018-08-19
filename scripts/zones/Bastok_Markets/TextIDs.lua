@@ -68,3 +68,9 @@ CHARGINGCHOCOBO_SHOP_DIALOG =  7680; -- Hello. What piece of armor are you missi
 
 -- Porter Moogle
          RETRIEVE_DIALOG_ID = 12878; -- You retrieve$ from the porter moogle's care.
+
+-- Linkshell Concierges
+     LS_CONCIERGE_REGISTERED1 = 14371 -- Your registration is officially complete.
+     LS_CONCIERGE_REGISTERED2 = 14372 -- May your journeys lead you to many as-yet-unmet friends, and may the bonds you forge last a lifetime.
+  LS_CONCIERGE_ALREADY_LISTED = 14373 -- Another member of that linkshell currently has an active registration. Please wait until that registration expires and try again.
+  LS_CONCIERGE_LISTING_CANCEL = 14319 -- It was my pleasure to meet with you this fine day. May you encounter many friendly faces throughout your travels.

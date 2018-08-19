@@ -114,3 +114,9 @@ PLAYERS_HAVE_NOT_REACHED_LEVEL =  7415 -- Players who have not reached level <<<
 
 -- WS Quest
          IMPULSE_DRIVE_LEARNED =  9316 -- You have learned the weapon skill “Impulse Drive”!
+
+-- Linkshell Concierges
+      LS_CONCIERGE_REGISTERED1 = 15701 -- Your registration is officially complete.
+      LS_CONCIERGE_REGISTERED2 = 15702 -- May your journeys lead you to many as-yet-unmet friends, and may the bonds you forge last a lifetime.
+   LS_CONCIERGE_ALREADY_LISTED = 15703 -- Another member of that linkshell currently has an active registration. Please wait until that registration expires and try again.
+   LS_CONCIERGE_LISTING_CANCEL = 15649 -- It was my pleasure to meet with you this fine day. May you encounter many friendly faces throughout your travels.

@@ -27,3 +27,9 @@
 
 -- NPC Dialog
          MINNIFI_DIALOGUE = 10236; -- Come, ladies and gentlemen, and enjoy our delightful array of frrresh vegetables!
+
+-- Linkshell Concierges
+    LS_CONCIERGE_REGISTERED1 = 12798 -- Your registration is officially complete.
+    LS_CONCIERGE_REGISTERED2 = 12799 -- May your journeys lead you to many as-yet-unmet friends, and may the bonds you forge last a lifetime.
+ LS_CONCIERGE_ALREADY_LISTED = 12800 -- Another member of that linkshell currently has an active registration. Please wait until that registration expires and try again.
+ LS_CONCIERGE_LISTING_CANCEL = 12746 -- It was my pleasure to meet with you this fine day. May you encounter many friendly faces throughout your travels.

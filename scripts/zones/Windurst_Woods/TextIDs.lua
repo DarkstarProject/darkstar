@@ -87,3 +87,9 @@ MILLEROVIEUNET_CLOSED_DIALOG =  9979 -- Now that I've finally learned the langua
 
 -- WS Quest
       EMPYREAL_ARROW_LEARNED =  9724 -- You have learned the weapon skill “Empyreal Arrow”!
+
+-- Linkshell Concierges
+    LS_CONCIERGE_REGISTERED1 = 14190 -- Your registration is officially complete.
+    LS_CONCIERGE_REGISTERED2 = 14191 -- May your journeys lead you to many as-yet-unmet friends, and may the bonds you forge last a lifetime.
+ LS_CONCIERGE_ALREADY_LISTED = 14192 -- Another member of that linkshell currently has an active registration. Please wait until that registration expires and try again.
+ LS_CONCIERGE_LISTING_CANCEL = 14138 -- It was my pleasure to meet with you this fine day. May you encounter many friendly faces throughout your travels.
