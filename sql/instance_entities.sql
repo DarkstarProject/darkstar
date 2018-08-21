@@ -86,6 +86,28 @@ INSERT INTO `instance_entities` VALUES (12, 17047808);
 INSERT INTO `instance_entities` VALUES (12, 17047809);
 
 
+-- Troll Fugitives
+-- Mobs
+INSERT INTO `instance_entities` VALUES (23,17035310);
+INSERT INTO `instance_entities` VALUES (23,17035311);
+INSERT INTO `instance_entities` VALUES (23,17035312);
+INSERT INTO `instance_entities` VALUES (23,17035313);
+INSERT INTO `instance_entities` VALUES (23,17035314);
+INSERT INTO `instance_entities` VALUES (23,17035315);
+INSERT INTO `instance_entities` VALUES (23,17035316);
+INSERT INTO `instance_entities` VALUES (23,17035317);
+INSERT INTO `instance_entities` VALUES (23,17035318);
+INSERT INTO `instance_entities` VALUES (23,17035319);
+INSERT INTO `instance_entities` VALUES (23,17035320);
+INSERT INTO `instance_entities` VALUES (23,17035321);
+INSERT INTO `instance_entities` VALUES (23,17035322);
+INSERT INTO `instance_entities` VALUES (23,17035323);
+INSERT INTO `instance_entities` VALUES (23,17035324);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (23,17035478);
+INSERT INTO `instance_entities` VALUES (23,17035479);
+
+
 -- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);
 INSERT INTO `instance_entities` VALUES (27,17035360);
