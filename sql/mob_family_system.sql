@@ -312,7 +312,7 @@ INSERT INTO `mob_family_system` VALUES (242,'Tiger',6,'Beast',1,60,111,120,1,1,4
 INSERT INTO `mob_family_system` VALUES (243,'Tonberry',7,'Beastmen',0,40,87,140,3,1,3,2,1,5,2,3,3,4,3,1,1,1,1,1,1.25,1,1,1,1,0.5,1,7,1,0);
 INSERT INTO `mob_family_system` VALUES (244,'Tonberry',7,'Beastmen',0,40,87,140,3,1,3,2,1,5,2,3,3,4,3,1,1,1,1,0.66,0.825,0.66,0.66,0.66,0.66,0.33,0.66,7,1,0);
 INSERT INTO `mob_family_system` VALUES (245,'Treant',17,'Plantoid',2,40,120,120,1,2,1,2,3,1,3,3,2,3,3,1,1,1,1,1.25,1,1,1,1,1,1,1.25,4,2,0);
-INSERT INTO `mob_family_system` VALUES (246,'Troll',7,'Beastmen',1,40,120,120,1,2,1,3,3,3,3,3,2,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1,257,0);
+INSERT INTO `mob_family_system` VALUES (246,'Troll',7,'Beastmen',1,40,120,120,1,2,1,3,3,3,3,3,2,3,3,1,1,1,1,0.875,1,1,1,1,1.125,1,1,1,2,0);
 INSERT INTO `mob_family_system` VALUES (247,'Tubes',18,'Unclassified',0,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,2,0);
 INSERT INTO `mob_family_system` VALUES (248,'Turret-Orc',18,'Unclassified',4,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0);
 INSERT INTO `mob_family_system` VALUES (249,'Turret-Quadav',18,'Unclassified',4,40,100,120,3,3,3,3,3,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1,1,1,1,0,1,0);
