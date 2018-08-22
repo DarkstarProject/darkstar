@@ -21,7 +21,7 @@ function onTrade(player,npc,trade)
             SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
             npc:setStatus(dsp.status.DISAPPEAR)
         else
-            player:tradeComplete()
+            player:confirmTrade()
             player:messageSpecial(PAMAMAS)
         end
      elseif npcUtil.tradeHas(trade, 4596) and not nm:isSpawned() then -- Wild Pamamas
@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
             SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
             npc:setStatus(dsp.status.DISAPPEAR)
         else
-            player:tradeComplete()
+            player:confirmTrade()
             player:messageSpecial(PAMAMAS)
         end
     end
