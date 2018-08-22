@@ -76,7 +76,7 @@ local outposts =
     [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 0, fee = 0},
+    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 70, fee = 500},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
     [dsp.region.MOVALPOLOS]      = {zone =  11},
 }
@@ -133,7 +133,7 @@ local function suppliesAvailableBitmask(player, nation)
             break
         end
     end
-    
+
     if mask ~= -1 and mask ~= 4294967295 then
         for i = 0, 18 do
             if GetRegionOwner(i) ~= nation or i == 16 or i == 17 or (i == 18 and not player:hasCompletedMission(COP, DARKNESS_NAMED)) then
@@ -148,7 +148,7 @@ end
 local function areSuppliesRotten(player, npc, guardType)
     local fresh   = player:getVar("supplyQuest_fresh")
     local region  = player:getVar("supplyQuest_region")
-    local rotten  = false    
+    local rotten  = false
 
     if region > 0 and fresh <= os.time() then
         rotten = true
@@ -173,13 +173,13 @@ end
 
 local function canDeliverSupplies(player, guardNation, guardEvent, guardRegion)
     local delivered = false
-    
+
     local region = player:getVar("supplyQuest_region")
     if region == guardRegion and player:hasKeyItem(outposts[region].ki) then
         delivered = true
         player:startEvent(guardEvent, 16, 0, 0, 0, 1, 0, 0, 255) -- "you have brought us supplies!"
     end
-    
+
     return delivered
 end
 
@@ -570,7 +570,7 @@ local function getArg1(player, guardNation, guardType)
     else
         output = output + 256 * signet
     end
-    
+
     if output >= 1792 and guardType >= dsp.conquest.guard.OUTPOST then
         output = 1808
     end
@@ -838,7 +838,7 @@ dsp.conquest.outpostFee = function(player, region)
     if not hasOutpost(player, region) then
         return 0
     end
-    
+
     local fee = outposts[region].fee
     if GetRegionOwner(region) == player:getNation() then
         return fee
@@ -852,8 +852,7 @@ dsp.conquest.canTeleportToOutpost = function(player, region)
     if
         outpost == nil or
         player:getMainLvl() < outpost.lvl or
-        not hasOutpost(player, region) or
-        (region == dsp.region.TAVNAZIANARCH and not player:hasCompletedMission(COP, DARKNESS_NAMED))
+        not hasOutpost(player, region)
     then
         return false
     end
@@ -866,7 +865,7 @@ dsp.conquest.setRegionalConquestOverseers = function(region)
     if zone then 
         local base = zones[zone].npc.OVERSEER_BASE
         local npcs = overseerOffsets[region]
-        
+
         if base and npcs then
 
             -- update the npcs
@@ -902,7 +901,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
     if player:getNation() == guardNation or guardNation == dsp.nation.OTHER then
         local item = trade:getItemId()
         local tradeConfirmed = false
-    
+
         -- DONATE CRYSTALS FOR RANK OR CONQUEST POINTS
         if guardType <= dsp.conquest.guard.FOREIGN and crystals[item] then
             local pRank = player:getRank()
@@ -944,7 +943,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
         if not tradeConfirmed and expRings[item] and npcUtil.tradeHas(trade, item) then
             if BYPASS_EXP_RING_ONE_PER_WEEK == 1 or player:getVar("CONQUEST_RING_RECHARGE") < os.time() then
                 local ring = expRings[item]
-                
+
                 if player:getCP() >= ring.cp then
                     player:delCP(ring.cp)
                     player:confirmTrade()
@@ -991,7 +990,7 @@ dsp.conquest.overseerOnTrigger = function(player, npc, guardNation, guardType, g
         local a6 = getArg6(player)
         local a7 = player:getCP()
         local a8 = getExForceReward(player, guardNation)
-        
+
         player:startEvent(guardEvent, a1, a2, a3, a4, a5, a6, a7, a8)
 
     -- OUTPOST AND BORDER OVERSEERS
@@ -1020,11 +1019,11 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
         elseif stock.lvl > player:getMainLvl() then
             u1 = 1
         end
-        
+
         if stock.cp > player:getCP() then
             u2 = 1
         end
-        
+
         if stock.rank ~= nil and stock.rank > player:getRank() then -- check player rank
             u3 = 0
         elseif guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
@@ -1038,7 +1037,7 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
         if u3 > 0 and u2 == 0 then
             player:setLocalVar("boughtItemCP", stock.item) -- set localVar for later cheat prevention
         end
-        
+
         player:updateEvent(u1, u2, u3)
     end
 end
@@ -1102,20 +1101,20 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if stock == nil then
             return
         end
-        
+
         -- validate localVar (cheat protection)
         local boughtItem = player:getLocalVar("boughtItemCP")
         player:setLocalVar("boughtItemCP", 0)
         if stock.item ~= boughtItem then
             return
         end
-        
+
         -- validate rank
         if stock.rank and pRank < stock.rank then
             player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 61, stock.item) -- "Your rank is too low to purchase the <item>."
             return
         end
-        
+
         -- validate price
         local price = stock.cp
         if stock.rank ~= nil and player:getNation() ~= guardNation and guardNation ~= dsp.nation.OTHER then
@@ -1134,7 +1133,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         if option >= 32933 and option <= 32935 and not canBuyExpRing(player, stock.item) then
             return
         end
-        
+
         -- make sale
         if npcUtil.giveItem(player, stock.item) then
             player:delCP(price)
@@ -1159,7 +1158,7 @@ dsp.conquest.vendorOnTrigger = function(player, vendorRegion, vendorEvent)
     elseif dsp.conquest.areAllies(pNation, owner) then
         nation = 2
     end
-    
+
     local fee = dsp.conquest.outpostFee(player, vendorRegion)
     player:startEvent(vendorEvent,nation,fee,0,fee,player:getCP(),0,0,0)
 end
@@ -1171,7 +1170,7 @@ end
 
 dsp.conquest.vendorOnEventFinish = function(player, option, vendorRegion)
     local fee = dsp.conquest.outpostFee(player, vendorRegion)
-    
+
     if option == 1 then
         dsp.shop.outpost(player)
     elseif option == 2 then
@@ -1219,16 +1218,16 @@ dsp.conquest.teleporterOnEventFinish = function(player, csid, option, teleporter
         if option >= 5 and option <= 23 then
             local region = option - 5
             local fee = dsp.conq.outpostFee(player, region)
-            
+
             if dsp.conquest.canTeleportToOutpost(player, region) and player:delGil(fee) then
                 player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
             end
-            
+
         -- TELEPORT WITH CP
         elseif option >= 1029 and option <= 1047 then
             local region = option - 1029
             local fee = dsp.conq.outpostFee(player, region)
-            
+
             if dsp.conquest.canTeleportToOutpost(player, region) and player:getCP() >= fee then
                 player:delCP(fee)
                 player:addStatusEffectEx(dsp.effect.TELEPORT, 0, dsp.teleport.id.OUTPOST, 0, 1, 0, region)
@@ -1247,17 +1246,17 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
     local players = zone:getPlayers()
     local messageBase = zones[zone].text.CONQUEST_BASE
     local ranking = getConquestBalance()
-    
+
     for _, player in pairs(players) do
 
         -- CONQUEST TALLY START
         if updatetype == CONQUEST_TALLY_START then
             player:messageText(player, messageBase, 5)
 
-        -- CONQUEST TALLY END            
+        -- CONQUEST TALLY END
         elseif updatetype == CONQUEST_TALLY_END then
             player:messageText(player, messageBase + 1, 5) -- Tallying conquest results...
-            
+
             if owner <= 3 then
                 player:messageText(player, messageBase + 2 + owner, 5) -- This region is currently under {NATION} control.
             else
@@ -1299,7 +1298,7 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
                     end
                 end
             end
-            
+
             player:messageText(player, messageBase + offset, 5) -- Global balance of power:
 
             if isConquestAlliance() then
@@ -1324,7 +1323,7 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
 
             if influence >= 64 then
                 player:messageText(player, messageBase + 37, 5) -- The beastmen are on the rise.
-            elseif influence == 0 then                
+            elseif influence == 0 then
                 player:messageText(player, messageBase + 36, 5) -- All three nations are at a deadlock.
             else
                 local sandoria = bit.band(influence, 0x03)
