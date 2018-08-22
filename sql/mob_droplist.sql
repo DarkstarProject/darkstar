@@ -32949,6 +32949,9 @@ INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,19232,148);
 -- Ankabut
 INSERT INTO `mob_droplist` VALUES (4600,0,0,1000,19277,133); -- 13.3% Tsugumi
 
+-- Kegpaunch Doshgnosh
+INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,11529,108); -- 10.8% Frugal Cape
+
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
