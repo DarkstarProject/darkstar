@@ -11,29 +11,28 @@ require("scripts/zones/Yhoator_Jungle/TextIDs")
 require("scripts/zones/Yhoator_Jungle/MobIDs")
 -----------------------------------
 
-local spawnChance = math.random(100)
-
 function onTrade(player,npc,trade)
-    if trade:hasItemQty(4468,1) then -- Pamamas
+    local spawnChance = math.random(100)
+    local nm = GetMobByID(EDACIOUS_OPO_OPO)
+    if npcUtil.tradeHas(trade, 4468) and not nm:isSpawned() then -- Pamamas
         if spawnChance <= 5 then
-        player:tradeComplete()
-        player:messageSpecial(FAINT_CRY)
-        SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
-        npc:setStatus(dsp.status.DISAPPEAR)
+            player:confirmTrade()
+            player:messageSpecial(FAINT_CRY)
+            SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
+            npc:setStatus(dsp.status.DISAPPEAR)
         else
-        player:tradeComplete()
-        player:messageSpecial(PAMAMAS)
+            player:tradeComplete()
+            player:messageSpecial(PAMAMAS)
         end
-    end
-    if trade:hasItemQty(4596,1) then -- Wild Pamamas
+     elseif npcUtil.tradeHas(trade, 4596) and not nm:isSpawned() then -- Wild Pamamas
         if spawnChance <= 50 then
-        player:tradeComplete()
-        player:messageSpecial(FAINT_CRY)
-        SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
-        npc:setStatus(dsp.status.DISAPPEAR)
+            player:confirmTrade()
+            player:messageSpecial(FAINT_CRY)
+            SpawnMob(EDACIOUS_OPO_OPO):updateClaim(player)
+            npc:setStatus(dsp.status.DISAPPEAR)
         else
-        player:tradeComplete()
-        player:messageSpecial(PAMAMAS)
+            player:tradeComplete()
+            player:messageSpecial(PAMAMAS)
         end
     end
 end
