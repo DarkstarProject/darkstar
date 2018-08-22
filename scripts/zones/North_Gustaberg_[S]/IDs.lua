@@ -19,6 +19,10 @@ zones[dsp.zone.NORTH_GUSTABERG_S] =
     },
     mob =
     {
+        ANKABUT_PH =
+        {
+            [17137702] = 17137705, -- 655.828, -11.141, 526.01
+        },
     },
     npc =
     {
