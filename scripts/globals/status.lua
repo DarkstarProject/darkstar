@@ -987,6 +987,7 @@ dsp.mod =
     BLUE                            = 122,
     CHAKRA_MULT                     = 123, -- Chakra multiplier increase
     CHAKRA_REMOVAL                  = 124, -- Extra statuses removed by Chakra
+    BP_DAMAGE                       = 125, -- Blood Pact: Rage Damage increase percentage
     FISH                            = 127,
     WOOD                            = 128,
     SMITH                           = 129,
