@@ -27,3 +27,8 @@ HARVESTING_IS_POSSIBLE_HERE = 7669; -- Harvesting is possible here if you have
 -- chocobo digging
              DIG_THROW_AWAY = 7562; -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
                FIND_NOTHING = 7564; -- You dig and you dig, but find nothing.?Prompt?
+
+-- QM1 Edacious Opo-opo
+                 WATER_HOLE = 7680; -- There is an Opo-opo drinking well here. It seems they feast here, too.
+                  FAINT_CRY = 7681; -- You hear the cry of a famished Opo-opo!
+                    PAMAMAS = 7684; -- You might be able to draw an Opo-opo here if you had more pamamas.

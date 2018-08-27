@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -2676,7 +2676,7 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
-    return;
+    PChar->updatemask |= UPDATE_HP;
 }
 
 /************************************************************************
