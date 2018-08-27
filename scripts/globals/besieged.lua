@@ -266,6 +266,11 @@ function getISPItem(i)
         [24577] = {id = 19021, price = 20000}, -- katana strap
         [28673] = {id = 19022, price = 20000}, -- axe grip
         [32769] = {id = 19023, price = 20000}, -- staff strap
+        [36865] = {id = 3307, price = 5000}, -- heat capacitor
+        [40961] = {id = 3308, price = 5000}, -- power cooler
+        [45057] = {id = 3309, price = 5000}, -- barrage turbine
+        [53249] = {id = 3311, price = 5000}, -- galvanizer
+        [57345] = {id = 6409, price = 50000},
         -- Private First Class
         -- No items in this rank?
         -- Private First Class
