@@ -987,6 +987,7 @@ dsp.mod =
     BLUE                            = 122,
     CHAKRA_MULT                     = 123, -- Chakra multiplier increase
     CHAKRA_REMOVAL                  = 124, -- Extra statuses removed by Chakra
+    SUPPRESS_OVERLOAD               = 125, -- Kenkonken "Suppresses Overload" mod. Unclear how this works exactly. Requires testing on retail.
     FISH                            = 127,
     WOOD                            = 128,
     SMITH                           = 129,
