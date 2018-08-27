@@ -19471,7 +19471,6 @@ INSERT INTO `mob_droplist` VALUES (3330,0,0,1000,894,90);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,846,100);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,894,70);
-INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,15852,107);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,846,320);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,894,120);
@@ -32935,6 +32934,7 @@ INSERT INTO `mob_droplist` VALUES (4593,0,0,1000,19045,400);
 INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
 INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- 4.9% Wilhelm's Earring off Goblintrap
 INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,15852,55); -- 5.5% Nasatya's Ring off Boll Weevil
 
 -- Drachenlizard (http://www.ffxidb.com/zones/88/drachenlizard)
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,852,40); -- Lizard Skin (4%)

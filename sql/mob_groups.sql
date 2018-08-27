@@ -10981,6 +10981,7 @@ INSERT INTO `mob_groups` VALUES (11195,5141,174,1056,128,2983,0,0,60,63,0);
 INSERT INTO `mob_groups` VALUES (11196,1720,12,0,128,1469,0,0,71,73,0);
 -- gnoletrap Jugner S missing group
 INSERT INTO `mob_groups` VALUES (11197,5155,82,300,0,4481,0,0,89,91,0);
+INSERT INTO `mob_groups` VALUES (11198,5846,82,5400,0,4597,0,0,56,57,0);
 
 -- Legion
 -- mul
