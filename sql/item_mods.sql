@@ -23331,9 +23331,9 @@ INSERT INTO `item_mods` VALUES (19006,355,46); -- Tizona 75 - Expiacion
 INSERT INTO `item_mods` VALUES (19006,431,1); -- Tizona 75 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19007,355,218); -- Death Penalty 75 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19007,580,20);
-INSERT INTO `item_mods` VALUES (19008,173,20);
-INSERT INTO `item_mods` VALUES (19008,288,15);
-INSERT INTO `item_mods` VALUES (19008,355,12); -- Kenkonken 75 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19008,125,1);  -- Kenkonken 75 - Supresses "Overload"
+INSERT INTO `item_mods` VALUES (19008,173,20); -- Ehnances "Martial Arts" effect
+INSERT INTO `item_mods` VALUES (19008,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19009,9,1);
 INSERT INTO `item_mods` VALUES (19010,9,2);
 INSERT INTO `item_mods` VALUES (19011,2,5);
@@ -23451,7 +23451,9 @@ INSERT INTO `item_mods` VALUES (19074,355,187); -- Nirvana 80 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19075,355,46); -- Tizona 80 - Expiacion
 INSERT INTO `item_mods` VALUES (19075,431,1); -- Tizona 80 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19076,355,218); -- Death Penalty 80 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19077,355,12); -- Kenkonken 80 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19077,125,1);   -- Kenkonken 80 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19077,173,30);  -- Enhances "Martial Arts" effect II
+INSERT INTO `item_mods` VALUES (19077,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19078,355,29); -- Terpsichore 80 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19079,355,188); -- Tupsimati 80 - Omniscience
 INSERT INTO `item_mods` VALUES (19080,355,90); -- Conqueror 85 - King's Justice
@@ -23498,8 +23500,9 @@ INSERT INTO `item_mods` VALUES (19095,30,15); -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19095,355,46); -- Tizona 85 - Expiacion
 INSERT INTO `item_mods` VALUES (19095,431,1); -- Tizona 85 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19096,355,218); -- Death Penalty 85 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19097,173,20);
-INSERT INTO `item_mods` VALUES (19097,355,12); -- Kenkonken 85 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19097,125,1);   -- Kenkonken 85 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19097,173,40);  -- Enhances "Martial Arts" effect III
+INSERT INTO `item_mods` VALUES (19097,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19098,355,29); -- Terpsichore 85 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19098,403,15); -- Bonus Accuracy For Steps +15
 INSERT INTO `item_mods` VALUES (19098,494,1); -- Bonus Finishing Moves From Steps +1
@@ -23888,7 +23891,9 @@ INSERT INTO `item_mods` VALUES (19627,431,1); -- Tizona 90 - Additional Effect -
 INSERT INTO `item_mods` VALUES (19627,616,15); -- Expiacion WS DMG +15%
 INSERT INTO `item_mods` VALUES (19628,355,218); -- Death Penalty 90 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19628,580,40);
-INSERT INTO `item_mods` VALUES (19629,355,12); -- Kenkonken 90 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19629,125,1);   -- Kenkonken 80 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19629,173,50);  -- Enhances "Martial Arts" effect IV
+INSERT INTO `item_mods` VALUES (19629,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19629,582,15); -- Stringing Pummel WS DMG +15%
 INSERT INTO `item_mods` VALUES (19630,355,29); -- Terpsichore 90 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19630,599,15); -- Pyrrhic Kleos WS DMG +15%
@@ -23984,8 +23989,9 @@ INSERT INTO `item_mods` VALUES (19725,431,1); -- Tizona 95 - Additional Effect -
 INSERT INTO `item_mods` VALUES (19725,616,15); -- Expiacion WS DMG +15%
 INSERT INTO `item_mods` VALUES (19726,355,218); -- Death Penalty 95 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19726,788,15); -- Leaden Salute WS damage +15%
-INSERT INTO `item_mods` VALUES (19727,173,20);
-INSERT INTO `item_mods` VALUES (19727,355,12); -- Kenkonken 95 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19726,125,1);  -- Kenkonken 95 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19727,173,50); -- Enhances "Martial Arts" effect IV
+INSERT INTO `item_mods` VALUES (19727,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19727,582,15); -- Stringing Pummel WS DMG +15%
 INSERT INTO `item_mods` VALUES (19728,355,29); -- Terpsichore 95 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19728,403,20); -- Bonus Accuracy For Steps +20
@@ -24248,9 +24254,10 @@ INSERT INTO `item_mods` VALUES (19834,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19834,431,1); -- Tizona 99 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19834,616,30); -- Expiacion WS DMG +30%
 INSERT INTO `item_mods` VALUES (19835,355,218); -- Death Penalty 99 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19635,788,30); -- Leaden Salute WS damage +30%
-INSERT INTO `item_mods` VALUES (19836,173,20); -- Hand-to-Hand Delay +20
-INSERT INTO `item_mods` VALUES (19836,355,12); -- Kenkonken 99 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19835,788,30); -- Leaden Salute WS damage +30%
+INSERT INTO `item_mods` VALUES (19836,125,1);  -- Kenkonken 99 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19836,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (19836,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19836,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (19837,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19837,403,25); -- Bonus Accuracy For Steps +25
@@ -24418,7 +24425,9 @@ INSERT INTO `item_mods` VALUES (19963,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19963,431,1); -- Tizona 99 Absorb MP
 INSERT INTO `item_mods` VALUES (19963,616,30); -- Expiacion WS DMG +30%
 INSERT INTO `item_mods` VALUES (19964,355,218); -- Death Penalty 99 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19965,355,12); -- Kenkonken 99 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19965,125,1);  -- Kenkonken 99 AG - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19965,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (19965,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19965,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (19966,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19966,599,30); -- Pyrrhic Kleos WS DMG +30%
@@ -24439,9 +24448,13 @@ INSERT INTO `item_mods` VALUES (20482,355,11); -- Glanzfaust iLvL 119 - Ascetic'
 INSERT INTO `item_mods` VALUES (20482,581,30); -- Ascetic's Fury WS DMG +30%
 INSERT INTO `item_mods` VALUES (20483,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20483,581,30); -- Ascetic's Fury WS DMG +30%
-INSERT INTO `item_mods` VALUES (20484,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20484,125,1);  -- Kenkonken 119 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20484,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20484,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20484,582,30); -- Stringing Pummel WS DMG +30%
-INSERT INTO `item_mods` VALUES (20485,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20485,125,1);  -- Kenkonken 119/II - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20485,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20485,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20485,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (20486,8,20);
 INSERT INTO `item_mods` VALUES (20486,355,14); -- Verethragna iLvL 119 - Victory Smite
@@ -24455,7 +24468,9 @@ INSERT INTO `item_mods` VALUES (20509,507,300);   -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (20509,580,40);    -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20510,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20510,581,30); -- Ascetic's Fury WS DMG +30%
-INSERT INTO `item_mods` VALUES (20511,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20511,125,1);  -- Kenkonken 119/III - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20511,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20511,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20511,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (20512,355,14); -- Verethragna iLvL 119 - Victory Smite
 INSERT INTO `item_mods` VALUES (20512,8,50); -- STR +50
