@@ -3188,6 +3188,17 @@ namespace luautils
             return 0;
         }
 
+        // Bloodpact Skillups
+        if (PMob->objtype == TYPE_PET && map_config.skillup_bloodpact)
+        {
+            CPetEntity* PPet = (CPetEntity*)PMob;
+            if (PPet->getPetType() == PETTYPE_AVATAR && PPet->PMaster->objtype == TYPE_PC)
+            {
+                CCharEntity* PMaster = (CCharEntity*)PPet->PMaster;
+                if (PMaster->GetMJob() == JOB_SMN) charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, PMaster->GetMLevel());
+            }
+        }
+
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
         return retVal;
