@@ -1306,13 +1306,13 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
     end
     
     -- Gear mods
-    duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION)
+    duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
     
     -- Default is true
     useComposure = useComposure or (useComposure == nill and true)
 
     -- Composure
-    if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE and caster:getID() == target:getID() then
+    if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
         duration = duration * 3
     end
 

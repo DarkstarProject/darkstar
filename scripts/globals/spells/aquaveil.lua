@@ -17,7 +17,7 @@ function onSpellCast(caster, target, spell)
 
     -- duration is said to be based on enhancing skill with max 5 minutes, but I could find no
     -- tests that quantify the relationship so I'm using 5 minutes for now.
-    local duration = calculateDuration(300, spell:getSkilType(), spell:getSpellGroup(), caster, target)
+    local duration = calculateDuration(300, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     
     local power = AQUAVEIL_COUNTER + caster:getMod(dsp.mod.AQUAVEIL_COUNT)
     if caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC) >= 200 then -- cutoff point is estimated. https://www.bg-wiki.com/bg/Aquaveil

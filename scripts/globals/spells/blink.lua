@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local duration = calculateDirection(300, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    local duration = calculateDuration(300, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
     if target:addStatusEffect(dsp.effect.BLINK, BLINK_SHADOWS, 0, duration) then
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
