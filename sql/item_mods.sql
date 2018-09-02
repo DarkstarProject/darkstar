@@ -5621,7 +5621,8 @@ INSERT INTO `item_mods` VALUES (11712,14,4);      -- Aoidos' Earring: CHR +4
 INSERT INTO `item_mods` VALUES (11712,455,2);     -- Song spellcasting time -2%
 INSERT INTO `item_mods` VALUES (11713,11,4);
 INSERT INTO `item_mods` VALUES (11713,27,-2);
-INSERT INTO `item_mods` VALUES (11714,73,1);
+INSERT INTO `item_mods` VALUES (11714,73,1);      -- Unkai Mimikazari: Store TP +1
+INSERT INTO `item_mods` VALUES (11714,306,2);     -- Enhances "Zanshin" effect 2%
 INSERT INTO `item_mods` VALUES (11715,68,5);
 INSERT INTO `item_mods` VALUES (11715,259,1);
 INSERT INTO `item_mods` VALUES (11716,25,4);
