@@ -625,6 +625,12 @@ void CZone::IncreaseZoneCounter(CCharEntity* PChar)
     }
 
     CharZoneIn(PChar);
+
+    if (m_BattlefieldHandler)
+    {
+        if (auto PBattlefield = m_BattlefieldHandler->GetBattlefield(PChar, true))
+            PBattlefield->InsertEntity(PChar, true);
+    }
 }
 
 /************************************************************************
