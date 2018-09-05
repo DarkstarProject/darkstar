@@ -148,7 +148,6 @@ inline int32 CLuaBattlefield::getPlayers(lua_State* L)
     {
         if (PChar)
         {
-            ShowDebug(PChar->name + "\n");
             lua_getglobal(L, CLuaBaseEntity::className);
             lua_pushstring(L, "new");
             lua_gettable(L, -2);
