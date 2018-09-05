@@ -32,6 +32,7 @@
 
 #include <string.h>
 
+#include "battlefield.h"
 #include "enmity_container.h"
 #include "latent_effect_container.h"
 #include "linkshell.h"
@@ -883,6 +884,10 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     {
         PChar->PInstance = nullptr;
     }
+
+    if (m_BattlefieldHandler)
+        if (auto PBattlefield = m_BattlefieldHandler->GetBattlefield(PChar, true))
+            PBattlefield->InsertEntity(PChar, true);
 
     PChar->PLatentEffectContainer->CheckLatentsZone();
 }

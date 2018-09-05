@@ -27,6 +27,7 @@ This file is part of DarkStar-server source code.
 #include "lua_battlefield.h"
 #include "lua_baseentity.h"
 #include "../battlefield.h"
+#include "../entities/charentity.h"
 #include "../utils/mobutils.h"
 #include "../utils/zoneutils.h"
 #include "../status_effect_container.h"
@@ -141,19 +142,21 @@ inline int32 CLuaBattlefield::getPlayers(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, (int)m_PLuaBattlefield->m_EnteredPlayers.size(), 0);
-    auto newTable = lua_gettop(L);
     int i = 1;
 
     m_PLuaBattlefield->ForEachPlayer([&](CCharEntity* PChar)
     {
-        lua_getglobal(L, CLuaBaseEntity::className);
-        lua_pushstring(L, "new");
-        lua_gettable(L, -2);
-        lua_insert(L, -2);
-        lua_pushlightuserdata(L, (void*)PChar);
-        lua_pcall(L, 2, 1, 0);
-
-        lua_rawseti(L, -2, i++);
+        if (PChar)
+        {
+            ShowDebug(PChar->name + "\n");
+            lua_getglobal(L, CLuaBaseEntity::className);
+            lua_pushstring(L, "new");
+            lua_gettable(L, -2);
+            lua_insert(L, -2);
+            lua_pushlightuserdata(L, (void*)PChar);
+            lua_pcall(L, 2, 1, 0);
+            lua_rawseti(L, -2, i++);
+        }
     });
     return 1;
 }
@@ -212,7 +215,6 @@ inline int32 CLuaBattlefield::getNPCs(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PLuaBattlefield == nullptr);
 
     lua_createtable(L, (int)m_PLuaBattlefield->m_NpcList.size(), 0);
-    auto newTable = lua_gettop(L);
     int i = 1;
 
     m_PLuaBattlefield->ForEachNpc([&](CNpcEntity* PNpc)

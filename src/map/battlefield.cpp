@@ -65,6 +65,7 @@ CBattlefield::CBattlefield(uint16 id, CZone* PZone, uint8 area, CCharEntity* PIn
     m_StartTime = server_clock::now();
     m_Tick = m_StartTime;
     m_LastPromptTime = 0s;
+    m_RegisteredPlayers.emplace(PInitiator->id);
 }
 
 CBattlefield::~CBattlefield()
@@ -418,10 +419,10 @@ bool CBattlefield::RemoveEntity(CBaseEntity* PEntity, uint8 leavecode)
         if (m_LevelCap)
             static_cast<CCharEntity*>(PEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_LEVEL_RESTRICTION);
 
-        m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id), m_EnteredPlayers.end());
+        m_EnteredPlayers.erase(m_EnteredPlayers.find(PEntity->id));
 
         if (leavecode != BATTLEFIELD_LEAVE_CODE_WARPDC)
-            m_RegisteredPlayers.erase(m_RegisteredPlayers.find(PEntity->id), m_RegisteredPlayers.end());
+            m_RegisteredPlayers.erase(m_RegisteredPlayers.find(PEntity->id));
 
         if (leavecode != 255)
         {
