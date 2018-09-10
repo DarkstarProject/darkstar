@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local duration = calculateDuration(1800, spell:getSkillType(), spell:getSkillGroup(), caster, target, false)
+    local duration = calculateDuration(1800, spell:getSkillType(), spell:getSpellGroup(), caster, target, false)
     duration = calculateDurationForLvl(duration, 75, target:getMainLvl())
 
     local meritBonus = caster:getMerit(dsp.merit.PROTECTRA_V)

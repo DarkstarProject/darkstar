@@ -11,7 +11,7 @@ function onMagicCastingCheck(caster, target, spell)
 end
 
 function onSpellCast(caster, target, spell)
-    local duration = calculateDuration(150, spell:getSkillType(), spell:getSkillGroup(), caster, target)
+    local duration = calculateDuration(150, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 96, target:getMainLvl())
     
     if target:addStatusEffect(dsp.effect.FLURRY_II, 30, 0, duration) then
