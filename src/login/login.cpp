@@ -144,7 +144,7 @@ int32 do_init(int32 argc, char** argv)
                                 value = "enabled - strict";
                                 break;
                             case 2:
-                                value = "enabled - greather than or equal";
+                                value = "enabled - greater than or equal";
                                 break;
                         }
                         ShowStatus("Version lock %i - %s\r\n", version_info.ver_lock, value);
