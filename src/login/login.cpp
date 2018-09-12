@@ -457,6 +457,12 @@ int32 version_info_read(const char *fileName)
         else if (strcmp(w1, "VER_LOCK") == 0)
         {
             version_info.ver_lock = std::atoi(w2);
+
+            if (version_info.ver_lock > 2 || version_info.ver_lock < 0)
+            {
+                ShowError("ver_lock not within bounds (0..2) was %i, defaulting to 1\r\n", version_info.ver_lock);
+                version_info.ver_lock = 1;
+            }
         }
     }
     fclose(fp);
