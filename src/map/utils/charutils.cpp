@@ -2207,7 +2207,7 @@ namespace charutils
             {
                 continue;
             }
-        
+
             UnequipItem(PChar, slotID);
         }
         // Unarmed H2H weapon check
@@ -4236,11 +4236,9 @@ namespace charutils
         }
         Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 
-        // Remove the new player flag if we have reached level 5.
-        // Should also remove it based on playtime (180 hours?)
         if (PChar->isNewPlayer() && PChar->jobs.job[job] >= 5)
         {
-            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
             PChar->updatemask |= UPDATE_HP;
             SaveMenuConfigFlags(PChar);
         }

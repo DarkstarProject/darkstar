@@ -4509,13 +4509,17 @@ inline int32 CLuaBaseEntity::setNewPlayer(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
     if (lua_toboolean(L, 1))
         PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
     else
         PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
+
     PChar->updatemask |= UPDATE_HP;
-    charutils::SaveCharJob(PChar, PChar->GetMJob());
+
+    charutils::SaveMenuConfigFlags(PChar);
+
     return 0;
 }
 
