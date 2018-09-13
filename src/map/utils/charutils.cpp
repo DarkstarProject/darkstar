@@ -4455,7 +4455,17 @@ namespace charutils
 
     void SavePlayTime(CCharEntity* PChar)
     {
-        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", PChar->GetPlayTime(), PChar->id);
+        uint32 playtime = PChar->GetPlayTime();
+
+        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", playtime, PChar->id);
+
+        if (PChar->isNewPlayer() && playtime >= 36000)
+        {
+            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
+            PChar->updatemask |= UPDATE_HP;
+
+            SaveMenuConfigFlags(PChar);
+        }
     }
 
     /************************************************************************
