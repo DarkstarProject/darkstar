@@ -21,9 +21,9 @@ zones[dsp.zone.ARRAPAGO_REMNANTS] =
         SALVAGE_START              = 7234, -- You feel an incredible pressure bearing down on you. This area appears to be blanketed in some sort of intense psionic field...
         TIME_TO_COMPLETE           = 7441, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
         MISSION_FAILED             = 7442, -- The mission has failed. Leaving area.
-        TIME_REMAINING_MINUTES     = 7446, -- Time remaining: <number> [minute/minutes] (Earth time).
-        TIME_REMAINING_SECONDS     = 7447, -- Time remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN               = 7449, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        TIME_REMAINING_MINUTES     = 7446, -- ime remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS     = 7447, -- ime remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN               = 7449, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
         DOOR_IS_SEALED             = 7460, -- The door is sealed...
         DOOR_IS_SEALED_MYSTERIOUS  = 7463, -- The door is sealed by some mysterious force...
     },
