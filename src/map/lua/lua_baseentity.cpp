@@ -3135,7 +3135,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                     {
                         auto table = lua_gettop(L);
                         lua_pushnil(L);
-                        while(lua_next(L,table) != 0)
+                        while (lua_next(L,table) != 0)
                         {
                             uint16 augid = (uint16)lua_tointeger(L, -2);
                             uint8 augval = (uint8)lua_tointeger(L, -1);
