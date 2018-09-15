@@ -10,19 +10,19 @@ zones[dsp.zone.NORTH_GUSTABERG] =
 {
     text =
     {
-        CONQUEST_BASE                 = 0,
+        CONQUEST_BASE                 = 0, -- Tallying conquest results...
         NOTHING_HAPPENS               = 300, -- Nothing happens...
         ITEM_CANNOT_BE_OBTAINED_TWICE = 6561, -- You cannot obtain any more.
-        ITEM_CANNOT_BE_OBTAINED       = 6562, -- You cannot obtain the item <item>. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE    = 6566, -- You cannot obtain the #. Try trading again after sorting your inventory.
+        ITEM_CANNOT_BE_OBTAINED       = 6562, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE    = 6566, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
         ITEM_OBTAINED                 = 6568, -- Obtained: <item>.
         GIL_OBTAINED                  = 6569, -- Obtained <number> gil.
         KEYITEM_OBTAINED              = 6571, -- Obtained key item: <keyitem>.
-        ITEMS_OBTAINED                = 6577, -- You obtain
+        ITEMS_OBTAINED                = 6577, -- You obtain <number> <item>!
+        NOTHING_OUT_OF_ORDINARY       = 6582, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET        = 7229, -- You can't fish here.
-        DIG_THROW_AWAY                = 7242, -- You dig up$, but your inventory is full. You regretfully throw the # away.
+        DIG_THROW_AWAY                = 7242, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                  = 7244, -- You dig and you dig, but find nothing.
-        NOTHING_OUT_OF_ORDINARY       = 7331, -- There is nothing out of the ordinary here.
         SHINING_OBJECT_SLIPS_AWAY     = 7437, -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7444, -- You can reach the water from here.
         CONQUEST                      = 7480, -- You've earned conquest points!

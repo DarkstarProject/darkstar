@@ -10,30 +10,30 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED        = 6416, -- You cannot obtain the item <item>. Come back after sorting your inventory.
+        NOTHING_HAPPENS                = 141, -- Nothing happens...
+        ITEM_CANNOT_BE_OBTAINED        = 6416, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                  = 6422, -- Obtained: <item>.
         GIL_OBTAINED                   = 6423, -- Obtained <number> gil.
         KEYITEM_OBTAINED               = 6425, -- Obtained key item: <keyitem>.
         CONQUEST_BASE                  = 7083, -- Tallying conquest results...
         BEASTMEN_BANNER                = 7164, -- There is a beastmen's banner.
-        FIVEOFSPADES_DIALOG            = 7242, -- GiMme★fIvE! FiVe is★A cArdIan★OF WiN-DuRst! FIvE★iS On★pA-tRol!≺Prompt≻
+        FIVEOFSPADES_DIALOG            = 7242, -- GiMmefIvE! FiVe isA cArdIanOF WiN-DuRst! FIvEiS OnpA-tRol!
         FISHING_MESSAGE_OFFSET         = 7248, -- You can't fish here.
-        DIG_THROW_AWAY                 = 7261, -- You dig up$, but your inventory is full. You regretfully throw the # away.
+        DIG_THROW_AWAY                 = 7261, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                   = 7263, -- You dig and you dig, but find nothing.
-        NOTHING_HAPPENS                = 7348, -- Nothing happens...
         SONG_RUNES_DEFAULT             = 7368, -- An old momument. A melancholy song of two separated lovers is written upon it.
-        SONG_RUNES_REQUIRE             = 7382, -- If only you had ≺Possible Special Code: 01≻≺Possible Special Code: 01≻≺Possible Special Code: 01≻ ≺Possible Special Code: 01≻≺Possible Special Code: 05≻$≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻, you could jot down the lyrics.≺Prompt≻
-        SONG_RUNES_WRITING             = 7383, -- You write down the lyrics on the ≺Possible Special Code: 01≻≺Possible Special Code: 05≻#≺BAD CHAR: 8280≻≺BAD CHAR: 80≻≺BAD CHAR: 80≻.≺Prompt≻
+        SONG_RUNES_REQUIRE             = 7382, -- If only you had <item>, you could jot down the lyrics.
+        SONG_RUNES_WRITING             = 7383, -- You write down the lyrics on the <item>.
         SIGN_1                         = 7390, -- West: Tahrongi Canyon Southeast: Mhaura
         SIGN_2                         = 7391, -- West: Tahrongi Canyon South: Mhaura
         SIGN_3                         = 7392, -- West: Tahrongi Canyon Southwest: Mhaura
         SIGN_4                         = 7393, -- West: Mhaura and Tahrongi Canyon
         SIGN_5                         = 7394, -- West: Mhaura Northwest: Tahrongi Canyon
-        LOGGING_IS_POSSIBLE_HERE       = 7395, -- Logging is possible here if you have
+        LOGGING_IS_POSSIBLE_HERE       = 7395, -- Logging is possible here if you have <item>.
         CONQUEST                       = 7411, -- You've earned conquest points!
-        YOU_CANNOT_ENTER_DYNAMIS       = 7890, -- You cannot enter Dynamis
-        MYSTERIOUS_VOICE               = 7891, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the
-        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7892, -- Players who have not reached levelare prohibited from entering Dynamis.
+        YOU_CANNOT_ENTER_DYNAMIS       = 7890, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
+        MYSTERIOUS_VOICE               = 7891, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
+        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7892, -- Players who have not reached level <number> are prohibited from entering Dynamis.
     },
     mob =
     {

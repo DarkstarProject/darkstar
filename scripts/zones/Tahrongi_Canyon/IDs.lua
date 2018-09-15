@@ -10,14 +10,14 @@ zones[dsp.zone.TAHRONGI_CANYON] =
 {
     text =
     {
-        CONQUEST_BASE                = 0,
-        NOTHING_HAPPENS              = 300, -- Nothing happens.
-        ITEM_CANNOT_BE_OBTAINED      = 6562, -- You cannot obtain the item <item> come back again after sorting your inventory.
+        CONQUEST_BASE                = 0,    -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED      = 6562, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED                = 6568, -- Obtained: <item>.
         GIL_OBTAINED                 = 6569, -- Obtained <number> gil.
         KEYITEM_OBTAINED             = 6571, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY      = 6582, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET       = 7229, -- You can't fish here.
-        DIG_THROW_AWAY               = 7242, -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
+        DIG_THROW_AWAY               = 7242, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                 = 7244, -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE        = 7329, -- You already possess the gate crystal for this telepoint.
         TELEPOINT_DISAPPEARED        = 7330, -- The telepoint has disappeared...
@@ -25,15 +25,15 @@ zones[dsp.zone.TAHRONGI_CANYON] =
         SIGN_3                       = 7405, -- North: Meriphataud Mountains East: Crag of Mea South: East Sarutabaruta
         SIGN_5                       = 7406, -- North: Meriphataud Mountains East: Buburimu Peninsula South: East Sarutabaruta
         SIGN_7                       = 7407, -- East: Buburimu Peninsula West: East Sarutabaruta
-        BUD_BREAKS_OFF               = 7408, -- The bud breaks off. You obtain
+        BUD_BREAKS_OFF               = 7408, -- The bud breaks off. You obtain <item>.
         POISONOUS_LOOKING_BUDS       = 7409, -- The flowers have poisonous-looking buds.
         CANT_TAKE_ANY_MORE           = 7410, -- You can't take any more.
-        MINING_IS_POSSIBLE_HERE      = 7431, -- Mining is possible here if you have
+        MINING_IS_POSSIBLE_HERE      = 7431, -- Mining is possible here if you have <item>.
         TELEPOINT_HAS_BEEN_SHATTERED = 7508, -- The telepoint has been shattered into a thousand pieces...
-        NOTHING_OUT_OF_ORDINARY      = 7531, -- There is nothing out of the ordinary here.
         SPROUT_LOOKS_WITHERED        = 7551, -- There is something sprouting from the ground here. It looks a little withered.
         REPULSIVE_CREATURE_EMERGES   = 7552, -- A repulsive creature emerges from the ground!
         SPROUT_DOES_NOT_NEED_WATER   = 7553, -- The sprout does not need any more water now.
+        NOTHING_HAPPENS              = 7554, -- Nothing happens.
         SPROUT_LOOKING_BETTER        = 7555, -- The sprout is looking better.
     },
     mob =

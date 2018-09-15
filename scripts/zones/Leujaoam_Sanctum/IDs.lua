@@ -29,12 +29,12 @@ zones[dsp.zone.LEUJAOAM_SANCTUM] =
         ASSAULT_10_START           = 7455, -- Commencing <assault>! Objective: Defeat the count
         TIME_TO_COMPLETE           = 7506, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
         MISSION_FAILED             = 7507, -- The mission has failed. Leaving area.
-        RUNE_UNLOCKED_POS          = 7508, -- Mission objective completed. Unlocking Rune of Release (<letter>-<number>).
-        RUNE_UNLOCKED              = 7509, -- Mission objective completed. Unlocking Rune of Release.
+        RUNE_UNLOCKED_POS          = 7508, -- ission objective completed. Unlocking Rune of Release ([A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z]-#).
+        RUNE_UNLOCKED              = 7509, -- ission objective completed. Unlocking Rune of Release.
         ASSAULT_POINTS_OBTAINED    = 7510, -- You gain <number> [Assault point/Assault points]!
-        TIME_REMAINING_MINUTES     = 7511, -- Time remaining: <number> [minute/minutes] (Earth time).
-        TIME_REMAINING_SECONDS     = 7512, -- Time remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN               = 7514, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        TIME_REMAINING_MINUTES     = 7511, -- ime remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS     = 7512, -- ime remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN               = 7514, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
 
     mobs =

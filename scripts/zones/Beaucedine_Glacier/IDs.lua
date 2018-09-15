@@ -10,19 +10,19 @@ zones[dsp.zone.BEAUCEDINE_GLACIER] =
 {
     text =
     {
-        CONQUEST_BASE                   = 0,
+        CONQUEST_BASE                   = 0, -- Tallying conquest results...
         BEASTMEN_BANNER                 = 81, -- There is a beastmen's banner.
         ITEM_CANNOT_BE_OBTAINED         = 6564, -- You cannot obtain the item. Come back after sorting your inventory.
-        FULL_INVENTORY_AFTER_TRADE      = 6566, -- You cannot obtain the #. Try trading again after sorting your inventory.
+        FULL_INVENTORY_AFTER_TRADE      = 6566, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
         ITEM_OBTAINED                   = 6568, -- Obtained: <item>.
         GIL_OBTAINED                    = 6569, -- Obtained <number> gil.
         KEYITEM_OBTAINED                = 6571, -- Obtained key item: <keyitem>.
-        ITEMS_OBTAINED                  = 6574, -- You obtain
+        ITEMS_OBTAINED                  = 6577, -- You obtain <number> <item>!
+        NOTHING_OUT_OF_ORDINARY         = 6582, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET          = 7229, -- You can't fish here.
         CONQUEST                        = 7482, -- You've earned conquest points!
-        NOTHING_OUT_OF_ORDINARY         = 7836, -- There is nothing out of the ordinary here.
-        YOU_CANNOT_ENTER_DYNAMIS        = 7865, -- You cannot enter Dynamis
-        PLAYERS_HAVE_NOT_REACHED_LEVEL  = 7867, -- Players who have not reached levelare prohibited from entering Dynamis.
+        YOU_CANNOT_ENTER_DYNAMIS        = 7865, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
+        PLAYERS_HAVE_NOT_REACHED_LEVEL  = 7867, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         UNUSUAL_ARRANGEMENT_OF_BRANCHES = 7877, -- There is an unusual arrangement of branches here.
     },
     mob =

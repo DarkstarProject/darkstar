@@ -10,8 +10,8 @@ zones[dsp.zone.MORDION_GAOL] =
 {
     text =
     {
-        CONQUEST_BASE           = 0,
-        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the item <item>. Come back after sorting your inventory.
+        CONQUEST_BASE           = 0, -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED           = 6546, -- Obtained: <item>.
         GIL_OBTAINED            = 6547, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.

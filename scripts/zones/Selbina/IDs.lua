@@ -10,11 +10,11 @@ zones[dsp.zone.SELBINA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the item <item>. Come back after sorting your inventory.
+        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED           = 6387, -- Obtained: <item>.
         GIL_OBTAINED            = 6388, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOT_HAVE_ENOUGH_GIL     = 6394, -- You do not have enough gil.
+        NOT_HAVE_ENOUGH_GIL     = 6392, -- You do not have enough gil.
         HOMEPOINT_SET           = 6478, -- Home point set!
         FISHING_MESSAGE_OFFSET  = 6553, -- You can't fish here.
         NOMAD_MOOGLE_DIALOG     = 6653, -- I'm a traveling moogle, kupo. I help adventurers in the Outlands access items they have stored in a Mog House elsewhere, kupo.
@@ -30,7 +30,7 @@ zones[dsp.zone.SELBINA] =
         CONQUEST_BASE           = 7101, -- Tallying conquest results...
         WENZEL_DELIVERY_DIALOG  = 7584, -- My independent survey confirms the town entrance as the preferred location from which adventurers send parcels.
         BORIS_DELIVERY_DIALOG   = 7585, -- My independent survey confirms the inn as the preferred location from which adventurers send parcels.
-        RETRIEVE_DIALOG_ID      = 7745, -- You retrieve$ from the porter moogle's care.
+        RETRIEVE_DIALOG_ID      = 7745, -- You retrieve <item> from the porter moogle's care.
     },
     mob =
     {

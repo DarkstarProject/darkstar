@@ -10,17 +10,17 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
 {
     text =
     {
-        CONQUEST_BASE           = 0,
-        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the item <item>. Come back after sorting your inventory.
+        CONQUEST_BASE           = 0, -- Tallying conquest results...
+        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED           = 6546, -- Obtained: <item>.
         GIL_OBTAINED            = 6547, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6560, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         CHUMIA_DIALOG           = 7307, -- Welcome to Bostaunieux Oubliette...
         SEEMS_LOCKED            = 7309, -- It seems to be locked.
-        SPIRAL_HELL_LEARNED     = 7416, -- You have learned the weapon skill “Spiral Hell”!
+        SPIRAL_HELL_LEARNED     = 7416, -- You have learned the weapon skill Spiral Hell!
         SENSE_OMINOUS_PRESENCE  = 7417, -- You sense an ominous presence...
-        NOTHING_OUT_OF_ORDINARY = 7418, -- There is nothing out of the ordinary here
     },
     mob =
     {

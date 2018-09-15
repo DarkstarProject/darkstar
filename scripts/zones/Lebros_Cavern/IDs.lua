@@ -29,11 +29,11 @@ zones[dsp.zone.LEBROS_CAVERN] =
         ASSAULT_30_START           = 7375, -- Commencing <assault>! Objective: Defeat Black Shuck
         TIME_TO_COMPLETE           = 7406, -- You have <number> [minute/minutes] (Earth time) to complete this mission.
         MISSION_FAILED             = 7407, -- The mission has failed. Leaving area.
-        RUNE_UNLOCKED              = 7408, -- Mission objective completed. Unlocking Rune of Release.
-        ASSAULT_POINTS_OBTAINED    = 7409, -- You gain <number> [Assault point/Assault points]!
-        TIME_REMAINING_MINUTES     = 7410, -- Time remaining: <number> [minute/minutes] (Earth time).
-        TIME_REMAINING_SECONDS     = 7411, -- Time remaining: <number> [second/seconds] (Earth time).
-        PARTY_FALLEN               = 7414, -- All party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        RUNE_UNLOCKED              = 7408, -- ission objective completed. Unlocking Rune of Release ([A/B/C/D/E/F/G/H/I/J/K/L/M/N/O/P/Q/R/S/T/U/V/W/X/Y/Z]-#).
+        ASSAULT_POINTS_OBTAINED    = 7410, -- You gain <number> [Assault point/Assault points]!
+        TIME_REMAINING_MINUTES     = 7411, -- ime remaining: <number> [minute/minutes] (Earth time).
+        TIME_REMAINING_SECONDS     = 7412, -- ime remaining: <number> [second/seconds] (Earth time).
+        PARTY_FALLEN               = 7414, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
 
     mob = {

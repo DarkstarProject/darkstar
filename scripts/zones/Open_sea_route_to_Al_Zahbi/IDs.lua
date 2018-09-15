@@ -10,12 +10,12 @@ zones[dsp.zone.OPEN_SEA_ROUTE_TO_AL_ZAHBI] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED   = 6381, -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED             = 6387, -- Obtained: <item>
-        GIL_OBTAINED              = 6388, -- Obtained <number> gil
-        KEYITEM_OBTAINED          = 6390, -- Obtained key item: <keyitem>
+        ITEM_CANNOT_BE_OBTAINED   = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED             = 6387, -- Obtained: <item>.
+        GIL_OBTAINED              = 6388, -- Obtained <number> gil.
+        KEYITEM_OBTAINED          = 6390, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET    = 7048, -- You can't fish here.
-        ON_WAY_TO_AL_ZAHBI        = 7307, -- We are on our way to Al Zahbi. We should arrive in
+        ON_WAY_TO_AL_ZAHBI        = 7307, -- We are on our way to Al Zahbi. We should arrive in [less than an hour/about 1 hour/about 2 hours/about 3 hours/about 4 hours/about 5 hours/about 6 hours/about 7 hours] (# [minute/minutes] in Earth time).
         DOCKING_IN_AL_ZAHBI       = 7308, -- We are now docking in Al Zahbi.
         CEHN_TEYOHNGO_SHOP_DIALOG = 7311, -- If you're looking for fishing gear, you've come to the right place!
     },

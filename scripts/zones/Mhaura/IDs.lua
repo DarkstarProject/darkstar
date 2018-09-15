@@ -10,11 +10,11 @@ zones[dsp.zone.MHAURA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED  = 6381, -- You cannot obtain the item <item>. Come back after sorting your inventory.
+        ITEM_CANNOT_BE_OBTAINED  = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
         ITEM_OBTAINED            = 6387, -- Obtained: <item>.
         GIL_OBTAINED             = 6388, -- Obtained <number> gil.
         KEYITEM_OBTAINED         = 6390, -- Obtained key item: <keyitem>.
-        NOT_HAVE_ENOUGH_GIL      = 6394, -- You do not have enough gil.
+        NOT_HAVE_ENOUGH_GIL      = 6392, -- You do not have enough gil.
         HOMEPOINT_SET            = 6478, -- Home point set!
         CONQUEST_BASE            = 6536, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET   = 6712, -- You can't fish here.
@@ -26,11 +26,11 @@ zones[dsp.zone.MHAURA] =
         TYAPADOLIH_SHOP_DIALOG   = 7162, -- Welcome, strrranger! Tya Padolih's the name, and dealin' in magic is my game!
         GOLDSMITHING_GUILD       = 7163, -- Everything you need for your goldsmithing needs!
         SMITHING_GUILD           = 7164, -- Welcome to the Blacksmiths' Guild salesroom!
-        RAMUH_UNLOCKED           = 7377, -- You are now able to summon
+        RAMUH_UNLOCKED           = 7377, -- You are now able to summon [Ifrit/Titan/Leviathan/Garuda/Shiva/Ramuh].
         MAURIRI_DELIVERY_DIALOG  = 7755, -- Mauriri is my name, and sending parcels from Mhaura is my game.
         PANORU_DELIVERY_DIALOG   = 7756, -- Looking for a delivery company that isn't lamey-wame? The quality of my service puts Mauriri to shame!
-        DO_NOT_POSSESS           = 7758, -- You do not possess . You were not permitted to board the ship...
-        RETRIEVE_DIALOG_ID       = 7793, -- You retrieve$ from the porter moogle's care.
+        DO_NOT_POSSESS           = 7758, -- You do not possess <item>. You were not permitted to board the ship...
+        RETRIEVE_DIALOG_ID       = 7793, -- You retrieve <item> from the porter moogle's care.
     },
     mob =
     {

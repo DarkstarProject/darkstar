@@ -10,13 +10,13 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the item <item> come back again after sorting your inventory
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>
+        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
+        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here
-        DIG_THROW_AWAY          = 7220, -- You dig up ?Possible Special Code: 01??Possible Special Code: 01??Possible Special Code: 01? ?Possible Special Code: 01??Possible Special Code: 05?$?BAD CHAR: 8280??BAD CHAR: 80??BAD CHAR: 80?, but your inventory is full.
+        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
+        DIG_THROW_AWAY          = 7220, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7222, -- You dig and you dig, but find nothing.
         SIGNPOST_OFFSET         = 7377, -- Southeast: South Tower, Horutoto Ruins Southwest: Windurst Woods
         TABY_CANATAHEY_DIALOG   = 7387, -- This is the entrrrance to Windurst. Please maintain orderrrly conduct while you'rrre in town.
