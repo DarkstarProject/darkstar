@@ -3637,6 +3637,7 @@ INSERT INTO `item_mods` VALUES (11148,1,19);
 INSERT INTO `item_mods` VALUES (11148,13,13);
 INSERT INTO `item_mods` VALUES (11148,27,-7);
 INSERT INTO `item_mods` VALUES (11148,113,15);
+INSERT INTO `item_mods` VALUES (11148,890,20); -- Increases enhancing magic effect duration
 INSERT INTO `item_mods` VALUES (11149,1,23);
 INSERT INTO `item_mods` VALUES (11149,11,15);
 INSERT INTO `item_mods` VALUES (11149,68,11);
@@ -4110,6 +4111,7 @@ INSERT INTO `item_mods` VALUES (11248,1,17);
 INSERT INTO `item_mods` VALUES (11248,13,9);
 INSERT INTO `item_mods` VALUES (11248,27,-4);
 INSERT INTO `item_mods` VALUES (11248,113,10);
+INSERT INTO `item_mods` VALUES (11248,890,10); -- Increases enhancing magic effect duration
 INSERT INTO `item_mods` VALUES (11249,1,21);
 INSERT INTO `item_mods` VALUES (11249,11,12);
 INSERT INTO `item_mods` VALUES (11249,68,9);
@@ -5621,7 +5623,8 @@ INSERT INTO `item_mods` VALUES (11712,14,4);      -- Aoidos' Earring: CHR +4
 INSERT INTO `item_mods` VALUES (11712,455,2);     -- Song spellcasting time -2%
 INSERT INTO `item_mods` VALUES (11713,11,4);
 INSERT INTO `item_mods` VALUES (11713,27,-2);
-INSERT INTO `item_mods` VALUES (11714,73,1);
+INSERT INTO `item_mods` VALUES (11714,73,1);      -- Unkai Mimikazari: Store TP +1
+INSERT INTO `item_mods` VALUES (11714,306,2);     -- Enhances "Zanshin" effect 2%
 INSERT INTO `item_mods` VALUES (11715,68,5);
 INSERT INTO `item_mods` VALUES (11715,259,1);
 INSERT INTO `item_mods` VALUES (11716,25,4);
@@ -19465,6 +19468,7 @@ INSERT INTO `item_mods` VALUES (16203,115,7);
 INSERT INTO `item_mods` VALUES (16204,1,8);
 INSERT INTO `item_mods` VALUES (16204,13,5);
 INSERT INTO `item_mods` VALUES (16204,113,6);
+INSERT INTO `item_mods` VALUES (16204,890,10); -- Increases enhancing magic effect duration
 INSERT INTO `item_mods` VALUES (16205,1,9);
 INSERT INTO `item_mods` VALUES (16205,8,6);
 INSERT INTO `item_mods` VALUES (16205,11,6);
@@ -23331,9 +23335,9 @@ INSERT INTO `item_mods` VALUES (19006,355,46); -- Tizona 75 - Expiacion
 INSERT INTO `item_mods` VALUES (19006,431,1); -- Tizona 75 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19007,355,218); -- Death Penalty 75 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19007,580,20);
-INSERT INTO `item_mods` VALUES (19008,173,20);
-INSERT INTO `item_mods` VALUES (19008,288,15);
-INSERT INTO `item_mods` VALUES (19008,355,12); -- Kenkonken 75 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19008,125,1);  -- Kenkonken 75 - Supresses "Overload"
+INSERT INTO `item_mods` VALUES (19008,173,20); -- Ehnances "Martial Arts" effect
+INSERT INTO `item_mods` VALUES (19008,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19009,9,1);
 INSERT INTO `item_mods` VALUES (19010,9,2);
 INSERT INTO `item_mods` VALUES (19011,2,5);
@@ -23451,7 +23455,9 @@ INSERT INTO `item_mods` VALUES (19074,355,187); -- Nirvana 80 - Garland of Bliss
 INSERT INTO `item_mods` VALUES (19075,355,46); -- Tizona 80 - Expiacion
 INSERT INTO `item_mods` VALUES (19075,431,1); -- Tizona 80 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19076,355,218); -- Death Penalty 80 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19077,355,12); -- Kenkonken 80 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19077,125,1);   -- Kenkonken 80 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19077,173,30);  -- Enhances "Martial Arts" effect II
+INSERT INTO `item_mods` VALUES (19077,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19078,355,29); -- Terpsichore 80 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19079,355,188); -- Tupsimati 80 - Omniscience
 INSERT INTO `item_mods` VALUES (19080,355,90); -- Conqueror 85 - King's Justice
@@ -23498,8 +23504,9 @@ INSERT INTO `item_mods` VALUES (19095,30,15); -- Magic Accuracy +15
 INSERT INTO `item_mods` VALUES (19095,355,46); -- Tizona 85 - Expiacion
 INSERT INTO `item_mods` VALUES (19095,431,1); -- Tizona 85 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19096,355,218); -- Death Penalty 85 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19097,173,20);
-INSERT INTO `item_mods` VALUES (19097,355,12); -- Kenkonken 85 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19097,125,1);   -- Kenkonken 85 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19097,173,40);  -- Enhances "Martial Arts" effect III
+INSERT INTO `item_mods` VALUES (19097,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19098,355,29); -- Terpsichore 85 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19098,403,15); -- Bonus Accuracy For Steps +15
 INSERT INTO `item_mods` VALUES (19098,494,1); -- Bonus Finishing Moves From Steps +1
@@ -23888,7 +23895,9 @@ INSERT INTO `item_mods` VALUES (19627,431,1); -- Tizona 90 - Additional Effect -
 INSERT INTO `item_mods` VALUES (19627,616,15); -- Expiacion WS DMG +15%
 INSERT INTO `item_mods` VALUES (19628,355,218); -- Death Penalty 90 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19628,580,40);
-INSERT INTO `item_mods` VALUES (19629,355,12); -- Kenkonken 90 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19629,125,1);   -- Kenkonken 80 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19629,173,50);  -- Enhances "Martial Arts" effect IV
+INSERT INTO `item_mods` VALUES (19629,355,12);  -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19629,582,15); -- Stringing Pummel WS DMG +15%
 INSERT INTO `item_mods` VALUES (19630,355,29); -- Terpsichore 90 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19630,599,15); -- Pyrrhic Kleos WS DMG +15%
@@ -23984,8 +23993,9 @@ INSERT INTO `item_mods` VALUES (19725,431,1); -- Tizona 95 - Additional Effect -
 INSERT INTO `item_mods` VALUES (19725,616,15); -- Expiacion WS DMG +15%
 INSERT INTO `item_mods` VALUES (19726,355,218); -- Death Penalty 95 - Leaden Salute
 INSERT INTO `item_mods` VALUES (19726,788,15); -- Leaden Salute WS damage +15%
-INSERT INTO `item_mods` VALUES (19727,173,20);
-INSERT INTO `item_mods` VALUES (19727,355,12); -- Kenkonken 95 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19726,125,1);  -- Kenkonken 95 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19727,173,50); -- Enhances "Martial Arts" effect IV
+INSERT INTO `item_mods` VALUES (19727,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19727,582,15); -- Stringing Pummel WS DMG +15%
 INSERT INTO `item_mods` VALUES (19728,355,29); -- Terpsichore 95 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19728,403,20); -- Bonus Accuracy For Steps +20
@@ -24248,9 +24258,10 @@ INSERT INTO `item_mods` VALUES (19834,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19834,431,1); -- Tizona 99 - Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19834,616,30); -- Expiacion WS DMG +30%
 INSERT INTO `item_mods` VALUES (19835,355,218); -- Death Penalty 99 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19635,788,30); -- Leaden Salute WS damage +30%
-INSERT INTO `item_mods` VALUES (19836,173,20); -- Hand-to-Hand Delay +20
-INSERT INTO `item_mods` VALUES (19836,355,12); -- Kenkonken 99 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19835,788,30); -- Leaden Salute WS damage +30%
+INSERT INTO `item_mods` VALUES (19836,125,1);  -- Kenkonken 99 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19836,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (19836,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19836,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (19837,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19837,403,25); -- Bonus Accuracy For Steps +25
@@ -24418,7 +24429,9 @@ INSERT INTO `item_mods` VALUES (19963,355,46); -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19963,431,1); -- Tizona 99 Absorb MP
 INSERT INTO `item_mods` VALUES (19963,616,30); -- Expiacion WS DMG +30%
 INSERT INTO `item_mods` VALUES (19964,355,218); -- Death Penalty 99 - Leaden Salute
-INSERT INTO `item_mods` VALUES (19965,355,12); -- Kenkonken 99 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (19965,125,1);  -- Kenkonken 99 AG - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (19965,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (19965,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (19965,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (19966,355,29); -- Terpsichore 99 - Pyrrhic Kleos
 INSERT INTO `item_mods` VALUES (19966,599,30); -- Pyrrhic Kleos WS DMG +30%
@@ -24439,9 +24452,13 @@ INSERT INTO `item_mods` VALUES (20482,355,11); -- Glanzfaust iLvL 119 - Ascetic'
 INSERT INTO `item_mods` VALUES (20482,581,30); -- Ascetic's Fury WS DMG +30%
 INSERT INTO `item_mods` VALUES (20483,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20483,581,30); -- Ascetic's Fury WS DMG +30%
-INSERT INTO `item_mods` VALUES (20484,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20484,125,1);  -- Kenkonken 119 - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20484,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20484,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20484,582,30); -- Stringing Pummel WS DMG +30%
-INSERT INTO `item_mods` VALUES (20485,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20485,125,1);  -- Kenkonken 119/II - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20485,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20485,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20485,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (20486,8,20);
 INSERT INTO `item_mods` VALUES (20486,355,14); -- Verethragna iLvL 119 - Victory Smite
@@ -24455,7 +24472,9 @@ INSERT INTO `item_mods` VALUES (20509,507,300);   -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (20509,580,40);    -- Final Heaven DMG +40%
 INSERT INTO `item_mods` VALUES (20510,355,11); -- Glanzfaust iLvL 119 - Ascetic's Fury
 INSERT INTO `item_mods` VALUES (20510,581,30); -- Ascetic's Fury WS DMG +30%
-INSERT INTO `item_mods` VALUES (20511,355,12); -- Kenkonken iLvL 119 - Stringing Pummel
+INSERT INTO `item_mods` VALUES (20511,125,1);  -- Kenkonken 119/III - Suppresses "Overload"
+INSERT INTO `item_mods` VALUES (20511,173,55); -- Enhances "Martial Arts" effect V
+INSERT INTO `item_mods` VALUES (20511,355,12); -- "Stringing Pummel"
 INSERT INTO `item_mods` VALUES (20511,582,30); -- Stringing Pummel WS DMG +30%
 INSERT INTO `item_mods` VALUES (20512,355,14); -- Verethragna iLvL 119 - Victory Smite
 INSERT INTO `item_mods` VALUES (20512,8,50); -- STR +50
@@ -26807,8 +26826,9 @@ INSERT INTO `item_mods` VALUES (23178,29,4);      -- Magic Defense+4
 INSERT INTO `item_mods` VALUES (23178,31,47);     -- Magic Evasion+47
 INSERT INTO `item_mods` VALUES (23178,68,32);     -- Evasion+32
 INSERT INTO `item_mods` VALUES (23178,110,19);    -- Parry+19
-INSERT INTO `item_mods` VALUES (23178,384,300);    -- Haste +30
+INSERT INTO `item_mods` VALUES (23178,384,300);   -- Haste+3%
 INSERT INTO `item_mods` VALUES (23178,841,3);     -- Weapon Skill Damage+3%
+INSERT INTO `item_mods` VALUES (23178,890,18);    -- Enhancing magic duration+18%
 INSERT INTO `item_mods` VALUES (23179,1,99);      -- pill._armlets_+2 DEF:99
 INSERT INTO `item_mods` VALUES (23179,2,37);      -- HP+37
 INSERT INTO `item_mods` VALUES (23179,8,16);      -- STR+16
@@ -27564,7 +27584,8 @@ INSERT INTO `item_mods` VALUES (23310,68,65);     -- Evasion+65
 INSERT INTO `item_mods` VALUES (23310,113,19);    -- Enhancing Magic Skill+19
 INSERT INTO `item_mods` VALUES (23310,114,19);    -- Enfeebling Magic Skill+19
 INSERT INTO `item_mods` VALUES (23310,168,27);    -- Spell Interruption Rate Down+27
-INSERT INTO `item_mods` VALUES (23310,384,300);    -- Haste +30
+INSERT INTO `item_mods` VALUES (23310,384,300);   -- Haste+3%
+INSERT INTO `item_mods` VALUES (23310,890,5);     -- Enhancing magic effect duration +5%
 INSERT INTO `item_mods` VALUES (23311,1,73);      -- spae._sabots_+2 DEF:73
 INSERT INTO `item_mods` VALUES (23311,2,31);      -- HP+31
 INSERT INTO `item_mods` VALUES (23311,5,33);      -- MP+33
@@ -28799,8 +28820,9 @@ INSERT INTO `item_mods` VALUES (23513,29,5);      -- Magic Defense+5
 INSERT INTO `item_mods` VALUES (23513,31,57);     -- Magic Evasion+57
 INSERT INTO `item_mods` VALUES (23513,68,42);     -- Evasion+42
 INSERT INTO `item_mods` VALUES (23513,110,21);    -- Parry+21
-INSERT INTO `item_mods` VALUES (23513,384,300);    -- Haste +30
+INSERT INTO `item_mods` VALUES (23513,384,300);   -- Haste+3%
 INSERT INTO `item_mods` VALUES (23513,841,6);     -- Weapon Skill Damage+6%
+INSERT INTO `item_mods` VALUES (23513,890,20);    -- Enhancing magic duration +20%
 INSERT INTO `item_mods` VALUES (23514,1,109);     -- pill._armlets_+3 DEF:109
 INSERT INTO `item_mods` VALUES (23514,2,47);      -- HP+47
 INSERT INTO `item_mods` VALUES (23514,8,21);      -- STR+21
@@ -29556,7 +29578,8 @@ INSERT INTO `item_mods` VALUES (23645,68,75);     -- Evasion+75
 INSERT INTO `item_mods` VALUES (23645,113,21);    -- Enhancing Magic Skill+21
 INSERT INTO `item_mods` VALUES (23645,114,21);    -- Enfeebling Magic Skill+21
 INSERT INTO `item_mods` VALUES (23645,168,29);    -- Spell Interruption Rate Down+29
-INSERT INTO `item_mods` VALUES (23645,384,300);    -- Haste +30
+INSERT INTO `item_mods` VALUES (23645,384,300);   -- Haste+3%
+INSERT INTO `item_mods` VALUES (23645,890,10);    -- Enhancing magic effect duration +10%
 INSERT INTO `item_mods` VALUES (23646,1,83);      -- spae._sabots_+3 DEF:83
 INSERT INTO `item_mods` VALUES (23646,2,41);      -- HP+41
 INSERT INTO `item_mods` VALUES (23646,5,43);      -- MP+43
@@ -31732,6 +31755,7 @@ INSERT INTO `item_mods` VALUES (26419,12,13);     -- INT+13
 INSERT INTO `item_mods` VALUES (26419,13,13);     -- MND+13
 INSERT INTO `item_mods` VALUES (26419,28,38);     -- Magic Attack+38
 INSERT INTO `item_mods` VALUES (26419,30,38);     -- Magic Accuracy+38
+INSERT INTO `item_mods` VALUES (26419,890,10);    -- Enhancing magic effect duration +10%
 INSERT INTO `item_mods` VALUES (26420,1,63);      -- adapa_shield DEF:63
 INSERT INTO `item_mods` VALUES (26420,2,120);     -- HP+120
 INSERT INTO `item_mods` VALUES (26420,160,-5);    -- Damage Taken-5
@@ -38909,6 +38933,7 @@ INSERT INTO `item_mods` VALUES (27419,31,73);
 INSERT INTO `item_mods` VALUES (27419,68,28);
 INSERT INTO `item_mods` VALUES (27419,113,20);
 INSERT INTO `item_mods` VALUES (27419,384,400);
+INSERT INTO `item_mods` VALUES (27419,890,25); -- Enhancing magic duration +25%
 INSERT INTO `item_mods` VALUES (27420,1,68);
 INSERT INTO `item_mods` VALUES (27420,2,15);
 INSERT INTO `item_mods` VALUES (27420,5,17);
@@ -38925,6 +38950,7 @@ INSERT INTO `item_mods` VALUES (27420,31,107);
 INSERT INTO `item_mods` VALUES (27420,68,60);
 INSERT INTO `item_mods` VALUES (27420,113,25);
 INSERT INTO `item_mods` VALUES (27420,384,300);
+INSERT INTO `item_mods` VALUES (27420,890,30); -- Enhancing magic duration +30%
 INSERT INTO `item_mods` VALUES (27421,1,52);
 INSERT INTO `item_mods` VALUES (27421,2,7);
 INSERT INTO `item_mods` VALUES (27421,8,8);
@@ -42449,6 +42475,7 @@ INSERT INTO `item_mods` VALUES (27891,29,3);
 INSERT INTO `item_mods` VALUES (27891,31,40);
 INSERT INTO `item_mods` VALUES (27891,68,30);
 INSERT INTO `item_mods` VALUES (27891,384,300);
+INSERT INTO `item_mods` VALUES (27891,890,9); -- Enhancing magic effect duration +9%
 INSERT INTO `item_mods` VALUES (27892,1,127); -- Shabti Cuirass +1 -- 127 Def
 INSERT INTO `item_mods` VALUES (27892,2,115); -- 115 HP
 INSERT INTO `item_mods` VALUES (27892,5,98); -- 98 MP
@@ -42464,6 +42491,7 @@ INSERT INTO `item_mods` VALUES (27892,29,3); -- 3 Mdef
 INSERT INTO `item_mods` VALUES (27892,31,42); -- 42 Meva
 INSERT INTO `item_mods` VALUES (27892,68,32); -- 32 Eva
 INSERT INTO `item_mods` VALUES (27892,384,300); -- 3% Gear Haste
+INSERT INTO `item_mods` VALUES (27892,890,10); -- Enhancing magic effect duration +10%
 INSERT INTO `item_mods` VALUES (27893,1,107);
 INSERT INTO `item_mods` VALUES (27893,2,40);
 INSERT INTO `item_mods` VALUES (27893,5,54);
@@ -42991,7 +43019,7 @@ INSERT INTO `item_mods` VALUES (27947,31,25);
 INSERT INTO `item_mods` VALUES (27947,68,10);
 INSERT INTO `item_mods` VALUES (27947,110,17);
 INSERT INTO `item_mods` VALUES (27947,384,300);
--- INSERT INTO `item_mods` VALUES (27947,0,0); -- Increases enhancing magic effect duration not yet coded in DSP
+INSERT INTO `item_mods` VALUES (27947,890,15);        -- Increases enhancing magic effect duration
 INSERT INTO `item_mods` VALUES (27948,1,63);
 INSERT INTO `item_mods` VALUES (27948,2,11);
 INSERT INTO `item_mods` VALUES (27948,8,7);
@@ -43299,24 +43327,24 @@ INSERT INTO `item_mods` VALUES (27967,31,37);
 INSERT INTO `item_mods` VALUES (27967,68,22);
 INSERT INTO `item_mods` VALUES (27967,110,17);
 INSERT INTO `item_mods` VALUES (27967,384,300);
-INSERT INTO `item_mods` VALUES (27968,1,81); -- def
-INSERT INTO `item_mods` VALUES (27968,2,22); -- hp
-INSERT INTO `item_mods` VALUES (27968,5,64); -- mp
-INSERT INTO `item_mods` VALUES (27968,8,11); -- str
-INSERT INTO `item_mods` VALUES (27968,9,33); -- dex
-INSERT INTO `item_mods` VALUES (27968,10,25); -- vit
-INSERT INTO `item_mods` VALUES (27968,11,5); -- agi
-INSERT INTO `item_mods` VALUES (27968,12,19); -- int
-INSERT INTO `item_mods` VALUES (27968,13,33); -- mnd
-INSERT INTO `item_mods` VALUES (27968,14,19); -- chr
-INSERT INTO `item_mods` VALUES (27968,25,10); -- acc
-INSERT INTO `item_mods` VALUES (27968,23,10); -- att
-INSERT INTO `item_mods` VALUES (27968,68,22); -- eva
-INSERT INTO `item_mods` VALUES (27968,31,37); -- meva
-INSERT INTO `item_mods` VALUES (27968,29,3); -- mdef
-INSERT INTO `item_mods` VALUES (27968,110,17); -- parry
+INSERT INTO `item_mods` VALUES (27968,1,81);    -- def
+INSERT INTO `item_mods` VALUES (27968,2,22);    -- hp
+INSERT INTO `item_mods` VALUES (27968,5,64);    -- mp
+INSERT INTO `item_mods` VALUES (27968,8,11);    -- str
+INSERT INTO `item_mods` VALUES (27968,9,33);    -- dex
+INSERT INTO `item_mods` VALUES (27968,10,25);   -- vit
+INSERT INTO `item_mods` VALUES (27968,11,5);    -- agi
+INSERT INTO `item_mods` VALUES (27968,12,19);   -- int
+INSERT INTO `item_mods` VALUES (27968,13,33);   -- mnd
+INSERT INTO `item_mods` VALUES (27968,14,19);   -- chr
+INSERT INTO `item_mods` VALUES (27968,25,10);   -- acc
+INSERT INTO `item_mods` VALUES (27968,23,10);   -- att
+INSERT INTO `item_mods` VALUES (27968,68,22);   -- eva
+INSERT INTO `item_mods` VALUES (27968,31,37);   -- meva
+INSERT INTO `item_mods` VALUES (27968,29,3);    -- mdef
+INSERT INTO `item_mods` VALUES (27968,110,17);  -- parry
 INSERT INTO `item_mods` VALUES (27968,384,300); -- haste
--- INSERT INTO `item_mods` VALUES (27968,0,16); -- Enhancing magic effect duration +16 not yet coded in DSP
+INSERT INTO `item_mods` VALUES (27968,890,16);  -- Enhancing magic effect duration +16%
 INSERT INTO `item_mods` VALUES (27969,1,89);
 INSERT INTO `item_mods` VALUES (27969,2,25);
 INSERT INTO `item_mods` VALUES (27969,8,11);
@@ -43977,7 +44005,7 @@ INSERT INTO `item_mods` VALUES (28034,31,37); -- Magic Evasion+37
 INSERT INTO `item_mods` VALUES (28034,29,3); -- "Magic Def. Bonus"+3
 INSERT INTO `item_mods` VALUES (28034,384,300); -- Haste+3%
 INSERT INTO `item_mods` VALUES (28034,113,18); -- Enhancing magic skill +18
--- INSERT INTO `item_mods` VALUES (28034,Enhancing magic effect duration,5); -- Enhancing magic effect duration +5%
+INSERT INTO `item_mods` VALUES (28034,890,5); -- Enhancing magic effect duration +5%
 INSERT INTO `item_mods` VALUES (28035,1,85); -- Lurid Mitts -- 85 Def
 INSERT INTO `item_mods` VALUES (28035,2,22); -- 22 HP
 INSERT INTO `item_mods` VALUES (28035,5,14); -- 14 MP

@@ -138,69 +138,71 @@ function calculateMagicDamage(caster, target, spell, params)
 
 end;
 
-function doBoostGain(caster,target,spell,effect)
-    local duration = 300;
-    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
-        duration = duration * 3;
-    end
+function doBoostGain(caster, target, spell, effect)
+    local duration = calculateDuration(300, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
     --calculate potency
-    local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
+    local magicskill = target:getSkillLevel(spell:getSkillType())
 
-    local potency = math.floor((magicskill - 300) / 10) + 5;
+    local potency = math.floor((magicskill - 300) / 10) + 5
 
-    if (potency > 25) then
-        potency = 25;
-    elseif (potency < 5) then
-        potency = 5;
+    if potency > 25 then
+        potency = 25
+    elseif potency < 5 then
+        potency = 5
     end
 
     --printf("BOOST-GAIN: POTENCY = %d", potency);
 
     --Only one Boost Effect can be active at once, so if the player has any we have to cancel & overwrite
-    local effectOverwrite = {80, 81, 82, 83, 84, 85, 86};
+    local effectOverwrite =
+    {
+        dsp.effect.STR_BOOST,
+        dsp.effect.DEX_BOOST,
+        dsp.effect.VIT_BOOST,
+        dsp.effect.AGI_BOOST,
+        dsp.effect.INT_BOOST,
+        dsp.effect.MND_BOOST,
+        dsp.effect.CHR_BOOST
+    }
 
     for i, effect in ipairs(effectOverwrite) do
             --printf("BOOST-GAIN: CHECKING FOR EFFECT %d...",effect);
-            if (caster:hasStatusEffect(effect)) then
+            if caster:hasStatusEffect(effect) then
                 --printf("BOOST-GAIN: HAS EFFECT %d, DELETING...",effect);
-                caster:delStatusEffect(effect);
+                caster:delStatusEffect(effect)
             end
     end
 
-    if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
+    if target:addStatusEffect(effect, potency, 0, duration) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     end
-end;
+end
 
-function doEnspell(caster,target,spell,effect)
-
-    if (effect==dsp.effect.BLOOD_WEAPON) then
-        target:addStatusEffect(dsp.effect.BLOOD_WEAPON,1,0,30);
-        return;
+function doEnspell(caster, target, spell, effect)
+    if effect == dsp.effect.BLOOD_WEAPON then
+        target:addStatusEffect(dsp.effect.BLOOD_WEAPON, 1, 0, 30)
+        return
     end
-
-    local duration = 180;
-    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
-        duration = duration * 3;
-    end
+    
+    local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    
     --calculate potency
-    local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC);
+    local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
 
-    local potency = 3 + math.floor((6*magicskill)/100);
-    if (magicskill>200) then
-        potency = 5 + math.floor((5*magicskill)/100);
+    local potency = 3 + math.floor(6 * magicskill / 100)
+    if magicskill > 200 then
+        potency = 5 + math.floor(5 * magicskill / 100)
     end
 
-    if (target:addStatusEffect(effect,potency,0,duration)) then
-        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT);
+    if target:addStatusEffect(effect, potency, 0, duration) then
+        spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     end
-end;
-
+end
 
 ---------------------------------
 --   getCurePower returns the caster's cure power
@@ -1298,18 +1300,27 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
     return duration;
 end
 
-function calculateDuration(duration,magicSkill,spellGroup,caster,target)
-    if (magicSkill ~= dsp.skill.ENHANCING_MAGIC) then 
+function calculateDuration(duration, magicSkill, spellGroup, caster, target, useComposure)
+    if magicSkill ~= dsp.skill.ENHANCING_MAGIC then 
         return duration 
     end
-        
-    if (caster:hasStatusEffect(dsp.effect.COMPOSURE) == true and caster:getID() == target:getID()) then
+    
+    -- Gear mods
+    duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
+    
+    -- Default is true
+    useComposure = useComposure or (useComposure == nill and true)
+
+    -- Composure
+    if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
         duration = duration * 3
     end
-        
-    if (caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE) then
+
+    -- Perpetuance
+    if caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE then
         duration  = duration * 2
     end
+    
     return duration
 end
 
