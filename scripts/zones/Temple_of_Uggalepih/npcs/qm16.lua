@@ -6,10 +6,8 @@
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/settings");
 require("scripts/zones/Temple_of_Uggalepih/TextIDs");
 require("scripts/globals/missions");
-require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
 
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
-	
+
     if (CurrentMission == MOON_READING and MissionStatus >= 1) then
         player:startEvent(68);
     else
@@ -32,7 +30,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-
     if (csid == 68) then
         player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH);
