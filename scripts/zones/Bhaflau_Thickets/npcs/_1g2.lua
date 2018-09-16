@@ -82,7 +82,7 @@ function onInstanceCreated(player,target,instance)
         local party = player:getParty()
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
+                if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance)
                     v:startEvent(108, 1)
                     v:delKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)
