@@ -310,7 +310,7 @@ inline int32 CLuaBaseEntity::PrintToArea(lua_State* L)
 
     if (messageRange == 0) // All zones world wide
     {
-        message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, (char*)lua_tostring(L, 1), name));
+        message::send(MSG_CHAT_SERVMES, 0, 0, new CChatMessagePacket(PChar, messageLook, (char*)lua_tostring(L, 1), name));
     }
     else if (messageRange == 1) // Say range
     {
@@ -3082,7 +3082,7 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
     player:addItem({id=itemID, silent=true}) -- silently add 1 of itemID
 
     player:addItem({id=itemID, signature="Char"}) -- add 1 signed of itemID
-    player:addItem({id=itemID, augments={[4]=5,[10]=10}}) -- add 1 of itemID with augment id 4 and 10, 
+    player:addItem({id=itemID, augments={[4]=5,[10]=10}}) -- add 1 of itemID with augment id 4 and 10,
         with values of 5 and 10, respectively
     */
 
