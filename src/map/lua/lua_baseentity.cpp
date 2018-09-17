@@ -13743,7 +13743,7 @@ inline int32 CLuaBaseEntity::getStealItem(lua_State *L)
 
         if (PDropList && !PMob->m_ItemStolen)
         {
-            for (const DropItem_t& drop : *PDropList)
+            for (const DropItem_t& drop : PDropList->Items)
             {
                 if (drop.DropType == DROP_STEAL)
                 {
@@ -13776,7 +13776,7 @@ inline int32 CLuaBaseEntity::getDespoilItem(lua_State *L)
         DropList_t* PDropList = itemutils::GetDropList(PMob->m_DropID);
         if (PDropList && !PMob->m_ItemStolen)
         {
-            for (const DropItem_t& drop : *PDropList)
+            for (const DropItem_t& drop : PDropList->Items)
             {
                 if (drop.DropType == DROP_DESPOIL)
                 {

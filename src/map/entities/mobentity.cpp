@@ -806,22 +806,46 @@ void CMobEntity::DropItems()
             DropList_t* DropList = itemutils::GetDropList(m_DropID);
             //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
 
-            if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->size())
+            if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->Items.size() || DropList->Groups.size())
             {
-                for (uint8 i = 0; i < DropList->size(); ++i)
+                //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
+                uint8 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+                uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+
+                for (const DropGroup_t&  group : DropList->Groups)
                 {
-                    //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-                    uint8 tries = 0;
-                    uint8 maxTries = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-                    uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
-                    while (tries < maxTries)
+                    for (uint8 roll = 0; roll < maxRolls; ++roll)
                     {
-                        if (DropList->at(i).DropRate > 0 && dsprand::GetRandomNumber(1000) < DropList->at(i).DropRate * map_config.drop_rate_multiplier + bonus)
+                        //Determine if this group should drop an item
+                        if (group.GroupRate > 0 && dsprand::GetRandomNumber(1000) < group.GroupRate * map_config.drop_rate_multiplier + bonus)
                         {
-                            PChar->PTreasurePool->AddItem(DropList->at(i).ItemID, this);
+                            //Each item in the group is given its own weight range which is the previous value to the previous value + item.DropRate
+                            //Such as 2 items with drop rates of 200 and 800 would be 0-199 and 200-999 respectively
+                            uint16 previousRateValue = 0;
+                            uint16 itemRoll = dsprand::GetRandomNumber(1000);
+                            for (const DropItem_t& item : group.Items)
+                            {
+                                if (previousRateValue + item.DropRate > itemRoll)
+                                {
+                                    PChar->PTreasurePool->AddItem(item.ItemID, this);
+                                    break;
+                                }
+                                previousRateValue += item.DropRate;
+                            }
                             break;
                         }
-                        tries++;
+                    }
+                }
+
+                for (const DropItem_t& item : DropList->Items)
+                {
+                    for (uint8 roll = 0; roll < maxRolls; ++roll)
+                    {
+                        if (item.DropRate > 0 && dsprand::GetRandomNumber(1000) < item.DropRate * map_config.drop_rate_multiplier + bonus)
+                        {
+                            PChar->PTreasurePool->AddItem(item.ItemID, this);
+                            break;
+                        }
                     }
                 }
             }
