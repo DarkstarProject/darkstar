@@ -492,8 +492,7 @@ namespace itemutils
                 {
                     uint8 GroupId = (uint8)Sql_GetIntData(SqlHandle, 4);
                     uint16 GroupRate = (uint16)Sql_GetIntData(SqlHandle, 5);
-                    //This requires the database to have the groups in order
-                    if (GroupId == dropList->Groups.size())
+                    while (GroupId >= dropList->Groups.size())
                     {
                         dropList->Groups.emplace_back(GroupRate);
                     }
