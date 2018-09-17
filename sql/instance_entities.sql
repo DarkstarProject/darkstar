@@ -177,6 +177,40 @@ INSERT INTO `instance_entities` VALUES (41,17002731);
 INSERT INTO `instance_entities` VALUES (41,17002752);
 INSERT INTO `instance_entities` VALUES (41,17002753);
 
+-- Extermination
+--mobs
+INSERT INTO `instance_entities` VALUES (43,17002521);
+INSERT INTO `instance_entities` VALUES (43,17002522);
+INSERT INTO `instance_entities` VALUES (43,17002523);
+INSERT INTO `instance_entities` VALUES (43,17002524);
+INSERT INTO `instance_entities` VALUES (43,17002525);
+INSERT INTO `instance_entities` VALUES (43,17002526);
+INSERT INTO `instance_entities` VALUES (43,17002527);
+INSERT INTO `instance_entities` VALUES (43,17002528);
+INSERT INTO `instance_entities` VALUES (43,17002529);
+INSERT INTO `instance_entities` VALUES (43,17002530);
+INSERT INTO `instance_entities` VALUES (43,17002531);
+INSERT INTO `instance_entities` VALUES (43,17002532);
+INSERT INTO `instance_entities` VALUES (43,17002533);
+INSERT INTO `instance_entities` VALUES (43,17002534);
+INSERT INTO `instance_entities` VALUES (43,17002535);
+INSERT INTO `instance_entities` VALUES (43,17002536);
+INSERT INTO `instance_entities` VALUES (43,17002537);
+INSERT INTO `instance_entities` VALUES (43,17002538);
+INSERT INTO `instance_entities` VALUES (43,17002539);
+INSERT INTO `instance_entities` VALUES (43,17002540);
+INSERT INTO `instance_entities` VALUES (43,17002541);
+INSERT INTO `instance_entities` VALUES (43,17002542);
+INSERT INTO `instance_entities` VALUES (43,17002543);
+INSERT INTO `instance_entities` VALUES (43,17002544);
+-- npc
+INSERT INTO `instance_entities` VALUES (43,17002730);
+INSERT INTO `instance_entities` VALUES (43,17002745);
+INSERT INTO `instance_entities` VALUES (43,17002747);
+INSERT INTO `instance_entities` VALUES (43,17002754);
+INSERT INTO `instance_entities` VALUES (43,17002654);
+INSERT INTO `instance_entities` VALUES (43,17002655);
+
 -- Ashu Talif
 -- npc
 INSERT INTO `instance_entities` VALUES (53,17022979);

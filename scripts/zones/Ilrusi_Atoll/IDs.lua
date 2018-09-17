@@ -63,6 +63,28 @@ zones[dsp.zone.ILRUSI_ATOLL] =
             CURSED_CHEST11 = 17002515,
             CURSED_CHEST12 = 17002516,
         },
+        [43] = {
+            CARRION_CRAB1   = 17002521,
+            CARRION_LEECH1  = 17002522,
+            CARRION_CRAB2   = 17002523,
+            CARRION_CRAB3   = 17002524,
+            CARRION_LEECH2  = 17002525,
+            CARRION_CRAB4   = 17002526,
+            CARRION_CRAB5   = 17002527,
+            CARRION_CRAB6   = 17002528,
+            CARRION_SLIME1  = 17002529,
+            CARRION_SLIME2  = 17002530,
+            CARRION_SLIME3  = 17002531,
+            CARRION_CRAB7   = 17002532,
+            CARRION_LEECH3  = 17002533,
+            CARRION_LEECH4  = 17002534,
+            CARRION_LEECH5  = 17002535,
+            CARRION_LEECH6  = 17002536,
+            CARRION_LEECH7  = 17002537,
+            CARRION_LEECH8  = 17002538,
+            CARRION_TOAD1   = 17002539,
+            CARRION_TOAD2   = 17002540,
+        }
     },
     npc =
     {
@@ -81,9 +103,13 @@ zones[dsp.zone.ILRUSI_ATOLL] =
         CURSED_CHEST10             = 17002514,
         CURSED_CHEST11             = 17002515,
         CURSED_CHEST12             = 17002516,
+        _jo                        = 17002730,
         _1jp                       = 17002731,
+        _jj3                       = 17002745,
+        _jj4                       = 17002747,
         _jja                       = 17002752,
         _jjb                       = 17002753,
+        _jjc                       = 17002754,
     },
 }
 
