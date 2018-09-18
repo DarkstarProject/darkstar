@@ -402,7 +402,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
             }
 
             //sanity check
-            if (highestInfo.member != nullptr && highestInfo.lot!=0)
+            if (highestInfo.member != nullptr && highestInfo.lot != 0)
             {
                 if (highestInfo.member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
                 {
@@ -429,20 +429,10 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
         std::vector<LotInfo> tempLots;
         for (uint8 i = 0; i < members.size(); ++i)
         {
-            bool hasPassed = false;
-            for (uint8 j = 0; j < m_PoolItems[SlotID].Lotters.size(); j++)
-            {
-                if (m_PoolItems[SlotID].Lotters[j].member->id == members[i]->id)
-                {
-                    hasPassed = true;
-                    break;
-                }
-            }
-
             if (charutils::HasItem(members[i], m_PoolItems[SlotID].ID) && itemutils::GetItem(m_PoolItems[SlotID].ID)->getFlag() & ITEM_FLAG_RARE)
                 continue;
 
-            if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !hasPassed)
+            if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !HasPassedItem(members[i], SlotID))
             {
                 LotInfo templi;
                 templi.member = members[i];
