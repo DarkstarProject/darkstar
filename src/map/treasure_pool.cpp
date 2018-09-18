@@ -385,79 +385,71 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
         (m_TreasurePoolType == TREASUREPOOL_SOLO && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) ||
         m_PoolItems[SlotID].Lotters.size() == members.size())
     {
-        if (!m_PoolItems[SlotID].Lotters.empty())
+        //Find item's highest lotter
+        LotInfo highestInfo = { 0, nullptr };
+
+        for (uint8 i = 0; i < m_PoolItems[SlotID].Lotters.size(); ++i)
         {
-            //give item to highest lotter
-            LotInfo highestInfo;
-            highestInfo.lot = 0;
-            highestInfo.member = nullptr;
-
-            for(uint8 i = 0; i < m_PoolItems[SlotID].Lotters.size(); i++)
+            LotInfo curInfo = m_PoolItems[SlotID].Lotters[i];
+            if (curInfo.lot > highestInfo.lot)
             {
-                LotInfo curInfo = m_PoolItems[SlotID].Lotters[i];
-                if(curInfo.lot > highestInfo.lot)
-                {
-                    highestInfo = curInfo;
-                }
+                highestInfo = curInfo;
             }
+        }
 
-            //sanity check
-            if (highestInfo.member != nullptr && highestInfo.lot != 0)
+        //Check to see if we have any lotters (excluding anyone who passed)
+        if (highestInfo.member != nullptr && highestInfo.lot != 0)
+        {
+            if (highestInfo.member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
             {
-                if (highestInfo.member->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
+                //add item as they have room!
+                if (charutils::AddItem(highestInfo.member, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
                 {
-                    //add item as they have room!
-                    if (charutils::AddItem(highestInfo.member, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
-                    {
-                        TreasureWon(highestInfo.member, SlotID);
-                    }
-                    else
-                    {
-                        TreasureError(highestInfo.member, SlotID);
-                    }
+                    TreasureWon(highestInfo.member, SlotID);
                 }
                 else
                 {
-                    //drop the item
-                    TreasureLost(SlotID);
+                    TreasureError(highestInfo.member, SlotID);
                 }
-                //Return here since we gave the item away
-                return;
-            }
-        }
-        //No one has lotted on this item - Give to random member who has not passed
-        std::vector<LotInfo> tempLots;
-        for (uint8 i = 0; i < members.size(); ++i)
-        {
-            if (charutils::HasItem(members[i], m_PoolItems[SlotID].ID) && itemutils::GetItem(m_PoolItems[SlotID].ID)->getFlag() & ITEM_FLAG_RARE)
-                continue;
-
-            if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !HasPassedItem(members[i], SlotID))
-            {
-                LotInfo templi;
-                templi.member = members[i];
-                templi.lot = 1;
-                tempLots.push_back(templi);
-            }
-        }
-
-        if (tempLots.size() == 0)
-        {
-            TreasureLost(SlotID);
-        }
-        else
-        {
-            //select random member from this pool to give item to
-            CCharEntity* PChar = tempLots.at(dsprand::GetRandomNumber(tempLots.size())).member;
-            if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
-            {
-                TreasureWon(PChar, SlotID);
             }
             else
             {
-                TreasureError(PChar, SlotID);
+                //drop the item
+                TreasureLost(SlotID);
             }
-            tempLots.clear();
+        }
+        else
+        {
+            //No one has lotted on this item - Give to random member who has not passed
+            std::vector<CCharEntity*> candidates;
+            for (uint8 i = 0; i < members.size(); ++i)
+            {
+                if (charutils::HasItem(members[i], m_PoolItems[SlotID].ID) && itemutils::GetItem(m_PoolItems[SlotID].ID)->getFlag() & ITEM_FLAG_RARE)
+                    continue;
+
+                if (members[i]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && !HasPassedItem(members[i], SlotID))
+                {
+                    candidates.push_back(members[i]);
+                }
+            }
+
+            if (candidates.empty())
+            {
+                TreasureLost(SlotID);
+            }
+            else
+            {
+                //select random member from this pool to give item to
+                CCharEntity* PChar = candidates.at(dsprand::GetRandomNumber(candidates.size()));
+                if (charutils::AddItem(PChar, LOC_INVENTORY, m_PoolItems[SlotID].ID, 1, true) != ERROR_SLOTID)
+                {
+                    TreasureWon(PChar, SlotID);
+                }
+                else
+                {
+                    TreasureError(PChar, SlotID);
+                }
+            }
         }
     }
 }
