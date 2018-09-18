@@ -826,9 +826,14 @@ void CMobEntity::HandleDeath()
 }
 
 void CMobEntity::DropItems(CCharEntity* PChar) {
+    //Adds an item to the treasure pool and returns true if the pool has been filled
+    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount) -> bool {
+        PChar->PTreasurePool->AddItem(ItemID, this);
+        return dropCount >= TREASUREPOOL_SIZE;
+    };
+
     //Limit number of items that can drop to the treasure pool size
     uint8 dropCount = 0;
-    #define ADD_ITEM_TO_POOL(ItemID) { PChar->PTreasurePool->AddItem(ItemID, this); if( ++dropCount == TREASUREPOOL_SIZE ) { return; } }
 
     DropList_t* DropList = itemutils::GetDropList(m_DropID);
     //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
@@ -854,7 +859,8 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
                     {
                         if (previousRateValue + item.DropRate > itemRoll)
                         {
-                            ADD_ITEM_TO_POOL(item.ItemID);
+                            if (AddItemToPool(item.ItemID, ++dropCount))
+                                return;
                             break;
                         }
                         previousRateValue += item.DropRate;
@@ -870,7 +876,8 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
             {
                 if (item.DropRate > 0 && dsprand::GetRandomNumber(1000) < item.DropRate * map_config.drop_rate_multiplier + bonus)
                 {
-                    ADD_ITEM_TO_POOL(item.ItemID);
+                    if (AddItemToPool(item.ItemID, ++dropCount))
+                        return;
                     break;
                 }
             }
@@ -895,7 +902,8 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
             (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_SIGIL) && PChar->loc.zone->GetRegionID() >= 33 && PChar->loc.zone->GetRegionID() <= 40)) &&
             m_Element > 0 && dsprand::GetRandomNumber(100) < 20) // Need to move to CRYSTAL_CHANCE constant
         {
-            ADD_ITEM_TO_POOL(4095 + m_Element);
+            if (AddItemToPool(4095 + m_Element, ++dropCount))
+                return;
         }
 
         // Todo: Avatarite and Geode drops during day/weather. Much higher chance during weather than day.
@@ -910,16 +918,21 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
                 switch (dsprand::GetRandomNumber(4))
                 {
                 case 0:
-                    ADD_ITEM_TO_POOL(1126);
+
+                    if (AddItemToPool(1126, ++dropCount))
+                        return;
                     break;
                 case 1:
-                    ADD_ITEM_TO_POOL(1127);
+                    if (AddItemToPool(1127, ++dropCount))
+                        return;
                     break;
                 case 2:
-                    ADD_ITEM_TO_POOL(2955);
+                    if (AddItemToPool(2955, ++dropCount))
+                        return;
                     break;
                 case 3:
-                    ADD_ITEM_TO_POOL(2956);
+                    if (AddItemToPool(2956, ++dropCount))
+                        return;
                     break;
                 }
             }
@@ -928,13 +941,16 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
                 switch (dsprand::GetRandomNumber(3))
                 {
                 case 0:
-                    ADD_ITEM_TO_POOL(1126);
+                    if (AddItemToPool(1126, ++dropCount))
+                        return;
                     break;
                 case 1:
-                    ADD_ITEM_TO_POOL(1127);
+                    if (AddItemToPool(1127, ++dropCount))
+                        return;
                     break;
                 case 2:
-                    ADD_ITEM_TO_POOL(2955);
+                    if (AddItemToPool(2955, ++dropCount))
+                        return;
                     break;
                 }
             }
@@ -942,17 +958,20 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
             {
                 if (dsprand::GetRandomNumber(2) == 0)
                 {
-                    ADD_ITEM_TO_POOL(1126);
+                    if (AddItemToPool(1126, ++dropCount))
+                        return;
                 }
                 else
                 {
-                    ADD_ITEM_TO_POOL(1127);
+                    if (AddItemToPool(1127, ++dropCount))
+                        return;
                 }
             }
             else
             {
                 //b.seal only
-                ADD_ITEM_TO_POOL(1126);
+                if (AddItemToPool(1126, ++dropCount))
+                    return;
             }
         }
     }
