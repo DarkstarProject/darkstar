@@ -261,7 +261,8 @@ public:
 
 protected:
 
-    void DropItems();
+    void HandleDeath();
+    void DropItems(CCharEntity* PChar);
 
 
 
