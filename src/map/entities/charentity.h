@@ -39,6 +39,7 @@ This file is part of DarkStar-server source code.
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
+#define PLAYER_DEATH_COUNTER_TIME 60min
 
 struct jobs_t
 {

@@ -1589,7 +1589,7 @@ void CCharEntity::Die()
         auto PTarget = GetEntity(GetBattleTargetID());
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, this, 0, 0, 97));
     }
-    Die(60min);
+    Die(PLAYER_DEATH_COUNTER_TIME);
     m_DeathCounter = 0;
     m_DeathTimestamp = (uint32)time(nullptr);
 

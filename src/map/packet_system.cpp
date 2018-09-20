@@ -275,7 +275,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
             PChar->m_DeathTimestamp = (uint32)time(nullptr);
             if (PChar->health.hp == 0)
-                PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
+                PChar->Die(PLAYER_DEATH_COUNTER_TIME - std::chrono::seconds(PChar->m_DeathCounter));
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";

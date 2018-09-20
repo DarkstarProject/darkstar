@@ -28,6 +28,8 @@
 
 #include "char_update.h"
 
+#include "../ai/ai_container.h"
+#include "../ai/states/death_state.h"
 #include "../entities/charentity.h"
 #include "../utils/itemutils.h"
 #include "../vana_time.h"
@@ -90,8 +92,20 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     
     ref<uint8>(0x36) = flag;
 
-    if (!PChar->isDead() || PChar->m_DeathCounter == 0) //prevent this packet from resetting the homepoint timer after tractor
+    //This contains the amount of time remaining before the player is forced back to homepoint while dead
+    if (PChar->PAI->IsCurrentState<CDeathState>())
+    {
+        //Update the player death counter and timestamp and send the amount of time remaining
+        uint32 currentTime = (uint32)time(nullptr);
+        PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
+        PChar->m_DeathTimestamp = currentTime;
+        ref<uint32>(0x3C) = 0x0003A020 - (60 * PChar->m_DeathCounter);
+    }
+    else
+    {
+        //While the player is alive we always send a max time (60 minutes)
         ref<uint32>(0x3C) = 0x0003A020;
+    }
 
     ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime();
     ref<uint16>(0x44) = PChar->m_Costum;
