@@ -247,6 +247,7 @@ public:
     CTradeContainer*  CraftContainer;               // Container used for crafting actions.
 
     CBaseEntity*	  PWideScanTarget;				// wide scane цель
+    CBattleEntity*    PLastAttacker;
 
     SpawnIDList_t	  SpawnPCList;					// список видимых персонажей
     SpawnIDList_t	  SpawnMOBList;					// список видимых монстров
@@ -301,6 +302,8 @@ public:
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;
     int32 addMP(int32 mp) override;
+    //Deal damage to the player and updates the last attacker which is used when sending a death message
+    int32 takeDamage(int32 amount, CBattleEntity* attacker) override;
 
     std::vector<GearSetMod_t> m_GearSetMods;		// The list of gear set mods currently applied to the character.
     std::vector<AuctionHistory_t> m_ah_history;		// AH history list (в будущем нужно использовать UContainer)

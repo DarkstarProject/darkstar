@@ -177,6 +177,7 @@ CCharEntity::CCharEntity()
     PLinkshell2 = nullptr;
     PTreasurePool = nullptr;
     PWideScanTarget = nullptr;
+    PLastAttacker = nullptr;
 
     PAutomaton = nullptr;
     PRecastContainer = std::make_unique<CCharRecastContainer>(this);
@@ -386,6 +387,12 @@ int32 CCharEntity::addMP(int32 mp)
     PLatentEffectContainer->CheckLatentsMP();
 
     return abs(mp);
+}
+
+int32 CCharEntity::takeDamage(int32 amount, CBattleEntity* attacker)
+{
+    PLastAttacker = attacker;
+    return CBattleEntity::takeDamage(amount, attacker);
 }
 
 bool CCharEntity::getWeaponSkillKill()

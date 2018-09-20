@@ -518,8 +518,6 @@ public:
     virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
     virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
     virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
-
-    //Deals damage and updates the last attacker which is used when sending a player death message
     virtual int32   takeDamage(int32 amount, CBattleEntity* attacker = nullptr);
 
     int16		    getMod(Mod modID);		// величина модификатора
@@ -644,7 +642,6 @@ public:
     CParty*			PParty;					    // описание группы, в которой состоит сущность
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
-    CBattleEntity*	PLastAttacker;
 
     std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
     std::unique_ptr<CRecastContainer> PRecastContainer;         //
