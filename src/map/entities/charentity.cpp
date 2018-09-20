@@ -358,7 +358,7 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::min<size_t>(strlen((const char*)name), GetPlayerNameLength()));
 }
 
 int16 CCharEntity::addTP(int16 tp)

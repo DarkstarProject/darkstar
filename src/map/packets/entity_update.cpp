@@ -147,9 +147,9 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
                 //depending on size of name, this can be 0x20, 0x22, or 0x24
                 this->size = 0x24;
                 if (PMob->packetName.empty())
-                    memcpy(data + (0x34), PEntity->GetName(), (PEntity->name.size() > 15 ? 15 : PEntity->name.size()));
+                    memcpy(data + (0x34), PEntity->GetName(), PEntity->name.size());
                 else
-                    memcpy(data + (0x34), PMob->packetName.c_str(), (PMob->packetName.size() > 15 ? 15 : PMob->packetName.size()));
+                    memcpy(data + (0x34), PMob->packetName.c_str(), std::min<size_t>(PMob->packetName.size(), 15));
             }
         }
         break;

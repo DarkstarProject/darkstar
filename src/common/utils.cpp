@@ -33,8 +33,6 @@
 #	include <intrin.h>
 #endif
 
-#define MAX_ITEM_SIGNATURE_LENGTH 15
-
 /************************************************************************
 *																		*
 *																		*
@@ -555,8 +553,8 @@ int8* EncodeStringSignature(int8* signature, int8* target)
 
 void DecodeStringSignature(int8* signature, int8* target)
 {
-    uint8 decodedSignature[MAX_ITEM_SIGNATURE_LENGTH + 1] = { 0 };
-    for(uint8 currChar = 0; currChar < MAX_ITEM_SIGNATURE_LENGTH; ++currChar)
+    uint8 decodedSignature[GetPlayerNameLength() + 1] = { 0 };
+    for(uint8 currChar = 0; currChar < GetPlayerNameLength(); ++currChar)
     {
         uint8 tempChar = (uint8)unpackBitsLE((uint8*)signature, currChar * 6, 6);
         if(tempChar >= 1 && tempChar <= 10)
