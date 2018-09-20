@@ -73,6 +73,7 @@ CBattleEntity::CBattleEntity()
     PPet = nullptr;
     PParty = nullptr;
     PMaster = nullptr;
+    PLastAttacker = nullptr;
 
     StatusEffectContainer = std::make_unique<CStatusEffectContainer>(this);
     PRecastContainer = std::make_unique<CRecastContainer>(this);
@@ -511,6 +512,12 @@ int32 CBattleEntity::addMP(int32 mp)
         updatemask |= UPDATE_HP;
     }
     return abs(mp);
+}
+
+int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/)
+{
+    PLastAttacker = attacker;
+    return addHP(-amount);
 }
 
 /************************************************************************
@@ -1262,6 +1269,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         else
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
+
+            // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
+            if (PSpell->dealsDamage())
+                PTarget->PLastAttacker = this;
 
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())

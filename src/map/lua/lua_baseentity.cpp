@@ -7240,7 +7240,7 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    ((CBattleEntity*)m_PBaseEntity)->addHP((int32)(-lua_tointeger(L, 1)));
+    ((CBattleEntity*)m_PBaseEntity)->takeDamage((int32)(lua_tointeger(L, 1)));
 
     return 0;
 }

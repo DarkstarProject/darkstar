@@ -1579,15 +1579,14 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
 
 void CCharEntity::Die()
 {
-    if (GetBattleTargetID() == 0)
+    if (PLastAttacker)
     {
-        //falls to the ground
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, 20));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PLastAttacker, this, 0, 0, 97));
     }
     else
     {
-        auto PTarget = GetEntity(GetBattleTargetID());
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, this, 0, 0, 97));
+        //falls to the ground
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, 20));
     }
     Die(60min);
     m_DeathCounter = 0;
