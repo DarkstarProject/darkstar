@@ -784,7 +784,7 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     }
 }
 
-void CMobEntity::HandleDeath()
+void CMobEntity::DistributeRewards()
 {
     CCharEntity* PChar = (CCharEntity*)GetEntity(m_OwnerID.targid, TYPE_PC);
 
@@ -827,7 +827,7 @@ void CMobEntity::HandleDeath()
 
 void CMobEntity::DropItems(CCharEntity* PChar) {
     //Adds an item to the treasure pool and returns true if the pool has been filled
-    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount) -> bool {
+    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount) {
         PChar->PTreasurePool->AddItem(ItemID, this);
         return dropCount >= TREASUREPOOL_SIZE;
     };
@@ -975,7 +975,6 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
             }
         }
     }
-    #undef ADD_ITEM_TO_POOL
 }
 
 
@@ -1050,7 +1049,7 @@ void CMobEntity::Die()
     PAI->QueueAction(queueAction_t(std::chrono::milliseconds(m_DropItemTime), false, [this](CBaseEntity* PEntity) {
         if (static_cast<CMobEntity*>(PEntity)->isDead())
         {
-            HandleDeath();
+            DistributeRewards();
         }
     }));
     if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
