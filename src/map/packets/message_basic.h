@@ -39,6 +39,7 @@ enum MSGBASIC_ID : uint16
 	MSGBASIC_ALREADY_CLAIMED		= 12, /* Cannot attack. Your target is already claimed. */
 	MSGBASIC_IS_INTERRUPTED			= 16, /* The <player>'s casting is interrupted. */
 	MSGBASIC_UNABLE_TO_CAST			= 18, /* Unable to cast spells at this time. */
+    MSGBASIC_FALLS_TO_GROUND        = 20, /* The <target> falls to the ground. */
 	MSGBASIC_UNABLE_TO_USE_JA		= 87, /* Unable to use job ability. */
 	MSGBASIC_UNABLE_TO_USE_JA2		= 88, /* Unable to use job ability. */
 	MSGBASIC_IS_PARALYZED			= 29, /* The <player> is paralyzed. */
@@ -49,6 +50,7 @@ enum MSGBASIC_ID : uint16
     MSGBASIC_CANNOT_USE_IN_AREA      = 40, /* cannot use in this area */
 	MSGBASIC_UNABLE_TO_CAST_SPELLS  = 49, /* The <player> is unable to cast spells. */
 	MSGBASIC_WAIT_LONGER			= 94, /* You must wait longer to perform that action. */
+    MSGBASIC_PLAYER_DEFEATED_BY     = 97, /* <player> was defeated by the <target>. */
 	MSGBASIC_USES_JA				= 100, /* The <player> uses .. */
 	MSGBASIC_USES_JA2				= 101, /* The <player> uses .. */
 	MSGBASIC_USES_RECOVERS_HP		= 102, /* The <player> uses .. <target> recovers .. HP. */
