@@ -7198,6 +7198,10 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
     ((CBattleEntity*)m_PBaseEntity)->addHP(value);
     m_PBaseEntity->updatemask |= UPDATE_HP;
 
+    //When setting the HP to 0 the entity "falls to the ground" so the last attacker needs to be cleared
+    if (value == 0)
+        ((CBattleEntity*)m_PBaseEntity)->PLastAttacker = nullptr;
+
     return 0;
 }
 
