@@ -715,9 +715,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (!PChar->m_hasRaise)
             return;
         if (data.ref<uint8>(0x0C) == 0) //ACCEPTED RAISE
-        {
             PChar->Raise();
-        }
+        else
+            PChar->m_hasRaise = 0;
     }
     break;
     case 0x0E: // Fishing
