@@ -837,7 +837,7 @@ void CMobEntity::DropItems(CCharEntity* PChar) {
     DropList_t* DropList = itemutils::GetDropList(m_DropID);
     //ShowDebug(CL_CYAN"DropID: %u dropping with TH Level: %u\n" CL_RESET, PMob->m_DropID, PMob->m_THLvl);
 
-    if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && DropList->Items.size() || DropList->Groups.size())
+    if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && (DropList->Items.size() || DropList->Groups.size()))
     {
         //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
         uint8 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
