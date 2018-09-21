@@ -791,7 +791,6 @@ void CMobEntity::DropItems()
     if (PChar != nullptr && PChar->id == m_OwnerID.id)
     {
 
-        loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(PChar, this, 0, 0, MSGBASIC_DEFEATS_TARG));
 
         if (!CalledForHelp())
         {
@@ -1021,6 +1020,11 @@ void CMobEntity::Die()
     PAI->QueueAction(queueAction_t(std::chrono::milliseconds(m_DropItemTime), false, [this](CBaseEntity* PEntity) {
         if (static_cast<CMobEntity*>(PEntity)->isDead())
         {
+            if (PLastAttacker)
+                loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(PLastAttacker, this, 0, 0, MSGBASIC_DEFEATS_TARG));
+            else
+                loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
+
             DropItems();
         }
     }));
