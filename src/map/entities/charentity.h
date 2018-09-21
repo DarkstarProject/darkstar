@@ -39,7 +39,6 @@ This file is part of DarkStar-server source code.
 #define MAX_QUESTID     256
 #define MAX_MISSIONAREA	 15
 #define MAX_MISSIONID    226
-#define PLAYER_DEATH_COUNTER_TIME 60min
 
 struct jobs_t
 {
@@ -266,7 +265,6 @@ public:
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
-    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
 
     uint8			  m_hasTractor;					// checks if player has tractor already
@@ -299,6 +297,8 @@ public:
     bool              m_EffectsChanged;
     time_point        m_LastSynthTime;
 
+    static constexpr duration death_duration = 60min;
+
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;
     int32 addMP(int32 mp) override;
@@ -324,8 +324,11 @@ public:
     virtual bool CanUseSpell(CSpell*) override;
 
     virtual void Die() override;
-    void Die(duration);
+    void Die(duration _duration);
     void Raise();
+
+    void SetDeathTimestamp(uint32 timestamp);
+    int32 GetSecondsElapsedSinceDeath();
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;

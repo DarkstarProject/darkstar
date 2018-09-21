@@ -93,19 +93,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     ref<uint8>(0x36) = flag;
 
     //This contains the amount of time remaining before the player is forced back to homepoint while dead
-    if (PChar->PAI->IsCurrentState<CDeathState>())
-    {
-        //Update the player death counter and timestamp and send the amount of time remaining
-        uint32 currentTime = (uint32)time(nullptr);
-        PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
-        PChar->m_DeathTimestamp = currentTime;
-        ref<uint32>(0x3C) = 0x0003A020 - (60 * PChar->m_DeathCounter);
-    }
-    else
-    {
-        //While the player is alive we always send a max time (60 minutes)
-        ref<uint32>(0x3C) = 0x0003A020;
-    }
+    ref<uint32>(0x3C) = 0x0003A020 - (60 * PChar->GetSecondsElapsedSinceDeath());
 
     ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime();
     ref<uint16>(0x44) = PChar->m_Costum;
