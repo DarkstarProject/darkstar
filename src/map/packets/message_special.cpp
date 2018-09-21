@@ -58,7 +58,7 @@ CMessageSpecialPacket::CMessageSpecialPacket(
 	{
 		this->size = 0x18;
 
-		memcpy(data+(0x1E), PEntity->GetName(), std::min<size_t>(PEntity->name.size(), GetPlayerNameLength()));
+		memcpy(data+(0x1E), PEntity->GetName(), std::min<size_t>(PEntity->name.size(), PacketNameLength));
 	}
 	else if (PEntity->objtype == TYPE_PC)
 	{

@@ -29,7 +29,7 @@
 #include "../common/cbasetypes.h"
 #include "../common/mmo.h"
 
-constexpr size_t GetPlayerNameLength() { return 15; }
+constexpr size_t PacketNameLength = 15;
 
 
 int32 checksum(uint8* buf,uint32 buflen,char checkhash[16]);
