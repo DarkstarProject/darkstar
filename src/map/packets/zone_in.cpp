@@ -189,8 +189,9 @@ CZoneInPacket::CZoneInPacket(CCharEntity * PChar, int16 csid)
     ref<uint32>(0x3C) = pktTime;
 
     // 60min starts at 0x03A020 (66 min) and ventures down to 0x5460 (6 min)
-    if (PChar->m_DeathCounter < 3600 && PChar->isDead())
-        ref<uint32>(0xA4) = 0x03A020 - (60 * PChar->m_DeathCounter);
+    uint32 deathDuration = PChar->GetSecondsElapsedSinceDeath();
+    if (deathDuration < 3600 && PChar->isDead())
+        ref<uint32>(0xA4) = 0x03A020 - (60 * deathDuration);
 
     ref<uint8>(0xB4) = PChar->GetMJob();
     ref<uint8>(0xB7) = PChar->GetSJob();

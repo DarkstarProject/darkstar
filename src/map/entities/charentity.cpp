@@ -155,7 +155,6 @@ CCharEntity::CCharEntity()
     m_LevelRestriction = 0;
     m_lastBcnmTimePrompt = 0;
     m_AHHistoryTimestamp = 0;
-    m_DeathCounter = 0;
     m_DeathTimestamp = 0;
 
     m_EquipFlag = 0;
@@ -1584,9 +1583,8 @@ void CCharEntity::Die()
     else
         loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
 
-    Die(60min);
-    m_DeathCounter = 0;
-    m_DeathTimestamp = (uint32)time(nullptr);
+    Die(death_duration);
+    SetDeathTimestamp((uint32)time(nullptr));
 
     setBlockingAid(false);
 
@@ -1618,6 +1616,17 @@ void CCharEntity::Die(duration _duration)
 void CCharEntity::Raise()
 {
     PAI->Internal_Raise();
+    SetDeathTimestamp(0);
+}
+
+void CCharEntity::SetDeathTimestamp(uint32 timestamp)
+{
+    m_DeathTimestamp = timestamp;
+}
+
+int32 CCharEntity::GetSecondsElapsedSinceDeath()
+{
+    return m_DeathTimestamp > 0 ? (uint32)time(nullptr) - m_DeathTimestamp : 0;
 }
 
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
