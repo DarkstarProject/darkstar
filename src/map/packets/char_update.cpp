@@ -92,10 +92,11 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     
     ref<uint8>(0x36) = flag;
 
-    //This contains the amount of time remaining before the player is forced back to homepoint while dead
-    ref<uint32>(0x3C) = 0x0003A020 - (60 * PChar->GetSecondsElapsedSinceDeath());
+    uint32 timeRemainingToForcedHomepoint = PChar->GetTimeRemainingUntilDeathHomepoint();
+    ref<uint32>(0x3C) = timeRemainingToForcedHomepoint;
 
-    ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime();
+    //Vanatime at which the player should be forced back to homepoint while dead. Vanatime is in seconds so we must convert the time remaining to seconds.
+    ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime() + timeRemainingToForcedHomepoint / 60;
     ref<uint16>(0x44) = PChar->m_Costum;
 
     if (PChar->animation == ANIMATION_FISHING_START)

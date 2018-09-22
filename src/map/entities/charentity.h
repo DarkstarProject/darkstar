@@ -329,6 +329,7 @@ public:
 
     void SetDeathTimestamp(uint32 timestamp);
     int32 GetSecondsElapsedSinceDeath();
+    int32 GetTimeRemainingUntilDeathHomepoint();  //Amount of time remaining before the player should be forced back to homepoint while dead
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;

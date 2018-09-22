@@ -1629,6 +1629,15 @@ int32 CCharEntity::GetSecondsElapsedSinceDeath()
     return m_DeathTimestamp > 0 ? (uint32)time(nullptr) - m_DeathTimestamp : 0;
 }
 
+int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
+{
+    //0x0003A020 is 60 * 3960 and 3960 is 66 minutes in seconds
+    //The client uses this time as the maximum amount of time for death
+    //We convert the elapsed death time to this total time and subtract it which gives us the remaining time to a forced homepoint
+    //Once the returned value here reaches below 360 then the client with force homepoint the character
+    return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
+}
+
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
 {
     // Check if local has been set yet
