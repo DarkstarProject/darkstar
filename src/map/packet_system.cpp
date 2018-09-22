@@ -272,7 +272,7 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            //Update the character's death timestamp based off of how long they were previously dead
+            // Update the character's death timestamp based off of how long they were previously dead
             uint32 secondsSinceDeath = (uint32)Sql_GetUIntData(SqlHandle, 0);
             if (PChar->health.hp == 0)
             {
