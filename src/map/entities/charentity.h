@@ -266,6 +266,7 @@ public:
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
+    time_point        m_deathSyncTime;              // Timer used for sending an update packet at a regular interval while the character is dead
 
     uint8			  m_hasTractor;					// checks if player has tractor already
     uint8			  m_hasRaise;					// checks if player has raise already
@@ -297,8 +298,6 @@ public:
     bool              m_EffectsChanged;
     time_point        m_LastSynthTime;
 
-    static constexpr duration death_duration = 60min;
-
     int16 addTP(int16 tp) override;
     int32 addHP(int32 hp) override;
     int32 addMP(int32 mp) override;
@@ -315,6 +314,7 @@ public:
     void        ReloadPartyDec();
     bool        ReloadParty();
 
+    virtual void Tick(time_point) override;
     void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;
@@ -326,6 +326,9 @@ public:
     virtual void Die() override;
     void Die(duration _duration);
     void Raise();
+
+    static constexpr duration death_duration = 60min;
+    static constexpr duration death_update_frequency = 16s;
 
     void SetDeathTimestamp(uint32 timestamp);
     int32 GetSecondsElapsedSinceDeath();

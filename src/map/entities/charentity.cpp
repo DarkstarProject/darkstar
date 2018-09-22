@@ -464,6 +464,17 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::Tick(time_point tick)
+{
+    CBattleEntity::Tick(tick);
+    if (m_DeathTimestamp > 0 && tick >= m_deathSyncTime)
+    {
+        //Send an update packet at a regular interval to keep the player's death variables synced
+        updatemask |= UPDATE_STATUS;
+        m_deathSyncTime = tick + death_update_frequency;
+    }
+}
+
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
@@ -1597,6 +1608,7 @@ void CCharEntity::Die()
 
 void CCharEntity::Die(duration _duration)
 {
+    m_deathSyncTime = server_clock::now() + death_update_frequency;
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
     pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
