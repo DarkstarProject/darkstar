@@ -519,7 +519,9 @@ void CCharEntity::PostTick()
                 static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
             });
         }
-        pushPacket(new CCharUpdatePacket(this));
+        //Do not send an update packet when only the position has change
+        if (updatemask ^ UPDATE_POS)
+            pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
 }
