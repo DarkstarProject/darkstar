@@ -1613,7 +1613,6 @@ void CCharEntity::Die(duration _duration)
     m_deathSyncTime = server_clock::now() + death_update_frequency;
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
-    pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
 
     // reraise modifiers
     if (this->getMod(Mod::RERAISE_I) > 0)
