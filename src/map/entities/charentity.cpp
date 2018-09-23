@@ -464,6 +464,17 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::Tick(time_point tick)
+{
+    CBattleEntity::Tick(tick);
+    if (m_DeathTimestamp > 0 && tick >= m_deathSyncTime)
+    {
+        // Send an update packet at a regular interval to keep the player's death variables synced
+        updatemask |= UPDATE_STATUS;
+        m_deathSyncTime = tick + death_update_frequency;
+    }
+}
+
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
@@ -508,7 +519,9 @@ void CCharEntity::PostTick()
                 static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
             });
         }
-        pushPacket(new CCharUpdatePacket(this));
+        // Do not send an update packet when only the position has change
+        if (updatemask ^ UPDATE_POS)
+            pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
 }
@@ -1597,9 +1610,9 @@ void CCharEntity::Die()
 
 void CCharEntity::Die(duration _duration)
 {
+    m_deathSyncTime = server_clock::now() + death_update_frequency;
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
-    pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
 
     // reraise modifiers
     if (this->getMod(Mod::RERAISE_I) > 0)
@@ -1627,6 +1640,15 @@ void CCharEntity::SetDeathTimestamp(uint32 timestamp)
 int32 CCharEntity::GetSecondsElapsedSinceDeath()
 {
     return m_DeathTimestamp > 0 ? (uint32)time(nullptr) - m_DeathTimestamp : 0;
+}
+
+int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
+{
+    // 0x0003A020 is 60 * 3960 and 3960 is 66 minutes in seconds
+    // The client uses this time as the maximum amount of time for death
+    // We convert the elapsed death time to this total time and subtract it which gives us the remaining time to a forced homepoint
+    // Once the returned value here reaches below 360 then the client with force homepoint the character
+    return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
 }
 
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)
