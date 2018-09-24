@@ -4445,12 +4445,8 @@ namespace charutils
 
     void SaveDeathTime(CCharEntity* PChar)
     {
-        uint32 currentTime = (uint32)time(nullptr);
-        PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
-        PChar->m_DeathTimestamp = currentTime;
-
         const char* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
-        Sql_Query(SqlHandle, fmtQuery, PChar->m_DeathCounter, PChar->id);
+        Sql_Query(SqlHandle, fmtQuery, PChar->GetSecondsElapsedSinceDeath(), PChar->id);
     }
 
     void SavePlayTime(CCharEntity* PChar)
@@ -4881,6 +4877,8 @@ namespace charutils
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+
+        PChar->SetDeathTimestamp(0);
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();

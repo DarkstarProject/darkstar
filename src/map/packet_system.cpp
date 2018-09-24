@@ -272,10 +272,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PChar->m_DeathTimestamp = (uint32)time(nullptr);
+            // Update the character's death timestamp based off of how long they were previously dead
+            uint32 secondsSinceDeath = (uint32)Sql_GetUIntData(SqlHandle, 0);
             if (PChar->health.hp == 0)
-                PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
+            {
+                PChar->SetDeathTimestamp((uint32)time(nullptr) - secondsSinceDeath);
+                PChar->Die(CCharEntity::death_duration - std::chrono::seconds(secondsSinceDeath));
+            }
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
@@ -714,9 +717,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (!PChar->m_hasRaise)
             return;
         if (data.ref<uint8>(0x0C) == 0) //ACCEPTED RAISE
-        {
             PChar->Raise();
-        }
+        else
+            PChar->m_hasRaise = 0;
     }
     break;
     case 0x0E: // Fishing
