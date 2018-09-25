@@ -131,8 +131,23 @@ int32 do_init(int32 argc, char** argv)
 
                     if (strcmp(input.c_str(), "verlock") == 0)
                     {
-                        version_info.enable_ver_lock = !version_info.enable_ver_lock;
-                        ShowStatus("Version lock " + std::string(version_info.enable_ver_lock ? "enabled\r\n" : "disabled\r\n"));
+                        // handle wrap around from 2->3 as 0
+                        version_info.ver_lock = (++version_info.ver_lock % 3);
+
+                        auto value = "";
+                        switch (version_info.ver_lock)
+                        {
+                            case 0:
+                                value = "disabled";
+                                break;
+                            case 1:
+                                value = "enabled - strict";
+                                break;
+                            case 2:
+                                value = "enabled - greater than or equal";
+                                break;
+                        }
+                        ShowStatus("Version lock %i - %s\r\n", version_info.ver_lock, value);
                     }
                     else
                     {
@@ -439,9 +454,15 @@ int32 version_info_read(const char *fileName)
         {
             version_info.client_ver = std::string(w2);
         }
-        else if (strcmp(w1, "ENABLE_VER_LOCK") == 0)
+        else if (strcmp(w1, "VER_LOCK") == 0)
         {
-            version_info.enable_ver_lock = strcmp(w2, "true") == 0 || std::atoi(w2) == 1;
+            version_info.ver_lock = std::atoi(w2);
+
+            if (version_info.ver_lock > 2 || version_info.ver_lock < 0)
+            {
+                ShowError("ver_lock not within bounds (0..2) was %i, defaulting to 1\r\n", version_info.ver_lock);
+                version_info.ver_lock = 1;
+            }
         }
     }
     fclose(fp);
@@ -476,7 +497,7 @@ int32 login_config_default()
 int32 version_info_default()
 {
     version_info.client_ver = "99999999_9"; // xxYYMMDD_m = xx:MajorRelease YY:year MM:month DD:day _m:MinorRelease
-    version_info.enable_ver_lock = true;
+    version_info.ver_lock = 1;
     // version_info.DSP_VER = 0;
     return 0;
 }
