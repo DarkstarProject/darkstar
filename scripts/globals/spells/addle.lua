@@ -18,7 +18,7 @@ end
 function onSpellCast(caster, target, spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
 
-    local potency = calculatePotency(30, dMND, spell:getSkillType(), caster, target)
+    local power = calculatePotency(30, dMND, spell:getSkillType(), caster, target)
 
     -- Sub Power: Magic Accuracy Modifier
     -- Magic Accuracy penalty = floor(dMND/5)+20
