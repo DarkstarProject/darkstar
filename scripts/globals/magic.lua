@@ -1333,9 +1333,9 @@ function calculatePotency(basePotency, dStat, magicSkill, caster, target)
     
     if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
         if target:isNM() then
-            basePotency = math.floor(basePotency * (1.3 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR))
+            basePotency = math.floor(basePotency * (1.3 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
         else
-            basePotency = math.floor(basePotency * (2 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR))
+            basePotency = math.floor(basePotency * (2 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
         end
     end
     
