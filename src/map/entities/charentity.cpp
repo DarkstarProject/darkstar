@@ -914,14 +914,14 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
         {
-            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+            {
                 action.recast = 0;
             }
-            else if (this->getMod(Mod::BP_DELAY) > 15) {
-                action.recast -= 15;
-            }
-            else {
-                action.recast -= getMod(Mod::BP_DELAY);
+            else
+            {
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY), 15);
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY_II), 15);
             }
         }
 
