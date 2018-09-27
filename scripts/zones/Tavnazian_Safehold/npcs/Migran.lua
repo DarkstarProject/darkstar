@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         table.insert(stock, 25210200)
         table.insert(stock, 14848)    -- Barone Manopolas
         table.insert(stock, 7276200)
-        table.insert(stock, 15380)    -- Vir Subligar
+        table.insert(stock, 15389)    -- Vir Subligar
         table.insert(stock, 8000000)
         table.insert(stock, 15390)    -- Femina Subligar
         table.insert(stock, 8000000)
@@ -41,4 +41,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

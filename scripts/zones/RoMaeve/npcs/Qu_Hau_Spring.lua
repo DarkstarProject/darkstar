@@ -5,6 +5,7 @@
 package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/RoMaeve/TextIDs");
+require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -31,6 +32,8 @@ function onTrigger(player,npc)
 
     if (CurrentMission == VAIN and MissionStatus >= 1) then
         player:startEvent(2);
+    elseif (CurrentMission == MOON_READING and MissionStatus >= 1) then
+        player:startEvent(4);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
     end
@@ -54,5 +57,8 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MOONLIGHT_ORE);
     elseif (csid == 2 and player:getCurrentMission(WINDURST) == VAIN) then
         player:setVar("MissionStatus",2);
+    elseif (csid == 4 and player:getCurrentMission(WINDURST) == MOON_READING) then
+        player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);
+        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);
     end
 end;

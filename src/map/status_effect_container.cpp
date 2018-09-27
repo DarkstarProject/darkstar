@@ -1462,7 +1462,7 @@ void CStatusEffectContainer::TickRegen(time_point tick)
             if (damage > 0)
             {
                 DelStatusEffectSilent(EFFECT_HEALING);
-                m_POwner->addHP(-damage);
+                m_POwner->takeDamage(damage);
                 WakeUp();
             }
         }

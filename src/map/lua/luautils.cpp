@@ -3924,12 +3924,15 @@ namespace luautils
     {
         DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
 
-        for (uint8 i = 0; i < DropList->size(); ++i)
+        if (DropList != nullptr)
         {
-            if (DropList->at(i).ItemID == lua_tointeger(L, 2))
+            for (uint8 i = 0; i < DropList->Items.size(); ++i)
             {
-                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
-                return 1;
+                if (DropList->Items.at(i).ItemID == lua_tointeger(L, 2))
+                {
+                    DropList->Items.at(i).DropRate = (uint16)lua_tointeger(L, 3);
+                    return 1;
+                }
             }
         }
 

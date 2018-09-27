@@ -12,7 +12,7 @@ end
 
 function onSpellCast(caster, target, spell)
     local power = 175
-    local duration = calculateDuration(1800, spell:getSkillType(), spell:getSkillGroup(), caster, target, false)
+    local duration = calculateDuration(1800, spell:getSkillType(), spell:getSpellGroup(), caster, target, false)
     duration = calculateDurationForLvl(duration, 76, target:getMainLvl())
 
     local typeEffect = dsp.effect.PROTECT
