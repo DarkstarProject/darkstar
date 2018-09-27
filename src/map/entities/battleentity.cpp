@@ -1276,9 +1276,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
 
             // Remove Saboteur
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
-            {
                 StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
-            }
 
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())
