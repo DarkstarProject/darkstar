@@ -2,8 +2,11 @@
 -- Area: Dynamis Jeuno
 --  MOB: Morgmox_Moldnoggin
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/status")
+mixins =
+{
+    require("scripts/mixins/dynamis_beastmen"),
+    require("scripts/mixins/job_special")
+}
 -----------------------------------
 
 function onMobSpawn(mob)
