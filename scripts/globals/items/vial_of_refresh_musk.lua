@@ -8,16 +8,14 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local effect = target:getStatusEffect(dsp.effect.ENCHANTMENT)
-    if (effect ~= nil) then
-        if (effect:getSubType() == 18241) then
-            target:delStatusEffect(dsp.effect.ENCHANTMENT)
-        end
+    if effect ~= nil and effect:getSubType() == 18241 then
+        target:delStatusEffect(dsp.effect.ENCHANTMENT)
     end
     return 0
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true) then
+    if target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true then
         target:delStatusEffect(dsp.effect.ENCHANTMENT)
         target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,30,18241)
     else

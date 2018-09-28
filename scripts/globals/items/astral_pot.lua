@@ -13,16 +13,14 @@ function onItemCheck(target)
     local pet = target:getPet()
     if not pet then
         return dsp.msg.basic.REQUIRES_A_PET,0
-    elseif (effect ~= nil) then
-        if (effect:getSubType() == 18243) then
-            target:delStatusEffect(dsp.effect.ENCHANTMENT)
-        end
+    elseif effect ~= nil and effect:getSubType() == 18243 then
+        target:delStatusEffect(dsp.effect.ENCHANTMENT)
     end
     return 0
 end
 
 function onItemUse(target)
-    if (target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true) then
+    if target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true then
         target:delStatusEffect(dsp.effect.ENCHANTMENT)
         target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,300,18243)
     else
@@ -37,5 +35,7 @@ end
 
 function onEffectLose(target, effect)
     local pet = target:getPet()
-    pet:delMod(dsp.mod.MATT, 22)
+    if pet ~= nil then
+        pet:delMod(dsp.mod.MATT, 22)
+    end
 end
