@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: La Theine Plateau
+-- Area: Northern San d'Oria
 --  NPC: Faurbellant
 -- Type: Quest NPC
 -- Involved in Quest: Gates of Paradise

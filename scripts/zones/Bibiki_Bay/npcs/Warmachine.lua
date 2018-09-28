@@ -1,6 +1,7 @@
 -----------------------------------
 -- Area: Bibiki Bay
 --  NPC: Warmachine
+-- @zone 4
 -- !pos -345.236 -3.188 -976.563 4
 -----------------------------------
 package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;

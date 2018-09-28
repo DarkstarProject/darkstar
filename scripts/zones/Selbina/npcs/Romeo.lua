@@ -2,7 +2,8 @@
 -- Area: Selbina
 --  NPC: Romeo
 -- Starts and Finishes Quest: Donate to Recycling
--- !pos -11 -11 -6 248
+-- @zone 248
+-- !pos -11 -11 -6
 -----------------------------------
 package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Noan
 -- Type: Standard NPC
--- !pos 23 0 -84 256
+--  @zone 256
+-- !pos 23 0 -84
 -----------------------------------
 
 function onTrade(player,npc,trade)

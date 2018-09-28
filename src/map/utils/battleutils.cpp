@@ -753,7 +753,7 @@ namespace battleutils
                 case SPIKE_BLAZE:
                 case SPIKE_ICE:
                 case SPIKE_SHOCK:
-                    PAttacker->takeDamage(Action->spikesParam, PDefender);
+                    PAttacker->addHP(-Action->spikesParam);
                     break;
 
                 case SPIKE_DREAD:
@@ -785,14 +785,14 @@ namespace battleutils
                             }
                             PDefender->addHP(Action->spikesParam);
                         }
-                        PAttacker->takeDamage(Action->spikesParam, PDefender);
+                        PAttacker->addHP(-Action->spikesParam);
                     }
                     break;
 
                 case SPIKE_REPRISAL:
                     if (Action->reaction == REACTION_BLOCK)
                     {
-                        PAttacker->takeDamage(Action->spikesParam, PDefender);
+                        PAttacker->addHP(-Action->spikesParam);
                         auto PEffect = PDefender->StatusEffectContainer->GetStatusEffect(EFFECT_REPRISAL);
                         if (PEffect)
                         {
@@ -888,7 +888,7 @@ namespace battleutils
             {
                 auto ratio = std::clamp<uint8>(damage / 4, 1, 255);
                 Action->spikesParam = HandleStoneskin(PAttacker, damage - dsprand::GetRandomNumber<uint16>(ratio) + dsprand::GetRandomNumber<uint16>(ratio));
-                PAttacker->takeDamage(Action->spikesParam);
+                PAttacker->addHP(-Action->spikesParam);
             }
 
             // Temp till moved to script.
@@ -1020,7 +1020,7 @@ namespace battleutils
                     Action->addEffectMessage = 384;
                 }
 
-                PDefender->takeDamage(Action->addEffectParam, PAttacker);
+                PDefender->addHP(-Action->addEffectParam);
             }
             else if (enspell > 8 && enspell <= 14 && isFirstSwing)
             {
@@ -1034,7 +1034,7 @@ namespace battleutils
                     Action->addEffectMessage = 384;
                 }
 
-                PDefender->takeDamage(Action->addEffectParam, PAttacker);
+                PDefender->addHP(-Action->addEffectParam);
             }
             else if (enspell > 6 && enspell <= 8)
             {
@@ -1048,7 +1048,7 @@ namespace battleutils
                     Action->addEffectMessage = 384;
                 }
 
-                PDefender->takeDamage(Action->addEffectParam, PAttacker);
+                PDefender->addHP(-Action->addEffectParam);
             }
             else if (enspell == ENSPELL_BLOOD_WEAPON)
             {
@@ -1072,7 +1072,7 @@ namespace battleutils
                     Action->addEffectMessage = 384;
                 }
 
-                PDefender->takeDamage(Action->addEffectParam, PAttacker);
+                PDefender->addHP(-Action->addEffectParam);
             }
         }
         //check weapon for additional effects
@@ -1329,7 +1329,7 @@ namespace battleutils
                     damage = HandleStoneskin(PDefender, damage);
                     //set damage TODO: handle resi st/staff/day
                     Action->addEffectParam = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 18699:{ //Earth Arrow
@@ -1351,7 +1351,7 @@ namespace battleutils
                     damage += (float)damage * ((float)PDefender->getMod(Mod::EARTHRES)/-100);
                     damage = HandleStoneskin(PDefender, damage);
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 18698:{ //Water Arrow
@@ -1372,7 +1372,7 @@ namespace battleutils
                     damage += (float)damage * ((float)PDefender->getMod(Mod::WATERRES)/-100);
                     damage = HandleStoneskin(PDefender, damage);
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 18153:{ //Holy Bolt
@@ -1393,7 +1393,7 @@ namespace battleutils
                     damage += (float)damage * ((float)PDefender->getMod(Mod::LIGHTRES)/-100);
                     damage = HandleStoneskin(PDefender, damage);
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 17324:{ //Lightning Arrow
@@ -1414,7 +1414,7 @@ namespace battleutils
                     damage += (float)damage * ((float)PDefender->getMod(Mod::THUNDERRES)/-100);
                     damage = HandleStoneskin(PDefender, damage);
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 17323:{ //Ice Arrow
@@ -1435,7 +1435,7 @@ namespace battleutils
                     damage += (float)damage * ((float)PDefender->getMod(Mod::ICERES)/-100);
                     damage = HandleStoneskin(PDefender, damage);
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             case 17327: // Grand knights Arrow
@@ -1463,7 +1463,7 @@ namespace battleutils
                     damage = HandleStoneskin(PDefender, damage);
 
                     Action->addEffectParam  = damage;
-                    PDefender->takeDamage(damage, PAttacker);
+                    PDefender->addHP(-damage);
                 }
                 break;
             }*/
@@ -1997,7 +1997,7 @@ namespace battleutils
         }
         damage = std::clamp(damage, -99999, 99999);
 
-        int32 corrected = PDefender->takeDamage(damage, PAttacker);
+        int32 corrected = PDefender->addHP(-damage);
         if (damage < 0)
             damage = -corrected;
 
@@ -2135,7 +2135,7 @@ namespace battleutils
     *																		*
     ************************************************************************/
 
-    int32 TakeWeaponskillDamage(CCharEntity* PAttacker, CBattleEntity* PDefender, int32 damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier)
+    int32 TakeWeaponskillDamage(CCharEntity* PChar, CBattleEntity* PDefender, int32 damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier)
     {
         bool isRanged = (slot == SLOT_AMMO || slot == SLOT_RANGED);
 
@@ -2147,28 +2147,28 @@ namespace battleutils
 
         if (!isRanged)
         {
-            damage = getOverWhelmDamageBonus(PAttacker, PDefender, (uint16)damage);
+            damage = getOverWhelmDamageBonus(PChar, PDefender, (uint16)damage);
         }
 
         HandleAfflatusMiseryDamage(PDefender, damage);
         damage = std::clamp(damage, -99999, 99999);
 
-        int32 corrected = PDefender->takeDamage(damage, PAttacker);
+        int32 corrected = PDefender->addHP(-damage);
         if (damage < 0)
             damage = -corrected;
 
         if (PDefender->objtype == TYPE_MOB)
         {
-            if (PAttacker->PMaster != nullptr)
+            if (PChar->PMaster != nullptr)
             {
-                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+                PDefender->m_OwnerID.id = PChar->PMaster->id;
+                PDefender->m_OwnerID.targid = PChar->PMaster->targid;
                 PDefender->updatemask |= UPDATE_STATUS;
             }
             else
             {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
+                PDefender->m_OwnerID.id = PChar->id;
+                PDefender->m_OwnerID.targid = PChar->targid;
                 PDefender->updatemask |= UPDATE_STATUS;
             }
         }
@@ -2180,7 +2180,7 @@ namespace battleutils
             PDefender->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DAMAGE);
 
             // Check for bind breaking
-            BindBreakCheck(PAttacker, PDefender);
+            BindBreakCheck(PChar, PDefender);
 
             switch (PDefender->objtype)
             {
@@ -2189,9 +2189,9 @@ namespace battleutils
                     if (PDefender->PMaster != nullptr && PDefender->PMaster->objtype == TYPE_PC)
                         ((CPetEntity*)PDefender)->loc.zone->PushPacket(PDefender, CHAR_INRANGE, new CEntityUpdatePacket(PDefender, ENTITY_UPDATE, UPDATE_COMBAT));
 
-                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+                    if (((CMobEntity*)PDefender)->m_HiPCLvl < PChar->GetMLevel())
                     {
-                        ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+                        ((CMobEntity*)PDefender)->m_HiPCLvl = PChar->GetMLevel();
                     }
 
                     break;
@@ -2205,29 +2205,29 @@ namespace battleutils
             }
 
             // try to interrupt spell
-            PDefender->TryHitInterrupt(PAttacker);
+            PDefender->TryHitInterrupt(PChar);
 
             int16 baseTp = 0;
 
             if (isRanged)
             {
-                int16 delay = PAttacker->GetRangedWeaponDelay(true);
+                int16 delay = PChar->GetRangedWeaponDelay(true);
                 baseTp = CalculateBaseTP((delay * 120) / 1000);
             }
             else
             {
-                int16 delay = PAttacker->GetWeaponDelay(true);
+                int16 delay = PChar->GetWeaponDelay(true);
 
-                if (PAttacker->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
-                    PAttacker->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
-                    PAttacker->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
+                if (PChar->m_Weapons[SLOT_SUB]->getDmgType() > 0 &&
+                    PChar->m_Weapons[SLOT_SUB]->getDmgType() < 4 &&
+                    PChar->m_Weapons[slot]->getSkillType() != SKILL_HAND_TO_HAND)
                 {
                     delay /= 2;
                 }
 
                 float ratio = 1.0f;
 
-                if (PAttacker->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
+                if (PChar->m_Weapons[slot]->getSkillType() == SKILL_HAND_TO_HAND)
                     ratio = 2.0f;
 
                 baseTp = (int16)(CalculateBaseTP((delay * 60) / 1000) / ratio);
@@ -2238,31 +2238,31 @@ namespace battleutils
             if (primary)
             // Calculate TP Return from WS
             {
-                standbyTp = ((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PAttacker->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker))))));
+                standbyTp = ((int16)(((tpMultiplier * baseTp) + bonusTP) * (1.0f + 0.01f * (float)((PChar->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))));
             }
 
             //account for attacker's subtle blow which reduces the baseTP gain for the defender
-            float sBlowMult = ((100.0f - std::clamp((float)PAttacker->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
+            float sBlowMult = ((100.0f - std::clamp((float)PChar->getMod(Mod::SUBTLE_BLOW), 0.0f, 50.0f)) / 100.0f);
 
             //mobs hit get basetp+30 whereas pcs hit get basetp/3
             if (PDefender->objtype == TYPE_PC)
-                PDefender->addTP((int16)(tpMultiplier * targetTPMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PAttacker))))))); //yup store tp counts on hits taken too!
+                PDefender->addTP((int16)(tpMultiplier * targetTPMultiplier * ((baseTp / 3) * sBlowMult * (1.0f + 0.01f * (float)((PDefender->getMod(Mod::STORETP) + getStoreTPbonusFromMerit(PChar))))))); //yup store tp counts on hits taken too!
             else
                 PDefender->addTP((int16)(tpMultiplier * targetTPMultiplier * ((baseTp + 30) * sBlowMult * (1.0f + 0.01f * (float)PDefender->getMod(Mod::STORETP))))); //subtle blow also reduces the "+30" on mob tp gain
         }
         else if (PDefender->objtype == TYPE_MOB)
-            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PAttacker, 0);
+            ((CMobEntity*)PDefender)->PEnmityContainer->UpdateEnmityFromDamage(PChar, 0);
 
         if (!isRanged)
-            PAttacker->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
+            PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ATTACK);
 
         // Apply TP
-        PAttacker->addTP(std::max((PAttacker->getMod(Mod::SAVETP)), standbyTp));
+        PChar->addTP(std::max((PChar->getMod(Mod::SAVETP)), standbyTp));
 
         // Remove Hagakure Effect if present
-        if (PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_HAGAKURE))
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_HAGAKURE))
         {
-            PAttacker->StatusEffectContainer->DelStatusEffect(EFFECT_HAGAKURE);
+            PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HAGAKURE);
         }
 
         return damage;
@@ -3186,7 +3186,7 @@ namespace battleutils
         }
         damage = std::clamp(damage, -99999, 99999);
 
-        PDefender->takeDamage(damage, PAttacker);
+        PDefender->addHP(-damage);
 
         if (PAttacker->PMaster != nullptr)
         {
@@ -5248,12 +5248,12 @@ namespace battleutils
         uint32 base = PSpell->getRecastTime();
         int32 recast = base;
 
-        // Apply Fast Cast
+        //apply Fast Cast
         recast = (int32)(recast * ((100.0f - std::clamp((float)PEntity->getMod(Mod::FASTCAST) / 2.0f, 0.0f, 25.0f)) / 100.0f));
 
-        // Apply Haste (Magic and Gear)
         int16 haste = PEntity->getMod(Mod::HASTE_MAGIC) + PEntity->getMod(Mod::HASTE_GEAR);
-        recast -= (int32)(recast * haste / 10000.f);
+
+        recast = (int32)(recast * ((1024.f - haste) / 1024.f));
 
         if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
         {

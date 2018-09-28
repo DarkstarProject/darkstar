@@ -2,7 +2,8 @@
 -- Area: Bastok Mines
 --   NPC: Wobke
 -- Type: Quest NPC
--- !pos 29.028 -0.126 -111.626 234
+-- @zone 234
+-- !pos 29.028 -0.126 -111.626
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

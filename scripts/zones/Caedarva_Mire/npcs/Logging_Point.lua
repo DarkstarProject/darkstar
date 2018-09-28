@@ -9,7 +9,7 @@ require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,139);
+    startLogging(player,player:getZoneID(),npc,trade,0x008B);
 end;
 
 function onTrigger(player,npc)

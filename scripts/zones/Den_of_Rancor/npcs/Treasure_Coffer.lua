@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Den of Rancor
 --  NPC: Treasure Coffer
--- !zone 160
+-- @zone 160
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil;
 -----------------------------------

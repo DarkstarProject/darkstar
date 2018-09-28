@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Door: Departures Exit (for Kahzam)
--- !pos -12 8 54 246
+-- @zone 246
+-- !pos -12 8 54
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

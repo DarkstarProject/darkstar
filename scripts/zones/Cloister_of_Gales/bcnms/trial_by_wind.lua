@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Cloister of Gales
 -- BCNM: Trial by Wind
--- !pos -361 1 -381 201
+-- @zone -361 1 -381 201
 -----------------------------------
 package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
 -------------------------------------

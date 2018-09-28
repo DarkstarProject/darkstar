@@ -2,7 +2,8 @@
 -- Area: Port San d'Oria
 --   NPC: Dabbio
 -- Type: Standard NPC
--- !pos -7.819 -15 -106.990 232
+-- @zone 232
+-- !pos -7.819 -15 -106.990
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

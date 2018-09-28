@@ -15,7 +15,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.RONFAURE) ~= dsp.nation.BASTOK then
+    local RegionOwner = GetRegionOwner(dsp.region.RONFAURE)
+
+    if RegionOwner ~= dsp.nation.BASTOK then
         player:showText(npc, FAUSTIN_CLOSED_DIALOG)
     else
         local stock =
@@ -23,7 +25,7 @@ function onTrigger(player,npc)
             639, 110,    -- Chestnut
             4389, 29,    -- San d'Orian Carrot
             610,  55,    -- San d'Orian Flour
-            4431, 69,     -- San d'Orian Grape
+            4431, 69     -- San d'Orian Grape
         }
 
         player:showText(npc, FAUSTIN_OPEN_DIALOG)

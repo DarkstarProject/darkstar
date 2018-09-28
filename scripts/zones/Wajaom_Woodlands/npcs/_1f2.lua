@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Wajaom Woodlands
+-- Area: Caedarva Mire
 --  NPC: Engraved Tablet
 -- !pos 233 -9 -634 51
 -----------------------------------

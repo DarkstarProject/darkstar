@@ -2,7 +2,8 @@
 -- Area: Windurst Walls
 --   NPC: Shinchai-Tocchai
 -- Type: Moghouse Renter
--- !pos -220.551 -0.001 -116.916 239
+-- @zone 239
+-- !pos -220.551 -0.001 -116.916
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

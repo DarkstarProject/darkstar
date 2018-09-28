@@ -2,7 +2,8 @@
 -- Area: Norg
 --  NPC: Spasija
 -- Type: Item Deliverer
--- !pos -82.896 -5.414 55.271 252
+--  @zone 252
+-- !pos -82.896    -5.414    55.271
 --
 -----------------------------------
 package.loaded["scripts/zones/Norg/TextIDs"] = nil;

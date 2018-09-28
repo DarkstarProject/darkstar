@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Cattah Pamjah
 -- Type: Title Changer
--- !pos -13.564 -2 10.673 94
+-- @zone 94
+-- !pos -13.564 -2 10.673
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

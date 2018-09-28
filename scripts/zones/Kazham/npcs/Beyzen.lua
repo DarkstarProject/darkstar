@@ -2,7 +2,8 @@
 -- Area: Kazham
 --   NPC: Beyzen
 -- Type: Event Scene Replayer
--- !pos -53.976 -10.769 -74.771 250
+-- @zone 250
+-- !pos -53.976 -10.769 -74.771
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

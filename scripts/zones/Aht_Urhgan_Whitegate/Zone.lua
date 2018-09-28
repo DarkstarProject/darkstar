@@ -27,11 +27,11 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 46) then
-            cs = 201;
+            cs = 0x00c9;
         elseif (prevZone == 59) then
-            cs = 204;
+            cs = 0x00cc;
         elseif (prevZone == 58) then
-            cs = 204;
+            cs = 0x00cc;
         else
             -- MOG HOUSE EXIT
             local position = math.random(1,5) - 83;
@@ -169,7 +169,7 @@ function onEventFinish(player,csid,option)
         else
             player:setVar("AhtUrganStatus",1)
             player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
-            player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
+            player:setTitle(483);
             player:addItem(2185,1);
             player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
             player:messageSpecial(ITEM_OBTAINED,2185);

@@ -2,7 +2,8 @@
 -- Area: Lower Jeuno
 --  NPC: Yin Pocanakhu
 -- Involved in Quest: Borghertz's Hands (1st quest only)
--- !pos 35 4 -43 245
+-- @zone 245
+-- !pos 35 4 -43
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

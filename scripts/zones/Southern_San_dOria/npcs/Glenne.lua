@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Glenne
 -- Starts and Finishes Quest: A Sentry's Peril
--- !pos -122 -2 15 230
+-- @zone 230
+-- !pos -122 -2 15
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

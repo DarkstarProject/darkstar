@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Mog Garden
---  NPC: Porter Moogle
--- Type: Storage Moogle
--- !zone 280
+-- Area:   Mog Garden
+--  NPC:  Porter Moogle
+-- Type:   Storage Moogle
+--  @zone 280
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
 -----------------------------------

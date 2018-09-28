@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Door: Departures Exit
--- !pos 218 -5 114 240
+-- @zone 240
+-- !pos 218 -5 114
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

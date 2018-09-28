@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Safrick
 -- Type: Standard NPC
--- !pos 26 0 69 256
+--  @zone 256
+-- !pos 26 0 69
 -----------------------------------
 
 function onTrade(player,npc,trade)

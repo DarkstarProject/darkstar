@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --   NPC: Blendare
 -- Type: Standard NPC
--- !pos 33.033 0.999 -30.119 230
+--  @zone 230
+-- !pos 33.033 0.999 -30.119
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

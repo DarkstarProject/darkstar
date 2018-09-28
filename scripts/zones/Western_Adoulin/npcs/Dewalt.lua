@@ -2,7 +2,9 @@
 -- Area: Western Adoulin
 --  NPC: Dewalt
 -- Type: Standard NPC and Quest NPC
--- Involved with Quests: 'Flavors of our Lives', 'Dont Ever Leaf Me'
+--  Involved with Quests: 'Flavors of our Lives'
+--                        'Dont Ever Leaf Me'
+--  @zone 256
 --  !pos -23 0 28 256
 -----------------------------------
 require("scripts/globals/quests");

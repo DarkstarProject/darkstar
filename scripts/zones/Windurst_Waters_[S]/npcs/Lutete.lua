@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Lutete
 -- Type: Standard NPC
--- !pos 169.205 -0.879 -9.107 94
+-- @zone 94
+-- !pos 169.205 -0.879 -9.107
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

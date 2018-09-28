@@ -2,7 +2,8 @@
 -- Area: Port Jeuno
 --  NPC: Digaga
 -- Type: Item Deliverer
--- !pos -52.865 7.999 1.134 246
+--  @zone 246
+-- !pos -52.865    7.999    1.134
 --
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;

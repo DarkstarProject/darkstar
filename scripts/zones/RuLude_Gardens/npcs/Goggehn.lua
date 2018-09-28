@@ -2,7 +2,8 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Goggehn
 -- Involved in Mission: Bastok 3-3, 4-1
--- !pos 3 9 -76 243
+-- @zone 243
+-- !pos 3 9 -76
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 package.loaded["scripts/globals/missions"] = nil;

@@ -37,11 +37,9 @@ function onTrigger(player,npc)
         elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(130);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
-            player:startEvent(135);
+            player:startEvent(131);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(232);
-        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
-            player:startEvent(837);
         else
             flagMission, repeatMission = getMissionMask(player);
             player:startEvent(111,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
@@ -64,8 +62,5 @@ printf("RESULT: %u",option);
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
-    if (csid == 837) then
-        player:setVar("WWatersRTenText",1);
-    end
-    
+
 end;

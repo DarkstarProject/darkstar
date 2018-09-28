@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
 --  NPC: Treasure Coffer
--- !zone 130
+-- @zone 130
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
 -----------------------------------

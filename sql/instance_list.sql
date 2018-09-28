@@ -57,7 +57,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (9,'red_versus_blue',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (10,'bloody_rondo',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (11,'imperial_agent_rescue',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (12,'preemptive_strike',52,30,-60.35,-5.0,27.67,46,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (12,'preemptive_strike',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (13,'sagelord_elimination',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (14,'breaking_morale',52,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (15,'the_double_agent',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
@@ -86,7 +86,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (38,'operation:snake_eyes',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (39,'wake_the_puppet',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (40,'the_price_is_right',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (41,'golden_salvage',54,30,-60.350,-5.000,27.670,46,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (41,'golden_salvage',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (42,'lamia_no_13',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (43,'extermination',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (44,'demolition_duty',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);

@@ -1,7 +1,10 @@
 -----------------------------------
--- Area: Mount Zhayolm
---  MOB: Farlarder the Shrewd
+-- Area: Caedarva Mire
+--  MOB: Khimaira
 -----------------------------------
+
+function onMobSpawn(mob)
+end;
 
 function onMobDeath(mob, player, isKiller)
 end;

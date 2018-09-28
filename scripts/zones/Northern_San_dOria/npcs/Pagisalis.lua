@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Pagisalis
 -- Involved In Quest: Enveloped in Darkness
--- !zone 231
+-- @zone 231
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

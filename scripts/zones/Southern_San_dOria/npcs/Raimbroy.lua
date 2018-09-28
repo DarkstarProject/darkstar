@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Raimbroy
 -- Starts and Finishes Quest: The Sweetest Things
--- !zone 230
+-- @zone 230
+-- !pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

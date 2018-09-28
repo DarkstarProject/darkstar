@@ -2207,7 +2207,7 @@ namespace charutils
             {
                 continue;
             }
-
+        
             UnequipItem(PChar, slotID);
         }
         // Unarmed H2H weapon check
@@ -4259,9 +4259,11 @@ namespace charutils
         }
         Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 
+        // Remove the new player flag if we have reached level 5.
+        // Should also remove it based on playtime (180 hours?)
         if (PChar->isNewPlayer() && PChar->jobs.job[job] >= 5)
         {
-            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
+            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
             PChar->updatemask |= UPDATE_HP;
             SaveMenuConfigFlags(PChar);
         }
@@ -4468,23 +4470,17 @@ namespace charutils
 
     void SaveDeathTime(CCharEntity* PChar)
     {
+        uint32 currentTime = (uint32)time(nullptr);
+        PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
+        PChar->m_DeathTimestamp = currentTime;
+
         const char* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
-        Sql_Query(SqlHandle, fmtQuery, PChar->GetSecondsElapsedSinceDeath(), PChar->id);
+        Sql_Query(SqlHandle, fmtQuery, PChar->m_DeathCounter, PChar->id);
     }
 
     void SavePlayTime(CCharEntity* PChar)
     {
-        uint32 playtime = PChar->GetPlayTime();
-
-        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", playtime, PChar->id);
-
-        if (PChar->isNewPlayer() && playtime >= 36000)
-        {
-            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
-            PChar->updatemask |= UPDATE_HP;
-
-            SaveMenuConfigFlags(PChar);
-        }
+        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", PChar->GetPlayTime(), PChar->id);
     }
 
     /************************************************************************
@@ -4900,8 +4896,6 @@ namespace charutils
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
-
-        PChar->SetDeathTimestamp(0);
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();

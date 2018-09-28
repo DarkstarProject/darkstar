@@ -1,34 +1,38 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Zoreen
--- Valdeaunia Regional Merchant
+-- Regional Marchant NPC
+-- Only sells when Windurst controls Valdeaunia
+-- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
-require("scripts/globals/conquest")
-require("scripts/globals/shop")
+require("scripts/zones/Port_Windurst/TextIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/shop");
+-----------------------------------
 
 function onTrade(player,npc,trade)
-end
+end;
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.WINDURST then
-        player:showText(npc, ZOREEN_CLOSED_DIALOG)
+    local RegionOwner = GetRegionOwner(dsp.region.VALDEAUNIA);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
+        player:showText(npc,ZOREEN_CLOSED_DIALOG);
     else
+        player:showText(npc,ZOREEN_OPEN_DIALOG);
+
         local stock =
         {
-            4382, 29,    -- Frost Turnip
-            638, 170,    -- Sage
+            4382,   29,  -- Frost Turnip
+            638,   170   -- Sage
         }
-
-        player:showText(npc, ZOREEN_OPEN_DIALOG)
-        dsp.shop.general(player, stock, WINDURST)
+        dsp.shop.general(player, stock, WINDURST);
     end
-end
+end;
 
 function onEventUpdate(player,csid,option)
-end
+end;
 
 function onEventFinish(player,csid,option)
-end
+end;

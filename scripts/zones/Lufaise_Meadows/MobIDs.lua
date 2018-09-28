@@ -13,6 +13,5 @@ PADFOOT =
     16875748, -- !pos -141.523 -15.529 91.709
 }
 
-OVERSEER_BASE_18        = 16875865
 KURREA_QM               = 16875890;
 AMALTHEIA_QM            = 16875894;

@@ -205,17 +205,18 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
 void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
-    CCharEntity* PChar = dynamic_cast<CCharEntity*>(findMaster(m_PBattleEntity));
-    if (PChar)
+    CCharEntity* PChar = (CCharEntity*)findMaster(m_PBattleEntity);
+    CBattleEntity* PBattleTarget = nullptr;
+
+    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
     {
-        for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
-        {
-            CBattleEntity* PBattleTarget = dynamic_cast<CBattleEntity*>(it->second);
-            if (PBattleTarget && isMobOwner(PBattleTarget))
-            {
-                addEntity(PBattleTarget, withPet);
-            }
+
+        PBattleTarget = (CBattleEntity*)it->second;
+
+        if (PBattleTarget && isMobOwner(PBattleTarget)){
+            addEntity(PBattleTarget, withPet);
         }
+
     }
 }
 

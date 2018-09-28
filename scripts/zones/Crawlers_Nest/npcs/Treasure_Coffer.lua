@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Crawler Nest
 --  NPC: Treasure Coffer
--- !pos -94 0 207 197
+-- @zone 197
+-- !pos -94 0 207
 -----------------------------------
 package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
 -----------------------------------

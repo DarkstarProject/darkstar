@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Malfine
 -- Type: Standard Dialogue NPC
--- !pos 136.943 0.000 132.305 231
+--  @zone 231
+-- !pos 136.943 0.000 132.305
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

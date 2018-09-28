@@ -3,7 +3,8 @@
 --  NPC: Fontoumant
 -- Starts Quest: The Brugaire Consortium
 -- Involved in Quests: Riding on the Clouds
--- !pos -10 -10 -122 232
+-- @zone 232
+-- !pos -10 -10 -122
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -105,8 +106,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete()
     elseif (csid == 515) then
         if (freeSlots ~= 0) then
-            player:addItem(12289);
-            player:messageSpecial(ITEM_OBTAINED,12289);
+            player:addItem(0x3001);
+            player:messageSpecial(ITEM_OBTAINED,0x3001);
             player:addTitle(dsp.title.COURIER_EXTRAORDINAIRE);
             player:completeQuest(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
             player:addFame(SANDORIA,30);

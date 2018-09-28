@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     elseif (prevZone == 231 and player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_SANDORIA)) then
         cs = 509;
     elseif (player:getVar("SecretWeaponStatus") == 1) then
-        cs = 0;
+        cs = 0x0000;
     elseif (currentMission == COMING_OF_AGE and MissionStatus == 0) then
         cs = 116;
     end
@@ -41,7 +41,11 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onRegionEnter(player,region)

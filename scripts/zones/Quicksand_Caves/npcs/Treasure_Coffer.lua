@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Quicksand Caves
 --  NPC: Treasure Coffer
--- !pos 615 -6 -681 208
+-- @zone 208
+-- !pos 615 -6 -681
 -----------------------------------
 package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Amaura
 -- Involved in Quest: The Medicine Woman, To Cure a Cough
--- !pos -85 -6 89 230
+-- @zone 230
+-- !pos -85 -6 89
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

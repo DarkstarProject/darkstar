@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Southern San d'Oria
---  NPC: Chat Manual
+--   NPC: Chat Manual
 -- Type: Tutorial NPC
--- !pos -68.800 2.000 -46.560 230
+-- @zone: 230
+--  !pos -68.800 2.000 -46.560
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Esmallegue
 --  General Info NPC
--- !pos 0 2 -83 230
+--  @zone 230
+-- !pos 0 2 -83
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Qufim Island
 --  NPC: ??? (qm3)
 -- Mission: ACP - The Echo Awakens
--- !pos -120.342 -19.471 306.661 126
+-- @zone 126
+-- !pos -120.342 -19.471 306.661
 -----------------------------------
 package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
 -------------------------------------

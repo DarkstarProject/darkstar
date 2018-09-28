@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Pashhow Marshlands [S]
+-- Area: Sauromugue Champaign
 --  NPC: Cavernous Maw
 -- !pos 418 25 27 90
 -- Teleports Players to Pashhow_Marshlands

@@ -16,7 +16,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (prevZone == 143) then
-        cs = 150;
+        cs = 0x0096;
         if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then
             if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then
                 cs = 130;
@@ -35,7 +35,11 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onRegionEnter(player,region)

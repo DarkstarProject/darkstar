@@ -3,7 +3,8 @@
 --  NPC: Nylene
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quest: 'A Certain Substitute Patrolman'
--- !pos 12 0 -82 256
+--  @zone 256
+-- !pos 12 0 -82
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

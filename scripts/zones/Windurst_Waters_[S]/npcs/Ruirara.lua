@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ruirara
 -- Type: Standard NPC
--- !pos -87.378 -2 -158.019 94
+-- @zone 94
+-- !pos -87.378 -2 -158.019
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

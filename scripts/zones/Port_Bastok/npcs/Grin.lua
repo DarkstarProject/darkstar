@@ -2,7 +2,8 @@
 -- Area: Port Bastok
 --   NPC: Grin
 -- Type: Quest Giver
--- !pos -56.533 1.392 -29.432 236
+-- @zone 236
+-- !pos -56.533 1.392 -29.432
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

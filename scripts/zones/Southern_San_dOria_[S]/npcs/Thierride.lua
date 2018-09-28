@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Thierride
--- !pos -124 -2 14 80
+-- @zone 80
+-- !pos -124 -2 14
 -----------------------------------
 require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");

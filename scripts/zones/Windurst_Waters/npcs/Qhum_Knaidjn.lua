@@ -2,7 +2,8 @@
 -- Area: Windurst Waters
 --  NPC: Qhum_Knaidjn
 -- Type: Guildworker's Union Representative
--- !pos -112.561 -2 55.205 238
+--  @zone 238
+-- !pos -112.561 -2 55.205
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

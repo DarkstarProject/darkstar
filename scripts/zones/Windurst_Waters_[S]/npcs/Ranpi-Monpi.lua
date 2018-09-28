@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ranpi-Monpi
 -- Type: Standard NPC
--- !pos -115.452 -3 43.389 94
+-- @zone 94
+-- !pos -115.452 -3 43.389
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

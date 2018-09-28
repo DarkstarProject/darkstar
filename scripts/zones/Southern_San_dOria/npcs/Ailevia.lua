@@ -4,7 +4,8 @@
 -- Adventurer's Assistant
 -- Only recieving Adv.Coupon and simple talk event are scripted
 -- This NPC participates in Quests and Missions
--- !pos -8 1 1 230
+-- @zone 230
+-- !pos -8 1 1
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -15,7 +16,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- Adventurer coupon
-    if (trade:getItemCount() == 1 and trade:hasItemQty(536,1) == true) then
+    if (trade:getItemCount() == 1 and trade:hasItemQty(0x218,1) == true) then
         player:startEvent(655);
     end
     -- "Flyers for Regine" conditional script

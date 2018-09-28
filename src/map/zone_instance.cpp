@@ -153,7 +153,7 @@ void CZoneInstance::DecreaseZoneCounter(CCharEntity* PChar)
             }
             else
             {
-                instance->SetWipeTime(instance->GetElapsedTime(server_clock::now()));
+                instance->SetWipeTime(server_clock::now());
             }
         }
     }

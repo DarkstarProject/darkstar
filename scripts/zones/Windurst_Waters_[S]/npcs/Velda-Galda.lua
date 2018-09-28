@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Velda-Galda
 -- Type: Mission NPC
--- !pos 138.631 -3.112 61.658 94
+-- @zone 94
+-- !pos 138.631 -3.112 61.658
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

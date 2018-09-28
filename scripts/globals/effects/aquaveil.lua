@@ -3,14 +3,26 @@
 -- dsp.mod.SPELLINTERRUPT
 --
 -----------------------------------
-require("scripts/globals/status")
+
+require("scripts/globals/status");
+
+-----------------------------------
+-- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-end
+end;

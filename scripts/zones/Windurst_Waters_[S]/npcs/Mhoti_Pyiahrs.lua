@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Mhoti Pyiahrs
 -- Type: Allegiance
--- !pos 6.356 -2 26.677 94
+-- @zone 94
+-- !pos 6.356 -2 26.677
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

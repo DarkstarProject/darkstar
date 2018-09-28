@@ -3,18 +3,30 @@
 --
 --
 -----------------------------------
-require("scripts/globals/status")
+
+require("scripts/globals/status");
+
+-----------------------------------
+-- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.ENSPELL,14)
-    target:addMod(dsp.mod.ENSPELL_DMG,effect:getPower())
-end
+    target:addMod(dsp.mod.ENSPELL,14);
+    target:addMod(dsp.mod.ENSPELL_DMG,effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:setMod(dsp.mod.ENSPELL_DMG,0)
-    target:setMod(dsp.mod.ENSPELL,0)
-end
+    target:setMod(dsp.mod.ENSPELL_DMG,0);
+    target:setMod(dsp.mod.ENSPELL,0);
+end;

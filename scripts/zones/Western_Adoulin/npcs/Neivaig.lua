@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Neivaig
 -- Type: Standard NPC
--- !pos -4 3 73 256
+--  @zone 256
+-- !pos -4 3 73
 -----------------------------------
 
 function onTrade(player,npc,trade)

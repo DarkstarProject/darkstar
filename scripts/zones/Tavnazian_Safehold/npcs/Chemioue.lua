@@ -2,7 +2,8 @@
 -- Area: Tavnazian Safehold
 --   NPC: Chemioue
 -- Type: NPC Quest
--- !pos 82.041 -34.964 67.636 26
+-- @zone 26
+-- !pos 82.041 -34.964 67.636
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Bastok Mines
 --  NPC: Wahid
 -- Start & Finishes Quest: The Siren's Tear
--- !pos 26.305 -1 -66.403 234
+-- @zone 234
+-- !pos 26.305 -1 -66.403
 -----------------------------------
 package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
 -----------------------------------

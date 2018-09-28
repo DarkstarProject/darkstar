@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Ailbeche
 -- Starts and Finishes Quest: Father and Son, Sharpening the Sword, A Boy's Dream (start)
--- !pos 4 -1 24 231
+-- @zone 231
+-- !pos 4 -1 24
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

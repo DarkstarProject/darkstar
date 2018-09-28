@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Castle Oztroja
 --  NPC: Treasure Coffer
--- !zone 151
+-- @zone 151
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
 -----------------------------------

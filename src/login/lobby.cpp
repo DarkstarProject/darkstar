@@ -477,42 +477,18 @@ int32 lobbyview_parse(int32 fd)
 
                 string_t expected_version(version_info.client_ver, 0, 6); // Same deal here!
                 expected_version = expected_version + "xx_x";
-                bool ver_mismatch = expected_version != client_ver_data;
-                bool fatalMismatch = false;
+                bool ver_mismatch;
 
-                if (ver_mismatch)
+                if ((ver_mismatch = (expected_version != client_ver_data)))
                 {
                     ShowError("lobbyview_parse: Incorrect client version: got %s, expected %s\n", client_ver_data.c_str(), expected_version.c_str());
-
-                    switch (version_info.ver_lock)
-                    {
-                        // enabled
-                        case 1:
-                            if (expected_version < client_ver_data)
-                            {
-                                ShowError("lobbyview_parse: The server must be updated to support this client version\n");
-                            }
-                            else
-                            {
-                                ShowError("lobbyview_parse: The client must be updated to support this server version\n");
-                            }
-                            fatalMismatch = true;
-                            break;
-                        // enabled greater than or equal
-                        case 2:
-                            if (expected_version > client_ver_data)
-                            {
-                                ShowError("lobbyview_parse: The client must be updated to support this server version\n");
-                                fatalMismatch = true;
-                            }
-                            break;
-                        default:
-                            // no-op - not enabled or unknown verlock type
-                            break;
-                    }
+                    if (expected_version < client_ver_data)
+                        ShowError("lobbyview_parse: The server must be updated to support this client version\n");
+                    else
+                        ShowError("lobbyview_parse: The client must be updated to support this server version\n");
                 }
 
-                if (fatalMismatch)
+                if (ver_mismatch && version_info.enable_ver_lock)
                 {
                     sendsize = 0x24;
                     LOBBBY_ERROR_MESSAGE(ReservePacket);

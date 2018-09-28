@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Guillerme
 --  Involved in Quest: Rosel the Armorer
--- !pos -4.500 0.000 99.000 231
+--  @zone 231
+-- !pos -4.500 0.000 99.000
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

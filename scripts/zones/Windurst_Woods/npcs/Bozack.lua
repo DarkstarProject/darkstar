@@ -2,7 +2,8 @@
 -- Area: Windurst Woods
 --   NPC: Bozack
 -- Type: Event Replayer
--- !pos 92.591 -5.58 -31.529 241
+-- @zone 241
+-- !pos 92.591 -5.58 -31.529
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

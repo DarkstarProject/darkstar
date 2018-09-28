@@ -38,6 +38,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(uint8 slotID, ITEMLOTTYPE Message
 	
 	ref<uint8>(0x14) = slotID;	
 	ref<uint8>(0x15) = MessageType;
+	
 }
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotID, uint16 Lot, ITEMLOTTYPE MessageType)
@@ -57,6 +58,7 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PWinner, uint8 slotI
 
 CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID, uint16 Lot) 
 {
+	
 	this->type = 0xD3;
 	this->size = 0x1E;
 
@@ -66,6 +68,6 @@ CTreasureLotItemPacket::CTreasureLotItemPacket(CBaseEntity* PChar, uint8 slotID,
 	//ref<uint8>(data,(0x12)) = Lot;
 	ref<uint8>(0x14) = slotID; 
 	
-	memcpy(data+0x26, PChar->GetName(), PChar->name.size());
+	memcpy(data+0x26, PChar->GetName(), 16);
 	
 }

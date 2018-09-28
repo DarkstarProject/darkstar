@@ -2,7 +2,8 @@
 -- Area: Palborough Mines
 --  NPC: Refiner Lid
 -- Involved In Mission: Journey Abroad
--- !pos 180 -32 167 143
+-- @zone 143
+-- !pos 180 -32 167
 -----------------------------------
 package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Western Adoulin
---  NPC: Chat Manual
+--   NPC: Chat Manual
 -- Type: Tutorial NPC
--- !pos 28.790 0 -143.440 256
+-- @zone: 256
+--  !pos 28.790 0 -143.440
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

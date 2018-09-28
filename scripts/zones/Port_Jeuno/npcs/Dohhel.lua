@@ -2,7 +2,8 @@
 -- Area: Port Jeuno
 --   NPC: Dohhel
 -- Type: Event Scene Replayer
--- !pos -156.031 -2 6.051 246
+-- @zone 246
+-- !pos -156.031 -2 6.051
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

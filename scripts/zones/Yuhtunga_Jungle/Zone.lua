@@ -54,11 +54,15 @@ end;
 function onInitialize(zone)
     GetMobByID(ROSE_GARDEN):setLocalVar("1",os.time() + math.random((36000), (37800)));
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onZoneIn( player, prevZone)

@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Carpenters' Landing
---  Mob: Tempest Tigron
+-- Area: Batallia Downs (105)
+--  Mob: Carpenters Landing
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

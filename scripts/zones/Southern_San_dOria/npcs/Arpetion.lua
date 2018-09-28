@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Arpetion
 --  General Info NPC
--- !pos -11 1 -30 230
+--  @zone 230
+-- !pos -11 1 -30
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

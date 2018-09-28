@@ -2,7 +2,11 @@
 -- Area: The Eldieme Necropolis
 --  NPC: ???
 -- Involved in Quests: Acting in Good Faith
--- !pos -17 0 59 195 (I-10)
+-- @zone 195
+-- !pos -17 0 59 (I-10)
+-- !pos
+-- !pos
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
 -----------------------------------

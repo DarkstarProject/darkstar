@@ -25,8 +25,8 @@ function onTrade(player,npc,trade)
             player:tradeComplete(); --Trade Complete
             player:setVar("NavigatingtheUnfriendlySeas",3)
             player:setVar("Leypoint_waitJTime",getMidnight()); -- Time Set for 1 day real life time.
-            -- printf("Midnight: %u",getMidnight());
-            -- printf("Os: %u",os.time());
+            printf("Midnight: %u",getMidnight());
+            printf("Os: %u",os.time());
         end
     end
 end;
@@ -41,7 +41,7 @@ function onTrigger(player,npc)
             player:messageSpecial(ENIGMATIC_LIGHT,2341);    -- play cs for not waiting long enough
         end
     end
-end;
+ end;
 
 function onEventUpdate(player,csid,option)
 end;

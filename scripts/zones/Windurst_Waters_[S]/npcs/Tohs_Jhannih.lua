@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Tohs Jhannih
 -- Type: Standard NPC
--- !pos -46.492 -4.5 70.828 94
+-- @zone 94
+-- !pos -46.492 -4.5 70.828
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

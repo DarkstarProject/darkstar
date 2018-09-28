@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Gorad
 -- Type: Standard NPC
--- !pos 23 0 -115 256
+--  @zone 256
+-- !pos 23 0 -115
 -----------------------------------
 
 function onTrade(player,npc,trade)

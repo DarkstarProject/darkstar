@@ -2,7 +2,8 @@
 -- Area: Metalworks
 --  NPC: Lorena
 -- Type: Blacksmithing Guildworker's Union Representative
--- !pos -104.990 1 30.995 237
+--  @zone 237
+-- !pos -104.990 1 30.995
 -----------------------------------
 package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
 -----------------------------------

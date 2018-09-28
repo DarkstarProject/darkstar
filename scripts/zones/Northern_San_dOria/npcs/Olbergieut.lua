@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Olbergieut
 -- Type: Quest NPC
--- !pos 91 0 121 231
+-- @zone 231
+-- !pos 91 0 121
 --
 -- Starts and Finishes Quest: Gates of Paradise
 -----------------------------------

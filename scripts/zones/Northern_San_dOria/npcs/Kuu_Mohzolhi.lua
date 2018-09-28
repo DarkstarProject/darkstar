@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Kuu Mohzolhi
 -- Starts and Finishes Quest: Growing Flowers
--- !pos -123 0 80 231
+-- @zone 231
+-- !pos -123 0 80
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

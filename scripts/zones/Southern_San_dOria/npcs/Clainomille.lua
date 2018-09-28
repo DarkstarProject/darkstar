@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --   NPC: Clainomille
 -- Type: Standard NPC
--- !pos -72.771 0.999 -6.112 230
+--  @zone 230
+-- !pos -72.771 0.999 -6.112
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;

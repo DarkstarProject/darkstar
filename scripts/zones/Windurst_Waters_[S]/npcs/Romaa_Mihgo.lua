@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Romaa Mihgo
 -- Type: Standard NPC
--- !pos -1.967 -3 -26.337 94
+-- @zone 94
+-- !pos -1.967 -3 -26.337
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

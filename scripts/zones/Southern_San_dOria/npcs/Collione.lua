@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Collione
 --  General Info NPC
--- !pos 10 2 -66 230
+--  @zone 230
+-- !pos 10 2 -66
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

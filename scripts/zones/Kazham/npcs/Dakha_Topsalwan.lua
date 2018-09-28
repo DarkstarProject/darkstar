@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Kazham
 --  NPC: Dakha Topsalwan
--- !zone 250
+-- @zone 250
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------

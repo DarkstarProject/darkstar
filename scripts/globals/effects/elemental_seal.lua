@@ -3,19 +3,31 @@
 --     dsp.effect.ELEMENTAL_SEAL
 --
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/status")
+
+require("scripts/globals/settings");
+require("scripts/globals/status");
+
+-----------------------------------
+-- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-   target:addMod(dsp.mod.MACC,256)
-end
+   target:addMod(dsp.mod.MACC,256);
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.MACC,256)
-end
+    target:delMod(dsp.mod.MACC,256);
+end;
 
 

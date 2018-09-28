@@ -2,7 +2,8 @@
 -- Area: Port Bastok
 --   NPC: Raifa
 -- Type: Quest Giver
--- !pos -166.416 -8.48 7.153 236
+-- @zone 236
+-- !pos -166.416 -8.48 7.153
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -1,34 +1,40 @@
 -----------------------------------
 -- Attachment: Auto-repair Kit II
 -----------------------------------
-require("scripts/globals/status")
+require("scripts/globals/status");
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.HPP, 10)
+    pet:addMod(dsp.mod.HPP, 13)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.HPP, 10)
+    pet:delMod(dsp.mod.HPP, 13)
 end
 
--- regen values from http://wiki.ffo.jp/html/8619.html
-local prefix = "autoRepairKit2_"
-local regenValues =
-{
-    [1] = {base=3, pct=0.6},
-    [2] = {base=3, pct=0.6},
-    [3] = {base=3, pct=0.6},
-}
-
 function onManeuverGain(pet,maneuvers)
-    local rVals = regenValues[maneuvers]
-    local power = math.floor(rVals.base + (pet:getMaxHP() * rVals.pct / 100))
-
-    pet:setLocalVar(prefix .. maneuvers, power)
-    pet:addMod(dsp.mod.REGEN, power)
+    local bonus = 0
+    local frame = pet:getAutomatonFrame()
+    if frame == 0x20 or frame == 0x21 then bonus = 2 end
+    if (maneuvers == 1) then
+        pet:addMod(dsp.mod.REGEN, 11 + bonus);
+    elseif (maneuvers == 2) then
+        if frame == 0x22 then bonus = 1 end
+        pet:addMod(dsp.mod.REGEN, 11 + bonus);
+    elseif (maneuvers == 3) then
+        pet:addMod(dsp.mod.REGEN, 11 + bonus);
+    end
 end
 
 function onManeuverLose(pet,maneuvers)
-    pet:delMod(dsp.mod.REGEN, pet:getLocalVar(prefix .. maneuvers))
-    pet:setLocalVar(prefix .. maneuvers, 0)
+    local bonus = 0
+    local frame = pet:getAutomatonFrame()
+    if frame == 0x20 or frame == 0x21 then bonus = 2 end
+    if (maneuvers == 1) then
+        pet:delMod(dsp.mod.REGEN, 11 + bonus);
+    elseif (maneuvers == 2) then
+        if frame == 0x22 then bonus = 1 end
+        pet:delMod(dsp.mod.REGEN, 11 + bonus);
+    elseif (maneuvers == 3) then
+        pet:delMod(dsp.mod.REGEN, 11 + bonus);
+    end
 end

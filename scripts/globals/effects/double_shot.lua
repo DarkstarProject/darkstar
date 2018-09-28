@@ -4,13 +4,25 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.DOUBLE_SHOT_RATE, effect:getPower())
-end
+    target:addMod(dsp.mod.DOUBLE_SHOT_RATE, effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.DOUBLE_SHOT_RATE, effect:getPower())
-end
+    target:delMod(dsp.mod.DOUBLE_SHOT_RATE, effect:getPower());
+end;

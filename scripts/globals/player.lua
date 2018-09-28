@@ -3,14 +3,18 @@
 --
 --
 -----------------------------------
-require("scripts/globals/gear_sets");
-require("scripts/globals/settings");
+
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
+require("scripts/globals/settings");
+require("scripts/globals/shop");
 require("scripts/globals/status");
 require("scripts/globals/titles");
-require("scripts/globals/shop");
+require("scripts/globals/gear_sets");
+
+-----------------------------------
+-- onGameIn
 -----------------------------------
 
 function onGameIn(player, firstlogin, zoning)
@@ -66,6 +70,10 @@ function onGameIn(player, firstlogin, zoning)
     player:setLocalVar("ZoneInTime", os.time());
 end;
 
+-----------------------------------
+-- CharCreate
+-----------------------------------
+
 function CharCreate(player)
     local race = player:getRace();
     local body = nil;
@@ -78,66 +86,66 @@ function CharCreate(player)
     {
         -- HUME MALE
         [1] = function (x)
-            body = 12631;
-            hand = 12754;
-            leg = 12883;
-            feet = 13005;
+            body = 0x3157;
+            hand = 0x31D2;
+            leg = 0x3253;
+            feet = 0x32CD;
         end,
 
         -- HUME FEMALE
         [2] = function (x)
-            body = 12632;
-            hand = 12760;
-            leg = 12884;
-            feet = 13010;
+            body = 0x3158;
+            hand = 0x31D8;
+            leg = 0x3254;
+            feet = 0x32D2;
         end,
 
         -- ELVAAN MALE
         [3] = function (x)
-            body = 12633;
-            hand = 12755;
-            leg = 12885;
-            feet = 13006;
+            body = 0x3159;
+            hand = 0x31D3;
+            leg = 0x3255;
+            feet = 0x32CE;
         end,
 
         -- ELVAAN FEMALE
         [4] = function (x)
-            body = 12634;
-            hand = 12759;
-            leg = 12889;
-            feet = 13011;
+            body = 0x315A;
+            hand = 0x31D7;
+            leg = 0x3259;
+            feet = 0x32D3;
         end,
 
         -- TARU MALE
         [5] = function (x)
-            body = 12635;
-            hand = 12756;
-            leg = 12886;
-            feet = 13007;
+            body = 0x315B;
+            hand = 0x31D4;
+            leg = 0x3256;
+            feet = 0x32CF;
         end,
 
         -- TARU FEMALE
         [6] = function (x)
-            body = 12635;
-            hand = 12756;
-            leg = 12886;
-            feet = 13007;
+            body = 0x315B;
+            hand = 0x31D4;
+            leg = 0x3256;
+            feet = 0x32CF;
         end,
 
         -- MITHRA
         [7] = function (x)
-            body = 12636;
-            hand = 12757;
-            leg = 12887;
-            feet = 13008;
+            body = 0x315C;
+            hand = 0x31D5;
+            leg = 0x3257;
+            feet = 0x32D0;
         end,
 
         -- GALKA
         [8] = function (x)
-            body = 12637;
-            hand = 12758;
-            leg = 12888;
-            feet = 13009;
+            body = 0x315D;
+            hand = 0x31D6;
+            leg = 0x3258;
+            feet = 0x32D1;
         end,
 
         default = function (x) end,
@@ -168,56 +176,56 @@ function CharCreate(player)
     switch(player:getMainJob()) : caseof
     {
         -- WARRIOR JOB
-        [1]= function (x)
-            if not(player:hasItem(16534)) then
-                player:addItem(16534);
+        [0x01]= function (x)
+            if not(player:hasItem(0x4096)) then
+                player:addItem(0x4096);
             end
         end,
 
         -- MONK JOB
-        [2]= function (x)
-            if not(player:hasItem(13184)) then
-                player:addItem(13184);
+        [0x02]= function (x)
+            if not(player:hasItem(0x3380)) then
+                player:addItem(0x3380);
             end
         end,
 
         -- WHITE MAGE
-        [3]= function(x)
-            if not(player:hasItem(17068)) then
-                player:addItem(17068);
+        [0x03]= function(x)
+            if not(player:hasItem(0x42AC)) then
+                player:addItem(0x42AC);
             end
 
-            if not(player:hasItem(4608)) then
-            player:addItem(4608);
+            if not(player:hasItem(0x1200)) then
+            player:addItem(0x1200);
             end
         end,
 
         -- BLACK MAGE
-        [4] = function(x)
+        [0x04] = function(x)
 
-            if not(player:hasItem(17104)) then
-                player:addItem(17104);
+            if not(player:hasItem(0x42D0)) then
+                player:addItem(0x42D0);
             end
 
-            if not(player:hasItem(4607)) then
-                player:addItem(4607);
+            if not(player:hasItem(0x11FF)) then
+                player:addItem(0x11FF);
             end
         end,
 
         -- RED MAGE
-        [5]= function (x)
-            if not(player:hasItem(16482)) then
-                player:addItem(16482);
+        [0x05]= function (x)
+            if not(player:hasItem(0x4062)) then
+                player:addItem(0x4062);
             end
-            if not(player:hasItem(4606)) then
-                player:addItem(4606);
+            if not(player:hasItem(0x11FE)) then
+                player:addItem(0x11FE);
             end
         end,
 
         -- THIEF
-        [6]= function (x)
-            if not(player:hasItem(16483)) then
-                player:addItem(16483);
+        [0x06]= function (x)
+            if not(player:hasItem(0x4063)) then
+                player:addItem(0x4063);
             end
         end,
 
@@ -230,7 +238,7 @@ function CharCreate(player)
         -- SANDY CITIZEN
         [0] = function (x)
             if ((race == 3) or (race == 4))
-                then player:addItem(13495);
+                then player:addItem(0x34B7);
             end;
             player:addKeyItem(dsp.ki.MAP_OF_THE_SAN_DORIA_AREA);
         end,
@@ -238,7 +246,7 @@ function CharCreate(player)
         -- BASTOK CITIZEN
         [1] = function (x)
             if (((race == 1) or (race == 2) or (race == 8)))
-                then player:addItem(13497);
+                then player:addItem(0x34B9);
             end;
             player:addKeyItem(dsp.ki.MAP_OF_THE_BASTOK_AREA);
         end,
@@ -246,7 +254,7 @@ function CharCreate(player)
         -- WINDY CITIZEN
         [2] = function(x)
             if (((race == 5) or (race == 6) or (race == 7)))
-                then player:addItem(13496);
+                then player:addItem(0x34B8);
             end;
             player:addKeyItem(dsp.ki.MAP_OF_THE_WINDURST_AREA);
         end,
@@ -312,7 +320,7 @@ function CharCreate(player)
     end
 
     -- ADD ADVENTURER COUPON
-    player:addItem(536);
+    player:addItem(0x218);
 
     --SET TITLE
     player:addTitle(dsp.title.NEW_ADVENTURER);
@@ -320,8 +328,6 @@ function CharCreate(player)
     -- Needs Moghouse Intro
     player:setVar("MoghouseExplication",1);
 
-    -- Apply New Player Flag
-    player:setNewPlayer(true)
 end;
 
 function onPlayerLevelUp(player)

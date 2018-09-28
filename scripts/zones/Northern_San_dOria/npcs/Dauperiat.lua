@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Dauperiat
 -- Starts and Finishes Quest: Blackmail (R)
--- !zone 231
+-- @zone 231
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------
@@ -16,27 +17,27 @@ require("scripts/zones/Northern_San_dOria/TextIDs");
 
 function onTrade(player,npc,trade)
 
-    local Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
-    local questState = player:getVar("BlackMailQuest");
+    Black = player:getQuestStatus(SANDORIA,BLACKMAIL);
+    questState = player:getVar("BlackMailQuest");
 
     if (Black == QUEST_ACCEPTED and questState == 2 or Black == QUEST_COMPLETED) then
-        local count = trade:getItemCount();
-        local carta = trade:hasItemQty(530, 1);
+        count = trade:getItemCount();
+        carta = trade:hasItemQty(530, 1);
 
         if (carta == true and count == 1) then
             player:startEvent(648,0,530); --648
         end
-    end
+       end
 end;
 
 function onTrigger(player,npc)
 
     -- "Blackmail" quest status
-    local blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
-    local envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
-    local sanFame = player:getFameLevel(SANDORIA);
-    local homeRank = player:getRank(player:getNation());
-    local questState = player:getVar("BlackMailQuest");
+    blackMail = player:getQuestStatus(SANDORIA, BLACKMAIL);
+    envelope = player:hasKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
+    sanFame = player:getFameLevel(SANDORIA);
+    homeRank = player:getRank(player:getNation());
+    questState = player:getVar("BlackMailQuest");
 
 
     if (blackMail == QUEST_AVAILABLE and sanFame >= 3 and homeRank >= 3) then

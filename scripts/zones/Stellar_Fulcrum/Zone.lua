@@ -17,7 +17,11 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onZoneIn(player,prevZone)
@@ -55,7 +59,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 8 and option == 1) then
-        player:setPos(-370, -178, -40, 243, 158);
+        player:setPos(-370, -178, -40, 243, 0x9e);
     elseif (csid == 0) then
         player:setVar("ZilartStatus",3);
     end

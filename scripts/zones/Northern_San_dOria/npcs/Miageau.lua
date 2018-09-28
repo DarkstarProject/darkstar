@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --   NPC: Miageau
 -- Type: Quest Giver NPC
--- !pos 115 0 108 231
+-- @zone 231
+-- !pos 115 0 108
 --
 -- Starts and Finishes: Waters of Cheval
 -----------------------------------

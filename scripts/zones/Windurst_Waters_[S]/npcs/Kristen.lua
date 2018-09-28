@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Kristen
 -- Type: Standard NPC
--- !pos 2.195 -2 60.296 94
+-- @zone 94
+-- !pos 2.195 -2 60.296
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

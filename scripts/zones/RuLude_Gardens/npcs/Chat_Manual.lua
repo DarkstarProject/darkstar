@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
---  NPC: Chat Manual
+--   NPC: Chat Manual
 -- Type: Tutorial NPC
--- !pos -22.420 0.004 -46.880 243
+-- @zone: 243
+--  !pos -22.420 0.004 -46.880
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------

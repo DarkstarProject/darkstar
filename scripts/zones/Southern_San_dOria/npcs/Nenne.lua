@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Nenne
 -- Starts and Finishes Quest: To Cure a Cough
--- !pos -114 -6 102 230
+-- @zone 230
+-- !pos -114 -6 102
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

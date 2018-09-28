@@ -66,7 +66,7 @@ struct login_config_t
 struct version_info_t
 {
     std::string client_ver;         // Expected Client version
-    uint8 ver_lock;                 // version lock type - (0 - disabled, 1 - enabled - strict , 2 - enabled - greater than or equal
+    bool enable_ver_lock;
 };
 
 extern login_config_t login_config;

@@ -2,7 +2,8 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Archanne
 -- Type: Event Scene Replayer
--- !pos -54.104 10.999 -34.144 243
+-- @zone 243
+-- !pos -54.104 10.999 -34.144
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Rouliette
 -- Starts and Finishes Quest: Candle-making
--- !pos -24 -2 11 244
+-- @zone 244
+-- !pos -24 -2 11
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

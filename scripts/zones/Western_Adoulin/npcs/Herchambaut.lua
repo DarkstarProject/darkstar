@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Herchambaut
 -- Type: Standard NPC
--- !pos 95 0 -47 256
+--  @zone 256
+-- !pos 95 0 -47
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Behff Oibbah
 -- Type: Standard NPC
--- !pos 81 0 -17 256
+--  @zone 256
+-- !pos 81 0 -17
 -----------------------------------
 
 function onTrade(player,npc,trade)

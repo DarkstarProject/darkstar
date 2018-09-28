@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Rajesh
--- !pos -62 1 -8 236
+-- @zone 236
+-- !pos -62 1 -8
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

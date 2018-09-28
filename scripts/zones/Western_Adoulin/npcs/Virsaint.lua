@@ -3,7 +3,8 @@
 --  NPC: Virsaint
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'A Certain Substitute Patrolman'
--- !pos 32 0 -5 256
+--  @zone 256
+-- !pos 32 0 -5
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------

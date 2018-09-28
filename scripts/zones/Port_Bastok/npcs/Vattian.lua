@@ -1,35 +1,40 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Vattian
--- Kuzotz Regional Merchant
+-- Only sells when Bastok controlls Kuzotz Region
+-- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
+package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
-require("scripts/globals/conquest")
-require("scripts/globals/shop")
+require("scripts/zones/Port_Bastok/TextIDs");
+require("scripts/globals/conquest");
+require("scripts/globals/shop");
+-----------------------------------
 
 function onTrade(player,npc,trade)
-end
+end;
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.KUZOTZ) ~= dsp.nation.BASTOK then
-        player:showText(npc, VATTIAN_CLOSED_DIALOG)
+    local RegionOwner = GetRegionOwner(dsp.region.KUZOTZ);
+    if (RegionOwner ~= dsp.nation.BASTOK) then
+        player:showText(npc,VATTIAN_CLOSED_DIALOG);
     else
+        player:showText(npc,VATTIAN_OPEN_DIALOG);
+
         local stock =
         {
-            916,  855,    -- Cactuar Needle
-            4412, 299,    -- Thundermelon
-            4491, 184,    -- Watermelon
+            0x0394,   855,   --Cactuar Needle
+            0x113C,   299,   --Thundermelon
+            0x118B,   184    --Watermelon
         }
+        dsp.shop.general(player, stock, BASTOK);
 
-        player:showText(npc, VATTIAN_OPEN_DIALOG)
-        dsp.shop.general(player, stock, BASTOK)
     end
-end
+
+end;
 
 function onEventUpdate(player,csid,option)
-end
+end;
 
 function onEventFinish(player,csid,option)
-end
+end;

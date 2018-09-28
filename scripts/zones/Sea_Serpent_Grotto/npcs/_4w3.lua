@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Mythril Beastcoin Door
--- !pos 40 8.6 20.012 176
+-- @zone 176
+-- !pos 40 8.6 20.012
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------

@@ -9,7 +9,7 @@ require("scripts/zones/Attohwa_Chasm/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startExcavation(player,player:getZoneID(),npc,trade,10);
+    startExcavation(player,player:getZoneID(),npc,trade,0x000A);
 end;
 
 function onTrigger(player,npc)

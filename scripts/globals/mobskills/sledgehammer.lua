@@ -1,5 +1,6 @@
 ---------------------------------------------
 --  Sledgehammer
+--
 --  Description: Delivers a sledgehammer blow to all targets in front. Additional effect: Petrification
 --  Type: Physical
 --  Utsusemi/Blink absorb: 3 shadows
@@ -7,26 +8,38 @@
 --  Notes: Only used by Gurfurlur the Menacing.
 ---------------------------------------------
 
-require("scripts/globals/status")
-require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/monstertpmoves");
 
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0
-end
+  if(mob:getFamily() == 316) then
+    local mobSkin = mob:getModelId();
+
+    if (mobSkin == 1867) then
+        return 0;
+    else
+        return 1;
+    end
+  end
+    return 0;
+end;
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local numhits = 1
-    local accmod = 1
-    local dmgmod = 3.2
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,3 * info.hitslanded)
+    local numhits = 1;
+    local accmod = 1;
+    local dmgmod = 3.2;
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,3 * info.hitslanded);
 
-    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.PETRIFICATION, 1, 0, 60)
+    local typeEffect = dsp.effect.PETRIFICATION;
 
-    target:delHP(dmg)
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60);
 
-    return dmg
-end
+    target:delHP(dmg);
+
+    return dmg;
+end;

@@ -9,7 +9,7 @@ require("scripts/zones/West_Sarutabaruta_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,901);
+    startHarvesting(player,player:getZoneID(),npc,trade,0x0385);
 end;
 
 function onTrigger(player,npc)

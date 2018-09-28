@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Paya-Sabya
 -- Involved in Mission: Magicite
--- !pos 9 1 70 244
+-- @zone 244
+-- !pos 9 1 70
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
