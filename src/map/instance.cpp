@@ -39,7 +39,6 @@ CInstance::CInstance(CZone* zone, uint8 instanceid) : CZoneEntities(zone),
     LoadInstance();
 
     m_startTime = server_clock::now();
-    m_wipeTimer = m_startTime;
 }
 
 CInstance::~CInstance()
@@ -162,9 +161,9 @@ duration CInstance::GetLastTimeUpdate()
     return m_lastTimeUpdate;
 }
 
-duration CInstance::GetWipeTime()
+time_point CInstance::GetWipeTime()
 {
-    return m_wipeTimer - m_startTime;
+    return m_wipeTimer;
 }
 
 duration CInstance::GetElapsedTime(time_point tick)
@@ -201,9 +200,9 @@ void CInstance::SetStage(uint32 stage)
     m_stage = stage;
 }
 
-void CInstance::SetWipeTime(duration time)
+void CInstance::SetWipeTime(time_point time)
 {
-    m_wipeTimer = time + m_startTime;
+    m_wipeTimer = time;
 }
 
 /************************************************************************

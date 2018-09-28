@@ -13,7 +13,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.ARAGONEU) ~= dsp.nation.BASTOK then
+    local RegionOwner = GetRegionOwner(dsp.region.ARAGONEU)
+
+    if RegionOwner ~= dsp.nation.BASTOK then
         player:showText(npc, OGGODETT_CLOSED_DIALOG)
     else
         local stock =
@@ -22,7 +24,7 @@ function onTrigger(player,npc)
             629,    43,    -- Millioncorn
             4415,  111,    -- Roasted Corn
             4505,   90,    -- Sunflower Seeds
-            841,    36,     -- Yagudo Feather
+            841,    36     -- Yagudo Feather
         }
 
         player:showText(npc, OGGODETT_OPEN_DIALOG)

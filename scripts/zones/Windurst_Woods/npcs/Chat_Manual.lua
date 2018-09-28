@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Windurst Woods
---  NPC: Chat Manual
+--   NPC: Chat Manual
 -- Type: Tutorial NPC
--- !pos 10.928 1.915 -40.094 241
+-- @zone: 241
+--  !pos 10.928 1.915 -40.094
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
 -----------------------------------

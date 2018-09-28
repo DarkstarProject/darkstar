@@ -9,7 +9,7 @@ require("scripts/zones/Ifrits_Cauldron/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,20);
+    startMining(player,player:getZoneID(),npc,trade,0x0014);
 end;
 
 function onTrigger(player,npc)

@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Kasra
 -- Type: Item Deliverer
--- !pos -34.555 7.999 90.702 244
+--  @zone 244
+-- !pos -34.555    7.999    90.702
 --
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;

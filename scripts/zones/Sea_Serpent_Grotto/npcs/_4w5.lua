@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Silver Beastcoin Door
--- !pos 280 18.549 -100 176
+-- @zone 176
+-- !pos 280 18.549 -100
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------

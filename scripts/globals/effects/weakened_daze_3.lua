@@ -4,13 +4,25 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.MEVA, -20)
-end
+    target:addMod(dsp.mod.MEVA, -20);
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.MEVA, -20)
-end
+    target:delMod(dsp.mod.MEVA, -20);
+end;

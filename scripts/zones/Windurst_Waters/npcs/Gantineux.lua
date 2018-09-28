@@ -2,7 +2,8 @@
 -- Area: Windurst Waters
 --  NPC: Gantineux
 -- Starts Quest: Acting in Good Faith
--- !pos -83 -9 3 238
+-- @zone 238
+-- !pos -83 -9 3
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

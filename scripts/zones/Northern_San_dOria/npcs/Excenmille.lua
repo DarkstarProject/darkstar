@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --   NPC: Excenmille
 -- Type: Ballista Pursuivant
--- !pos -229.344 6.999 22.976 231
+-- @zone 231
+-- !pos -229.344 6.999 22.976
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

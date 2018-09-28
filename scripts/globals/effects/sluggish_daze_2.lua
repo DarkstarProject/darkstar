@@ -4,13 +4,25 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.DEFP, -7)
-end
+    target:addMod(dsp.mod.DEFP, -7);
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.DEFP, -7)
-end
+    target:delMod(dsp.mod.DEFP, -7);
+end;

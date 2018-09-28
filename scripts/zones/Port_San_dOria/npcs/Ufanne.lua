@@ -2,7 +2,8 @@
 -- Area: Port San d'Oria
 --   NPC: Ufanne
 -- Type: Standard NPC
--- !pos -15.965 -3 -47.748 232
+-- @zone 232
+-- !pos -15.965 -3 -47.748
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -16,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local fishCountVar = 0;
+   local fishCountVar = 0;
     if (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
         fishCountVar = player:getVar("theCompetitionFishCountVar");
         player:startEvent(309,0,0,fishCountVar);

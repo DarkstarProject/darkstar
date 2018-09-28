@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Katya
 -- Type: Standard NPC
--- !pos 11 0 68 256
+--  @zone 256
+-- !pos 11 0 68
 -----------------------------------
 
 function onTrade(player,npc,trade)

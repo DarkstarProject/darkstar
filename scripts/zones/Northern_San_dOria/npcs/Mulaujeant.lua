@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Mulaujeant
 -- Involved in Quests: Missionary Man
--- !pos -175 0 181 231
+-- @zone 231
+-- !pos -175 0 181
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

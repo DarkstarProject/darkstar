@@ -3,7 +3,8 @@
 --  NPC: Radeivepart
 -- Starts and Finishes Quest: Northward
 -- Involved in Quests: Save the Clock Tower
--- !pos 5 9 -39 243
+-- @zone 243
+-- !pos 5 9 -39
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
 -----------------------------------
@@ -16,7 +17,7 @@ require("scripts/zones/RuLude_Gardens/TextIDs");
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
-        local a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Zone1
+        a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Zone1
         if (a == 0 or (a ~= 1 and a ~= 3 and a ~= 5 and a ~= 9 and a ~= 17 and a ~= 7 and a ~= 25 and a ~= 11 and
            a ~= 13 and a ~= 19 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 27 and a ~= 29 and a ~= 31)) then
             player:startEvent(160,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest

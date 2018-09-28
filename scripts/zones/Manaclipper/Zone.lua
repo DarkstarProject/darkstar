@@ -21,11 +21,15 @@ function onZoneIn(player,prevZone)
 end;
 
 function onTransportEvent(player,transport)
-    player:startEvent(100);
+  player:startEvent(100);
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onEventUpdate(player,csid,option)
@@ -33,6 +37,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 100) then
-        player:setPos(0,0,0,0,4);
+    player:setPos(0,0,0,0,4);
     end
 end;

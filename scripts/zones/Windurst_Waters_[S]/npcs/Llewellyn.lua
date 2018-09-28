@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Llewellyn
 -- Type: Campaign Evaluator
--- !pos -6.907 -2 42.871 94
+-- @zone 94
+-- !pos -6.907 -2 42.871
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

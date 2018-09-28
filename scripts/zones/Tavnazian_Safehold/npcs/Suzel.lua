@@ -2,7 +2,8 @@
 -- Area: Tavnazian Safehold
 --  NPC: Suzel
 -- Type: Item Deliverer
--- !pos -72.701 -20.25 -64.058 26
+--  @zone 26
+-- !pos -72.701 -20.25 -64.058
 --
 -----------------------------------
 package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;

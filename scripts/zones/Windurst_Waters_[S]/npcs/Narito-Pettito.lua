@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Narito-Pettito
 -- Type: Standard NPC
--- !pos -52.674 -5.999 90.403 94
+-- @zone 94
+-- !pos -52.674 -5.999 90.403
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

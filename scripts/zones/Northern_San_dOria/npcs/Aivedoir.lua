@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Aivedoir
 -- Type: Standard Dialogue NPC
--- !pos -123.119 7.999 134.490 231
+--  @zone 231
+-- !pos -123.119 7.999 134.490
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

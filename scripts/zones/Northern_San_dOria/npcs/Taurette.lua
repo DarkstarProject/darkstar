@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Taurette
 -- Involved in Quests: Riding on the Clouds
--- !pos -159 0 91 231
+-- @zone 231
+-- !pos -159 0 91
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

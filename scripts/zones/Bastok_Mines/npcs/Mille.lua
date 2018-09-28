@@ -15,7 +15,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.NORVALLEN) ~= dsp.nation.BASTOK then
+    local RegionOwner = GetRegionOwner(dsp.region.NORVALLEN)
+
+    if RegionOwner ~= dsp.nation.BASTOK then
         player:showText(npc, MILLE_CLOSED_DIALOG)
     else
         local stock =
@@ -23,7 +25,7 @@ function onTrigger(player,npc)
             688, 18,    -- Arrowwood Log
             698, 88,    -- Ash Log
             618, 25,    -- Blue Peas
-            621, 25,     -- Crying Mustard
+            621, 25     -- Crying Mustard
         }
 
         player:showText(npc, MILLE_OPEN_DIALOG)

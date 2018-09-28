@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Volgoi
 -- Type: Standard NPC
--- !pos -154 4 -22 256
+--  @zone 256
+-- !pos -154 4 -22
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------
@@ -18,7 +19,7 @@ function onTrigger(player,npc)
     else
         -- Standard dialogue
         player:startEvent(501);
-        -- Volgoi also has 579 associated with him, but it's the exact same dialogue
+        -- Volgoi also has 0x0243 associated with him, but it's the exact same dialogue
     end
 end;
 

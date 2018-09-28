@@ -2,7 +2,8 @@
 -- Area: Port Windurst
 --   NPC: Puo Rhen
 -- Type: Mission Starter
--- !pos -227.964 -9 187.087 240
+-- @zone 240
+-- !pos -227.964 -9 187.087
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

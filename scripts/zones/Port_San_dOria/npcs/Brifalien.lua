@@ -2,7 +2,8 @@
 -- Area: Port San d'Oria
 --  NPC: Brifalien
 -- Involved in Quests: Riding on the Clouds
--- !pos -20 -4 -74 232
+-- @zone 232
+-- !pos -20 -4 -74
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

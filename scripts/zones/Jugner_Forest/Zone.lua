@@ -52,7 +52,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(FRAELISSA);
     GetMobByID(FRAELISSA):setRespawnTime(math.random(900, 10800));
 
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID());
+    SetRegionalConquestOverseers(zone:getRegionID());
 end;
 
 function onZoneIn( player, prevZone)
@@ -70,7 +70,11 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onRegionEnter( player, region)

@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --   NPC: Pursuivant
 -- Type: Standard NPC
--- !pos 54.000 -1.199 11.937 231
+-- @zone 231
+-- !pos 54.000 -1.199 11.937
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

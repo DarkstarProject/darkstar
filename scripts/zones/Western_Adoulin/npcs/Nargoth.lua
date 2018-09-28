@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Nargoht
 -- Type: Standard NPC
--- !pos 25 0 117 256
+--  @zone 256
+--  !pos 25 0 117
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -2,7 +2,8 @@
 -- Area: Windurst Walls
 --   NPC: Juvillie
 -- Type: Event Replayer
--- !pos -180.731 -3.451 143.138 239
+-- @zone 239
+-- !pos -180.731 -3.451 143.138
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

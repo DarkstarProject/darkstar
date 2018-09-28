@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Outer Horutoto Ruins
+-- Area: Inner Horutoto Ruins
 --  NPC: Gate: Magical Gizmo
 -- Involved In Mission: The Heart of the Matter
 -- !pos 584 0 -660 194

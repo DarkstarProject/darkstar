@@ -73,7 +73,6 @@ CBattleEntity::CBattleEntity()
     PPet = nullptr;
     PParty = nullptr;
     PMaster = nullptr;
-    PLastAttacker = nullptr;
 
     StatusEffectContainer = std::make_unique<CStatusEffectContainer>(this);
     PRecastContainer = std::make_unique<CRecastContainer>(this);
@@ -129,11 +128,6 @@ bool CBattleEntity::isAsleep()
 bool CBattleEntity::isMounted()
 {
 	return (animation == ANIMATION_CHOCOBO || animation == ANIMATION_MOUNT);
-}
-
-bool CBattleEntity::isSitting()
-{
-    return (animation == ANIMATION_HEALING || animation == ANIMATION_SIT || (animation >= ANIMATION_SITCHAIR_0 && animation <= ANIMATION_SITCHAIR_10));
 }
 
 /************************************************************************
@@ -257,12 +251,10 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
     if (!tp)
     {
         // Cap haste at appropriate levels.
-        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -10000, 4375); // 43.75% cap -- handle 100% slow for weakness
-        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -2500, 2500); // 25% cap
-        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -2500, 2500); // 25%
-
-        // Divide by float to get a more accurate reduction, then use int16 cast to truncate
-        WeaponDelay -= (int16)(WeaponDelay * (hasteMagic + hasteAbility + hasteGear) / 10000.f);
+        int16 hasteMagic = std::clamp<int16>(getMod(Mod::HASTE_MAGIC), -448, 448);
+        int16 hasteAbility = std::clamp<int16>(getMod(Mod::HASTE_ABILITY), -256, 256);
+        int16 hasteGear = std::clamp<int16>(getMod(Mod::HASTE_GEAR), -256, 256);
+        WeaponDelay = (uint16)(WeaponDelay * ((1024.0f - hasteMagic - hasteAbility - hasteGear) / 1024.0f));
     }
     WeaponDelay = (uint16)(WeaponDelay * ((100.0f + getMod(Mod::DELAYP)) / 100.0f));
 
@@ -512,12 +504,6 @@ int32 CBattleEntity::addMP(int32 mp)
         updatemask |= UPDATE_HP;
     }
     return abs(mp);
-}
-
-int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/)
-{
-    PLastAttacker = attacker;
-    return addHP(-amount);
 }
 
 /************************************************************************
@@ -1269,10 +1255,6 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         else
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
-
-            // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
-            if (PSpell->dealsDamage())
-                PTarget->PLastAttacker = this;
 
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())

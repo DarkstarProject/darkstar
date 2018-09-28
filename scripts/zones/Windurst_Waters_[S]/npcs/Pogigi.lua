@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Pogigi
 -- Type: Sealed Container
--- !pos -29.787 -4.499 42.603 94
+-- @zone 94
+-- !pos -29.787 -4.499 42.603
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

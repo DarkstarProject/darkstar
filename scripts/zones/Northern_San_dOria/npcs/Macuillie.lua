@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Macuillie
 -- Type: Guildworker's Union Representative
--- !pos -191.738 11.001 138.656 231
+--  @zone 231
+-- !pos -191.738 11.001 138.656
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

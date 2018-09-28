@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Cahaurme
 -- Involved in Quest: A Knight's Test, Lost Chick
--- !pos 55.749 -8.601 -29.354 230
+-- @zone 230
+-- !pos 55.749 -8.601 -29.354
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

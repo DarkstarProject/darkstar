@@ -3,10 +3,6 @@
 --  NPC: Magephaud
 -- Standard Info NPC
 -----------------------------------
-require("scripts/globals/keyitems")
-require("scripts/globals/quests")
-require("scripts/globals/titles")
------------------------------------
 
 function onTrade(player,npc,trade)
     EveryonesGrudge = player:getQuestStatus(OUTLANDS,EVERYONES_GRUDGE);
@@ -42,8 +38,8 @@ function onEventFinish(player,csid,option)
         player:completeQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:tradeComplete();
         player:addFame(NORG,80);
-        player:addKeyItem(dsp.ki.TONBERRY_PRIEST_KEY);    -- Permanent Tonberry key
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TONBERRY_PRIEST_KEY);
+        player:addKeyItem(291);    -- Permanent Tonberry key
+        player:messageSpecial(KEYITEM_OBTAINED,291);
         player:setVar("EveryonesGrudgeStarted",0);
         player:addTitle(dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end

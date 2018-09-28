@@ -12,7 +12,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -189,7 +188,7 @@ function onEventFinish(player,csid,option)
         player:setRank(10);
         player:addGil(100000);
         player:messageSpecial(GIL_OBTAINED,100000);
-        player:setTitle(dsp.title.SAN_DORIAN_ROYAL_HEIR);
+        player:setTitle(295);
         player:setVar("SandoEpilogue",1);
     elseif (csid == 58) then
         player:setVar("MissionStatus",2);

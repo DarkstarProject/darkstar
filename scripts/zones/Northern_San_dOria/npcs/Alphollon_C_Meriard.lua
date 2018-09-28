@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Alphollon C Meriard
 -- Type: Purifies cursed items with their corresponding abjurations.
--- !pos 98.108 -1 137.999 231
+-- @zone 231
+-- !pos 98.108 -1 137.999
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Narcheral
 -- Starts and Finishes Quest: Messenger from Beyond, Prelude of Black and White (Finish), Pieuje's Decision (Finish)
--- !pos 129 -11 126 231
+-- @zone 231
+-- !pos 129 -11 126
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

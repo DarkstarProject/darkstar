@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Treasure Coffer
--- !pos 184 18 -107 176
+-- @zone 176
+-- !pos 184 18 -107
 -----------------------------------
 package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
 -----------------------------------

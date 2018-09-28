@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --   NPC: Migliorozz
 -- Type: Standard NPC
--- !pos -37.760 -2.499 12.924 244
+-- @zone 244
+-- !pos -37.760 -2.499 12.924
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

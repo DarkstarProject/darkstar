@@ -1,9 +1,20 @@
 -----------------------------------
--- Area: Abyssea-Attohwa
---  MOB: Murrain Chigoe
--- Note: This mob does not need chigoe mixin
--- TODO: En-Disease
+-- Area:
+--  MOB: Chigoe
 -----------------------------------
 
+--require("scripts/globals/titles");
+mixins = { require("scripts/mixins/families/chigoe") }
+-----------------------------------
+
+function onMobSpawn(mob)
+end;
+
+function onMobEngaged(mob, target)
+end;
+
+function onMobDisengage(mob)
+end;
+
 function onMobDeath(mob, player, isKiller)
-end
+end;

@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Aihn Sowlmirih
 -- Type: Standard NPC
--- !pos -61.102 -4.5 71.743 94
+-- @zone 94
+-- !pos -61.102 -4.5 71.743
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

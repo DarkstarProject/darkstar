@@ -3,26 +3,28 @@
 --  NPC: ??? (Spawn Tyger(ZNM T4))
 -- !pos -766 -12 632 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil
+package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs")
-require("scripts/zones/Caedarva_Mire/MobIDs")
-require("scripts/globals/npc_util")
+require("scripts/zones/Caedarva_Mire/TextIDs");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2593) and not GetMobByID(TYGER):isSpawned() then -- Singed Buffalo
-        player:confirmTrade()
-        SpawnMob(TYGER):updateClaim(player)
+    local mobID = 17101203;
+    if (trade:hasItemQty(2593,1) and trade:getItemCount() == 1) then -- Trade Singed Buffalo
+        if (GetMobAction(mobID) == dsp.act.NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
     end
-end
+end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS)
-end
+    player:messageSpecial(NOTHING_HAPPENS);
+end;
 
 function onEventUpdate(player,csid,option)
-end
+end;
 
 function onEventFinish(player,csid,option)
-end
+end;

@@ -2,7 +2,8 @@
 -- Area: Port Windurst
 --   NPC: Paytah
 -- Type: Standard NPC
--- !pos 77.550 -6 117.769 240
+-- @zone 240
+-- !pos 77.550 -6 117.769
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

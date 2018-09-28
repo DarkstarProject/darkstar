@@ -19,7 +19,7 @@ function onTrigger(player,npc)
 
 BeautyAndTheGalka       = player:getQuestStatus(BASTOK,BEAUTY_AND_THE_GALKA);
 BeautyAndTheGalkaDenied = player:getVar("BeautyAndTheGalkaDenied");
-PalboroughMinesLogs     = player:hasKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
+PalboroughMinesLogs     = player:hasKeyItem(2);
 
     if (PalboroughMinesLogs == true) then
         player:startEvent(10);

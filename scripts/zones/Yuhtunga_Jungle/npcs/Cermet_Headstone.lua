@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     if player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE then
         if player:hasKeyItem(dsp.ki.FIRE_FRAGMENT) then
             player:messageSpecial(ALREADY_OBTAINED_FRAG, dsp.ki.FIRE_FRAGMENT)
-        elseif os.time() >= npc:getLocalVar("cooldown") then
+        elseif os.time() <= npc:getLocalVar("cooldown") then
             if not GetMobByID(TIPHA):isSpawned() and not GetMobByID(CARTHI):isSpawned() then
                 player:startEvent(200, dsp.ki.FIRE_FRAGMENT)
             else

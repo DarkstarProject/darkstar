@@ -1,29 +1,30 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Joachim
--- !pos -52.844 0.000 -9.978 246
+-- @zone 246
+-- !pos -52.844 0.000 -9.978
 -- CS/Event ID's:
--- 324 = on zoning in
+-- 0x0144 = on zoning in
 -- 325 = 1st chat, get 1st stone,
 -- completes "A Journey Begins"
 -- 326 = Limited Menu
 -- 327 = CS after "The Truth Beckons" completed.
 -- 328 = Full Menu
--- 331 = CS after "Dawn of Death" completed.
+-- 0x014B = CS after "Dawn of Death" completed.
 -- 332 =
--- 333 =
--- 334 =
--- 335 =
--- 336 =
--- 337 =
--- 338 =
--- 339 =
--- 340 =
--- 341 =
--- 342 =
--- 343 =
--- 344 =
--- 345 =
+-- 0x014D =
+-- 0x014E =
+-- 0x014F =
+-- 0x0150 =
+-- 0x0151 =
+-- 0x0152 =
+-- 0x0153 =
+-- 0x0154 =
+-- 0x0155 =
+-- 0x0156 =
+-- 0x0157 =
+-- 0x0158 =
+-- 0x0159 =
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Ansegusele
 -- Type: Shop NPC
--- !pos 74 4 -126 256
+--  @zone 256
+--  !pos 74 4 -126 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------
@@ -18,13 +19,13 @@ function onTrigger(player,npc)
     player:showText(npc, ANSEGUSELE_SHOP_TEXT);
     local stock =
     {
-        4363, 44, -- Faerie Apple
-        4388, 44, -- Eggplant
-        4444, 24, -- Rarab Tail
-        619, 48, -- Popoto
-        4468, 80, -- Pamamas
-        4389, 32, -- San D'Or. Carrot
-        630, 96, -- Ogre Pumpkin
+        0x110B, 44, -- Faerie Apple
+        0x1124, 44, -- Eggplant
+        0x115C, 24, -- Rarab Tail
+        0x026B, 48, -- Popoto
+        0x1174, 80, -- Pamamas
+        0x1125, 32, -- San D'Or. Carrot
+        0x0276, 96, -- Ogre Pumpkin
     }
     dsp.shop.general(player, stock);
 end;

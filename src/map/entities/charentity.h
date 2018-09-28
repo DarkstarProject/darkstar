@@ -265,8 +265,8 @@ public:
     uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
+    uint32            m_DeathCounter;               // Counter when you last died. This is set when you first login
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
-    time_point        m_deathSyncTime;              // Timer used for sending an update packet at a regular interval while the character is dead
 
     uint8			  m_hasTractor;					// checks if player has tractor already
     uint8			  m_hasRaise;					// checks if player has raise already
@@ -314,7 +314,6 @@ public:
     void        ReloadPartyDec();
     bool        ReloadParty();
 
-    virtual void Tick(time_point) override;
     void        PostTick() override;
 
     virtual void addTrait(CTrait*) override;
@@ -324,15 +323,8 @@ public:
     virtual bool CanUseSpell(CSpell*) override;
 
     virtual void Die() override;
-    void Die(duration _duration);
+    void Die(duration);
     void Raise();
-
-    static constexpr duration death_duration = 60min;
-    static constexpr duration death_update_frequency = 16s;
-
-    void SetDeathTimestamp(uint32 timestamp);
-    int32 GetSecondsElapsedSinceDeath();
-    int32 GetTimeRemainingUntilDeathHomepoint();  // Amount of time remaining before the player should be forced back to homepoint while dead
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;

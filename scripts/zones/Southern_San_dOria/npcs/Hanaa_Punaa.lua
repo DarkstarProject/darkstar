@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Hanaa Punaa
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
--- !zone 230
+-- @zone 230
+-- !pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

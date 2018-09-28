@@ -52,9 +52,9 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(304, 4401, 4289); -- Moat Carp = 4401, 4289 = Forest Carp
     elseif (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
-        player:showText(npc, JOULET_HELP_OTHER_BROTHER);
+        player:messageSpecial(JOULET_HELP_OTHER_BROTHER, 0, 0, 0, 0, true);
     elseif ((player:getQuestStatus(SANDORIA,THE_COMPETITION)) == QUEST_ACCEPTED) then
-        player:showText(npc, JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
+        player:messageSpecial(JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"), 0, 0, true);
     end
 end;
 

@@ -2,7 +2,8 @@
 -- Area: San d'Oria-Jeuno Airship
 --  NPC: ???
 -- Involved In Quest: The Stars Of Ifrit
--- !pos -9 -5 -13 223
+-- @zone 223
+-- !pos 77 -9 -5 -13
 -----------------------------------
 package.loaded["scripts/zones/San_dOria-Jeuno_Airship/TextIDs"] = nil;
 -----------------------------------

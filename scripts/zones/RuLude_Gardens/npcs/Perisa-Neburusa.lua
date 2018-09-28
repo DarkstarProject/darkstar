@@ -2,7 +2,8 @@
 -- Area: Ru'Lude Gardens
 --   NPC: Perisa-Neburusa
 -- Type: Residence Renter
--- !pos 54.651 8.999 -74.372 243
+-- @zone 243
+-- !pos 54.651 8.999 -74.372
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Outer Horutoto Ruins
+-- Area: Inner Horutoto Ruins
 --  NPC: Ancient Magical Gizmo #2 (F out of E, F, G, H, I, J)
 --  Involved In Mission: The Heart of the Matter
 -----------------------------------
@@ -17,7 +17,7 @@ function onTrigger(player,npc)
 
     -- Check if we are on Windurst Mission 1-2
     if (player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER) then
-        local MissionStatus = player:getVar("MissionStatus");
+        MissionStatus = player:getVar("MissionStatus");
 
         if (MissionStatus == 2) then
             -- Entered a Dark Orb
@@ -48,7 +48,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 47) then
-        local orb_value = player:getVar("MissionStatus_orb2");
+        orb_value = player:getVar("MissionStatus_orb2");
 
         if (orb_value == 1) then
             player:setVar("MissionStatus_orb2",2);

@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Castle Zvahl Baileys
 --  NPC: Treasure Coffer
--- !pos -75 0 19 161
+-- @zone 161
+-- !pos -75 0 19
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 -----------------------------------

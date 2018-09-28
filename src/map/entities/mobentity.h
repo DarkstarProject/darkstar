@@ -261,8 +261,7 @@ public:
 
 protected:
 
-    void DistributeRewards();
-    void DropItems(CCharEntity* PChar);
+    void DropItems();
 
 
 

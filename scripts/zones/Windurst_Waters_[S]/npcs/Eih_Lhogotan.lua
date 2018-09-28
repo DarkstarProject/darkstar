@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Eih Lhogotan
 -- Type: Standard NPC
--- !pos -29.887 -5.999 91.042 94
+-- @zone 94
+-- !pos -29.887 -5.999 91.042
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

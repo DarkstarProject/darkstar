@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Kazham
 --  NPC: Bhoyu Halpatacco
--- !pos -18 -4 -15 250
+-- @zone 250
+-- !pos -18 -4 -15
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------

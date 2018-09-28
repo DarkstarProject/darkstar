@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Coltrone
 -- Type: Standard NPC
--- !pos -30 19 97 256
+--  @zone 256
+-- !pos -30 19 97
 -----------------------------------
 
 function onTrade(player,npc,trade)

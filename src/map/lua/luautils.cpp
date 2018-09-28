@@ -530,27 +530,11 @@ namespace luautils
             return -1;
         }
 
-        lua_getglobal(LuaHandle, "dsp");
+        lua_getglobal(LuaHandle, "SetRegionalConquestOverseers");
         if (lua_isnil(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 1);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined global dsp\n");
-            return -1;
-        }
-
-        lua_getfield(LuaHandle,-1,"conquest");
-        if (lua_isnil(LuaHandle, -1))
-        {
-            lua_pop(LuaHandle, 2);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined field dsp.conquest\n");
-            return -1;
-        }
-
-        lua_getfield(LuaHandle,-1,"setRegionalConquestOverseers");
-        if (lua_isnil(LuaHandle, -1))
-        {
-            lua_pop(LuaHandle, 3);
-            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure dsp.conquest.setRegionalConquestOverseers\n");
+            ShowError("luautils::SetRegionalConquestOverseers: undefined procedure SetRegionalConquestOverseers\n");
             return -1;
         }
 
@@ -559,12 +543,8 @@ namespace luautils
         if (lua_pcall(LuaHandle, 1, 0, 0))
         {
             ShowError("luautils::SetRegionalConquestOverseers: %s\n", lua_tostring(LuaHandle, -1));
-            lua_pop(LuaHandle, 3);
+            lua_pop(LuaHandle, 1);
             return -1;
-        }
-        else
-        {
-            lua_pop(LuaHandle, 2);
         }
 
         return 0;
@@ -3298,17 +3278,6 @@ namespace luautils
             return 0;
         }
 
-        // Bloodpact Skillups
-        if (PMob->objtype == TYPE_PET && map_config.skillup_bloodpact)
-        {
-            CPetEntity* PPet = (CPetEntity*)PMob;
-            if (PPet->getPetType() == PETTYPE_AVATAR && PPet->PMaster->objtype == TYPE_PC)
-            {
-                CCharEntity* PMaster = (CCharEntity*)PPet->PMaster;
-                if (PMaster->GetMJob() == JOB_SMN) charutils::TrySkillUP(PMaster, SKILL_SUMMONING_MAGIC, PMaster->GetMLevel());
-            }
-        }
-
         uint32 retVal = (!lua_isnil(LuaHandle, -1) && lua_isnumber(LuaHandle, -1) ? (int32)lua_tonumber(LuaHandle, -1) : 0);
         lua_pop(LuaHandle, 1);
         return retVal;
@@ -4032,15 +4001,12 @@ namespace luautils
     {
         DropList_t* DropList = itemutils::GetDropList((uint16)lua_tointeger(L, 1));
 
-        if (DropList != nullptr)
+        for (uint8 i = 0; i < DropList->size(); ++i)
         {
-            for (uint8 i = 0; i < DropList->Items.size(); ++i)
+            if (DropList->at(i).ItemID == lua_tointeger(L, 2))
             {
-                if (DropList->Items.at(i).ItemID == lua_tointeger(L, 2))
-                {
-                    DropList->Items.at(i).DropRate = (uint16)lua_tointeger(L, 3);
-                    return 1;
-                }
+                DropList->at(i).DropRate = (uint16)lua_tointeger(L, 3);
+                return 1;
             }
         }
 

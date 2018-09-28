@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Pepigort
 -- Type: Standard Dialogue NPC
--- !pos -126.739 11.999 262.757 231
+--  @zone 231
+-- !pos -126.739 11.999 262.757
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
