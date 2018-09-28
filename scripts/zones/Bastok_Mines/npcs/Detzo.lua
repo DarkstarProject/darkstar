@@ -50,7 +50,7 @@ function onTrigger(player,npc)
     end
 
 end;
--- 0x0001  30  93  94  171  0x03f2  0x00b0  0x00b4  0x00b8
+-- 1  30  93  94  171  1010  176  180  184
 function onEventUpdate(player,csid,option)
     -- printf("CSID2: %u",csid);
     -- printf("RESULT2: %u",option);

@@ -52,7 +52,7 @@ function onZoneIn(player,prevZone)
         cs = 49;
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status") == 1) then --EMERALD_WATERS-- COP 3-3A: San d'Oria Route
         player:setVar("EMERALD_WATERS_Status",2);
-        cs = 0x000E;
+        cs = 14;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 0) then
         cs = 1;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
@@ -64,11 +64,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -103,7 +99,7 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);
     elseif (csid == 569) then
-        player:setPos(0,0,-13,192,0xe9);
+        player:setPos(0,0,-13,192,233);
     elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
         player:setVar("peaceForTheSpiritCS",0);
     elseif (csid == 16) then

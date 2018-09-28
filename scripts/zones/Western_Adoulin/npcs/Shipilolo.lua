@@ -6,8 +6,7 @@
 --                        'Fertile Ground'
 --                        'The Old Man and the Harpoon'
 --                        'Wayward Waypoints'
---  @zone 256
--- !pos 84 0 -60
+-- !pos 84 0 -60 256
 -----------------------------------
 package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Koko Lihzeh
 -- Involved in Quest: Making the Grade, Riding on the Clouds
--- @zone 238
--- !pos 135 -6 162
+-- !pos 135 -6 162 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 -----------------------------------

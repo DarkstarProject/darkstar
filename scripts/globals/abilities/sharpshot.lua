@@ -6,15 +6,15 @@
 -- Duration: 1:00
 -----------------------------------
  
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local power = 40 + player:getMod(dsp.mod.SHARPSHOT);
-    player:addStatusEffect(dsp.effect.SHARPSHOT,power,0,60);
-end;
+    local power = 40 + player:getMod(dsp.mod.SHARPSHOT)
+    player:addStatusEffect(dsp.effect.SHARPSHOT,power,0,60)
+end

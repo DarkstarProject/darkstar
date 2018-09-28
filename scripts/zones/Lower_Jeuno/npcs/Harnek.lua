@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Harnek
 -- Starts and Finishes Quest: The Tenshodo Showdown (finish)
--- @zone 245
--- !pos 44 0 -19
+-- !pos 44 0 -19 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -29,7 +28,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 0x000c  0x000d  0x0009  0x000a  0x0014  217  0x009f  10021  10022
+-- 12  13  9  10  20  217  159  10021  10022
 function onEventUpdate(player,csid,option)
 end;
 

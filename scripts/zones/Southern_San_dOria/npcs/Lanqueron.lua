@@ -3,8 +3,7 @@
 --  NPC: Lanqueron
 -- Type: Item Deliverer NPC
 -- Involved in Quest: Lost Chick
--- @zone 230
--- !pos 0.335 1.199 -28.404
+-- !pos 0.335 1.199 -28.404 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

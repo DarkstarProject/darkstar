@@ -2,8 +2,7 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Dugga
 -- Type: Item Deliverer
---  @zone 243
--- !pos -55.429    5.999    1.27
+-- !pos -55.429 5.999 1.27 243
 --
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;

@@ -11,7 +11,7 @@ require("scripts/globals/crafting");
 require("scripts/zones/Windurst_Woods/TextIDs");
 
 local keyitems = {
-     [0] = {
+    [0] = {
         id = dsp.ki.BONE_PURIFICATION,
         rank = 3,
         cost = 40000

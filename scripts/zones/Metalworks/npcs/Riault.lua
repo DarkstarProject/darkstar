@@ -2,8 +2,7 @@
 -- Area: Metalworks
 --   NPC: Riault
 -- Type: Standard NPC
--- @zone 237
--- !pos 26.988 -17.39 -41.931
+-- !pos 26.988 -17.39 -41.931 237
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

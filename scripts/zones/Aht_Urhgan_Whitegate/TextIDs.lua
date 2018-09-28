@@ -47,6 +47,7 @@
 
            WAHNID_SHOP_DIALOG =  9277; -- All the fishing gear you'll ever need, here in one place!
           WAHRAGA_SHOP_DIALOG =  9278; -- Welcome to the Alchemists' Guild.
+        GATHWEEDA_SHOP_DIALOG =  9279; -- Only members of the Alchemists' Guild have the vision to create such fine products... Would you like to purchase something?
 
 -- Automaton
              AUTOMATON_RENAME =  5848; -- Your automaton has a new name.

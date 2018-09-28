@@ -3,28 +3,16 @@
 -- Allows you to counterattack but reduces movement speed.
 -- Unlike counter, grants TP like a regular melee attack.
 -----------------------------------
-
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.MOVE, -8);
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.MOVE, -8)
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.MOVE, -8);
-end;
+    target:delMod(dsp.mod.MOVE, -8)
+end

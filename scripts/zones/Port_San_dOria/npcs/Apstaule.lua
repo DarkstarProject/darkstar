@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
     local count = trade:getItemCount();
     local MagicFlyer    = trade:hasItemQty(532,1);
-    local AuctionParcel = trade:hasItemQty(0x0252,1);
+    local AuctionParcel = trade:hasItemQty(594,1);
 
     if (MagicFlyer == true and count == 1) then
         local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);

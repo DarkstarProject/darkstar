@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Qulun Dome
 --  NPC: The Mute
--- @zone 148
--- !pos <many>
+-- !zone 148
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------

@@ -16,11 +16,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.TAVNAZIANARCH)
-    local MissionProgress = player:getCurrentMission(COP)
-
-    if MissionProgress >= THE_SAVAGE then
-        if RegionOwner ~= dsp.nation.BASTOK then
+    if player:getCurrentMission(COP) >= THE_SAVAGE then
+        if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.BASTOK then
             player:showText(npc, EMALIVEULAUX_CLOSED_DIALOG)
         else
             local stock =
@@ -28,7 +25,8 @@ function onTrigger(player,npc)
                 1523,  290,    -- Apple Mint
                 5164, 1945,    -- Ground Wasabi
                 17005,  99,    -- Lufaise Fly
-                5195,  233     -- Misareaux Parsley
+                5195,  233,    -- Misareaux Parsley
+                1695,  920,    -- Habanero Peppers
             }
 
             player:showText(npc, EMALIVEULAUX_OPEN_DIALOG)

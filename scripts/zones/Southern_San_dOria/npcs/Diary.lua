@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Diary
 -- Involved in Quest: To Cure a Cough
--- @zone 230
--- !pos -75 -12 65
+-- !pos -75 -12 65 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

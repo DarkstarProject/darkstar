@@ -24,7 +24,7 @@ function onTrigger(player,npc)
         local dynaUniqueID = GetServerVariable("[DynaBuburimu]UniqueID");
 
         if (checkFirstDyna(player,8)) then
-             player:startEvent(40);
+            player:startEvent(40);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
             player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
@@ -52,6 +52,6 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 22 and option == 0) then
         player:setVar("enteringDynamis",1);
-        player:setPos(155,-1,-169,170,0x28);
+        player:setPos(155,-1,-169,170,40);
     end
 end;

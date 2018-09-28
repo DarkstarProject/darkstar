@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Jade Sepulcher
--- NPC:  Ornamental Door
+-- NPC: Ornamental Door
 -- Involved in Missions: TOAU-29
--- @zone 299 0 -199 67
+-- !pos 299 0 -199 67
 -----------------------------------
 package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;

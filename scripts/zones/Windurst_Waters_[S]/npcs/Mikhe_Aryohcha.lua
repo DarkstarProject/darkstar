@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Mikhe Aryohcha
 -- Type: Standard NPC
--- @zone 94
--- !pos -56.645 -4.5 13.014
+-- !pos -56.645 -4.5 13.014 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

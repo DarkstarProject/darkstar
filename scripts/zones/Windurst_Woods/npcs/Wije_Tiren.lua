@@ -17,14 +17,14 @@ function onTrigger(player,npc)
     player:showText(npc,WIJETIREN_SHOP_DIALOG);
 
     stock = {
-        0x1034,   290,       --Antidote
-        0x119d,    10,       --Distilled Water
-        0x1037,   728,       --Echo Drops
-        0x1020,  4445,       --Ether
-        0x1036,  2387,       --Eye Drops
-        0x1010,   837,       --Potion
-        0x1396,    98,       --Scroll of Herb Pastoral
-        0x0b30,  9200        --Federation Waystone
+        4148,   290,       --Antidote
+        4509,    10,       --Distilled Water
+        4151,   728,       --Echo Drops
+        4128,  4445,       --Ether
+        4150,  2387,       --Eye Drops
+        4112,   837,       --Potion
+        5014,    98,       --Scroll of Herb Pastoral
+        2864,  9200        --Federation Waystone
     }
     dsp.shop.general(player, stock, WINDURST);
 

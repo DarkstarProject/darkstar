@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Muckvix
 -- Involved in Mission: Magicite
--- @zone 245
--- !pos -26.824 3.601 -137.082
+-- !pos -26.824 3.601 -137.082 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

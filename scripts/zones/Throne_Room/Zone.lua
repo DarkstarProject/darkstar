@@ -13,11 +13,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -37,6 +33,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 7) then
         -- You will be transported back to the entrance of Castle Zvahl Baileys
-        player:setPos(378.222,-12,-20.299,125,0xA1);
+        player:setPos(378.222,-12,-20.299,125,161);
     end
 end;

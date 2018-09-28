@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Zona Shodhun
 -- Starts and Finishes Quest: Pretty Little Things
--- @zone 246
--- !pos -175 -5 -4
+-- !pos -175 -5 -4 246
 -----------------------------------
 -----------------------------------
 require("scripts/globals/settings");

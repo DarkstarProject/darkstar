@@ -9,20 +9,20 @@
 -- Magic Atk. Bonus +15
 -- Lizard Killer +7
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
+    local result = 0
     if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+        result = 246
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6225);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6225)
+end
 
 function onEffectGain(target, effect)
     target:addMod(dsp.mod.FOOD_MPP, 30)
@@ -31,7 +31,7 @@ function onEffectGain(target, effect)
     target:addMod(dsp.mod.MND, 7)
     target:addMod(dsp.mod.MATT, 15)
     target:addMod(dsp.mod.LIZARD_KILLER, 7)
-end;
+end
 
 function onEffectLose(target, effect)
     target:delMod(dsp.mod.FOOD_MPP, 30)
@@ -40,4 +40,4 @@ function onEffectLose(target, effect)
     target:delMod(dsp.mod.MND, 7)
     target:delMod(dsp.mod.MATT, 15)
     target:delMod(dsp.mod.LIZARD_KILLER, 7)
-end;
+end

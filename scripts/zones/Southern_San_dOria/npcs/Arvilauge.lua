@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Arvilauge
 -- Optional Involvement in Quest: A Squire's Test II
--- @zone 230
--- !pos -11 1 - 94
+-- !pos -11 1 -94 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

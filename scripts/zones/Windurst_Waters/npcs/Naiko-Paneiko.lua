@@ -2,8 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Naiko-Paneiko
 -- Involved In Quest: Making Headlines, Riding on the Clouds
--- @zone 238
--- !pos -246 -5 -308
+-- !pos -246 -5 -308 238
 -----------------------------------
 package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;

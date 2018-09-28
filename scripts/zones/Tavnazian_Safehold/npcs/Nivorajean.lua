@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --   NPC: Nivorajean
 -- Type: Standard NPC
--- @zone 26
--- !pos 15.890 -22.999 13.322
+-- !pos 15.890 -22.999 13.322 26
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,8 +2,7 @@
 -- Area: Southern San dOria
 --  NPC: Melledanne
 -- Type: Melody Minstrel NPC
--- @zone 230
--- !pos -33.194 0.000 34.662
+-- !pos -33.194 0.000 34.662 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

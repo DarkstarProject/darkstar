@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Fei'Yin
 --  NPC: Treasure Chest
--- @zone 204
+-- !zone 204
 -----------------------------------
 package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
 -----------------------------------

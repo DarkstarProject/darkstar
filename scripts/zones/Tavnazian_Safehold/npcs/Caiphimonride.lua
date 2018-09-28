@@ -3,33 +3,36 @@
 --  NPC: Caiphimonride
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
+package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
 -----------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
------------------------------------
+require("scripts/zones/Tavnazian_Safehold/TextIDs")
+require("scripts/globals/missions")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,CAIPHIMONRIDE_SHOP_DIALOG);
-
     local stock =
     {
-        0x4042,1867,    --Dagger
-    0x40b6,8478,    --Longsword
-    0x43B7,8,    --Rusty Bolt
-    0x47C7,93240,    --Falx (COP Chapter 4 Needed; not implemented yet)
-    0x4726,51905}    --Voulge (COP Chapter 4 Needed; not implemented yet)
+        16450, 1867,    -- Dagger
+        16566, 8478,    -- Longsword
+        17335,    8,    -- Rusty Bolt
+    }
 
-    dsp.shop.general(player, stock);
-end;
+    if player:getCurrentMission(COP) >= SHELTERING_DOUBT then
+        table.insert(stock, 18375)    -- Falx
+        table.insert(stock, 93240)
+        table.insert(stock, 18214)    -- Voulge
+        table.insert(stock, 51905)
+    end
+
+    player:showText(npc, CAIPHIMONRIDE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

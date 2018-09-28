@@ -1,7 +1,7 @@
 -----------------------------------
 --
 -- Zone: Western Adoulin
--- @zone 256
+-- !zone 256
 --
 -----------------------------------
 require("scripts/globals/settings");

@@ -11,6 +11,12 @@ FULL_INVENTORY_AFTER_TRADE = 6385; -- You cannot obtain the #. Try trading again
 
 -- Other dialog
    NOTHING_OUT_OF_ORDINARY = 7369; -- There is nothing out of the ordinary here.
+  CRYPTONBERRY_FALLEN_TREE = 7245; -- A tree has fallen here...
+ CRYPTONBERRY_EXECUTOR_POP = 7246; -- You feel a wave of hatred wash over you!
+ CRYPTONBERRY_EXECUTOR_DIE = 7470; -- ...Cleave our foesss with barren hate.
+ CRYPTONBERRY_ASSASSIN_2HR = 7471; -- ..Take up thy lanternsss. The truth we shall illuminate.
+ CRYPTONBERRY_EXECUTOR_2HR = 7472; -- Through this we ssseek our just reward...
+        MYCOPHILE_MUSHROOM = 7489; -- There is a rotten mushroom here. There are 3 openings in its cap.
 
 -- Logging
   LOGGING_IS_POSSIBLE_HERE = 7386; -- Logging is possible here if you have

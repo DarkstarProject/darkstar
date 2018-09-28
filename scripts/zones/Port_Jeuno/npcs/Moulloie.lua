@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --   NPC: Moulloie
 -- Type: Standard NPC
--- @zone 246
--- !pos -77.724 7.003 59.044
+-- !pos -77.724 7.003 59.044 246
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

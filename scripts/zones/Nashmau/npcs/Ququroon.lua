@@ -24,13 +24,13 @@ end;
 function onTrigger(player,npc)
     local ratRaceProg = player:getVar("ratraceCS");
     if (ratRaceProg == 3) then
-       player:startEvent(309);
+        player:startEvent(309);
     elseif (ratRaceProg == 4) then
-       player:startEvent(242);
+        player:startEvent(242);
     elseif (ratRaceProg >= 5) then
-       player:startEvent(315);
+        player:startEvent(315);
     else
-       player:startEvent(241);
+        player:startEvent(241);
     end
 end;
 
@@ -39,7 +39,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 309) then
-       player:setVar("ratraceCS",4);
+        player:setVar("ratraceCS",4);
     elseif (csid == 310) then
         if (player:getFreeSlotsCount() < 1) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5595);

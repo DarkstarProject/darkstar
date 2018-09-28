@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --  NPC: Shanruru
 -- Involved in Quest: Riding on the Clouds
--- @zone 240
--- !pos -1 -6 187
+-- !pos -1 -6 187 240
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

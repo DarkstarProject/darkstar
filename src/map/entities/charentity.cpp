@@ -155,7 +155,6 @@ CCharEntity::CCharEntity()
     m_LevelRestriction = 0;
     m_lastBcnmTimePrompt = 0;
     m_AHHistoryTimestamp = 0;
-    m_DeathCounter = 0;
     m_DeathTimestamp = 0;
 
     m_EquipFlag = 0;
@@ -358,7 +357,7 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::min<size_t>(strlen((const char*)name), PacketNameLength));
 }
 
 int16 CCharEntity::addTP(int16 tp)
@@ -465,6 +464,17 @@ bool CCharEntity::ReloadParty()
     return m_reloadParty;
 }
 
+void CCharEntity::Tick(time_point tick)
+{
+    CBattleEntity::Tick(tick);
+    if (m_DeathTimestamp > 0 && tick >= m_deathSyncTime)
+    {
+        // Send an update packet at a regular interval to keep the player's death variables synced
+        updatemask |= UPDATE_STATUS;
+        m_deathSyncTime = tick + death_update_frequency;
+    }
+}
+
 void CCharEntity::PostTick()
 {
     CBattleEntity::PostTick();
@@ -509,7 +519,9 @@ void CCharEntity::PostTick()
                 static_cast<CCharEntity*>(PEntity)->pushPacket(new CCharHealthPacket(this));
             });
         }
-        pushPacket(new CCharUpdatePacket(this));
+        // Do not send an update packet when only the position has change
+        if (updatemask ^ UPDATE_POS)
+            pushPacket(new CCharUpdatePacket(this));
         updatemask = 0;
     }
 }
@@ -969,14 +981,31 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 auto PPetTarget = PTarget->targid;
                 if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
                 {
-                    if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
-                        addMP((int32)(-PAbility->getAnimationID() * 1.5));
-                        this->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
+                    // Blood Pact mp cost stored in animation ID
+                    float mpCost = PAbility->getAnimationID();
+
+                    if (StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+                    {
+                        mpCost *= 1.5f;
+                        StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_BLOODPACT);
                     }
-                    else {
-                        addMP(-PAbility->getAnimationID()); // TODO: ...
+
+                    // Blood Boon (does not affect Astra Flow BPs)
+                    if ((PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW) == 0)
+                    {
+                        int16 bloodBoonRate = getMod(Mod::BLOOD_BOON);
+                        if (dsprand::GetRandomNumber(100) < bloodBoonRate)
+                        {
+                            mpCost *= dsprand::GetRandomNumber(8.f, 16.f) / 16.f;
+                        }
                     }
-                    if (PAbility->getValidTarget() == TARGET_SELF) { PPetTarget = PPet->targid; }
+
+                    addMP((int32)-mpCost);
+
+                    if (PAbility->getValidTarget() == TARGET_SELF)
+                    {
+                        PPetTarget = PPet->targid;
+                    }
                 }
                 else
                 {
@@ -1101,6 +1130,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             state.ApplyEnmity();
         }
         PRecastContainer->Add(RECAST_ABILITY, PAbility->getRecastId(), action.recast);
+
+        uint16 recastID = PAbility->getRecastId();
+        if (map_config.blood_pact_shared_timer && (recastID == 173 || recastID == 174))
+        {
+            PRecastContainer->Add(RECAST_ABILITY, (recastID == 173 ? 174 : 173), action.recast);
+        }
+
         pushPacket(new CCharRecastPacket(this));
 
         //#TODO: refactor
@@ -1555,19 +1591,13 @@ CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags
 
 void CCharEntity::Die()
 {
-    if (GetBattleTargetID() == 0)
-    {
-        //falls to the ground
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, 20));
-    }
+    if (PLastAttacker)
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PLastAttacker, this, 0, 0, MSGBASIC_PLAYER_DEFEATED_BY));
     else
-    {
-        auto PTarget = GetEntity(GetBattleTargetID());
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PTarget, this, 0, 0, 97));
-    }
-    Die(60min);
-    m_DeathCounter = 0;
-    m_DeathTimestamp = (uint32)time(nullptr);
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
+
+    Die(death_duration);
+    SetDeathTimestamp((uint32)time(nullptr));
 
     setBlockingAid(false);
 
@@ -1580,9 +1610,9 @@ void CCharEntity::Die()
 
 void CCharEntity::Die(duration _duration)
 {
+    m_deathSyncTime = server_clock::now() + death_update_frequency;
     PAI->ClearStateStack();
     PAI->Internal_Die(_duration);
-    pushPacket(new CRaiseTractorMenuPacket(this, TYPE_HOMEPOINT));
 
     // reraise modifiers
     if (this->getMod(Mod::RERAISE_I) > 0)
@@ -1599,6 +1629,26 @@ void CCharEntity::Die(duration _duration)
 void CCharEntity::Raise()
 {
     PAI->Internal_Raise();
+    SetDeathTimestamp(0);
+}
+
+void CCharEntity::SetDeathTimestamp(uint32 timestamp)
+{
+    m_DeathTimestamp = timestamp;
+}
+
+int32 CCharEntity::GetSecondsElapsedSinceDeath()
+{
+    return m_DeathTimestamp > 0 ? (uint32)time(nullptr) - m_DeathTimestamp : 0;
+}
+
+int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
+{
+    // 0x0003A020 is 60 * 3960 and 3960 is 66 minutes in seconds
+    // The client uses this time as the maximum amount of time for death
+    // We convert the elapsed death time to this total time and subtract it which gives us the remaining time to a forced homepoint
+    // Once the returned value here reaches below 360 then the client with force homepoint the character
+    return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
 }
 
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)

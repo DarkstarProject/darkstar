@@ -2,8 +2,7 @@
 -- Area: Southern San dOria
 --  NPC: Anxaberoute
 -- Type: Standard Info NPC
--- @zone 230
--- !pos 108.892 0.000 -49.038
+-- !pos 108.892 0.000 -49.038 230
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

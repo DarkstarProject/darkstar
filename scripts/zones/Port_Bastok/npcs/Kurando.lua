@@ -2,8 +2,7 @@
 -- Area: Port Bastok
 --   NPC: Kurando
 -- Type: Quest Giver
--- @zone 236
--- !pos -23.887 3.898 0.870
+-- !pos -23.887 3.898 0.870 236
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
@@ -24,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
     local FearofFlying = player:getQuestStatus(BASTOK,FEAR_OF_FLYING);
-    -- csid 0x00Ad ?
+    -- csid 173 ?
     if (FearofFlying == QUEST_AVAILABLE and    player:getFameLevel(BASTOK) >=3) then
         player:startEvent(170); -- Quest Start Dialogue
     elseif (FearofFlying == QUEST_COMPLETED) then

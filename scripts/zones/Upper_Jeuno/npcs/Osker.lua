@@ -78,8 +78,8 @@ function onEventFinish(player,csid,option)
             player:setVar("ANewDawn_Event",3);
         end
     elseif (csid == 148) then
-        player:addKeyItem(217);
-        player:messageSpecial(KEYITEM_OBTAINED, 217);
+        player:addKeyItem(dsp.ki.TAMERS_WHISTLE);
+        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TAMERS_WHISTLE);
         player:setVar("ANewDawn_Event",4);
     end
 

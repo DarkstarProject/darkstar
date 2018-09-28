@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Kuftal Tunnel
 --  NPC: Treasure Coffer
--- @zone 174
+-- !zone 174
 -----------------------------------
 package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
 -----------------------------------

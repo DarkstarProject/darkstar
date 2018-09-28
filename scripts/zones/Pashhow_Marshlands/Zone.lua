@@ -6,6 +6,7 @@
 package.loaded[ "scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Pashhow_Marshlands/TextIDs");
+require("scripts/zones/Pashhow_Marshlands/MobIDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -13,6 +14,7 @@ require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
+-----------------------------------
 
 local itemMap =
 {
@@ -47,7 +49,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onZoneIn( player, prevZone)
@@ -74,11 +76,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

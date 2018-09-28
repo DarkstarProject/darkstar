@@ -3,29 +3,32 @@
 -- dsp.effect.TELEPORT
 --
 -----------------------------------
-require("scripts/globals/teleports");
+require("scripts/globals/teleports")
 -----------------------------------
 
 function onEffectGain(target,effect)
-end;
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    local destination = effect:getPower();
+    local destination = effect:getPower()
     
     if (target:isMob()) then
         DespawnMob(target:getID())
     elseif (destination == dsp.teleport.id.WARP) then
-        target:warp();
+        target:warp()
     elseif (destination == dsp.teleport.id.ESCAPE) then
-        dsp.teleport.escape(target);
-    elseif (destination == dsp.teleport.id.HOMING) then
-        dsp.teleport.homingRing(target);
+        dsp.teleport.escape(target)
+    elseif (destination == dsp.teleport.id.OUTPOST) then
+        local region = effect:getSubPower()
+        dsp.teleport.toOutpost(target, region)
     elseif (destination == dsp.teleport.id.LEADER) then
-        dsp.teleport.toLeader(target);
+        dsp.teleport.toLeader(target)
+    elseif (destination == dsp.teleport.id.HOME_NATION) then
+        dsp.teleport.toHomeNation(target)
     else
-        dsp.teleport.to(target, destination);
+        dsp.teleport.to(target, destination)
     end
-end;
+end

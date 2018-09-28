@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Monastic Cavern
 --  NPC: Treasure Coffer
--- @zone 150
+-- !zone 150
 -----------------------------------
 package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil;
 -----------------------------------

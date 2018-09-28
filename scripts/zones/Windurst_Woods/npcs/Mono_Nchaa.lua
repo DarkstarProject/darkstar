@@ -17,13 +17,13 @@ function onTrigger(player,npc)
     player:showText(npc,MONONCHAA_SHOP_DIALOG);
 
     stock = {
-        0x43A6,     3,2,     --Wooden Arrow
-        0x439C,    55,2,     --Hawkeye
-        0x4340,   165,2,     --Light Crossbow
+        17318,     3,2,     --Wooden Arrow
+        17308,    55,2,     --Hawkeye
+        17216,   165,2,     --Light Crossbow
 
-        0x43A7,     4,3,     --Bone Arrow
-        0x43B8,     5,3,     --Crossbow Bolt
-        0x1391,  2649,3      --Scroll of Hunter's Prelude
+        17319,     4,3,     --Bone Arrow
+        17336,     5,3,     --Crossbow Bolt
+        5009,  2649,3      --Scroll of Hunter's Prelude
     }
     dsp.shop.nation(player, stock, dsp.nation.WINDURST);
 

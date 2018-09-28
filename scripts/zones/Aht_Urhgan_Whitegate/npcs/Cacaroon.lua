@@ -12,7 +12,6 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
     if (player:getQuestStatus(AHT_URHGAN,RAT_RACE) == QUEST_ACCEPTED and player:getVar("ratraceCS") == 2) then
         if (trade:hasItemQty(2184,1) and trade:getItemCount() == 1) then
             player:startEvent(850);
@@ -27,9 +26,9 @@ end;
 function onTrigger(player,npc)
     -- printf("Prog = %u",player:getVar("ratraceCS"));
     if (player:getVar("ratraceCS") == 2) then
-       player:startEvent(853);
+        player:startEvent(853);
     elseif (player:getVar("ratraceCS") >= 3) then
-       player:startEvent(854);
+        player:startEvent(854);
     elseif (player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(3035,0,0,0,0,0,0,0,0,0);
     elseif (player:getVar("AhtUrganStatus") == 1) then

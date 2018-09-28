@@ -2,8 +2,7 @@
 -- Area: Port San d'Oria
 --   NPC: Maunadolace
 -- Type: Standard NPC
--- @zone 232
--- !pos -22.800 -9.3 -148.645
+-- !pos -22.800 -9.3 -148.645 232
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

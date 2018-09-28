@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --   NPC: Nouveil
 -- Type: General
--- @zone 231
--- !pos 123 0 106
+-- !pos 123 0 106 231
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

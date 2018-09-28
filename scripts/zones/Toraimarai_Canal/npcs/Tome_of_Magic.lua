@@ -2,8 +2,7 @@
 -- Area: Toraimarai Canal
 -- NPC:  Tome of Magic ( Needed for Mission )
 -- Involved In Windurst Mission 7-1
--- @zone 169
--- !pos 142 13 -13 169 <many>
+-- !zone 169
 -----------------------------------
 require("scripts/zones/Toraimarai_Canal/MobIDs");
 require("scripts/globals/missions");

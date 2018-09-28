@@ -26,7 +26,7 @@ function onTrigger(player,npc)
     else
         player:messageSpecial(DOOR_LOCKED);
     end
-  return 1;
+    return 1;
 end;
 
 function onEventUpdate(player,csid,option)

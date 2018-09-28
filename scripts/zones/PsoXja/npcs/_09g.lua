@@ -26,6 +26,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 3) then
-     player:setVar("COP_Tenzen_s_Path",2);
+        player:setVar("COP_Tenzen_s_Path",2);
     end
 end;

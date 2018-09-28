@@ -2,8 +2,7 @@
 -- Area: Southern San d'Oria
 --  NPC: Atelloune
 -- Starts and Finishes Quest: Atelloune's Lament
--- @zone 230
--- !pos 122 0 82
+-- !pos 122 0 82 230
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -23,11 +23,11 @@ function onTrigger(player,npc)
 
         local stock =
         {
-            0x0280,    11,   --Copper Ore
-            0x1162,   694,   --Coral Fungus
-            0x1117,  4032,   --Danceshroom
-            0x0672,  6500,   --Kopparnickel Ore
-            0x142D,   736    --Movalpolos Water
+            640,    11,   --Copper Ore
+            4450,   694,   --Coral Fungus
+            4375,  4032,   --Danceshroom
+            1650,  6500,   --Kopparnickel Ore
+            5165,   736    --Movalpolos Water
         }
         dsp.shop.general(player, stock, WINDURST);
 

@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Navukgo Execution Chamber
--- NPC:  Decorative Bronze Gate
+--  NPC: Decorative Bronze Gate
 -- Involved in Missions: TOAU-22
--- @zone -601 10 -100 64
+-- !pos -601 10 -100 64
 -----------------------------------
 package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
 package.loaded["scripts/globals/bcnm"] = nil;

@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Windurst Waters
+-- Area: Port Windurst
 --  NPC: Sigismund
 -- Starts and Finishes Quest: To Catch a Falling Star
 -- !pos -110 -10 82 240

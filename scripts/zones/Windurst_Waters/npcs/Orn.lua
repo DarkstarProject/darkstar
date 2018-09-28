@@ -3,6 +3,7 @@
 --  NPC: Orn
 -- !pos -68 -9 30 238
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -22,7 +23,7 @@ function onTrigger(player,npc)
     elseif (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 1) then
         player:startEvent(396);
 
-    elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(10) == true) then
+    elseif (bookwormStatus == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS) == true) then
         player:startEvent(395);
 
     else

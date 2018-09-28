@@ -19,12 +19,12 @@ end;
 function onMobEngaged(mob,target)
     -- TODO: Call Wyvern onMobEngage
 
-   local mobid = mob:getID()
+    local mobid = mob:getID()
 
-   for member = mobid-6, mobid+1 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
+    for member = mobid-6, mobid+1 do
+        if (GetMobAction(member) == 16) then
+            GetMobByID(member):updateEnmity(target);
+        end
     end
 end;
 

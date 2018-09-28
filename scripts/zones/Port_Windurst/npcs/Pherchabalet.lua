@@ -2,8 +2,7 @@
 -- Area: Port Windurst
 --   NPC: Pherchabalet
 -- Type: Standard NPC
--- @zone 240
--- !pos 34.683 -5.999 137.447
+-- !pos 34.683 -5.999 137.447 240
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

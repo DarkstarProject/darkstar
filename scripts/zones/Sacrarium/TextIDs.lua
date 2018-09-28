@@ -6,12 +6,13 @@
              GIL_OBTAINED = 6388; -- Obtained <number> gil
          KEYITEM_OBTAINED = 6390; -- Obtained key item: <keyitem>
 
-            LARGE_KEYHOLE = 7214; -- The gate is securely closed with two locks. This keyhole is engraved with a sealion insignia
-            SMALL_KEYHOLE = 7215; -- The gate is securely closed with two locks. This keyhole is engraved with a coral insignia.
+LARGE_KEYHOLE_DESCRIPTION = 7214; -- The gate is securely closed with two locks. This keyhole is engraved with a sealion insignia
+SMALL_KEYHOLE_DESCRIPTION = 7215; -- The gate is securely closed with two locks. This keyhole is engraved with a coral insignia.
           KEYHOLE_DAMAGED = 7216; -- The keyhole is damaged.The gate cannot be opened from this side.
-         CANNOT_OPEN_SIDE = 7216; -- The gate cannot be opened from this side.
+         CANNOT_OPEN_SIDE = 7217; -- The gate cannot be opened from this side.
+         CANNOT_TRADE_NOW = 7218; -- You cannot trade right now.
               STURDY_GATE = 7219; -- A sturdy iron gate. It is secured with two locks--a main lock and a sublock.
-          CORAL_KEY_TRADE = 7221; -- is holding the lock open...
+         CORAL_KEY_BREAKS = 7223; -- The <item> breaks!
   NOTHING_OUT_OF_ORDINARY = 7357; -- There is nothing out of the ordinary here.
 
             EVIL_PRESENCE = 7257; -- You sense an evil presence!

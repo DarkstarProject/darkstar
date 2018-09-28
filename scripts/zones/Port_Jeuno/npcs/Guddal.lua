@@ -2,8 +2,7 @@
 -- Area: Port Jeuno
 --  NPC: Guddal
 -- Starts and Finishes Quest: Kazham Airship Pass (This quest does not appear in your quest log)
--- @zone 246
--- !pos -14 8 44
+-- !pos -14 8 44 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

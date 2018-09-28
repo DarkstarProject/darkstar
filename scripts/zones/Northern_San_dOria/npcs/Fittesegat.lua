@@ -2,8 +2,7 @@
 -- Area: Northern San d'Oria
 --  NPC: Fittesegat
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos 144.250 0.000 138.203
+-- !pos 144.250 0.000 138.203 231
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

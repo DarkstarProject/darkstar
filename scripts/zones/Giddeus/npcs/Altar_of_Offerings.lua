@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Windurst Waters
---  NPC: Alter Of Offering
+-- Area: Giddeus
+--  NPC: Alter of Offerings
 -- Involved in Quest: A Crisis in the Making
 -- !pos -137 17 177 145
 -----------------------------------

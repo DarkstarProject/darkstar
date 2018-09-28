@@ -116,11 +116,7 @@ function onGameHour(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -202,7 +198,7 @@ end;
 
 function onEventUpdate(player,csid,option)
 
-    if ((csid >0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
+    if ((csid >149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",1);
     end
 end;
@@ -210,9 +206,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 101 and option == 1) then
-        player:setPos(540,-1,-499.900,62,0x24);
+        player:setPos(540,-1,-499.900,62,36);
         player:setVar("Ru-Hmet-TP",0);
-    elseif ((csid > 0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
+    elseif ((csid > 149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",0);
     elseif (csid == 201) then
         player:setVar("PromathiaStatus",1);

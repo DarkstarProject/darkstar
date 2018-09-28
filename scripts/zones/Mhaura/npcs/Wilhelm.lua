@@ -18,7 +18,7 @@ function onTrade(player,npc,trade)
             end
         end
     end
-  --print("armor"..armor);
+    --print("armor"..armor);
     if (armor > 0) then
         if (player:getFreeSlotsCount() == 0 or player:hasItem(armor) ) then
             player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,armor);
@@ -36,16 +36,16 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) > THE_WARRIOR_S_PATH) then
         player:startEvent(326);
     else
-       player:startEvent(325);
+        player:startEvent(325);
     end
 
---Wilhelm     325 default
---Wilhelm     326 demande fragment de creature
---Wilhelm     327
---Wilhelm     328 apres trade fragment d'ultima
---Wilhelm     329
---Wilhelm     330  apres trade fragment omega
---Wilhelm     331
+    --Wilhelm     325 default
+    --Wilhelm     326 demande fragment de creature
+    --Wilhelm     327
+    --Wilhelm     328 apres trade fragment d'ultima
+    --Wilhelm     329
+    --Wilhelm     330  apres trade fragment omega
+    --Wilhelm     331
 end;
 
 function onEventUpdate(player,csid,option)
@@ -57,6 +57,6 @@ function onEventFinish(player,csid,option)
         player:addItem(option);
         player:messageSpecial(ITEM_OBTAINED,option);
         player:tradeComplete();
-     end
+    end
 end;
 

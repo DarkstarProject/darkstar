@@ -2,8 +2,7 @@
 -- Area: Windurst Waters (S)
 --   NPC: Renten-Tonten
 -- Type: Standard NPC
--- @zone 94
--- !pos 133.840 -6.75 173.305
+-- !pos 133.840 -6.75 173.305 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

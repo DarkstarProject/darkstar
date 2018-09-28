@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Port Jeuno
--- NPC:
--- @zone 246
--- !pos
+--  NPC: Gavin
+-- !zone 246
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

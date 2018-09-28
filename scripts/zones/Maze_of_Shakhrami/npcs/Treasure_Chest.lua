@@ -2,7 +2,7 @@
 -- Area: Maze of Shakhrami
 --  NPC: Treasure Chest
 -- Involved In Quest: The Goblin Tailor
--- @zone 198
+-- !zone 198
 -----------------------------------
 package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
 -----------------------------------

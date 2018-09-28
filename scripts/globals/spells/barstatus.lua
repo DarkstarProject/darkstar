@@ -1,8 +1,8 @@
 -----------------------------------------
 -- Implementation of Bar-status
 -----------------------------------------
-
-require("scripts/globals/status");
+require("scripts/globals/magic")
+require("scripts/globals/status")
 
 function calculateBarstatusPower(caster,enhanceSkill)
     local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT)
@@ -24,7 +24,7 @@ function applyBarstatus(effectType,caster,target,spell)
     local enhanceSkill = caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
     local mdefBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT) + caster:getMod(dsp.mod.BARSPELL_MDEF_BONUS)
 
-    local power = calculateBarstatusPower(caster,enhanceSkill);
+    local power = calculateBarstatusPower(caster,enhanceSkill)
     local duration = calculateBarstatusDuration(caster, enhanceSkill)
     duration = calculateDuration(duration, dsp.skill.ENHANCING_MAGIC, dsp.magic.spellGroup.WHITE, caster, target)
     

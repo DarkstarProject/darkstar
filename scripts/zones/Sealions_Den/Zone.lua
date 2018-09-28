@@ -13,11 +13,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -26,9 +22,9 @@ function onZoneIn(player,prevZone)
         player:setPos(600.101,130.355,797.612,50);
     end
     if (player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==1) then
-      cs=15;
+        cs=15;
     elseif (player:getCurrentMission(COP) == CHAINS_AND_BONDS and player:getVar("PromathiaStatus")==2) then
-      cs=14;
+        cs=14;
     end
     return cs;
 end;
@@ -41,8 +37,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 15) then
-       player:setVar("PromathiaStatus",2);
+        player:setVar("PromathiaStatus",2);
     elseif (csid == 14) then
-       player:setVar("PromathiaStatus",3);
+        player:setVar("PromathiaStatus",3);
     end
 end;

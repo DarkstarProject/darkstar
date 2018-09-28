@@ -2,8 +2,7 @@
 -- Area: Lower Jeuno
 --  NPC: Derrick
 -- Involved in Quests and finish : Save the Clock Tower
--- @zone 245
--- !pos -32 -1 -7
+-- !pos -32 -1 -7 245
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------

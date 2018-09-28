@@ -2,8 +2,7 @@
 -- Area: Western Adoulin
 --  NPC: Orenna
 -- Type: Standard NPC
---  @zone 256
--- !pos -30 0 -26
+-- !pos -30 0 -26 256
 -----------------------------------
 
 function onTrade(player,npc,trade)

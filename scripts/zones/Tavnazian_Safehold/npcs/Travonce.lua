@@ -2,8 +2,7 @@
 -- Area: Tavnazian Safehold
 --   NPC: Travonce
 -- Type: Standard NPC
--- @zone 26
--- !pos -89.068 -14.367 -0.030
+-- !pos -89.068 -14.367 -0.030 26
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

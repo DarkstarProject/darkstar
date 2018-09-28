@@ -38,11 +38,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -53,7 +49,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 367) then
-        player:messageSpecial(ITEM_OBTAINED,0x218);
+        player:messageSpecial(ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
         player:messageSpecial(HOMEPOINT_SET);

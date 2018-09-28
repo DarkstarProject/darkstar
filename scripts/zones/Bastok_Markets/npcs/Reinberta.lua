@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     player:startEvent(300,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 300  301  0x0192
+-- 300  301  402
 function onEventUpdate(player,csid,option)
 end;
 
