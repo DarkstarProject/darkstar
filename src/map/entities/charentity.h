@@ -334,6 +334,10 @@ public:
     int32 GetSecondsElapsedSinceDeath();
     int32 GetTimeRemainingUntilDeathHomepoint();  // Amount of time remaining before the player should be forced back to homepoint while dead
 
+    void ApplyCurrentMoghancement();
+    bool hasMoghancement(uint16 moghancementID);
+    void UpdateMoghancement();
+
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual bool OnAttack(CAttackState&, action_t&) override;
@@ -382,6 +386,9 @@ private:
     PacketList_t      PacketList;					// в этом списке хранятся все пакеты, предназначенные для отправки персонажу
 
     std::mutex      m_PacketListMutex;
+
+    void SetMoghancement(uint16 moghancementID);
+    uint16 m_moghancementID;
 };
 
 #endif

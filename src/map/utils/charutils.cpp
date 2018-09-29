@@ -432,6 +432,7 @@ namespace charutils
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
             PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
             PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->ApplyCurrentMoghancement();
         }
 
         LoadSpells(PChar);

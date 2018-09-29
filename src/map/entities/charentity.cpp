@@ -35,10 +35,12 @@
 #include "../packets/char_recast.h"
 #include "../packets/lock_on.h"
 #include "../packets/inventory_finish.h"
+#include "../packets/key_items.h"
 #include "../packets/menu_raisetractor.h"
 #include "../packets/char_health.h"
 #include "../packets/char_appearance.h"
 #include "../packets/message_system.h"
+#include "../packets/message_special.h"
 
 #include "../ai/ai_container.h"
 #include "../ai/controllers/player_controller.h"
@@ -64,6 +66,7 @@
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 #include "../items/item_usable.h"
+#include "../items/item_furnishing.h"
 #include "../trade_container.h"
 #include "../universal_container.h"
 #include "../char_recast_container.h"
@@ -194,6 +197,7 @@ CCharEntity::CCharEntity()
 
     m_LastYell = 0;
     m_moghouseID = 0;
+    m_moghancementID = 0;
 
     PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
@@ -1605,7 +1609,10 @@ void CCharEntity::Die()
     conquest::LoseInfluencePoints(this);
 
     if (GetLocalVar("MijinGakure") == 0)
-        charutils::DelExperiencePoints(this, map_config.exp_retain, 0);
+    {
+        float retainPercent = std::clamp(map_config.exp_retain + getMod(Mod::EXPERIENCE_RETAINED) / 100.0f, 0.0f, 1.0f);
+        charutils::DelExperiencePoints(this, retainPercent, 0);
+    }
 }
 
 void CCharEntity::Die(duration _duration)
@@ -1649,6 +1656,340 @@ int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
     // We convert the elapsed death time to this total time and subtract it which gives us the remaining time to a forced homepoint
     // Once the returned value here reaches below 360 then the client with force homepoint the character
     return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
+}
+
+void CCharEntity::ApplyCurrentMoghancement()
+{
+    // Determines the current moghancement and sets it which applies the correct modifiers
+    std::bitset<512U>& moghancementKeyItems = keys.tables[1].keyList;
+    for (MOGHANCEMENT_TYPE moghancementID : MoghancementList)
+    {
+        if (charutils::hasKeyItem(this, moghancementID))
+        {
+            SetMoghancement(moghancementID);
+            return;
+        }
+    }
+}
+
+bool CCharEntity::hasMoghancement(uint16 moghancementID)
+{
+    return m_moghancementID == moghancementID;
+}
+
+void CCharEntity::UpdateMoghancement()
+{
+    static constexpr uint8 containers[2] = { LOC_MOGSAFE, LOC_MOGSAFE2 };
+
+    // Add up all of the installed furniture auras
+    uint16 elements[8] = { 0 };
+    for (int containerIndex = 0; containerIndex < 2; ++containerIndex)
+    {
+        CItemContainer* PContainer = getStorage(containers[containerIndex]);
+        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        {
+            CItem* PItem = PContainer->GetItem(slotID);
+            if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+            {
+                CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                if (PFurniture->isInstalled())
+                {
+                    elements[PFurniture->getElement()] += PFurniture->getAura();
+                }
+            }
+        }
+    }
+
+    // Determine the dominant aura
+    uint8 dominantElement = 0;
+    uint16 dominantAura = 0;
+    bool hasTiedElements = false;
+    for (uint8 elementID = 0; elementID < 8; ++elementID)
+    {
+        uint16 aura = elements[elementID];
+        if (aura > dominantAura)
+        {
+            dominantElement = elementID;
+            dominantAura = aura;
+            hasTiedElements = false;
+        }
+        else if (aura == dominantAura)
+        {
+            hasTiedElements = true;
+        }
+    }
+
+    // Determine which moghancement to use from the dominant element
+    uint8 bestAura = 0;
+    uint8 bestOrder = 255;
+    uint16 newMoghancementID = 0;
+    if (!hasTiedElements && dominantAura > 0)
+    {
+        for (int containerIndex = 0; containerIndex < 2; ++containerIndex)
+        {
+            CItemContainer* PContainer = getStorage(containers[containerIndex]);
+            for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+            {
+                CItem* PItem = PContainer->GetItem(slotID);
+                if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PItem);
+                    // If aura is tied then use whichever furniture was placed most recently
+                    if (PFurniture->isInstalled() &&
+                        PFurniture->getElement() == dominantElement &&
+                        (PFurniture->getAura() > bestAura || (PFurniture->getAura() == bestAura && PFurniture->getOrder() < bestOrder)))
+                    {
+                        bestAura = PFurniture->getAura();
+                        bestOrder = PFurniture->getOrder();
+                        newMoghancementID = PFurniture->getMoghancement();
+                    }
+                }
+            }
+        }
+    }
+
+    // Always show which moghancement the player has if they have one at all
+    if (newMoghancementID != 0)
+    {
+        pushPacket(new CMessageSpecialPacket(this, 6390, newMoghancementID, 0, 0, 0, 0));
+    }
+
+    if (newMoghancementID != m_moghancementID)
+    {
+        // Remove the previous moghancement
+        if (m_moghancementID != 0)
+            charutils::delKeyItem(this, m_moghancementID);
+
+        // Add the new moghancement
+        if (newMoghancementID != 0)
+            charutils::addKeyItem(this, newMoghancementID);
+
+        // Send only one key item packet if they are in the same key item table
+        uint8 newTable = newMoghancementID >> 9;
+        uint8 currentTable = m_moghancementID >> 9;
+        if (newTable == currentTable)
+        {
+            pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+        }
+        else
+        {
+            if (newTable != 0)
+                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+            if (currentTable != 0)
+                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)currentTable));
+        }
+        charutils::SaveKeyItems(this);
+
+        SetMoghancement(newMoghancementID);
+    }
+
+}
+
+void CCharEntity::SetMoghancement(uint16 moghancementID)
+{
+    m_moghancementID = moghancementID;
+
+    // Apply the moghancement
+    if (m_moghancementID != 0)
+    {
+        switch (m_moghancementID)
+        {
+            case MOGHANCEMENT_FIRE:
+                addModifier(Mod::SYNTH_FAIL_RATE_FIRE, 5);
+                break;
+            case MOGHANCEMENT_ICE:
+                addModifier(Mod::SYNTH_FAIL_RATE_ICE, 5);
+                break;
+            case MOGHANCEMENT_WIND:
+                addModifier(Mod::SYNTH_FAIL_RATE_WIND, 5);
+                break;
+            case MOGHANCEMENT_EARTH:
+                addModifier(Mod::SYNTH_FAIL_RATE_EARTH, 5);
+                break;
+            case MOGHANCEMENT_LIGHTNING:
+                addModifier(Mod::SYNTH_FAIL_RATE_LIGHTNING, 5);
+                break;
+            case MOGHANCEMENT_WATER:
+                addModifier(Mod::SYNTH_FAIL_RATE_WATER, 5);
+                break;
+            case MOGHANCEMENT_LIGHT:
+                addModifier(Mod::SYNTH_FAIL_RATE_LIGHT, 5);
+                break;
+            case MOGHANCEMENT_DARK:
+                addModifier(Mod::SYNTH_FAIL_RATE_DARK, 5);
+                break;
+
+            case MOGHANCEMENT_FISHING:
+                addModifier(Mod::FISH, 1);
+                break;
+            case MOGHANCEMENT_WOODWORKING:
+                addModifier(Mod::WOOD, 1);
+                break;
+            case MOGHANCEMENT_SMITHING:
+                addModifier(Mod::SMITH, 1);
+                break;
+            case MOGHANCEMENT_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 1);
+                break;
+            case MOGHANCEMENT_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 1);
+                break;
+            case MOGHANCEMENT_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 1);
+                break;
+            case MOGHANCEMENT_BONECRAFT:
+                addModifier(Mod::BONE, 1);
+                break;
+            case MOGHANCEMENT_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 1);
+                break;
+            case MOGHANCEMENT_COOKING:
+                addModifier(Mod::COOK, 1);
+                break;
+
+            case MOGLIFICATION_FISHING:
+                addModifier(Mod::FISH, 1);
+                // TODO: "makes it slightly easier to reel in your catch"
+                break;
+            case MOGLIFICATION_WOODWORKING:
+                addModifier(Mod::WOOD, 1);
+                break;
+            case MOGLIFICATION_SMITHING:
+                addModifier(Mod::SMITH, 1);
+                break;
+            case MOGLIFICATION_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 1);
+                break;
+            case MOGLIFICATION_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 1);
+                break;
+            case MOGLIFICATION_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 1);
+                break;
+            case MOGLIFICATION_BONECRAFT:
+                addModifier(Mod::BONE, 1);
+                break;
+            case MOGLIFICATION_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 1);
+                break;
+            case MOGLIFICATION_COOKING:
+                addModifier(Mod::COOK, 1);
+                break;
+
+            case MEGA_MOGLIFICATION_FISHING:
+                addModifier(Mod::FISH, 5);
+                break;
+            case MEGA_MOGLIFICATION_WOODWORKING:
+                addModifier(Mod::WOOD, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_WOOD, 5);
+                break;
+            case MEGA_MOGLIFICATION_SMITHING:
+                addModifier(Mod::SMITH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_SMITH, 5);
+                break;
+            case MEGA_MOGLIFICATION_GOLDSMITHING:
+                addModifier(Mod::GOLDSMITH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_GOLDSMITH, 5);
+                break;
+            case MEGA_MOGLIFICATION_CLOTHCRAFT:
+                addModifier(Mod::CLOTH, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_CLOTH, 5);
+                break;
+            case MEGA_MOGLIFICATION_LEATHERCRAFT:
+                addModifier(Mod::LEATHER, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_LEATHER, 5);
+                break;
+            case MEGA_MOGLIFICATION_BONECRAFT:
+                addModifier(Mod::BONE, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_BONE, 5);
+                break;
+            case MEGA_MOGLIFICATION_ALCHEMY:
+                addModifier(Mod::ALCHEMY, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_ALCHEMY, 5);
+                break;
+            case MEGA_MOGLIFICATION_COOKING:
+                addModifier(Mod::COOK, 5);
+                addModifier(Mod::SYNTH_FAIL_RATE_COOK, 5);
+                break;
+
+            case MOGHANCEMENT_EXPERIENCE:
+                addModifier(Mod::EXPERIENCE_RETAINED, 5);
+                break;
+            case MOGHANCEMENT_GARDENING:
+                // TODO: Reduces the chances of plants withering when gardening
+                break;
+            case MOGHANCEMENT_DESYNTHESIS:
+                addModifier(Mod::DESYNTH_SUCCESS, 2);
+                break;
+            case MOGHANCEMENT_CONQUEST:
+                addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_REGION:
+                addModifier(Mod::CONQUEST_REGION_BONUS, 10);
+                break;
+            case MOGHANCEMENT_FISHING_ITEM:
+                // TODO: Increases the chances of finding items when fishing
+                break;
+            case MOGHANCEMENT_SANDORIA_CONQUEST:
+                if (profile.nation == 0)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_BASTOK_CONQUEST:
+                if (profile.nation == 1)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_WINDURST_CONQUEST:
+                if (profile.nation == 2)
+                    addModifier(Mod::CONQUEST_BONUS, 6);
+                break;
+            case MOGHANCEMENT_MONEY:
+                addModifier(Mod::GILFINDER, 10);
+                break;
+            case MOGHANCEMENT_CAMPAIGN:
+                addModifier(Mod::CAMPAIGN_BONUS, 5);
+                break;
+            case MOGHANCEMENT_MONEY_II:
+                addModifier(Mod::GILFINDER, 15);
+                break;
+            case MOGHANCEMENT_SKILL_GAINS:
+                // NOTE: Exact value is unknown but considering this only granted by a newish item it makes sense SE made it fairly strong
+                addModifier(Mod::COMBAT_SKILLUP_RATE, 25);
+                addModifier(Mod::MAGIC_SKILLUP_RATE, 25);
+                break;
+            case MOGHANCEMENT_BOUNTY:
+                addModifier(Mod::EXP_BONUS, 10);
+                addModifier(Mod::CAPACITY_BONUS, 10);
+                break;
+            case MOGLIFICATION_EXPERIENCE_BOOST:
+                addModifier(Mod::EXP_BONUS, 15);
+                break;
+            case MOGLIFICATION_CAPACITY_BOOST:
+                addModifier(Mod::CAPACITY_BONUS, 15);
+                break;
+
+            // NOTE: Exact values for resistances is unknown
+            case MOGLIFICATION_RESIST_POISON:
+                addModifier(Mod::POISONRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_PARALYSIS:
+                addModifier(Mod::SILENCERES, 20);
+                break;
+            case MOGLIFICATION_RESIST_SILENCE:
+                addModifier(Mod::SILENCERES, 20);
+                break;
+            case MOGLIFICATION_RESIST_PETRIFICATION:
+                addModifier(Mod::PETRIFYRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_VIRUS:
+                addModifier(Mod::VIRUSRES, 20);
+                break;
+            case MOGLIFICATION_RESIST_CURSE:
+                addModifier(Mod::CURSERES, 20);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 void CCharEntity::TrackArrowUsageForScavenge(CItemWeapon* PAmmo)

@@ -30,7 +30,7 @@
 
 // List of Moghancements
 
-enum MOGHOUSE_AURA
+enum MOGHANCEMENT_TYPE
 {
     MOGHANCEMENT_FIRE                  = 512, // Reduces the chances of losing materials when synthesis attempts utilizing a fire crystal have failed
     MOGHANCEMENT_ICE                   = 513, // Reduces the chances of losing materials when synthesis attempts utilizing a ice crystal have failed
@@ -100,6 +100,67 @@ enum MOGHOUSE_AURA
     MOGLIFICATION_RESIST_CURSE         = 2855  // Slightly improves your resistance to curse effects
 };
 
+static const std::initializer_list<MOGHANCEMENT_TYPE> MoghancementList =
+{
+    MOGHANCEMENT_FIRE,
+    MOGHANCEMENT_ICE,
+    MOGHANCEMENT_WIND,
+    MOGHANCEMENT_EARTH,
+    MOGHANCEMENT_LIGHTNING,
+    MOGHANCEMENT_WATER,
+    MOGHANCEMENT_LIGHT,
+    MOGHANCEMENT_DARK,
+    MOGHANCEMENT_FISHING,
+    MOGHANCEMENT_WOODWORKING,
+    MOGHANCEMENT_SMITHING,
+    MOGHANCEMENT_GOLDSMITHING,
+    MOGHANCEMENT_CLOTHCRAFT,
+    MOGHANCEMENT_LEATHERCRAFT,
+    MOGHANCEMENT_BONECRAFT,
+    MOGHANCEMENT_ALCHEMY,
+    MOGHANCEMENT_COOKING,
+    MOGLIFICATION_FISHING,
+    MOGLIFICATION_WOODWORKING,
+    MOGLIFICATION_SMITHING,
+    MOGLIFICATION_GOLDSMITHING,
+    MOGLIFICATION_CLOTHCRAFT,
+    MOGLIFICATION_LEATHERCRAFT,
+    MOGLIFICATION_BONECRAFT,
+    MOGLIFICATION_ALCHEMY,
+    MOGLIFICATION_COOKING,
+    MEGA_MOGLIFICATION_FISHING,
+    MEGA_MOGLIFICATION_WOODWORKING,
+    MEGA_MOGLIFICATION_SMITHING,
+    MEGA_MOGLIFICATION_GOLDSMITHING,
+    MEGA_MOGLIFICATION_CLOTHCRAFT,
+    MEGA_MOGLIFICATION_LEATHERCRAFT,
+    MEGA_MOGLIFICATION_BONECRAFT,
+    MEGA_MOGLIFICATION_ALCHEMY,
+    MEGA_MOGLIFICATION_COOKING,
+    MOGHANCEMENT_EXPERIENCE,
+    MOGHANCEMENT_GARDENING,
+    MOGHANCEMENT_DESYNTHESIS,
+    MOGHANCEMENT_CONQUEST,
+    MOGHANCEMENT_REGION,
+    MOGHANCEMENT_FISHING_ITEM,
+    MOGHANCEMENT_SANDORIA_CONQUEST,
+    MOGHANCEMENT_BASTOK_CONQUEST,
+    MOGHANCEMENT_WINDURST_CONQUEST,
+    MOGHANCEMENT_MONEY,
+    MOGHANCEMENT_CAMPAIGN,
+    MOGHANCEMENT_MONEY_II,
+    MOGHANCEMENT_SKILL_GAINS,
+    MOGHANCEMENT_BOUNTY,
+    MOGLIFICATION_EXPERIENCE_BOOST,
+    MOGLIFICATION_CAPACITY_BOOST,
+    MOGLIFICATION_RESIST_POISON,
+    MOGLIFICATION_RESIST_PARALYSIS,
+    MOGLIFICATION_RESIST_SILENCE,
+    MOGLIFICATION_RESIST_PETRIFICATION,
+    MOGLIFICATION_RESIST_VIRUS,
+    MOGLIFICATION_RESIST_CURSE,
+};
+
 class CItemFurnishing : public CItem
 {
 public:
@@ -108,7 +169,7 @@ public:
 	virtual ~CItemFurnishing();
 
 	uint8	getStorage();
-	uint8	getMoghancement();
+	uint16	getMoghancement();
 	uint8	getElement();
 	uint8	getAura();
 
@@ -117,10 +178,11 @@ public:
 	uint8	getRow();
 	uint8	getLevel();
 	uint8	getRotation();
+    uint8   getOrder(); // Gets Placement order with 0 being the most recently placed furniture
 
     void    setInstalled(bool installed);
 	void	setStorage(uint8 storage);
-	void	setMoghancement(uint8 moghancement);
+	void	setMoghancement(uint16 moghancement);
 	void	setElement(uint8 element);
 	void	setAura(uint8 aura);
 
@@ -128,11 +190,12 @@ public:
 	void	setRow(uint8 row);
 	void	setLevel(uint8 level);
 	void	setRotation(uint8 rotation);
+    void    setOrder(uint8 order);
 	
 private:
 
 	uint8	m_storage;
-	uint8	m_moghancement;
+	uint16	m_moghancement;
 	uint8	m_element;
 	uint8	m_aura;
 };
