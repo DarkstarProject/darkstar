@@ -28,6 +28,11 @@
 
 #include "basic.h"
 
+enum MSGSPECIAL_ID : uint16
+{
+    MSGSPECIAL_KEYITEM_OBTAINED = 6390, /* Obtained key item: <item>. */
+};
+
 /************************************************************************
 *																		*
 *  																		*

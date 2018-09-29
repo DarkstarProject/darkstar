@@ -1751,7 +1751,7 @@ void CCharEntity::UpdateMoghancement()
     // Always show which moghancement the player has if they have one at all
     if (newMoghancementID != 0)
     {
-        pushPacket(new CMessageSpecialPacket(this, 6390, newMoghancementID, 0, 0, 0, 0));
+        pushPacket(new CMessageSpecialPacket(this, MSGSPECIAL_KEYITEM_OBTAINED, newMoghancementID, 0, 0, 0, 0));
     }
 
     if (newMoghancementID != m_moghancementID)
