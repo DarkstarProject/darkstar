@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Breanainn
--- !pos 212 -6 96 240
+-- @zone 240
+-- !pos 212 -6 96
 -----------------------------------
 package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------

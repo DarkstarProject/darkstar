@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Phileem
 -- Type: Standard NPC
--- !pos -20 0 -105 256
+--  @zone 256
+-- !pos -20 0 -105
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -5,16 +5,15 @@
 -----------------------------------
 package.loaded[ "scripts/zones/Xarcabard/TextIDs"] = nil;
 -----------------------------------
-require("scripts/globals/icanheararainbow");
 require("scripts/zones/Xarcabard/TextIDs");
-require("scripts/zones/Xarcabard/MobIDs");
-require("scripts/globals/conquest");
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
+require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    SetRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onZoneIn( player, prevZone)
@@ -32,7 +31,7 @@ function onZoneIn( player, prevZone)
 
     if (player:hasKeyItem( dsp.ki.VIAL_OF_SHROUDED_SAND) == false and player:getRank() >= 6 and player:getMainLvl() >= 65 and player:getVar( "Dynamis_Status") == 0) then
         player:setVar( "Dynamis_Status", 1);
-        cs = 13;
+        cs = 0x000D;
     elseif (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 9;
     elseif (UnbridledPassionCS == 3) then
@@ -45,7 +44,11 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onRegionEnter( player, region)

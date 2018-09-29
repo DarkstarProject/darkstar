@@ -4,9 +4,7 @@
 --(Taken from 'mob_spawn_points' table)
 -----------------------------------
 
-HARVESTMAN          = 16990252
-LIVIDROOT_AMOOSHAH  = 16990473
-DEA                 = 16990474
+HARVESTMAN = 16990252;
 
 MAHISHASURA_PH =
 {

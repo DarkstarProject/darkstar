@@ -3,28 +3,40 @@
 --     dsp.effect.INT_DOWN
 --
 -----------------------------------
-require("scripts/globals/status")
+
+require("scripts/globals/status");
+
+-----------------------------------
+-- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
     if ((target:getStat(dsp.mod.INT) - effect:getPower()) < 0) then
-        effect:setPower(target:getStat(dsp.mod.INT))
+        effect:setPower(target:getStat(dsp.mod.INT));
     end
-    target:addMod(dsp.mod.INT,-effect:getPower())
-end
+    target:addMod(dsp.mod.INT,-effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
     -- the effect restore intelligence of 1 every 3 ticks.
     local downINT_effect_size = effect:getPower()
     if (downINT_effect_size > 0) then
         effect:setPower(downINT_effect_size - 1)
-        target:delMod(dsp.mod.INT,-1)
+        target:delMod(dsp.mod.INT,-1);
     end
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
     local downINT_effect_size = effect:getPower()
     if (downINT_effect_size > 0) then
-        target:delMod(dsp.mod.INT,-downINT_effect_size)
+        target:delMod(dsp.mod.INT,-downINT_effect_size);
     end
-end
+end;

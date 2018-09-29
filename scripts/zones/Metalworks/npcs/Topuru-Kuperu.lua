@@ -2,7 +2,8 @@
 -- Area: Metalworks
 --   NPC: Topuru-Kuperu
 -- Type: Standard NPC
--- !pos 28.284 -17.39 42.269 237
+-- @zone 237
+-- !pos 28.284 -17.39 42.269
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

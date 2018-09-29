@@ -2,7 +2,8 @@
 -- Area: Port Windurst
 --   NPC: Boronene
 -- Type: Moghouse Renter
--- !pos 201.651 -13 229.584 240
+-- @zone 240
+-- !pos 201.651 -13 229.584
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

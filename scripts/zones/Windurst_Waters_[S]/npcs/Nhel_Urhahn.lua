@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Nhel Urhahn
 -- Type: Standard NPC
--- !pos -47.348 -4.499 47.117 94
+-- @zone 94
+-- !pos -47.348 -4.499 47.117
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Legata
 -- Starts and Finishes Quest: Starting a Flame (R)
--- !pos 82 0 116 230
+-- @zone 230
+-- !pos 82 0 116
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

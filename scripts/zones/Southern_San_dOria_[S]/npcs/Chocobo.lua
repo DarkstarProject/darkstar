@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
--- NPC: Chocobo
--- !zone 80
+-- NPC:
+-- @zone 80
+-- !pos
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

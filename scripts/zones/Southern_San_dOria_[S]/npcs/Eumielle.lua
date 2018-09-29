@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Eumielle
--- !pos 15 2 2 80
+-- @zone 80
+-- !pos 15 2 2
 -----------------------------------
 
 function onTrade(player,npc,trade)

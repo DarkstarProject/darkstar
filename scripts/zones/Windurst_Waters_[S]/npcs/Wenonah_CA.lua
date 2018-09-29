@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Wenonah, C.A.
 -- Type: Campaign Arbiter
--- !pos -2.175 -2 10.184 94
+-- @zone 94
+-- !pos -2.175 -2 10.184
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

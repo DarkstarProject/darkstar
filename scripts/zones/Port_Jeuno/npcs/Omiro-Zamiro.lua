@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Omiro-Zamiro
--- !pos 3 7 -54 246
+-- @zone 246
+-- !pos 3 7 -54
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------

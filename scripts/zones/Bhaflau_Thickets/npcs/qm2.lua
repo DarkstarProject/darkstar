@@ -3,26 +3,28 @@
 --  NPC: ??? (Spawn Dea(ZNM T3))
 -- !pos -34 -32 481 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil
+package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs")
-require("scripts/zones/Bhaflau_Thickets/MobIDs")
-require("scripts/globals/npc_util")
+require("scripts/zones/Bhaflau_Thickets/TextIDs");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2576) and not GetMobByID(DEA):isSpawned() then -- Olzhiryan Cactus
-        player:confirmTrade()
-        SpawnMob(DEA):updateClaim(player)
+    local mobID = 16990474;
+    if (trade:hasItemQty(2576,1) and trade:getItemCount() == 1) then -- Trade Olzhiryan Cactus
+        if (GetMobAction(mobID) == dsp.act.NONE) then
+            player:tradeComplete();
+            SpawnMob(mobID):updateClaim(player);
+        end
     end
-end
+end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS)
-end
+    player:messageSpecial(NOTHING_HAPPENS);
+end;
 
 function onEventUpdate(player,csid,option)
-end
+end;
 
 function onEventFinish(player,csid,option)
-end
+end;

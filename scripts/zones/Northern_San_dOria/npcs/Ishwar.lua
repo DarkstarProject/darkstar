@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Ishwar
 -- Type: Standard Dialogue NPC
--- !pos -47.103 -1.999 -19.582 231
+--  @zone 231
+-- !pos -47.103 -1.999 -19.582
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

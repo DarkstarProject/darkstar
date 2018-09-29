@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Port Windurst
+-- Area: Windurst Waters
 --  NPC: Ohruru
 -- Starts & Finishes Repeatable Quest: Catch me if you can
 -- Involved in Quest: Wonder Wands

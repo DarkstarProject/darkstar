@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Andrival
 -- Type: Standard NPC
--- !pos 26 0 127 256
+--  @zone 256
+-- !pos 26 0 127
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------

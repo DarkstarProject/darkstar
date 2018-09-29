@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Rabao
---  NPC: Porter Moogle
--- Type: Storage Moogle
--- !zone 247
+-- Area:   Rabao
+--  NPC:  Porter Moogle
+-- Type:   Storage Moogle
+--  @zone 247
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------

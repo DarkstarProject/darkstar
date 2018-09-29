@@ -2,7 +2,8 @@
 -- Area: Bastok Mines
 --   NPC: Zopago
 -- Type: VCS Chocobo Trainer
--- !pos 51.706 -0.126 -109.065 234
+-- @zone 234
+-- !pos 51.706 -0.126 -109.065
 --
 -- Auto-Script: Requires Verification
 -----------------------------------

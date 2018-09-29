@@ -2,7 +2,8 @@
 -- Area: Castle Zvahl Baileys
 --  MOB: Dark Spark
 -- Involved in Quests: Borghertz's Hands (AF Hands, Many job)
--- !pos 63 -24 21 161
+-- @zone 161
+-- !pos 63 -24 21
 -----------------------------------
 package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
 -----------------------------------

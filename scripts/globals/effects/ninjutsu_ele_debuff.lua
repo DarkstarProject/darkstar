@@ -4,13 +4,25 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-    target:addMod(effect:getSubPower(), -effect:getPower())
-end
+    target:addMod(effect:getSubPower(), -effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:delMod(effect:getSubPower(), -effect:getPower())
-end
+    target:delMod(effect:getSubPower(), -effect:getPower());
+end;

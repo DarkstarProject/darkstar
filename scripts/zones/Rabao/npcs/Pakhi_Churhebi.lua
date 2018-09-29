@@ -2,7 +2,8 @@
 -- Area: Rabao
 --  NPC: Pakhi Churhebi
 -- Type: Item Deliverer
--- !pos 158.428 7.999 78.009 247
+--  @zone 247
+-- !pos 158.428    7.999    78.009
 --
 -----------------------------------
 package.loaded["scripts/zones/Rabao/TextIDs"] = nil;

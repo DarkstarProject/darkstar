@@ -1,17 +1,29 @@
 -----------------------------------
 --
--- dsp.effect.BIND
+--     dsp.effect.BIND
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-    effect:setPower(target:speed())
-    target:speed(0)
-end
+    effect:setPower(target:speed());
+    target:speed(0);
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:speed(effect:getPower())
-end
+    target:speed(effect:getPower());
+end;

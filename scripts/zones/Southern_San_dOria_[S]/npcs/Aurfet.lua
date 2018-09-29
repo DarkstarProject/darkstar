@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Aurfet
--- !pos -78 -8 -22 80
+-- @zone 80
+-- !pos -78 -8 -22
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

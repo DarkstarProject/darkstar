@@ -14,10 +14,10 @@ function attemptPickLock(player, npc, correctSideOfDoor)
             player:messageSpecial(DOOR_LOCKED);
         else
             if (math.random(1,2) == 1) then
-                npc:messageName(DISCOVER_DISARM_FAIL, player);
+                player:messageSpecial(DISCOVER_DISARM_FAIL + 0x8000, 0, 0, 0, 0, true); -- + 0x8000 and 6th param true makes it display player name in message.
                 SpawnMob(gargoyle):updateClaim(player);
             else
-                npc:messageName(DISCOVER_DISARM_SUCCESS, player);
+                player:messageSpecial(DISCOVER_DISARM_SUCCESS + 0x8000, 0, 0, 0, 0, true);
                 npc:openDoor(30);
             end
             player:tradeComplete();
@@ -39,10 +39,10 @@ function attemptOpenDoor(player, npc, correctSideOfDoor)
                 player:messageSpecial(DOOR_LOCKED);
             else
                 if (math.random(1,10) <= 9) then -- Spawn Gargoyle
-                    npc:messageName(TRAP_ACTIVATED, player);
+                    player:messageSpecial(TRAP_ACTIVATED + 0x8000, 0, 0, 0, 0, true); -- + 0x8000 and 6th param true makes it display player name in message.
                     SpawnMob(gargoyle):updateClaim(player);
                 else
-                    npc:messageName(TRAP_FAILS, player);
+                    player:messageSpecial(TRAP_FAILS + 0x8000, 0, 0, 0, 0, true);
                     npc:openDoor(30);
                 end
             end

@@ -1,7 +1,8 @@
 -----------------------------------
--- Area: Horlais Peak
+-- Area: Northern San d'Oria
 --  NPC: Hot Springs
--- !pos 444 -37 -18 139
+-- @zone 139
+-- !pos  444 -37 -18
 -----------------------------------
 package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
 -----------------------------------

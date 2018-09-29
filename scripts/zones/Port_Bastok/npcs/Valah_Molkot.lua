@@ -2,7 +2,8 @@
 -- Area: Port Bastok
 --  NPC: Valah Molkot
 -- Starts and Finishes Quest: A Lady's Heart
--- !pos 59 8 -221 236
+-- @zone 236
+-- !pos 59 8 -221
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");

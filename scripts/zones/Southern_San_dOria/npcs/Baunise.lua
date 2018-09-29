@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Baunise
 -- Involved in Quest: A Knight's Test
--- !pos -55 -8 -32 230
+-- @zone 230
+-- !pos -55 -8 -32
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

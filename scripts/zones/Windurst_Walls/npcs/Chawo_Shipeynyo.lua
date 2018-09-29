@@ -2,7 +2,8 @@
 -- Area: Windurst Walls
 --   NPC: Chawo Shipeynyo
 -- Type: Standard NPC
--- !pos 3.593 -17 124.069 239
+-- @zone 239
+-- !pos 3.593 -17 124.069
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

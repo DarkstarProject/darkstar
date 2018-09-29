@@ -44,22 +44,22 @@ function hasAssaultOrders(player)
     local keyitem = 0;
 
     if (player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS)) then -- assault @ Azouph Isle
-        event = 120;
+        event = 0x0078;
         keyitem = dsp.ki.LEUJAOAM_ASSAULT_ORDERS;
     elseif (player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS)) then -- assault @ Mamool Ja
-        event = 121;
+        event = 0x0079;
         keyitem = dsp.ki.MAMOOL_JA_ASSAULT_ORDERS;
     elseif (player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS)) then -- assault @ Halvung
-        event = 122;
+        event = 0x007A;
         keyitem = dsp.ki.LEBROS_ASSAULT_ORDERS;
     elseif (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)) then -- assault @ Dvucca Isle
-        event = 123;
+        event = 0x007B;
         keyitem = dsp.ki.PERIQIA_ASSAULT_ORDERS;
     elseif (player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS)) then -- assault @ Ilrusi Atoll
-        event = 124;
+        event = 0x007C;
         keyitem = dsp.ki.ILRUSI_ASSAULT_ORDERS;
     elseif (player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)) then -- assault @  Nyzul Isle
-        event = 125;
+        event = 0x007D;
         keyitem = dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS;
     end
 
@@ -72,9 +72,9 @@ end;
 ------------------------------------------------------------------
 
 function getMapBitmask(player)
-    if (player:hasKeyItem(dsp.ki.MAP_OF_MAMOOK)) then mamook = 1 else mamook = 0 end -- Map of Mammok
-    if (player:hasKeyItem(dsp.ki.MAP_OF_HALVUNG)) then halvung = 1 else halvung = 0 end -- Map of Halvung
-    if (player:hasKeyItem(dsp.ki.MAP_OF_ARRAPAGO_REEF)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
+    if (player:hasKeyItem(1862)) then mamook = 1 else mamook = 0 end -- Map of Mammok
+    if (player:hasKeyItem(1863)) then halvung = 1 else halvung = 0 end -- Map of Halvung
+    if (player:hasKeyItem(1864)) then arrapago = 1 else arrapago = 0 end -- Map of Arrapago Reef
     local maps = mamook + 2 * halvung + 4 * arrapago;
 
     return maps;
@@ -96,7 +96,7 @@ end;
 
 function getMercenaryRank(player)
     local rank = 0;
-    local badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
+    local badges = { 0x030C, 0x030F, 0x0310, 0x031A, 0x031B, 0x0339, 0x033A, 0x033B, 0x037E, 0x0384, 0x38D }
 
     while player:hasKeyItem(badges[rank + 1]) == true do
         rank = rank + 1;
@@ -266,11 +266,6 @@ function getISPItem(i)
         [24577] = {id = 19021, price = 20000}, -- katana strap
         [28673] = {id = 19022, price = 20000}, -- axe grip
         [32769] = {id = 19023, price = 20000}, -- staff strap
-        [36865] = {id = 3307, price = 5000}, -- heat capacitor
-        [40961] = {id = 3308, price = 5000}, -- power cooler
-        [45057] = {id = 3309, price = 5000}, -- barrage turbine
-        [53249] = {id = 3311, price = 5000}, -- galvanizer
-        [57345] = {id = 6409, price = 50000},
         -- Private First Class
         -- No items in this rank?
         -- Private First Class

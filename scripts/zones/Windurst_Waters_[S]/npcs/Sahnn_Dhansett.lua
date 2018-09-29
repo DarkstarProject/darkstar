@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Sahnn Dhansett
 -- Type: Standard NPC
--- !pos 112.820 -3.122 47.857 94
+-- @zone 94
+-- !pos 112.820 -3.122 47.857
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

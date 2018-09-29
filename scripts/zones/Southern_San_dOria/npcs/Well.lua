@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Well
 -- Involved in Quest: Grave Concerns
--- !pos -129 -6 92 230
+-- @zone 230
+-- !pos -129 -6 92
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

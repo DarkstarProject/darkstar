@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ship bound for Selbina
+-- Area: Balga Dais
 --  MOB: Enagakure
 -- Involved in Quest: I'll Take the Big Box
 -----------------------------------

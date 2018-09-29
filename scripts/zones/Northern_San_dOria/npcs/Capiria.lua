@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Capiria
 -- Type: Involved in Quest (Flyers for Regine)
--- !pos -127.355 0.000 130.461 231
+--  @zone 231
+-- !pos -127.355 0.000 130.461
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

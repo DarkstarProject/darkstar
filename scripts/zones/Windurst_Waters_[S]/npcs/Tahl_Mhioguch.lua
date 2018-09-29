@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Tahl Mhioguch
 -- Type: Standard NPC
--- !pos -64.907 -5.947 81.391 94
+-- @zone 94
+-- !pos -64.907 -5.947 81.391
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

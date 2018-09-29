@@ -13,13 +13,15 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.BASTOK then
+    local RegionOwner = GetRegionOwner(dsp.region.VALDEAUNIA)
+
+    if RegionOwner ~= dsp.nation.BASTOK then
         player:showText(npc, TIBELDA_CLOSED_DIALOG)
     else
         local stock =
         {
             4382,  29,    --Frost Turnip
-            638,  170,     --Sage
+            638,  170     --Sage
         }
 
         player:showText(npc, TIBELDA_OPEN_DIALOG)

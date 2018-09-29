@@ -2,7 +2,8 @@
 -- Area: Port Jeuno
 --  NPC: Tsolag
 -- Type: NPC
--- !pos -13 8 53 246
+-- @zone 246
+-- !pos -13 8 53
 -----------------------------------
 require("scripts/globals/settings");
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;

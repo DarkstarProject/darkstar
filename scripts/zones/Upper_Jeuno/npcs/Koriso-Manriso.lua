@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Koriso-Manriso
 -- Type: Item Deliverer
--- !pos -64.39 1 23.704 244
+--  @zone 244
+-- !pos -64.39    1    23.704
 --
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;

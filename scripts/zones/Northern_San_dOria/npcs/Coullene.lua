@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Coullene
 -- Type: Involved in Quest (Flyers for Regine)
--- !pos 146.420 0.000 127.601 231
+--  @zone 231
+-- !pos 146.420 0.000 127.601
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

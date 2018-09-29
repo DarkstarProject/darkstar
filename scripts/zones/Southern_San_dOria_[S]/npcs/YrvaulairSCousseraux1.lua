@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Yrvaulair S Cousseraux
--- !pos 0 1 -78 80
+-- @zone 80
+-- !pos 0 1 -78
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

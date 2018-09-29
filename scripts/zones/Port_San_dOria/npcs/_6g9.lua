@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Door: Departures Exit
--- !pos -19 -8 27 232
+-- @zone 232
+-- !pos -19 -8 27
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

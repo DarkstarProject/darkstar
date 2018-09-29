@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
 --  NPC: Treasure Coffer
--- !pos -219 0 32 159
+-- @zone 159
+-- !pos -219 0 32
 -----------------------------------
 package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
 -----------------------------------

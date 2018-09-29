@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Rongelouts N Distaud
--- !pos 0.067 2 -22 80
+-- @zone 80
+-- !pos 0.067 2 -22
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------

@@ -6,7 +6,6 @@
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------
 require("scripts/zones/Southern_San_dOria/TextIDs");
-require("scripts/globals/keyitems")
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -28,10 +27,10 @@ function onTrigger(player,npc)
 
     chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
 
-    if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
+    if (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(126) == false) then
         player:startEvent(611); -- Neeed CS here
-    elseif (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == true) then
-        player:startEvent(612,0,dsp.ki.A_SONG_OF_LOVE);
+    elseif (player:hasKeyItem(126) == true) then
+        player:startEvent(612,0,126);
     else
         player:startEvent(610);
     end
@@ -43,7 +42,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 611) then
-        player:addKeyItem(dsp.ki.A_SONG_OF_LOVE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.A_SONG_OF_LOVE);
+        player:addKeyItem(126);
+    player:messageSpecial(KEYITEM_OBTAINED,126);
     end
 end;

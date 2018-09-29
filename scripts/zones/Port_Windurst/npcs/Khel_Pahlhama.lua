@@ -1,30 +1,32 @@
 -----------------------------------
--- Area: Port Windurst
+-- Area: Port Bastok
 --  NPC: Khel Pahlhama
---  Linkshell Merchant
+--  Linkshell merchant
 -- !pos 21 -2 -20 240
+-- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
+package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
-require("scripts/globals/shop")
+require("scripts/globals/shop");
+require("scripts/zones/Port_Windurst/TextIDs");
+-----------------------------------
 
 function onTrade(player,npc,trade)
-end
+end;
 
 function onTrigger(player,npc)
-    local stock =
-    {
-        512,  8000,    -- Linkshell
-        16285, 375,    -- Pendant Compass
-    }
+    player:showText(npc,KHEL_PAHLHAMA_SHOP_DIALOG,513);
 
-    player:showText(npc, KHEL_PAHLHAMA_SHOP_DIALOG, 513)
-    dsp.shop.general(player, stock)
-end
+    stock = {
+        0x0200,  8000,       --Linkshell
+        0x3f9d,   375        --Pendant Compass
+    }
+    dsp.shop.general(player, stock);
+
+end;
 
 function onEventUpdate(player,csid,option)
-end
+end;
 
 function onEventFinish(player,csid,option)
-end
+end;

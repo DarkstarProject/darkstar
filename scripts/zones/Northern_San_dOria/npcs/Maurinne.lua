@@ -2,7 +2,8 @@
 -- Area: Northern San d'Oria
 --  NPC: Maurinne
 -- Type: Standard Dialogue NPC
--- !pos -127.185 0.000 179.193 231
+--  @zone 231
+-- !pos -127.185 0.000 179.193
 --
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;

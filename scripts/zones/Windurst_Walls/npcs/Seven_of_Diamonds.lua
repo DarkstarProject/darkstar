@@ -4,14 +4,14 @@
 -- Type: Standard NPC
 -- !pos 6.612 -3.5 278.553 239
 -----------------------------------
-require("scripts/globals/keyitems")
+package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if player:hasKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE) then
+    if player:hasKeyItem(267) then
         player:startEvent(390);
     else
         player:startEvent(264);

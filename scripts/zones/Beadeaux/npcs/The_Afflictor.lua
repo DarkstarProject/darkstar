@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Beadeaux
 --  NPC: The Afflictor
--- !zone 147
+-- @zone 147
+-- !pos <many.. Todo: list them?>
 -----------------------------------
 package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
 -----------------------------------

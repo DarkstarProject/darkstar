@@ -4,21 +4,13 @@
 --
 -----------------------------------
 
-local stats_bits =
-{
-    dsp.mod.STR,
-    dsp.mod.DEX,
-    dsp.mod.VIT,
-    dsp.mod.AGI,
-    dsp.mod.INT,
-    dsp.mod.MND,
-    dsp.mod.CHR,
-    dsp.mod.HPP,
-    dsp.mod.MPP
-}
+local stats_bits = {dsp.mod.STR, dsp.mod.DEX, dsp.mod.VIT, dsp.mod.AGI, dsp.mod.INT, dsp.mod.MND, dsp.mod.CHR, dsp.mod.HPP, dsp.mod.MPP}
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
 
 function onEffectGain(target,effect)
-    local power = effect:getPower()
+    local power = effect:getPower();
     for statbit,mod in ipairs(stats_bits) do
         if bit.band(bit.lshift(1, statbit - 1), power) > 0 then
             if mod == dsp.mod.HPP or mod == dsp.mod.MPP then
@@ -29,13 +21,21 @@ function onEffectGain(target,effect)
         end
     end
     target:setStatDebilitation(power)
-end
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    local power = effect:getPower()
+    local power = effect:getPower();
     for statbit,mod in ipairs(stats_bits) do
         if bit.band(bit.lshift(1, statbit - 1), power) > 0 then
             if mod == dsp.mod.HPP or mod == dsp.mod.MPP then
@@ -46,4 +46,4 @@ function onEffectLose(target,effect)
         end
     end
     target:setStatDebilitation(0)
-end
+end;

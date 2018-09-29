@@ -4,14 +4,21 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
 function onEffectGain(target,effect)
-end
-
+end;
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 function onEffectTick(target,effect)
-end
-
+end;
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 function onEffectLose(target,effect)
-    if (target:getHP() <= 0) then
-        target:sendReraise(effect:getPower())
+  if (target:getHP() <= 0) then
+        target:sendReraise(effect:getPower());
     end
-end
+end;

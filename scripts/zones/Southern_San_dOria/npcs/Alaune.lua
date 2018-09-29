@@ -2,7 +2,8 @@
 -- Area: Southern San d`Oria
 --   NPC: Alaune
 -- Type: Tutorial NPC
--- !pos -90 1 -56 230
+--  @zone 230
+-- !pos -90 1 -56
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

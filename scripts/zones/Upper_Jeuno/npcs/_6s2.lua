@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Galmut's door
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
--- !pos -80 0 104 244
+-- @zone 244
+-- !pos -80 0 104
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 package.loaded["scripts/globals/settings"] = nil;

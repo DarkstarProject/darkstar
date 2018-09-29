@@ -2,7 +2,8 @@
 -- Area: Rabao
 --   NPC: Dancing Wolf
 -- Type: Standard NPC
--- !pos 7.619 7 81.209 247
+-- @zone 247
+-- !pos 7.619 7 81.209
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

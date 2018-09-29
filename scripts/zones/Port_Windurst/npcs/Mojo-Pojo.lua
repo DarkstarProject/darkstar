@@ -2,7 +2,8 @@
 -- Area: Port Windurst
 --   NPC: Mojo-Pojo
 -- Type: Standard NPC
--- !pos -108.041 -4.25 109.545 240
+-- @zone 240
+-- !pos -108.041 -4.25 109.545
 -----------------------------------
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")

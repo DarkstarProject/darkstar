@@ -4,17 +4,29 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
     if (target:getPet()) then
-        target:getPet():addStatusEffect(effect)
+        target:getPet():addStatusEffect(effect);
     end
-end
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
     if (target:getPet()) then
-        target:getPet():delStatusEffect(dsp.effect.ALLIED_TAGS)
+        target:getPet():delStatusEffect(dsp.effect.ALLIED_TAGS);
     end
-end
+end;

@@ -40,8 +40,6 @@ function onTrigger(player,npc)
             player:startEvent(149);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(197);
-        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
-            player:startEvent(632);
         else
             flagMission, repeatMission = getMissionMask(player);
             player:startEvent(114,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
@@ -63,7 +61,5 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
-    if (csid == 632) then
-        player:setVar("WWoodsRTenText",1);
-    end
+
 end;

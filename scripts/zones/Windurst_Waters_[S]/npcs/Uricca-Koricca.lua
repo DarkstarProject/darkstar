@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Uricca-Koricca
 -- Type: Standard NPC
--- !pos -102.221 -3 48.791 94
+-- @zone 94
+-- !pos -102.221 -3 48.791
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

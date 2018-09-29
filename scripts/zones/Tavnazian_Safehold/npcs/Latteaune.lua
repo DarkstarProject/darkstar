@@ -2,7 +2,8 @@
 -- Area: Tavnazian Safehold
 --   NPC: Latteaune
 -- Type: Event Scene Replayer
--- !pos -16.426 -28.889 109.626 26
+-- @zone 26
+-- !pos -16.426 -28.889 109.626
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

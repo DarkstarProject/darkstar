@@ -3,16 +3,28 @@
 --
 --  Absorbs a certain amount of damage from physical and magical attacks.
 -----------------------------------
-require("scripts/globals/status")
+
+require("scripts/globals/status");
+
+-----------------------------------
+-- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:setMod(dsp.mod.STONESKIN, effect:getPower())
-end
+    target:setMod(dsp.mod.STONESKIN, effect:getPower());
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:setMod(dsp.mod.STONESKIN, 0)
-end
+    target:setMod(dsp.mod.STONESKIN, 0);
+end;

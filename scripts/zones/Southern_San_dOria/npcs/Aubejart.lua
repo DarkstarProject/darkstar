@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Aubejart
 --  General Info NPC
--- !pos 3 -2 46 230
+-- @zone 230
+-- !pos 3 -2 46
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

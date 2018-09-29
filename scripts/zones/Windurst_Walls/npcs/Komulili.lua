@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Windurst Walls
+-- Area: Port Windurst
 --  NPC: Komulili
 -- Warps players to Port Windurst
 -----------------------------------

@@ -1,34 +1,38 @@
 -----------------------------------
 -- Attachment: Mana Tank
 -----------------------------------
-require("scripts/globals/status")
+require("scripts/globals/status");
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.MPP, 5)
+    pet:addMod(dsp.mod.MPP, 4);
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.MPP, 5)
+    pet:delMod(dsp.mod.MPP, 4);
 end
 
--- refresh values from http://wiki.ffo.jp/html/5330.html
-local prefix = "manaTank1_"
-local refreshValues =
-{
-    [1] = {base=1, pct=0.2},
-    [2] = {base=1, pct=0.2},
-    [3] = {base=1, pct=0.2},
-}
-
 function onManeuverGain(pet,maneuvers)
-    local rVals = refreshValues[maneuvers]
-    local power = math.floor(rVals.base + (pet:getMaxMP() * rVals.pct / 100))
-
-    pet:setLocalVar(prefix .. maneuvers, power)
-    pet:addMod(dsp.mod.REFRESH, power)
+    local bonus = 0
+    local frame = pet:getAutomatonFrame()
+    if frame == 0x23 then bonus = 1 end
+    if (maneuvers == 1) then
+        pet:addMod(dsp.mod.REFRESH, 1 + bonus);
+    elseif (maneuvers == 2) then
+        pet:addMod(dsp.mod.REFRESH, 1 + bonus);
+    elseif (maneuvers == 3) then
+        pet:addMod(dsp.mod.REFRESH, 2 + bonus);
+    end
 end
 
 function onManeuverLose(pet,maneuvers)
-    pet:delMod(dsp.mod.REFRESH, pet:getLocalVar(prefix .. maneuvers))
-    pet:setLocalVar(prefix .. maneuvers, 0)
+    local bonus = 0
+    local frame = pet:getAutomatonFrame()
+    if frame == 0x23 then bonus = 1 end
+    if (maneuvers == 1) then
+        pet:delMod(dsp.mod.REFRESH, 1 + bonus);
+    elseif (maneuvers == 2) then
+        pet:delMod(dsp.mod.REFRESH, 1 + bonus);
+    elseif (maneuvers == 3) then
+        pet:delMod(dsp.mod.REFRESH, 2 + bonus);
+    end
 end

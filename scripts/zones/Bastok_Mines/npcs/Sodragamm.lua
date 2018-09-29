@@ -2,7 +2,8 @@
 -- Area: Bastok Mines
 --   NPC: Sodragamm
 -- Type: Item Deliverer
--- !pos -24.741 -1 -64.944 234
+-- @zone 234
+-- !pos -24.741 -1 -64.944
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

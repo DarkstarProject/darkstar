@@ -2,7 +2,8 @@
 -- Area: Lower Jeuno
 --  NPC: Subash
 -- Type: Item Deliverer
--- !pos -19.84 -0.101 -38.081 245
+--  @zone 245
+-- !pos -19.84    -0.101    -38.081
 --
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;

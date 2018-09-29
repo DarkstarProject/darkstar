@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Silver Sea route to Nashmau
+-- Area: Silver sea route to Mhaura
 --  NPC: Jidwahn
 -- Guild Merchant NPC: Fishing Guild
 -- !pos 4.986 -2.101 -12.026 58

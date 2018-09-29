@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ragyaya
 -- Type: Standard NPC
--- !pos -95.376 -3 60.795 94
+-- @zone 94
+-- !pos -95.376 -3 60.795
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

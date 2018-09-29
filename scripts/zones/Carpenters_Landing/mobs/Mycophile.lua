@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Mamool Ja Training Grounds (Preemptive Strike)
---  MOB: Mamool Ja Executioner
+-- Area: Carpenters' Landing
+--  MOB: Mycophile
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -10,6 +10,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    local instance = mob:getInstance();
-    instance:setProgress(instance:getProgress() + 1);
+    GetNPCByID(16785729):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

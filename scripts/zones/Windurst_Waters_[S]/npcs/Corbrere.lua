@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Corbrere
 -- Type: Standard NPC
--- !pos -46.925 -4.5 49.006 94
+-- @zone 94
+-- !pos -46.925 -4.5 49.006
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

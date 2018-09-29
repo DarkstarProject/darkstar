@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Celyddon
 --  General Info NPC
--- !pos -129 -6 90 230
+-- @zone 230
+-- !pos -129 -6 90
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

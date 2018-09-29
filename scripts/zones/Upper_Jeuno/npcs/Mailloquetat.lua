@@ -2,7 +2,8 @@
 -- Area: Upper Jeuno
 --  NPC: Mailloquetat
 -- Involved in Quests: Save my Sister
--- !pos -31 -1 8 244
+-- @zone 244
+-- !pos -31 -1 8
 -----------------------------------
 package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------

@@ -2,7 +2,8 @@
 -- Area: Windurst Woods
 --   NPC: Dahjal
 -- Type: Conquest Troupe
--- !pos 11.639 1.267 -57.706 241
+-- @zone 241
+-- !pos 11.639 1.267 -57.706
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

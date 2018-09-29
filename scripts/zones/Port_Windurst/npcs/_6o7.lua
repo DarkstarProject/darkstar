@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Door: Arrivals Entrance
--- !pos 212 -6 96 240
+-- @zone 240
+-- !pos 212 -6 96
 -----------------------------------
 package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
 -----------------------------------

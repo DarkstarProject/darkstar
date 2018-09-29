@@ -2,7 +2,8 @@
 -- Area: Windurst Waters (S)
 --   NPC: Pahpe Rauulih
 -- Type: Standard NPC
--- !pos -39.740 -4.499 53.223 94
+-- @zone 94
+-- !pos -39.740 -4.499 53.223
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

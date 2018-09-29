@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Parvipon
 -- Starts and Finishes Quest: The Merchant's Bidding (R)
--- !pos -169 -1 13 230
+-- @zone 230
+-- !pos -169 -1 13
 -----------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

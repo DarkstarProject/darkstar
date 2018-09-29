@@ -2,7 +2,8 @@
 -- Area: Windurst Waters
 --   NPC: Serukoko
 -- Type: Standard NPC
--- !pos -54.916 -7.499 114.855 238
+-- @zone 238
+-- !pos -54.916 -7.499 114.855
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------

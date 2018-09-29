@@ -25,16 +25,16 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 223) then
-            cs = 10018;
+            cs = 0x2722;
             player:setPos(-87.000, 12.000, 116.000, 128);
         elseif (prevZone == 224) then
-            cs = 10020;
+            cs = 0x2724;
             player:setPos(-50.000, 12.000, -116.000, 0);
         elseif (prevZone == 225) then
-            cs = 10019;
+            cs = 0x2723;
             player:setPos(16.000, 12.000, -117.000, 0);
         elseif (prevZone == 226) then
-            cs = 10021;
+            cs = 0x2725;
             player:setPos(-24.000, 12.000, 116.000, 128);
         else
             local position = math.random(1,3) - 2;
@@ -53,7 +53,11 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onTransportEvent(player,transport)

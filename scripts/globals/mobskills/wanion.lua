@@ -1,31 +1,43 @@
 ---------------------------------------------
 -- Wanion
--- Transfers all ailments the Seether itself has to players in AoE range.
+-- AoE of all status ailments it has.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves")
-require("scripts/globals/status")
-require("scripts/globals/msg")
+require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings");
+require("scripts/globals/status");
+require("scripts/globals/msg");
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    return 0
-end
+    return 0;
+end;
 
 function onMobWeaponSkill(target, mob, skill)
     -- list of effects to give in AoE
-    local effects = {dsp.effect.POISON,dsp.effect.PARALYSIS,dsp.effect.BLINDNESS,dsp.effect.SILENCE,
-        dsp.effect.WEIGHT,dsp.effect.SLOW,dsp.effect.ADDLE,dsp.effect.DIA,dsp.effect.BIO,dsp.effect.BURN,
-        dsp.effect.FROST,dsp.effect.CHOKE,dsp.effect.RASP,dsp.effect.SHOCK,dsp.effect.DROWN,dsp.effect.STR_DOWN,
-        dsp.effect.DEX_DOWN,dsp.effect.VIT_DOWN,dsp.effect.AGI_DOWN,dsp.effect.INT_DOWN,dsp.effect.MND_DOWN,
-        dsp.effect.CHR_DOWN,dsp.effect.ACCURACY_DOWN,dsp.effect.ATTACK_DOWN,dsp.effect.EVASION_DOWN,
-        dsp.effect.DEFENSE_DOWN,dsp.effect.MAGIC_DEF_DOWN,dsp.effect.MAGIC_ACC_DOWN,dsp.effect.MAGIC_ATK_DOWN}
+    local effects = {dsp.effect.SLOW, dsp.effect.DIA, dsp.effect.BIO, dsp.effect.WEIGHT, dsp.effect.DEFENSE_DOWN, dsp.effect.PARALYSIS, dsp.effect.BLINDNESS, dsp.effect.SILENCE, dsp.effect.POISON}
+    local lastEffect = 0;
+    local effectCount = false;
 
     for i, effect in ipairs(effects) do
-        if mob:hasStatusEffect(effect) then
-            local currentEffect = mob:getStatusEffect(effect)
-            MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), currentEffect:getTick(), currentEffect:getTimeRemaining() / 1000)
-            mob:delStatusEffect(effect)
+        if (mob:hasStatusEffect(effect) == true) then
+            effectCount = true;
+            local currentEffect = mob:getStatusEffect(effect);
+            local msg = MobStatusEffectMove(mob, target, effect, currentEffect:getPower(), currentEffect:getTick(), 120);
+            if (msg == dsp.msg.basic.SKILL_ENFEEB_IS) then
+                lastEffect = effect;
+            end
         end
     end
-    skill:setMsg(dsp.msg.basic.NONE)
-end
+
+    -- all resisted
+    if (lastEffect == 0) then
+        skill:setMsg(dsp.msg.basic.RESIST);
+    end
+
+    -- no effects present
+    if (effectCount == false) then
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT);
+    end
+
+    return lastEffect;
+end;

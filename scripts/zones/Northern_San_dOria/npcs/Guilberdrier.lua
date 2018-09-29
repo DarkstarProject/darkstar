@@ -3,7 +3,8 @@
 --  NPC: Guilberdrier
 -- Type: Standard Info NPC
 --  Involved in Quest: Flyers for Regine, Exit the Gambler
--- !pos -159.082 12.000 253.794 231
+--  @zone 231
+-- !pos -159.082 12.000 253.794
 -----------------------------------
 package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
 -----------------------------------

@@ -1,8 +1,9 @@
 -----------------------------------
--- Area: Nashmau
---  NPC: Porter Moogle
--- Type: Storage Moogle
--- !zone 53
+-- Area:   Nashmau
+--  NPC:  Porter Moogle
+-- Type:   Storage Moogle
+--  @zone 53
+-- !pos TODO
 -----------------------------------
 package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
 -----------------------------------

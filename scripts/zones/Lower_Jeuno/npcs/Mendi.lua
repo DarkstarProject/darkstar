@@ -2,7 +2,8 @@
 -- Area: Lower Jeuno
 --  NPC: Mendi
 -- Reputation NPC
--- !pos -55 5 -68 245
+-- @zone 245
+-- !pos -55 5 -68
 -----------------------------------
 require("scripts/globals/shop");
 -----------------------------------

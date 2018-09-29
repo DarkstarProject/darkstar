@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    CheckMaps(player, npc, 567);
+    CheckMaps(player, npc, 0x0237);
 end;
 
 function onEventUpdate(player,csid,option)

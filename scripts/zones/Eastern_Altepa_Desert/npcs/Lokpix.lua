@@ -40,8 +40,8 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,OPEN_SESAME);
     elseif (csid == 22) then
         player:tradeComplete();
-        player:addKeyItem(dsp.ki.LOADSTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LOADSTONE);
+        player:addKeyItem(2051);
+        player:messageSpecial(KEYITEM_OBTAINED,2051);
         player:addFame(RABAO,30);
         player:completeQuest(OUTLANDS,OPEN_SESAME);
     end

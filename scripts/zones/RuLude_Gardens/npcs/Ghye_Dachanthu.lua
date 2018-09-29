@@ -2,7 +2,8 @@
 -- Area: Ru'Lude Gardens
 --  NPC: Ghye Dachanthu
 -- Type: Item Deliverer
--- !pos -62.789 11.999 -25.959 243
+--  @zone 243
+-- !pos -62.789    11.999    -25.959
 --
 -----------------------------------
 package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;

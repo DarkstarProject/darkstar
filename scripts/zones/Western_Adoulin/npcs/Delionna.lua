@@ -2,7 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Delionna
 -- Type: Standard NPC
--- !pos 16 0 165 256
+--  @zone 256
+-- !pos 16 0 165
 -----------------------------------
 
 function onTrade(player,npc,trade)

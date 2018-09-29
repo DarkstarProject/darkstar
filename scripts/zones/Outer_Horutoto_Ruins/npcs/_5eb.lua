@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Outer Horutoto Ruins
+-- Area: Inner Horutoto Ruins
 --  NPC: Gate: Magical Gizmo
 -- Involved In Mission: Full Moon Fountain
 -- !pos -291 0 -659 194

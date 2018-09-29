@@ -14,7 +14,11 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    dsp.conq.onConquestUpdate(zone, updatetype)
+    local players = zone:getPlayers();
+
+    for name, player in pairs(players) do
+        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
+    end
 end;
 
 function onZoneIn(player,prevZone)
@@ -57,6 +61,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-        player:setPos(161.000,-2.000,161.000,94,230);
+        player:setPos(161.000,-2.000,161.000,94,0xE6);
     end
 end;

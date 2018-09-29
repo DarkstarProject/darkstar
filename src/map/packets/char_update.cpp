@@ -1,4 +1,4 @@
-/*
+﻿/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -28,8 +28,6 @@
 
 #include "char_update.h"
 
-#include "../ai/ai_container.h"
-#include "../ai/states/death_state.h"
 #include "../entities/charentity.h"
 #include "../utils/itemutils.h"
 #include "../vana_time.h"
@@ -67,7 +65,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     ref<uint8>(0x29) = PChar->GetGender() + (PChar->look.size > 0 ? PChar->look.size * 8 : 2); // +  управляем ростом: 0x02 - 0; 0x08 - 1; 0x10 - 2;
     ref<uint8>(0x2C) = PChar->GetSpeed();
     ref<uint16>(0x2E) |= PChar->speedsub << 1;
-    ref<uint8>(0x30) = PChar->m_event.EventID != -1 ? ANIMATION_EVENT : PChar->animation;
+    ref<uint8>(0x30) = PChar->animation;
 
     CItemLinkshell* linkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
 
@@ -92,11 +90,10 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     
     ref<uint8>(0x36) = flag;
 
-    uint32 timeRemainingToForcedHomepoint = PChar->GetTimeRemainingUntilDeathHomepoint();
-    ref<uint32>(0x3C) = timeRemainingToForcedHomepoint;
+    if (!PChar->isDead() || PChar->m_DeathCounter == 0) //prevent this packet from resetting the homepoint timer after tractor
+        ref<uint32>(0x3C) = 0x0003A020;
 
-    // Vanatime at which the player should be forced back to homepoint while dead. Vanatime is in seconds so we must convert the time remaining to seconds.
-    ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime() + timeRemainingToForcedHomepoint / 60;
+    ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime();
     ref<uint16>(0x44) = PChar->m_Costum;
 
     if (PChar->animation == ANIMATION_FISHING_START)

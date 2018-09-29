@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Ceraule
 --  General Info NPC
--- !pos -86 2 -35 230
+-- @zone 230
+-- !pos -86 2 -35
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

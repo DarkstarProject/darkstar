@@ -2,7 +2,8 @@
 -- Area: Southern San d'Oria
 --  NPC: Rosel
 -- Starts and Finishes Quest: Rosel the Armorer
--- !zone 230
+-- @zone 230
+-- !pos
 -------------------------------------
 package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
 -----------------------------------

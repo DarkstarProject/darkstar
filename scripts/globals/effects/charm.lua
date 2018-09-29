@@ -4,13 +4,25 @@
 --
 -----------------------------------
 
+-----------------------------------
+-- onEffectGain Action
+-----------------------------------
+
 function onEffectGain(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectTick Action
+-----------------------------------
 
 function onEffectTick(target,effect)
-end
+end;
+
+-----------------------------------
+-- onEffectLose Action
+-----------------------------------
 
 function onEffectLose(target,effect)
-    target:setTP(0)
-    target:uncharm()
-end
+    target:setTP(0);
+    target:uncharm();
+end;

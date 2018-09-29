@@ -3,7 +3,8 @@
 --  NPC: Ghebi Damomohe
 -- Type: Standard Merchant
 -- Starts and Finishes Quest: Tenshodo Membership
--- !pos 16 0 -5 245
+-- @zone 245
+-- !pos 16 0 -5
 -----------------------------------
 package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
 package.loaded["scripts/globals/settings"] = nil

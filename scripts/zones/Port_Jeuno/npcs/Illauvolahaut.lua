@@ -1,7 +1,8 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Illauvolahaut
--- !pos -12 8 54 246
+-- @zone 246
+-- !pos -12 8 54
 -----------------------------------
 package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
 -----------------------------------
@@ -28,7 +29,7 @@ function onTrigger(player,npc)
 
 end;
 
--- 41  without addons (ZM) ?
+-- 0x0029  without addons (ZM) ?
 function onEventUpdate(player,csid,option)
 end;
 

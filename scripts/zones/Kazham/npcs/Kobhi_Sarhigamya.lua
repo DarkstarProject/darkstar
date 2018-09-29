@@ -2,7 +2,8 @@
 -- Area: Kazham
 --  NPC: Kobhi Sarhigamya
 -- Type: Item Deliverer
--- !pos -115.29 -11 -22.609 250
+--  @zone 250
+-- !pos -115.29    -11    -22.609
 --
 -----------------------------------
 package.loaded["scripts/zones/Kazham/TextIDs"] = nil;

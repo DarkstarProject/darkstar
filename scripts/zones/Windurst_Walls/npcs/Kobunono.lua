@@ -2,7 +2,8 @@
 -- Area: Windurst Walls
 --   NPC: Kobunono
 -- Type: Adv. Assistant
--- !pos 52.042 -3.499 -57.588 239
+-- @zone 239
+-- !pos 52.042 -3.499 -57.588
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------

@@ -43,16 +43,6 @@ dsp.msg.channel =
     UNITY          = 33
 }
 
--- used by PrintToArea
-dsp.msg.area =
-{
-    SYSTEM      = 0, -- Server wide like the purple stuff :)
-    SAY         = 1, -- Will display in small area around player
-    SHOUT       = 2, -- Will display in wide area around player
-    PARTY       = 3, -- Will display to players entire party/alliance
-    YELL        = 4  -- If yell is enabled in zone, will display.
-}
-
 ------------------------------------
 -- Message Basic
 ------------------------------------
@@ -73,7 +63,6 @@ dsp.msg.basic =
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
     MAGIC_TELEPORT         = 93,  -- <caster> casts <spell>. <target> vanishes.
-    MAGIC_FAIL             = 114, -- <caster> casts <spell> on <target>, but the spell fails to take effect
     MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
     MAGIC_DRAIN_HP         = 227, -- <caster> casts <spell>. <amount> HP drained from <target>.
     MAGIC_DRAIN_MP         = 228, -- <caster> casts <spell>. <amount> MP drained from <target>.
@@ -89,7 +78,6 @@ dsp.msg.basic =
     MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
-    MAGIC_STEAL            = 430, -- <caster> casts <spell>. 1 of <target>'s effects is drained.
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
     MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
@@ -101,8 +89,6 @@ dsp.msg.basic =
     SKILL_RECOVERS_HP      = 103, -- The <player> uses .. <target> recovers .. HP.
     SELF_HEAL              = 238, -- <user> uses <skill>. <user> recovers <amount> HP.
     SELF_HEAL_SECONDARY    = 263, -- <target> recovers <amount> HP.
-    AOE_REGAIN_HP          = 357, -- <target> regains <amount> HP.
-    AOE_REGAIN_MP          = 358, -- <target> regains <amount> MP.
     SKILL_ERASE            = 159, -- <user> uses <skill> <target>'s <status> effect disappears!
     DAMAGE                 = 185, -- player uses, target takes 10 damage. DEFAULT
     DAMAGE_SECONDARY       = 264,
@@ -139,8 +125,7 @@ dsp.msg.basic =
     IS_EFFECT              = 277, -- "is <status>" - that's the entire message.
     EVADES                 = 282,
     NO_EFFECT              = 283, -- "No effect" - that's the entire message.
-    FAMILIAR_PC            = 108, -- The <player> uses .. Pet's powers increase!
-    FAMILIAR_MOB           = 109, -- The <mob> uses .. Pet's powers increase!
+    FAMILIAR               = 108,
     DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
     TP_REDUCED             = 362, -- tp reduced to
     ATTR_DRAINED           = 369,
@@ -184,7 +169,7 @@ dsp.msg.basic =
     TOO_FAR_AWAY           = 78,  -- <target> is too far away.
 
     -- Weaponskills
-    READIES_WS             = 43,  -- ${actor} readies ${weapon_skill}.
+    READIES_WS              = 43,   -- ${actor} readies ${weapon_skill}.
     CANNOT_USE_WS          = 190, -- The <player> cannot use that weapon ability.
     NOT_ENOUGH_TP          = 192, -- The <player> does not have enough TP.
 
@@ -195,7 +180,7 @@ dsp.msg.basic =
     NO_EFFECT_ON_PET       = 336, -- No effect on that pet.
     NO_JUG_PET_ITEM        = 337, -- You do not have the necessary item equipped to call a beast.
     MUST_HAVE_FOOD         = 347, -- You must have pet food equipped to use that command.
-    STATUS_INCREASED       = 562, -- The status parameters of ${target} have increased.
+    STATUS_INCREASED        = 562,  -- The status parameters of ${target} have increased.
     PET_CANNOT_DO_ACTION   = 574, -- <player>'s pet is currently unable to perform that action.
     PET_NOT_ENOUGH_TP      = 575, -- <player>'s pet does not have enough TP to perform that action.
 
@@ -208,7 +193,6 @@ dsp.msg.basic =
     -- Items
     ITEM_USES               = 28,   -- ${actor} uses a ${item}.
     ITEM_UNABLE_TO_USE      = 55,   -- Unable to use item.
-    ITEM_UNABLE_TO_USE_2    = 56,   -- Unable to use item.
     ITEM_FAILS_TO_ACTIVATE  = 62,   -- The ${item} fails to activate.
     ITEM_NO_PETRAS          = 65,   -- You are not carrying any Petras.${lb}You cannot use the ${item}.
     ITEM_DOES_NOT_HAVE      = 91,   -- ${actor} does not have any ${item}.

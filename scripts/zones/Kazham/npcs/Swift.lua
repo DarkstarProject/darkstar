@@ -2,7 +2,8 @@
 -- Area: Kazham
 --   NPC: Swift
 -- Type: Standard NPC
--- !pos 2.017 -5 -1.880 250
+-- @zone 250
+-- !pos 2.017 -5 -1.880
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

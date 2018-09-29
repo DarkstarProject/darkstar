@@ -2,7 +2,8 @@
 -- Area: Kazham
 --   NPC: Vanono
 -- Type: Standard NPC
--- !pos -23.140 -5 -23.101 250
+-- @zone 250
+-- !pos -23.140 -5 -23.101
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------

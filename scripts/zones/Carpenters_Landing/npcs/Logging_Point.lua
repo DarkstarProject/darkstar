@@ -9,7 +9,7 @@ require("scripts/zones/Carpenters_Landing/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,30);
+    startLogging(player,player:getZoneID(),npc,trade,0x001E);
 end;
 
 function onTrigger(player,npc)
