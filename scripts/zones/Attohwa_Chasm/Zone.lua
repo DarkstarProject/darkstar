@@ -3,9 +3,10 @@
 -- Zone: Attohwa_Chasm (7)
 --
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs")
+require("scripts/globals/excavation")
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -43,6 +44,7 @@ function onInitialize(zone)
 
     UpdateNMSpawnPoint(ID.mob.TIAMAT);
     GetMobByID(ID.mob.TIAMAT):setRespawnTime(math.random(86400, 259200));
+    dsp.excavation.movePoint(GetNPCByID(ID.npc.EXCAVATION[1]), zone:getID()) -- pick a random excavation point
 end;
 
 function onZoneIn(player,prevZone)

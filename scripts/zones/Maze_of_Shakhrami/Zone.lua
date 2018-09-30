@@ -3,8 +3,9 @@
 -- Zone: Maze_of_Shakhrami (198)
 --
 -----------------------------------
-local ID = require("scripts/zones/Maze_of_Shakhrami/IDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")
+require("scripts/globals/excavation")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,6 +22,7 @@ function onInitialize(zone)
     end
 
     UpdateTreasureSpawnPoint(ID.npc.SHAKHRAMI_TREASURE_CHEST);
+    dsp.excavation.movePoint(GetNPCByID(ID.npc.EXCAVATION[1]), zone:getID()) -- pick a random excavation point
 end;
 
 function onZoneIn(player,prevZone)
