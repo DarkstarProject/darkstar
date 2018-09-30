@@ -1301,27 +1301,45 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 end
 
 function calculateDuration(duration, magicSkill, spellGroup, caster, target, useComposure)
-    if magicSkill ~= dsp.skill.ENHANCING_MAGIC then 
-        return duration 
-    end
-    
-    -- Gear mods
-    duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
-    
-    -- Default is true
-    useComposure = useComposure or (useComposure == nill and true)
+    if magicSkill == dsp.skill.ENHANCING_MAGIC then -- Enhancing Magic
+        -- Gear mods
+        duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
+        
+        -- Default is true
+        useComposure = useComposure or (useComposure == nill and true)
 
-    -- Composure
-    if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
-        duration = duration * 3
-    end
+        -- Composure
+        if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
+            duration = duration * 3
+        end
 
-    -- Perpetuance
-    if caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE then
-        duration  = duration * 2
+        -- Perpetuance
+        if caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE then
+            duration  = duration * 2
+        end
+    elseif magicSkill == dsp.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
+        if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+            duration = duration * 2
+        end
     end
     
-    return duration
+    return math.floor(duration)
+end
+
+function calculatePotency(basePotency, dStat, magicSkill, caster, target)
+    if magicSkill ~= dsp.skill.ENFEEBLING_MAGIC then
+        return basePotency
+    end
+    
+    if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+        if target:isNM() then
+            basePotency = math.floor(basePotency * (1.3 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
+        else
+            basePotency = math.floor(basePotency * (2 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
+        end
+    end
+    
+    return math.floor((basePotency + dStat) * caster:getMod(dsp.mod.ENF_MAG_POTENCY))
 end
 
 -- Output magic hit rate for all levels
