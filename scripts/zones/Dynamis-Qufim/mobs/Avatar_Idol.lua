@@ -2,9 +2,6 @@
 -- Area: Dynamis Qufimu
 --  MOB: Manifest_Idol
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
 require("scripts/globals/dynamis");
 require("scripts/globals/status");
 -----------------------------------

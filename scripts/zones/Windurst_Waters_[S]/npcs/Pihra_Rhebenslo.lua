@@ -3,9 +3,6 @@
 --  NPC: Pihra_Rhebenslo
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

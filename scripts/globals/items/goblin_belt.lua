@@ -3,13 +3,13 @@
 -- Goblin Belt
 -- Enchantment: 60Min, Costume - Goblin (dagger)
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    return target:canUseCostume();
-end;
+    return target:canUseCostume()
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.COSTUME,673,0,3600);
-end;
+    target:addStatusEffect(dsp.effect.COSTUME,673,0,3600)
+end

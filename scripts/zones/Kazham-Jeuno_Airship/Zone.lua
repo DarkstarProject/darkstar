@@ -3,6 +3,8 @@
 -- Zone: Kazham-Jeuno_Airship
 --
 -----------------------------------
+local ID = require("scripts/zones/Kazham-Jeuno_Airship/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end;

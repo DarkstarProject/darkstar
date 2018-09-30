@@ -4,25 +4,13 @@
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.CURE_POTENCY, effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.CURE_POTENCY, effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.CURE_POTENCY, effect:getPower());
-end;
+    target:delMod(dsp.mod.CURE_POTENCY, effect:getPower())
+end

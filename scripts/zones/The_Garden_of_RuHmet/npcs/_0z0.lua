@@ -2,11 +2,8 @@
 -- Area: The_Garden_of_RuHmet
 -- NPC:  _0z0
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
@@ -28,7 +25,7 @@ function onTrigger(player,npc)
    elseif (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==5) then
       player:startEvent(205);    
     end
-  return 1;
+    return 1;
 end;
 
 function onEventUpdate(player,csid,option,extras)

@@ -4,11 +4,9 @@
 -- Type: Smithing Synthesis Image Support
 -- !pos -186.650 10.25 148.380 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 629 and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,2,1);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,2,1);
         player:addStatusEffect(dsp.effect.SMITHING_IMAGERY,1,0,120);
     end
 end;

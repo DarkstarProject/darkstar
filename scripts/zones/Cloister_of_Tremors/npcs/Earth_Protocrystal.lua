@@ -4,12 +4,9 @@
 -- Involved in Quest: Trial by Earth
 -- !pos -539 1 -493 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Tremors/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
------------------------------------
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
@@ -22,7 +19,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);
+        player:messageSpecial(ID.text.PROTOCRYSTAL);
     end
 
 end;
@@ -38,7 +35,7 @@ function onEventFinish(player,csid,option)
     if (csid==2) then
         player:delKeyItem(dsp.ki.DOMINAS_AMBER_SEAL);
         player:addKeyItem(dsp.ki.AMBER_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AMBER_COUNTERSEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AMBER_COUNTERSEAL);
         player:setVar("ASA4_Amber","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

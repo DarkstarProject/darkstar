@@ -34,13 +34,13 @@ extern int32 login_lobbyview_fd;
 
 /*
 *
-*	Parse connections for lobby data
+*   Parse connections for lobby data
 */
 int32 connect_client_lobbydata(int32 listenfd);
 
 /*
 *
-*	Parse connections for lobby view
+*   Parse connections for lobby view
 *
 */
 int32 connect_client_lobbyview(int32 listenfd);

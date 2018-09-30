@@ -3,11 +3,9 @@
 --  NPC: Sagheera
 -- !pos -3 0.1 -9 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/armor_upgrade");
 
@@ -155,15 +153,15 @@ function onEventFinish(player,csid,option)
     elseif (csid == 310 and option == 3) then --add keyitem for limbus
         player:setVar("Cosmo_Cleanse_TIME", os.time());
         player:addKeyItem(dsp.ki.COSMOCLEANSE);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.COSMOCLEANSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.COSMOCLEANSE);
         player:delGil(15000);
     elseif (csid == 310 and  option >10 and option < 21) then  -- ancient beastcoin reward
         if (player:getFreeSlotsCount() == 0 or player:hasItem(ABreward[option-10])) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, ABreward[option-10]);
         else
             player:delCurrency("ancient_beastcoin", ABremove[option-10]);
             player:addItem(ABreward[option-10]);
-            player:messageSpecial(ITEM_OBTAINED, ABreward[option-10]);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, ABreward[option-10]);
         end
     elseif (csid == 310 and  option == 100) then  -- upgrade armor reward
         ugrade_armor_Type = player:getVar("AFupgrade");
@@ -182,10 +180,10 @@ function onEventFinish(player,csid,option)
             end
         end
         if (player:getFreeSlotsCount() == 0 and ugrade_armor_ID ~= 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ugrade_armor_ID);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, ugrade_armor_ID);
         else
             player:addItem(ugrade_armor_ID);
-            player:messageSpecial(ITEM_OBTAINED, ugrade_armor_ID);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, ugrade_armor_ID);
             player:setVar("AFupgrade", 0);
             player:setVar("AFupgradeDay", 0);
         end

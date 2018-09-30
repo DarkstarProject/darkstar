@@ -3,9 +3,7 @@
 -- Zone: Hall_of_Transference
 --
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local ID = require("scripts/zones/Hall_of_Transference/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");

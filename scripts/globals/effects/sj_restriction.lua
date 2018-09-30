@@ -3,27 +3,28 @@
 --
 --
 -----------------------------------
-
-require("scripts/globals/status");
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
     target:recalculateStats();
 end;
 
------------------------------------
--- onEffectTick Action
------------------------------------
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
+<<<<<<< HEAD
     target:recalculateStats();
 end;
+=======
+    local power = effect:getPower()
+    -- fix crash on logout / login
+    if (power > dsp.MAX_JOB_TYPE or power < 0) then
+        power = 0
+    end
+
+    target:sjRestriction(power,false)
+end
+>>>>>>> master

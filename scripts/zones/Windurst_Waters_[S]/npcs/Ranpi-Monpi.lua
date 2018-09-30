@@ -2,12 +2,9 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ranpi-Monpi
 -- Type: Standard NPC
--- @zone 94
--- !pos -115.452 -3 43.389
+-- !pos -115.452 -3 43.389 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

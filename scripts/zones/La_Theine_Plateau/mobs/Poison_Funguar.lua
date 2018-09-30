@@ -2,7 +2,7 @@
 -- Area: La Theine Plateau
 --  MOB: Poison Funguar
 -----------------------------------
-require("scripts/zones/La_Theine_Plateau/MobIDs");
+local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,TUMBLING_TRUFFLE_PH,5,math.random(3600,28800)); -- 1 to 8 hours
+    phOnDespawn(mob,ID.mob.TUMBLING_TRUFFLE_PH,5,math.random(3600,28800)); -- 1 to 8 hours
 end;

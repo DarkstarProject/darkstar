@@ -5,10 +5,7 @@
 -- instance 2 Promathia !pos 521 -0.500 517
 -- instance 3 Promathia !pos -519 120 -520
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
-require("scripts/zones/Empyreal_Paradox/MobIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

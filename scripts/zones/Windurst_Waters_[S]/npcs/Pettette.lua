@@ -2,12 +2,9 @@
 -- Area: Windurst Waters (S)
 --   NPC: Pettette
 -- Type: Standard NPC
--- @zone 94
--- !pos 164.026 -0.001 -26.690
+-- !pos 164.026 -0.001 -26.690 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

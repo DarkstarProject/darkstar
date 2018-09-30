@@ -2,18 +2,16 @@
 -- Area: Bhaflau Thickets
 --  NPC: Harvesting Point
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
--------------------------------------
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs")
 require("scripts/globals/harvesting");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,0x01F7);
+    startHarvesting(player,player:getZoneID(),npc,trade,503);
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(ID.text.HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 function onEventUpdate(player,csid,option)

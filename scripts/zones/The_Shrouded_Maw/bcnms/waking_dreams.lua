@@ -2,10 +2,7 @@
 -- Area: The_Shrouded_Maw
 -- Name: waking_dreams
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
-require("scripts/zones/The_Shrouded_Maw/MobIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/battlefield")
@@ -45,7 +42,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         if (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)) then
             player:delKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
             player:addKeyItem(dsp.ki.WHISPER_OF_DREAMS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_DREAMS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_DREAMS);
         end
         player:addTitle(dsp.title.HEIR_TO_THE_REALM_OF_DREAMS);
         player:startEvent(32002);

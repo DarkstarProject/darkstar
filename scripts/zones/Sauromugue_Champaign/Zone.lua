@@ -3,11 +3,8 @@
 -- Zone: Sauromugue_Champaign (120)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
-require( "scripts/globals/icanheararainbow");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
@@ -49,15 +46,15 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(ROC);
-    GetMobByID(ROC):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.ROC);
+    GetMobByID(ID.mob.ROC):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn( player, prevZone)
@@ -77,11 +74,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)

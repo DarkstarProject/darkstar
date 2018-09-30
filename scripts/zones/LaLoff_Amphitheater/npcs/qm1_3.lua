@@ -17,10 +17,6 @@ function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras,3);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
     EventFinishBCNM(player,csid,option);
 end;

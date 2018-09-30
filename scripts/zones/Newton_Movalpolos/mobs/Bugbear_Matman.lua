@@ -2,7 +2,7 @@
 -- Area: Newton Movalpolos
 --  MOB: Moblin Showman
 -----------------------------------
-require("scripts/zones/Newton_Movalpolos/MobIDs");
+local ID = require("scripts/zones/Newton_Movalpolos/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(MOBLIN_SHOWMAN):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.mob.MOBLIN_SHOWMAN):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

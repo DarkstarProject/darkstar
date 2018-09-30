@@ -4,14 +4,11 @@
 -- Involved in Quests: Trial by Lightning
 -- !pos 534.5 -13 492 202
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Cloister_of_Storms/TextIDs");
 require("scripts/globals/missions");
+local ID = require("scripts/zones/Cloister_of_Storms/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/bcnm");
--------------------------------------
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
@@ -24,7 +21,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);
+        player:messageSpecial(ID.text.PROTOCRYSTAL);
     end
 end;
 
@@ -43,7 +40,7 @@ function onEventFinish(player,csid,option)
     if (csid==2) then
         player:delKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL);
         player:addKeyItem(dsp.ki.VIOLET_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIOLET_COUNTERSEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIOLET_COUNTERSEAL);
         player:setVar("ASA4_Violet","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

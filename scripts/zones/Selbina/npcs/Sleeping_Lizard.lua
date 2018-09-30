@@ -3,10 +3,6 @@
 --  NPC: Sleeping Lizard
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

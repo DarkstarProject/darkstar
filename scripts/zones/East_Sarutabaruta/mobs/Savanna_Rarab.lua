@@ -3,7 +3,7 @@
 --  MOB: Savanna Rarab
 -- Note: PH for Sharp Eared Ropipi
 -----------------------------------
-require("scripts/zones/East_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/East_Sarutabaruta/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,SHARP_EARED_ROPIPI_PH,20,300); -- 5 minutes
+    phOnDespawn(mob,ID.mob.SHARP_EARED_ROPIPI_PH,20,300); -- 5 minutes
 end;

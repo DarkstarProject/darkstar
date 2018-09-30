@@ -4,17 +4,14 @@
 -- Type: Standard NPC
 -- !pos ? ? ? 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/limbus");
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - SWIRLING_VORTEX_OFFSET;
+    local offset = npc:getID() - ID.npc.SWIRLING_VORTEX_OFFSET;
     if (offset >= 0 and offset <= 1) then
         player:startEvent(159 + offset);
     end

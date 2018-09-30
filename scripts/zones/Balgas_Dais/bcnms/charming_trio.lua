@@ -2,13 +2,10 @@
 -- Area: Balgas_Dais
 -- Name: Charming Trio
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/battlefield")
 require("scripts/globals/quests");
-require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

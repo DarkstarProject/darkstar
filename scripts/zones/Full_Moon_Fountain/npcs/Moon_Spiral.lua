@@ -6,6 +6,8 @@
 -----------------------------------
 
 require("scripts/globals/bcnm");
+require("scripts/globals/quests");
+require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);

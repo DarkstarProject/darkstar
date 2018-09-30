@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos -44.542 -5.999 238.996 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

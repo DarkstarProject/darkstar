@@ -3,7 +3,7 @@
 --  MOB: Groundskeeper
 -- Note: Place holder Despot
 -----------------------------------
-require("scripts/zones/RuAun_Gardens/MobIDs");
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,DESPOT_PH,5,7200); -- 2 hours
+    phOnDespawn(mob,ID.mob.DESPOT_PH,5,7200); -- 2 hours
 end;

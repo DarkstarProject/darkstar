@@ -3,10 +3,7 @@
 -- Zone: Silver Knife
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Silver_Knife/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Silver_Knife/TextIDs");
+local ID = require("scripts/zones/Silver_Knife/IDs")
 -----------------------------------
 
 function onInitialize(zone)

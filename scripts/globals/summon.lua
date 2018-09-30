@@ -271,6 +271,9 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
             and skilltype==MOBSKILL_PHYSICAL) then
         return 0;
     end
+    
+    -- Calculate Blood Pact Damage before stoneskin
+    dmg = dmg + dmg * mob:getMod(dsp.mod.BP_DAMAGE) / 100
 
     -- handling stoneskin
     skin = target:getMod(dsp.mod.STONESKIN);

@@ -4,16 +4,8 @@
 -- bcnmID : 640
 -- enemy: Snoll_Tzar 16801793  16801794 16801795 group 176
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
------------------------------------
-
-
-
-
 
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)

@@ -5,9 +5,8 @@
 -- involved in expertise quest
 -- involved in the basics quest
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
+require("scripts/globals/keyitems")
 
 --player:startEvent(100);-- His name is Valgeir quest
 --player:startEvent(101); -- I have nothing to say to you
@@ -33,7 +32,7 @@ end;
 
 function onTrigger(player,npc)
 
-if (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(90)) then -- if quest accepted and has pizza
+if (player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR)==QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA)) then -- if quest accepted and has pizza
     player:startEvent(100);-- His name is Valgeir quest
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,EXPERTISE)==QUEST_ACCEPTED and player:getVar("QUEST_EXPERTISE_STATE_var")~=3) then
     if (player:getVar("QUEST_EXPERTISE_STATE_var")==1) then --already asked
@@ -51,7 +50,7 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,EXPERTISE)==QUEST_ACCEPTED and pla
     end;
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,THE_BASICS)==QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MHAURAN_COUSCOUS)) then -- if quest accepted and has dsp.ki.MHAURAN_COUSCOUS
     if (player:getFreeSlotsCount() == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4436); --4436 - baked_popoto
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4436); --4436 - baked_popoto
     else
         player:startEvent(106);-- involved in back to basics quest
     end;
@@ -79,18 +78,18 @@ elseif (csid==103) then  -- Found the ingredients
     player:setVar("QuestExpertiseDayStarted_var",VanadielDayOfTheYear());
 elseif (csid==105) then  -- Done the cooking
     player:addKeyItem(dsp.ki.LAND_CRAB_BISQUE); -- give dsp.ki.LAND_CRAB_BISQUE
-    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LAND_CRAB_BISQUE);
+    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LAND_CRAB_BISQUE);
     player:setVar("QUEST_EXPERTISE_STATE_var",3); -- Done cooking
     player:setVar("QuestExpertiseHourStarted_var",0);
     player:setVar("QuestExpertiseDayStarted_var",0);
 elseif (csid==106) then
     if (player:getFreeSlotsCount() == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4436);
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4436);
     else
         player:setVar("QuestTheBacisCommentary_var",1);
         player:delKeyItem(dsp.ki.MHAURAN_COUSCOUS); -- Give dsp.ki.MHAURAN_COUSCOUS to Valgeir
         player:addItem(4436,1); -- baked popoto
-        player:messageSpecial(ITEM_OBTAINED,4436); -- baked popoto
+        player:messageSpecial(ID.text.ITEM_OBTAINED,4436); -- baked popoto
     end
 elseif (csid==107) then
     player:setVar("QuestTheBacisCommentary_var",0);

@@ -3,11 +3,8 @@
 -- Zone: Lower_Jeuno (245)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/zones/Lower_Jeuno/globals");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-require("scripts/zones/Lower_Jeuno/MobIDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -50,10 +47,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -73,7 +67,7 @@ function onGameHour(zone)
     -- 7AM: it's daytime. turn off all the lights
     if (VanadielHour == 7) then
         for i=0,11 do
-            local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
+            local lamp = GetNPCByID(ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET + i);
             lamp:setAnimation(dsp.anim.CLOSE_DOOR);
         end
 
@@ -84,7 +78,7 @@ function onGameHour(zone)
         local players = zone:getPlayers();
         for name, player in pairs(players) do
             if player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) then
-                player:messageSpecial(ZAUKO_IS_RECRUITING);
+                player:messageSpecial(ID.text.ZAUKO_IS_RECRUITING);
             end
         end
 
@@ -100,7 +94,7 @@ function onGameHour(zone)
     -- dsp.path.flag.WALLHACK because she gets stuck on some terrain otherwise.
     elseif (VanadielHour == 1) then
         if (playerOnQuestId == 0) then
-            local npc = GetNPCByID(VHANA_EHGAKLYWHA);
+            local npc = GetNPCByID(ID.npc.VHANA_EHGAKLYWHA);
             npc:clearPath();
             npc:setStatus(0);
             npc:initNpcAi();
@@ -117,7 +111,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 20) then
         player:setVar("ZilartStatus", player:getVar("ZilartStatus") + 2);
     elseif (csid == 10094) then

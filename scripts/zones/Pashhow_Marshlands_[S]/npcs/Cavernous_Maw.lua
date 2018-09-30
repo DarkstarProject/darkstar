@@ -1,15 +1,12 @@
 -----------------------------------
--- Area: Sauromugue Champaign
+-- Area: Pashhow Marshlands [S]
 --  NPC: Cavernous Maw
 -- !pos 418 25 27 90
 -- Teleports Players to Pashhow_Marshlands
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

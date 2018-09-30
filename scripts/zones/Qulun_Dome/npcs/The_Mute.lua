@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Qulun Dome
 --  NPC: The Mute
--- @zone 148
--- !pos <many>
------------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs");
+-- !zone 148
 -----------------------------------
 
 function onTrade(player,npc,trade)

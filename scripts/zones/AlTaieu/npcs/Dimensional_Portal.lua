@@ -2,16 +2,13 @@
 -- Area: AlTaieu
 -- NPC:  Dimensional Portal
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - DIMENSIONAL_PORTAL_OFFSET;
+    local offset = npc:getID() - ID.npc.DIMENSIONAL_PORTAL_OFFSET;
     if (offset >= 0 and offset <=2) then
         player:startEvent(151 + offset);
     end

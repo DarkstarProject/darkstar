@@ -1,16 +1,13 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
 --  NPC: Treasure Coffer
--- @zone 205
--- !pos 188 0 -28
------------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
+-- !pos 188 0 -28 205
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
@@ -62,22 +59,22 @@ function onTrade(player,npc,trade)
 
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(ID.text.CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
                     player:addKeyItem(dsp.ki.OLD_GAUNTLETS);
-                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_GAUNTLETS); -- Old Gauntlets (KI)
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_GAUNTLETS); -- Old Gauntlets (KI)
                 elseif (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
-                            player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
+                            player:messageSpecial(ID.text.ITEM_OBTAINED,listAF[nb + 2]);
                             break
                         end
                     end
                 elseif (questItemNeeded == 3) then
                     player:addKeyItem(dsp.ki.MAP_OF_IFRITS_CAULDRON);
-                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_IFRITS_CAULDRON); -- Map of Ifrit's Cauldron (KI)
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_IFRITS_CAULDRON); -- Map of Ifrit's Cauldron (KI)
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
@@ -88,16 +85,16 @@ function onTrade(player,npc,trade)
 
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]*GIL_RATE);
-                        player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
+                        player:messageSpecial(ID.text.GIL_OBTAINED,loot[2]*GIL_RATE);
                     else
                         -- Item
                         player:addItem(loot[2]);
-                        player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                        player:messageSpecial(ID.text.ITEM_OBTAINED,loot[2]);
                     end
                 end
                 UpdateTreasureSpawnPoint(npc:getID());
             else
-                player:messageSpecial(CHEST_MIMIC);
+                player:messageSpecial(ID.text.CHEST_MIMIC);
                 spawnMimic(zone,npc,player);
                 UpdateTreasureSpawnPoint(npc:getID(), true);
             end
@@ -107,7 +104,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1053);
+    player:messageSpecial(ID.text.CHEST_LOCKED,1053);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -4,12 +4,10 @@
 -- Involved In Quest: Enveloped in Darkness
 -- !pos 41 0.1 -314 197
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
-require("scripts/zones/Crawlers_Nest/TextIDs");
+local ID = require("scripts/zones/Crawlers_Nest/IDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;
@@ -46,11 +44,11 @@ function onTrade(player,npc,trade)
 
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(ID.text.CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
                     player:addKeyItem(dsp.ki.CRAWLER_BLOOD);
-                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRAWLER_BLOOD); -- Crawler Blood (KI)
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRAWLER_BLOOD); -- Crawler Blood (KI)
                     player:setVar("needs_crawler_blood",0);
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
@@ -62,11 +60,11 @@ function onTrade(player,npc,trade)
 
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]*GIL_RATE);
-                        player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
+                        player:messageSpecial(ID.text.GIL_OBTAINED,loot[2]*GIL_RATE);
                     else
                         -- Item
                         player:addItem(loot[2]);
-                        player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                        player:messageSpecial(ID.text.ITEM_OBTAINED,loot[2]);
                     end
                 end
                 UpdateTreasureSpawnPoint(npc:getID());
@@ -77,7 +75,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1040);
+    player:messageSpecial(ID.text.CHEST_LOCKED,1040);
 end;
 
 function onEventUpdate(player,csid,option)

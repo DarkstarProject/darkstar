@@ -4,11 +4,9 @@
 -- Finishes Quest: The Old Lady
 -- !pos -49 -5 20 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:unlockJob(0);
         player:setVar("VeraOldLadyVar", 0);
-        player:messageSpecial(SUBJOB_UNLOCKED);
+        player:messageSpecial(ID.text.SUBJOB_UNLOCKED);
         player:completeQuest(OTHER_AREAS_LOG,THE_OLD_LADY);
     end
 

@@ -3,7 +3,7 @@
 --  MOB: Coeurl
 -- Note: PH for Patripatan
 -----------------------------------
-require("scripts/zones/Meriphataud_Mountains/MobIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,PATRIPATAN_PH,5,math.random(3600,10800)); -- 1 to 3 hours
+    phOnDespawn(mob,ID.mob.PATRIPATAN_PH,5,math.random(3600,10800)); -- 1 to 3 hours
 end;

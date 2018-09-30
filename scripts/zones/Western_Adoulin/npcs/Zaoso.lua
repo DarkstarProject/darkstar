@@ -3,8 +3,7 @@
 --  NPC: Zaoso
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quest: 'A Certain Substitute Patrolman'
---  @zone 256
--- !pos -94 3 -11
+-- !pos -94 3 -11 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

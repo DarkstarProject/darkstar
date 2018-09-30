@@ -4,9 +4,7 @@
 -- Involved in Quest: Riding on the Clouds
 -- !pos 12.578 -8.287 -7.576 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -18,7 +16,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
@@ -37,8 +35,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 10005) then
-      player:setVar("PromathiaStatus",0);
-      player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
-      player:addMission(COP,ONE_TO_BE_FEARED);
+        player:setVar("PromathiaStatus",0);
+        player:completeMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
+        player:addMission(COP,ONE_TO_BE_FEARED);
     end
 end;

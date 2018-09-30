@@ -2,13 +2,11 @@
 -- Area: Cloister of Storms
 -- BCNM: Trial by Lightning
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Storms/IDs");
 
 -----------------------------------
 
@@ -67,6 +65,6 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
         player:addKeyItem(dsp.ki.WHISPER_OF_STORMS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_STORMS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_STORMS);
     end
 end;

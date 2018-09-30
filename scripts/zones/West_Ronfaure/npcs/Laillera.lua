@@ -3,10 +3,8 @@
 --  NPC: Laillera
 -- !pos -127.297 -62.000 266.800 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
     if (thePickpocket > 0) then
         player:showText(npc, 7264);
     else
-        player:showText(npc, LAILLERA_DIALOG);
+        player:showText(npc, ID.text.LAILLERA_DIALOG);
     end
 end;
 

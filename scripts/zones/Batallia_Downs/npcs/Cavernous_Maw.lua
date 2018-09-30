@@ -4,14 +4,12 @@
 -- !pos -48 0.1 435 105
 -- Teleports Players to Batallia Downs [S]
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/campaign");
-require("scripts/zones/Batallia_Downs/TextIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/titles");
 -----------------------------------
 
@@ -26,12 +24,12 @@ function onTrigger(player,npc)
         (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
          player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
-        player:startEvent(501);
+            player:startEvent(501);
         else
-        player:startEvent(910);
+            player:startEvent(910);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
@@ -42,7 +40,7 @@ function onEventFinish(player,csid,option)
     if (csid == 500) then
         local r = math.random(1,3);
         player:addKeyItem(dsp.ki.PURE_WHITE_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PURE_WHITE_FEATHER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PURE_WHITE_FEATHER);
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then

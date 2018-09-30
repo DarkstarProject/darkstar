@@ -1,13 +1,10 @@
 -----------------------------------
--- Area:   Windurst Waters [S]
---  NPC:  Porter Moogle
--- Type:   Storage Moogle
---  @zone 94
--- !pos TODO
+-- Area: Windurst Waters [S]
+--  NPC: Porter Moogle
+-- Type: Storage Moogle
+-- !zone 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
 require("scripts/globals/porter_moogle_util");
 
 local e =
@@ -29,9 +26,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
+    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID);
 end;
 
 function onEventFinish(player,csid,option)
-    porterEventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
+    porterEventFinish(player, csid, option, e.TALK_EVENT_ID);
 end

@@ -4,13 +4,9 @@
 -- BCNM: 673
 -- Mask: 1
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
------------------------------------
 
 function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)

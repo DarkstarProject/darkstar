@@ -4,9 +4,7 @@
 -- Quest: Your Crystal Ball
 -- !pos -18 -13 181 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
+local ID = require("scripts/zones/Maze_of_Shakhrami/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,YOUR_CRYSTAL_BALL) == QUEST_ACCEPTED and player:getVar("QuestYourCrystalBall_prog") == 1) then
         player:startEvent(52);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -34,10 +32,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 52) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,556);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,556);
         else
             player:addItem(556);
-            player:messageSpecial(ITEM_OBTAINED,556);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,556);
             player:setVar("QuestYourCrystalBall_prog", 0);
         end
     end

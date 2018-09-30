@@ -4,9 +4,7 @@
 -- Involved In Quest: Groceries
 -- !pos 17.095 7.704 -52.995 172
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local ID = require("scripts/zones/Zeruhn_Mines/IDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
             player:startEvent(161);
         end
     elseif (groceries >= 2) then
-        player:showText(npc,ZELMAN_CANT_RUN_AROUND);
+        player:showText(npc,ID.text.ZELMAN_CANT_RUN_AROUND);
 
     -- DEFAULT DIALOG
     else

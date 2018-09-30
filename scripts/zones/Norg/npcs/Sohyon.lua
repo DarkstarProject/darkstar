@@ -2,12 +2,9 @@
 -- Area: Norg
 --   NPC: Sohyon
 -- Type: Standard NPC
--- @zone 252
--- !pos 47.286 -7.282 13.873
+-- !pos 47.286 -7.282 13.873 252
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

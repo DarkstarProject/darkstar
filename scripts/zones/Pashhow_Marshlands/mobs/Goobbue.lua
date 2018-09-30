@@ -3,7 +3,7 @@
 --  MOB: Goobbue
 -- Note: PH for Jolly Green
 -----------------------------------
-require("scripts/zones/Pashhow_Marshlands/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 -----------------------------------
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,JOLLY_GREEN_PH,5,1); -- 1 second / no cooldown
+    phOnDespawn(mob,ID.mob.JOLLY_GREEN_PH,5,1); -- 1 second / no cooldown
 end;

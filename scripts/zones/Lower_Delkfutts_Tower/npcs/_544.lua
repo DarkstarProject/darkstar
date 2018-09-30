@@ -4,11 +4,9 @@
 -- Notes: Door opens when you trade Delkfutt Key to it
 -- !pos 345 0.1 20 184
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,7 +39,7 @@ function onEventFinish(player,csid,option,npc)
     if (csid == 16 and option == 1) then
         if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
             player:addKeyItem(dsp.ki.DELKFUTT_KEY);
         end
     end

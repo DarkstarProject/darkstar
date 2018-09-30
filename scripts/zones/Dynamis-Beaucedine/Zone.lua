@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Beaucedine
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Beaucedine/TextIDs");
+local ID = require("scripts/zones/Dynamis-Beaucedine/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
@@ -14,11 +12,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -61,6 +55,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 0) then
-        player:setPos(-284.751,-39.923,-422.948,235,0x6F);
+        player:setPos(-284.751,-39.923,-422.948,235,111);
     end
 end;

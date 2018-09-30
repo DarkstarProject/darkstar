@@ -3,12 +3,11 @@
 -- Zone: Port_Bastok (236)
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/zone");
-require("scripts/globals/settings");
-require("scripts/globals/missions");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -16,11 +15,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -36,7 +31,7 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 224) then
-            cs = 0x0049;
+            cs = 73;
             player:setPos(-36.000, 7.000, -58.000, 194);
         else
             position = math.random(1,5) + 57;
@@ -75,12 +70,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 1) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 71) then
         player:setPos(0,0,0,0,224);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 305) then
         player:setVar("PromathiaStatus",1);
     elseif (csid == 306) then

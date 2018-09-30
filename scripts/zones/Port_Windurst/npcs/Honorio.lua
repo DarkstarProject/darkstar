@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Windurst
 --  NPC: Honorio
--- @zone 240
--- !pos 218 -5 114
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos 218 -5 114 240
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

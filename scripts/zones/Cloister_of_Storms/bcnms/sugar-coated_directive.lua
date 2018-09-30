@@ -2,9 +2,6 @@
 -- Area: Cloister of Storms
 -- BCNM: Sugar Coated Directive (ASA-4)
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
-----------------------------------------
-require("scripts/zones/Cloister_of_Storms/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");

@@ -3,10 +3,8 @@
 --  NPC: Starway Stairway
 -- !pos -10 0.1 30 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,10 +20,10 @@ function onTrigger(player,npc)
                 player:startEvent(105);
             end;
         else
-          player:messageSpecial(STAIRWAY_LOCKED);
+            player:messageSpecial(ID.text.STAIRWAY_LOCKED);
         end;
     else
-        player:messageSpecial(STAIRWAY_ONLY_CITIZENS);
+        player:messageSpecial(ID.text.STAIRWAY_ONLY_CITIZENS);
     end
 
     return 1;

@@ -3,25 +3,19 @@
 -- Zone: Oldton_Movalpolos (11)
 --
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
-require("scripts/zones/Oldton_Movalpolos/MobIDs");
+local ID = require("scripts/zones/Oldton_Movalpolos/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(OLDTON_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.mob.OLDTON_TREASURE_CHEST);
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

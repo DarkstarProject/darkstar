@@ -4,9 +4,6 @@
 -- Notes: Opens door _472 near password #1
 -- !pos -62.533 -1.859 -30.634 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

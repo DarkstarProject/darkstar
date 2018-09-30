@@ -2,20 +2,17 @@
 -- Area: Northern San d'Oria
 --  NPC: Gilipese
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -155.088 0.000 120.300
+-- !pos -155.088 0.000 120.300 231
 --
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,GILIPESE_DIALOG);
+    player:showText(npc,ID.text.GILIPESE_DIALOG);
 end;
 
 function onEventUpdate(player,csid,option)

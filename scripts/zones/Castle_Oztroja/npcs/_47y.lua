@@ -4,9 +4,6 @@
 -- Notes: Opens door _474
 -- !pos -57.575 24.218 -67.651 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

@@ -5,15 +5,13 @@
 -- Starts and Finishes Quest: True Strength
 -- !pos 133 -19 34 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -54,12 +52,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,TRUE_STRENGTH);
     elseif (csid == 749) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14215); -- Temple Hose
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14215); -- Temple Hose
         else
             player:tradeComplete();
             player:addTitle(dsp.title.PARAGON_OF_MONK_EXCELLENCE);
             player:addItem(14215);
-            player:messageSpecial(ITEM_OBTAINED,14215); -- Temple Hose
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14215); -- Temple Hose
             player:addFame(BASTOK,AF3_FAME);
             player:completeQuest(BASTOK,TRUE_STRENGTH);
         end

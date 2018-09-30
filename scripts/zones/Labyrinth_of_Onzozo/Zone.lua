@@ -3,18 +3,15 @@
 -- Zone: Labyrinth_of_Onzozo (213)
 --
 -----------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
 require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(MYSTICMAKER_PROFBLIX);
-    GetMobByID(MYSTICMAKER_PROFBLIX):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.MYSTICMAKER_PROFBLIX);
+    GetMobByID(ID.mob.MYSTICMAKER_PROFBLIX):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ONZOZO_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.npc.ONZOZO_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)
@@ -26,10 +23,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

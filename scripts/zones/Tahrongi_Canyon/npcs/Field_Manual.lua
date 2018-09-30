@@ -13,8 +13,8 @@ end;
 function onTrade(player,npc,trade)
 end;
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,30,31,94,95,96);
+function onEventUpdate(player,csid,option)
+    updateFov(player,csid,option,30,31,94,95,96);
 end;
 
 function onEventFinish(player,csid,option)

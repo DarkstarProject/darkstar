@@ -4,11 +4,9 @@
 -- Type: Cooking Adv. Image Support
 -- !pos -119.750 -5.239 64.500 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +36,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10015 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(COOKING_SUPPORT,0,8,0);
+        player:messageSpecial(ID.text.COOKING_SUPPORT,0,8,0);
         player:addStatusEffect(dsp.effect.COOKING_IMAGERY,3,0,480);
     end
 end;

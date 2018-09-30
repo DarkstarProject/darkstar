@@ -1,13 +1,9 @@
 -----------------------------------
 -- Name: Mission 9-2 SANDO
 -----------------------------------
-package.loaded["scripts/zones/Qubia_arena/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/QuBia_Arena/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
------------------------------------
 
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)

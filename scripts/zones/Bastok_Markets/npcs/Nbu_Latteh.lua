@@ -4,13 +4,11 @@
 -- Starts & Finishes Quest: Mom, The Adventurer?
 -- Starts Quest: The Signpost Marks the Spot
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -50,12 +48,12 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount(0) > 0) then
             player:setVar("MomTheAdventurer_Event",1);
             player:addItem(4096);
-            player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4096); -- Fire Crystal
             if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_AVAILABLE) then
                 player:addQuest(BASTOK,MOM_THE_ADVENTURER);
             end
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4096);
         end
     elseif (csid == 233 or csid == 234) then
         if (player:seenKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH)) then
@@ -67,7 +65,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.LETTER_FROM_ROH_LATTEH);
         player:addTitle(dsp.title.RINGBEARER);
         player:addGil(GIL_RATE*gilReward);
-        player:messageSpecial(GIL_OBTAINED, GIL_RATE*gilReward);
+        player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*gilReward);
         player:setVar("MomTheAdventurer_Event",0);
 
         if (player:getQuestStatus(BASTOK,MOM_THE_ADVENTURER) == QUEST_ACCEPTED) then

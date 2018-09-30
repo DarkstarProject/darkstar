@@ -2,12 +2,9 @@
 -- Area: Windurst Waters (S)
 --   NPC: Kuron-Makaron
 -- Type: Morale Manager
--- @zone 94
--- !pos 10.422 -2.478 24.616
+-- !pos 10.422 -2.478 24.616 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

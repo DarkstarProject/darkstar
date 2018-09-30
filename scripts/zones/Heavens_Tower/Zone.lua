@@ -3,11 +3,9 @@
 -- Zone: Heavens_Tower
 --
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Heavens_Tower/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Heavens_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -30,11 +28,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

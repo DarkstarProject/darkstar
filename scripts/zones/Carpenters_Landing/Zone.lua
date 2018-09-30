@@ -3,12 +3,9 @@
 -- Zone: Carpenters_Landing (2)
 --
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Carpenters_Landing/TextIDs");
-require("scripts/zones/Carpenters_Landing/MobIDs");
-require("scripts/globals/chocobo_digging");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
+require("scripts/globals/chocobo_digging")
+require("scripts/globals/conquest")
 -----------------------------------
 
 local itemMap =
@@ -40,15 +37,15 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(TEMPEST_TIGON);
-    GetMobByID(TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.TEMPEST_TIGON);
+    GetMobByID(ID.mob.TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn(player,prevZone)
@@ -60,11 +57,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

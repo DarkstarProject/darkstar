@@ -2,11 +2,8 @@
 -- Area: Ru'Aun Gardens
 --  NM:  Suzaku
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/zones/RuAun_Gardens/TextIDs");
-require("scripts/zones/RuAun_Gardens/MobIDs");
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
@@ -27,7 +24,7 @@ function onMonsterMagicPrepare(mob, target)
     if (rnd < 0.5) then
         return 176; -- firaga 3
     elseif (rnd < 0.7) then
-         return 147; -- fire 4
+        return 147; -- fire 4
     elseif (rnd < 0.9) then
         return 204; -- flare
     else
@@ -50,9 +47,9 @@ function onAdditionalEffect(mob, target, damage)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:showText(mob,SKY_GOD_OFFSET + 8);
+    player:showText(mob,ID.text.SKY_GOD_OFFSET + 8);
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(SUZAKU_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.SUZAKU_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

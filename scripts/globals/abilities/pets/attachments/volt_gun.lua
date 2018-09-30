@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Volt Gun
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     local skill = math.max(pet:getSkillLevel(dsp.skill.AUTOMATON_MELEE), pet:getSkillLevel(dsp.skill.AUTOMATON_RANGED), pet:getSkillLevel(dsp.skill.AUTOMATON_MAGIC))

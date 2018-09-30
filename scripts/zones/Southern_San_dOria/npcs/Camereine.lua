@@ -4,14 +4,12 @@
 -- Type: Chocobo Renter
 -- !pos -8 1 -100
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/chocobo");
 require("scripts/globals/status");
 
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
         count = trade:getItemCount();
         MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -61,7 +59,7 @@ function onEventFinish(player,csid,option)
                 player:addStatusEffectEx(dsp.effect.MOUNTED,dsp.effect.MOUNTED,0,0,900,true);
             end
 
-            player:setPos(-126,-62,274,0x65,0x64);
+            player:setPos(-126,-62,274,101,100);
         end
     end
 end;

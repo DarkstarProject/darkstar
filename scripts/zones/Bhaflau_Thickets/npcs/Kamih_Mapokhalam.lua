@@ -3,10 +3,8 @@
 --  NPC: Kamih Mapokhalam
 -- 20 -30 597 z 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,7 +42,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 146) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.MAP_OF_ALZADAAL_RUINS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_ALZADAAL_RUINS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_ALZADAAL_RUINS);
     end
 
 end;

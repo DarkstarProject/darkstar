@@ -780,14 +780,6 @@ void CMobController::DoRoamTick(time_point tick)
                     if(spellID)
                         CastSpell(spellID.value());
                 }
-                else if ((PMob->m_roamFlags & ROAMFLAG_STEALTH))
-                {
-                    // hidden name
-                    PMob->HideName(true);
-                    PMob->Untargetable(true);
-
-                    PMob->updatemask |= UPDATE_HP;
-                }
                 else if (PMob->m_roamFlags & ROAMFLAG_EVENT)
                 {
                     // allow custom event action
@@ -806,6 +798,14 @@ void CMobController::DoRoamTick(time_point tick)
 
                         // don't move around until i'm fully in the ground
                         Wait(2s);
+                    }
+                    else if ((PMob->m_roamFlags & ROAMFLAG_STEALTH))
+                    {
+                        // hidden name
+                        PMob->HideName(true);
+                        PMob->Untargetable(true);
+
+                        PMob->updatemask |= UPDATE_HP;
                     }
                     else
                     {

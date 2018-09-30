@@ -3,11 +3,11 @@
 -- Item: Ephramadian Throne
 -- Item Effect: Grant Ephramadian throne key item
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/msg")
 
-local keyItemId = dsp.ki.EPHRAMADIAN_THRONE;
+local keyItemId = dsp.ki.EPHRAMADIAN_THRONE
 
 function onItemCheck(target)
     if target:hasKeyItem(keyItemId) then
@@ -18,5 +18,5 @@ end
 
 function onItemUse(target)
     target:addKeyItem(keyItemId)
-    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6409,keyItemId);
+    target:messageBasic(dsp.basic.OBTAINED_KEY_ITEM,6409,keyItemId)
 end

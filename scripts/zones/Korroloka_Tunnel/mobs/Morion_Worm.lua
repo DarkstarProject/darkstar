@@ -2,7 +2,7 @@
 -- Area: Korroloka Tunnel (173)
 --  Mob: Morion Worm
 -----------------------------------
-require("scripts/zones/Korroloka_Tunnel/MobIDs");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(MORION_WORM_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.MORION_WORM_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

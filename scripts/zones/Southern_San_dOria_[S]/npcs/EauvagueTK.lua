@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Eauvague T.K
--- @zone 80
--- !pos 105 0 -53
+-- !pos 105 0 -53 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

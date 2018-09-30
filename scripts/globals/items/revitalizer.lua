@@ -3,13 +3,13 @@
 -- Item: Revitalizer
 -- Item Effect: Removes 60 HP over 180 seconds
 -----------------------------------------
-require("scripts/globals/msg");
+require("scripts/globals/msg")
 
 function onItemCheck(target)
-    return 0;
-end;
+    return 0
+end
 
 function onItemUse(target)
-    target:resetRecasts();
-    target:messageBasic(dsp.msg.basic.ALL_ABILITIES_RECHARGED, 0);
-end;
+    target:resetRecasts()
+    target:messageBasic(dsp.msg.basic.ALL_ABILITIES_RECHARGED, 0)
+end

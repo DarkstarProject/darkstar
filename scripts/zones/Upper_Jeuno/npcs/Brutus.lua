@@ -4,15 +4,13 @@
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
 -- !pos -55 8 95 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.decimation
@@ -129,7 +127,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ChocoboOnTheLooseYear", 0)
         player:addFame(JEUNO, 30)
         player:addItem(2317)
-        player:messageSpecial(ITEM_OBTAINED,2317) -- Chocobo Egg (a bit warm)
+        player:messageSpecial(ID.text.ITEM_OBTAINED,2317) -- Chocobo Egg (a bit warm)
         player:completeQuest(JEUNO,CHOCOBO_ON_THE_LOOSE)
     elseif (csid == 71 and option == 1) then
         player:addQuest(JEUNO,CHOCOBO_S_WOUNDS)
@@ -138,7 +136,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,PATH_OF_THE_BEASTMASTER)
         player:addTitle(dsp.title.ANIMAL_TRAINER)
         player:unlockJob(dsp.job.BST)
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_BEASTMASTER)
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_BEASTMASTER)
         player:addFame(JEUNO, 30)
         player:completeQuest(JEUNO,PATH_OF_THE_BEASTMASTER)
     elseif ((csid == 139 or csid == 137) and option == 1) then
@@ -146,11 +144,11 @@ function onEventFinish(player,csid,option)
         player:setVar("wingsOfGold_shortCS",0)
     elseif (csid == 138) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16680)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16680)
         else
             player:delKeyItem(dsp.ki.GUIDING_BELL)
             player:addItem(16680)
-            player:messageSpecial(ITEM_OBTAINED,16680) -- Barbaroi Axe
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16680) -- Barbaroi Axe
             player:addFame(JEUNO,AF1_FAME)
             player:completeQuest(JEUNO,WINGS_OF_GOLD)
         end
@@ -160,20 +158,20 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.AQUAFLORA1)
         player:addKeyItem(dsp.ki.AQUAFLORA2)
         player:addKeyItem(dsp.ki.AQUAFLORA3)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AQUAFLORA1)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AQUAFLORA1)
     elseif (csid == 144) then
         player:setVar("scatIntoShadowCS",1)
     elseif (csid == 135) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14097)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14097)
         else
             player:setVar("scatIntoShadowCS",0)
             player:addItem(14097)
-            player:messageSpecial(ITEM_OBTAINED,14097) -- Beast Gaiters
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14097) -- Beast Gaiters
             player:addFame(JEUNO,AF2_FAME)
             player:completeQuest(JEUNO,SCATTERED_INTO_SHADOW)
         end
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,DECIMATION_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.DECIMATION_LEARNED)
     end
 end

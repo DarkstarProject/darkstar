@@ -309,10 +309,10 @@ function LimbusEntrance(player, entrance)
     switch (entrance): caseof
     {
         [1] = function (x)
-            player:setPos(643, 0.1, -600, 124, 0x26)  --  instance entrer 600 1 -600
+            player:setPos(643, 0.1, -600, 124, 38)  --  instance entrer 600 1 -600
         end, --  sortiezone  637, -4, -642, 642, 4, -637
         [2] = function (x)
-            player:setPos(-668, 0.1, -666, 209, 0x26)  --  instance entrer -599 0 -600
+            player:setPos(-668, 0.1, -666, 209, 38)  --  instance entrer -599 0 -600
         end, --  sortiezone -642, -4, -642, -637, 4, -637
     }
 end

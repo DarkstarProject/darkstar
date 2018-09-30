@@ -3,7 +3,7 @@
 --  MOB: Antican Princeps
 -- Note: PH for Sagittarius X-XIII
 -----------------------------------
-require("scripts/zones/Quicksand_Caves/MobIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -19,5 +19,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,Sagittarius_X_XIII_PH,10,14400); -- 4 hours
+    phOnDespawn(mob,ID.mob.Sagittarius_X_XIII_PH,10,14400); -- 4 hours
 end;

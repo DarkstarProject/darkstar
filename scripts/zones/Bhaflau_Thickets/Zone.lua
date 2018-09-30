@@ -3,10 +3,7 @@
 -- Zone: Bhaflau_Thickets (52)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
-require("scripts/zones/Bhaflau_Thickets/MobIDs");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/zone");
 -----------------------------------
@@ -46,21 +43,24 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(HARVESTMAN);
-    GetMobByID(HARVESTMAN):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.HARVESTMAN);
+    GetMobByID(ID.mob.HARVESTMAN):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-100,-13.5,-479.514,60);
+    end
+    if (prevZone == 66) then
+        player:setPos(-186,-10,-802,80);
     end
     return cs;
 end;

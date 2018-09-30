@@ -9,13 +9,11 @@
 --                     Wild Card,
 --                     The Promise
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -70,11 +68,11 @@ Fame       = player:getFameLevel(WINDURST);
                     player:addFame(WINDURST,150);
                     player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
                     player:addItem(13135);
-                    player:messageSpecial(ITEM_OBTAINED,13135);
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
                     player:setVar("ThePromise",0);
                     player:setVar("ThePromiseCS_Seen",0);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13135);
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13135);
                 end
             else
                 player:startEvent(522,0,dsp.ki.INVISIBLE_MAN_STICKER);
@@ -91,7 +89,7 @@ Fame       = player:getFameLevel(WINDURST);
             player:setVar("WildCard",1);
         end
 
-        player:showText(npc,KOHLO_LAKOLO_DIALOG_A);
+        player:showText(npc,ID.text.KOHLO_LAKOLO_DIALOG_A);
     elseif (CryingOverOnions == QUEST_COMPLETED) then
         player:startEvent(505);
     elseif (CryingOverOnions == QUEST_ACCEPTED) then
@@ -204,10 +202,10 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.STAR_ONION_BRIGADE_MEMBER);
             player:tradeComplete();
             player:addItem(13093);
-            player:messageSpecial(ITEM_OBTAINED,13093);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13093);
             player:needToZone(true);
         else
-            player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,13093);
+            player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE,13093);
         end
     elseif (csid == 391) then
         player:addQuest(WINDURST,KNOW_ONE_S_ONIONS);
@@ -219,11 +217,11 @@ function onEventFinish(player,csid,option)
 
             player:tradeComplete();
             player:addItem(4857);
-            player:messageSpecial(ITEM_OBTAINED,4857);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4857);
             player:setVar("KnowOnesOnions",1);
             player:setVar("KnowOnesOnionsTime", TradeTime + 86400);
         else
-            player:messageSpecial(FULL_INVENTORY_AFTER_TRADE,4857);
+            player:messageSpecial(ID.text.FULL_INVENTORY_AFTER_TRADE,4857);
         end
     elseif (csid == 386 or csid == 400) then
         player:completeQuest(WINDURST,KNOW_ONE_S_ONIONS);
@@ -242,10 +240,10 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,90);
             player:addTitle(dsp.title.FAKEMOUSTACHED_INVESTIGATOR);
             player:addItem(13204);
-            player:messageSpecial(ITEM_OBTAINED,13204);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13204);
             player:needToZone(true);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13204);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13204);
         end
     elseif (csid == 429) then
         player:setVar("OnionRings",1);
@@ -275,9 +273,9 @@ function onEventFinish(player,csid,option)
             if (FreeSlots >= 1) then
                 player:setVar("OnionRings",0);
                 player:addItem(17029);
-                player:messageSpecial(ITEM_OBTAINED,17029);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17029);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17029);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17029);
             end
         end
     elseif (csid == 496) then
@@ -294,10 +292,10 @@ function onEventFinish(player,csid,option)
             player:addFame(WINDURST,150);
             player:delKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
             player:addItem(13135);
-            player:messageSpecial(ITEM_OBTAINED,13135);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13135);
             player:setVar("ThePromise",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13135);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13135);
             player:setVar("ThePromiseCS_Seen",1);
         end
     end

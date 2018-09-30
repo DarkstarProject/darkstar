@@ -2,12 +2,9 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ranna-Brunna
 -- Type: Standard NPC
--- @zone 94
--- !pos 123.085 -8.874 223.734
+-- !pos 123.085 -8.874 223.734 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

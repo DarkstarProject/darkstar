@@ -3,7 +3,7 @@
 --  MOB: Gigas Wallwatcher
 -- Note: PH for Ogygos
 -----------------------------------
-require("scripts/zones/Middle_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 -----------------------------------
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,OGYGOS_PH,5,math.random(7200,14400)); -- 2 to 4 hours
+    phOnDespawn(mob,ID.mob.OGYGOS_PH,5,math.random(7200,14400)); -- 2 to 4 hours
 end;

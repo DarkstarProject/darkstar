@@ -3,10 +3,7 @@
 -- Zone: Quicksand_Caves (208)
 --
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Quicksand_Caves/TextIDs");
-require("scripts/zones/Quicksand_Caves/MobIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -15,19 +12,19 @@ require("scripts/globals/status");
 
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
-    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 0x010D01EF Door
-    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 0x010D01F1 Door
-    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 0x010D01F3 Door
-    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 0x010D01F5 Door
-    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 0x010D01F7 Door
-    zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 0x010D01F9 Door
-    zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 0x010D01FB Door
-    zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 0x010D01FD Door
-    zone:registerRegion(17, -340, 5, 660, 0,0,0); -- 0x010D01FF Door
-    zone:registerRegion(19, -420, 5, 740, 0,0,0); -- 0x010D0201 Door
-    zone:registerRegion(21, -340, 5, 820, 0,0,0); -- 0x010D0203 Door
-    zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 0x010D0205 Door
-    zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 0x010D0207 Door
+    zone:registerRegion(1, -15, 5, -60, 0,0,0);   -- 17629679 Door
+    zone:registerRegion(3, 15, 5,-180, 0,0,0);    -- 17629681 Door
+    zone:registerRegion(5, -580, 5,-420, 0,0,0);  -- 17629683 Door
+    zone:registerRegion(7, -700, 5,-420, 0,0,0);  -- 17629685 Door
+    zone:registerRegion(9, -700, 5,-380, 0,0,0);  -- 17629687 Door
+    zone:registerRegion(11, -780, 5,-460, 0,0,0); -- 17629689 Door
+    zone:registerRegion(13, -820, 5,-380, 0,0,0); -- 17629691 Door
+    zone:registerRegion(15, -260, 5, 740, 0,0,0); -- 17629693 Door
+    zone:registerRegion(17, -340, 5, 660, 0,0,0); -- 17629695 Door
+    zone:registerRegion(19, -420, 5, 740, 0,0,0); -- 17629697 Door
+    zone:registerRegion(21, -340, 5, 820, 0,0,0); -- 17629699 Door
+    zone:registerRegion(23, -409, 5, 800, 0,0,0); -- 17629701 Door
+    zone:registerRegion(25, -400, 5, 670, 0,0,0); -- 17629703 Door
 
     -- Hole in the Sand
     zone:registerRegion(30,495,-9,-817,497,-7,-815); -- E-11 (Map 2)
@@ -39,16 +36,13 @@ function onInitialize(zone)
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time() - QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(QC_TREASURE_COFFER);
+    UpdateTreasureSpawnPoint(ID.npc.QC_TREASURE_COFFER);
 
-    npcUtil.UpdateNPCSpawnPoint(ANTICAN_TAG_QM, 60, 120, ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(ID.npc.ANTICAN_TAG_QM, 60, 120, ID.npc.ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -96,8 +90,8 @@ function onRegionEnter(player,region)
         
     -- ornate door pressure plates
     else
-        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight + getWeight(player);
@@ -114,8 +108,8 @@ function onRegionLeave(player,region)
     local RegionID = region:GetRegionID();
 
     if (RegionID < 30) then
-        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight - getWeight(player);

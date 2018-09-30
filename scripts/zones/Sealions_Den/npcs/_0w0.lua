@@ -3,14 +3,10 @@
 -- NPC:  Iron Gate
 -- !pos 612 132 774 32
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/teleports");
-require("scripts/zones/Sealions_Den/TextIDs");
 
 -----------------------------------
 -- onTrade Action

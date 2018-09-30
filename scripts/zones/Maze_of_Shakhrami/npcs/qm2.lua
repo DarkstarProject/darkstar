@@ -4,10 +4,7 @@
 -- Type: Quest NPC
 -- !pos 143 9 -219 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
-require("scripts/zones/Maze_of_Shakhrami/MobIDs");
+local ID = require("scripts/zones/Maze_of_Shakhrami/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
@@ -26,13 +23,13 @@ function onTrigger(player,npc)
         if (player:getVar("ECOR_WAR_WIN-NMs_killed") == 1) then
             npcUtil.giveKeyItem(player, dsp.ki.INDIGESTED_MEAT);
         elseif (
-            not GetMobByID(WYRMFLY_OFFSET+0):isSpawned() and
-            not GetMobByID(WYRMFLY_OFFSET+1):isSpawned() and
-            not GetMobByID(WYRMFLY_OFFSET+2):isSpawned()
+            not GetMobByID(ID.mob.WYRMFLY_OFFSET+0):isSpawned() and
+            not GetMobByID(ID.mob.WYRMFLY_OFFSET+1):isSpawned() and
+            not GetMobByID(ID.mob.WYRMFLY_OFFSET+2):isSpawned()
         ) then
-            SpawnMob(WYRMFLY_OFFSET+0):updateClaim(player);
-            SpawnMob(WYRMFLY_OFFSET+1):updateClaim(player);
-            SpawnMob(WYRMFLY_OFFSET+2):updateClaim(player);
+            SpawnMob(ID.mob.WYRMFLY_OFFSET+0):updateClaim(player);
+            SpawnMob(ID.mob.WYRMFLY_OFFSET+1):updateClaim(player);
+            SpawnMob(ID.mob.WYRMFLY_OFFSET+2):updateClaim(player);
         end
     end
 end;

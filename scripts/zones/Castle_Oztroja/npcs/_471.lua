@@ -4,15 +4,13 @@
 -- Note: Opened by handles _47f to _47i
 -- !pos -182 -15 -19 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(ID.text.ITS_LOCKED);
         return 1;
     end
 

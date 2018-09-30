@@ -2,10 +2,6 @@
 -- Area: Spire of Mea
 --  NPC: Radiant Aureole
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Spire_of_Mea/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

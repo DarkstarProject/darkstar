@@ -326,7 +326,6 @@
     <ClInclude Include="..\..\src\map\packets\bazaar_message.h" />
     <ClInclude Include="..\..\src\map\packets\blacklist.h" />
     <ClInclude Include="..\..\src\map\packets\campaing_map.h" />
-    <ClInclude Include="..\..\src\map\packets\caught_fish.h" />
     <ClInclude Include="..\..\src\map\packets\char.h" />
     <ClInclude Include="..\..\src\map\packets\char_abilities.h" />
     <ClInclude Include="..\..\src\map\packets\char_appearance.h" />
@@ -382,11 +381,13 @@
     <ClInclude Include="..\..\src\map\packets\merit_points_categories.h" />
     <ClInclude Include="..\..\src\map\packets\message_basic.h" />
     <ClInclude Include="..\..\src\map\packets\message_debug.h" />
+    <ClInclude Include="..\..\src\map\packets\message_name.h" />
     <ClInclude Include="..\..\src\map\packets\message_special.h" />
     <ClInclude Include="..\..\src\map\packets\message_standard.h" />
     <ClInclude Include="..\..\src\map\packets\message_system.h" />
     <ClInclude Include="..\..\src\map\packets\message_text.h" />
     <ClInclude Include="..\..\src\map\packets\party_effects.h" />
+    <ClInclude Include="..\..\src\map\packets\release_special.h" />
     <ClInclude Include="..\..\src\map\packets\status_effects.h" />
     <ClInclude Include="..\..\src\map\packets\synth_result.h" />
     <ClInclude Include="..\..\src\map\packets\synth_suggestion.h" />
@@ -568,7 +569,6 @@
     <ClCompile Include="..\..\src\map\packets\bazaar_message.cpp" />
     <ClCompile Include="..\..\src\map\packets\blacklist.cpp" />
     <ClCompile Include="..\..\src\map\packets\campaing_map.cpp" />
-    <ClCompile Include="..\..\src\map\packets\caught_fish.cpp" />
     <ClCompile Include="..\..\src\map\packets\char.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_abilities.cpp" />
     <ClCompile Include="..\..\src\map\packets\char_appearance.cpp" />
@@ -624,11 +624,13 @@
     <ClCompile Include="..\..\src\map\packets\merit_points_categories.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_basic.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_debug.cpp" />
+    <ClCompile Include="..\..\src\map\packets\message_name.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_special.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_standard.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_system.cpp" />
     <ClCompile Include="..\..\src\map\packets\message_text.cpp" />
     <ClCompile Include="..\..\src\map\packets\party_effects.cpp" />
+    <ClCompile Include="..\..\src\map\packets\release_special.cpp" />
     <ClCompile Include="..\..\src\map\packets\status_effects.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_result.cpp" />
     <ClCompile Include="..\..\src\map\packets\synth_suggestion.cpp" />

@@ -2,18 +2,16 @@
 -- Area: Korroloka Tunnel
 --  NPC: Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Korroloka_Tunnel/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/excavation");
-require("scripts/zones/Korroloka_Tunnel/TextIDs");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startExcavation(player,player:getZoneID(),npc,trade,0x0000);
+    startExcavation(player,player:getZoneID(),npc,trade,0);
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)

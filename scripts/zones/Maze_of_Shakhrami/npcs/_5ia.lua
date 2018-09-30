@@ -3,9 +3,6 @@
 --  NPC: Strange Apparatus
 -- !pos 375 20 -259 198
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs")
 require("scripts/globals/strangeapparatus")
 -----------------------------------
 

@@ -3,11 +3,9 @@
 -- Zone: Zeruhn_Mines (172)
 --
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/zone");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local ID = require("scripts/zones/Zeruhn_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -16,7 +14,7 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (prevZone == 143) then
-        cs = 0x0096;
+        cs = 150;
         if (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED) then
             if (player:getVar("ZeruhnMines_Zeid_CS") == 0) then
                 cs = 130;
@@ -35,11 +33,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -53,9 +47,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(16607);
             player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16607);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16607);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16607);
         end
         player:setVar("ZeruhnMines_Zeid_CS", 1);
     end

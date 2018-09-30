@@ -2,12 +2,9 @@
 -- Area: Windurst Waters (S)
 --   NPC: Ozzmo-Mazmo
 -- Type: Standard NPC
--- @zone 94
--- !pos -61.677 -13.311 106.400
+-- !pos -61.677 -13.311 106.400 94
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

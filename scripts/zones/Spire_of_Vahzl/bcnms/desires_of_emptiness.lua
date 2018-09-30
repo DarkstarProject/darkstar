@@ -2,15 +2,11 @@
 -- Area: Spire_of_VAHLZ
 -- Name: desires_of_emptiness
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
-
 require("scripts/globals/titles");
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Dem/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

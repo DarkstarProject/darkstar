@@ -4,9 +4,7 @@
 -- Involved in Mission "Saintly Invitation"
 -- !pos -99 -59 84 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -20,7 +18,7 @@ function onTrade(player,npc,trade)
                 npc:openDoor(2.5);
                 player:tradeComplete();
             else
-                player:messageSpecial(ITS_LOCKED);
+                player:messageSpecial(ID.text.ITS_LOCKED);
             end
         end
     end
@@ -30,7 +28,7 @@ end;
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(ID.text.ITS_LOCKED);
         return 1;
     end
 

@@ -51,6 +51,7 @@ This file is part of DarkStar-server source code.
 #include "../ai/controllers/automaton_controller.h"
 #include "../ai/states/ability_state.h"
 
+#include "../packets/char_abilities.h"
 #include "../packets/char_sync.h"
 #include "../packets/char_update.h"
 #include "../packets/entity_update.h"
@@ -949,8 +950,11 @@ namespace petutils
             charutils::BuildingCharPetAbilityTable(PChar, PPetEnt, 0);// blank the pet commands
         }
 
+        charutils::BuildingCharAbilityTable(PChar);
         PChar->PPet = nullptr;
         PChar->pushPacket(new CCharUpdatePacket(PChar));
+        PChar->pushPacket(new CCharAbilitiesPacket(PChar));
+        PChar->pushPacket(new CPetSyncPacket(PChar));
     }
 
     /************************************************************************
@@ -1441,7 +1445,8 @@ namespace petutils
         }
     }
 
-    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet) {
+    void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet)
+    {
         //set C magic evasion
         PPet->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PPet->GetMLevel()));
         PPet->health.tp = 0;
@@ -1449,6 +1454,22 @@ namespace petutils
         PPet->UpdateHealth();
         PPet->health.hp = PPet->GetMaxHP();
         PPet->health.mp = PPet->GetMaxMP();
+
+        // Stout Servant - Can't really tie it ot a real mod since it applies to the pet
+        if (CCharEntity* PCharMaster = dynamic_cast<CCharEntity*>(PMaster))
+        {
+            if (charutils::hasTrait(PCharMaster, TRAIT_STOUT_SERVANT))
+            {
+                for (CTrait* trait : PCharMaster->TraitList)
+                {
+                    if (trait->getID() == TRAIT_STOUT_SERVANT)
+                    {
+                        PPet->addModifier(Mod::DMG, -trait->getValue());
+                        break;
+                    }
+                }
+            }
+        }
     }
 
     bool CheckPetModType(CBattleEntity* PPet, PetModType petmod)

@@ -2,10 +2,8 @@
 -- Area: La Theine Plateau
 --  NPC: Dimensional Portal
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/La_Theine_Plateau/TextIDs")
 require("scripts/globals/keyitems")
+local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 -----------------------------------
 
 function onTrade(player, npc, trade)
@@ -15,7 +13,7 @@ function onTrigger(player, npc)
     if player:getCurrentMission(COP) > THE_WARRIOR_S_PATH then
         player:startEvent(204)
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE +1) -- Telepoint Disappeared
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
     end
 end
 

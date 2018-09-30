@@ -2,21 +2,17 @@
 -- Area: Windurst Walls
 --   NPC: Yoran-Oran
 -- Type: Standard NPC
--- @zone 239
--- !pos -109.987 -14 203.338
+-- !pos -109.987 -14 203.338 239
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
+    local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
     if (MandragoraMad ~= QUEST_AVAILABLE) then
         if (trade:getItemCount() == 1) then
             -- Cornette
@@ -113,13 +109,13 @@ function onEventFinish(player,csid,option)
     if (csid == 249) then
         player:addQuest(WINDURST,MANDRAGORA_MAD);
     elseif (csid == 469) then
-      player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
+        player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
     elseif (csid == 470) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",7);
         player:delKeyItem(dsp.ki.CRACKED_MIMEO_MIRROR);
     elseif (csid == 471) then
         player:delKeyItem(dsp.ki.MIMEO_FEATHER);
-         player:delKeyItem(dsp.ki.SECOND_MIMEO_FEATHER);
+        player:delKeyItem(dsp.ki.SECOND_MIMEO_FEATHER);
         player:delKeyItem(dsp.ki.THIRD_MIMEO_FEATHER);
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",9);
     elseif (csid == 472) then

@@ -4,13 +4,11 @@
 -- Dynamis Valkurm_Dunes Enter
 -- !pos 117 -10 133 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Valkurm_Dunes/TextIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 require("scripts/globals/dynamis")
+local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,16 +22,16 @@ function onTrigger(player,npc)
         local dynaWaitxDay = player:getVar("dynaWaitxDay")
 
         if player:getMainLvl() < DYNA_LEVEL_MIN then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN)
+            player:messageSpecial(ID.text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif (dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay then
 --          Params: DynamisCity, CS option, KI, Support Job Option, junk, KI, Timeless Hrgls, Perpetual Hrgls
             player:startEvent(58,7,checkFirstDyna(player,7),dsp.ki.PRISMATIC_HOURGLASS,1,0,dsp.ki.VIAL_OF_SHROUDED_SAND,4236,4237)
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) - realDay)/3456)
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,7)
+            player:messageSpecial(ID.text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,7);
         end
     else
-        player:messageSpecial(MYSTERIOUS_VOICE)
+        player:messageSpecial(ID.text.MYSTERIOUS_VOICE);
     end
 end
 

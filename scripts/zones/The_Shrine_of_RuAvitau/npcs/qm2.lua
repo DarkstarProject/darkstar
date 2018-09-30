@@ -3,17 +3,14 @@
 -- NPC:  ??? (Spawn Kirin)
 -- !pos -81 32 2 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
-require("scripts/zones/The_Shrine_of_RuAvitau/MobIDs");
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
 require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(KIRIN):isSpawned() and trade:hasItemQty(1404, 1) and trade:hasItemQty(1405, 1) and trade:hasItemQty(1406, 1) and trade:hasItemQty(1407, 1) and trade:getItemCount() == 4) then
+    if (not GetMobByID(ID.mob.KIRIN):isSpawned() and trade:hasItemQty(1404, 1) and trade:hasItemQty(1405, 1) and trade:hasItemQty(1406, 1) and trade:hasItemQty(1407, 1) and trade:getItemCount() == 4) then
         player:tradeComplete();
-        player:showText(npc, KIRIN_OFFSET);
-        SpawnMob(KIRIN):updateClaim(player);
+        player:showText(npc, ID.text.KIRIN_OFFSET);
+        SpawnMob(ID.mob.KIRIN):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;

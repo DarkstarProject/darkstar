@@ -4,9 +4,6 @@
 -- Involved in Mission: Bastok 6-1, 8-2
 -- !pos -74 0.1 58 172
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Zeruhn_Mines/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");

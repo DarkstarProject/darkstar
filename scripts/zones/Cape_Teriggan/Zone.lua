@@ -3,10 +3,7 @@
 -- Zone: Cape_Teriggan (113)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Cape_Teriggan/TextIDs");
-require("scripts/zones/Cape_Teriggan/MobIDs");
+local ID = require("scripts/zones/Cape_Teriggan/IDs")
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/conquest");
 require("scripts/globals/weather");
@@ -14,18 +11,14 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(KREUTZET);
-    GetMobByID(KREUTZET):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.KREUTZET);
+    GetMobByID(ID.mob.KREUTZET):setRespawnTime(math.random(900, 10800));
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn( player, prevZone)
@@ -58,9 +51,9 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(KREUTZET) == 24 and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)) then
-        SpawnMob(KREUTZET); -- Kreutzet
-    elseif (GetMobAction(KREUTZET) == 16 and (weather ~= dsp.weather.WIND and weather ~= dsp.weather.GALES)) then
-        DespawnMob(KREUTZET);
+    if (GetMobAction(ID.mob.KREUTZET) == 24 and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)) then
+        SpawnMob(ID.mob.KREUTZET); -- Kreutzet
+    elseif (GetMobAction(ID.mob.KREUTZET) == 16 and (weather ~= dsp.weather.WIND and weather ~= dsp.weather.GALES)) then
+        DespawnMob(ID.mob.KREUTZET);
     end
 end;

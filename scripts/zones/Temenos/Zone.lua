@@ -3,12 +3,11 @@
 -- Zone: Temenos (37)
 --
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Temenos/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
-require("scripts/zones/Temenos/TextIDs");
 require("scripts/globals/limbus");
+-----------------------------------
 
 -----------------------------------
 -- onInitialize
@@ -42,11 +41,7 @@ end;
 -----------------------------------
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 -----------------------------------

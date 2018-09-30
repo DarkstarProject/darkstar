@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Sabiliont
--- @zone 80
--- !pos 9 2 -87
+-- !pos 9 2 -87 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

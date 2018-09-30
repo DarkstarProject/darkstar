@@ -2,7 +2,7 @@
 -- Area: Sauromugue Champaign
 --  MOB: Evil Weapon
 -----------------------------------
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,BLIGHTING_BRAND_PH,20,math.random(5400,7200)); -- 90 to 120 minutes
+    phOnDespawn(mob,ID.mob.BLIGHTING_BRAND_PH,20,math.random(5400,7200)); -- 90 to 120 minutes
 end;

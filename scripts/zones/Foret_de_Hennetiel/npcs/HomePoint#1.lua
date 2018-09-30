@@ -3,10 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos -193 -0.5 -252 262
 -----------------------------------
-package.loaded["scripts/zones/Foret_de_Hennetiel/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Foret_de_Hennetiel/TextIDs");
+local ID = require("scripts/zones/Foret_de_Hennetiel/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

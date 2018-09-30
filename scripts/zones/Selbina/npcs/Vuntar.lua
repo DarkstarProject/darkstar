@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Cargo (R)
 -- !pos 7 -2 -15 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -57,15 +55,15 @@ function onEventFinish(player,csid,option)
         end
         if (option == 1) then
             player:addGil(800);
-            player:messageSpecial(GIL_OBTAINED,800);
+            player:messageSpecial(ID.text.GIL_OBTAINED,800);
             player:tradeComplete();
         elseif (option == 2) then
             player:addGil(2000);
-            player:messageSpecial(GIL_OBTAINED,2000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,2000);
             player:tradeComplete();
         elseif (option == 3) then
             player:addGil(3000);
-            player:messageSpecial(GIL_OBTAINED,3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,3000);
             player:tradeComplete();
         end
     end

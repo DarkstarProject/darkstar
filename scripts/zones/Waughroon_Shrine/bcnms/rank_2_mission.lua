@@ -3,11 +3,9 @@
 -- Name: Mission Rank 2
 -- !pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Waughroon_Shrine/TextIDs");
 require("scripts/globals/battlefield")
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 
@@ -59,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and
         player:getVar("MissionStatus") == 10) then
             player:addKeyItem(dsp.ki.KINDRED_CREST);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_CREST);
             player:setVar("MissionStatus",11);
         end
     end

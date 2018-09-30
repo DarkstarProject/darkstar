@@ -2,16 +2,13 @@
 -- Area: Northern San d'Oria
 --  NPC: Belgidiveau
 -- Starts and Finishes Quest: Trouble at the Sluice
--- @zone 231
--- !pos -98 0 69
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !pos -98 0 69 231
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,12 +41,12 @@ function onEventFinish(player,csid,option)
         player:setVar("troubleAtTheSluiceVar",1);
     elseif (csid == 56) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16706); -- Heavy Axe
         else
             player:tradeComplete();
             player:delKeyItem(dsp.ki.NEUTRALIZER);
             player:addItem(16706);
-            player:messageSpecial(ITEM_OBTAINED,16706); -- Heavy Axe
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16706); -- Heavy Axe
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TROUBLE_AT_THE_SLUICE);
         end

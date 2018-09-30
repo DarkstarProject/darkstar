@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Jeuno
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Jeuno/TextIDs");
+local ID = require("scripts/zones/Dynamis-Jeuno/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
@@ -14,11 +12,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -62,7 +56,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 0) then
-        player:setPos(48.930,10.002,-71.032,195,0xF3);
+        player:setPos(48.930,10.002,-71.032,195,243);
     end
 
 end;

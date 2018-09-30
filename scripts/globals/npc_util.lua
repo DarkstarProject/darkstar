@@ -20,7 +20,7 @@ npcUtil = {}
     Pop mob(s) from question mark NPC.
     If any mob is already spawned, return false.
     Optionally assign claim to player. (default true)
-    Optionally hide the QM for hideDuration seconds. (default QM_RESET_TIME)
+    Optionally hide the QM for hideDuration seconds. (default FORCE_SPAWN_QM_RESET_TIME)
 ******************************************************************************* --]]
 function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
     local qmId = qm:getID()
@@ -30,7 +30,7 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
         claim = true
     end
     if hideDuration == nil then
-        hideDuration = QM_RESET_TIME
+        hideDuration = FORCE_SPAWN_QM_RESET_TIME
     end
 
     -- get list of mobs to pop
@@ -133,10 +133,7 @@ end
         { {640,2}, 641 }    -- copper ore x2, tin ore x1
 ******************************************************************************* --]]
 function npcUtil.giveItem(player, items)
-    -- require zone TextIDs
-    local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs"
-    package.loaded[TextIDs] = nil
-    require(TextIDs)
+    local ID = zones[player:getZoneID()]
 
     -- create table of items, with key/val of itemId/itemQty
     local givenItems = {}
@@ -159,16 +156,16 @@ function npcUtil.giveItem(player, items)
 
     -- does player have enough inventory space?
     if player:getFreeSlotsCount() < #givenItems then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
         return false
     end
 
     -- give items to player
     for _, v in pairs(givenItems) do
         if player:addItem(v[1], v[2], true) then
-            player:messageSpecial(ITEM_OBTAINED, v[1])
+            player:messageSpecial(ID.text.ITEM_OBTAINED, v[1])
         elseif #givenItems == 1 then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, givenItems[1][1])
             return false
         end
     end
@@ -185,10 +182,7 @@ end
         {dsp.ki.BLUE_ACIDITY_TESTER, dsp.ki.RED_ACIDITY_TESTER}
 ******************************************************************************* --]]
 function npcUtil.giveKeyItem(player, keyitems)
-    -- require zone TextIDs
-    local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs"
-    package.loaded[TextIDs] = nil
-    require(TextIDs)
+    local ID = zones[player:getZoneID()]
     
     -- create table of keyitems
     local givenKeyItems = {}
@@ -204,7 +198,7 @@ function npcUtil.giveKeyItem(player, keyitems)
     -- give key items to player, with message
     for _, v in pairs(givenKeyItems) do
         player:addKeyItem(v)
-        player:messageSpecial(KEYITEM_OBTAINED,v)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,v)
     end
     return true
 end
@@ -230,9 +224,7 @@ function npcUtil.completeQuest(player, area, quest, params)
     params = params or {}
 
     -- load text ids
-    local TextIDs = "scripts/zones/" .. player:getZoneName() .. "/TextIDs"
-    package.loaded[TextIDs] = nil
-    require(TextIDs)
+    local ID = zones[player:getZoneID()]
 
     -- item(s) plus message. return false if player lacks inventory space.
     if params["item"] ~= nil then
@@ -257,12 +249,12 @@ function npcUtil.completeQuest(player, area, quest, params)
 
     if params["gil"] ~= nil and type(params["gil"]) == "number" then
         player:addGil(params["gil"] * GIL_RATE)
-        player:messageSpecial(GIL_OBTAINED, params["gil"] * GIL_RATE)
+        player:messageSpecial(ID.text.GIL_OBTAINED, params["gil"] * GIL_RATE)
     end
 
     if params["bayld"] ~= nil and type(params["bayld"]) == "number" then
         player:addCurrency('bayld', params["bayld"] * BAYLD_RATE)
-        player:messageSpecial(BAYLD_OBTAINED, params["bayld"] * BAYLD_RATE)
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, params["bayld"] * BAYLD_RATE)
     end
 
     if params["xp"] ~= nil and type(params["xp"]) == "number" then

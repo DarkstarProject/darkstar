@@ -3,10 +3,9 @@
 -- Zone: Waughroon_Shrine (144)
 --
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,11 +25,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

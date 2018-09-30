@@ -2,9 +2,6 @@
 -- Area: Navukgo Execution Chamber
 -- BCNM: TOAU-22 Shield of Diplomacy
 -----------------------------------
-package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 ----------------------------------------

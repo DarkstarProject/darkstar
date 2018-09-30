@@ -3,10 +3,7 @@
 -- Zone: Western_Altepa_Desert (125)
 --
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
-require("scripts/zones/Western_Altepa_Desert/MobIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -48,15 +45,15 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(KING_VINEGARROON);
-    GetMobByID(KING_VINEGARROON):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.KING_VINEGARROON);
+    GetMobByID(ID.mob.KING_VINEGARROON):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn( player, prevZone)
@@ -74,11 +71,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
@@ -97,9 +90,9 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(KING_VINEGARROON) == 24 and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
-        SpawnMob(KING_VINEGARROON); -- King Vinegarroon
-    elseif (GetMobAction(KING_VINEGARROON) == 16 and (weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM)) then
-        DespawnMob(KING_VINEGARROON);
+    if (GetMobAction(ID.mob.KING_VINEGARROON) == 24 and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
+        SpawnMob(ID.mob.KING_VINEGARROON); -- King Vinegarroon
+    elseif (GetMobAction(ID.mob.KING_VINEGARROON) == 16 and (weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM)) then
+        DespawnMob(ID.mob.KING_VINEGARROON);
     end
 end;

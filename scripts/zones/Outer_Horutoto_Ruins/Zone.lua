@@ -3,15 +3,12 @@
 -- Zone: Outer_Horutoto_Ruins (194)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Outer_Horutoto_Ruins/TextIDs");
-require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
+local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs");
 require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(OUTER_HORUTOTO_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.npc.OUTER_HORUTOTO_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)
@@ -23,10 +20,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

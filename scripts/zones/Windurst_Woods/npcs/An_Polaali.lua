@@ -3,6 +3,7 @@
 --  NPC: An Polaali
 -- Working 100%
 -----------------------------------
+require("scripts/globals/keyitems")
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -11,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(126) == true) then
+    if (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == true) then
         player:startEvent(407);
     elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1) then
         player:startEvent(404); -- Neeed CS here

@@ -2,18 +2,16 @@
 -- Area: Attohwa Chasm
 --  NPC: Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/excavation");
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startExcavation(player,player:getZoneID(),npc,trade,0x000A);
+    startExcavation(player,player:getZoneID(),npc,trade,10);
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)

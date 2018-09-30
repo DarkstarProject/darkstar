@@ -2,14 +2,11 @@
 -- Area: Cloister of Gales
 -- NPC:  Wind Protocrystal
 -- Involved in Quests: Trial by Wind, Trial Size Trial By Wind
--- @zone -361 1 -381 201
+-- !pos -361 1 -381 201
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Cloister_of_Gales/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
--------------------------------
+local ID = require("scripts/zones/Cloister_of_Gales/IDs");
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
@@ -21,7 +18,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return
     else
-        player:messageSpecial(PROTOCRYSTAL)
+        player:messageSpecial(ID.text.PROTOCRYSTAL);
     end
 end
 
@@ -34,10 +31,10 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option)
 
     if (csid==2) then
-        player:delKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL)
-        player:addKeyItem(dsp.ki.EMERALD_COUNTERSEAL)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.EMERALD_COUNTERSEAL)
-        player:setVar("ASA4_Emerald","2")
+        player:delKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL);
+        player:addKeyItem(dsp.ki.EMERALD_COUNTERSEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EMERALD_COUNTERSEAL);
+        player:setVar("ASA4_Emerald","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return
     end

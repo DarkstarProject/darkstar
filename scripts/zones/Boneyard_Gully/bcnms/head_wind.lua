@@ -3,12 +3,8 @@
 -- Name: head_wind
 -- BCNM: 672
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
------------------------------------
 
 function onBattlefieldTick(battlefield, tick)
     dsp.battlefield.onBattlefieldTick(battlefield, tick)
@@ -54,6 +50,6 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-     player:addExp(1000);
+        player:addExp(1000);
     end
 end

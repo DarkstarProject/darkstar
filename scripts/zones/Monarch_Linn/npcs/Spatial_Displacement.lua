@@ -3,16 +3,10 @@
 -- NPC:  Spatial Displacement
 -- !pos -35 -1 -539 31
 -----------------------------------
-package.loaded["scripts/zones/Monarch_LinnTextIDs"] = nil;
------------------------------------
-
+local ID = require("scripts/zones/Monarch_Linn/IDs");
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Monarch_Linn/TextIDs");
-
------------------------------------
--- onTrade
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,16 +14,12 @@ function onTrade(player,npc,trade)
     if (TradeBCNM(player,npc,trade)) then
         return;
     end
-
 end;
 
 function onTrigger(player,npc)
-    --printf("npcID : %u",npcID);
-
     local npcID = npc:getID();
     local X = player:getXPos();
     local Z = player:getZPos();
-
 
     if (X > 12.934 and X < 24.934) then
         if (player:getPreviousZone() == 30) then
@@ -44,23 +34,15 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
         return 1;
     else
-        player:messageSpecial(GLOWING_MIST); -- needs confirmation
+        player:messageSpecial(ID.text.GLOWING_MIST); -- needs confirmation
     end
-
 end;
 
 function onEventUpdate(player,csid,option,extras)
     EventUpdateBCNM(player,csid,option,extras);
 end;
 
------------------------------------
--- onEventFinish Action
------------------------------------
-
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-
     if (csid == 11 and option == 1) then
         player:setPos(-508.582,-8.471,-387.670,92,30); -- To Riv Site A (Retail confirmed)
     elseif (csid == 10 and option == 1) then
@@ -70,5 +52,4 @@ function onEventFinish(player,csid,option)
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end
-
 end;

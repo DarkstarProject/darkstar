@@ -2,7 +2,7 @@
 -- Area: Behemoth's Dominion
 --  HNM: King Behemoth
 -----------------------------------
-require("scripts/zones/Behemoths_Dominion/MobIDs")
+local ID = require("scripts/zones/Behemoths_Dominion/IDs")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
@@ -14,17 +14,8 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    -- Todo: move this to SQL after drop slots are a thing
-    if math.random(1,100) <= 5 then -- Hardcoded "this or this item" drop rate until implemented.
-        SetDropRate(1936,13566,1000) -- Defending Ring
-        SetDropRate(1936,13415,0)
-    else
-        SetDropRate(1936,13566,0)
-        SetDropRate(1936,13415,1000) -- Pixie Earring
-    end
-
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(BEHEMOTH_QM):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID(ID.npc.BEHEMOTH_QM):setStatus(dsp.status.DISAPPEAR)
     end
 end
 
@@ -55,12 +46,8 @@ function onMobDespawn(mob)
     -- Set Behemoth's spawnpoint and respawn time (21-24 hours)
     if LandKingSystem_NQ ~= 1 then
         SetServerVariable("[PH]King_Behemoth", 0)
-        DisallowRespawn(BEHEMOTH, false)
-        UpdateNMSpawnPoint(BEHEMOTH)
-        GetMobByID(BEHEMOTH):setRespawnTime(math.random(75600,86400))
-    end
-
-    if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
-        GetNPCByID(BEHEMOTH_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME)
+        DisallowRespawn(ID.mob.BEHEMOTH, false)
+        UpdateNMSpawnPoint(ID.mob.BEHEMOTH)
+        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(math.random(75600,86400))
     end
 end

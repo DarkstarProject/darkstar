@@ -2,17 +2,17 @@
 -- ID: 19461
 -- Item: Ukonvasara
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/msg");
-require("scripts/globals/weaponskills");
-require("scripts/globals/weaponskillids");
+require("scripts/globals/status")
+require("scripts/globals/msg")
+require("scripts/globals/weaponskills")
+require("scripts/globals/weaponskillids")
 -----------------------------------
 
-local NAME_WEAPONSKILL = "AFTERMATH_UKONVASARA";
-local NAME_EFFECT_LOSE = "AFTERMATH_LOST_UKONVASARA";
+local NAME_WEAPONSKILL = "AFTERMATH_UKONVASARA"
+local NAME_EFFECT_LOSE = "AFTERMATH_LOST_UKONVASARA"
 
 -- https://www.bg-wiki.com/bg/Relic_Aftermath
-local aftermathTable = {};
+local aftermathTable = {}
 
 -- Ukonvasara 85
 aftermathTable[19461] =
@@ -38,13 +38,13 @@ aftermathTable[19461] =
             { id = dsp.mod.REM_OCC_DO_DOUBLE_DMG, power = 50 }
         }
     }
-};
-aftermathTable[19539] = aftermathTable[19461]; -- Ukonvasara (90)
-aftermathTable[19637] = aftermathTable[19461]; -- Ukonvasara (95)
-aftermathTable[19810] = aftermathTable[19461]; -- Ukonvasara (99)
-aftermathTable[19858] = aftermathTable[19461]; -- Ukonvasara (99/II)
-aftermathTable[20839] = aftermathTable[19461]; -- Ukonvasara (119)
-aftermathTable[20840] = aftermathTable[19461]; -- Ukonvasara (119/II)
+}
+aftermathTable[19539] = aftermathTable[19461] -- Ukonvasara (90)
+aftermathTable[19637] = aftermathTable[19461] -- Ukonvasara (95)
+aftermathTable[19810] = aftermathTable[19461] -- Ukonvasara (99)
+aftermathTable[19858] = aftermathTable[19461] -- Ukonvasara (99/II)
+aftermathTable[20839] = aftermathTable[19461] -- Ukonvasara (119)
+aftermathTable[20840] = aftermathTable[19461] -- Ukonvasara (119/II)
 
 -- Ukonvasara (119/III)
 aftermathTable[21758] =
@@ -70,17 +70,17 @@ aftermathTable[21758] =
             { id = dsp.mod.REM_OCC_DO_TRIPLE_DMG, power = 50 }
         }
     }
-};
+}
 
 function onWeaponskill(user, target, wsid, tp, action)
     if (wsid == dsp.ws.UKKOS_FURY) then -- Ukko's Fury onry
-        local itemId = user:getEquipID(dsp.slot.MAIN);
+        local itemId = user:getEquipID(dsp.slot.MAIN)
         if (shouldApplyAftermath(user, tp)) then
             if (aftermathTable[itemId]) then
                 -- Apply the effect and add mods
-                addEmpyreanAftermathEffect(user, tp, aftermathTable[itemId]);
+                addEmpyreanAftermathEffect(user, tp, aftermathTable[itemId])
                 -- Add a listener for when aftermath wears (to remove mods)
-                user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost);
+                user:addListener("EFFECT_LOSE", NAME_EFFECT_LOSE, aftermathLost)
             end
         end
     end
@@ -88,26 +88,26 @@ end
 
 function aftermathLost(target, effect)
     if (effect:getType() == dsp.effect.AFTERMATH) then
-        local itemId = target:getEquipID(dsp.slot.MAIN);
+        local itemId = target:getEquipID(dsp.slot.MAIN)
         if (aftermathTable[itemId]) then
             -- Remove mods
-            removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId]);
+            removeEmpyreanAftermathEffect(target, effect, aftermathTable[itemId])
             -- Remove the effect listener
-            target:removeListener(NAME_EFFECT_LOSE);
+            target:removeListener(NAME_EFFECT_LOSE)
         end
     end
 end
 
 function onItemCheck(player, param, caster)
     if (param == dsp.itemCheck.EQUIP) then
-        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill);
+        player:addListener("WEAPONSKILL_USE", NAME_WEAPONSKILL, onWeaponskill)
     elseif (param == dsp.itemCheck.UNEQUIP) then
         -- Make sure we clean up the effect and mods
         if (player:hasStatusEffect(dsp.effect.AFTERMATH)) then
-            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH));
+            aftermathLost(player, player:getStatusEffect(dsp.effect.AFTERMATH))
         end
-        player:removeListener(NAME_WEAPONSKILL);
+        player:removeListener(NAME_WEAPONSKILL)
     end
     
-    return 0;
+    return 0
 end

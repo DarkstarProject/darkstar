@@ -3,13 +3,11 @@
 -- Name: Shattering stars - Maat Fight
 -- !pos -509 158 -211 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
 require("scripts/globals/battlefield")
+local ID = require("scripts/zones/Horlais_Peak/IDs");
 
 -----------------------------------
 -- Maat Battle in Horlais Peak
@@ -67,7 +65,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181);
         end
         local pjob = player:getMainJob();
         player:setVar("maatDefeated",pjob);

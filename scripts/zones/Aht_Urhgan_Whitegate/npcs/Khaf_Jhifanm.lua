@@ -3,9 +3,7 @@
 --  NPC: Khaf Jhifanm
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
         2872, 10000     -- Empire Waystone
     }
 
-    player:showText(npc, KHAFJHIFANM_SHOP_DIALOG)
+    player:showText(npc, ID.text.KHAFJHIFANM_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

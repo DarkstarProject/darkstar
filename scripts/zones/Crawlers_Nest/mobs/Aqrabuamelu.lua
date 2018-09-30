@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Maze of Shakhrami
---  NM:  Aqrabuamelu
+-- Area: Crawlers' Nest
+--   NM: Aqrabuamelu
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/magic");

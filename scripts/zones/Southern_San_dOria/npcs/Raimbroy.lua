@@ -2,13 +2,10 @@
 -- Area: Southern San d'Oria
 --  NPC: Raimbroy
 -- Starts and Finishes Quest: The Sweetest Things
--- @zone 230
--- !pos
+-- !zone 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
@@ -32,7 +29,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 

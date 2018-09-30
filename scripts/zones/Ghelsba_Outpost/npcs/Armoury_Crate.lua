@@ -3,12 +3,8 @@
 -- NPC:  Armoury Crate
 -- Ghelsba_Outpost Armoury_Crate
 -------------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil
-package.loaded["scripts/globals/bcnm"] = nil
--------------------------------------
 
 require("scripts/globals/bcnm")
-require("scripts/zones/Ghelsba_Outpost/TextIDs")
 require("scripts/globals/battlefield")
 -----------------------------------
 local loot =
@@ -151,10 +147,6 @@ end
 
 function onEventUpdate(player,csid,option)
 end
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
 end

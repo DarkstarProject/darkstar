@@ -3,21 +3,15 @@
 -- Zone: Cloister_of_Flames (207)
 --
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Flames/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

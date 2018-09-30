@@ -4,13 +4,10 @@
 -- Type: Door
 -- !pos -111 -6 0 165
 -------------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Throne_Room/TextIDs");
 
     -- events:
     -- 7D00 : BC menu

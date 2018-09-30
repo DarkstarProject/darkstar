@@ -4,14 +4,11 @@
 -- Starts Windurst Missions
 -- !pos 106 -5 -23 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -40,6 +37,8 @@ function onTrigger(player,npc)
             player:startEvent(149);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(197);
+        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
+            player:startEvent(632);
         else
             flagMission, repeatMission = getMissionMask(player);
             player:startEvent(114,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
@@ -59,7 +58,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.NEW_BUUMAS_BOOMERS_RECRUIT);
     elseif (csid == 114 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
-
+    if (csid == 632) then
+        player:setVar("WWoodsRTenText",1);
+    end
 end;

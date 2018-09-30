@@ -2,13 +2,10 @@
 -- Area: Boneyard Gully
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Boneyard_Gully/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/titles");
 require("scripts/globals/quests");
------------------------------------
+
 local loot =
 {
     -- ENM: Like the Wind (Wiki showed ???% for droprate, these are guesses based on other ENMs)
@@ -102,9 +99,6 @@ local loot =
         },
     }
 }
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -118,10 +112,6 @@ end;
 
 function onEventUpdate(player,csid,option)
 end;
-
------------------------------------
--- onEventFinish Action
------------------------------------
 
 function onEventFinish(player,csid,option)
 end;

@@ -4,10 +4,7 @@
 -- Involed in Quest: The Fanged One.
 -- !pos 666 -8 -379 120
 -------------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 
@@ -19,17 +16,17 @@ function onTrigger(player,npc)
     local fangedOneCS = player:getVar("TheFangedOneCS");
 
     -- THE FANGED ONE
-    if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(OLD_SABERTOOTH):isSpawned()) then
-        SpawnMob(OLD_SABERTOOTH):addStatusEffect(dsp.effect.POISON,40,10,210);
-        player:messageSpecial(OLD_SABERTOOTH_DIALOG_I);
+    if (fangedOne == QUEST_ACCEPTED and fangedOneCS == 1 and not GetMobByID(ID.mob.OLD_SABERTOOTH):isSpawned()) then
+        SpawnMob(ID.mob.OLD_SABERTOOTH):addStatusEffect(dsp.effect.POISON,40,10,210);
+        player:messageSpecial(ID.text.OLD_SABERTOOTH_DIALOG_I);
     elseif (fangedOne == QUEST_ACCEPTED and fangedOneCS == 2 and not player:hasKeyItem(dsp.ki.OLD_TIGERS_FANG)) then
         player:addKeyItem(dsp.ki.OLD_TIGERS_FANG);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.OLD_TIGERS_FANG);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.OLD_TIGERS_FANG);
         player:setVar("TheFangedOneCS", 0);
         
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end;
 end;
 

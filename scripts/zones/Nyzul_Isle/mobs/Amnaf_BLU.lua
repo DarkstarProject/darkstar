@@ -2,7 +2,7 @@
 -- Area: Nyzul Isle (Path of Darkness)
 --  MOB: Amnaf (BLU)
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -31,7 +31,7 @@ function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Circle Blade
         if (skillID == 38) then
-            mob:showText(mob,NyzulIsle.text.I_WILL_SINK_YOUR_CORPSES);
+            mob:showText(mob,ID.text.I_WILL_SINK_YOUR_CORPSES);
         end
     end);
 end;
@@ -47,25 +47,25 @@ function onMobEngaged(mob,target)
 
     -- 4 gears spawn on Stage 1 of the Fight
     if (form1Gears == 0) then
-        mob:showText(mob,NyzulIsle.text.FORMATION_GELINCIK);
+        mob:showText(mob,ID.text.FORMATION_GELINCIK);
         local instance = mob:getInstance();
-        SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR1,instance):updateEnmity(target);
-        SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR2,instance):updateEnmity(target);
-        SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR3,instance):updateEnmity(target);
-        SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR4,instance):updateEnmity(target);
+        SpawnMob(ID.mob[58].IMPERIAL_GEAR1,instance):updateEnmity(target);
+        SpawnMob(ID.mob[58].IMPERIAL_GEAR2,instance):updateEnmity(target);
+        SpawnMob(ID.mob[58].IMPERIAL_GEAR3,instance):updateEnmity(target);
+        SpawnMob(ID.mob[58].IMPERIAL_GEAR4,instance):updateEnmity(target);
         mob:setLocalVar("Form1Gears", 1);
     end
 
     -- 4 more gears spawn on Stage 2 of the Fight
     if (form == 1 and form2Gears == 0) then
-        mob:showText(mob,NyzulIsle.text.SURRENDER);
-        local gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR1,instance)
+        mob:showText(mob,ID.text.SURRENDER);
+        local gear = SpawnMob(ID.mob[58].IMPERIAL_GEAR1,instance)
         gear:updateEnmity(target);
-        gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR2,instance);
+        gear = SpawnMob(ID.mob[58].IMPERIAL_GEAR2,instance);
         gear:updateEnmity(target);
-        gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR3,instance);
+        gear = SpawnMob(ID.mob[58].IMPERIAL_GEAR3,instance);
         gear:updateEnmity(target);
-        gear = SpawnMob(NyzulIsle.mobs[58].IMPERIAL_GEAR4,instance);
+        gear = SpawnMob(ID.mob[58].IMPERIAL_GEAR4,instance);
         gear:updateEnmity(target);
         gear:setLocalVar("Form2Gears", 1);
     end
@@ -75,15 +75,15 @@ end;
 function onMobFight(mob,target)
     local segment = mob:getLocalVar("SegmentChanged");
     if (mob:getHPP() <= 30 and mob:getLocalVar("RenameThisVar") == 0) then
-        mob:showText(mob,NyzulIsle.text.CURSED_ESSENCES);
+        mob:showText(mob,ID.text.CURSED_ESSENCES);
         -- Azure Lore (or Chain Affinity?) needs to happen here followed by ws+cast. https://youtu.be/7jsXnwkqMM4?t=4m4s
         mob:setLocalVar("RenameThisVar", 1)
     -- At 50% and 20% respectively, Amnaf disappears and the fight advances to the next stage
     elseif ((mob:getHPP() <= 50 and segment == 0) or (mob:getHPP() <= 20 and segment == 1)) then
         if (segment == 0) then -- It was less duplicate code to just check segment again.
-            mob:showText(mob,NyzulIsle.text.UGH);
+            mob:showText(mob,ID.text.UGH);
         elseif (segment == 1) then
-            mob:showText(mob,NyzulIsle.text.CANNOT_WIN);
+            mob:showText(mob,ID.text.CANNOT_WIN);
         end
 
         if (mob:getLocalVar("DespawnSignal") == 0) then
@@ -97,10 +97,10 @@ end;
 function onSpellPrecast(mob, spell)
     -- Hysteric Barrage
     if (spell == 641) then
-        mob:showText(mob,NyzulIsle.text.AWAKEN);
+        mob:showText(mob,ID.text.AWAKEN);
     -- Tail Slap
     elseif (spell == 640) then
-        mob:showText(mob,NyzulIsle.text.MANIFEST);
+        mob:showText(mob,ID.text.MANIFEST);
     end
 end;
 

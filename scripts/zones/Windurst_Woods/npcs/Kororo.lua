@@ -6,9 +6,7 @@
 -- Starts quest: A Greeting Cardian
 -- Involved in quests: Lost Chick
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -61,10 +59,10 @@ function onEventFinish(player,csid,option)
         player:setVar("AGreetingCardian_Event",4);
     elseif (csid == 303) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13330); -- Tourmaline Earring
         else
             player:addItem(13330);
-            player:messageSpecial(ITEM_OBTAINED, 13330); -- Tourmaline Earring
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 13330); -- Tourmaline Earring
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,A_GREETING_CARDIAN);
             player:needToZone(true); -- zone before starting Legendary Plan B

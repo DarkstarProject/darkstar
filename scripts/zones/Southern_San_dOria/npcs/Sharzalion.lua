@@ -3,10 +3,7 @@
 --  NPC: Sharzalion
 -- Starts and Finishes Quest: The Crimson Trial
 -- Involved in Quest: Peace for the Spirit
--- @zone 230
--- !pos 95 0 111
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos 95 0 111 230
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
@@ -14,7 +11,7 @@ require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -68,11 +65,11 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 75) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16829); -- Fencing Degen
         else
             player:delKeyItem(dsp.ki.ORCISH_DRIED_FOOD);
             player:addItem(16829);
-            player:messageSpecial(ITEM_OBTAINED, 16829); -- Fencing Degen
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16829); -- Fencing Degen
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,THE_CRIMSON_TRIAL);
         end

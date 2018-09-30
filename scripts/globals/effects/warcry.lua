@@ -8,30 +8,19 @@
 -- http://www.bluegartr.com/threads/108199-Random-Facts-Thread-Other?p=5367464&viewfull=1#post5367464
 -----------------------------------
 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:addMod(dsp.mod.ATTP,effect:getPower());
-    target:addMod(dsp.mod.TP_BONUS,effect:getSubPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:addMod(dsp.mod.ATTP,effect:getPower())
+    target:addMod(dsp.mod.TP_BONUS,effect:getSubPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:delMod(dsp.mod.ATTP,effect:getPower());
-    target:delMod(dsp.mod.TP_BONUS,effect:getSubPower());
-end;
+    target:delMod(dsp.mod.ATTP,effect:getPower())
+    target:delMod(dsp.mod.TP_BONUS,effect:getSubPower())
+end

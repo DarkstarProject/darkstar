@@ -5,9 +5,7 @@
 -- Involved in Quest: Riding on the Clouds
 -- !pos 25 -6 6 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -34,7 +32,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 
@@ -62,7 +60,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 62) then
         player:tradeComplete();
         player:addGil(100);
-        player:messageSpecial(GIL_OBTAINED,100);
+        player:messageSpecial(ID.text.GIL_OBTAINED,100);
         player:addFame(BASTOK, 10);
         player:addFame(SANDORIA, 10);
         player:addFame(JEUNO, 10);
@@ -70,7 +68,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 63) then
         player:tradeComplete();
         player:addGil(120);
-        player:messageSpecial(GIL_OBTAINED,120);
+        player:messageSpecial(ID.text.GIL_OBTAINED,120);
         player:addFame(BASTOK, 20);
         player:addFame(SANDORIA, 20);
         player:addFame(JEUNO, 20);
@@ -78,7 +76,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 64) then
         player:tradeComplete();
         player:addGil(600);
-        player:messageSpecial(GIL_OBTAINED,600);
+        player:messageSpecial(ID.text.GIL_OBTAINED,600);
         player:addFame(BASTOK, 30);
         player:addFame(SANDORIA, 30);
         player:addFame(JEUNO, 30);

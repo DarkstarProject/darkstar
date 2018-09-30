@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Kazham
 --  NPC: Bhoyu Halpatacco
--- @zone 250
--- !pos -18 -4 -15
------------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
+-- !pos -18 -4 -15 250
 -----------------------------------
 
 function onTrade(player,npc,trade)

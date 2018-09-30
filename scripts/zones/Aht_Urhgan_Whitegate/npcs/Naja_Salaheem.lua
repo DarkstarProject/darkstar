@@ -4,16 +4,18 @@
 -- Type: Standard NPC
 -- !pos 22.700 -8.804 -45.591 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/zones/Aht_Urhgan_Whitegate/Shared");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
+require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    if (npcUtil.tradeHas(trade, 2163) and player:getVar("Promotion") == 1) then -- Rank to PFC
+        player:startEvent(5002,0,0,0,0,0,0,0,0,0);
+    end
 end;
 
 function onTrigger(player,npc)
@@ -22,7 +24,9 @@ function onTrigger(player,npc)
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local needToZone = player:needToZone();
 
-    if (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
+    if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false) then
+        player:startEvent(5000,0,0,0,0,0,0,0,0,0); -- PFC rank is available
+    elseif (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0);
     elseif (player:getCurrentMission(TOAU) == PRESIDENT_SALAHEEM and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(73,0,0,0,0,0,0,0,0,0);
@@ -107,7 +111,7 @@ function onEventFinish(player,csid,option)
         player:addCurrency("imperial_standing", 150);
         player:addTitle(dsp.title.PRIVATE_SECOND_CLASS);
         player:addKeyItem(dsp.ki.PSC_WILDCAT_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PSC_WILDCAT_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PSC_WILDCAT_BADGE);
     elseif (csid == 3020) then
         player:setVar("AhtUrganStatus",0);
         player:completeMission(TOAU,PRESIDENT_SALAHEEM);
@@ -115,13 +119,13 @@ function onEventFinish(player,csid,option)
         player:setVar("TOAUM3_DAY", 0);
     elseif (csid == 3028) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:addItem(2185,2);
             player:setVar("AhtUrganStatus",0);
             player:completeMission(TOAU,WESTERLY_WINDS);
             player:addMission(TOAU,A_MERCENARY_LIFE);
-            player:messageSpecial(ITEM_OBTAINED,2185);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,2185);
             player:needToZone(true);
         end
     elseif (csid == 3052) then
@@ -152,7 +156,7 @@ function onEventFinish(player,csid,option)
         player:setVar("TOAUM33_STARTDAY", VanadielDayOfTheYear());
         player:needToZone(true);
         player:addItem(2187);
-        player:messageSpecial(ITEM_OBTAINED,2187);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,2187);
         player:addMission(TOAU,SENTINELS_HONOR);
     elseif (csid == 3130) then
         player:completeMission(TOAU,SENTINELS_HONOR);
@@ -161,7 +165,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3138) then
         player:completeMission(TOAU,FANGS_OF_THE_LION);
         player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
         player:setTitle(dsp.title.NASHMEIRAS_LOYALIST);
         player:addMission(TOAU,NASHMEIRAS_PLEA);
     elseif (csid == 3139) then
@@ -170,12 +174,20 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3144) then
         player:completeMission(TOAU,THE_EMPRESS_CROWNED);
         player:addItem(16070);
-        player:messageSpecial(ITEM_OBTAINED,16070);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,16070);
         player:addMission(TOAU,ETERNAL_MERCENARY);
     elseif (csid == 3149) then
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MYTHRIL_MIRROR);
         player:addKeyItem(dsp.ki.MYTHRIL_MIRROR);
     elseif (csid == 3076 and option == 0) then
         player:setVar("AhtUrganStatus", 1);
+    elseif csid == 5000 then
+        player:setVar("Promotion", 1)
+    elseif csid == 5002 then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE);
+        player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE);
+        player:setVar("Promotion", 0)
+        player:setVar("AssaultPromotion", 0)
     end
 end;

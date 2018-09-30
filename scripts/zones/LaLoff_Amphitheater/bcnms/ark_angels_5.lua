@@ -2,10 +2,8 @@
 -- Area: LaLoff Amphitheater
 -- Name: Ark Angels 5 (Galka)
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/battlefield")
+local ID = require("scripts/zones/LaLoff_Amphitheater/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -65,24 +63,24 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
- -- print("bc finish csid "..csid.." and option "..option);
-
-   local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
-         and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY));
+    -- print("bc finish csid "..csid.." and option "..option);
+ 
+    local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
+        and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY));
 
     if (csid == 32001) then
-      if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
-         player:addKeyItem(dsp.ki.SHARD_OF_RAGE);
-         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHARD_OF_RAGE);
-         if (AAKeyitems == true) then
-            player:completeMission(ZILART,ARK_ANGELS);
-            player:addMission(ZILART,THE_SEALED_SHRINE);
-            player:setVar("ZilartStatus",0);
-         end
-      end
+        if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
+            player:addKeyItem(dsp.ki.SHARD_OF_RAGE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHARD_OF_RAGE);
+            if (AAKeyitems == true) then
+                player:completeMission(ZILART,ARK_ANGELS);
+                player:addMission(ZILART,THE_SEALED_SHRINE);
+                player:setVar("ZilartStatus",0);
+            end
+        end
     end
 
-   local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
-         and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)
-         and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
+    local AAKeyitems = (player:hasKeyItem(dsp.ki.SHARD_OF_APATHY) and player:hasKeyItem(dsp.ki.SHARD_OF_ARROGANCE)
+        and player:hasKeyItem(dsp.ki.SHARD_OF_COWARDICE) and player:hasKeyItem(dsp.ki.SHARD_OF_ENVY)
+        and player:hasKeyItem(dsp.ki.SHARD_OF_RAGE));
 end;

@@ -2,14 +2,10 @@
 -- Area: Northern San d'Oria
 --  NPC: Diary
 -- Involved in Quest: To Cure a Cough
--- @zone 230
--- !pos -75 -12 65
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos -75 -12 65 230
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

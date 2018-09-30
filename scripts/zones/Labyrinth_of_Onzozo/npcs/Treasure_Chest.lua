@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Labyrinth of Onzozo
 --  NPC: Treasure Chest
--- @zone 213
------------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
+-- !zone 213
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
 
 local TreasureType = "Chest";
 local TreasureLvL = 43;
@@ -46,15 +44,15 @@ function onTrade(player,npc,trade)
 
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(ID.text.CHEST_UNLOCKED);
 
                 if (questItemNeeded == 1) then
                     player:addKeyItem(dsp.ki.MAP_OF_THE_LABYRINTH_OF_ONZOZO);
-                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_LABYRINTH_OF_ONZOZO); -- Map of the Labyrinth of Onzozo
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_LABYRINTH_OF_ONZOZO); -- Map of the Labyrinth of Onzozo
                 elseif (questItemNeeded == 2) then
                     player:setVar("ATestOfTrueLoveProgress",player:getVar("ATestOfTrueLoveProgress")+1);
                     player:addKeyItem(dsp.ki.LANCIENNE);
-                    player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LANCIENNE); -- L'Ancienne for A Test Of True Love quest
+                    player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LANCIENNE); -- L'Ancienne for A Test Of True Love quest
                 else
                     player:setVar("["..zone.."]".."Treasure_"..TreasureType,os.time() + math.random(CHEST_MIN_ILLUSION_TIME,CHEST_MAX_ILLUSION_TIME));
 
@@ -65,11 +63,11 @@ function onTrade(player,npc,trade)
 
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]*GIL_RATE);
-                        player:messageSpecial(GIL_OBTAINED,loot[2]*GIL_RATE);
+                        player:messageSpecial(ID.text.GIL_OBTAINED,loot[2]*GIL_RATE);
                     else
                         -- Item
                         player:addItem(loot[2]);
-                        player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                        player:messageSpecial(ID.text.ITEM_OBTAINED,loot[2]);
                     end
                 end
 
@@ -80,7 +78,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1056);
+    player:messageSpecial(ID.text.CHEST_LOCKED,1056);
 end;
 
 function onEventUpdate(player,csid,option)

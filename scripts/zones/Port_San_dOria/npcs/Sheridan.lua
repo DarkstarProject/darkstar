@@ -2,21 +2,18 @@
 -- Area: Port San d'Oria
 --  NPC: Sheridan
 -- Involved in Quests: Riding on the Clouds
--- @zone 232
--- !pos -19 -8 -129
------------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
+-- !pos -19 -8 -129 232
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -25,7 +22,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 

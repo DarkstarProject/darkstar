@@ -3,7 +3,7 @@
 --  MOB: Gration
 -----------------------------------
 mixins = {require("scripts/mixins/fomor_hate")}
-require("scripts/zones/Misareaux_Coast/MobIDs");
+local ID = require("scripts/zones/Misareaux_Coast/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
@@ -23,5 +23,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(GRATION_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.mob.GRATION_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

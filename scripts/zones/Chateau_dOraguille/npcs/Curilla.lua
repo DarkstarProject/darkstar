@@ -5,13 +5,11 @@
 --                            Lure of the Wildcat (San d'Oria), Old Wounds
 -- !pos 27 0.1 0.1 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil
------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/wsquest")
-require("scripts/zones/Chateau_dOraguille/TextIDs")
+local ID = require("scripts/zones/Chateau_dOraguille/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.savage_blade
@@ -21,10 +19,6 @@ function onTrade(player,npc,trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-        if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED)
-        end
     end
 
 end
@@ -78,21 +72,21 @@ function onEventFinish(player,csid,option)
     if (csid == 55 and option == 1) then
         player:addQuest(SANDORIA,THE_GENERAL_S_SECRET)
         player:addKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_EMPTY)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_EMPTY)
     elseif (csid == 54) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16409) -- Lynx Baghnakhs
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16409) -- Lynx Baghnakhs
         else
             player:delKeyItem(dsp.ki.CURILLAS_BOTTLE_FULL)
             player:addItem(16409)
-            player:messageSpecial(ITEM_OBTAINED,16409) -- Lynx Baghnakhs
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16409) -- Lynx Baghnakhs
             player:addFame(SANDORIA,30)
             player:completeQuest(SANDORIA,THE_GENERAL_S_SECRET)
         end
     elseif (csid == 94 and option == 1) then
         player:addQuest(SANDORIA,ENVELOPED_IN_DARKNESS)
         player:addKeyItem(dsp.ki.OLD_POCKET_WATCH)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_POCKET_WATCH)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_POCKET_WATCH)
     elseif (csid == 109 and option == 1) then
         player:addQuest(SANDORIA,PEACE_FOR_THE_SPIRIT)
         player:setVar("needs_crawler_blood",0)
@@ -101,6 +95,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 562) then
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",15,true)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,SAVAGE_BLADE_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.SAVAGE_BLADE_LEARNED)
     end
 end

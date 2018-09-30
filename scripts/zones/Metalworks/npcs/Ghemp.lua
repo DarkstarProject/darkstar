@@ -4,9 +4,7 @@
 -- Type: Smithing Guild Master
 -- !pos -109 2 27 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 -----------------------------------
@@ -31,17 +29,17 @@ function onTrigger(player,npc)
     player:startEvent(101,testItem,getNewRank,30,guildMember,44,0,0,0);
 end;
 
--- 0x038c  0x038d  0x038e  0x0398  0x039f  101  102
+-- 908  909  910  920  927  101  102
 function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 101 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4096);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4096);
         else
             player:addItem(4096);
-            player:messageSpecial(ITEM_OBTAINED,4096); -- Fire Crystal
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4096); -- Fire Crystal
             signupGuild(player, guild.smithing);
         end
     end

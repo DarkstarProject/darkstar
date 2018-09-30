@@ -3,10 +3,7 @@
 -- Zone: Bhaflau_Remnants
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Bhaflau_Remnants/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bhaflau_Remnants/TextIDs");
+local ID = require("scripts/zones/Bhaflau_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,10 +3,8 @@
 --  NPC: Dimensional_Portal
 -- !pos 260.000 35.150 340.000 117
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tahrongi_Canyon/TextIDs")
 require("scripts/globals/keyitems")
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
 -----------------------------------
 
 function onTrade(player, npc, trade)
@@ -16,7 +14,7 @@ function onTrigger(player, npc)
     if player:getCurrentMission(COP) > THE_WARRIOR_S_PATH then
         player:startEvent(915)
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE +1) -- Telepoint Disappeared
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE+1); -- Telepoint Disappeared
     end
 end
 

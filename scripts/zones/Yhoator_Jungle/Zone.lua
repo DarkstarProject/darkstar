@@ -3,10 +3,7 @@
 -- Zone: Yhoator_Jungle (124)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Yhoator_Jungle/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Yhoator_Jungle/TextIDs");
-require("scripts/zones/Yhoator_Jungle/MobIDs");
+local ID = require("scripts/zones/Yhoator_Jungle/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -43,31 +40,27 @@ local itemMap =
     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(WOODLAND_SAGE);
-    GetMobByID(WOODLAND_SAGE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.WOODLAND_SAGE);
+    GetMobByID(ID.mob.WOODLAND_SAGE):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(BISQUE_HEELED_SUNBERRY);
-    GetMobByID(BISQUE_HEELED_SUNBERRY):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.BISQUE_HEELED_SUNBERRY);
+    GetMobByID(ID.mob.BISQUE_HEELED_SUNBERRY):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(BRIGHT_HANDED_KUNBERRY);
-    GetMobByID(BRIGHT_HANDED_KUNBERRY):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.BRIGHT_HANDED_KUNBERRY);
+    GetMobByID(ID.mob.BRIGHT_HANDED_KUNBERRY):setRespawnTime(math.random(900, 10800));
 
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn( player, prevZone)

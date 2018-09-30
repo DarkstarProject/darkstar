@@ -4,14 +4,12 @@
 -- Type: Guildworker's Union Representative
 -- !pos -9.782 -5.249 -134.432 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 
 local keyitems = {
-     [0] = {
+    [0] = {
         id = dsp.ki.BONE_PURIFICATION,
         rank = 3,
         cost = 40000
@@ -94,6 +92,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 10022) then
         unionRepresentativeTriggerFinish(player, option, target, 6, "guild_bonecraft", keyitems, items);
     elseif (csid == 10023) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

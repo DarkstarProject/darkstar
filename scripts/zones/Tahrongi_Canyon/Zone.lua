@@ -3,12 +3,10 @@
 -- Zone: Tahrongi_Canyon (117)
 --
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
-require("scripts/zones/Tahrongi_Canyon/MobIDs");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/conquest");
 require("scripts/globals/weather");
 require("scripts/globals/zone");
 -----------------------------------
@@ -48,7 +46,7 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
@@ -74,11 +72,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
@@ -107,10 +101,10 @@ function isHabrokWeather(weather)
 end
 
 function onZoneWeatherChange(weather)
-    local habrok = GetMobByID(HABROK);
+    local habrok = GetMobByID(ID.mob.HABROK);
     if (habrok:isSpawned() and not isHabrokWeather(weather)) then
-        DespawnMob(HABROK);
+        DespawnMob(ID.mob.HABROK);
     elseif (not habrok:isSpawned() and isHabrokWeather(weather) and os.time() > habrok:getLocalVar("pop")) then
-        SpawnMob(HABROK);
+        SpawnMob(ID.mob.HABROK);
     end
 end;

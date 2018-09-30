@@ -3,12 +3,9 @@
 -- Name: brothers
 -- bcnmID : 643
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 require("scripts/globals/battlefield")
 require("scripts/globals/missions");
------------------------------------
+
 
  function onBattlefieldInitialise(battlefield)
     battlefield:setLocalVar("loot", 1)
@@ -24,7 +21,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-   if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
+    if (player:hasKeyItem(dsp.ki.ZEPHYR_FAN)) then
         player:delKeyItem(dsp.ki.ZEPHYR_FAN);
     end
 end;
@@ -49,7 +46,7 @@ function onBattlefieldLeave(player,battlefield,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)

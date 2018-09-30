@@ -3,12 +3,8 @@
 -- Zone: La_Vaule_[S] (85)
 --
 -----------------------------------
-package.loaded["scripts/zones/La_Vaule_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/La_Vaule_[S]/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/La_Vaule_[S]/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

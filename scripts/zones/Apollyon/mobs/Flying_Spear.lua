@@ -2,9 +2,6 @@
 -- Area: Apollyon SE
 --  NPC: Flying_Spear
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
 -----------------------------------
 

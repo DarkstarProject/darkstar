@@ -4,14 +4,12 @@
 -- Type: Assault
 -- !pos 518.387 -24.707 -467.297 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local ID = require("scripts/zones/Caedarva_Mire/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -65,12 +63,12 @@ function onEventFinish(player,csid,option)
     -- BEGINNINGS
     elseif (csid == 12) then
         player:addKeyItem(dsp.ki.BRAND_OF_THE_STONESERPENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_STONESERPENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_STONESERPENT);
 
     -- ASSAULT
     elseif (csid == 149 and option == 1) then
         player:delCurrency("imperial_standing", 50);
         player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

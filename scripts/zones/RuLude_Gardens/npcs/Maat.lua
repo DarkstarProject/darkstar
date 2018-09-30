@@ -3,16 +3,13 @@
 --  NPC: Maat
 -- Starts and Finishes Quest: Limit Break Quest 1-5
 -- Involved in Quests: Beat Around the Bushin
--- @zone 243
--- !pos 8 3 118
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+-- !pos 8 3 118 243
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -92,7 +89,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(JEUNO,BEYOND_THE_SUN) == QUEST_AVAILABLE and mJob <= 15 and player:getVar("maatsCap") == 32767) then
         player:startEvent(74); -- Finish Quest "Beyond The Sun"
     else
-        player:showText(npc,MAAT_DIALOG);
+        player:showText(npc,ID.text.MAAT_DIALOG);
     end
 
 end;
@@ -125,7 +122,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SQUARE_FRIGICITE);
         player:delKeyItem(dsp.ki.TRIANGULAR_FRIGICITE);
         player:levelCap(60);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_60);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_60);
         player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
         player:addFame(JEUNO, 40);
     -- Genkai 3
@@ -137,7 +134,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.QUADAV_CREST);
         player:delKeyItem(dsp.ki.YAGUDO_CREST);
         player:levelCap(65);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_65);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_65);
         player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
         player:addFame(JEUNO, 50);
     elseif (csid == 88) then
@@ -156,7 +153,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SOMBER_STONE);
         player:delKeyItem(dsp.ki.SPIRITED_STONE);
         player:levelCap(70);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_70);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_70);
         player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
         player:addFame(JEUNO, 60);
     elseif (csid == 92) then
@@ -172,7 +169,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.STAR_BREAKER);
         player:levelCap(75);
         player:setVar("maatDefeated",0);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_75);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_75);
         player:completeQuest(JEUNO,SHATTERING_STARS);
         player:addFame(JEUNO, 80);
     elseif (csid==74) then
@@ -181,7 +178,7 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.ULTIMATE_CHAMPION_OF_THE_WORLD);
             player:setVar("maatsCap",0);
             player:addItem(15194);
-            player:messageSpecial(ITEM_OBTAINED,15194);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,15194);
         end
     end
 

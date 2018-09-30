@@ -2,18 +2,16 @@
 -- Area: Yuhtunga Jungle
 --  NPC: Harvesting Point
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/harvesting");
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,0x00CE);
+    startHarvesting(player,player:getZoneID(),npc,trade,206);
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+    player:messageSpecial(ID.text.HARVESTING_IS_POSSIBLE_HERE,1020);
 end;
 
 function onEventUpdate(player,csid,option)

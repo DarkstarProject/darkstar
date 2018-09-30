@@ -3,18 +3,15 @@
 --  NPC: Sobane
 -- Starts and Finishes Quest: Signed in Blood
 -- Involved in quest: Sharpening the Sword, Riding on the Clouds
--- @zone 230
--- !pos -190 -3 97
--- csid: 52  732  733  0x02de  735  0x02e0  0x02e1  0x02e2  0x02e3  0x02e4  0x02e5
--------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+-- !pos -190 -3 97 230
+-- csid: 52  732  733  734  735  736  737  738  739  740  741
 -------------------------------------
 require("scripts/globals/player");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +19,7 @@ function onTrade(player,npc,trade)
     -- FLYERS FOR REGINE QUEST --
     if (trade:hasItemQty(532,1) and count == 1) then -- Trade Magicmart Flyer
         if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
 
     -- SIGNED IN BLOOD QUEST --
@@ -37,7 +34,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 end;
@@ -75,14 +72,14 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() >= 1) then
             player:delKeyItem(dsp.ki.TORN_OUT_PAGES);
             player:addItem(14760,1);
-            player:messageSpecial(ITEM_OBTAINED,14760);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14760);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SIGNED_IN_BLOOD);
             player:setVar("SIGNED_IN_BLOOD_Prog",0);
             player:addGil(GIL_RATE*3500);
             player:tradeComplete();
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14760);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14760);
         end
     elseif (csid == 52) then
         player:setVar("sharpeningTheSwordCS",3);

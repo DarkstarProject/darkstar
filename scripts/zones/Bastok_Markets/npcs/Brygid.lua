@@ -5,9 +5,7 @@
 -- Involved in Quests: Riding on the Clouds
 -- !pos -90 -4 -108 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/equipment");
@@ -27,7 +25,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     elseif (BrygidReturns == QUEST_ACCEPTED and wantsSubligar ~= 0) then
         if (wantsSubligar==13) then
@@ -114,11 +112,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,BRYGID_THE_STYLIST);
     elseif (csid == 311) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12720);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12720);
         else
             player:addTitle(dsp.title.BRYGIDAPPROVED);
             player:addItem(12720);
-            player:messageSpecial(ITEM_OBTAINED,12720);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12720);
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,BRYGID_THE_STYLIST);
         end
@@ -133,7 +131,7 @@ function onEventFinish(player,csid,option)
         player:setVar("BrygidWantsSubligar",0);
         player:addTitle(dsp.title.BASTOKS_SECOND_BEST_DRESSED);
         player:addItem(14400+wantsSubligar);
-        player:messageSpecial(ITEM_OBTAINED,14400+wantsSubligar);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,14400+wantsSubligar);
         player:addFame(BASTOK,30);
         player:completeQuest(BASTOK,BRYGID_THE_STYLIST_RETURNS);
     end

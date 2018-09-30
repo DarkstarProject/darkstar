@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Ru'Lude Gardens
 --  NPC: Adolie
--- @zone 243
--- !pos -35 2 59
------------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
+-- !pos -35 2 59 243
 -----------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +18,7 @@ function onTrigger(player,npc)
     end
 end;
 
--- 0x0018  30  0x001f  0x0020  0x009e  0x0062  0x009d  0x0061  0x0064  0x276b
+-- 24  30  31  32  158  98  157  97  100  10091
 function onEventUpdate(player,csid,option)
 end;
 

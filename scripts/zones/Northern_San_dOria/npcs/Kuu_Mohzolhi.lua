@@ -2,14 +2,11 @@
 -- Area: Northern San d'Oria
 --  NPC: Kuu Mohzolhi
 -- Starts and Finishes Quest: Growing Flowers
--- @zone 231
--- !pos -123 0 80
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !pos -123 0 80 231
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -79,7 +76,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA,GROWING_FLOWERS);
         player:addFame(SANDORIA,120);
         player:moghouseFlag(1);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 605 and option == 1) then
         player:tradeComplete();
         player:addQuest(SANDORIA,GROWING_FLOWERS);

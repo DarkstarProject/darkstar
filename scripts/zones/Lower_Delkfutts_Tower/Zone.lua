@@ -3,12 +3,10 @@
 -- Zone: Lower_Delkfutts_Tower (184)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,11 +15,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -88,7 +82,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:startEvent(38);
     elseif (csid == 38) then
-         player:startEvent(39);
+        player:startEvent(39);
     elseif (csid == 39) then
         player:completeMission(COP,ANCIENT_FLAMES_BECKON);
         player:addMission(COP,THE_RITES_OF_LIFE);

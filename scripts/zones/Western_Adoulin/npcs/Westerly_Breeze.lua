@@ -2,16 +2,13 @@
 -- Area: Western Adoulin
 --  NPC: Westerly Breeze
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
---                                              'The Starving'
---                                              'Always More, Quoth the Ravenous'
---  @zone 256
---  !pos 62 32 123 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quests: 'Hunger Strikes'
+--                                             'The Starving'
+--                                             'Always More, Quoth the Ravenous'
+-- !pos 62 32 123 256
 -----------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -125,7 +122,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 500 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:setVar("Westerly_Breeze_Wait", vanaDay());
         player:needToZone(true);
@@ -147,7 +144,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(ADOULIN, ALWAYS_MORE_QUOTH_THE_RAVENOUS);
         player:addExp(1500 * EXP_RATE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 1000 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:setVar("Westerly_Breeze_Wait", 0);
     elseif ((csid == 2533) or (csid == 3008) or (csid == 3014)) then
@@ -163,7 +160,7 @@ function onEventFinish(player,csid,option)
             gil_obtained = 19716 * GIL_RATE;
         end
         player:addGil(gil_obtained);
-        player:messageSpecial(GIL_OBTAINED, gil_obtained);
+        player:messageSpecial(ID.text.GIL_OBTAINED, gil_obtained);
         player:setVar("ATWTTB_Can_Trade_Gruel", 0);
     end
 end;

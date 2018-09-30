@@ -3,9 +3,7 @@
 -- Zone: Bibiki_Bay (4)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -46,7 +44,7 @@ local itemMap =
     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
@@ -65,7 +63,7 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if ((prevZone == 3) and (bibiki == 3)) then
-            cs = 0x000B;
+            cs = 11;
         elseif ((prevZone ==3) and (bibiki == 4)) then
             cs = 10;
         else
@@ -76,11 +74,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -128,14 +122,14 @@ function onTransportEvent(player,transport)
             local remainingticket=player:getVar("Manaclipper_Ticket");
             player:setVar("Manaclipper_Ticket",(remainingticket - 1));
                 if ( (remainingticket - 1) > 0) then
-                    player:messageSpecial(LEFT_BILLET,0,dsp.ki.MANACLIPPER_MULTITICKET,(remainingticket - 1));
+                    player:messageSpecial(ID.text.LEFT_BILLET,0,dsp.ki.MANACLIPPER_MULTITICKET,(remainingticket - 1));
                 else
-                    player:messageSpecial(END_BILLET,0,dsp.ki.MANACLIPPER_MULTITICKET);
+                    player:messageSpecial(ID.text.END_BILLET,0,dsp.ki.MANACLIPPER_MULTITICKET);
                     player:delKeyItem(dsp.ki.MANACLIPPER_MULTITICKET);
                 end
             player:startEvent(14);
         else
-            player:messageSpecial(NO_BILLET,dsp.ki.MANACLIPPER_TICKET);
+            player:messageSpecial(ID.text.NO_BILLET,dsp.ki.MANACLIPPER_TICKET);
             player:setVar("bibiki",0);
             player:setPos(489,-3,713,200);
         end

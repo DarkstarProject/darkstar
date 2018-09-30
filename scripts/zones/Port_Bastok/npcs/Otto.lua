@@ -3,8 +3,7 @@
 --  NPC: Otto
 -- Standard Info NPC
 -- Involved in Quest: The Siren's Tear
--- @zone 236
--- !pos -145.929 -7.48 -13.701
+-- !pos -145.929 -7.48 -13.701 236
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------

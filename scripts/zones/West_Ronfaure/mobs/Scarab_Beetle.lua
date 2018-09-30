@@ -3,7 +3,7 @@
 --  MOB: Scarab Beetle
 -- Note: Place holder for Fungus Beetle
 -----------------------------------
-require("scripts/zones/West_Ronfaure/MobIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,FUNGUS_BEETLE_PH,10,math.random(900,10800)); -- 15 minutes to 3 hours
+    phOnDespawn(mob,ID.mob.FUNGUS_BEETLE_PH,10,math.random(900,10800)); -- 15 minutes to 3 hours
 end;

@@ -3,10 +3,7 @@
 -- Zone: Bastok_Markets_[S] (87)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -19,7 +16,7 @@ function onZoneIn(player,prevZone)
         position = math.random(1,5) - 33;
         player:setPos(-177,-8,position,127);
         if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
-            cs = 0x7534;
+            cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
     end

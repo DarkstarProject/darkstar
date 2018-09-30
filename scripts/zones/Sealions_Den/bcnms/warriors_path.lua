@@ -3,13 +3,10 @@
 -- Name: warriors_path
 -- bcnmID : 993
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/battlefield")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
  --Tarutaru
 --Tenzen                                                    group 860   3875
@@ -70,7 +67,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-       player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
-       player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE);
+        player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
+        player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE);
     end
 end;

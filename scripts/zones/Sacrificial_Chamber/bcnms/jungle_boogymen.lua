@@ -3,10 +3,7 @@
 -- Name: jungle_boogymen
 -- BCNM60
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
 require("scripts/globals/battlefield")
 -----------------------------------
 -- EXAMPLE SCRIPT

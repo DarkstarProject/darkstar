@@ -1,29 +1,17 @@
 -----------------------------------
 --
---     dsp.effect.BATTLEFIELD
+-- dsp.effect.BATTLEFIELD
 --
------------------------------------
-
------------------------------------
--- onEffectGain Action
 -----------------------------------
 
 function onEffectGain(target,effect)
     if (target:getPet()) then
-        target:getPet():addStatusEffect(effect);
+        target:getPet():addStatusEffect(effect)
     end
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
     local pet = target:getPet()
@@ -35,11 +23,11 @@ function onEffectLose(target,effect)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-end;
+    -- printf("onUpdate CSID: %u",csid)
+    -- printf("onUpdate RESULT: %u",option)
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-end;
+    -- printf("onFinish CSID: %u",csid)
+    -- printf("onFinish RESULT: %u",option)
+end

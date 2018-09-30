@@ -2,18 +2,9 @@
 -- Area: The Garden of Ru'Hmet
 --  MOB: Ix'aern (drg)
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
 require("scripts/globals/status");
 -----------------------------------
-
-function onMobSpawn(mob)
-    if (math.random(0,99) < 78) then
-        SetDropRate(4396,1870,1000); -- Deed Of Sensib.
-        SetDropRate(4396,1903,0);
-    else
-        SetDropRate(4396,1870,0);
-        SetDropRate(4396,1903,1000); -- Vice Of Aspersion
-    end
-end;
 
 function onMobFight(mob,target)
     -- Spawn the pets if they are despawned
@@ -47,5 +38,6 @@ function onMobDespawn( mob )
     DespawnMob(mob:getID()+3);
 
     -- Pick a new PH for Ix'Aern (DRG)
-    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
+    local groups = ID.mob.AWAERN_DRG_GROUPS
+    SetServerVariable("[SEA]IxAernDRG_PH", groups[math.random(1, #groups)] + math.random(0, 2));
 end

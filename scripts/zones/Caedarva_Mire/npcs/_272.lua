@@ -3,12 +3,10 @@
 -- Door: Runic Seal
 -- !pos 486 -23 -500 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
-require("scripts/zones/Caedarva_Mire/TextIDs");
+local ID = require("scripts/zones/Caedarva_Mire/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +23,10 @@ function onTrigger(player,npc)
         if (assaultid ~= 0) then
             player:startEvent(140, assaultid, -4, 0, recommendedLevel, 0, armband);
         else
-            player:messageSpecial(NOTHING_HAPPENS);
+            player:messageSpecial(ID.text.NOTHING_HAPPENS);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
@@ -54,11 +52,11 @@ function onEventUpdate(player,csid,option,target)
     if (party ~= nil) then
         for i,v in ipairs(party) do
             if (not (v:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
-                player:messageText(target,MEMBER_NO_REQS, false);
+                player:messageText(target,ID.text.MEMBER_NO_REQS, false);
                 player:instanceEntry(target,1);
                 return;
             elseif (v:getZone() == player:getZone() and v:checkDistance(player) > 50) then
-                player:messageText(target,MEMBER_TOO_FAR, false);
+                player:messageText(target,ID.text.MEMBER_TOO_FAR, false);
                 player:instanceEntry(target,1);
                 return;
             end
@@ -71,7 +69,7 @@ end;
 
 function onEventFinish(player,csid,option,target)
 
-    if (csid == 130 or (csid == 140 and option == 4)) then
+    if csid == 140 and option == 4 then
         player:setPos(0,0,0,0,69);
     end
 end;
@@ -94,7 +92,7 @@ function onInstanceCreated(player,target,instance)
             end
         end
     else
-        player:messageText(target,CANNOT_ENTER, false);
+        player:messageText(target,ID.text.CANNOT_ENTER, false);
         player:instanceEntry(target,3);
     end
 end;

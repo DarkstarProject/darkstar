@@ -1,13 +1,10 @@
 -----------------------------------
 -- Area: Sea Serpent Grotto
 --  NPC: Mythril Beastcoin Door
--- @zone 176
--- !pos 40 8.6 20.012
------------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
+-- !pos 40 8.6 20.012 176
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,25 +23,25 @@ function onTrigger(player,npc)
 
     if (X >= 40  and Z >= 15) then
         if (MythrilDoorCheck == 0) then --Door has never been checked
-            player:messageSpecial(FIRST_CHECK);
+            player:messageSpecial(ID.text.FIRST_CHECK);
             player:setVar("SSG_MythrilDoor",1);
         elseif (MythrilDoorCheck == 1) then --Door has been checked once
-            player:messageSpecial(SECOND_CHECK);
+            player:messageSpecial(ID.text.SECOND_CHECK);
             player:setVar("SSG_MythrilDoor",2);
         elseif (MythrilDoorCheck == 2) then --Door has been checked twice
-            player:messageSpecial(THIRD_CHECK);
+            player:messageSpecial(ID.text.THIRD_CHECK);
             player:setVar("SSG_MythrilDoor",3);
         elseif (MythrilDoorCheck == 3) then --Door has been checked three times
-            player:messageSpecial(FOURTH_CHECK);
+            player:messageSpecial(ID.text.FOURTH_CHECK);
             player:setVar("SSG_MythrilDoor",4);
         elseif (MythrilDoorCheck == 4) then --Door has been checked four times
-            player:messageSpecial(FIFTH_CHECK);
+            player:messageSpecial(ID.text.FIFTH_CHECK);
             player:setVar("SSG_MythrilDoor",5);
         elseif (MythrilDoorCheck == 5) then --Door has been checked five times
-            player:messageSpecial(MYTHRIL_CHECK);
+            player:messageSpecial(ID.text.MYTHRIL_CHECK);
             player:setVar("SSG_MythrilDoor",6);
         elseif (MythrilDoorCheck == 6 or MythrilDoorCheck == 7) then --Door has been checked six or more times
-            player:messageSpecial(COMPLETED_CHECK,749);
+            player:messageSpecial(ID.text.COMPLETED_CHECK,749);
             player:setVar("SSG_MythrilDoor",7);
         end
     return 1 --Keep the door closed

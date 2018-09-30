@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Gontrain
 -- Type: Standard NPC and Quest NPC
---  Involved with Quest: 'Raptor Rapture'
---  @zone 256
---  !pos 13 0 -143 256
+-- Involved with Quest: 'Raptor Rapture'
+-- !pos 13 0 -143 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------

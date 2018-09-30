@@ -3,9 +3,7 @@
 --  NPC: Tateeya
 -- Automaton Attachment Unlocks
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -53,7 +51,7 @@ function onEventFinish(player,csid,option)
         player:setVar('TateeyaTradeStatus', 1);
     elseif (csid == 651) then
         local subid = player:getVar('TateeyaUnlock');
-        player:messageSpecial(AUTOMATON_ATTACHMENT_UNLOCK, subid);
+        player:messageSpecial(ID.text.AUTOMATON_ATTACHMENT_UNLOCK, subid);
         player:setVar('TateeyaUnlock',0);
     end
 end;

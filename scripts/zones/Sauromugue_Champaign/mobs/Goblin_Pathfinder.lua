@@ -2,12 +2,10 @@
 -- Area: Sauromugue Champaign
 --  MOB: Goblin Pathfinder
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -18,7 +16,7 @@ function onMobDeath(mob, player, isKiller)
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             player:addKeyItem(dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHUNK_OF_SMOKED_GOBLIN_GRUB);
         end
     end
 

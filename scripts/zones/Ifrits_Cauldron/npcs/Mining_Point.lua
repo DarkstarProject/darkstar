@@ -2,18 +2,16 @@
 -- Area: Ifrits Cauldron
 --  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/mining");
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x0014);
+    startMining(player,player:getZoneID(),npc,trade,20);
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)

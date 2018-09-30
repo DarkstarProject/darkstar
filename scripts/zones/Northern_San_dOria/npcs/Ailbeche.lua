@@ -2,12 +2,9 @@
 -- Area: Northern San d'Oria
 --  NPC: Ailbeche
 -- Starts and Finishes Quest: Father and Son, Sharpening the Sword, A Boy's Dream (start)
--- @zone 231
--- !pos 4 -1 24
+-- !pos 4 -1 24 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -37,7 +34,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -109,10 +106,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,FATHER_AND_SON);
     elseif (csid == 509) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17391);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17391);
         else
             player:addItem(17391);
-            player:messageSpecial(ITEM_OBTAINED, 17391); -- Willow Fishing Rod
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 17391); -- Willow Fishing Rod
             player:addTitle(dsp.title.LOST_CHILD_OFFICER);
             player:setVar("QuestfatherAndSonVar",0);
             player:addFame(SANDORIA,30);
@@ -131,11 +128,11 @@ function onEventFinish(player,csid,option)
         player:setVar("sharpeningTheSwordCS",1);
     elseif (csid == 44) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17643);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17643);
         else
             player:delKeyItem(dsp.ki.ORDELLE_WHETSTONE);
             player:addItem(17643);
-            player:messageSpecial(ITEM_OBTAINED, 17643); -- Honor Sword
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 17643); -- Honor Sword
             player:setVar("sharpeningTheSwordCS",0);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SHARPENING_THE_SWORD);

@@ -3,10 +3,7 @@
 -- Zone: Castle_Zvahl_Keep (162)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Zvahl_Keep/TextIDs")
-require("scripts/zones/Castle_Zvahl_Keep/MobIDs")
+local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs")
 require("scripts/globals/conquest")
 -----------------------------------
 
@@ -19,15 +16,11 @@ function onInitialize(zone)
     zone:registerRegion(6, -528,-74,84, -526,-73,89)   -- N porter on map 4
     zone:registerRegion(7, -528,-74,30, -526,-73,36)   -- S porter on map 4
 
-    UpdateTreasureSpawnPoint(ZVAHL_KEEP_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(ID.npc.ZVAHL_KEEP_TREASURE_CHEST)
 end
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers()
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE)
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
 function onZoneIn(player,prevZone)

@@ -3,10 +3,6 @@
 --  NPC: Particle Gate
 -- !pos 1 0.1 -320 34
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -25,6 +21,6 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 2) then
-      player:setVar("PromathiaStatus",1);
+        player:setVar("PromathiaStatus",1);
     end
 end;
