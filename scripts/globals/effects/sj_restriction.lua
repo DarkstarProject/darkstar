@@ -15,10 +15,6 @@ function onEffectTick(target,effect)
 end
 
 function onEffectLose(target,effect)
-<<<<<<< HEAD
-    target:recalculateStats();
-end;
-=======
     local power = effect:getPower()
     -- fix crash on logout / login
     if (power > dsp.MAX_JOB_TYPE or power < 0) then
@@ -27,4 +23,3 @@ end;
 
     target:sjRestriction(power,false)
 end
->>>>>>> master

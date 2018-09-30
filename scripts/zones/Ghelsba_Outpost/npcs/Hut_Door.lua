@@ -11,14 +11,6 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
     TradeBCNM(player,npc,trade);
-=======
--------------------------------------
-
-function onTrade(player,npc,trade)
-    if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
-        return;
-    end
->>>>>>> master
 end;
 
 function onTrigger(player,npc)
