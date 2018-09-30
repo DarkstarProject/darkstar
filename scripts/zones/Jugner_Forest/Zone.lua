@@ -3,10 +3,7 @@
 -- Zone: Jugner_Forest (104)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Jugner_Forest/TextIDs");
-require("scripts/zones/Jugner_Forest/MobIDs");
+local ID = require("scripts/zones/Jugner_Forest/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -40,7 +37,7 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
@@ -49,8 +46,8 @@ end;
 function onInitialize(zone)
     zone:registerRegion(1, -484, 10, 292, 0, 0, 0); -- Sets Mark for "Under Oath" Quest cutscene.
 
-    UpdateNMSpawnPoint(FRAELISSA);
-    GetMobByID(FRAELISSA):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.FRAELISSA);
+    GetMobByID(ID.mob.FRAELISSA):setRespawnTime(math.random(900, 10800));
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID());
 end;

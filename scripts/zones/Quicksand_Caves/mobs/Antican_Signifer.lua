@@ -3,7 +3,7 @@
 --  MOB: Antican Signifer
 -----------------------------------
 
-require("scripts/zones/Quicksand_Caves/MobIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -19,5 +19,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,CENTURIO_X_I_PH,5,9000); -- 2,5 hours
+    phOnDespawn(mob,ID.mob.CENTURIO_X_I_PH,5,9000); -- 2,5 hours
 end;

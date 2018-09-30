@@ -2,9 +2,7 @@
 -- Chains of Apathy
 --
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
@@ -18,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
             if (race == 1 or race == 2) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_VAHZL) then
-                mob:showText(mob, PROMATHIA_TEXT)
+                mob:showText(mob, ID.text.PROMATHIA_TEXT)
                 return 0
             end
         end

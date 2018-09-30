@@ -3,13 +3,11 @@
 --  NPC: Powhatan
 -- Starts & Ends Quest: Welcome to Bastok, Guest of Hauteur
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -45,7 +43,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(POWHATAN_DIALOG_1);
+        player:messageSpecial(ID.text.POWHATAN_DIALOG_1);
     end
 
 end;
@@ -59,11 +57,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,WELCOME_TO_BASTOK);
     elseif (csid == 53) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16565);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16565);
         else
             player:addTitle(dsp.title.BASTOK_WELCOMING_COMMITTEE);
             player:addItem(16565);
-            player:messageSpecial(ITEM_OBTAINED,16565); -- Spatha
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16565); -- Spatha
             player:setVar("WelcomeToBastok_Event",0);
             player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,WELCOME_TO_BASTOK);
@@ -72,11 +70,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,GUEST_OF_HAUTEUR);
     elseif (csid == 58) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12300);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12300);
         else
             player:addTitle(dsp.title.BASTOK_WELCOMING_COMMITTEE);
             player:addItem(12300);
-            player:messageSpecial(ITEM_OBTAINED,12300); -- Targe
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12300); -- Targe
             player:delKeyItem(dsp.ki.LETTERS_FROM_DOMIEN);
             player:setVar("GuestofHauteur_Event",0);
             player:addFame(BASTOK,80);

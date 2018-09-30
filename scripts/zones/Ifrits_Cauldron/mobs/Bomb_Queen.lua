@@ -2,7 +2,7 @@
 -- Area: Ifrit's Cauldron
 --  MOB: Bomb Queen
 -----------------------------------
-require("scripts/zones/Ifrits_Cauldron/MobIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
@@ -44,5 +44,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(BOMB_QUEEN_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.BOMB_QUEEN_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

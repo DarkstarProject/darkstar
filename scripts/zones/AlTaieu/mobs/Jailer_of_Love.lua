@@ -3,7 +3,7 @@
 --   NM: Jailer of Love
 -- !pos 431.522 -0.912 -603.503 33
 -----------------------------------
-require("scripts/zones/AlTaieu/MobIDs")
+local ID = require("scripts/zones/AlTaieu/IDs")
 require("scripts/globals/status")
 -----------------------------------
 
@@ -38,7 +38,7 @@ function onMobFight(mob, target)
         
         local spawns = mob:getLocalVar("SPAWNS")
         if spawns < 8 then
-            local minionOffset = JAILER_OF_LOVE + minionGroup[spawns]
+            local minionOffset = ID.mob.JAILER_OF_LOVE + minionGroup[spawns]
             SpawnMob(minionOffset + 0):updateEnmity(target)
             SpawnMob(minionOffset + 1):updateEnmity(target)
             SpawnMob(minionOffset + 2):updateEnmity(target)
@@ -46,7 +46,7 @@ function onMobFight(mob, target)
             -- determine which sharks are currently spawned
             local phuaboUp = {}
             local phuaboDn = {}
-            for i = JAILER_OF_LOVE + 1, JAILER_OF_LOVE + 9 do
+            for i = ID.mob.JAILER_OF_LOVE + 1, ID.mob.JAILER_OF_LOVE + 9 do
                 local phuabo = GetMobByID(i)
                 if phuabo:isAlive() then
                     table.insert(phuaboUp, i)
@@ -80,6 +80,6 @@ end
 
 function onMobDespawn(mob)
     if math.random(100) <= 25 then -- 25% chance to spawn Absolute Virtue
-        SpawnMob(ABSOLUTE_VIRTUE)
+        SpawnMob(ID.mob.ABSOLUTE_VIRTUE)
     end
 end

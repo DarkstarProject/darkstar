@@ -3,9 +3,6 @@
 --  NPC: Tesch_Garanjy
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

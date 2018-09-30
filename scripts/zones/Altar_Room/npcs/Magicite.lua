@@ -4,10 +4,8 @@
 -- Involved in Mission: Magicite
 -- !pos -344 25 43 152
 -----------------------------------
-package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Altar_Room/TextIDs");
+local ID = require("scripts/zones/Altar_Room/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
             player:startEvent(44); -- don't play Lion part of the CS
         end
     else
-        player:messageSpecial(THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY);
     end
 
 end;
@@ -35,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 44) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(dsp.ki.MAGICITE_ORASTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGICITE_ORASTONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_ORASTONE);
     end
 
 end;

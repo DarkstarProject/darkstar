@@ -2,10 +2,8 @@
 -- Area: Pashhow Marshlands [S]
 --  NPC: Telepoint
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,9 +13,9 @@ function onTrigger(player,npc)
 
     if (player:hasKeyItem(dsp.ki.PASHHOW_GATE_CRYSTAL) == false) then
         player:addKeyItem(dsp.ki.PASHHOW_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PASHHOW_GATE_CRYSTAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PASHHOW_GATE_CRYSTAL);
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE);
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE);
     end
 
 end;

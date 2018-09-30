@@ -3,12 +3,10 @@
 -- Zone: East_Ronfaure (101)
 --
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
-require( "scripts/globals/icanheararainbow");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local ID = require("scripts/zones/East_Ronfaure/IDs")
+require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
-require("scripts/globals/settings");
+require("scripts/globals/conquest");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 -----------------------------------
@@ -39,7 +37,7 @@ local itemMap =
                     { 574, 37, DIGREQ_NIGHT },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);

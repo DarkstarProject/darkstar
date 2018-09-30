@@ -4,9 +4,6 @@
 -- Starts Quest: Unforgiven
 -- !pos -50.410 -22.204 -41.640 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");

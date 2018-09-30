@@ -3,16 +3,14 @@
 -- Door: _6le (Presidential Suite)
 -- !pos 113 -20 8 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(ITS_LOCKED);
+    player:messageSpecial(ID.text.ITS_LOCKED);
     return 1;
 end;
 

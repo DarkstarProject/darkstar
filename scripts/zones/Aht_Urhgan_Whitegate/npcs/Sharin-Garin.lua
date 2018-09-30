@@ -4,11 +4,9 @@
 -- Type: Adventurer's Assistant
 -- !pos 122.658 -1.315 33.001 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/besieged");
 require("scripts/globals/keyitems");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,11 +40,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 140 and option == 1) then
         player:addKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
         player:delCurrency("imperial_standing", 200);
     elseif (csid == 140 and option == 2) then
         player:addKeyItem(dsp.ki.RUNIC_PORTAL_USE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RUNIC_PORTAL_USE_PERMIT);
     end
 
 end;

@@ -5,9 +5,7 @@
 --  Involved with Quest: 'All the Way to the Bank'
 --  !pos 35 0 -56 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
@@ -24,7 +22,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, HUJETTE_SHOP_TEXT);
+    player:showText(npc, ID.text.HUJETTE_SHOP_TEXT);
     local stock =
     {
         5941, 20,     -- Campfire Choco

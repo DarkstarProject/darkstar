@@ -21,18 +21,16 @@ function onTrigger(player, target, itemId, amount, aug0, aug0val, aug1, aug1val,
         return;
     end
 
-    -- Load needed text ids for players current zone..
-    local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-    package.loaded[TextIDs] = nil;
-    require(TextIDs);
+    -- Load needed text ids for target's current zone..
+    local ID = zones[targ:getZoneID()]
 
     -- Attempt to give the target the item..
     if (targ:getFreeSlotsCount() == 0) then
-        targ:messageSpecial( ITEM_CANNOT_BE_OBTAINED, itemId );
+        targ:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, itemId );
         player:PrintToPlayer( string.format( "Player '%s' does not have free space for that item!", target ) );
     else
         targ:addItem( itemId, amount, aug0, aug0val, aug1, aug1val, aug2, aug2val, aug3, aug3val );
-        targ:messageSpecial( ITEM_OBTAINED, itemId );
+        targ:messageSpecial( ID.text.ITEM_OBTAINED, itemId );
         player:PrintToPlayer( string.format( "Gave player '%s' Item with ID of '%u' ", target, itemId ) );
     end
 end;

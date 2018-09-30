@@ -3,7 +3,7 @@
 --  MOB: Greater Cockatrice
 -- Note: Place Holder for Pelican
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,PELICAN_PH,5,math.random(10800,43200)); -- 4 to 12 hours
+    phOnDespawn(mob,ID.mob.PELICAN_PH,5,math.random(10800,43200)); -- 4 to 12 hours
 end;

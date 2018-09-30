@@ -3,12 +3,8 @@
 -- Zone: Nyzul_Isle
 --
 -----------------------------------
-package.loaded["scripts/zones/Nyzul_Isle/IDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/globals/settings");
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

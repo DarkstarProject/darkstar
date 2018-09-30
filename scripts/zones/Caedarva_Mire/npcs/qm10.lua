@@ -4,10 +4,7 @@
 -- Involved in quest: Operation Teatime
 -- !pos 473 -31 75 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs")
-require("scripts/zones/Caedarva_Mire/MobIDs")
+local ID = require("scripts/zones/Caedarva_Mire/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------
@@ -22,7 +19,7 @@ function onTrigger(player,npc)
     if OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 3 then
         player:startEvent(15)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

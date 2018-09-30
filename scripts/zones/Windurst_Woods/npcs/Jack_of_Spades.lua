@@ -4,9 +4,6 @@
 -- Adventurer's Assistant
 -- Working 100%
 -------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 -----------------------------------

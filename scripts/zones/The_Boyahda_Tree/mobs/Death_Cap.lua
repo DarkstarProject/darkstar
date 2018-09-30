@@ -2,7 +2,7 @@
 -- Area: The Boyahda Tree
 --  MOB: Death Cap
 -----------------------------------
-require("scripts/zones/The_Boyahda_Tree/MobIDs");
+local ID = require("scripts/zones/The_Boyahda_Tree/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ELLYLLON_PH,10,math.random(7200,10800)); -- 2 to 3 hours
+    phOnDespawn(mob,ID.mob.ELLYLLON_PH,10,math.random(7200,10800)); -- 2 to 3 hours
 end;

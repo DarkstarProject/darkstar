@@ -3,7 +3,7 @@
 --  MOB: Thread Leech
 -- Note: PH for Bloodpool Vorax
 -----------------------------------
-require("scripts/zones/Pashhow_Marshlands/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 -----------------------------------
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,BLOODPOOL_VORAX_PH,5,600); -- 10 minutes
+    phOnDespawn(mob,ID.mob.BLOODPOOL_VORAX_PH,5,600); -- 10 minutes
 end;

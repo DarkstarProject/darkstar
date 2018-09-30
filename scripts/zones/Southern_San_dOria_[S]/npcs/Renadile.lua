@@ -3,9 +3,6 @@
 --  NPC: Renadile
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

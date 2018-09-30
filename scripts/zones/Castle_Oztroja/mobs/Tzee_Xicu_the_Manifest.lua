@@ -3,10 +3,8 @@
 --   NM: Tzee Xicu the Manifest
 -- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/zones/Castle_Oztroja/TextIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
@@ -16,7 +14,7 @@ function onMobInitialize(mob)
 end
 
 function onMobEngaged(mob,target)
-    mob:showText(mob, YAGUDO_KING_ENGAGE)
+    mob:showText(mob, ID.text.YAGUDO_KING_ENGAGE)
 end
 
 function onAdditionalEffect(mob, player)
@@ -37,7 +35,7 @@ end
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.DEITY_DEBUNKER)
     if isKiller then
-        mob:showText(mob, YAGUDO_KING_DEATH)
+        mob:showText(mob, ID.text.YAGUDO_KING_DEATH)
     end
 end
 

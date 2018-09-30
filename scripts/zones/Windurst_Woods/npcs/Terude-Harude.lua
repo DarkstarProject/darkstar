@@ -4,11 +4,9 @@
 -- Type: Clothcraft Adv. Image Support
 -- !pos -32.350 -2.679 -116.450 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,7 +35,7 @@ function onEventFinish(player,csid,option)
     local Cost = getAdvImageSupportCost(player,8);
     if (csid == 10013 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(IMAGE_SUPPORT,0,4,0);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,4,0);
         player:addStatusEffect(dsp.effect.CLOTHCRAFT_IMAGERY,3,0,480);
     end
 end;

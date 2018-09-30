@@ -4,9 +4,7 @@
 -- Involved in Quest: Riding on the Clouds
 -- !pos 37 -14 81 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_3",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SOMBER_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOMBER_STONE);
         end
     end
 

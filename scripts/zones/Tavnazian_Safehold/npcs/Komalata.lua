@@ -3,9 +3,7 @@
 --  NPC: Komalata
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/shop")
 
@@ -36,7 +34,7 @@ function onTrigger(player,npc)
         table.insert(stock, 290)
     end
 
-    player:showText(npc, KOMALATA_SHOP_DIALOG)
+    player:showText(npc, ID.text.KOMALATA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

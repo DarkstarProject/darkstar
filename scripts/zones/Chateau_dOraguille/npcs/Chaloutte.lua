@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

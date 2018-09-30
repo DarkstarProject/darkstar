@@ -3,9 +3,7 @@
 --  NPC: Scamplix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Rabao/TextIDs")
+local ID = require("scripts/zones/Rabao/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         2868,  9000,    -- Rabao Waystone
     }
 
-    player:showText(npc, SCAMPLIX_SHOP_DIALOG)
+    player:showText(npc, ID.text.SCAMPLIX_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -4,11 +4,8 @@
 -- Standard Info NPC
 -- !pos -10.802 0.000 -1.198 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

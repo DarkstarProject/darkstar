@@ -3,9 +3,7 @@
 --  NPC: HomePoint#4
 -- !pos -191 -6 -68 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/homepoint");
 require("scripts/globals/settings");
 -----------------------------------
@@ -25,7 +23,7 @@ function onEventFinish(player,csid,option)
     if (csid == 8703) then
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

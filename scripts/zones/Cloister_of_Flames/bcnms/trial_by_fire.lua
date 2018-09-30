@@ -3,12 +3,10 @@
 -- BCNM: Trial by Fire
 -- !pos -721 0 -598 207
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Flames/IDs");
 
 -----------------------------------
 
@@ -53,7 +51,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_FIRE);
         player:addKeyItem(dsp.ki.WHISPER_OF_FLAMES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_FLAMES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_FLAMES);
     end
 
 end;

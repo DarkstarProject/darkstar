@@ -3,10 +3,8 @@
 -- Zone: Ghelsba_Outpost (140)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Ghelsba_Outpost/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

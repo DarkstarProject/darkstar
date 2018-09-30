@@ -2,10 +2,10 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Overgrown Rose
 -----------------------------------
-require("scripts/zones/Yuhtunga_Jungle/MobIDs");
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 
 function disturbMob(mob)
-    if (mob:getID() == ROSE_GARDEN_PH) then
+    if (mob:getID() == ID.mob.ROSE_GARDEN_PH) then
         mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)); -- 10:00:00 to 10:30:00
     end
 end
@@ -24,11 +24,11 @@ end;
 
 function onMobRoam(mob)
     -- Rose Garden PH has been left alone for 10.25 hours
-    if (mob:getID() == ROSE_GARDEN_PH and os.time() > mob:getLocalVar("timeToGrow")) then
-        DisallowRespawn(ROSE_GARDEN_PH, true);
-        DespawnMob(ROSE_GARDEN_PH);
-        DisallowRespawn(ROSE_GARDEN, false);
-        SpawnMob(ROSE_GARDEN);
+    if (mob:getID() == ID.mob.ROSE_GARDEN_PH and os.time() > mob:getLocalVar("timeToGrow")) then
+        DisallowRespawn(ID.mob.ROSE_GARDEN_PH, true);
+        DespawnMob(ID.mob.ROSE_GARDEN_PH);
+        DisallowRespawn(ID.mob.ROSE_GARDEN, false);
+        SpawnMob(ID.mob.ROSE_GARDEN);
     end
 end;
 

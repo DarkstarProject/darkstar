@@ -4,11 +4,8 @@
 -- Involved in Quest: To Cure a Cough
 -- !pos -75 -12 65 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

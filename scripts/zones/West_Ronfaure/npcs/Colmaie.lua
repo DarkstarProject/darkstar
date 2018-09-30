@@ -4,7 +4,8 @@
 -- Type: Standard NPC
 -- !pos -133.627 -61.999 272.373 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
+local ID = require("scripts/zones/West_Ronfaure/IDs")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,7 +19,7 @@ function onTrigger(player,npc)
     if (thePickpocket > 0) then
         player:showText(npc, 7263);
     else
-        player:showText(npc, COLMAIE_DIALOG);
+        player:showText(npc, ID.text.COLMAIE_DIALOG);
     end
 end;
 

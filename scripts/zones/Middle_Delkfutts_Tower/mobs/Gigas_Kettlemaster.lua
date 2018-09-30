@@ -3,7 +3,7 @@
 --  MOB: Gigas Kettlemaster
 -- Note: PH for Ophion
 -----------------------------------
-require("scripts/zones/Middle_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 -----------------------------------
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,OPHION_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
+    phOnDespawn(mob,ID.mob.OPHION_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
 end;

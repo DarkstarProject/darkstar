@@ -4,9 +4,7 @@
 -- Type: Clamming NPC
 -- !pos -371 -1 -421 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- Local Variables
@@ -57,10 +55,10 @@ local function giveClammedItems(player)
         if (clammedItemQty > 0) then
             if (player:addItem(clammingItems[item],clammedItemQty)) then
 
-                player:messageSpecial(YOU_OBTAIN, clammingItems[item], clammedItemQty);
+                player:messageSpecial(ID.text.YOU_OBTAIN, clammingItems[item], clammedItemQty);
                 player:setVar("ClammedItem_" ..  clammingItems[item], 0);
             else
-                player:messageSpecial(WHOA_HOLD_ON_NOW);
+                player:messageSpecial(ID.text.WHOA_HOLD_ON_NOW);
                 break;
             end
         end
@@ -92,7 +90,7 @@ function onTrigger(player,npc)
         end
     else -- Player does not have clamming kit
         if (owePlayerClammedItems(player)) then
-            player:messageSpecial(YOU_GIT_YER_BAG_READY);
+            player:messageSpecial(ID.text.YOU_GIT_YER_BAG_READY);
             giveClammedItems(player);
         else
             player:startEvent(28, 500, 0, 0, 0, 0, 0, 0, 0);
@@ -123,7 +121,7 @@ function onEventFinish(player,csid,option)
             player:setVar("ClammingKitSize", 50);
             player:addKeyItem(dsp.ki.CLAMMING_KIT);
             player:delGil(500);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CLAMMING_KIT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLAMMING_KIT);
         end
     elseif (csid == 29) then
         if (option == 2) then -- Give player clammed items
@@ -131,7 +129,7 @@ function onEventFinish(player,csid,option)
             player:setVar("ClammingKitSize", 0);
             player:setVar("ClammingKitWeight", 0);
             player:delKeyItem(dsp.ki.CLAMMING_KIT);
-            player:messageSpecial(YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
+            player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
 
             giveClammedItems(player);
 
@@ -139,13 +137,13 @@ function onEventFinish(player,csid,option)
             local clammingKitSize = player:getVar("ClammingKitSize") + 50;
 
             player:setVar("ClammingKitSize", clammingKitSize);
-            player:messageSpecial(YOUR_CLAMMING_CAPACITY, 0, 0, clammingKitSize);
+            player:messageSpecial(ID.text.YOUR_CLAMMING_CAPACITY, 0, 0, clammingKitSize);
         end
     elseif ( csid == 30) then -- Broken bucket
         player:setVar("ClammingKitSize", 0);
         player:setVar("ClammingKitBroken", 0);
         player:setVar("ClammingKitWeight", 0);
         player:delKeyItem(dsp.ki.CLAMMING_KIT);
-        player:messageSpecial(YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
+        player:messageSpecial(ID.text.YOU_RETURN_THE,dsp.ki.CLAMMING_KIT);
     end
 end;

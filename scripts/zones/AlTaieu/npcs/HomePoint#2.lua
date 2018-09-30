@@ -3,9 +3,7 @@
 --  NPC: HomePoint#2
 -- !pos -532 0 447 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/homepoint");
 require("scripts/globals/settings");
 -----------------------------------
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

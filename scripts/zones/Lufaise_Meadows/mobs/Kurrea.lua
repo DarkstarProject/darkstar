@@ -2,7 +2,7 @@
 -- Area: Lufaise Meadows
 --  MOB: Kurrea
 -----------------------------------
-require("scripts/zones/Lufaise_Meadows/MobIDs");
+local ID = require("scripts/zones/Lufaise_Meadows/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(KURREA_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.mob.KURREA_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

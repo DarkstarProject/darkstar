@@ -3,10 +3,7 @@
 -- Zone: Spire_of_Holla (17)
 --
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Holla/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Spire_of_Holla/TextIDs");
+local ID = require("scripts/zones/Spire_of_Holla/IDs")
 -----------------------------------
 
 function onInitialize(zone)

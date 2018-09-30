@@ -3,7 +3,7 @@
 --  MOB: Antares
 -- Note: Place holder Amikiri
 -----------------------------------
-require("scripts/zones/Gustav_Tunnel/MobIDs");
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,AMIKIRI_PH,5,math.random(25200,32400)); -- 7 to 9 hours
+    phOnDespawn(mob,ID.mob.AMIKIRI_PH,5,math.random(25200,32400)); -- 7 to 9 hours
 end;

@@ -4,9 +4,6 @@
 -- Border Conquest Guards
 -- !pos -84.113 -0.449 224.902 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Yhoator_Jungle/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

@@ -3,10 +3,8 @@
 -- Zone: Cloister_of_Flames (207)
 --
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Flames/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Flames/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Flames/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

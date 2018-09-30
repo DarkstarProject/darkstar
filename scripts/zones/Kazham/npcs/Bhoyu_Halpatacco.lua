@@ -3,10 +3,6 @@
 --  NPC: Bhoyu Halpatacco
 -- !pos -18 -4 -15 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

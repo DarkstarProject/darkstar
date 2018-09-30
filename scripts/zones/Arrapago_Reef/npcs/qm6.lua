@@ -4,9 +4,7 @@
 -- Involved in Quests: "Luck of the Draw", "Equipped for All Occasions", "Navigating the Unfriendly Seas"
 -- !pos 468.767 -12.292 111.817 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
@@ -43,7 +41,7 @@ function onTrigger(player,npc)
         
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

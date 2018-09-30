@@ -3,12 +3,10 @@
 -- Zone: Chamber_of_Oracles (168)
 --
 -----------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
-require("scripts/globals/missions");
-require("scripts/globals/keyitems");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Chamber_of_Oracles/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -43,6 +41,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 3) then
         player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ALTEPA);
     end
 end;

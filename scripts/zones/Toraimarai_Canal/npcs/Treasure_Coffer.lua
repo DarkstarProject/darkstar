@@ -4,13 +4,11 @@
 -- Involved In Quest: Wild Card
 -- !pos 220 16 -50 169
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/treasure");
 require("scripts/globals/quests");
-require("scripts/zones/Toraimarai_Canal/TextIDs");
+local ID = require("scripts/zones/Toraimarai_Canal/IDs");
 
 local TreasureType = "Coffer";
 local TreasureLvL = 53;
@@ -27,7 +25,7 @@ function onTrade(player,npc,trade)
     if (trade:hasItemQty(1057,1) and count == 1 and player:getVar("WildCard") == 2) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.JOKER_CARD);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.JOKER_CARD);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.JOKER_CARD);
         player:setVar("WildCard",3);
 
     elseif ((trade:hasItemQty(1057,1) or trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) and count == 1) then
@@ -58,13 +56,13 @@ function onTrade(player,npc,trade)
 
             if (math.random() <= success) then
                 -- Succeded to open the coffer
-                player:messageSpecial(CHEST_UNLOCKED);
+                player:messageSpecial(ID.text.CHEST_UNLOCKED);
 
                 if (questItemNeeded == 2) then
                     for nb = 1,#listAF,3 do
                         if (mJob == listAF[nb]) then
                             player:addItem(listAF[nb + 2]);
-                            player:messageSpecial(ITEM_OBTAINED,listAF[nb + 2]);
+                            player:messageSpecial(ID.text.ITEM_OBTAINED,listAF[nb + 2]);
                             break
                         end
                     end
@@ -78,16 +76,16 @@ function onTrade(player,npc,trade)
 
                     if (loot[1]=="gil") then
                         player:addGil(loot[2]);
-                        player:messageSpecial(GIL_OBTAINED,loot[2]);
+                        player:messageSpecial(ID.text.GIL_OBTAINED,loot[2]);
                     else
                         -- Item
                         player:addItem(loot[2]);
-                        player:messageSpecial(ITEM_OBTAINED,loot[2]);
+                        player:messageSpecial(ID.text.ITEM_OBTAINED,loot[2]);
                     end
                 end
                 UpdateTreasureSpawnPoint(npc:getID());
             else
-                player:messageSpecial(CHEST_MIMIC);
+                player:messageSpecial(ID.text.CHEST_MIMIC);
                 spawnMimic(zone,npc,player);
                 UpdateTreasureSpawnPoint(npc:getID(), true);
             end
@@ -97,7 +95,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(CHEST_LOCKED,1057);
+    player:messageSpecial(ID.text.CHEST_LOCKED,1057);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -2,9 +2,6 @@
 -- Area: Windurst Water
 --  NPC: Puroiko-Maiko, W.W.
 -------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

@@ -4,11 +4,8 @@
 -- Involved in Quests: fire and brimstone (Rng AF2)
 -- !zone 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

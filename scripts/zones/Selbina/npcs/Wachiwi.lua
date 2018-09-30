@@ -3,10 +3,7 @@
 --  NPC: Wachiwi
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Selbina/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

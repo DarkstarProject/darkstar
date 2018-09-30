@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Uleguerand
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Uleguerand/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

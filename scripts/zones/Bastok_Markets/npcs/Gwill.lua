@@ -5,9 +5,7 @@
 -- Involved in Quests: The Cold Light of Day, Riding on the Clouds
 -- !pos ? ? ? 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -25,7 +23,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -59,11 +57,11 @@ function onEventFinish(player,csid,option)
             player:tradeComplete();
             player:addTitle(dsp.title.KULATZ_BRIDGE_COMPANION);
             player:addItem(12498);
-            player:messageSpecial(ITEM_OBTAINED,12498);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12498);
             player:addFame(BASTOK,80);
             player:completeQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12498);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12498);
         end
     end
 

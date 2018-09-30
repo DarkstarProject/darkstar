@@ -4,10 +4,8 @@
 -- Involved in Mission: Magicite
 -- !pos 11 25 -81 148
 -----------------------------------
-package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Qulun_Dome/TextIDs");
+local ID = require("scripts/zones/Qulun_Dome/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
             player:startEvent(0); -- don't play Lion part of the CS
         end
     else
-        player:messageSpecial(THE_MAGICITE_GLOWS_OMINOUSLY);
+        player:messageSpecial(ID.text.THE_MAGICITE_GLOWS_OMINOUSLY);
     end
 
 end;
@@ -35,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 0) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(dsp.ki.MAGICITE_AURASTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAGICITE_AURASTONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAGICITE_AURASTONE);
     end
 
 end;

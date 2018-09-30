@@ -2,11 +2,8 @@
 -- Area: Spire_of_Dem
 -- NPC:  web of regret
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Spire_of_Dem/TextIDs");
 
 function onTrade(player,npc,trade)
     

@@ -332,10 +332,8 @@ local POP_EVENTS =
 
 function abysseaOnTrade(player,npc,trade)
     -- validate QM pop data
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[npc:getID()];
+    local zoneId = player:getZoneID()
+    local pop = zones[zoneId].npc.QM_POPS[npc:getID()]
     if (pop == nil) then
         return false;
     end
@@ -371,11 +369,9 @@ end
 
 function abysseaOnTrigger(player,npc)
     -- validate QM pop data
-    local events = POP_EVENTS[player:getZoneID()];
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[npc:getID()];
+    local zoneId = player:getZoneID()
+    local events = POP_EVENTS[zoneId]
+    local pop = zones[zoneId].npc.QM_POPS[npc:getID()]
     if (pop == nil) then
         return false;
     end
@@ -436,12 +432,9 @@ function abysseaOnEventUpdate(player,csid,option)
 end
 
 function abysseaOnEventFinish(player,csid,option)
-    -- validate QM pop data
-    local events = POP_EVENTS[player:getZoneID()];
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[player:getLocalVar("abysseaQM")];
+    local zoneId = player:getZoneID()
+    local events = POP_EVENTS[zoneId]
+    local pop = zones[zoneId].npc.QM_POPS[player:getLocalVar("abysseaQM")]
     player:setLocalVar("abysseaQM", 0);
     if (pop == nil) then
         return false;

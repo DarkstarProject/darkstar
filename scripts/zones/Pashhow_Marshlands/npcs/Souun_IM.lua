@@ -4,9 +4,6 @@
 -- Type: Outpost Conquest Guards
 -- !pos 470.843 23.465 415.520 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Pashhow_Marshlands/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

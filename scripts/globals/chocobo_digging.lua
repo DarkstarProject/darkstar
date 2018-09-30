@@ -239,9 +239,9 @@ function chocoboDig(player, itemMap, precheck, messageArray)
             if (ItemID ~= 0) then
                 -- make sure we have enough room for the item
                 if (player:addItem(ItemID)) then
-                    player:messageSpecial(ITEM_OBTAINED, ItemID);
+                    player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, ItemID);
                 else
-                    player:messageSpecial(DIG_THROW_AWAY, ItemID);
+                    player:messageSpecial(zones[player:getZoneID()].text.DIG_THROW_AWAY, ItemID);
                 end
             else
                 -- beat the dig chance, but not the item chance

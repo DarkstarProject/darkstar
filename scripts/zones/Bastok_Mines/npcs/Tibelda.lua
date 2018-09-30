@@ -3,9 +3,7 @@
 --  NPC: Tibelda
 -- Valdeaunia Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.BASTOK then
-        player:showText(npc, TIBELDA_CLOSED_DIALOG)
+        player:showText(npc, ID.text.TIBELDA_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
             638,  170,     --Sage
         }
 
-        player:showText(npc, TIBELDA_OPEN_DIALOG)
+        player:showText(npc, ID.text.TIBELDA_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

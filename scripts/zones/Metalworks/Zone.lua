@@ -3,12 +3,8 @@
 -- Zone: Metalworks (237)
 --
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/zone");
-require("scripts/globals/settings");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

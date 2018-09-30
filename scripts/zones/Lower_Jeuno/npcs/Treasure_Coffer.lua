@@ -4,9 +4,7 @@
 -- Type: Add-on NPC
 -- !pos 41.169 3.899 -51.005 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
@@ -433,7 +431,7 @@ local prizes =
 
 local function givePrize(player, ki)
     if not player:hasKeyItem(ki) then
-        player:showText(player, NO_KEY)
+        player:showText(player, ID.text.NO_KEY)
     else
         local p = prizes[ki]
         if p ~= nil then
@@ -468,10 +466,10 @@ local function givePrize(player, ki)
 
             -- give prize
             if player:getFreeSlotsCount() == 0 then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, prize.itemId)
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, prize.itemId)
             else
                 player:addItem(prize.itemId, 1, unpack(addAug))
-                player:messageSpecial(ITEM_OBTAINED, prize.itemId)
+                player:messageSpecial(ID.text.ITEM_OBTAINED, prize.itemId)
                 player:delKeyItem(ki)
             end
         end

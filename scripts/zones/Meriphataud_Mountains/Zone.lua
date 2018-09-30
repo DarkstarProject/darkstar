@@ -3,10 +3,7 @@
 -- Zone: Meriphataud_Mountains (119)
 --
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
-require("scripts/zones/Meriphataud_Mountains/MobIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -48,18 +45,18 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(WARAXE_BEAK);
-    GetMobByID(WARAXE_BEAK):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.WARAXE_BEAK);
+    GetMobByID(ID.mob.WARAXE_BEAK):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(COO_KEJA_THE_UNSEEN);
-    GetMobByID(COO_KEJA_THE_UNSEEN):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.COO_KEJA_THE_UNSEEN);
+    GetMobByID(ID.mob.COO_KEJA_THE_UNSEEN):setRespawnTime(math.random(900, 10800));
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;

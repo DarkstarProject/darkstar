@@ -4,11 +4,9 @@
 -- Notes: CS for Windurst 9-2
 -- !pos -239.442 -1.000 -18.870 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs")
-require("scripts/globals/missions")
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ function onTrigger(player,npc)
     if CurrentMission == MOON_READING and MissionStatus >= 1 then
         player:startEvent(68)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 
@@ -31,6 +29,6 @@ end
 function onEventFinish(player,csid,option)
     if csid == 68 then
         player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_UGGALEPIH)
     end
 end

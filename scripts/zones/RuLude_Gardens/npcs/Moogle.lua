@@ -3,9 +3,6 @@
 --  NPC: Moogle
 --
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs")
 require("scripts/globals/moghouse")
 
 function onTrade(player,npc,trade)

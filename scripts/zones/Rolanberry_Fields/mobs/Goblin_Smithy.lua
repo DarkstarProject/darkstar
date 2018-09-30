@@ -2,12 +2,10 @@
 -- Area: Rolanberry Fields
 --  MOB: Goblin Smithy
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+local ID = require("scripts/zones/Rolanberry_Fields/IDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -17,7 +15,7 @@ function onMobDeath(mob, player, isKiller)
         -- Guesstimating 15% chance
         if (math.random(1,100) >= 85) then
             player:addKeyItem(dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.JUG_OF_GREASY_GOBLIN_JUICE);
         end
     end
 

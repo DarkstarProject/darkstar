@@ -4,9 +4,6 @@
 -- Starts and Finishes Quest: The Fumbling Friar
 -- !pos -95 0 196 164
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")

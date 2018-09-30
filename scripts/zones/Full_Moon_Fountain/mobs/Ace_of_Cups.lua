@@ -2,11 +2,12 @@
 -- Area: Full Moon Fountain
 -- Windurst Mission 9-2
 -----------------------------------
-require("scripts/zones/Full_Moon_Fountain/MobIDs");
+local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
+-----------------------------------
 
 function allMoonMobsDead(player)
     local inst = player:getBattlefield():getBattlefieldNumber();
-    local instOffset = MOON_READING_OFFSET + (6 * (inst - 1));
+    local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1));
     for i = instOffset, instOffset + 3 do
         if (not GetMobByID(i):isDead()) then
             return false;

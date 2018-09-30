@@ -2,9 +2,7 @@
 -- Area: Empyreal Paradox
 --  MOB: Promathia
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local ID = require("scripts/zones/Empyreal_Paradox/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
@@ -20,7 +18,7 @@ function onMobEngaged(mob,target)
         if (v:getName() == "Prishe") then
             if not v:getTarget() then
                 v:entityAnimationPacket("prov");
-                v:showText(v, PRISHE_TEXT);
+                v:showText(v, ID.text.PRISHE_TEXT);
                 v:setLocalVar("ready", mob:getID());
             end
         else

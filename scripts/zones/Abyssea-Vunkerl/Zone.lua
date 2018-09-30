@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Vunkerl
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Vunkerl/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

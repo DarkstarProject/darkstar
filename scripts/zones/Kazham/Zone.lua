@@ -3,9 +3,8 @@
 -- Zone: Kazham (250)
 --
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

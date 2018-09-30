@@ -2,10 +2,6 @@
 -- Area: Spire of Vahzl
 --  NPC: Radiant Aureole
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Spire_of_Vahzl/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

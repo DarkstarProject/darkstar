@@ -2,11 +2,8 @@
 -- Area: The_Garden_of_RuHmet
 -- NPC:  _0z0
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");

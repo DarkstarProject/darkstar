@@ -3,20 +3,17 @@
 --  NPC: ??? (Spawn Vulpangue(ZNM T1))
 -- !pos -697 -7 -123 51
 -----------------------------------
-package.loaded["scripts/zones/Wajaom_Woodlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Wajaom_Woodlands/TextIDs");
-require("scripts/zones/Wajaom_Woodlands/MobIDs");
+local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(2580,1) and trade:getItemCount() == 1 and not GetMobByID(VULPANGUE):isSpawned()) then -- Trade Hellcage Butterfly
+    if (trade:hasItemQty(2580,1) and trade:getItemCount() == 1 and not GetMobByID(ID.mob.VULPANGUE):isSpawned()) then -- Trade Hellcage Butterfly
         player:tradeComplete();
-        SpawnMob(VULPANGUE):updateClaim(player);
+        SpawnMob(ID.mob.VULPANGUE):updateClaim(player);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;
 
 function onEventUpdate(player,csid,option)

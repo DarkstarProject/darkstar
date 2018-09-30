@@ -3,10 +3,6 @@
 --  NPC: Bretta
 -- !pos Poor Bretta lost in the depths of the database. Go find her.
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

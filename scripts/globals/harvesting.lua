@@ -60,10 +60,10 @@ function startHarvesting(player,zone,npc,trade,csid)
         end
         if (player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.RAINBOW_BERRY) == false and broke ~= 1 and zone == 51) then
            player:addKeyItem(dsp.ki.RAINBOW_BERRY);
-           player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAINBOW_BERRY);
+           player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.RAINBOW_BERRY);
         end
     else
-        player:messageSpecial(HARVESTING_IS_POSSIBLE_HERE,1020);
+        player:messageSpecial(zones[player:getZoneID()].text.HARVESTING_IS_POSSIBLE_HERE,1020);
     end
 end
 

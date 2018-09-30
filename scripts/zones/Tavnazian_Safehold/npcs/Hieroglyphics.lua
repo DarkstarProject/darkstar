@@ -4,13 +4,11 @@
 -- Notes: Dynamis Tavnazia Enter
 -- !pos 3.674 -7.278 -27.856 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,15 +25,15 @@ function onTrigger(player,npc)
         if (checkFirstDyna(player,10)) then
              player:startEvent(614);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+            player:messageSpecial(ID.text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
             player:startEvent(588,10,0,0,BETWEEN_2DYNA_WAIT_TIME,32,dsp.ki.VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             local dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) - realDay)/3456);
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,10);
+            player:messageSpecial(ID.text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,10);
         end
     else
-        player:messageSpecial(MYSTERIOUS_VOICE);
+        player:messageSpecial(ID.text.MYSTERIOUS_VOICE);
     end
 
 end;

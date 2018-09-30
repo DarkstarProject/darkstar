@@ -3,9 +3,7 @@
 --  NPC: Odin's Gate
 -- !pos 100 -34 -49 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -17,7 +15,7 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(dsp.ki.MAGICKED_ASTROLABE)) then
             npc:openDoor(8);
         else
-            player:messageSpecial(SOLID_STONE);
+            player:messageSpecial(ID.text.SOLID_STONE);
         end
     end
     return 0;

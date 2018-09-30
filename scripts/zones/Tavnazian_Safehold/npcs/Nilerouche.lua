@@ -3,9 +3,7 @@
 --  NPC: Nilerouche
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
         4915, 217000,    -- Scroll of Frazzle II
     }
 
-    player:showText(npc, NILEROUCHE_SHOP_DIALOG)
+    player:showText(npc, ID.text.NILEROUCHE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

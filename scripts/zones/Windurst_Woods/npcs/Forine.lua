@@ -4,9 +4,6 @@
 -- Involved In Mission: Journey Abroad
 -- !pos -52.677 -0.501 -26.299 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------

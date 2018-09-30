@@ -5,10 +5,7 @@
 -- !pos -125.029 46.568 -334.778 176
 --
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

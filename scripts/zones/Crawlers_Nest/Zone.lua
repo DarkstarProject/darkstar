@@ -3,16 +3,13 @@
 -- Zone: Crawlers_Nest (197)
 --
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Crawlers_Nest/TextIDs")
-require("scripts/zones/Crawlers_Nest/MobIDs")
+local ID = require("scripts/zones/Crawlers_Nest/IDs")
 require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(CNEST_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(CNEST_TREASURE_COFFER)
+    UpdateTreasureSpawnPoint(ID.npc.CNEST_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(ID.npc.CNEST_TREASURE_COFFER)
 end
 
 function onZoneIn(player,prevZone)

@@ -3,7 +3,7 @@
 --  MOB: Crawler
 -- Note: PH for Spiny Spipi
 -----------------------------------
-require("scripts/zones/East_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/East_Sarutabaruta/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,SPINY_SPIPI_PH,7,math.random(2700,7200)); -- 45 to 120 minutes
+    phOnDespawn(mob,ID.mob.SPINY_SPIPI_PH,7,math.random(2700,7200)); -- 45 to 120 minutes
 end;

@@ -3,8 +3,7 @@
 --  MOB: Confederate_Mantelet
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

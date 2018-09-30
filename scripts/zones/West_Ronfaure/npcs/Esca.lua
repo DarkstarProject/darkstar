@@ -4,12 +4,10 @@
 -- Involved in Quest "The Pickpocket"
 -- !pos -624.231 -51.499 278.369 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/West_Ronfaure/TextIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrade(player,npc,trade)
             player:startEvent(121);
             player:setVar("thePickpocketGiltGlasses", 1); -- used to get eventID 128
         else
-            player:messageSpecial(6378, 579); -- CANNOT_OBTAIN_ITEM
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 579);
         end;
     end;
 end;
@@ -63,7 +61,7 @@ function onEventFinish(player,csid,option)
     -- "The Pickpocket" recieving Gilt Glasses
     if (csid == 121) then
         player:addItem(579);
-        player:messageSpecial(ITEM_OBTAINED, 579);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 579);
     elseif (csid == 137) then
         player:setVar("ChasingQuotas_Progress",5);
         player:delKeyItem(dsp.ki.SHINY_EARRING);

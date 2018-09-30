@@ -3,10 +3,7 @@
 --  NPC: Mushuhi-Metahi
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

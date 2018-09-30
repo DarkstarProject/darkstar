@@ -12,10 +12,7 @@
 -- 141 = "Press confirm button to proceed" nonworking test.
 --
 -----------------------------------
-package.loaded["scripts/zones/GM_Home/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/GM_Home/TextIDs");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/GM_Home/IDs")
 -----------------------------------
 
 function onInitialize(zone)

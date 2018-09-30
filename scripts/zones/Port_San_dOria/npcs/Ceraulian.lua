@@ -4,13 +4,11 @@
 -- Involved in Quest: The Holy Crest
 -- !pos 0 -8 -122 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -102,11 +100,11 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14227);
         else
             player:delKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
             player:addItem(14227);
-            player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,CHASING_QUOTAS);
             player:setVar("ChasingQuotas_Progress",0);

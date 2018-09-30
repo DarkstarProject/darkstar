@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos 386.091 -13 -17.399 161
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Baileys/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Zvahl_Baileys/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Baileys/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
 -----------------------------------
@@ -328,10 +326,10 @@ function onEventFinish(player,csid,option)
     -- Picking up a finished relic stage 1>2 and 2>3.
     elseif ((csid == 16 or csid == 19) and reward ~= 0) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward+1);
         else
             player:addItem(reward+1);
-            player:messageSpecial(ITEM_OBTAINED,reward+1);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,reward+1);
             player:setVar("RELIC_IN_PROGRESS",0);
             player:setVar("RELIC_DUE_AT",0);
             player:setVar("RELIC_MAKE_ANOTHER",0);
@@ -340,10 +338,10 @@ function onEventFinish(player,csid,option)
     -- Picking up a finished relic stage 3>4.
     elseif (csid == 52 and reward ~= 0) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward+1);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward+1);
         else
             player:addItem(reward+1);
-            player:messageSpecial(ITEM_OBTAINED,reward+1);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,reward+1);
             player:setVar("RELIC_IN_PROGRESS",0);
             player:setVar("RELIC_DUE_AT",0);
             player:setVar("RELIC_MAKE_ANOTHER",0);

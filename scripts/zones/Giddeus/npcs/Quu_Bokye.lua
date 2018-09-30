@@ -4,9 +4,7 @@
 -- Involved in Quest: Dark Legacy
 -- !pos -159 16 181 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Giddeus/TextIDs");
+local ID = require("scripts/zones/Giddeus/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,7 +49,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("EARLY_BIRD_TRACK_BOOK",2);
         player:addKeyItem(dsp.ki.ART_FOR_EVERYONE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ART_FOR_EVERYONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ART_FOR_EVERYONE);
     end
 
 end;

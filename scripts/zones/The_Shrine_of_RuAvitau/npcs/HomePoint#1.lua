@@ -3,10 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos -13 48 61 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

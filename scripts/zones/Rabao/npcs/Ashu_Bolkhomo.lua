@@ -3,9 +3,7 @@
 --  NPC: Ashu Bolkhomo
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 require("scripts/globals/magic_maps");
 -----------------------------------
 
@@ -19,7 +17,7 @@ end;
 
 function onEventUpdate(player,csid,option)
     if (csid == 1006) then
-        CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+        CheckMapsUpdate(player, option, ID.text.NOT_HAVE_ENOUGH_GIL, ID.text.KEYITEM_OBTAINED);
     end
 end;
 

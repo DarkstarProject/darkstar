@@ -3,10 +3,6 @@
 --  NPC: Pattsu-Yabittsu
 -- Warps players to Windurst Waters
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

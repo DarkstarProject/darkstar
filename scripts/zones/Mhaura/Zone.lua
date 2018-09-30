@@ -3,10 +3,7 @@
 -- Zone: Mhaura (249)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
-require("scripts/zones/Mhaura/MobIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -20,14 +17,14 @@ function onGameHour(zone)
 
     -- Next ferry is Al Zhabi for higher values.
     if timer >= 576 then
-        GetNPCByID(LAUGHING_BISON):AnimationSub(1)
+        GetNPCByID(ID.npc.LAUGHING_BISON):AnimationSub(1)
     else
-        GetNPCByID(LAUGHING_BISON):AnimationSub(0)
+        GetNPCByID(ID.npc.LAUGHING_BISON):AnimationSub(0)
     end
 end;
 
 function onInitialize(zone)
-    SetExplorerMoogles(MHAURA_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.MHAURA_EXPLORER_MOOGLE);
 end;
 
 function onZoneIn(player,prevZone)
@@ -55,7 +52,7 @@ function onTransportEvent(player,transport)
     if (transport == 47 or transport == 46) then
         if (not player:hasKeyItem(dsp.ki.BOARDING_PERMIT) or ENABLE_TOAU == 0) then
             player:setPos(8.200,-1.363,3.445,192);
-            player:messageSpecial(DO_NOT_POSSESS, dsp.ki.BOARDING_PERMIT);
+            player:messageSpecial(ID.text.DO_NOT_POSSESS, dsp.ki.BOARDING_PERMIT);
         else
             player:startEvent(200);
         end

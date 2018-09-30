@@ -5,9 +5,7 @@
 -- Starts and Finishes: Inside the Belly
 -- !pos -13 -7 -5 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Selbina/TextIDs")
+local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
@@ -501,7 +499,7 @@ local function giveReward(player, csid)
         if traded then
             player:confirmTrade()
             player:addGil(GIL_RATE * reward.gil)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE * reward.gil)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE * reward.gil)
             player:setVar("insideBellyFishId", 0)
             player:setVar("insideBellyItemIdx", 0)
             if player:getQuestStatus(OTHER_AREAS_LOG, INSIDE_THE_BELLY) == QUEST_ACCEPTED then

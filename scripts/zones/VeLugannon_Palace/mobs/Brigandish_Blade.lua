@@ -2,7 +2,7 @@
 -- Area: VeLugannon Palace
 --  NM:  Brigandish Blade
 -----------------------------------
-require("scripts/zones/VeLugannon_Palace/MobIDs");
+local ID = require("scripts/zones/VeLugannon_Palace/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
@@ -28,5 +28,5 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(BRIGANDISH_BLADE_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.BRIGANDISH_BLADE_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

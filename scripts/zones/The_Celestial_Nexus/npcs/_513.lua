@@ -10,7 +10,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
 
 -----------------------------------
 -- onTrade

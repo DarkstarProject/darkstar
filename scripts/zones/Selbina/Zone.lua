@@ -3,17 +3,15 @@
 -- Zone: Selbina (248)
 --
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
-require("scripts/zones/Selbina/MobIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/zone");
+-----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(SELBINA_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.SELBINA_EXPLORER_MOOGLE);
 end;
 
 function onZoneIn(player,prevZone)
@@ -51,11 +49,11 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,221);
     elseif (csid == 1101) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14226);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14226);
         else
             player:delKeyItem(dsp.ki.SEANCE_STAFF);
             player:addItem(14226);
-            player:messageSpecial(ITEM_OBTAINED,14226); -- Ninja Hakama
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14226); -- Ninja Hakama
             player:setVar("Enagakure_Killed",0);
             player:setVar("illTakeTheBigBoxCS",0);
             player:addFame(NORG,30);

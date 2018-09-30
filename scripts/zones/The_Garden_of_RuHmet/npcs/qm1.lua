@@ -9,29 +9,26 @@
 -- !pos -580 0 43
 -- !pos -796 0 460
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     -- Trade 12 Ghrah M Chips
-    if (GetMobAction(Jailer_of_Fortitude) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
-        local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+    if (GetMobAction(ID.mob.JAILER_OF_FORTITUDE) == 0 and trade:hasItemQty(1872,12) and trade:getItemCount() == 12) then
+        local qm1 = GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM);
         -- Complete the trade
         player:tradeComplete();
         -- Hide the NPC, will become unhidden after Jailer of Fortitude despawns
         qm1:setStatus(dsp.status.DISAPPEAR);
         -- Change MobSpawn to ???'s pos.
-        GetMobByID(Jailer_of_Fortitude):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
+        GetMobByID(ID.mob.JAILER_OF_FORTITUDE):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
         -- Change spawn point of pets to be at the ???'s pos as well
-        GetMobByID(Kf_Ghrah_WHM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
-        GetMobByID(Kf_Ghrah_BLM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
+        GetMobByID(ID.mob.KFGHRAH_WHM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
+        GetMobByID(ID.mob.KFGHRAH_BLM):setSpawn(qm1:getXPos(),qm1:getYPos(),qm1:getZPos());
         -- Spawn Jailer of Fortitude
-        SpawnMob(Jailer_of_Fortitude):updateClaim(player);
-        SpawnMob(Kf_Ghrah_WHM):updateClaim(player);
-        SpawnMob(Kf_Ghrah_BLM):updateClaim(player);
+        SpawnMob(ID.mob.JAILER_OF_FORTITUDE):updateClaim(player);
+        SpawnMob(ID.mob.KFGHRAH_WHM):updateClaim(player);
+        SpawnMob(ID.mob.KFGHRAH_BLM):updateClaim(player);
     end
 end;
 
