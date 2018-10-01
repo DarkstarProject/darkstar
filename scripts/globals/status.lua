@@ -1202,6 +1202,7 @@ dsp.mod =
     WEATHER_REDUCTION               = 372,
     DAY_REDUCTION                   = 373,
     CURE_POTENCY                    = 374,
+    CURE_POTENCY_II                 = 260, -- % cure potency II | bonus from gear is capped at 30
     CURE_POTENCY_RCVD               = 375,
     RANGED_DMG_RATING               = 376,
     DELAYP                          = 380,
