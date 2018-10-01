@@ -15,7 +15,7 @@ end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Leujaoam.mobs[1]) do
+    for i,v in pairs(ID.mob[1]) do
         SpawnMob(v, instance);
     end
 
