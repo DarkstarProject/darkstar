@@ -2,13 +2,10 @@
 -- Area: Talacca Cove
 -- BCNM: TOAU-34 Legacy of the Lost
 -----------------------------------
-package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
-require("scripts/zones/Talacca_Cove/TextIDs");
 
 ----------------------------------------
 

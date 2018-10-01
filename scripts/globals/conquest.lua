@@ -58,24 +58,27 @@ end
 -- (LOCAL) outposts
 -----------------------------------
 
-local outposts = {
-    [dsp.region.RONFAURE]        = {ki = dsp.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
-    [dsp.region.ZULKHEIM]        = {ki = dsp.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
-    [dsp.region.NORVALLEN]       = {ki = dsp.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
-    [dsp.region.GUSTABERG]       = {ki = dsp.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
-    [dsp.region.DERFLAND]        = {ki = dsp.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.SARUTABARUTA]    = {ki = dsp.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
-    [dsp.region.KOLSHUSHU]       = {ki = dsp.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
-    [dsp.region.ARAGONEU]        = {ki = dsp.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
-    [dsp.region.FAUREGANDI]      = {ki = dsp.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
-    [dsp.region.VALDEAUNIA]      = {ki = dsp.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
-    [dsp.region.QUFIMISLAND]     = {ki = dsp.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
-    [dsp.region.LITELOR]         = {ki = dsp.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
-    [dsp.region.KUZOTZ]          = {ki = dsp.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
-    [dsp.region.VOLLBOW]         = {ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
-    [dsp.region.ELSHIMOLOWLANDS] = {ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
-    [dsp.region.ELSHIMOUPLANDS]  = {ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TAVNAZIANARCH]   = {ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
+local outposts =
+{
+    [dsp.region.RONFAURE]        = {zone = 100, ki = dsp.ki.RONFAURE_SUPPLIES,              cp = 10, lvl = 10, fee = 100},
+    [dsp.region.ZULKHEIM]        = {zone = 103, ki = dsp.ki.ZULKHEIM_SUPPLIES,              cp = 30, lvl = 10, fee = 100},
+    [dsp.region.NORVALLEN]       = {zone = 104, ki = dsp.ki.NORVALLEN_SUPPLIES,             cp = 40, lvl = 15, fee = 150},
+    [dsp.region.GUSTABERG]       = {zone = 106, ki = dsp.ki.GUSTABERG_SUPPLIES,             cp = 10, lvl = 10, fee = 100},
+    [dsp.region.DERFLAND]        = {zone = 109, ki = dsp.ki.DERFLAND_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [dsp.region.SARUTABARUTA]    = {zone = 115, ki = dsp.ki.SARUTABARUTA_SUPPLIES,          cp = 10, lvl = 10, fee = 100},
+    [dsp.region.KOLSHUSHU]       = {zone = 118, ki = dsp.ki.KOLSHUSHU_SUPPLIES,             cp = 40, lvl = 10, fee = 100},
+    [dsp.region.ARAGONEU]        = {zone = 119, ki = dsp.ki.ARAGONEU_SUPPLIES,              cp = 40, lvl = 15, fee = 150},
+    [dsp.region.FAUREGANDI]      = {zone = 111, ki = dsp.ki.FAUREGANDI_SUPPLIES,            cp = 70, lvl = 35, fee = 350},
+    [dsp.region.VALDEAUNIA]      = {zone = 112, ki = dsp.ki.VALDEAUNIA_SUPPLIES,            cp = 50, lvl = 40, fee = 400},
+    [dsp.region.QUFIMISLAND]     = {zone = 126, ki = dsp.ki.QUFIM_SUPPLIES,                 cp = 60, lvl = 15, fee = 150},
+    [dsp.region.LITELOR]         = {zone = 121, ki = dsp.ki.LITELOR_SUPPLIES,               cp = 40, lvl = 25, fee = 250},
+    [dsp.region.KUZOTZ]          = {zone = 114, ki = dsp.ki.KUZOTZ_SUPPLIES,                cp = 70, lvl = 30, fee = 300},
+    [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
+    [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
+    [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
+    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 0, fee = 0},
+    [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
+    [dsp.region.MOVALPOLOS]      = {zone =  11},
 }
 
 local function hasOutpost(player, region)
@@ -125,7 +128,7 @@ local function suppliesAvailableBitmask(player, nation)
     end
 
     for k, v in pairs(outposts) do
-        if player:hasKeyItem(v.ki) then
+        if v.ki and player:hasKeyItem(v.ki) then
             mask = -1
             break
         end
@@ -159,7 +162,7 @@ local function areSuppliesRotten(player, npc, guardType)
         end
         local ki = outposts[region].ki
         player:delKeyItem(ki)
-        player:messageSpecial(KEYITEM_LOST, ki)
+        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_LOST, ki)
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
@@ -800,7 +803,7 @@ local function canBuyExpRing(player, item)
     if ALLOW_MULTIPLE_EXP_RINGS ~= 1 then
         for i = 15761, 15763 do
             if player:hasItem(i) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, item)
                 return false
             end
         end
@@ -808,7 +811,7 @@ local function canBuyExpRing(player, item)
 
     -- one exp ring per conquest tally
     if BYPASS_EXP_RING_ONE_PER_WEEK ~= 1 and player:getVar("CONQUEST_RING_TIMER") > os.time() then
-        player:messageSpecial(CONQUEST + 60, 0, 0, item)
+        player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 60, 0, 0, item)
         return false
     end
 
@@ -858,14 +861,13 @@ dsp.conquest.canTeleportToOutpost = function(player, region)
 end
 
 dsp.conquest.setRegionalConquestOverseers = function(region)
-    local npcs = overseerOffsets[region]
+    local zone = outposts[region].zone
 
-    -- make sure we have a valid region
-    if npcs then 
-        local base = _G['OVERSEER_BASE_' .. region]
-
-        -- make sure zone exists on current server (prevent error spam for multi-server setups)
-        if base then
+    if zone then 
+        local base = zones[zone].npc.OVERSEER_BASE
+        local npcs = overseerOffsets[region]
+        
+        if base and npcs then
 
             -- update the npcs
             local owner = GetRegionOwner(region)
@@ -1078,7 +1080,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     then
         player:delKeyItem(sOutpost.ki)
         player:addCP(sOutpost.cp)
-        player:messageSpecial(CONQUEST) -- "You've earned conquest points!"
+        player:messageSpecial(zones[player:getZoneID()].text.CONQUEST) -- "You've earned conquest points!"
         player:addNationTeleport(guardNation, math.pow(2, sRegion + 5))
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
@@ -1088,9 +1090,9 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     elseif option == 4 then
         if player:delGil(setHomepointFee(player, guardNation)) then
             player:setHomePoint()
-            player:messageSpecial(CONQUEST + 94) -- "Your home point has been set."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 94) -- "Your home point has been set."
         else
-            player:messageSpecial(CONQUEST + 95) -- "You do not have enough gil to set your home point here."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 95) -- "You do not have enough gil to set your home point here."
         end
 
     -- PURCHASE CP ITEM
@@ -1110,7 +1112,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         
         -- validate rank
         if stock.rank and pRank < stock.rank then
-            player:messageSpecial(CONQUEST + 61, stock.item) -- "Your rank is too low to purchase the <item>."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 61, stock.item) -- "Your rank is too low to purchase the <item>."
             return
         end
         
@@ -1124,7 +1126,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
             end
         end
         if player:getCP() < price then
-            player:messageSpecial(CONQUEST + 62, 0, 0, stock.item) -- "You do not have enough conquest points to purchase the <item>."
+            player:messageSpecial(zones[player:getZoneID()].text.CONQUEST + 62, 0, 0, stock.item) -- "You do not have enough conquest points to purchase the <item>."
             return
         end
 
@@ -1243,7 +1245,7 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
     local region = zone:getRegionID()
     local owner = GetRegionOwner(region)
     local players = zone:getPlayers()
-    local messageBase = CONQUEST_BASE
+    local messageBase = zones[zone].text.CONQUEST_BASE
     local ranking = getConquestBalance()
     
     for _, player in pairs(players) do

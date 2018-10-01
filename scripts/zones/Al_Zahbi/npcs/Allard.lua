@@ -3,9 +3,7 @@
 --  NPC: Allard
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ function onTrigger(player,npc)
         12978, 16000    --Socks
     }
 
-    player:showText(npc, ALLARD_SHOP_DIALOG)
+    player:showText(npc, ID.text.ALLARD_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

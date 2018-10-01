@@ -3,7 +3,7 @@
 --  MOB: Shoal Pugil
 -- Note: PH for Buburimboo
 -----------------------------------
-require("scripts/zones/Buburimu_Peninsula/MobIDs");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,BUBURIMBOO_PH,5,math.random(3600,7200)); -- 1 to 2 hours
+    phOnDespawn(mob,ID.mob.BUBURIMBOO_PH,5,math.random(3600,7200)); -- 1 to 2 hours
 end;

@@ -3,9 +3,7 @@
 --  NPC: Sattsuh Ahkanpari
 -- Elshimo Uplands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.ELSHIMOUPLANDS) ~= dsp.nation.WINDURST then
-        player:showText(npc, SATTSUHAHKANPARI_CLOSED_DIALOG)
+        player:showText(npc, ID.text.SATTSUHAHKANPARI_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
             721,   147,    -- Rattan Lumber
         }
 
-        player:showText(npc, SATTSUHAHKANPARI_OPEN_DIALOG)
+        player:showText(npc, ID.text.SATTSUHAHKANPARI_OPEN_DIALOG)
         dsp.shop.general(player, stock, WINDURST)
     end
 end

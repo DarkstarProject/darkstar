@@ -3,10 +3,8 @@
 --  NPC: Aulavia
 -- Vollbow Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -16,7 +14,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.VOLLBOW) ~= dsp.nation.BASTOK then
-        player:showText(npc, AULAVIA_CLOSED_DIALOG)
+        player:showText(npc, ID.text.AULAVIA_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             1410, 1656,     -- Sweet William
         }
 
-        player:showText(npc, AULAVIA_OPEN_DIALOG)
+        player:showText(npc, ID.text.AULAVIA_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK);
     end
 end

@@ -25,11 +25,9 @@
 -- 344 =
 -- 345 =
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/abyssea");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -63,7 +61,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 325) then
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
         player:addKeyItem(dsp.ki.TRAVERSER_STONE1)
         player:completeQuest(ABYSSEA, A_JOURNEY_BEGINS);
         player:addQuest(ABYSSEA, THE_TRUTH_BECKONS);
@@ -74,22 +72,22 @@ function onEventFinish(player,csid,option)
     elseif (csid == 328 and option == 6) then
         local StonesKI = getTravStonesTotal(player);
         if (StonesKI == 5) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE6);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE6);
             player:addKeyItem(dsp.ki.TRAVERSER_STONE6)
         elseif (StonesKI == 4) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE5);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE5);
             player:addKeyItem(dsp.ki.TRAVERSER_STONE5)
         elseif (StonesKI == 3) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE4)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE4)
             player:addKeyItem(dsp.ki.TRAVERSER_STONE4);
         elseif (StonesKI == 2) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE3);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE3);
             player:addKeyItem(dsp.ki.TRAVERSER_STONE3)
         elseif (StonesKI == 1) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE2);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE2);
             player:addKeyItem(dsp.ki.TRAVERSER_STONE2)
         elseif (StonesKI == 0) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRAVERSER_STONE1);
             player:addKeyItem(dsp.ki.TRAVERSER_STONE1)
         end
     end

@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: The Old Monument (start only), A Minstrel in Despair, Painful Memory (BARD AF1)
 -- !pos -17 0 -61 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 -----------------------------------
 
 local POETIC_PARCHMENT = 634
@@ -51,13 +49,13 @@ function onTrigger(player,npc)
     elseif theRequiem == QUEST_COMPLETED and circleOfTime == QUEST_AVAILABLE and job == dsp.job.BRD and level >= AF3_QUEST_LEVEL then
         player:startEvent(139) -- Start "The Circle of Time"
     elseif circleOfTime == QUEST_ACCEPTED then
-        player:messageSpecial(MERTAIRE_RING)
+        player:messageSpecial(ID.text.MERTAIRE_RING)
 
     -- DEFAULT DIALOG
     elseif painfulMemory == QUEST_COMPLETED then
         player:startEvent(135) -- Standard dialog after completed "Painful Memory"
     else
-        player:messageSpecial(MERTAIRE_DEFAULT)
+        player:messageSpecial(ID.text.MERTAIRE_DEFAULT)
 
     end
 end
@@ -73,7 +71,7 @@ function onEventFinish(player,csid,option)
     -- A MINSTREL IN DESPAIR
     elseif csid == 101 then
         player:addGil(GIL_RATE*2100)
-        player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100)
+        player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*2100)
         player:tradeComplete()
         player:completeQuest(JEUNO,A_MINSTREL_IN_DESPAIR)
         player:addFame(JEUNO, 30)
@@ -89,7 +87,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,PAINFUL_MEMORY)
         player:setVar("PainfulMemoryCS",0)
         player:addKeyItem(dsp.ki.MERTAIRES_BRACELET)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MERTAIRES_BRACELET)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MERTAIRES_BRACELET)
 
     -- CIRCLE OF TIME (Bard AF3)
     elseif csid == 139 then

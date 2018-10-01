@@ -3,10 +3,6 @@
 --  NPC: Speaker
 -- Type: Debug NPC
 -----------------------------------
-package.loaded["scripts/zones/GM_Home/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/GM_Home/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

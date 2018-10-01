@@ -2,10 +2,8 @@
 -- Area: Pso'Xja
 --  NPC: Stone Gate
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/PsoXja/TextIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
     elseif (posZ < 25) then
         player:startEvent(17);
     else
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(ID.text.DOOR_LOCKED);
     end
     return 1;
 end;

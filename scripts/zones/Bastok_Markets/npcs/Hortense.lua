@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -82.503 -4.849 -132.376 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -28,6 +26,6 @@ function onTrigger(player,npc)
         5006, 53820, 3,    -- Scroll of Valor Minuet V
     }
 
-    player:showText(npc, HORTENSE_SHOP_DIALOG)
+    player:showText(npc, ID.text.HORTENSE_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

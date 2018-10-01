@@ -3,9 +3,7 @@
 --  NPC: _ir7 (Iron Gate)
 -- !pos -70.800 -1.500 60.000 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 -----------------------------------
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
     if (player:getXPos() <= -71) then
         npc:openDoor(15); -- Retail timed
     elseif (npc:getAnimation() == 9) then -- don't want it to say the door is locked when it's wide open!
-        player:messageSpecial(DOOR_LOCKED,1660);
+        player:messageSpecial(ID.text.DOOR_LOCKED,1660);
     end
     return 1;
 end;

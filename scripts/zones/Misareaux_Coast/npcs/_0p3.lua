@@ -3,10 +3,7 @@
 --  NPC: Dilapidated Gate
 --  Notes: Entrance to Misareaux Coast
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Misareaux_Coast/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -3,10 +3,8 @@
 --   NM: Za'Dha Adamantking
 -- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/zones/Qulun_Dome/TextIDs")
+local ID = require("scripts/zones/Qulun_Dome/IDs")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 require("scripts/globals/magic")
@@ -18,7 +16,7 @@ function onMobInitialize(mob)
 end
 
 function onMobEngaged(mob,target)
-    mob:showText(mob, QUADAV_KING_ENGAGE)
+    mob:showText(mob, ID.text.QUADAV_KING_ENGAGE)
 end
 
 function onAdditionalEffect(mob, player)
@@ -43,7 +41,7 @@ end
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.ADAMANTKING_USURPER)
     if isKiller then
-        mob:showText(mob, QUADAV_KING_DEATH)
+        mob:showText(mob, ID.text.QUADAV_KING_DEATH)
     end
 end
 

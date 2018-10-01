@@ -4,24 +4,21 @@
 -- Notes: Used to spawn Tarasque
 -- !pos 126 18 166 0
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
-require("scripts/zones/Ifrits_Cauldron/MobIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 1189) and not GetMobByID(TARASQUE):isSpawned()) then -- Rattling Egg
+    if (npcUtil.tradeHas(trade, 1189) and not GetMobByID(ID.mob.TARASQUE):isSpawned()) then -- Rattling Egg
         player:confirmTrade();
-        SpawnMob(TARASQUE):updateClaim(player);
+        SpawnMob(ID.mob.TARASQUE):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(EGGSHELLS_LIE_SCATTERED);
+    player:messageSpecial(ID.text.EGGSHELLS_LIE_SCATTERED);
 end;
 
 function onEventUpdate(player,csid,option)

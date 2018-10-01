@@ -4,8 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -261.930 6.999 -49.145 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

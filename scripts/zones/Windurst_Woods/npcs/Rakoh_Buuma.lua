@@ -4,14 +4,11 @@
 -- Starts Windurst Missions
 -- !pos 106 -5 -23 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -61,7 +58,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.NEW_BUUMAS_BOOMERS_RECRUIT);
     elseif (csid == 114 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
     if (csid == 632) then
         player:setVar("WWoodsRTenText",1);

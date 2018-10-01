@@ -3,10 +3,9 @@
 -- Zone: Stellar_Fulcrum
 --
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
+local ID = require("scripts/zones/Stellar_Fulcrum/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

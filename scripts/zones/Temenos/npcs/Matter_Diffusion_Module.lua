@@ -3,12 +3,10 @@
 -- NPC:  Matter diffusion module
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
-require("scripts/zones/Temenos/TextIDs");
+local ID = require("scripts/zones/Temenos/IDs");
 
 function onTrade(player,npc,trade)
 local count = trade:getItemCount();
@@ -28,14 +26,14 @@ if (player:hasKeyItem(dsp.ki.COSMOCLEANSE) and player:hasKeyItem(dsp.ki.WHITE_CA
        InstanceTrade=8;
      end
   else
-       player:messageSpecial(CONDITION_FOR_LIMBUS_T);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS_T);
      print("error player  don't have cosmo clean");
   end
 
    if (InstanceTrade~=0) then
    player:setVar("Limbus_Trade_Item-T",InstanceTrade);
    player:tradeComplete();
-   player:messageSpecial(CHIP_TRADE_T);
+   player:messageSpecial(ID.text.CHIP_TRADE_T);
    player:startEvent(32000,0,0,0,InstanceTrade,0,0,0,0);
    player:setVar("limbusbitmap",InstanceTrade);
    end
@@ -113,7 +111,7 @@ function onTrigger(player,npc)
            player:startEvent(32000,0,0,0,limbusbitmap,0,0,0,0);
         player:setVar("limbusbitmap",limbusbitmap);
        else
-       player:messageSpecial(CONDITION_FOR_LIMBUS_T);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS_T);
         print("player need a card for basic limbus");
         end
 
@@ -128,7 +126,7 @@ function onTrigger(player,npc)
         player:setVar("limbusbitmap",limbusbitmap);
 
   else
-       player:messageSpecial(CONDITION_FOR_LIMBUS_T);
+       player:messageSpecial(ID.text.CONDITION_FOR_LIMBUS_T);
     print("error player  don't have cosmo clean");
   end
 

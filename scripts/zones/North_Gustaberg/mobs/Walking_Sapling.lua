@@ -3,7 +3,7 @@
 --  MOB: Walking Sapling
 -- Note: Place Holder For Maighdean Uaine
 -----------------------------------
-require("scripts/zones/North_Gustaberg/MobIDs");
+local ID = require("scripts/zones/North_Gustaberg/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,MAIGHDEAN_UAINE_PH,5,math.random(900,10800)); -- 15 to 180 minutes
+    phOnDespawn(mob,ID.mob.MAIGHDEAN_UAINE_PH,5,math.random(900,10800)); -- 15 to 180 minutes
 end;

@@ -3,9 +3,7 @@
 --  NPC: Falgima
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Selbina/TextIDs")
+local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         5104, 30360,    -- Scroll of Flurry
     }
 
-    player:showText(npc, FALGIMA_SHOP_DIALOG)
+    player:showText(npc, ID.text.FALGIMA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

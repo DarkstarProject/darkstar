@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -548.706 -7.197 -53.897 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lufaise_Meadows/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

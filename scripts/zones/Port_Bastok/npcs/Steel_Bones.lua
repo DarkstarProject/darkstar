@@ -4,12 +4,10 @@
 -- Standard Info NPC
 -- Involved in Quest: Guest of Hauteur
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 57 and GuestofHauteur == 1) then
         player:setVar("GuestofHauteur_Event",1)
         player:addKeyItem(dsp.ki.LETTERS_FROM_DOMIEN);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_DOMIEN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_DOMIEN);
     end
 
 end;

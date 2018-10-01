@@ -3,12 +3,10 @@
 --  NPC: Charlaimagnat
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -53,10 +51,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.LETTER_FROM_ALFESAR);
     elseif (csid == 705) then
         if (player:getFreeSlotsCount() == 0) then -- does the player have space
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4729);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4729);
         else -- give player teleport-altep
             player:addItem(4729);
-            player:messageSpecial(ITEM_OBTAINED,4729);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4729);
             player:addFame(RABAO,30);
             player:completeQuest(OUTLANDS,THE_MISSING_PIECE);
         end;

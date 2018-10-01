@@ -3,10 +3,8 @@
 -- Zone: Misareaux_Coast (25)
 --
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Misareaux_Coast/TextIDs");
+local ID = require("scripts/zones/Misareaux_Coast/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

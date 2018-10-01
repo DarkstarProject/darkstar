@@ -4,13 +4,11 @@
 -- Dynamis Buburimu Enter
 -- !pos 163 0 -174 118
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/missions");
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,15 +24,15 @@ function onTrigger(player,npc)
         if (checkFirstDyna(player,8)) then
             player:startEvent(40);
         elseif (player:getMainLvl() < DYNA_LEVEL_MIN) then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+            player:messageSpecial(ID.text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
             player:startEvent(22,8,0,0,BETWEEN_2DYNA_WAIT_TIME,32,dsp.ki.VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) - realDay)/3456);
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,8);
+            player:messageSpecial(ID.text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,8);
         end
     else
-        player:messageSpecial(MYSTERIOUS_VOICE);
+        player:messageSpecial(ID.text.MYSTERIOUS_VOICE);
     end
 
 end;

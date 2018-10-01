@@ -4,14 +4,12 @@
 -- Involved in quest: Food For Thought, Say It with Flowers
 --  Starts and finishes quest: Toraimarai Turmoil
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/common");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 
 function onTrade(player,npc,trade)
     local turmoil = player:getQuestStatus(WINDURST,TORAIMARAI_TURMOIL);
@@ -159,18 +157,18 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 785 and option == 1) then -- Adds Toraimarai turmoil
         player:addQuest(WINDURST,TORAIMARAI_TURMOIL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_CERTIFICATE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_CERTIFICATE);
         player:addKeyItem(dsp.ki.RHINOSTERY_CERTIFICATE); -- Rhinostery Certificate
     elseif (csid == 791 and turmoil == QUEST_ACCEPTED) then -- Completes Toraimarai turmoil - first time
         player:addGil(GIL_RATE*4500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*4500);
         player:completeQuest(WINDURST,TORAIMARAI_TURMOIL);
         player:addFame(WINDURST,100);
         player:addTitle(dsp.title.CERTIFIED_RHINOSTERY_VENTURER);
         player:tradeComplete();
     elseif (csid == 791 and turmoil == 2) then -- Completes Toraimarai turmoil - repeats
         player:addGil(GIL_RATE*4500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*4500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*4500);
         player:addFame(WINDURST,50);
         player:tradeComplete();
     elseif (csid == 352 and option == 0 or csid == 354) then
@@ -179,9 +177,9 @@ function onEventFinish(player,csid,option)
                 player:addQuest(WINDURST,WATER_WAY_TO_GO);
             end
             player:addItem(504);
-            player:messageSpecial(ITEM_OBTAINED,504);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,504);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,504);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,504);
         end
     elseif (csid == 355) then
         player:addGil(GIL_RATE*900);
@@ -197,14 +195,14 @@ function onEventFinish(player,csid,option)
             if (choice and player:getGil() >= choice.gil) then
                 if (player:getFreeSlotsCount() > 0) then
                     player:addItem(choice.itemid)
-                    player:messageSpecial(ITEM_OBTAINED,choice.itemid);
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,choice.itemid);
                     player:delGil(choice.gil);
                     player:needToZone(true);
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,choice.itemid);
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,choice.itemid);
                 end
             else
-                player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+                player:messageSpecial(ID.text.NOT_HAVE_ENOUGH_GIL);
             end
         elseif (option == 7) then
             player:setVar("FLOWER_PROGRESS",2);

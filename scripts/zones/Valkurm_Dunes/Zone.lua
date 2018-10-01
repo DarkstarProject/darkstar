@@ -3,10 +3,7 @@
 -- Zone: Valkurm_Dunes (103)
 --
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Valkurm_Dunes/TextIDs");
-require("scripts/zones/Valkurm_Dunes/MobIDs");
+local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -49,7 +46,7 @@ local itemMap = {
     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
@@ -103,7 +100,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    local qm1 = GetNPCByID(VALKURM_SUNSAND_QM); -- Quest: An Empty Vessel
+    local qm1 = GetNPCByID(ID.npc.VALKURM_SUNSAND_QM); -- Quest: An Empty Vessel
     if (weather == dsp.weather.DUST_STORM) then
         qm1:setStatus(dsp.status.NORMAL);
     else

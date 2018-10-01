@@ -3,9 +3,7 @@
 -- Zone: La_Theine_Plateau (102)
 --
 -----------------------------------
-package.loaded["scripts/zones/La_Theine_Plateau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/La_Theine_Plateau/TextIDs");
+local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 require("scripts/zones/La_Theine_Plateau/globals");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
@@ -47,7 +45,7 @@ function onChocoboDig(player, precheck)
         { 1188, 10, DIGREQ_MODIFIER },
         { 1237, 12, DIGREQ_MODIFIER },
     };
-    local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+    local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
@@ -97,7 +95,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    local rainbow = GetNPCByID(LA_THEINE_RAINBOW);
+    local rainbow = GetNPCByID(ID.npc.LA_THEINE_RAINBOW);
     local TOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -110,7 +108,7 @@ function onZoneWeatherChange(weather)
 end;
 
 function onTOTDChange(TOTD)
-    local rainbow = GetNPCByID(LA_THEINE_RAINBOW);
+    local rainbow = GetNPCByID(ID.npc.LA_THEINE_RAINBOW);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then

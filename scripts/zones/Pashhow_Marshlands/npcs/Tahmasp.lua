@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos 464 24 416 109
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Pashhow_Marshlands/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

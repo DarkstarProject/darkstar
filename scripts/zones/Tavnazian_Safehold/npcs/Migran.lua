@@ -3,9 +3,7 @@
 --  NPC: Migran
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/shop")
 
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         table.insert(stock, 8000000)
     end
 
-    player:showText(npc, MIGRAN_SHOP_DIALOG)
+    player:showText(npc, ID.text.MIGRAN_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

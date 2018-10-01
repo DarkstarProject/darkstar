@@ -3,11 +3,9 @@
 --  NPC: Meret
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
 
 --Meret     24A 586 recompense
 local Sin_of_Indulgence=1915;
@@ -127,11 +125,11 @@ function onEventFinish(player,csid,option)
     if (csid == 586 and option==player:getLocalVar("meretReward")) then
         player:setLocalVar("meretReward", 0)
         if (player:getFreeSlotsCount() == 0 or (option ~= VIRTUE_STONE_POUCH and player:hasItem(option) == true)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,option);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,option);
         else
             player:tradeComplete();
             player:addItem(option);
-            player:messageSpecial(ITEM_OBTAINED,option); -- Item
+            player:messageSpecial(ID.text.ITEM_OBTAINED,option); -- Item
         end
     end
 end;

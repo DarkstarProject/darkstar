@@ -3,10 +3,8 @@
 -- Zone: Altar_Room (152)
 --
 -----------------------------------
-package.loaded["scripts/zones/Altar_Room/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Altar_Room/TextIDs");
+local ID = require("scripts/zones/Altar_Room/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,9 +3,7 @@
 --  NPC: Tahn Posbei
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Kazham/TextIDs")
+local ID = require("scripts/zones/Kazham/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         13092, 28777,    -- Coeurl Gorget
     }
 
-    player:showText(npc, TAHNPOSBEI_SHOP_DIALOG)
+    player:showText(npc, ID.text.TAHNPOSBEI_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

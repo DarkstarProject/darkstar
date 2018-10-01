@@ -5,10 +5,9 @@
 -- !zone 87
 -- !pos TODO
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/porter_moogle_util")
 -----------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
-require("scripts/globals/porter_moogle_util");
 
 local e =
 {
@@ -29,9 +28,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID, RETRIEVE_DIALOG_ID, ITEM_CANNOT_BE_OBTAINED);
+    porterEventUpdate(player, csid, option, e.RETRIEVE_EVENT_ID);
 end;
 
 function onEventFinish(player,csid,option)
-    porterEventFinish(player, csid, option, e.TALK_EVENT_ID, ITEM_CANNOT_BE_OBTAINED, ITEM_OBTAINED, NOT_HAVE_ENOUGH_GIL);
+    porterEventFinish(player, csid, option, e.TALK_EVENT_ID);
 end

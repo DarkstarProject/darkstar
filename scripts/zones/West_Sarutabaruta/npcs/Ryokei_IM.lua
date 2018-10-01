@@ -4,9 +4,6 @@
 -- Type: Outpost Conquest Guards
 -- !pos -11.322 -13.459 317.696 115
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil
------------------------------------
-require("scripts/zones/West_Sarutabaruta/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

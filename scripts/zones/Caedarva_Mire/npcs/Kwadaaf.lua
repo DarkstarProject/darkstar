@@ -4,10 +4,7 @@
 -- Type: Entry to Alzadaal Undersea Ruins
 -- !pos -639.000 12.323 -260.000 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -3,9 +3,7 @@
 --  NPC: Zoreen
 -- Valdeaunia Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.VALDEAUNIA) ~= dsp.nation.WINDURST then
-        player:showText(npc, ZOREEN_CLOSED_DIALOG)
+        player:showText(npc, ID.text.ZOREEN_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
             638, 170,    -- Sage
         }
 
-        player:showText(npc, ZOREEN_OPEN_DIALOG)
+        player:showText(npc, ID.text.ZOREEN_OPEN_DIALOG)
         dsp.shop.general(player, stock, WINDURST)
     end
 end

@@ -3,7 +3,7 @@
 --  Mob: Bogy
 -- Note: PH for Dame Blanche
 -----------------------------------
-require("scripts/zones/Korroloka_Tunnel/MobIDs");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,DAME_BLANCHE_PH,5,math.random(7200,28800)); -- 2 to 8 hours
+    phOnDespawn(mob,ID.mob.DAME_BLANCHE_PH,5,math.random(7200,28800)); -- 2 to 8 hours
 end;

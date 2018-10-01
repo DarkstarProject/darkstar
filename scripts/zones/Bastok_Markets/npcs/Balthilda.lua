@@ -4,9 +4,7 @@
 -- Type: Merchant
 -- !pos -300 -10 -161 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -24,6 +22,6 @@ function onTrigger(player,npc)
         13469, 1150, 3,    -- Leather Ring
     }
 
-    player:showText(npc, BALTHILDA_SHOP_DIALOG)
+    player:showText(npc, ID.text.BALTHILDA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

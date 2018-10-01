@@ -4,9 +4,7 @@
 -- Notes: Opens door _477 when _m72 to _m75 are lit
 -- !pos -60 -72 -139 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
     if (DoorA == 9 and TorchStand1A == 9) then
         player:startEvent(10);
     else
-        player:messageSpecial(TORCH_LIT);
+        player:messageSpecial(ID.text.TORCH_LIT);
     end
 end;
 

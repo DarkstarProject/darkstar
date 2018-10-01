@@ -357,7 +357,7 @@ int8 CCharEntity::getShieldSize()
 
 void CCharEntity::SetName(int8* name)
 {
-    this->name.insert(0, (const char*)name, std::clamp<size_t>(strlen((const char*)name), 0, 15));
+    this->name.insert(0, (const char*)name, std::min<size_t>(strlen((const char*)name), PacketNameLength));
 }
 
 int16 CCharEntity::addTP(int16 tp)
@@ -926,14 +926,14 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
         else if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_PERFECT_DEFENSE)
         {
-            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE)) {
+            if (this->StatusEffectContainer->HasStatusEffect(EFFECT_APOGEE))
+            {
                 action.recast = 0;
             }
-            else if (this->getMod(Mod::BP_DELAY) > 15) {
-                action.recast -= 15;
-            }
-            else {
-                action.recast -= getMod(Mod::BP_DELAY);
+            else
+            {
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY), 15);
+                action.recast -= std::min<int16>(getMod(Mod::BP_DELAY_II), 15);
             }
         }
 

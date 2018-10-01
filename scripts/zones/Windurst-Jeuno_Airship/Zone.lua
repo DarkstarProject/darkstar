@@ -3,6 +3,8 @@
 -- Zone: Windurst-Jeuno_Airship
 --
 -----------------------------------
+local ID = require("scripts/zones/Windurst-Jeuno_Airship/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end;

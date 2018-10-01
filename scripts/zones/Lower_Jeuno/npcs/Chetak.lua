@@ -3,9 +3,7 @@
 --  NPC: Chetak
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
         12737,  4443,    -- White Mitts
     }
 
-    player:showText(npc, CHETAK_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHETAK_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

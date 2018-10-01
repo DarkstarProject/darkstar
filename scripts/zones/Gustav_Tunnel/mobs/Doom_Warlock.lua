@@ -3,7 +3,7 @@
 --  MOB: Doom Warlock
 -- Note: Place holder Taxim
 -----------------------------------
-require("scripts/zones/Gustav_Tunnel/MobIDs");
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,TAXIM_PH,5,7200); -- 2 hours
+    phOnDespawn(mob,ID.mob.TAXIM_PH,5,7200); -- 2 hours
 end;

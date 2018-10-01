@@ -8,12 +8,10 @@
 --     the clue (100%)
 --     the basics (not completed correctly, ferry not implemented)
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems")
 
 
@@ -204,7 +202,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestRychardetheChef_var",0);
         player:setVar("QuestRychardeTCCompDay_var",VanadielDayOfTheYear());
         player:setVar("QuestRychardeTCCompYear_var",VanadielYear());
@@ -220,7 +218,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.ONESTAR_PURVEYOR);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("QuestWayotcHourStarted_var",0);
         player:setVar("QuestRychardeTCDayStarted_var",0);
         player:setVar("QuestRychardeTCCompDay_var",0);
@@ -233,7 +231,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.PURVEYOR_IN_TRAINING);
         player:addGil(GIL_RATE*1000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1000);
         player:setVar("QuestWayotcHourStarted_var",0);
         player:setVar("QuestRychardeTCDayStarted_var",0);
         player:setVar("QuestRychardeTCCompDay_var",0);
@@ -255,7 +253,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.TWOSTAR_PURVEYOR);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:setVar("QuestUnendingCAskedAlready_var",0);
         player:setVar("QuestWayofTCCompDay_var",0); -- completition day of WAY_OF_THE_COOK delete variable
         player:setVar("QuestWayofTCCompYear_var",0);
@@ -266,13 +264,13 @@ function onEventFinish(player,csid,option)
         if (option == 80 ) then -- answer yes!
 
             player:addKeyItem(dsp.ki.ARAGONEU_PIZZA); --give pizza to player
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARAGONEU_PIZZA);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARAGONEU_PIZZA);
             player:addQuest(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR);
         end
     elseif (csid == 88) then  -- end quest 4 his name is Valgeir
         player:addFame(WINDURST,120);
         player:addKeyItem(dsp.ki.MAP_OF_THE_TORAIMARAI_CANAL); --reward Map of the Toraimarai Canal
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_TORAIMARAI_CANAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_TORAIMARAI_CANAL);
         player:setVar("QuestUnendingCCompDay_var",0); -- completition day of unending chase delete
         player:setVar("QuestUnendingCCompYear_var",0);
         player:setVar("QuestHNIVCCompDay_var",VanadielDayOfTheYear()); -- completition day of unending chase
@@ -288,7 +286,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.FOURSTAR_PURVEYOR);
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         player:setVar("QuestTheClueStatus_var",0);
         player:setVar("QuestExpertiseCompDay_var",0); -- completition day of expertice quest
         player:setVar("QuestExpertiseCompYear_var",0);
@@ -299,7 +297,7 @@ function onEventFinish(player,csid,option)
         if (option == 85 ) then
                         --TODO pay for ferry
             player:addKeyItem(dsp.ki.MHAURAN_COUSCOUS); --dsp.ki.MHAURAN_COUSCOUS                = 92;
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MHAURAN_COUSCOUS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MHAURAN_COUSCOUS);
             player:addQuest(OTHER_AREAS_LOG,THE_BASICS);
         end
     elseif (csid == 96) then   -- end quest the basics
@@ -307,10 +305,10 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,120);
         player:addTitle(dsp.title.FIVESTAR_PURVEYOR);
         if (player:getFreeSlotsCount() <= 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,133);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,133);
         else
             player:addItem(133);
-            player.messageSpecial(ITEM_OBTAINED,133);
+            player.messageSpecial(ID.text.ITEM_OBTAINED,133);
             player:setVar("QuestTheClueCompDay_var",0); -- completition day of THE CLUE
             player:setVar("QuestTheClueCompYear_var",0);
             player:setVar("QuestTheBasicsComentary_var",1);

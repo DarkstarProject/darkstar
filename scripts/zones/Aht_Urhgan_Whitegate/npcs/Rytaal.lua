@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos 112.002 -1.338 -45.038 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
@@ -30,10 +28,10 @@ function onTrigger(player,npc)
         player:startEvent(270);
     elseif (currentAssault ~= 0 and hasAssaultOrders(player) == 0) then
         if (player:getVar("AssaultComplete") == 1) then
-            player:messageText(player,RYTAAL_MISSION_COMPLETE);
+            player:messageText(player,ID.text.RYTAAL_MISSION_COMPLETE);
             player:completeAssault(currentAssault);
         else
-            player:messageText(player,RYTAAL_MISSION_FAILED);
+            player:messageText(player,ID.text.RYTAAL_MISSION_FAILED);
             player:addAssault(0);
         end
         player:setVar("AssaultComplete",0);
@@ -72,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:setVar("AhtUrganStatus",1);
     elseif (csid == 268 and option == 1 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and tagCount > 0) then
         player:addKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
         player:setCurrency("id_tags", tagCount - 1);
     elseif (csid == 268 and option == 2 and player:hasKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG) == false and hasAssaultOrders(player) ~= 0) then
         if (player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS)) then
@@ -89,7 +87,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS);
         end
         player:addKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IMPERIAL_ARMY_ID_TAG);
         player:delAssault(currentAssault);
     end
 

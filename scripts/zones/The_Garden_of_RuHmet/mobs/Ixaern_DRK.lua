@@ -9,7 +9,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -85,5 +85,5 @@ end;
 
 function onMobDespawn(mob)
     mob:setLocalVar("AERN_RERAISES",0);
-    GetNPCByID(Ix_Aern_DRK_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.IXAERN_DRK_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

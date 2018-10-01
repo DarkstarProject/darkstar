@@ -3,10 +3,7 @@
 -- Zone: Eastern_Altepa_Desert (114)
 --
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs")
-require("scripts/zones/Eastern_Altepa_Desert/MobIDs")
+local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
@@ -44,16 +41,16 @@ function onChocoboDig(player, precheck)
         { 1188, 10, DIGREQ_MODIFIER },
         { 4532, 12, DIGREQ_MODIFIER },
     }
-    local messageArray = {DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED}
+    local messageArray = {ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED}
     return chocoboDig(player, itemMap, precheck, messageArray)
 end
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(CACTROT_RAPIDO)
-    GetMobByID(CACTROT_RAPIDO):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.CACTROT_RAPIDO)
+    GetMobByID(ID.mob.CACTROT_RAPIDO):setRespawnTime(math.random(900, 10800))
 
-    UpdateNMSpawnPoint(CENTURIO_XII_I)
-    GetMobByID(CENTURIO_XII_I):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.CENTURIO_XII_I)
+    GetMobByID(ID.mob.CENTURIO_XII_I):setRespawnTime(math.random(900, 10800))
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end

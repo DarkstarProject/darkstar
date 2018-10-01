@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- !pos 0.1 30 21 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -77,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theThreeMagiSupport",option);
     elseif (csid == 269) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
         else
             choosetitle = player:getVar("theThreeMagiSupport");
 
@@ -91,7 +89,7 @@ function onEventFinish(player,csid,option)
 
             player:tradeComplete();
             player:addItem(17423);
-            player:messageSpecial(ITEM_OBTAINED, 17423); -- Casting Wand
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
             player:setVar("theThreeMagiSupport",0);
             player:addFame(WINDURST,AF1_FAME);
@@ -104,12 +102,12 @@ function onEventFinish(player,csid,option)
         player:setVar("recollectionsQuest",2);
     elseif (csid == 275) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
             player:setVar("recollectionsQuest",0);
             player:delKeyItem(dsp.ki.FOE_FINDER_MK_I);
             player:addItem(14092);
-            player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14092); -- wizards sabots
             player:addFame(WINDURST,AF2_FAME);
             player:completeQuest(WINDURST,RECOLLECTIONS);
         end
@@ -118,14 +116,14 @@ function onEventFinish(player,csid,option)
         player:setVar("rootProblem",1);
     elseif (csid == 279) then
         player:addKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);
     elseif (csid == 281) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         else
             player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
             player:addItem(13856);
-            player:messageSpecial(ITEM_OBTAINED,13856);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13856);
             player:addTitle(dsp.title.PARAGON_OF_BLACK_MAGE_EXCELLENCE);
             player:delKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
         end

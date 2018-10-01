@@ -4,9 +4,7 @@
 --  Linkshell Merchant
 -- !pos 21 -2 -20 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
         16285, 375,    -- Pendant Compass
     }
 
-    player:showText(npc, KHEL_PAHLHAMA_SHOP_DIALOG, 513)
+    player:showText(npc, ID.text.KHEL_PAHLHAMA_SHOP_DIALOG, 513)
     dsp.shop.general(player, stock)
 end
 

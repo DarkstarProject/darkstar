@@ -3,7 +3,7 @@
 --  MOB: Goblin Mercenary
 -- Note: Place holder Soulstealer Skullnix
 -----------------------------------
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 
@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,SOULSTEALER_SKULLNIX_PH,5,math.random(7200,10800)); -- 2 to 3 hours
+    phOnDespawn(mob,ID.mob.SOULSTEALER_SKULLNIX_PH,5,math.random(7200,10800)); -- 2 to 3 hours
 end;

@@ -4,20 +4,17 @@
 -- Involved In Mission: Death From Above
 -- !pos 53 1 -32 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 
 function onTrade(player,npc,trade)
     -- Trade Bee Larvae
-    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID(DEATH_FROM_ABOVE):isSpawned()) then
+    if (trade:hasItemQty(1267,1) and trade:getItemCount() == 1 and not GetMobByID(ID.mob.DEATH_FROM_ABOVE):isSpawned()) then
         player:tradeComplete();
-        SpawnMob(DEATH_FROM_ABOVE):updateClaim(player);
+        SpawnMob(ID.mob.DEATH_FROM_ABOVE):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NM_OFFSET + 4);
+    player:messageSpecial(ID.text.NM_OFFSET + 4);
 end;

@@ -3,15 +3,12 @@
 -- Zone: Den_of_Rancor (160)
 --
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Den_of_Rancor/TextIDs")
-require("scripts/zones/Den_of_Rancor/MobIDs")
+local ID = require("scripts/zones/Den_of_Rancor/IDs")
 require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(RANCOR_TREASURE_COFFER)
+    UpdateTreasureSpawnPoint(ID.npc.RANCOR_TREASURE_COFFER)
 end
 
 function onConquestUpdate(zone, updatetype)

@@ -3,16 +3,13 @@
 -- Zone: Gustav Tunnel (212)
 --
 -----------------------------------
-package.loaded["scripts/zones/Gustav_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gustav_Tunnel/TextIDs");
-require("scripts/zones/Gustav_Tunnel/MobIDs");
+local ID = require("scripts/zones/Gustav_Tunnel/IDs");
 require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(BUNE);
-    GetMobByID(BUNE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.BUNE);
+    GetMobByID(ID.mob.BUNE):setRespawnTime(math.random(900, 10800));
 end;
 
 function onConquestUpdate(zone, updatetype)

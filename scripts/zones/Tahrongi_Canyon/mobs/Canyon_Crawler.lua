@@ -3,7 +3,7 @@
 --  MOB: Canyon Crawler
 -- Note: PH for Herbage Hunter
 -----------------------------------
-require("scripts/zones/Tahrongi_Canyon/MobIDs");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,HERBAGE_HUNTER_PH,10,math.random(3600,7200)); -- 1 to 2 hours
+    phOnDespawn(mob,ID.mob.HERBAGE_HUNTER_PH,10,math.random(3600,7200)); -- 1 to 2 hours
 end;

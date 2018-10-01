@@ -4,10 +4,6 @@
 -- Involved In Windurst Mission 7-1
 -- !pos 182 11 -60 169
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Toraimarai_Canal/TextIDs");
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");

@@ -5,13 +5,11 @@
 -- Involved in quests: An Empty Vessel (BLU flag), Beginnings (BLU AF1)
 -- !pos 65 -6 -78 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -138,7 +136,7 @@ function onEventFinish(player,csid,option)
             player:setVar("LastDivinationDay",vanaDay());
             player:setVar("AnEmptyVesselProgress",1);
             player:delGil(1000);
-            player:messageSpecial(PAY_DIVINATION); -- You pay 1000 gil for the divination.
+            player:messageSpecial(ID.text.PAY_DIVINATION); -- You pay 1000 gil for the divination.
         end;
     elseif (csid == 67) then -- Turn in stone, go to Aydeewa
         player:setVar("AnEmptyVesselProgress",4);
@@ -151,19 +149,19 @@ function onEventFinish(player,csid,option)
     elseif (csid == 78 and option == 1) then
         player:setVar("LastDivinationDay",vanaDay());
         player:delGil(1000);
-        player:messageSpecial(PAY_DIVINATION); -- You pay 1000 gil for the divination.
+        player:messageSpecial(ID.text.PAY_DIVINATION); -- You pay 1000 gil for the divination.
     elseif (csid == 705 and option == 1) then
         player:addQuest(AHT_URHGAN,BEGINNINGS);
     elseif (csid == 706 and option == 1) then
         player:delGil(1000);
-        player:messageSpecial(PAY_DIVINATION); -- You pay 1000 gil for the divination.
+        player:messageSpecial(ID.text.PAY_DIVINATION); -- You pay 1000 gil for the divination.
     elseif (csid == 707) then
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(17717,1);
-            player:messageSpecial(ITEM_OBTAINED,17717);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17717);
             player:completeQuest(AHT_URHGAN,BEGINNINGS);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17717);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17717);
         end
     end;
 end;

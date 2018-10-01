@@ -3,7 +3,7 @@
 --  MOB: Ashu Talif Crew
 -----------------------------------
 require("scripts/globals/instance");
-local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
+local ID = require("scripts/zones/The_Ashu_Talif/IDs")
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -21,13 +21,13 @@ function onMobFight(mob, target)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Vulcan Shot
         if(skillId == 254) then
-            mob:showText(mob,TheAshuTalif.text.FOR_EPHRAMAD);
+            mob:showText(mob,ID.text.FOR_EPHRAMAD);
             mob:timer(3000, function(mob)
-                mob:showText(mob,TheAshuTalif.text.TROUBLESOME_SQUABS);
+                mob:showText(mob,ID.text.TROUBLESOME_SQUABS);
             end)
         -- Circle Blade
         elseif(skillId == 938) then
-            mob:showText(mob,TheAshuTalif.text.FOR_THE_BLACK_COFFIN);
+            mob:showText(mob,ID.text.FOR_THE_BLACK_COFFIN);
         end
     end);
 end;
@@ -38,7 +38,7 @@ function onMobRoam(mob)
 
     -- Becomes ready when the Crew is engaged. Jump down!
     if (ready == 1 and jumped == 0) then
-        mob:showText(mob,TheAshuTalif.text.OVERPOWERED_CREW);
+        mob:showText(mob,ID.text.OVERPOWERED_CREW);
 
         mob:hideName(true);
         mob:entityAnimationPacket("jmp0");
@@ -47,7 +47,7 @@ function onMobRoam(mob)
             mob:setPos(0,-22,13,192);
             mob:entityAnimationPacket("jmp1");
 
-            mob:showText(mob,TheAshuTalif.text.TEST_YOUR_BLADES);
+            mob:showText(mob,ID.text.TEST_YOUR_BLADES);
 
             mob:timer(2000, function(mob)
                 mob:hideName(false);

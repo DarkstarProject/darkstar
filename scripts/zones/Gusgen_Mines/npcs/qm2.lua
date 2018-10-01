@@ -4,10 +4,7 @@
 -- Involved In Mission: Bastok 3-2
 -- !pos 206 -60 -101 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gusgen_Mines/TextIDs");
-require("scripts/zones/Gusgen_Mines/MobIDs");
+local ID = require("scripts/zones/Gusgen_Mines/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
@@ -21,10 +18,10 @@ function onTrade(player,npc,trade)
         player:getCurrentMission(BASTOK) == TO_THE_FORSAKEN_MINES and
         npcUtil.tradeHas(trade, 4358) and
         not player:hasItem(563) and
-        not GetMobByID(BLIND_MOBY):isSpawned()
+        not GetMobByID(ID.mob.BLIND_MOBY):isSpawned()
     ) then
         player:confirmTrade();
-        SpawnMob(BLIND_MOBY):updateClaim(player);
+        SpawnMob(ID.mob.BLIND_MOBY):updateClaim(player);
 
     -- BLADE OF DEATH: Chaosbringer
     elseif (
@@ -37,7 +34,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

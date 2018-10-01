@@ -3,11 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos 5.539 -0.434 8.133 281
 -----------------------------------
-package.loaded["scripts/zones/Leafallia/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Leafallia/TextIDs");
-require("scripts/globals/homepoint");
+local ID = require("scripts/zones/Leafallia/IDs")
+require("scripts/globals/homepoint")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,7 +24,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

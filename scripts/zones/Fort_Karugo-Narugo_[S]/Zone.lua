@@ -3,7 +3,7 @@
 -- Zone: Fort_Karugo-Narugo_[S] (96)
 --
 -----------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/MobIDs");
+local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -23,7 +23,7 @@ function onRegionEnter(player,region)
 end;
 
 function onZoneWeatherChange(weather)
-    npc = GetNPCByID(FORT_KN_INDESCRIPT_MARKINGS);
+    npc = GetNPCByID(ID.npc.FORT_KN_INDESCRIPT_MARKINGS);
     if (npc ~= nil) then
         if (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
             npc:setStatus(dsp.status.DISAPPEAR);

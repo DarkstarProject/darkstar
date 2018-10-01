@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -24 -59 -120 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

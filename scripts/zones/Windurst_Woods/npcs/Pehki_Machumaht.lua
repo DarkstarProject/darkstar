@@ -3,9 +3,7 @@
 --  NPC: Pehki Machumaht
 -- Map Seller NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/magic_maps");
 -----------------------------------
 
@@ -19,7 +17,7 @@ end;
 
 function onEventUpdate(player, csid, option)
     if (csid == 10000) then
-        CheckMapsUpdate(player, option, NOT_HAVE_ENOUGH_GIL, KEYITEM_OBTAINED);
+        CheckMapsUpdate(player, option, ID.text.NOT_HAVE_ENOUGH_GIL, ID.text.KEYITEM_OBTAINED);
     end
 end;
 

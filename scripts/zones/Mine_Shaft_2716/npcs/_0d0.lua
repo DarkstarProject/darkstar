@@ -2,13 +2,10 @@
 -- Area: Mine_Shaft_2716
 -- NPC:  Shaft entrance
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 function onTrade(player,npc,trade)
     if (player:getCurrentMission(COP) == THREE_PATHS and ( player:getVar("COP_Louverance_s_Path") == 7 or player:getVar("COP_Louverance_s_Path") == 8 )) then

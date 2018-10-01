@@ -2,23 +2,21 @@
 -- Area: Promyvion Dem
 -- ??? map acquisition
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Dem/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Promyvion-Dem/TextIDs");
+local ID = require("scripts/zones/Promyvion-Dem/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(1721,1) and trade:getItemCount() == 1 and player:hasKeyItem(dsp.ki.MAP_OF_PROMYVION_DEM) == false) then
         player:addKeyItem(dsp.ki.MAP_OF_PROMYVION_DEM);
         player:tradeComplete();
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_PROMYVION_DEM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_PROMYVION_DEM);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 

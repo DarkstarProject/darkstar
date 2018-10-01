@@ -4,9 +4,7 @@
 -- Notes: Red Bracelet Door
 -- !pos -310.000 -1.925 -238.399 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/PsoXja/TextIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -21,10 +19,10 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(dsp.ki.GREEN_BRACELET) == true) then -- Green Bracelet
             player:startEvent(62);
         else
-            player:messageSpecial(ARCH_GLOW_GREEN);
+            player:messageSpecial(ID.text.ARCH_GLOW_GREEN);
         end
     elseif (Z <= -239) then
-        player:messageSpecial(CANNOT_OPEN_SIDE);
+        player:messageSpecial(ID.text.CANNOT_OPEN_SIDE);
     end
 
 end;

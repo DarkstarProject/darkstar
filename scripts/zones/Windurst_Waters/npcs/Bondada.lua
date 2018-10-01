@@ -4,12 +4,9 @@
 -- Involved in Quests: Hat in Hand
 -- !pos -66 -3 -148 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

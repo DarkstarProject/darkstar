@@ -4,13 +4,10 @@
 --  Starts & Finishes Quest: Save My Son
 --  Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -69,7 +66,7 @@ function onTrigger(player,npc)
 
     -- Standard Dialogue?, Probably Wrong
     else
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(ID.text.ITS_LOCKED);
     end
 
     return 1;
@@ -87,15 +84,15 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addTitle(dsp.title.LIFE_SAVER);
             player:addItem(13110);
-            player:messageSpecial(ITEM_OBTAINED, 13110);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 13110);
             player:addGil(GIL_RATE*2100);
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*2100);
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*2100);
             player:setVar("SaveMySon_Event",2);
             player:needToZone(true);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,SAVE_MY_SON);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13110);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13110);
         end
     elseif (csid == 132) then
         player:setVar("SaveMySon_Event",0);

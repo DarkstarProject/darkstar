@@ -3,10 +3,7 @@
 -- Zone: Garlaige_Citadel_[S] (164)
 --
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

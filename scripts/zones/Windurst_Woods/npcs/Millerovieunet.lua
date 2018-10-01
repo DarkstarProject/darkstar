@@ -4,9 +4,7 @@
 -- Only sells when Windurst controlls Qufim Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
@@ -18,9 +16,9 @@ end;
 
 function onTrigger(player,npc)
     if (GetRegionOwner(dsp.region.QUFIMISLAND) ~= dsp.nation.WINDURST) then
-        player:showText(npc,MILLEROVIEUNET_CLOSED_DIALOG);
+        player:showText(npc,ID.text.MILLEROVIEUNET_CLOSED_DIALOG);
     else
-        player:showText(npc,MILLEROVIEUNET_OPEN_DIALOG);
+        player:showText(npc,ID.text.MILLEROVIEUNET_OPEN_DIALOG);
 
         local stock =
         {

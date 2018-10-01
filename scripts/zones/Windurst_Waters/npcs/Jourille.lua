@@ -4,9 +4,7 @@
 -- Only sells when Windurst controlls Ronfaure Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -17,9 +15,9 @@ end;
 function onTrigger(player,npc)
     local RegionOwner = GetRegionOwner(dsp.region.RONFAURE);
     if (RegionOwner ~= dsp.nation.WINDURST) then
-        player:showText(npc,JOURILLE_CLOSED_DIALOG);
+        player:showText(npc,ID.text.JOURILLE_CLOSED_DIALOG);
     else
-        player:showText(npc,JOURILLE_OPEN_DIALOG);
+        player:showText(npc,ID.text.JOURILLE_OPEN_DIALOG);
 
         local stock =
         {

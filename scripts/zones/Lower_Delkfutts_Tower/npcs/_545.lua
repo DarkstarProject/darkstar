@@ -3,7 +3,7 @@
 --  NPC: Cermet Door
 -- Notes: Involved in Missions: THREE_PATHS
 -----------------------------------
-require("scripts/zones/Lower_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -16,9 +16,9 @@ function onTrigger(player,npc)
         player:getCurrentMission(COP) == THREE_PATHS and
         player:getVar("COP_Tenzen_s_Path") == 6 and
         player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) and
-        not GetMobByID(DISASTER_IDOL):isSpawned()
+        not GetMobByID(ID.mob.DISASTER_IDOL):isSpawned()
     ) then
-        SpawnMob(DISASTER_IDOL):updateClaim(player);
+        SpawnMob(ID.mob.DISASTER_IDOL):updateClaim(player);
     elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE)) then
         player:startEvent(25);
     end

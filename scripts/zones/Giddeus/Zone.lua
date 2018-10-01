@@ -3,15 +3,12 @@
 -- Zone: Giddeus (145)
 --
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Giddeus/TextIDs");
-require("scripts/zones/Giddeus/MobIDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Giddeus/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(GIDDEUS_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.npc.GIDDEUS_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)

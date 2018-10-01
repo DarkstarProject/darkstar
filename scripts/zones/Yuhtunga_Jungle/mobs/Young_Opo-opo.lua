@@ -3,7 +3,7 @@
 --  MOB: Young Opo-opo
 -- Note: PH for Mischievous Micholas
 -----------------------------------
-require("scripts/zones/Yuhtunga_Jungle/MobIDs");
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,MISCHIEVOUS_MICHOLAS_PH,20,3600); -- 1 hour
+    phOnDespawn(mob,ID.mob.MISCHIEVOUS_MICHOLAS_PH,20,3600); -- 1 hour
 end;

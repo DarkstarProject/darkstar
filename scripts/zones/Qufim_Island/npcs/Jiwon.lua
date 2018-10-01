@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -249 -19 300 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

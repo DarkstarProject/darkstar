@@ -2,7 +2,7 @@
 -- Area: Sealions Den
 --  MOB: Omega
 -----------------------------------
-require("scripts/zones/Sealions_Den/MobIDs");
+local ID = require("scripts/zones/Sealions_Den/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 require("scripts/globals/msg");
@@ -50,7 +50,7 @@ function onEventFinish(player,csid,option)
             player:setTP(0);
 
             -- spawn ultima for given instance
-            local ultimaId = ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 6;
+            local ultimaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 6;
             if (ultimaId ~= nil and not GetMobByID(ultimaId):isSpawned()) then
                 SpawnMob(ultimaId);
             end

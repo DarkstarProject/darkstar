@@ -3,10 +3,7 @@
 -- Zone: Zhayolm_Remnants
 --
 -----------------------------------
-package.loaded["scripts/zones/Zhayolm_Remnants/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Zhayolm_Remnants/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Zhayolm_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)

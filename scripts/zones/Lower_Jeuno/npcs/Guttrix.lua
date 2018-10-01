@@ -4,11 +4,9 @@
 -- Starts and Finishes Quest: The Goblin Tailor
 -- !pos -36.010 4.499 -139.714 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 
 --[[-----------------------------------------------
 Description:
@@ -97,7 +95,7 @@ function onEventFinish(player,csid,option)
         local rseGear = getRSE(player,option);
 
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,rseGear);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,rseGear);
         else
             if (questStatus == QUEST_ACCEPTED) then
                 player:addFame(JEUNO, 30);
@@ -106,7 +104,7 @@ function onEventFinish(player,csid,option)
 
             player:delKeyItem(dsp.ki.MAGICAL_PATTERN);
             player:addItem(rseGear);
-            player:messageSpecial(ITEM_OBTAINED,rseGear);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,rseGear);
         end
     end
 end;

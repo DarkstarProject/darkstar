@@ -2,7 +2,7 @@
 -- Area: West Ronfaure
 --  MOB: Forest Hare
 -----------------------------------
-require("scripts/zones/West_Ronfaure/MobIDs");
+local ID = require("scripts/zones/West_Ronfaure/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,JAGGEDY_EARED_JACK_PH,5,math.random(3000,21600)); -- 50 minutes to 6 hours
+    phOnDespawn(mob,ID.mob.JAGGEDY_EARED_JACK_PH,5,math.random(3000,21600)); -- 50 minutes to 6 hours
 end;

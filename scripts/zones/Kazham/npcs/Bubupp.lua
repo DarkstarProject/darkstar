@@ -3,10 +3,6 @@
 --  NPC: Bubupp
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     -- item IDs

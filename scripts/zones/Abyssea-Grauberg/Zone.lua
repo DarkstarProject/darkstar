@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Grauberg
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Grauberg/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

@@ -4,10 +4,7 @@
 -- Involved In Quest: EVIL_AT_THE_INLET
 -- !pos -636 -51 -454 83
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs")
-require("scripts/globals/npc_util")
+local ID = require("scripts/zones/Vunkerl_Inlet_[S]/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 -----------------------------------
@@ -21,7 +18,7 @@ function onTrigger(player, npc)
     if Eati == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.EVIL_WARDING_SEAL) then
         player:startEvent(112)
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 

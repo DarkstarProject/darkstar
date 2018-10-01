@@ -3,8 +3,7 @@
 --  MOB: Jagidbod_s_Warmachine
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

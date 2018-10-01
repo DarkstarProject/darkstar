@@ -231,6 +231,7 @@ end
 ---------------------------------------
 
 function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNeeded)
+    local ID = zones[player:getZoneID()]
     local success = 0;
     local chance_answer = {nil,nil}; -- {success%,messageType}
     local weak = player:getStatusEffect(dsp.effect.WEAKNESS);
@@ -240,16 +241,16 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
     -- No one in the same area can open more than 1 coffer per hour except for AF, maps or quests items.
 
     if (weak ~= nil) then -- old code: os.time() <= weak
-        chance_answer = {-1,CHEST_WEAK};
+        chance_answer = {-1,ID.text.CHEST_WEAK};
     elseif (os.time() < illu and questItemNeeded == 0) then
         UpdateTreasureSpawnPoint(npc:getID());
         if (TreasureType == "Chest") then
-            chance_answer = {-2,CHEST_ILLUSION};
+            chance_answer = {-2,ID.text.CHEST_ILLUSION};
         elseif (TreasureType == "Coffer") then
             if (isTHFKey(trade)) then
-                chance_answer = {-1,CHEST_ILLUSION}; -- if you used a THF tool you will lose it.
+                chance_answer = {-1,ID.text.CHEST_ILLUSION}; -- if you used a THF tool you will lose it.
             else
-                chance_answer = {-2,CHEST_ILLUSION}; -- if you traded a zone key droped from mobs you will keep the key
+                chance_answer = {-2,ID.text.CHEST_ILLUSION}; -- if you traded a zone key droped from mobs you will keep the key
             end
         end
     elseif (not(isTHFKey(trade))) then
@@ -259,7 +260,7 @@ function openChance(player,npc,trade,TreasureType,treasureLVL,minLVL,questItemNe
         chance_answer = {success,nil};
     else
         -- Player is not THF (as main job) or doesn't haven enough level to open the coffer
-        chance_answer = {-1,CHEST_FAIL};
+        chance_answer = {-1,ID.text.CHEST_FAIL};
     end
 
     return chance_answer;

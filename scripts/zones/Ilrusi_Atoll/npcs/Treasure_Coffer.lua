@@ -2,26 +2,23 @@
 -- Area: Ilrusi Atoll
 --  NPC: Treasure Coffer
 -----------------------------------
-package.loaded["scripts/zones/Ilrusi_Atoll/IDs"] = nil
--------------------------------------
-require("scripts/zones/Ilrusi_Atoll/IDs")
-require("scripts/globals/status")
+local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(Ilrusi.text.CHEST)
+    player:messageSpecial(ID.text.CHEST)
     
     local npcID = npc:getID()
     local instance = npc:getInstance()
     local figureheadChest = instance:getProgress()
 
     if (npcID == figureheadChest) then
-        player:messageSpecial(Ilrusi.text.GOLDEN)
+        player:messageSpecial(ID.text.GOLDEN)
         instance:complete()
-        for i,v in pairs(Ilrusi.mobs[2]) do
+        for i,v in pairs(ID.mob[2]) do
             DespawnMob(v, instance)
         end
     else

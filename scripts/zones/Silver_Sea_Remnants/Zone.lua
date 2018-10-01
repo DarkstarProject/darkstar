@@ -3,10 +3,7 @@
 -- Zone: Silver_Sea_Remnants
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Silver_Sea_Remnants/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Silver_Sea_Remnants/TextIDs");
+local ID = require("scripts/zones/Silver_Sea_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,10 +3,6 @@
 --  NPC: Vikhu Nakuaino
 -- !zone 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

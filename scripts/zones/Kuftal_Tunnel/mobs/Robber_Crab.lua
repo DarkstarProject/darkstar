@@ -2,13 +2,13 @@
 -- Area: Kuftal Tunnel
 -- Mob: Robber Crab
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/settings");
 -----------------------------------
 
 function onMobInitialize(mob)
-    if (mob:getID() == CANCER + 1) then
+    if (mob:getID() == ID.mob.CANCER + 1) then
         mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
     end
 end;
@@ -23,7 +23,7 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    if (mob:getID() == CANCER + 1) then
-        GetNPCByID(CANCER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    if (mob:getID() == ID.mob.CANCER + 1) then
+        GetNPCByID(ID.npc.CANCER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
     end
 end;

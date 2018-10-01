@@ -2,10 +2,8 @@
 -- Area: Yughott Grotto
 --  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Yughott_Grotto/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/mining");
-require("scripts/zones/Yughott_Grotto/TextIDs");
+local ID = require("scripts/zones/Yughott_Grotto/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)

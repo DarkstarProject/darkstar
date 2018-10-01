@@ -3,11 +3,11 @@
 -- Zone: Port_San_dOria (232)
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/zone");
-require("scripts/globals/settings");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -57,12 +57,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 500) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 700) then
         player:setPos(0,0,0,0,223);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 4) then
         player:setVar("COP_Ulmia_s_Path",2);
     end

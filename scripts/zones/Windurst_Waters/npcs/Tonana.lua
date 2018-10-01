@@ -3,10 +3,6 @@
 --  NPC: Tonana
 -- Warps players to Windurst Woods
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

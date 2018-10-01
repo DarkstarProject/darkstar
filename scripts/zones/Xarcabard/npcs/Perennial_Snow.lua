@@ -4,10 +4,8 @@
 -- Involved in Quests: The Circle of Time
 -- !pos 339 0 -379 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
+local ID = require("scripts/zones/Xarcabard/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,12 +21,12 @@ function onTrigger(player,npc)
         elseif (os.time() > player:getVar("star_ringburied")) then
             player:startEvent(2);
         else
-            player:messageSpecial(PERENNIAL_SNOW_WAIT,225);
+            player:messageSpecial(ID.text.PERENNIAL_SNOW_WAIT,225);
         end;
 
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(PERENNIAL_SNOW_DEFAULT);
+        player:messageSpecial(ID.text.PERENNIAL_SNOW_DEFAULT);
     end;
 end;
 

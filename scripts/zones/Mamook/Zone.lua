@@ -3,6 +3,8 @@
 -- Zone: Mamook (65)
 --
 -----------------------------------
+local ID = require("scripts/zones/Mamook/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end;

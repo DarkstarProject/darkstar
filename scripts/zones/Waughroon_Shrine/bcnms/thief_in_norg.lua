@@ -3,12 +3,10 @@
 -- Name: A Thief in Norg?!
 -- Norg Quest
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -59,6 +57,6 @@ function onEventFinish(player,csid,option)
         if (csid == 32001 and player:getVar("aThiefinNorgCS") == 6) then
             player:setVar("aThiefinNorgCS",7);
             player:addKeyItem(dsp.ki.CHARRED_HELM);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHARRED_HELM);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARRED_HELM);
         end
 end;

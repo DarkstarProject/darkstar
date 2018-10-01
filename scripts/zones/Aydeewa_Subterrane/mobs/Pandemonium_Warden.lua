@@ -5,12 +5,12 @@
 require("scripts/globals/titles");
 require("scripts/globals/status");
 require("scripts/globals/magic");
-require("scripts/zones/Aydeewa_Subterrane/MobIDs");
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs");
 
 -- Pet Arrays, we'll alternate between phases
 local petIDs = {};
-petIDs[0] = {PANDEMONIUM_WARDEN +1, PANDEMONIUM_WARDEN +2, PANDEMONIUM_WARDEN +3, PANDEMONIUM_WARDEN +4, PANDEMONIUM_WARDEN +5, PANDEMONIUM_WARDEN +6, PANDEMONIUM_WARDEN +7, PANDEMONIUM_WARDEN +8};
-petIDs[1] = {PANDEMONIUM_WARDEN +9, PANDEMONIUM_WARDEN +10, PANDEMONIUM_WARDEN +11, PANDEMONIUM_WARDEN +12, PANDEMONIUM_WARDEN +13, PANDEMONIUM_WARDEN +14, PANDEMONIUM_WARDEN +15, PANDEMONIUM_WARDEN +16};
+petIDs[0] = {ID.mob.PANDEMONIUM_WARDEN +1, ID.mob.PANDEMONIUM_WARDEN +2, ID.mob.PANDEMONIUM_WARDEN +3, ID.mob.PANDEMONIUM_WARDEN +4, ID.mob.PANDEMONIUM_WARDEN +5, ID.mob.PANDEMONIUM_WARDEN +6, ID.mob.PANDEMONIUM_WARDEN +7, ID.mob.PANDEMONIUM_WARDEN +8};
+petIDs[1] = {ID.mob.PANDEMONIUM_WARDEN +9, ID.mob.PANDEMONIUM_WARDEN +10, ID.mob.PANDEMONIUM_WARDEN +11, ID.mob.PANDEMONIUM_WARDEN +12, ID.mob.PANDEMONIUM_WARDEN +13, ID.mob.PANDEMONIUM_WARDEN +14, ID.mob.PANDEMONIUM_WARDEN +15, ID.mob.PANDEMONIUM_WARDEN +16};
 
 -- Phase Arrays      Dverg,  Char1, Dverg,  Char2, Dverg,  Char3, Dverg,  Char4,  Dverg,   Mamo,  Dverg,  Lamia,  Dverg,  Troll,  Dverg,   Cerb,  Dverg,  Hydra,  Dverg,   Khim,  Dverg
 --                       1       2      3       4      5       6      7       8       9      10      11      12      13      14      15      16      17      18      19      20
@@ -153,7 +153,7 @@ function onMobFight(mob,target)
                 end
             end
         end
-        DespawnMob(PANDEMONIUM_WARDEN);
+        DespawnMob(ID.mob.PANDEMONIUM_WARDEN);
     --  printf("Timer expired at %i. Despawning Pandemonium Warden.", depopTime);
     end
 end;

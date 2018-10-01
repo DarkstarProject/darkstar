@@ -4,9 +4,6 @@
 -- Notes: Opens Trap Door (_47a) or Brass Door (_470)
 -- !pos 22.310 -1.087 -14.320 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/missions");
 -----------------------------------
 

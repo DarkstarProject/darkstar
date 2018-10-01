@@ -6,10 +6,8 @@
 -- !pos 460.339 -29.137 220.311 5
 -- !pos 180.207 -77.147 500.276 5
 -----------------------------------
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Uleguerand_Range/TextIDs");
+local ID = require("scripts/zones/Uleguerand_Range/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
             player:startEvent(4,dsp.ki.MYSTIC_ICE);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

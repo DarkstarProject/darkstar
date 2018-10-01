@@ -3,10 +3,7 @@
 -- Zone: The_Sanctuary_of_ZiTah (121)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
-require("scripts/zones/The_Sanctuary_of_ZiTah/MobIDs");
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -46,14 +43,14 @@ local itemMap =
     { 1188, 10, DIGREQ_MODIFIER },
     { 4532, 12, DIGREQ_MODIFIER },
 };
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    GetMobByID(NOBLE_MOLD):setLocalVar("pop",os.time() + math.random(43200, 57600)); -- 12 to 16 hr
+    GetMobByID(ID.mob.NOBLE_MOLD):setLocalVar("pop",os.time() + math.random(43200, 57600)); -- 12 to 16 hr
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;

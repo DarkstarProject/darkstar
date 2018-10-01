@@ -2,7 +2,7 @@
 -- Area: Temple Of Uggalepih
 --  MOB: Rumble Crawler
 -----------------------------------
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/settings");
 
@@ -12,7 +12,7 @@ end;
 
 function onMobDespawn(mob)
     -- Rumble Crawler that spawns in place of Habetrot
-    if(mob:getID() == HABETROT + 1) then
-        GetNPCByID(HABETROT_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    if(mob:getID() == ID.mob.HABETROT + 1) then
+        GetNPCByID(ID.npc.HABETROT_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
     end
 end;

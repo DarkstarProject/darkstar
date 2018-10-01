@@ -4,11 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- !pos -177.811 -2.835 65.639 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 
 local keyitems = {
     [0] = {
@@ -94,6 +92,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     elseif (csid == 10021) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

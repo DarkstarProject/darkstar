@@ -3,9 +3,7 @@
 --     Nomad Moogle
 --
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -13,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,NOMAD_MOOGLE_DIALOG);
+    player:showText(npc,ID.text.NOMAD_MOOGLE_DIALOG);
     player:sendMenu(1);
 end;
 

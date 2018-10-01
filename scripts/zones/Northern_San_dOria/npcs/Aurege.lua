@@ -8,9 +8,7 @@
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,7 +35,7 @@ function onEventFinish(player,csid,option)
     if (exitTheGambler == QUEST_AVAILABLE) then
         player:addQuest(SANDORIA,EXIT_THE_GAMBLER);
     elseif (exitTheGambler == QUEST_COMPLETED and player:hasKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB) == false) then
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_KING_RANPERRES_TOMB);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_KING_RANPERRES_TOMB);
         player:addKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB);
         player:addTitle(dsp.title.DAYBREAK_GAMBLER);
         player:addFame(SANDORIA,30);

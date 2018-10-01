@@ -4,9 +4,6 @@
 -- Type: Chocobo Renter
 -- !pos 336.765 24.416 -124.592 90
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

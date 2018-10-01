@@ -4,15 +4,13 @@
 -- Notes: Opened by Torch Stands near Password #3
 -- !pos -43.455 -20.161 20.014 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
 
     if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
+        player:messageSpecial(ID.text.ITS_LOCKED);
     end
 
 end;

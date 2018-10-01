@@ -3,9 +3,6 @@
 --  NPC: Raustigne
 -- !pos 4 -2 44 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 

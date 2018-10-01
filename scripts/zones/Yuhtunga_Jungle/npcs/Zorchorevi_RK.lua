@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos -242.487 -1 -402.772 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Yuhtunga_Jungle/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

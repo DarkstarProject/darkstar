@@ -5,25 +5,25 @@
 -----------------------------------
 require("scripts/globals/instance")
 require("scripts/globals/keyitems");
-local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
+local ID = require("scripts/zones/The_Ashu_Talif/IDs")
 -----------------------------------
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(TheAshuTalif.text.FADES_INTO_NOTHINGNESS, dsp.ki.EPHRAMADIAN_GOLD_COIN);
+    player:messageSpecial(ID.text.FADES_INTO_NOTHINGNESS, dsp.ki.EPHRAMADIAN_GOLD_COIN);
     player:delKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
-    player:messageSpecial(TheAshuTalif.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
 function onInstanceCreated(instance)
-    SpawnMob(TheAshuTalif.mobs.GESSHO, instance);
-    for i,v in pairs(TheAshuTalif.mobs[1]) do
+    SpawnMob(ID.mob.GESSHO, instance);
+    for i,v in pairs(ID.mob[1]) do
         SpawnMob(v, instance);
     end
 end;
 
 function onInstanceTimeUpdate(instance, elapsed)
-    updateInstanceTime(instance, elapsed, TheAshuTalif.text)
+    updateInstanceTime(instance, elapsed, ID.text)
 end;
 
 function onInstanceFailure(instance)
@@ -31,7 +31,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(TheAshuTalif.text.MISSION_FAILED,10,10);
+        v:messageSpecial(ID.text.MISSION_FAILED,10,10);
         v:startEvent(102);
     end
 end;
@@ -39,11 +39,11 @@ end;
 function onInstanceProgressUpdate(instance, progress)
 
     if (progress == 5) then
-        for i,v in pairs(TheAshuTalif.mobs[2]) do
+        for i,v in pairs(ID.mob[2]) do
             SpawnMob(v, instance);
         end
     elseif (progress >= 10 and instance:completed() == false) then
-        local v = GetMobByID(TheAshuTalif.mobs.GESSHO, instance);
+        local v = GetMobByID(ID.mob.GESSHO, instance);
 
         if(v:isAlive()) then
             v:setLocalVar("ready",2);

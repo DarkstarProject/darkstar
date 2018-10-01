@@ -3,16 +3,14 @@
 --  NPC: Nomad Moogle
 --
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,NOMAD_MOOGLE_DIALOG);
+    player:showText(npc,ID.text.NOMAD_MOOGLE_DIALOG);
     player:sendMenu(1);
 end;
 

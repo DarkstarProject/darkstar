@@ -4,8 +4,7 @@
 -- Type: Standard NPC
 -- !pos -22.746 -5 17.157 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Mhaura/IDs")
 require("scripts/globals/armor_upgrade");
 -----------------------------------
 
@@ -21,7 +20,7 @@ function onTrade(player,npc,trade)
     --print("armor"..armor);
     if (armor > 0) then
         if (player:getFreeSlotsCount() == 0 or player:hasItem(armor) ) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,armor);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,armor);
         else
             if (armor == 15241 or armor == 14489 or armor == 14906 or armor == 15577 or armor == 15662) then  -- utlima
                 player:startEvent(328,armor);
@@ -55,7 +54,7 @@ function onEventFinish(player,csid,option)
 
     if (csid== 328 or csid == 330) then
         player:addItem(option);
-        player:messageSpecial(ITEM_OBTAINED,option);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,option);
         player:tradeComplete();
     end
 end;

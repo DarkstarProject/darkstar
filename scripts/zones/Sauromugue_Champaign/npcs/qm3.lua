@@ -4,17 +4,14 @@
 --  Involved in Quest: THF AF "As Thick As Thieves"
 -- !pos 417.121 15.598 -137.466 120
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local grapplingCS = player:getVar("thickAsThievesGrapplingCS");
 
     if (grapplingCS >= 2 and grapplingCS <= 7 and trade:hasItemQty(17474,1) and trade:getItemCount() == 1) then -- Trade grapel
-        player:messageSpecial(THF_AF_WALL_OFFSET+3,0,17474); -- You cannot get a decent grip on the wall using the [Grapnel].
+        player:messageSpecial(ID.text.THF_AF_WALL_OFFSET+3,0,17474); -- You cannot get a decent grip on the wall using the [Grapnel].
     end
 end;
 
@@ -24,17 +21,17 @@ function onTrigger(player,npc)
 
     if (thickAsThieves == QUEST_ACCEPTED) then
         if (grapplingCS == 3) then
-            local gob = GetMobByID(CLIMBPIX_HIGHRISE);
+            local gob = GetMobByID(ID.mob.CLIMBPIX_HIGHRISE);
             if (not gob:isSpawned()) then
-                player:messageSpecial(THF_AF_MOB);
+                player:messageSpecial(ID.text.THF_AF_MOB);
                 gob:setSpawn(414,16,-131);
-                SpawnMob(CLIMBPIX_HIGHRISE):updateClaim(player);
+                SpawnMob(ID.mob.CLIMBPIX_HIGHRISE):updateClaim(player);
             end
         elseif (grapplingCS >= 0 or grapplingCS <= 7) then
-            player:messageSpecial(THF_AF_WALL_OFFSET);
+            player:messageSpecial(ID.text.THF_AF_WALL_OFFSET);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

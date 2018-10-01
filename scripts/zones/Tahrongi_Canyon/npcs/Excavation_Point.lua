@@ -2,10 +2,8 @@
 -- Area: Tahrongi Canyon
 --  NPC: Excavation Point
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/excavation");
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
+    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
 end;
 
 function onEventUpdate(player,csid,option)
