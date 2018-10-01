@@ -14,7 +14,7 @@ end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Lebros.mobs[27]) do
+    for i,v in pairs(ID.mob[27]) do
         SpawnMob(v, instance);
     end
 
