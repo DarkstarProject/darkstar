@@ -1245,7 +1245,7 @@ dsp.conquest.onConquestUpdate = function(zone, updatetype)
     local region = zone:getRegionID()
     local owner = GetRegionOwner(region)
     local players = zone:getPlayers()
-    local messageBase = zones[zone].text.CONQUEST_BASE
+    local messageBase = zones[zone:getID()].text.CONQUEST_BASE
     local ranking = getConquestBalance()
     
     for _, player in pairs(players) do
