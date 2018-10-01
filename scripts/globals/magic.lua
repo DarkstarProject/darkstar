@@ -231,7 +231,7 @@ function getBaseCureOld(power,divisor,constant)
 end;
 
 function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
-    if(basecure < minCure then
+    if basecure < minCure then
         basecure = minCure
     end
 
