@@ -103,6 +103,31 @@ local function setHomepointFee(player, guardNation)
     return fee
 end
 
+local function getRegionsMask(nation)
+    local mask = 0
+    for region = dsp.region.RONFAURE, dsp.region.MOVALPOLOS do
+        if GetRegionOwner(region) ~= nation then
+            mask = bit.bor(mask, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
+        end
+    end
+
+    -- Flip the mask so owned region bits are OFF
+    return bit.bnot(mask)
+end
+
+local function getAllowedTeleports(player, nation)
+    local regionsSupplied = player:getNationTeleport(teleporterNation)
+    local allowedTeleports = 0
+    for region = dsp.region.RONFAURE, dsp.region.MOVALPOLOS do
+        local canTeleport = dsp.conquest.canTeleportToOutpost(player, region)
+            allowedTeleports = bit.bor(allowedTeleports, bit.band(regionsSupplied, bit.lshift(canTeleport and 1 or 0, region + 5)) -- Region bits start at 5th bit
+        end
+    end
+    
+    -- Flip the mask so allowed region bits are OFF
+    return bit.bnot(allowedTeleports)
+end
+
 local function getTeleAvailable(nation)
     local mask = 2145386527
 
@@ -1189,20 +1214,17 @@ end
 -----------------------------------
 
 dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporterEvent)
-    local sandyRegions = 1073741823 - getTeleAvailable(dsp.nation.SANDORIA)
-    local bastokRegions = 1073741823 - getTeleAvailable(dsp.nation.BASTOK)
-    local windyRegions = 1073741823 - getTeleAvailable(dsp.nation.WINDURST)
-    local beastmenRegions = 1073741823 - getTeleAvailable(dsp.nation.BEASTMEN)
-    local regionsSupplied = player:getNationTeleport(teleporterNation)
-    local availableTeleports = 1073741823
-    for region = 0, 18 do
-        if dsp.conquest.canTeleportToOutpost(player, region) then
-            availableTeleports = availableTeleports - bit.band(regionsSupplied, bit.lshift(1, region + 5))
-        end
-    end
-
     if player:getNation() == teleporterNation then
-        player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, teleporterNation - 19, 0, player:getMainLvl(), availableTeleports)
+        local sandyRegions = getRegionsMask(dsp.nation.SANDORIA)
+        local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
+        local windyRegions = getRegionsMask(dsp.nation.WINDURST)
+        local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
+
+        local allowedTeleports = getAllowedTeleports(player, teleporterNation)
+
+        local teleporterRegion = dsp.region.SANDORIA + teleporterNation
+
+        player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =
         {
