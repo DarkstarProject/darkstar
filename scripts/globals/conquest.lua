@@ -76,9 +76,9 @@ local outposts =
     [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 0, fee = 0},
+    [dsp.region.TULIA]           = {zone = 130,                                             cp = 70, lvl = 70, fee = 500},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
-    [dsp.region.MOVALPOLOS]      = {zone =  11},
+    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 70, lvl = 30, fee = 300}
 }
 
 local function hasOutpost(player, region)
@@ -1189,11 +1189,20 @@ end
 -----------------------------------
 
 dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporterEvent)
-    local regionsControlled = 1073741823 - getTeleAvailable(teleporterNation)
-    local regionsSupplied = 1073741823 - player:getNationTeleport(teleporterNation)
+    local sandyRegions = 1073741823 - getTeleAvailable(dsp.nation.SANDORIA)
+    local bastokRegions = 1073741823 - getTeleAvailable(dsp.nation.BASTOK)
+    local windyRegions = 1073741823 - getTeleAvailable(dsp.nation.WINDURST)
+    local beastmenRegions = 1073741823 - getTeleAvailable(dsp.nation.BEASTMEN)
+    local regionsSupplied = player:getNationTeleport(teleporterNation)
+    local availableTeleports = 1073741823
+    for region = 0, 18 do
+        if dsp.conquest.canTeleportToOutpost(player, region) then
+            availableTeleports = availableTeleports - bit.band(regionsSupplied, bit.lshift(1, region + 5))
+        end
+    end
 
     if player:getNation() == teleporterNation then
-        player:startEvent(teleporterEvent, 0, 0, regionsControlled, 0, 0, 514, player:getMainLvl(), regionsSupplied)
+        player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, teleporterNation - 19, 0, player:getMainLvl(), availableTeleports)
     else
         local a6 =
         {
