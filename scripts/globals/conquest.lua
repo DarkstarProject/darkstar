@@ -76,9 +76,9 @@ local outposts =
     [dsp.region.VOLLBOW]         = {zone = 113, ki = dsp.ki.VOLLBOW_SUPPLIES,               cp = 70, lvl = 50, fee = 500},
     [dsp.region.ELSHIMOLOWLANDS] = {zone = 123, ki = dsp.ki.ELSHIMO_LOWLANDS_SUPPLIES,      cp = 70, lvl = 25, fee = 250},
     [dsp.region.ELSHIMOUPLANDS]  = {zone = 124, ki = dsp.ki.ELSHIMO_UPLANDS_SUPPLIES,       cp = 70, lvl = 35, fee = 350},
-    [dsp.region.TULIA]           = {zone = 130, cp = 0, lvl = 70, fee = 500},
+    [dsp.region.TULIA]           = {zone = 130,                                             cp = 0,  lvl = 70, fee = 500},
     [dsp.region.TAVNAZIANARCH]   = {zone =  24, ki = dsp.ki.TAVNAZIAN_ARCHIPELAGO_SUPPLIES, cp = 70, lvl = 30, fee = 300},
-    [dsp.region.MOVALPOLOS]      = {zone =  11},
+    [dsp.region.MOVALPOLOS]      = {zone =  11,                                             cp = 40, lvl = 25, fee = 250}
 }
 
 local function hasOutpost(player, region)
@@ -103,16 +103,26 @@ local function setHomepointFee(player, guardNation)
     return fee
 end
 
-local function getTeleAvailable(nation)
-    local mask = 2145386527
-
-    for i = 5, 23 do
-        if GetRegionOwner(i - 5) ~= nation then
-            mask = mask + 2^i
+local function getRegionsMask(nation)
+    local mask = 0
+    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
+        if GetRegionOwner(region) == nation then
+            mask = bit.bor(mask, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
         end
     end
 
     return mask
+end
+
+local function getAllowedTeleports(player, nation)
+    local allowedTeleports = 0x3F00001F
+    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
+        if not dsp.conquest.canTeleportToOutpost(player, region) then
+            allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
+        end
+    end
+
+    return allowedTeleports
 end
 
 -----------------------------------
@@ -1188,11 +1198,17 @@ end
 -----------------------------------
 
 dsp.conquest.teleporterOnTrigger = function(player, teleporterNation, teleporterEvent)
-    local regionsControlled = 1073741823 - getTeleAvailable(teleporterNation)
-    local regionsSupplied = 1073741823 - player:getNationTeleport(teleporterNation)
-
     if player:getNation() == teleporterNation then
-        player:startEvent(teleporterEvent, 0, 0, regionsControlled, 0, 0, 514, player:getMainLvl(), regionsSupplied)
+        local sandyRegions = getRegionsMask(dsp.nation.SANDORIA)
+        local bastokRegions = getRegionsMask(dsp.nation.BASTOK)
+        local windyRegions = getRegionsMask(dsp.nation.WINDURST)
+        local beastmenRegions = getRegionsMask(dsp.nation.BEASTMEN)
+
+        local allowedTeleports = getAllowedTeleports(player, teleporterNation)
+
+        local teleporterRegion = dsp.region.SANDORIA + teleporterNation
+
+        player:startEvent(teleporterEvent, sandyRegions, bastokRegions, windyRegions, beastmenRegions, bit.lshift(1, teleporterRegion), 0, player:getMainLvl(), allowedTeleports)
     else
         local a6 =
         {
