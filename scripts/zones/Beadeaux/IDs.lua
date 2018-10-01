@@ -31,6 +31,7 @@ zones[dsp.zone.BEADEAUX] =
     },
     mob =
     {
+        MIMIC                  = 17379783,
         BI_GHO_HEADTAKER_PH    = 
         {
             [17379350] = 17379351, -- -98.611 0.498 71.212

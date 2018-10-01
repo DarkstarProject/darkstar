@@ -32,6 +32,7 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     },
     mob =
     {
+        MIMIC                  = 16826564,
         BUGBEAR_MATMAN         = 16826570,
         MOBLIN_SHOWMAN         = 16826573,
         NEWTON_DOOR_OFFSET     = 16826582,

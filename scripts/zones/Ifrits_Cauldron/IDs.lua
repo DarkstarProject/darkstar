@@ -39,6 +39,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
     {
         PIRATES_COVE_NMS = 17616897,
         ASH_DRAGON       = 17617147,
+        MIMIC            = 17617157,
         BOMB_QUEEN       = 17617158,
         TARASQUE         = 17617164,
         CAILLEACH_BHEUR  = 17617165,

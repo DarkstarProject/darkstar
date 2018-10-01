@@ -49,6 +49,7 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         STURM         = 17576267,
         TAIFUN        = 17576268,
         TROMBE        = 17576269,
+        MIMIC         = 17576270,
     },
     npc =
     {

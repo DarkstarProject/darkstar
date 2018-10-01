@@ -77,6 +77,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
             [17395953] = 17395954, -- -32.302 -16.250 -139.169
         },
         YAGUDO_AVATAR              = 17396134,
+        MIMIC                      = 17396144,
     },
     npc =
     {
