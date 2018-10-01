@@ -105,26 +105,24 @@ end
 
 local function getRegionsMask(nation)
     local mask = 0
-    for region = dsp.region.RONFAURE, dsp.region.MOVALPOLOS do
-        if GetRegionOwner(region) ~= nation then
+    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
+        if GetRegionOwner(region) == nation then
             mask = bit.bor(mask, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
         end
     end
 
-    -- Flip the mask so owned region bits are OFF
-    return bit.bnot(mask)
+    return mask
 end
 
 local function getAllowedTeleports(player, nation)
-    local regionsSupplied = player:getNationTeleport(nation)
-    local allowedTeleports = 0
-    for region = dsp.region.RONFAURE, dsp.region.MOVALPOLOS do
-        local canTeleport = dsp.conquest.canTeleportToOutpost(player, region)
-        allowedTeleports = bit.bor(allowedTeleports, bit.band(regionsSupplied, bit.lshift(canTeleport and 1 or 0, region + 5))) -- Region bits start at 5th bit
+    local allowedTeleports = 0x3F00001F
+    for region = dsp.region.RONFAURE, dsp.region.TAVNAZIANARCH do
+        if not dsp.conquest.canTeleportToOutpost(player, region) then
+            allowedTeleports = bit.bor(allowedTeleports, bit.lshift(1, region + 5)) -- Region bits start at 5th bit
+        end
     end
-    
-    -- Flip the mask so allowed region bits are OFF
-    return bit.bnot(allowedTeleports)
+
+    return allowedTeleports
 end
 
 -----------------------------------
