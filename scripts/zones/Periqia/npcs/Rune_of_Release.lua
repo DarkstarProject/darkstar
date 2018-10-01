@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
             points = 1000 - math.max(playerpoints, 0)
         end
         for i,v in pairs(chars) do
-            v:messageSpecial(Periqia.text.ASSAULT_POINTS_OBTAINED,points)
+            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points)
             v:addAssaultPoint(PERIQIA_ASSAULT_POINT,points)
             v:setVar("AssaultComplete",1)
             if (v:hasCompletedAssault(v:getCurrentAssault())) then
