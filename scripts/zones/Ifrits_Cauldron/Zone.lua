@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
@@ -12,6 +13,8 @@ function onInitialize(zone)
     GetMobByID(ID.mob.ASH_DRAGON):setRespawnTime(math.random(900, 10800));
 
     UpdateTreasureSpawnPoint(ID.npc.IFRITS_TREASURE_COFFER);
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onConquestUpdate(zone, updatetype)

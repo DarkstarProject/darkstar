@@ -2,20 +2,19 @@
 -- Area: Wajaom Woodlands
 --  NPC: Harvesting Point
 -----------------------------------
-local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
-require("scripts/globals/harvesting");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,507);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.HARVESTING, 507)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.HARVESTING_IS_POSSIBLE_HERE,1020);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.HARVESTING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

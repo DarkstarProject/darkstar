@@ -2,16 +2,15 @@
 -- Area: Attohwa Chasm
 --  NPC: Excavation Point
 -----------------------------------
-local ID = require("scripts/zones/Attohwa_Chasm/IDs")
-require("scripts/globals/excavation")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    dsp.excavation.onTrade(player, npc, trade, 10)
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.EXCAVATION, 10)
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE, 605)
+    dsp.helm.onTrigger(player, dsp.helm.type.EXCAVATION)
 end
 
 function onEventUpdate(player,csid,option)

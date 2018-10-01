@@ -60,6 +60,15 @@ zones[dsp.zone.GIDDEUS] =
     npc =
     {
         GIDDEUS_TREASURE_CHEST = 17371608,
+        HARVESTING =
+        {
+            17371609,
+            17371610,
+            17371611,
+            17371612,
+            17371613,
+            17371614,
+        },
     },
 }
 

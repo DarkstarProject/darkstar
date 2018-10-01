@@ -5,10 +5,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Giddeus/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateTreasureSpawnPoint(ID.npc.GIDDEUS_TREASURE_CHEST);
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)

@@ -69,13 +69,13 @@ WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
 WEAPON_SKILL_POINTS = 1.000; -- Multiplies points earned during weapon unlocking.
 USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
 
-HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
-EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
-LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 0.33; -- % chance for the pickaxe to break during mining.  Set between 0 and 1.
-HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
-EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
-LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
+HARVESTING_BREAK_CHANCE = 33; -- % chance for the sickle to break during harvesting.  Set between 0 and 100.
+EXCAVATION_BREAK_CHANCE = 33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 100.
+LOGGING_BREAK_CHANCE    = 33; -- % chance for the hatchet to break during logging.  Set between 0 and 100.
+MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100.
+HARVESTING_RATE         = 50; -- % chance to recieve an item from haresting.  Set between 0 and 100.
+EXCAVATION_RATE         = 50; -- % chance to recieve an item from excavation.  Set between 0 and 100.
+LOGGING_RATE            = 50; -- % chance to recieve an item from logging.  Set between 0 and 100.
 MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
 
 HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100

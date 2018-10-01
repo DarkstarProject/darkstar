@@ -4,9 +4,8 @@
 -- Used in Quest: The Holy Crest
 -- !pos 234 0.1 -110 198
 -----------------------------------
-local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")
-require("scripts/globals/excavation")
 require("scripts/globals/npc_util")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,13 +14,13 @@ function onTrade(player,npc,trade)
             player:confirmTrade()
         end
     else
-        dsp.excavation.onTrade(player, npc, trade, 60)
+        dsp.helm.onTrade(player, npc, trade, dsp.helm.type.EXCAVATION, 60)
     end
 
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE, 605)
+    dsp.helm.onTrigger(player, dsp.helm.type.EXCAVATION)
 end
 
 function onEventUpdate(player,csid,option)

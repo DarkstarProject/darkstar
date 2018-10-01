@@ -6,9 +6,9 @@
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
-require("scripts/globals/excavation")
 require("scripts/globals/conquest")
 require("scripts/globals/weather")
+require("scripts/globals/helm")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -54,7 +54,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
-    dsp.excavation.movePoint(GetNPCByID(ID.npc.EXCAVATION[1]), zone:getID()) -- pick a random excavation point
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
 end;
 
 function onZoneIn( player, prevZone)

@@ -6,9 +6,11 @@
 local ID = require("scripts/zones/North_Gustaberg_[S]/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

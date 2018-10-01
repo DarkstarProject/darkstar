@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Carpenters_Landing/IDs")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
 
 local itemMap =
@@ -46,6 +47,8 @@ end;
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.TEMPEST_TIGON);
     GetMobByID(ID.mob.TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
+
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

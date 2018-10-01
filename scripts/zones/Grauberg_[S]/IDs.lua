@@ -24,6 +24,15 @@ zones[dsp.zone.GRAUBERG_S] =
     },
     npc =
     {
+        HARVESTING =
+        {
+            17142545,
+            17142546,
+            17142547,
+            17142548,
+            17142549,
+            17142550,
+        },
         GRAUBERG_INDESCRIPT_MARKINGS = 17142586,
     },
 }

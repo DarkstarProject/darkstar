@@ -42,6 +42,15 @@ zones[dsp.zone.GUSGEN_MINES] =
     npc =
     {
         GUSGEN_TREASURE_CHEST = 17580403,
+        MINING =
+        {
+            17580397,
+            17580398,
+            17580399,
+            17580400,
+            17580401,
+            17580402,
+        },
     },
 }
 
