@@ -79,40 +79,15 @@ local TTK_SUCCESS_INCREMENT = 0.1;
 -- Spawn Mimic
 ---------------------------------------
 
-function spawnMimic(zone,npc,player)
-    -- zone,mobid
-    local mimic =
-    {
-        12, 16826564,
-        130,17309979,
-        147,17379783,
-        150,17391805,
-        151,17396144,
-        153,17404336,
-        159,17428497,
-        160,17432583,
-        161,17436965,
-        169,17469761,
-        174,17490230,
-        176,17498564,
-        177,17502567,
-        195,17576270,
-        197,17584426,
-        200,17596728,
-        205,17617157,
-        208,17629190
-    };
-
-    for nb = 1, #mimic, 2 do
-        if (zone == mimic[nb]) then
-            SpawnMob(mimic[nb + 1]):updateEnmity(player);
-            setMobPos(mimic[nb + 1],npc:getXPos(),npc:getYPos(),npc:getZPos(),npc:getRotPos());
-            break;
-        else
-            printf("treasure.lua Mimic missing from zone %d", zone);
-        end
+function spawnMimic(zoneId, npc, player)
+    local mimicId = zones[zoneId].mob.MIMIC
+    if mimicId then
+        SpawnMob(mimicId):updateEnmity(player)
+        setMobPos(mimicId, npc:getXPos(), npc:getYPos(), npc:getZPos(), npc:getRotPos())
+    else
+        printf("treasure.lua Mimic missing from zone %d", zoneId)
     end
-end;
+end
 
 -------------------------------------------------
 -- AF by Zone

@@ -44,6 +44,7 @@ zones[dsp.zone.CRAWLERS_NEST] =
         },
         AWD_GOGGIE        = 17584135,
         DREADBUG          = 17584425,
+        MIMIC             = 17584426,
     },
     npc =
     {

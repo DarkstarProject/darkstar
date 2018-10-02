@@ -96,6 +96,7 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
             [17490141] = 17490204, -- 87.000 21.000 59.000
         },
         TALEKEEPER_OFFSET       = 17489926,
+        MIMIC                   = 17490230,
         CANCER                  = 17490231,
         PHANTOM_WORM            = 17490233,
         GUIVRE                  = 17490234,

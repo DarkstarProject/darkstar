@@ -53,6 +53,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         TEMPLE_GUARDIAN          = 17428494,
         NIO_A                    = 17428495,
         NIO_HUM                  = 17428496,
+        MIMIC                    = 17428497,
         SOZU_ROGBERRY            = 17428751,
         CLEUVARION_M_RESOAIX     = 17428807,
         ROMPAULION_S_CITALLE     = 17428808,

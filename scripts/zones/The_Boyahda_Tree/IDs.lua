@@ -41,6 +41,7 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
         {
             [17404330] = 17404331, -- -196.178 5.592 190.971
         },
+        MIMIC                = 17404336,
         AGAS                 = 17404337,
         BEET_LEAFHOPPER      = 17404338,
     },
