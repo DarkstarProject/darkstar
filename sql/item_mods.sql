@@ -5240,9 +5240,9 @@ INSERT INTO `item_mods` VALUES (11552,1,10);
 INSERT INTO `item_mods` VALUES (11552,24,10);
 INSERT INTO `item_mods` VALUES (11552,26,10);
 INSERT INTO `item_mods` VALUES (11552,305,5);
-INSERT INTO `item_mods` VALUES (11553,1,7);
-INSERT INTO `item_mods` VALUES (11553,27,2);
-INSERT INTO `item_mods` VALUES (11553,165,3);
+INSERT INTO `item_mods` VALUES (11553,1,7);       -- Cavaros Mantle: DEF: 7
+INSERT INTO `item_mods` VALUES (11553,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (11553,421,3);     -- Crit. Hit. Dmg. + 3%
 INSERT INTO `item_mods` VALUES (11554,1,8);       -- orison_cape DEF:+8
 INSERT INTO `item_mods` VALUES (11554,5,10);      -- MP+10
 INSERT INTO `item_mods` VALUES (11554,27,-4);     -- Enmity-4
