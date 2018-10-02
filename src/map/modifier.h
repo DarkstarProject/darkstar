@@ -578,6 +578,7 @@ enum class Mod
     REGEN                     = 370, // auto regen from equipment
     REGEN_DOWN                = 404, // poison
     CURE_POTENCY              = 374, // % cure potency | bonus from gear is capped at 50
+    CURE_POTENCY_II           = 260, // % cure potency II | bonus from gear is capped at 30
     CURE_POTENCY_RCVD         = 375, // % potency of received cure | healer's roll, some items have this
     RANGED_DMG_RATING         = 376, // adds damage rating to ranged weapon
     MAIN_DMG_RANK             = 377, // adds weapon rank to main weapon http://wiki.bluegartr.com/bg/Weapon_Rank

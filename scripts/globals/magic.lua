@@ -230,15 +230,14 @@ function getBaseCureOld(power,divisor,constant)
     return (power / 2) / divisor + constant;
 end;
 
-function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
-    if (basecure < minCure) then
-        basecure = minCure;
+function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
+    if basecure < minCure then
+        basecure = minCure
     end
 
-    local potency = 1 + (caster:getMod(dsp.mod.CURE_POTENCY) / 100);
-    if (potency > 1.5) then
-        potency = 1.5;
-    end
+    local curePot = math.min(caster:getMod(dsp.mod.CURE_POTENCY), 50) / 100 -- caps at 50%
+    local curePotII = math.min(caster:getMod(dsp.mod.CURE_POTENCY_II), 30) / 100 -- caps at 30%
+    local potency = 1 + curePot + curePotII
 
     local dSeal = 1;
     if (caster:hasStatusEffect(dsp.effect.DIVINE_SEAL)) then
