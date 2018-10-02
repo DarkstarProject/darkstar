@@ -1658,20 +1658,6 @@ int32 CCharEntity::GetTimeRemainingUntilDeathHomepoint()
     return 0x0003A020 - (60 * GetSecondsElapsedSinceDeath());
 }
 
-void CCharEntity::ApplyCurrentMoghancement()
-{
-    // Determines the current moghancement and sets it which applies the correct modifiers
-    std::bitset<512U>& moghancementKeyItems = keys.tables[1].keyList;
-    for (MOGHANCEMENT_TYPE moghancementID : MoghancementList)
-    {
-        if (charutils::hasKeyItem(this, moghancementID))
-        {
-            SetMoghancement(moghancementID);
-            return;
-        }
-    }
-}
-
 bool CCharEntity::hasMoghancement(uint16 moghancementID)
 {
     return m_moghancementID == moghancementID;
@@ -1679,13 +1665,11 @@ bool CCharEntity::hasMoghancement(uint16 moghancementID)
 
 void CCharEntity::UpdateMoghancement()
 {
-    static constexpr uint8 containers[2] = { LOC_MOGSAFE, LOC_MOGSAFE2 };
-
     // Add up all of the installed furniture auras
-    uint16 elements[8] = { 0 };
-    for (int containerIndex = 0; containerIndex < 2; ++containerIndex)
+    std::array<uint16, 8> elements = { 0 };
+    for (auto containerID : {LOC_MOGSAFE, LOC_MOGSAFE2})
     {
-        CItemContainer* PContainer = getStorage(containers[containerIndex]);
+        CItemContainer* PContainer = getStorage(containerID);
         for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
         {
             CItem* PItem = PContainer->GetItem(slotID);
@@ -1725,9 +1709,9 @@ void CCharEntity::UpdateMoghancement()
     uint16 newMoghancementID = 0;
     if (!hasTiedElements && dominantAura > 0)
     {
-        for (int containerIndex = 0; containerIndex < 2; ++containerIndex)
+        for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
         {
-            CItemContainer* PContainer = getStorage(containers[containerIndex]);
+            CItemContainer* PContainer = getStorage(containerID);
             for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
             {
                 CItem* PItem = PContainer->GetItem(slotID);
@@ -1751,7 +1735,7 @@ void CCharEntity::UpdateMoghancement()
     // Always show which moghancement the player has if they have one at all
     if (newMoghancementID != 0)
     {
-        pushPacket(new CMessageSpecialPacket(this, MSGSPECIAL_KEYITEM_OBTAINED, newMoghancementID, 0, 0, 0, 0));
+        pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, 0));
     }
 
     if (newMoghancementID != m_moghancementID)
@@ -1781,8 +1765,8 @@ void CCharEntity::UpdateMoghancement()
         charutils::SaveKeyItems(this);
 
         SetMoghancement(newMoghancementID);
+        charutils::SaveCharMoghancement(this);
     }
-
 }
 
 void CCharEntity::SetMoghancement(uint16 moghancementID)

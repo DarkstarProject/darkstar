@@ -5203,14 +5203,13 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         // Update installed furniture placement orders
         // First we place the furniture into placed items using the order number as the index
-        static constexpr uint8 containers[2] = { LOC_MOGSAFE, LOC_MOGSAFE2 };
-        CItemFurnishing* placedItems[MAX_CONTAINER_SIZE * 2] = { nullptr };
-        for (int containerIndex = 0; containerIndex < 2; ++containerIndex)
+        std::array<CItemFurnishing*, MAX_CONTAINER_SIZE * 2> placedItems = { nullptr };
+        for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
         {
-            CItemContainer* PContainer = PChar->getStorage(containers[containerIndex]);
+            CItemContainer* PContainer = PChar->getStorage(safeContainerId);
             for (int slotIndex = 0; slotIndex < PContainer->GetSize(); ++slotIndex)
             {
-                if (slotID == slotIndex && containerID == containers[containerIndex])
+                if (slotID == slotIndex && containerID == safeContainerId)
                     continue;
 
                 CItem* PContainerItem = PContainer->GetItem(slotIndex);
