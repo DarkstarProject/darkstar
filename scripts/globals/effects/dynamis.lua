@@ -34,7 +34,17 @@ function onEffectTick(target,effect)
     end
 
     if message ~= 0 then
-        target:triggerListener("DYNAMIS_TIME_UPDATE", target, message)
+        local time = message
+        local minutes = 0
+        if time >= 60 then
+            minutes = 1
+            time = time / 60
+        end
+        if time == 1 then
+            target:messageSpecial(zones[target:getZoneID()].text.DYNAMIS_TIME_UPDATE_1, time, minutes)
+        else
+            target:messageSpecial(zones[target:getZoneID()].text.DYNAMIS_TIME_UPDATE_2, time, minutes)
+        end
         target:setLocalVar("dynamis_lasttimeupdate", message)
     end
 end;
@@ -50,7 +60,7 @@ function onEffectLose(target,effect)
     target:delKeyItem(dsp.ki.ALABASTER_GRANULES_OF_TIME)
     target:delKeyItem(dsp.ki.OBSIDIAN_GRANULES_OF_TIME)
     if effect:getTimeRemaining() == 0 then
-        target:triggerListener("DYNAMIS_EXPIRE", target)
+        target:messageSpecial(zones[target:getZoneID()].text.DYNAMIS_TIME_EXPIRED)
         target:disengage()
         target:startEvent(100)
     end

@@ -2,10 +2,7 @@
 -- Area: Dynamis Valkurm
 --  MOB: Manifest_Idol
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Dynamis-Valkurm/TextIDs")
-require("scripts/zones/Dynamis-Valkurm/MobIDs")
+local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/status")
@@ -26,7 +23,7 @@ function onMobDeath(mob, player, isKiller)
 
     if mob:getMainLvl() > 85 then
         DisallowRespawn(mob:getID(), true)
-        local newTEMob = TE5_RANDOM[math.random(#TE5_RANDOM)] -- Randomly select new TE5 mob
+        local newTEMob = ID.mob.TE5_RANDOM[math.random(#ID.mob.TE5_RANDOM)] -- Randomly select new TE5 mob
         DisallowRespawn(newTEMob, false)
         GetMobByID(newTEMob):setRespawnTime(85)
     end
