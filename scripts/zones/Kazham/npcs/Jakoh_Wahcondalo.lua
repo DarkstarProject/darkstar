@@ -6,11 +6,9 @@
 -- Inovlved in Missions: ZM3 Kazham's Chieftainess, WM7-2 Awakening of the Gods
 -- Involved in Quests: Tuning Out
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil
------------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/wsquest")
-require("scripts/zones/Kazham/TextIDs")
+local ID = require("scripts/zones/Kazham/IDs")
 
 local wsQuest = dsp.wsquest.evisceration
 
@@ -42,13 +40,13 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 114) then
         player:addKeyItem(dsp.ki.SACRIFICIAL_CHAMBER_KEY)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SACRIFICIAL_CHAMBER_KEY)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SACRIFICIAL_CHAMBER_KEY)
         player:completeMission(ZILART,KAZAMS_CHIEFTAINESS)
         player:addMission(ZILART,THE_TEMPLE_OF_UGGALEPIH)
     elseif (csid == 265) then
         player:setVar("MissionStatus",3)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,EVISCERATION_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.EVISCERATION_LEARNED)
     end
 
 end

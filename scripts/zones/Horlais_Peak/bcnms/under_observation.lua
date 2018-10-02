@@ -3,10 +3,7 @@
 -- Name: under_observation
 -- BCNM40
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

@@ -5,16 +5,14 @@
 -- Confirmed shop stock, August 2013
 -----------------------------------
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,MONONCHAA_SHOP_DIALOG);
+    player:showText(npc,ID.text.MONONCHAA_SHOP_DIALOG);
 
     stock = {
         17318,     3,2,     --Wooden Arrow

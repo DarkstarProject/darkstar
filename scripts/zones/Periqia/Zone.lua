@@ -3,8 +3,7 @@
 -- Zone: Periqia
 --
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Periqia/IDs");
+local ID = require("scripts/zones/Periqia/IDs")
 -----------------------------------
 
 function onInitialize(zone)

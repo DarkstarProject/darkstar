@@ -3,12 +3,11 @@
 -- Zone: Windurst_Woods (241)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/events/harvest_festivals");
-require("scripts/globals/zone");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Woods/TextIDs");
+require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
@@ -49,9 +48,9 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 367) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     end
 end;

@@ -3,10 +3,8 @@
 -- Zone: Monarch_Linn
 --
 -----------------------------------
-package.loaded["scripts/zones/Monarch_Linn/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Monarch_Linn/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Monarch_Linn/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

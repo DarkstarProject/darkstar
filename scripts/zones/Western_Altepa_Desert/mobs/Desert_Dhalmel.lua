@@ -3,7 +3,7 @@
 --  MOB: Desert Dhalmel
 -- Note: Place holder for Celphie
 -----------------------------------
-require("scripts/zones/Western_Altepa_Desert/MobIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,CELPHIE_PH,5,math.random(7200,28800)); -- 2 to 8 hours
+    phOnDespawn(mob,ID.mob.CELPHIE_PH,5,math.random(7200,28800)); -- 2 to 8 hours
 end;

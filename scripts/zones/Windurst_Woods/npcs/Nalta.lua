@@ -4,8 +4,6 @@
 -- Type: Conquest Troupe
 -- !pos 19.140 1 -51.297 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

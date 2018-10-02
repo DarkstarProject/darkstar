@@ -4,9 +4,7 @@
 -- Type: Standard Merchant
 -- !pos 76.889 -7 -140.379 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 -----------------------------------
 
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         5592,  450, -- Imperial Coffee
     }
 
-    player:showText(npc, YAFAAF_SHOP_DIALOG)
+    player:showText(npc, ID.text.YAFAAF_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

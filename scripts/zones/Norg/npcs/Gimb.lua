@@ -5,10 +5,6 @@
 -- !pos -4.975 -1.975 -44.039 252
 --
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

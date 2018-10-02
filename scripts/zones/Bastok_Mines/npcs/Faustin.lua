@@ -3,10 +3,8 @@
 --  NPC: Faustin
 -- Ronfaure Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -16,7 +14,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.RONFAURE) ~= dsp.nation.BASTOK then
-        player:showText(npc, FAUSTIN_CLOSED_DIALOG)
+        player:showText(npc, ID.text.FAUSTIN_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             4431, 69,     -- San d'Orian Grape
         }
 
-        player:showText(npc, FAUSTIN_OPEN_DIALOG)
+        player:showText(npc, ID.text.FAUSTIN_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

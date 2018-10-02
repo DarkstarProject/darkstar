@@ -3,13 +3,11 @@
 -- NPC:  Web of Recollections
 -- !pos 0.000 -2.0 247.992 19
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Dem/TextIDs");
+local ID = require("scripts/zones/Spire_of_Dem/IDs");
 
 function onTrade(player,npc,trade)
 
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
     if (EventTriggerBCNM(player,npc)) then
         return 1;
     else
-        player:messageSpecial(FAINT_SCRAPING);
+        player:messageSpecial(ID.text.FAINT_SCRAPING);
         return 1;
     end
 

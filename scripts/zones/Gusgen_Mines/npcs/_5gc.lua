@@ -3,10 +3,6 @@
 --  NPC: _5gc (Lever A)
 -- !pos -4 -40.561 -54.199 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gusgen_Mines/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -5,9 +5,6 @@
 -- Note: Reapeatable every 15 minutes.
 -- !pos -97 -5 -81 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 

@@ -4,10 +4,7 @@
 -- Getting "Old Rusty Key (keyitem)"
 -- !pos 59 0 19 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
@@ -15,9 +12,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.OLD_RUSTY_KEY) or player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS)) then
-        player:messageSpecial(NO_REASON_TO_INVESTIGATE);
+        player:messageSpecial(ID.text.NO_REASON_TO_INVESTIGATE);
     else
-        local offset = npc:getID() - UGGALEPIH_BOOK_OFFSET;
+        local offset = npc:getID() - ID.npc.UGGALEPIH_BOOK_OFFSET;
         player:startEvent(61 + offset);
     end
 end;
@@ -37,9 +34,9 @@ function onEventFinish(player,csid,option)
     end
 
     if (player:getVar("paintbrushOfSouls_book") == 7) then
-        player:messageSpecial(FALLS_FROM_THE_BOOK,dsp.ki.OLD_RUSTY_KEY);
+        player:messageSpecial(ID.text.FALLS_FROM_THE_BOOK,dsp.ki.OLD_RUSTY_KEY);
         player:addKeyItem(dsp.ki.OLD_RUSTY_KEY);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_RUSTY_KEY);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_RUSTY_KEY);
         player:setVar("paintbrushOfSouls_book",0);
     end
 end;

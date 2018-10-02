@@ -3,8 +3,7 @@
 --  MOB: Shadoweye_Gnat
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

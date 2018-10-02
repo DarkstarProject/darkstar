@@ -2,10 +2,10 @@
 -- Area: Talacca Cove
 -- MOB: Gessho
 -----------------------------------
-require("scripts/zones/Talacca_Cove/MobIDs");
+local ID = require("scripts/zones/Talacca_Cove/IDs");
 
 function onMobFight(mob,target)
-    if(mob:getID() == GESSHO) then
+    if(mob:getID() == ID.mob.GESSHO) then
         local chance = math.random(1,100);
 
         if (chance == 50) then

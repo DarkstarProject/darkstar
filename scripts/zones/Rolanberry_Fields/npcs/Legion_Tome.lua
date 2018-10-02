@@ -4,14 +4,11 @@
 -- Legion NPC
 -- !pos 238 24 469 110
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 
 
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

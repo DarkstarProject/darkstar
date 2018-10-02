@@ -3,9 +3,7 @@
 --  NPC: Uli Pehkowa
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
         114, 1840, 3,    -- My First Magic Kit
     }
 
-    player:showText(npc, ULIPEHKOWA_SHOP_DIALOG)
+    player:showText(npc, ID.text.ULIPEHKOWA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.WINDURST)
 end
 

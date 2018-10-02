@@ -2,7 +2,6 @@
 -- Area: Oldton Movalpolos
 --  MOB: Goblin Wolfman
 -----------------------------------
-require("scripts/zones/Oldton_Movalpolos/MobIDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------

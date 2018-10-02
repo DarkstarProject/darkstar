@@ -6,10 +6,8 @@
 -- !pos -68 -7 173 143
 -- Rock Racketeer !pos 210 -32 -63 143
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local ID = require("scripts/zones/Palborough_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -60,13 +58,13 @@ function onEventFinish(player,csid,option)
     if (csid == 51) then
         player:tradeComplete();
         player:addItem(598);
-        player:messageSpecial(ITEM_OBTAINED, 598);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 598);
 
     -- Standard
     elseif (csid == 43) then
         player:tradeComplete();
         player:addItem(597);
-        player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel
+        player:messageSpecial(ID.text.ITEM_OBTAINED,597); -- Mine Gravel
     end
 
 end;

@@ -4,9 +4,7 @@
 -- Mamook Ja Teleporter Back to Aht Urgan Whitegate
 -- !pos -211 -11 -818 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/besieged");
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(111);
         end
     else
-        player:messageSpecial(RESPONSE);
+        player:messageSpecial(ID.text.RESPONSE);
     end
 end;
 

@@ -3,9 +3,6 @@
 --  NPC: Kukupp
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
 
 local path =

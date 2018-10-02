@@ -4,13 +4,11 @@
 -- !pos -28.597, 46.056, -685.754 117
 -- Teleports Players to Abyssea - Tahrongi
 -----------------------------------
-package.loaded["scripts/zones/Tahrongi_Canyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Tahrongi_Canyon/TextIDs");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(100,0,1); -- No param = no entry.
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 

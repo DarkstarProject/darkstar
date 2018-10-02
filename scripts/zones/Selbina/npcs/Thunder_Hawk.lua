@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: The Rescue
 -- !pos -58 -10 6 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -44,10 +42,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.TRADERS_SACK);
         if (player:hasKeyItem(dsp.ki.MAP_OF_THE_RANGUEMONT_PASS) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_THE_RANGUEMONT_PASS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_RANGUEMONT_PASS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_RANGUEMONT_PASS);
         end
         player:addGil(3000);
-        player:messageSpecial(GIL_OBTAINED,3000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,3000);
         player:addFame(SELBINA,30);
     end
 end;

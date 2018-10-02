@@ -4,12 +4,10 @@
 -- Involved in Quest: In Defiant Challenge
 -- !pos 105.275 -32 92.551 195
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,15 +18,15 @@ function onTrigger(player,npc)
         if (player:hasItem(1088) == false and player:hasKeyItem(dsp.ki.ANCIENT_PAPYRUS_SHRED1) == false
         and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(dsp.ki.ANCIENT_PAPYRUS_SHRED1);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_PAPYRUS_SHRED1);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_PAPYRUS_SHRED1);
         end
 
         if (player:hasKeyItem(dsp.ki.ANCIENT_PAPYRUS_SHRED1) and player:hasKeyItem(dsp.ki.ANCIENT_PAPYRUS_SHRED2) and player:hasKeyItem(dsp.ki.ANCIENT_PAPYRUS_SHRED3)) then
             if (player:getFreeSlotsCount() >= 1) then
                 player:addItem(1088, 1);
-                player:messageSpecial(ITEM_OBTAINED, 1088);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 1088);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1088);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1088);
             end
         end
 

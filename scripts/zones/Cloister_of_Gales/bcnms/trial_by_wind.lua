@@ -3,12 +3,10 @@
 -- BCNM: Trial by Wind
 -- !pos -361 1 -381 201
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Gales/IDs");
 
 -----------------------------------
 
@@ -53,7 +51,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
         player:addKeyItem(dsp.ki.WHISPER_OF_GALES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
     end
     
 end;

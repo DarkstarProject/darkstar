@@ -4,11 +4,8 @@
 -- Involved in Quests: Save the Clock Tower, The Lost Cardian
 -- !pos -58 0 -143 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

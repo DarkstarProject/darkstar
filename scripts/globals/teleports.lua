@@ -246,6 +246,7 @@ local outpostDestinations =
     [dsp.region.VOLLBOW]         = {-176.360,   7.624,  -63.580, 122, 113}, -- Vollbow {R}
     [dsp.region.ELSHIMOLOWLANDS] = {-240.860,  -0.031, -388.434,  64, 123}, -- Elshimo Lowlands {R}
     [dsp.region.ELSHIMOUPLANDS]  = { 207.821,  -0.128,  -86.623, 159, 124}, -- Elshimo Uplands {R}
+    [dsp.region.TULIA]           = {   4.000, -54.000, -600.000, 192, 130}, -- Tu'Lia (can't acquire on retail, but exists in NCP event menu)
     [dsp.region.TAVNAZIANARCH]   = {-535.861,  -7.149,  -53.628, 122,  24}, -- Tavnazia {R}
 }
 

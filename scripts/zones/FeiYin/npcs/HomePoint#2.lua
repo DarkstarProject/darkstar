@@ -3,10 +3,8 @@
 --  NPC: HomePoint#2
 -- !pos 102 0 269 204
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
+local ID = require("scripts/zones/FeiYin/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

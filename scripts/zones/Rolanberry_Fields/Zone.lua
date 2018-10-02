@@ -3,10 +3,7 @@
 -- Zone: Rolanberry_Fields (110)
 --
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Rolanberry_Fields/TextIDs");
-require("scripts/zones/Rolanberry_Fields/MobIDs");
+local ID = require("scripts/zones/Rolanberry_Fields/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -44,15 +41,15 @@ local itemMap =
                     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(SIMURGH);
-    GetMobByID(SIMURGH):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.SIMURGH);
+    GetMobByID(ID.mob.SIMURGH):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn( player, prevZone)
@@ -83,9 +80,9 @@ function onGameHour(zone)
 
     --Silk Caterpillar should spawn every 6 hours from 03:00
     --this is approximately when the Jeuno-Bastok airship is flying overhead towards Jeuno.
-    if (vanadielHour % 6 == 3 and not GetMobByID(SILK_CATERPILLAR):isSpawned()) then
+    if (vanadielHour % 6 == 3 and not GetMobByID(ID.mob.SILK_CATERPILLAR):isSpawned()) then
         -- Despawn set to 210 seconds (3.5 minutes, approx when the Jeuno-Bastok airship is flying back over to Bastok).
-        SpawnMob(SILK_CATERPILLAR, 210);
+        SpawnMob(ID.mob.SILK_CATERPILLAR, 210);
     end
 end;
 

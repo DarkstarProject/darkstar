@@ -3,10 +3,7 @@
 -- Zone: East_Sarutabaruta (116)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/East_Sarutabaruta/TextIDs");
-require("scripts/zones/East_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/East_Sarutabaruta/IDs")
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -43,15 +40,15 @@ local itemMap =
                     { 572, 100, DIGREQ_NIGHT },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(DUKE_DECAPOD);
-    GetMobByID(DUKE_DECAPOD):setRespawnTime(math.random(3600, 4200));
+    UpdateNMSpawnPoint(ID.mob.DUKE_DECAPOD);
+    GetMobByID(ID.mob.DUKE_DECAPOD):setRespawnTime(math.random(3600, 4200));
 end;
 
 function onZoneIn( player, prevZone)

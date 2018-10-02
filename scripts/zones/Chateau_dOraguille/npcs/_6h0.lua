@@ -5,15 +5,13 @@
 -- Involved in Missions: 3-1, 5-2, 8-2
 -- !pos -38 -3 73 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -70,14 +68,14 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 88) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14095);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14095);
         else
             if (player:getMainJob() == dsp.job.PLD) then
                 player:addQuest(SANDORIA,UNDER_OATH);
             end
             player:delKeyItem(dsp.ki.KNIGHTS_BOOTS);
             player:addItem(14095);
-            player:messageSpecial(ITEM_OBTAINED,14095); -- Gallant Leggings
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
             player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,A_BOY_S_DREAM);
@@ -87,10 +85,10 @@ function onEventFinish(player,csid,option)
         player:setVar("UnderOathCS",0);
     elseif (csid == 89) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12644);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12644);
         else
             player:addItem(12644);
-            player:messageSpecial(ITEM_OBTAINED,12644); -- Gallant Surcoat
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12644); -- Gallant Surcoat
             player:setVar("UnderOathCS",9);
             player:addFame(SANDORIA,AF3_FAME);
             player:setTitle(dsp.title.PARAGON_OF_PALADIN_EXCELLENCE);

@@ -3,10 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos -29.276 0.001 -76.585 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

@@ -4,11 +4,9 @@
 --  Entrance to Qufim Island
 -- !pos -436.000 -13.499 340.117 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
-require("scripts/zones/Qufim_Island/TextIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
     if (player:hasCompletedMission(COP,THE_MOTHERCRYSTALS)) then
         player:startEvent(300);
     else
-        player:messageSpecial(AN_EMPTY_LIGHT_SWIRLS);
+        player:messageSpecial(ID.text.AN_EMPTY_LIGHT_SWIRLS);
     end
 
 end;

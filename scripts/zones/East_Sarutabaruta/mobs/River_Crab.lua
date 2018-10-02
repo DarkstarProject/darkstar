@@ -4,7 +4,6 @@
 -- Note: PH for Duke Decapod
 -----------------------------------
 require("scripts/globals/fieldsofvalor");
-require("scripts/zones/East_Sarutabaruta/MobIDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -3,9 +3,7 @@
 --  NPC: Galdeo
 --  Li'Telor Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.LITELOR) ~= dsp.nation.BASTOK then
-        player:showText(npc, GALDEO_CLOSED_DIALOG)
+        player:showText(npc, ID.text.GALDEO_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
             4154, 6440,    -- Holy Water
         }
 
-        player:showText(npc, GALDEO_OPEN_DIALOG)
+        player:showText(npc, ID.text.GALDEO_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

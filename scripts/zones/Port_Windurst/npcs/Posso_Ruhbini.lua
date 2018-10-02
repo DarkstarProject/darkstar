@@ -3,9 +3,7 @@
 --  NPC: Posso Ruhbini
 -- Norvallen Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.NORVALLEN) ~= dsp.nation.WINDURST then
-        player:showText(npc, POSSORUHBINI_CLOSED_DIALOG)
+        player:showText(npc, ID.text.POSSORUHBINI_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
             621, 25,    -- Crying Mustard
         }
 
-        player:showText(npc, POSSORUHBINI_OPEN_DIALOG)
+        player:showText(npc, ID.text.POSSORUHBINI_OPEN_DIALOG)
         dsp.shop.general(player, stock, WINDURST)
     end
 end

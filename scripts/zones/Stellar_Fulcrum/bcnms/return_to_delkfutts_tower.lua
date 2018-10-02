@@ -3,12 +3,9 @@
 -- Name: Mission 5-2
 -- !pos -520 -4 17 179
 -----------------------------------
-package.loaded["scripts/zones/Stellar_Fulcrum/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Stellar_Fulcrum/TextIDs");
 
 -----------------------------------
 

@@ -4,9 +4,6 @@
 -- Notes: Opens door _472 from behind
 -- !pos -61 0 -36 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

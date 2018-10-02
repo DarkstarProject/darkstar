@@ -3,11 +3,10 @@
 -- Zone: Riverne-Site_B01
 --
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Riverne-Site_B01/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Riverne-Site_B01/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)

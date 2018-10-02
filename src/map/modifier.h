@@ -324,6 +324,8 @@ enum class Mod
     BLINK                     = 299, // Tracks blink shadows
     STONESKIN                 = 300, // Tracks stoneskin HP pool
     PHALANX                   = 301, // Tracks direct damage reduction
+    ENF_MAG_POTENCY           = 290, // Increases Enfeebling magic potency %
+    ENHANCES_SABOTEUR         = 297, // Increases Saboteur Potency %
 
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds

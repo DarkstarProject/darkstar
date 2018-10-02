@@ -3,10 +3,8 @@
 --  NPC: HomePoint#3
 -- !pos -67 6 -25 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

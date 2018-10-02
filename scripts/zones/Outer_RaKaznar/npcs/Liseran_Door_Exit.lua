@@ -4,10 +4,7 @@
 -- Zones out to Kamihr Drifts (zone 267)
 -- !pos -34.549 -181.334 -20.031 274
 -----------------------------------
-package.loaded["scripts/zones/Outer_RaKaznar/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Outer_RaKaznar/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

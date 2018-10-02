@@ -21,9 +21,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4006) then -- Trion@QuBia_Arena only
-        package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil
-        require("scripts/zones/Qubia_Arena/TextIDs")
-        target:showText(mob,SAVAGE_LAND)
+        target:showText(mob,zones[dsp.zone.QUBIA_ARENA].text.SAVAGE_LAND)
     end
 
     local numhits = 2

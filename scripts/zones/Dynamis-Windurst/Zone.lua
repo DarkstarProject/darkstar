@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Windurst
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Windurst/TextIDs");
+local ID = require("scripts/zones/Dynamis-Windurst/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

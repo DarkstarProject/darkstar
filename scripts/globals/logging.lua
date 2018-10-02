@@ -65,7 +65,7 @@ function startLogging(player,zone,npc,trade,csid)
             getNewLoggingPositionNPC(player,npc,zone);
         end
     else
-        player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
+        player:messageSpecial(zones[player:getZoneID()].text.LOGGING_IS_POSSIBLE_HERE,1021);
     end
 end
 

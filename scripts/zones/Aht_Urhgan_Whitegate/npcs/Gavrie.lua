@@ -3,9 +3,7 @@
 --  NPC: Gavrie
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         19185, 1000     -- Automaton Oil +3
     }
 
-    player:showText(npc, GAVRIE_SHOP_DIALOG)
+    player:showText(npc, ID.text.GAVRIE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

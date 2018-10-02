@@ -3,14 +3,12 @@
 -- Zone: The_Boyahda_Tree (153)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
+local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
-require("scripts/zones/The_Boyahda_Tree/TextIDs");
-require("scripts/zones/The_Boyahda_Tree/MobIDs");
-require("scripts/globals/conquest");
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(BOYAHDA_TREASURE_COFFER);
+    UpdateTreasureSpawnPoint(ID.npc.BOYAHDA_TREASURE_COFFER);
 end;
 
 function onConquestUpdate(zone, updatetype)

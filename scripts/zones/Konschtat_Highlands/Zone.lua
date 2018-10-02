@@ -3,10 +3,7 @@
 -- Zone: Konschtat_Highlands (108)
 --
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Konschtat_Highlands/TextIDs");
-require("scripts/zones/Konschtat_Highlands/MobIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -41,7 +38,7 @@ function onChocoboDig(player, precheck)
         { 1188, 10, DIGREQ_MODIFIER },
         { 4532, 12, DIGREQ_MODIFIER },
     };
-    local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+    local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
     return chocoboDig(player, itemMap, precheck, messageArray);
 end;
 
@@ -93,14 +90,14 @@ function onGameHour(zone)
     local hour = VanadielHour();
     if (hour < 5 or hour >= 17) then
         local phase = VanadielMoonPhase();
-        local haty = GetMobByID(HATY);
-        local vran = GetMobByID(BENDIGEIT_VRAN);
+        local haty = GetMobByID(ID.mob.HATY);
+        local vran = GetMobByID(ID.mob.BENDIGEIT_VRAN);
         local time = os.time();
         
         if (phase >= 90 and not haty:isSpawned() and time > haty:getLocalVar("cooldown")) then
-            SpawnMob(HATY);
+            SpawnMob(ID.mob.HATY);
         elseif (phase <= 10 and not vran:isSpawned() and time > vran:getLocalVar("cooldown")) then
-            SpawnMob(BENDIGEIT_VRAN);
+            SpawnMob(ID.mob.BENDIGEIT_VRAN);
         end
     end
 end;

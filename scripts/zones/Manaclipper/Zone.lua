@@ -3,10 +3,8 @@
 -- Zone: Manaclipper
 --
 -----------------------------------
-package.loaded["scripts/zones/Manaclipper/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Manaclipper/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Manaclipper/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

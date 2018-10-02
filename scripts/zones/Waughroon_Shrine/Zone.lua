@@ -3,10 +3,9 @@
 -- Zone: Waughroon_Shrine (144)
 --
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)

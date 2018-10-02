@@ -5,9 +5,7 @@
 -- Involved in Quest: Riding on the Clouds
 -- !pos 13 -5 -157 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
@@ -38,7 +36,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
 
@@ -184,9 +182,9 @@ function onEventFinish(player,csid,option)
             player:setVar("BlueRibbonBluesTimer_Year",0);
             player:setVar("BlueRibbonBluesTimer_Day",0);
             player:addItem(13569);
-            player:messageSpecial(ITEM_OBTAINED,13569);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13569);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13569);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13569);
         end
     elseif (csid == 362) then
         player:completeQuest(WINDURST,BLUE_RIBBON_BLUES);
@@ -196,7 +194,7 @@ function onEventFinish(player,csid,option)
         player:needToZone(true);
     elseif (csid == 918) then    --diablos start
         player:addKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_DREAM_INCENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_DREAM_INCENSE);
     elseif (csid == 920) then    --diablos reward
         local item = 0;
         local addspell = 0;
@@ -211,14 +209,14 @@ function onEventFinish(player,csid,option)
 
         elseif (option == 5) then
             player:addGil(GIL_RATE*15000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*15000); -- Gil
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*15000); -- Gil
             player:delKeyItem(dsp.ki.WHISPER_OF_DREAMS);
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
 
         elseif (option == 6 and player:hasSpell(304)==false) then
             player:addSpell(304); -- diabolos Spell
-            player:messageSpecial(DIABOLOS_UNLOCKED,0,0,0);
+            player:messageSpecial(ID.text.DIABOLOS_UNLOCKED,0,0,0);
             addspell=1;
         end
         if (addspell==1) then
@@ -230,9 +228,9 @@ function onEventFinish(player,csid,option)
             player:setVar("Darkness_Named_date", os.date("%j")); -- %M for next minute, %j for next day
             player:completeQuest(WINDURST,WAKING_DREAMS);
             player:addItem(item);
-            player:messageSpecial(ITEM_OBTAINED,item); -- Item
+            player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
         elseif ( option ~= 5 and  (( item == 0 and  addspell==0 ) or (item > 0 and player:getFreeSlotsCount() == 0) ) ) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         end
     elseif (csid == 736) then
         player:setVar("MissionStatus",2);

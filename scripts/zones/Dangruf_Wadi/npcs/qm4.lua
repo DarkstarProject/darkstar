@@ -1,12 +1,10 @@
 -----------------------------------
 --  NPC: ??? (QM4)
 -- Type: Grasswix (dice roll game part 2)
---  @zone 191
---  Involved in quest "As Thick As Thieves"
+-- !pos -375.379 -2.221 445.034 191
+-- Involved in quest "As Thick As Thieves"
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs")
+local ID = require("scripts/zones/Dangruf_Wadi/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -22,23 +20,23 @@ function onTrade(player,npc,trade)
             local rand2 = math.random(1,999)
 
             if (rand1 > rand2) then
-                player:messageSpecial(YOU_PLACE_ITEM,0,534)
+                player:messageSpecial(ID.text.YOU_PLACE_ITEM,0,534)
                 player:startEvent(137,1092,0,rand1,rand2) -- complete 2/3 gamble mini quest
             else
-                player:messageSpecial(YOU_PLACE_ITEM,0,534)
+                player:messageSpecial(ID.text.YOU_PLACE_ITEM,0,534)
                 player:startEvent(140,0,0,rand1,rand2) -- player looses
             end
         elseif thickAsThievesGamblingCS < 3 then -- trading out of order
-            player:messageSpecial(DONT_WASTE_TIME)
+            player:messageSpecial(ID.text.DONT_WASTE_TIME)
         elseif thickAsThievesGamblingCS > 3 then
-            player:messageSpecial(BEAT_GRASSWIX)
+            player:messageSpecial(ID.text.BEAT_GRASSWIX)
         end
     end
 
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(PLANT_EXTRACT)
+    player:messageSpecial(ID.text.PLANT_EXTRACT)
 end
 
 function onEventUpdate(player,csid,option)
@@ -48,16 +46,16 @@ function onEventFinish(player,csid,option)
 
     if (csid == 137 or csid == 140) and option == 2 then -- player gives up
         player:confirmTrade()
-        player:messageSpecial(YOU_GAVE_UP)
+        player:messageSpecial(ID.text.YOU_GAVE_UP)
     elseif csid == 140 and option == 1 then -- player looses dice game
         player:confirmTrade()
-        player:messageSpecial(GOBLIN_BEAT_YOU)
+        player:messageSpecial(ID.text.GOBLIN_BEAT_YOU)
         if OLD_SCHOOL_ENABLED then
             player:setVar("thickAsThievesGamblingCS",-1) -- start over
         end
     elseif csid == 137 and option == 0 then -- player wins dice game
         player:confirmTrade()
-        player:messageSpecial(YOU_BEAT_GOBLIN)
+        player:messageSpecial(ID.text.YOU_BEAT_GOBLIN)
         player:setVar("thickAsThievesGamblingCS",4)
     end
 

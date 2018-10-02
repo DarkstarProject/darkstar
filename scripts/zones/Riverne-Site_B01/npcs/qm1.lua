@@ -2,23 +2,20 @@
 -- Area: Riverne Site #B01
 --  NPC: Unstable Displacement
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Riverne-Site_B01/TextIDs");
-require("scripts/zones/Riverne-Site_B01/MobIDs");
+local ID = require("scripts/zones/Riverne-Site_B01/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(1880,1) and trade:getItemCount() == 1 and not GetMobByID(UNSTABLE_CLUSTER):isSpawned()) then -- Trade Clustered tar
+    if (trade:hasItemQty(1880,1) and trade:getItemCount() == 1 and not GetMobByID(ID.mob.UNSTABLE_CLUSTER):isSpawned()) then -- Trade Clustered tar
         player:tradeComplete();
-        SpawnMob(UNSTABLE_CLUSTER):updateClaim(player);
+        SpawnMob(ID.mob.UNSTABLE_CLUSTER):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(GROUND_GIVING_HEAT);
+    player:messageSpecial(ID.text.GROUND_GIVING_HEAT);
 end;
 
 function onEventUpdate(player,csid,option)

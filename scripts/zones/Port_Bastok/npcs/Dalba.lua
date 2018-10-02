@@ -4,9 +4,6 @@
 -- Type: Past Event Watcher
 -- !pos -174.101 -7 -19.611 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 -----------------------------------

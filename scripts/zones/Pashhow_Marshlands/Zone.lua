@@ -3,10 +3,7 @@
 -- Zone: Pashhow_Marshlands (109)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Pashhow_Marshlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands/TextIDs");
-require("scripts/zones/Pashhow_Marshlands/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -42,7 +39,7 @@ local itemMap =
     { 4532, 12, DIGREQ_MODIFIER },
 };
 
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
+local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
     return chocoboDig(player, itemMap, precheck, messageArray);

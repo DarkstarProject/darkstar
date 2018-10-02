@@ -3,18 +3,15 @@
 -- Zone: Ordelles_Caves (193)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ordelles_Caves/TextIDs");
-require("scripts/zones/Ordelles_Caves/MobIDs");
+local ID = require("scripts/zones/Ordelles_Caves/IDs");
 require("scripts/globals/conquest");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(MORBOLGER);
-    GetMobByID(MORBOLGER):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.MORBOLGER);
+    GetMobByID(ID.mob.MORBOLGER):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ORDELLES_TREASURE_CHEST);
+    UpdateTreasureSpawnPoint(ID.npc.ORDELLES_TREASURE_CHEST);
 end;
 
 function onZoneIn(player,prevZone)

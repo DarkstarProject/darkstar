@@ -1,40 +1,33 @@
 -----------------------------------------
 -- Spell: Bind
 -----------------------------------------
-require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     return 0
 end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
+    -- Pull base stats.
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
-    --Pull base stats.
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT))
+    -- Duration, including resistance.  May need more research.
+    local duration = calculateDuration(60, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-    --Duration, including resistance.  May need more research.
-    local duration = 60
-
-    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
-        duration = duration * 2
-    end
-    caster:delStatusEffect(dsp.effect.SABOTEUR)
-
-    --Resist
+    -- Resist
     local params = {}
-    params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = 35
+    params.diff = dINT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
     params.bonus = 0
     params.effect = dsp.effect.BIND
     local resist = applyResistanceEffect(caster, target, spell, params)
 
-    if (resist >= 0.5) then --Do it!
+    if resist >= 0.5 then --Do it!
         --Try to erase a weaker bind.
-        if (target:addStatusEffect(dsp.effect.BIND,target:speed(),0,duration*resist)) then
+        if target:addStatusEffect(params.effect, target:speed(), 0 , duration * resist) then
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
@@ -43,6 +36,5 @@ function onSpellCast(caster,target,spell)
         spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
 
-    return dsp.effect.BIND
-
+    return params.effect
 end

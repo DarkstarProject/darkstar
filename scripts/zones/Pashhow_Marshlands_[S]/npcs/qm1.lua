@@ -3,14 +3,14 @@
 --  NPC: ??? (Kinepikwa)
 -- Allow player to spawn Kinepikwa with Peiste pellets
 -----------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2564) and not GetMobByID(KINEPIKWA):isSpawned()) then
+    if (npcUtil.tradeHas(trade, 2564) and not GetMobByID(ID.mob.KINEPIKWA):isSpawned()) then
         player:confirmTrade();
-        SpawnMob(KINEPIKWA):updateClaim(player);
+        SpawnMob(ID.mob.KINEPIKWA):updateClaim(player);
     end
 end;
 

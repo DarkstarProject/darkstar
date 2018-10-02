@@ -3,10 +3,9 @@
 -- Zone: Sealions_Den (32)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Sealions_Den/TextIDs");
+local ID = require("scripts/zones/Sealions_Den/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

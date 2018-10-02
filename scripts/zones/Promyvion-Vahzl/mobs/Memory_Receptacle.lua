@@ -2,7 +2,7 @@
 -- Area: Promyvion-Vahzl
 --  MOB: Memory Receptacle
 -----------------------------------
-require("scripts/zones/Promyvion-Vahzl/MobIDs");
+local ID = require("scripts/zones/Promyvion-Vahzl/IDs");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
@@ -12,7 +12,7 @@ end;
 
 function checkStray(mob)
     local mobId = mob:getID();
-    local numStrays = VAHZL_MEMORY_RECEPTACLES[mobId][2];
+    local numStrays = ID.mob.VAHZL_MEMORY_RECEPTACLES[mobId][2];
     
     if (os.time() > mob:getLocalVar("nextStray")) then
         for i = mobId + 1, mobId + numStrays do
@@ -30,7 +30,7 @@ end;
 
 function onMobFight(mob, target)
     local mobId = mob:getID();
-    local numStrays = VAHZL_MEMORY_RECEPTACLES[mobId][2];
+    local numStrays = ID.mob.VAHZL_MEMORY_RECEPTACLES[mobId][2];
 
     -- keep pets linked
     for i = mobId + 1, mobId + numStrays do
@@ -49,15 +49,15 @@ function onMobDeath(mob, player, isKiller)
         
         -- chance to open portal
         local mobId = mob:getID();
-        local floor = VAHZL_MEMORY_RECEPTACLES[mobId][1];
+        local floor = ID.mob.VAHZL_MEMORY_RECEPTACLES[mobId][1];
         local numAlive = 1;
-        for k, v in pairs(VAHZL_MEMORY_RECEPTACLES) do
+        for k, v in pairs(ID.mob.VAHZL_MEMORY_RECEPTACLES) do
             if (k ~= mobId and v[1] == floor and GetMobByID(k):isAlive()) then
                 numAlive = numAlive + 1;
             end
         end
         if (math.random(numAlive) == 1) then
-            local stream = GetNPCByID(VAHZL_MEMORY_RECEPTACLES[mobId][3]);
+            local stream = GetNPCByID(ID.mob.VAHZL_MEMORY_RECEPTACLES[mobId][3]);
             stream:openDoor(180);
         end
     end

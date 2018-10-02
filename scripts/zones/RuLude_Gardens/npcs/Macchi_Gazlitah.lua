@@ -4,7 +4,7 @@
 -- Standard Mechant NPC
 -- TODO: Add support for occasional stock.
 -----------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs")
+local ID = require("scripts/zones/RuLude_Gardens/IDs")
 require("scripts/globals/shop")
 -----------------------------------
 
@@ -33,7 +33,7 @@ function onTrigger(player,npc)
         ]]--
     }
 
-    player:showText(npc, MACCHI_GAZLITAH_SHOP_DIALOG1)
+    player:showText(npc, ID.text.MACCHI_GAZLITAH_SHOP_DIALOG1)
     dsp.shop.general(player, stock, JEUNO)
 end
 

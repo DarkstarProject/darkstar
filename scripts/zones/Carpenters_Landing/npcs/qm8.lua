@@ -4,10 +4,7 @@
 --  Involved in Missions: Calm Before the Storm (CoP 7-4)
 -- !pos 120.615 -5.457 -390.133 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Carpenters_Landing/TextIDs")
-require("scripts/zones/Carpenters_Landing/MobIDs")
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
 require("scripts/globals/missions")
 -----------------------------------
 
@@ -20,7 +17,7 @@ function onTrigger(player,npc)
     local k2 = player:getVar("Cryptonberry_Assassins-2_KILL")
     local k3 = player:getVar("Cryptonberry_Assassins-3_KILL")
     local executorKill = player:getVar("Cryptonberry_Executor_KILL")
-    local executor = GetMobByID(CRYPTONBERRY_EXECUTOR)
+    local executor = GetMobByID(ID.mob.CRYPTONBERRY_EXECUTOR)
     
     if cop == CALM_BEFORE_THE_STORM and (k1 * k2 * k3 * executorKill) == 1 then
         player:startEvent(37)
@@ -28,16 +25,16 @@ function onTrigger(player,npc)
         cop == CALM_BEFORE_THE_STORM and
         executorKill < 2 and
         not executor:isSpawned() and
-        not GetMobByID(CRYPTONBERRY_EXECUTOR + 1):isSpawned() and
-        not GetMobByID(CRYPTONBERRY_EXECUTOR + 2):isSpawned() and
-        not GetMobByID(CRYPTONBERRY_EXECUTOR + 3):isSpawned()
+        not GetMobByID(ID.mob.CRYPTONBERRY_EXECUTOR + 1):isSpawned() and
+        not GetMobByID(ID.mob.CRYPTONBERRY_EXECUTOR + 2):isSpawned() and
+        not GetMobByID(ID.mob.CRYPTONBERRY_EXECUTOR + 3):isSpawned()
     then
-        player:messageSpecial(CRYPTONBERRY_EXECUTOR_POP)
+        player:messageSpecial(ID.text.CRYPTONBERRY_EXECUTOR_POP)
         executor:spawn()
         executor:updateClaim(player)
         executor:setCE(player, 0) -- CE is used to spawn Assassins
     else
-        player:messageSpecial(CRYPTONBERRY_FALLEN_TREE)
+        player:messageSpecial(ID.text.CRYPTONBERRY_FALLEN_TREE)
     end
 end
 

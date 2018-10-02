@@ -1,9 +1,7 @@
 ---------------------------------------------
 -- Wheel of Impregnability
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
 require("scripts/globals/status")
@@ -14,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
     if (mob:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or mob:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD)) then
         return 1
     end
-    mob:showText(mob, PROMATHIA_TEXT + 5)
+    mob:showText(mob, ID.text.PROMATHIA_TEXT + 5)
     return 0
 end
 

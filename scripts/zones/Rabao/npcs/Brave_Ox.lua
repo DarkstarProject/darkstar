@@ -3,9 +3,7 @@
 --  NPC: Brave Ox
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Rabao/TextIDs")
+local ID = require("scripts/zones/Rabao/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         5103, 140332,    -- Crusade
     }
 
-    player:showText(npc, BRAVEOX_SHOP_DIALOG)
+    player:showText(npc, ID.text.BRAVEOX_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

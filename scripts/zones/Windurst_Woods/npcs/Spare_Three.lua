@@ -8,9 +8,6 @@ require("scripts/globals/settings");
 package.loaded["scripts/globals/quests"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

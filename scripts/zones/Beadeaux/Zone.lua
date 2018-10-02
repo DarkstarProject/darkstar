@@ -3,10 +3,7 @@
 -- Zone: Beadeaux (147)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs")
-require("scripts/zones/Beadeaux/MobIDs")
+local ID = require("scripts/zones/Beadeaux/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
@@ -24,8 +21,8 @@ function onInitialize(zone)
     zone:registerRegion(5,  340, 10,  100, 0,0,0) -- 17379802 The Afflictor
     zone:registerRegion(6,  380, 10,   60, 0,0,0) -- 17379803 The Afflictor
 
-    UpdateTreasureSpawnPoint(BEADEAUX_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(BEADEAUX_TREASURE_COFFER)
+    UpdateTreasureSpawnPoint(ID.npc.BEADEAUX_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(ID.npc.BEADEAUX_TREASURE_COFFER)
 end
 
 function onZoneIn(player,prevZone)
@@ -72,7 +69,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 121 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DARKNESS, {title=dsp.title.DARK_SIDER, var="ZeruhnMines_Zeid_CS"}) then
         player:unlockJob(dsp.job.DRK)
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
     elseif csid == 120 then
         player:setVar("MissionStatus", 2)
         player:setPos(-297, 1, 96, 1)

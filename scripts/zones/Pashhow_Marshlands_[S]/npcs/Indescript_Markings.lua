@@ -3,10 +3,7 @@
 --  NPC: Indescript Markings
 -- NOTE: There are 3 Indescript Markings
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
-require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
 require("scripts/globals/keyitems");
@@ -18,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset                = npc:getID() - PASHHOW_S_MARKINGS_OFFSET;
+    local offset                = npc:getID() - ID.npc.PASHHOW_S_MARKINGS_OFFSET;
     local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
     local onSabbaticalProgress  = player:getVar("OnSabbatical");
     local pantsQuestProgress    = player:getVar("AF_SCH_PANTS");
@@ -70,7 +67,7 @@ function onTrigger(player,npc)
 
     -- DEFAULT
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 
     end
 end;

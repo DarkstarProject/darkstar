@@ -4,8 +4,6 @@
 -- Type: Quest Giver
 -- !pos 0.001 -1 0.001 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -3,9 +3,7 @@
 --  NPC: Guruna-Maguruna
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         12729,  1570, 3,    -- Linen Cuffs
     }
 
-    player:showText(npc, GURUNAMAGURUNA_SHOP_DIALOG)
+    player:showText(npc, ID.text.GURUNAMAGURUNA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.WINDURST)
 end
 

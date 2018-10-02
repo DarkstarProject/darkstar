@@ -4,9 +4,6 @@
 -- Involved In Quest: Crying Over Onions, Hat in Hand
 -- !pos -195 -11 -120 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")

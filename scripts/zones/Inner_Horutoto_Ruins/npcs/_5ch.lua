@@ -3,9 +3,7 @@
 --  NPC: _5ch (Gate of Thunder)
 -- !pos -331 0 139 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(DOOR_FIRMLY_CLOSED);
+    player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED);
     return 1;
 
 end;

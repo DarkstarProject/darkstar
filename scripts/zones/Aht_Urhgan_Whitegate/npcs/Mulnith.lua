@@ -5,9 +5,7 @@
 -- TODO: Stock needs to be modified based on
 --       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ function onTrigger(player,npc)
         5600, 3000     -- Balik Sis (Requires Astral Candescence)
     }
 
-    player:showText(npc, MULNITH_SHOP_DIALOG)
+    player:showText(npc, ID.text.MULNITH_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -3,12 +3,9 @@
 -- Zone: Inner_Horutoto_Ruins (192)
 --
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs")
-require("scripts/zones/Inner_Horutoto_Ruins/MobIDs")
+local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
+require("scripts/globals/conquest")
 require("scripts/globals/status")
-require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,7 +14,7 @@ function onInitialize(zone)
     zone:registerRegion(3, -257.8, 0, -24.9, -256.1, 1, -23.5) -- Black
     zone:registerRegion(4, -261, -3, 182, -257, -1, 186) -- Teleport at H-6
 
-    UpdateTreasureSpawnPoint(INNER_HORUTOTO_TREASURE_CHEST)
+    UpdateTreasureSpawnPoint(ID.npc.INNER_HORUTOTO_TREASURE_CHEST)
 end
 
 function onZoneIn(player,prevZone)
@@ -33,7 +30,7 @@ function onConquestUpdate(zone, updatetype)
 end
 
 function onRegionEnter(player,region)
-    local circle= PORTAL_CIRCLE_BASE
+    local circle= ID.npc.PORTAL_CIRCLE_BASE
     local red   = GetNPCByID(circle)
     local white = GetNPCByID(circle+1)
     local black = GetNPCByID(circle+2)
@@ -83,7 +80,7 @@ function onRegionEnter(player,region)
 end
 
 function onRegionLeave(player,region)
-    local circle= PORTAL_CIRCLE_BASE
+    local circle= ID.npc.PORTAL_CIRCLE_BASE
     local red   = GetNPCByID(circle)
     local white = GetNPCByID(circle+1)
     local black = GetNPCByID(circle+2)

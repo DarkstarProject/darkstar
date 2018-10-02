@@ -4,10 +4,7 @@
 -- Involved in Quest: Knight Stalker
 -- !pos 58 1 -70 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -24,17 +21,17 @@ function onTrigger(player,npc)
         player:getVar("KnightStalker_Kill") == 0 and
         player:getMainJob() == dsp.job.DRG and
         player:getPetID() == dsp.pet.id.WYVERN and
-        not GetMobByID(CLEUVARION_M_RESOAIX):isSpawned() and
-        not GetMobByID(ROMPAULION_S_CITALLE):isSpawned()
+        not GetMobByID(ID.mob.CLEUVARION_M_RESOAIX):isSpawned() and
+        not GetMobByID(ID.mob.ROMPAULION_S_CITALLE):isSpawned()
     ) then
         -- These mobs specifically will not engage unless aggro'd.
-        player:messageSpecial(SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
-        SpawnMob(CLEUVARION_M_RESOAIX);
-        SpawnMob(ROMPAULION_S_CITALLE);
+        player:messageSpecial(ID.text.SOME_SORT_OF_CEREMONY + 1); -- Your wyvern reacts violently to this spot!
+        SpawnMob(ID.mob.CLEUVARION_M_RESOAIX);
+        SpawnMob(ID.mob.ROMPAULION_S_CITALLE);
     elseif (player:getVar("KnightStalker_Kill") == 1) then
         player:startEvent(67);
     else
-        player:messageSpecial(SOME_SORT_OF_CEREMONY);
+        player:messageSpecial(ID.text.SOME_SORT_OF_CEREMONY);
     end
 end;
 
@@ -44,10 +41,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 67) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12519);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12519);
         else
             player:addItem(12519);
-            player:messageSpecial(ITEM_OBTAINED,12519); -- Drachen Armet
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12519); -- Drachen Armet
             player:addFame(SANDORIA,AF3_FAME);
             player:addTitle(dsp.title.PARAGON_OF_DRAGOON_EXCELLENCE);
             player:delKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS);

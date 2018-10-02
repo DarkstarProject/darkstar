@@ -3,20 +3,17 @@
 -- NPC:  ??? (Sozu Rogberry NM)
 -- !pos  159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 
 function onTrade(player,npc,trade)
     -- Trade Flickering Lantern
-    if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1 and not GetMobByID(SOZU_ROGBERRY):isSpawned()) then
+    if (trade:hasItemQty(2387,1) and trade:getItemCount() == 1 and not GetMobByID(ID.mob.SOZU_ROGBERRY):isSpawned()) then
         player:tradeComplete();
-        SpawnMob(SOZU_ROGBERRY):updateClaim(player);
+        SpawnMob(ID.mob.SOZU_ROGBERRY):updateClaim(player);
         npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;

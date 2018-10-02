@@ -3,12 +3,10 @@
 -- Zone: Lower_Delkfutts_Tower (184)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)

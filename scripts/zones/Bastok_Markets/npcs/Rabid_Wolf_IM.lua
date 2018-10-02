@@ -2,9 +2,6 @@
 -- Area: Bastok Markets
 --  NPC: Rabid Wolf, I.M.
 -------------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

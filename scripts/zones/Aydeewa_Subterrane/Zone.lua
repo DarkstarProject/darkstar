@@ -3,9 +3,7 @@
 -- Zone: Aydeewa_Subterrane (68)
 --
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aydeewa_Subterrane/TextIDs")
+local ID = require("scripts/zones/Aydeewa_Subterrane/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")

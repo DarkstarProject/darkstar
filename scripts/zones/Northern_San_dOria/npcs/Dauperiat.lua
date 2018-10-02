@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Blackmail (R)
 -- !zone 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -71,13 +69,13 @@ function onEventFinish(player,csid,option)
     if (csid == 643) then
         player:addQuest(SANDORIA,BLACKMAIL);
         player:addKeyItem(dsp.ki.SUSPICIOUS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUSPICIOUS_ENVELOPE);
     elseif (csid == 646 and option == 1) then
         player:setVar("BlackMailQuest",2);
     elseif (csid == 648) then
         player:tradeComplete();
         player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*900)
         if (player:getQuestStatus(SANDORIA,BLACKMAIL) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,BLACKMAIL);

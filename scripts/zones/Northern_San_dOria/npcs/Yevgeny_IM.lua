@@ -3,9 +3,6 @@
 --  NPC: Yevgeny, I.M.
 -- !pos 45 -1 0 231
 -------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

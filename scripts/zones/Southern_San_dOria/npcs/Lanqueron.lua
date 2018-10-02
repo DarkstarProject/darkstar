@@ -5,12 +5,10 @@
 -- Involved in Quest: Lost Chick
 -- !pos 0.335 1.199 -28.404 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,13 +19,13 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 

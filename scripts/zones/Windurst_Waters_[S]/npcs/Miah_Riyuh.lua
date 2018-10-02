@@ -3,14 +3,12 @@
 --  NPC: Miah Riyuh
 -- !pos 5.323 -2 37.462 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -61,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 103 and option == 1) then
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
@@ -74,7 +72,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
         player:setVar("GREEN_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY);
     elseif (csid == 106 and option == 0) then
         -- Is first join, so add Sprinter's Shoes and bronze medal
         if (player:getVar("Campaign_Nation") == 0) then
@@ -86,10 +84,10 @@ function onEventFinish(player,csid,option)
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
                 player:setVar("SEALED_DOORS", 0);
-                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(3);

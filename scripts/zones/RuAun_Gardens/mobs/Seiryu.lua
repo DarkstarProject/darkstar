@@ -2,11 +2,8 @@
 -- Area: Ru'Aun Gardens
 --  NM:  Seiryu
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/zones/RuAun_Gardens/TextIDs");
-require("scripts/zones/RuAun_Gardens/MobIDs");
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/msg");
@@ -49,9 +46,9 @@ function onAdditionalEffect(mob, target, damage)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:showText(mob,SKY_GOD_OFFSET + 10);
+    player:showText(mob,ID.text.SKY_GOD_OFFSET + 10);
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(SEIRYU_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.SEIRYU_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

@@ -3,7 +3,7 @@
 --  MOB: Maneating Hornet
 -- Note: Place Holder For Stinging Sophie
 -----------------------------------
-require("scripts/zones/North_Gustaberg/MobIDs");
+local ID = require("scripts/zones/North_Gustaberg/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,STINGING_SOPHIE_PH,5,math.random(1200,3600)); -- 20 to 60 minutes
+    phOnDespawn(mob,ID.mob.STINGING_SOPHIE_PH,5,math.random(1200,3600)); -- 20 to 60 minutes
 end;

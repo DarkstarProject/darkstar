@@ -3,10 +3,7 @@
 --  NPC: Romualdo
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

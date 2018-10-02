@@ -3,12 +3,10 @@
 --  NPC: Yazan
 -- Starts Quests: Bite the Dust (100%)
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -55,7 +53,7 @@ function onEventFinish(player,csid,option)
         end
 
         player:addGil(GIL_RATE*350);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*350);
     end
 
 end;

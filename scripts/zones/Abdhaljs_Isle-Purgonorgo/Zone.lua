@@ -3,6 +3,7 @@
 -- Zone: Abdhaljs_Isle-Purgonorgo
 --
 -----------------------------------
+local ID = require("scripts/zones/Abdhaljs_Isle-Purgonorgo/IDs")
 require("scripts/globals/keyitems")
 -----------------------------------
 

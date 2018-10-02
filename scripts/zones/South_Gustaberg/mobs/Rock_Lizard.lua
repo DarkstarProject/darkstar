@@ -3,7 +3,7 @@
 --  MOB: Rock Lizard
 -- Note: Place holder Leaping Lizzy
 -----------------------------------
-require("scripts/zones/South_Gustaberg/MobIDs");
+local ID = require("scripts/zones/South_Gustaberg/IDs");
 require("scripts/globals/fieldsofvalor");
 require("scripts/globals/mobs");
 
@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,LEAPING_LIZZY_PH,5,3600); -- 1 hour
+    phOnDespawn(mob,ID.mob.LEAPING_LIZZY_PH,5,3600); -- 1 hour
 end;

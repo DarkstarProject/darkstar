@@ -3,9 +3,7 @@
 --  NPC: Sugandhi
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         16551,   698, 3,    -- Sapara
     }
 
-    player:showText(npc, SUGANDHI_SHOP_DIALOG)
+    player:showText(npc, ID.text.SUGANDHI_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

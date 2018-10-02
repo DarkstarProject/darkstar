@@ -5,9 +5,7 @@
 -- Note: Available during Campaign battles
 -- !pos 382.679 -39.999 3.541 175
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs")
+local ID = require("scripts/zones/The_Eldieme_Necropolis_[S]/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -34,7 +32,7 @@ function onTrigger(player,npc)
         6048,  8790,    -- Noctohelix Schema
     }
 
-    player:showText(npc, LAYTON_SHOP_DIALOG)
+    player:showText(npc, ID.text.LAYTON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

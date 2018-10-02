@@ -3,9 +3,6 @@
 --  NPC: _0q1 (Sewer Entrance)
 -- !pos 28 -12 44 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------

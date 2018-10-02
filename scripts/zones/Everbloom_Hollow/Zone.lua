@@ -3,10 +3,7 @@
 -- Zone: Everbloom_Hollow
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Everbloom_Hollow/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Everbloom_Hollow/TextIDs");
+local ID = require("scripts/zones/Everbloom_Hollow/IDs")
 -----------------------------------
 
 function onInitialize(zone)

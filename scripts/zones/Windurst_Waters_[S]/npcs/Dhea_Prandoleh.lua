@@ -6,8 +6,8 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
+require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
 
@@ -43,7 +43,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
     elseif (csid == 134) then
         player:addItem(139);
-        player:messageSpecial(ITEM_OBTAINED,139);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,139);
         player:completeQuest(CRYSTAL_WAR, THE_TIGRESS_STRIKES);
         player:needToZone(true);
         player:addTitle(dsp.title.AJIDOMARUJIDOS_MINDER);

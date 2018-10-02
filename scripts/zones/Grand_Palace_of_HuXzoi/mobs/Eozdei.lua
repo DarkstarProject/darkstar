@@ -6,7 +6,7 @@
 -- Animation Sub 2 Bar Form
 -- Animation Sub 3 Ring Form
 -----------------------------------
-require("scripts/zones/Grand_Palace_of_HuXzoi/MobIDs");
+local ID = require("scripts/zones/Grand_Palace_of_HuXzoi/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -55,13 +55,13 @@ end;
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         local mobId = mob:getID();
-        local nm    = GetMobByID(JAILER_OF_TEMPERANCE);
+        local nm    = GetMobByID(ID.mob.JAILER_OF_TEMPERANCE);
         local ph    = nm:getLocalVar("ph");
 
         if (ph == mobId and os.time() > nm:getLocalVar("pop")) then
             local pos = mob:getSpawnPos();
             nm:setSpawn(pos.x, pos.y, pos.z);
-            SpawnMob(JAILER_OF_TEMPERANCE):updateClaim(player);
+            SpawnMob(ID.mob.JAILER_OF_TEMPERANCE):updateClaim(player);
             nm:setLocalVar("ph", ph);
             DisallowRespawn(mobId, true);
         end

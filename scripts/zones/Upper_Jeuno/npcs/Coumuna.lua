@@ -3,9 +3,7 @@
 --  NPC: Coumuna
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -33,7 +31,7 @@ function onTrigger(player,npc)
         17320,     8,    -- Iron Arrow
     }
 
-    player:showText(npc, COUMUNA_SHOP_DIALOG)
+    player:showText(npc, ID.text.COUMUNA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

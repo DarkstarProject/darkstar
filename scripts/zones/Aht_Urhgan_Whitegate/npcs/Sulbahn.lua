@@ -4,11 +4,9 @@
 -- Type: Alchemy Adv. Image Support
 -- !pos -10.470 -6.25 -141.700 241
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:startEvent(637,17160,1,19405,21215,30030,0,7,0);
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, ID.text.IMAGE_SUPPORT_ACTIVE);
             end
         end
     end
@@ -42,7 +40,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 637) then
-        player:messageSpecial(IMAGE_SUPPORT,0,7,0);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,7,0);
         player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,3,0,480);
     end
 end;

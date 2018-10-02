@@ -4,9 +4,7 @@
 -- Involved In Quest: The Tenshodo Showdown
 -- !pos 61 -15 10 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -46,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theTenshodoShowdownCS",4);
         player:delKeyItem(dsp.ki.TENSHODO_ENVELOPE);
         player:addKeyItem(dsp.ki.SIGNED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SIGNED_ENVELOPE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SIGNED_ENVELOPE);
     end
 
 end;

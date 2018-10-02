@@ -3,9 +3,7 @@
 --  NPC: Yoyoroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Nashmau/TextIDs")
+local ID = require("scripts/zones/Nashmau/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -43,7 +41,7 @@ function onTrigger(player,npc)
         2267, 19890,    -- Mana Converter
     }
 
-    player:showText(npc, YOYOROON_SHOP_DIALOG)
+    player:showText(npc, ID.text.YOYOROON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

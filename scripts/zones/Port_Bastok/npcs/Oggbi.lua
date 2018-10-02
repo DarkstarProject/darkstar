@@ -4,13 +4,11 @@
 -- Starts and Finishes: Ghosts of the Past, The First Meeting, The Walls of Your Mind
 -- !pos -159 -7 5 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/wsquest")
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.asuran_fists
@@ -52,11 +50,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,GHOSTS_OF_THE_PAST)
     elseif (csid == 232) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17478) -- Beat Cesti
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17478) -- Beat Cesti
         else
             player:tradeComplete()
             player:addItem(17478)
-            player:messageSpecial(ITEM_OBTAINED,17478) -- Beat Cesti
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17478) -- Beat Cesti
             player:needToZone(true)
             player:addFame(BASTOK,AF1_FAME)
             player:completeQuest(BASTOK,GHOSTS_OF_THE_PAST)
@@ -65,17 +63,17 @@ function onEventFinish(player,csid,option)
         player:addQuest(BASTOK,THE_FIRST_MEETING)
     elseif (csid == 234) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14090) -- Temple Gaiters
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14090) -- Temple Gaiters
         else
             player:delKeyItem(dsp.ki.LETTER_FROM_DALZAKK)
             player:delKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)
             player:addItem(14090)
-            player:messageSpecial(ITEM_OBTAINED,14090) -- Temple Gaiters
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14090) -- Temple Gaiters
             player:addFame(BASTOK,AF2_FAME)
             player:completeQuest(BASTOK,THE_FIRST_MEETING)
         end
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.ASURAN_FISTS_LEARNED)
     end
 
 end

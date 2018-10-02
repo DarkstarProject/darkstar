@@ -3,16 +3,13 @@
 -- Zone: Qulun_Dome (148)
 --
 -----------------------------------
-package.loaded["scripts/zones/Qulun_Dome/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Qulun_Dome/TextIDs")
-require("scripts/zones/Qulun_Dome/MobIDs")
+local ID = require("scripts/zones/Qulun_Dome/IDs")
 require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(DIAMOND_QUADAV)
-    GetMobByID(DIAMOND_QUADAV):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.DIAMOND_QUADAV)
+    GetMobByID(ID.mob.DIAMOND_QUADAV):setRespawnTime(math.random(900, 10800))
 end
 
 function onZoneIn(player,prevZone)

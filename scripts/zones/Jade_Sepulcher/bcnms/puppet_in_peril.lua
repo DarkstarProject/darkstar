@@ -2,11 +2,8 @@
 -- Area: Jade Sepulcher
 -- BCNM: TOAU-29 Puppet in Peril
 -----------------------------------
-package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Jade_Sepulcher/TextIDs");
 
 ----------------------------------------
 

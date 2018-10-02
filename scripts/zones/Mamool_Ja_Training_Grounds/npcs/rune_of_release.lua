@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Mamool Ja Training Grounds
 -----------------------------------
+local ID = require("scripts/zones/Mamool_Ja_Training_Grounds/IDs")
 require("scripts/globals/besieged")
-require("scripts/zones/Mamool_Ja_Training_Grounds/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,7 +36,7 @@ function onEventFinish(player,csid,option)
             points = 1000 - math.max(playerpoints, 0);
         end
         for i,v in pairs(chars) do
-            v:messageSpecial(Mamool.text.ASSAULT_POINTS_OBTAINED,points);
+            v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points);
             v:addAssaultPoint(MAMOOL_ASSAULT_POINT,points);
             v:setVar("AssaultComplete",1);
             if (v:hasCompletedAssault(v:getCurrentAssault())) then

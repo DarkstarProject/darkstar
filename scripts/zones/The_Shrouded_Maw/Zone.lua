@@ -3,10 +3,9 @@
 -- Zone: The_Shrouded_Maw (10)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

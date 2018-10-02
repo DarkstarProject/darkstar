@@ -3,7 +3,7 @@
 --  MOB: Giant Sentry
 -- Note: PH for Hippolytos and Eurymedon
 -----------------------------------
-require("scripts/zones/Lower_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs");
 require("scripts/globals/groundsofvalor");
 require("scripts/globals/mobs");
 -----------------------------------
@@ -13,6 +13,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,HIPPOLYTOS_PH,5,1); -- no cooldown
-    phOnDespawn(mob,EURYMEDON_PH,5,1); -- no cooldown
+    phOnDespawn(mob,ID.mob.HIPPOLYTOS_PH,5,1); -- no cooldown
+    phOnDespawn(mob,ID.mob.EURYMEDON_PH,5,1); -- no cooldown
 end;
