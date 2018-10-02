@@ -27,6 +27,7 @@ zones[dsp.zone.VELUGANNON_PALACE] =
     },
     mob =
     {
+        MIMIC            = 17502567,
         BRIGANDISH_BLADE = 17502568,
     },
     npc =

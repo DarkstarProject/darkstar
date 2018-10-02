@@ -48,6 +48,7 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         CHANDELIER         = 17596533,
         GUARDIAN_STATUE    = 17596643,
         SERKET             = 17596720,
+        MIMIC              = 17596728,
     },
     npc =
     {

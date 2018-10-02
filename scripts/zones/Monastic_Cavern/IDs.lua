@@ -35,6 +35,7 @@ zones[dsp.zone.MONASTIC_CAVERN] =
     {
         ORCISH_OVERLORD               = 17391802,
         BUGABOO                       = 17391804,
+        MIMIC                         = 17391805,
         UNDERSTANDING_OVERLORD_OFFSET = 17391806,
     },
     npc =

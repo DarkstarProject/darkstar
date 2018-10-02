@@ -50,6 +50,7 @@ zones[dsp.zone.QUICKSAND_CAVES] =
         CENTURIO_IV_VII       = 17629187,
         TRIARIUS_IV_XIV       = 17629188,
         PRINCEPS_IV_XLV       = 17629189,
+        MIMIC                 = 17629190,
         ANCIENT_VESSEL        = 17629642,
         TRIBUNUS_VII_I        = 17629643,
         GIRTABLULU            = 17629645,
