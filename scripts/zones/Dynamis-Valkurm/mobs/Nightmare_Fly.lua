@@ -2,21 +2,12 @@
 -- Area: Dynamis Valkurm
 --  MOB: Nightmare Fly
 -----------------------------------
------------------------------------
-require("scripts/globals/status")
-mixins = { require("scripts/mixins/dynamis_dreamland") }
-
------------------------------------
--- onMobSpawn Action
+mixins = {require("scripts/mixins/dynamis_dreamland")}
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:setLocalVar("dynamis_currency", 1455)
-end;
-
------------------------------------
--- onMobDeath
------------------------------------
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
