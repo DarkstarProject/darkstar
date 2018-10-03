@@ -292,22 +292,22 @@ function unionRepresentativeTriggerFinish(player, option, target, guildID, curre
 end
 
 function unionRepresentativeTrade(player, npc, trade, csid, guildID)
-    local gpItem, remainingPoints = player:getCurrentGPItem(guildID);
+    local gpItem, remainingPoints = player:getCurrentGPItem(guildID)
     if (player:getVar('[GUILD]currentGuild') - 1 == guildID) then
         if remainingPoints == 0 then
-            player:messageText(npc, NO_MORE_GP_ELIGIBLE);
+            player:messageText(npc, NO_MORE_GP_ELIGIBLE)
         else
-            local totalPoints = 0;
-            for i=0,8,1 do
-                local items, points = player:addGuildPoints(guildID,i)
+            local totalPoints = 0
+            for i = 0, 8 do
+                local items, points = player:addGuildPoints(guildID, i)
                 if items ~= 0 and points ~= 0 then
-                    totalPoints = totalPoints + points;
-                    trade:confirmItem(i, items);
+                    totalPoints = totalPoints + points
+                    trade:confirmSlot(i, items)
                 end
             end
             if (totalPoints > 0) then
-                player:confirmTrade();
-                player:startEvent(csid,totalPoints);
+                player:confirmTrade()
+                player:startEvent(csid,totalPoints)
             end
         end
     end
