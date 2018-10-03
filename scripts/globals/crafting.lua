@@ -297,15 +297,16 @@ function unionRepresentativeTrade(player, npc, trade, csid, guildID)
         if remainingPoints == 0 then
             player:messageText(npc, NO_MORE_GP_ELIGIBLE);
         else
+            local totalItems = 0;
             local totalPoints = 0;
             for i=0,8,1 do
                 local items, points = player:addGuildPoints(guildID,i)
-                if items ~= 0 and points ~= 0 then
-                    totalPoints = totalPoints + points;
-                    trade:confirmItem(i, items);
-                end
+                totalItems = totalItems + items;
+                totalPoints = totalPoints + points;
             end
-            if (totalPoints > 0) then
+
+            if (totalItems > 0 and totalPoints > 0) then
+                trade:confirmItem(gpItem, totalItems);
                 player:confirmTrade();
                 player:startEvent(csid,totalPoints);
             end
