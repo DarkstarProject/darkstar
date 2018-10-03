@@ -3,8 +3,8 @@
 --  NPC: Rune of Release
 -- !pos 412 -9 54 55
 -----------------------------------
+local ID = require("scripts/zones/Periqia/IDs")
 require("scripts/globals/besieged")
-require("scripts/zones/Periqia/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,11 +27,11 @@ end
 
 function onEventFinish(player,csid,option)
 
-	local instance = player:getInstance()
+    local instance = player:getInstance()
     local chars = instance:getChars()
     local id = instance:getID()
     local points = 0
-	local playerpoints = ((#chars -3)*100)
+    local playerpoints = ((#chars -3)*100)
 	
     if (csid == 100 and option == 1) then
         if id == 32 then

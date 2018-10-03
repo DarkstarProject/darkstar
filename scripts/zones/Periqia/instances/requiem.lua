@@ -3,8 +3,8 @@
 -- Assault: Requiem
 --
 -----------------------------------
+local ID = require("scripts/zones/Periqia/IDs")
 require("scripts/globals/instance")
-require("scripts/zones/Periqia/IDs")
 -----------------------------------
 -- Todo random the chest locations
 
