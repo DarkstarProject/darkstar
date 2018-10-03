@@ -43,7 +43,7 @@ function onSpellCast(caster,target,spell)
         caster:delStatusEffect(dsp.effect.DIFFUSION)
     end
 
-    if (target:addStatusEffect(typeEffect,power,0,duration) == false) then
+    if not target:addStatusEffect(typeEffect,power,0,duration,0,0,2) then
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
     end
 
