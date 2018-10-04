@@ -168,6 +168,7 @@ public:
     void                   Cleanup();
     bool                   LoadMobs();
     bool                   SpawnLoot(CBaseEntity* PEntity = nullptr);
+    uint8                  m_isMission;
 
     std::set<uint32>              m_RegisteredPlayers;
     std::set<uint32>              m_EnteredPlayers;

@@ -103,7 +103,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             return BATTLEFIELD_RETURN_CODE_CUTSCENE;
         }
 
-        auto fmtQuery = "SELECT name, fastestName, fastestTime, fastestPartySize, timeLimit, levelCap, lootDropId, partySize, rules\
+        auto fmtQuery = "SELECT name, fastestName, fastestTime, fastestPartySize, timeLimit, levelCap, lootDropId, partySize, rules, isMission\
                             FROM bcnm_info i\
                             WHERE bcnmId = %u";
 
@@ -118,6 +118,8 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
         }
         else
         {
+            auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
+
             auto name = Sql_GetData(SqlHandle, 0);
             auto recordholder = Sql_GetData(SqlHandle, 1);
             auto recordtime = std::chrono::seconds(Sql_GetUIntData(SqlHandle, 2));
@@ -127,8 +129,7 @@ uint8 CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, uint16 battlefiel
             auto lootid = Sql_GetUIntData(SqlHandle, 6);
             auto maxplayers = Sql_GetUIntData(SqlHandle, 7);
             auto rulemask = Sql_GetUIntData(SqlHandle, 8);
-
-            auto PBattlefield = new CBattlefield(battlefieldID, m_PZone, area, PChar);
+            PBattlefield->m_isMission = Sql_GetUIntData(SqlHandle, 9);
 
             PBattlefield->SetName((char*)name);
             PBattlefield->SetRecord((char*)recordholder, recordtime, recordPartySize);
