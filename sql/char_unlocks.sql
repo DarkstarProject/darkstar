@@ -1,6 +1,6 @@
 
-DROP TABLE IF EXISTS `char_unlockables`;
-CREATE TABLE `char_unlockables` (
+DROP TABLE IF EXISTS `char_unlocks`;
+CREATE TABLE `char_unlocks` (
   `charid` int(10) unsigned NOT NULL,
   `sandoria_supply` int(10) unsigned NOT NULL DEFAULT 0,
   `bastok_supply` int(10) unsigned NOT NULL DEFAULT 0,

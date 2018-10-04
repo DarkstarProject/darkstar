@@ -2988,7 +2988,7 @@ inline int32 CLuaBaseEntity::addNationTeleport(lua_State *L)
             return 0;
     }
 
-    charutils::SaveCharUnlockables(PChar);
+    charutils::SaveCharUnlocks(PChar);
     return 0;
 }
 

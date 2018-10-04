@@ -742,7 +742,7 @@ namespace charutils
         fmtQuery = "SELECT sandoria_supply, bastok_supply, windurst_supply, "
             "runic_portal, maw, past_sandoria_tp, "
             "past_bastok_tp, past_windurst_tp "
-            "FROM char_unlockables "
+            "FROM char_unlocks "
             "WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
@@ -4323,9 +4323,9 @@ namespace charutils
     *                                                                       *
     ************************************************************************/
 
-    void SaveCharUnlockables(CCharEntity* PChar)
+    void SaveCharUnlocks(CCharEntity* PChar)
     {
-        const char* Query = "UPDATE char_unlockables "
+        const char* Query = "UPDATE char_unlocks "
             "SET sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, "
             "runic_portal = %u, maw = %u, past_sandoria_tp = %u, "
             "past_bastok_tp = %u, past_windurst_tp = %u "

@@ -54,7 +54,7 @@ BEGIN
 	DELETE FROM `char_merit`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_pet`       WHERE `charid` = OLD.charid;
 	DELETE FROM `char_points`    WHERE `charid` = OLD.charid;
-	DELETE FROM `char_unlockables`    WHERE `charid` = OLD.charid;
+	DELETE FROM `char_unlocks`   WHERE `charid` = OLD.charid;
 	DELETE FROM `char_profile`   WHERE `charid` = OLD.charid;
 	DELETE FROM `char_recast`    WHERE `charid` = OLD.charid;
 	DELETE FROM `char_skills`    WHERE `charid` = OLD.charid;
@@ -78,7 +78,7 @@ BEGIN
 	INSERT INTO `char_jobs`      SET `charid` = NEW.charid;
 	INSERT INTO `char_pet`       SET `charid` = NEW.charid;
 	INSERT INTO `char_points`    SET `charid` = NEW.charid;
-	INSERT INTO `char_unlockables`    SET `charid` = NEW.charid;
+	INSERT INTO `char_unlocks`   SET `charid` = NEW.charid;
 	INSERT INTO `char_profile`   SET `charid` = NEW.charid;
 	INSERT INTO `char_storage`   SET `charid` = NEW.charid;
 	INSERT INTO `char_inventory` SET `charid` = NEW.charid;
