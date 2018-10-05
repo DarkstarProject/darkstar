@@ -286,7 +286,7 @@ function onTrade(player,npc,trade)
                 break
             end
         end
-        
+
         -- check for relic upgrade trades
         if tradedCombo == 0 then
             for k, v in pairs(relicArmorPlusOne) do
