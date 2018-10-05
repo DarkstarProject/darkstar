@@ -18,10 +18,11 @@ zones[dsp.zone.RANGUEMONT_PASS] =
         SENSE_OF_FOREBODING     = 6402, -- You are suddenly overcome with a sense of foreboding...
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
+        REGIME_REGISTERED       = 9517, -- New training regime registered!
     },
     mob =
     {
-        TAISAIJIN_PH = 
+        TAISAIJIN_PH =
         {
             17457213, -- -18.325 1.830 -114.932
             17457214, -- -5.188 11.730 -141.503

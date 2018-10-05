@@ -27,6 +27,7 @@ zones[dsp.zone.XARCABARD] =
         YOU_CANNOT_ENTER_DYNAMIS       = 7845, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7847, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         UNUSUAL_ARRANGEMENT_OF_PEBBLES = 7858, -- There is an unusual arrangement of pebbles here.
+        REGIME_REGISTERED              = 10348, -- New training regime registered!
     },
     mob =
     {

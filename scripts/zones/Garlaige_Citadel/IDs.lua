@@ -35,10 +35,11 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         CHEST_MOOGLE                = 7329, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION              = 7330, -- The chest was but an illusion...
         CHEST_LOCKED                = 7331, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED           = 9603, -- New training regime registered!
     },
     mob =
     {
-        HOVERING_HOTPOT_PH = 
+        HOVERING_HOTPOT_PH =
         {
             [17596623] = 17596628, -- 182.157 -0.012 29.941
             [17596625] = 17596628, -- 188.229 -0.018 20.151

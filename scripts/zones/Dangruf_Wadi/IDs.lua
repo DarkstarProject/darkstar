@@ -41,10 +41,11 @@ zones[dsp.zone.DANGRUF_WADI] =
         CHEST_ILLUSION          = 7438, -- The chest was but an illusion...
         CHEST_LOCKED            = 7439, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SMALL_HOLE              = 7486, -- There is a small hole here.
+        REGIME_REGISTERED       = 10449, -- New training regime registered!
     },
     mob =
     {
-        TEPORINGO_PH  = 
+        TEPORINGO_PH  =
         {
             [17559583] = 17559584, -- -189,3,79
         },

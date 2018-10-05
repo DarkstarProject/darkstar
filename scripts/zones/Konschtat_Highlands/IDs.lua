@@ -26,10 +26,11 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         SIGNPOST_DIALOG_2            = 7385, -- You see something stuck behind the signpost.
         SOMETHING_BURIED_HERE        = 7386, -- Something has been buried here.
         TELEPOINT_HAS_BEEN_SHATTERED = 7478, -- The telepoint has been shattered into a thousand pieces...
+        REGIME_REGISTERED            = 9782, -- New training regime registered!
     },
     mob =
     {
-        STRAY_MARY_PH  = 
+        STRAY_MARY_PH  =
         {
             [17219791] = 17219795, -- -305.204 -11.695 -96.078
             [17219928] = 17219933, -- -293.900  33.393 342.710

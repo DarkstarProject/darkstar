@@ -4,11 +4,11 @@
 -- Note: PH for Herbage Hunter
 -----------------------------------
 local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,96,1);
+    dsp.regime.checkRegime(player, mob, 96, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

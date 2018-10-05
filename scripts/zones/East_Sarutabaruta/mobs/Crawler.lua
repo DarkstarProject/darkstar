@@ -4,12 +4,12 @@
 -- Note: PH for Spiny Spipi
 -----------------------------------
 local ID = require("scripts/zones/East_Sarutabaruta/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,92,2);
-    checkRegime(player,mob,93,2);
+    dsp.regime.checkRegime(player, mob, 92, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 93, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

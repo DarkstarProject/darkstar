@@ -20,10 +20,11 @@ zones[dsp.zone.BATALLIA_DOWNS] =
         FISHING_MESSAGE_OFFSET  = 7229, -- You can't fish here.
         DIG_THROW_AWAY          = 7242, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7244, -- You dig and you dig, but find nothing.
+        REGIME_REGISTERED       = 9978, -- New training regime registered!
     },
     mob =
     {
-        TOTTERING_TOBY_PH = 
+        TOTTERING_TOBY_PH =
         {
             [17207449] = 17207476, -- -194.234 -18.485 132.208
         },

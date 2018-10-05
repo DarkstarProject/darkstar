@@ -18,6 +18,7 @@ zones[dsp.zone.ROMAEVE] =
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         SENSE_OMINOUS_PRESENCE  = 7393, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9611, -- New training regime registered!
     },
     mob =
     {
@@ -27,7 +28,7 @@ zones[dsp.zone.ROMAEVE] =
     },
     npc =
     {
-        BASTOK_7_1_QM_POS = 
+        BASTOK_7_1_QM_POS =
         {
              [1] = {  162.000, -8.000,   21.000}, -- L-7
              [2] = {  160.000, -6.000, -110.000}, -- L-10

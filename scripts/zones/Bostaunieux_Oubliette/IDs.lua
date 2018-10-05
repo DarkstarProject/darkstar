@@ -21,15 +21,16 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         SEEMS_LOCKED            = 7309, -- It seems to be locked.
         SPIRAL_HELL_LEARNED     = 7416, -- You have learned the weapon skill Spiral Hell!
         SENSE_OMINOUS_PRESENCE  = 7417, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9531, -- New training regime registered!
     },
     mob =
     {
-        SEWER_SYRUP_PH          = 
+        SEWER_SYRUP_PH          =
         {
             [17461294] = 17461307, -- -19.000 1.000 -173.000
             [17461320] = 17461307, -- -20.000 1.000 -148.000
         },
-        SHII_PH                 = 
+        SHII_PH                 =
         {
             [17461311] = 17461315, -- -59.000 0.941 -149.000
             [17461334] = 17461315, -- -64.000 -0.500 -144.000

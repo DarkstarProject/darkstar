@@ -28,11 +28,12 @@ zones[dsp.zone.CAPE_TERIGGAN] =
         FOUND_ALL_FRAGS            = 7666, -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
         ZILART_MONUMENT            = 7668, -- It is an ancient Zilart monument.
         SENSE_OMINOUS_PRESENCE     = 7685, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10105, -- New training regime registered!
         HOMEPOINT_SET              = 11252, -- Home point set!
     },
     mob =
     {
-        FROSTMANE_PH           = 
+        FROSTMANE_PH           =
         {
             [17240374] = 17240376, -- -283.874 -0.660 485.504
             [17240372] = 17240376, -- -272.224 -0.942 461.321

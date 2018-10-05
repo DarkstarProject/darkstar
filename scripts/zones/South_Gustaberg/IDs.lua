@@ -27,10 +27,11 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
         FIRE_TAKE               = 7405, -- You take <item> out of the fire.
         FIRE_LONGER             = 7406, -- It may take a little while more to cook the <item>.
         MEAT_ALREADY_PUT        = 7407, -- The <item> is already in the fire.
+        REGIME_REGISTERED       = 9895, -- New training regime registered!
     },
     mob =
     {
-        CARNERO_PH       = 
+        CARNERO_PH       =
         {
             [17215638] = 17215626, -- 277.891 -39.854 -413.354
             [17215611] = 17215626, -- 186.081 -39.990 -367.942
@@ -42,7 +43,7 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
             [17215648] = 17215626, -- 213.010 -59.983 -442.766
             [17215649] = 17215626, -- 211.745 -59.938 -441.313
         },
-        LEAPING_LIZZY_PH = 
+        LEAPING_LIZZY_PH =
         {
             [17215867] = 17215868, -- -275.441 20.451 -347.294
             [17215887] = 17215888, -- -322.871 30.052 -401.184

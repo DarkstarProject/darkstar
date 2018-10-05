@@ -33,10 +33,11 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         ZILART_MONUMENT             = 7679, -- It is an ancient Zilart monument.
         LOGGING_IS_POSSIBLE_HERE    = 7696, -- Logging is possible here if you have <item>.
         HARVESTING_IS_POSSIBLE_HERE = 7703, -- Harvesting is possible here if you have <item>.
+        REGIME_REGISTERED           = 10048, -- New training regime registered!
     },
     mob =
     {
-        MISCHIEVOUS_MICHOLAS_PH = 
+        MISCHIEVOUS_MICHOLAS_PH =
         {
             [17281148] = 17281149, -- -265.616 -0.5 -24.389
         },

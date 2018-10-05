@@ -29,16 +29,16 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
         FOUND_ALL_FRAGS            = 7347, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT            = 7348, -- It is an ancient Zilart monument.
         SENSE_OMINOUS_PRESENCE     = 7392, -- You sense an ominous presence...
-
+        REGIME_REGISTERED          = 9809, -- New training regime registered!
     },
     mob =
     {
-        CACTUAR_CANTAUTOR_PH = 
+        CACTUAR_CANTAUTOR_PH =
         {
             [17289559] = 17289560, -- -458.944 0.018 -557.266
             [17289578] = 17289560, -- -478.142 -0.457 -596.091
         },
-        CELPHIE_PH           = 
+        CELPHIE_PH           =
         {
             [17289473] = 17289453, -- 78.226 -0.497 69.745
             [17289450] = 17289453, -- 57.256 0.116 13.972

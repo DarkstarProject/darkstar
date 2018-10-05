@@ -25,11 +25,12 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         CHEST_MOOGLE            = 7354, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION          = 7355, -- The chest was but an illusion...
         CHEST_LOCKED            = 7356, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED       = 9458, -- New training regime registered!
         HOMEPOINT_SET           = 10514, -- Home point set!
     },
     mob =
     {
-        ENKELADOS_PH = 
+        ENKELADOS_PH =
         {
             [17424388] = 17424385, -- -371.586 -144.367 28.244
             [17424426] = 17424423, -- -215.194 -144.099 19.528

@@ -19,6 +19,7 @@ zones[dsp.zone.ZERUHN_MINES] =
         MAKARIM_DIALOG_I        = 7314, -- Be careful on your way out. Remember, you should give my report to Naji, one of the Mythril Musketeers on post at the President's Office.
         ZELMAN_CANT_RUN_AROUND  = 7339, -- I can't run around doing everything she tells me to--I have my dignity to uphold!
         MINING_IS_POSSIBLE_HERE = 7346, -- Mining is possible here if you have <item>.
+        REGIME_REGISTERED       = 9489, -- New training regime registered!
     },
     mob =
     {

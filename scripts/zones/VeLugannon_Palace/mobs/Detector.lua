@@ -2,7 +2,7 @@
 -- Area: VeLugannon Palace
 --  MOB: Detector
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -57,7 +57,7 @@ function onMobDisengage(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,743,1);
+    dsp.regime.checkRegime(player, mob, 743, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn( mob )

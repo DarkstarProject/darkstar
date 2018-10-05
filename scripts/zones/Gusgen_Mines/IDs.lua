@@ -33,6 +33,7 @@ zones[dsp.zone.GUSGEN_MINES] =
         LETTERS_IS_WRITTEN_HERE = 7380, -- Something resembling letters is written here.
         FOUND_LOCATION_SEAL     = 7381, -- You have found the location of the seal. You place <item> on it.
         IS_ON_THIS_SEAL         = 7382, -- <item> is on this seal.
+        REGIME_REGISTERED       = 10381, -- New training regime registered!
     },
     mob =
     {

@@ -33,6 +33,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         MINING_IS_POSSIBLE_HERE    = 7256, -- Mining is possible here if you have <item>.
         EGGSHELLS_LIE_SCATTERED    = 7265, -- Eggshells lie scattered around the place...
         SENSE_OMINOUS_PRESENCE     = 7268, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10420, -- New training regime registered!
         HOMEPOINT_SET              = 11506, -- Home point set!
     },
     mob =

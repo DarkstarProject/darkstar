@@ -32,15 +32,16 @@ zones[dsp.zone.QUICKSAND_CAVES] =
         YOU_FIND_NOTHING        = 7357, -- You find nothing.
         SOMETHING_IS_BURIED     = 7362, -- Something is buried in this fallen pillar.
         SENSE_OMINOUS_PRESENCE  = 7366, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 10360, -- New training regime registered!
         HOMEPOINT_SET           = 11422, -- Home point set!
     },
     mob =
     {
-        Sagittarius_X_XIII_PH = 
+        Sagittarius_X_XIII_PH =
         {
             [17629296] = 17629301, -- 641 -16.786 -774
         },
-        CENTURIO_X_I_PH       = 
+        CENTURIO_X_I_PH       =
         {
             [17629232] = 17629238,
             [17629237] = 17629238,
@@ -57,7 +58,7 @@ zones[dsp.zone.QUICKSAND_CAVES] =
     },
     npc =
     {
-        ANTICAN_TAG_POSITIONS = 
+        ANTICAN_TAG_POSITIONS =
         {
             [1] = {590.000, -6.600, -663.000},
             [2] = {748.000, 2.000, -570.000},

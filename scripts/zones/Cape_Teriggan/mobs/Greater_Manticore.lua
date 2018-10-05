@@ -4,11 +4,11 @@
 -- Note: Place Holder for Frostmane
 -----------------------------------
 local ID = require("scripts/zones/Cape_Teriggan/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,108,2);
+    dsp.regime.checkRegime(player, mob, 108, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

@@ -2,9 +2,9 @@
 -- Area: Ordelle's Caves
 --  MOB: Jelly
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,659,2);
+    dsp.regime.checkRegime(player, mob, 659, 2, dsp.regime.type.GROUNDS)
 end;

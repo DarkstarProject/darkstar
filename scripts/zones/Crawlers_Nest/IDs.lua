@@ -32,10 +32,11 @@ zones[dsp.zone.CRAWLERS_NEST] =
         YOU_BURY_THE                  = 7261, -- You bury the <item> and <item>.
         NOTHING_WILL_HAPPEN_YET       = 7264, -- It seems that nothing will happen yet.
         NOTHING_SEEMS_TO_HAPPEN       = 7265, -- Nothing seems to happen.
+        REGIME_REGISTERED             = 9426, -- New training regime registered!
     },
     mob =
     {
-        DEMONIC_TIPHIA_PH = 
+        DEMONIC_TIPHIA_PH =
         {
             [17584392] = 17584398, -- -103.000 -1.000 311.000
             [17584395] = 17584398, -- -89.000 -1.000 301.000
