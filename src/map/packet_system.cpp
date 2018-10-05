@@ -119,6 +119,7 @@ This file is part of DarkStar-server source code.
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
 #include "packets/macroequipset.h"
+#include "packets/map_marker.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
@@ -5906,6 +5907,17 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 }
 
 /************************************************************************
+*                                                                       *
+*  Map Marker Request Packet                                            *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x114(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PChar->pushPacket(new CMapMarkerPacket(PChar));
+}
+
+/************************************************************************
 *                                                                        *
 *  Request Currency2 tab                                                  *
 *                                                                        *
@@ -6031,7 +6043,7 @@ void PacketParserInitialize()
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
     PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
-    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
+    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0x114;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }
 

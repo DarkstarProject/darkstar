@@ -35,7 +35,7 @@ function onSpellCast(caster, target, spell)
     duration = calculateDurationForLvl(duration, 28, target:getMainLvl())
 
     local final = pAbs + pEquipMods
-    if target:addStatusEffect(dsp.effect.STONESKIN, final, 0, duration) then
+    if target:addStatusEffect(dsp.effect.STONESKIN, final, 0, duration, 0, 0, 4) then
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

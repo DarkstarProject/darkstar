@@ -5240,9 +5240,9 @@ INSERT INTO `item_mods` VALUES (11552,1,10);
 INSERT INTO `item_mods` VALUES (11552,24,10);
 INSERT INTO `item_mods` VALUES (11552,26,10);
 INSERT INTO `item_mods` VALUES (11552,305,5);
-INSERT INTO `item_mods` VALUES (11553,1,7);
-INSERT INTO `item_mods` VALUES (11553,27,2);
-INSERT INTO `item_mods` VALUES (11553,165,3);
+INSERT INTO `item_mods` VALUES (11553,1,7);       -- Cavaros Mantle: DEF: 7
+INSERT INTO `item_mods` VALUES (11553,27,2);      -- Enmity +2
+INSERT INTO `item_mods` VALUES (11553,421,3);     -- Crit. Hit. Dmg. + 3%
 INSERT INTO `item_mods` VALUES (11554,1,8);       -- orison_cape DEF:+8
 INSERT INTO `item_mods` VALUES (11554,5,10);      -- MP+10
 INSERT INTO `item_mods` VALUES (11554,27,-4);     -- Enmity-4
@@ -26377,6 +26377,7 @@ INSERT INTO `item_mods` VALUES (23109,30,40);     -- Magic Accuracy+40
 INSERT INTO `item_mods` VALUES (23109,31,90);     -- Magic Evasion+90
 INSERT INTO `item_mods` VALUES (23109,68,51);     -- Evasion+51
 INSERT INTO `item_mods` VALUES (23109,114,19);    -- Enfeebling Magic Skill+19
+INSERT INTO `item_mods` VALUES (23109,260,3);     -- "Cure" potency II +3%
 INSERT INTO `item_mods` VALUES (23109,369,2);     -- Refresh+2
 INSERT INTO `item_mods` VALUES (23109,384,300);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23110,1,133);     -- spaekonas_coat_+2 DEF:133
@@ -26793,6 +26794,7 @@ INSERT INTO `item_mods` VALUES (23176,30,38);     -- Magic Accuracy+38
 INSERT INTO `item_mods` VALUES (23176,31,47);     -- Magic Evasion+47
 INSERT INTO `item_mods` VALUES (23176,68,32);     -- Evasion+32
 INSERT INTO `item_mods` VALUES (23176,112,19);    -- Healing Magic Skill+19
+INSERT INTO `item_mods` VALUES (23176,260,2);     -- "Cure" potency II +2%
 INSERT INTO `item_mods` VALUES (23176,384,300);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23177,1,91);      -- spae._gloves_+2 DEF:91
 INSERT INTO `item_mods` VALUES (23177,2,33);      -- HP+33
@@ -28371,6 +28373,7 @@ INSERT INTO `item_mods` VALUES (23444,30,50);     -- Magic Accuracy+50
 INSERT INTO `item_mods` VALUES (23444,31,100);    -- Magic Evasion+100
 INSERT INTO `item_mods` VALUES (23444,68,61);     -- Evasion+61
 INSERT INTO `item_mods` VALUES (23444,114,21);    -- Enfeebling Magic Skill+21
+INSERT INTO `item_mods` VALUES (23444,260,6);     -- "Cure" potency II +6%
 INSERT INTO `item_mods` VALUES (23444,369,3);     -- Refresh+3
 INSERT INTO `item_mods` VALUES (23444,384,300);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23445,1,143);     -- spaekonas_coat_+3 DEF:143
@@ -28787,6 +28790,7 @@ INSERT INTO `item_mods` VALUES (23511,30,48);     -- Magic Accuracy+48
 INSERT INTO `item_mods` VALUES (23511,31,57);     -- Magic Evasion+57
 INSERT INTO `item_mods` VALUES (23511,68,42);     -- Evasion+42
 INSERT INTO `item_mods` VALUES (23511,112,21);    -- Healing Magic Skill+21
+INSERT INTO `item_mods` VALUES (23511,260,4);     -- "Cure" potency II +4%
 INSERT INTO `item_mods` VALUES (23511,384,300);    -- Haste +30
 INSERT INTO `item_mods` VALUES (23512,1,101);     -- spae._gloves_+3 DEF:101
 INSERT INTO `item_mods` VALUES (23512,2,43);      -- HP+43
@@ -31667,6 +31671,7 @@ INSERT INTO `item_mods` VALUES (26194,38,11);     -- Light Magic Atk. Bonus+11
 INSERT INTO `item_mods` VALUES (26194,170,6);     -- Fast Cast+6
 INSERT INTO `item_mods` VALUES (26195,5,44);      -- Jann. Ring +1 MP+44
 INSERT INTO `item_mods` VALUES (26195,27,-8);     -- Enmity-8
+INSERT INTO `item_mods` VALUES (26195,260,6);     -- "Cure" potency II +6%
 INSERT INTO `item_mods` VALUES (26196,119,11);    -- Renaye Ring +1 Singing Magic Skill+11
 INSERT INTO `item_mods` VALUES (26196,122,11);    -- Blue Magic Skill+11
 INSERT INTO `item_mods` VALUES (26196,369,2);     -- Refresh+2
@@ -39595,7 +39600,7 @@ INSERT INTO `item_mods` VALUES (27582,38,10);
 INSERT INTO `item_mods` VALUES (27582,407,5);
 INSERT INTO `item_mods` VALUES (27583,5,40);
 INSERT INTO `item_mods` VALUES (27583,27,-7);
-INSERT INTO `item_mods` VALUES (27583,374,5);
+INSERT INTO `item_mods` VALUES (27583,260,5);
 INSERT INTO `item_mods` VALUES (27584,119,10);
 INSERT INTO `item_mods` VALUES (27584,122,10);
 INSERT INTO `item_mods` VALUES (27584,369,1);
@@ -48140,7 +48145,7 @@ INSERT INTO `item_mods` VALUES (28483,2,40);
 INSERT INTO `item_mods` VALUES (28483,27,4);
 INSERT INTO `item_mods` VALUES (28483,291,3);
 INSERT INTO `item_mods` VALUES (28484,13,3);      -- Nourishing Earring: MND +3
-INSERT INTO `item_mods` VALUES (28484,374,2);     -- Cure potency +2%
+INSERT INTO `item_mods` VALUES (28484,260,2);     -- Cure potency II +2%
 INSERT INTO `item_mods` VALUES (28484,519,3);     -- Cure spellcasting time -3%
 INSERT INTO `item_mods` VALUES (28485,13,4);      -- Nourishing Earring +1: MND +4
 INSERT INTO `item_mods` VALUES (28485,374,3);     -- Cure potency +3%
