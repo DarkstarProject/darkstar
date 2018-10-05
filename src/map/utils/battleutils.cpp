@@ -823,9 +823,9 @@ namespace battleutils
             // Check for status effect proc. Todo: move to scripts soon™ after item additionalEffect refactor Teo is working on
             HandleSpikesStatusEffect(PAttacker, PDefender, Action);
 
-            if (((CMobEntity*)PDefender)->m_HiPCLvl < PAttacker->GetMLevel())
+            if (PAttacker->objtype == TYPE_MOB && ((CMobEntity*)PAttacker)->m_HiPCLvl < PDefender->GetMLevel())
             {
-                ((CMobEntity*)PDefender)->m_HiPCLvl = PAttacker->GetMLevel();
+                ((CMobEntity*)PAttacker)->m_HiPCLvl = PDefender->GetMLevel();
             }
             return true;
         }
