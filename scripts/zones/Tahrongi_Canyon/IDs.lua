@@ -35,10 +35,11 @@ zones[dsp.zone.TAHRONGI_CANYON] =
         SPROUT_DOES_NOT_NEED_WATER   = 7553, -- The sprout does not need any more water now.
         NOTHING_HAPPENS              = 7554, -- Nothing happens.
         SPROUT_LOOKING_BETTER        = 7555, -- The sprout is looking better.
+        REGIME_REGISTERED            = 9820, -- New training regime registered!
     },
     mob =
     {
-        HERBAGE_HUNTER_PH = 
+        HERBAGE_HUNTER_PH =
         {
             [17256835] = 17256836, -- -119.301,24.087,448.636
         },

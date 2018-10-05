@@ -24,10 +24,11 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         CHEST_ILLUSION          = 7283, -- The chest was but an illusion...
         CHEST_LOCKED            = 7284, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         HEAVY_DOOR              = 7305, -- It is a solid stone door.
+        REGIME_REGISTERED       = 10329, -- New training regime registered!
     },
     mob =
     {
-        CRYPT_GHOST_PH        = 
+        CRYPT_GHOST_PH        =
         {
             [17555665] = 17555668,
             [17555666] = 17555668,

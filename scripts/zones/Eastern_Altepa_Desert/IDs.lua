@@ -23,10 +23,11 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         DIG_THROW_AWAY          = 7562, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7564, -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE   = 7658, -- You already possess the gate crystal for this telepoint.
+        REGIME_REGISTERED       = 9947, -- New training regime registered!
     },
     mob =
     {
-        DUNE_WIDOW_PH     = 
+        DUNE_WIDOW_PH     =
         {
             [17244395] = 17244396, -- -85.000 2.952 -46.000
             [17244387] = 17244396, -- -38.000 -7.000 -35.000

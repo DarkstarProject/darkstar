@@ -28,16 +28,17 @@ zones[dsp.zone.WEST_RONFAURE] =
         ZOVRIACE_DIALOG         = 7381, -- Let me be! I return to Southgate with word on La Theine.
         DISMAYED_CUSTOMER       = 7407, -- You find some worthless scraps of paper.
         CONQUEST                = 7529, -- You've earned conquest points!
+        REGIME_REGISTERED       = 10423, -- New training regime registered!
     },
     mob =
     {
-        FUNGUS_BEETLE_PH      = 
+        FUNGUS_BEETLE_PH      =
         {
             [17187046] = 17187047, -- -133.001 -20.636 -141.110
             [17187115] = 17187047, -- -287.202 -20.826 -199.075
             [17187114] = 17187047, -- -295.626 -21.389 -192.191
         },
-        JAGGEDY_EARED_JACK_PH = 
+        JAGGEDY_EARED_JACK_PH =
         {
             [17187110] = 17187111, -- -262.780 -22.384 -253.873
             [17187109] = 17187111, -- -267.389 -21.669 -252.720

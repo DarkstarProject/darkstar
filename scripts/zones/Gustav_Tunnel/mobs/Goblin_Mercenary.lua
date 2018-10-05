@@ -4,12 +4,12 @@
 -- Note: Place holder Wyvernpoacher Drachlox
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,764,3);
-    checkGoVregime(player,mob,765,3);
+    dsp.regime.checkRegime(player, mob, 764, 3, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 765, 3, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

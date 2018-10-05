@@ -29,6 +29,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
         CHEST_ILLUSION             = 7347, -- The chest was but an illusion...
         CHEST_LOCKED               = 7348, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SKY_GOD_OFFSET             = 7358, -- A strange insignia pointing north is carved into the wall.
+        REGIME_REGISTERED          = 9724, -- New training regime registered!
         HOMEPOINT_SET              = 11645, -- Home point set!
     },
     mob =
@@ -60,7 +61,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
     },
     npc =
     {
-        RUAUN_PINCERSTONES = 
+        RUAUN_PINCERSTONES =
         {
             [17310031] = 17310054, -- Main to Seriyu
             [17310033] = 17310055, -- Seriyu to Main
@@ -73,7 +74,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             [17310047] = 17310066, -- Suzaku to Main
             [17310049] = 17310067, -- Main to Suzaku
         },
-        RUAUN_PORTALS      = 
+        RUAUN_PORTALS      =
         {
             { coords = {  -3, -54, -583,    1, -50, -579}, event = 0       },
             { coords = { 147, -26, -449,  151, -22, -445}, event = 1       },

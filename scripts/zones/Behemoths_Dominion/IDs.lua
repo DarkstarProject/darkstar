@@ -23,6 +23,7 @@ zones[dsp.zone.BEHEMOTHS_DOMINION] =
         ALREADY_OBTAINED_FRAG   = 7318, -- You have already obtained this monument's <keyitem>. Try searching for another.
         FOUND_ALL_FRAGS         = 7320, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT         = 7321, -- It is an ancient Zilart monument.
+        REGIME_REGISTERED       = 9528, -- New training regime registered!
     },
     mob =
     {

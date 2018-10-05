@@ -35,10 +35,11 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         TELEPOINT_HAS_BEEN_SHATTERED = 7750, -- The telepoint has been shattered into a thousand pieces...
         BROKEN_EGG                   = 7821, -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
         CHOCOBO_TRACKS               = 7882, -- There are chocobo tracks on the ground here.
+        REGIME_REGISTERED            = 10120, -- New training regime registered!
     },
     mob =
     {
-        TUMBLING_TRUFFLE_PH = 
+        TUMBLING_TRUFFLE_PH =
         {
             [17195256] = 17195259, -- 450.472 70.657 238.237
         },

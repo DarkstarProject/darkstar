@@ -4,11 +4,11 @@
 -- Note: Place holder for Celphie
 -----------------------------------
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,135,1);
+    dsp.regime.checkRegime(player, mob, 135, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

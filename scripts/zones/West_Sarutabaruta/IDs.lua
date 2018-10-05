@@ -37,20 +37,20 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         MELT_BARE_HANDS             = 7401, -- It looks like it would melt if you touched it with your bare hands...
         HARVESTING_IS_POSSIBLE_HERE = 7437, -- Harvesting is possible here if you have <item>.
         CONQUEST                    = 7453, -- You've earned conquest points!
-        REGIME_ACCEPTED             = 10185, -- New training regime registered!
+        REGIME_REGISTERED           = 10185, -- New training regime registered!
         DONT_SWAP_JOBS              = 10186, -- hanging your job will result in the cancellation of your current training regime.
         REGIME_CANCELED             = 10187, -- Training regime canceled.
     },
     mob =
     {
-        NUNYENUNC_PH   = 
+        NUNYENUNC_PH   =
         {
             [17248323] = 17248517, -- -95.00 -17.000 383.000
             [17248515] = 17248517, -- -7.194 -17.288 431.604
             [17248516] = 17248517, -- 53.159 -24.540 554.652
             [17248514] = 17248517, -- 159.501 -20.117 485.528
         },
-        TOM_TIT_TAT_PH = 
+        TOM_TIT_TAT_PH =
         {
             [17248467] = 17248468, -- 31.149 -20.045 358.265
             [17248466] = 17248468, -- 77.509 -20.719 434.757

@@ -4,11 +4,11 @@
 -- Note: PH for Swamfisk
 -----------------------------------
 local ID = require("scripts/zones/East_Ronfaure/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,64,1);
+    dsp.regime.checkRegime(player, mob, 64, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

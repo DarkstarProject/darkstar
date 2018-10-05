@@ -27,6 +27,7 @@ zones[dsp.zone.QUFIM_ISLAND] =
         YOU_CANNOT_ENTER_DYNAMIS       = 7848, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7850, -- Players who have not reached level <number> are prohibited from entering Dynamis.
         HOMEPOINT_SET                  = 12694, -- Home point set!
+        REGIME_REGISTERED              = 10330, -- New training regime registered!
     },
     mob =
     {

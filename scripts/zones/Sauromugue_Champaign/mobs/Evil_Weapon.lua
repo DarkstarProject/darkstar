@@ -3,11 +3,11 @@
 --  MOB: Evil Weapon
 -----------------------------------
 local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,100,2);
+    dsp.regime.checkRegime(player, mob, 100, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

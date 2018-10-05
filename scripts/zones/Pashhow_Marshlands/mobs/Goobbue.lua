@@ -4,12 +4,12 @@
 -- Note: PH for Jolly Green
 -----------------------------------
 local ID = require("scripts/zones/Pashhow_Marshlands/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,60,3);
+    dsp.regime.checkRegime(player, mob, 60, 3, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

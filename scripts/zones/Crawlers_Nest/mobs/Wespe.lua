@@ -4,11 +4,11 @@
 -- Note: PH for Demonic Tiphia
 -----------------------------------
 local ID = require("scripts/zones/Crawlers_Nest/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,691,2);
+    dsp.regime.checkRegime(player, mob, 691, 2, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

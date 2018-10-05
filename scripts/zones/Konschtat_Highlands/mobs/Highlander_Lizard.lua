@@ -3,7 +3,7 @@
 --  NM:  Highlander Lizard
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -23,8 +23,8 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts the FoV pages? Most NM's do not though.
-    checkRegime(player,mob,20,2);
-    checkRegime(player,mob,82,2);
+    dsp.regime.checkRegime(player, mob, 20, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 82, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

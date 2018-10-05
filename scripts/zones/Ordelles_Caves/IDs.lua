@@ -36,6 +36,7 @@ zones[dsp.zone.ORDELLES_CAVES] =
         GERWITZS_AXE_DIALOG           = 7412, -- Mine axe shall rend thy throat!
         GERWITZS_SWORD_DIALOG         = 7413, -- Mine sword shall pierce thy tongue!
         GERWITZS_SOUL_DIALOG          = 7414, -- Long have I waited. I will tell all...
+        REGIME_REGISTERED             = 10461, -- New training regime registered!
     },
     mob =
     {
