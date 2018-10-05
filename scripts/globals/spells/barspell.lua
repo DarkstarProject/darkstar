@@ -1,8 +1,11 @@
 -----------------------------------------
 -- Implementation of Bar-spells
 -----------------------------------------
-require("scripts/globals/magic")
+require("scripts/globals/settings")
 require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/utils")
+-----------------------------------------
 
 function calculateBarspellPower(caster,enhanceSkill)
     local meritBonus = caster:getMerit(dsp.merit.BAR_SPELL_EFFECT)
@@ -25,7 +28,12 @@ end
 
 function calculateBarspellDuration(caster,enhanceSkill)
     -- Function call to allow configuration conditional for old duration formulas.
-    return 480
+    if OLD_SCHOOL_ENABLED then
+        local duration = 150 + math.floor((enhanceSkill - 180) * 0.8) -- Pre update formula: https://www.bg-wiki.com/bg/Category:Barspell
+        return utils.clamp(duration,150,300)
+    else
+        return 480
+    end
 end
 
 function applyBarspell(effectType,caster,target,spell)
