@@ -28,6 +28,9 @@ ENABLE_ROV     = 0;
 
 ENABLE_VOIDWATCH = 0; -- Not an expansion, but has its own storyline.
 
+-- Era "Old School" related settings
+OLD_SCHOOL_ENABLED = false -- General wide range Old School setting. Default: false (current retail)
+
 -- FIELDS OF VALOR/Grounds of Valor settings
 ENABLE_FIELD_MANUALS  = 1; -- Enables Fields of Valor
 ENABLE_GROUNDS_TOMES  = 1; -- Enables Grounds of Valor
