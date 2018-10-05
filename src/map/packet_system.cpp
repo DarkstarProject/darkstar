@@ -105,6 +105,7 @@ This file is part of DarkStar-server source code.
 #include "packets/delivery_box.h"
 #include "packets/downloading_data.h"
 #include "packets/entity_update.h"
+#include "packets/furniture_interact.h"
 #include "packets/guild_menu_buy.h"
 #include "packets/guild_menu_sell.h"
 #include "packets/guild_menu_buy_update.h"
@@ -5166,6 +5167,8 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (ItemID == 0)
     {
+        // No item sent means the client has finished placing furniture
+        PChar->UpdateMoghancement();
         return;
     }
 
@@ -5199,7 +5202,43 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PItem->setLevel(level);
         PItem->setRotation(rotation);
 
+        // Update installed furniture placement orders
+        // First we place the furniture into placed items using the order number as the index
+        std::array<CItemFurnishing*, MAX_CONTAINER_SIZE * 2> placedItems = { nullptr };
+        for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
+        {
+            CItemContainer* PContainer = PChar->getStorage(safeContainerId);
+            for (int slotIndex = 0; slotIndex < PContainer->GetSize(); ++slotIndex)
+            {
+                if (slotID == slotIndex && containerID == safeContainerId)
+                    continue;
+
+                CItem* PContainerItem = PContainer->GetItem(slotIndex);
+                if (PContainerItem != nullptr && PContainerItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PContainerItem);
+                    if (PFurniture->isInstalled())
+                    {
+                        placedItems[PFurniture->getOrder()] = PFurniture;
+                    }
+                }
+            }
+        }
+
+        // Update the item's order number
+        for (int32 i = 0; i < MAX_CONTAINER_SIZE * 2; ++i)
+        {
+            // We can stop updating the order numbers once we hit an empty order number
+            if (placedItems[i] == nullptr)
+                break;
+            placedItems[i]->setOrder(placedItems[i]->getOrder() + 1);
+        }
+        // Set this item to being the most recently placed item
+        PItem->setOrder(0);
+
         PItem->setSubType(ITEM_LOCKED);
+
+        PChar->pushPacket(new CFurnitureInteractPacket(PItem, containerID, slotID));
 
         char extra[sizeof(PItem->m_extra) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));

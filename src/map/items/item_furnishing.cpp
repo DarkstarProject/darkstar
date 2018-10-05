@@ -61,12 +61,12 @@ uint8 CItemFurnishing::getStorage()
 	return m_storage;
 }
 
-void CItemFurnishing::setMoghancement(uint8 moghancement)
+void CItemFurnishing::setMoghancement(uint16 moghancement)
 {
 	m_moghancement = moghancement;
 }
 
-uint8 CItemFurnishing::getMoghancement()
+uint16 CItemFurnishing::getMoghancement()
 {
 	return m_moghancement;
 }
@@ -129,4 +129,14 @@ void CItemFurnishing::setRotation(uint8 rotation)
 uint8 CItemFurnishing::getRotation()
 {
     return ref<uint8>(m_extra, 0x09);
+}
+
+void CItemFurnishing::setOrder(uint8 order)
+{
+    ref<uint8>(m_extra, 0x0A) = order;
+}
+
+uint8 CItemFurnishing::getOrder()
+{
+    return ref<uint8>(m_extra, 0x0A);
 }

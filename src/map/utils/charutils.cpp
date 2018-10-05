@@ -354,7 +354,8 @@ namespace charutils
             "campaign,"             // 23
             "playtime,"             // 24
             "campaign_allegiance,"  // 25
-            "isstylelocked "        // 26
+            "isstylelocked,"        // 26
+            "moghancement "         // 27
             "FROM chars "
             "WHERE charid = %u";
 
@@ -432,6 +433,7 @@ namespace charutils
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
             PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
             PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->SetMoghancement(Sql_GetUIntData(SqlHandle, 27));
         }
 
         LoadSpells(PChar);
@@ -4193,6 +4195,25 @@ namespace charutils
         Sql_Query(SqlHandle,
             Query,
             PChar->profile.campaign_allegiance,
+            PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
+    *  Saves character's current moghancement
+    *                                                                       *
+    ************************************************************************/
+
+    void SaveCharMoghancement(CCharEntity* PChar)
+    {
+        const char* Query =
+            "UPDATE chars "
+            "SET moghancement = %u "
+            "WHERE charid = %u;";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->m_moghancementID,
             PChar->id);
     }
 

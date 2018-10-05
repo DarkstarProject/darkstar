@@ -283,6 +283,7 @@ public:
 
     bool              m_mentorUnlocked;
     uint32            m_moghouseID;
+    uint16            m_moghancementID;
 
     int8			  getShieldSize();
 
@@ -333,6 +334,10 @@ public:
     void SetDeathTimestamp(uint32 timestamp);
     int32 GetSecondsElapsedSinceDeath();
     int32 GetTimeRemainingUntilDeathHomepoint();  // Amount of time remaining before the player should be forced back to homepoint while dead
+
+    void SetMoghancement(uint16 moghancementID);
+    bool hasMoghancement(uint16 moghancementID);
+    void UpdateMoghancement();
 
     /* State callbacks */
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
