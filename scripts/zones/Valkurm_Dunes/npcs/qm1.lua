@@ -13,14 +13,14 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
+    local TOTD = VanadielTOTD();
 
-    if (player:getFreeSlotsCount() > 0 and player:hasItem(503) == false) then
+    if (player:getFreeSlotsCount() > 0 and player:hasItem(503) == false and TOTD == dsp.time.NIGHT) then
         player:addItem(503);
         player:messageSpecial(ITEM_OBTAINED,503);
     else
         player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,503);
     end
-
 end;
 
 function onEventUpdate(player,csid,option)
