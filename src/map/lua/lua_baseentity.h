@@ -223,7 +223,6 @@ public:
     int32 setModelId(lua_State* L);
     int32 costume(lua_State*);               // get or set user costume
     int32 costume2(lua_State*);              // set monstrosity costume
-    int32 canUseCostume(lua_State*);         // check to see if character can use costume, 0 if so
     int32 getAnimation(lua_State*);          // Get Entity Animation
     int32 setAnimation(lua_State*);          // Set Entity Animation
     int32 AnimationSub(lua_State*);          // get or set animationsub
@@ -579,7 +578,6 @@ public:
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
 
-    int32 canUsePet(lua_State *L);           // check to see if character can call pet, 0 if so
     int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
     int32 hasValidJugPetItem(lua_State*);
 

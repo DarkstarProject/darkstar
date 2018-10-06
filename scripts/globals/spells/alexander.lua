@@ -9,7 +9,7 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    if (not caster:canUsePet()) then
+    if (not caster:getZone():canUseMisc(dsp.zoneMisc.PET)) then
         return dsp.msg.basic.CANT_BE_USED_IN_AREA
     elseif (not caster:hasStatusEffect(dsp.effect.ASTRAL_FLOW)) then
         return 581
