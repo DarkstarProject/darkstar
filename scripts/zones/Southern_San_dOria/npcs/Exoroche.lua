@@ -36,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(542);
     elseif (player:getVar("aBoysDreamCS") == 2) then
         player:startEvent(50);
-    elseif (player:getVar("aBoysDreamCS") >= 7) then
+    elseif (player:getVar("aBoysDreamCS") == 7) then
         player:startEvent(32);
     elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(77);
@@ -60,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestfatherAndSonVar",1);
     elseif (csid == 50) then
         player:setVar("aBoysDreamCS",3);
-    elseif (csid == 32 and player:getVar("aBoysDreamCS") == 7) then
+    elseif (csid == 32) then
         player:setVar("aBoysDreamCS",8);
     elseif (csid == 77) then
         player:setVar("UnderOathCS",5)

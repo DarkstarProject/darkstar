@@ -11,26 +11,39 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
+
 require("scripts/globals/shop");
 -----------------------------------
 
-function onTrade(player,npc,trade)
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+-- Helper constants in order to keep it straight about what part
+-- of the quest we are working on
+BOYS_DREAM_WILL_BEGIN_ACCEPTING_BUG = 3
+BOYS_DREAM_HAS_TRADED_BUG = 4
+BOYS_DREAM_VISIT_ZALDON_FOR_BOOTS_TRADED_FISH = 5
 
+function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA, FATHER_AND_SON) == QUEST_COMPLETED and player:getVar("returnedAilbecheRod") ~= 1) then
         if (trade:hasItemQty(17391,1) == true and trade:getItemCount() == 1) then
             player:startEvent(61); -- Finish Quest "Father and Son" (part2) (trading fishing rod)
+            return
         end
     end
 
-    if (player:getVar("aBoysDreamCS") >= 3) then
-        if (trade:hasItemQty(17001,1) == true and trade:getItemCount() == 1 and player:hasItem(4562) == false) then
+    aBoysDreamCS = player:getVar("aBoysDreamCS");
+    
+    if (aBoysDreamCS >= BOYS_DREAM_WILL_BEGIN_ACCEPTING_BUG) then
+        -- If you have been told to visit Zaldon already (traded in the fish), your chance to get the CS is over with now
+        if (aBoysDreamCS == BOYS_DREAM_WILL_BEGIN_ACCEPTING_BUG and trade:hasItemQty(17001,1) == true and trade:getItemCount() == 1) then
             player:startEvent(15); -- During Quest "A Boy's Dream" (trading bug) madame ?
-        elseif (trade:hasItemQty(4562,1) == true and trade:getItemCount() == 1) then
+            return
+        elseif (aBoysDreamCS == BOYS_DREAM_HAS_TRADED_BUG and trade:hasItemQty(4562,1) == true and trade:getItemCount() == 1) then
             player:startEvent(47); -- During Quest "A Boy's Dream" (trading odontotyrannus)
+            return
         end
     end
+    
+    -- "Flyers for Regine" conditional script
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -87,7 +100,7 @@ function onTrigger(player,npc)
         player:startEvent(60); -- During Quest "A Boy's Dream" (after trading bug) madame ?
     elseif (aBoysDreamCS == 5) then
         player:startEvent(47); -- During Quest "A Boy's Dream" (after trading odontotyrannus)
-    elseif (aBoysDreamCS >= 6) then
+    elseif (aBoysDreamCS == 6) then
         player:startEvent(25); -- During Quest "A Boy's Dream" (after Zaldon CS)
     elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
         player:startEvent(59); -- During Quest "Under Oath" (he's going fishing in Jugner)
@@ -145,11 +158,11 @@ function onEventFinish(player,csid,option)
         player:setVar("aBoysDreamCS",2);
     elseif (csid == 41 and option == 0) then
         player:setVar("aBoysDreamCS",1);
-    elseif (csid == 15 and player:getVar("aBoysDreamCS") == 3) then
-        player:setVar("aBoysDreamCS",4);
-    elseif (csid == 47 and player:getVar("aBoysDreamCS") == 4) then
-        player:setVar("aBoysDreamCS",5);
-    elseif (csid == 25 and player:getVar("aBoysDreamCS") == 6) then
+    elseif (csid == 15) then
+        player:setVar("aBoysDreamCS",BOYS_DREAM_HAS_TRADED_BUG);
+    elseif (csid == 47) then
+        player:setVar("aBoysDreamCS",BOYS_DREAM_VISIT_ZALDON_FOR_BOOTS_TRADED_FISH);
+    elseif (csid == 25) then
         player:setVar("aBoysDreamCS",7);
     elseif (csid == 59) then
         player:setVar("UnderOathCS", 7);
