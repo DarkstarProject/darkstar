@@ -54,7 +54,7 @@ function onEventFinish( player, csid, option)
 end
 
 function onZoneWeatherChange(weather)
-    if GetMobAction(ID.mob.KREUTZET) == 0 and os.time() > GetMobByID(ID.mob.KREUTZET):getLocalVar("cooldown") and
+    if not GetMobByID(ID.mob.KREUTZET):isSpawned() and os.time() > GetMobByID(ID.mob.KREUTZET):getLocalVar("cooldown") and
         (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
             DisallowRespawn(GetMobByID(ID.mob.KREUTZET):getID(), false)
             GetMobByID(ID.mob.KREUTZET):setRespawnTime(math.random(30,150)) -- pop 30-150 sec after wind weather starts
