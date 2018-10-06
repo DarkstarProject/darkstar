@@ -14,7 +14,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (not GetMobByID(MARCHELUTE):isSpawned() and player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND) == QUEST_ACCEPTED and not player:hasItem(1096)) then
+    local TOTD = VanadielTOTD();
+
+    if (TOTD == dsp.time.NIGHT and not GetMobByID(MARCHELUTE):isSpawned() and player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND) == QUEST_ACCEPTED and not player:hasItem(1096)) then
         SpawnMob(MARCHELUTE):updateClaim(player);
     else
         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
