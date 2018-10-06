@@ -4098,6 +4098,10 @@ namespace battleutils
             {
                 charmerBSTlevel = charmerBRDlevel;
             }
+            if (charmerBSTlevel > PCharmer->GetMLevel()) // takes level cap/sync into account
+            {
+                charmerBSTlevel = PCharmer->GetMLevel();
+            }
         }
         else if (PCharmer->objtype == TYPE_MOB)
         {
@@ -5525,4 +5529,3 @@ namespace battleutils
         }
     }
 };
-
