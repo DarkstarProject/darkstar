@@ -8,7 +8,7 @@ require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    if not target:getZone():canUseMisc(dsp.zoneMisc.COSTUME) then
+    if not target:canUseMisc(dsp.zoneMisc.COSTUME) then
         return dsp.msg.basic.CANT_BE_USED_IN_AREA
     end
     return 0

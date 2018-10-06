@@ -248,6 +248,8 @@ public:
     int32 isJailed(lua_State *L);           // Is the player jailed
     int32 jail(lua_State* L);
 
+    int32 canUseMisc(lua_State*);           // Check misc flags of current zone.
+
     int32 speed(lua_State*);                // скорость передвижения сущности
 
     int32 getPlaytime(lua_State*);

@@ -158,7 +158,7 @@ function onHalloweenTrade(player,trade,npc)
                     player:addItem(itemReward);
                     player:messageSpecial(ID.text.ITEM_OBTAINED,itemReward);
 
-                elseif not target:getZone():canUseMisc(dsp.zoneMisc.COSTUME) and not AlreadyTradedChk then
+                elseif not target:canUseMisc(dsp.zoneMisc.COSTUME) and not AlreadyTradedChk then
                 -- Other neat looking halloween type costumes
                 -- two dragon skins: @420/421
                 -- @422 dancing weapon

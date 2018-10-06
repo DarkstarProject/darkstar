@@ -61,22 +61,6 @@ CLuaZone::CLuaZone(CZone* PZone)
 }
 
 /************************************************************************
-*  Function: canUseMisc()
-*  Purpose : Returns true if ZONEMISC contains flag being checked.
-*  Example : if (player:canUseMisc(MISC_MOUNT)) then -- kew
-*  Notes   : Checks if specified MISC flag is set in current zone
-************************************************************************/
-
-inline int32 CLuaZone::canUseMisc(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_pLuaZone == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    lua_pushboolean(L, m_pLuaZone->CanUseMisc((uint16)lua_tointeger(L, 1)));
-    return 1;
-}
-
-/************************************************************************
 *																		*
 *  Регистрируем активную область в зоне									*
 *  Формат входных данных: RegionID, x1, y1, z1, x2, y2, z2				*
@@ -179,7 +163,6 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
 const char CLuaZone::className[] = "CZone";
 Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
-    LUNAR_DECLARE_METHOD(CLuaZone,canUseMisc),
     LUNAR_DECLARE_METHOD(CLuaZone,registerRegion),
     LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),

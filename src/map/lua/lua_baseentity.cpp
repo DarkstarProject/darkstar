@@ -4732,6 +4732,23 @@ inline int32 CLuaBaseEntity::jail(lua_State* L)
 }
 
 /************************************************************************
+*  Function: canUseMisc()
+*  Purpose : Returns true if ZONEMISC contains flag being checked.
+*  Example : if (player:canUseMisc(MISC_MOUNT)) then -- kew
+*  Notes   : Checks if specified MISC flag is set in current zone
+************************************************************************/
+
+inline int32 CLuaBaseEntity::canUseMisc(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    lua_pushboolean(L, m_PBaseEntity->loc.zone->CanUseMisc((uint16)lua_tointeger(L, 1)));
+    return 1;
+}
+
+/************************************************************************
 *  Function: speed()
 *  Purpose : Sets a player's speed or returns their current speed
 *  Example : player:speed(40) -- Sets; player:speed() -- returns value
@@ -14016,6 +14033,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJailed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,jail),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseMisc),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
 
