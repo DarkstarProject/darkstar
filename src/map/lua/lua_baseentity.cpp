@@ -4734,7 +4734,7 @@ inline int32 CLuaBaseEntity::jail(lua_State* L)
 /************************************************************************
 *  Function: canUseMisc()
 *  Purpose : Returns true if ZONEMISC contains flag being checked.
-*  Example : if (player:canUseMisc(MISC_MOUNT)) then -- kew
+*  Example : if (player:canUseMisc(dsp.zoneMisc.MISC_MOUNT)) then -- kew
 *  Notes   : Checks if specified MISC flag is set in current zone
 ************************************************************************/
 
