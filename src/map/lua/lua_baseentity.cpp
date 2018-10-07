@@ -12423,6 +12423,27 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 
     return 0;
 }
+/************************************************************************
+*  Function: setMobLevel()
+*  Purpose : Updates the level of the monsters level
+*  Example : mob:setMobLevel(125)
+*  Notes   : does not refill mobs hp/mp
+************************************************************************/
+
+inline int32 CLuaBaseEntity::setMobLevel(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    CMobEntity * PMob = (CMobEntity*)m_PBaseEntity;
+    PMob->SetMLevel((uint8)lua_tointeger(L, 1));
+    mobutils::CalculateStats(PMob);
+    mobutils::GetAvailableSpells(PMob);
+
+    return 0;
+}
 
 /************************************************************************
 *  Function: getSystem()
@@ -14404,6 +14425,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
 
     // Mob Entity-Specific
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobLevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getSystem),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getFamily),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isMobType),

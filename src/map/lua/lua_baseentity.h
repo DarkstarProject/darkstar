@@ -614,6 +614,7 @@ public:
     int32 removeAllManeuvers(lua_State*);
 
     // Mob Entity-Specific
+    int32 setMobLevel(lua_State*);
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);
     int32 isMobType(lua_State*);            // True if mob is of type passed to function
