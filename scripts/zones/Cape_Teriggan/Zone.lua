@@ -2,7 +2,7 @@
 --
 -- Zone: Cape_Teriggan (113)
 --
------------------------------------
+---------            --------------------------
 local ID = require("scripts/zones/Cape_Teriggan/IDs")
 -----------------------------------
 require("scripts/globals/icanheararainbow")
@@ -56,9 +56,11 @@ end
 
 function onZoneWeatherChange(weather)
     local Kreutzet = GetMobByID(ID.mob.KREUTZET)
-    if not Kreutzet:isSpawned() and os.time() > Kreutzet:getLocalVar("cooldown") and
-        (weather == dsp.weather.WIND or weather == dsp.weather.GALES) then
-            DisallowRespawn(Kreutzet:getID(), false)
-            Kreutzet:setRespawnTime(math.random(30,150)) -- pop 30-150 sec after wind weather starts
+    if
+        not Kreutzet:isSpawned() and os.time() > Kreutzet:getLocalVar("cooldown")
+        and (weather == dsp.weather.WIND or weather == dsp.weather.GALES)
+    then
+        DisallowRespawn(Kreutzet:getID(), false)
+        Kreutzet:setRespawnTime(math.random(30,150)) -- pop 30-150 sec after wind weather starts
     end
 end
