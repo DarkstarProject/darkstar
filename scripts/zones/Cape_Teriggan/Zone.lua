@@ -14,7 +14,7 @@ require("scripts/globals/zone")
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.KREUTZET)
     GetMobByID(ID.mob.KREUTZET):setRespawnTime(math.random(32400,43200)) -- 9 to 12 hours
-    GetMobByID(ID.mob.KREUTZET):setLocalVar("cooldown",os.time() + mob:getRespawnTime()/1000)
+    GetMobByID(ID.mob.KREUTZET):setLocalVar("cooldown",os.time() + GetMobByID(ID.mob.KREUTZET):getRespawnTime()/1000)
     DisallowRespawn(GetMobByID(ID.mob.KREUTZET):getID(), true) -- prevents accidental 'pop' during no wind weather and immediate despawn
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
