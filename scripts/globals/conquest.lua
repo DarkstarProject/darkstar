@@ -581,6 +581,10 @@ local function getArg1(player, guardNation, guardType)
         output = output + 256 * signet
     end
 
+    if guardType >= dsp.conquest.guard.OUTPOST then
+        output = output - 1
+    end
+
     if output >= 1792 and guardType >= dsp.conquest.guard.OUTPOST then
         output = 1808
     end
