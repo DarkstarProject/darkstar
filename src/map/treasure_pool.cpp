@@ -224,7 +224,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 
     for (uint32 i = 0; i < members.size(); ++i)
     {
-        members[i]->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[FreeSlotID], PEntity));
+        members[i]->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[FreeSlotID], PEntity, false));
     }
     if (m_TreasurePoolType == TREASUREPOOL_SOLO)
     {
@@ -248,7 +248,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
     {
         for (uint8 i = 0; i < TREASUREPOOL_SIZE; ++i)
         {
-            PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], nullptr));
+            PChar->pushPacket(new CTreasureFindItemPacket(&m_PoolItems[i], nullptr, true));
         }
     }
 }
@@ -272,10 +272,22 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
     m_PoolItems[SlotID].Lotters.push_back(li);
 
+    // Find the highest lotter
+    CCharEntity* highestLotter = nullptr;
+    uint16 highestLot = 0;
+    for (const LotInfo& lotInfo : m_PoolItems[SlotID].Lotters)
+    {
+        if (lotInfo.lot > highestLot)
+        {
+            highestLotter = lotInfo.member;
+            highestLot = lotInfo.lot;
+        }
+    }
+
     //Player lots Item for XXX message
     for (uint32 i = 0; i < members.size(); ++i)
     {
-        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,Lot));
+        members[i]->pushPacket(new CTreasureLotItemPacket(highestLotter, highestLot, PChar, SlotID, Lot));
     }
 
     //if all lotters have lotted, evaluate immediately.
@@ -310,11 +322,23 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
         m_PoolItems[SlotID].Lotters.push_back(li);
     }
 
+    // Find the highest lotter
+    CCharEntity* highestLotter = nullptr;
+    uint16 highestLot = 0;
+    for (const LotInfo& lotInfo : m_PoolItems[SlotID].Lotters)
+    {
+        if (lotInfo.lot > highestLot)
+        {
+            highestLotter = lotInfo.member;
+            highestLot = lotInfo.lot;
+        }
+    }
+
     uint16 PassedLot = 65535; // passed mask is FF FF
     //Player lots Item for XXX message
     for (uint32 i = 0; i < members.size(); ++i)
     {
-        members[i]->pushPacket(new CTreasureLotItemPacket(PChar,SlotID,PassedLot));
+        members[i]->pushPacket(new CTreasureLotItemPacket(highestLotter, highestLot, PChar, SlotID, PassedLot));
     }
 
     //if all lotters have lotted, evaluate immediately.
