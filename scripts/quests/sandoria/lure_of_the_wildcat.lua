@@ -9,7 +9,7 @@ local id = dsp.quests.quest_ids.sandoria.LURE_OF_THE_WILDCAT
 this_quest.id = id
 this_quest.name = name
 
-this_quest.repeatable = false,
+this_quest.repeatable = false
 this_quest.vars =
 {
     main = "[Q]".."["..logid.."]".."["..id.."]",
