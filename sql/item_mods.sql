@@ -25407,19 +25407,12 @@ INSERT INTO `item_mods` VALUES (21177,12,16);
 INSERT INTO `item_mods` VALUES (21177,13,12);
 INSERT INTO `item_mods` VALUES (21177,28,18);
 INSERT INTO `item_mods` VALUES (21177,311,220);
-INSERT INTO `item_mods` VALUES (21181,5,50);
-INSERT INTO `item_mods` VALUES (21181,12,20);
-INSERT INTO `item_mods` VALUES (21181,13,12);
-INSERT INTO `item_mods` VALUES (21181,23,10);
-INSERT INTO `item_mods` VALUES (21181,24,10);
-INSERT INTO `item_mods` VALUES (21181,26,15);
-INSERT INTO `item_mods` VALUES (21181,28,28);
-INSERT INTO `item_mods` VALUES (21181,288,3);
-INSERT INTO `item_mods` VALUES (21181,296,5);
-INSERT INTO `item_mods` VALUES (21181,302,3);
-INSERT INTO `item_mods` VALUES (21181,311,220);
-INSERT INTO `item_mods` VALUES (21181,369,3);
-INSERT INTO `item_mods` VALUES (21181,370,3);
+INSERT INTO `item_mods` VALUES (21181,5,50);      -- Venabulum (iLvl 119): MP +50
+INSERT INTO `item_mods` VALUES (21181,12,20);     -- INT +20
+INSERT INTO `item_mods` VALUES (21181,13,12);     -- MND +12
+INSERT INTO `item_mods` VALUES (21181,28,28);     -- "Magic Atk. Bonus" +28
+INSERT INTO `item_mods` VALUES (21181,296,5);     -- Conserve MP +5
+INSERT INTO `item_mods` VALUES (21181,311,217);   -- Magic Damage +217
 INSERT INTO `item_mods` VALUES (21182,12,12);     -- Eminent Staff (iLvl 117): INT +12
 INSERT INTO `item_mods` VALUES (21182,13,12);     -- MND +12
 INSERT INTO `item_mods` VALUES (21182,28,25);     -- Magic Atk. Bonus +25
