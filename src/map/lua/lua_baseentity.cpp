@@ -4356,27 +4356,6 @@ inline int32 CLuaBaseEntity::costume2(lua_State *L)
 }
 
 /************************************************************************
-*  Function: canUseCostume()
-*  Purpose : Returns 0 if a player can use costume in that area
-*  Example : if (player:canUseCostume()) then
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::canUseCostume(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
-
-    if (((CCharEntity*)m_PBaseEntity)->m_Costum != 0)
-    {
-        lua_pushinteger(L, 445);
-        return 1;
-    }
-    lua_pushinteger(L, (m_PBaseEntity->loc.zone->CanUseMisc(MISC_COSTUME) ? 0 : MSGBASIC_CANT_BE_USED_IN_AREA)); //316
-    return 1;
-}
-
-/************************************************************************
 *  Function: getAnimation()
 *  Purpose : Returns the assigned default animation of an entity
 *  Example : GetNPCByID(TrapDoor):getAnimation()
@@ -4750,6 +4729,23 @@ inline int32 CLuaBaseEntity::jail(lua_State* L)
 
     jailutils::Add(static_cast<CCharEntity*>(m_PBaseEntity));
     return 0;
+}
+
+/************************************************************************
+*  Function: canUseMisc()
+*  Purpose : Returns true if ZONEMISC contains flag being checked.
+*  Example : if (player:canUseMisc(dsp.zoneMisc.MISC_MOUNT)) then -- kew
+*  Notes   : Checks if specified MISC flag is set in current zone
+************************************************************************/
+
+inline int32 CLuaBaseEntity::canUseMisc(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->loc.zone == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    lua_pushboolean(L, m_PBaseEntity->loc.zone->CanUseMisc((uint16)lua_tointeger(L, 1)));
+    return 1;
 }
 
 /************************************************************************
@@ -11842,30 +11838,6 @@ inline int32 CLuaBaseEntity::despawnPet(lua_State *L)
 }
 
 /************************************************************************
-*  Function: canUsePet()
-*  Purpose : Returns true if an Entity can use a pet in the current zone
-*  Example : if (target:canUsePet()) then
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::canUsePet(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-
-    if (m_PBaseEntity->objtype == TYPE_PC)
-    {
-        auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-
-        lua_pushboolean(L, (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID));
-    }
-    else
-    {
-        lua_pushboolean(L, true);
-    }
-    return 1;
-}
-
-/************************************************************************
 *  Function: isJugPet()
 *  Purpose : Returns true if the entity crawled out of a jug after birth
 *  Example : if (pet:isJugPet()) then
@@ -14036,7 +14008,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setModelId),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,costume2),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseCostume),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getAnimation),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setAnimation),
@@ -14062,6 +14033,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJailed),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,jail),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUseMisc),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,speed),
 
@@ -14396,7 +14369,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawnPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,despawnPet),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,canUsePet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isJugPet),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasValidJugPetItem),
 
