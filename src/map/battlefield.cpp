@@ -244,19 +244,27 @@ void CBattlefield::SetLastTimeUpdate(duration time)
 
 void CBattlefield::ApplyLevelRestrictions(CCharEntity* PChar) const
 {
-    //adjust player's level to the appropriate cap and remove buffs
-
+    // Adjust player's level to the appropriate cap and remove buffs
     auto cap = GetLevelCap();
-    cap += map_config.Battle_cap_tweak;
 
-    if (cap)
+    if (cap && cap > 0)
     {
+        cap += map_config.Battle_cap_tweak; // We wait till here to do this because we don't want to modify uncapped battles.
+
+        // Check if it's a mission and if config setting applies.
+        if (map_config.lv_cap_mission_bcnm == 0 && m_isMission == 1)
+        {
+            cap = PChar->GetMLevel(); // Cap to current level to strip buffs - this is the retail diff between uncapped and capped to max lv.
+        }
+
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DEATH, true);
         PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_RESTRICTION, cap, 0, 0));
-        if (!(m_Rules & BCRULES::RULES_ALLOW_SUBJOBS))
-        {
-            PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION, EFFECT_SJ_RESTRICTION, 0, 0, 0));
-        }
+    }
+
+    // Check if we should remove SJ, whether or not there is a lv cap.
+    if (!(m_Rules & BCRULES::RULES_ALLOW_SUBJOBS))
+    {
+        PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_SJ_RESTRICTION, EFFECT_SJ_RESTRICTION, 0, 0, 0));
     }
 }
 
