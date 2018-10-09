@@ -1290,10 +1290,11 @@ dsp.regime.checkRegime = function(player, mob, regimeId, index, regimeType)
 
         -- repeat clears bonus
         if player:hasStatusEffect(dsp.effect.PROWESS) then
-            -- increase reward based on number of clears. hard caps at 2x.
+            -- increase reward based on number of clears. hard caps at 2x base reward.
             local govClears = player:getStatusEffect(dsp.effect.PROWESS):getPower()
+            local baseReward = reward
             reward = reward * (100 + (govClears * 4)) / 100
-            reward = utils.clamp(reward, 0, reward * 2)
+            reward = utils.clamp(reward, 0, baseReward * 2)
 
             -- increment clears
             player:delStatusEffectSilent(dsp.effect.PROWESS)
