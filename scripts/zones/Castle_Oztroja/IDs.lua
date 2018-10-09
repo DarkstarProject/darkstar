@@ -43,7 +43,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
     },
     mob =
     {
-        MEE_DEGGI_THE_PUNISHER_PH  = 
+        MEE_DEGGI_THE_PUNISHER_PH  =
         {
             [17395798] = 17395800, -- -207.840 -0.498 109.939
             [17395766] = 17395800, -- -178.119 -0.644 153.039
@@ -54,12 +54,12 @@ zones[dsp.zone.CASTLE_OZTROJA] =
             [17395761] = 17395800, -- -207.370 -0.056 106.537
             [17395775] = 17395800, -- -235.639 -0.063 103.280
         },
-        MOO_OUZI_THE_SWIFTBLADE_PH = 
+        MOO_OUZI_THE_SWIFTBLADE_PH =
         {
             [17395809] = 17395816, -- -18.415 -0.075 -92.889
             [17395813] = 17395816, -- -38.689 0.191 -101.068
         },
-        QUU_DOMI_THE_GALLANT_PH    = 
+        QUU_DOMI_THE_GALLANT_PH    =
         {
             [17395844] = 17395870, -- 103.948 -1.250 -189.869
             [17395845] = 17395870, -- 67.103 -0.079 -176.981
@@ -69,7 +69,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
             [17395867] = 17395870, -- 59.000 -4.000 -131.000
             [17395829] = 17395870, -- 33.832 -0.068 -176.627
         },
-        YAA_HAQA_THE_PROFANE_PH    = 
+        YAA_HAQA_THE_PROFANE_PH    =
         {
             [17395950] = 17395954, -- -24.719 -16.250 -139.678
             [17395951] = 17395954, -- -22.395 -16.250 -139.341
@@ -85,6 +85,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
         FIRST_PASSWORD_STATUE   = 17396168,
         SECOND_PASSWORD_STATUE  = 17396173,
         THIRD_PASSWORD_STATUE   = 17396178,
+        BRASS_DOOR_FLOOR_4_H7   = 17396185,
         TRAP_DOOR_FLOOR_4       = 17396191,
         FINAL_PASSWORD_STATUE   = 17396192,
         HINT_HANDLE_OFFSET      = 17396196,
