@@ -12,8 +12,9 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
     for member = mobid-7, mobid do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 end;

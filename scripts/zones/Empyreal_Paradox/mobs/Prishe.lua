@@ -20,7 +20,7 @@ function onMobRoam(mob)
     local ready = mob:getLocalVar("ready")
 
     if (ready == 0 and wait > 240) then
-        if (GetMobAction(promathia) ~= dsp.act.NONE) then
+        if (GetMobByID(promathia):getCurrentAction() ~= dsp.act.NONE) then
             mob:entityAnimationPacket("prov")
             mob:messageText(mob, ID.text.PRISHE_TEXT)
         else
