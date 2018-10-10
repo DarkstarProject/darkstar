@@ -3,15 +3,13 @@
 --  NPC: _47o
 -- !pos -155.228 21.500 -140.000 151
 -----------------------------------
-require("scripts/globals/settings");
------------------------------------
 
 function onTrigger(player,npc)
-    npc:openDoor(6);
-end;
+    npc:openDoor(6)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
