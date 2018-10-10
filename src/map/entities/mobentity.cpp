@@ -790,7 +790,11 @@ void CMobEntity::DistributeRewards()
 
     if (PChar != nullptr && PChar->id == m_OwnerID.id)
     {
+        PChar->setWeaponSkillKill(false);
+        StatusEffectContainer->KillAllStatusEffect();
 
+        // NOTE: this is called for all alliance / party members!
+        luautils::OnMobDeath(this, PChar);
 
         if (!CalledForHelp())
         {
@@ -811,12 +815,6 @@ void CMobEntity::DistributeRewards()
             DropItems(PChar);
         }
 
-        PChar->setWeaponSkillKill(false);
-        StatusEffectContainer->KillAllStatusEffect();
-
-        // NOTE: this is called for all alliance / party members!
-        luautils::OnMobDeath(this, PChar);
-
     }
     else
     {
@@ -824,9 +822,11 @@ void CMobEntity::DistributeRewards()
     }
 }
 
-void CMobEntity::DropItems(CCharEntity* PChar) {
+void CMobEntity::DropItems(CCharEntity* PChar)
+{
     //Adds an item to the treasure pool and returns true if the pool has been filled
-    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount) {
+    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount)
+    {
         PChar->PTreasurePool->AddItem(ItemID, this);
         return dropCount >= TREASUREPOOL_SIZE;
     };
