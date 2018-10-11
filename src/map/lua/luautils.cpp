@@ -2301,7 +2301,7 @@ namespace luautils
         lua_getglobal(LuaHandle, "mixins");
         if (lua_isnil(LuaHandle, -1))
         {
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 3);
             return -1;
         }
         //get the parameter "mixinOptions" (optional)
