@@ -12425,9 +12425,9 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 }
 /************************************************************************
 *  Function: setMobLevel()
-*  Purpose : Updates the level of the monsters level
+*  Purpose : Updates the monsters level and recalculates stats
 *  Example : mob:setMobLevel(125)
-*  Notes   : does not refill mobs hp/mp
+*  Notes   : CalculateStats will refill mobs hp/mp as well
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::setMobLevel(lua_State *L)
