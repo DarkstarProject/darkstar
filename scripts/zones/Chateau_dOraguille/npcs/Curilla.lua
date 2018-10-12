@@ -5,11 +5,12 @@
 --                            Lure of the Wildcat (San d'Oria), Old Wounds
 -- !pos 27 0.1 0.1 233
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/keyitems")
-require("scripts/globals/quests")
-require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Chateau_dOraguille/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.savage_blade
@@ -38,7 +39,7 @@ function onTrigger(player,npc)
         player:startEvent(562)
     elseif (theGeneralSecret == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
         player:startEvent(55) -- Start Quest "The General's Secret"
-    elseif (mJob == 5 and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
+    elseif (mJob == dsp.job.RDM and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
         player:startEvent(94) -- Start Quest "Enveloped in Darkness"
     elseif (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH) and player:hasKeyItem(dsp.ki.OLD_BOOTS) == false) then
         player:startEvent(93)
@@ -46,7 +47,7 @@ function onTrigger(player,npc)
         player:startEvent(101)
     elseif (player:getVar("needs_crawler_blood") == 1) then
         player:startEvent(117)
-    elseif (mJob == 5 and mLvL >= AF2_QUEST_LEVEL and envelopedInDarkness == QUEST_COMPLETED and peaceForTheSpirit == QUEST_AVAILABLE) then
+    elseif (mJob == dsp.job.RDM and mLvL >= AF2_QUEST_LEVEL and envelopedInDarkness == QUEST_COMPLETED and peaceForTheSpirit == QUEST_AVAILABLE) then
         player:startEvent(109) -- Start Quest "Peace for the Spirit"
     elseif (peaceForTheSpirit == QUEST_ACCEPTED) then
         player:startEvent(108) -- Standard dialog during Peace of the spirit

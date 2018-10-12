@@ -4,11 +4,12 @@
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- !pos 0.1 30 21 242
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/Heavens_Tower/IDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,17 +39,17 @@ function onTrigger(player,npc)
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
 
-    if (theThreeMagi == QUEST_AVAILABLE and mJob == 4 and mLvl >= AF1_QUEST_LEVEL) then
+    if (theThreeMagi == QUEST_AVAILABLE and mJob == dsp.job.BLM and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(260,0,613,0,0,0,1104); -- Start Quest "The Three Magi" --- NOTE: 5th parameter is "Meteorites" but he doesn't exist ---
     elseif (theThreeMagi == QUEST_ACCEPTED) then
         player:startEvent(261,0,0,0,0,0,1104); -- During Quest "The Three Magi"
-    elseif (theThreeMagi == QUEST_COMPLETED and recollections == QUEST_AVAILABLE and (mJob == 4 and mLvl < AF2_QUEST_LEVEL or mJob ~= 4)) then
+    elseif (theThreeMagi == QUEST_COMPLETED and recollections == QUEST_AVAILABLE and (mJob == dsp.job.BLM and mLvl < AF2_QUEST_LEVEL or mJob ~= dsp.job.BLM)) then
         player:startEvent(268); -- New standard dialog after "The Three Magi"
-    elseif (theThreeMagi == QUEST_COMPLETED and mJob == 4 and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
+    elseif (theThreeMagi == QUEST_COMPLETED and mJob == dsp.job.BLM and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
         player:startEvent(270,0,1105); -- Start Quest "Recollections"
     elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.FOE_FINDER_MK_I)) then
         player:startEvent(275); -- Finish Quest "Recollections"
-    elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
+    elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == dsp.job.BLM and mLvl >= 50 and player:needToZone() == false) then
             player:startEvent(276,0,829); -- Start Quest "The Root of The problem"
     elseif (rootProblem == QUEST_ACCEPTED) then
         if (player:getVar("rootProblem") == 1) then
