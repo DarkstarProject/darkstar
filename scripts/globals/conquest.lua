@@ -159,6 +159,7 @@ local function areSuppliesRotten(player, npc, guardType)
     local fresh   = player:getVar("supplyQuest_fresh")
     local region  = player:getVar("supplyQuest_region")
     local rotten  = false
+    local text    = zones[player:getZoneID()].text
 
     if region > 0 and fresh <= os.time() then
         rotten = true
@@ -166,13 +167,14 @@ local function areSuppliesRotten(player, npc, guardType)
 
     if rotten then
         if guardType <= dsp.conquest.guard.FOREIGN then
-            player:showText(npc, CONQUEST + 40) -- "We will dispose of those unusable supplies."
+            player:showText(npc, text.CONQUEST + 40) -- "We will dispose of those unusable supplies."
         else
-            player:showText(npc, CONQUEST - 1) -- "Hmm... These supplies you have brought us are too old to be of any use."
+            player:showText(npc, text.CONQUEST - 1) -- "Hmm... These supplies you have brought us are too old to be of any use."
         end
         local ki = outposts[region].ki
+
         player:delKeyItem(ki)
-        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_LOST, ki)
+        player:messageSpecial(text.KEYITEM_LOST, ki)
         player:setVar("supplyQuest_started", 0)
         player:setVar("supplyQuest_region", 0)
         player:setVar("supplyQuest_fresh", 0)
@@ -917,6 +919,7 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
     if player:getNation() == guardNation or guardNation == dsp.nation.OTHER then
         local item = trade:getItemId()
         local tradeConfirmed = false
+        local mOffset = zones[player:getZoneID()].text.CONQUEST
 
         -- DONATE CRYSTALS FOR RANK OR CONQUEST POINTS
         if guardType <= dsp.conquest.guard.FOREIGN and crystals[item] then
@@ -929,10 +932,10 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
 
                 if count > 0 then
                     if pRank == 1 then
-                        player:showText(npc, CONQUEST - 7) -- "I cannot accept crystals from someone whose rank is still 1."
+                        player:showText(npc, mOffset - 7) -- "I cannot accept crystals from someone whose rank is still 1."
                         break
                     elseif pRankPoints == 4000 then
-                        player:showText(npc, CONQUEST + 43) -- "You do not need to donate any more crystals at your current rank."
+                        player:showText(npc, mOffset + 43) -- "You do not need to donate any more crystals at your current rank."
                         break
                     else
                         trade:confirmItem(crystalId, count)
@@ -945,10 +948,10 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
                 if pRankPoints + addPoints >= 4000 then
                     player:setRankPoints(4000)
                     player:addCP(pRankPoints + addPoints - 4000)
-                    player:showText(npc, CONQUEST + 44) -- "Your rank points are full. We've added the excess to your conquest points."
+                    player:showText(npc, mOffset + 44) -- "Your rank points are full. We've added the excess to your conquest points."
                 else
                     player:addRankPoints(addPoints)
-                    player:showText(npc, CONQUEST + 45) -- "We've awarded you rank points for the crystals you've donated."
+                    player:showText(npc, mOffset + 45) -- "We've awarded you rank points for the crystals you've donated."
                 end
                 player:confirmTrade()
                 tradeConfirmed = true
@@ -965,14 +968,14 @@ dsp.conquest.overseerOnTrade = function(player, npc, trade, guardNation, guardTy
                     player:confirmTrade()
                     player:addItem(item)
                     player:setVar("CONQUEST_RING_RECHARGE", getConquestTally())
-                    player:showText(npc, CONQUEST + 58, item, ring.cp, ring.charges) -- "Your ring is now fully recharged."
+                    player:showText(npc, mOffset + 58, item, ring.cp, ring.charges) -- "Your ring is now fully recharged."
                 else
-                    player:showText(npc, CONQUEST + 55, item, ring.cp) -- "You do not have the required conquest points to recharge."
+                    player:showText(npc, mOffset + 55, item, ring.cp) -- "You do not have the required conquest points to recharge."
                 end
              else
                 -- TODO: Verify that message is retail correct.
                 -- This gives feedback on a failure at least, and is grouped with the recharge messages.  Confident enough for a commit.
-                player:showText(npc, CONQUEST + 56, item) -- "Please be aware that you can only purchase or recharge <item> once during the period between each conquest results tally.
+                player:showText(npc, mOffset + 56, item) -- "Please be aware that you can only purchase or recharge <item> once during the period between each conquest results tally.
             end
         end
     end
