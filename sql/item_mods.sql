@@ -41000,20 +41000,21 @@ INSERT INTO `item_mods` VALUES (27766,31,46);
 INSERT INTO `item_mods` VALUES (27766,68,34);
 INSERT INTO `item_mods` VALUES (27766,165,3);
 INSERT INTO `item_mods` VALUES (27766,384,700);
-INSERT INTO `item_mods` VALUES (27767,1,84);
-INSERT INTO `item_mods` VALUES (27767,2,28);
-INSERT INTO `item_mods` VALUES (27767,5,30);
-INSERT INTO `item_mods` VALUES (27767,8,20);
-INSERT INTO `item_mods` VALUES (27767,9,20);
-INSERT INTO `item_mods` VALUES (27767,10,20);
-INSERT INTO `item_mods` VALUES (27767,11,20);
-INSERT INTO `item_mods` VALUES (27767,12,24);
-INSERT INTO `item_mods` VALUES (27767,13,24);
-INSERT INTO `item_mods` VALUES (27767,14,24);
-INSERT INTO `item_mods` VALUES (27767,28,8);
-INSERT INTO `item_mods` VALUES (27767,30,15);
-INSERT INTO `item_mods` VALUES (27767,31,65);
-INSERT INTO `item_mods` VALUES (27767,71,4);
+INSERT INTO `item_mods` VALUES (27767,1,84);    -- Buremte Hat: DEF:84
+INSERT INTO `item_mods` VALUES (27767,2,28);    -- HP+28
+INSERT INTO `item_mods` VALUES (27767,5,30);    -- MP+30
+INSERT INTO `item_mods` VALUES (27767,8,20);    -- STR+20
+INSERT INTO `item_mods` VALUES (27767,9,20);    -- DEX+20
+INSERT INTO `item_mods` VALUES (27767,10,20);   -- VIT+20
+INSERT INTO `item_mods` VALUES (27767,11,20);   -- AGI+20
+INSERT INTO `item_mods` VALUES (27767,12,24);   -- INT+24
+INSERT INTO `item_mods` VALUES (27767,13,24);   -- MND+24
+INSERT INTO `item_mods` VALUES (27767,14,24);   -- CHR+24
+INSERT INTO `item_mods` VALUES (27767,29,4);    -- "Magic Def. Bonus"+4
+INSERT INTO `item_mods` VALUES (27767,30,15);   -- Magic Accuracy+15
+INSERT INTO `item_mods` VALUES (27767,31,65);   -- Magic Evasion+65
+INSERT INTO `item_mods` VALUES (27767,68,28);   -- Evasion+28
+INSERT INTO `item_mods` VALUES (27767,311,35);  -- Magic Damage+35
 INSERT INTO `item_mods` VALUES (27768,1,94);      -- Cizin Helm: DEF 94
 INSERT INTO `item_mods` VALUES (27768,2,28);      -- HP +28
 INSERT INTO `item_mods` VALUES (27768,5,21);      -- MP +21
