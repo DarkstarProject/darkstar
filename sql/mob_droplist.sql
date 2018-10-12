@@ -32937,20 +32937,22 @@ INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
 INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,15852,55); -- 5.5% Nasatya's Ring off Boll Weevil
 
 -- Drachenlizard (http://www.ffxidb.com/zones/88/drachenlizard)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,852,40); -- Lizard Skin (4%)
-INSERT INTO `mob_droplist` VALUES (4597,2,0,1000,926,0); -- Lizard Tail (Steal)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,926,200); -- Lizard Tail (20%)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,3552,70); -- Squamous Hide (7%)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,4362,60); -- Lizard Egg (6%)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
-INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,19232,148);
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,852,40); -- Lizard Skin (4%)
+INSERT INTO `mob_droplist` VALUES (4598,2,0,1000,926,0); -- Lizard Tail (Steal)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,926,200); -- Lizard Tail (20%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3552,70); -- Squamous Hide (7%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,4362,60); -- Lizard Egg (6%)
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4600,0,0,1000,19232,148);
 
 -- Ankabut
-INSERT INTO `mob_droplist` VALUES (4600,0,0,1000,19277,133); -- 13.3% Tsugumi
+INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,19277,133); -- 13.3% Tsugumi
 
 -- Kegpaunch Doshgnosh
-INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,11529,108); -- 10.8% Frugal Cape
+INSERT INTO `mob_droplist` VALUES (4602,0,0,1000,11529,108); -- 10.8% Frugal Cape
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2820,170); -- Aptant: Geoc off Drumskull Zogdregg
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2822,230); -- Aptant: Secan
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
