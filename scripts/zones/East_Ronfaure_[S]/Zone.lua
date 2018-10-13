@@ -5,9 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/East_Ronfaure_[S]/IDs")
 require("scripts/globals/missions")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

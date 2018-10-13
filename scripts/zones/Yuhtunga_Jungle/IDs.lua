@@ -52,6 +52,21 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         BLUE_RAFFLESIA_OFFSET     = 17281584,
         OVERSEER_BASE             = 17281598,
         YUHTUNGA_CERMET_HEADSTONE = 17281623,
+        HARVESTING =
+        {
+            17281634,
+            17281635,
+            17281636,
+        },
+        LOGGING =
+        {
+            17281628,
+            17281629,
+            17281630,
+            17281631,
+            17281632,
+            17281633,
+        },
     },
 }
 

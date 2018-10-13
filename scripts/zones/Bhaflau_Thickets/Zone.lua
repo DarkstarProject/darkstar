@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 require("scripts/globals/chocobo_digging");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -52,6 +53,8 @@ end;
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.HARVESTMAN);
     GetMobByID(ID.mob.HARVESTMAN):setRespawnTime(math.random(900, 10800));
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)

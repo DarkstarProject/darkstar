@@ -32,6 +32,15 @@ zones[dsp.zone.JUGNER_FOREST] =
     npc =
     {
         OVERSEER_BASE = 17203846,
+        LOGGING =
+        {
+            17203862,
+            17203863,
+            17203864,
+            17203865,
+            17203866,
+            17203867,
+        },
     },
 }
 

@@ -5,10 +5,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Newton_Movalpolos/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateTreasureSpawnPoint(ID.mob.NEWTON_TREASURE_COFFER);
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

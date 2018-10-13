@@ -50,6 +50,15 @@ zones[dsp.zone.PALBOROUGH_MINES] =
     npc =
     {
         PALBOROUGH_TREASURE_CHEST = 17363371,
+        MINING =
+        {
+            17363365,
+            17363366,
+            17363367,
+            17363368,
+            17363369,
+            17363370,
+        },
     },
 }
 

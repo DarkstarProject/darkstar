@@ -6,9 +6,11 @@
 local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

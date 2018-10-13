@@ -6,9 +6,11 @@
 local ID = require("scripts/zones/Grauberg_[S]/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/status");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)

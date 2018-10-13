@@ -2,20 +2,19 @@
 -- Area: Lufaise Meadows
 --  NPC: Logging Point
 -----------------------------------
-require("scripts/globals/logging");
-local ID = require("scripts/zones/Lufaise_Meadows/IDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,112);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.LOGGING, 112)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.LOGGING_IS_POSSIBLE_HERE,1021);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.LOGGING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

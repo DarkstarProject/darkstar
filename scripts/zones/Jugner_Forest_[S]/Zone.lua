@@ -5,9 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Jugner_Forest_[S]/IDs")
 require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

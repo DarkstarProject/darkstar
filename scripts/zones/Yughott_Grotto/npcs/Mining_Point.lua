@@ -2,20 +2,19 @@
 -- Area: Yughott Grotto
 --  NPC: Mining Point
 -----------------------------------
-require("scripts/globals/mining");
-local ID = require("scripts/zones/Yughott_Grotto/IDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,100);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 100)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE,605);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

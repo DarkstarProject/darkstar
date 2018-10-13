@@ -3,8 +3,9 @@
 -- Zone: Korroloka_Tunnel (173)
 --
 -----------------------------------
-local ID = require("scripts/zones/Korroloka_Tunnel/IDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Korroloka_Tunnel/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
@@ -12,6 +13,8 @@ function onInitialize(zone)
     zone:registerRegion(1,  -87, 4, -105, 0, 0, 0); -- Left pool
     zone:registerRegion(2, -101, 7, -114, 0, 0, 0); -- Center Pool
     zone:registerRegion(3, -112, 3, -103, 0, 0, 0); -- Right Pool
+
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
 end;
 
 function onZoneIn(player,prevZone)

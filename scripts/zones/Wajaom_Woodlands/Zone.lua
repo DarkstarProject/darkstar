@@ -9,6 +9,7 @@ require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
+require("scripts/globals/helm")
 -----------------------------------
 
 local itemMap =
@@ -53,6 +54,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn(player,prevZone)

@@ -66,6 +66,15 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
     {
         W_SARUTA_SIGNPOST_OFFSET = 17248790,
         OVERSEER_BASE            = 17248823,
+        HARVESTING =
+        {
+            17248839,
+            17248840,
+            17248841,
+            17248842,
+            17248843,
+            17248844,
+        },
     },
 }
 

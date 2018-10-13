@@ -3,12 +3,13 @@
 -- Zone: Tahrongi_Canyon (117)
 --
 -----------------------------------
-local ID = require("scripts/zones/Tahrongi_Canyon/IDs");
-require("scripts/globals/icanheararainbow");
-require("scripts/globals/chocobo_digging");
-require("scripts/globals/conquest");
-require("scripts/globals/weather");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
+require("scripts/globals/icanheararainbow")
+require("scripts/globals/chocobo_digging")
+require("scripts/globals/conquest")
+require("scripts/globals/weather")
+require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 local itemMap =
@@ -53,6 +54,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
 end;
 
 function onZoneIn( player, prevZone)

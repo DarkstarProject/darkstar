@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -52,6 +53,9 @@ function onInitialize(zone)
     GetMobByID(ID.mob.ROSE_GARDEN):setLocalVar("1",os.time() + math.random((36000), (37800)));
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)

@@ -5,10 +5,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Gusgen_Mines/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateTreasureSpawnPoint(ID.npc.GUSGEN_TREASURE_CHEST);
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

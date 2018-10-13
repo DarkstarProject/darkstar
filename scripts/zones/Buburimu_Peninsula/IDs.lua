@@ -58,6 +58,15 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
     {
         OVERSEER_BASE            = 17261148,
         BUBURIMU_SIGNPOST_OFFSET = 17261163,
+        LOGGING =
+        {
+            17261173,
+            17261174,
+            17261175,
+            17261176,
+            17261177,
+            17261178,
+        },
     },
 }
 
