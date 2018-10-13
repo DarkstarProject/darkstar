@@ -43,6 +43,7 @@
 #include "lua_trade_container.h"
 #include "lua_zone.h"
 #include "lua_item.h"
+#include "../utils/fishingutils.h"
 
 /************************************************************************
 *                                                                       *
@@ -187,6 +188,14 @@ namespace luautils
     int32 OnRegionLeave(CCharEntity* PChar, CRegion* Pregion);                  // when player leaves a region of a zone
     int32 OnTransportEvent(CCharEntity* PChar, uint32 TransportID);
     int32 OnConquestUpdate(CZone* PZone, ConquestUpdate type);                  // hourly conquest update
+
+    int32 OnFishingStart(CCharEntity* PChar, int32 RodID, int32 BaitID, int32 AreaID);      // triggers when player starts fishing in a zone
+
+    fishresponse_t* OnFishingCheck(CCharEntity* PChar, fishingrod_t *Rod, std::vector<fish_t> *FishList,
+                         std::vector<fishmob_t> *MobList, uint8 AreaID, string_t AreaName); // fishing process check
+    int32 OnFishingAction(CCharEntity* PChar, int32 Action, int32 Stamina, int32 Special);  // triggers when fishing action happens to player
+    int32 OnFishingCatch(CCharEntity* PChar, uint8 CatchType, int32 CatchID);               // triggers when player catches fish
+    int32 OnFishingEnd(CCharEntity* PChar);                                                 // triggers when player stops fishing
 
     int32 OnTrigger(CCharEntity* PChar, CBaseEntity* PNpc);                     // triggered when user targets npc and clicks action button
     int32 OnEventUpdate(CCharEntity* PChar, uint16 eventID, uint32 result);     // triggered when game triggers event update during cutscene

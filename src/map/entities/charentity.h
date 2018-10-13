@@ -34,6 +34,7 @@ This file is part of DarkStar-server source code.
 
 #include "battleentity.h"
 #include "petentity.h"
+#include "../utils/fishingutils.h"
 
 #define MAX_QUESTAREA	 11
 #define MAX_QUESTID     256
@@ -310,6 +311,8 @@ public:
     uint32 GetPlayTime(bool needUpdate = true);		// Get playtime
 
     CItemArmor*	getEquip(SLOTTYPE slot);
+
+    fishresponse_t* hookedFish;         // Currently hooked fish/item/monster
 
     void		ReloadPartyInc();
     void        ReloadPartyDec();

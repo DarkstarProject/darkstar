@@ -3682,6 +3682,333 @@ namespace luautils
     }
 
     /********************************************************************
+        onFishingStart - callback when you start fishing
+    *********************************************************************/
+    int32 OnFishingStart(CCharEntity* PChar, int32 RodID, int32 BaitID, int32 AreaID)
+    {
+        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+        if (prepFile(File, "onFishingStart"))
+        {
+            return -1;
+        }
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        
+        lua_pushinteger(LuaHandle, RodID);
+        lua_pushinteger(LuaHandle, BaitID);
+        lua_pushinteger(LuaHandle, AreaID);
+            
+        if (lua_pcall(LuaHandle, 4, 0, 0))
+        {
+            ShowError("luautils::onFishingStart: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    int PushFishList(lua_State* L, std::vector<fish_t> *FishList) {
+        lua_newtable(L);
+        int counter = 0;
+        for (std::vector<fish_t>::iterator fish = FishList->begin(); fish != FishList->end(); ++fish) {
+            lua_pushnumber(L, ++counter);
+            lua_newtable(L);
+
+            lua_pushstring(L, "id");
+            lua_pushnumber(L, fish->fishId);
+            lua_settable(L, -3);
+            lua_pushstring(L, "name");
+            lua_pushstring(L, fish->fishName.c_str());
+            lua_settable(L, -3);
+            lua_pushstring(L, "minSkill");
+            lua_pushnumber(L, fish->minSkill);
+            lua_settable(L, -3);
+            lua_pushstring(L, "maxSkill");
+            lua_pushnumber(L, fish->maxSkill);
+            lua_settable(L, -3);
+            lua_pushstring(L, "size");
+            lua_pushnumber(L, fish->size);
+            lua_settable(L, -3);
+            lua_pushstring(L, "baseDelay");
+            lua_pushnumber(L, fish->baseDelay);
+            lua_settable(L, -3);
+            lua_pushstring(L, "baseMove");
+            lua_pushnumber(L, fish->baseMove);
+            lua_settable(L, -3);
+            lua_pushstring(L, "minLength");
+            lua_pushnumber(L, fish->minLength);
+            lua_settable(L, -3);
+            lua_pushstring(L, "maxLength");
+            lua_pushnumber(L, fish->maxLength);
+            lua_settable(L, -3);
+            lua_pushstring(L, "sizeType");
+            lua_pushnumber(L, fish->sizeType);
+            lua_settable(L, -3);
+            lua_pushstring(L, "waterType");
+            lua_pushnumber(L, fish->waterType);
+            lua_settable(L, -3);
+            lua_pushstring(L, "log");
+            lua_pushnumber(L, fish->log);
+            lua_settable(L, -3);
+            lua_pushstring(L, "quest");
+            lua_pushnumber(L, fish->quest);
+            lua_settable(L, -3);
+            lua_pushstring(L, "item");
+            lua_pushnumber(L, fish->item);
+            lua_settable(L, -3);
+            lua_pushstring(L, "maxhook");
+            lua_pushnumber(L, fish->maxhook);
+            lua_settable(L, -3);
+            lua_pushstring(L, "reqKeyItem");
+            lua_pushnumber(L, fish->reqKeyItem);
+            lua_settable(L, -3);
+            lua_pushstring(L, "lurePower");
+            lua_pushnumber(L, fish->lurePower);
+            lua_settable(L, -3);
+
+            lua_settable(L, -3);
+        }
+        return 1;
+    }
+
+    int PushMobList(lua_State* L, std::vector<fishmob_t> *MobList) {
+        lua_newtable(L);
+        int counter = 0;
+        for (std::vector<fishmob_t>::iterator mob = MobList->begin(); mob != MobList->end(); ++mob) {
+            lua_pushnumber(L, ++counter);
+            lua_newtable(L);
+            lua_pushstring(L, "id");
+            lua_pushnumber(L, mob->mobId);
+            lua_settable(L, -3);
+            lua_pushstring(L, "name");
+            lua_pushstring(L, mob->mobName.c_str());
+            lua_settable(L, -3);
+            lua_pushstring(L, "level");
+            lua_pushnumber(L, mob->level);
+            lua_settable(L, -3);
+            lua_pushstring(L, "size");
+            lua_pushnumber(L, mob->size);
+            lua_settable(L, -3);
+            lua_pushstring(L, "baseDelay");
+            lua_pushnumber(L, mob->baseDelay);
+            lua_settable(L, -3);
+            lua_pushstring(L, "baseMove");
+            lua_pushnumber(L, mob->baseMove);
+            lua_settable(L, -3);
+            lua_pushstring(L, "log");
+            lua_pushnumber(L, mob->log);
+            lua_settable(L, -3);
+            lua_pushstring(L, "quest");
+            lua_pushnumber(L, mob->quest);
+            lua_settable(L, -3);
+            lua_pushstring(L, "nm");
+            lua_pushnumber(L, mob->nm);
+            lua_settable(L, -3);
+            lua_pushstring(L, "rarity");
+            lua_pushnumber(L, mob->rarity);
+            lua_settable(L, -3);
+            lua_pushstring(L, "reqKeyItem");
+            lua_pushnumber(L, mob->reqKeyItem);
+            lua_settable(L, -3);
+
+            lua_settable(L, -3);
+        }
+        return 1;
+    }
+
+    int PushRodInfo(lua_State* L, fishingrod_t *Rod) {
+        lua_newtable(L);
+        lua_pushstring(L, "id");
+        lua_pushnumber(L, Rod->rodId);
+        lua_settable(L, -3);
+        lua_pushstring(L, "name");
+        lua_pushstring(L, Rod->rodName.c_str());
+        lua_settable(L, -3);
+        lua_pushstring(L, "material");
+        lua_pushnumber(L, Rod->material);
+        lua_settable(L, -3);
+        lua_pushstring(L, "minfishsize");
+        lua_pushnumber(L, Rod->minFishSize);
+        lua_settable(L, -3);
+        lua_pushstring(L, "maxfishsize");
+        lua_pushnumber(L, Rod->maxFishSize);
+        lua_settable(L, -3);
+        lua_pushstring(L, "fishattack");
+        lua_pushnumber(L, Rod->fishAttack);
+        lua_settable(L, -3);
+        lua_pushstring(L, "lgdbonusatk");
+        lua_pushnumber(L, Rod->lgdBonusAtk);
+        lua_settable(L, -3);
+        lua_pushstring(L, "missregen");
+        lua_pushnumber(L, Rod->missRegen);
+        lua_settable(L, -3);
+        lua_pushstring(L, "lgdmissregen");
+        lua_pushnumber(L, Rod->lgdMissRegen);
+        lua_settable(L, -3);
+        lua_pushstring(L, "fistime");
+        lua_pushnumber(L, Rod->fishTime);
+        lua_settable(L, -3);
+        lua_pushstring(L, "lgdbonustime");
+        lua_pushnumber(L, Rod->lgdBonusTime);
+        lua_settable(L, -3);
+        lua_pushstring(L, "smdelaybonus");
+        lua_pushnumber(L, Rod->smDelayBonus);
+        lua_settable(L, -3);
+        lua_pushstring(L, "smmovebonus");
+        lua_pushnumber(L, Rod->smMoveBonus);
+        lua_settable(L, -3);
+        lua_pushstring(L, "lgdelaybonus");
+        lua_pushnumber(L, Rod->lgDelayBonus);
+        lua_settable(L, -3);
+        lua_pushstring(L, "lgmovebonus");
+        lua_pushnumber(L, Rod->lgMoveBonus);
+        lua_settable(L, -3);
+        lua_pushstring(L, "breakable");
+        lua_pushnumber(L, Rod->breakable);
+        lua_settable(L, -3);
+        lua_pushstring(L, "brokenrodid");
+        lua_pushnumber(L, Rod->brokenRodId);
+        lua_settable(L, -3);
+        lua_pushstring(L, "mmm");
+        lua_pushnumber(L, Rod->isMMM);
+        lua_settable(L, -3);
+        return 1;
+    }
+
+    fishresponse_t* OnFishingCheck(CCharEntity* PChar, fishingrod_t *Rod, std::vector<fish_t> *FishList, std::vector<fishmob_t> *MobList, uint8 AreaID, string_t AreaName)
+    {
+        fishresponse_t *retVal = new fishresponse_t();
+        retVal->caught = false;
+        lua_prepscript("scripts/globals/fishing/fishing.lua");
+
+
+        if (prepFile(File, "onFishingCheck"))
+        {
+            return retVal;
+        }
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        lua_pushinteger(LuaHandle, PChar->RealSkills.skill[SKILL_FISHING]);
+        PushRodInfo(LuaHandle, Rod);
+        PushFishList(LuaHandle, FishList);
+        PushMobList(LuaHandle, MobList);
+        lua_pushinteger(LuaHandle, AreaID);
+        lua_pushstring(LuaHandle, AreaName.c_str());
+
+
+        if (lua_pcall(LuaHandle, 7, 17, 0))
+        {
+            ShowError("luautils::OnFishingCheck: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            retVal->successtype = FISHINGSUCCESSTYPE_NONE;            
+            retVal->reason = FISHINGFAILTYPE_SYSTEM;
+            return retVal;
+        }
+
+        retVal->areaid = AreaID;
+        retVal->caught = (uint32)lua_toboolean(LuaHandle, -17);    
+        retVal->reason = (uint32)lua_tonumber(LuaHandle, -16);           
+        retVal->catchid = (uint32)lua_tonumber(LuaHandle, -15);         
+        retVal->catchtype = (uint32)lua_tonumber(LuaHandle, -14);        
+        retVal->catchlevel = (uint32)lua_tonumber(LuaHandle, -13);       
+        retVal->catchsize = (uint32)lua_tonumber(LuaHandle, -12);        
+        retVal->count = (uint32)lua_tonumber(LuaHandle, -11);            
+        retVal->stamina = (uint32)lua_tonumber(LuaHandle, -10);         
+        retVal->delay = (uint32)lua_tonumber(LuaHandle, -9);           
+        retVal->regen = (uint32)lua_tonumber(LuaHandle, -8);           
+        retVal->response = (uint32)lua_tonumber(LuaHandle, -7);        
+        retVal->attackdmg = (uint32)lua_tonumber(LuaHandle, -6);       
+        retVal->heal = (uint32)lua_tonumber(LuaHandle, -5);            
+        retVal->timelimit = (uint32)lua_tonumber(LuaHandle, -4);       
+        retVal->sense = (uint32)lua_tonumber(LuaHandle, -3);
+        retVal->hooksense = (uint32)lua_tonumber(LuaHandle, -2);
+        retVal->special = (uint32)lua_tonumber(LuaHandle, -1);
+
+        return retVal;
+    }
+
+    /********************************************************************
+        onFishingAction - callback when fishing action happens
+    *********************************************************************/
+    int32 OnFishingAction(CCharEntity* PChar, int32 Action, int32 Stamina, int32 Special)
+    {
+        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+        if (prepFile(File, "onFishingAction"))
+        {
+            return -1;
+        }
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, Action);
+        lua_pushinteger(LuaHandle, Stamina);
+        lua_pushinteger(LuaHandle, Special);
+
+        if (lua_pcall(LuaHandle, 4, 0, 0))
+        {
+            ShowError("luautils::onFishingAction: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    /********************************************************************
+        onFishingCatch - callback when you catch fish
+    *********************************************************************/
+    int32 OnFishingCatch(CCharEntity* PChar, uint8 CatchType, int32 CatchID)
+    {
+        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+        if (prepFile(File, "onFishingCatch"))
+        {
+            return -1;
+        }
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, CatchType);
+        lua_pushinteger(LuaHandle, CatchID);
+
+        if (lua_pcall(LuaHandle, 3, 0, 0))
+        {
+            ShowError("luautils::onFishingCatch: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    /********************************************************************
+        onFishingEnd - callback when fishing has ended
+    *********************************************************************/
+    int32 OnFishingEnd(CCharEntity* PChar)
+    {
+        lua_prepscript("scripts/zones/%s/Zone.lua", PChar->loc.zone->GetName());
+
+        if (prepFile(File, "onFishingCatch"))
+        {
+            return -1;
+        }
+        CLuaBaseEntity LuaBaseEntity(PChar);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+        
+        if (lua_pcall(LuaHandle, 1, 0, 0))
+        {
+            ShowError("luautils::onFishingEnd: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    /********************************************************************
         onBcnmEnter - callback when you enter a BCNM via a lua call to bcnmEnter(bcnmid)
     *********************************************************************/
     int32 OnBcnmEnter(CCharEntity* PChar, CBattlefield* PBattlefield)

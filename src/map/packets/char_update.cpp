@@ -99,7 +99,7 @@ CCharUpdatePacket::CCharUpdatePacket(CCharEntity* PChar)
     ref<uint32>(0x40) = CVanaTime::getInstance()->getVanaTime() + timeRemainingToForcedHomepoint / 60;
     ref<uint16>(0x44) = PChar->m_Costum;
 
-    if (PChar->animation == ANIMATION_FISHING_START)
+    if (PChar->animation == ANIMATION_NEW_FISHING_START)
     {
         ref<uint8>(0x4A) = 0x0D; //was 0x10
     }

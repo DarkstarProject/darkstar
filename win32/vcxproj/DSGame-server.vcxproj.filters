@@ -872,6 +872,12 @@
     <ClInclude Include="..\..\src\map\packets\map_marker.h">
       <Filter>Source Files\packets</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\caught_fish.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\map\packets\caught_monster.h">
+      <Filter>Header Files\packets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\map\ability.cpp">
@@ -1598,6 +1604,12 @@
       <Filter>Source Files\packets</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\map\packets\map_marker.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\caught_fish.cpp">
+      <Filter>Source Files\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\map\packets\caught_monster.cpp">
       <Filter>Source Files\packets</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,911 +1,323 @@
--- phpMyAdmin SQL Dump
--- version 3.3.8
--- http://www.phpmyadmin.net
---
--- Serveur: localhost
--- Généré le : Sam 09 Juillet 2011 à 07:44
--- Version du serveur: 6.0.0
--- Version de PHP: 5.2.9-2
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Base de données: `dspdb`
---
-
+-- --------------------------------------------------------
+-- Host:                         127.0.0.1
+-- Server version:               5.7.20-log - MySQL Community Server (GPL)
+-- Server OS:                    Win64
+-- HeidiSQL Version:             9.5.0.5244
 -- --------------------------------------------------------
 
---
--- Structure de la table `fishing_zone`
---
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
+-- Dumping structure for table dspdb.fishing_zone
 DROP TABLE IF EXISTS `fishing_zone`;
 CREATE TABLE IF NOT EXISTS `fishing_zone` (
-  `zoneid` tinyint(3) unsigned NOT NULL,
-  `name` text NOT NULL,
-  `fishid` smallint(5) unsigned NOT NULL,
-  PRIMARY KEY (`zoneid`,`fishid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=27;
+  `zoneid` smallint(5) unsigned NOT NULL,
+  `name` varchar(64) NOT NULL,
+  PRIMARY KEY (`zoneid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Contenu de la table `fishing_zone`
---
+-- Dumping data for table dspdb.fishing_zone: ~294 rows (approximately)
+/*!40000 ALTER TABLE `fishing_zone` DISABLE KEYS */;
+INSERT INTO `fishing_zone` (`zoneid`, `name`) VALUES
+	(0, 'unknown'),
+	(1, 'Phanauet_Channel'),
+	(2, 'Carpenters_Landing'),
+	(3, 'Manaclipper'),
+	(4, 'Bibiki_Bay'),
+	(5, 'Uleguerand_Range'),
+	(6, 'Bearclaw_Pinnacle'),
+	(7, 'Attohwa_Chasm'),
+	(8, 'Boneyard_Gully'),
+	(9, 'PsoXja'),
+	(10, 'The_Shrouded_Maw'),
+	(11, 'Oldton_Movalpolos'),
+	(12, 'Newton_Movalpolos'),
+	(13, 'Mine_Shaft_2716'),
+	(14, 'Hall_of_Transference'),
+	(15, 'Abyssea-Konschtat'),
+	(16, 'Promyvion-Holla'),
+	(17, 'Spire_of_Holla'),
+	(18, 'Promyvion-Dem'),
+	(19, 'Spire_of_Dem'),
+	(20, 'Promyvion-Mea'),
+	(21, 'Spire_of_Mea'),
+	(22, 'Promyvion-Vahzl'),
+	(23, 'Spire_of_Vahzl'),
+	(24, 'Lufaise_Meadows'),
+	(25, 'Misareaux_Coast'),
+	(26, 'Tavnazian_Safehold'),
+	(27, 'Phomiuna_Aqueducts'),
+	(28, 'Sacrarium'),
+	(29, 'Riverne-Site_B01'),
+	(30, 'Riverne-Site_A01'),
+	(31, 'Monarch_Linn'),
+	(32, 'Sealions_Den'),
+	(33, 'AlTaieu'),
+	(34, 'Grand_Palace_of_HuXzoi'),
+	(35, 'The_Garden_of_RuHmet'),
+	(36, 'Empyreal_Paradox'),
+	(37, 'Temenos'),
+	(38, 'Apollyon'),
+	(39, 'Dynamis-Valkurm'),
+	(40, 'Dynamis-Buburimu'),
+	(41, 'Dynamis-Qufim'),
+	(42, 'Dynamis-Tavnazia'),
+	(43, 'Diorama_Abdhaljs-Ghelsba'),
+	(44, 'Abdhaljs_Isle-Purgonorgo'),
+	(45, 'Abyssea-Tahrongi'),
+	(46, 'Open_sea_route_to_Al_Zahbi'),
+	(47, 'Open_sea_route_to_Mhaura'),
+	(48, 'Al_Zahbi'),
+	(49, '49'),
+	(50, 'Aht_Urhgan_Whitegate'),
+	(51, 'Wajaom_Woodlands'),
+	(52, 'Bhaflau_Thickets'),
+	(53, 'Nashmau'),
+	(54, 'Arrapago_Reef'),
+	(55, 'Ilrusi_Atoll'),
+	(56, 'Periqia'),
+	(57, 'Talacca_Cove'),
+	(58, 'Silver_Sea_route_to_Nashmau'),
+	(59, 'Silver_Sea_route_to_Al_Zahbi'),
+	(60, 'The_Ashu_Talif'),
+	(61, 'Mount_Zhayolm'),
+	(62, 'Halvung'),
+	(63, 'Lebros_Cavern'),
+	(64, 'Navukgo_Execution_Chamber'),
+	(65, 'Mamook'),
+	(66, 'Mamool_Ja_Training_Grounds'),
+	(67, 'Jade_Sepulcher'),
+	(68, 'Aydeewa_Subterrane'),
+	(69, 'Leujaoam_Sanctum'),
+	(70, 'Chocobo_Circuit'),
+	(71, 'The_Colosseum'),
+	(72, 'Alzadaal_Undersea_Ruins'),
+	(73, 'Zhayolm_Remnants'),
+	(74, 'Arrapago_Remnants'),
+	(75, 'Bhaflau_Remnants'),
+	(76, 'Silver_Sea_Remnants'),
+	(77, 'Nyzul_Isle'),
+	(78, 'Hazhalm_Testing_Grounds'),
+	(79, 'Caedarva_Mire'),
+	(80, 'Southern_San_dOria_[S]'),
+	(81, 'East_Ronfaure_[S]'),
+	(82, 'Jugner_Forest_[S]'),
+	(83, 'Vunkerl_Inlet_[S]'),
+	(84, 'Batallia_Downs_[S]'),
+	(85, 'La_Vaule_[S]'),
+	(86, 'Everbloom_Hollow'),
+	(87, 'Bastok_Markets_[S]'),
+	(88, 'North_Gustaberg_[S]'),
+	(89, 'Grauberg_[S]'),
+	(90, 'Pashhow_Marshlands_[S]'),
+	(91, 'Rolanberry_Fields_[S]'),
+	(92, 'Beadeaux_[S]'),
+	(93, 'Ruhotz_Silvermines'),
+	(94, 'Windurst_Waters_[S]'),
+	(95, 'West_Sarutabaruta_[S]'),
+	(96, 'Fort_Karugo-Narugo_[S]'),
+	(97, 'Meriphataud_Mountains_[S]'),
+	(98, 'Sauromugue_Champaign_[S]'),
+	(99, 'Castle_Oztroja_[S]'),
+	(100, 'West_Ronfaure'),
+	(101, 'East_Ronfaure'),
+	(102, 'La_Theine_Plateau'),
+	(103, 'Valkurm_Dunes'),
+	(104, 'Jugner_Forest'),
+	(105, 'Batallia_Downs'),
+	(106, 'North_Gustaberg'),
+	(107, 'South_Gustaberg'),
+	(108, 'Konschtat_Highlands'),
+	(109, 'Pashhow_Marshlands'),
+	(110, 'Rolanberry_Fields'),
+	(111, 'Beaucedine_Glacier'),
+	(112, 'Xarcabard'),
+	(113, 'Cape_Teriggan'),
+	(114, 'Eastern_Altepa_Desert'),
+	(115, 'West_Sarutabaruta'),
+	(116, 'East_Sarutabaruta'),
+	(117, 'Tahrongi_Canyon'),
+	(118, 'Buburimu_Peninsula'),
+	(119, 'Meriphataud_Mountains'),
+	(120, 'Sauromugue_Champaign'),
+	(121, 'The_Sanctuary_of_ZiTah'),
+	(122, 'RoMaeve'),
+	(123, 'Yuhtunga_Jungle'),
+	(124, 'Yhoator_Jungle'),
+	(125, 'Western_Altepa_Desert'),
+	(126, 'Qufim_Island'),
+	(127, 'Behemoths_Dominion'),
+	(128, 'Valley_of_Sorrows'),
+	(129, 'Ghoyus_Reverie'),
+	(130, 'RuAun_Gardens'),
+	(131, 'Mordion_Gaol'),
+	(132, 'Abyssea-La_Theine'),
+	(133, '133'),
+	(134, 'Dynamis-Beaucedine'),
+	(135, 'Dynamis-Xarcabard'),
+	(136, 'Beaucedine_Glacier_[S]'),
+	(137, 'Xarcabard_[S]'),
+	(138, 'Castle_Zvahl_Baileys_[S]'),
+	(139, 'Horlais_Peak'),
+	(140, 'Ghelsba_Outpost'),
+	(141, 'Fort_Ghelsba'),
+	(142, 'Yughott_Grotto'),
+	(143, 'Palborough_Mines'),
+	(144, 'Waughroon_Shrine'),
+	(145, 'Giddeus'),
+	(146, 'Balgas_Dais'),
+	(147, 'Beadeaux'),
+	(148, 'Qulun_Dome'),
+	(149, 'Davoi'),
+	(150, 'Monastic_Cavern'),
+	(151, 'Castle_Oztroja'),
+	(152, 'Altar_Room'),
+	(153, 'The_Boyahda_Tree'),
+	(154, 'Dragons_Aery'),
+	(155, 'Castle_Zvahl_Keep_[S]'),
+	(156, 'Throne_Room_[S]'),
+	(157, 'Middle_Delkfutts_Tower'),
+	(158, 'Upper_Delkfutts_Tower'),
+	(159, 'Temple_of_Uggalepih'),
+	(160, 'Den_of_Rancor'),
+	(161, 'Castle_Zvahl_Baileys'),
+	(162, 'Castle_Zvahl_Keep'),
+	(163, 'Sacrificial_Chamber'),
+	(164, 'Garlaige_Citadel_[S]'),
+	(165, 'Throne_Room'),
+	(166, 'Ranguemont_Pass'),
+	(167, 'Bostaunieux_Oubliette'),
+	(168, 'Chamber_of_Oracles'),
+	(169, 'Toraimarai_Canal'),
+	(170, 'Full_Moon_Fountain'),
+	(171, 'Crawlers_Nest_[S]'),
+	(172, 'Zeruhn_Mines'),
+	(173, 'Korroloka_Tunnel'),
+	(174, 'Kuftal_Tunnel'),
+	(175, 'The_Eldieme_Necropolis_[S]'),
+	(176, 'Sea_Serpent_Grotto'),
+	(177, 'VeLugannon_Palace'),
+	(178, 'The_Shrine_of_RuAvitau'),
+	(179, 'Stellar_Fulcrum'),
+	(180, 'LaLoff_Amphitheater'),
+	(181, 'The_Celestial_Nexus'),
+	(182, 'Walk_of_Echoes'),
+	(183, 'Maquette_Abdhaljs-Legion'),
+	(184, 'Lower_Delkfutts_Tower'),
+	(185, 'Dynamis-San_dOria'),
+	(186, 'Dynamis-Bastok'),
+	(187, 'Dynamis-Windurst'),
+	(188, 'Dynamis-Jeuno'),
+	(189, 'Residential_Area'),
+	(190, 'King_Ranperres_Tomb'),
+	(191, 'Dangruf_Wadi'),
+	(192, 'Inner_Horutoto_Ruins'),
+	(193, 'Ordelles_Caves'),
+	(194, 'Outer_Horutoto_Ruins'),
+	(195, 'The_Eldieme_Necropolis'),
+	(196, 'Gusgen_Mines'),
+	(197, 'Crawlers_Nest'),
+	(198, 'Maze_of_Shakhrami'),
+	(199, 'Residential_Area'),
+	(200, 'Garlaige_Citadel'),
+	(201, 'Cloister_of_Gales'),
+	(202, 'Cloister_of_Storms'),
+	(203, 'Cloister_of_Frost'),
+	(204, 'FeiYin'),
+	(205, 'Ifrits_Cauldron'),
+	(206, 'QuBia_Arena'),
+	(207, 'Cloister_of_Flames'),
+	(208, 'Quicksand_Caves'),
+	(209, 'Cloister_of_Tremors'),
+	(210, 'GM_Home'),
+	(211, 'Cloister_of_Tides'),
+	(212, 'Gustav_Tunnel'),
+	(213, 'Labyrinth_of_Onzozo'),
+	(214, 'Residential_Area'),
+	(215, 'Abyssea-Attohwa'),
+	(216, 'Abyssea-Misareaux'),
+	(217, 'Abyssea-Vunkerl'),
+	(218, 'Abyssea-Altepa'),
+	(219, 'Residential_Area'),
+	(220, 'Ship_bound_for_Selbina'),
+	(221, 'Ship_bound_for_Mhaura'),
+	(222, 'Provenance'),
+	(223, 'San_dOria-Jeuno_Airship'),
+	(224, 'Bastok-Jeuno_Airship'),
+	(225, 'Windurst-Jeuno_Airship'),
+	(226, 'Kazham-Jeuno_Airship'),
+	(227, 'Ship_bound_for_Selbina'),
+	(228, 'Ship_bound_for_Mhaura'),
+	(229, '229'),
+	(230, 'Southern_San_dOria'),
+	(231, 'Northern_San_dOria'),
+	(232, 'Port_San_dOria'),
+	(233, 'Chateau_dOraguille'),
+	(234, 'Bastok_Mines'),
+	(235, 'Bastok_Markets'),
+	(236, 'Port_Bastok'),
+	(237, 'Metalworks'),
+	(238, 'Windurst_Waters'),
+	(239, 'Windurst_Walls'),
+	(240, 'Port_Windurst'),
+	(241, 'Windurst_Woods'),
+	(242, 'Heavens_Tower'),
+	(243, 'RuLude_Gardens'),
+	(244, 'Upper_Jeuno'),
+	(245, 'Lower_Jeuno'),
+	(246, 'Port_Jeuno'),
+	(247, 'Rabao'),
+	(248, 'Selbina'),
+	(249, 'Mhaura'),
+	(250, 'Kazham'),
+	(251, 'Hall_of_the_Gods'),
+	(252, 'Norg'),
+	(253, 'Abyssea-Uleguerand'),
+	(254, 'Abyssea-Grauberg'),
+	(255, 'Abyssea-Empyreal_Paradox'),
+	(256, 'Western_Adoulin'),
+	(257, 'Eastern_Adoulin'),
+	(258, 'Rala_Waterways'),
+	(259, 'Rala_Waterways_U'),
+	(260, 'Yahse_Hunting_Grounds'),
+	(261, 'Ceizak_Battlegrounds'),
+	(262, 'Foret_de_Hennetiel'),
+	(263, 'Yorcia_Weald'),
+	(264, 'Yorcia_Weald_U'),
+	(265, 'Morimar_Basalt_Fields'),
+	(266, 'Marjami_Ravine'),
+	(267, 'Kamihr_Drifts'),
+	(268, 'Sih_Gates'),
+	(269, 'Moh_Gates'),
+	(270, 'Cirdas_Caverns'),
+	(271, 'Cirdas_Caverns_U'),
+	(272, 'Dho_Gates'),
+	(273, 'Woh_Gates'),
+	(274, 'Outer_RaKaznar'),
+	(275, 'Outer_RaKaznar_U'),
+	(276, 'RaKaznar_Inner_Court'),
+	(277, 'RaKaznar_Turris'),
+	(278, '278'),
+	(279, '279'),
+	(280, 'Mog_Garden'),
+	(281, 'Leafallia'),
+	(282, 'Mount_Kamihr'),
+	(283, 'Silver_Knife'),
+	(284, 'Celennia_Memorial_Library'),
+	(285, 'Feretory'),
+	(286, '286'),
+	(287, '287'),
+	(288, 'Escha_ZiTah'),
+	(289, 'Escha_RuAun'),
+	(290, 'Desuetia_Empyreal_Paradox'),
+	(291, 'Reisenjima'),
+	(292, 'Reisenjima_Henge'),
+	(293, 'Reisenjima_Sanctorium');
+/*!40000 ALTER TABLE `fishing_zone` ENABLE KEYS */;
 
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 5125);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4469);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4315);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4428);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4402);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 5126);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4319);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4472);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4426);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4354);
-INSERT INTO `fishing_zone` VALUES(1, 'Phanauet Channel', 4427);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 5125);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 4472);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 4469);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 4428);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 688);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 5126);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 4354);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 90);
-INSERT INTO `fishing_zone` VALUES(2, 'Carpenters'' Landing', 14117);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4443);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4360);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4514);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4471);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 624);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 5121);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 5128);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4385);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4399);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4485);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 5120);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4480);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 5131);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 5127);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4318);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4314);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 4476);
-INSERT INTO `fishing_zone` VALUES(3, 'Manaclipper', 90);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 4443);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 4360);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 5128);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 4385);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 4471);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 14242);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 12522);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 90);
-INSERT INTO `fishing_zone` VALUES(4, 'Bibiki Bay', 624);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 4472);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 4515);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 4313);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 4429);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 4316);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 16655);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 16606);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 1638);
-INSERT INTO `fishing_zone` VALUES(11, 'Oldton Movalpolos', 1624);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 4428);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 5130);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 4454);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 5129);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 688);
-INSERT INTO `fishing_zone` VALUES(24, 'Lufaise Meadows', 4427);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4401);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4428);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4427);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 5130);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4463);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 13456);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4443);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4500);
-INSERT INTO `fishing_zone` VALUES(25, 'Misareaux Coast', 4514);
-INSERT INTO `fishing_zone` VALUES(26, 'Tavnazian Safehold', 4472);
-INSERT INTO `fishing_zone` VALUES(27, 'Phomiuna Aqueducts', 4472);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 4443);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5449);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5132);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 4403);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5141);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5450);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 4480);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5452);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 4485);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5134);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 5127);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 90);
-INSERT INTO `fishing_zone` VALUES(46, 'Open sea route to Al Zahbi', 14117);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 4443);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5449);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5132);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 4403);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5141);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5450);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 4480);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5452);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 4485);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5134);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 5127);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 90);
-INSERT INTO `fishing_zone` VALUES(47, 'Open sea route to Mhaura', 14117);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 2341);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 4401);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 4472);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 4310);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 5458);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 5460);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 5459);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 90);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 14117);
-INSERT INTO `fishing_zone` VALUES(48, 'Al Zahbi', 14242);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 2341);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 5447);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 5449);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 5448);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 14117);
-INSERT INTO `fishing_zone` VALUES(50, 'Aht Urhgan Whitegate', 14242);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5461);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 4428);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5458);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5459);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5460);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5462);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 5137);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 90);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 14117);
-INSERT INTO `fishing_zone` VALUES(51, 'Wajaom Woodlands', 14242);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5461);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 4428);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5458);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5459);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5460);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5462);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 5137);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 90);
-INSERT INTO `fishing_zone` VALUES(52, 'Bhaflau Thickets', 14242);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 2341);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 5453);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 5456);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 5454);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 5455);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 5133);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 14117);
-INSERT INTO `fishing_zone` VALUES(53, 'Nashmau', 14242);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5453);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5456);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5135);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5454);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5455);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 5462);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 14117);
-INSERT INTO `fishing_zone` VALUES(54, 'Arrapago Reef', 14242);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 5136);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 5453);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 5454);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 5455);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 5457);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 14117);
-INSERT INTO `fishing_zone` VALUES(57, 'Talacca Cove', 14242);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 2341);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5449);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 4403);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5450);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5448);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5452);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5451);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5140);
-INSERT INTO `fishing_zone` VALUES(58, 'Silver Sea route to Nashmau', 5134);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 2341);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5449);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 4403);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5450);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5448);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5452);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5451);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5140);
-INSERT INTO `fishing_zone` VALUES(59, 'Silver Sea route to Al Zahbi', 5134);
-INSERT INTO `fishing_zone` VALUES(61, 'Mount Zhayolm', 5447);
-INSERT INTO `fishing_zone` VALUES(61, 'Mount Zhayolm', 5449);
-INSERT INTO `fishing_zone` VALUES(61, 'Mount Zhayolm', 5448);
-INSERT INTO `fishing_zone` VALUES(61, 'Mount Zhayolm', 14242);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 5461);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 5458);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 5459);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 5139);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 5460);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 90);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 14117);
-INSERT INTO `fishing_zone` VALUES(65, 'Mamook', 14242);
-INSERT INTO `fishing_zone` VALUES(68, 'Aydeewa Subterrane', 4313);
-INSERT INTO `fishing_zone` VALUES(68, 'Aydeewa Subterrane', 4309);
-INSERT INTO `fishing_zone` VALUES(68, 'Aydeewa Subterrane', 14117);
-INSERT INTO `fishing_zone` VALUES(68, 'Aydeewa Subterrane', 14242);
-INSERT INTO `fishing_zone` VALUES(68, 'Aydeewa Subterrane', 2216);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 5138);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 5465);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 5463);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 4428);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 5458);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 5464);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 4472);
-INSERT INTO `fishing_zone` VALUES(79, 'Caedarva Mire', 14117);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 4379);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 4426);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 4354);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 4427);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 688);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(81, 'East Ronfaure [S]', 13454);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 13456);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4528);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4402);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 16655);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 688);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4426);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4428);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4427);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4454);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 90);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 12522);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4379);
-INSERT INTO `fishing_zone` VALUES(82, 'Jugner Forest [S]', 4354);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4428);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4426);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 5472);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4443);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4360);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4514);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4481);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 5466);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 4461);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 5468);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 5473);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 5475);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 90);
-INSERT INTO `fishing_zone` VALUES(83, 'Vunkerl Inlet [S]', 688);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4443);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4360);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4403);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4483);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4482);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 5128);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4399);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4451);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 4384);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 16537);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 16655);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 16606);
-INSERT INTO `fishing_zone` VALUES(84, 'Batallia Downs [S]', 13456);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 4515);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 4426);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 4428);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 90);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(87, 'Bastok Markets [S]', 13454);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4515);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4426);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4429);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4427);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 90);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 4477);
-INSERT INTO `fishing_zone` VALUES(88, 'North Gustaberg [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 5469);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 5474);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 4429);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 4515);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 4477);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 5470);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(89, 'Grauberg [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(90, 'Pashhow Marshlands [S]', 4515);
-INSERT INTO `fishing_zone` VALUES(90, 'Pashhow Marshlands [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(90, 'Pashhow Marshlands [S]', 4402);
-INSERT INTO `fishing_zone` VALUES(90, 'Pashhow Marshlands [S]', 5471);
-INSERT INTO `fishing_zone` VALUES(90, 'Pashhow Marshlands [S]', 12522);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 4428);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 4402);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 16606);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 90);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 16537);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 12316);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 13456);
-INSERT INTO `fishing_zone` VALUES(91, 'Rolanberry Fields [S]', 16655);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 4464);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 4427);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 90);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(94, 'Windurst Waters [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4401);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4469);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4428);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 90);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 14242);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4360);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4514);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4481);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4383);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4399);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4471);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 4461);
-INSERT INTO `fishing_zone` VALUES(95, 'West Sarutabaruta [S]', 624);
-INSERT INTO `fishing_zone` VALUES(99, 'Oztroja Castle [S]', 4472);
-INSERT INTO `fishing_zone` VALUES(99, 'Oztroja Castle [S]', 14117);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 4401);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 4472);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 4469);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 4402);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 688);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 90);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 14117);
-INSERT INTO `fishing_zone` VALUES(100, 'West Ronfaure', 14242);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 4472);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 4379);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 4426);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 4354);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 4427);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 688);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 14242);
-INSERT INTO `fishing_zone` VALUES(101, 'East Ronfaure', 13454);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 4401);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 4472);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 4469);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 4428);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 4402);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 90);
-INSERT INTO `fishing_zone` VALUES(102, 'La Theine Plateau', 12522);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4443);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4360);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4500);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4514);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4385);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 4484);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 688);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 90);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 12522);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 14242);
-INSERT INTO `fishing_zone` VALUES(103, 'Valkurm Dunes', 13456);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4401);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 13456);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4472);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4528);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4402);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 14117);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 14242);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 16655);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 688);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4426);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4469);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4428);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4427);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4454);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 90);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 12522);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4379);
-INSERT INTO `fishing_zone` VALUES(104, 'Jugner Forest', 4354);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4443);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4360);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4403);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4483);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4482);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 5128);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4399);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4451);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 4384);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 16537);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 16655);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 16606);
-INSERT INTO `fishing_zone` VALUES(105, 'Batallia Downs', 13456);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4472);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4515);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4426);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4429);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4427);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 14242);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 90);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 4477);
-INSERT INTO `fishing_zone` VALUES(106, 'North Gustaberg', 14117);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4443);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4360);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4514);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4481);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4383);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4385);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4471);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 4461);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 90);
-INSERT INTO `fishing_zone` VALUES(107, 'South Gustaberg', 14242);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 4472);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 4515);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 4469);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 4402);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 16655);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 12522);
-INSERT INTO `fishing_zone` VALUES(109, 'Pashhow Marshlands', 13456);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 4401);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 4472);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 4469);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 4428);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 4402);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 14242);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 16606);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 90);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 16537);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 12316);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 13456);
-INSERT INTO `fishing_zone` VALUES(110, 'Rolanberry Fields', 16655);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 688);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 13454);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4470);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4454);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 16451);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 14242);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 13456);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4403);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4483);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4482);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 14117);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4384);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 4399);
-INSERT INTO `fishing_zone` VALUES(111, 'Beaucedine Glacier', 5128);
-INSERT INTO `fishing_zone` VALUES(113, 'Cape Teriggan', 4443);
-INSERT INTO `fishing_zone` VALUES(113, 'Cape Teriggan', 4500);
-INSERT INTO `fishing_zone` VALUES(113, 'Cape Teriggan', 4385);
-INSERT INTO `fishing_zone` VALUES(113, 'Cape Teriggan', 4484);
-INSERT INTO `fishing_zone` VALUES(113, 'Cape Teriggan', 14117);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 4401);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 4472);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 4306);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 4291);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 16606);
-INSERT INTO `fishing_zone` VALUES(114, 'Eastern Altepa Desert', 13454);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4401);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4472);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4469);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4428);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 90);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 14242);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4360);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4514);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4481);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4383);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4399);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4471);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 4461);
-INSERT INTO `fishing_zone` VALUES(115, 'West Sarutabaruta', 624);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4401);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4464);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4462);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4473);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 14242);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 90);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4472);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4360);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4514);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4481);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4383);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4399);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4471);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 4461);
-INSERT INTO `fishing_zone` VALUES(116, 'East Sarutabaruta', 624);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 4403);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 4484);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 4399);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 624);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 16655);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 90);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 14117);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 14242);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 13454);
-INSERT INTO `fishing_zone` VALUES(118, 'Buburimu Peninsula', 13456);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 4403);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 4483);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 5128);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 4399);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 4451);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 4384);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 16537);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 90);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 16606);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 14117);
-INSERT INTO `fishing_zone` VALUES(120, 'Sauromugue Champaign', 14242);
-INSERT INTO `fishing_zone` VALUES(121, 'The Sanctuary of Zi''Tah', 4428);
-INSERT INTO `fishing_zone` VALUES(121, 'The Sanctuary of Zi''Tah', 4528);
-INSERT INTO `fishing_zone` VALUES(121, 'The Sanctuary of Zi''Tah', 4402);
-INSERT INTO `fishing_zone` VALUES(121, 'The Sanctuary of Zi''Tah', 688);
-INSERT INTO `fishing_zone` VALUES(122, 'Ro''Maeve', 4472);
-INSERT INTO `fishing_zone` VALUES(122, 'Ro''Maeve', 13454);
-INSERT INTO `fishing_zone` VALUES(122, 'Ro''Maeve', 13456);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4401);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4472);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4289);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4464);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4290);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4579);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4473);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 4307);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 14242);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 13454);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 90);
-INSERT INTO `fishing_zone` VALUES(123, 'Yuhtunga Jungle', 688);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4401);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4464);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4307);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4472);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4289);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4462);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 14242);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 13454);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 688);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4290);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 4579);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 14117);
-INSERT INTO `fishing_zone` VALUES(124, 'Yhoator Jungle', 16655);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 4401);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 4469);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 4306);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 4291);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 4477);
-INSERT INTO `fishing_zone` VALUES(125, 'Western Altepa Desert', 90);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4403);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4483);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4482);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4399);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4384);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 14117);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 14242);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 13454);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 5128);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4474);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 12316);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 16537);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 90);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 13456);
-INSERT INTO `fishing_zone` VALUES(126, 'Qufim Island', 4478);
-INSERT INTO `fishing_zone` VALUES(140, 'Ghelsba Outpost', 4472);
-INSERT INTO `fishing_zone` VALUES(140, 'Ghelsba Outpost', 4469);
-INSERT INTO `fishing_zone` VALUES(140, 'Ghelsba Outpost', 4402);
-INSERT INTO `fishing_zone` VALUES(142, 'Yughott Grotto', 4472);
-INSERT INTO `fishing_zone` VALUES(142, 'Yughott Grotto', 16655);
-INSERT INTO `fishing_zone` VALUES(142, 'Yughott Grotto', 12522);
-INSERT INTO `fishing_zone` VALUES(142, 'Yughott Grotto', 14117);
-INSERT INTO `fishing_zone` VALUES(142, 'Yughott Grotto', 13456);
-INSERT INTO `fishing_zone` VALUES(143, 'Palborough Mines', 4472);
-INSERT INTO `fishing_zone` VALUES(143, 'Palborough Mines', 4515);
-INSERT INTO `fishing_zone` VALUES(143, 'Palborough Mines', 4426);
-INSERT INTO `fishing_zone` VALUES(143, 'Palborough Mines', 4429);
-INSERT INTO `fishing_zone` VALUES(143, 'Palborough Mines', 90);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4472);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4469);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4428);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4402);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 90);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4426);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4462);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 4427);
-INSERT INTO `fishing_zone` VALUES(145, 'Giddeus', 13456);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4401);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4426);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4469);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4428);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4427);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4402);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4463);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 688);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 4472);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 90);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 14117);
-INSERT INTO `fishing_zone` VALUES(149, 'Davoi', 16606);
-INSERT INTO `fishing_zone` VALUES(151, 'Castle Oztroja', 4472);
-INSERT INTO `fishing_zone` VALUES(153, 'Boyahda Tree', 4401);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 4426);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 4428);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 4308);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 688);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 90);
-INSERT INTO `fishing_zone` VALUES(153, 'The Boyahda Tree', 13454);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 4401);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 4472);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 4473);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 688);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 16537);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 90);
-INSERT INTO `fishing_zone` VALUES(154, 'Dragon''s Aery', 13454);
-INSERT INTO `fishing_zone` VALUES(159, 'Temple of Uggalepih', 4472);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4443);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4514);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4383);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4399);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4288);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 4305);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 624);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 16606);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 14242);
-INSERT INTO `fishing_zone` VALUES(160, 'Den of Rancor', 887);
-INSERT INTO `fishing_zone` VALUES(166, 'Ranguemont Pass', 4472);
-INSERT INTO `fishing_zone` VALUES(167, 'Bostaunieux Oubliette', 4472);
-INSERT INTO `fishing_zone` VALUES(167, 'Bostaunieux Oubliette', 16537);
-INSERT INTO `fishing_zone` VALUES(167, 'Bostaunieux Oubliette', 14117);
-INSERT INTO `fishing_zone` VALUES(167, 'Bostaunieux Oubliette', 14242);
-INSERT INTO `fishing_zone` VALUES(167, 'Bostaunieux Oubliette', 13454);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4401);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4472);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4426);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4429);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 90);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 14117);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 14242);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4515);
-INSERT INTO `fishing_zone` VALUES(172, 'Zeruhn Mines', 4469);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4401);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4472);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4515);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4514);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4429);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 4291);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 16655);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 90);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 12522);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 16606);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 14117);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 14242);
-INSERT INTO `fishing_zone` VALUES(173, 'Korroloka Tunnel', 887);
-INSERT INTO `fishing_zone` VALUES(174, 'Kuftal Tunnel', 4306);
-INSERT INTO `fishing_zone` VALUES(174, 'Kuftal Tunnel', 4291);
-INSERT INTO `fishing_zone` VALUES(174, 'Kuftal Tunnel', 4309);
-INSERT INTO `fishing_zone` VALUES(174, 'Kuftal Tunnel', 12522);
-INSERT INTO `fishing_zone` VALUES(174, 'Kuftal Tunnel', 14242);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4443);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4360);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4514);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4361);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4580);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4399);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4461);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 4304);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 1135);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 14242);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 1210);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 16606);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 887);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 624);
-INSERT INTO `fishing_zone` VALUES(176, 'Sea Serpent Grotto', 90);
-INSERT INTO `fishing_zone` VALUES(191, 'Dangruf Wadi', 4472);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 4472);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 90);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 12522);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 14117);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 14242);
-INSERT INTO `fishing_zone` VALUES(193, 'Ordelle''s Caves', 13456);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4472);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4515);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4426);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4429);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4427);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 4477);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 16537);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 16655);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 90);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 14117);
-INSERT INTO `fishing_zone` VALUES(196, 'Gusgen Mines', 14242);
-INSERT INTO `fishing_zone` VALUES(204, 'Fei''Yin', 4472);
-INSERT INTO `fishing_zone` VALUES(208, 'Quicksand Caves', 4309);
-INSERT INTO `fishing_zone` VALUES(208, 'Quicksand Caves', 14242);
-INSERT INTO `fishing_zone` VALUES(208, 'Quicksand Caves', 4472);
-INSERT INTO `fishing_zone` VALUES(213, 'Labyrinth of Onzozo', 14117);
-INSERT INTO `fishing_zone` VALUES(213, 'Labyrinth of Onzozo', 887);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4360);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4514);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4361);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4480);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 5128);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4399);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4479);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4485);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4451);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4476);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 4305);
-INSERT INTO `fishing_zone` VALUES(220, 'Ferry for Selbina', 14242);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4360);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4514);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4361);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4480);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 5128);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4399);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4479);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4485);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4451);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4476);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 4305);
-INSERT INTO `fishing_zone` VALUES(221, 'Ferry for Mhaura', 14242);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4360);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4514);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4361);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4480);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 5128);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4399);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4479);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4485);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4451);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4476);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4305);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 14242);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 4475);
-INSERT INTO `fishing_zone` VALUES(227, 'Ferry for Selbina (pirate)', 5127);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4360);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4514);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4361);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4480);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 5128);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4399);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4479);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4485);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4451);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4476);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4305);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 14242);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 4475);
-INSERT INTO `fishing_zone` VALUES(228, 'Ferry for Mhaura (pirate)', 5127);
-INSERT INTO `fishing_zone` VALUES(231, 'North San dOria', 4401);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 4472);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 4426);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 4427);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 90);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 14117);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 14242);
-INSERT INTO `fishing_zone` VALUES(231, 'Northern San d''Oria', 13454);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San D''Oria', 4401);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 4472);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 4426);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 4469);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 4427);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 90);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 14117);
-INSERT INTO `fishing_zone` VALUES(232, 'Port San d''Oria', 14242);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 4472);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 4515);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 4426);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 4429);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 90);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 14117);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 14242);
-INSERT INTO `fishing_zone` VALUES(234, 'Bastok Mines', 13454);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 4401);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 4515);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 4426);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 4469);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 4428);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 90);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 14117);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 14242);
-INSERT INTO `fishing_zone` VALUES(235, 'Bastok Markets', 13454);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 4443);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 4360);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 4514);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 4385);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 4461);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 90);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 14117);
-INSERT INTO `fishing_zone` VALUES(236, 'Port Bastok', 14242);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 4401);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 4472);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 4515);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 4464);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 4427);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 90);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 14117);
-INSERT INTO `fishing_zone` VALUES(238, 'Windurst Waters', 14242);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 4401);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 4472);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 4464);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 4427);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 90);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 14117);
-INSERT INTO `fishing_zone` VALUES(239, 'Windurst Walls', 14242);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 4360);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 4514);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 4461);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 624);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 90);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 12522);
-INSERT INTO `fishing_zone` VALUES(240, 'Port Windurst', 14117);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 4401);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 4472);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 4464);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 4427);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 14117);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 14242);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 13454);
-INSERT INTO `fishing_zone` VALUES(241, 'Windurst Woods', 13456);
-INSERT INTO `fishing_zone` VALUES(242, 'Heavens_Tower', 14242);
-INSERT INTO `fishing_zone` VALUES(242, 'Heavens_Tower', 13454);
-INSERT INTO `fishing_zone` VALUES(242, 'Heavens_Tower', 13456);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4443);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4360);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4403);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4483);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4482);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 4384);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 90);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 14117);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 14242);
-INSERT INTO `fishing_zone` VALUES(245, 'Lower Jeuno', 13454);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4443);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4360);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4403);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4483);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4482);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 4384);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 16451);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 90);
-INSERT INTO `fishing_zone` VALUES(246, 'Port Jeuno', 13454);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 4401);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 4472);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 4306);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 4291);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 90);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 12522);
-INSERT INTO `fishing_zone` VALUES(247, 'Rabao', 13454);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4360);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4443);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4501);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4500);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4514);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 90);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 14117);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 13456);
-INSERT INTO `fishing_zone` VALUES(248, 'Selbina', 4385);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 4360);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 4403);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 624);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 90);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 14117);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 13454);
-INSERT INTO `fishing_zone` VALUES(249, 'Mhaura', 13456);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 4443);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 4360);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 4514);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 4580);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 624);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 688);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 90);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 14242);
-INSERT INTO `fishing_zone` VALUES(250, 'Kazham', 13454);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 4443);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 4360);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 4514);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 4580);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 624);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 90);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 14117);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 14242);
-INSERT INTO `fishing_zone` VALUES(252, 'Norg', 13454);
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

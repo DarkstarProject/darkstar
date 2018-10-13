@@ -60,3 +60,39 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     end
 end;
+
+-----------------------------------
+-- onFishStart
+-----------------------------------
+
+function onFishStart(player)
+
+    return true;
+end;
+
+-----------------------------------
+-- onFishAction
+-----------------------------------
+
+function onFishAction(player,action)
+
+    return true;
+end;
+
+-----------------------------------
+-- onFishCatch
+-----------------------------------
+
+function onFishCatch(player,catchtype,catchid)
+
+    return true;
+end;
+
+-----------------------------------
+-- onFishEnd
+-----------------------------------
+
+function onFishEnd(player)
+
+    return true;
+end;

@@ -100,6 +100,26 @@ struct map_config_t
     bool   craft_day_matters;         // Enable/disable Element day factor in synthesis
     bool   craft_moonphase_matters;   // Enable/disable Moon phase factor in synthesis
     bool   craft_direction_matters;   // Enable/disable Compass direction factor in synthesis
+    float  fishing_skillup_chance_multiplier; // Fishing skill-up rate multiplier
+    float  fishing_skillup_amount_multiplier; // Used to increase the amount of skill gained during fishing skill up
+    float  fishing_skillup_rank_multipler;    // Fishing skill-up rate rank difficulty multiplier
+    int16  fishing_rods_can_break;            // Can fishing rods break
+    int16  fishing_lines_can_break;           // Can fishing lines break
+    int16  fishing_bait_can_be_lost;          // Can fishing bait be lost
+    int16  fishing_lures_can_be_lost;         // Can fishing lures be lost
+    int16  fishing_moon_mod_enabled;          // Enable dishing moon mods
+    int16  fishing_full_moon_mod;             // Full moon mod, percent subtracted from fail/item/mob rolls and added to fish rolls
+    int16  fishing_new_moon_mod;              // New moon mod, percent added to fail/item/mob rolls and subtracted from fish rolls
+    int16  fishing_weather_mod_enabled;       // Fishing Weather Mods - Configured in the fish database, fish can have weather bonus preferences
+    int16  fishing_day_mod_enabled;           // Fishing Day Mods - Configured in the fish database, fish can have day bonus preferences
+    int16  fishing_time_mod_enabled;          // Fishing Time Mods - Configured in the fish database, fish can have time of day bonus preferences
+    int16  fishing_city_fail_base;     // Base roll of hooking failure - city
+    int16  fishing_city_hook_item_base;// Base roll of hooking items   - city
+    int16  fishing_city_hook_fish_base;// Base roll of hooking a fish  - city
+    int16  fishing_outdoor_fail_base;         // Base roll of hooking failure  - outside
+    int16  fishing_outdoor_hook_monster_base; // Base roll of hooking monsters - outside
+    int16  fishing_outdoor_hook_item_base;    // Base roll of hooking items    - outside
+    int16  fishing_outdoor_hook_fish_base;    // Base roll of hooking a fish   - outside
     float  mob_tp_multiplier;         // Multiplies the amount of TP mobs gain on any effect that would grant TP
     float  player_tp_multiplier;      // Multiplies the amount of TP players gain on any effect that would grant TP
     bool   mob_no_despawn;            // Toggle whether mobs roam home or despawn

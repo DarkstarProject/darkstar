@@ -201,6 +201,8 @@ CCharEntity::CCharEntity()
 
     PAI = std::make_unique<CAIContainer>(this, nullptr, std::make_unique<CPlayerController>(this),
         std::make_unique<CTargetFind>(this));
+
+    hookedFish = nullptr;
 }
 
 CCharEntity::~CCharEntity()

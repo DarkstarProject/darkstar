@@ -13833,6 +13833,135 @@ inline int32 CLuaBaseEntity::itemStolen(lua_State *L)
 }
 
 /************************************************************************
+*  Function: getFishData()
+*  Purpose : Returns a table of hooked fish data
+*  Example : local fishData = player:getFishData() -- fishData becomes a Lua table
+*  Notes   : Access values with key identifiers (fishData.caught or fishData.catchid)
+************************************************************************/
+//
+//inline int32 CLuaBaseEntity::getFishData(lua_State* L)
+//{
+//    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+//
+//    lua_createtable(L, 17, 0);
+//    int8 newTable = lua_gettop(L);
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->areaid);
+//    lua_setfield(L, newTable, "areaid");
+//
+//    lua_pushboolean(L, m_PBaseEntity->hookedFish->caught);
+//    lua_setfield(L, newTable, "caught");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->reason);
+//    lua_setfield(L, newTable, "reason");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->catchid);
+//    lua_setfield(L, newTable, "catchid");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->catchtype);
+//    lua_setfield(L, newTable, "catchtype");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->catchlevel);
+//    lua_setfield(L, newTable, "catchlevel");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->catchsize);
+//    lua_setfield(L, newTable, "catchsize");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->count);
+//    lua_setfield(L, newTable, "count");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->stamina);
+//    lua_setfield(L, newTable, "stamina");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->delay);
+//    lua_setfield(L, newTable, "delay");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->regen);
+//    lua_setfield(L, newTable, "regen");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->response);
+//    lua_setfield(L, newTable, "response");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->attackdmg);
+//    lua_setfield(L, newTable, "attackdmg");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->heal);
+//    lua_setfield(L, newTable, "heal");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->timelimit);
+//    lua_setfield(L, newTable, "timelimit");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->sense);
+//    lua_setfield(L, newTable, "sense");
+//
+//    lua_pushnumber(L, m_PBaseEntity->hookedFish->special);
+//    lua_setfield(L, newTable, "special");
+//
+//    return 1;
+//}
+
+/************************************************************************
+*  Function: setFishData()
+*  Purpose : Sets chars hooked fish data
+*  Example : player:setFishData("catchid",1234) -- sets fish data
+*  Notes   : 
+************************************************************************/
+
+//inline int32 CLuaBaseEntity::setFishData(lua_State* L)
+//{
+//    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+//
+//    if (lua_isstring(L, 1) && lua_isnumber(L, 2))
+//    {
+//        const char* var = lua_tostring(L, 1);
+//        const int value = (int)lua_tonumber(L, 2);
+//
+//        if (var == "catchid") {
+//            m_PBaseEntity->hookedFish->catchid = value;
+//        }
+//        else if (var == "catchtype") {
+//            m_PBaseEntity->hookedFish->catchtype = value;
+//        }
+//        else if (var == "catchlevel") {
+//            m_PBaseEntity->hookedFish->catchlevel = value;
+//        }
+//        else if (var == "catchsize") {
+//            m_PBaseEntity->hookedFish->catchsize = value;
+//        }
+//        else if (var == "count") {
+//            m_PBaseEntity->hookedFish->count = value;
+//        }
+//        else if (var == "stamina") {
+//            m_PBaseEntity->hookedFish->stamina = value;
+//        }
+//        else if (var == "delay") {
+//            m_PBaseEntity->hookedFish->delay = value;
+//        }
+//        else if (var == "regen") {
+//            m_PBaseEntity->hookedFish->regen = value;
+//        }
+//        else if (var == "response") {
+//            m_PBaseEntity->hookedFish->response = value;
+//        }
+//        else if (var == "attackdmg") {
+//            m_PBaseEntity->hookedFish->attackdmg = value;
+//        }
+//        else if (var == "heal") {
+//            m_PBaseEntity->hookedFish->heal = value;
+//        }
+//        else if (var == "timelimit") {
+//            m_PBaseEntity->hookedFish->timelimit = value;
+//        }
+//        else if (var == "sense") {
+//            m_PBaseEntity->hookedFish->sense = value;
+//        }
+//
+//    }
+//
+//    return 0;    
+//}
+
+/************************************************************************
 *  Function: getTHlevel()
 *  Purpose : Returns the Monster's current Treasure Hunter Tier
 *  Example : local TH = target:getTHlevel()

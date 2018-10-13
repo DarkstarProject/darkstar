@@ -969,6 +969,26 @@ int32 map_config_default()
     map_config.craft_day_matters = 1;
     map_config.craft_moonphase_matters = 0;
     map_config.craft_direction_matters = 0;
+    map_config.fishing_skillup_chance_multiplier = 1.0f;
+    map_config.fishing_skillup_amount_multiplier = 1.0f;
+    map_config.fishing_skillup_rank_multipler = 1.0f;
+    map_config.fishing_rods_can_break = 1;
+    map_config.fishing_lines_can_break = 1;
+    map_config.fishing_bait_can_be_lost = 1;
+    map_config.fishing_lures_can_be_lost = 1;
+    map_config.fishing_moon_mod_enabled = 1;
+    map_config.fishing_full_moon_mod = 25;
+    map_config.fishing_new_moon_mod = 25;
+    map_config.fishing_weather_mod_enabled = 1;
+    map_config.fishing_day_mod_enabled = 1;
+    map_config.fishing_time_mod_enabled = 1;
+    map_config.fishing_city_fail_base = 25;
+    map_config.fishing_city_hook_item_base = 15;
+    map_config.fishing_city_hook_fish_base = 60;
+    map_config.fishing_outdoor_fail_base = 15;
+    map_config.fishing_outdoor_hook_monster_base = 25;
+    map_config.fishing_outdoor_hook_item_base = 10;
+    map_config.fishing_outdoor_hook_fish_base = 50;
     map_config.mob_tp_multiplier = 1.0f;
     map_config.player_tp_multiplier = 1.0f;
     map_config.nm_hp_multiplier = 1.0f;
@@ -1242,6 +1262,86 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "craft_direction_matters") == 0)
         {
             map_config.craft_direction_matters = atof(w2);
+        }
+                else if (strcmp(w1, "fishing_skillup_chance_multiplier") == 0)
+        {
+            map_config.fishing_skillup_chance_multiplier = (float)atof(w2);
+        }
+        else if (strcmp(w1, "fishing_skillup_amount_multiplier") == 0)
+        {
+            map_config.fishing_skillup_amount_multiplier = (float)atof(w2);
+        }
+        else if (strcmp(w1, "fishing_skillup_rank_multipler") == 0)
+        {
+            map_config.fishing_skillup_rank_multipler = (float)atof(w2);
+        }
+        else if (strcmp(w1, "fishing_city_fail_base") == 0)
+        {
+            map_config.fishing_city_fail_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_city_hook_item_base") == 0)
+        {
+            map_config.fishing_city_hook_item_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_city_hook_fish_base") == 0)
+        {
+            map_config.fishing_city_hook_fish_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_outdoor_fail_base") == 0)
+        {
+            map_config.fishing_outdoor_fail_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_outdoor_hook_monster_base") == 0)
+        {
+            map_config.fishing_outdoor_hook_monster_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_outdoor_hook_item_base") == 0)
+        {
+            map_config.fishing_outdoor_hook_item_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_outdoor_hook_fish_base") == 0)
+        {
+            map_config.fishing_outdoor_hook_fish_base = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_rods_can_break") == 0)
+        {
+            map_config.fishing_rods_can_break = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_lines_can_break") == 0)
+        {
+            map_config.fishing_lines_can_break = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_bait_can_be_lost") == 0)
+        {
+            map_config.fishing_bait_can_be_lost = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_lures_can_be_lost") == 0)
+        {
+            map_config.fishing_lures_can_be_lost = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_moon_mod_enabled") == 0)
+        {
+            map_config.fishing_moon_mod_enabled = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_full_moon_mod") == 0)
+        {
+            map_config.fishing_full_moon_mod = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_new_moon_mod") == 0)
+        {
+            map_config.fishing_new_moon_mod = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_weather_mod_enabled") == 0)
+        {
+            map_config.fishing_weather_mod_enabled = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_day_mod_enabled") == 0)
+        {
+            map_config.fishing_day_mod_enabled = atoi(w2);
+        }
+        else if (strcmp(w1, "fishing_time_mod_enabled") == 0)
+        {
+            map_config.fishing_time_mod_enabled = atoi(w2);
         }
         else if (strcmp(w1, "mysql_host") == 0)
         {
