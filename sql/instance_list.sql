@@ -88,7 +88,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (40,'the_price_is_right',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (41,'golden_salvage',54,30,-60.350,-5.000,27.670,46,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (42,'lamia_no_13',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
- --INSERT INTO `instance_list` VALUES (43,'extermination',54,30,298.099,-3.943,135.234,0,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (43,'extermination',54,30,298.099,-3.943,135.234,149,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (44,'demolition_duty',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (45,'searat_salvation',54,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (46,'apkallu_seizure',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
