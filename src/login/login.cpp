@@ -606,6 +606,11 @@ int32 config_write(const char* fileName, const char *config, std::function<std::
     fclose(fp);
 
     fp = fopen(fileName, "w");
+    if (fp == nullptr)
+    {
+        ShowError("%s configuration file not found at: %s - unable to write changes\n", config, fileName);
+        return 1;
+    }
 
     for (auto& item : lines)
     {
