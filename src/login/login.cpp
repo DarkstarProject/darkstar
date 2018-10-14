@@ -525,7 +525,7 @@ std::string maint_config_write(const char* key)
 {
     if (strcmp(key, "MAINT_MODE") == 0)
     {
-        return std::to_string(maint_config.maint_mode).c_str();
+        return std::to_string(maint_config.maint_mode);
     }
 
     ShowWarning("Did not find value for setting '%s'\n", key);
