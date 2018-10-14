@@ -40,14 +40,16 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         GOLD_CHECK                 = 7345, -- You see something gold glittering around the indentation.
         COMPLETED_CHECK            = 7346, -- It is a door you can open using <item>!
         SENSE_OMINOUS_PRESENCE     = 7360, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 9680, -- New training regime registered!
     },
     mob =
     {
-        CHARYBDIS_PH = 
+        CHARYBDIS_PH =
         {
             [17498518] = 17498522,  -- -138.181, 48.389, -338.001
             [17498520] = 17498522  -- -212.407, 38.538, -342.544
         },
+        MIMIC        = 17498564,
         WATER_LEAPER = 17498565,
     },
     npc =

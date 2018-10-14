@@ -39,10 +39,11 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         CHEST_MOOGLE                   = 7283, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION                 = 7284, -- The chest was but an illusion...
         CHEST_LOCKED                   = 7285, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED              = 10341, -- New training regime registered!
     },
     mob =
     {
-        AH_PUCH_PH                  = 
+        AH_PUCH_PH                  =
         {
             [17571893] = 17571903, -- -418,-1,629
             [17571894] = 17571903, -- -419,-1,570

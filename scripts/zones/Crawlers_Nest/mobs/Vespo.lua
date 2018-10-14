@@ -2,9 +2,9 @@
 -- Area: Crawlers' Nest
 --  MOB: Vespo
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,693,2);
+    dsp.regime.checkRegime(player, mob, 693, 2, dsp.regime.type.GROUNDS)
 end;

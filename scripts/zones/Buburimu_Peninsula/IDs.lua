@@ -34,17 +34,18 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
         YOU_CANNOT_ENTER_DYNAMIS       = 7890, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         MYSTERIOUS_VOICE               = 7891, -- You hear a mysterious, floating voice: The guiding aura has not yet faded... Bring forth the <item>.
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7892, -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        REGIME_REGISTERED              = 10288, -- New training regime registered!
     },
     mob =
     {
-        BUBURIMBOO_PH = 
+        BUBURIMBOO_PH =
         {
             [17261000] = 17261003, -- 443.429 19.500 135.322
             [17261002] = 17261003, -- 442.901 19.500 109.075
             [17261001] = 17261003, -- 443.004 19.500 96.000
             [17260999] = 17261003, -- 444.224 19.499 76.000
         },
-        HELLDIVER_PH  = 
+        HELLDIVER_PH  =
         {
             [17260886] = 17260907, -- 439.685 -0.200 -271.203
             [17260906] = 17260907, -- 509.641 0.151 -267.664
@@ -57,6 +58,15 @@ zones[dsp.zone.BUBURIMU_PENINSULA] =
     {
         OVERSEER_BASE            = 17261148,
         BUBURIMU_SIGNPOST_OFFSET = 17261163,
+        LOGGING =
+        {
+            17261173,
+            17261174,
+            17261175,
+            17261176,
+            17261177,
+            17261178,
+        },
     },
 }
 

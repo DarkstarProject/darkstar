@@ -409,7 +409,7 @@ local fishRewards =
             {chance = 48.1, itemId = 9101}, -- Hakuryu's Liver
         }
     },
-    [5799] = -- Giant Catfish
+    [4469] = -- Giant Catfish
     {
         gil = 50,
         title = dsp.title.CORDON_BLEU_FISHER,

@@ -36,23 +36,24 @@ zones[dsp.zone.FEIYIN] =
         MARK_OF_SEED_GROWS_FAINTER         = 7498, -- The Mark of Seed grows fainter still. Before long, it will fade away entirely...
         MARK_OF_SEED_IS_ABOUT_TO_DISSIPATE = 7499, -- The Mark of Seed is about to dissipate entirely! Only a faint outline remains...
         MARK_OF_SEED_HAS_VANISHED          = 7500, -- The Mark of Seed has vanished without a trace...
+        REGIME_REGISTERED                  = 9591, -- New training regime registered!
         HOMEPOINT_SET                      = 10687, -- Home point set!
     },
     mob =
     {
-        NORTHERN_SHADOW_PH  = 
+        NORTHERN_SHADOW_PH  =
         {
             [17613099] = 17613103, -- -159.000 -16.000 146.000
         },
-        EASTERN_SHADOW_PH   = 
+        EASTERN_SHADOW_PH   =
         {
             [17613108] = 17613110, -- -86.000 -15.000 152.000
         },
-        SOUTHERN_SHADOW_PH  = 
+        SOUTHERN_SHADOW_PH  =
         {
             [17613118] = 17613121, -- -169.000 -16.000 87.000
         },
-        WESTERN_SHADOW_PH   = 
+        WESTERN_SHADOW_PH   =
         {
             [17613095] = 17613096, -- -204.000 -15.000 118.000
         },

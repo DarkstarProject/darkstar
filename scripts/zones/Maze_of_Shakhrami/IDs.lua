@@ -30,6 +30,7 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
         CHEST_ILLUSION          = 7359, -- The chest was but an illusion...
         CHEST_LOCKED            = 7360, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         MINING_IS_POSSIBLE_HERE = 7361, -- Mining is possible here if you have <item>.
+        REGIME_REGISTERED       = 10347, -- New training regime registered!
     },
     mob =
     {
@@ -43,6 +44,15 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
     {
         FOSSIL_ROCK_OFFSET       = 17588737,
         SHAKHRAMI_TREASURE_CHEST = 17588773,
+        EXCAVATION =
+        {
+            17588774,
+            17588775,
+            17588776,
+            17588777,
+            17588778,
+            17588779,
+        },
     },
 }
 

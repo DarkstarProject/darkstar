@@ -2,7 +2,7 @@
 -- Area: West Sarutabaruta
 --  MOB: Numbing Norman
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/msg");
 -----------------------------------
 
@@ -22,7 +22,7 @@ function onAdditionalEffect(mob,target,damage)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,61,2);
+    dsp.regime.checkRegime(player, mob, 61, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

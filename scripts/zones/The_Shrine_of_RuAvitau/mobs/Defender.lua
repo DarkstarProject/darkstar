@@ -2,7 +2,7 @@
 -- Area: The Shrine of Ru'Avitau
 --  MOB: Defender
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -56,7 +56,7 @@ function onMobDisengage(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,749,1);
+    dsp.regime.checkRegime(player, mob, 749, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn( mob )

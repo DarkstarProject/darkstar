@@ -6,12 +6,15 @@
 local ID = require("scripts/zones/Oldton_Movalpolos/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateTreasureSpawnPoint(ID.mob.OLDTON_TREASURE_CHEST);
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onConquestUpdate(zone, updatetype)

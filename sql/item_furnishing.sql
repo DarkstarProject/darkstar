@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `item_furnishing` (
   `itemid` smallint(5) unsigned NOT NULL,
   `name` text NOT NULL,
   `storage` tinyint(3) unsigned NOT NULL DEFAULT '0',
-  `moghancement` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `moghancement` smallint(4) unsigned NOT NULL DEFAULT '0',
   `element` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `aura` tinyint(3) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`itemid`)

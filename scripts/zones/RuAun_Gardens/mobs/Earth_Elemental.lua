@@ -2,9 +2,9 @@
 -- Area: RuAun Gardens
 --  MOB: Earth Elemental
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,146,2);
+    dsp.regime.checkRegime(player, mob, 146, 2, dsp.regime.type.FIELDS)
 end;

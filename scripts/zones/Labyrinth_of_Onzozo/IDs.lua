@@ -26,14 +26,15 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         CHEST_ILLUSION          = 7320, -- The chest was but an illusion...
         CHEST_LOCKED            = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SENSE_OMINOUS_PRESENCE  = 7330, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9386, -- New training regime registered!
     },
     mob =
     {
-        LORD_OF_ONZOZO_PH       = 
+        LORD_OF_ONZOZO_PH       =
         {
             [17649730] = 17649731, -- -39.356 14.265 -60.406
         },
-        OSE_PH                  = 
+        OSE_PH                  =
         {
             [17649813] = 17649822, -- -1.758 4.982 153.412
             [17649814] = 17649822, -- 8.113 5.055 159.197
@@ -44,7 +45,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
             [17649816] = 17649822, -- 48.440 5.070 174.352
             [17649815] = 17649822, -- 39.858 4.364 164.961
         },
-        SOULSTEALER_SKULLNIX_PH = 
+        SOULSTEALER_SKULLNIX_PH =
         {
             [17649838] = 17649818, -- 38.347 5.500 178.050
             [17649834] = 17649818, -- 43.103 5.677 181.977
@@ -53,18 +54,18 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
             [17649829] = 17649818, -- 13.729 4.814 166.295
             [17649831] = 17649818, -- 5.096 3.930 166.865
         },
-        NARASIMHA_PH            = 
+        NARASIMHA_PH            =
         {
             [17649783] = 17649784, -- -119.897 0.275 127.060
             [17649787] = 17649784, -- -126.841 -0.554 129.681
             [17649790] = 17649784, -- -140.000 -0.955 144.000
         },
-        HELLION_PH              = 
+        HELLION_PH              =
         {
             [17649797] = 17649795, -- 136.566 14.708 70.077
             [17649810] = 17649795, -- 127.523 14.327 210.258
         },
-        PEG_POWLER_PH           = 
+        PEG_POWLER_PH           =
         {
             [17649755] = 17649761, -- -100.912 4.263 -21.983
             [17649759] = 17649761, -- -128.471 4.952 0.489

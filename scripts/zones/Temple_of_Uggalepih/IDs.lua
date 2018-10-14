@@ -42,10 +42,11 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         IT_IS_A_BEEHIVE            = 7497, -- It is a beehive...
         BITS_OF_VEGETABLE          = 7498, -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
         SENSE_OMINOUS_PRESENCE     = 7500, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10521, -- New training regime registered!
     },
     mob =
     {
-        TONBERRY_KINQ_PH         = 
+        TONBERRY_KINQ_PH         =
         {
             [17428673] = 17428677, -- -221.717 0.996 12.819
             [17428675] = 17428677 -- -218 -0.792 24
@@ -53,6 +54,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         TEMPLE_GUARDIAN          = 17428494,
         NIO_A                    = 17428495,
         NIO_HUM                  = 17428496,
+        MIMIC                    = 17428497,
         SOZU_ROGBERRY            = 17428751,
         CLEUVARION_M_RESOAIX     = 17428807,
         ROMPAULION_S_CITALLE     = 17428808,

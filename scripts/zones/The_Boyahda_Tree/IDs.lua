@@ -29,18 +29,20 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
         CANNOT_SEE_MOON         = 7170, -- You cannot see the moon right now.
         CONQUEST_BASE           = 7171, -- Tallying conquest results...
         SENSE_OMINOUS_PRESENCE  = 7391, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 10334, -- New training regime registered!
         HOMEPOINT_SET           = 11432, -- Home point set!
     },
     mob =
     {
-        ELLYLLON_PH          = 
+        ELLYLLON_PH          =
         {
             [17403938] = 17403939, -- 192.54 8.532 -163.41
         },
-        VOLUPTUOUS_VIVIAN_PH = 
+        VOLUPTUOUS_VIVIAN_PH =
         {
             [17404330] = 17404331, -- -196.178 5.592 190.971
         },
+        MIMIC                = 17404336,
         AGAS                 = 17404337,
         BEET_LEAFHOPPER      = 17404338,
     },

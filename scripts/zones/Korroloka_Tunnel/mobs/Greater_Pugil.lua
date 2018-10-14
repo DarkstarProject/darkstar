@@ -2,9 +2,9 @@
 -- Area: Korroloka Tunnel
 --  MOB: Greater Pugil
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,731,2);
+    dsp.regime.checkRegime(player, mob, 731, 2, dsp.regime.type.GROUNDS)
 end;

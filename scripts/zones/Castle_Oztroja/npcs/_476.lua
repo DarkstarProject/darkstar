@@ -3,15 +3,13 @@
 --  NPC: _476 (Brass Door)
 -- !pos 145.005 -19.989 -140.000 151
 -----------------------------------
-require("scripts/globals/settings");
------------------------------------
 
 function onTrigger(player,npc)
-    npc:openDoor(6);
-end;
+    npc:openDoor(6)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

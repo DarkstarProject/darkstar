@@ -3,11 +3,11 @@
 --  MOB: Rumble Crawler
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/settings");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,791,2);
+    dsp.regime.checkRegime(player, mob, 791, 2, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

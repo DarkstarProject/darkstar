@@ -1152,29 +1152,41 @@ namespace luautils
 
     int32 GetTextIDVariable(uint16 ZoneID, const char* variable)
     {
-        lua_pushnil(LuaHandle);
-        lua_setglobal(LuaHandle, variable);
+        lua_getglobal(LuaHandle, "zones");
 
-        char File[255];
-        memset(File, 0, sizeof(File));
-        snprintf(File, sizeof(File), "scripts/zones/%s/TextIDs.lua", zoneutils::GetZone(ZoneID)->GetName());
-
-        if (luaL_loadfile(LuaHandle, File) || lua_pcall(LuaHandle, 0, 0, 0))
+        if (lua_isnil(LuaHandle, -1) || !lua_istable(LuaHandle, -1))
         {
             lua_pop(LuaHandle, 1);
             return 0;
         }
 
-        lua_getglobal(LuaHandle, variable);
+        lua_pushnumber(LuaHandle, ZoneID);
+        lua_gettable(LuaHandle, -2);
+
+        if (lua_isnil(LuaHandle, -1) || !lua_istable(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 2);
+            return 0;
+        }
+
+        lua_getfield(LuaHandle, -1, "text");
+
+        if (lua_isnil(LuaHandle, -1) || !lua_istable(LuaHandle, -1))
+        {
+            lua_pop(LuaHandle, 3);
+            return 0;
+        }
+
+        lua_getfield(LuaHandle, -1, variable);
 
         if (lua_isnil(LuaHandle, -1) || !lua_isnumber(LuaHandle, -1))
         {
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 4);
             return 0;
         }
 
         int32 value = (int32)lua_tonumber(LuaHandle, -1);
-        lua_pop(LuaHandle, -1);
+        lua_pop(LuaHandle, 4);
         return value;
     }
 
@@ -2289,7 +2301,7 @@ namespace luautils
         lua_getglobal(LuaHandle, "mixins");
         if (lua_isnil(LuaHandle, -1))
         {
-            lua_pop(LuaHandle, 1);
+            lua_pop(LuaHandle, 3);
             return -1;
         }
         //get the parameter "mixinOptions" (optional)

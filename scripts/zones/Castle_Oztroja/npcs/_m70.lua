@@ -4,27 +4,25 @@
 -- Involved in Mission: Magicite
 -- !pos -97.134 24.250 -105.979 151
 -----------------------------------
-require("scripts/globals/keyitems");
-local ID = require("scripts/zones/Castle_Oztroja/IDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:hasKeyItem(dsp.ki.YAGUDO_TORCH)) then
-        player:startEvent(11);
+    if player:hasKeyItem(dsp.ki.YAGUDO_TORCH) then
+        player:startEvent(11)
     else
-        player:messageSpecial(ID.text.PROBABLY_WORKS_WITH_SOMETHING_ELSE);
+        player:messageSpecial(ID.text.PROBABLY_WORKS_WITH_SOMETHING_ELSE)
     end
 
-    return 1;
-
-end;
+    return 1
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

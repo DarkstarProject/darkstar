@@ -2,9 +2,9 @@
 -- Area: Gusgen Mines
 --  MOB: Myconid
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,683,2);
+    dsp.regime.checkRegime(player, mob, 683, 2, dsp.regime.type.GROUNDS)
 end;

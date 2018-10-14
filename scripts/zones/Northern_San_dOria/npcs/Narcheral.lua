@@ -4,11 +4,12 @@
 -- Starts and Finishes Quest: Messenger from Beyond, Prelude of Black and White (Finish), Pieuje's Decision (Finish)
 -- !pos 129 -11 126 231
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/Northern_San_dOria/IDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +36,7 @@ function onTrigger(player,npc)
     mLvl = player:getMainLvl();
     mJob = player:getMainJob();
 
-    if (messengerFromBeyond == QUEST_AVAILABLE and mJob == 3 and mLvl >= AF1_QUEST_LEVEL) then
+    if (messengerFromBeyond == QUEST_AVAILABLE and mJob == dsp.job.WHM and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(689); -- Start quest "Messenger from Beyond"
     else
         player:startEvent(688); -- Standard dialog

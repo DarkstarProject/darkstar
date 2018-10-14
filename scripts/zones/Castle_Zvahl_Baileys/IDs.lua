@@ -33,6 +33,7 @@ zones[dsp.zone.CASTLE_ZVAHL_BAILEYS] =
         DUKE_HABORYM     = 17436923,
         GRAND_DUKE_BATYM = 17436927,
         DARK_SPARK       = 17436964,
+        MIMIC            = 17436965,
     },
     npc =
     {

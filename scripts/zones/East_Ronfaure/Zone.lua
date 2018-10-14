@@ -8,6 +8,7 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/quests");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -44,6 +45,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

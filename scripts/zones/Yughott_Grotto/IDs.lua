@@ -41,6 +41,15 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
     npc =
     {
         YUGHOTT_TREASURE_CHEST = 17359052,
+        MINING =
+        {
+            17359053,
+            17359054,
+            17359055,
+            17359056,
+            17359057,
+            17359058,
+        },
     },
 }
 

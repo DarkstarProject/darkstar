@@ -27,6 +27,7 @@ zones[dsp.zone.DEN_OF_RANCOR] =
         CHEST_ILLUSION          = 7348, -- The chest was but an illusion...
         CHEST_LOCKED            = 7349, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SENSE_OMINOUS_PRESENCE  = 7352, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9485, -- New training regime registered!
         HOMEPOINT_SET           = 10535, -- Home point set!
     },
     mob =
@@ -36,6 +37,7 @@ zones[dsp.zone.DEN_OF_RANCOR] =
     },
     npc =
     {
+        MIMIC                  = 17432583,
         HAKUTAKU_QM            = 17433015,
         RANCOR_LANTERN_OFFSET  = 17433047,
         RANCOR_DROP_GATE       = 17433051,

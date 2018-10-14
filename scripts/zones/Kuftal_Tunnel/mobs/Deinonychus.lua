@@ -4,11 +4,11 @@
 -- Note: Place Holder for Yowie
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,740,1);
+    dsp.regime.checkRegime(player, mob, 740, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

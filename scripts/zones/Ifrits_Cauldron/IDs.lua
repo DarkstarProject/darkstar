@@ -33,12 +33,14 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         MINING_IS_POSSIBLE_HERE    = 7256, -- Mining is possible here if you have <item>.
         EGGSHELLS_LIE_SCATTERED    = 7265, -- Eggshells lie scattered around the place...
         SENSE_OMINOUS_PRESENCE     = 7268, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10420, -- New training regime registered!
         HOMEPOINT_SET              = 11506, -- Home point set!
     },
     mob =
     {
         PIRATES_COVE_NMS = 17616897,
         ASH_DRAGON       = 17617147,
+        MIMIC            = 17617157,
         BOMB_QUEEN       = 17617158,
         TARASQUE         = 17617164,
         CAILLEACH_BHEUR  = 17617165,
@@ -50,6 +52,15 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         FLAME_SPOUT_OFFSET     = 17617204,
         PIRATES_COVE_QM        = 17617214,
         IFRITS_TREASURE_COFFER = 17617224,
+        MINING =
+        {
+            17617225,
+            17617226,
+            17617227,
+            17617228,
+            17617229,
+            17617230,
+        },
     },
 }
 

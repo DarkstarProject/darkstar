@@ -52,7 +52,7 @@ function onUseAbility(player,target,ability)
     local cure = 0
 
     --Performing mj check.
-    if (mjob == 19) then
+    if mjob == dsp.job.DNC then
         cure = (vit+chr)+450
     end
 

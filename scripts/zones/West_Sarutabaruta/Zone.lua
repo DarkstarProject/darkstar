@@ -7,6 +7,7 @@ local ID = require("scripts/zones/West_Sarutabaruta/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -43,6 +44,8 @@ end;
 
 function onInitialize(zone)
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn( player, prevZone)

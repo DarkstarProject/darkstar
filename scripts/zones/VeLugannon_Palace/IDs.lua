@@ -24,9 +24,11 @@ zones[dsp.zone.VELUGANNON_PALACE] =
         CHEST_MOOGLE            = 7219, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION          = 7220, -- The chest was but an illusion...
         CHEST_LOCKED            = 7221, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED       = 10157, -- New training regime registered!
     },
     mob =
     {
+        MIMIC            = 17502567,
         BRIGANDISH_BLADE = 17502568,
     },
     npc =

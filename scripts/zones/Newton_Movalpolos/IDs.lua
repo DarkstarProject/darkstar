@@ -32,6 +32,7 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     },
     mob =
     {
+        MIMIC                  = 16826564,
         BUGBEAR_MATMAN         = 16826570,
         MOBLIN_SHOWMAN         = 16826573,
         NEWTON_DOOR_OFFSET     = 16826582,
@@ -40,6 +41,15 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     },
     npc =
     {
+        MINING =
+        {
+            16826621,
+            16826622,
+            16826623,
+            16826624,
+            16826625,
+            16826626,
+        },
     },
 }
 

@@ -2,21 +2,20 @@
 -- Area: Temple of Uggalepih
 --  NPC: Grounds Tome
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    startGov(GOV_EVENT_TEMPLE_OF_UGGALEPIH,player);
-end;
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.GROUNDS)
+end
 
 function onEventUpdate(player,csid,option)
-    updateGov(player,csid,option,790,791,792,793,794,795,0,0,0,0);
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
 end;
 
 function onEventFinish(player,csid,option)
-    finishGov(player,csid,option,790,791,792,793,794,795,0,0,0,0,GOV_MSG_TEMPLE_OF_UGGALEPIH);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)
+end

@@ -4,12 +4,12 @@
 -- Note: Place holder Valkurm Emperor
 -----------------------------------
 local ID = require("scripts/zones/Valkurm_Dunes/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,9,1);
-    checkRegime(player,mob,10,2);
+    dsp.regime.checkRegime(player, mob, 9, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 10, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

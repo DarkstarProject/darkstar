@@ -26,10 +26,11 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         SHINING_OBJECT_SLIPS_AWAY     = 7437, -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7444, -- You can reach the water from here.
         CONQUEST                      = 7480, -- You've earned conquest points!
+        REGIME_REGISTERED             = 10395, -- New training regime registered!
     },
     mob =
     {
-        STINGING_SOPHIE_PH  = 
+        STINGING_SOPHIE_PH  =
         {
             [17211532] = 17211561, -- 352.974 -40.359 472.914
             [17211534] = 17211561, -- 353.313 -40.347 463.609
@@ -48,7 +49,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
             [17211583] = 17211561, -- 285.813 -60.784 518.539
             [17211579] = 17211561, -- 283.958 -60.926 530.016
         },
-        MAIGHDEAN_UAINE_PH  = 
+        MAIGHDEAN_UAINE_PH  =
         {
             [17211698] = 17211702, -- 121.242 -0.500 654.504
             [17211701] = 17211702, -- 176.458 -0.347 722.666

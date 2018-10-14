@@ -26,12 +26,14 @@ zones[dsp.zone.TORAIMARAI_CANAL] =
         CHEST_MOOGLE            = 7365, -- You cannot open the chest while participating in the moogle event.
         CHEST_ILLUSION          = 7366, -- The chest was but an illusion...
         CHEST_LOCKED            = 7367, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED       = 9615, -- New training regime registered!
         HOMEPOINT_SET           = 10691, -- Home point set!
     },
     mob =
     {
         MAGIC_SLUDGE      = 17469516,
         HINGE_OILS_OFFSET = 17469666,
+        MIMIC             = 17469761,
     },
     npc =
     {

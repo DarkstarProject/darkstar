@@ -9,6 +9,7 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
 require("scripts/globals/titles");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
@@ -20,6 +21,8 @@ function onInitialize(zone)
     end
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID());
+
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)

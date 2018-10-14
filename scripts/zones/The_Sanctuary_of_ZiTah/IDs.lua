@@ -31,10 +31,11 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
         ZILART_MONUMENT            = 7739, -- It is an ancient Zilart monument.
         STURDY_BRANCH              = 7762, -- It is a beautiful, sturdy branch.
         SENSE_OMINOUS_PRESENCE     = 7845, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10265, -- New training regime registered!
     },
     mob =
     {
-        NOBLE_MOLD_PH   = 
+        NOBLE_MOLD_PH   =
         {
             [17273276] = 17273278, -- -391.184 -0.269 -159.086
             [17273277] = 17273278, -- -378.456 0.425 -162.489

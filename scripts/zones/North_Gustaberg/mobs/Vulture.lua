@@ -2,9 +2,9 @@
 -- Area: North Gustaberg
 --  MOB: Vulture
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,18,1);
+    dsp.regime.checkRegime(player, mob, 18, 1, dsp.regime.type.FIELDS)
 end;

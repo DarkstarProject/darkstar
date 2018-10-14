@@ -41,6 +41,13 @@ zones[dsp.zone.CARPENTERS_LANDING] =
     },
     npc =
     {
+        LOGGING =
+        {
+            16785773,
+            16785774,
+            16785775,
+            16785776,
+        },
     },
 }
 

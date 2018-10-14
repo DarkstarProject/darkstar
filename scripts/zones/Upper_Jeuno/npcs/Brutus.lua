@@ -4,13 +4,13 @@
 -- Starts Quest: Chocobo's Wounds, Save My Son, Path of the Beastmaster, Wings of gold, Scattered into Shadow, Chocobo on the Loose!
 -- !pos -55 8 95 244
 -----------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/keyitems")
-require("scripts/globals/quests")
 require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/globals/titles")
-require("scripts/globals/wsquest")
-local ID = require("scripts/zones/Upper_Jeuno/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.decimation
@@ -65,7 +65,7 @@ function onTrigger(player,npc)
         player:startEvent(22)
     elseif (saveMySon == QUEST_COMPLETED and player:getQuestStatus(JEUNO,PATH_OF_THE_BEASTMASTER) == QUEST_AVAILABLE) then
         player:startEvent(70)
-    elseif (mLvl >= AF1_QUEST_LEVEL and mJob == 9 and wingsOfGold == QUEST_AVAILABLE) then
+    elseif (mLvl >= AF1_QUEST_LEVEL and mJob == dsp.job.BST and wingsOfGold == QUEST_AVAILABLE) then
         if (player:getVar("wingsOfGold_shortCS") == 1) then
             player:startEvent(137) -- Start Quest "Wings of gold" (Short dialog)
         else
@@ -78,9 +78,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(138) -- Finish Quest "Wings of gold"
         end
-    elseif (wingsOfGold == QUEST_COMPLETED and mLvl < AF2_QUEST_LEVEL and mJob == 9) then
+    elseif (wingsOfGold == QUEST_COMPLETED and mLvl < AF2_QUEST_LEVEL and mJob == dsp.job.BST) then
         player:startEvent(134) -- Standard dialog after "Wings of gold"
-    elseif (scatIntoShadow == QUEST_AVAILABLE and mLvl >= AF2_QUEST_LEVEL and mJob == 9) then
+    elseif (scatIntoShadow == QUEST_AVAILABLE and mLvl >= AF2_QUEST_LEVEL and mJob == dsp.job.BST) then
         if (player:getVar("scatIntoShadow_shortCS") == 1) then
             player:startEvent(143)
         else

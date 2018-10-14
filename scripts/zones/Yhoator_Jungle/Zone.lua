@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Yhoator_Jungle/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -57,6 +58,9 @@ function onInitialize(zone)
     GetMobByID(ID.mob.BRIGHT_HANDED_KUNBERRY):setRespawnTime(math.random(900, 10800));
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)

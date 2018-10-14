@@ -3,12 +3,12 @@
 --  MOB: Specter
 -- Note: PH for N/E/S/W Shadow NMs
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 local ID = require("scripts/zones/FeiYin/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,712,1);
+    dsp.regime.checkRegime(player, mob, 712, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)
