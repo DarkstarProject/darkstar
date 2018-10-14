@@ -2,8 +2,6 @@
 -- Area: Ilrusi Atoll (Extermination)
 --  MOB: Carrion Crab
 -----------------------------------
-require("scripts/zones/Ilrusi_Atoll/IDs")
-require("scripts/globals/status")
 
 function onMobSpawn(mob)
 end
