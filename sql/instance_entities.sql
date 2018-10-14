@@ -178,7 +178,7 @@ INSERT INTO `instance_entities` VALUES (41,17002752);
 INSERT INTO `instance_entities` VALUES (41,17002753);
 
 -- Extermination
---mobs
+-- mobs
 INSERT INTO `instance_entities` VALUES (43,17002521);
 INSERT INTO `instance_entities` VALUES (43,17002522);
 INSERT INTO `instance_entities` VALUES (43,17002523);
