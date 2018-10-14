@@ -422,7 +422,7 @@ dsp.quests.complete = function(player, quest, reward_set)
     end
 end
 
-local function dsp.quests.check(player, params)
+dsp.quests.check = function(player, params)
     local zoneid = player:getZoneID()
 
     local cycle = player:getLocalVar("[quests]cycle")
