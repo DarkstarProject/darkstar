@@ -2,6 +2,8 @@
 -- Area: Ilrusi Atoll (Extermination)
 --  MOB: Carrion Crab
 -----------------------------------
+require("scripts/zones/Ilrusi_Atoll/IDs")
+require("scripts/globals/status")
 
 function onMobSpawn(mob)
 end
@@ -11,11 +13,12 @@ end
 
 function onMobDespawn(mob)
     local instance = mob:getInstance()
-    local CRAB = GetMobByID(17002541, instance)
-    local RAND = math.random(1,4)
+    local CRAB = instance:getEntity(bit.band(17002541, 0xFFF), dsp.objType.MOB)
+    local RAND = math.random(1,5)
     
     if RAND == 1 and CRAB:getLocalVar("CrabSpawned") == 0 then
         SpawnMob(17002541, instance)
+        CRAB:setLocalVar("CrabSpawned", 1)
     else
         instance:setProgress(instance:getProgress() + 1)
     end

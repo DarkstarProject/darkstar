@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Ilrusi Atoll (Extermination)
---  MOB: Undead Crab
+--  MOB: Undead Toad
 -----------------------------------
 
 function onMobSpawn(mob)
