@@ -11,12 +11,12 @@ end;
 
 function onMobDespawn(mob)
     local instance = mob:getInstance()
-    local CRAB = instance:getEntity(bit.band(17002543, 0xFFF), dsp.objType.MOB)
+    local SLIME = instance:getEntity(bit.band(17002543, 0xFFF), dsp.objType.MOB)
     local RAND = math.random(1,5)
     
-    if RAND == 1 and CRAB:getLocalVar("SlimeSpawned") == 0 then
+    if RAND == 1 and SLIME:getLocalVar("SlimeSpawned") == 0 then
         SpawnMob(17002543, instance)
-        CRAB:setLocalVar("SlimeSpawned", 1)
+        SLIME:setLocalVar("SlimeSpawned", 1)
     else
         instance:setProgress(instance:getProgress() + 1)
     end
