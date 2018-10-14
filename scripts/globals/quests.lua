@@ -16,7 +16,7 @@ dsp.quests.enums =
 
     var_types =
     {
-        CHAR_VAR   = 1
+        CHAR_VAR   = 1,
         LOCAL_VAR  = 2,
         SERVER_VAR = 3,
     },
