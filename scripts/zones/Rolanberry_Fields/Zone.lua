@@ -11,40 +11,8 @@ require("scripts/globals/missions");
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 4450, 30, DIGREQ_NONE },
-                    { 4566, 7, DIGREQ_NONE },
-                    { 768, 164, DIGREQ_NONE },
-                    { 748, 15, DIGREQ_NONE },
-                    { 846, 97, DIGREQ_NONE },
-                    { 17396, 75, DIGREQ_NONE },
-                    { 749, 45, DIGREQ_NONE },
-                    { 739, 3, DIGREQ_NONE },
-                    { 17296, 216, DIGREQ_NONE },
-                    { 4448, 15, DIGREQ_NONE },
-                    { 638, 82, DIGREQ_NONE },
-                    { 106, 37, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 656, 200, DIGREQ_BURROW },
-                    { 750, 100, DIGREQ_BURROW },
-                    { 4375, 60, DIGREQ_BORE },
-                    { 4449, 15, DIGREQ_BORE },
-                    { 4374, 52, DIGREQ_BORE },
-                    { 4373, 10, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
