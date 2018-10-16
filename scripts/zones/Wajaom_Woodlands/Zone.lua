@@ -12,45 +12,8 @@ require("scripts/globals/titles");
 require("scripts/globals/helm")
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 770, 50, DIGREQ_NONE },
-                    { 2150, 60, DIGREQ_NONE },
-                    { 622, 197, DIGREQ_NONE },
-                    { 2155, 23, DIGREQ_NONE },
-                    { 739, 5, DIGREQ_NONE },
-                    { 17296, 133, DIGREQ_NONE },
-                    { 703, 69, DIGREQ_NONE },
-                    { 2213, 135, DIGREQ_NONE },
-                    { 838, 21, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 688, 144, DIGREQ_BURROW },
-                    { 702, 14, DIGREQ_BURROW },
-                    { 690, 23, DIGREQ_BURROW },
-                    { 1446, 3, DIGREQ_BURROW },
-                    { 700, 14, DIGREQ_BURROW },
-                    { 699, 37, DIGREQ_BURROW },
-                    { 701, 28, DIGREQ_BURROW },
-                    { 696, 23, DIGREQ_BURROW },
-                    { 678, 9, DIGREQ_BORE },
-                    { 645, 3, DIGREQ_BORE },
-                    { 768, 193, DIGREQ_BORE },
-                    { 737, 22, DIGREQ_BORE },
-                    { 2475, 3, DIGREQ_BORE },
-                    { 738, 3, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
