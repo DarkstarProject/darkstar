@@ -1,6 +1,7 @@
 -----------------------------------
 -- A collection of frequently needed teleport shortcuts.
 -----------------------------------
+require("scripts/globals/settings")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
@@ -469,4 +470,40 @@ dsp.teleport.escape = function(player)
     -- TODO: Arrapago Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
     -- TODO: Abyssea / SOA Areas
     -- MISC Flag in zone_settings will also need +1 or -1 depending on escape possibility.
+end
+
+-----------------------------------
+-- EXPLORER MOOGLE EVENTS
+-----------------------------------
+
+dsp.teleport.explorerMoogleOnTrigger = function(player, event)
+    local accept = 0
+
+    if player:getGil() < 300 then
+        accept = 1
+    end
+
+    if player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP then
+        event = event + 1
+    end
+
+    player:startEvent(event, player:getZoneID(), 0, accept)
+end
+
+dsp.teleport.explorerMoogleOnEventFinish = function(player, csid, option, event)
+    local price = 300
+
+    if csid == event then
+        if option == 1 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 231)
+        elseif option == 2 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 234)
+        elseif option == 3 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 240)
+        elseif option == 4 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 248)
+        elseif option == 5 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 249)
+        end
+    end
 end
