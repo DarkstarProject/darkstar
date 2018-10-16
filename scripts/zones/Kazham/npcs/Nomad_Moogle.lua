@@ -1,22 +1,20 @@
 -----------------------------------
 -- Area: Kazham
 --  NPC: Nomad Moogle
---
 -----------------------------------
-local ID = require("scripts/zones/Kazham/IDs");
+local ID = require("scripts/zones/Kazham/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.NOMAD_MOOGLE_DIALOG);
-    player:sendMenu(1);
-end;
+    player:showText(npc, ID.text.NOMAD_MOOGLE_DIALOG)
+    player:sendMenu(1)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end
