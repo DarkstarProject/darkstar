@@ -36,7 +36,7 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    if (csid == 208) then
+    if csid == 208 then
         player:setPos(0,0,0,0,63)
     end
 end
