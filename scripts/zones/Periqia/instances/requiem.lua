@@ -38,7 +38,7 @@ function onInstanceFailure(instance)
 end
 
 function onInstanceProgressUpdate(instance, progress)
-    if (progress >= 18) then
+    if progress >= 18 then
         instance:complete();
     end
 end
