@@ -44,10 +44,9 @@ end
 
 function onInstanceProgressUpdate(instance, progress)
 
-    if (progress == 20) then
+    if progress == 20 then
         instance:complete();
     end
-    printf("Progress: %i", progress)
 end
 
 function onInstanceComplete(instance)
