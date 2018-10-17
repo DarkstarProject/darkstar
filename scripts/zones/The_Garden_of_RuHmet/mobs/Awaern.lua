@@ -33,7 +33,7 @@ function onMobDeath(mob, player, isKiller)
             -- if aern belongs to QM group, chance for sheer animosity
             local position = GetNPCByID(ID.npc.IXAERN_DRK_QM):getLocalVar("position");
             local currentMobID = mob:getID();
-            if (currentMobID >= AWAERN_DRK_GROUPS[position] and currentMobID <= AWAERN_DRK_GROUPS[position] + 2) then
+            if (currentMobID >= ID.mob.AWAERN_DRK_GROUPS[position] and currentMobID <= ID.mob.AWAERN_DRK_GROUPS[position] + 2) then
                 if (math.random(1,8) == 1) then
                     qm2:setLocalVar("hatedPlayer",player:getID());
                     qm2:setLocalVar("hateTimer",os.time() + 600); -- player with animosity has 10 minutes to touch QM
