@@ -27,6 +27,7 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
+    local instance = player:getInstance()
     local chars = instance:getChars()
     if csid == 102 then
         for i,v in pairs(chars) do
