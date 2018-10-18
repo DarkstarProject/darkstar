@@ -21,19 +21,12 @@ zones[dsp.zone.GIDDEUS] =
         SPRING_FILL_UP              = 7353, -- You fill your flask with water.
         SPRING_DEFAULT              = 7354, -- Sparkling clear water bubbles up from the ground. If you have a container, you can fill it here.
         CHEST_UNLOCKED              = 7386, -- You unlock the chest!
-        CHEST_FAIL                  = 7387, -- <name> fails to open the chest.
-        CHEST_TRAP                  = 7388, -- The chest was trapped!
-        CHEST_WEAK                  = 7389, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                 = 7390, -- The chest was a mimic!
-        CHEST_MOOGLE                = 7391, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION              = 7392, -- The chest was but an illusion...
-        CHEST_LOCKED                = 7393, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         HARVESTING_IS_POSSIBLE_HERE = 7394, -- Harvesting is possible here if you have <item>.
         HOMEPOINT_SET               = 7422, -- Home point set!
     },
     mob =
     {
-        HOO_MJUU_THE_TORRENT_PH   = 
+        HOO_MJUU_THE_TORRENT_PH   =
         {
             [17371490] = 17371515, -- -63.000 -0.860 -91.000
             [17371498] = 17371515, -- -32.000 0.740 -105.000
@@ -42,7 +35,7 @@ zones[dsp.zone.GIDDEUS] =
             [17371508] = 17371515, -- -57.000 -2.000 -119.000
             [17371513] = 17371515, -- -39.073 0.597 -115.279
         },
-        JUU_DUZU_THE_WHIRLWIND_PH = 
+        JUU_DUZU_THE_WHIRLWIND_PH =
         {
             [17371298] = 17371300, -- 116.667 -3.442 -261.079
             [17371533] = 17371300, -- 85.728 -0.071 -248.141
@@ -51,7 +44,7 @@ zones[dsp.zone.GIDDEUS] =
             [17371529] = 17371300, -- 72.302 0.642 -202.985
             [17371519] = 17371300, -- 20.353 -3.647 -169.309
         },
-        VUU_PUQU_THE_BEGUILER_PH  = 
+        VUU_PUQU_THE_BEGUILER_PH  =
         {
             [17371577] = 17371578, -- -23.973 0.459 -399.155
         },
@@ -59,7 +52,7 @@ zones[dsp.zone.GIDDEUS] =
     },
     npc =
     {
-        GIDDEUS_TREASURE_CHEST = 17371608,
+        TREASURE_CHEST = 17371608,
         HARVESTING =
         {
             17371609,

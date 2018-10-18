@@ -5,11 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Crawlers_Nest/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.CNEST_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(ID.npc.CNEST_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

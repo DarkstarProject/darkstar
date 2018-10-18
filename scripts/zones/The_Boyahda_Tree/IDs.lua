@@ -17,13 +17,6 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
         NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
         FISHING_MESSAGE_OFFSET  = 7048, -- You can't fish here.
         CHEST_UNLOCKED          = 7155, -- You unlock the chest!
-        CHEST_FAIL              = 7156, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7157, -- The chest was trapped!
-        CHEST_WEAK              = 7158, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7159, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7160, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7161, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7162, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         CAN_SEE_SKY             = 7168, -- You can see the sky from here.
         SOMETHING_NOT_RIGHT     = 7169, -- Something is not right!
         CANNOT_SEE_MOON         = 7170, -- You cannot see the moon right now.
@@ -48,7 +41,7 @@ zones[dsp.zone.THE_BOYAHDA_TREE] =
     },
     npc =
     {
-        BOYAHDA_TREASURE_COFFER = 17404394,
+        TREASURE_COFFER = 17404394,
     },
 }
 

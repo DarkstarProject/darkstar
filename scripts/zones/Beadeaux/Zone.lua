@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Beadeaux/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
+require("scripts/globals/treasure")
 require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/globals/titles")
@@ -21,8 +22,7 @@ function onInitialize(zone)
     zone:registerRegion(5,  340, 10,  100, 0,0,0) -- 17379802 The Afflictor
     zone:registerRegion(6,  380, 10,   60, 0,0,0) -- 17379803 The Afflictor
 
-    UpdateTreasureSpawnPoint(ID.npc.BEADEAUX_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(ID.npc.BEADEAUX_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

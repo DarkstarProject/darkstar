@@ -18,13 +18,6 @@ zones[dsp.zone.CASTLE_ZVAHL_BAILEYS] =
         NOTHING_OUT_OF_ORDINARY = 6560, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING     = 6561, -- You are suddenly overcome with a sense of foreboding...
         CHEST_UNLOCKED          = 7221, -- You unlock the chest!
-        CHEST_FAIL              = 7222, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7223, -- The chest was trapped!
-        CHEST_WEAK              = 7224, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7225, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7226, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7227, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7228, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
     },
     mob =
     {
@@ -37,9 +30,9 @@ zones[dsp.zone.CASTLE_ZVAHL_BAILEYS] =
     },
     npc =
     {
-        ZVAHL_BAILEYS_TORCH_OFFSET    = 17436984,
-        ZVAHL_BAILEYS_TREASURE_CHEST  = 17436997,
-        ZVAHL_BAILEYS_TREASURE_COFFER = 17436998,
+        ZVAHL_BAILEYS_TORCH_OFFSET = 17436984,
+        TREASURE_CHEST             = 17436997,
+        TREASURE_COFFER            = 17436998,
     },
 }
 

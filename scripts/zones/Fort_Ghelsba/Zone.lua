@@ -5,10 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Fort_Ghelsba/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.FORT_GHELSBA_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

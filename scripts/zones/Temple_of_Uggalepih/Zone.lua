@@ -5,10 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.UGGALEPIH_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

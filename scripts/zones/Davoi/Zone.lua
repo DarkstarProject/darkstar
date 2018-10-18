@@ -6,11 +6,12 @@
 local ID = require("scripts/zones/Davoi/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
+require("scripts/globals/treasure")
 require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.DAVOI_TREASURE_CHEST)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

@@ -29,13 +29,6 @@ zones[dsp.zone.CASTLE_OZTROJA] =
         SENSE_OF_FOREBODING                = 6587, -- You are suddenly overcome with a sense of foreboding...
         FISHING_MESSAGE_OFFSET             = 7252, -- You can't fish here.
         CHEST_UNLOCKED                     = 7422, -- You unlock the chest!
-        CHEST_FAIL                         = 7423, -- <name> fails to open the chest.
-        CHEST_TRAP                         = 7424, -- The chest was trapped!
-        CHEST_WEAK                         = 7425, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                        = 7426, -- The chest was a mimic!
-        CHEST_MOOGLE                       = 7427, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                     = 7428, -- The chest was but an illusion...
-        CHEST_LOCKED                       = 7429, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         YAGUDO_AVATAR_ENGAGE               = 7443, -- Kahk-ka-ka... You filthy, dim-witted heretics! You have damned yourselves by coming here.
         YAGUDO_AVATAR_DEATH                = 7444, -- Our lord, Tzee Xicu the Manifest!  Even should our bodies be crushed and broken, may our souls endure into eternity...
         YAGUDO_KING_ENGAGE                 = 7445, -- You are not here as sacrifices, are you? Could you possibly be committing this affront in the face of a deity?  Very well, I will personally mete out your divine punishment, kyah!
@@ -81,16 +74,16 @@ zones[dsp.zone.CASTLE_OZTROJA] =
     },
     npc =
     {
-        HANDLE_DOOR_FLOOR_2     = 17396160,
-        FIRST_PASSWORD_STATUE   = 17396168,
-        SECOND_PASSWORD_STATUE  = 17396173,
-        THIRD_PASSWORD_STATUE   = 17396178,
-        BRASS_DOOR_FLOOR_4_H7   = 17396185,
-        TRAP_DOOR_FLOOR_4       = 17396191,
-        FINAL_PASSWORD_STATUE   = 17396192,
-        HINT_HANDLE_OFFSET      = 17396196,
-        OZTROJA_TREASURE_CHEST  = 17396210,
-        OZTROJA_TREASURE_COFFER = 17396211,
+        HANDLE_DOOR_FLOOR_2    = 17396160,
+        FIRST_PASSWORD_STATUE  = 17396168,
+        SECOND_PASSWORD_STATUE = 17396173,
+        THIRD_PASSWORD_STATUE  = 17396178,
+        BRASS_DOOR_FLOOR_4_H7  = 17396185,
+        TRAP_DOOR_FLOOR_4      = 17396191,
+        FINAL_PASSWORD_STATUE  = 17396192,
+        HINT_HANDLE_OFFSET     = 17396196,
+        TREASURE_CHEST         = 17396210,
+        TREASURE_COFFER        = 17396211,
     },
 }
 

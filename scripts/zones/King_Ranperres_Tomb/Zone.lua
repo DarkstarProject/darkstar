@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/King_Ranperres_Tomb/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/zone");
 -----------------------------------
 
@@ -17,7 +18,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.BARBASTELLE);
     GetMobByID(ID.mob.BARBASTELLE):setRespawnTime(math.random(1800,5400));
 
-    UpdateTreasureSpawnPoint(ID.mob.KRT_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
