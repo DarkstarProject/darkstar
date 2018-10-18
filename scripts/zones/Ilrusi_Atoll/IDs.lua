@@ -63,7 +63,8 @@ zones[dsp.zone.ILRUSI_ATOLL] =
             CURSED_CHEST11 = 17002515,
             CURSED_CHEST12 = 17002516,
         },
-        [43] = {
+        [43] = 
+        {
             CARRION_CRAB1   = 17002521,
             CARRION_LEECH1  = 17002522,
             CARRION_CRAB2   = 17002523,
