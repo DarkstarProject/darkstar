@@ -8,7 +8,8 @@ zones = zones or {}
 
 zones[dsp.zone.PERIQIA] =
 {
-    text = {
+    text = 
+    {
         ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
         FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
         ITEM_OBTAINED              = 6387, -- Obtained: <item>.
@@ -55,9 +56,11 @@ zones[dsp.zone.PERIQIA] =
         EXCALIACE_CAUGHT           = 7540, -- Damn...
     },
 
-    mob = {
+    mob = 
+    {
         -- Seagull Grounded
-        [31] = {
+        [31] = 
+        {
             CRAB1      = 17006594,
             CRAB2      = 17006595,
             CRAB3      = 17006596,
@@ -77,7 +80,8 @@ zones[dsp.zone.PERIQIA] =
             DEBAUCHER3 = 17006611,
         },
         -- Requiem
-        [32] = {
+        [32] = 
+        {
             PUTRID_IMMORTAL_GUARD1 = 17006612,
             PUTRID_IMMORTAL_GUARD2 = 17006613,
             BATTEILANT_BHOOT1      = 17006614,
@@ -98,7 +102,8 @@ zones[dsp.zone.PERIQIA] =
             DARKLING_DRAUGAR7      = 17006634,
         },
         -- Shades of Vengeance
-        [79] = {
+        [79] = 
+        {
             K23H1LAMIA1  = 17006754,
             K23H1LAMIA2  = 17006755,
             K23H1LAMIA3  = 17006756,
@@ -112,7 +117,8 @@ zones[dsp.zone.PERIQIA] =
         }
     },
 
-    npc = {
+    npc = 
+    {
         EXCALIACE       = 17006593,
         ANCIENT_LOCKBOX = 17006809,
         RUNE_OF_RELEASE = 17006810,
