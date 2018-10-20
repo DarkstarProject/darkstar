@@ -39281,31 +39281,33 @@ INSERT INTO `item_mods` VALUES (27442,30,27);     -- Magic Accuracy+27
 INSERT INTO `item_mods` VALUES (27442,31,107);
 INSERT INTO `item_mods` VALUES (27442,68,60);
 INSERT INTO `item_mods` VALUES (27442,384,300);
-INSERT INTO `item_mods` VALUES (27443,1,45);
-INSERT INTO `item_mods` VALUES (27443,2,5);
-INSERT INTO `item_mods` VALUES (27443,8,8);
-INSERT INTO `item_mods` VALUES (27443,9,14);
-INSERT INTO `item_mods` VALUES (27443,10,5);
-INSERT INTO `item_mods` VALUES (27443,11,29);
-INSERT INTO `item_mods` VALUES (27443,13,7);
-INSERT INTO `item_mods` VALUES (27443,14,17);
-INSERT INTO `item_mods` VALUES (27443,29,2);
-INSERT INTO `item_mods` VALUES (27443,31,51);
-INSERT INTO `item_mods` VALUES (27443,68,34);
-INSERT INTO `item_mods` VALUES (27443,384,400);
+INSERT INTO `item_mods` VALUES (27443,1,45);     -- Chasseur's Bottes: Def: 45
+INSERT INTO `item_mods` VALUES (27443,2,5);      -- HP+5
+INSERT INTO `item_mods` VALUES (27443,8,8);      -- STR+8
+INSERT INTO `item_mods` VALUES (27443,9,14);     -- DEX+14
+INSERT INTO `item_mods` VALUES (27443,10,5);     -- VIT+5
+INSERT INTO `item_mods` VALUES (27443,11,29);    -- AGI+29
+INSERT INTO `item_mods` VALUES (27443,13,7);     -- MND+7
+INSERT INTO `item_mods` VALUES (27443,14,17);    -- CHR+17
+INSERT INTO `item_mods` VALUES (27443,29,2);     -- Magic Defense+2
+INSERT INTO `item_mods` VALUES (27443,31,51);    -- Magic Evasion+51
+INSERT INTO `item_mods` VALUES (27443,68,34);    -- Evasion+34
+INSERT INTO `item_mods` VALUES (27443,384,400);  -- Haste+4%
+INSERT INTO `item_mods` VALUES (27443,411,22);   -- Quick Draw+22
 INSERT INTO `item_mods` VALUES (27443,891,100); -- Courser's Roll Bonus Activation %
-INSERT INTO `item_mods` VALUES (27444,1,69);
-INSERT INTO `item_mods` VALUES (27444,2,11);
-INSERT INTO `item_mods` VALUES (27444,8,14);
-INSERT INTO `item_mods` VALUES (27444,9,23);
-INSERT INTO `item_mods` VALUES (27444,10,8);
-INSERT INTO `item_mods` VALUES (27444,11,44);
-INSERT INTO `item_mods` VALUES (27444,13,11);
-INSERT INTO `item_mods` VALUES (27444,14,28);
-INSERT INTO `item_mods` VALUES (27444,29,5);
-INSERT INTO `item_mods` VALUES (27444,31,75);
-INSERT INTO `item_mods` VALUES (27444,68,74);
-INSERT INTO `item_mods` VALUES (27444,384,400);
+INSERT INTO `item_mods` VALUES (27444,1,69);     -- Chasseur's Bottes +1: Def: 69
+INSERT INTO `item_mods` VALUES (27444,2,11);     -- HP+11
+INSERT INTO `item_mods` VALUES (27444,8,14);     -- STR+14
+INSERT INTO `item_mods` VALUES (27444,9,23);     -- DEX+23
+INSERT INTO `item_mods` VALUES (27444,10,8);     -- VIT+8
+INSERT INTO `item_mods` VALUES (27444,11,44);    -- AGI+44
+INSERT INTO `item_mods` VALUES (27444,13,11);    -- MND+11
+INSERT INTO `item_mods` VALUES (27444,14,28);    -- CHR+28
+INSERT INTO `item_mods` VALUES (27444,29,5);     -- Magic Defense+5
+INSERT INTO `item_mods` VALUES (27444,31,75);    -- Magic Evasion+75
+INSERT INTO `item_mods` VALUES (27444,68,74);    -- Evasion+74
+INSERT INTO `item_mods` VALUES (27444,384,400);  -- Haste+4%
+INSERT INTO `item_mods` VALUES (27444,411,25);   -- Quick Draw+25
 INSERT INTO `item_mods` VALUES (27444,891,100); -- Courser's Roll Bonus Activation %
 INSERT INTO `item_mods` VALUES (27445,1,51);      -- Karagoz Scarpe: DEF 51
 INSERT INTO `item_mods` VALUES (27445,2,6);       -- HP +6
