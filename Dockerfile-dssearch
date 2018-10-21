@@ -37,6 +37,7 @@ RUN apt-get update && \
 
 COPY scripts/ scripts/
 COPY conf/ conf/
+COPY log/ log/
 COPY compress.dat .
 COPY decompress.dat .
 
