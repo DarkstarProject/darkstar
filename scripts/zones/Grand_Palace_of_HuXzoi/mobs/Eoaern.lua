@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Al'Taieu
---  MOB: Ul'Aern
+-- Area: Grand Palace of Hu'Xzoi
+--  MOB: Eo'Aern
 -----------------------------------
 mixins = {require("scripts/mixins/families/aern")}
 -----------------------------------
