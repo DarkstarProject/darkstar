@@ -1,6 +1,6 @@
 --[[
     Helper functions for common NPC tasks.
-    
+
     npcUtil.popFromQM(player, qm, mobId, claim, hide)
     npcUtil.pickNewPosition(npc, positionTable, allowCurrentPosition)
     npcUtil.giveItem(player, items)
@@ -24,7 +24,7 @@ npcUtil = {}
 ******************************************************************************* --]]
 function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
     local qmId = qm:getID()
-    
+
     -- default params
     if claim == nil then
         claim = true
@@ -45,7 +45,7 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
         end
     end
 
-    -- make sure none are spawned    
+    -- make sure none are spawned
     for k, v in pairs(mobs) do
         local mob = GetMobByID(v)
         if mob == nil or mob:isSpawned() then
@@ -54,12 +54,12 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
             mobs[k] = mob
         end
     end
-    
+
     -- hide qm
     if hideDuration then
         qm:setStatus(dsp.status.DISAPPEAR)
     end
-    
+
     -- spawn mobs and give each a listener that will show QM after they are all dead
     for _, mob in pairs(mobs) do
         mob:spawn()
@@ -83,7 +83,7 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
             end)
         end
     end
-    
+
     return true
 end
 
@@ -125,7 +125,7 @@ end
     Give item(s) to player.
     If player has inventory space, give items, display message, and return true.
     If not, do not give items, display a message to indicate this, and return false.
-    
+
     Examples of valid items parameter:
         640                 -- copper ore x1
         { 640, 641 }        -- copper ore x1, tin ore x1
@@ -175,7 +175,7 @@ end
 --[[ *******************************************************************************
     Give key item(s) to player.
     Message is displayed showing key items obtained.
-    
+
     Examples of valid keyitems parameter:
         dsp.ki.ZERUHN_REPORT
         {dsp.ki.PALBOROUGH_MINES_LOGS}
@@ -183,7 +183,7 @@ end
 ******************************************************************************* --]]
 function npcUtil.giveKeyItem(player, keyitems)
     local ID = zones[player:getZoneID()]
-    
+
     -- create table of keyitems
     local givenKeyItems = {}
     if type(keyitems) == "number" then
@@ -194,7 +194,7 @@ function npcUtil.giveKeyItem(player, keyitems)
         print(string.format("ERROR: invalid keyitems parameter given to npcUtil.giveKeyItem in zone %s.", player:getZoneName()))
         return false
     end
-    
+
     -- give key items to player, with message
     for _, v in pairs(givenKeyItems) do
         player:addKeyItem(v)
@@ -207,7 +207,7 @@ end
     Complete a quest.
     If quest rewards items, and the player cannot carry them, return false.
     Otherwise, return true.
-    
+
     Example of usage with params (all params are optional):
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {
             item = { {640,2}, 641 },    -- see npcUtil.giveItem for formats
@@ -264,7 +264,7 @@ function npcUtil.completeQuest(player, area, quest, params)
     if params["title"] ~= nil then
         player:addTitle(params["title"])
     end
-    
+
     if params["var"] ~= nil then
         local playerVarsToZero = {}
         if type(params["var"]) == "table" then
@@ -286,7 +286,7 @@ end
     check whether trade has all required items
         if yes, confirm all the items and return true
         if no, return false
-        
+
     valid examples of items:
         640                     -- copper ore x1
         { 640, 641 }            -- copper ore x1, tin ore x1
@@ -307,7 +307,7 @@ function npcUtil.tradeHas(trade, items, exact)
         itemQty = trade:getItemQty(itemId)
         tradedItems[itemId] = itemQty
     end
-    
+
     -- create table of needed items, with key/val of itemId/itemQty
     local neededItems = {}
     if type(items) == "number" then
@@ -347,7 +347,7 @@ function npcUtil.tradeHas(trade, items, exact)
             tradedItems[k] = tradedQty - v
         end
     end
-    
+
     -- if an exact trade was requested, check if any excess items were traded. if so, return false.
     if exact then
         for k, v in pairs(tradedItems) do
@@ -356,7 +356,7 @@ function npcUtil.tradeHas(trade, items, exact)
             end
         end
     end
-    
+
     -- confirm items
     for k, v in pairs(neededItems) do
         trade:confirmItem(k,v)
@@ -368,7 +368,7 @@ end
     check whether trade has exactly required items
         if yes, confirm all the items and return true
         if no, return false
-        
+
     valid examples of items:
         640                     -- copper ore x1
         { 640, 641 }            -- copper ore x1, tin ore x1

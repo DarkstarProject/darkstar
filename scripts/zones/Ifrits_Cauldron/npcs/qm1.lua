@@ -2,27 +2,26 @@
 -- Area: Ifrit's Cauldron
 --  NPC: qm1 (???)
 -- Notes: Used to spawn Tarasque
--- !pos 126 18 166 0
+-- !pos 126 18 166 205
 -----------------------------------
-local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 1189) and not GetMobByID(ID.mob.TARASQUE):isSpawned()) then -- Rattling Egg
-        player:confirmTrade();
-        SpawnMob(ID.mob.TARASQUE):updateClaim(player);
-        npc:setStatus(dsp.status.DISAPPEAR);
+    player:PrintToPlayer("onTrade")
+    if npcUtil.tradeHas(trade, 1189) and npcUtil.popFromQM(player, npc, ID.mob.TARASQUE, false) then -- Rattling Egg
+        player:confirmTrade()
+        GetMobByID(ID.mob.TARASQUE):lookAt(player:getPos())
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.EGGSHELLS_LIE_SCATTERED);
-end;
+    player:messageSpecial(ID.text.EGGSHELLS_LIE_SCATTERED)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

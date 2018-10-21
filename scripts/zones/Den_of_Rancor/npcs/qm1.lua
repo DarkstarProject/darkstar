@@ -5,14 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Den_of_Rancor/IDs")
 require("scripts/globals/npc_util")
-require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 1298) and not GetMobByID(ID.mob.HAKUTAKU):isSpawned() then
+    if npcUtil.tradeHas(trade, 1298) and npcUtil.popFromQM(player, npc, ID.mob.HAKUTAKU) then
         player:confirmTrade()
-        SpawnMob(ID.mob.HAKUTAKU):updateClaim(player)
-        npc:setStatus(dsp.status.DISAPPEAR)
     end
 end
 
