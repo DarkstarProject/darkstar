@@ -39,6 +39,7 @@ COPY scripts/ scripts/
 COPY conf/ conf/
 COPY compress.dat .
 COPY decompress.dat .
+COPY version.info .
 
 EXPOSE 54001
 EXPOSE 54002
