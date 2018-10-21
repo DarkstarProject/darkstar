@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beaucedine Glacier (S)
---  MOB: Glacial Imp
+-- Area: Arrapago Reef
+--   NM: Bukki
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------
