@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Moo_Ouzi_the_Swiftblade
+--   NM: Moo_Ouzi_the_Swiftblade
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-end;
+end
