@@ -38,7 +38,6 @@ zones[dsp.zone.DEN_OF_RANCOR] =
     npc =
     {
         MIMIC                  = 17432583,
-        HAKUTAKU_QM            = 17433015,
         RANCOR_LANTERN_OFFSET  = 17433047,
         RANCOR_DROP_GATE       = 17433051,
         RANCOR_TREASURE_COFFER = 17433077,

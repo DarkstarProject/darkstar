@@ -47,10 +47,7 @@ zones[dsp.zone.IFRITS_CAULDRON] =
     },
     npc =
     {
-        TARASQUE_QM            = 17617179,
-        BOMB_QUEEN_QM          = 17617180,
         FLAME_SPOUT_OFFSET     = 17617204,
-        PIRATES_COVE_QM        = 17617214,
         IFRITS_TREASURE_COFFER = 17617224,
         MINING =
         {

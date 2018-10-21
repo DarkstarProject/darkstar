@@ -28,7 +28,6 @@ zones[dsp.zone.HALVUNG] =
     },
     npc =
     {
-        BIG_BOMB_QM = 17031608,
         MINING =
         {
             17031715,

@@ -4,10 +4,9 @@
 -- Involved in Mission: Bastok 6-2
 -- !pos 171 0 -25 205
 -----------------------------------
-local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
-require("scripts/globals/missions");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,22 +15,20 @@ function onTrade(player,npc,trade)
         player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and
         player:getVar("MissionStatus") == 2 and
         npcUtil.tradeHas(trade, 646) and
-        not GetMobByID(ID.mob.PIRATES_COVE_NMS):isSpawned() and
-        not GetMobByID(ID.mob.PIRATES_COVE_NMS + 1):isSpawned()
+        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, false)
     ) then
-        player:confirmTrade();
-        SpawnMob(ID.mob.PIRATES_COVE_NMS):lookAt(player:getPos()); -- Salamander
-        SpawnMob(ID.mob.PIRATES_COVE_NMS + 1):updateClaim(player); -- Magma
-        npc:setStatus(dsp.status.DISAPPEAR);
+        player:confirmTrade()
+        GetMobByID(ID.mob.PIRATES_COVE_NMS):lookAt(player:getPos()) -- Salamander
+        GetMobByID(ID.mob.PIRATES_COVE_NMS + 1):updateClaim(player) -- Magma
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
-end;
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
