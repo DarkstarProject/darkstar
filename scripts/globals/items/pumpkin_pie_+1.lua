@@ -20,7 +20,7 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4447)
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4525)
 end
 
 function onEffectGain(target, effect)
