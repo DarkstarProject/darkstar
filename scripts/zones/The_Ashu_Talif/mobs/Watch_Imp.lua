@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Beaucedine Glacier (S)
---  MOB: Glacial Imp
+-- Area: The Ashu Talif
+--   NM: Watch Imp
 -----------------------------------
 mixins = {require("scripts/mixins/families/imp")}
 -----------------------------------

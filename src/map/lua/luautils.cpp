@@ -2492,6 +2492,7 @@ namespace luautils
 
             CLuaBaseEntity LuaMobEntity(PMob);
 
+        PMob->PAI->EventHandler.triggerListener("CRITICAL_TAKE", PMob);
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onCriticalHit"))
