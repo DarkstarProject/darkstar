@@ -1,5 +1,5 @@
 -----------------------------------------
--- ID: 4447
+-- ID: 4525
 -- Item: pumpkin_pie_+1
 -- Food Effect: 60Min, All Races
 -----------------------------------------
@@ -20,7 +20,7 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4447)
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,4525)
 end
 
 function onEffectGain(target, effect)
