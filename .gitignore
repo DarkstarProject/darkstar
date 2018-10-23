@@ -154,6 +154,7 @@ src/common/stamp-h1
 navmeshes/*.nav
 tags
 log/DSP.leaks
+docker/conf
 
 #Lua Developement Tools project files
 .metadata/**

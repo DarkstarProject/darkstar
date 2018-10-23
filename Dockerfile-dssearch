@@ -41,6 +41,9 @@ COPY log/ log/
 COPY compress.dat .
 COPY decompress.dat .
 
-EXPOSE 54231
+COPY docker/ docker/
+RUN ./docker/config.sh
+
+EXPOSE 54002
 
 CMD ./dssearch
