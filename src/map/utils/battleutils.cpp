@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -4098,7 +4098,7 @@ namespace battleutils
             {
                 charmerBSTlevel = charmerBRDlevel;
             }
-            if (charmerBSTlevel > charmerLvl) // takes level cap/sync into account
+            if (charmerBSTlevel > charmerLvl)
             {
                 charmerBSTlevel = charmerLvl;
             }
