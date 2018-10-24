@@ -5,13 +5,14 @@
 -----------------------------------
 local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower
     zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum
 
-    UpdateTreasureSpawnPoint(ID.npc.DELKFUTT_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

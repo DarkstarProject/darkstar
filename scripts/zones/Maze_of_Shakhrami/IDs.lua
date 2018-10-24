@@ -22,13 +22,6 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
         SYS_OVERLOAD            = 7258, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE            = 7263, -- You lost the <item>.
         CHEST_UNLOCKED          = 7353, -- You unlock the chest!
-        CHEST_FAIL              = 7354, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7355, -- The chest was trapped!
-        CHEST_WEAK              = 7356, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7357, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7358, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7359, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7360, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         MINING_IS_POSSIBLE_HERE = 7361, -- Mining is possible here if you have <item>.
         REGIME_REGISTERED       = 10347, -- New training regime registered!
     },
@@ -42,8 +35,8 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
     },
     npc =
     {
-        FOSSIL_ROCK_OFFSET       = 17588737,
-        SHAKHRAMI_TREASURE_CHEST = 17588773,
+        FOSSIL_ROCK_OFFSET = 17588737,
+        TREASURE_CHEST     = 17588773,
         EXCAVATION =
         {
             17588774,

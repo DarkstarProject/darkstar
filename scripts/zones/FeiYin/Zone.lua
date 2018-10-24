@@ -7,6 +7,7 @@ local ID = require("scripts/zones/FeiYin/IDs")
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/treasure")
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 -----------------------------------
@@ -15,7 +16,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.CAPRICIOUS_CASSIE);
     GetMobByID(ID.mob.CAPRICIOUS_CASSIE):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ID.npc.FEIYIN_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

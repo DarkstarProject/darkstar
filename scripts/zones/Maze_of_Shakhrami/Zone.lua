@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Maze_of_Shakhrami/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 require("scripts/globals/helm")
 -----------------------------------
 
@@ -21,8 +22,7 @@ function onInitialize(zone)
         GetMobByID(ID.mob.LEECH_KING):setRespawnTime(math.random(900, 43200));
     end
 
-    UpdateTreasureSpawnPoint(ID.npc.SHAKHRAMI_TREASURE_CHEST);
-
+    dsp.treasure.initZone(zone)
     dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
 end;
 

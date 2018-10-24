@@ -32,13 +32,6 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         DOOR_FIRMLY_SHUT               = 7253, -- The door is firmly shut.
         ALL_G_ORBS_ENERGIZED           = 7256, -- The six Mana Orbs have been successfully energized with magic!
         CHEST_UNLOCKED                 = 7278, -- You unlock the chest!
-        CHEST_FAIL                     = 7279, -- <name> fails to open the chest.
-        CHEST_TRAP                     = 7280, -- The chest was trapped!
-        CHEST_WEAK                     = 7281, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                    = 7282, -- The chest was a mimic!
-        CHEST_MOOGLE                   = 7283, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                 = 7284, -- The chest was but an illusion...
-        CHEST_LOCKED                   = 7285, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         REGIME_REGISTERED              = 10341, -- New training regime registered!
     },
     mob =
@@ -60,7 +53,7 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
     npc =
     {
-        OUTER_HORUTOTO_TREASURE_CHEST = 17572290,
+        TREASURE_CHEST = 17572290,
     },
 }
 

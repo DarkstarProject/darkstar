@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Sacrarium/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -13,7 +14,7 @@ function onInitialize(zone)
     -- Set random variable for determining Old Prof. Mariselle's spawn location
     SetServerVariable("Old_Prof_Spawn_Location", math.random(2,7));
 
-    UpdateTreasureSpawnPoint(ID.npc.SACRARIUM_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

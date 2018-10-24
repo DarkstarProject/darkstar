@@ -5,10 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.BOYAHDA_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

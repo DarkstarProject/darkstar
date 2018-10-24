@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Dangruf_Wadi/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
+require("scripts/globals/treasure")
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -15,7 +16,7 @@ function onInitialize(zone)
     zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser
     zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser
 
-    UpdateTreasureSpawnPoint(ID.npc.DANGRUF_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

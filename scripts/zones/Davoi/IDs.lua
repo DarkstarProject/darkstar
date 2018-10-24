@@ -27,17 +27,10 @@ zones[dsp.zone.DAVOI] =
         AN_ORCISH_STORAGE_HOLE      = 7449, -- An Orcish storage hole. There is something inside, but you cannot open it without a key.
         A_WELL                      = 7451, -- A well, presumably dug by Orcs.
         CHEST_UNLOCKED              = 7469, -- You unlock the chest!
-        CHEST_FAIL                  = 7470, -- <name> fails to open the chest.
-        CHEST_TRAP                  = 7471, -- The chest was trapped!
-        CHEST_WEAK                  = 7472, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                 = 7473, -- The chest was a mimic!
-        CHEST_MOOGLE                = 7474, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION              = 7475, -- The chest was but an illusion...
-        CHEST_LOCKED                = 7476, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
     },
     mob =
     {
-        BLUBBERY_BULGE_PH   = 
+        BLUBBERY_BULGE_PH   =
         {
             [17387919] = 17387920, -- -225.237 2.295 -294.764
         },
@@ -51,9 +44,9 @@ zones[dsp.zone.DAVOI] =
     },
     npc =
     {
-        HIDE_FLAP_OFFSET     = 17388023,
-        STORAGE_HOLE         = 17388025,
-        DAVOI_TREASURE_CHEST = 17388027,
+        HIDE_FLAP_OFFSET = 17388023,
+        STORAGE_HOLE     = 17388025,
+        TREASURE_CHEST   = 17388027,
     },
 }
 

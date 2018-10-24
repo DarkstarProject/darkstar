@@ -5,12 +5,12 @@
 -----------------------------------
 local ID = require("scripts/zones/Palborough_Mines/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.PALBOROUGH_TREASURE_CHEST);
-
+    dsp.treasure.initZone(zone)
     dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 

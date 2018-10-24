@@ -26,13 +26,6 @@ zones[dsp.zone.PSOXJA] =
         DISCOVER_DISARM_SUCCESS = 7242, -- <name> discovers a trap connected to the door and succeeds in disarming it!
         TRAP_ACTIVATED          = 7244, -- <name> examines the stone compartment. A trap connected to it has been activated!
         CHEST_UNLOCKED          = 7461, -- You unlock the chest!
-        CHEST_FAIL              = 7462, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7463, -- The chest was trapped!
-        CHEST_WEAK              = 7464, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7465, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7466, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7467, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7468, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         BROKEN_KNIFE            = 7469, -- A broken knife blade can be seen among the rubble...
         HOMEPOINT_SET           = 7474, -- Home point set!
     },
@@ -46,7 +39,7 @@ zones[dsp.zone.PSOXJA] =
     {
         GOLDEN_TONGUED_CULBERRY_QM = 16814434,
         STONE_DOOR_OFFSET          = 16814445,
-        PSO_XJA_TREASURE_CHEST     = 16814557,
+        TREASURE_CHEST             = 16814557,
     },
 }
 
