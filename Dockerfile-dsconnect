@@ -41,7 +41,11 @@ COPY compress.dat .
 COPY decompress.dat .
 COPY version.info .
 
+COPY docker/ docker/
+RUN ./docker/config.sh
+
 EXPOSE 54001
-EXPOSE 54002
+EXPOSE 54230
+EXPOSE 54231
 
 CMD ./dsconnect

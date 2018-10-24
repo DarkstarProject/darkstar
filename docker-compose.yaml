@@ -8,6 +8,8 @@ services:
     user: mysql
     networks:
       - ds-network
+    volumes:
+      - data-volume:/var/lib/mysql
   dsconnect:
     build:
       context: .
@@ -15,7 +17,8 @@ services:
     container_name: dsconnect
     ports:
       - "54001:54001"
-      - "54002:54002"
+      - "54230:54230/tcp"
+      - "54231:54231"
     networks:
       - ds-network
   dsgame:
@@ -24,7 +27,7 @@ services:
       dockerfile: Dockerfile-dsgame
     container_name: dsgame
     ports:
-      - "54230:54230"
+      - "54230:54230/udp"
     networks:
       - ds-network
   dssearch:
@@ -33,9 +36,11 @@ services:
       dockerfile: Dockerfile-dssearch
     container_name: dssearch
     ports:
-      - "54231:54231"
+      - "54002:54002"
     networks:
       - ds-network
 
 networks:
   ds-network:
+volumes:
+  data-volume:

@@ -41,6 +41,9 @@ COPY conf/ conf/
 COPY compress.dat .
 COPY decompress.dat .
 
+COPY docker/ docker/
+RUN ./docker/config.sh
+
 EXPOSE 54230
 
 CMD ./dsgame
