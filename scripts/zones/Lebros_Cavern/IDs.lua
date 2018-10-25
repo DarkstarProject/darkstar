@@ -8,7 +8,8 @@ zones = zones or {}
 
 zones[dsp.zone.LEBROS_CAVERN] =
 {
-    text = {
+    text = 
+    {
         ITEM_CANNOT_BE_OBTAINED    = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
         FULL_INVENTORY_AFTER_TRADE = 6385, -- You cannot obtain the <item>. Try trading again after sorting your inventory.
         ITEM_OBTAINED              = 6387, -- Obtained: <item>.
@@ -38,7 +39,8 @@ zones[dsp.zone.LEBROS_CAVERN] =
 
     mob = {
         -- Troll Figitives
-        [23] = {
+        [23] = 
+        {
             TROLL_FUGITIVE1  = 17035310,
             TROLL_FUGITIVE2  = 17035311,
             TROLL_FUGITIVE3  = 17035312,
@@ -77,7 +79,8 @@ zones[dsp.zone.LEBROS_CAVERN] =
         }
     },
 
-    npc = {
+    npc = 
+    {
         ANCIENT_LOCKBOX = 17035478,
         RUNE_OF_RELEASE = 17035479,
     }
