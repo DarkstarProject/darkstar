@@ -22,7 +22,7 @@ aftermathTable[18305] =
     duration = function(tp) return math.floor(0.02 * tp) end,
     mods =
     {
-        { id=dsp.mod.HASTE_GEAR, power=10 }
+        { id=dsp.mod.HASTE_GEAR, power=1000 }
     }
 }
 

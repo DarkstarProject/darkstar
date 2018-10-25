@@ -12,8 +12,8 @@ require("scripts/globals/settings")
 require("scripts/globals/status")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
-    if (mob:AnimationSub() ~= 1) then
+function onMobSkillCheck(target, mob, skill)
+    if mob:AnimationSub() ~= 1 then
         return 1
     end
     return 0
@@ -21,10 +21,10 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*5,dsp.magic.ele.EARTH,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS)
+    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 5, dsp.magic.ele.EARTH, dmgmod, TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_EARTH,MOBPARAM_WIPE_SHADOWS)
 
-    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 300, 0, 120)
+    MobStatusEffectMove(mob, target, dsp.effect.SLOW, 3000, 0, 120)
 
     target:delHP(dmg)
     return dmg

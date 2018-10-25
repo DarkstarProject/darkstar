@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -3,10 +3,7 @@
 -- NPC:  Cryptonberry_Charmer
 
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action

@@ -4,10 +4,7 @@
 -- Type: Standard NPC
 -- !pos 62.482 -8.499 -139.836 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Woods/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

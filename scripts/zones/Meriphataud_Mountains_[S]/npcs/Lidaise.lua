@@ -4,9 +4,6 @@
 -- Type: Chocobo Renter
 -- !pos 312.021 -10.921 28.494 97
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

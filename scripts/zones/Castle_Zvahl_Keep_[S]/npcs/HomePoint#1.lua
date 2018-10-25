@@ -3,10 +3,8 @@
 --  NPC: HomePoint#1
 -- !pos -554 -70 66 155
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Castle_Zvahl_Keep_[S]/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Keep_[S]/IDs");
 require("scripts/globals/homepoint");
 -----------------------------------
 
@@ -27,7 +25,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
+            player:messageSpecial(ID.text.HOMEPOINT_SET);
         else
             hpTeleport(player, option);
         end

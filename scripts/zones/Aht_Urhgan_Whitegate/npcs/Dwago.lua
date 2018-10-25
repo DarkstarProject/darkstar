@@ -3,9 +3,7 @@
 --  NPC: Dwago
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ function onTrigger(player,npc)
         17862, 98     -- Jug of Bug Broth
     }
 
-    player:showText(npc, DWAGO_SHOP_DIALOG)
+    player:showText(npc, ID.text.DWAGO_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

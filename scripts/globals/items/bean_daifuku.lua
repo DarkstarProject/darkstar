@@ -30,33 +30,33 @@ function onItemUse(target)
 end
 
 function onEffectGain(target, effect)
-    target:addMod(dsp.mod.HP, 20)
-    target:addMod(dsp.mod.VIT, 3)
-    target:addMod(dsp.mod.FOOD_ACCP, 10)
-    target:addMod(dsp.mod.FOOD_ACC_CAP, 50)
-    target:addMod(dsp.mod.FOOD_RACCP, 10)
-    target:addMod(dsp.mod.FOOD_RACC_CAP, 50)
-    target:addPetMod(dsp.mod.HP, 20)
-    target:addPetMod(dsp.mod.VIT, 3)
-    target:addPetMod(dsp.mod.FOOD_ACCP, 10)
-    target:addPetMod(dsp.mod.FOOD_ACC_CAP, 75)
-    target:addPetMod(dsp.mod.FOOD_RACCP, 10)
-    target:addPetMod(dsp.mod.FOOD_RACC_CAP, 75)
-    target:addPetMod(dsp.mod.HASTE_GEAR, 31)
-end
+    target:addMod(dsp.mod.HP, 20);
+    target:addMod(dsp.mod.VIT, 3);
+    target:addMod(dsp.mod.FOOD_ACCP, 10);
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 50);
+    target:addMod(dsp.mod.FOOD_RACCP, 10);
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 50);
+    target:addPetMod(dsp.mod.HP, 20);
+    target:addPetMod(dsp.mod.VIT, 3);
+    target:addPetMod(dsp.mod.FOOD_ACCP, 10);
+    target:addPetMod(dsp.mod.FOOD_ACC_CAP, 75);
+    target:addPetMod(dsp.mod.FOOD_RACCP, 10);
+    target:addPetMod(dsp.mod.FOOD_RACC_CAP, 75);
+    target:addPetMod(dsp.mod.HASTE_GEAR, 300);
+end;
 
 function onEffectLose(target, effect)
-    target:delMod(dsp.mod.HP, 20)
-    target:delMod(dsp.mod.VIT, 3)
-    target:delMod(dsp.mod.FOOD_ACCP, 10)
-    target:delMod(dsp.mod.FOOD_ACC_CAP, 50)
-    target:delMod(dsp.mod.FOOD_RACCP, 10)
-    target:delMod(dsp.mod.FOOD_RACC_CAP, 50)
-    target:delPetMod(dsp.mod.HP, 20)
-    target:delPetMod(dsp.mod.VIT, 3)
-    target:delPetMod(dsp.mod.FOOD_ACCP, 10)
-    target:delPetMod(dsp.mod.FOOD_ACC_CAP, 75)
-    target:delPetMod(dsp.mod.FOOD_RACCP, 10)
-    target:delPetMod(dsp.mod.FOOD_RACC_CAP, 75)
-    target:delPetMod(dsp.mod.HASTE_GEAR, 31)
-end
+    target:delMod(dsp.mod.HP, 20);
+    target:delMod(dsp.mod.VIT, 3);
+    target:delMod(dsp.mod.FOOD_ACCP, 10);
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 50);
+    target:delMod(dsp.mod.FOOD_RACCP, 10);
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 50);
+    target:delPetMod(dsp.mod.HP, 20);
+    target:delPetMod(dsp.mod.VIT, 3);
+    target:delPetMod(dsp.mod.FOOD_ACCP, 10);
+    target:delPetMod(dsp.mod.FOOD_ACC_CAP, 75);
+    target:delPetMod(dsp.mod.FOOD_RACCP, 10);
+    target:delPetMod(dsp.mod.FOOD_RACC_CAP, 75);
+    target:delPetMod(dsp.mod.HASTE_GEAR, 300);
+end;

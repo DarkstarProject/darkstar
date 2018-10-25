@@ -3,9 +3,7 @@
 --  NPC: Galvin
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
         17336,   5, 3,    -- Crossbow Bolt
     }
 
-    player:showText(npc, GALVIN_SHOP_DIALOG)
+    player:showText(npc, ID.text.GALVIN_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

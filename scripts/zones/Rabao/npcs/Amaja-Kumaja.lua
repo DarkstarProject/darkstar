@@ -3,10 +3,7 @@
 --  NPC: Amaja-Kumaja
 -- Type: Weather Reporter
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Rabao/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

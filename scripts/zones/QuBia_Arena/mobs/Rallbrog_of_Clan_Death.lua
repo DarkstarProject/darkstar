@@ -2,11 +2,11 @@
 -- Area: QuBia_Arena
 -- Mission 9-2 SANDO
 -----------------------------------
-require("scripts/zones/QuBia_Arena/MobIDs");
+local ID = require("scripts/zones/QuBia_Arena/IDs");
 
 function allHeirMobsDead(player)
     local inst = player:getBattlefield():getBattlefieldNumber();
-    local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+    local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
     for i = instOffset + 3, instOffset + 13 do
         if (not GetMobByID(i):isDead()) then
             return false;

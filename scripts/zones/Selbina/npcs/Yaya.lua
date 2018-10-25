@@ -4,9 +4,6 @@
 -- Starts Quest: Under the sea
 -- !pos -19 -2 -16 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");

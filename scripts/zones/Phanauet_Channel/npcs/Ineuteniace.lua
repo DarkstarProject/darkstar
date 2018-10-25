@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos 11.701 -3 1.360 1
 -----------------------------------
-package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

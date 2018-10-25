@@ -4,11 +4,8 @@
 -- Involved in Quests: Save the Clock Tower
 -- !pos -48 0 4 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

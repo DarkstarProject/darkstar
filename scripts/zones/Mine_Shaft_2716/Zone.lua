@@ -3,10 +3,8 @@
 -- Zone: Mine_Shaft_2716 (13)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
+local ID = require("scripts/zones/Mine_Shaft_2716/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

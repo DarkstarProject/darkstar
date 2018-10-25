@@ -3,9 +3,7 @@
 --  NPC: Granite Door
 -- !pos 340 0.1 329 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -17,17 +15,17 @@ function onTrade(player,npc,trade)
             player:startEvent(23);
         else
             player:tradeComplete();
-            player:messageSpecial(YOUR_KEY_BREAKS,0,1143);
+            player:messageSpecial(ID.text.YOUR_KEY_BREAKS,0,1143);
             player:startEvent(25);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
 function onTrigger(player,npc)
     if (player:getZPos() < 332) then
-        player:messageSpecial(DOOR_LOCKED);
+        player:messageSpecial(ID.text.DOOR_LOCKED);
     else
         player:startEvent(26);
     end
@@ -41,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:setPos(340,0,333);
         player:delKeyItem(dsp.ki.BLANK_BOOK_OF_THE_GODS);
         player:addKeyItem(dsp.ki.BOOK_OF_THE_GODS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOOK_OF_THE_GODS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOOK_OF_THE_GODS);
         player:setVar("MissionStatus",5);
     end
 end;

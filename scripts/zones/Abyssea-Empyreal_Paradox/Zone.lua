@@ -3,6 +3,8 @@
 -- Zone: Abyssea - Empyreal_Paradox
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Empyreal_Paradox/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end

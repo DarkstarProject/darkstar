@@ -4,7 +4,9 @@
 -- Type: Mission NPC
 -- !pos 81.981 7.593 139.556 153
 -----------------------------------
-package.loaded["scripts/zones/The_Boyahda_Tree/TextIDs"] = nil;
+local ID = require("scripts/zones/The_Boyahda_Tree/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,7 +46,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 13) then
         player:setVar("MissionStatus",6);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZONPAZIPPA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZONPAZIPPA);
         player:addKeyItem(dsp.ki.LETTER_FROM_ZONPAZIPPA);
     end
 end;

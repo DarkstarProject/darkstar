@@ -1,9 +1,7 @@
 ---------------------------------------------
 -- Prishe Item 2
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
 require("scripts/globals/status")
@@ -25,17 +23,17 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(dsp.msg.basic.NONE)
     if (mob:hasStatusEffect(dsp.effect.PLAGUE) or mob:hasStatusEffect(dsp.effect.CURSE_I) or mob:hasStatusEffect(dsp.effect.MUTE)) then
         -- use Remedy!
-        mob:messageText(mob, PRISHE_TEXT + 12, false)
+        mob:messageText(mob, ID.text.PRISHE_TEXT + 12, false)
         mob:delStatusEffect(dsp.effect.PLAGUE)
         mob:delStatusEffect(dsp.effect.CURSE_I)
         mob:delStatusEffect(dsp.effect.MUTE)
     elseif (math.random() < 0.5) then
         -- Carnal Incense!
-        mob:messageText(mob, PRISHE_TEXT + 10, false)
+        mob:messageText(mob, ID.text.PRISHE_TEXT + 10, false)
         mob:addStatusEffect(dsp.effect.PHYSICAL_SHIELD, 0, 0, 30)
     else
         -- Spiritual Incense!
-        mob:messageText(mob, PRISHE_TEXT + 11, false)
+        mob:messageText(mob, ID.text.PRISHE_TEXT + 11, false)
         mob:addStatusEffect(dsp.effect.MAGIC_SHIELD, 0, 0, 30)
     end
     return 0

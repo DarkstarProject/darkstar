@@ -4,14 +4,12 @@
 -- Involved In Quest: Enveloped in Darkness
 -- !zone 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -59,12 +57,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,UNDYING_FLAMES);
     elseif (csid == 563) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
         else
             player:tradeComplete();
             player:addTitle(dsp.title.FAITH_LIKE_A_CANDLE);
             player:addItem(13211);
-            player:messageSpecial(ITEM_OBTAINED,13211); -- Friars Rope
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13211); -- Friars Rope
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,UNDYING_FLAMES);
         end
@@ -72,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:delKeyItem(dsp.ki.OLD_POCKET_WATCH);
         player:addKeyItem(dsp.ki.OLD_BOOTS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OLD_BOOTS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_BOOTS);
     end
 
 end;

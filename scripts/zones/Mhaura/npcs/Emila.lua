@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos -30.578 -9 26.342 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

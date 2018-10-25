@@ -4,11 +4,9 @@
 -- Involved in Mission: Magicite, Return to Delkfutt's Tower (Zilart)
 -- !pos 20 3 -58 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +36,7 @@ function onEventFinish(player,csid,option)
     if (csid == 152) then
         player:delKeyItem(dsp.ki.LETTERS_TO_ALDO);
         player:addKeyItem(dsp.ki.SILVER_BELL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SILVER_BELL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SILVER_BELL);
         player:setVar("MissionStatus",3);
     elseif (csid == 104) then
         player:setVar("ZilartStatus",1);

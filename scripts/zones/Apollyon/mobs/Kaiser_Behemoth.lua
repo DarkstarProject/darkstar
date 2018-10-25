@@ -3,10 +3,7 @@
 --  NPC: Kaiser Behemoth
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/magic");
 -----------------------------------
 

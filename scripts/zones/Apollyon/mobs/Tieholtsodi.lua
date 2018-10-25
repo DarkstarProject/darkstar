@@ -3,10 +3,6 @@
 --  NPC: Tieholtsodi
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Apollyon/TextIDs");
------------------------------------
 
 function onMobSpawn(mob)
 end;

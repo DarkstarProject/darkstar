@@ -3,13 +3,10 @@
 -- Name: toadal_recall BCNM30
 -- !pos -162 -11 78 140
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
 
 -----------------------------------
 

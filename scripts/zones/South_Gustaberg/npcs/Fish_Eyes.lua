@@ -4,8 +4,6 @@
 -- Type: Goldfish Scooping
 -- !pos -444.459 39.106 -390.885 107
 -----------------------------------
-package.loaded["scripts/zones/South_Gustaberg/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

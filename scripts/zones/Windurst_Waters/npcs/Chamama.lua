@@ -4,9 +4,7 @@
 -- Involved In Quest: Inspector's Gadget
 -- Starts Quest: In a Pickle
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
@@ -121,13 +119,13 @@ function onEventFinish(player,csid,option)
     if (csid == 552) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.FAKE_MOUSTACHE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FAKE_MOUSTACHE);
     elseif (csid == 797) then
         player:setVar("ThePromise",1);
     elseif (csid == 799) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.INVISIBLE_MAN_STICKER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.INVISIBLE_MAN_STICKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.INVISIBLE_MAN_STICKER);
     elseif (csid == 654 and option == 1) then  -- IN A PICKLE + RARAB TAIL: Quest Begin
         player:addQuest(WINDURST,IN_A_PICKLE);
     elseif (csid == 659) then  -- IN A PICKLE: Quest Turn In (1st Time)
@@ -135,9 +133,9 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,IN_A_PICKLE);
         player:needToZone(true);
         player:addItem(12505);
-        player:messageSpecial(ITEM_OBTAINED,12505);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12505);
         player:addGil(GIL_RATE*200);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*200);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*200);
         player:addFame(WINDURST,75);
     elseif (csid == 661 and option == 1) then
         player:setVar("QuestInAPickle_var",1)

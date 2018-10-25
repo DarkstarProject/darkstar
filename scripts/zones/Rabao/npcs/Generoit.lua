@@ -3,9 +3,7 @@
 --  NPC: Generoit
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Rabao/TextIDs")
+local ID = require("scripts/zones/Rabao/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
         5073, 50784,    -- Scroll of Chocobo Mazurka
     }
 
-    player:showText(npc, GENEROIT_SHOP_DIALOG)
+    player:showText(npc, ID.text.GENEROIT_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

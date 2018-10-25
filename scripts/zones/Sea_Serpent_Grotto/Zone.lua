@@ -3,21 +3,18 @@
 -- Zone: Sea_Serpent_Grotto (176)
 --
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs")
-require("scripts/zones/Sea_Serpent_Grotto/MobIDs")
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
     -- Charybdis PH alternates, remove one
     local keys = {}
-    for k, v in pairs(CHARYBDIS_PH) do table.insert(keys,k) end
+    for k, v in pairs(ID.mob.CHARYBDIS_PH) do table.insert(keys,k) end
     DespawnMob(keys[math.random(#keys)])
 
-    UpdateTreasureSpawnPoint(SSG_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(SSG_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

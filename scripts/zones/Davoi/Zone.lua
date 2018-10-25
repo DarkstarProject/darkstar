@@ -3,17 +3,15 @@
 -- Zone: Davoi (149)
 --
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Davoi/TextIDs")
-require("scripts/zones/Davoi/MobIDs")
+local ID = require("scripts/zones/Davoi/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
+require("scripts/globals/treasure")
 require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(DAVOI_TREASURE_CHEST)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -24,8 +22,8 @@ function onZoneIn(player,prevZone)
     if player:getCurrentMission(SANDORIA) == INFILTRATE_DAVOI and player:getVar("MissionStatus") == 2 then
         cs = 116
     end
-    if player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED and not GetMobByID(PURPLEFLASH_BRUKDOK):isSpawned() then
-        SpawnMob(PURPLEFLASH_BRUKDOK) -- Spawned by Quest: The Crimson Trial upon entering the zone
+    if player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_ACCEPTED and not GetMobByID(ID.mob.PURPLEFLASH_BRUKDOK):isSpawned() then
+        SpawnMob(ID.mob.PURPLEFLASH_BRUKDOK) -- Spawned by Quest: The Crimson Trial upon entering the zone
     end
     return cs
 end
@@ -57,8 +55,8 @@ function onGameDay()
         { 219.474,  3.750, -128.170},
         {  86.749, -5.166, -166.414},
     }
-    local newPosition = npcUtil.pickNewPosition(STORAGE_HOLE, positions)
-    GetNPCByID(STORAGE_HOLE):setPos(newPosition.x, newPosition.y, newPosition.z)
+    local newPosition = npcUtil.pickNewPosition(ID.npc.STORAGE_HOLE, positions)
+    GetNPCByID(ID.npc.STORAGE_HOLE):setPos(newPosition.x, newPosition.y, newPosition.z)
 end
 
 function onEventUpdate(player,csid,option)

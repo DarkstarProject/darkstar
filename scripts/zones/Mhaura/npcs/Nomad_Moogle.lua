@@ -2,24 +2,19 @@
 -- Area: Mhaura
 --  NPC: Nomad Moogle
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Mhaura/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,NOMAD_MOOGLE_DIALOG);
-    player:sendMenu(1);
-end;
+    player:showText(npc, ID.text.NOMAD_MOOGLE_DIALOG)
+    player:sendMenu(1)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("onEventUpdate");
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("onEventFinish");
-end;
+end

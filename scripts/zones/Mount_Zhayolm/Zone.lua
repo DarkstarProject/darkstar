@@ -3,15 +3,14 @@
 -- Zone: Mount_Zhayolm (61)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mount_Zhayolm/TextIDs");
-require("scripts/zones/Mount_Zhayolm/MobIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    GetMobByID(CERBERUS):setRespawnTime(math.random(12,36) * 3600);
+    GetMobByID(ID.mob.CERBERUS):setRespawnTime(math.random(12,36) * 3600);
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

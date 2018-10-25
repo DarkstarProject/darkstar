@@ -8,9 +8,7 @@
 -- Intelligence +2
 -- Random Jewel
 -----------------------------------------
-
 require("scripts/globals/status")
-require("scripts/zones/Bastok_Mines/TextIDs")
 -----------------------------------------
 
 function onItemCheck(target)

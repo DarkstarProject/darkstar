@@ -1,7 +1,7 @@
 -- Zone: La Theine Plateau (102)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-require("scripts/zones/La_Theine_Plateau/MobIDs");
+local ID = require("scripts/zones/La_Theine_Plateau/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -75,8 +75,8 @@ LA_THEINE_PLATEAU = {
             [61] = {546.000, 25.000, -365.000},
             [62] = {519.000, 24.000, -361.000}
         }
-        local fallenEgg = GetNPCByID(FALLEN_EGG);
-        local newPosition = npcUtil.pickNewPosition(FALLEN_EGG, fallenEggPositions);
+        local fallenEgg = GetNPCByID(ID.npc.FALLEN_EGG);
+        local newPosition = npcUtil.pickNewPosition(ID.npc.FALLEN_EGG, fallenEggPositions);
         if (secondsHidden ~= nil and secondsHidden > 0) then
             fallenEgg:hideNPC(secondsHidden);
         end

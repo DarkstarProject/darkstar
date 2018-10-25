@@ -4,12 +4,10 @@
 -- Dynamis-Xarcabard Enter
 -- !pos 570 0 -272 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
-require("scripts/zones/Xarcabard/TextIDs");
+local ID = require("scripts/zones/Xarcabard/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,15 +28,15 @@ function onTrigger(player,npc)
         end
 
         if (player:getMainLvl() < DYNA_LEVEL_MIN) then
-            player:messageSpecial(PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
+            player:messageSpecial(ID.text.PLAYERS_HAVE_NOT_REACHED_LEVEL,DYNA_LEVEL_MIN);
         elseif ((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) < realDay or (player:getVar("DynamisID") == dynaUniqueID and dynaUniqueID > 0)) then
             player:startEvent(16,6,firstDyna,0,BETWEEN_2DYNA_WAIT_TIME,32,dsp.ki.VIAL_OF_SHROUDED_SAND,4236,4237);
         else
             dayRemaining = math.floor(((dynaWaitxDay + (BETWEEN_2DYNA_WAIT_TIME * 60 * 60)) - realDay)/3456);
-            player:messageSpecial(YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,6);
+            player:messageSpecial(ID.text.YOU_CANNOT_ENTER_DYNAMIS,dayRemaining,6);
         end
     else
-        player:messageSpecial(UNUSUAL_ARRANGEMENT_OF_PEBBLES);
+        player:messageSpecial(ID.text.UNUSUAL_ARRANGEMENT_OF_PEBBLES);
     end
 
 end;

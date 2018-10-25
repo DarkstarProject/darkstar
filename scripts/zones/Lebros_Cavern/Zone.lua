@@ -3,8 +3,7 @@
 -- Zone: Lebros_Cavern
 --
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Lebros_Cavern/IDs");
+require("scripts/zones/Lebros_Cavern/IDs")
 -----------------------------------
 
 function onInitialize(zone)

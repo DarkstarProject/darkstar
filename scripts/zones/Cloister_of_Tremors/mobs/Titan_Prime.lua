@@ -4,6 +4,7 @@
 -- Involved in Quest: Trial by Earth
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
+local ID = require("scripts/zones/Cloister_of_Tremors/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
@@ -13,7 +14,7 @@ function onMobFight(mob, target)
     local mobId = mob:getID();
 
     -- ASA-4: Astral Flow Behavior - Guaranteed to Use At Least 5 times before killable, at specified intervals.
-    if (mob:getBattlefield():getBcnmID() == 580 and GetMobAction(mobId) == dsp.act.ATTACK) then
+    if (mob:getBattlefield():getBcnmID() == 580 and mob:getCurrentAction() == dsp.act.ATTACK) then
         local astralFlows = mob:getLocalVar("astralflows");
         if ((astralFlows == 0 and mob:getHPP() <= 80)
         or (astralFlows == 1 and mob:getHPP() <= 60)
@@ -65,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_EARTH);
         player:addKeyItem(dsp.ki.WHISPER_OF_TREMORS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_TREMORS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_TREMORS);
     end
 
 end;

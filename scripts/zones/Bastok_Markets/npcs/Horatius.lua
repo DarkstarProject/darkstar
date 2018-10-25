@@ -5,9 +5,6 @@
 --  Starts and Finishes: Breaking Stones
 -- !pos -158 -6 -117 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 

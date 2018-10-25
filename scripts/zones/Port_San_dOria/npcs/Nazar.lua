@@ -3,10 +3,6 @@
 --   NPC: Nazar
 -- Type: Standard NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

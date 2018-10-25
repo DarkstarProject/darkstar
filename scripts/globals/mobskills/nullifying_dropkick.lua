@@ -2,14 +2,15 @@
 --  Nullifying Dropkick
 --
 ---------------------------------------------
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-require("scripts/zones/Empyreal_Paradox/TextIDs")
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     if (target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD) or target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
-        mob:showText(mob, PRISHE_TEXT + 5)
+        mob:showText(mob, ID.text.PRISHE_TEXT + 5)
         return 0
     end
     return 1

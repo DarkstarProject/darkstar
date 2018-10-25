@@ -2,9 +2,9 @@
 -- Area: Valkurm Dunes
 --  MOB: Brutal Sheep
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,10,1);
+    dsp.regime.checkRegime(player, mob, 10, 1, dsp.regime.type.FIELDS)
 end;

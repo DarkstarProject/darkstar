@@ -4,10 +4,7 @@
 -- Type: Alzadaal Undersea Ruins
 -- !pos -440.998 0.107 -740.015 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

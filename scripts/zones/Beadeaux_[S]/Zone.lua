@@ -3,10 +3,7 @@
 -- Zone: Beadeaux_[S] (92)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Beadeaux_[S]/TextIDs");
+local ID = require("scripts/zones/Beadeaux_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

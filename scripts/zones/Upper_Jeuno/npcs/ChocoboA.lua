@@ -3,10 +3,6 @@
 --  NPC: Chocobo
 -- Pos: -50 8 89 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 

@@ -3,9 +3,7 @@
 --  NPC: Torapiont
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Selbina/TextIDs")
+local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         17320,     7,    -- Iron Arrow
     }
 
-    player:showText(npc, TORAPIONT_SHOP_DIALOG)
+    player:showText(npc, ID.text.TORAPIONT_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -3,9 +3,6 @@
 --  NPC: Moogle
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
 require("scripts/globals/moghouse")
 
 function onTrade(player,npc,trade)

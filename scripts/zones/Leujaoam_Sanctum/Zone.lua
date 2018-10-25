@@ -3,8 +3,7 @@
 -- Zone: Leujaoam_Sanctum
 --
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Leujaoam_Sanctum/IDs");
+require("scripts/zones/Leujaoam_Sanctum/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -290 16 415 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

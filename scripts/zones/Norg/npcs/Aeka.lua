@@ -4,11 +4,9 @@
 -- Involved in Quest: Forge Your Destiny
 -- !pos 4 0 -4 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -69,18 +67,18 @@ function onEventFinish(player,csid,option)
     if (csid == 44) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1151);
-            player:messageSpecial(ITEM_OBTAINED, 1151); -- Oriental Steel
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 1151); -- Oriental Steel
             player:setVar("ForgeYourDestiny_Event",questItem + 0x01);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
     elseif (csid == 47) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
             player:addItem(1151);
-            player:messageSpecial(ITEM_OBTAINED, 1151); -- Oriental Steel
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 1151); -- Oriental Steel
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
     end
 

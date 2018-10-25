@@ -3,10 +3,8 @@
 -- NPC:  Elevator
 -- !pos -294 -143 27 158
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(6);
     else
-        player:messageSpecial(THIS_ELEVATOR_GOES_DOWN);
+        player:messageSpecial(ID.text.THIS_ELEVATOR_GOES_DOWN);
     end
 end;
 
@@ -32,7 +30,7 @@ function onEventFinish(player,csid,option)
         if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
             player:addKeyItem(dsp.ki.DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
         end
     end
 end;

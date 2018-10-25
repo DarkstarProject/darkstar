@@ -3,8 +3,7 @@
 --  MOB: Babban_Ny_Mheillea
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

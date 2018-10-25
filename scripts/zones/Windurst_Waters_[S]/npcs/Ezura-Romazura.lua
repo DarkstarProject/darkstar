@@ -3,10 +3,8 @@
 --  NPC: Ezura-Romazura
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/shop");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -14,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:showText(npc,EZURAROMAZURA_SHOP_DIALOG);
+    player:showText(npc,ID.text.EZURAROMAZURA_SHOP_DIALOG);
 
     local stock =
     {

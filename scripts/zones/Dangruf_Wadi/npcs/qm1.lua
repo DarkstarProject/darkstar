@@ -4,16 +4,13 @@
 -- Type: spawns Chocoboleech
 -- !pos  -430 4 115 191
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs")
-require("scripts/zones/Dangruf_Wadi/MobIDs")
+local ID = require("scripts/zones/Dangruf_Wadi/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mob = GetMobByID(CHOCOBOLEECH)
+    local mob = GetMobByID(ID.mob.CHOCOBOLEECH)
 
     if not mob:isSpawned() and npcUtil.tradeHas(trade, 1898) then -- fresh blood
         local x = npc:getXPos()
@@ -21,7 +18,7 @@ function onTrade(player,npc,trade)
         local z = npc:getZPos()
 
         player:confirmTrade()
-        SpawnMob(CHOCOBOLEECH):updateClaim(player)
+        SpawnMob(ID.mob.CHOCOBOLEECH):updateClaim(player)
         mob:setPos(x+1, y, z)
 
         npc:setStatus(dsp.status.DISAPPEAR)
@@ -29,7 +26,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(SMALL_HOLE)
+    player:messageSpecial(ID.text.SMALL_HOLE)
 end
 
 function onEventUpdate(player,csid,option)

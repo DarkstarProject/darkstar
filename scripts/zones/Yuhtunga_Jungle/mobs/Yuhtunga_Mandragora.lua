@@ -2,9 +2,9 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Yuhtunga Mandragora
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,124,1);
+    dsp.regime.checkRegime(player, mob, 124, 1, dsp.regime.type.FIELDS)
 end;

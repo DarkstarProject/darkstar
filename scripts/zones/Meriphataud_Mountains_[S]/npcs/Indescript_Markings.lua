@@ -4,9 +4,7 @@
 -- Type: Quest
 -- !pos -389 -9 92 1 96
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains_[S]/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -22,10 +20,10 @@ function onTrigger(player,npc)
     -- SCH AF Quest - Boots
     if (loafersQuestProgress > 0 and loafersQuestProgress < 3 and player:hasKeyItem(dsp.ki.DROGAROGAN_BONEMEAL) == false) then
         player:addKeyItem(dsp.ki.DROGAROGAN_BONEMEAL);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.DROGAROGAN_BONEMEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DROGAROGAN_BONEMEAL);
         player:setVar("AF_SCH_BOOTS", loafersQuestProgress + 1);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

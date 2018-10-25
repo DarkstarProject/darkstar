@@ -2,7 +2,7 @@
 -- Area: Kuftal Tunnel
 --   NM: Cancer
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -17,5 +17,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    GetNPCByID(CANCER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
+    GetNPCByID(ID.npc.CANCER_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

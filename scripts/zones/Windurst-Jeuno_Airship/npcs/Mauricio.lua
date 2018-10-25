@@ -3,9 +3,7 @@
 --  NPC: Mauricio
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst-Jeuno_Airship/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst-Jeuno_Airship/TextIDs");
+local ID = require("scripts/zones/Windurst-Jeuno_Airship/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,25 +18,25 @@ function onTrigger(player,npc)
         vHour = vHour - 6;
     end
 
-    local message = WILL_REACH_WINDURST;
+    local message = ID.text.WILL_REACH_WINDURST;
 
     if (vHour == -2) then
         if (vMin >= 47) then
             vHour = 3;
-            message = WILL_REACH_JEUNO;
+            message = ID.text.WILL_REACH_JEUNO;
         else
             vHour = 0;
         end
     elseif (vHour == -1) then
         vHour = 2;
-        message = WILL_REACH_JEUNO;
+        message = ID.text.WILL_REACH_JEUNO;
     elseif (vHour == 0) then
         vHour = 1;
-        message = WILL_REACH_JEUNO;
+        message = ID.text.WILL_REACH_JEUNO;
     elseif (vHour == 1) then
         if (vMin <= 40) then
             vHour = 0;
-            message = WILL_REACH_JEUNO;
+            message = ID.text.WILL_REACH_JEUNO;
         else
             vHour = 3;
         end
@@ -50,17 +48,17 @@ function onTrigger(player,npc)
 
     local vMinutes = 0;
 
-    if (message == WILL_REACH_JEUNO) then
+    if (message == ID.text.WILL_REACH_JEUNO) then
         vMinutes = (vHour * 60) + 47 - vMin;
-    else -- WILL_REACH_WINDURST
+    else -- ID.text.WILL_REACH_WINDURST
         vMinutes = (vHour * 60) + 40 - vMin;
     end
 
     if (vMinutes <= 30) then
-        if ( message == WILL_REACH_WINDURST) then
-            message = IN_WINDURST_MOMENTARILY;
-        else -- WILL_REACH_JEUNO
-            message = IN_JEUNO_MOMENTARILY;
+        if ( message == ID.text.WILL_REACH_WINDURST) then
+            message = ID.text.IN_WINDURST_MOMENTARILY;
+        else -- ID.text.WILL_REACH_JEUNO
+            message = ID.text.IN_JEUNO_MOMENTARILY;
         end
     elseif (vMinutes < 60) then
         vHour = 0;

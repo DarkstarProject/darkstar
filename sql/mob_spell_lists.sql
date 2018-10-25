@@ -2485,6 +2485,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,59,1,255)
 INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,61,1,255);  -- Barblizzard
 INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,112,1,255); -- Flash
 
+INSERT INTO `mob_spell_lists` VALUES ('Drumskull_Zogdregg',298,191,1,255); -- stonega_iii
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -7,12 +7,12 @@ require("scripts/globals/settings")
 require("scripts/globals/status")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target, mob, skill)
     return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.HASTE
-    skill:setMsg(MobBuffMove(mob, typeEffect, 102, 0, 300))
+    skill:setMsg(MobBuffMove(mob, typeEffect, 1000, 0, 300))
     return typeEffect
 end

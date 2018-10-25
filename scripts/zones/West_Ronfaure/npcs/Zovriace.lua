@@ -4,8 +4,7 @@
 -- Type: Patrol NPC
 -- !pos -436.356 -15.851 -258.168 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/West_Ronfaure/IDs")
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -1015,7 +1014,7 @@ function onPath(npc)
 
     if (npc:atPoint(dsp.path.get(path, 288))) then
         local Colmaie = GetNPCByID(npc:getID() + 4);
-        Colmaie:showText(npc, ZOVRIACE_REPORT);
+        Colmaie:showText(npc, ID.text.ZOVRIACE_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
@@ -1028,7 +1027,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ZOVRIACE_DIALOG);
+    player:showText(npc, ID.text.ZOVRIACE_DIALOG);
     npc:wait();
 end;
 

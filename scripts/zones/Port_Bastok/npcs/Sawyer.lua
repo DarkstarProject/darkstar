@@ -3,9 +3,7 @@
 --  NPC: Sawyer
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
         4509,   10, 3,    -- Distilled Water
     }
 
-    player:showText(npc, SAWYER_SHOP_DIALOG)
+    player:showText(npc, ID.text.SAWYER_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end
 

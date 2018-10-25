@@ -29,15 +29,17 @@ end;
 
 function onMobFight(mob, target)
     if (mob:getBattleTime() % 9 <= 2) then
-        local orbital1 = mob:getID()+3;
-        local orbital2 = mob:getID()+4;
+        local orbitalOne = GetMobByID(mob:getID()+3)
+        local orbitalTwo = GetMobByID(mob:getID()+4)
 
-        if (GetMobAction(orbital1) == dsp.act.NONE) then
-            GetMobByID(orbital1):setPos(mob:getPos());
-            SpawnMob(orbital1):updateEnmity(target);
-        elseif (GetMobAction(orbital2) == dsp.act.NONE) then
-            GetMobByID(orbital2):setPos(mob:getPos());
-            SpawnMob(orbital2):updateEnmity(target);
+        if not orbitalOne:isSpawned() then
+            orbitalOne:setPos(mob:getPos())
+            orbitalOne:spawn()
+            orbitalOne:updateEnmity(target)
+        elseif not orbitalTwo:isSpawned() then
+            orbitalTwo:setPos(mob:getPos())
+            orbitalTwo:spawn()
+            orbitalTwo:updateEnmity(target)
         end
     end
 end;

@@ -69,7 +69,7 @@ function onSpellCast(caster,target,spell)
     if (damage > 0 and resist > 0.3) then
     local typeEffect = dsp.effect.SLOW
         target:delStatusEffect(typeEffect)
-        target:addStatusEffect(typeEffect,25,0,getBlueEffectDuration(caster,resist,typeEffect))
+        target:addStatusEffect(typeEffect,2000,0,getBlueEffectDuration(caster,resist,typeEffect))
     end
 
     if (damage > 0 and resist > 0.3) then

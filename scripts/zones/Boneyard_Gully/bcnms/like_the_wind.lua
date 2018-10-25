@@ -4,12 +4,9 @@
 -- BCNM: 673
 -- Mask: 1
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
  

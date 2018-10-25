@@ -3,12 +3,10 @@
 -- Zone: Chateau_dOraguille (233)
 --
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local ID = require("scripts/zones/Chateau_dOraguille/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

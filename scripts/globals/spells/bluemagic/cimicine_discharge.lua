@@ -16,17 +16,17 @@ require("scripts/globals/bluemagic")
 require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     return 0
 end
 
-function onSpellCast(caster,target,spell)
-    local duration = math.random(60,180)
+function onSpellCast(caster, target, spell)
     local pINT = caster:getStat(dsp.mod.INT)
     local mINT = target:getStat(dsp.mod.INT)
-    local dINT = (pINT - mINT)
+    local dINT = pINT - mINT
     local params = {}
     params.diff = nil
     params.attribute = dsp.mod.INT
@@ -35,15 +35,14 @@ function onSpellCast(caster,target,spell)
     params.effect = nil
     local resist = applyResistance(caster, target, spell, params)
 
-    if (resist < 0.5) then
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST) --resist message
-        return dsp.effect.SLOW
-    end
-
-    if (target:addStatusEffect(dsp.effect.SLOW,200,0,getBlueEffectDuration(caster,resist,dsp.effect.SLOW))) then
-        spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+    if resist < 0.5 then
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST); --resist message
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        if target:addStatusEffect(dsp.effect.SLOW, 2000, 0, getBlueEffectDuration(caster, resist, dsp.effect.SLOW)) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
+        else
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        end
     end
 
     return dsp.effect.SLOW

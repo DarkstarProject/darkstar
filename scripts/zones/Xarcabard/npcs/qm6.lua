@@ -4,11 +4,9 @@
 -- Involved in Quests: RNG AF3 - Unbridled Passion
 -- !pos -254.883 -17.003 -150.818 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Xarcabard/TextIDs");
+local ID = require("scripts/zones/Xarcabard/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,10 +33,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 7) then
         local iceArrow = 17323;
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, iceArrow);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, iceArrow);
         else
             player:addItem(iceArrow, 99);
-            player:messageSpecial(ITEM_OBTAINED, iceArrow);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, iceArrow);
             player:setVar("unbridledPassion", 7);
         end;
     end;

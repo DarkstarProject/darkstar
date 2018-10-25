@@ -16,13 +16,14 @@ require("scripts/globals/bluemagic")
 require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     return 0
 end
 
-function onSpellCast(caster,target,spell)
+function onSpellCast(caster, target, spell)
     local typeEffect = dsp.effect.SLOW
     local dINT = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
     local params = {}
@@ -33,10 +34,10 @@ function onSpellCast(caster,target,spell)
     params.effect = typeEffect
     local resist = applyResistanceEffect(caster, target, spell, params)
     local duration = 90 * resist
-    local power = 256
+    local power = 2500
 
-    if (resist > 0.5) then -- Do it!
-        if (target:addStatusEffect(typeEffect,power,0,duration)) then
+    if resist > 0.5 then -- Do it!
+        if target:addStatusEffect(typeEffect, power, 0, duration) then
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

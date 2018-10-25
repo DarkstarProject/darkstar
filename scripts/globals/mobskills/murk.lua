@@ -11,7 +11,7 @@ require("scripts/globals/status")
 require("scripts/globals/msg")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target, mob, skill)
     return 0
 end
 
@@ -19,15 +19,15 @@ function onMobWeaponSkill(target, mob, skill)
     local slowed = false
     local weight = false
 
-    slowed = MobStatusEffectMove(mob, target, dsp.effect.SLOW, 128, 0, 60)
+    slowed = MobStatusEffectMove(mob, target, dsp.effect.SLOW, 1250, 0, 60)
     weight = MobStatusEffectMove(mob, target, dsp.effect.WEIGHT, 40, 0, 60)
 
     skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
 
     -- display slow first, else weight
-    if (slowed == dsp.msg.basic.SKILL_ENFEEB_IS) then
+    if slowed == dsp.msg.basic.SKILL_ENFEEB_IS then
         typeEffect = dsp.effect.SLOW
-    elseif (weight == dsp.msg.basic.SKILL_ENFEEB_IS) then
+    elseif weight == dsp.msg.basic.SKILL_ENFEEB_IS then
         typeEffect = dsp.effect.WEIGHT
     else
         skill:setMsg(dsp.msg.basic.SKILL_MISS)

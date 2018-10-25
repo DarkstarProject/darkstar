@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

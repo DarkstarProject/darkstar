@@ -3,12 +3,10 @@
 --  NPC: Vestal Chamber (chamber of the Star Sibyl)
 -- !pos 0.1 -49 37 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -45,7 +43,7 @@ function onTrigger(player,npc)
         player:startEvent(386);
     elseif (CurrentMission == MOON_READING and MissionStatus == 4) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,183);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,183);
         else    
             player:startEvent(407);
         end
@@ -66,12 +64,12 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         player:delKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 166 or csid == 190) then
         if (option == 0) then
             player:addMission(WINDURST,THE_FINAL_SEAL);
             player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
             player:setVar("MissionStatus",10);
         end
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST);
@@ -83,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         player:addTitle(dsp.title.HERO_ON_BEHALF_OF_WINDURST);
         player:addKeyItem(dsp.ki.HOLY_ONES_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_INVITATION);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_INVITATION);
     elseif (csid == 312) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 192 or csid == 216) then

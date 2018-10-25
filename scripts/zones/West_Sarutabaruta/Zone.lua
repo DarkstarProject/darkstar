@@ -3,49 +3,22 @@
 -- Zone: West_Sarutabaruta (115)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/West_Sarutabaruta/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/West_Sarutabaruta/TextIDs");
-require("scripts/zones/West_Sarutabaruta/MobIDs");
+local ID = require("scripts/zones/West_Sarutabaruta/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
+require("scripts/globals/helm")
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 689, 132, DIGREQ_NONE },
-                    { 938, 79, DIGREQ_NONE },
-                    { 17296, 132, DIGREQ_NONE },
-                    { 847, 100, DIGREQ_NONE },
-                    { 846, 53, DIGREQ_NONE },
-                    { 833, 100, DIGREQ_NONE },
-                    { 841, 53, DIGREQ_NONE },
-                    { 834, 26, DIGREQ_NONE },
-                    { 772, 50, DIGREQ_NONE },
-                    { 701, 50, DIGREQ_NONE },
-                    { 702, 3, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 617, 50, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-                    { 1237, 10, DIGREQ_NIGHT },
-};
-
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end;
 
 function onZoneIn( player, prevZone)

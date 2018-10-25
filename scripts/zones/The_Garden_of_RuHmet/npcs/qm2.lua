@@ -7,11 +7,8 @@
 -- !pos -560 5.00 239 35
 -- !pos -600 5.00 440 35
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,15 +22,15 @@ function onTrigger(player,npc)
         -- player took too long, so reset animosity
         npc:setLocalVar("hatedPlayer",0);
         npc:setLocalVar("hateTimer",0);
-        player:messageSpecial(UNKNOWN_PRESENCE);
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE);
 
     elseif (hatedPlayer == 0) then
         -- nobody has animosity
-        player:messageSpecial(UNKNOWN_PRESENCE);
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE);
 
     elseif (hatedPlayer ~= player:getID()) then
         -- someone else has animosity
-        player:messageSpecial(NONE_HOSTILE);
+        player:messageSpecial(ID.text.NONE_HOSTILE);
 
     elseif (hatedPlayer == player:getID()) then
         -- this player has animosity
@@ -41,14 +38,14 @@ function onTrigger(player,npc)
         npc:setStatus(dsp.status.DISAPPEAR);
         local qm2position = math.random(1,4);
         npc:setLocalVar("position",qm2position);
-        npc:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+        npc:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
         npc:setLocalVar("hatedPlayer",0);
         npc:setLocalVar("hateTimer",0);
 
         -- spawn Ix'Aern DRK and its two minions
-        player:messageSpecial(MENACING_CREATURES);
-        GetMobByID(IxAernDRK):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(IxAernDRK):updateClaim(player);
+        player:messageSpecial(ID.text.MENACING_CREATURES);
+        GetMobByID(IXAERN_DRK):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
+        SpawnMob(IXAERN_DRK):updateClaim(player);
         GetMobByID(QnAernA):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
         SpawnMob(QnAernA):updateClaim(player);
         GetMobByID(QnAernB):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.

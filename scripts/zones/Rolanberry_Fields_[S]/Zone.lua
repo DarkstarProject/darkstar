@@ -3,10 +3,7 @@
 -- Zone: Rolanberry_Fields_[S] (91)
 --
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Rolanberry_Fields_[S]/TextIDs");
+local ID = require("scripts/zones/Rolanberry_Fields_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

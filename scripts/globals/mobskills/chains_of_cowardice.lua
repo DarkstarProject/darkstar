@@ -2,9 +2,7 @@
 -- Chains of Cowardice
 --
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
@@ -18,7 +16,7 @@ function onMobSkillCheck(target,mob,skill)
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
             if (race == 5 or race == 6) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) then
-                mob:showText(mob, PROMATHIA_TEXT + 2)
+                mob:showText(mob, ID.text.PROMATHIA_TEXT + 2)
                 return 0
             end
         end

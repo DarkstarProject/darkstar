@@ -2,9 +2,9 @@
 -- Area: Seas Serpent Grotto
 --  MOB: Greatclaw
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,811,2);
+    dsp.regime.checkRegime(player, mob, 811, 2, dsp.regime.type.GROUNDS)
 end;

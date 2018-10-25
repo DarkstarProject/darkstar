@@ -3,10 +3,9 @@
 -- Zone: Port_Jeuno (246)
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Port_Jeuno/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
@@ -82,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,226);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 324) then
         player:addQuest(ABYSSEA, A_JOURNEY_BEGINS);
     end

@@ -2,7 +2,7 @@
 -- Area: Konschtat Highlands
 --  Mob: Tremor Ram
 -----------------------------------
-require("scripts/zones/Konschtat_Highlands/MobIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
@@ -11,12 +11,12 @@ end;
 function onMobDespawn(mob)
     local mobID = mob:getID();
 
-    if (mobID == TREMOR_RAM and math.random(1,100) <= 10) then
+    if (mobID == ID.mob.TREMOR_RAM and math.random(1,100) <= 10) then
         -- what nms are ready to spawn
         local nms = {};
         for i = 1, 2 do
-            if (os.time() > GetMobByID(TREMOR_RAM + i):getLocalVar("cooldown")) then
-                table.insert(nms, TREMOR_RAM + i);
+            if (os.time() > GetMobByID(ID.mob.TREMOR_RAM + i):getLocalVar("cooldown")) then
+                table.insert(nms, ID.mob.TREMOR_RAM + i);
             end
         end
     

@@ -3,9 +3,7 @@
 --  NPC: Mamerie
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Kazham/TextIDs")
+local ID = require("scripts/zones/Kazham/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
         5073, 50784,    -- Scroll of Chocobo Mazurka
     }
 
-    player:showText(npc, MAMERIE_SHOP_DIALOG)
+    player:showText(npc, ID.text.MAMERIE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -4,11 +4,8 @@
 -- Start Quest: The Sand Charmz
 -- !pos 23 -7 41 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

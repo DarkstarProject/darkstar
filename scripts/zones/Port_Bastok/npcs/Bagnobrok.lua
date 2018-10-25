@@ -3,9 +3,7 @@
 --  NPC: Bagnobrok
 -- Movalpolos Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.MOVALPOLOS) ~= dsp.nation.BASTOK then
-        player:showText(npc, BAGNOBROK_CLOSED_DIALOG)
+        player:showText(npc, ID.text.BAGNOBROK_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             5165,  736,    -- Movalpolos Water
         }
 
-        player:showText(npc, BAGNOBROK_OPEN_DIALOG)
+        player:showText(npc, ID.text.BAGNOBROK_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

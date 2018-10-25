@@ -58,6 +58,7 @@ enum ANIMATIONTYPE
     ANIMATION_ATTACK             = 1,
     // Death                        = 2,
     ANIMATION_DEATH              = 3,
+    ANIMATION_EVENT              = 4,
     ANIMATION_CHOCOBO            = 5,
     ANIMATION_FISHING            = 6,
     // Healing                      = 7,

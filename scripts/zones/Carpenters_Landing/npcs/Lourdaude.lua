@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos 215.597 -2.689 -526.021 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

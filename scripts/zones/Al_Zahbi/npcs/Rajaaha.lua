@@ -4,11 +4,9 @@
 -- Type: Goldsmithing Normal/Adv. Image Support
 -- !pos 49.9 0.1 -45.2 48
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Al_Zahbi/TextIDs");
+local ID = require("scripts/zones/Al_Zahbi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrade(player,npc,trade)
                 player:tradeComplete();
                 player:startEvent(231,8,0,0,0,188,0,3,0);
             else
-                npc:showText(npc, IMAGE_SUPPORT_ACTIVE);
+                npc:showText(npc, ID.text.IMAGE_SUPPORT_ACTIVE);
             end
         end
     end
@@ -47,10 +45,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 230 and option == 1) then
-        player:messageSpecial(IMAGE_SUPPORT,0,3,1);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,3,1);
         player:addStatusEffect(dsp.effect.GOLDSMITHING_IMAGERY,1,0,120);
     elseif (csid == 231) then
-        player:messageSpecial(IMAGE_SUPPORT,0,3,0);
+        player:messageSpecial(ID.text.IMAGE_SUPPORT,0,3,0);
         player:addStatusEffect(dsp.effect.GOLDSMITHING_IMAGERY,3,0,480);
     end
 end;

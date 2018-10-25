@@ -3,9 +3,7 @@
 --  NPC: Adelflete
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
         13456, 1250,    -- Silver Ring
     }
 
-    player:showText(npc, ADELFLETE_SHOP_DIALOG)
+    player:showText(npc, ID.text.ADELFLETE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

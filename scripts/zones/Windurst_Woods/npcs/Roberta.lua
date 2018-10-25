@@ -3,7 +3,8 @@
 --  NPC: Roberta
 -- !pos 21 -4 -157 241
 -----------------------------------
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -46,9 +47,9 @@ function onEventFinish(player,csid,option)
                 player:setVar("BlueRibbonBluesProg",4);
             end
             player:addItem(13569);
-            player:messageSpecial(ITEM_OBTAINED,13569);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13569);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13569);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13569);
         end
     end
 end;

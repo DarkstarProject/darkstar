@@ -3,9 +3,7 @@
 --  NPC: Tapoh Lihzeh
 -- Starts & Finishes Repeatable Quest: Paying Lip Service
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -74,10 +72,10 @@ function onEventFinish(player,csid,option)
 
         if option == 1 then
             player:addGil(GIL_RATE*150)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*150)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*150)
         else
             player:addGil(GIL_RATE*200)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*200)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*200)
         end
         
         player:confirmTrade()

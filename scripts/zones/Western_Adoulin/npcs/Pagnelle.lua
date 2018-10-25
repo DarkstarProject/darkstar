@@ -5,11 +5,9 @@
 -- Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
 -- !pos -8 0 -100 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -89,7 +87,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Raptor_Rapture_Status", 0);
         player:completeQuest(ADOULIN, RAPTOR_RAPTURE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 1000 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:needToZone(true);
     end

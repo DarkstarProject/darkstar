@@ -3,14 +3,12 @@
 --  NPC: Ajithaam
 -- !pos -82 0.1 160 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 
 --[[
 Bitmask Designations:
@@ -80,15 +78,15 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
         player:setVar("WildcatJeuno",0);
         player:addKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHITE_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHITE_SENTINEL_BADGE);
     elseif (csid == 10091) then
         player:completeQuest(JEUNO,LURE_OF_THE_WILDCAT_JEUNO);
         player:addFame(JEUNO, 150);
         player:setVar("WildcatJeuno",0);
         player:delKeyItem(dsp.ki.WHITE_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.WHITE_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.WHITE_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHITE_INVITATION_CARD);
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.WHITE_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHITE_INVITATION_CARD);
     elseif (csid == 10177) then
         player:tradeComplete();
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);

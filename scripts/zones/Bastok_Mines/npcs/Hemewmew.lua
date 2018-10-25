@@ -4,9 +4,7 @@
 -- Type: Guildworker's Union Representative
 -- !pos 117.970 1.017 -10.438 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 
@@ -109,6 +107,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 206) then
         unionRepresentativeTriggerFinish(player, option, target, 7, "guild_alchemy", keyitems, items);
     elseif (csid == 207) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

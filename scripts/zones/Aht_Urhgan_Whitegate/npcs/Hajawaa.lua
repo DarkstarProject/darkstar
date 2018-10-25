@@ -3,9 +3,6 @@
 --  NPC: Hajawaa
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

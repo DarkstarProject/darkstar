@@ -3,9 +3,6 @@
 --  NPC: Yurim
 -- !pos 83.697 -25.000 3.250 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")

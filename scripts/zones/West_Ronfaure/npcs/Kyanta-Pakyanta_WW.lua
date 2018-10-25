@@ -4,9 +4,6 @@
 -- Type: Outpost Conquest Guards
 -- !pos -450.571 -20.807 -219.970 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil
------------------------------------
-require("scripts/zones/West_Ronfaure/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

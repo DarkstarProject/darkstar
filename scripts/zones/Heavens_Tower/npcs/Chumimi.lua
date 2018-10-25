@@ -4,13 +4,12 @@
 -- Starts and Finishes Quest: The Three Magi, Recollections
 -- !pos 0.1 30 21 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -40,17 +39,17 @@ function onTrigger(player,npc)
     local mLvl = player:getMainLvl();
     local mJob = player:getMainJob();
 
-    if (theThreeMagi == QUEST_AVAILABLE and mJob == 4 and mLvl >= AF1_QUEST_LEVEL) then
+    if (theThreeMagi == QUEST_AVAILABLE and mJob == dsp.job.BLM and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(260,0,613,0,0,0,1104); -- Start Quest "The Three Magi" --- NOTE: 5th parameter is "Meteorites" but he doesn't exist ---
     elseif (theThreeMagi == QUEST_ACCEPTED) then
         player:startEvent(261,0,0,0,0,0,1104); -- During Quest "The Three Magi"
-    elseif (theThreeMagi == QUEST_COMPLETED and recollections == QUEST_AVAILABLE and (mJob == 4 and mLvl < AF2_QUEST_LEVEL or mJob ~= 4)) then
+    elseif (theThreeMagi == QUEST_COMPLETED and recollections == QUEST_AVAILABLE and (mJob == dsp.job.BLM and mLvl < AF2_QUEST_LEVEL or mJob ~= dsp.job.BLM)) then
         player:startEvent(268); -- New standard dialog after "The Three Magi"
-    elseif (theThreeMagi == QUEST_COMPLETED and mJob == 4 and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
+    elseif (theThreeMagi == QUEST_COMPLETED and mJob == dsp.job.BLM and mLvl >= AF2_QUEST_LEVEL and player:needToZone() == false and recollections == QUEST_AVAILABLE) then
         player:startEvent(270,0,1105); -- Start Quest "Recollections"
     elseif (recollections == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.FOE_FINDER_MK_I)) then
         player:startEvent(275); -- Finish Quest "Recollections"
-    elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == 4 and mLvl >= 50 and player:needToZone() == false) then
+    elseif (recollections == QUEST_COMPLETED and rootProblem == QUEST_AVAILABLE and mJob == dsp.job.BLM and mLvl >= 50 and player:needToZone() == false) then
             player:startEvent(276,0,829); -- Start Quest "The Root of The problem"
     elseif (rootProblem == QUEST_ACCEPTED) then
         if (player:getVar("rootProblem") == 1) then
@@ -77,7 +76,7 @@ function onEventFinish(player,csid,option)
         player:setVar("theThreeMagiSupport",option);
     elseif (csid == 269) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17423); -- Casting Wand
         else
             choosetitle = player:getVar("theThreeMagiSupport");
 
@@ -91,7 +90,7 @@ function onEventFinish(player,csid,option)
 
             player:tradeComplete();
             player:addItem(17423);
-            player:messageSpecial(ITEM_OBTAINED, 17423); -- Casting Wand
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 17423); -- Casting Wand
             player:needToZone(true);
             player:setVar("theThreeMagiSupport",0);
             player:addFame(WINDURST,AF1_FAME);
@@ -104,12 +103,12 @@ function onEventFinish(player,csid,option)
         player:setVar("recollectionsQuest",2);
     elseif (csid == 275) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14092); -- wizards sabots
         else
             player:setVar("recollectionsQuest",0);
             player:delKeyItem(dsp.ki.FOE_FINDER_MK_I);
             player:addItem(14092);
-            player:messageSpecial(ITEM_OBTAINED,14092); -- wizards sabots
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14092); -- wizards sabots
             player:addFame(WINDURST,AF2_FAME);
             player:completeQuest(WINDURST,RECOLLECTIONS);
         end
@@ -118,14 +117,14 @@ function onEventFinish(player,csid,option)
         player:setVar("rootProblem",1);
     elseif (csid == 279) then
         player:addKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SLUICE_SURVEYOR_MK_I);
     elseif (csid == 281) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         else
             player:completeQuest(WINDURST,THE_ROOT_OF_THE_PROBLEM);
             player:addItem(13856);
-            player:messageSpecial(ITEM_OBTAINED,13856);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13856);
             player:addTitle(dsp.title.PARAGON_OF_BLACK_MAGE_EXCELLENCE);
             player:delKeyItem(dsp.ki.SLUICE_SURVEYOR_MK_I);
         end

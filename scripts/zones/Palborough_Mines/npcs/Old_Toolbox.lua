@@ -3,12 +3,9 @@
 --  NPC: Old Toolbox
 -- Continues Quest: The Eleventh's Hour
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Palborough_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

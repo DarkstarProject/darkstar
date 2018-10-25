@@ -4,8 +4,6 @@
 -- Type: Conflict Director
 -- !pos -3.767 -0.501 23.920 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

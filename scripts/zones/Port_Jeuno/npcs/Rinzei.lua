@@ -3,9 +3,6 @@
 --  NPC: Rinzei
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

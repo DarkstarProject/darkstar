@@ -3,8 +3,6 @@
 --  NPC: Tonberry Priest
 -- !pos 59.965 -1.01 -145.868 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -2,12 +2,12 @@
 -- Area: Xarcabard
 --  MOB: Lost Soul
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,51,1);
-    checkRegime(player,mob,52,1);
-    checkRegime(player,mob,53,2);
-    checkRegime(player,mob,54,3);
+    dsp.regime.checkRegime(player, mob, 51, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 52, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 53, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 54, 3, dsp.regime.type.FIELDS)
 end;

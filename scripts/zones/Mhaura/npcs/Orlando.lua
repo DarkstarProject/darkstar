@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos -37.268 -9 58.047 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -77,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addFame(WINDURST,10);
         player:addGil(payout);
-        player:messageSpecial(GIL_OBTAINED,payout);
+        player:messageSpecial(ID.text.GIL_OBTAINED,payout);
         player:completeQuest(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
         player:setVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);

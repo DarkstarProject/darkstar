@@ -1,11 +1,12 @@
 ---------------------------------------------
 --  Luminous Lance
 ---------------------------------------------
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-require("scripts/zones/Empyreal_Paradox/TextIDs")
 ---------------------------------------------
+
 function onMobSkillCheck(target,mob,skill)
     local lanceTime = mob:getLocalVar("lanceTime")
     local lanceOut = mob:getLocalVar("lanceOut")
@@ -20,7 +21,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    mob:showText(mob, SELHTEUS_TEXT + 1)
+    mob:showText(mob, ID.text.SELHTEUS_TEXT + 1)
 
     local numhits = 1
     local accmod = 1
