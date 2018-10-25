@@ -58,8 +58,6 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [18] = "y", [19] = "b",
         },
         OLLAS_QM               = 17506692,
-        KIRIN_QM               = 17506693,
-        ULLIKUMMI_QM           = 17506694,
         SHRINE_DOOR_OFFSET     = 17506718,
         SHRINE_MONOLITH_OFFSET = 17506741,
     },
