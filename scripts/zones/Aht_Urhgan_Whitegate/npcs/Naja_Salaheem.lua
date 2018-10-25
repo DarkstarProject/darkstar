@@ -26,11 +26,11 @@ function onTrigger(player,npc)
     local realday = tonumber(os.date("%j")) -- %M for next minute, %j for next day
     local needToZone = player:needToZone()
 
-    if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false) then
+    if (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.PFC_WILDCAT_BADGE) == false and player:getVar("PromotionPFC") == 0) then
         player:startEvent(5000,0,0,0,0,0,0,0,0,0) -- PFC rank is available
     elseif (player:getVar("PromotionSP") == 1 and player:hasKeyItem(dsp.ki.DARK_RIDER_HOOFPRINT) == true) then
         player:startEvent(5022,0,0,0,0,0,0,0,0,0) -- Superior Private rank complete
-    elseif (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false) then
+    elseif (player:getVar("AssaultPromotion") >= 25 and player:hasKeyItem(dsp.ki.SP_WILDCAT_BADGE) == false and player:getVar("PromotionSP") == 0) then
         player:startEvent(5020,0,0,0,0,0,0,0,0,0) -- Superior Private rank is available
     elseif (player:getCurrentMission(TOAU) == IMMORTAL_SENTRIES and player:getVar("AhtUrganStatus") == 1) then
         player:startEvent(3002,0,0,0,0,0,0,0,0,0)
@@ -199,7 +199,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PromotionSP", 1)
     elseif csid == 5022 then
         player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
-        player:addKeyItem(dsp.ki.player.SP_WILDCAT_BADGE)
+        player:addKeyItem(dsp.ki.SP_WILDCAT_BADGE)
         player:setVar("PromotionSP", 0)
         player:setVar("AssaultPromotion", 0)
     end
