@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Caedarva Mire
---  Mob: Lamia Idolater
+-- Area: Abyssea - Tahrongi
+--  Mob: Bog Body
 -----------------------------------
 mixins = {require("scripts/mixins/families/qutrub")}
 -----------------------------------
