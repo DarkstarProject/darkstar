@@ -60,9 +60,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
     },
     npc =
     {
-        DEATH_FROM_ABOVE_QM      = 17428870,
         HABETROT_QM              = 17428871,
-        SOZU_ROGBERRY_QM         = 17428873,
         PLONGEUR_MONBERRY        = 17428933,
         UGGALEPIH_BOOK_OFFSET    = 17428973,
         TEMPLE_GUARDIAN_DOOR     = 17428978,

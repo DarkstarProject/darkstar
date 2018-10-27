@@ -23,11 +23,10 @@ zones[dsp.zone.ULEGUERAND_RANGE] =
     {
         JORMUNGAND           = 16797969,
         GEUSH_URVAN          = 16798078,
-        GEUSH_URVAN_QM       = 16798097,
-        ULEGUERAND_WATERFALL = 16798112,
     },
     npc =
     {
+        ULEGUERAND_WATERFALL = 16798112,
     },
 }
 
