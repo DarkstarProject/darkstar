@@ -18,10 +18,8 @@ function onMobSpawn(mob)
 end;
 
 function onMobEngaged(mob,target)
-    local allies = mob:getInstance():getAllies();
-    for i,v in pairs(allies) do
-        v:setLocalVar("ready",1);
-    end
+    local naja = mob:getInstance():getEntity(bit.band(ID.mob[58].NAJA, 0xFFF))
+    naja:setLocalVar("ready",1)
     mob:showText(mob,ID.text.CANNOT_LET_YOU_PASS);
 end;
 
