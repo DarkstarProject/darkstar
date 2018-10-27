@@ -8,30 +8,35 @@ require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
-end;
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS) then
-            cs = 51;
-        end
+function onInstanceZoneIn(player,instance)
+    local cs = -1
+    
+    local pos = player:getPos()
+    if (pos.x == 0 and pos.y == 0 and pos.z == 0) then
+        player:setPos(player:getInstance():getEntryPos());
+    end
+    if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS) then
+        cs = 51
     end
 
-    return cs;
-end;
+    return cs
+end
 
 function onRegionEnter(player,region)
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
 
-    if(csid == 1) then
-        player:setPos(0,0,0,0,72);
+    if csid == 1 then
+        player:setPos(0,0,0,0,72)
     end
-end;
+end
 
+function onInstanceLoadFailed()
+    return 72
+end
