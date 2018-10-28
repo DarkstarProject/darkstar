@@ -26,7 +26,7 @@ zones[dsp.zone.RIVERNE_SITE_B01] =
     },
     mob =
     {
-        IMDUGUD_PH       = 
+        IMDUGUD_PH       =
         {
             [16896101] = 16896107, -- 650.770 20.052 676.513
             [16896102] = 16896107, -- 643.308 20.049 652.354
@@ -39,7 +39,6 @@ zones[dsp.zone.RIVERNE_SITE_B01] =
     },
     npc =
     {
-        UNSTABLE_CLUSTER_QM       = 16896175,
         RIV_B_DISPLACEMENT_OFFSET = 16896183,
     },
 }
