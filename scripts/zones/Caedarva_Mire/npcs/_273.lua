@@ -13,14 +13,14 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)) then
+    if player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT) then
         player:setVar("ShadesOfVengeance",1)
         player:startEvent(143,79,-6,0,99,3,0)
-    elseif (player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS)) then
+    elseif player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) then
         local assaultid = player:getCurrentAssault()
         local recommendedLevel = getRecommendedAssaultLevel(assaultid)
         local armband = 0
-        if (player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND)) then
+        if player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) then
             armband = 1
         end
         player:startEvent(143, assaultid, -4, 0, recommendedLevel, 3, armband)
@@ -34,11 +34,11 @@ function onEventUpdate(player,csid,option,target)
     local assaultid = player:getCurrentAssault()
 
     local cap = bit.band(option, 0x03)
-    if (cap == 0) then
+    if cap == 0 then
         cap = 99
-    elseif (cap == 1) then
+    elseif cap == 1 then
         cap = 70
-    elseif (cap == 2) then
+    elseif cap == 2 then
         cap = 60
     else
         cap = 50
@@ -48,13 +48,13 @@ function onEventUpdate(player,csid,option,target)
 
     local party = player:getParty()
 
-    if(player:getVar("ShadesOfVengeance") == 1) then
+    if player:getVar("ShadesOfVengeance") == 1 then
         if (party ~= nil) then
             for i,v in ipairs(party) do
-                if (not (v:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT))) then
+                if v:getCurrentMission(TOAU) < SHADES_OF_VENGEANCE then
                     player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                     player:instanceEntry(target,1)
-                elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
+                elseif v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50 then
                     player:messageText(target,ID.text.MEMBER_TOO_FAR, false)
                     player:instanceEntry(target,1)
                     return
@@ -64,13 +64,13 @@ function onEventUpdate(player,csid,option,target)
 
         player:createInstance(79,56)
     else
-        if (party ~= nil) then
+        if party ~= nil then
             for i,v in ipairs(party) do
                 if (not (v:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) and v:getCurrentAssault() == assaultid)) then
                     player:messageText(target,ID.text.MEMBER_NO_REQS, false)
                     player:instanceEntry(target,1)
                     return
-                elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
+                elseif v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50 then
                     player:messageText(target,ID.text.MEMBER_TOO_FAR, false)
                     player:instanceEntry(target,1)
                     return
@@ -85,13 +85,13 @@ end
 
 function onEventFinish(player,csid,option,target)
 
-    if (csid == 133 or (csid == 143 and option == 4)) then
+    if csid == 133 or (csid == 143 and option == 4) then
         player:setPos(0,0,0,0,56)
     end
 end
 
 function onInstanceCreated(player,target,instance)
-    if (instance and player:getVar("ShadesOfVengeance") == 1) then
+    if instance and player:getVar("ShadesOfVengeance") == 1 then
         player:setInstance(instance)
         player:instanceEntry(target,4)
 
@@ -99,7 +99,7 @@ function onInstanceCreated(player,target,instance)
         player:delKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
 
         local party = player:getParty()
-        if (party ~= nil) then
+        if party ~= nil then
             for i,v in ipairs(party) do
                 if (v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID()) then
                     v:setInstance(instance)
@@ -117,7 +117,7 @@ function onInstanceCreated(player,target,instance)
         player:delKeyItem(dsp.ki.ASSAULT_ARMBAND)
 
         local party = player:getParty()
-        if (party ~= nil) then
+        if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance)
