@@ -30,6 +30,7 @@ zones[dsp.zone.AHT_URHGAN_WHITEGATE] =
         RYTAAL_MISSION_FAILED         = 5652, -- Your mission was not successful; however, the Empire recognizes your contribution and has awarded you Assault Points.
         AUTOMATON_RENAME              = 5829, -- Your automaton has a new name.
         YOU_CAN_BECOME_PUP            = 5832, -- You can now become a puppetmaster!
+        NEED_ASTRAL_CANDESCENCE_BACK  = 7683, -- ...Hm? You! Yes, you! What do you think you're staring at, anyway? Go get the Astral Candescence back, and now!
         PAY_DIVINATION                = 8766, -- ou pay 1000 gil for the divination.
         GAVRIE_SHOP_DIALOG            = 9264, -- Remember to take your medicine in small doses... Sometimes you can get a little too much of a good thing!
         MALFUD_SHOP_DIALOG            = 9265, -- Welcome, welcome! Flavor your meals with Malfud's ingredients!
