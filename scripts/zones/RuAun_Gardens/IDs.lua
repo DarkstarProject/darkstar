@@ -109,11 +109,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             {coords={ 142, -41, -156,  145, -39, -153}, green = true},
         },
         TREASURE_COFFER = 17310019,
-        SUZAKU_QM       = 17310051,
-        BYAKKO_QM       = 17310052,
-        SEIRYU_QM       = 17310053,
         OVERSEER_BASE   = 17310080,
-        GENBU_QM        = 17310103,
     },
 }
 
