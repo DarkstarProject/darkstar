@@ -92,7 +92,6 @@ function onTrigger(player,npc)
         player:startEvent(3154,0,0,0,0,0,0,0,0,0);
     else
         player:startEvent(3003,1,0,0,0,0,0,0,1,0) -- go back to work
-        -- player:messageSpecial(0);--  need to find correct normal chat CS..
     end
 
 end;
