@@ -1261,38 +1261,97 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 
     // give him a spell list based on job
     uint16 spellList = 0;
+    SKILLTYPE skillType = SKILL_NONE;
+    int32 combatDelay = 360;
+    float damageMultiplier = 1.0f;
 
-    switch(job){
+    switch (job)
+    {
+        case JOB_WAR:
+            skillType = SKILL_GREAT_AXE;
+            combatDelay = 489;
+            break;
+        case JOB_MNK:
+            skillType = SKILL_HAND_TO_HAND;
+            combatDelay = 480;
+            break;
         case JOB_WHM:
             spellList = 1;
+            skillType = SKILL_CLUB;
+            combatDelay = 288;
             break;
         case JOB_BLM:
             spellList = 2;
+            skillType = SKILL_STAFF;
+            combatDelay = 356;
             break;
         case JOB_RDM:
             spellList = 3;
+            skillType = SKILL_SWORD;
+            combatDelay = 225;
+            break;
+        case JOB_THF:
+            skillType = SKILL_DAGGER;
+            combatDelay = 188;
+            damageMultiplier = 1.3f;
             break;
         case JOB_PLD:
             spellList = 4;
+            skillType = SKILL_SWORD;
+            combatDelay = 225;
             break;
         case JOB_DRK:
             spellList = 5;
+            skillType = SKILL_GREAT_SWORD;
+            break;
+        case JOB_BST:
+            skillType = SKILL_AXE;
+            combatDelay = 288;
             break;
         case JOB_BRD:
             spellList = 6;
+            skillType = SKILL_DAGGER;
+            combatDelay = 188;
+            break;
+        case JOB_RNG:
+            skillType = SKILL_NONE;
+            PMob->m_Weapons[SLOT_MAIN]->setSubSkillType(SKILL_ARCHERY);
+            combatDelay = 540;
+            break;
+        case JOB_SAM:
+            skillType = SKILL_GREAT_KATANA;
+            combatDelay = 437;
             break;
         case JOB_NIN:
             spellList = 7;
+            skillType = SKILL_KATANA;
+            combatDelay = 280;
+            PMob->m_Weapons[SLOT_SUB]->setSkillType(skillType);
+            PMob->m_Weapons[SLOT_SUB]->setDelay(combatDelay * 1000 / 60);
+            PMob->m_Weapons[SLOT_SUB]->setBaseDelay(combatDelay * 1000 / 60);
             break;
-        case JOB_BLU:
-            spellList = 8;
+        case JOB_DRG:
+            skillType = SKILL_POLEARM;
+            combatDelay = 396;
             break;
         case JOB_SMN:
             spellList = 141;
+            skillType = SKILL_STAFF;
+            combatDelay = 356;
+            break;
+        case JOB_BLU:
+            spellList = 8;
+            skillType = SKILL_SWORD;
+            combatDelay = 225;
             break;
         default:
             break;
     }
+
+    PMob->m_Weapons[SLOT_MAIN]->setSkillType(skillType);
+    PMob->m_Weapons[SLOT_MAIN]->setDelay(combatDelay * 1000 / 60);
+    PMob->m_Weapons[SLOT_MAIN]->setBaseDelay(combatDelay * 1000 / 60);
+    PMob->m_dmgMult = (int16)(combatDelay / 360.0 * 100 * damageMultiplier);
 
     PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
 
