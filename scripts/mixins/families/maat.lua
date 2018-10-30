@@ -5,6 +5,15 @@ require("scripts/globals/status")
 g_mixins = g_mixins or {}
 
 g_mixins.maat = function(mob)
+ 
+    mob:addListener("SPAWN", "JOB_SPECIAL_SPAWN", function(mob)
+        if (mob:getMainJob() == dsp.job.NIN) then
+            mob:setLocalVar("specialThreshold", 40)
+        else
+            mob:setLocalVar("specialThreshold", math.random(50,60))
+        end
+    end)
+
     mob:addListener("ROAM_TICK", "MAAT_RTICK", function(mob)
         if mob:getLocalVar("engaged") == 0 then
             for _, player in pairs(mob:getZone():getPlayers()) do
@@ -55,11 +64,11 @@ g_mixins.maat = function(mob)
             [dsp.job.SMN] = dsp.jsa.ASTRAL_FLOW_MAAT,
         }
 
-        if mob:getLocalVar("used2h") == 0 and mob:getHPP() < 60 then
+        if mob:getHPP() < mob:getLocalVar("specialThreshold") then
             local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
             mob:messageText(mob, ID.text.NOW_THAT_IM_WARMED_UP)
             mob:useMobAbility(defaultAbility[mob:getMainJob()])
-            mob:setLocalVar("used2h", 1)
+            mob:setLocalVar("specialThreshold", -1)
         end
 
         if (mob:getHPP() < 20) or (mob:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
