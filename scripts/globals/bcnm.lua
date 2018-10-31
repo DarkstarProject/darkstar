@@ -30,7 +30,7 @@ itemid_bcnmid_map =
     67,  {0, 0}, -- Jade Sepulcher
     139, {1177, 4, 1552, 10, 1553, 11, 1131, 12, 1175, 15, 1180, 17}, -- Horlais Peak
     140, {1551, 34, 1552, 35, 1552, 36}, -- Ghelsba Outpost
-    144, {1166, 68, 1553, 76, 1130, 79, 1178, 81, 1180, 82}, -- Waughroon Shrine
+    144, {1166, 68, 1553, 76, 1130, 79, 1131, 77, 1178, 81, 1180, 82}, -- Waughroon Shrine
     146, {1552, 104, 1551, 105, 1553, 107}, -- Balgas Dias
     163, {1130, 129, 1130, 130}, -- Sacrificial Chamber
     168, {0, 0}, -- Chamber of Oracles

@@ -899,6 +899,53 @@ INSERT INTO `bcnm_loot` VALUES ('35', '15274', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '744', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '806', '131', '7');
 INSERT INTO `bcnm_loot` VALUES ('35', '0', '600', '7');
+
+-- Royal Jelly
+INSERT INTO `bcnm_loot` VALUES ('77', '637', '1000', '0'); -- Group 1
+INSERT INTO `bcnm_loot` VALUES ('77', '637', '1000', '0');
+INSERT INTO `bcnm_loot` VALUES ('77', '13514', '91', '1'); -- Group 2
+INSERT INTO `bcnm_loot` VALUES ('77', '14651', '469', '2'); -- Group 3
+INSERT INTO `bcnm_loot` VALUES ('77', '17693', '152', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '17936', '120', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '17696', '118', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4947', '106', '2'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '14650', '258', '3'); -- Group 4
+INSERT INTO `bcnm_loot` VALUES ('77', '17573', '101', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '17463', '98', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '17203', '98', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '17572', '152', '3'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4874', '123', '4'); -- Group 5
+INSERT INTO `bcnm_loot` VALUES ('77', '4751', '165', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4714', '140', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4896', '145', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '666', '229', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '652', '238', '4'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4947', '177', '5'); -- Group 6
+INSERT INTO `bcnm_loot` VALUES ('77', '4858', '246', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4717', '263', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '748', '182', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '749', '133', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '793', '15', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '811', '10', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '788', '27', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '798', '20', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '772', '7', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '808', '15', '5');
+INSERT INTO `bcnm_loot` VALUES ('77', '815', '15', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '699', '5', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '701', '5', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '775', '12', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '770', '2', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '776', '7', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4174', '10', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '4172', '2', '5'); 
+INSERT INTO `bcnm_loot` VALUES ('77', '1603', '0', '6'); -- Unknown groupings
+INSERT INTO `bcnm_loot` VALUES ('77', '924', '0', '6');
+INSERT INTO `bcnm_loot` VALUES ('77', '4898', '0', '6');
+INSERT INTO `bcnm_loot` VALUES ('77', '790', '7', '6');
+INSERT INTO `bcnm_loot` VALUES ('77', '773', '2', '6');
+
+
 -- limbus                      lootID,ItemID,Roll,lootgroup
 -- SE Appollyon first floor
 INSERT INTO `bcnm_loot` VALUES ('110', '1875', '1000', '0'); -- ancient beastcoin*4

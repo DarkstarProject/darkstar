@@ -86,7 +86,7 @@ INSERT INTO `bcnm_info` VALUES (73,144,'birds_of_a_feather','nobody',1,18,900,30
 INSERT INTO `bcnm_info` VALUES (74,144,'crustacean_conundrum','nobody',1,18,900,20,3,0,15,0);
 INSERT INTO `bcnm_info` VALUES (75,144,'grove_guardians','nobody',1,18,1800,30,6,0,15,0);
 INSERT INTO `bcnm_info` VALUES (76,144,'hills_are_alive','nobody',1,18,1800,0,18,76,15,0);
-INSERT INTO `bcnm_info` VALUES (77,144,'royal_jelly','nobody',1,18,900,40,3,0,15,0);
+INSERT INTO `bcnm_info` VALUES (77,144,'royal_jelly','nobody',1,18,900,40,3,77,15,0);
 INSERT INTO `bcnm_info` VALUES (78,144,'final_bout','nobody',1,18,180,50,3,0,15,0);
 INSERT INTO `bcnm_info` VALUES (79,144,'up_in_arms','nobody',1,18,900,60,3,79,15,0);
 INSERT INTO `bcnm_info` VALUES (80,144,'copycat','nobody',1,18,1800,0,6,0,15,0);
