@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
             player:startEvent(850)
         end
     elseif player:getCurrentMission(TOAU) == KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 1 then
-        if npcUtil.tradeHas(trade,{"gil", 1000}) or npcUtil.tradeHas(trade,2184) then
+        if npcUtil.tradeHas(trade,{{"gil", 1000}}) or npcUtil.tradeHas(trade,2184) then
             player:startEvent(3022,0,0,0,0,0,0,0,0,0)
         end
     end
