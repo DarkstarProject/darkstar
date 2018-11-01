@@ -51,7 +51,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     
-    if (csid == 32001) then
+    if csid == 32001 and player:getCurrentMission(TOAU) == SHIELD_OF_DIPLOMACY then
         player:completeMission(TOAU,SHIELD_OF_DIPLOMACY);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,SOCIAL_GRACES);
