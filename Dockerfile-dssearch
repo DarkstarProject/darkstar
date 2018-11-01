@@ -1,48 +1,14 @@
-FROM ubuntu AS builder
-
-ARG BUILD_DEPS="\
-               autoconf\
-               automake\
-               pkg-config\
-               g++-7\
-               libmariadbclient-dev\
-               libluajit-5.1-dev\
-               libzmq3-dev"
-
-RUN apt-get update && \
-    apt-get install -y $BUILD_DEPS
-
-COPY win32/ win32/
-COPY Makefile.am .
-COPY configure.ac .
-COPY m4/ m4/
-COPY autogen.sh .
-COPY gensources.sh .
-COPY src/common/ src/common/
-COPY src/search/ src/search/
-RUN ./autogen.sh
-RUN ./configure
-RUN make dssearch
-
 FROM ubuntu
 
-ARG RUNTIME_DEPS="\
-                  libmariadbclient18\
-                  libzmq5"
-
-COPY --from=builder dssearch dssearch
+ARG DEPS="\
+                libmariadbclient18\
+                libzmq5"
 
 RUN apt-get update && \
-    apt-get install -y $RUNTIME_DEPS
+    apt-get install -y $DEPS && \
+    rm -rf /var/lib/apt/lists/*
 
-COPY scripts/ scripts/
-COPY conf/ conf/
-COPY log/ log/
-COPY compress.dat .
-COPY decompress.dat .
-
-COPY docker/ docker/
-RUN ./docker/config.sh
+WORKDIR /usr/build
 
 EXPOSE 54002
 
