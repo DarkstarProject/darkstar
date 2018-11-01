@@ -1273,7 +1273,7 @@ local function spawnMimic(player, npc)
 
     if mimicId then
         GetMobByID(mimicId):setSpawn(npc:getXPos(), npc:getYPos(), npc:getZPos(), npc:getRotPos())
-        npcUtil.popFromQM(player, npc, mimicId, true, 5)
+        npcUtil.popFromQM(player, npc, mimicId, {claim=true, hide=5})
         moveChest(npc, zoneId, dsp.treasure.type.COFFER, true)
     else
         printf("treasure.lua MIMIC id missing in zoneId %i", zoneId)

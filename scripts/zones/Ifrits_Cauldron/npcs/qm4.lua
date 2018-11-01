@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
         player:getCurrentMission(BASTOK) == THE_PIRATE_S_COVE and
         player:getVar("MissionStatus") == 2 and
         npcUtil.tradeHas(trade, 646) and
-        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, false)
+        npcUtil.popFromQM(player, npc, {ID.mob.PIRATES_COVE_NMS, ID.mob.PIRATES_COVE_NMS + 1}, {claim=false})
     ) then
         player:confirmTrade()
         GetMobByID(ID.mob.PIRATES_COVE_NMS):lookAt(player:getPos()) -- Salamander
