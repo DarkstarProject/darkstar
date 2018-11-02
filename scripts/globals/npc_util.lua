@@ -7,7 +7,6 @@
     npcUtil.giveKeyItem(player, keyitems)
     npcUtil.completeQuest(player, area, quest, params)
     npcUtil.tradeHas(trade, items)
-    npcUtil.genTmask(player,title)
     npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     npcUtil.fishingAnimation(npc, phaseDuration, func)
 --]]
@@ -379,18 +378,6 @@ end
 ******************************************************************************* --]]
 function npcUtil.tradeHasExactly(trade, items)
     return npcUtil.tradeHas(trade, items, true)
-end
-
-function npcUtil.genTmask(player,title)
-    local val1 = 0
-
-    for i = 1, #title do
-        if title[i] == 0 or not player:hasTitle(title[i]) then
-            val1 = bit.bor(val1, bit.lshift(1, i))
-        end
-    end
-
-    return val1
 end
 
 -----------------------------------
