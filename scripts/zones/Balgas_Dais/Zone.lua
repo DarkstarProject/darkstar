@@ -3,10 +3,8 @@
 -- Zone: Balgas_Dais (146)
 --
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Balgas_Dais/IDs")
 require("scripts/globals/settings");
-require("scripts/zones/Balgas_Dais/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)

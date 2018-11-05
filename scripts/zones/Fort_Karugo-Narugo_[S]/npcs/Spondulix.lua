@@ -3,9 +3,7 @@
 --  NPC: Spondulix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs")
+local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
         2563,  3035,    -- Karugo Clay
     }
 
-    player:showText(npc, SPONDULIX_SHOP_DIALOG)
+    player:showText(npc, ID.text.SPONDULIX_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

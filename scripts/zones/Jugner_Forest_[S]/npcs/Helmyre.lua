@@ -4,9 +4,6 @@
 -- Type: Chocobo Renter
 -- !pos -120.853 0.000 -152.582 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs")
 require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")

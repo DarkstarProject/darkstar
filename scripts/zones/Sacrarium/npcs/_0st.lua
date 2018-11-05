@@ -4,13 +4,15 @@
 -- Notes: Opens _0su (Gate)
 -- !pos 103.478 -1.563 50.181 28
 -----------------------------------
+local ID = require("scripts/zones/Sacrarium/IDs")
+-----------------------------------
 
 function onTrigger(player,npc)
 
     if (player:getZPos() < 50) then
         npc:openDoor();
     else
-        player:messageSpecial(CANNOT_OPEN_SIDE);
+        player:messageSpecial(ID.text.CANNOT_OPEN_SIDE);
     end
 
 end;

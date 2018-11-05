@@ -3,9 +3,7 @@
 --  NPC: Gekko
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs")
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
         5085, 50400,    -- Scroll of Regen IV
     }
 
-    player:showText(npc, GEKKO_SHOP_DIALOG)
+    player:showText(npc, ID.text.GEKKO_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

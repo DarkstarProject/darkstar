@@ -3,22 +3,19 @@
 -- Zone: Bostaunieux_Oubliette (167)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
-require("scripts/zones/Bostaunieux_Oubliette/MobIDs");
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs");
 require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(DREXERION_THE_CONDEMNED);
-    GetMobByID(DREXERION_THE_CONDEMNED):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.DREXERION_THE_CONDEMNED);
+    GetMobByID(ID.mob.DREXERION_THE_CONDEMNED):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(PHANDURON_THE_CONDEMNED);
-    GetMobByID(PHANDURON_THE_CONDEMNED):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.PHANDURON_THE_CONDEMNED);
+    GetMobByID(ID.mob.PHANDURON_THE_CONDEMNED):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(BLOODSUCKER);
-    GetMobByID(BLOODSUCKER):setRespawnTime(3600);
+    UpdateNMSpawnPoint(ID.mob.BLOODSUCKER);
+    GetMobByID(ID.mob.BLOODSUCKER):setRespawnTime(3600);
 end;
 
 function onZoneIn(player,prevZone)

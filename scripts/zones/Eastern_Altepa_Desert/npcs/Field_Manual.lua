@@ -2,21 +2,20 @@
 -- Field Manual
 -- Area: Eastern Altepa Desert
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_EAST_ALTEPA,player);
-end;
-
 function onTrade(player,npc,trade)
-end;
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,109,110,111,112,113);
-end;
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,109,110,111,112,113,FOV_MSG_EAST_ALTEPA);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

@@ -4,9 +4,6 @@
 -- Type: Border Conquest Guards
 -- !pos 179.093 -21.575 -15.282 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

@@ -3,11 +3,10 @@
 -- Zone: Apollyon
 --
 -----------------------------------
+local ID = require("scripts/zones/Apollyon/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/limbus")
 
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
-require("scripts/zones/Apollyon/TextIDs");
-require("scripts/globals/limbus");
 -----------------------------------
 --  onInitialize
 -----------------------------------

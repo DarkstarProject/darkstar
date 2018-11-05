@@ -3,10 +3,8 @@
 -- Zone: Horlais_Peak (139)
 --
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local ID = require("scripts/zones/Horlais_Peak/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

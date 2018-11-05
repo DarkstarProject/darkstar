@@ -3,9 +3,7 @@
 --  NPC: Evelyn
 -- Gustaberg Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------
@@ -15,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.GUSTABERG) ~= dsp.nation.BASTOK then
-        player:showText(npc, EVELYN_CLOSED_DIALOG)
+        player:showText(npc, ID.text.EVELYN_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             4388,  40,    -- Eggplant
         }
 
-        player:showText(npc, EVELYN_OPEN_DIALOG)
+        player:showText(npc, ID.text.EVELYN_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

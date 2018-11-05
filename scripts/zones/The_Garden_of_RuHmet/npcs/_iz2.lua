@@ -3,9 +3,7 @@
 --  NPC: _iz2 (Ebon_Panel)
 -- !pos 422.351 -5.180 -100.000 35 | Hume Tower
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
@@ -23,10 +21,10 @@ function onTrigger(player,npc)
         if ( Race==2 or Race==1) then
             player:startEvent(120);
         else
-            player:messageSpecial(NO_NEED_INVESTIGATE);
+            player:messageSpecial(ID.text.NO_NEED_INVESTIGATE);
         end
     else
-        player:messageSpecial(NO_NEED_INVESTIGATE);
+        player:messageSpecial(ID.text.NO_NEED_INVESTIGATE);
     end
 end;
 
@@ -40,6 +38,6 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.WARRIOR_OF_THE_CRYSTAL);
         player:setVar("PromathiaStatus",3);
         player:addKeyItem(dsp.ki.LIGHT_OF_VAHZL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_VAHZL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_VAHZL);
     end
 end;

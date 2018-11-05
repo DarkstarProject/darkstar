@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos -152 -16 20 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

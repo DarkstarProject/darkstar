@@ -3,11 +3,9 @@
 --  NPC: ???
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local ID = require("scripts/zones/Dynamis-Tavnazia/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,7 +40,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-     player:messageSpecial(DIABOLOS,3459);
+     player:messageSpecial(ID.text.DIABOLOS,3459);
 end;
 
 function onEventUpdate(player,csid,option)

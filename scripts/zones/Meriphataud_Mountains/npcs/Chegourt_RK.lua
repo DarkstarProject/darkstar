@@ -4,9 +4,6 @@
 -- Type: Outpost Conquest Guards
 -- !pos -295 16 418 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

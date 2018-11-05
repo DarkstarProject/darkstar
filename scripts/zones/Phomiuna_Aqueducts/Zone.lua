@@ -3,9 +3,7 @@
 -- Zone: Phomiuna_Aqueducts (27)
 --
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------

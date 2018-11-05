@@ -4,9 +4,7 @@
 -- Notes: Mechanism for Altepa Gate
 -- !pos -499 10 224 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
         npc:setAnimation(8);
         GetNPCByID(SapphireID-4):setAnimation(8);
     else
-        player:messageSpecial(DOES_NOT_RESPOND);
+        player:messageSpecial(ID.text.DOES_NOT_RESPOND);
     end
 
     if (Emerald == 8 and Ruby == 8 and Topaz == 8) then

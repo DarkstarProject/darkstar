@@ -3,22 +3,20 @@
 -- Zone: FeiYin (204)
 --
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/FeiYin/TextIDs");
-require("scripts/zones/FeiYin/MobIDs");
+local ID = require("scripts/zones/FeiYin/IDs")
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
+require("scripts/globals/treasure")
 require("scripts/globals/quests");
 require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(CAPRICIOUS_CASSIE);
-    GetMobByID(CAPRICIOUS_CASSIE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.CAPRICIOUS_CASSIE);
+    GetMobByID(ID.mob.CAPRICIOUS_CASSIE):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(FEIYIN_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -31,7 +29,7 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getVar("peaceForTheSpiritCS") == 1 and not player:hasItem(1093)) then -- Antique Coin
-        SpawnMob(MISER_MURPHY); -- RDM AF
+        SpawnMob(ID.mob.MISER_MURPHY); -- RDM AF
     end
 
     if (prevZone == 111 and currentMission == 14 and MissionStatus == 10) then
@@ -64,7 +62,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",11);
     elseif (csid == 16) then
         player:addKeyItem(dsp.ki.LETTER_FROM_DALZAKK);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_DALZAKK);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_DALZAKK);
     elseif (csid == 19) then
         player:setVar("pieujesDecisionCS",1);
     elseif (csid == 23) then

@@ -2,13 +2,13 @@
 -- Area: Promyvion-Dem
 --  MOB: Stray
 -----------------------------------
-require("scripts/zones/Promyvion-Dem/MobIDs");
+local ID = require("scripts/zones/Promyvion-Dem/IDs");
 require("scripts/globals/status");
 
 function findMother(mob)
     local mobId = mob:getID();
     local mother = 0;
-    for k,v in pairs(DEM_MEMORY_RECEPTACLES) do
+    for k,v in pairs(ID.mob.DEM_MEMORY_RECEPTACLES) do
         if (k < mobId and k > mother) then
             mother = k;
         end

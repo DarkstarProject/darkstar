@@ -3,17 +3,14 @@
 -- Zone: Promyvion-Holla (16)
 --
 -----------------------------------
-package.loaded["scripts/zones/Promyvion-Holla/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Promyvion-Holla/TextIDs");
-require("scripts/zones/Promyvion-Holla/MobIDs");
+local ID = require("scripts/zones/Promyvion-Holla/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 
 function onInitialize(zone)
-    for k, v in pairs(HOLLA_MEMORY_STREAMS) do
+    for k, v in pairs(ID.npc.HOLLA_MEMORY_STREAMS) do
         zone:registerRegion(k,v[1],v[2],v[3],v[4],v[5],v[6]);
     end
 end;
@@ -61,13 +58,13 @@ function onRegionEnter(player,region)
         local regionId = region:GetRegionID();
         local event = nil;
         if (regionId < 100) then
-            event = HOLLA_MEMORY_STREAMS[regionId][7][1];
+            event = ID.npc.HOLLA_MEMORY_STREAMS[regionId][7][1];
         else
             local stream = GetNPCByID(regionId);
             if (stream ~= nil and stream:getAnimation() == dsp.anim.OPEN_DOOR) then
                 event = stream:getLocalVar("destination");
                 if (event == nil or event == 0) then -- this should never happen, but sanity check
-                    event = HOLLA_MEMORY_STREAMS[regionId][7][1];
+                    event = ID.npc.HOLLA_MEMORY_STREAMS[regionId][7][1];
                 end
             end
         end

@@ -4,7 +4,7 @@
 -----------------------------------
 require("scripts/globals/titles")
 require("scripts/globals/status")
-require("scripts/zones/Mamook/MobIDs")
+local ID = require("scripts/zones/Mamook/IDs")
 mixins = {require("scripts/mixins/job_special")}
 
 -----------------------------------
@@ -15,7 +15,7 @@ function onMobSpawn(mob)
 end
 
 function onMobEngaged(mob,target)
-    for i = GULOOL_JA_JA + 1, GULOOL_JA_JA + 4 do
+    for i = ID.mob.GULOOL_JA_JA + 1, ID.mob.GULOOL_JA_JA + 4 do
         SpawnMob(i):updateEnmity(target)
     end
 end
@@ -23,21 +23,21 @@ end
 function onMobFight(mob, target)
 
     if (mob:getBattleTime() % 60 < 2 and mob:getBattleTime() > 10) then
-        if (not GetMobByID(GULOOL_JA_JA + 1):isSpawned()) then
-            GetMobByID(GULOOL_JA_JA + 1):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
-            SpawnMob(GULOOL_JA_JA + 1):updateEnmity(target)
-        elseif (not GetMobByID(GULOOL_JA_JA + 2):isSpawned()) then
-            GetMobByID(GULOOL_JA_JA + 2):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
-            SpawnMob(GULOOL_JA_JA + 2):updateEnmity(target)
-        elseif (not GetMobByID(GULOOL_JA_JA + 3):isSpawned()) then
-            GetMobByID(GULOOL_JA_JA + 3):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
-            SpawnMob(GULOOL_JA_JA + 3):updateEnmity(target)
-        elseif (not GetMobByID(GULOOL_JA_JA + 4):isSpawned()) then
-            GetMobByID(GULOOL_JA_JA + 4):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
-            SpawnMob(GULOOL_JA_JA + 4):updateEnmity(target)
+        if (not GetMobByID(ID.mob.GULOOL_JA_JA + 1):isSpawned()) then
+            GetMobByID(ID.mob.GULOOL_JA_JA + 1):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
+            SpawnMob(ID.mob.GULOOL_JA_JA + 1):updateEnmity(target)
+        elseif (not GetMobByID(ID.mob.GULOOL_JA_JA + 2):isSpawned()) then
+            GetMobByID(ID.mob.GULOOL_JA_JA + 2):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
+            SpawnMob(ID.mob.GULOOL_JA_JA + 2):updateEnmity(target)
+        elseif (not GetMobByID(ID.mob.GULOOL_JA_JA + 3):isSpawned()) then
+            GetMobByID(ID.mob.GULOOL_JA_JA + 3):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
+            SpawnMob(ID.mob.GULOOL_JA_JA + 3):updateEnmity(target)
+        elseif (not GetMobByID(ID.mob.GULOOL_JA_JA + 4):isSpawned()) then
+            GetMobByID(ID.mob.GULOOL_JA_JA + 4):setSpawn(mob:getXPos()+math.random(1,5), mob:getYPos(), mob:getZPos()+math.random(1,5))
+            SpawnMob(ID.mob.GULOOL_JA_JA + 4):updateEnmity(target)
         end
     end
-    for i = GULOOL_JA_JA + 1, GULOOL_JA_JA + 4 do
+    for i = ID.mob.GULOOL_JA_JA + 1, ID.mob.GULOOL_JA_JA + 4 do
         local pet = GetMobByID(i)
         if (pet:getCurrentAction() == dsp.act.ROAMING) then
             pet:updateEnmity(target)
@@ -46,14 +46,14 @@ function onMobFight(mob, target)
 end
 
 function onMobDisengage(mob)
-    for i = 1,4 do DespawnMob(GULOOL_JA_JA + i) end
+    for i = 1,4 do DespawnMob(ID.mob.GULOOL_JA_JA + i) end
 end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.SHINING_SCALE_RIFLER)
-    for i = 1,4 do DespawnMob(GULOOL_JA_JA + i) end
+    for i = 1,4 do DespawnMob(ID.mob.GULOOL_JA_JA + i) end
 end
 
 function onMobDespawn(mob)
-    for i = 1,4 do DespawnMob(GULOOL_JA_JA + i) end
+    for i = 1,4 do DespawnMob(ID.mob.GULOOL_JA_JA + i) end
 end

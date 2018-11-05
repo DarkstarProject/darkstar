@@ -3,10 +3,8 @@
 -- Zone: Empyreal_Paradox
 --
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

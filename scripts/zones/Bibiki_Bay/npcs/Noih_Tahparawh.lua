@@ -4,10 +4,6 @@
 -- Type: Manaclipper
 -- !pos -392 -3 -385 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

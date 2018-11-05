@@ -5,9 +5,7 @@
 -- !pos -209 0 -134 239
 
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 
@@ -81,7 +79,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,FLOWER_CHILD);
         player:addFame(WINDURST,120);
         player:moghouseFlag(4);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 10000 and option == 1) then
         player:tradeComplete();
         player:addQuest(WINDURST,FLOWER_CHILD);

@@ -4,9 +4,7 @@
 -- Type: Clothcraft Guild Master
 -- !pos -38.243 -2.25 -120.954 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 -----------------------------------
@@ -38,10 +36,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10011 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4099);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4099);
         else
             player:addItem(4099); -- earth crystal
-            player:messageSpecial(ITEM_OBTAINED,4099);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4099);
             signupGuild(player, guild.clothcraft);
         end
     end

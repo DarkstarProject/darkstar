@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: Trial by Fire
 -- !pos 100 -15 -97 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -56,10 +54,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(OUTLANDS,TRIAL_BY_FIRE);
         player:setVar("TrialByFire_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_FIRE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_FIRE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_FIRE);
     elseif (csid == 285) then
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_FIRE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_FIRE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_FIRE);
     elseif (csid == 273) then
         item = 0;
         if (option == 1) then item = 17665;         -- Ifrits Blade
@@ -69,17 +67,17 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         else
             if (option == 5) then
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then
                 player:addSpell(298); -- Ifrit Spell
-                player:messageSpecial(IFRIT_UNLOCKED,0,0,0);
+                player:messageSpecial(ID.text.IFRIT_UNLOCKED,0,0,0);
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_FIRE);
             player:delKeyItem(dsp.ki.WHISPER_OF_FLAMES);

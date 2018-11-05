@@ -12104,8 +12104,8 @@ INSERT INTO `mob_droplist` VALUES (1935,0,0,1000,4174,1000);
 INSERT INTO `mob_droplist` VALUES (1935,0,0,1000,12924,1000);
 INSERT INTO `mob_droplist` VALUES (1935,0,0,1000,15899,80);
 INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,831,530);
-INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,13415,950);
-INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,13566,50);
+INSERT INTO `mob_droplist` VALUES (1936,1,0,1000,13415,950);
+INSERT INTO `mob_droplist` VALUES (1936,1,0,1000,13566,50);
 INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,1527,670);
 INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,1322,320);
 INSERT INTO `mob_droplist` VALUES (1936,0,0,1000,1322,160);
@@ -13434,8 +13434,8 @@ INSERT INTO `mob_droplist` VALUES (2236,0,0,1000,3250,100);
 INSERT INTO `mob_droplist` VALUES (2237,0,0,1000,2357,80);
 INSERT INTO `mob_droplist` VALUES (2237,0,0,1000,14959,100);
 INSERT INTO `mob_droplist` VALUES (2238,2,0,1000,656,0);
-INSERT INTO `mob_droplist` VALUES (2238,0,0,1000,14986,50);
-INSERT INTO `mob_droplist` VALUES (2238,0,0,1000,16703,950);
+INSERT INTO `mob_droplist` VALUES (2238,1,0,1000,14986,50);
+INSERT INTO `mob_droplist` VALUES (2238,1,0,1000,16703,950);
 INSERT INTO `mob_droplist` VALUES (2239,0,0,1000,1640,70);
 INSERT INTO `mob_droplist` VALUES (2239,0,0,1000,1680,10);
 INSERT INTO `mob_droplist` VALUES (2239,0,0,1000,1718,70);
@@ -13898,8 +13898,8 @@ INSERT INTO `mob_droplist` VALUES (2340,0,0,1000,922,160);
 INSERT INTO `mob_droplist` VALUES (2341,0,0,1000,858,300);
 INSERT INTO `mob_droplist` VALUES (2341,0,0,1000,940,150);
 INSERT INTO `mob_droplist` VALUES (2342,0,0,1000,4277,100);
-INSERT INTO `mob_droplist` VALUES (2343,0,0,1000,16935,840);
-INSERT INTO `mob_droplist` VALUES (2343,0,0,1000,16936,140);
+INSERT INTO `mob_droplist` VALUES (2343,1,0,1000,16935,840);
+INSERT INTO `mob_droplist` VALUES (2343,1,0,1000,16936,140);
 INSERT INTO `mob_droplist` VALUES (2344,0,0,1000,557,140);
 INSERT INTO `mob_droplist` VALUES (2344,2,0,1000,921,0);
 INSERT INTO `mob_droplist` VALUES (2344,0,0,1000,921,500);
@@ -17243,8 +17243,8 @@ INSERT INTO `mob_droplist` VALUES (2914,0,0,1000,4514,50);
 INSERT INTO `mob_droplist` VALUES (2914,0,0,1000,17503,420);
 INSERT INTO `mob_droplist` VALUES (2915,0,0,1000,5365,200);
 INSERT INTO `mob_droplist` VALUES (2915,0,0,1000,5366,190);
-INSERT INTO `mob_droplist` VALUES (2916,0,0,1000,15737,70);
-INSERT INTO `mob_droplist` VALUES (2916,0,0,1000,16820,930);
+INSERT INTO `mob_droplist` VALUES (2916,1,0,1000,15737,70);
+INSERT INTO `mob_droplist` VALUES (2916,1,0,1000,16820,930);
 INSERT INTO `mob_droplist` VALUES (2917,0,0,1000,856,150);
 INSERT INTO `mob_droplist` VALUES (2917,2,0,1000,4358,0);
 INSERT INTO `mob_droplist` VALUES (2917,0,0,1000,4358,120);
@@ -17983,7 +17983,7 @@ INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4862,0); -- Blind (0%, was 3%) 
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,4866,0); -- Bind (0%, was 3%) Suspected not to actually drop in retail
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12739,2); -- Black Mitts (0.2%)
 INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12867,2); -- White Slacks (0.2%)
-INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12995,2); -- Moccasins (0.2%) 
+INSERT INTO `mob_droplist` VALUES (3054,0,0,1000,12995,2); -- Moccasins (0.2%)
 
 INSERT INTO `mob_droplist` VALUES (3055,0,0,1000,501,30);
 INSERT INTO `mob_droplist` VALUES (3055,2,0,1000,748,0);
@@ -19471,7 +19471,6 @@ INSERT INTO `mob_droplist` VALUES (3330,0,0,1000,894,90);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,846,100);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,894,70);
-INSERT INTO `mob_droplist` VALUES (3331,0,0,1000,15852,107);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,846,320);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,889,150);
 INSERT INTO `mob_droplist` VALUES (3332,0,0,1000,894,120);
@@ -20536,7 +20535,7 @@ INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1162,10);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,1429,40);
 INSERT INTO `mob_droplist` VALUES (3551,0,0,1000,4158,80);
 
--- [Tonberry Kinq] 
+-- [Tonberry Kinq]
 -- Values taken from ffxidb on 04/23/2018 (http://www.ffxidb.com/zones/159/tonberry-kinq)
 INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1119,400); -- Tonberry Coat (40%)
 INSERT INTO `mob_droplist` VALUES (3552,0,0,1000,1162,160); -- Tonberry Lantern (16%)
@@ -32236,10 +32235,10 @@ INSERT INTO `mob_droplist` VALUES (4395,0,0,1000,4744,530);
 INSERT INTO `mob_droplist` VALUES (4395,0,0,1000,4745,220);
 INSERT INTO `mob_droplist` VALUES (4395,0,0,1000,13073,160);
 INSERT INTO `mob_droplist` VALUES (4395,0,0,1000,13731,80);
-INSERT INTO `mob_droplist` VALUES (4396,0,0,1000,1870,780);
-INSERT INTO `mob_droplist` VALUES (4396,0,0,1000,1903,220);
-INSERT INTO `mob_droplist` VALUES (4397,0,0,1000,1854,810);
-INSERT INTO `mob_droplist` VALUES (4397,0,0,1000,1902,190);
+INSERT INTO `mob_droplist` VALUES (4396,1,0,1000,1870,780);
+INSERT INTO `mob_droplist` VALUES (4396,1,0,1000,1903,220);
+INSERT INTO `mob_droplist` VALUES (4397,1,0,1000,1854,810);
+INSERT INTO `mob_droplist` VALUES (4397,1,0,1000,1902,190);
 INSERT INTO `mob_droplist` VALUES (4398,0,0,1000,1851,750);
 INSERT INTO `mob_droplist` VALUES (4398,0,0,1000,1901,250);
 INSERT INTO `mob_droplist` VALUES (4399,0,0,1000,856,100);
@@ -32617,8 +32616,8 @@ INSERT INTO `mob_droplist` VALUES (4477,0,0,1000,2718,20);
 INSERT INTO `mob_droplist` VALUES (4477,0,0,1000,2723,20);
 INSERT INTO `mob_droplist` VALUES (4477,0,0,1000,3495,50);
 INSERT INTO `mob_droplist` VALUES (4477,0,0,1000,5896,830);
-INSERT INTO `mob_droplist` VALUES (4478,0,0,1000,14676,730); -- Wiki seems to be wrong. Both items should = to 100%.
-INSERT INTO `mob_droplist` VALUES (4478,0,0,1000,14782,270);
+INSERT INTO `mob_droplist` VALUES (4478,1,0,1000,14676,730);
+INSERT INTO `mob_droplist` VALUES (4478,1,0,1000,14782,270);
 INSERT INTO `mob_droplist` VALUES (4479,0,0,1000,953,310);
 INSERT INTO `mob_droplist` VALUES (4479,0,0,1000,574,70);
 INSERT INTO `mob_droplist` VALUES (4479,2,0,1000,573,0);
@@ -32882,7 +32881,7 @@ INSERT INTO `mob_droplist` VALUES (4563,0,0,1000,18604,426);
 INSERT INTO `mob_droplist` VALUES (4564,0,0,1000,15850,50);
 INSERT INTO `mob_droplist` VALUES (4565,0,0,1000,15851,50);
 INSERT INTO `mob_droplist` VALUES (4566,0,0,1000,15941,384);
-INSERT INTO `mob_droplist` VALUES (4567,0,0,1000,16037,59); 
+INSERT INTO `mob_droplist` VALUES (4567,0,0,1000,16037,59);
 INSERT INTO `mob_droplist` VALUES (4568,0,0,1000,16038,70);
 INSERT INTO `mob_droplist` VALUES (4569,0,0,1000,15943,140);
 INSERT INTO `mob_droplist` VALUES (4570,0,0,1000,18841,100);
@@ -32935,16 +32934,25 @@ INSERT INTO `mob_droplist` VALUES (4593,0,0,1000,19045,400);
 INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
 INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- 4.9% Wilhelm's Earring off Goblintrap
 INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,15852,55); -- 5.5% Nasatya's Ring off Boll Weevil
 
 -- Drachenlizard (http://www.ffxidb.com/zones/88/drachenlizard)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,852,40); -- Lizard Skin (4%)
-INSERT INTO `mob_droplist` VALUES (4597,2,0,1000,926,0); -- Lizard Tail (Steal)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,926,200); -- Lizard Tail (20%)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,3552,70); -- Squamous Hide (7%)
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,4362,60); -- Lizard Egg (6%)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
-INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,19232,148);
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,852,40); -- Lizard Skin (4%)
+INSERT INTO `mob_droplist` VALUES (4598,2,0,1000,926,0); -- Lizard Tail (Steal)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,926,200); -- Lizard Tail (20%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3552,70); -- Squamous Hide (7%)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,4362,60); -- Lizard Egg (6%)
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4600,0,0,1000,19232,148);
+
+-- Ankabut
+INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,19277,133); -- 13.3% Tsugumi
+
+-- Kegpaunch Doshgnosh
+INSERT INTO `mob_droplist` VALUES (4602,0,0,1000,11529,108); -- 10.8% Frugal Cape
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2820,170); -- Aptant: Geoc off Drumskull Zogdregg
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2822,230); -- Aptant: Secan
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -3,13 +3,12 @@
 -- Zone: The_Shrine_of_RuAvitau (178)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 require("scripts/globals/zone");
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)

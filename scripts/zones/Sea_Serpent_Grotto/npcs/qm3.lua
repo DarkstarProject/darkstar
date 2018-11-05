@@ -3,12 +3,10 @@
 --  NPC: ??? Used for Norg quest "It's not your vault"
 -- !pos -173 26 252 176
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
 
     if (Vault == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SEALED_IRON_BOX) == false) then
         player:addKeyItem(dsp.ki.SEALED_IRON_BOX);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEALED_IRON_BOX);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SEALED_IRON_BOX);
     end
 end;
 

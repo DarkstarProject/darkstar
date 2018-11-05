@@ -5,9 +5,7 @@
 -- Mission: ASA - SUGAR_COATED_DIRECTIVE
 -- !pos -19 -17 104 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -76,17 +74,17 @@ function onEventFinish(player,csid,option)
 
     if (csid==44) then
         player:addKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_SCARLET_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_SCARLET_SEAL);
         player:addKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_CERULEAN_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_CERULEAN_SEAL);
         player:addKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_EMERALD_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_EMERALD_SEAL);
         player:addKeyItem(dsp.ki.DOMINAS_AMBER_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_AMBER_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_AMBER_SEAL);
         player:addKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_VIOLET_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_VIOLET_SEAL);
         player:addKeyItem(dsp.ki.DOMINAS_AZURE_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DOMINAS_AZURE_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DOMINAS_AZURE_SEAL);
 
         player:completeMission(ASA,THAT_WHICH_CURDLES_BLOOD);
         player:addMission(ASA,SUGAR_COATED_DIRECTIVE);

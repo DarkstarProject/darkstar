@@ -18,7 +18,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local power = 153
+    local power = 1500
     local duration = 300
     local typeEffect = dsp.effect.HASTE
 

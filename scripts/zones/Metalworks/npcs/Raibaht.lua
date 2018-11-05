@@ -5,12 +5,11 @@
 -- Involved in Quest: The Usual, Riding on the Clouds
 -- !pos -27 -10 -1 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,7 +19,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -36,7 +35,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(933);
-    elseif (darkLegacy == QUEST_AVAILABLE and mJob == 8 and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (darkLegacy == QUEST_AVAILABLE and mJob == dsp.job.DRK and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(751); -- Start Quest "Dark Legacy"
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(755); -- Finish Quest "Dark Legacy"
@@ -60,11 +59,11 @@ function onEventFinish(player,csid,option)
         player:setVar("darkLegacyCS",1);
     elseif (csid == 755) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16798); -- Raven Scythe
         else
             player:delKeyItem(dsp.ki.DARKSTEEL_FORMULA);
             player:addItem(16798);
-            player:messageSpecial(ITEM_OBTAINED, 16798); -- Raven Scythe
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16798); -- Raven Scythe
             player:setVar("darkLegacyCS",0);
             player:addFame(BASTOK,AF1_FAME);
             player:completeQuest(BASTOK,DARK_LEGACY);

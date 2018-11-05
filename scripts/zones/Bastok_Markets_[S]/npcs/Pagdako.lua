@@ -4,9 +4,6 @@
 -- Quest NPC
 -- pos -200 -6 -93
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

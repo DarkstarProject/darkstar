@@ -4,9 +4,6 @@
 -- Type: Border Conquest Guards
 -- !pos 399.450 -25.858 727.545 115
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil
------------------------------------
-require("scripts/zones/West_Sarutabaruta/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

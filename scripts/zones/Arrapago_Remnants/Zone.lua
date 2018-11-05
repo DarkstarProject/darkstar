@@ -3,8 +3,7 @@
 -- Zone: Arrapago Remnants
 --
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Arrapago_Remnants/IDs");
+local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 -----------------------------------
 
 function onInitialize(zone)

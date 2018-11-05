@@ -4,9 +4,7 @@
 -- Finishes Quest: Elder Memories
 -- !pos -54 -1 -44 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:unlockJob(0);
         player:setVar("IsacioElderMemVar", 0);
-        player:messageSpecial(SUBJOB_UNLOCKED);
+        player:messageSpecial(ID.text.SUBJOB_UNLOCKED);
         player:completeQuest(OTHER_AREAS_LOG, ELDER_MEMORIES);
     end
 

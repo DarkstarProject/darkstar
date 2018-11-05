@@ -3,10 +3,7 @@
 -- Zone: Spire_of_Mea (21)
 --
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Spire_of_Mea/TextIDs");
+local ID = require("scripts/zones/Spire_of_Mea/IDs")
 -----------------------------------
 
 function onInitialize(zone)

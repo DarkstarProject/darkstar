@@ -3,12 +3,10 @@
 --  NPC: ??? Used for Norg quest "The Sahagin's Stash"
 -- !pos 295.276 27.129 213.043 176
 -----------------------------------
-package.loaded["scripts/zones/Sea_Serpent_Grotto/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Sea_Serpent_Grotto/TextIDs");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,6 +27,6 @@ end;
 function onEventFinish(player,csid,option)
         if (csid == 1) then
             player:addKeyItem(dsp.ki.SEA_SERPENT_STATUE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEA_SERPENT_STATUE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SEA_SERPENT_STATUE);
         end
 end;

@@ -3,11 +3,7 @@
 -- Zone: Al_Zahbi (48)
 --
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 -----------------------------------
 
 function onInitialize(zone)

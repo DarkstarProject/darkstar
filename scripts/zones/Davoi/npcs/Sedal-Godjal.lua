@@ -4,12 +4,10 @@
 -- Mini Quest used in : Whence Blows the Wind
 -- !pos 185 -3 -116 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 
 function onTrade(player,npc,trade)
 
@@ -67,13 +65,13 @@ function onEventFinish(player,csid,option)
     if (csid == 22 and option == 1) then
         player:setVar("miniQuestForORB_CS",1);
         player:addKeyItem(dsp.ki.WHITE_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.WHITE_ORB);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.WHITE_ORB);
     elseif (csid == 25) then
         player:setVar("miniQuestForORB_CS",0);
         player:setVar("countRedPoolForORB",0);
         player:delKeyItem(dsp.ki.CURSED_ORB);
         player:addKeyItem(dsp.ki.CRIMSON_ORB);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.CRIMSON_ORB);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.CRIMSON_ORB);
     elseif (csid == 118) then
         player:delKeyItem(dsp.ki.STAR_SEEKER);
         player:addKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER);
@@ -83,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);
     elseif (csid == 122) then
         player:addKeyItem(dsp.ki.AURASTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AURASTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AURASTERY_RING);
         if (player:hasKeyItem(dsp.ki.OPTISTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end

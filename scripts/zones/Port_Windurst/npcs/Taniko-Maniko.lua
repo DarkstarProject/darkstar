@@ -3,9 +3,7 @@
 --  NPC: Taniko-Maniko
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
         16565, 1674, 3,    -- Spatha
     }
 
-    player:showText(npc, TANIKOMANIKO_SHOP_DIALOG)
+    player:showText(npc, ID.text.TANIKOMANIKO_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.WINDURST)
 end
 

@@ -3,14 +3,14 @@
 -- Zone: Zeruhn_Mines (172)
 --
 -----------------------------------
-package.loaded["scripts/zones/Zeruhn_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/zone");
-require("scripts/zones/Zeruhn_Mines/TextIDs");
+local ID = require("scripts/zones/Zeruhn_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -49,9 +49,9 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(16607);
             player:setVar("ChaosbringerKills", 0);
-            player:messageSpecial(ITEM_OBTAINED,16607);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16607);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16607);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16607);
         end
         player:setVar("ZeruhnMines_Zeid_CS", 1);
     end

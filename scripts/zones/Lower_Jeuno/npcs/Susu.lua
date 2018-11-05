@@ -3,9 +3,7 @@
 --  NPC: Susu
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -48,7 +46,7 @@ function onTrigger(player,npc)
         4820,  63750,    -- Scroll of Burst
     }
 
-    player:showText(npc, SUSU_SHOP_DIALOG)
+    player:showText(npc, ID.text.SUSU_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

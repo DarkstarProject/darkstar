@@ -3,9 +3,7 @@
 --  NPC: Yafafa
 -- Kolshushu Regional Goods
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.KOLSHUSHU) ~= dsp.nation.BASTOK then
-        player:showText(npc, YAFAFA_CLOSED_DIALOG)
+        player:showText(npc, ID.text.YAFAFA_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             4445,   40,     --Yagudo Cherry
         }
 
-        player:showText(npc, YAFAFA_OPEN_DIALOG)
+        player:showText(npc, ID.text.YAFAFA_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

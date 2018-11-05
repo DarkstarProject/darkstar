@@ -3,14 +3,13 @@
 --  NPC: Misseulieu
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
     local stock =
@@ -26,19 +25,18 @@ function onTrigger(player,npc)
         table.insert(stock, 25210200)
         table.insert(stock, 14848)    -- Barone Manopolas
         table.insert(stock, 7276200)
-        table.insert(stock, 15380)    -- Vir Subligar
+        table.insert(stock, 15389)    -- Vir Subligar
         table.insert(stock, 8000000)
         table.insert(stock, 15390)    -- Femina Subligar
         table.insert(stock, 8000000)
     end
 
-    player:showText(npc, MISSEULIEU_SHOP_DIALOG);
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc, ID.text.MISSEULIEU_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

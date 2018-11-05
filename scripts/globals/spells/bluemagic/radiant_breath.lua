@@ -49,8 +49,9 @@ function onSpellCast(caster,target,spell)
     damage = BlueFinalAdjustments(caster, target, spell, damage, params)
 
     if (damage > 0 and resist > 0.3) then
-        target:delStatusEffect(dsp.effect.SLOW)
-        target:addStatusEffect(dsp.effect.SLOW,35,0,getBlueEffectDuration(caster,resist,dsp.effect.SLOW))
+    local typeEffect = dsp.effect.SLOW
+        target:delStatusEffect(typeEffect)
+        target:addStatusEffect(typeEffect,3500,0,getBlueEffectDuration(caster,resist,typeEffect))
     end
 
     if (damage > 0 and resist > 0.3) then

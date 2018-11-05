@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Implementation of Bar-status
 -----------------------------------------
-
+require("scripts/globals/magic")
 require("scripts/globals/status")
 
 function calculateBarstatusPower(caster,enhanceSkill)

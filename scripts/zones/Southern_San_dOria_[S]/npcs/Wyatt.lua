@@ -3,9 +3,7 @@
 --  NPC: Wyatt
 -- !pos 124 0 84 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 -----------------------------------
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
     elseif (seeingSpots == QUEST_ACCEPTED) then
         player:startEvent(3);
     else
-        player:showText(npc, WYATT_DIALOG);
+        player:showText(npc, ID.text.WYATT_DIALOG);
     end
 end;
 
@@ -38,12 +36,12 @@ function onEventFinish(player,csid,option)
         if (player:getQuestStatus(CRYSTAL_WAR,SEEING_SPOTS) == QUEST_ACCEPTED) then
             player:addTitle(dsp.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
             player:completeQuest(CRYSTAL_WAR,SEEING_SPOTS);
         else
             player:addTitle(dsp.title.LADY_KILLER);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         end
     end
 end;

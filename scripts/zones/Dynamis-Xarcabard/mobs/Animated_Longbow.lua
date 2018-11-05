@@ -3,7 +3,7 @@
 --  MOB: Animated Longbow
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(110,1583,0);
     end
 
-    target:showText(mob,ANIMATED_LONGBOW_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_LONGBOW_DIALOG);
 
     SpawnMob(17330522):updateEnmity(target);
     SpawnMob(17330523):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_LONGBOW_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_LONGBOW_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_LONGBOW_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_LONGBOW_DIALOG+1);
 
     DespawnMob(17330522);
     DespawnMob(17330523);

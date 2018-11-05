@@ -4,11 +4,9 @@
 -- Type: Zeni NM pop item and trophy management.
 -- !pos -125.724 0.999 22.136 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/besieged");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -60,7 +58,7 @@ function onTrade(player,npc,trade)
                     player:addKeyItem(seals[znm]);
                     player:startEvent(912,0,0,0,seals[znm]);
                 else
-                    player:messageSpecial(SANCTION + 8,seals[znm]); -- You already possess .. (not sure this is authentic)
+                    player:messageSpecial(ID.text.SANCTION + 8,seals[znm]); -- You already possess .. (not sure this is authentic)
                 end
             end
         end

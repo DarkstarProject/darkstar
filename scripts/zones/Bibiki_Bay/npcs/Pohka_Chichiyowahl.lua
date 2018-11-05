@@ -4,9 +4,7 @@
 -- Type: Standard Merchant NPC
 -- !pos -415 -2 -430 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs")
+local ID = require("scripts/zones/Bibiki_Bay/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         4148,    290, 3,    -- Antidote
     }
 
-    player:showText(npc, POHKA_SHOP_DIALOG)
+    player:showText(npc, ID.text.POHKA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.WINDURST)
 end
 

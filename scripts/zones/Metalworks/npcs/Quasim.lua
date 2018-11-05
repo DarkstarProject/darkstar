@@ -3,10 +3,7 @@
 --  NPC: Quasim
 -- Adventurer's Assistant
 -------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
--------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Metalworks/TextIDs");
 
 function onTrade(player,npc,trade)
 end;

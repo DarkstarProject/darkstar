@@ -4,10 +4,8 @@
 -- Type: Shop NPC
 -- !pos 6 0 -53 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/shop");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard shop
-    player:showText(npc, PRETERIG_SHOP_TEXT);
+    player:showText(npc, ID.text.PRETERIG_SHOP_TEXT);
     local stock =
     {
         4423, 300,    -- Apple Juice

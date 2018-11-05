@@ -3,9 +3,6 @@
 --  NPC: Ratonne
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
 require("scripts/globals/armorstorage");
 -----------------------------------
 

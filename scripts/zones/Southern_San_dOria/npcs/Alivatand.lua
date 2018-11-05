@@ -4,9 +4,7 @@
 -- Type: Guildworker's Union Representative
 -- !pos -179.458 -1 15.857 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 require("scripts/globals/quests");
@@ -84,7 +82,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     else
         unionRepresentativeTrade(player, npc, trade, 691, 5);
@@ -105,6 +103,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 690) then
         unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
     elseif (csid == 691) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

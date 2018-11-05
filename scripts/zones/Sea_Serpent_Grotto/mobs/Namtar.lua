@@ -2,9 +2,9 @@
 -- Area: Seas Serpent Grotto
 --   NM: Ghast
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,805,2);
+    dsp.regime.checkRegime(player, mob, 805, 2, dsp.regime.type.GROUNDS)
 end;

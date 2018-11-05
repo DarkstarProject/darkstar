@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Trial by Lightning
 -- !pos 29 -15 55 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -67,10 +65,10 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
         player:setVar("TrialByLightning_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10024) then
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_LIGHTNING);
     elseif (csid == 10019) then
         item = 0;
         if (option == 1) then item = 17531;         -- Ramuh's Staff
@@ -80,17 +78,17 @@ function onEventFinish(player,csid,option)
         end
 
         if (player:getFreeSlotsCount() == 0 and (option ~= 5 or option ~= 6)) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         else
             if (option == 5) then
                 player:addGil(GIL_RATE*10000);
-                player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000); -- Gil
+                player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000); -- Gil
             elseif (option == 6) then
                 player:addSpell(303); -- Ramuh Spell
-                player:messageSpecial(RAMUH_UNLOCKED,0,0,5);
+                player:messageSpecial(ID.text.RAMUH_UNLOCKED,0,0,5);
             else
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED,item); -- Item
+                player:messageSpecial(ID.text.ITEM_OBTAINED,item); -- Item
             end
             player:addTitle(dsp.title.HEIR_OF_THE_GREAT_LIGHTNING);
             player:delKeyItem(dsp.ki.WHISPER_OF_STORMS); --Whisper of Storms, as a trade for the above rewards
@@ -101,10 +99,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10022 or csid == 10023) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(1172);
-            player:messageSpecial(ITEM_OBTAINED,1172);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1172);
             player:setVar("CarbuncleDebacleProgress",3);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1172);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1172);
         end;
     end
 

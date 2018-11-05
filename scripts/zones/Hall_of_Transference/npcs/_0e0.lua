@@ -3,10 +3,8 @@
 --  NPC: Cermet Gate - Holla
 -- !pos -219 -6 280 14
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local ID = require("scripts/zones/Hall_of_Transference/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +15,7 @@ function onTrigger(player,npc)
     if (player:getCurrentMission(COP) > BELOW_THE_ARKS) then
         player:startEvent(150);
     else
-        player:messageSpecial(NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
+        player:messageSpecial(ID.text.NO_RESPONSE_OFFSET+1); -- The door is firmly shut.
     end
 
 end;

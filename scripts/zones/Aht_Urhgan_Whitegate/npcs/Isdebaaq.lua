@@ -4,10 +4,8 @@
 -- Type: Assault Mission Giver
 -- !pos 127.565 0.161 -43.846 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/besieged");
 require("scripts/globals/missions");
 -----------------------------------
@@ -44,7 +42,7 @@ function onEventFinish(player,csid,option)
             player:addAssault(bit.rshift(option,4));
             player:delKeyItem(dsp.ki.IMPERIAL_ARMY_ID_TAG);
             player:addKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAMOOL_JA_ASSAULT_ORDERS);
         elseif (selectiontype == 2) then
             -- purchased an item
             local item = bit.rshift(option,14);

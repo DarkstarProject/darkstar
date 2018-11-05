@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos 144 -7 104 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Valkurm_Dunes/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

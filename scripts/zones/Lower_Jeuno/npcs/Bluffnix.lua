@@ -4,13 +4,11 @@
 -- Starts and Finishes Quests: Gobbiebags I-X
 -- !pos -43.099 5.900 -114.788 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -103,7 +101,7 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,TheGobbieBag[1]);
-        player:messageSpecial(INVENTORY_INCREASED);
+        player:messageSpecial(ID.text.INVENTORY_INCREASED);
     elseif (csid == 10056) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
     end

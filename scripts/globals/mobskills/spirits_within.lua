@@ -22,9 +22,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4249) then -- Volker@Throne_Room only
-        package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil
-        require("scripts/zones/Throne_Room/TextIDs")
-        target:showText(mob,RETURN_TO_THE_DARKNESS)
+        target:showText(mob,zones[dsp.zone.THRONE_ROOM].text.RETURN_TO_THE_DARKNESS)
     end
 
     local tp = skill:getTP()

@@ -4,10 +4,6 @@
 -- Handles access to Alzadaal Ruins
 -- !pos -20 -6 276 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mount_Zhayolm/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver

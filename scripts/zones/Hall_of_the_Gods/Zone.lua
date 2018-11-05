@@ -3,10 +3,9 @@
 -- Zone: Hall_of_the_Gods (251)
 --
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_the_Gods/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Hall_of_the_Gods/TextIDs");
+local ID = require("scripts/zones/Hall_of_the_Gods/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

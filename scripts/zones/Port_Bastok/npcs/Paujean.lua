@@ -4,9 +4,7 @@
 -- Starts & Finishes Quest: Silence of the Rams
 -- !pos -93.738 4.649 34.373 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -35,7 +33,7 @@ function onTrigger(player,npc)
     elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
         player:startEvent(195);
     elseif (SilenceOfTheRams == QUEST_ACCEPTED) then
-        player:showText(npc,PAUJEAN_DIALOG_1);
+        player:showText(npc,ID.text.PAUJEAN_DIALOG_1);
     else
         player:startEvent(25);
     end
@@ -54,7 +52,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,SILENCE_OF_THE_RAMS);
         player:addFame(3,125);
         player:addItem(13201);
-        player:messageSpecial(ITEM_OBTAINED,13201);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,13201);
         player:addTitle(dsp.title.PURPLE_BELT);
     elseif (csid == 355) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",2,true);

@@ -2,9 +2,6 @@
 -- Area: Southern San d'Oria
 --  NPC: Aravoge, T.K.
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

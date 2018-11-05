@@ -3,15 +3,14 @@
 -- Zone: Quicksand_Caves (208)
 --
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
+local ID = require("scripts/zones/Quicksand_Caves/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/treasure")
+require("scripts/globals/status")
 -----------------------------------
-require("scripts/zones/Quicksand_Caves/TextIDs");
-require("scripts/zones/Quicksand_Caves/MobIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
 
 function onInitialize(zone)
     -- Weight Door System (RegionID, X, Radius, Z)
@@ -39,9 +38,9 @@ function onInitialize(zone)
     SetServerVariable("BastokFight8_1" ,0);
     SetServerVariable("Bastok8-1LastClear", os.time() - QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
 
-    UpdateTreasureSpawnPoint(QC_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 
-    npcUtil.UpdateNPCSpawnPoint(ANTICAN_TAG_QM, 60, 120, ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
+    npcUtil.UpdateNPCSpawnPoint(ID.npc.ANTICAN_TAG_QM, 60, 120, ID.npc.ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -90,11 +89,11 @@ function onRegionEnter(player,region)
                 player:setPos(-136,9,-176);
             end,
         }
-        
+
     -- ornate door pressure plates
     else
-        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight + getWeight(player);
@@ -111,8 +110,8 @@ function onRegionLeave(player,region)
     local RegionID = region:GetRegionID();
 
     if (RegionID < 30) then
-        local door = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight - getWeight(player);

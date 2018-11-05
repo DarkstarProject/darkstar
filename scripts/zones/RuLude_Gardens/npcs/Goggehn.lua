@@ -4,13 +4,10 @@
 -- Involved in Mission: Bastok 3-3, 4-1
 -- !pos 3 9 -76 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -64,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) == false) then
             player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
         end
     elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);

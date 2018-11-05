@@ -3,9 +3,7 @@
 --  NPC: Victoire
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
         12976, 1410,    -- Gaiters
     }
 
-    player:showText(npc, CARAUTIA_SHOP_DIALOG)
+    player:showText(npc, ID.text.CARAUTIA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

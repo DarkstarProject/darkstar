@@ -4,13 +4,11 @@
 -- !pos 368.980, -0.443, -119.874 103
 -- Teleports Players to Abyssea Misareaux
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Valkurm_Dunes/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Valkurm_Dunes/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(55,0,1); -- No param = no entry.
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 

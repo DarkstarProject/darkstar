@@ -2,13 +2,7 @@
 -- Area: Full Moon Mountain
 -- Name: Windurst Mission 9-2
 -----------------------------------
-package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
--------------------------------------
-
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Full_Moon_Fountain/TextIDs");
-
+require("scripts/globals/missions")
 -----------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

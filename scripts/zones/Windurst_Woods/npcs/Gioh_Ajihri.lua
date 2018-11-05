@@ -3,9 +3,7 @@
 --  NPC: Gioh Ajihri
 -- Starts & Finishes Repeatable Quest: Twinstone Bonding
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -53,7 +51,7 @@ function onEventFinish(player,csid,option)
         else
             player:addFame(WINDURST, 10)
             player:addGil(GIL_RATE*900)
-            player:messageSpecial(GIL_OBTAINED, GIL_RATE*900)
+            player:messageSpecial(ID.text.GIL_OBTAINED, GIL_RATE*900)
         end
     elseif csid == 488 then
         player:setVar("GiohAijhriSpokenTo", 1)

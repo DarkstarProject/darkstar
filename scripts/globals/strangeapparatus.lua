@@ -123,6 +123,7 @@ dsp.strangeApparatus =
 {
     onTrade = function(player, trade, eventId)
         local zone = player:getZoneID()
+        local ID = zones[zone]
         local chipNeeded = strAppData[zone][3]
         local foundChip = false
         
@@ -165,8 +166,8 @@ dsp.strangeApparatus =
                 else
                     player:confirmTrade()
                     player:addItem(INFINITY_CORE, 1)
-                    player:messageSpecial(SYS_OVERLOAD)
-                    player:messageSpecial(YOU_LOST_THE, chipTraded)
+                    player:messageSpecial(ID.text.SYS_OVERLOAD)
+                    player:messageSpecial(ID.text.YOU_LOST_THE, chipTraded)
                     delDoctorStatus(player)
                     SpawnMob(strAppData[zone][5]):updateEnmity(player)
                 end
@@ -178,7 +179,7 @@ dsp.strangeApparatus =
         -- player traded something other than a chip. message and delete doctor status.
         if not foundChip then
             delDoctorStatus(player)
-            player:messageSpecial(DEVICE_NOT_WORKING)
+            player:messageSpecial(ID.text.DEVICE_NOT_WORKING)
         end
     end,
 

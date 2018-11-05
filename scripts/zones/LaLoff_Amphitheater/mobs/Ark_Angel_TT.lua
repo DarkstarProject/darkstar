@@ -2,9 +2,6 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel TT
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -21,8 +18,9 @@ function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
     for member = mobid-5, mobid+2 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 end;

@@ -2,7 +2,6 @@
 -- Area: Outer Horutoto Ruins
 --  MOB: Queen of Swords
 -----------------------------------
-require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
 mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/missions");
 -----------------------------------

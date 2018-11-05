@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: The Fanged One, From Saplings Grow
 -- !pos 117 -3 92 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
@@ -111,7 +109,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 357 or csid == 358) and npcUtil.completeQuest(player, WINDURST, THE_FANGED_ONE, {item=13117, title=dsp.title.THE_FANGED_ONE, var={"TheFangedOne_Event", "TheFangedOneCS"}}) then
         player:delKeyItem(dsp.ki.OLD_TIGERS_FANG)
         player:unlockJob(dsp.job.RNG)
-        player:messageSpecial(PERIH_VASHAI_DIALOG)
+        player:messageSpecial(ID.text.PERIH_VASHAI_DIALOG)
 
     -- SIN HUNTING        
     elseif csid == 523 then -- start quest RNG AF1
@@ -140,6 +138,6 @@ function onEventFinish(player,csid,option)
 
     -- FROM SAPLINGS GROW
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,EMPYREAL_ARROW_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.EMPYREAL_ARROW_LEARNED)
     end
 end

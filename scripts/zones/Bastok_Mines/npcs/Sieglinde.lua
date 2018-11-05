@@ -3,11 +3,9 @@
 --  NPC: Sieglinde
 -- Alchemy Synthesis Image Support
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 124 and option == 1) then
-        player:messageSpecial(ALCHEMY_SUPPORT,0,7,2);
+        player:messageSpecial(ID.text.ALCHEMY_SUPPORT,0,7,2);
         player:addStatusEffect(dsp.effect.ALCHEMY_IMAGERY,1,0,120);
     end
 end;

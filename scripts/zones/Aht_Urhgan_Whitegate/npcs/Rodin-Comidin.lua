@@ -5,11 +5,9 @@
 -- Involved in Missions: TOAU-41
 -- !pos 17.205 -5.999 51.161 50
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,7 +35,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 3137 or csid == 3141) then
         player:addKeyItem(dsp.ki.NYZUL_ISLE_ROUTE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NYZUL_ISLE_ROUTE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NYZUL_ISLE_ROUTE);
     end
 
 end;

@@ -72,7 +72,7 @@ bool isRightRecipe(CCharEntity* PChar)
     const char* fmtQuery =
 
         "SELECT ID, KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, \
-            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty \
+            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty, Type \
         FROM synth_recipes \
         WHERE (Crystal = %u OR HQCrystal = %u) \
             AND Ingredient1 = %u \
@@ -117,6 +117,7 @@ bool isRightRecipe(CCharEntity* PChar)
             PChar->CraftContainer->setItem(10 + 2, (uint16)Sql_GetUIntData(SqlHandle,11), (uint8)Sql_GetUIntData(SqlHandle,15), 0); // RESULT_HQ
             PChar->CraftContainer->setItem(10 + 3, (uint16)Sql_GetUIntData(SqlHandle,12), (uint8)Sql_GetUIntData(SqlHandle,16), 0); // RESULT_HQ2
             PChar->CraftContainer->setItem(10 + 4, (uint16)Sql_GetUIntData(SqlHandle,13), (uint8)Sql_GetUIntData(SqlHandle,17), 0); // RESULT_HQ3
+            PChar->CraftContainer->setCraftType((uint8)Sql_GetUIntData(SqlHandle, 18));
 
             uint16 skillValue   = 0;
             uint16 currentSkill = 0;
@@ -356,7 +357,7 @@ uint8 calcSynthResult(CCharEntity* PChar)
             }
 
             // Apply synthesis success rate modifier
-            int16 modSynthSuccess = PChar->getMod(Mod::SYNTH_SUCCESS);
+            int16 modSynthSuccess = PChar->CraftContainer->getCraftType() == CRAFT_SYNTHESIS ? PChar->getMod(Mod::SYNTH_SUCCESS) : PChar->getMod(Mod::DESYNTH_SUCCESS);
             success += (double)modSynthSuccess * 0.01;
 
             if(!canSynthesizeHQ(PChar,skillID))
@@ -622,56 +623,15 @@ int32 doSynthSkillUp(CCharEntity* PChar)
 
 int32 doSynthFail(CCharEntity* PChar)
 {
-    uint8  carrentCraft = PChar->CraftContainer->getInvSlotID(0);
-    double synthDiff    = getSynthDifficulty(PChar, carrentCraft);
-    double moghouseAura = 0;
+    uint8 currentCraft = PChar->CraftContainer->getInvSlotID(0);
+    double synthDiff    = getSynthDifficulty(PChar, currentCraft);
     int16 modSynthFailRate = PChar->getMod(Mod::SYNTH_FAIL_RATE);
 
-    if (PChar->m_moghouseID) // неправильное условие, т.к. аура действует лишь в собственном доме
-    {
-        // Проверяем элемент синтеза
-        switch (PChar->CraftContainer->getType())
-        {
-            case ELEMENT_FIRE:      moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_FIRE);      break;
-            case ELEMENT_EARTH:     moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_EARTH);     break;
-            case ELEMENT_WATER:     moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_WATER);     break;
-            case ELEMENT_WIND:      moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_WIND);      break;
-            case ELEMENT_ICE:       moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_ICE);       break;
-            case ELEMENT_LIGHTNING: moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_LIGHTNING); break;
-            case ELEMENT_LIGHT:     moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_LIGHT);     break;
-            case ELEMENT_DARK:      moghouseAura = 0.05 * charutils::hasKeyItem(PChar,MOGHANCEMENT_DARK);      break;
-        }
-
-        if (moghouseAura == 0)
-        {
-            switch (carrentCraft)
-            {
-                case SKILL_WOODWORKING:  moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_WOODWORKING);  break;
-                case SKILL_SMITHING:     moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_SMITHING);     break;
-                case SKILL_GOLDSMITHING: moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_GOLDSMITHING); break;
-                case SKILL_CLOTHCRAFT:   moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_CLOTHCRAFT);   break;
-                case SKILL_LEATHERCRAFT: moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_LEATHERCRAFT); break;
-                case SKILL_BONECRAFT:    moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_BONECRAFT);    break;
-                case SKILL_ALCHEMY:      moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_ALCHEMY);      break;
-                case SKILL_COOKING:      moghouseAura = 0.075 * charutils::hasKeyItem(PChar,MOGLIFICATION_COOKING);      break;
-            }
-        }
-
-        if (moghouseAura == 0)
-        {
-            switch (carrentCraft)
-            {
-                case SKILL_WOODWORKING:  moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_WOODWORKING);  break;
-                case SKILL_SMITHING:     moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_SMITHING);     break;
-                case SKILL_GOLDSMITHING: moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_GOLDSMITHING); break;
-                case SKILL_CLOTHCRAFT:   moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_CLOTHCRAFT);   break;
-                case SKILL_LEATHERCRAFT: moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_LEATHERCRAFT); break;
-                case SKILL_BONECRAFT:    moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_BONECRAFT);    break;
-                case SKILL_ALCHEMY:      moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_ALCHEMY);      break;
-                case SKILL_COOKING:      moghouseAura = 0.1 * charutils::hasKeyItem(PChar,MEGA_MOGLIFICATION_COOKING);      break;
-            }
-        }
-    }
+    // We are able to get the correct elemental mod here by adding the element to it since they are in the same order
+    double reduction = PChar->getMod((Mod)((int32)Mod::SYNTH_FAIL_RATE_FIRE + PChar->CraftContainer->getType()));
+    // Similarly we get the correct craft mod here by adding the current craft to it since they are in the same order
+    reduction += PChar->getMod((Mod)((int32)Mod::SYNTH_FAIL_RATE_WOOD + (currentCraft - SKILL_WOODWORKING)));
+    reduction /= 100.0;
 
     uint8 invSlotID  = 0;
     uint8 nextSlotID = 0;
@@ -679,7 +639,7 @@ int32 doSynthFail(CCharEntity* PChar)
     uint8 totalCount = 0;
 
     double random   = 0;
-    double lostItem = 0.15 - moghouseAura + (synthDiff > 0 ? synthDiff/20 : 0);
+    double lostItem = std::clamp(0.15 - reduction + (synthDiff > 0 ? synthDiff/20 : 0), 0.0, 1.0);
 
     // Translation of JP wiki for the "Synthesis failure rate" modifier is "Synthetic material loss rate"
     // see: http://wiki.ffo.jp/html/18416.html

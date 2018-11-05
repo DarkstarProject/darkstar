@@ -2,9 +2,6 @@
 -- Area: Northern San d'Oria
 --  NPC: Achatere, T.K.
 -------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

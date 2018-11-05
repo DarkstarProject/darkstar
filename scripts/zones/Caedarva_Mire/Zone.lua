@@ -3,19 +3,18 @@
 -- Zone: Caedarva_Mire (79)
 --
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Caedarva_Mire/TextIDs");
-require("scripts/zones/Caedarva_Mire/MobIDs");
-require("scripts/globals/missions");
-require("scripts/globals/titles");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Caedarva_Mire/IDs")
+require("scripts/globals/missions")
+require("scripts/globals/titles")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(AYNU_KAYSEY);
-    GetMobByID(AYNU_KAYSEY):setRespawnTime(math.random(900, 10800));
-    GetMobByID(KHIMAIRA):setRespawnTime(math.random(12,36)*3600); -- 12 to 36 hours after maintenance, in 1-hour increments
+    UpdateNMSpawnPoint(ID.mob.AYNU_KAYSEY);
+    GetMobByID(ID.mob.AYNU_KAYSEY):setRespawnTime(math.random(900, 10800));
+    GetMobByID(ID.mob.KHIMAIRA):setRespawnTime(math.random(12,36)*3600); -- 12 to 36 hours after maintenance, in 1-hour increments
+
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

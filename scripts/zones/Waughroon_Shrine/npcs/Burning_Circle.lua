@@ -4,15 +4,12 @@
 -- Waughroon Shrine Burning Circle
 -- !pos -345 104 -260 144
 -------------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
 
     ---- 0: Rank 2 Final Mission for Bastok "The Emissary" and Sandy "Journey Abroad"
     ---- 1: Worms Turn

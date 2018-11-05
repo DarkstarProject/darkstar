@@ -3,7 +3,7 @@
 -- Mob:  Sturm
 -- Involved in Quest: A New Dawn (BST AF3)
 -----------------------------------
-require("scripts/zones/The_Eldieme_Necropolis/MobIDs");
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
 require("scripts/globals/quests");
 
 function onMobSpawn(mob)
@@ -15,7 +15,7 @@ function onMobDeath(mob, player, isKiller)
     end
 
     if (isKiller) then
-        for i = TAIFUN, TROMBE do
+        for i = ID.mob.TAIFUN, ID.mob.TROMBE do
             if (GetMobByID(i):isSpawned()) then
                 DespawnMob(i);
             end

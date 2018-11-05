@@ -3,9 +3,7 @@
 --  NPC: Bonmaurieut
 -- Elshimo Uplands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs")
+local ID = require("scripts/zones/Port_San_dOria/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
@@ -13,13 +11,13 @@ require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
-        player:messageSpecial(FLYER_REFUSED)
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.ELSHIMOUPLANDS) ~= dsp.nation.SANDORIA then
-        player:showText(npc, BONMAURIEUT_CLOSED_DIALOG)
+        player:showText(npc, ID.text.BONMAURIEUT_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
             721,   147,    -- Rattan Lumber
         }
 
-        player:showText(npc, BONMAURIEUT_OPEN_DIALOG)
+        player:showText(npc, ID.text.BONMAURIEUT_OPEN_DIALOG)
         dsp.shop.general(player, stock, SANDORIA)
     end
 end

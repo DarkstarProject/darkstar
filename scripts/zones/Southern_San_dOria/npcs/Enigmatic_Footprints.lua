@@ -3,14 +3,14 @@
 --  NPC: Enigmatic Footprints
 -- Entry NPC for Dynamis Divergence
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(TEAR_IN_FABRIC_OF_SPACE)
+    player:messageSpecial(ID.text.TEAR_IN_FABRIC_OF_SPACE)
 end
 
 function onEventUpdate(player,csid,option)

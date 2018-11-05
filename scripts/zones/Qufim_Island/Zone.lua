@@ -3,10 +3,7 @@
 -- Zone: Qufim_Island (126)
 --
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs");
-require("scripts/zones/Qufim_Island/MobIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -42,11 +39,11 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 100) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
         else
             player:addTitle(dsp.title.PARAGON_OF_WARRIOR_EXCELLENCE);
             player:addItem(12638);
-            player:messageSpecial(ITEM_OBTAINED, 12638); -- Fighter's Lorica
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 12638); -- Fighter's Lorica
             player:setVar("theTalekeeperGiftCS",0);
             player:setVar("theTalekeepersGiftKilledNM",0);
             player:addFame(BASTOK,AF3_FAME);

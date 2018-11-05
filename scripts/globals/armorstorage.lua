@@ -120,7 +120,7 @@ dsp.armorStorage.onTrade = function(player, trade, deposit)
                     if T2 and T3 and T4 and T5 then
                         player:startEvent(deposit, 0, 0, 0, 0, 0, armorSets[i + 9])
                         player:addKeyItem(armorSets[i + 10])
-                        player:messageSpecial(KEYITEM_OBTAINED, armorSets[i + 10])
+                        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED, armorSets[i + 10])
                         returnValue = true
                         break
                     end
@@ -190,7 +190,7 @@ dsp.armorStorage.onEventFinish = function(player, csid, option, deposit, withdra
                     local itemId = armorSets[idx + i]
                     if itemId > 0 then
                         player:addItem(itemId, 1)
-                        player:messageSpecial(ITEM_OBTAINED, itemId)
+                        player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, itemId)
                     end
                 end
                 player:delKeyItem(ki)
@@ -199,7 +199,7 @@ dsp.armorStorage.onEventFinish = function(player, csid, option, deposit, withdra
                 for i = 4, 8 do
                     local itemId = armorSets[idx + i]
                     if itemId > 0 then
-                        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemId)
+                        player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, itemId)
                     end
                 end
             end

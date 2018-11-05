@@ -4,11 +4,9 @@
 -- Involved in Quest: Forge Your Destiny, The Sacred Katana
 -- !pos 15 0 23 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -74,23 +72,23 @@ function onEventFinish(player,csid,option)
     if (csid == 40) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(1198);
-            player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 1198); -- Sacred Sprig
             player:setVar("ForgeYourDestiny_Event",questItem + 0x02);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1151); -- Oriental Steel
         end
     elseif (csid == 43) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:tradeComplete();
             player:addItem(1198);
-            player:messageSpecial(ITEM_OBTAINED, 1198); -- Sacred Sprig
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 1198); -- Sacred Sprig
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1198); -- Sacred Sprig
         end
     elseif (csid == 145) then
         player:tradeComplete();
         player:addItem(17809);
-        player:messageSpecial(ITEM_OBTAINED,17809); -- Mumeito
+        player:messageSpecial(ID.text.ITEM_OBTAINED,17809); -- Mumeito
     end
 
 end;

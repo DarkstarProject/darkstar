@@ -3,10 +3,6 @@
 --  NPC: Farouel
 -- !pos 93 4 52 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

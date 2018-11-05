@@ -2,6 +2,8 @@
 -- Zone: Ilrusi_Atoll
 --  zone 55
 -----------------------------------
+local ID = require("scripts/zones/Ilrusi_Atoll/IDs")
+-----------------------------------
 
 function onInitialize(zone)
 end
@@ -14,7 +16,7 @@ function onInstanceZoneIn(player,instance)
         local entrypos = instance:getEntryPos()
         player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
     end
-	
+    
     return cs
 end
 
@@ -25,6 +27,7 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
+    local instance = player:getInstance()
     local chars = instance:getChars()
     if csid == 102 then
         for i,v in pairs(chars) do

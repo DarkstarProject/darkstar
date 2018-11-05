@@ -2,9 +2,6 @@
 -- Area: Dynamis-Qufim
 --  NPC: Serjeant_Tombstone
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Qufim/TextIDs");
 require("scripts/globals/dynamis");
 -----------------------------------
 

@@ -1,7 +1,7 @@
 -- Zone: Kuftal Tunnel (174)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -10,7 +10,7 @@ KUFTAL_TUNNEL = {
         move Phantom Worm QM
         ..............................................................................................]]
     movePhantomWormQM = function()
-        local npc = GetNPCByID(PHANTOM_WORM_QM);
+        local npc = GetNPCByID(ID.npc.PHANTOM_WORM_QM);
 
         switch (math.random(1,16)): caseof
         {

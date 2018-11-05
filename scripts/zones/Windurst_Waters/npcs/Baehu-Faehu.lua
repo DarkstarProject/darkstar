@@ -4,9 +4,7 @@
 -- Only sells when Windurst has control of Sarutabaruta
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -17,9 +15,9 @@ end;
 function onTrigger(player,npc)
     local RegionOwner = GetRegionOwner(dsp.region.SARUTABARUTA);
     if (RegionOwner ~= dsp.nation.WINDURST) then
-        player:showText(npc,BAEHUFAEHU_CLOSED_DIALOG);
+        player:showText(npc,ID.text.BAEHUFAEHU_CLOSED_DIALOG);
     else
-        player:showText(npc,BAEHUFAEHU_OPEN_DIALOG);
+        player:showText(npc,ID.text.BAEHUFAEHU_OPEN_DIALOG);
 
         local stock =
         {

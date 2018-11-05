@@ -3,22 +3,19 @@
 --  NPC: ??? (Spawn Chamrosh(ZNM T1))
 -- !pos 206 14 -285 65
 -----------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mamook/TextIDs");
-require("scripts/zones/Mamook/MobIDs");
+local ID = require("scripts/zones/Mamook/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2581) and not GetMobByID(CHAMROSH):isSpawned()) then -- Trade Floral Nectar
+    if (npcUtil.tradeHas(trade, 2581) and not GetMobByID(ID.mob.CHAMROSH):isSpawned()) then -- Trade Floral Nectar
         player:confirmTrade();
-        SpawnMob(CHAMROSH):updateClaim(player);
+        SpawnMob(ID.mob.CHAMROSH):updateClaim(player);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;
 
 function onEventUpdate(player,csid,option)

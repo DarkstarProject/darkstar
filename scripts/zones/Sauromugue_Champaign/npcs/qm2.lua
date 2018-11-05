@@ -4,10 +4,7 @@
 --  Involved in Quest: THF AF "As Thick As Thieves"
 -- !pos 196.830 31.300 206.078 120
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sauromugue_Champaign/TextIDs");
-require("scripts/zones/Sauromugue_Champaign/MobIDs");
+local ID = require("scripts/zones/Sauromugue_Champaign/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/status");
@@ -26,7 +23,7 @@ function onTrade(player,npc,trade)
         if (isNaked(player)) then
             player:startEvent(2); -- complete grappling part of the quest
         else
-            player:messageSpecial(THF_AF_WALL_OFFSET+2,0,17474); --  You try climbing the wall using the [Grapnel], but you are too heavy.
+            player:messageSpecial(ID.text.THF_AF_WALL_OFFSET+2,0,17474); --  You try climbing the wall using the [Grapnel], but you are too heavy.
         end
     end
 end;
@@ -37,19 +34,19 @@ function onTrigger(player,npc)
 
     if (thickAsThieves == QUEST_ACCEPTED) then
         if (grapplingCS == 2) then
-            local gob = GetMobByID(CLIMBPIX_HIGHRISE);
+            local gob = GetMobByID(ID.mob.CLIMBPIX_HIGHRISE);
             if (not gob:isSpawned()) then
-                player:messageSpecial(THF_AF_MOB);
+                player:messageSpecial(ID.text.THF_AF_MOB);
                 gob:setSpawn(193,32,211);
-                SpawnMob(CLIMBPIX_HIGHRISE):updateClaim(player);
+                SpawnMob(ID.mob.CLIMBPIX_HIGHRISE):updateClaim(player);
             end
         elseif (grapplingCS >= 0 or grapplingCS <= 7) then
-            player:messageSpecial(THF_AF_WALL_OFFSET); -- It is impossible to climb this wall with your bare hands.
+            player:messageSpecial(ID.text.THF_AF_WALL_OFFSET); -- It is impossible to climb this wall with your bare hands.
         elseif (grapplingCS == 8) then
-            player:messageSpecial(THF_AF_WALL_OFFSET+1); -- There is no longer any need to climb the tower.
+            player:messageSpecial(ID.text.THF_AF_WALL_OFFSET+1); -- There is no longer any need to climb the tower.
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 
 end;
@@ -62,7 +59,7 @@ function onEventFinish(player,csid,option)
         player:setVar("thickAsThievesGrapplingCS",8);
         player:delKeyItem(dsp.ki.FIRST_FORGED_ENVELOPE);
         player:addKeyItem(dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FIRST_SIGNED_FORGED_ENVELOPE);
         player:tradeComplete();
     end
 end;

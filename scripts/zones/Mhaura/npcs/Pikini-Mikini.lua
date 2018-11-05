@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -48 -4 30 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
         2867, 9000,    -- Mhaura Waystone
     }
 
-    player:showText(npc, PIKINIMIKINI_SHOP_DIALOG)
+    player:showText(npc, ID.text.PIKINIMIKINI_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

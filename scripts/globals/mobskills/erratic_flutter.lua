@@ -21,16 +21,16 @@ require("scripts/globals/settings")
 require("scripts/globals/status")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target, mob, skill)
     return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
-    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*1.5,dsp.magic.ele.FIRE,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS)
+    local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 1.5, dsp.magic.ele.FIRE, dmgmod, TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg ,mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_FIRE, MOBPARAM_IGNORE_SHADOWS)
 
-    MobBuffMove(mob, dsp.effect.HASTE, 307, 0, 300) -- There is no message for the self buff aspect, only dmg.
+    MobBuffMove(mob, dsp.effect.HASTE, 2998, 0, 300) -- There is no message for the self buff aspect, only dmg.
 
     target:delHP(dmg)
     return dmg
