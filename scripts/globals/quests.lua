@@ -12,14 +12,14 @@ dsp.quests.enums =
         JEUNO     = 3, OTHER_AREAS = 4,  OUTLANDS = 5,
         AHT_URGAN = 6, CRYSTAL_WAR = 7,  ABYSSEA  = 8,
         ADOULIN   = 9, COALITION   = 10
-    }
+    },
 
     var_types =
     {
-        CHAR_VAR   = 1
+        CHAR_VAR   = 1,
         LOCAL_VAR  = 2,
         SERVER_VAR = 3,
-    }
+    },
 
     quest_ids =
     {
@@ -422,7 +422,7 @@ dsp.quests.complete = function(player, quest, reward_set)
     end
 end
 
-local function dsp.quests.check(player, params)
+dsp.quests.check = function(player, params)
     local zoneid = player:getZoneID()
 
     local cycle = player:getLocalVar("[quests]cycle")
