@@ -33,8 +33,6 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
     },
     npc =
     {
-        ALKYONEUS_QM   = 17424518,
-        PALLAS_QM      = 17424519,
         TREASURE_CHEST = 17424563,
     },
 }

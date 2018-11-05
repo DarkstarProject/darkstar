@@ -1,13 +1,12 @@
 --[[
     Helper functions for common NPC tasks.
 
-    npcUtil.popFromQM(player, qm, mobId, claim, hide)
+    npcUtil.popFromQM(player, qm, mobId, params)
     npcUtil.pickNewPosition(npc, positionTable, allowCurrentPosition)
     npcUtil.giveItem(player, items)
     npcUtil.giveKeyItem(player, keyitems)
     npcUtil.completeQuest(player, area, quest, params)
     npcUtil.tradeHas(trade, items)
-    npcUtil.genTmask(player,title)
     npcUtil.UpdateNPCSpawnPoint(id, minTime, maxTime, posTable, serverVar)
     npcUtil.fishingAnimation(npc, phaseDuration, func)
 --]]
@@ -19,18 +18,28 @@ npcUtil = {}
 --[[ *******************************************************************************
     Pop mob(s) from question mark NPC.
     If any mob is already spawned, return false.
-    Optionally assign claim to player. (default true)
-    Optionally hide the QM for hideDuration seconds. (default FORCE_SPAWN_QM_RESET_TIME)
+    Params (table) can contain the following parameters:
+
+    radius (number)
+        if set, spawn mobs randomly within radius of NPC
+    claim (boolean, default true)
+        do spawned mobs automatically aggro the player
+    hide (number, default FORCE_SPAWN_QM_RESET_TIME)
+        how long to hide the QM for after mobs die
+
 ******************************************************************************* --]]
-function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
+function npcUtil.popFromQM(player, qm, mobId, params)
     local qmId = qm:getID()
 
     -- default params
-    if claim == nil then
-        claim = true
+    if not params then
+        params = {}
     end
-    if hideDuration == nil then
-        hideDuration = FORCE_SPAWN_QM_RESET_TIME
+    if params.claim == nil or type(params.claim) ~= "boolean" then
+        params.claim = true
+    end
+    if params.hide == nil or type(params.hide) ~= "number" then
+        params.hide = FORCE_SPAWN_QM_RESET_TIME
     end
 
     -- get list of mobs to pop
@@ -56,18 +65,31 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
     end
 
     -- hide qm
-    if hideDuration then
+    if params.hide > 0 then
         qm:setStatus(dsp.status.DISAPPEAR)
     end
 
     -- spawn mobs and give each a listener that will show QM after they are all dead
     for _, mob in pairs(mobs) do
+        -- choose random position uniformly from within radius
+        if params.radius and type(params.radius) == "number" then
+            local r = params.radius * math.sqrt(math.random())
+            local theta = math.random() * 2 * math.pi
+            local x = r * math.cos(theta)
+            local z = r * math.sin(theta)
+            mob:setSpawn(qm:getXPos() + x, qm:getYPos(), qm:getZPos() + z)
+        end
+
+        -- spawn
         mob:spawn()
-        if claim then
+
+        -- claim
+        if params.claim then
             mob:updateClaim(player)
         end
 
-        if hideDuration then
+        -- reappear the QM when all spawned mobs are dead, plus params.hide seconds
+        if params.hide > 0 then
             local myId = mob:getID()
             mob:setLocalVar("qm", qmId)
             mob:addListener("DESPAWN", "QM_"..myId, function(m)
@@ -79,7 +101,7 @@ function npcUtil.popFromQM(player, qm, mobId, claim, hideDuration)
                     end
                 end
 
-                GetNPCByID(m:getLocalVar("qm")):updateNPCHideTime(hideDuration)
+                GetNPCByID(m:getLocalVar("qm")):updateNPCHideTime(params.hide)
             end)
         end
     end
@@ -379,18 +401,6 @@ end
 ******************************************************************************* --]]
 function npcUtil.tradeHasExactly(trade, items)
     return npcUtil.tradeHas(trade, items, true)
-end
-
-function npcUtil.genTmask(player,title)
-    local val1 = 0
-
-    for i = 1, #title do
-        if title[i] == 0 or not player:hasTitle(title[i]) then
-            val1 = bit.bor(val1, bit.lshift(1, i))
-        end
-    end
-
-    return val1
 end
 
 -----------------------------------

@@ -4,20 +4,17 @@
 -- Notes: Spawn Wailer Floor 4
 -- !pos 339.000 -1.883 144.000 22
 -----------------------------------
-local ID = require("scripts/zones/Promyvion-Vahzl/IDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Promyvion-Vahzl/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(ID.mob.WAILER):isSpawned() and npcUtil.tradeHas(trade, 1757)) then -- Coveter Remnant
-        player:confirmTrade();
-        player:messageSpecial(ID.text.ON_NM_SPAWN);
-        SpawnMob(ID.mob.WAILER):updateClaim(player);
-        npc:setStatus(dsp.status.DISAPPEAR);
+    if npcUtil.tradeHas(trade, 1757) and npcUtil.popFromQM(player, npc, ID.mob.WAILER) then -- Coveter Remnant
+        player:messageSpecial(ID.text.ON_NM_SPAWN)
+        player:confirmTrade()
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.POPPED_NM_OFFSET+1);
-end;
+    player:messageSpecial(ID.text.POPPED_NM_OFFSET + 1)
+end

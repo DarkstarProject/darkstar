@@ -88,6 +88,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 137) then
         player:setVar("trueWillCS",1)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLADE_KU_LEARNED)
     end
 end

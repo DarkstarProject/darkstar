@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Duplicatus Cell
+-- ID 5373
+-- Unlocks support job
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -11,6 +15,5 @@ end
 
 function onItemUse(target)
     target:delStatusEffectSilent(dsp.effect.OBLIVISCENCE)
-    target:messageText(target, 7216)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 8)
 end
-

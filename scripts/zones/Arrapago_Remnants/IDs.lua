@@ -26,6 +26,7 @@ zones[dsp.zone.ARRAPAGO_REMNANTS] =
         PARTY_FALLEN               = 7449, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
         DOOR_IS_SEALED             = 7460, -- The door is sealed...
         DOOR_IS_SEALED_MYSTERIOUS  = 7463, -- The door is sealed by some mysterious force...
+        CELL_OFFSET                = 7211, -- message for remove messages
     },
     mob =
     {
