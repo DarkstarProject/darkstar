@@ -3,6 +3,7 @@
 
 require("scripts/globals/mixins")
 require("scripts/globals/dynamis")
+require("scripts/globals/status")
 
 g_mixins = g_mixins or {}
 

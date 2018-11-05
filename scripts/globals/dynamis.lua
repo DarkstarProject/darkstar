@@ -999,6 +999,6 @@ function dynamis.addExtension(player, keyitem, duration)
         local old_duration = effect:getDuration()
         effect:setDuration((old_duration + (duration * 60)) * 1000)
         player:setLocalVar("dynamis_lasttimeupdate", effect:getTimeRemaining() / 1000)
-        player:messageSpecial(DYNAMIS_TIME_EXTEND, duration)
+        player:messageSpecial(zones[player:getZoneID()].text.DYNAMIS_TIME_EXTEND, duration)
     end
 end
