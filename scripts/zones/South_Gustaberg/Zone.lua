@@ -13,35 +13,8 @@ require("scripts/globals/quests");
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 17296, 252, DIGREQ_NONE },
-                    { 17396, 227, DIGREQ_NONE },
-                    { 846, 156, DIGREQ_NONE },
-                    { 880, 133, DIGREQ_NONE },
-                    { 936, 83, DIGREQ_NONE },
-                    { 869, 80, DIGREQ_NONE },
-                    { 749, 32, DIGREQ_NONE },
-                    { 847, 23, DIGREQ_NONE },
-                    { 644, 5, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 4545, 5, DIGREQ_BURROW },
-                    { 636, 63, DIGREQ_BURROW },
-                    { 617, 63, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-                    { 575, 14, DIGREQ_NIGHT },
-};
-
-local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)

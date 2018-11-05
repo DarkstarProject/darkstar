@@ -2,20 +2,19 @@
 -- Area: Yuhtunga Jungle
 --  NPC: Harvesting Point
 -----------------------------------
-require("scripts/globals/harvesting");
-local ID = require("scripts/zones/Yuhtunga_Jungle/IDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startHarvesting(player,player:getZoneID(),npc,trade,206);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.HARVESTING, 206)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.HARVESTING_IS_POSSIBLE_HERE,1020);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.HARVESTING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

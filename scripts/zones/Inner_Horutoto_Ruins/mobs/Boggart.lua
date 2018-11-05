@@ -4,11 +4,11 @@
 -- Note: Place holder Nocuous Weapon
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,650,1);
+    dsp.regime.checkRegime(player, mob, 650, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

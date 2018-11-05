@@ -20,6 +20,11 @@ zones[dsp.zone.AYDEEWA_SUBTERRANE] =
     },
     mob =
     {
+        BLUESTREAK_GYUGYUROON_PH =
+        {
+            [17055941] = 17056156, -- -221.7 13.762 -346.83
+            [17055942] = 17056156, -- -219 14.003 -364.83
+        },
         NOSFERATU          = 17056157,
         PANDEMONIUM_WARDEN = 17056168,
         CHIGRE             = 17056186,

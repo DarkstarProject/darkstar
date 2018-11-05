@@ -40,7 +40,7 @@ function onUseAbility(player,target,ability,action)
         local mjob = player:getMainJob()
         local daze = 1
 
-        if (mjob == 19) then
+        if mjob == dsp.job.DNC then
             if (target:hasStatusEffect(dsp.effect.LETHARGIC_DAZE_1)) then
                 local duration = target:getStatusEffect(dsp.effect.LETHARGIC_DAZE_1):getDuration()
                 target:delStatusEffectSilent(dsp.effect.LETHARGIC_DAZE_1)

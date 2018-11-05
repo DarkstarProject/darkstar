@@ -16,13 +16,6 @@ zones[dsp.zone.FORT_GHELSBA] =
         GIL_OBTAINED            = 6547, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
         CHEST_UNLOCKED          = 7353, -- You unlock the chest!
-        CHEST_FAIL              = 7354, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7355, -- The chest was trapped!
-        CHEST_WEAK              = 7356, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7357, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7358, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7359, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7360, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
     },
     mob =
     {
@@ -30,7 +23,7 @@ zones[dsp.zone.FORT_GHELSBA] =
     },
     npc =
     {
-        FORT_GHELSBA_TREASURE_CHEST = 17355012,
+        TREASURE_CHEST = 17355012,
     },
 }
 

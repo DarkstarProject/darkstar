@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -13,7 +14,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.GUIVRE);
     GetMobByID(ID.mob.GUIVRE):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ID.npc.KUFTAL_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

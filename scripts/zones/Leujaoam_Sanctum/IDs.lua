@@ -37,7 +37,7 @@ zones[dsp.zone.LEUJAOAM_SANCTUM] =
         PARTY_FALLEN               = 7514, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
     },
 
-    mobs =
+    mob =
     {
         -- Leujaoam Cleansing
         [1] =
@@ -60,7 +60,7 @@ zones[dsp.zone.LEUJAOAM_SANCTUM] =
         }
     },
 
-    npcs =
+    npc =
     {
         ANCIENT_LOCKBOX = 17060014,
         RUNE_OF_RELEASE = 17060015,

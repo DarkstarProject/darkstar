@@ -48,6 +48,15 @@ zones[dsp.zone.ABYSSEA_GRAUBERG] =
             --  [17818101] = {'qm21',               {},                                      {dsp.ki.VACANT_BUGARD_EYE}, 17818061}, -- Azdaja
             --  [17818102] = {'qm22',               {},                              {dsp.ki.VARIEGATED_URAGNITE_SHELL}, 17818062}, -- Amphitrite
         },
+        HARVESTING =
+        {
+            17818220,
+            17818221,
+            17818222,
+            17818223,
+            17818224,
+            17818225,
+        },
     },
 }
 

@@ -17,19 +17,12 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
         KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         CHEST_UNLOCKED          = 7332, -- You unlock the chest!
-        CHEST_FAIL              = 7333, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7334, -- The chest was trapped!
-        CHEST_WEAK              = 7335, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7336, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7337, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7338, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7339, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         MINING_IS_POSSIBLE_HERE = 7340, -- Mining is possible here if you have <item>.
         HOMEPOINT_SET           = 7440, -- Home point set!
     },
     mob =
     {
-        ASHMAKER_GOTBLUT_PH = 
+        ASHMAKER_GOTBLUT_PH =
         {
             [17358926] = 17358932, -- 16.179 -1.321 -27.321
             [17358920] = 17358932, -- 11.790 -1.379 -19.023
@@ -40,7 +33,16 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
     },
     npc =
     {
-        YUGHOTT_TREASURE_CHEST = 17359052,
+        TREASURE_CHEST = 17359052,
+        MINING =
+        {
+            17359053,
+            17359054,
+            17359055,
+            17359056,
+            17359057,
+            17359058,
+        },
     },
 }
 

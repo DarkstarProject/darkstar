@@ -26,10 +26,18 @@ zones[dsp.zone.MISAREAUX_COAST] =
         PM6_2_MOB_OFFSET = 16879893,
         BOGGELMANN       = 16879897,
         GRATION          = 16879899,
-        GRATION_QM       = 16879918,
     },
     npc =
     {
+        LOGGING =
+        {
+            16879972,
+            16879973,
+            16879974,
+            16879975,
+            16879976,
+            16879977,
+        },
     },
 }
 

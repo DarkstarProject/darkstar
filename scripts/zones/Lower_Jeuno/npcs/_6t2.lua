@@ -4,10 +4,11 @@
 --  Starts & Finishes Quest: Save My Son
 --  Optional Involvement in Quest: Chocobo's Wounds, Path of the Beastmaster
 -----------------------------------
-local ID = require("scripts/zones/Lower_Jeuno/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +29,7 @@ function onTrigger(player,npc)
 
     -- A New Dawn (BST AF3)
     if (ScatteredIntoShadow == QUEST_COMPLETED and ANewDawn == QUEST_AVAILABLE) then
-        if (mJob == 9 and mLvl >= 50) then
+        if (mJob == dsp.job.BST and mLvl >= 50) then
             if (ANewDawnEvent == 0) then
                 player:startEvent(5);
             elseif (ANewDawnEvent == 1) then

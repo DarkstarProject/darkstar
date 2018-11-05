@@ -354,7 +354,8 @@ namespace charutils
             "campaign,"             // 23
             "playtime,"             // 24
             "campaign_allegiance,"  // 25
-            "isstylelocked "        // 26
+            "isstylelocked,"        // 26
+            "moghancement "         // 27
             "FROM chars "
             "WHERE charid = %u";
 
@@ -432,6 +433,7 @@ namespace charutils
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
             PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
             PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->SetMoghancement(Sql_GetUIntData(SqlHandle, 27));
         }
 
         LoadSpells(PChar);
@@ -742,7 +744,7 @@ namespace charutils
         fmtQuery = "SELECT sandoria_supply, bastok_supply, windurst_supply, "
             "runic_portal, maw, past_sandoria_tp, "
             "past_bastok_tp, past_windurst_tp "
-            "FROM char_points "
+            "FROM char_unlocks "
             "WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
@@ -4221,6 +4223,25 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
+    *  Saves character's current moghancement
+    *                                                                       *
+    ************************************************************************/
+
+    void SaveCharMoghancement(CCharEntity* PChar)
+    {
+        const char* Query =
+            "UPDATE chars "
+            "SET moghancement = %u "
+            "WHERE charid = %u;";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->m_moghancementID,
+            PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
     *  Сохраняем текущие уровни профессий персонажа                         *
     *                                                                       *
     ************************************************************************/
@@ -4342,13 +4363,13 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Conquest Point / Nation TP, ...                                      *
+    *  Nation teleports, etc.                                               *
     *                                                                       *
     ************************************************************************/
 
-    void SaveCharPoints(CCharEntity* PChar)
+    void SaveCharUnlocks(CCharEntity* PChar)
     {
-        const char* Query = "UPDATE char_points "
+        const char* Query = "UPDATE char_unlocks "
             "SET sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, "
             "runic_portal = %u, maw = %u, past_sandoria_tp = %u, "
             "past_bastok_tp = %u, past_windurst_tp = %u "

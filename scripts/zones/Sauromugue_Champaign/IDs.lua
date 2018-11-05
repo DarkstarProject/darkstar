@@ -25,15 +25,16 @@ zones[dsp.zone.SAUROMUGUE_CHAMPAIGN] =
         FIND_NOTHING             = 7252, -- You dig and you dig, but find nothing.
         THF_AF_MOB               = 7414, -- Something has come down from the tower!
         THF_AF_WALL_OFFSET       = 7433, -- It is impossible to climb this wall with your bare hands.
+        REGIME_REGISTERED        = 9808, -- New training regime registered!
     },
     mob =
     {
-        DEADLY_DODO_PH     = 
+        DEADLY_DODO_PH     =
         {
             [17268849] = 17268851, -- 238.000 40.000 332.000
             [17268850] = 17268851, -- 369.564 39.658 345.197
         },
-        BLIGHTING_BRAND_PH = 
+        BLIGHTING_BRAND_PH =
         {
             [17269013] = 17269016, -- 240.725 1.853 223.185
         },

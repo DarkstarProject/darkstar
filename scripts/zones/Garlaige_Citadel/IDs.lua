@@ -28,17 +28,11 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         PRESENCE_FROM_CEILING       = 7294, -- You sense a presence from in the ceiling.
         HEAT_FROM_CEILING           = 7295, -- You feel a terrible heat from the ceiling.
         CHEST_UNLOCKED              = 7324, -- You unlock the chest!
-        CHEST_FAIL                  = 7325, -- <name> fails to open the chest.
-        CHEST_TRAP                  = 7326, -- The chest was trapped!
-        CHEST_WEAK                  = 7327, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                 = 7328, -- The chest was a mimic!
-        CHEST_MOOGLE                = 7329, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION              = 7330, -- The chest was but an illusion...
-        CHEST_LOCKED                = 7331, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        REGIME_REGISTERED           = 9603, -- New training regime registered!
     },
     mob =
     {
-        HOVERING_HOTPOT_PH = 
+        HOVERING_HOTPOT_PH =
         {
             [17596623] = 17596628, -- 182.157 -0.012 29.941
             [17596625] = 17596628, -- 188.229 -0.018 20.151
@@ -48,13 +42,14 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         CHANDELIER         = 17596533,
         GUARDIAN_STATUE    = 17596643,
         SERKET             = 17596720,
+        MIMIC              = 17596728,
     },
     npc =
     {
-        BANISHING_GATE_OFFSET    = 17596761,
-        GARLAIGE_TREASURE_CHEST  = 17596812,
-        GARLAIGE_TREASURE_COFFER = 17596813,
-        CHANDELIER_QM            = 17596830,
+        BANISHING_GATE_OFFSET = 17596761,
+        TREASURE_CHEST        = 17596812,
+        TREASURE_COFFER       = 17596813,
+        CHANDELIER_QM         = 17596830,
     },
 }
 

@@ -29,6 +29,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         WATER_HOLE                  = 7680, -- There is an Opo-opo drinking well here. It seems they feast here, too.
         FAINT_CRY                   = 7681, -- You hear the cry of a famished Opo-opo!
         PAMAMAS                     = 7684, -- You might be able to draw an Opo-opo here if you had more pamamas.
+        REGIME_REGISTERED           = 9999, -- New training regime registered!
     },
     mob =
     {
@@ -44,6 +45,21 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     {
         EDACIOUS_OPO_OPO_QM = 17285615,
         OVERSEER_BASE       = 17285648,
+        HARVESTING =
+        {
+            17285679,
+            17285680,
+            17285681,
+        },
+        LOGGING =
+        {
+            17285673,
+            17285674,
+            17285675,
+            17285676,
+            17285677,
+            17285678,
+        },
     },
 }
 

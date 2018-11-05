@@ -186,9 +186,9 @@ function doEnspell(caster, target, spell, effect)
         target:addStatusEffect(dsp.effect.BLOOD_WEAPON, 1, 0, 30)
         return
     end
-    
+
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
-    
+
     --calculate potency
     local magicskill = target:getSkillLevel(dsp.skill.ENHANCING_MAGIC)
 
@@ -230,15 +230,14 @@ function getBaseCureOld(power,divisor,constant)
     return (power / 2) / divisor + constant;
 end;
 
-function getCureFinal(caster,spell,basecure,minCure,isBlueMagic)
-    if (basecure < minCure) then
-        basecure = minCure;
+function getCureFinal(caster, spell, basecure, minCure, isBlueMagic)
+    if basecure < minCure then
+        basecure = minCure
     end
 
-    local potency = 1 + (caster:getMod(dsp.mod.CURE_POTENCY) / 100);
-    if (potency > 1.5) then
-        potency = 1.5;
-    end
+    local curePot = math.min(caster:getMod(dsp.mod.CURE_POTENCY), 50) / 100 -- caps at 50%
+    local curePotII = math.min(caster:getMod(dsp.mod.CURE_POTENCY_II), 30) / 100 -- caps at 30%
+    local potency = 1 + curePot + curePotII
 
     local dSeal = 1;
     if (caster:hasStatusEffect(dsp.effect.DIVINE_SEAL)) then
@@ -1122,7 +1121,7 @@ end
 
 function doElementalNuke(caster, spell, target, spellParams)
     local DMG = 0;
-    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT); 
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT);
     local V = 0;
     local M = 0;
 
@@ -1138,9 +1137,9 @@ function doElementalNuke(caster, spell, target, spellParams)
             --, but after some cap: DMG = cap `
             if dINT > cap then DMG = cap;
 
-            --, but less than some inflection point: DMG = V + (dINT * M)                
+            --, but less than some inflection point: DMG = V + (dINT * M)
             elseif DMG < I then DMG = V + (dINT * M);
-            
+
             --, but after some inflection point: DMG = V + (inflectionPoint + (dINT-inflectionPoint) * M / 2))
             --(above some critical value, adding INT/MND becomes half as effective)
             else DMG = V + (I + ((dINT - I) / 2) * 1); end
@@ -1301,27 +1300,45 @@ function calculateDurationForLvl(duration, spellLvl, targetLvl)
 end
 
 function calculateDuration(duration, magicSkill, spellGroup, caster, target, useComposure)
-    if magicSkill ~= dsp.skill.ENHANCING_MAGIC then 
-        return duration 
-    end
-    
-    -- Gear mods
-    duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
-    
-    -- Default is true
-    useComposure = useComposure or (useComposure == nill and true)
+    if magicSkill == dsp.skill.ENHANCING_MAGIC then -- Enhancing Magic
+        -- Gear mods
+        duration = duration + duration * caster:getMod(dsp.mod.ENH_MAGIC_DURATION) / 100
 
-    -- Composure
-    if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
-        duration = duration * 3
+        -- Default is true
+        useComposure = useComposure or (useComposure == nill and true)
+
+        -- Composure
+        if useComposure and caster:hasStatusEffect(dsp.effect.COMPOSURE) and caster:getID() == target:getID() then
+            duration = duration * 3
+        end
+
+        -- Perpetuance
+        if caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE then
+            duration  = duration * 2
+        end
+    elseif magicSkill == dsp.skill.ENFEEBLING_MAGIC then -- Enfeebling Magic
+        if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+            duration = duration * 2
+        end
     end
 
-    -- Perpetuance
-    if caster:hasStatusEffect(dsp.effect.PERPETUANCE) and spellGroup == dsp.magic.spellGroup.WHITE then
-        duration  = duration * 2
+    return math.floor(duration)
+end
+
+function calculatePotency(basePotency, dStat, magicSkill, caster, target)
+    if magicSkill ~= dsp.skill.ENFEEBLING_MAGIC then
+        return basePotency
     end
-    
-    return duration
+
+    if caster:hasStatusEffect(dsp.effect.SABOTEUR) then
+        if target:isNM() then
+            basePotency = math.floor(basePotency * (1.3 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
+        else
+            basePotency = math.floor(basePotency * (2 + caster:getMod(dsp.mod.ENHANCES_SABOTEUR)))
+        end
+    end
+
+    return math.floor((basePotency + dStat) * (1 + caster:getMod(dsp.mod.ENF_MAG_POTENCY) / 100))
 end
 
 -- Output magic hit rate for all levels

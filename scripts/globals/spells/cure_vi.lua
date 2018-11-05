@@ -62,7 +62,7 @@ function onSpellCast(caster,target,spell)
             else
                 solaceStoneskin = math.floor(final * 0.25)
             end
-            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25)
+            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25,0,0,1)
         end
         final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 

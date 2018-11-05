@@ -34,6 +34,10 @@ zones[dsp.zone.ARRAPAGO_REEF] =
     },
     mob =
     {
+        BLOODY_BONES_PH       =
+        {
+            [16998653] = 16998655, -- 136.234 -6.831 468.779
+        },
         MEDUSA                = 16998862,
         LIL_APKALLU           = 16998871,
         VELIONIS              = 16998872,

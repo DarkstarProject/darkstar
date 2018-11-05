@@ -3,9 +3,9 @@
 --  MOB: Meww the Turtlerider
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,127,1);
+    dsp.regime.checkRegime(player, mob, 127, 1, dsp.regime.type.FIELDS)
 end;

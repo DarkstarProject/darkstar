@@ -19,13 +19,6 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         CONQUEST_BASE              = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET     = 7207, -- You can't fish here.
         CHEST_UNLOCKED             = 7314, -- You unlock the chest!
-        CHEST_FAIL                 = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP                 = 7316, -- The chest was trapped!
-        CHEST_WEAK                 = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE               = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION             = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED               = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         NO_REASON_TO_INVESTIGATE   = 7322, -- There is no reason to investigate further.
         THE_BOX_IS_LOCKED          = 7323, -- The box is locked.
         PAINTBRUSH_OFFSET          = 7326, -- When the <keyitem> projects the deepest, darkest corner of your soul onto the blank canvas...only then will the doors to rancor open.
@@ -42,10 +35,11 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         IT_IS_A_BEEHIVE            = 7497, -- It is a beehive...
         BITS_OF_VEGETABLE          = 7498, -- Bits of vegetable matter are strewn around. They appear to have been gnawed on by insects...
         SENSE_OMINOUS_PRESENCE     = 7500, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10521, -- New training regime registered!
     },
     mob =
     {
-        TONBERRY_KINQ_PH         = 
+        TONBERRY_KINQ_PH         =
         {
             [17428673] = 17428677, -- -221.717 0.996 12.819
             [17428675] = 17428677 -- -218 -0.792 24
@@ -53,6 +47,7 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
         TEMPLE_GUARDIAN          = 17428494,
         NIO_A                    = 17428495,
         NIO_HUM                  = 17428496,
+        MIMIC                    = 17428497,
         SOZU_ROGBERRY            = 17428751,
         CLEUVARION_M_RESOAIX     = 17428807,
         ROMPAULION_S_CITALLE     = 17428808,
@@ -65,14 +60,11 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
     },
     npc =
     {
-        DEATH_FROM_ABOVE_QM       = 17428870,
-        HABETROT_QM               = 17428871,
-        SOZU_ROGBERRY_QM          = 17428873,
-        PLONGEUR_MONBERRY         = 17428933,
-        UGGALEPIH_BOOK_OFFSET     = 17428973,
-        TEMPLE_GUARDIAN_DOOR      = 17428978,
-        UGGALEPIH_DOOR_TO_RANCOR  = 17428989,
-        UGGALEPIH_TREASURE_COFFER = 17429007,
+        PLONGEUR_MONBERRY        = 17428933,
+        UGGALEPIH_BOOK_OFFSET    = 17428973,
+        TEMPLE_GUARDIAN_DOOR     = 17428978,
+        UGGALEPIH_DOOR_TO_RANCOR = 17428989,
+        TREASURE_COFFER          = 17429007,
     },
 }
 

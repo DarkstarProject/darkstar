@@ -29,16 +29,10 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         THE_LIGHT_IS_FULLY_LIT                  = 7373, -- The <item> is fully lit!
         SOLID_STONE                             = 7381, -- This door is made of solid stone.
         CHEST_UNLOCKED                          = 7400, -- You unlock the chest!
-        CHEST_FAIL                              = 7401, -- <name> fails to open the chest.
-        CHEST_TRAP                              = 7402, -- The chest was trapped!
-        CHEST_WEAK                              = 7403, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                             = 7404, -- The chest was a mimic!
-        CHEST_MOOGLE                            = 7405, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                          = 7406, -- The chest was but an illusion...
-        CHEST_LOCKED                            = 7407, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SPIRIT_INCENSE_EMITS_PUTRID_ODOR        = 7410, -- The <item> emits a putrid odor and burns up. Your attempt this time has failed...
         SARCOPHAGUS_CANNOT_BE_OPENED            = 7427, -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
         NOTHING_HAPPENED                        = 7341, -- Nothing happened...
+        REGIME_REGISTERED                       = 9672, -- New training regime registered!
     },
     mob =
     {
@@ -49,12 +43,13 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         STURM         = 17576267,
         TAIFUN        = 17576268,
         TROMBE        = 17576269,
+        MIMIC         = 17576270,
     },
     npc =
     {
-        ELDIEME_BRAZIER_OFFSET  = 17576343,
-        ELDIEME_TREASURE_CHEST  = 17576356,
-        ELDIEME_TREASURE_COFFER = 17576357,
+        ELDIEME_BRAZIER_OFFSET = 17576343,
+        TREASURE_CHEST         = 17576356,
+        TREASURE_COFFER        = 17576357,
     },
 }
 

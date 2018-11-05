@@ -32,7 +32,6 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBattlefieldEnter(player,battlefield)
-    -- player:messageSpecial(107);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode

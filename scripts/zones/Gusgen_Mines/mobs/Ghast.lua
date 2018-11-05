@@ -2,11 +2,11 @@
 -- Area: Gusgen Mines
 --  MOB: Ghast
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,679,1);
-    checkGoVregime(player,mob,680,2);
-    checkGoVregime(player,mob,684,1);
+    dsp.regime.checkRegime(player, mob, 679, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 680, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 684, 1, dsp.regime.type.GROUNDS)
 end;

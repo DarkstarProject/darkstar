@@ -4,10 +4,10 @@
 -- !pos -21.776 16.983 -231.477 167
 -----------------------------------
 local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,613,1);
+    dsp.regime.checkRegime(player, mob, 613, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

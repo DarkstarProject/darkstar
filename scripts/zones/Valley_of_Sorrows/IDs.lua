@@ -20,6 +20,7 @@ zones[dsp.zone.VALLEY_OF_SORROWS] =
         AURA_THREATENS             = 6405, -- An aura of irrepressible might threatens to overwhelm you...
         CONQUEST_BASE              = 7048, -- Tallying conquest results...
         SOMETHING_BURRIED          = 7307, -- It looks like something was buried here.
+        REGIME_REGISTERED          = 9683, -- New training regime registered!
     },
     mob =
     {

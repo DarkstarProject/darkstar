@@ -40,9 +40,6 @@ zones[dsp.zone.PROMYVION_VAHZL] =
         DEVIATOR                 = 16867455,
         WAILER                   = 16867544,
         PROVOKER                 = 16867642,
-        DEVIATOR_QM              = 16867687,
-        WAILER_QM                = 16867688,
-        PROVOKER_QM              = 16867689,
     },
     npc =
     {

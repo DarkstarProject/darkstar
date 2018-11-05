@@ -23,16 +23,10 @@ zones[dsp.zone.GUSGEN_MINES] =
         LOCK_OTHER_DEVICE       = 7338, -- This entrance's lock is connected to some other device.
         MINING_IS_POSSIBLE_HERE = 7358, -- Mining is possible here if you have <item>.
         CHEST_UNLOCKED          = 7372, -- You unlock the chest!
-        CHEST_FAIL              = 7373, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7374, -- The chest was trapped!
-        CHEST_WEAK              = 7375, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7376, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7377, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7378, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7379, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         LETTERS_IS_WRITTEN_HERE = 7380, -- Something resembling letters is written here.
         FOUND_LOCATION_SEAL     = 7381, -- You have found the location of the seal. You place <item> on it.
         IS_ON_THIS_SEAL         = 7382, -- <item> is on this seal.
+        REGIME_REGISTERED       = 10381, -- New training regime registered!
     },
     mob =
     {
@@ -41,7 +35,16 @@ zones[dsp.zone.GUSGEN_MINES] =
     },
     npc =
     {
-        GUSGEN_TREASURE_CHEST = 17580403,
+        TREASURE_CHEST = 17580403,
+        MINING =
+        {
+            17580397,
+            17580398,
+            17580399,
+            17580400,
+            17580401,
+            17580402,
+        },
     },
 }
 

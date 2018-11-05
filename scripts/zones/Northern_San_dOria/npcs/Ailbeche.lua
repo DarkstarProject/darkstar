@@ -4,12 +4,13 @@
 -- Starts and Finishes Quest: Father and Son, Sharpening the Sword, A Boy's Dream (start)
 -- !pos 4 -1 24 231
 -----------------------------------
-local ID = require("scripts/zones/Northern_San_dOria/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -58,12 +59,12 @@ function onTrigger(player,npc)
     elseif (fatherAndSon == QUEST_ACCEPTED and player:getVar("QuestfatherAndSonVar") == 1) then
         player:startEvent(509); -- Finish Quest "Father and Son" (part1)
     elseif (sharpeningTheSword == QUEST_AVAILABLE and player:getVar("returnedAilbecheRod") == 1) then
-        if (mJob == 7 and mLvl < 40 or mJob ~= 7) then
+        if (mJob == dsp.job.PLD and mLvl < 40 or mJob ~= dsp.job.PLD) then
             player:startEvent(12); -- Dialog after "Father and Son" (part2)
     -- "Sharpening the Sword" Quest Dialogs
-        elseif (mJob == 7 and mLvl >= 40 and sharpeningTheSwordCS == 0) then
+        elseif (mJob == dsp.job.PLD and mLvl >= 40 and sharpeningTheSwordCS == 0) then
             player:startEvent(45); -- Start Quest "Sharpening the Sword" with thank you for the rod
-        elseif (mJob == 7 and mLvl >= 40 and sharpeningTheSwordCS == 1) then
+        elseif (mJob == dsp.job.PLD and mLvl >= 40 and sharpeningTheSwordCS == 1) then
             player:startEvent(43); -- Start Quest "Sharpening the Sword"
         end
     elseif (sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetstone == false) then
@@ -71,7 +72,7 @@ function onTrigger(player,npc)
     elseif (sharpeningTheSword == QUEST_ACCEPTED and OrdelleWhetstone == true) then
         player:startEvent(44); -- Finish Quest "Sharpening the Sword"
     -- "A Boy's Dream" Quest Dialogs
-    elseif (aBoysDream == QUEST_AVAILABLE and mJob == 7 and mLvl >= 50) then
+    elseif (aBoysDream == QUEST_AVAILABLE and mJob == dsp.job.PLD and mLvl >= 50) then
         if (aBoysDreamCS == 0) then
             player:startEvent(41); -- Start Quest "A Boy's Dream" (long cs)
         else

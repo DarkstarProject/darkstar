@@ -5,9 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Misareaux_Coast/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onConquestUpdate(zone, updatetype)

@@ -4,12 +4,12 @@
 -- Note: Place holder for Fungus Beetle
 -----------------------------------
 local ID = require("scripts/zones/West_Ronfaure/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,3,1);
-    checkRegime(player,mob,4,2);
+    dsp.regime.checkRegime(player, mob, 3, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 4, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

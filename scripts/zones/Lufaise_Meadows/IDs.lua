@@ -27,7 +27,7 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
     },
     mob =
     {
-        PADFOOT               = 
+        PADFOOT               =
         {
             16875552, -- !pos -43.689 0.487 -328.028
             16875578, -- !pos 260.445 -1.761 -27.862
@@ -40,12 +40,19 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         SPLINTERSPINE_GRUKJUK = 16875774,
         KURREA                = 16875778,
         AMALTHEIA             = 16875779,
-        OVERSEER_BASE         = 16875865,
-        KURREA_QM             = 16875890,
-        AMALTHEIA_QM          = 16875894,
     },
     npc =
     {
+        OVERSEER_BASE = 16875865,
+        LOGGING       =
+        {
+            16875883,
+            16875884,
+            16875885,
+            16875886,
+            16875887,
+            16875888,
+        },
     },
 }
 

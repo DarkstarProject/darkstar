@@ -1,38 +1,30 @@
 -----------------------------------
 -- Area: Ru'Aun Gardens
---  NM:  Byakko
+--   NM: Byakko
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-local ID = require("scripts/zones/RuAun_Gardens/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+local ID = require("scripts/zones/RuAun_Gardens/IDs")
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/magic")
+-----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT,mob:getShortID());
-end;
-
-function onMobSpawn(mob)
-end;
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID())
+end
 
 function onAdditionalEffect(mob, target, damage)
-    local dmg = math.random(35,50);
-    local params = {};
-    params.bonusmab = 0;
-    params.includemab = false;
+    local dmg = math.random(35, 50)
+    local params = {}
+    params.bonusmab = 0
+    params.includemab = false
 
-    dmg = addBonusesAbility(mob, dsp.magic.ele.LIGHT, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.LIGHT,0);
-    dmg = adjustForTarget(target,dmg,dsp.magic.ele.LIGHT);
-    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.LIGHT,dmg);
+    dmg = addBonusesAbility(mob, dsp.magic.ele.LIGHT, target, dmg, params)
+    dmg = dmg * applyResistanceAddEffect(mob, target, dsp.magic.ele.LIGHT, 0)
+    dmg = adjustForTarget(target, dmg, dsp.magic.ele.LIGHT)
+    dmg = finalMagicNonSpellAdjustments(mob, target, dsp.magic.ele.LIGHT, dmg)
 
-    return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
-end;
+    return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg
+end
 
 function onMobDeath(mob, player, isKiller)
-    player:showText(mob,ID.text.SKY_GOD_OFFSET + 12);
-end;
-
-function onMobDespawn(mob)
-    GetNPCByID(ID.npc.BYAKKO_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-end;
+    player:showText(mob, ID.text.SKY_GOD_OFFSET + 12)
+end

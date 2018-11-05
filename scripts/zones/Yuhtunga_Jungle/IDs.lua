@@ -33,10 +33,11 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         ZILART_MONUMENT             = 7679, -- It is an ancient Zilart monument.
         LOGGING_IS_POSSIBLE_HERE    = 7696, -- Logging is possible here if you have <item>.
         HARVESTING_IS_POSSIBLE_HERE = 7703, -- Harvesting is possible here if you have <item>.
+        REGIME_REGISTERED           = 10048, -- New training regime registered!
     },
     mob =
     {
-        MISCHIEVOUS_MICHOLAS_PH = 
+        MISCHIEVOUS_MICHOLAS_PH =
         {
             [17281148] = 17281149, -- -265.616 -0.5 -24.389
         },
@@ -51,6 +52,21 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         BLUE_RAFFLESIA_OFFSET     = 17281584,
         OVERSEER_BASE             = 17281598,
         YUHTUNGA_CERMET_HEADSTONE = 17281623,
+        HARVESTING =
+        {
+            17281634,
+            17281635,
+            17281636,
+        },
+        LOGGING =
+        {
+            17281628,
+            17281629,
+            17281630,
+            17281631,
+            17281632,
+            17281633,
+        },
     },
 }
 

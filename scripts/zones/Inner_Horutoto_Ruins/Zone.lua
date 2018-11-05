@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Inner_Horutoto_Ruins/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 require("scripts/globals/status")
 -----------------------------------
 
@@ -14,7 +15,7 @@ function onInitialize(zone)
     zone:registerRegion(3, -257.8, 0, -24.9, -256.1, 1, -23.5) -- Black
     zone:registerRegion(4, -261, -3, 182, -257, -1, 186) -- Teleport at H-6
 
-    UpdateTreasureSpawnPoint(ID.npc.INNER_HORUTOTO_TREASURE_CHEST)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

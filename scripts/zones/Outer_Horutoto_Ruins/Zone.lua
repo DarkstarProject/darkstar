@@ -5,10 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.OUTER_HORUTOTO_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

@@ -42,6 +42,15 @@ zones[dsp.zone.ATTOHWA_CHASM] =
     {
         MIASMA_OFFSET   = 16806304,
         GASPONIA_OFFSET = 16806327,
+        EXCAVATION =
+        {
+            16806369,
+            16806370,
+            16806371,
+            16806372,
+            16806373,
+            16806374,
+        },
     },
 }
 

@@ -23,15 +23,16 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
         LEFT_SPRING_EARLY       = 7324, -- You are not warm enough yet. You will need to spend more time than that in the spring to get your body heated up.
         LEFT_SPRING_CLEAN       = 7325, -- Your whole body is piping hot, and the smell of the Rafflesia pollen is gone!
         MORION_WORM_1           = 7328, -- It appears to be a hole made by some kind of animal. Fragments of iron ore are scattered around the area...
+        REGIME_REGISTERED       = 9456, -- New training regime registered!
     },
     mob =
     {
-        CARGO_CRAB_COLIN_PH = 
+        CARGO_CRAB_COLIN_PH =
         {
             [17486002] = 17485980, -- -30.384 1.000 -33.277
             [17486095] = 17485980, -- -85.000 -0.500 -37.000
         },
-        DAME_BLANCHE_PH     = 
+        DAME_BLANCHE_PH     =
         {
             [17486128] = 17486129, -- -345.369 0.716 119.486
             [17486127] = 17486129, -- -319.266 -0.244 130.650
@@ -41,7 +42,7 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
             [17486119] = 17486129, -- -277.338 -9.352 139.763
             [17486118] = 17486129, -- -276.713 -9.954 135.353
         },
-        FALCATUS_ARANEI_PH  = 
+        FALCATUS_ARANEI_PH  =
         {
             [17486033] = 17486031, -- -68.852 -5.029 141.069
             [17486032] = 17486031, -- -94.545 -6.095 136.480
@@ -56,7 +57,15 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
     },
     npc =
     {
-        MORION_WORM_QM = 17486213,
+        EXCAVATION =
+        {
+            17486253,
+            17486254,
+            17486255,
+            17486256,
+            17486257,
+            17486258,
+        },
     },
 }
 

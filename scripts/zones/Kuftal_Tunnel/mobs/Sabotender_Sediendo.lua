@@ -4,11 +4,11 @@
 -- Note: Place Holder for Sabotender Mariachi
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,738,2);
+    dsp.regime.checkRegime(player, mob, 738, 2, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

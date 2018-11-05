@@ -31,10 +31,11 @@ zones[dsp.zone.VALKURM_DUNES] =
         MYSTERIOUS_VOICE               = 7852, -- You hear a mysterious, floating voice: Bring forth the <item>...
         YOU_CANNOT_ENTER_DYNAMIS       = 7864, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
         PLAYERS_HAVE_NOT_REACHED_LEVEL = 7866, -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        REGIME_REGISTERED              = 10262, -- New training regime registered!
     },
     mob =
     {
-        VALKURM_EMPEROR_PH = 
+        VALKURM_EMPEROR_PH =
         {
             [17199434] = 17199438, -- -228.957 2.776 -101.226
             [17199437] = 17199438, -- -264.829 -0.843 -91.306
@@ -43,7 +44,7 @@ zones[dsp.zone.VALKURM_DUNES] =
             [17199435] = 17199438, -- -270.823 -2.168 -16.349
             [17199436] = 17199438, -- -327.000 -1.000 -21.000
         },
-        GOLDEN_BAT_PH      = 
+        GOLDEN_BAT_PH      =
         {
             [17199562] = 17199564, -- -804.502 -8.567 22.082
             [17199563] = 17199564, -- -798.674 -8.672 19.204

@@ -19,6 +19,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
         CONQUEST_BASE           = 7148, -- Tallying conquest results...
         SMALL_HOLE_HERE         = 7335, -- There is a small hole here. It appears to be damp inside...
         KIRIN_OFFSET            = 7346, -- I am Kirin, master of the Shijin. The one who stands above all. You, who have risen above your mortal status to contend with the gods... It is time to reap your reward.
+        REGIME_REGISTERED       = 10338, -- New training regime registered!
         HOMEPOINT_SET           = 11424, -- Home point set!
     },
     mob =
@@ -29,7 +30,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
     },
     npc =
     {
-        SHRINE_DOORS     = 
+        SHRINE_DOORS     =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -43,7 +44,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [19] = "y", [18] = "b",
             [21] = "y", [20] = "b",
         },
-        SHRINE_MONOLITHS = 
+        SHRINE_MONOLITHS =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -57,8 +58,6 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [18] = "y", [19] = "b",
         },
         OLLAS_QM               = 17506692,
-        KIRIN_QM               = 17506693,
-        ULLIKUMMI_QM           = 17506694,
         SHRINE_DOOR_OFFSET     = 17506718,
         SHRINE_MONOLITH_OFFSET = 17506741,
     },

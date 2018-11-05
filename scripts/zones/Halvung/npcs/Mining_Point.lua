@@ -2,20 +2,19 @@
 -- Area: Halvung
 --  NPC: Mining Point
 -----------------------------------
-local ID = require("scripts/zones/Halvung/IDs");
-require("scripts/globals/mining");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player, player:getZoneID(), npc, trade, 210);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 210)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.MINING_IS_POSSIBLE_HERE, 605);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

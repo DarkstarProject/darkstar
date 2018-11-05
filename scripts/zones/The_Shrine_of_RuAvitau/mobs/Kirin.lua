@@ -5,7 +5,6 @@
 mixins = {require("scripts/mixins/job_special")};
 
 local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
-require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 
@@ -79,5 +78,4 @@ function onMobDespawn( mob )
     for i = ID.mob.KIRIN + 1, ID.mob.KIRIN + 4 do
         DespawnMob(i);
     end;
-    GetNPCByID(ID.npc.KIRIN_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end

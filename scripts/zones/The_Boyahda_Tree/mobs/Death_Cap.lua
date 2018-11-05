@@ -3,11 +3,11 @@
 --  MOB: Death Cap
 -----------------------------------
 local ID = require("scripts/zones/The_Boyahda_Tree/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,719,1);
+    dsp.regime.checkRegime(player, mob, 719, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

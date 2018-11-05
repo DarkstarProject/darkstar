@@ -33,18 +33,12 @@ zones[dsp.zone.DANGRUF_WADI] =
         JUST_WONT_DO            = 7372, -- You hear a voice... (...just won't do...nope...nope...)
         BEAT_EGGBLIX            = 7373, -- (...Lucky, ya are! Don't forget to say hi to our sister at Drachenfall!)
         CHEST_UNLOCKED          = 7432, -- You unlock the chest!
-        CHEST_FAIL              = 7433, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7434, -- The chest was trapped!
-        CHEST_WEAK              = 7435, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7436, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7437, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7438, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7439, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SMALL_HOLE              = 7486, -- There is a small hole here.
+        REGIME_REGISTERED       = 10449, -- New training regime registered!
     },
     mob =
     {
-        TEPORINGO_PH  = 
+        TEPORINGO_PH  =
         {
             [17559583] = 17559584, -- -189,3,79
         },
@@ -53,10 +47,10 @@ zones[dsp.zone.DANGRUF_WADI] =
     },
     npc =
     {
-        CHOCOBOLEECH_QM        = 17559876,
-        DANGRUF_GEYSER_OFFSET  = 17559899,
-        AN_EMPTY_VESSEL_QM     = 17559911,
-        DANGRUF_TREASURE_CHEST = 17559924,
+        CHOCOBOLEECH_QM       = 17559876,
+        DANGRUF_GEYSER_OFFSET = 17559899,
+        AN_EMPTY_VESSEL_QM    = 17559911,
+        TREASURE_CHEST        = 17559924,
     },
 }
 

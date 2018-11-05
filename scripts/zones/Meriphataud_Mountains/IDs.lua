@@ -22,10 +22,11 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         FIND_NOTHING            = 7244, -- You dig and you dig, but find nothing.
         NOTHING_FOUND           = 7487, -- You find nothing.
         CONQUEST                = 7899, -- You've earned conquest points!
+        REGIME_REGISTERED       = 10587, -- New training regime registered!
     },
     mob =
     {
-        PATRIPATAN_PH       = 
+        PATRIPATAN_PH       =
         {
             [17264967] = 17264972, -- 551.767,-32.570,590.205
             [17264968] = 17264972, -- 646.199,-24.483,644.477

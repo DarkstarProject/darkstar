@@ -4,10 +4,13 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
     GetMobByID(ID.mob.CERBERUS):setRespawnTime(math.random(12,36) * 3600);
+
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

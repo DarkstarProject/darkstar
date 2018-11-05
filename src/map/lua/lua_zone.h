@@ -44,7 +44,6 @@ public:
         return m_pLuaZone;
     }
 
-    int32 canUseMisc(lua_State*);
     int32 registerRegion(lua_State*);
     int32 levelRestriction(lua_State*);
     int32 getPlayers(lua_State*);

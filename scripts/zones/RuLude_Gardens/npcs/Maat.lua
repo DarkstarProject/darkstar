@@ -5,11 +5,12 @@
 -- Involved in Quests: Beat Around the Bushin
 -- !pos 8 3 118 243
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/RuLude_Gardens/IDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -160,11 +161,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,SHATTERING_STARS);
     elseif (csid == 64 and option == 1) then
         local mJob = player:getMainJob();
-            if (mJob == 2 or mJob == 3 or mJob == 15) then    player:setPos(299.316,-123.591,353.760,66,146);
-        elseif (mJob == 1 or mJob == 4 or mJob == 11) then    player:setPos(-511.459,159.004,-210.543,10,139);
-        elseif (mJob == 7 or mJob == 8 or mJob == 10) then     player:setPos(-225.146,-24.250,20.057,255,206);
-        elseif (mJob == 5 or mJob == 6 or mJob == 9) then      player:setPos(-349.899,104.213,-260.150,0,144);
-        elseif (mJob == 12 or mJob == 13 or mJob == 14) then player:setPos(-220.084,-0.645,4.442,191,168); end
+            if (mJob == dsp.job.MNK or mJob == dsp.job.WHM or mJob == dsp.job.SMN) then player:setPos(299.316,-123.591,353.760,66,146);
+        elseif (mJob == dsp.job.WAR or mJob == dsp.job.BLM or mJob == dsp.job.RNG) then player:setPos(-511.459,159.004,-210.543,10,139);
+        elseif (mJob == dsp.job.PLD or mJob == dsp.job.DRK or mJob == dsp.job.BRD) then player:setPos(-225.146,-24.250,20.057,255,206);
+        elseif (mJob == dsp.job.RDM or mJob == dsp.job.THF or mJob == dsp.job.BST) then player:setPos(-349.899,104.213,-260.150,0,144);
+        elseif (mJob == dsp.job.SAM or mJob == dsp.job.NIN or mJob == dsp.job.DRG) then player:setPos(-220.084,-0.645,4.442,191,168); end
     elseif (csid == 93) then
         player:addTitle(dsp.title.STAR_BREAKER);
         player:levelCap(75);

@@ -42,7 +42,7 @@ function onTrigger(player,npc)
     elseif (Rivals == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 3) then
         player:startEvent(93);
     elseif (Rivals == QUEST_ACCEPTED) then
-        player:showText(npc,10311);
+        player:showText(npc, ID.text.DETZO_RIVALS_DIALOG)
     else
         player:startEvent(30);
     end

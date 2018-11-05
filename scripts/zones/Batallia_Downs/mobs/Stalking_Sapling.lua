@@ -4,12 +4,12 @@
 -- Note: PH for Tottering Toby
 -----------------------------------
 local ID = require("scripts/zones/Batallia_Downs/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,72,1);
-    checkRegime(player,mob,73,1);
+    dsp.regime.checkRegime(player, mob, 72, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 73, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

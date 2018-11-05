@@ -26,6 +26,15 @@ zones[dsp.zone.FORT_KARUGO_NARUGO_S] =
     npc =
     {
         FORT_KN_INDESCRIPT_MARKINGS = 17171272,
+        LOGGING =
+        {
+            17171239,
+            17171240,
+            17171241,
+            17171242,
+            17171243,
+            17171244,
+        },
     },
 }
 

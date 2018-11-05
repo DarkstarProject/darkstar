@@ -20,13 +20,6 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         CONQUEST_BASE              = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET     = 7207, -- You can't fish here.
         CHEST_UNLOCKED             = 7314, -- You unlock the chest!
-        CHEST_FAIL                 = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP                 = 7316, -- The chest was trapped!
-        CHEST_WEAK                 = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE               = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION             = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED               = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SAHAGIN_DOOR_INSIDE        = 7332, -- The door is tightly shut.
         SAHAGIN_DOOR_OUTSIDE       = 7333, -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.
         SAHAGIN_DOOR_TRADED        = 7334, -- The <item> breaks!
@@ -40,20 +33,22 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         GOLD_CHECK                 = 7345, -- You see something gold glittering around the indentation.
         COMPLETED_CHECK            = 7346, -- It is a door you can open using <item>!
         SENSE_OMINOUS_PRESENCE     = 7360, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 9680, -- New training regime registered!
     },
     mob =
     {
-        CHARYBDIS_PH = 
+        CHARYBDIS_PH =
         {
             [17498518] = 17498522,  -- -138.181, 48.389, -338.001
             [17498520] = 17498522  -- -212.407, 38.538, -342.544
         },
+        MIMIC        = 17498564,
         WATER_LEAPER = 17498565,
     },
     npc =
     {
-        SSG_TREASURE_CHEST  = 17498625,
-        SSG_TREASURE_COFFER = 17498626,
+        TREASURE_CHEST  = 17498625,
+        TREASURE_COFFER = 17498626,
     },
 }
 
