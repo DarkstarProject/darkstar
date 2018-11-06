@@ -14,4 +14,4 @@ EXPOSE 54001
 EXPOSE 54230
 EXPOSE 54231
 
-CMD ./dsconnect
+CMD ./docker/wait-for-it.sh dsdb:3306 --timeout=0 && ./dsconnect
