@@ -17,7 +17,7 @@ zones[dsp.zone.PROMYVION_MEA] =
     },
     mob =
     {
-        MEA_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16859151] = {1, 3, 16859451},
             [16859198] = {2, 5, 16859454},
@@ -34,7 +34,7 @@ zones[dsp.zone.PROMYVION_MEA] =
     },
     npc =
     {
-        MEA_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {-122, -4,  197, -117, 4,  202, {46}},    -- floor 1 return
             [21]        = {  -1, -4, -121,    2, 4, -118, {41}},    -- floor 2 return

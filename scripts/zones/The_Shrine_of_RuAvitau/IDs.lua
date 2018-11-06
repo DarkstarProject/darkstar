@@ -30,7 +30,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
     },
     npc =
     {
-        SHRINE_DOORS     =
+        DOORS =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -44,7 +44,7 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [19] = "y", [18] = "b",
             [21] = "y", [20] = "b",
         },
-        SHRINE_MONOLITHS =
+        MONOLITHS =
         {
             [ 0] = "y", [ 4] = "b",
             [ 1] = "y", [ 5] = "b",
@@ -57,9 +57,9 @@ zones[dsp.zone.THE_SHRINE_OF_RUAVITAU] =
             [17] = "y", [15] = "b",
             [18] = "y", [19] = "b",
         },
-        OLLAS_QM               = 17506692,
-        SHRINE_DOOR_OFFSET     = 17506718,
-        SHRINE_MONOLITH_OFFSET = 17506741,
+        OLLAS_QM        = 17506692,
+        DOOR_OFFSET     = 17506718,
+        MONOLITH_OFFSET = 17506741,
     },
 }
 

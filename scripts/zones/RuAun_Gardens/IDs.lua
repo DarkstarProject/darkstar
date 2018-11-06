@@ -54,7 +54,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
     },
     npc =
     {
-        RUAUN_PINCERSTONES =
+        PINCERSTONES =
         {
             [17310031] = 17310054, -- Main to Seriyu
             [17310033] = 17310055, -- Seriyu to Main
@@ -67,7 +67,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             [17310047] = 17310066, -- Suzaku to Main
             [17310049] = 17310067, -- Main to Suzaku
         },
-        RUAUN_PORTALS      =
+        PORTALS      =
         {
             { coords = {  -3, -54, -583,    1, -50, -579}, event = 0       },
             { coords = { 147, -26, -449,  151, -22, -445}, event = 1       },

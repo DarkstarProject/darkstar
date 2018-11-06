@@ -92,8 +92,8 @@ function onRegionEnter(player,region)
 
     -- ornate door pressure plates
     else
-        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight + getWeight(player);
@@ -110,8 +110,8 @@ function onRegionLeave(player,region)
     local RegionID = region:GetRegionID();
 
     if (RegionID < 30) then
-        local door = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID - 1);
-        local plate = GetNPCByID(ID.npc.QC_ORNATE_DOOR_OFFSET + RegionID);
+        local door = GetNPCByID(ID.npc.ORNATE_DOOR_OFFSET + RegionID - 1);
+        local plate = GetNPCByID(ID.npc.ORNATE_DOOR_OFFSET + RegionID);
 
         local totalWeight = plate:getLocalVar("weight");
         totalWeight = totalWeight - getWeight(player);

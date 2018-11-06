@@ -47,10 +47,10 @@ zones[dsp.zone.DANGRUF_WADI] =
     },
     npc =
     {
-        CHOCOBOLEECH_QM       = 17559876,
-        DANGRUF_GEYSER_OFFSET = 17559899,
-        AN_EMPTY_VESSEL_QM    = 17559911,
-        TREASURE_CHEST        = 17559924,
+        CHOCOBOLEECH_QM    = 17559876,
+        GEYSER_OFFSET      = 17559899,
+        AN_EMPTY_VESSEL_QM = 17559911,
+        TREASURE_CHEST     = 17559924,
     },
 }
 

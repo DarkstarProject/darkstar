@@ -25,7 +25,7 @@ function onRegionEnter(player,region)
 end;
 
 function onZoneWeatherChange(weather)
-    npc = GetNPCByID(ID.npc.FORT_KN_INDESCRIPT_MARKINGS);
+    npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS);
     if (npc ~= nil) then
         if (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
             npc:setStatus(dsp.status.DISAPPEAR);

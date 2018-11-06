@@ -23,7 +23,7 @@ end;
 
 function onGameHour(zone)
     local GameHour = 150; -- Seconds per VanadielHour
-    local npc = GetNPCByID(ID.npc.MERIPH_S_MARKINGS); -- Indescript Markings
+    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS)
     if (npc ~= nil) then
         if (VanadielHour() == 17) then
             npc:setStatus(dsp.status.DISAPPEAR);

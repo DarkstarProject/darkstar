@@ -14,7 +14,7 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.OLD_RUSTY_KEY) or player:hasKeyItem(dsp.ki.PAINTBRUSH_OF_SOULS)) then
         player:messageSpecial(ID.text.NO_REASON_TO_INVESTIGATE);
     else
-        local offset = npc:getID() - ID.npc.UGGALEPIH_BOOK_OFFSET;
+        local offset = npc:getID() - ID.npc.BOOK_OFFSET;
         player:startEvent(61 + offset);
     end
 end;

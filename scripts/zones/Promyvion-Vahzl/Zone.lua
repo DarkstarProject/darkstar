@@ -10,7 +10,7 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 
 function onInitialize(zone)
-    for k, v in pairs(ID.npc.VAHZL_MEMORY_STREAMS) do
+    for k, v in pairs(ID.npc.MEMORY_STREAMS) do
         zone:registerRegion(k,v[1],v[2],v[3],v[4],v[5],v[6]);
     end
 end;
@@ -36,7 +36,7 @@ end;
 function onRegionEnter(player,region)
     if (player:getAnimation() == 0) then
         local regionId = region:GetRegionID();
-        local events = ID.npc.VAHZL_MEMORY_STREAMS[regionId][7];
+        local events = ID.npc.MEMORY_STREAMS[regionId][7];
         local event = events[math.random(#events)];
         if (regionId < 100 or GetNPCByID(regionId):getAnimation() == dsp.anim.OPEN_DOOR) then
             player:startEvent(event);

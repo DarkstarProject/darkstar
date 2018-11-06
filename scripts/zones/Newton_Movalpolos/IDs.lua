@@ -30,7 +30,7 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     },
     npc =
     {
-        NEWTON_DOOR_OFFSET   = 16826582,
+        DOOR_OFFSET          = 16826582,
         FURNACE_HATCH_OFFSET = 16826607,
         TREASURE_COFFER      = 16826627,
         MINING               =
