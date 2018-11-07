@@ -1043,17 +1043,16 @@ dsp.conquest.overseerOnEventUpdate = function(player, csid, option, guardNation)
             u2 = 1
         end
 
-        if stock.rank ~= nil and stock.rank > player:getRank() then -- check player rank
-            u3 = 0
-        elseif guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
-            u3 = 0
-        elseif stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
-            u3 = 0
+        local rankCheck = true
+        if guardNation ~= dsp.nation.OTHER and guardNation ~= pNation and getNationRank(guardNation) <= pRank then -- buy from other nation, must be higher ranked
+            rankCheck = false
+        elseif guardNation ~= dsp.nation.OTHER and stock.place ~= nil and guardNation ~= pNation then -- buy from other nation, cannot buy items with nation rank requirement
+            rankCheck = false
         elseif stock.place ~= nil and pRank > stock.place then -- buy from own nation, check nation rank
-            u3 = 0
+            rankCheck = false
         end
 
-        if u3 > 0 and u2 == 0 then
+        if rankCheck and u2 == 0 then
             player:setLocalVar("boughtItemCP", stock.item) -- set localVar for later cheat prevention
         end
 
@@ -1126,6 +1125,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local boughtItem = player:getLocalVar("boughtItemCP")
         player:setLocalVar("boughtItemCP", 0)
         if stock.item ~= boughtItem then
+            player:messageSpecial(mOffset + 61, stock.item) -- "Your rank is too low to purchase the <item>."
             return
         end
 
