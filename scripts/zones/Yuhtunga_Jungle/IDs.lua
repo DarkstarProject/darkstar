@@ -49,9 +49,9 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
     },
     npc =
     {
-        BLUE_RAFFLESIA_OFFSET     = 17281584,
-        OVERSEER_BASE             = 17281598,
-        YUHTUNGA_CERMET_HEADSTONE = 17281623,
+        BLUE_RAFFLESIA_OFFSET = 17281584,
+        OVERSEER_BASE         = 17281598,
+        CERMET_HEADSTONE      = 17281623,
         HARVESTING =
         {
             17281634,

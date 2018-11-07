@@ -36,15 +36,15 @@ function onRegionEnter(player,region)
     {
         [1] = function (x)
             player:startEvent(10);
-            SendEntityVisualPacket(ID.npc.DANGRUF_GEYSER_OFFSET, "kkj2");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET, "kkj2");
         end,
         [2] = function (x)
             player:startEvent(11);
-            SendEntityVisualPacket(ID.npc.DANGRUF_GEYSER_OFFSET + 1, "kkj1");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 1, "kkj1");
         end,
         [3] = function (x)
             player:startEvent(12);
-            SendEntityVisualPacket(ID.npc.DANGRUF_GEYSER_OFFSET + 2, "kkj3");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 2, "kkj3");
         end,
     }
     if (player:hasKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)) then

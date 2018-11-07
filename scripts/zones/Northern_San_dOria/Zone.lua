@@ -15,7 +15,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.N_SANDY_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE);
 
     zone:registerRegion(1, -7,-3,110, 7,-1,155);
 

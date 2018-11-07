@@ -37,7 +37,7 @@ zones[dsp.zone.SELBINA] =
     },
     npc =
     {
-        SELBINA_EXPLORER_MOOGLE = 17793131,
+        EXPLORER_MOOGLE = 17793131,
     },
 }
 

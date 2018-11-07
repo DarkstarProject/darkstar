@@ -98,8 +98,8 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
     },
     npc =
     {
-        KUFTAL_DOOR_ROCK = 17490280,
-        TREASURE_COFFER  = 17490304,
+        DOOR_ROCK       = 17490280,
+        TREASURE_COFFER = 17490304,
     },
 }
 

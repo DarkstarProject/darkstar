@@ -47,10 +47,10 @@ zones[dsp.zone.SACRARIUM] =
     },
     npc =
     {
-        STALE_DRAFT_OFFSET         = 16892097,
-        SACRARIUM_LABYRINTH_OFFSET = 16892110,
-        SMALL_KEYHOLE              = 16892142,
-        TREASURE_CHEST             = 16892183,
+        STALE_DRAFT_OFFSET = 16892097,
+        LABYRINTH_OFFSET   = 16892110,
+        SMALL_KEYHOLE      = 16892142,
+        TREASURE_CHEST     = 16892183,
     },
 }
 

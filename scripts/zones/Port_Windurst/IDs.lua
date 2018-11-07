@@ -67,7 +67,7 @@ zones[dsp.zone.PORT_WINDURST] =
     },
     npc =
     {
-        PORT_W_EXPLORER_MOOGLE = 17760450,
+        EXPLORER_MOOGLE = 17760450,
     },
 }
 

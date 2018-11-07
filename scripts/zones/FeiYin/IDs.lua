@@ -57,9 +57,9 @@ zones[dsp.zone.FEIYIN] =
     },
     npc =
     {
-        FEIYIN_AFTERGRLOW_OFFSET = 17613148,
-        TREASURE_CHEST           = 17613242,
-        UNDERGROUND_POOL_OFFSET  = 17613247,
+        AFTERGRLOW_OFFSET       = 17613148,
+        TREASURE_CHEST          = 17613242,
+        UNDERGROUND_POOL_OFFSET = 17613247,
     },
 }
 

@@ -60,11 +60,11 @@ zones[dsp.zone.TEMPLE_OF_UGGALEPIH] =
     },
     npc =
     {
-        PLONGEUR_MONBERRY        = 17428933,
-        UGGALEPIH_BOOK_OFFSET    = 17428973,
-        TEMPLE_GUARDIAN_DOOR     = 17428978,
-        UGGALEPIH_DOOR_TO_RANCOR = 17428989,
-        TREASURE_COFFER          = 17429007,
+        PLONGEUR_MONBERRY    = 17428933,
+        BOOK_OFFSET          = 17428973,
+        TEMPLE_GUARDIAN_DOOR = 17428978,
+        DOOR_TO_RANCOR       = 17428989,
+        TREASURE_COFFER      = 17429007,
     },
 }
 

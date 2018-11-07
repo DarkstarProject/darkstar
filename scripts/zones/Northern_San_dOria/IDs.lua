@@ -100,7 +100,7 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
     },
     npc =
     {
-        N_SANDY_EXPLORER_MOOGLE = 17723648,
+        EXPLORER_MOOGLE = 17723648,
     },
 }
 
