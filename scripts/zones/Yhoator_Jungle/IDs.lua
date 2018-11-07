@@ -43,8 +43,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     npc =
     {
-        EDACIOUS_OPO_OPO_QM = 17285615,
-        OVERSEER_BASE       = 17285648,
+        OVERSEER_BASE = 17285648,
         HARVESTING =
         {
             17285679,

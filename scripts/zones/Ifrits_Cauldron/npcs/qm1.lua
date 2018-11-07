@@ -9,9 +9,8 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 1189) and npcUtil.popFromQM(player, npc, ID.mob.TARASQUE, {claim=false}) then -- Rattling Egg
+    if npcUtil.tradeHas(trade, 1189) and npcUtil.popFromQM(player, npc, ID.mob.TARASQUE, {claim=false, look=true}) then -- Rattling Egg
         player:confirmTrade()
-        GetMobByID(ID.mob.TARASQUE):lookAt(player:getPos())
     end
 end
 
