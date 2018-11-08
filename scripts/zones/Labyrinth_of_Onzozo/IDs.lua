@@ -18,13 +18,6 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         CHEST_UNLOCKED          = 7314, -- You unlock the chest!
-        CHEST_FAIL              = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7316, -- The chest was trapped!
-        CHEST_WEAK              = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SENSE_OMINOUS_PRESENCE  = 7330, -- You sense an ominous presence...
         REGIME_REGISTERED       = 9386, -- New training regime registered!
     },
@@ -85,7 +78,7 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
     },
     npc =
     {
-        ONZOZO_TREASURE_CHEST = 17649900,
+        TREASURE_CHEST = 17649900,
     },
 }
 

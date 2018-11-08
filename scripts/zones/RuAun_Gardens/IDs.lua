@@ -21,13 +21,6 @@ zones[dsp.zone.RUAUN_GARDENS] =
         CONQUEST_BASE              = 7148, -- Tallying conquest results...
         IT_IS_ALREADY_FUNCTIONING  = 7308, -- It is already functioning.
         CHEST_UNLOCKED             = 7341, -- You unlock the chest!
-        CHEST_FAIL                 = 7342, -- <name> fails to open the chest.
-        CHEST_TRAP                 = 7343, -- The chest was trapped!
-        CHEST_WEAK                 = 7344, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                = 7345, -- The chest was a mimic!
-        CHEST_MOOGLE               = 7346, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION             = 7347, -- The chest was but an illusion...
-        CHEST_LOCKED               = 7348, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SKY_GOD_OFFSET             = 7358, -- A strange insignia pointing north is carved into the wall.
         REGIME_REGISTERED          = 9724, -- New training regime registered!
         HOMEPOINT_SET              = 11645, -- Home point set!
@@ -61,7 +54,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
     },
     npc =
     {
-        RUAUN_PINCERSTONES =
+        PINCERSTONES =
         {
             [17310031] = 17310054, -- Main to Seriyu
             [17310033] = 17310055, -- Seriyu to Main
@@ -74,7 +67,7 @@ zones[dsp.zone.RUAUN_GARDENS] =
             [17310047] = 17310066, -- Suzaku to Main
             [17310049] = 17310067, -- Main to Suzaku
         },
-        RUAUN_PORTALS      =
+        PORTALS      =
         {
             { coords = {  -3, -54, -583,    1, -50, -579}, event = 0       },
             { coords = { 147, -26, -449,  151, -22, -445}, event = 1       },
@@ -115,12 +108,8 @@ zones[dsp.zone.RUAUN_GARDENS] =
             {coords={-145, -41, -156, -142, -39, -153}, green = true},
             {coords={ 142, -41, -156,  145, -39, -153}, green = true},
         },
-        RUAUN_TREASURE_COFFER = 17310019,
-        SUZAKU_QM             = 17310051,
-        BYAKKO_QM             = 17310052,
-        SEIRYU_QM             = 17310053,
-        OVERSEER_BASE         = 17310080,
-        GENBU_QM              = 17310103,
+        TREASURE_COFFER = 17310019,
+        OVERSEER_BASE   = 17310080,
     },
 }
 

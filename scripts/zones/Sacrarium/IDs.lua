@@ -28,13 +28,6 @@ zones[dsp.zone.SACRARIUM] =
         DRAWER_EMPTY              = 7259, -- There is nothing inside.
         DRAWER_SHUT               = 7260, -- The drawer is jammed shut.
         CHEST_UNLOCKED            = 7348, -- You unlock the chest!
-        CHEST_FAIL                = 7349, -- <name> fails to open the chest.
-        CHEST_TRAP                = 7350, -- The chest was trapped!
-        CHEST_WEAK                = 7351, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC               = 7352, -- The chest was a mimic!
-        CHEST_MOOGLE              = 7353, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION            = 7354, -- The chest was but an illusion...
-        CHEST_LOCKED              = 7355, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         START_GET_GOOSEBUMPS      = 7358, -- You start to get goosebumps.
         HEART_RACING              = 7359, -- Your heart is racing.
         LEAVE_QUICKLY_AS_POSSIBLE = 7360, -- Your common sense tells you to leave as quickly as possible.
@@ -42,7 +35,7 @@ zones[dsp.zone.SACRARIUM] =
     },
     mob =
     {
-        SWIFT_BELT_NMS          = 
+        SWIFT_BELT_NMS          =
         {
             {16892068, {[1] = true, [2] = true}},   -- Balor (hume)
             {16892069, {[3] = true, [4] = true}},   -- Luaith (elvaan)
@@ -54,10 +47,10 @@ zones[dsp.zone.SACRARIUM] =
     },
     npc =
     {
-        STALE_DRAFT_OFFSET         = 16892097,
-        SACRARIUM_LABYRINTH_OFFSET = 16892110,
-        SMALL_KEYHOLE              = 16892142,
-        SACRARIUM_TREASURE_CHEST   = 16892183,
+        STALE_DRAFT_OFFSET = 16892097,
+        LABYRINTH_OFFSET   = 16892110,
+        SMALL_KEYHOLE      = 16892142,
+        TREASURE_CHEST     = 16892183,
     },
 }
 

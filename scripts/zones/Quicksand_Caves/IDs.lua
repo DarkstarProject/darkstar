@@ -20,13 +20,6 @@ zones[dsp.zone.QUICKSAND_CAVES] =
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         CHEST_UNLOCKED          = 7314, -- You unlock the chest!
-        CHEST_FAIL              = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7316, -- The chest was trapped!
-        CHEST_WEAK              = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         DOOR_FIRMLY_SHUT        = 7322, -- The door is firmly shut.
         POOL_OF_WATER           = 7354, -- It is a pool of water.
         YOU_FIND_NOTHING        = 7357, -- You find nothing.
@@ -65,10 +58,9 @@ zones[dsp.zone.QUICKSAND_CAVES] =
             [3] = {479.000, -14.000, -815.000},
             [4] = {814.000, -14.000, -761.000}
         },
-        TRIBUNUS_VII_I_QM      = 17629661,
-        QC_ORNATE_DOOR_OFFSET  = 17629685,
+        ORNATE_DOOR_OFFSET     = 17629685,
         CHAINS_THAT_BIND_US_QM = 17629738,
-        QC_TREASURE_COFFER     = 17629739,
+        TREASURE_COFFER        = 17629739,
         ANTICAN_TAG_QM         = 17629761,
     },
 }

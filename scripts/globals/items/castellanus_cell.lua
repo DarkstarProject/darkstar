@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Castellanus Cell
+-- ID 5366
+-- Unlocks head and neck equipment
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7209)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 1)
 end
-

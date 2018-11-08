@@ -22,7 +22,7 @@ zones[dsp.zone.VUNKERL_INLET_S] =
     },
     npc =
     {
-        VUNKERL_INDESCRIPT_MARKINGS = 17118008,
+        INDESCRIPT_MARKINGS = 17118008,
     },
 }
 

@@ -13,8 +13,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.ZVAHL_BAILEYS_TORCH_OFFSET
-    
+    local offset = npc:getID() - ID.npc.TORCH_OFFSET
+
     -- killed Dark Spark and clicked same torch used to spawn
     if player:getVar("BorghertzSparkKilled") == 1 and GetMobByID(ID.mob.DARK_SPARK):getLocalVar("fromTorch") == offset then
         npcUtil.giveKeyItem(player, dsp.ki.SHADOW_FLAMES)
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         player:hasKeyItem(dsp.ki.OLD_GAUNTLETS) and
         not player:hasKeyItem(dsp.ki.SHADOW_FLAMES) and
         player:getVar("BorghertzCS") >= 2 and
-        npcUtil.popFromQM(player, npc, ID.mob.DARK_SPARK, true, false)
+        npcUtil.popFromQM(player, npc, ID.mob.DARK_SPARK, {claim=true, hide=0})
     then
         player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
         GetMobByID(ID.mob.DARK_SPARK):setLocalVar("fromTorch", offset)

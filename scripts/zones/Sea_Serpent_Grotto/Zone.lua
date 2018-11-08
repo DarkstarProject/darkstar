@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
@@ -13,8 +14,7 @@ function onInitialize(zone)
     for k, v in pairs(ID.mob.CHARYBDIS_PH) do table.insert(keys,k) end
     DespawnMob(keys[math.random(#keys)])
 
-    UpdateTreasureSpawnPoint(ID.npc.SSG_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(ID.npc.SSG_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

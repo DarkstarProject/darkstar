@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Castle_Zvahl_Baileys/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -27,8 +28,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.GRAND_DUKE_BATYM)
     GetMobByID(ID.mob.GRAND_DUKE_BATYM):setRespawnTime(math.random(900, 10800))
 
-    UpdateTreasureSpawnPoint(ID.npc.ZVAHL_BAILEYS_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(ID.npc.ZVAHL_BAILEYS_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

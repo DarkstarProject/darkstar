@@ -18,13 +18,6 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
         CONQUEST_BASE           = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
         CHEST_UNLOCKED          = 7314, -- You unlock the chest!
-        CHEST_FAIL              = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7316, -- The chest was trapped!
-        CHEST_WEAK              = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         FELL                    = 7332, -- The piece of wood fell off the cliff!
         EVIL                    = 7333, -- You sense an evil presence...
         FISHBONES               = 7347, -- Fish bones lie scattered about the area...
@@ -105,10 +98,8 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
     },
     npc =
     {
-        PHANTOM_WORM_QM        = 17490253,
-        CANCER_QM              = 17490254,
-        KUFTAL_DOOR_ROCK       = 17490280,
-        KUFTAL_TREASURE_COFFER = 17490304,
+        DOOR_ROCK       = 17490280,
+        TREASURE_COFFER = 17490304,
     },
 }
 

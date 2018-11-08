@@ -11,6 +11,6 @@ end
 
 function onTrigger(player,npc)
     if player:getZPos() > 35 then
-        GetNPCByID(ID.npc.RANCOR_DROP_GATE):openDoor() -- drop gate to Sacrificial Chamber
+        GetNPCByID(ID.npc.DROP_GATE):openDoor() -- drop gate to Sacrificial Chamber
     end
 end

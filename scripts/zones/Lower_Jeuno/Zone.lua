@@ -19,7 +19,7 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    
+
     local month = tonumber(os.date("%m"));
     local day = tonumber(os.date("%d"));
     -- Retail start/end dates vary, I am going with Dec 5th through Jan 5th.
@@ -67,7 +67,7 @@ function onGameHour(zone)
     -- 7AM: it's daytime. turn off all the lights
     if (VanadielHour == 7) then
         for i=0,11 do
-            local lamp = GetNPCByID(ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET + i);
+            local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i);
             lamp:setAnimation(dsp.anim.CLOSE_DOOR);
         end
 

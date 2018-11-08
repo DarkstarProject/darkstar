@@ -12,7 +12,7 @@ function onMobDespawn(mob)
     local Y = mob:getYPos();
     local Z = mob:getZPos();
     -- Check if Biast window is open, and there is not an Biast popped already(dsp.act.NONE = 0)
-    if (B_ToD <= os.time() and GetMobAction(mob:getID()+1) == 0) then
+    if B_ToD <= os.time() and not GetMobByID(mob:getID()+1):isSpawned() then
         if (math.random(1,20) == 5) then
             -- printf("Biast will pop");
             SpawnMob(mob:getID()+1);

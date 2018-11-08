@@ -18,13 +18,6 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         FISHING_MESSAGE_OFFSET  = 7083, -- You can't fish here.
         CONQUEST_BASE           = 7183, -- Tallying conquest results...
         CHEST_UNLOCKED          = 7349, -- You unlock the chest!
-        CHEST_FAIL              = 7350, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7351, -- The chest was trapped!
-        CHEST_WEAK              = 7352, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7353, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7354, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7355, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7356, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         REGIME_REGISTERED       = 9458, -- New training regime registered!
         HOMEPOINT_SET           = 10514, -- Home point set!
     },
@@ -40,9 +33,7 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
     },
     npc =
     {
-        ALKYONEUS_QM            = 17424518,
-        PALLAS_QM               = 17424519,
-        DELKFUTT_TREASURE_CHEST = 17424563,
+        TREASURE_CHEST = 17424563,
     },
 }
 

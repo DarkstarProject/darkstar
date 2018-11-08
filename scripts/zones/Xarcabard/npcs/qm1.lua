@@ -7,7 +7,6 @@
 local ID = require("scripts/zones/Xarcabard/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
-require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,11 +14,9 @@ function onTrade(player,npc,trade)
         player:getQuestStatus(WINDURST,THE_THREE_MAGI) == QUEST_ACCEPTED and
         npcUtil.tradeHas(trade, 613) and
         not player:hasItem(1104) and
-        not GetMobByID(ID.mob.CHAOS_ELEMENTAL):isSpawned()
+        npcUtil.popFromQM(player, npc, ID.mob.CHAOS_ELEMENTAL)
     then
         player:confirmTrade()
-        SpawnMob(ID.mob.CHAOS_ELEMENTAL):updateClaim(player)
-        npc:setStatus(dsp.status.DISAPPEAR)
     end
 end
 

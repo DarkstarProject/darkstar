@@ -437,7 +437,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::SaveCharStats(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::SaveCharPoints(PChar);
+    charutils::SaveCharUnlocks(PChar);
 
     PChar->status = STATUS_DISAPPEAR;
     return;
@@ -5882,7 +5882,7 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PChar->StatusEffectContainer->HasPreventActionEffect())
         return;
-    
+
     uint8 type = data.ref<uint8>(0x04);
     if (type == 2)
     {
@@ -5890,7 +5890,7 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->updatemask |= UPDATE_HP;
         return;
     }
-    
+
     uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
     if (chairId < 63 || chairId > 83)
         return;

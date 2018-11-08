@@ -19,7 +19,7 @@ zones[dsp.zone.PROMYVION_HOLLA] =
     },
     mob =
     {
-        HOLLA_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16842781] = {1, 3, 16843058},
             [16842839] = {2, 5, 16843054},
@@ -36,7 +36,7 @@ zones[dsp.zone.PROMYVION_HOLLA] =
     },
     npc =
     {
-        HOLLA_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {  78, -4,   78,   82, 4,   82, {46}},    -- floor 1 return
             [21]        = {-122, -4,   -2, -118, 4,    2, {41}},    -- floor 2 return

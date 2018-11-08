@@ -30,6 +30,7 @@ zones[dsp.zone.BASTOK_MINES] =
         GP_OBTAINED                    = 7086, -- Obtained: <number> guild points.
         NOT_HAVE_ENOUGH_GP             = 7087, -- You do not have enough guild points.
         ITEM_DELIVERY_DIALOG           = 10434, -- Need something sent to a friend's house? Sending items to your own house? You've come to the right place!
+        DETZO_RIVALS_DIALOG            = 10585, -- Can I borrow it for just a few seconds? I'll give it back, promise! I'll even give you a reward!
         FAUSTIN_CLOSED_DIALOG          = 10778, -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Ronfaure, but it's not easy getting stuff from areas that aren't under Bastokan control.
         RODELLIEUX_CLOSED_DIALOG       = 10779, -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Fauregandi, but it's not easy getting stuff from areas that aren't under Bastokan control.
         MILLE_CLOSED_DIALOG            = 10780, -- Sorry, I don't have anything to sell you. I'm trying to start a business selling goods from Norvallen, but it's not easy getting stuff from areas that aren't under Bastokan control.
@@ -77,8 +78,8 @@ zones[dsp.zone.BASTOK_MINES] =
     },
     npc =
     {
-        LELEROON_BLUE_DOOR           = 17735847,
-        BASTOK_MINES_EXPLORER_MOOGLE = 17735856,
+        LELEROON_BLUE_DOOR = 17735847,
+        EXPLORER_MOOGLE    = 17735856,
     },
 }
 

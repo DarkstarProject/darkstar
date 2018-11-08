@@ -26,13 +26,6 @@ zones[dsp.zone.ORDELLES_CAVES] =
         A_SQUIRE_S_TEST_II_DIALOG_II  = 7358, -- The dew from the stalactite slips through your fingers.
         A_SQUIRE_S_TEST_II_DIALOG_III = 7359, -- You have already obtained the dew.
         CHEST_UNLOCKED                = 7390, -- You unlock the chest!
-        CHEST_FAIL                    = 7391, -- <name> fails to open the chest.
-        CHEST_TRAP                    = 7392, -- The chest was trapped!
-        CHEST_WEAK                    = 7393, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                   = 7394, -- The chest was a mimic!
-        CHEST_MOOGLE                  = 7395, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                = 7396, -- The chest was but an illusion...
-        CHEST_LOCKED                  = 7397, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         GERWITZS_AXE_DIALOG           = 7412, -- Mine axe shall rend thy throat!
         GERWITZS_SWORD_DIALOG         = 7413, -- Mine sword shall pierce thy tongue!
         GERWITZS_SOUL_DIALOG          = 7414, -- Long have I waited. I will tell all...
@@ -46,7 +39,7 @@ zones[dsp.zone.ORDELLES_CAVES] =
     },
     npc =
     {
-        ORDELLES_TREASURE_CHEST = 17568192,
+        TREASURE_CHEST = 17568192,
     },
 }
 

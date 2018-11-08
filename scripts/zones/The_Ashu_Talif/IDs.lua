@@ -36,7 +36,6 @@ zones[dsp.zone.THE_ASHU_TALIF] =
         FOR_EPHRAMAD               = 7575, -- For Ephramad!
         TROUBLESOME_SQUABS         = 7576, -- Troublesome squabs...
     },
-
     mob =
     {
         -- The Black Coffin - Wave 1

@@ -20,13 +20,6 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         CONQUEST_BASE              = 7048, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET     = 7207, -- You can't fish here.
         CHEST_UNLOCKED             = 7314, -- You unlock the chest!
-        CHEST_FAIL                 = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP                 = 7316, -- The chest was trapped!
-        CHEST_WEAK                 = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE               = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION             = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED               = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SAHAGIN_DOOR_INSIDE        = 7332, -- The door is tightly shut.
         SAHAGIN_DOOR_OUTSIDE       = 7333, -- This door has an oddly shaped keyhole. It looks as if once you enter, you may not be able to get out the way you came in.
         SAHAGIN_DOOR_TRADED        = 7334, -- The <item> breaks!
@@ -54,8 +47,8 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
     },
     npc =
     {
-        SSG_TREASURE_CHEST  = 17498625,
-        SSG_TREASURE_COFFER = 17498626,
+        TREASURE_CHEST  = 17498625,
+        TREASURE_COFFER = 17498626,
     },
 }
 

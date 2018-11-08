@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -34,8 +35,7 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.SERKET);
     GetMobByID(ID.mob.SERKET):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ID.npc.GARLAIGE_TREASURE_CHEST);
-    UpdateTreasureSpawnPoint(ID.npc.GARLAIGE_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

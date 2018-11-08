@@ -5,11 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.ELDIEME_TREASURE_CHEST);
-    UpdateTreasureSpawnPoint(ID.npc.ELDIEME_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

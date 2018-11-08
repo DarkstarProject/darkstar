@@ -16,13 +16,6 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         GIL_OBTAINED            = 6547, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
         CHEST_UNLOCKED          = 7277, -- You unlock the chest!
-        CHEST_FAIL              = 7278, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7279, -- The chest was trapped!
-        CHEST_WEAK              = 7280, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7281, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7282, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7283, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7284, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         HEAVY_DOOR              = 7305, -- It is a solid stone door.
         REGIME_REGISTERED       = 10329, -- New training regime registered!
     },
@@ -40,10 +33,10 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         CORRUPTED_YORGOS      = 17555898,
         CORRUPTED_SOFFEIL     = 17555899,
         CORRUPTED_ULBRIG      = 17555900,
-        KRT_TREASURE_CHEST    = 17555955,
     },
     npc =
     {
+        TREASURE_CHEST = 17555955,
     },
 }
 

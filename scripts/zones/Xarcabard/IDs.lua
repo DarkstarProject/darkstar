@@ -39,7 +39,6 @@ zones[dsp.zone.XARCABARD] =
     },
     npc =
     {
-        CHAOS_ELEMENTAL_QM = 17236277,
         OVERSEER_BASE      = 17236288,
         BOREAL_TIGER_QM    = 17236306,
         BOREAL_COEURL_QM   = 17236307,

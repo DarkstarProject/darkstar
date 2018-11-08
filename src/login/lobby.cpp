@@ -925,6 +925,10 @@ int32 lobby_createchar_save(uint32 accid, uint32 charid, char_mini* createchar)
             ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
 
+    Query = "INSERT INTO char_unlocks(charid) VALUES(%u) \
+            ON DUPLICATE KEY UPDATE charid = charid;";
+    if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;
+
     Query = "INSERT INTO char_profile(charid) VALUES(%u) \
             ON DUPLICATE KEY UPDATE charid = charid;";
     if (Sql_Query(SqlHandle, Query, charid, createchar->m_mjob) == SQL_ERROR) return -1;

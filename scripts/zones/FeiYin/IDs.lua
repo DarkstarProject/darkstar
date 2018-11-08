@@ -19,13 +19,6 @@ zones[dsp.zone.FEIYIN] =
         SENSE_OF_FOREBODING                = 6581, -- You are suddenly overcome with a sense of foreboding...
         FISHING_MESSAGE_OFFSET             = 7227, -- You can't fish here.
         CHEST_UNLOCKED                     = 7357, -- You unlock the chest!
-        CHEST_FAIL                         = 7358, -- <name> fails to open the chest.
-        CHEST_TRAP                         = 7359, -- The chest was trapped!
-        CHEST_WEAK                         = 7360, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                        = 7361, -- The chest was a mimic!
-        CHEST_MOOGLE                       = 7362, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                     = 7363, -- The chest was but an illusion...
-        CHEST_LOCKED                       = 7364, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         SOFTLY_SHIMMERING_LIGHT            = 7483, -- You see a softly shimmering light...
         YOU_REACH_OUT_TO_THE_LIGHT         = 7484, -- You reach out to the light, and one facet of a curious seed-shaped emblem materializes on the back of your hand. It emanates an otherworldly [red/orange/yellow/green/cerulean/blue/golden/silver/white] radiance.
         THE_LIGHT_DWINDLES                 = 7485, -- However, the light dwindles and grows dim almost at once...
@@ -64,9 +57,9 @@ zones[dsp.zone.FEIYIN] =
     },
     npc =
     {
-        FEIYIN_AFTERGRLOW_OFFSET = 17613148,
-        FEIYIN_TREASURE_CHEST    = 17613242,
-        UNDERGROUND_POOL_OFFSET  = 17613247,
+        AFTERGRLOW_OFFSET       = 17613148,
+        TREASURE_CHEST          = 17613242,
+        UNDERGROUND_POOL_OFFSET = 17613247,
     },
 }
 

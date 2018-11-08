@@ -23,13 +23,6 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         ALTAR_OFFERING             = 7239, -- You place your offering of <item> on the altar.
         ALTAR_STANDARD             = 7240, -- It is an altar for offerings.
         CHEST_UNLOCKED             = 7248, -- You unlock the chest!
-        CHEST_FAIL                 = 7249, -- <name> fails to open the chest.
-        CHEST_TRAP                 = 7250, -- The chest was trapped!
-        CHEST_WEAK                 = 7251, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                = 7252, -- The chest was a mimic!
-        CHEST_MOOGLE               = 7253, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION             = 7254, -- The chest was but an illusion...
-        CHEST_LOCKED               = 7255, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
         MINING_IS_POSSIBLE_HERE    = 7256, -- Mining is possible here if you have <item>.
         EGGSHELLS_LIE_SCATTERED    = 7265, -- Eggshells lie scattered around the place...
         SENSE_OMINOUS_PRESENCE     = 7268, -- You sense an ominous presence...
@@ -47,8 +40,8 @@ zones[dsp.zone.IFRITS_CAULDRON] =
     },
     npc =
     {
-        FLAME_SPOUT_OFFSET     = 17617204,
-        IFRITS_TREASURE_COFFER = 17617224,
+        FLAME_SPOUT_OFFSET = 17617204,
+        TREASURE_COFFER    = 17617224,
         MINING =
         {
             17617225,

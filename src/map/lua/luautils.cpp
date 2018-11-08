@@ -140,7 +140,6 @@ namespace luautils
         lua_register(LuaHandle, "clearVarFromAll", luautils::clearVarFromAll);
         lua_register(LuaHandle, "SendEntityVisualPacket", luautils::SendEntityVisualPacket);
         lua_register(LuaHandle, "UpdateServerMessage", luautils::UpdateServerMessage);
-        lua_register(LuaHandle, "UpdateTreasureSpawnPoint", luautils::UpdateTreasureSpawnPoint);
         lua_register(LuaHandle, "GetMobRespawnTime", luautils::GetMobRespawnTime);
         lua_register(LuaHandle, "DisallowRespawn", luautils::DisallowRespawn);
         lua_register(LuaHandle, "UpdateNMSpawnPoint", luautils::UpdateNMSpawnPoint);
@@ -2492,6 +2491,7 @@ namespace luautils
 
             CLuaBaseEntity LuaMobEntity(PMob);
 
+        PMob->PAI->EventHandler.triggerListener("CRITICAL_TAKE", PMob);
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onCriticalHit"))
@@ -3277,7 +3277,7 @@ namespace luautils
                 charutils::SaveCharPosition(PChar);
                 charutils::SaveCharStats(PChar);
                 charutils::SaveCharExp(PChar, PChar->GetMJob());
-                charutils::SaveCharPoints(PChar);
+                charutils::SaveCharUnlocks(PChar);
             });
         });
         exit(1);
@@ -3949,43 +3949,6 @@ namespace luautils
         }
 
         return 0;
-    }
-
-    /******************************************************************************
-    *                                                                             *
-    * Update the Treasure spawn point to a new point, retrieved from the database *
-    *                                                                             *
-    *******************************************************************************/
-    int32 UpdateTreasureSpawnPoint(lua_State* L)
-    {
-        // TODO: check respawn time
-        if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
-        {
-            uint32 npcid = (uint32)lua_tointeger(L, 1);
-
-            uint32 OpenTime = 300000; // 5 min respawn
-
-            if (!lua_isnil(L, 2) && lua_isboolean(L, 2))
-            {
-                if (lua_toboolean(L, 2) == 1)
-                {
-                    OpenTime = 3000; // respawn immediately (3 sec)
-                }
-            }
-
-            zoneutils::UpdateTreasureSpawnPoint(npcid, OpenTime);
-
-            CBaseEntity* PNpc = zoneutils::GetEntity(npcid, TYPE_NPC);
-            if (PNpc)
-            {
-                PNpc->status = STATUS_DISAPPEAR;
-                PNpc->loc.zone->PushPacket(PNpc, CHAR_INRANGE, new CEntityUpdatePacket(PNpc, ENTITY_DESPAWN, UPDATE_NONE));
-            }
-
-            return 0;
-        }
-        lua_pushnil(L);
-        return 1;
     }
 
     int32 getAbility(lua_State* L)

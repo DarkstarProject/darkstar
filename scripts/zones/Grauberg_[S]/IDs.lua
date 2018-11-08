@@ -33,7 +33,7 @@ zones[dsp.zone.GRAUBERG_S] =
             17142549,
             17142550,
         },
-        GRAUBERG_INDESCRIPT_MARKINGS = 17142586,
+        INDESCRIPT_MARKINGS = 17142586,
     },
 }
 
