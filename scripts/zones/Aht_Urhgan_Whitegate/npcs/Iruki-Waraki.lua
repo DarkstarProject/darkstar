@@ -19,12 +19,12 @@ function onTrade(player,npc,trade)
 
     local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress")
     
-    if (player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and player:hasItem(17859) == false) then
+    if player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and player:hasItem(17859) == false then
         if npcUtil.tradeHas(trade, {{"gil", 10000}}) then
             player:confirmTrade()
             npcUtil.giveItem(player,17859)
         end
-    elseif (OperationTeatimeProgress == 1) then
+    elseif OperationTeatimeProgress == 1 then
         if npcUtil.tradeHas(trade,{4161, 5570}) then -- Trade Chai and Sleeping Potion
             player:confirmTrade()
             player:startEvent(780)
@@ -44,43 +44,43 @@ function onTrigger(player,npc)
     local Job = player:getMainJob()
 
     -- Quest: No Strings Attached
-    if (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 1) then
+    if NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 1 then
         player:startEvent(260) -- he tells u to get him an automaton
-    elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2) then
+    elseif NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 2 then
         player:startEvent(261) -- reminder to get an automaton
-    elseif (NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 6) then
+    elseif NoStringsAttached == QUEST_ACCEPTED and NoStringsAttachedProgress == 6 then
         player:startEvent(266) -- you bring him the automaton
-    elseif (Job == dsp.job.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED) then
+    elseif Job == dsp.job.PUP and LvL < AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED then
         player:startEvent(267) -- asking you how are you doing with your automaton
     -- In case a player completed the quest before unlocking attachments was implemented (no harm in doing this repeatedly)
         player:unlockAttachment(8224) --Harlequin Frame
         player:unlockAttachment(8193) --Harlequin Head
-    elseif (NoStringsAttached == QUEST_AVAILABLE) then
+    elseif NoStringsAttached == QUEST_AVAILABLE then
         player:startEvent(259) -- Leave him alone
 
     --Quest: The Wayward Automation
-    elseif (Job == dsp.job.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE) then
+    elseif Job == dsp.job.PUP and LvL >= AF1_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_AVAILABLE then
         player:startEvent(774) -- he tells you to help find his auto
-    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1) then
+    elseif TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 1 then
         player:startEvent(775) -- reminder about to head to Nashmau
-    elseif (TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3) then
+    elseif TheWaywardAutomation == QUEST_ACCEPTED and TheWaywardAutomationProgress == 3 then
         player:startEvent(776) -- tell him you found automation
-    elseif (Job == dsp.job.PUP and LvL < AF2_QUEST_LEVEL and TheWaywardAutomation == QUEST_COMPLETED) then
+    elseif Job == dsp.job.PUP and LvL < AF2_QUEST_LEVEL and TheWaywardAutomation == QUEST_COMPLETED then
         player:startEvent(777)
-    elseif (Job ~= dsp.job.PUP and TheWaywardAutomation == QUEST_COMPLETED) then
+    elseif Job ~= dsp.job.PUP and TheWaywardAutomation == QUEST_COMPLETED then
         player:startEvent(777)
-    elseif (Job ~= dsp.job.PUP and NoStringsAttached == QUEST_COMPLETED) then
+    elseif Job ~= dsp.job.PUP and NoStringsAttached == QUEST_COMPLETED then
         player:startEvent(267) -- asking you how are you doing with your automaton
 
         
     --Quest: Operation teatime
-    elseif (Job == dsp.job.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE) then
+    elseif Job == dsp.job.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE then
         player:startEvent(778)
-    elseif (OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 1) then
+    elseif OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 1 then
         player:startEvent(779) -- Reminds you to get items
-    elseif (OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 2) then
+    elseif OperationTeatime == QUEST_ACCEPTED and OperationTeatimeProgress == 2 then
         player:startEvent(781) -- Reminds you to get items
-    elseif (OperationTeatime == QUEST_COMPLETED) then
+    elseif OperationTeatime == QUEST_COMPLETED then
         player:startEvent(777)
     end
 end

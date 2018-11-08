@@ -4,7 +4,7 @@
 -- Title Change NPC
 -- !pos -129 2 -20 50
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 
 local title2 = { dsp.title.DARK_RESISTANT , dsp.title.BEARER_OF_THE_MARK_OF_ZAHAK  , dsp.title.SEAGULL_PHRATRIE_CREW_MEMBER , dsp.title.PROUD_AUTOMATON_OWNER , dsp.title.WILDCAT_PUBLICIST ,
                 dsp.title.SCENIC_SNAPSHOTTER , dsp.title.BRANDED_BY_THE_FIVE_SERPENTS , dsp.title.IMMORTAL_LION , dsp.title.PARAGON_OF_BLUE_MAGE_EXCELLENCE , dsp.title.PARAGON_OF_CORSAIR_EXCELLENCE , dsp.title.PARAGON_OF_PUPPETMASTER_EXCELLENCE ,
@@ -23,33 +23,33 @@ local title6 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 
 local title7 = { 0 , 0 , 0 , 0 , 0  , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(644,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
-end;
+    player:startEvent(644,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil())
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid==644) then
-        if (option > 0 and option <29) then
-            if (player:delGil(200)) then
+    if csid==644 then
+        if option > 0 and option <29 then
+            if player:delGil(200) then
                 player:setTitle( title2[option] )
             end
-        elseif (option > 256 and option <285) then
-            if (player:delGil(300)) then
+        elseif option > 256 and option <285 then
+            if player:delGil(300) then
                 player:setTitle( title3[option - 256] )
             end
-        elseif (option > 512 and option < 541) then
-            if (player:delGil(400)) then
+        elseif option > 512 and option < 541 then
+            if player:delGil(400) then
                 player:setTitle( title4[option - 512] )
             end
-        elseif (option > 768 and option <797) then
-            if (player:delGil(500)) then
+        elseif option > 768 and option <797 then
+            if player:delGil(500) then
                 player:setTitle( title5[option - 768] )
             end
         end
     end
-end;
+end

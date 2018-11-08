@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 function onTrade(player,npc,trade)
     local guildMember = isGuildMember(player,5)
 
-    if (guildMember == 1) then
+    if guildMember == 1 then
         if npcUtil.tradeHas(trade,2184) then
             if player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false then
                 player:confirmTrade()
@@ -29,7 +29,7 @@ function onTrigger(player,npc)
     local guildMember = isGuildMember(player,5)
     local SkillLevel = player:getSkillLevel(dsp.skill.FISHING)
 
-    if (guildMember == 1) then
+    if guildMember == 1 then
         if player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false then
             player:startEvent(642,8,0,0,511,1,0,0,2184)
         else

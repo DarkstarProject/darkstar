@@ -30,17 +30,17 @@ function onTrigger(player,npc)
     elseif threeMenQuest == QUEST_COMPLETED then
         player:startEvent(846)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
     if csid == 836 then
-        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET);
-        player:setVar("threemenandaclosetCS",2);
+        player:addQuest(AHT_URHGAN,THREE_MEN_AND_A_CLOSET)
+        player:setVar("threemenandaclosetCS",2)
     elseif csid == 838 then
-        player:setVar("threemenandaclosetCS",4);
+        player:setVar("threemenandaclosetCS",4)
     elseif csid == 845 then
         npcUtil.completeQuest(player, AHT_URHGAN, THREE_MEN_AND_A_CLOSET, { item=2184, var="threemenandaclosetCS"})
     end
