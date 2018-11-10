@@ -111,6 +111,14 @@ bool CBattleEntity::isInDynamis()
     return false;
 }
 
+bool CBattleEntity::isInAssault()
+{
+    if (loc.zone != nullptr) {
+        return (loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= 28 && loc.zone->GetRegionID() <= 32));
+    }
+    return false;
+}
+
 // return true if the mob has immunity
 bool CBattleEntity::hasImmunity(uint32 imID)
 {

@@ -587,6 +587,7 @@ void CLatentEffectContainer::CheckLatentsZone()
         switch (latentEffect.GetConditionsID())
         {
         case LATENT_ZONE:
+        case LATENT_IN_ASSAULT:
         case LATENT_IN_DYNAMIS:
         case LATENT_WEATHER_ELEMENT:
         case LATENT_NATION_CONTROL:
@@ -971,6 +972,9 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
     }
     case LATENT_IN_DYNAMIS:
         expression = m_POwner->isInDynamis();
+        break;
+    case LATENT_IN_ASSAULT:
+        expression = m_POwner->isInAssault();
         break;
     case LATENT_FOOD_ACTIVE:
         expression = m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD) &&
