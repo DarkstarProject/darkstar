@@ -150,7 +150,8 @@ local freeHpTeleGroups =
 -------------------------------------------------
 
 local function hasHP (player, hpIndex)
-    local mask = bit.bor(bit.lshift(player:getVar("HpTeleportMask"..hpIndex.."a"), 16), player:getVar("HpTeleportMask"..hpIndex.."b"))
+    local hpVar = homepoints[hpIndex][1]
+    local mask = bit.bor(bit.lshift(player:getVar("HpTeleportMask"..hpVar.."a"), 16), player:getVar("HpTeleportMask"..hpVar.."b"))
     return (bit.rshift(bit.lshift(mask, 32 - homepoints[hpIndex][2]), 31) ~= 0)
 end
 
@@ -161,7 +162,7 @@ local function freeHpTeleport(player, hpIndex)
         for _, origin in pairs(v) do
             if origin == currentHpIndex then
                 for _, destination in pairs(v) do
-                    if desintaion == hpIndex then
+                    if destination == hpIndex then
                         return true
                     end
                 end
