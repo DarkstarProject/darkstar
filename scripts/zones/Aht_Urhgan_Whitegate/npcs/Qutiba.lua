@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         player:startEvent(40)
     elseif player:getQuestStatus(AHT_URHGAN,DELIVERING_THE_GOODS) == QUEST_COMPLETED and vanishProg == 1 then
         player:startEvent(42)
-    elseif (vanishProg == 2) then
+    elseif vanishProg == 2 then
         player:startEvent(54)
     elseif vanishProg == 4 and player:hasKeyItem(dsp.ki.RAINBOW_BERRY) then
         player:startEvent(45)
