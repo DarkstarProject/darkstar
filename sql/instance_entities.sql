@@ -264,6 +264,8 @@ INSERT INTO `instance_entities` VALUES (59,17093482);
 -- Arrapago Remnants
 -- npc
 INSERT INTO `instance_entities` VALUES (65,17080598);
+INSERT INTO `instance_entities` VALUES (65,17080941);
+INSERT INTO `instance_entities` VALUES (65,17080942);
 INSERT INTO `instance_entities` VALUES (65,17080970);
 INSERT INTO `instance_entities` VALUES (65,17080971);
 INSERT INTO `instance_entities` VALUES (65,17080972);
@@ -285,6 +287,8 @@ INSERT INTO `instance_entities` VALUES (65,17080987);
 INSERT INTO `instance_entities` VALUES (65,17080988);
 INSERT INTO `instance_entities` VALUES (65,17080989);
 INSERT INTO `instance_entities` VALUES (65,17080991);
+INSERT INTO `instance_entities` VALUES (65,17080992);
+INSERT INTO `instance_entities` VALUES (65,17080993);
 
 -- mobs
 INSERT INTO `instance_entities` VALUES (65,17080321);
@@ -527,6 +531,10 @@ INSERT INTO `instance_entities` VALUES (65,17080579);
 INSERT INTO `instance_entities` VALUES (65,17080580);
 INSERT INTO `instance_entities` VALUES (65,17080581);
 INSERT INTO `instance_entities` VALUES (65,17080582);
+INSERT INTO `instance_entities` VALUES (65,17080583);
+INSERT INTO `instance_entities` VALUES (65,17080584);
+INSERT INTO `instance_entities` VALUES (65,17080585);
+INSERT INTO `instance_entities` VALUES (65,17080586);
 
 -- Shades of Vengeance
 INSERT INTO `instance_entities` VALUES (79,17006754);

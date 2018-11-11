@@ -39,7 +39,11 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(222.798, -0.5, 19.872, 0);
+        if prevZone == 74 then
+            player:setPos(-579, 0.05, -100, 192)
+        else
+            player:setPos(222.798, -0.5, 19.872, 0);
+        end
     end
 
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS and player:getVar("AhtUrganStatus") == 2) then
@@ -138,8 +142,6 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("UPDATE CSID: %u",csid);
-    -- printf("UPDATE RESULT: %u",option);
     if (csid == 1 and option == 10) then -- start
         player:updateEvent(0,0,0,0,0,0,0,0);
     elseif (csid == 1 and option == 1) then -- windows
@@ -155,8 +157,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("FINISH CSID: %u",csid);
-    -- printf("FINISH RESULT: %u",option);
     if (csid == 1) then
         player:addKeyItem(dsp.ki.ASTRAL_COMPASS);
         player:completeMission(TOAU,UNDERSEA_SCOUTING);
@@ -172,7 +172,9 @@ function onEventFinish(player,csid,option)
         player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,RAGNAROK);
-    elseif (csid == 116) then -- enter instancedd nyzul island
+    elseif csid == 116 and player:getVar("AssaultNyzul") ==1 then -- enter instancedd nyzul island
         player:setPos(0,0,0,0,77);
+    elseif csid == 116 and player:getVar("SalvageArrapago") == 1 then -- enter Salvage
+        player:setPos(0,0,0,0,74)
     end
 end;

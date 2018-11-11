@@ -15,10 +15,10 @@ end;
 function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.REMNANTS_PERMIT)) then
         local mask = -2
-        -- salvage2 NYI
-        --[[if player:getMainLvl() >= 96 then
+
+        if player:getMainLvl() >= 96 then -- Salvage 2
             mask = -14
-        else]]if player:getMainLvl() >= 65 then
+        elseif player:getMainLvl() >= 65 then -- Salvage 1
             mask = -6
         end
 
@@ -56,25 +56,25 @@ function onEventUpdate(player,csid,option,target)
 
 end;
 
-function onEventFinish(player,csid,option,target)
-  
-    if ((csid == 408 and option == 4) or csid == 116) then
+function onEventFinish(player,csid,option)
+    if (csid == 408 and option == 4) then
         player:setPos(0,0,0,0,74);
     end
 end;
 
 function onInstanceCreated(player,target,instance)
+    local party = player:getParty();
     if (instance) then
         player:setInstance(instance);
         player:instanceEntry(target,4);
         player:delKeyItem(dsp.ki.REMNANTS_PERMIT);
 
-        local party = player:getParty();
-        if (party ~= nil) then
+        if party ~= nil then
             for i,v in ipairs(party) do
                 if v:getID() ~= player:getID() and v:getZoneID() == player:getZoneID() then
                     v:setInstance(instance);
                     v:startEvent(116, 8);
+                    v:setVar("SalvageArrapago", 1);
                     v:delKeyItem(dsp.ki.REMNANTS_PERMIT);
                 end
             end
