@@ -22,12 +22,12 @@ function onTrigger(player,npc)
 
     if player:hasKeyItem(dsp.ki.REMNANTS_PERMIT) then
         player:startEvent(821)
-    elseif player:getCurrentMission(TOAU) > GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
+--[[    elseif player:getCurrentMission(TOAU) > GUESTS_OF_THE_EMPIRE and player:getMainLvl() >= 65 then
         if lastPermit == 0 then
             player:startEvent(818,a1,a2,a3,a4,a5)
         elseif diffday > 0 then
             player:startEvent(820,a1,a2,a3,a4,a5)
-        end
+        end]]
     else
         player:startEvent(817)
     end
