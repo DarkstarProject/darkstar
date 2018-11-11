@@ -17,6 +17,8 @@ function onInstanceZoneIn(player,instance)
         player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
     end
     
+    player:addTempItem(5347)
+    
     return cs
 end
 
