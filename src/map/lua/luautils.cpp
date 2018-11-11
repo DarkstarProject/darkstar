@@ -1399,7 +1399,7 @@ namespace luautils
         //player may be entering because of an earlier event (event that changes position)
         // these should probably not call another event from onRegionEnter (use onEventFinish instead)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionEnter"))
         {
@@ -1440,7 +1440,7 @@ namespace luautils
 
         //player may be leaving because of an earlier event (event that changes position)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionLeave"))
         {
