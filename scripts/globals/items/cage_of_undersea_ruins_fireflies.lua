@@ -5,10 +5,11 @@
 -----------------------------------------
 require("scripts/globals/teleports")
 require("scripts/globals/status")
+require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:getZoneID() == 77 then
+    if target:getZoneID() == dsp.zone.NYZUL_ISLE then
         return 0
     end
     return 56

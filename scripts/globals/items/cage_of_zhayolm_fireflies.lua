@@ -4,10 +4,11 @@
 -----------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/teleports")
+require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:getZoneID() == 63 then
+    if target:getZoneID() == dsp.zone.LEBROS_CAVERN then
         return 0
     end
     return 56

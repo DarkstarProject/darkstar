@@ -5,10 +5,11 @@
 -----------------------------------------
 require("scripts/globals/teleports")
 require("scripts/globals/status")
+require("scripts/globals/zone")
 -----------------------------------------
 
 function onItemCheck(target)
-    if target:getZoneID() == 56 then
+    if target:getZoneID() == dsp.zone.PERIQIA then
         return 0
     end
     return 56
