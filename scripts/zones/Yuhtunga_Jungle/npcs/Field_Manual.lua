@@ -1,6 +1,6 @@
 -----------------------------------
--- Field Manual
 -- Area: Yuhtunga Jungle
+--  NPC: Field Manual
 -----------------------------------
 require("scripts/globals/regimes")
 -----------------------------------
