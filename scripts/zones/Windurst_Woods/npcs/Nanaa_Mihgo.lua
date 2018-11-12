@@ -19,9 +19,9 @@ function onTrade(player,npc,trade)
     if npcUtil.tradeHas(trade, {{498,4}}) then -- Yagudo Necklace x4
         local mihgosAmigo = player:getQuestStatus(WINDURST,MIHGO_S_AMIGO)
 
-        if (mihgosAmigo == QUEST_ACCEPTED) then
+        if mihgosAmigo == QUEST_ACCEPTED then
             player:startEvent(88, GIL_RATE*200)
-        elseif (mihgosAmigo == QUEST_COMPLETED) then
+        elseif mihgosAmigo == QUEST_COMPLETED then
             player:startEvent(494, GIL_RATE*200)
         end
     end
