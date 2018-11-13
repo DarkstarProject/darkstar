@@ -35,9 +35,6 @@ function onInitialize(zone)
     zone:registerRegion(33,-297,6,415,-295,8,417);   -- E-7 (Map 6)
     zone:registerRegion(34,-137,6,-177,-135,8,-175); -- G-7 (Map 8)
 
-    SetServerVariable("BastokFight8_1" ,0);
-    SetServerVariable("Bastok8-1LastClear", os.time() - QM_RESET_TIME); -- Set a delay on ??? mission NM pop.
-
     dsp.treasure.initZone(zone)
 
     npcUtil.UpdateNPCSpawnPoint(ID.npc.ANTICAN_TAG_QM, 60, 120, ID.npc.ANTICAN_TAG_POSITIONS, "[POP]Antican_Tag");
