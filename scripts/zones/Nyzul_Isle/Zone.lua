@@ -20,6 +20,8 @@ function onInstanceZoneIn(player,instance)
     if (player:getCurrentMission(TOAU) == PATH_OF_DARKNESS) then
         cs = 51
     end
+    
+    player:addTempItem(5348)
 
     return cs
 end
