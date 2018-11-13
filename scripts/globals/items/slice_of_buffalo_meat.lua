@@ -12,7 +12,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         result = 247
     end
     if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then

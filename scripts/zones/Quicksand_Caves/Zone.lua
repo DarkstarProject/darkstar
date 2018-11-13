@@ -56,15 +56,15 @@ function onZoneIn(player,prevZone)
 end;
 
 function getWeight(player)
-    local race = player:getRace();
-    if (race == 8) then -- Galka
-        return 3;
-    elseif (race == 5 or race == 6) then -- Taru male or female
-        return 1;
-    else -- Hume/Elvaan/Mithra
-        return 2;
+    local race = player:getRace()
+    if race == dsp.race.GALKA then
+        return 3
+    elseif race == dsp.race.TARU_M or race == dsp.race.TARU_F then
+        return 1
+    else
+        return 2
     end
-end;
+end
 
 function onRegionEnter(player,region)
     local RegionID = region:GetRegionID();
