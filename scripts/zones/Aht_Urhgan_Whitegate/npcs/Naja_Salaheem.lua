@@ -190,14 +190,14 @@ function onEventFinish(player,csid,option)
         player:setVar("PromotionPFC", 1)
     elseif csid == 5002 then
         player:confirmTrade()
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PFC_WILDCAT_BADGE)
         player:addKeyItem(dsp.ki.PFC_WILDCAT_BADGE)
         player:setVar("PromotionPFC", 0)
         player:setVar("AssaultPromotion", 0)
     elseif csid == 5020 then
         player:setVar("PromotionSP", 1)
     elseif csid == 5022 then
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SP_WILDCAT_BADGE)
         player:addKeyItem(dsp.ki.SP_WILDCAT_BADGE)
         player:setVar("PromotionSP", 0)
         player:setVar("AssaultPromotion", 0)
