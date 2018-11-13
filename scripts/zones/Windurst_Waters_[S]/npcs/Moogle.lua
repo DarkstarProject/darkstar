@@ -1,9 +1,9 @@
 -----------------------------------
 -- Area: Windurst Waters [S]
 --  NPC: Moogle
---
 -----------------------------------
 require("scripts/globals/moghouse")
+-----------------------------------
 
 function onTrade(player,npc,trade)
     moogleTrade(player,npc,trade)
