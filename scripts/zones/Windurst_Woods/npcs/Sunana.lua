@@ -2,18 +2,16 @@
 -- Area: Windurst Woods
 --  NPC: Sunana
 -----------------------------------
-require("scripts/globals/settings");
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(409,0,17088);
-end;
+    player:startEvent(409,0,17088)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end
