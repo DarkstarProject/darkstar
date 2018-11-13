@@ -52,7 +52,7 @@ function onEventUpdate( player, csid, option)
     if csid == 9 then
         lightCutsceneUpdate(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 11 then
-        if player:getPreviousZone() == 111 then
+        if player:getPreviousZone() == dsp.zone.BEAUCEDINE_GLACIER then
             player:updateEvent(0,0,0,0,0,2)
         else
             player:updateEvent(0,0,0,0,0,3)
