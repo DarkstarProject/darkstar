@@ -34,7 +34,7 @@ function onItemUse(target)
 end
 
 function onEffectGain(target,effect)
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         target:addMod(dsp.mod.STR, 3)
         target:addMod(dsp.mod.INT, -4)
         target:addMod(dsp.mod.ATT, 9)
@@ -50,7 +50,7 @@ function onEffectGain(target,effect)
 end
 
 function onEffectLose(target, effect)
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         target:delMod(dsp.mod.STR, 3)
         target:delMod(dsp.mod.INT, -4)
         target:delMod(dsp.mod.ATT, 9)

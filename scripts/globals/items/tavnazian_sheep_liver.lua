@@ -11,7 +11,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         result = 247
     elseif target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
         result = 246
