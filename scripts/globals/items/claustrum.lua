@@ -14,6 +14,7 @@ function onAdditionalEffect(player, target, damage)
         if effect ~= dsp.effect.NONE then
             return dsp.subEffect.DISPEL, dsp.msg.basic.ADD_EFFECT_DISPEL, effect
         end
+    end
 
     return 0, 0, 0
 end
