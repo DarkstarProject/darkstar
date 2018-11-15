@@ -16,43 +16,54 @@ dsp.aftermath.type =
     EMPYREAN = 3,
 } -- TODO: Add Aeonic
 
+-------------------------------------
+-- HELPERS : For aftermath eyes onry
+-------------------------------------
+local getTier1RelicDuration = function(tp)
+    return math.floor(tp * 0.02)
+end
+
+local getTier2RelicDuration = function(tp)
+    return math.floor(tp * 0.06)
+end
+
 dsp.aftermath.effects =
 {
     -----------------------------------
     -- Tier 1 Relic
     -----------------------------------
-    [1]  = { mods = { dsp.mod.SUBTLE_BLOW, 10 }, duration = function(tp) return tp * 0.02 end }, -- Spharai
-    [2]  = { mods = { dsp.mod.CRITHITRATE, 5 }, duration = function(tp) return tp * 0.02 end }, -- Mandau
-    [3]  = { mods = { dsp.mod.REGEN, 10 }, duration = function(tp) return tp * 0.02 end }, -- Excalibur
-    [4]  = { mods = { dsp.mod.CRITHITRATE, 5 }, duration = function(tp) return tp * 0.02 end }, -- Ragnarok
-    [5]  = { mods = { dsp.mod.ATTP, 10 }, duration = function(tp) return tp * 0.02 end }, -- Guttler
-    [6]  = { mods = { dsp.mod.DMG, -20 }, duration = function(tp) return tp * 0.02 end }, -- Bravura
-    [7]  = { mods = { dsp.mod.HASTE, 1000 }, duration = function(tp) return tp * 0.02 end }, -- Apocalypse
-    [8]  = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10 }, duration = function(tp) return tp * 0.02 end }, -- Gungnir
-    [9]  = { mods = { dsp.mod.SUBTLE_BLOW, 10 }, duration = function(tp) return tp * 0.02 end }, -- Kikoku
-    [10] = { mods = { dsp.mod.STORETP, 7 }, duration = function(tp) return tp * 0.02 end }, -- Amanomurakumo
-    [11] = { mods = { dsp.mod.ACC, 20 }, duration = function(tp) return tp * 0.02 end }, -- Mjollnir
-    [12] = { mods = { dsp.mod.REFRESH, 8 }, duration = function(tp) return tp * 0.02 end }, -- Claustrum
-    [13] = { mods = { dsp.mod.RACC, 20 }, duration = function(tp) return tp * 0.02 end }, -- Yoichinoyumi
-    [14] = { mods = { dsp.mod.ENMITY, -20 }, duration = function(tp) return tp * 0.02 end }, -- Annihilator
+    [1]  = { mods = { dsp.mod.SUBTLE_BLOW, 10 }, duration = getTier1RelicDuration }, -- Spharai
+    [2]  = { mods = { dsp.mod.CRITHITRATE, 5 }, duration = getTier1RelicDuration }, -- Mandau
+    [3]  = { mods = { dsp.mod.REGEN, 10 }, duration = getTier1RelicDuration }, -- Excalibur
+    [4]  = { mods = { dsp.mod.CRITHITRATE, 5 }, duration = getTier1RelicDuration }, -- Ragnarok
+    [5]  = { mods = { dsp.mod.ATTP, 10 }, duration = getTier1RelicDuration }, -- Guttler
+    [6]  = { mods = { dsp.mod.DMG, -20 }, duration = getTier1RelicDuration }, -- Bravura
+    [7]  = { mods = { dsp.mod.HASTE, 1000 }, duration = getTier1RelicDuration }, -- Apocalypse
+    [8]  = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10 }, duration = getTier1RelicDuration }, -- Gungnir
+    [9]  = { mods = { dsp.mod.SUBTLE_BLOW, 10 }, duration = getTier1RelicDuration }, -- Kikoku
+    [10] = { mods = { dsp.mod.STORETP, 7 }, duration = getTier1RelicDuration }, -- Amanomurakumo
+    [11] = { mods = { dsp.mod.ACC, 20 }, duration = getTier1RelicDuration }, -- Mjollnir
+    [12] = { mods = { dsp.mod.REFRESH, 8 }, duration = getTier1RelicDuration }, -- Claustrum
+    [13] = { mods = { dsp.mod.RACC, 20 }, duration = getTier1RelicDuration }, -- Yoichinoyumi
+    [14] = { mods = { dsp.mod.ENMITY, -20 }, duration = getTier1RelicDuration }, -- Annihilator
 
     -----------------------------------
     -- Tier 2 Relic
     -----------------------------------
-    [15] = { mods = { dsp.mod.SUBTLE_BLOW, 10, dsp.mod.KICK_ATTACK, 15 }, duration = function(tp) return tp * 0.06 end }, -- Spharai
-    [16] = { mods = { dsp.mod.CRITHITRATE, 5, dsp.mod.CRIT_DMG_INCREASE, 5 }, duration = function(tp) return tp * 0.06 end }, -- Mandau
-    [17] = { mods = { dsp.mod.REGEN, 30, dsp.mod.REFRESH, 3 }, duration = function(tp) return tp * 0.06 end }, -- Excalibur
-    [18] = { mods = { dsp.mod.CRITHITRATE, 10, dsp.mod.ACC, 15 }, duration = function(tp) return tp * 0.06 end }, -- Ragnarok
-    [19] = { mods = { dsp.mod.ATTP, 10 }, duration = function(tp) return tp * 0.06 end, includePets = true }, -- Guttler
-    [20] = { mods = { dsp.mod.DMG, -20, dsp.mod.REGEN, 15 }, duration = function(tp) return tp * 0.06 end }, -- Bravura
-    [21] = { mods = { dsp.mod.HASTE, 1000, dsp.mod.ACC, 15 }, duration = function(tp) return tp * 0.06 end }, -- Apocalypse
-    [22] = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10, dsp.mod.ATTP, 5, dsp.mod.DOUBLE_ATTACK, 5 }, duration = function(tp) return tp * 0.06 end }, -- Gungir
-    [23] = { mods = { dsp.mod.SUBTLE_BLOW, 10, dsp.mod.ATTP, 10 }, duration = function(tp) return tp * 0.06 end }, -- Kikoku
-    [24] = { mods = { dsp.mod.STORETP, 10, dsp.mod.ZANSHIN, 10 }, duration = function(tp) return tp * 0.06 end }, -- Amanomurakumo
-    [25] = { mods = { dsp.mod.ACC, 20, dsp.mod.MACC, 20, dsp.mod.REFRESH, 5 }, duration = function(tp) return tp * 0.06 end }, -- Mjollnir
-    [26] = { mods = { dsp.mod.REFRESH, 15, dsp.mod.DMG, -20 }, duration = function(tp) return tp * 0.06 end }, -- Claustrum
-    [27] = { mods = { dsp.mod.RACC, 30, dsp.mod.SNAP_SHOT, 5 }, duration = function(tp) return tp * 0.06 end }, -- Yoichinoyumi
-    [28] = { mods = { dsp.mod.ENMITY, -25, dsp.mod.RATTP, 10 }, duration = function(tp) return tp * 0.06 end }, -- Annihilator
+    [15] = { mods = { dsp.mod.SUBTLE_BLOW, 10, dsp.mod.KICK_ATTACK, 15 }, duration = getTier2RelicDuration }, -- Spharai
+    [16] = { mods = { dsp.mod.CRITHITRATE, 5, dsp.mod.CRIT_DMG_INCREASE, 5 }, duration = getTier2RelicDuration }, -- Mandau
+    [17] = { mods = { dsp.mod.REGEN, 30, dsp.mod.REFRESH, 3 }, duration = getTier2RelicDuration }, -- Excalibur
+    [18] = { mods = { dsp.mod.CRITHITRATE, 10, dsp.mod.ACC, 15 }, duration = getTier2RelicDuration }, -- Ragnarok
+    [19] = { mods = { dsp.mod.ATTP, 10 }, duration = getTier2RelicDuration, includePets = true }, -- Guttler
+    [20] = { mods = { dsp.mod.DMG, -20, dsp.mod.REGEN, 15 }, duration = getTier2RelicDuration }, -- Bravura
+    [21] = { mods = { dsp.mod.HASTE, 1000, dsp.mod.ACC, 15 }, duration = getTier2RelicDuration }, -- Apocalypse
+    [22] = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10, dsp.mod.ATTP, 5, dsp.mod.DOUBLE_ATTACK, 5 }, duration = getTier2RelicDuration }, -- Gungir
+    [23] = { mods = { dsp.mod.SUBTLE_BLOW, 10, dsp.mod.ATTP, 10 }, duration = getTier2RelicDuration }, -- Kikoku
+    [24] = { mods = { dsp.mod.STORETP, 10, dsp.mod.ZANSHIN, 10 }, duration = getTier2RelicDuration }, -- Amanomurakumo
+    [25] = { mods = { dsp.mod.ACC, 20, dsp.mod.MACC, 20, dsp.mod.REFRESH, 5 }, duration = getTier2RelicDuration }, -- Mjollnir
+    [26] = { mods = { dsp.mod.REFRESH, 15, dsp.mod.DMG, -20 }, duration = getTier2RelicDuration }, -- Claustrum
+    [27] = { mods = { dsp.mod.RACC, 30, dsp.mod.SNAP_SHOT, 5 }, duration = getTier2RelicDuration }, -- Yoichinoyumi
+    [28] = { mods = { dsp.mod.ENMITY, -25, dsp.mod.RATTP, 10 }, duration = getTier2RelicDuration }, -- Annihilator
 
     -----------------------------------
     -- Tier 1 Mythic
