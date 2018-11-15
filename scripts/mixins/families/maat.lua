@@ -71,7 +71,7 @@ g_mixins.maat = function(mob)
             mob:setLocalVar("specialThreshold", -1)
         end
 
-        if (mob:getHPP() < 20) or (mob:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
+        if mob:getHPP() < 20 or (mob:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
             local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
             mob:showText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
             mob:getBattlefield():win()
@@ -80,9 +80,11 @@ g_mixins.maat = function(mob)
     end)
 
     mob:addListener("ITEM_STOLEN", "MAAT_ITEM_STOLEN", function(mob, player, itemId)
-        local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
-        mob:messageText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
-        mob:getBattlefield():win()
+        if mob:getMainJob() == dsp.job.THF then
+            local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+            mob:messageText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
+            mob:getBattlefield():win()
+        end
     end)
     
     mob:addListener("DEATH", "MAAT_DEATH", function(mob, killer)
