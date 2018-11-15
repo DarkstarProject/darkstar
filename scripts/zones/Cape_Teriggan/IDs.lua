@@ -46,8 +46,8 @@ zones[dsp.zone.CAPE_TERIGGAN] =
     },
     npc =
     {
-        OVERSEER_BASE             = 17240472,
-        TERIGGAN_CERMET_HEADSTONE = 17240497,
+        OVERSEER_BASE    = 17240472,
+        CERMET_HEADSTONE = 17240497,
     },
 }
 

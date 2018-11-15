@@ -4,6 +4,7 @@
 -- Notes: Opens Trap Door (_47a) or Brass Door (_470)
 -- !pos 17.717 -1.087 -14.320 151
 -----------------------------------
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/status")
 -----------------------------------
@@ -32,7 +33,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(0) -- Cannot reach target
+        player:messageSpecial(ID.text.CANNOT_REACH_TARGET)
     end
 
 end

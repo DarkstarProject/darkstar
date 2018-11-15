@@ -10,6 +10,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
 {
     text =
     {
+        CANNOT_REACH_TARGET                = 0, -- Cannot reach target.
         ITS_LOCKED                         = 1, -- It's locked.
         PROBABLY_WORKS_WITH_SOMETHING_ELSE = 3, -- It probably works with something else.
         TORCH_LIT                          = 5, -- The torch is lit.

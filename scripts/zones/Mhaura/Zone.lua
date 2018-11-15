@@ -24,7 +24,7 @@ function onGameHour(zone)
 end;
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.MHAURA_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE);
 end;
 
 function onZoneIn(player,prevZone)

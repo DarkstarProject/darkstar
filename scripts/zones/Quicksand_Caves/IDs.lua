@@ -58,8 +58,7 @@ zones[dsp.zone.QUICKSAND_CAVES] =
             [3] = {479.000, -14.000, -815.000},
             [4] = {814.000, -14.000, -761.000}
         },
-        TRIBUNUS_VII_I_QM      = 17629661,
-        QC_ORNATE_DOOR_OFFSET  = 17629685,
+        ORNATE_DOOR_OFFSET     = 17629685,
         CHAINS_THAT_BIND_US_QM = 17629738,
         TREASURE_COFFER        = 17629739,
         ANTICAN_TAG_QM         = 17629761,

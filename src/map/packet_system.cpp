@@ -310,6 +310,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+    else
+        charutils::ClearTempItems(PChar);
 
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }

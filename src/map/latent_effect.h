@@ -86,7 +86,8 @@ enum LATENT
     LATENT_ZONE_HOME_NATION         = 54, //in zone and citizen of nation (aketons)
     LATENT_MP_OVER                  = 55, //mp greater than # - PARAM: MP #
     LATENT_WEAPON_DRAWN_MP_OVER     = 56, //while weapon is drawn and mp greater than # - PARAM: MP #
-    LATENT_ELEVEN_ROLL_ACTIVE       = 57  //corsair roll of 11 active
+    LATENT_ELEVEN_ROLL_ACTIVE       = 57, //corsair roll of 11 active
+    LATENT_IN_ASSAULT               = 58  // is in an Instance battle in a TOAU zone
 };
 
 #define MAX_LATENTEFFECTID    58

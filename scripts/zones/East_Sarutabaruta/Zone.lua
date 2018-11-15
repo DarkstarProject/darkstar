@@ -54,13 +54,13 @@ function onEventUpdate( player, csid, option)
     if (csid == 50) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 52) then
-        if (player:getPreviousZone() == 241 or player:getPreviousZone() == 115) then
+        if (player:getPreviousZone() == dsp.zone.WINDURST_WOODS or player:getPreviousZone() == dsp.zone.WEST_SARUTABARUTA) then
             if (player:getZPos() < 570) then
                 player:updateEvent(0,0,0,0,0,1);
             else
                 player:updateEvent(0,0,0,0,0,2);
             end
-        elseif (player:getPreviousZone() == 194) then
+        elseif (player:getPreviousZone() == dsp.zone.OUTER_HORUTOTO_RUINS) then
             if (player:getZPos() > 570) then
                 player:updateEvent(0,0,0,0,0,2);
             end

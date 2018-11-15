@@ -37,7 +37,6 @@ zones[dsp.zone.PSOXJA] =
     },
     npc =
     {
-        GOLDEN_TONGUED_CULBERRY_QM = 16814434,
         STONE_DOOR_OFFSET          = 16814445,
         TREASURE_CHEST             = 16814557,
     },

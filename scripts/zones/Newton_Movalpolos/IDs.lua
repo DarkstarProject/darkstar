@@ -27,14 +27,13 @@ zones[dsp.zone.NEWTON_MOVALPOLOS] =
     {
         MIMIC                = 16826564,
         BUGBEAR_MATMAN       = 16826570,
-        MOBLIN_SHOWMAN       = 16826573,
-        NEWTON_DOOR_OFFSET   = 16826582,
-        FURNACE_HATCH_OFFSET = 16826607,
     },
     npc =
     {
-        TREASURE_COFFER = 16826627,
-        MINING =
+        DOOR_OFFSET          = 16826582,
+        FURNACE_HATCH_OFFSET = 16826607,
+        TREASURE_COFFER      = 16826627,
+        MINING               =
         {
             16826621,
             16826622,

@@ -1,22 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Amfafa
+--  NPC: Amfafa
 -- Type: Standard NPC
 -- !pos -24.938 -2 -185.729 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(433);
-end;
+    player:startEvent(433)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

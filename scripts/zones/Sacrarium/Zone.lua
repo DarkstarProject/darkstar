@@ -53,7 +53,7 @@ function onGameDay()
     };
     local doors = labyrinthDoorsByDay[VanadielDayElement()];
     for i = 0, 17 do
-        GetNPCByID(ID.npc.SACRARIUM_LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
+        GetNPCByID(ID.npc.LABYRINTH_OFFSET + i):setAnimation(dsp.anim.OPEN_DOOR + doors[i+1]);
     end
 end;
 

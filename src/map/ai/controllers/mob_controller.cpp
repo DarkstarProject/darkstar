@@ -962,8 +962,14 @@ bool CMobController::Engage(uint16 targid)
 
 bool CMobController::CanAggroTarget(CBattleEntity* PTarget)
 {
-    // don't aggro i'm neutral
+    // Don't aggro I'm neutral
     if (!PMob->m_Aggro || PMob->m_neutral || PMob->isDead())
+    {
+        return false;
+    }
+
+    // Don't aggro I'm special
+    if (PMob->getMobMod(MOBMOD_NO_AGGRO) > 0)
     {
         return false;
     }

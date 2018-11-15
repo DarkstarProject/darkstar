@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 6 and npcUtil.tradeHas(trade, 1127) then
-        player:setVar("ridingOnTheClouds_4",0)
+        player:setVar("ridingOnTheClouds_4", 0)
         player:confirmTrade()
         npcUtil.giveKeyItem(player, dsp.ki.SPIRITED_STONE)
     end

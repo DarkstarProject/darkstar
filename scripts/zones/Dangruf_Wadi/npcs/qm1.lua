@@ -2,26 +2,24 @@
 -- Area: Dangruf Wadi
 --  NPC: qm1
 -- Type: spawns Chocoboleech
--- !pos  -430 4 115 191
+-- !pos -430 4 115 191
 -----------------------------------
 local ID = require("scripts/zones/Dangruf_Wadi/IDs")
 require("scripts/globals/npc_util")
-require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local mob = GetMobByID(ID.mob.CHOCOBOLEECH)
-
-    if not mob:isSpawned() and npcUtil.tradeHas(trade, 1898) then -- fresh blood
-        local x = npc:getXPos()
-        local y = npc:getYPos()
-        local z = npc:getZPos()
-
+    if npcUtil.tradeHas(trade, 1898) and npcUtil.popFromQM(player, npc, ID.mob.CHOCOBOLEECH, {radius=1}) then -- fresh blood
         player:confirmTrade()
-        SpawnMob(ID.mob.CHOCOBOLEECH):updateClaim(player)
-        mob:setPos(x+1, y, z)
 
-        npc:setStatus(dsp.status.DISAPPEAR)
+        local positions =
+        {
+            {-430.330, 4.400, 115.100},
+            {-492.926, 4.337,  -7.936},
+            { -75.392, 2.531, 293.357},
+        }
+        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions, true)
+        npcUtil.queueMove(npc, newPosition)
     end
 end
 

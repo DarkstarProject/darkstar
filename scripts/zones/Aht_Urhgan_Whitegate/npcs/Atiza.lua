@@ -6,19 +6,17 @@
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(223,player:getGil(),100);
-end;
+    player:startEvent(223,player:getGil(),100)
+end
 
 function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 223 and option == 333) then
-        player:delGil(100);
+    if csid == 223 and option == 333 then
+        player:delGil(100)
     end
-
-end;
+end

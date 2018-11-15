@@ -5,11 +5,8 @@
 require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 628, 1, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 629, 1, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 630, 1, dsp.regime.type.GROUNDS)
-end;
+end

@@ -37,8 +37,8 @@ zones[dsp.zone.MHAURA] =
     },
     npc =
     {
-        LAUGHING_BISON         = 17797183,
-        MHAURA_EXPLORER_MOOGLE = 17797253,
+        LAUGHING_BISON  = 17797183,
+        EXPLORER_MOOGLE = 17797253,
     },
 }
 

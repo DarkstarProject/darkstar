@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local offset        = npc:getID() - ID.npc.FEIYIN_AFTERGRLOW_OFFSET
+    local offset        = npc:getID() - ID.npc.AFTERGRLOW_OFFSET
     local ACP           = player:getCurrentMission(ACP)
     local currentDay    = tonumber(os.date("%j"))
     local needToZone    = player:needToZone()

@@ -14,6 +14,7 @@ zones[dsp.zone.SILVER_SEA_REMNANTS] =
         ITEM_OBTAINED           = 6387, -- Obtained: <item>.
         GIL_OBTAINED            = 6388, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
+        CELL_OFFSET             = 7211, -- message for remove messages
     },
     mob =
     {

@@ -30,9 +30,9 @@ zones[dsp.zone.CASTLE_ZVAHL_BAILEYS] =
     },
     npc =
     {
-        ZVAHL_BAILEYS_TORCH_OFFSET = 17436984,
-        TREASURE_CHEST             = 17436997,
-        TREASURE_COFFER            = 17436998,
+        TORCH_OFFSET    = 17436984,
+        TREASURE_CHEST  = 17436997,
+        TREASURE_COFFER = 17436998,
     },
 }
 

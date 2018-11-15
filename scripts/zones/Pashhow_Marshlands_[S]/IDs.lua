@@ -24,7 +24,7 @@ zones[dsp.zone.PASHHOW_MARSHLANDS_S] =
     },
     npc =
     {
-        PASHHOW_S_MARKINGS_OFFSET = 17146626,
+        INDESCRIPT_MARKINGS_OFFSET = 17146626,
     },
 }
 

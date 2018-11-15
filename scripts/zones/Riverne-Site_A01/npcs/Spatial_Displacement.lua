@@ -8,7 +8,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.RIV_A_DISPLACEMENT_OFFSET;
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
     if (offset >= 0 and offset <= 2) then
         player:startEvent(offset + 2);
     elseif (offset >= 7 and offset <= 39) then
