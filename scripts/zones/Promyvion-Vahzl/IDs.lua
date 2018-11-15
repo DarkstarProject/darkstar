@@ -20,7 +20,7 @@ zones[dsp.zone.PROMYVION_VAHZL] =
     },
     mob =
     {
-        VAHZL_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16867382] = {1, 3, 16867699},
             [16867387] = {1, 3, 16867700},
@@ -43,7 +43,7 @@ zones[dsp.zone.PROMYVION_VAHZL] =
     },
     npc =
     {
-        VAHZL_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {  -2, -2, -122,    2, 2, -117, {45}}, -- floor 1 return
             [21]        = { -40, -2,  197,  -37, 2,  202, {41}}, -- floor 2 return

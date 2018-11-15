@@ -480,6 +480,7 @@ public:
 
     bool            isDead();					// проверяем, мертва ли сущность
     bool            isAlive();
+    bool            isInAssault();
     bool            isInDynamis();
     bool            hasImmunity(uint32 imID);
     bool            isAsleep();

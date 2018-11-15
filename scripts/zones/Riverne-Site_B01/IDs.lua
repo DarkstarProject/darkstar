@@ -39,7 +39,7 @@ zones[dsp.zone.RIVERNE_SITE_B01] =
     },
     npc =
     {
-        RIV_B_DISPLACEMENT_OFFSET = 16896183,
+        DISPLACEMENT_OFFSET = 16896183,
     },
 }
 

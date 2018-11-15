@@ -19,7 +19,7 @@ zones[dsp.zone.PROMYVION_DEM] =
     },
     mob =
     {
-        DEM_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16850971] = {1, 3, 16851268},
             [16851025] = {2, 5, 16851272},
@@ -36,7 +36,7 @@ zones[dsp.zone.PROMYVION_DEM] =
     },
     npc =
     {
-        DEM_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = { 157, -4,  -82,  161, 4,  -77, {46}},    -- floor 1 return
             [21]        = {-383, -4,   -2, -278, 4,    2, {41}},    -- floor 2 return

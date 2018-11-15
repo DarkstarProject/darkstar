@@ -3,17 +3,14 @@
 --  NPC: Ezura-Romazura
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,ID.text.EZURAROMAZURA_SHOP_DIALOG);
-
     local stock =
     {
         4771,123750,        -- Scroll of Stone V
@@ -28,12 +25,12 @@ function onTrigger(player,npc)
         4863,126000,        -- Scroll of Break
     }
 
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc,ID.text.EZURAROMAZURA_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -14,7 +14,7 @@ end
 
 function onEventUpdate(player,csid,option)
     dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.GROUNDS)
-end;
+end
 
 function onEventFinish(player,csid,option)
     dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.GROUNDS)

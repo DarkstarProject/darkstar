@@ -78,8 +78,8 @@ zones[dsp.zone.BASTOK_MINES] =
     },
     npc =
     {
-        LELEROON_BLUE_DOOR           = 17735847,
-        BASTOK_MINES_EXPLORER_MOOGLE = 17735856,
+        LELEROON_BLUE_DOOR = 17735847,
+        EXPLORER_MOOGLE    = 17735856,
     },
 }
 

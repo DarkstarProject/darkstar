@@ -47,9 +47,9 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
     },
     npc =
     {
-        ELDIEME_BRAZIER_OFFSET = 17576343,
-        TREASURE_CHEST         = 17576356,
-        TREASURE_COFFER        = 17576357,
+        BRAZIER_OFFSET  = 17576343,
+        TREASURE_CHEST  = 17576356,
+        TREASURE_COFFER = 17576357,
     },
 }
 

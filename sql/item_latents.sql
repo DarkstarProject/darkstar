@@ -54,6 +54,18 @@ INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EV
 INSERT INTO `item_latents` VALUES(15139, 63, 10, 13, 64); -- Abyss Sollerets, Enhances "Last Resort" effect
 INSERT INTO `item_latents` VALUES(15672, 63, 10, 13, 64); -- Abyss Sollerets +1, Enhances "Last Resort" effect
 
+INSERT INTO `item_latents` VALUES(15807, 12, 4, 58, 0); -- Balrahn's Ring INT +4
+INSERT INTO `item_latents` VALUES(15807, 13, 4, 58, 0); -- MND +4
+INSERT INTO `item_latents` VALUES(15807, 14, 4, 58, 0); -- CHR +4
+INSERT INTO `item_latents` VALUES(15807, 369, 1, 58, 0); -- Refresh +1
+
+INSERT INTO `item_latents` VALUES(15808, 8, 4, 58, 0); -- Ulthalam's Ring STR +4
+INSERT INTO `item_latents` VALUES(15808, 9, 4, 58, 0); -- DEX +4
+INSERT INTO `item_latents` VALUES(15808, 370, 1, 58, 0); -- regen +1
+
+INSERT INTO `item_latents` VALUES(15809, 11, 6, 58, 0); -- Jalzahns's Ring AGI +6
+INSERT INTO `item_latents` VALUES(15809, 365, 1, 58, 0); -- Snapshot
+
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
 INSERT INTO `item_latents` VALUES(16029, 2, 10, 22, 16); -- Booster Earring, HP+10 if BLU is in party

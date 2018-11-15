@@ -11,6 +11,8 @@ end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
+    
+    player:addTempItem(5400)
 
     return cs;
 end;

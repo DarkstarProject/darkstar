@@ -70,8 +70,8 @@ zones[dsp.zone.LOWER_JEUNO] =
     },
     npc =
     {
-        VHANA_EHGAKLYWHA              = 17780880,
-        LOWER_JEUNO_STREETLAMP_OFFSET = 17780881,
+        VHANA_EHGAKLYWHA  = 17780880,
+        STREETLAMP_OFFSET = 17780881,
     },
 }
 

@@ -28,7 +28,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
         result = 246
     end
     return result
@@ -39,7 +39,7 @@ function onItemUse(target)
 end
 
 function onEffectGain(target, effect)
-    if (target:getRace() == 3 or target:getRace() == 4) then
+    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
         target:addMod(dsp.mod.HP, 20)
         target:addMod(dsp.mod.MP, 20)
         target:addMod(dsp.mod.STR, 6)
@@ -64,7 +64,7 @@ function onEffectGain(target, effect)
 end
 
 function onEffectLose(target, effect)
-    if (target:getRace() == 3 or target:getRace() == 4) then
+    if (target:getRace() == dsp.race.ELVAAN_M or target:getRace() == dsp.race.ELVAAN_F) then
         target:delMod(dsp.mod.HP, 20)
         target:delMod(dsp.mod.MP, 20)
         target:delMod(dsp.mod.STR, 6)

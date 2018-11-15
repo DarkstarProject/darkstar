@@ -1,22 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Renten-Tonten
+--  NPC: Renten-Tonten
 -- Type: Standard NPC
 -- !pos 133.840 -6.75 173.305 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(421);
-end;
+    player:startEvent(421)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

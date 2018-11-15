@@ -98,9 +98,9 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
     },
     npc =
     {
-        PHANTOM_WORM_QM  = 17490253,
-        KUFTAL_DOOR_ROCK = 17490280,
-        TREASURE_COFFER  = 17490304,
+        PHANTOM_WORM_QM = 17490253,
+        DOOR_ROCK       = 17490280,
+        TREASURE_COFFER = 17490304,
     },
 }
 

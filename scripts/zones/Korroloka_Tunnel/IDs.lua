@@ -57,7 +57,6 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
     },
     npc =
     {
-        MORION_WORM_QM = 17486213,
         EXCAVATION =
         {
             17486253,
@@ -67,6 +66,7 @@ zones[dsp.zone.KORROLOKA_TUNNEL] =
             17486257,
             17486258,
         },
+        MORION_WORM_QM = 17486213,
     },
 }
 

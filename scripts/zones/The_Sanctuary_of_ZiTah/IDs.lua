@@ -48,8 +48,8 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
     },
     npc =
     {
-        OVERSEER_BASE          = 17273363,
-        ZITAH_CERMET_HEADSTONE = 17273388,
+        OVERSEER_BASE    = 17273363,
+        CERMET_HEADSTONE = 17273388,
     },
 }
 
