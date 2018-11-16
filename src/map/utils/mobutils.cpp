@@ -926,26 +926,99 @@ void SetupNMMob(CMobEntity* PMob)
 
 void SetupMaat(CMobEntity* PMob)
 {
+    SKILLTYPE skillType = SKILL_NONE;
+    int32 combatDelay = 360;
+    float damageMultiplier = 1.0f;
+
     switch(PMob->GetMJob()){
-        case JOB_NIN:
-            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
-            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+        case JOB_WAR:
+            skillType = SKILL_GREAT_AXE;
+            combatDelay = 489;
             break;
-        case JOB_DRK:
+        case JOB_MNK:
+            skillType = SKILL_HAND_TO_HAND;
+            combatDelay = 480;
+            PMob->m_Weapons[SLOT_MAIN]->setDamage(80);
+            break;
+        case JOB_WHM:
+            skillType = SKILL_CLUB;
+            combatDelay = 288;
+            break;
+        case JOB_BLM:
+            skillType = SKILL_STAFF;
+            combatDelay = 356;
+            break;
+        case JOB_RDM:
+            skillType = SKILL_SWORD;
+            combatDelay = 225;
+            break;
+        case JOB_THF:
+            skillType = SKILL_DAGGER;
+            combatDelay = 188;
+            break;
         case JOB_PLD:
             // Give shield bash
+            skillType = SKILL_SWORD;
+            combatDelay = 225;
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
+            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
+            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
+            break;
+        case JOB_DRK:
+            skillType = SKILL_GREAT_SWORD;
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
             break;
         case JOB_BST:
             // Call beast skill
+            skillType = SKILL_AXE;
+            combatDelay = 288;
             PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
             PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
             break;
+        case JOB_BRD:
+            skillType = SKILL_DAGGER;
+            combatDelay = 188;
+            break;
+        case JOB_RNG:
+            skillType = SKILL_ARCHERY;
+            combatDelay = 540;
+            break;
+        case JOB_SAM:
+            skillType = SKILL_GREAT_KATANA;
+            combatDelay = 437;
+            break;
+        case JOB_NIN:
+            skillType = SKILL_KATANA;
+            combatDelay = 250;
+            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
+            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay(combatDelay * 1000 / 60);
+            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
+            break;
+        case JOB_DRG:
+            skillType = SKILL_POLEARM;
+            combatDelay = 396;
+            break;
+        case JOB_SMN:
+            skillType = SKILL_STAFF;
+            combatDelay = 356;
+            break;
         default:
             break;
+    }
+
+    PMob->m_Weapons[SLOT_MAIN]->setSkillType(skillType);
+    PMob->m_Weapons[SLOT_MAIN]->setBaseDelay(combatDelay * 1000 / 60);
+    PMob->m_Weapons[SLOT_MAIN]->resetDelay();
+
+    if (PMob->GetMJob() == JOB_NIN)
+    {
+        PMob->m_Weapons[SLOT_SUB]->setSkillType(SKILL_KATANA);
+        PMob->m_Weapons[SLOT_SUB]->setBaseDelay(PMob->m_Weapons[SLOT_MAIN]->getDelay());
+        PMob->m_Weapons[SLOT_SUB]->resetDelay();
+        PMob->m_Weapons[SLOT_SUB]->setDamage(PMob->m_Weapons[SLOT_MAIN]->getDamage());
     }
 }
 
@@ -1261,8 +1334,12 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
 
     // give him a spell list based on job
     uint16 spellList = 0;
+    SKILLTYPE skillType = SKILL_NONE;
+    int32 combatDelay = 360;
+    float damageMultiplier = 1.0f;
 
-    switch(job){
+    switch (job)
+    {
         case JOB_WHM:
             spellList = 1;
             break;
@@ -1283,9 +1360,6 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
             break;
         case JOB_NIN:
             spellList = 7;
-            break;
-        case JOB_BLU:
-            spellList = 8;
             break;
         case JOB_SMN:
             spellList = 141;
