@@ -14,21 +14,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/build
-
-COPY win32/ win32/
-COPY Makefile.am .
-COPY configure.ac .
-COPY m4/ m4/
-COPY autogen.sh .
-COPY gensources.sh .
-COPY src/ src/
-COPY log/ log/
-COPY scripts/ scripts/
-COPY compress.dat .
-COPY decompress.dat .
-COPY version.info .
-COPY conf/ conf/
-COPY docker/ docker/
+COPY . .
 RUN ./docker/config.sh
 RUN ./autogen.sh
 RUN ./configure
