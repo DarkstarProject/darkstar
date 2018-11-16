@@ -18,7 +18,7 @@ g_mixins.maat = function(mob)
         if mob:getLocalVar("engaged") == 0 then
             for _, player in pairs(mob:getZone():getPlayers()) do
                 if player:checkDistance(mob) < 8 then
-                    local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+                    local ID = zones[mob:getZoneID()]
                     mob:messageText(mob, ID.text.YOU_DECIDED_TO_SHOW_UP)
                     mob:setLocalVar("engaged", player:getID())
                 end
@@ -28,7 +28,7 @@ g_mixins.maat = function(mob)
 
     mob:addListener("ENGAGE", "MAAT_ENGAGE", function(mob, target)
         if mob:getLocalVar("engaged") == 0 then
-            local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+            local ID = zones[mob:getZoneID()]
             mob:messageText(mob, ID.text.YOU_DECIDED_TO_SHOW_UP)
             mob:setLocalVar("engaged", target:getID())
         end
@@ -39,14 +39,15 @@ g_mixins.maat = function(mob)
         if engagedID ~= 0 then
             player = GetPlayerByID(engagedID)
             if player:getHP() == 0 then
-                local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+                local ID = zones[mob:getZoneID()]
                 mob:showText(mob, ID.text.LOOKS_LIKE_YOU_WERENT_READY)
             end
         end
     end)
 
     mob:addListener("COMBAT_TICK", "MAAT_CTICK", function(mob)
-        local defaultAbility = {
+        local defaultAbility =
+        {
             [dsp.job.WAR] = dsp.jsa.MIGHTY_STRIKES_MAAT,
             [dsp.job.MNK] = dsp.jsa.HUNDRED_FISTS_MAAT,
             [dsp.job.WHM] = dsp.jsa.BENEDICTION_MAAT,
@@ -65,14 +66,14 @@ g_mixins.maat = function(mob)
         }
 
         if mob:getHPP() < mob:getLocalVar("specialThreshold") then
-            local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+            local ID = zones[mob:getZoneID()]
             mob:messageText(mob, ID.text.NOW_THAT_IM_WARMED_UP)
             mob:useMobAbility(defaultAbility[mob:getMainJob()])
             mob:setLocalVar("specialThreshold", -1)
         end
 
         if mob:getHPP() < 20 or (mob:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
-            local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+            local ID = zones[mob:getZoneID()]
             mob:showText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
             mob:getBattlefield():win()
         end
@@ -81,14 +82,14 @@ g_mixins.maat = function(mob)
 
     mob:addListener("ITEM_STOLEN", "MAAT_ITEM_STOLEN", function(mob, player, itemId)
         if mob:getMainJob() == dsp.job.THF then
-            local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+            local ID = zones[mob:getZoneID()]
             mob:messageText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
             mob:getBattlefield():win()
         end
     end)
     
     mob:addListener("DEATH", "MAAT_DEATH", function(mob, killer)
-        local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+        local ID = zones[mob:getZoneID()]
         mob:messageText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
     end)
 
@@ -98,7 +99,7 @@ g_mixins.maat = function(mob)
     end)
 
     mob:addListener("WEAPONSKILL_USE", "MAAT_WEAPONSKILL_USE", function(mob, target, wsid, tp, action)
-        local ID = require("scripts/zones/"..mob:getZoneName().."/IDs")
+        local ID = zones[mob:getZoneID()]
         if (wsid == 1028) then -- Tackle
             mob:messageText(mob, ID.text.TAKE_THAT_YOU_WHIPPERSNAPPER)
         elseif (wsid == 1033) then -- Dragon Kick

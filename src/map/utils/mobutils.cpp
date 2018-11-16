@@ -1005,10 +1005,6 @@ void SetupMaat(CMobEntity* PMob)
             skillType = SKILL_STAFF;
             combatDelay = 356;
             break;
-        case JOB_BLU:
-            skillType = SKILL_SWORD;
-            combatDelay = 225;
-            break;
         default:
             break;
     }
@@ -1367,9 +1363,6 @@ void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
             break;
         case JOB_SMN:
             spellList = 141;
-            break;
-        case JOB_BLU:
-            spellList = 8;
             break;
         default:
             break;
