@@ -2486,6 +2486,104 @@ INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,61,1,255)
 INSERT INTO `mob_spell_lists` VALUES ('Gotoh_Zha_the_Redolent_WHM',297,112,1,255); -- Flash
 
 INSERT INTO `mob_spell_lists` VALUES ('Drumskull_Zogdregg',298,191,1,255); -- stonega_iii
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,513,42,255); -- Venom Shell
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,517,61,255); -- Maelsotrm
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,519,26,255); -- Screwdriver
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,521,42,255); -- MP Drainkiss
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,522,34,255); -- Death Ray
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,524,1,255); -- Sandspin
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,527,34,255); -- Smaite of Rage
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,529,18,255); -- Bludgeon
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,530,48,255); -- Refueling
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,531,50,255); -- Ice Break
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,532,44,255); -- Blitzstrahl
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,533,50,255); -- self Destruct
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,534,40,255); -- Mysterious Light
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,535,52,255); -- Cold Wave
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,536,22,255); -- Poison Breath
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,537,44,255); -- Stinking Gas
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,538,62,255); -- Memento Mori
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,539,40,255); -- Terror Touch
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,540,63,255); -- Spinal Cleave
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,541,48,255); -- Blood Saber
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,542,36,255); -- Digest
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,543,44,255); -- Mandibular Bite
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,544,18,255); -- Cursed Sphere
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,545,48,255); -- Sickel Slash
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,547,8,255); -- Cocoon
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,548,52,255); -- Filamented Hold
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,549,1,29); -- Pollen
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,551,4,255); -- Power Attack
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,554,60,255); -- Death Scissors
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,555,46,255); -- Magnetite Cloud
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,557,61,255); -- Eyes on Me
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,560,63,255); -- Frenetoc Rip
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,561,50,255); -- Frightfull Roar
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,563,54,255); -- Hecatomb Wave
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,564,62,255); -- Body Slam
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,565,54,255); -- Radient Breath
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,567,16,255); -- Helldive
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,569,38,255); -- Jet Stream
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,570,20,255); -- Blood Drain
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,572,32,255); -- Sound Blast
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,573,64,255); -- Feather Tickle
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,574,56,255); -- feather Barrier
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,575,48,255); -- Jettatura
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,576,64,255); -- Yawn
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,577,1,255); -- Foot Kick
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,578,30,57); -- Wild Carrot
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,579,64,255); -- V. Trunk
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,581,16,255); -- Healing Breeze
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,582,32,255); -- Chaotic Eye
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,584,16,255); -- Sheep Song
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,585,73,255); -- Ram Charge
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,587,20,255); -- Claw Cyclone
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,588,71,255); -- Lowing
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,589,60,255); -- Dimensional Death
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,591,71,255); -- Heat Breath
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,592,38,255); -- Blank Gaze
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,593,58,255); -- Magic Fruit
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,594,38,255); -- UpperCut
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,595,62,255); -- 1000 Needles
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,596,36,255); -- Pinecone Bomb
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,597,4,255); -- Sprout Smack
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,598,24,255); -- Soporific
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,599,8,255); -- Queasyshroom
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,603,4,255); -- Wild Oats
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,604,61,255); -- Bad Breath
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,605,46,255); -- Giest Wall
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,606,46,255); -- Awful Eye
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,610,65,255); -- Infransonics
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,611,72,255); -- disseverment
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,612,74,255); -- actinic Burst
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,613,74,255); -- Reactor Cool
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,614,72,255); -- Saline Coat
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,615,75,255); -- Plasma Charge
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,616,73,255); -- Temporal Shift
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,617,75,255); -- Vertical Cleave
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,618,18,255); -- BlastBomb
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,620,12,255); -- Battle Dance
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,621,66,255); -- Sandspray
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,622,30,255); -- Grand Slam
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,623,12,255); -- Head Butt
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,626,28,255); -- Bomb Toss
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,628,63,255); -- Frypan
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,629,58,255); -- Flying Hip Press
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,631,63,255); -- Hydro Shot
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,632,67,255); -- Diamondhide
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,633,67,255); -- enervation
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,634,58,255); -- Light of Penace
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,636,68,255); -- Warm-up
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,637,68,255); -- Firespit
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,638,12,255); -- featherstorm
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,640,69,255); -- Tail Slap
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,641,69,255); -- Hysteric Barrage
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,642,70,255); -- Amplification
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,643,70,255); -- Cannonball
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,644,73,255); -- MindBlast
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,645,75,255); -- Exuvation
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,646,74,255); -- Magic Hammer
+INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,647,65,255); -- Zephyr Mantle
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
