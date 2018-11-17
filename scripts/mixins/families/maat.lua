@@ -69,7 +69,7 @@ g_mixins.maat = function(mob)
             local ID = zones[mob:getZoneID()]
             mob:messageText(mob, ID.text.NOW_THAT_IM_WARMED_UP)
             mob:useMobAbility(defaultAbility[mob:getMainJob()])
-            mob:setLocalVar("specialThreshold", -1)
+            mob:setLocalVar("specialThreshold", 0)
         end
 
         if mob:getHPP() < 20 or (mob:getMainJob() == dsp.job.WHM and mob:getBattleTime() > 300) then
