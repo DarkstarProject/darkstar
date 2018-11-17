@@ -12,4 +12,4 @@ WORKDIR /usr/build
 
 EXPOSE 54002
 
-CMD ./dssearch
+CMD ./docker/wait-for-it.sh dsdb:3306 --timeout=0 && ./dssearch

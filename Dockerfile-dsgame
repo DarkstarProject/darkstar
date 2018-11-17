@@ -13,4 +13,4 @@ WORKDIR /usr/build
 
 EXPOSE 54230
 
-CMD ./dsgame
+CMD ./docker/wait-for-it.sh dsdb:3306 --timeout=0 && ./dsgame

@@ -33,6 +33,8 @@ services:
       - ds-network
     volumes:
       - build-volume:/usr/build
+    stdin_open: true
+    tty: true
   dsgame:
     build:
       context: .
