@@ -4261,6 +4261,7 @@ namespace battleutils
         resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGPHYS) / 100.0f ) ) / 256.0f )
                       + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)     / 100.0f ) ) / 256.0f );
         resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        resist += floor(PDefender->getMod(Mod::DMGPHYS_II) / 100.f); // Add Burtgang reduction after cap
         damage = (int32)(damage * resist);
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
