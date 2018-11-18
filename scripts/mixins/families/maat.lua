@@ -5,10 +5,12 @@ require("scripts/globals/status")
 g_mixins = g_mixins or {}
 
 g_mixins.maat = function(mob)
- 
+
     mob:addListener("SPAWN", "JOB_SPECIAL_SPAWN", function(mob)
         if (mob:getMainJob() == dsp.job.NIN) then
             mob:setLocalVar("specialThreshold", 40)
+        elseif (mob:getMainJob() == dsp.job.DRG) then
+            mob:setLocalVar("specialThreshold", 75)
         else
             mob:setLocalVar("specialThreshold", math.random(50,60))
         end
@@ -87,14 +89,14 @@ g_mixins.maat = function(mob)
             mob:getBattlefield():win()
         end
     end)
-    
+
     mob:addListener("DEATH", "MAAT_DEATH", function(mob, killer)
         local ID = zones[mob:getZoneID()]
         mob:messageText(mob, ID.text.YOUVE_COME_A_LONG_WAY)
     end)
 
     mob:addListener("WEAPONSKILL_TAKE", "MAAT_WEAPONSKILL_TAKE", function(target, attacker, skillId, tp, action)
-        local ID = require("scripts/zones/"..target:getZoneName().."/IDs")
+        local ID = zones[target:getZoneID()]
         target:messageText(target, ID.text.THAT_LL_HURT_IN_THE_MORNING)
     end)
 

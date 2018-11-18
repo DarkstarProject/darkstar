@@ -558,11 +558,6 @@ void CalculateStats(CMobEntity * PMob)
         SetupEventMob(PMob);
     }
 
-    if(PMob->m_Family == 335)
-    {
-        SetupMaat(PMob);
-    }
-
     if (PMob->CanStealGil())
     {
         PMob->ResetGilPurse();
@@ -704,7 +699,7 @@ void SetupJob(CMobEntity* PMob)
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
             }
-            else
+            else if (PMob->m_Family != 335) // exclude NIN Maat
             {
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             }
@@ -922,104 +917,6 @@ void SetupNMMob(CMobEntity* PMob)
         }
     }
 
-}
-
-void SetupMaat(CMobEntity* PMob)
-{
-    SKILLTYPE skillType = SKILL_NONE;
-    int32 combatDelay = 360;
-    float damageMultiplier = 1.0f;
-
-    switch(PMob->GetMJob()){
-        case JOB_WAR:
-            skillType = SKILL_GREAT_AXE;
-            combatDelay = 489;
-            break;
-        case JOB_MNK:
-            skillType = SKILL_HAND_TO_HAND;
-            combatDelay = 480;
-            PMob->m_Weapons[SLOT_MAIN]->setDamage(80);
-            break;
-        case JOB_WHM:
-            skillType = SKILL_CLUB;
-            combatDelay = 288;
-            break;
-        case JOB_BLM:
-            skillType = SKILL_STAFF;
-            combatDelay = 356;
-            break;
-        case JOB_RDM:
-            skillType = SKILL_SWORD;
-            combatDelay = 225;
-            break;
-        case JOB_THF:
-            skillType = SKILL_DAGGER;
-            combatDelay = 188;
-            break;
-        case JOB_PLD:
-            // Give shield bash
-            skillType = SKILL_SWORD;
-            combatDelay = 225;
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
-            break;
-        case JOB_DRK:
-            skillType = SKILL_GREAT_SWORD;
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
-            break;
-        case JOB_BST:
-            // Call beast skill
-            skillType = SKILL_AXE;
-            combatDelay = 288;
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            break;
-        case JOB_BRD:
-            skillType = SKILL_DAGGER;
-            combatDelay = 188;
-            break;
-        case JOB_RNG:
-            skillType = SKILL_ARCHERY;
-            combatDelay = 540;
-            break;
-        case JOB_SAM:
-            skillType = SKILL_GREAT_KATANA;
-            combatDelay = 437;
-            break;
-        case JOB_NIN:
-            skillType = SKILL_KATANA;
-            combatDelay = 250;
-            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
-            PMob->m_Weapons[SLOT_MAIN]->setBaseDelay(combatDelay * 1000 / 60);
-            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-            break;
-        case JOB_DRG:
-            skillType = SKILL_POLEARM;
-            combatDelay = 396;
-            break;
-        case JOB_SMN:
-            skillType = SKILL_STAFF;
-            combatDelay = 356;
-            break;
-        default:
-            break;
-    }
-
-    PMob->m_Weapons[SLOT_MAIN]->setSkillType(skillType);
-    PMob->m_Weapons[SLOT_MAIN]->setBaseDelay(combatDelay * 1000 / 60);
-    PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-
-    if (PMob->GetMJob() == JOB_NIN)
-    {
-        PMob->m_Weapons[SLOT_SUB]->setSkillType(SKILL_KATANA);
-        PMob->m_Weapons[SLOT_SUB]->setBaseDelay(PMob->m_Weapons[SLOT_MAIN]->getDelay());
-        PMob->m_Weapons[SLOT_SUB]->resetDelay();
-        PMob->m_Weapons[SLOT_SUB]->setDamage(PMob->m_Weapons[SLOT_MAIN]->getDamage());
-    }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -1325,52 +1222,6 @@ void AddCustomMods(CMobEntity* PMob)
             PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
         }
     }
-}
-
-void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
-{
-    //set job based on characters job
-    PMob->SetMJob(job);
-
-    // give him a spell list based on job
-    uint16 spellList = 0;
-    SKILLTYPE skillType = SKILL_NONE;
-    int32 combatDelay = 360;
-    float damageMultiplier = 1.0f;
-
-    switch (job)
-    {
-        case JOB_WHM:
-            spellList = 1;
-            break;
-        case JOB_BLM:
-            spellList = 2;
-            break;
-        case JOB_RDM:
-            spellList = 3;
-            break;
-        case JOB_PLD:
-            spellList = 4;
-            break;
-        case JOB_DRK:
-            spellList = 5;
-            break;
-        case JOB_BRD:
-            spellList = 6;
-            break;
-        case JOB_NIN:
-            spellList = 7;
-            break;
-        case JOB_SMN:
-            spellList = 141;
-            break;
-        default:
-            break;
-    }
-
-    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-
-    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)
