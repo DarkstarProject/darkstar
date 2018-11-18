@@ -31,7 +31,7 @@
 
 class CBattleEntity;
 
-class CStateInitException : std::exception
+class CStateInitException : public std::exception
 {
 public:
     explicit CStateInitException(std::unique_ptr<CBasicPacket> _msg) : std::exception(),
