@@ -24,7 +24,7 @@ end
 
 function onMobRoam(mob)
     -- Rose Garden PH has been left alone for 10.25 hours
-    if mob:gtID() == ID.mob.ROSE_GARDEN_PH and os.time() > mob:getLocalVar("timeToGrow") then
+    if mob:getID() == ID.mob.ROSE_GARDEN_PH and os.time() > mob:getLocalVar("timeToGrow") then
         DisallowRespawn(ID.mob.ROSE_GARDEN_PH, true)
         DespawnMob(ID.mob.ROSE_GARDEN_PH)
         DisallowRespawn(ID.mob.ROSE_GARDEN, false)
