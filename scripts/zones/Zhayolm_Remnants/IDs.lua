@@ -14,7 +14,7 @@ zones[dsp.zone.ZHAYOLM_REMNANTS] =
         ITEM_OBTAINED           = 6388, -- Obtained: <item>.
         GIL_OBTAINED            = 6389, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
-        CELL_OFFSET             = 7212, -- message for remove messages
+        CELL_OFFSET             = 7212, -- Main Weapon/Sub-Weapon restriction removed.
     },
     mob =
     {

@@ -15,7 +15,7 @@ function onTrigger(player,npc)
     if getAstralCandescence() == 1 then
         player:startEvent(103)
     else
-        player:messageSpecial(ID.text.NEED_ASTRAL_CANDESCENCE_BACK)
+        player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK)
     end
 end
 
