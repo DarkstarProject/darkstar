@@ -38,7 +38,7 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         HARVESTING_IS_POSSIBLE_HERE = 7438, -- Harvesting is possible here if you have <item>.
         CONQUEST                    = 7454, -- You've earned conquest points!
         REGIME_REGISTERED           = 10186, -- New training regime registered!
-        DONT_SWAP_JOBS              = 10187, -- Changing your job will result in the cancellation of your current training regime.
+        DONT_SWAP_JOBS              = 10187, -- hanging your job will result in the cancellation of your current training regime.
         REGIME_CANCELED             = 10188, -- Training regime canceled.
     },
     mob =

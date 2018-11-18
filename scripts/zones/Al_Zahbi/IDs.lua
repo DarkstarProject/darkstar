@@ -23,6 +23,7 @@ zones[dsp.zone.AL_ZAHBI] =
         ALLARD_SHOP_DIALOG        = 7619, -- Hey, how ya doin'? Welcome to the armor shop of the Ulthalam Parade's leading star--Allard, in the flesh!
         ZAFIF_SHOP_DIALOG         = 7625, -- Welcome... I'm Zafif, and this is my magic shop... I hope you can find something of use here.
         CHAYAYA_SHOP_DIALOG       = 7631, -- Chayaya's Projectiles! Get your darts and more at Chayaya's Projectiles! Just don't touch the stuff in the high drawers, okay?
+        NEED_CANDESCENCE_BACK     = 7684, -- ...Hm? You! Yes, you! What do you think you're staring at, anyway? Go get the Astral Candescence back, and now!
         ITEM_DELIVERY_DIALOG      = 7835, -- No need to wrap your goods. Just hand them over and they're as good as delivered! (I've got to be nice as long as the manager's got his eye on me...)
         DEHBI_MOSHAL_SHOP_DIALOG  = 7839, -- Welcome to the Carpenters' Guild!
         NDEGO_SHOP_DIALOG         = 7841, -- The Blacksmiths' Guild thanks you for your business!
