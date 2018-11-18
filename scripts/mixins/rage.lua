@@ -27,7 +27,7 @@ g_mixins.rage = function(mob)
         if mob:getLocalVar("[rage]started") == 0 and os.time() > mob:getLocalVar("[rage]at") then
             mob:setLocalVar("[rage]started", 1)
 
-            -- add 10% to stats
+            -- boost stats
             for i = dsp.mod.STR, dsp.mod.CHR do
                 local amt = math.ceil(mob:getStat(i) * 9)
                 mob:setLocalVar("[rage]mod_" .. i, amt)
@@ -38,11 +38,12 @@ g_mixins.rage = function(mob)
         end
     end)
 
+    -- Todo: should happen when mob begins to regen while unclaimed. If 1st healing tick hasn't happened, retail mob is stil raged.
     mob:addListener("DISENGAGE", "RAGE_DISENGAGE", function(mob)
         if mob:getLocalVar("[rage]started") == 1 then
             mob:setLocalVar("[rage]started", 0)
 
-            -- delete 10% from stats
+            -- unboost stats
             for i = dsp.mod.STR, dsp.mod.CHR do
                 local amt = mob:getLocalVar("[rage]mod_" .. i)
                 mob:delMod(i, amt)
