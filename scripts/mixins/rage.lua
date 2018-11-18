@@ -29,7 +29,7 @@ g_mixins.rage = function(mob)
 
             -- add 10% to stats
             for i = dsp.mod.STR, dsp.mod.CHR do
-                local amt = math.ceil(mob:getStat(i) * 0.10)
+                local amt = math.ceil(mob:getStat(i) * 9)
                 mob:setLocalVar("[rage]mod_" .. i, amt)
                 mob:addMod(i, amt)
             end
