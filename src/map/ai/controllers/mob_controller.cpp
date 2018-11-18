@@ -930,7 +930,6 @@ bool CMobController::Disengage()
         PMob->SetDespawnTime(std::chrono::seconds(PMob->getMobMod(MOBMOD_IDLE_DESPAWN)));
     }
 
-    PMob->delRageMode();
     PMob->m_OwnerID.clean();
     PMob->updatemask |= (UPDATE_STATUS | UPDATE_HP);
     PMob->CallForHelp(false);

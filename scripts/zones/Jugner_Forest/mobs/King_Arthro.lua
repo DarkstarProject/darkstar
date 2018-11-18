@@ -1,8 +1,12 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: King Arthro
+--   NM: King Arthro
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
+mixins =
+{
+    require("scripts/mixins/job_special"),
+    require("scripts/mixins/rage")
+}
 require("scripts/globals/status");
 require("scripts/globals/msg");
 -----------------------------------
@@ -18,9 +22,6 @@ function onMobSpawn(mob)
     for offset = 1, 10 do
         GetMobByID(KingArthroID - offset):setRespawnTime(0);
     end
-
-    -- 20 minute rage timer
-    mob:setMobMod(dsp.mobMod.RAGE, 1200);
 end;
 
 function onAdditionalEffect(mob,target,damage)

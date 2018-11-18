@@ -13223,22 +13223,6 @@ inline int32 CLuaBaseEntity::getBattleTime(lua_State *L)
 }
 
 /************************************************************************
-*  Function: rageMode()
-*  Purpose : Makes the Mob snap and start strangling kittens
-*  Example : if (mob:getBattleTime() >= 3600) then mob:rageMode()
-*  Notes   : Currently not implemented in any Mob scripts
-************************************************************************/
-
-inline int32 CLuaBaseEntity::rageMode(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
-
-    ((CMobEntity*)m_PBaseEntity)->addRageMode();
-    return 0;
-}
-
-/************************************************************************
 *  Function: getBehaviour()
 *  Purpose : Returns the current Mob behavior
 *  Example : mob:getBehaviour()
@@ -14471,7 +14455,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMobMod),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattleTime),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,rageMode),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBehaviour),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setBehaviour),
