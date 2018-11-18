@@ -3,13 +3,11 @@
 --  HNM: Fafnir
 -----------------------------------
 local ID = require("scripts/zones/Dragons_Aery/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
-
-function onMobInitialize(mob)
-end
 
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
@@ -18,6 +16,8 @@ function onMobSpawn(mob)
     if LandKingSystem_HQ == 0 then
         SetDropRate(918,3340,0) -- do not drop cup_of_sweet_tea
     end
+
+    mob:setLocalVar("[rage]timer", 1800) -- 30 minutes
 end
 
 function onMobDeath(mob, player, isKiller)
