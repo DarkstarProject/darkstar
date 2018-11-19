@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -414,132 +414,6 @@ namespace battleutils
     {
         return g_PMobSkillLists[ListID];
     }
-
-    /************************************************************************
-    *                                                                       *
-    *	get mobs 2 hour skills	(should be moved into mobskill.cpp)         *
-    *                                                                       *
-    ************************************************************************/
-    CMobSkill* GetTwoHourMobSkill(JOBTYPE job, uint16 familyId)
-    {
-        uint16 id = 0;
-
-        if(familyId == 335)
-        {
-            // Maat has his own two hour animations
-            switch (job)
-            {
-                case JOB_WAR: id = 752; break;
-                case JOB_MNK: id = 753; break;
-                case JOB_WHM: id = 754; break;
-                case JOB_BLM: id = 755; break;
-                case JOB_RDM: id = 756; break;
-                case JOB_THF: id = 757; break;
-                case JOB_PLD: id = 758; break;
-                case JOB_DRK: id = 759; break;
-                case JOB_BST: id = 760; break;
-                case JOB_BRD: id = 762; break;
-                case JOB_RNG: id = 763; break;
-                case JOB_SAM: id = 764; break;
-                case JOB_NIN: id = 765; break;
-                case JOB_DRG: id = 766; break;
-                case JOB_SMN: id = 767; break;
-                default: break;
-            }
-
-            return GetMobSkill(id);
-        }
-
-        switch (job)
-        {
-            case JOB_WAR: id = 432; break;
-            case JOB_MNK: id = 434; break;
-            case JOB_WHM: id = 433; break;
-            case JOB_BLM: id = 435; break;
-            case JOB_RDM: id = 436; break;
-            case JOB_THF: id = 437; break;
-            case JOB_PLD: id = 438; break;
-            case JOB_DRK: id = 439; break;
-            case JOB_BST: id = 484; break;
-            case JOB_BRD: id = 440; break;
-            case JOB_RNG:
-                          if(familyId == 270 || familyId == 360)
-                          {
-                              // Yagudo has it's own version
-                              id = 865;
-                          }
-                          else if(familyId == 3)
-                          {
-                              // Aern
-                              id = 1389;
-                          }
-                          else if(familyId == 169 || familyId == 358)
-                          {
-                              // Kindred has it's own version
-                              id = 895;
-                          }
-                          else if (familyId == 133 || familyId == 327)
-                          {
-                              // Goblin
-                              id = 479;
-                          }
-                          else if (familyId == 25)
-                          {
-                              // Antica
-                              id = 480;
-                          }
-                          else if (familyId == 189 || familyId == 334)
-                          {
-                              // Orc
-                              id = 481;
-                          }
-                          else if (familyId == 115 || familyId == 359 || familyId == 221
-                                  || familyId == 222 || familyId == 223)
-                          {
-                              // Fomor / Shadow
-                              id = 482;
-                          }
-                          else if (familyId == 328 || (familyId >= 126 && familyId <= 130))
-                          {
-                              // Giga
-                              id = 483;
-                          }
-                          else if(familyId == 337 || familyId == 200 || familyId == 201
-                                  || familyId == 202)
-                          {
-                              // Quadav has it's own version
-                              id = 866;
-                          }
-                          else if(familyId == 171)
-                          {
-                              // Lamiae
-                              id = 1675;
-                          }
-                          else if(familyId == 246)
-                          {
-                              // Troll
-                              id = 1996;
-                          }
-                          else
-                          {
-                              // Defaulting to crappy goblin animation
-                              id = 479;
-                          }
-                          break;
-            case JOB_SAM: id = 474; break;
-            case JOB_NIN: id = 475; break;
-            case JOB_DRG: id = 476; break;
-            case JOB_SMN: id = 2000; break;  // alt 478
-                // case JOB_BLU: id = 1933; break; // alt 2001
-                // case JOB_COR: id = 1934; break; // alt 2002
-                // case JOB_PUP: id = 1935; break; // alt 2003
-                // case JOB_DNC: id = 2454; break; // alt 2004
-                // case JOB_SCH: id = 2102 break;  // alt 2005
-            default: return nullptr;
-        }
-        return GetMobSkill(id);
-    }
-
 
     int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element) {
         int32 damage = 0;
@@ -4098,6 +3972,10 @@ namespace battleutils
             {
                 charmerBSTlevel = charmerBRDlevel;
             }
+            if (charmerBSTlevel > charmerLvl)
+            {
+                charmerBSTlevel = charmerLvl;
+            }
         }
         else if (PCharmer->objtype == TYPE_MOB)
         {
@@ -4257,6 +4135,7 @@ namespace battleutils
         resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGPHYS) / 100.0f ) ) / 256.0f )
                       + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)     / 100.0f ) ) / 256.0f );
         resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        resist += floor(PDefender->getMod(Mod::DMGPHYS_II) / 100.f); // Add Burtgang reduction after cap
         damage = (int32)(damage * resist);
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
@@ -5525,4 +5404,3 @@ namespace battleutils
         }
     }
 };
-

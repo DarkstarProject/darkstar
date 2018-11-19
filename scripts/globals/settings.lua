@@ -77,6 +77,7 @@ HARVESTING_RATE         = 50; -- % chance to recieve an item from haresting.  Se
 EXCAVATION_RATE         = 50; -- % chance to recieve an item from excavation.  Set between 0 and 100.
 LOGGING_RATE            = 50; -- % chance to recieve an item from logging.  Set between 0 and 100.
 MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
+DIGGING_RATE            = 85; -- % chance to receive an item from chocbo digging during favorable weather.  Set between 0 and 100.
 
 HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
 
@@ -110,24 +111,15 @@ AF3_QUEST_LEVEL = 50; -- Minimum level to start AF3 quest
 AF1_FAME = 20; -- base fame for completing an AF1 quest
 AF2_FAME = 40; -- base fame for completing an AF2 quest
 AF3_FAME = 60; -- base fame for completing an AF3 quest
-DEBUG_MODE = 0; -- Set to 1 to activate auto-warping to the next location (only supported by certain missions / quests).
-QM_RESET_TIME = 300; -- Default time (in seconds) you have from killing ???-pop mission NMs to click again and get key item, until ??? resets.
 OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
 FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
 
--- JOB ABILITY/TRAIT SPECIFIC SETTINGS
-CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
-KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits.
-
 -- SPELL SPECIFIC SETTINGS
 DIA_OVERWRITE = 1; --Set to 1 to allow Bio to overwrite same tier Dia.  Default is 1.
 BIO_OVERWRITE = 0; --Set to 1 to allow Dia to overwrite same tier Bio.  Default is 0.
-BARELEMENT_OVERWRITE = 1; --Set to 1 to allow Barelement spells to overwrite each other (prevent stacking).  Default is 1.
-BARSTATUS_OVERWRITE = 1; --Set to 1 to allow Barstatus spells to overwrite each other (prevent stacking).  Default is 1.
 STONESKIN_CAP = 350; -- soft cap for hp absorbed by stoneskin
 BLINK_SHADOWS = 2;   -- number of shadows supplied by Blink spell
-ENSPELL_DURATION = 180; -- duration of RDM en-spells
 SPIKE_EFFECT_DURATION = 180; -- the duration of RDM, BLM spikes effects (not Reprisal)
 ELEMENTAL_DEBUFF_DURATION = 120; -- base duration of elemental debuffs
 AQUAVEIL_COUNTER = 1;  -- Base amount of hits Aquaveil absorbs to prevent spell interrupts. Retail is 1.

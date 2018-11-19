@@ -1,6 +1,7 @@
 -----------------------------------
 -- A collection of frequently needed teleport shortcuts.
 -----------------------------------
+require("scripts/globals/settings")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
@@ -92,8 +93,11 @@ local destinations =
     [ids.DVUCCA]                = {-252.715,   -7.666,  -30.640, 128,  79}, -- {R}
     [ids.REEF]                  = {   9.304,   -7.376,  620.133,   0,  54}, -- {R}
     [ids.ALZADAAL]              = { 180.000,    0.000,   20.000,   0,  72}, -- {R}
-    [ids.B_REM]                 = { 620.000,    0.000, -260,640,  72,  72}, -- {R}
+    [ids.CUTTER]                = {-456,000,   -3.000, -405.000,-405,  54},
+    [ids.A_REM]                 = {-579.000,   -0.050, -100.000, 192,  72},
+    [ids.B_REM]                 = { 620.000,    0.000, -260.640,  72,  72}, -- {R}
     [ids.S_REM]                 = { 580.000,    0.000,  500.000, 192,  72}, -- {R}
+--  [ids.Z_REM]                 = { 000.000,    0.000,  000.000, 000,  72},
     [ids.MAAT]                  = {  11.000,    3.000,  117.000,   0, 243},
     [ids.EXITPROMMEA]           = { 179.000,   35.000,  256.000,  63, 117},
     [ids.EXITPROMHOLLA]         = { 337.000,   19.000,  -60.000, 125, 102},
@@ -469,4 +473,40 @@ dsp.teleport.escape = function(player)
     -- TODO: Arrapago Remnants I/II, Zhaylohm Remnants I/II, Everbloom Hollow?, Ruhoyz Silvermines?, The Ashu Talif?
     -- TODO: Abyssea / SOA Areas
     -- MISC Flag in zone_settings will also need +1 or -1 depending on escape possibility.
+end
+
+-----------------------------------
+-- EXPLORER MOOGLE EVENTS
+-----------------------------------
+
+dsp.teleport.explorerMoogleOnTrigger = function(player, event)
+    local accept = 0
+
+    if player:getGil() < 300 then
+        accept = 1
+    end
+
+    if player:getMainLvl() < EXPLORER_MOOGLE_LEVELCAP then
+        event = event + 1
+    end
+
+    player:startEvent(event, player:getZoneID(), 0, accept)
+end
+
+dsp.teleport.explorerMoogleOnEventFinish = function(player, csid, option, event)
+    local price = 300
+
+    if csid == event then
+        if option == 1 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 231)
+        elseif option == 2 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 234)
+        elseif option == 3 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 240)
+        elseif option == 4 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 248)
+        elseif option == 5 and player:delGil(price) then
+            dsp.teleport.toExplorerMoogle(player, 249)
+        end
+    end
 end

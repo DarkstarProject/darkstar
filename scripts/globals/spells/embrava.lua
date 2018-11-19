@@ -14,7 +14,7 @@ end
 
 function onSpellCast(caster, target, spell)
     -- If Tabula Rasa wears before spell goes off, no Embrava for you!
-    if not cast:hasStatusEffect(dsp.effect.TABULA_RASA) then
+    if not caster:hasStatusEffect(dsp.effect.TABULA_RASA) then
         spell:setMsg(dsp.msg.basic.MAGIC_CANNOT_CAST)
         return 0
     end
@@ -25,7 +25,7 @@ function onSpellCast(caster, target, spell)
     local refresh = math.floor(skill / 100) + 1
     local haste = (math.floor(skill / 20) + 1) * 100
     local duration = calculateDuration(90, spell:getSkillType(), spell:getSpellGroup(), caster, target)
-    duration = calculateDuration(duration, 5, target:getMainLvl())
+    duration = calculateDurationForLvl(duration, 5, target:getMainLvl())
 
     target:addStatusEffect(dsp.effect.EMBRAVA, skill, 0, duration)
 

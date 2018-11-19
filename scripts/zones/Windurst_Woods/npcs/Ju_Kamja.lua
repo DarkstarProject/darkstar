@@ -4,19 +4,19 @@
 -- Type: Item Deliverer
 -- !pos 58.145 -2.5 -136.91 241
 -----------------------------------
-local ID = require("scripts/zones/Windurst_Woods/IDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
-    player:openSendBox();
-end;
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG)
+    player:openSendBox()
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

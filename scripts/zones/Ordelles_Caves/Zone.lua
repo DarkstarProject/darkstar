@@ -5,13 +5,14 @@
 -----------------------------------
 local ID = require("scripts/zones/Ordelles_Caves/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.MORBOLGER);
     GetMobByID(ID.mob.MORBOLGER):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ID.npc.ORDELLES_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

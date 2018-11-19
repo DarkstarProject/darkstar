@@ -17,6 +17,8 @@ function onInstanceZoneIn(player,instance)
         player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
     end
     
+    player:addTempItem(5347)
+    
     return cs
 end
 
@@ -27,6 +29,7 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
+    local instance = player:getInstance()
     local chars = instance:getChars()
     if csid == 102 then
         for i,v in pairs(chars) do

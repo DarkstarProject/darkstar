@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: The Garden of Ru'Hmet
---  NM:  Jailer of Fortitude
+--   NM: Jailer of Fortitude
 -----------------------------------
 local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 require("scripts/globals/settings");
@@ -59,10 +59,7 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    local qm1 = GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM);
-    qm1:updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
-
-    -- Move it to a random location
-    local qm1position = math.random(1,5);
-    qm1:setPos(ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][1], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][2], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][3]);
+    -- Move QM to random location
+    local pos = math.random(1, 5)
+    GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM):setPos(ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][1], ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][2], ID.npc.JAILER_OF_FORTITUDE_QM_POS[pos][3])
 end;

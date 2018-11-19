@@ -9,12 +9,12 @@ require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
     if (npcUtil.tradeHas(trade, 947)) then
-        local offset = npc:getID() - ID.mob.FURNACE_HATCH_OFFSET;
+        local offset = npc:getID() - ID.npc.FURNACE_HATCH_OFFSET;
         player:confirmTrade();
         player:startEvent(21 + offset); -- THUD!
 
         -- toggle open/closed the four doors related to this hatch
-        local doorOffset = ID.mob.NEWTON_DOOR_OFFSET + (math.min(offset, 2) * 4);
+        local doorOffset = ID.npc.DOOR_OFFSET + (math.min(offset, 2) * 4);
         for i = doorOffset, doorOffset + 3 do
             local door = GetNPCByID(i);
             door:setAnimation((door:getAnimation() == dsp.anim.OPEN_DOOR) and dsp.anim.CLOSE_DOOR or dsp.anim.OPEN_DOOR);

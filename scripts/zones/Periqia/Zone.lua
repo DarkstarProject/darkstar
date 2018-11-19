@@ -10,6 +10,7 @@ function onInitialize(zone)
 end
 
 function onInstanceZoneIn(player,instance)
+
     local cs = -1
     local pos = player:getPos()
 

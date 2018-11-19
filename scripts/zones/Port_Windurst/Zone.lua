@@ -10,7 +10,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.PORT_W_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE);
 end;
 
 function onZoneIn(player,prevZone)

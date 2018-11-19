@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,150)
         player:completeQuest(WINDURST,MAKING_AMENS)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLACK_HALO_LEARNED)
     end
 end
 

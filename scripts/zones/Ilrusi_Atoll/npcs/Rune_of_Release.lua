@@ -31,8 +31,8 @@ function onEventFinish(player,csid,option)
     local playerpoints = ((#chars -3)*100)
     
     if (csid == 100 and option == 1) then
-        if id == 41 then
-            points = 1000 - math.max(playerpoints, 0)
+        if id == 41 or id == 43 then
+            points = 1100 - math.max(playerpoints, 0)
         end
         for i,v in pairs(chars) do
             v:messageSpecial(ID.text.ASSAULT_POINTS_OBTAINED,points)

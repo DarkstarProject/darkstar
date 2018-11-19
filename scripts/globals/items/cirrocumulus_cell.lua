@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Cirrocumulus Cell
+-- ID 5370
+-- Unlocks back and waist equipment
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7213)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 5)
 end
-

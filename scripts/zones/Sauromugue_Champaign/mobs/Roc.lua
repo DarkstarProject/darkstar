@@ -2,7 +2,8 @@
 -- Area: Sauromugue Champaign (120)
 --  HNM: Roc
 -----------------------------------
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobFight(mob,target)

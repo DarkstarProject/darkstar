@@ -425,6 +425,7 @@ public:
     int32 setInstance(lua_State* L);
     int32 createInstance(lua_State* L);
     int32 instanceEntry(lua_State* L);
+    int32 isInAssault(lua_State*);                   // If player is in a Instanced Assault Dungeon returns true
 
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);     // copy confrontation effect, param = targetEntity:getShortID()
@@ -656,7 +657,6 @@ public:
     int32 delMobMod(lua_State*);
 
     int32 getBattleTime(lua_State*);          // Get the time in second of the battle
-    int32 rageMode(lua_State*);               // Add rage mode
 
     int32 getBehaviour(lua_State* L);
     int32 setBehaviour(lua_State* L);

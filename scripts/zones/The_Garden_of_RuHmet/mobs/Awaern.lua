@@ -9,7 +9,7 @@ function onMobSpawn(mob)
     local IxAernDRG_PH = GetServerVariable("[SEA]IxAernDRG_PH"); -- Should be be the ID of the mob that spawns the actual PH
 
     -- Pick the Ix'Aern (DRG) PH if the server doesn't have one, and the if the actual PH/NM isn't up. Then, set it.
-    if (GetMobAction(ID.mob.IXAERN_DRG) == 0 and GetServerVariable("[SEA]IxAernDRG_PH") == 0) then  -- This should be cleared when the mob is killed.
+    if not GetMobByID(ID.mob.IXAERN_DRG):isSpawned() and GetServerVariable("[SEA]IxAernDRG_PH") == 0 then  -- This should be cleared when the mob is killed.
         local groups = ID.mob.AWAERN_DRG_GROUPS
         IxAernDRG_PH = groups[math.random(1, #groups)] + math.random(0, 2); -- The 4th mobid in each group is a pet. F that son
         SetServerVariable("[SEA]IxAernDRG_PH", IxAernDRG_PH);
@@ -33,7 +33,7 @@ function onMobDeath(mob, player, isKiller)
             -- if aern belongs to QM group, chance for sheer animosity
             local position = GetNPCByID(ID.npc.IXAERN_DRK_QM):getLocalVar("position");
             local currentMobID = mob:getID();
-            if (currentMobID >= AWAERN_DRK_GROUPS[position] and currentMobID <= AWAERN_DRK_GROUPS[position] + 2) then
+            if (currentMobID >= ID.mob.AWAERN_DRK_GROUPS[position] and currentMobID <= ID.mob.AWAERN_DRK_GROUPS[position] + 2) then
                 if (math.random(1,8) == 1) then
                     qm2:setLocalVar("hatedPlayer",player:getID());
                     qm2:setLocalVar("hateTimer",os.time() + 600); -- player with animosity has 10 minutes to touch QM

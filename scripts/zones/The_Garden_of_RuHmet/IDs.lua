@@ -10,18 +10,18 @@ zones[dsp.zone.THE_GARDEN_OF_RUHMET] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        CONQUEST_BASE           = 7437, -- Tallying conquest results...
-        NO_NEED_INVESTIGATE     = 7616, -- There is no need to investigate further.
-        PORTAL_SEALED           = 7645, -- The portal is firmly sealed by a mysterious energy.
-        UNKNOWN_PRESENCE        = 7753, -- You sense some unknown presence...
-        NONE_HOSTILE            = 7754, -- You sense some unknown presence, but it does not seem hostile.
-        MENACING_CREATURES      = 7755, -- Menacing creatures appear out of nowhere!
-        SHEER_ANIMOSITY         = 7756, -- <name> is enveloped in sheer animosity!
-        HOMEPOINT_SET           = 7761, -- Home point set!
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        CONQUEST_BASE           = 7438, -- Tallying conquest results...
+        NO_NEED_INVESTIGATE     = 7617, -- There is no need to investigate further.
+        PORTAL_SEALED           = 7646, -- The portal is firmly sealed by a mysterious energy.
+        UNKNOWN_PRESENCE        = 7754, -- You sense some unknown presence...
+        NONE_HOSTILE            = 7755, -- You sense some unknown presence, but it does not seem hostile.
+        MENACING_CREATURES      = 7756, -- Menacing creatures appear out of nowhere!
+        SHEER_ANIMOSITY         = 7757, -- <name> is enveloped in sheer animosity!
+        HOMEPOINT_SET           = 7762, -- Home point set!
     },
     mob =
     {
@@ -42,21 +42,19 @@ zones[dsp.zone.THE_GARDEN_OF_RUHMET] =
         KFGHRAH_WHM         = 16921016,
         KFGHRAH_BLM         = 16921017,
         IXAERN_DRK          = 16921018,
-        QNAERN_A            = 16921019,
-        QNAERN_B            = 16921020,
         JAILER_OF_FAITH     = 16921021,
         IXAERN_DRG          = 16921022,
     },
     npc =
     {
-        IXAERN_DRK_QM_POS          = 
+        IXAERN_DRK_QM_POS          =
         {
             {-240,5.00,440}, -- Hume-Elvaan
             {-280,5.00,240}, -- Elvaan-Galka
             {-560,5.00,239}, -- Taru-Mithra
             {-600,5.00,440}, -- Mithra-Hume
         },
-        JAILER_OF_FORTITUDE_QM_POS = 
+        JAILER_OF_FORTITUDE_QM_POS =
         {
             {-420.00,0.00,755.00}, -- North / Hume tower.
             {-43.00,0.00,460.00},  -- NE / Elvaan tower.
@@ -64,7 +62,7 @@ zones[dsp.zone.THE_GARDEN_OF_RUHMET] =
             {-580.00,0.00,43.00},  -- SW / Tarutaru tower.
             {-796.00,0.00,460.00}, -- NW / Mithra tower.
         },
-        JAILER_OF_FAITH_QM_POS     = 
+        JAILER_OF_FAITH_QM_POS     =
         {
             {-420.00,0.00,-157.00}, -- North / Hume tower.
             {-157.00,0.00,-340.00}, -- NE / Elvaan tower.

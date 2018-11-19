@@ -1,22 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Koton-Llaton
+--  NPC: Koton-Llaton
 -- Type: Standard NPC
 -- !pos 78.220 -3.75 -173.631 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(402);
-end;
+    player:startEvent(402)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end
