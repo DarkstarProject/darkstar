@@ -506,7 +506,7 @@ dsp.wsquest.handleQmTrigger = function(quest, player, wsnmId)
         if player:getLocalVar('killed_wsnm') == 1 then
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH)
             player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH)
-        elseif GetMobAction(wsnmId) == 0 then
+        elseif not GetMobByID(wsnmId):isSpawned() then
             player:messageSpecial(ID.text.SENSE_OMINOUS_PRESENCE)
             SpawnMob(wsnmId):updateClaim(player)
         end

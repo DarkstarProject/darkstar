@@ -5,12 +5,13 @@
 -- Involved in Quest: Ayame and Kaede
 -- !pos -23 0 -9 252
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/keyitems")
-require("scripts/globals/shop")
-require("scripts/globals/quests")
-require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Norg/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+require("scripts/globals/quests")
+require("scripts/globals/status")
+require("scripts/globals/shop")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.blade_ku
@@ -39,13 +40,13 @@ function onTrigger(player,npc)
         else
             player:startEvent(94)
         end
-    elseif (twentyInPirateYears == QUEST_AVAILABLE and mJob == 13 and mLvl >= 40) then
+    elseif (twentyInPirateYears == QUEST_AVAILABLE and mJob == dsp.job.NIN and mLvl >= 40) then
         player:startEvent(133) -- Start Quest "20 in Pirate Years"
     elseif (twentyInPirateYears == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRICK_BOX)) then
         player:startEvent(134) -- Finish Quest "20 in Pirate Years"
-    elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == 13 and mLvl >= 50 and player:needToZone() == false) then
+    elseif (twentyInPirateYears == QUEST_COMPLETED and illTakeTheBigBox == QUEST_AVAILABLE and mJob == dsp.job.NIN and mLvl >= 50 and player:needToZone() == false) then
         player:startEvent(135) -- Start Quest "I'll Take the Big Box"
-    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == 13) then
+    elseif (illTakeTheBigBox == QUEST_COMPLETED and trueWill == QUEST_AVAILABLE and mJob == dsp.job.NIN) then
         player:startEvent(136) -- Start Quest "True Will"
     elseif (player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) and player:getVar("trueWillCS") == 0) then
         player:startEvent(137)
@@ -87,6 +88,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 137) then
         player:setVar("trueWillCS",1)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLADE_KU_LEARNED)
     end
 end

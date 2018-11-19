@@ -11,44 +11,8 @@ require("scripts/globals/missions");
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 646, 4, DIGREQ_NONE },
-                    { 845, 12, DIGREQ_NONE },
-                    { 640, 112, DIGREQ_NONE },
-                    { 768, 237, DIGREQ_NONE },
-                    { 893, 41, DIGREQ_NONE },
-                    { 748, 33, DIGREQ_NONE },
-                    { 846, 145, DIGREQ_NONE },
-                    { 869, 100, DIGREQ_NONE },
-                    { 17296, 162, DIGREQ_NONE },
-                    { 771, 21, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 678, 5, DIGREQ_BURROW },
-                    { 645, 9, DIGREQ_BURROW },
-                    { 737, 5, DIGREQ_BURROW },
-                    { 643, 69, DIGREQ_BURROW },
-                    { 1650, 62, DIGREQ_BURROW },
-                    { 644, 31, DIGREQ_BURROW },
-                    { 736, 62, DIGREQ_BURROW },
-                    { 739, 5, DIGREQ_BURROW },
-                    { 678, 5, DIGREQ_BORE },
-                    { 645, 9, DIGREQ_BORE },
-                    { 737, 5, DIGREQ_BORE },
-                    { 738, 8, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
@@ -88,9 +52,9 @@ function onEventUpdate( player, csid, option)
     if (csid == 31) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 34) then
-        if (player:getPreviousZone() == 120) then
+        if (player:getPreviousZone() == dsp.zone.SAUROMUGUE_CHAMPAIGN) then
             player:updateEvent(0,0,0,0,0,2);
-        elseif (player:getPreviousZone() == 117) then
+        elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then
             player:updateEvent(0,0,0,0,0,1);
         end
     end

@@ -4,11 +4,11 @@
 -- Note: Place holder Hovering Hotpot
 -----------------------------------
 local ID = require("scripts/zones/Garlaige_Citadel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,703,2);
+    dsp.regime.checkRegime(player, mob, 703, 2, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

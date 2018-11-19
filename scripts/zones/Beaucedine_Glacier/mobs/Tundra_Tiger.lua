@@ -4,12 +4,12 @@
 -- Note: PH for Nue, Kirata
 -----------------------------------
 local ID = require("scripts/zones/Beaucedine_Glacier/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,46,1);
-    checkRegime(player,mob,47,1);
+    dsp.regime.checkRegime(player, mob, 46, 1, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 47, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

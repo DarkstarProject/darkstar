@@ -7,55 +7,48 @@
 -- !pos -560 5.00 239 35
 -- !pos -600 5.00 440 35
 -----------------------------------
-require("scripts/globals/status");
-local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local hatedPlayer = npc:getLocalVar("hatedPlayer");
-    local isInTime = npc:getLocalVar("hateTimer") > os.time();
+    local hatedPlayer = npc:getLocalVar("hatedPlayer")
+    local isInTime = npc:getLocalVar("hateTimer") > os.time()
 
-    if (hatedPlayer ~= 0 and not isInTime) then
+    if hatedPlayer ~= 0 and not isInTime then
         -- player took too long, so reset animosity
-        npc:setLocalVar("hatedPlayer",0);
-        npc:setLocalVar("hateTimer",0);
-        player:messageSpecial(ID.text.UNKNOWN_PRESENCE);
+        npc:setLocalVar("hatedPlayer",0)
+        npc:setLocalVar("hateTimer",0)
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE)
 
-    elseif (hatedPlayer == 0) then
+    elseif hatedPlayer == 0 then
         -- nobody has animosity
-        player:messageSpecial(ID.text.UNKNOWN_PRESENCE);
+        player:messageSpecial(ID.text.UNKNOWN_PRESENCE)
 
-    elseif (hatedPlayer ~= player:getID()) then
+    elseif hatedPlayer ~= player:getID() then
         -- someone else has animosity
-        player:messageSpecial(ID.text.NONE_HOSTILE);
+        player:messageSpecial(ID.text.NONE_HOSTILE)
 
-    elseif (hatedPlayer == player:getID()) then
+    else
         -- this player has animosity
-        -- hide the QM, set its position to a random location, and reset animosity
-        npc:setStatus(dsp.status.DISAPPEAR);
-        local qm2position = math.random(1,4);
-        npc:setLocalVar("position",qm2position);
-        npc:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
-        npc:setLocalVar("hatedPlayer",0);
-        npc:setLocalVar("hateTimer",0);
+        -- spawn Ix'Aern DRK and its two minions near the QM
+        player:messageSpecial(ID.text.MENACING_CREATURES)
+        npcUtil.popFromQM(player, npc, {ID.mob.IXAERN_DRK, ID.mob.IXAERN_DRK + 1, ID.mob.IXAERN_DRK + 2}, {radius = 3})
 
-        -- spawn Ix'Aern DRK and its two minions
-        player:messageSpecial(ID.text.MENACING_CREATURES);
-        GetMobByID(IXAERN_DRK):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(IXAERN_DRK):updateClaim(player);
-        GetMobByID(QnAernA):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(QnAernA):updateClaim(player);
-        GetMobByID(QnAernB):setSpawn(player:getXPos(),player:getYPos(),player:getZPos()); -- Change MobSpawn to Players pos.
-        SpawnMob(QnAernB):updateClaim(player);
-
+        -- move QM to random location, and reset animosity
+        local pos = math.random(1,4)
+        npcUtil.queueMove(npc, ID.npc.IXAERN_DRK_QM_POS[pos])
+        npc:setLocalVar("position", pos)
+        npc:setLocalVar("hatedPlayer",0)
+        npc:setLocalVar("hateTimer",0)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

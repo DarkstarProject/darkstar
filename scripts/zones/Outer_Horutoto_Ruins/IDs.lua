@@ -25,24 +25,18 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         DEVICE_NOT_WORKING             = 188, -- The device is not working.
         SYS_OVERLOAD                   = 197, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE                   = 202, -- You lost the <item>.
-        ITEM_CANNOT_BE_OBTAINED        = 6586, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                  = 6592, -- Obtained: <item>.
-        GIL_OBTAINED                   = 6593, -- Obtained <number> gil.
-        KEYITEM_OBTAINED               = 6595, -- Obtained key item: <keyitem>.
-        DOOR_FIRMLY_SHUT               = 7253, -- The door is firmly shut.
-        ALL_G_ORBS_ENERGIZED           = 7256, -- The six Mana Orbs have been successfully energized with magic!
-        CHEST_UNLOCKED                 = 7278, -- You unlock the chest!
-        CHEST_FAIL                     = 7279, -- <name> fails to open the chest.
-        CHEST_TRAP                     = 7280, -- The chest was trapped!
-        CHEST_WEAK                     = 7281, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                    = 7282, -- The chest was a mimic!
-        CHEST_MOOGLE                   = 7283, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                 = 7284, -- The chest was but an illusion...
-        CHEST_LOCKED                   = 7285, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
+        ITEM_CANNOT_BE_OBTAINED        = 6587, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                  = 6593, -- Obtained: <item>.
+        GIL_OBTAINED                   = 6594, -- Obtained <number> gil.
+        KEYITEM_OBTAINED               = 6596, -- Obtained key item: <keyitem>.
+        DOOR_FIRMLY_SHUT               = 7254, -- The door is firmly shut.
+        ALL_G_ORBS_ENERGIZED           = 7257, -- The six Mana Orbs have been successfully energized with magic!
+        CHEST_UNLOCKED                 = 7279, -- You unlock the chest!
+        REGIME_REGISTERED              = 10342, -- New training regime registered!
     },
     mob =
     {
-        AH_PUCH_PH                  = 
+        AH_PUCH_PH                  =
         {
             [17571893] = 17571903, -- -418,-1,629
             [17571894] = 17571903, -- -419,-1,570
@@ -59,7 +53,7 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
     npc =
     {
-        OUTER_HORUTOTO_TREASURE_CHEST = 17572290,
+        TREASURE_CHEST = 17572290,
     },
 }
 

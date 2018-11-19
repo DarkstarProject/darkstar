@@ -12,8 +12,8 @@ end;
 
 function checkStray(mob)
     local mobId = mob:getID();
-    local numStrays = ID.mob.HOLLA_MEMORY_RECEPTACLES[mobId][2];
-    
+    local numStrays = ID.mob.MEMORY_RECEPTACLES[mobId][2];
+
     if (os.time() > mob:getLocalVar("nextStray")) then
         for i = mobId + 1, mobId + numStrays do
             local stray = GetMobByID(i);
@@ -30,7 +30,7 @@ end;
 
 function onMobFight(mob, target)
     local mobId = mob:getID();
-    local numStrays = ID.mob.HOLLA_MEMORY_RECEPTACLES[mobId][2];
+    local numStrays = ID.mob.MEMORY_RECEPTACLES[mobId][2];
 
     -- keep pets linked
     for i = mobId + 1, mobId + numStrays do
@@ -39,27 +39,27 @@ function onMobFight(mob, target)
             stray:updateEnmity(target);
         end
     end
-    
+
     checkStray(mob);
 end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
         mob:AnimationSub(0);
-        
+
         -- chance to open portal
         local mobId = mob:getID();
-        local floor = ID.mob.HOLLA_MEMORY_RECEPTACLES[mobId][1];
+        local floor = ID.mob.MEMORY_RECEPTACLES[mobId][1];
         local numAlive = 1;
-        for k, v in pairs(ID.mob.HOLLA_MEMORY_RECEPTACLES) do
+        for k, v in pairs(ID.mob.MEMORY_RECEPTACLES) do
             if (k ~= mobId and v[1] == floor and GetMobByID(k):isAlive()) then
                 numAlive = numAlive + 1;
             end
         end
         if (math.random(numAlive) == 1) then
-            local streamId = ID.mob.HOLLA_MEMORY_RECEPTACLES[mobId][3];
+            local streamId = ID.mob.MEMORY_RECEPTACLES[mobId][3];
             local stream = GetNPCByID(streamId);
-            local events = ID.npc.HOLLA_MEMORY_STREAMS[streamId][7];
+            local events = ID.npc.MEMORY_STREAMS[streamId][7];
             local event = events[math.random(#events)];
             stream:setLocalVar("destination",event);
             stream:openDoor(180);

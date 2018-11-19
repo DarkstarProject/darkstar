@@ -4,12 +4,12 @@
 -- Note: Place Holder for Arachne
 -----------------------------------
 local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,737,2);
-    checkGoVregime(player,mob,739,2);
+    dsp.regime.checkRegime(player, mob, 737, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 739, 2, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

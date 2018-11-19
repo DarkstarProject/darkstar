@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Cumulus Cell
+-- ID 5367
+-- Unlocks body equipment
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -21,6 +25,5 @@ function onItemUse(target)
     if (newpower > 0) then
         target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7210)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 2)
 end
-

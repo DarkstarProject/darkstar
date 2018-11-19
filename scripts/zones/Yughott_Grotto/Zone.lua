@@ -5,10 +5,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Yughott_Grotto/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ID.npc.YUGHOTT_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

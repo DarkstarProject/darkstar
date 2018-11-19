@@ -5,9 +5,11 @@
 -----------------------------------
 local ID = require("scripts/zones/Ghelsba_Outpost/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 
 function onZoneIn(player,prevZone)

@@ -2,9 +2,9 @@
 -- Area: Xarcabard
 --  MOB: Demon Warlock
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,55,1);
-end;
+    dsp.regime.checkRegime(player, mob, 55, 1, dsp.regime.type.FIELDS)
+end

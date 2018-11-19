@@ -11,12 +11,12 @@ zones[dsp.zone.ABYSSEA_GRAUBERG] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        CRUOR_TOTAL             = 6985, -- Obtained <number> cruor. (Total: <number>)
-        CRUOR_OBTAINED          = 7494, -- <name> obtained <number> cruor.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        CRUOR_TOTAL             = 6986, -- Obtained <number> cruor. (Total: <number>)
+        CRUOR_OBTAINED          = 7495, -- <name> obtained <number> cruor.
     },
     mob =
     {
@@ -47,6 +47,15 @@ zones[dsp.zone.ABYSSEA_GRAUBERG] =
             --  [17818100] = {'qm20',               {},                                    {dsp.ki.VENOMOUS_HYDRA_FANG}, 17818060}, -- Alfard
             --  [17818101] = {'qm21',               {},                                      {dsp.ki.VACANT_BUGARD_EYE}, 17818061}, -- Azdaja
             --  [17818102] = {'qm22',               {},                              {dsp.ki.VARIEGATED_URAGNITE_SHELL}, 17818062}, -- Amphitrite
+        },
+        HARVESTING =
+        {
+            17818220,
+            17818221,
+            17818222,
+            17818223,
+            17818224,
+            17818225,
         },
     },
 }

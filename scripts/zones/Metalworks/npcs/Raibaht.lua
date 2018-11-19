@@ -5,10 +5,11 @@
 -- Involved in Quest: The Usual, Riding on the Clouds
 -- !pos -27 -10 -1 237
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/Metalworks/IDs");
+local ID = require("scripts/zones/Metalworks/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,7 +35,7 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,5) == false) then
         player:startEvent(933);
-    elseif (darkLegacy == QUEST_AVAILABLE and mJob == 8 and mLvl >= AF1_QUEST_LEVEL) then
+    elseif (darkLegacy == QUEST_AVAILABLE and mJob == dsp.job.DRK and mLvl >= AF1_QUEST_LEVEL) then
         player:startEvent(751); -- Start Quest "Dark Legacy"
     elseif (player:hasKeyItem(dsp.ki.DARKSTEEL_FORMULA)) then
         player:startEvent(755); -- Finish Quest "Dark Legacy"

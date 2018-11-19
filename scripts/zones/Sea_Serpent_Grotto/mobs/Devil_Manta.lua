@@ -3,13 +3,13 @@
 --  MOB: Devil Manta
 -- Note: Place holder Charybdis
 -----------------------------------
-require("scripts/globals/groundsofvalor")
-require("scripts/globals/mobs")
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,810,2)
+    dsp.regime.checkRegime(player, mob, 810, 2, dsp.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)

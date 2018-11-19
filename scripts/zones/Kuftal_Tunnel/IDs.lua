@@ -10,29 +10,23 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
 {
     text =
     {
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
-        CONQUEST_BASE           = 7048, -- Tallying conquest results...
-        FISHING_MESSAGE_OFFSET  = 7207, -- You can't fish here.
-        CHEST_UNLOCKED          = 7314, -- You unlock the chest!
-        CHEST_FAIL              = 7315, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7316, -- The chest was trapped!
-        CHEST_WEAK              = 7317, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7318, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7319, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7320, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7321, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
-        FELL                    = 7332, -- The piece of wood fell off the cliff!
-        EVIL                    = 7333, -- You sense an evil presence...
-        FISHBONES               = 7347, -- Fish bones lie scattered about the area...
-        SENSE_OMINOUS_PRESENCE  = 7349, -- You sense an ominous presence...
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
+        CONQUEST_BASE           = 7049, -- Tallying conquest results...
+        FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
+        CHEST_UNLOCKED          = 7315, -- You unlock the chest!
+        FELL                    = 7333, -- The piece of wood fell off the cliff!
+        EVIL                    = 7334, -- You sense an evil presence...
+        FISHBONES               = 7348, -- Fish bones lie scattered about the area...
+        SENSE_OMINOUS_PRESENCE  = 7350, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 10334, -- New training regime registered!
     },
     mob =
     {
-        AMEMET_PH               = 
+        AMEMET_PH               =
         {
             [17490000] = 17490016, -- 123.046 0.250 18.642
             [17489994] = 17490016, -- 112.135 -0.278 38.281
@@ -48,25 +42,25 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
             [17490009] = 17490016, -- 67.998 -0.500 12.000
             [17489934] = 17490016, -- 92.000 -0.396 14.000
         },
-        ARACHNE_PH              = 
+        ARACHNE_PH              =
         {
             [17490222] = 17490217, -- 19.000 20.000 37.000
             [17490221] = 17490217, -- -10.000 20.000 14.000
             [17490219] = 17490217, -- -20.000 20.000 38.000
             [17490220] = 17490217, -- -20.000 21.000 1.000
         },
-        BLOODTHIRSTER_MADKIX_PH = 
+        BLOODTHIRSTER_MADKIX_PH =
         {
             [17490173] = 17490159, -- 265.000 9.000 30.000
             [17490182] = 17490159, -- 256.000 10.000 34.000
         },
-        PELICAN_PH              = 
+        PELICAN_PH              =
         {
             [17490097] = 17490101, -- 178.857 20.256 -44.151
             [17490094] = 17490101, -- 180.000 21.000 -39.000
             [17490098] = 17490101, -- 179.394 20.061 -34.062
         },
-        SABOTENDER_MARIACHI_PH  = 
+        SABOTENDER_MARIACHI_PH  =
         {
             [17489987] = 17489980, -- -23.543 -0.396 59.578
             [17489983] = 17489980, -- -45.000 -0.115 39.000
@@ -81,7 +75,7 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
             [17489975] = 17489980, -- -33.717 -0.448 -43.478
             [17489971] = 17489980, -- -17.217 -0.956 -57.647
         },
-        YOWIE_PH                = 
+        YOWIE_PH                =
         {
             [17490175] = 17490204, -- 27.000 19.000 132.000
             [17490174] = 17490204, -- 20.000 20.000 118.000
@@ -96,6 +90,7 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
             [17490141] = 17490204, -- 87.000 21.000 59.000
         },
         TALEKEEPER_OFFSET       = 17489926,
+        MIMIC                   = 17490230,
         CANCER                  = 17490231,
         PHANTOM_WORM            = 17490233,
         GUIVRE                  = 17490234,
@@ -103,10 +98,9 @@ zones[dsp.zone.KUFTAL_TUNNEL] =
     },
     npc =
     {
-        PHANTOM_WORM_QM        = 17490253,
-        CANCER_QM              = 17490254,
-        KUFTAL_DOOR_ROCK       = 17490280,
-        KUFTAL_TREASURE_COFFER = 17490304,
+        PHANTOM_WORM_QM = 17490253,
+        DOOR_ROCK       = 17490280,
+        TREASURE_COFFER = 17490304,
     },
 }
 

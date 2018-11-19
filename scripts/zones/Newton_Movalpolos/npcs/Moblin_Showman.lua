@@ -3,22 +3,19 @@
 --  NPC: Moblin Showman - Bugbear Matman
 -- !pos 124.544 19.988 -60.670 12
 -----------------------------------
-local ID = require("scripts/zones/Newton_Movalpolos/IDs");
-require("scripts/globals/npc_util");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Newton_Movalpolos/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(ID.mob.BUGBEAR_MATMAN):isSpawned() and npcUtil.tradeHas(trade, 1878)) then -- Air tank
-        player:confirmTrade();
-        player:showText(npc, ID.text.SHOWMAN_ACCEPT);
-        SpawnMob(ID.mob.BUGBEAR_MATMAN):updateClaim(player);
-        npc:setStatus(dsp.status.DISAPPEAR);
+    if npcUtil.tradeHas(trade, 1878) and npcUtil.popFromQM(player, npc, ID.mob.BUGBEAR_MATMAN) then -- Air tank
+        player:showText(npc, ID.text.SHOWMAN_ACCEPT)
+        player:confirmTrade()
     else
-        player:showText(npc, ID.text.SHOWMAN_DECLINE);
+        player:showText(npc, ID.text.SHOWMAN_DECLINE)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc, ID.text.SHOWMAN_TRIGGER);
-end;
+    player:showText(npc, ID.text.SHOWMAN_TRIGGER)
+end

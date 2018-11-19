@@ -55,11 +55,11 @@ function onUseAbility(player,target,ability)
 
 
     --Performing sj mj check.
-    if (mjob == 19) then
+    if mjob == dsp.job.DNC then
         cure = (vit+chr)*0.5+130
     end
 
-    if (sjob == 19) then
+    if sjob == dsp.job.DNC then
         cure = (vit+chr)*0.25+130
     end
 

@@ -4,11 +4,11 @@
 -- Note: Place holder Narasimha
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,775,2);
+    dsp.regime.checkRegime(player, mob, 775, 2, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

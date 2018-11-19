@@ -6,16 +6,17 @@
 local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-    for k, v in pairs(ID.npc.RUAUN_PORTALS) do
+    for k, v in pairs(ID.npc.PORTALS) do
         zone:registerRegion(k,unpack(v["coords"]));
     end
 
-    UpdateTreasureSpawnPoint(ID.npc.RUAUN_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
@@ -38,7 +39,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onRegionEnter(player,region)
-    local p = ID.npc.RUAUN_PORTALS[region:GetRegionID()];
+    local p = ID.npc.PORTALS[region:GetRegionID()];
 
     if (p["green"] ~= nil) then -- green portal
         if (player:getVar("skyShortcut") == 1) then

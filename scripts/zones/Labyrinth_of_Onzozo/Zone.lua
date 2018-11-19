@@ -5,13 +5,14 @@
 -----------------------------------
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.MYSTICMAKER_PROFBLIX);
     GetMobByID(ID.mob.MYSTICMAKER_PROFBLIX):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ID.npc.ONZOZO_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

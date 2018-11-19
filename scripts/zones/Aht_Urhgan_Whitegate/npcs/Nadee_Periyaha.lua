@@ -4,31 +4,31 @@
 -- Standard Info NPC
 -- !pos -10.802 0.000 -1.198 50
 -----------------------------------
-require("scripts/globals/quests");
-require("scripts/globals/settings");
+require("scripts/globals/quests")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local ratRaceProg = player:getVar("ratraceCS");
-    if (ratRaceProg == 1) then
-        player:startEvent(849);
-    elseif (ratRaceProg == 2) then
-        player:startEvent(851);
-    elseif (ratRaceProg >= 3) then
-        player:startEvent(852);
+    local ratRaceProg = player:getVar("ratraceCS")
+    if ratRaceProg == 1 then
+        player:startEvent(849)
+    elseif ratRaceProg == 2 then
+        player:startEvent(851)
+    elseif ratRaceProg >= 3 then
+        player:startEvent(852)
     else
-        player:startEvent(90);
+        player:startEvent(90)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 849) then
-        player:setVar("ratraceCS",2);
+    if csid == 849 then
+        player:setVar("ratraceCS",2)
     end
-end;
+end

@@ -35,22 +35,23 @@ end;
 function onMobFight(mob, target)
 end;
 
--- onMobskill -- When this functionlity is added, this should work.
--- function onUseAbility(mob,target,ability)
-    -- if (ability:getID() == 437) then -- Perfect Dodge
-        -- mob:addStatusEffectEx(dsp.effect.FLEE,0,100,0,30);
-    -- else
-        -- if (mob:getID() == ID.mob.JAILER_OF_PRUDENCE_1 and GetMobAction(ID.mob.JAILER_OF_PRUDENCE_2) > 0 and GetMobAction(ID.mob.JAILER_OF_PRUDENCE_2) ~= dsp.act.SLEEP and GetMobAction(ID.mob.JAILER_OF_PRUDENCE_2) ~= dsp.act.STUN) then
-            -- if (GetMobByID(PrudenceTwo):checkDistance(mob) <= 10) then
-                -- GetMobByID(PrudenceTwo):useMobAbility(ability:getID());
-            -- end
-        -- elseif (mob:getID() == ID.mob.JAILER_OF_PRUDENCE_2 and GetMobAction(ID.mob.JAILER_OF_PRUDENCE_1) > 0 and GetMobAction(ID.mob.JAILER_OF_PRUDENCE_1) ~= dsp.act.SLEEP and GetMobAction(PrudenJAILER_OF_PRUDENCE_1eOne) ~= dsp.act.STUN) then
-            -- if (GetMobByID(PrudenceOne):checkDistance(mob) <= 10) then
-                -- GetMobByID(PrudenceOne):useMobAbility(ability:getID());
-            -- end
-        -- end
-    -- end
--- end;
+--[[ onMobskill -- When this functionlity is added, this should work.
+function onUseAbility(mob,target,ability)
+    local mobId = mob:getID()
+    local pOne = GetMobByID(ID.mob.JAILER_OF_PRUDENCE_1)
+    local pTwo = GetMobByID(ID.mob.JAILER_OF_PRUDENCE_2)
+    local pOneAct = pOne:getCurrentAction()
+    local pTwoAct = pTwo:getCurrentAction()
+
+    if ability:getID() == 437 then -- Perfect Dodge
+        mob:addStatusEffectEx(dsp.effect.FLEE,0,100,0,30)
+    elseif mobId == ID.mob.JAILER_OF_PRUDENCE_1 and pTwoAct > 0 and pTwoAct ~= dsp.act.SLEEP and pTwoAct ~= dsp.act.STUN and pTwo:checkDistance(mob) <= 10 then
+        pTwo:useMobAbility(ability:getID())
+    elseif mobId == ID.mob.JAILER_OF_PRUDENCE_2 and pOneAct > 0 and pOneAct ~= dsp.act.SLEEP and pOneAct ~= dsp.act.STUN and pOne:checkDistance(mob) <= 10 then
+        pOne:useMobAbility(ability:getID())
+    end
+end
+--]]
 
 function onMobDeath(mob, player, isKiller)
 end;

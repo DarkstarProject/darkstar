@@ -13,9 +13,10 @@
 --  100%TP    200%TP    300%TP
 --  5.5      5.5     5.5
 -----------------------------------
+require("scripts/globals/aftermath")
 require("scripts/globals/magic")
-require("scripts/globals/status")
 require("scripts/globals/settings")
+require("scripts/globals/status")
 require("scripts/globals/weaponskills")
 -----------------------------------
 
@@ -30,8 +31,13 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.includemab = true
 
     -- TODO: needs to give enmity down at varying tp percent's that is treated separately than the gear cap of -50% enmity http://www.bg-wiki.com/bg/Wildfire
-    -- TODO: also needs aftermath effects added
 
     local damage, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)
+    
+    -- Apply aftermath
+    if damage > 0 then
+        dsp.aftermath.addStatusEffect(player, tp, dsp.slot.RANGED, dsp.aftermath.type.EMPYREAN)
+    end
+
     return tpHits, extraHits, criticalHit, damage
 end

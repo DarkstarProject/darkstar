@@ -11,31 +11,25 @@ zones[dsp.zone.ORDELLES_CAVES] =
     text =
     {
         CONQUEST_BASE                 = 0, -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED       = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED                 = 6546, -- Obtained: <item>.
-        GIL_OBTAINED                  = 6547, -- Obtained <number> gil.
-        KEYITEM_OBTAINED              = 6549, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY       = 6560, -- There is nothing out of the ordinary here.
-        SENSE_OF_FOREBODING           = 6561, -- You are suddenly overcome with a sense of foreboding...
-        FISHING_MESSAGE_OFFSET        = 7207, -- You can't fish here.
-        DEVICE_NOT_WORKING            = 7321, -- The device is not working.
-        SYS_OVERLOAD                  = 7330, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
-        YOU_LOST_THE                  = 7335, -- You lost the <item>.
-        RUILLONT_INITIAL_DIALOG       = 7344, -- Confound it! If I only had my sword, I'd cut through these fiends single-handedly...
-        A_SQUIRE_S_TEST_II_DIALOG_I   = 7355, -- You place your hands into the pool.
-        A_SQUIRE_S_TEST_II_DIALOG_II  = 7358, -- The dew from the stalactite slips through your fingers.
-        A_SQUIRE_S_TEST_II_DIALOG_III = 7359, -- You have already obtained the dew.
-        CHEST_UNLOCKED                = 7390, -- You unlock the chest!
-        CHEST_FAIL                    = 7391, -- <name> fails to open the chest.
-        CHEST_TRAP                    = 7392, -- The chest was trapped!
-        CHEST_WEAK                    = 7393, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC                   = 7394, -- The chest was a mimic!
-        CHEST_MOOGLE                  = 7395, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION                = 7396, -- The chest was but an illusion...
-        CHEST_LOCKED                  = 7397, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
-        GERWITZS_AXE_DIALOG           = 7412, -- Mine axe shall rend thy throat!
-        GERWITZS_SWORD_DIALOG         = 7413, -- Mine sword shall pierce thy tongue!
-        GERWITZS_SOUL_DIALOG          = 7414, -- Long have I waited. I will tell all...
+        ITEM_CANNOT_BE_OBTAINED       = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED                 = 6547, -- Obtained: <item>.
+        GIL_OBTAINED                  = 6548, -- Obtained <number> gil.
+        KEYITEM_OBTAINED              = 6550, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY       = 6561, -- There is nothing out of the ordinary here.
+        SENSE_OF_FOREBODING           = 6562, -- You are suddenly overcome with a sense of foreboding...
+        FISHING_MESSAGE_OFFSET        = 7208, -- You can't fish here.
+        DEVICE_NOT_WORKING            = 7322, -- The device is not working.
+        SYS_OVERLOAD                  = 7331, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
+        YOU_LOST_THE                  = 7336, -- You lost the <item>.
+        RUILLONT_INITIAL_DIALOG       = 7345, -- Confound it! If I only had my sword, I'd cut through these fiends single-handedly...
+        A_SQUIRE_S_TEST_II_DIALOG_I   = 7356, -- You place your hands into the pool.
+        A_SQUIRE_S_TEST_II_DIALOG_II  = 7359, -- The dew from the stalactite slips through your fingers.
+        A_SQUIRE_S_TEST_II_DIALOG_III = 7360, -- You have already obtained the dew.
+        CHEST_UNLOCKED                = 7391, -- You unlock the chest!
+        GERWITZS_AXE_DIALOG           = 7413, -- Mine axe shall rend thy throat!
+        GERWITZS_SWORD_DIALOG         = 7414, -- Mine sword shall pierce thy tongue!
+        GERWITZS_SOUL_DIALOG          = 7415, -- Long have I waited. I will tell all...
+        REGIME_REGISTERED             = 10462, -- New training regime registered!
     },
     mob =
     {
@@ -45,7 +39,7 @@ zones[dsp.zone.ORDELLES_CAVES] =
     },
     npc =
     {
-        ORDELLES_TREASURE_CHEST = 17568192,
+        TREASURE_CHEST = 17568192,
     },
 }
 

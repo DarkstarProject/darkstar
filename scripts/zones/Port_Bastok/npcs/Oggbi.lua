@@ -4,11 +4,12 @@
 -- Starts and Finishes: Ghosts of the Past, The First Meeting, The Walls of Your Mind
 -- !pos -159 -7 5 236
 -----------------------------------
-require("scripts/globals/settings")
-require("scripts/globals/keyitems")
-require("scripts/globals/quests")
-require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/wsquest")
+require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.asuran_fists
@@ -34,9 +35,9 @@ function onTrigger(player,npc)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (ghostsOfThePast == QUEST_AVAILABLE and mJob == 2 and mLvl >= 40) then
+    elseif (ghostsOfThePast == QUEST_AVAILABLE and mJob == dsp.job.MNK and mLvl >= 40) then
         player:startEvent(231) -- Start Quest "Ghosts of the Past"
-    elseif (ghostsOfThePast == QUEST_COMPLETED and player:needToZone() == false and theFirstMeeting == QUEST_AVAILABLE and mJob == 2 and mLvl >= 50) then
+    elseif (ghostsOfThePast == QUEST_COMPLETED and player:needToZone() == false and theFirstMeeting == QUEST_AVAILABLE and mJob == dsp.job.MNK and mLvl >= 50) then
         player:startEvent(233) -- Start Quest "The First Meeting"
     elseif (player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK) and player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)) then
         player:startEvent(234) -- Finish Quest "The First Meeting"

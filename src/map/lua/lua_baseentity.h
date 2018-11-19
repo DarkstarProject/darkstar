@@ -223,7 +223,6 @@ public:
     int32 setModelId(lua_State* L);
     int32 costume(lua_State*);               // get or set user costume
     int32 costume2(lua_State*);              // set monstrosity costume
-    int32 canUseCostume(lua_State*);         // check to see if character can use costume, 0 if so
     int32 getAnimation(lua_State*);          // Get Entity Animation
     int32 setAnimation(lua_State*);          // Set Entity Animation
     int32 AnimationSub(lua_State*);          // get or set animationsub
@@ -248,6 +247,8 @@ public:
 
     int32 isJailed(lua_State *L);           // Is the player jailed
     int32 jail(lua_State* L);
+
+    int32 canUseMisc(lua_State*);           // Check misc flags of current zone.
 
     int32 speed(lua_State*);                // скорость передвижения сущности
 
@@ -424,6 +425,7 @@ public:
     int32 setInstance(lua_State* L);
     int32 createInstance(lua_State* L);
     int32 instanceEntry(lua_State* L);
+    int32 isInAssault(lua_State*);                   // If player is in a Instanced Assault Dungeon returns true
 
     int32 getConfrontationEffect(lua_State* L);
     int32 copyConfrontationEffect(lua_State* L);     // copy confrontation effect, param = targetEntity:getShortID()
@@ -579,7 +581,6 @@ public:
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
 
-    int32 canUsePet(lua_State *L);           // check to see if character can call pet, 0 if so
     int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
     int32 hasValidJugPetItem(lua_State*);
 
@@ -614,6 +615,7 @@ public:
     int32 removeAllManeuvers(lua_State*);
 
     // Mob Entity-Specific
+    int32 setMobLevel(lua_State*);
     int32 getSystem(lua_State*);
     int32 getFamily(lua_State*);
     int32 isMobType(lua_State*);            // True if mob is of type passed to function
@@ -655,7 +657,6 @@ public:
     int32 delMobMod(lua_State*);
 
     int32 getBattleTime(lua_State*);          // Get the time in second of the battle
-    int32 rageMode(lua_State*);               // Add rage mode
 
     int32 getBehaviour(lua_State* L);
     int32 setBehaviour(lua_State* L);

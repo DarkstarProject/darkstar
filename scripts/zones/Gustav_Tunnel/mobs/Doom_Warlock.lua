@@ -4,13 +4,13 @@
 -- Note: Place holder Taxim
 -----------------------------------
 local ID = require("scripts/zones/Gustav_Tunnel/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,765,2);
-    checkGoVregime(player,mob,766,1);
-    checkGoVregime(player,mob,769,1);
+    dsp.regime.checkRegime(player, mob, 765, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 766, 1, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 769, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

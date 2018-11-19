@@ -12,38 +12,8 @@ require("scripts/globals/missions");
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 689, 132, DIGREQ_NONE },
-                    { 938, 79, DIGREQ_NONE },
-                    { 17296, 132, DIGREQ_NONE },
-                    { 847, 100, DIGREQ_NONE },
-                    { 846, 53, DIGREQ_NONE },
-                    { 833, 100, DIGREQ_NONE },
-                    { 841, 53, DIGREQ_NONE },
-                    { 834, 26, DIGREQ_NONE },
-                    { 772, 50, DIGREQ_NONE },
-                    { 701, 50, DIGREQ_NONE },
-                    { 702, 3, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 4545, 200, DIGREQ_BURROW },
-                    { 636, 50, DIGREQ_BURROW },
-                    { 5235, 10, DIGREQ_BURROW },
-                    { 617, 50, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-                    { 572, 100, DIGREQ_NIGHT },
-};
-
-local messageArray = { ID.text.DIG_THROW_AWAY, ID.text.FIND_NOTHING, ID.text.ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
@@ -84,13 +54,13 @@ function onEventUpdate( player, csid, option)
     if (csid == 50) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 52) then
-        if (player:getPreviousZone() == 241 or player:getPreviousZone() == 115) then
+        if (player:getPreviousZone() == dsp.zone.WINDURST_WOODS or player:getPreviousZone() == dsp.zone.WEST_SARUTABARUTA) then
             if (player:getZPos() < 570) then
                 player:updateEvent(0,0,0,0,0,1);
             else
                 player:updateEvent(0,0,0,0,0,2);
             end
-        elseif (player:getPreviousZone() == 194) then
+        elseif (player:getPreviousZone() == dsp.zone.OUTER_HORUTOTO_RUINS) then
             if (player:getZPos() > 570) then
                 player:updateEvent(0,0,0,0,0,2);
             end

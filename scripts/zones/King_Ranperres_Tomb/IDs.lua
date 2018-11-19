@@ -11,23 +11,17 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
     text =
     {
         CONQUEST_BASE           = 0, -- Tallying conquest results...
-        ITEM_CANNOT_BE_OBTAINED = 6540, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6546, -- Obtained: <item>.
-        GIL_OBTAINED            = 6547, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6549, -- Obtained key item: <keyitem>.
-        CHEST_UNLOCKED          = 7277, -- You unlock the chest!
-        CHEST_FAIL              = 7278, -- <name> fails to open the chest.
-        CHEST_TRAP              = 7279, -- The chest was trapped!
-        CHEST_WEAK              = 7280, -- You cannot open the chest when you are in a weakened state.
-        CHEST_MIMIC             = 7281, -- The chest was a mimic!
-        CHEST_MOOGLE            = 7282, -- You cannot open the chest while participating in the moogle event.
-        CHEST_ILLUSION          = 7283, -- The chest was but an illusion...
-        CHEST_LOCKED            = 7284, -- The chest appears to be locked. If only you had <item>, perhaps you could open it...
-        HEAVY_DOOR              = 7305, -- It is a solid stone door.
+        ITEM_CANNOT_BE_OBTAINED = 6541, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6547, -- Obtained: <item>.
+        GIL_OBTAINED            = 6548, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
+        CHEST_UNLOCKED          = 7278, -- You unlock the chest!
+        HEAVY_DOOR              = 7306, -- It is a solid stone door.
+        REGIME_REGISTERED       = 10330, -- New training regime registered!
     },
     mob =
     {
-        CRYPT_GHOST_PH        = 
+        CRYPT_GHOST_PH        =
         {
             [17555665] = 17555668,
             [17555666] = 17555668,
@@ -39,10 +33,10 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         CORRUPTED_YORGOS      = 17555898,
         CORRUPTED_SOFFEIL     = 17555899,
         CORRUPTED_ULBRIG      = 17555900,
-        KRT_TREASURE_CHEST    = 17555955,
     },
     npc =
     {
+        TREASURE_CHEST = 17555955,
     },
 }
 

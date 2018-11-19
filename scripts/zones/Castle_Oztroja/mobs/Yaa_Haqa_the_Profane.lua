@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Yaa_Haqa_the_Profane
+--   NM: Yaa_Haqa_the_Profane
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-end;
+end

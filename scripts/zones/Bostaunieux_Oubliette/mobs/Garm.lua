@@ -4,11 +4,11 @@
 -- Note: PH for Shii
 -----------------------------------
 local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs");
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,612,1);
+    dsp.regime.checkRegime(player, mob, 612, 1, dsp.regime.type.GROUNDS)
 end;
 
 function onMobDespawn(mob)

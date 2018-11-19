@@ -111,6 +111,15 @@ bool CBattleEntity::isInDynamis()
     return false;
 }
 
+bool CBattleEntity::isInAssault()
+{
+    if (loc.zone != nullptr) 
+    {
+        return loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= REGION_WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_ALZADAAL);
+    }
+    return false;
+}
+
 // return true if the mob has immunity
 bool CBattleEntity::hasImmunity(uint32 imID)
 {
@@ -1273,6 +1282,10 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
             if (PSpell->dealsDamage())
                 PTarget->PLastAttacker = this;
+
+            // Remove Saboteur
+            if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
+                StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);
 
             // remove effects from damage
             if (PSpell->canTargetEnemy() && actionTarget.param > 0 && PSpell->dealsDamage())

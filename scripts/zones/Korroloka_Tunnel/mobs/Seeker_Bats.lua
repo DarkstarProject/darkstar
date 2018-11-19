@@ -2,10 +2,10 @@
 -- Area: Korroloka Tunnel
 --  MOB: Seeker Bats
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,727,2);
-    checkGoVregime(player,mob,728,1);
+    dsp.regime.checkRegime(player, mob, 727, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 728, 1, dsp.regime.type.GROUNDS)
 end;

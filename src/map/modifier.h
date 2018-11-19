@@ -64,7 +64,7 @@ enum class Mod
     RACC                      = 26, // Ranged Accuracy
 
     ENMITY                    = 27, // Enmity
-    ENMITY_LOSS_REDUCTION     = 502, // Reduces Enmity lost when taking damage
+    ENMITY_LOSS_REDUCTION     = 427, // Reduces Enmity lost when taking damage
 
     MATT                      = 28, // Magic Attack
     MDEF                      = 29, // Magic Defense
@@ -193,6 +193,7 @@ enum class Mod
     // Damage / Crit Damage / Delay
     DMG                       = 160, // Damage Taken %
     DMGPHYS                   = 161, // Physical Damage Taken %
+    DMGPHYS_II                = 190, // Physical Damage Taken II % (Burtgang)
     DMGBREATH                 = 162, // Breath Damage Taken %
     DMGMAGIC                  = 163, // Magic Damage Taken %
     DMGMAGIC_II               = 831, // Magic Damage Taken II % (Aegis)
@@ -324,6 +325,8 @@ enum class Mod
     BLINK                     = 299, // Tracks blink shadows
     STONESKIN                 = 300, // Tracks stoneskin HP pool
     PHALANX                   = 301, // Tracks direct damage reduction
+    ENF_MAG_POTENCY           = 290, // Increases Enfeebling magic potency %
+    ENHANCES_SABOTEUR         = 297, // Increases Saboteur Potency %
 
     // Thief
     FLEE_DURATION             = 93,  // Flee duration in seconds
@@ -343,7 +346,6 @@ enum class Mod
     HOLY_CIRCLE_DURATION      = 857, // Holy Circle extended duration in seconds
     RAMPART_DURATION          = 92,  // Rampart duration in seconds
     ABSORB_PHYSDMG_TO_MP      = 426, // Absorbs a percentage of physical damage taken to MP.
-    ENMITY_REDUCTION_PHYSICAL = 427, // TODO: Reduces Enmity decrease when taking physical damage
     SHIELD_MASTERY_TP         = 485, // Shield mastery TP bonus when blocking with a shield
     SENTINEL_EFFECT           = 837, // Sentinel effect in percents
     SHIELD_DEF_BONUS          = 905, // Shield Defense Bonus
@@ -576,6 +578,7 @@ enum class Mod
     REGEN                     = 370, // auto regen from equipment
     REGEN_DOWN                = 404, // poison
     CURE_POTENCY              = 374, // % cure potency | bonus from gear is capped at 50
+    CURE_POTENCY_II           = 260, // % cure potency II | bonus from gear is capped at 30
     CURE_POTENCY_RCVD         = 375, // % potency of received cure | healer's roll, some items have this
     RANGED_DMG_RATING         = 376, // adds damage rating to ranged weapon
     MAIN_DMG_RANK             = 377, // adds weapon rank to main weapon http://wiki.bluegartr.com/bg/Weapon_Rank
@@ -641,6 +644,8 @@ enum class Mod
     ITEM_SPIKES_CHANCE        = 501, // Chance of an items spike proc
 
     GOV_CLEARS                = 496, // 4% bonus per Grounds of Valor Page clear
+
+    AFTERMATH                 = 256, // Aftermath ID
 
     EXTRA_DMG_CHANCE          = 506, // Proc rate of OCC_DO_EXTRA_DMG. 111 would be 11.1%
     OCC_DO_EXTRA_DMG          = 507, // Multiplier for "Occasionally do x times normal damage". 250 would be 2.5 times damage.
@@ -722,6 +727,23 @@ enum class Mod
     SYNTH_SKILL_GAIN          = 852, // Synthesis skill gain rate
     SYNTH_FAIL_RATE           = 861, // Synthesis failure rate (percent)
     SYNTH_HQ_RATE             = 862, // High-quality success rate (not a percent)
+    DESYNTH_SUCCESS           = 916, // Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE      = 917, // Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH     = 918, // Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER     = 919, // Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND      = 920, // Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE       = 921, // Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING = 922, // Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT     = 923, // Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK      = 924, // Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD      = 925, // Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH     = 926, // Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH = 927, // Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH     = 928, // Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER   = 929, // Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE      = 930, // Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY   = 931, // Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK      = 932, // Amount synthesis failure rate is reduced when doing cooking
 
     // Weaponskill %damage modifiers
     // The following modifier should not ever be set, but %damage modifiers to weaponskills use the next 255 IDs (this modifier + the WSID)
@@ -730,13 +752,19 @@ enum class Mod
 
     ALL_WSDMG_ALL_HITS        = 840, // Generic (all Weaponskills) damage, on all hits.
     // Per https://www.bg-wiki.com/bg/Weapon_Skill_Damage we need all 3..
-    ALL_WSDMG_FIRST_HIT       = 841 // Generic (all Weaponskills) damage, first hit only.
+    ALL_WSDMG_FIRST_HIT       = 841, // Generic (all Weaponskills) damage, first hit only.
+
+    EXPERIENCE_RETAINED       = 914, // Experience points retained upon death (this is a percentage)
+    CAPACITY_BONUS            = 915, // Capacity point bonus granted
+    CONQUEST_BONUS            = 933, // Conquest points bonus granted (percentage)
+    CONQUEST_REGION_BONUS     = 934, // Increases the influence points awarded to the player's nation when receiving conquest points
+    CAMPAIGN_BONUS            = 935, // Increases the evaluation for allied forces by percentage
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 914, // stuff
-    // SPARE = 915, // stuff
-    // SPARE = 916, // stuff
+    // SPARE = 936, // stuff
+    // SPARE = 937, // stuff
+    // SPARE = 938, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

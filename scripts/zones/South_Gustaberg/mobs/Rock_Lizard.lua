@@ -4,11 +4,11 @@
 -- Note: Place holder Leaping Lizzy
 -----------------------------------
 local ID = require("scripts/zones/South_Gustaberg/IDs");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,80,1);
+    dsp.regime.checkRegime(player, mob, 80, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

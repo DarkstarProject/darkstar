@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Quu_Domi_the_Gallant
+--   NM: Quu_Domi_the_Gallant
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-end;
+end
