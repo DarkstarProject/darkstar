@@ -25,6 +25,7 @@
 #include "../common/showmsg.h"
 
 #include <string.h>
+#include <algorithm>
 
 #include "entities/battleentity.h"
 #include "utils/charutils.h"
@@ -57,9 +58,8 @@ CAlliance::CAlliance(CBattleEntity* PEntity)
     Sql_Query(SqlHandle, "UPDATE accounts_parties SET partyflag = partyflag | %d WHERE partyid = %u AND partyflag & %d;", ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }
 
-CAlliance::CAlliance(uint32 id)
+CAlliance::CAlliance(uint32 id): m_AllianceID(id), aLeader(nullptr)
 {
-	m_AllianceID = id;
 }
 
 void CAlliance::dissolveAlliance(bool playerInitiated) 
@@ -154,29 +154,26 @@ void CAlliance::removeParty(CParty * party)
 void CAlliance::delParty(CParty* party)
 {
     //delete the party from the alliance list
-    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    party->m_PAlliance->partyList.erase(std::remove_if(party->m_PAlliance->partyList.begin(), party->m_PAlliance->partyList.end(), [=](CParty* entry)
     {
-        if (party == party->m_PAlliance->partyList.at(i))
-            party->m_PAlliance->partyList.erase(partyList.begin() + i);
-    }
+        return party == entry;
+    }));
 
-    for (uint8 i = 0; i < party->m_PAlliance->partyList.size(); ++i)
+    for (auto entry : party->m_PAlliance->partyList)
     {
-        party->m_PAlliance->partyList.at(i)->ReloadParty();
+        entry->ReloadParty();
     }
 
     party->m_PAlliance = nullptr;
     party->SetPartyNumber(0);
 
     //remove party members from the alliance treasure pool
-    for (uint8 i = 0; i < party->members.size(); ++i)
+    for (auto entry : party->members)
     {
-        CCharEntity* PChar = (CCharEntity*)party->members.at(i);
-
-        if (PChar->PTreasurePool != nullptr &&
-            PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
+        auto member = dynamic_cast<CCharEntity*>(entry);
+        if (member != nullptr && member->PTreasurePool != nullptr && member->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
         {
-            PChar->PTreasurePool->DelMember(PChar);
+            member->PTreasurePool->DelMember(member);
         }
     }
 
