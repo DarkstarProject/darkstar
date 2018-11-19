@@ -179,7 +179,7 @@ namespace battlefieldutils {
                 }
                 else
                 {
-                    ShowDebug(CL_CYAN"spawnTreasureForBcnm: <%s> is already spawned\n" CL_RESET, PNpc->GetName());
+                    ShowDebug(CL_CYAN"spawnTreasureForBcnm: is already spawned\n" CL_RESET);
                 }
             }
             return true;
