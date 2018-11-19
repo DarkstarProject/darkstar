@@ -32,6 +32,7 @@
 
 enum ENTITYTYPE
 {
+    TYPE_NONE   = 0x00,
     TYPE_PC     = 0x01,
     TYPE_NPC    = 0x02,
     TYPE_MOB    = 0x04,
