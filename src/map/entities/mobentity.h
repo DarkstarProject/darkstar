@@ -168,9 +168,9 @@ public:
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
     virtual void OnEngage(CAttackState&) override;
 
-    virtual bool OnAttack(CAttackState&, action_t&);
+    virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
-    virtual void OnCastFinished(CMagicState&, action_t&);
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
 
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;public:
