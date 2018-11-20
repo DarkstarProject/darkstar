@@ -2,7 +2,8 @@
 -- Area: Rolanberry Fields (110)
 --  HMN: Simurgh
 -----------------------------------
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobSpawn(mob)

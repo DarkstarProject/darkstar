@@ -558,11 +558,6 @@ void CalculateStats(CMobEntity * PMob)
         SetupEventMob(PMob);
     }
 
-    if(PMob->m_Family == 335)
-    {
-        SetupMaat(PMob);
-    }
-
     if (PMob->CanStealGil())
     {
         PMob->ResetGilPurse();
@@ -704,7 +699,7 @@ void SetupJob(CMobEntity* PMob)
                 // aern
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 1388);
             }
-            else
+            else if (PMob->m_Family != 335) // exclude NIN Maat
             {
                 PMob->defaultMobMod(MOBMOD_SPECIAL_SKILL, 272);
             }
@@ -922,31 +917,6 @@ void SetupNMMob(CMobEntity* PMob)
         }
     }
 
-}
-
-void SetupMaat(CMobEntity* PMob)
-{
-    switch(PMob->GetMJob()){
-        case JOB_NIN:
-            PMob->setMobMod(MOBMOD_DUAL_WIELD, 1);
-            PMob->m_Weapons[SLOT_MAIN]->resetDelay();
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 0);
-            break;
-        case JOB_DRK:
-        case JOB_PLD:
-            // Give shield bash
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1036);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            PMob->setMobMod(MOBMOD_SPECIAL_DELAY, 40);
-            break;
-        case JOB_BST:
-            // Call beast skill
-            PMob->setMobMod(MOBMOD_SPECIAL_SKILL, 1017);
-            PMob->setMobMod(MOBMOD_SPECIAL_COOL, 50);
-            break;
-        default:
-            break;
-    }
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -1252,51 +1222,6 @@ void AddCustomMods(CMobEntity* PMob)
             PMob->setMobMod(static_cast<uint16>((*it)->getModID()), (*it)->getModAmount());
         }
     }
-}
-
-void InitializeMaat(CMobEntity* PMob, JOBTYPE job)
-{
-    //set job based on characters job
-    PMob->SetMJob(job);
-
-    // give him a spell list based on job
-    uint16 spellList = 0;
-
-    switch(job){
-        case JOB_WHM:
-            spellList = 1;
-            break;
-        case JOB_BLM:
-            spellList = 2;
-            break;
-        case JOB_RDM:
-            spellList = 3;
-            break;
-        case JOB_PLD:
-            spellList = 4;
-            break;
-        case JOB_DRK:
-            spellList = 5;
-            break;
-        case JOB_BRD:
-            spellList = 6;
-            break;
-        case JOB_NIN:
-            spellList = 7;
-            break;
-        case JOB_BLU:
-            spellList = 8;
-            break;
-        case JOB_SMN:
-            spellList = 141;
-            break;
-        default:
-            break;
-    }
-
-    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(spellList);
-
-    PMob->m_DropID = 4485; //Give Maat his stealable Warp Scroll
 }
 
 CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance)

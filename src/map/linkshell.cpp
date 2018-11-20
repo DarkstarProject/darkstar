@@ -50,9 +50,8 @@
 *                                                                       *
 ************************************************************************/
 
-CLinkshell::CLinkshell(uint32 id)
+CLinkshell::CLinkshell(uint32 id) : m_id(id), m_color(0)
 {
-    m_id = id;
 }
 
 uint32 CLinkshell::getID()

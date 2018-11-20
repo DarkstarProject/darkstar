@@ -120,10 +120,6 @@ public:
     uint32    getEntityFlags();                        // Returns the current value in m_flags
     void      setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
 
-    bool      hasRageMode();                           // If the mob has the rage mode: true
-    void      addRageMode();                           // Rage mode ON:  stat x10
-    void      delRageMode();                           // Rage mode OFF: stat /10
-
     bool      IsFarFromHome();                         // check if mob is too far from spawn
     bool      CanBeNeutral();                          // check if mob can have killing pause
 
@@ -172,9 +168,9 @@ public:
     virtual void OnMobSkillFinished(CMobSkillState&, action_t&);
     virtual void OnEngage(CAttackState&) override;
 
-    virtual bool OnAttack(CAttackState&, action_t&);
+    virtual bool OnAttack(CAttackState&, action_t&) override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
-    virtual void OnCastFinished(CMagicState&, action_t&);
+    virtual void OnCastFinished(CMagicState&, action_t&) override;
 
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;public:
@@ -215,16 +211,16 @@ public:
     uint8     accRank;
     uint8     evaRank;
 
-    uint16	  m_dmgMult;
+    uint16    m_dmgMult;
 
     // aggro ranges
     bool      m_disableScent;             // stop detecting by scent
     float     m_maxRoamDistance;          // maximum distance mob can be from spawn before despawning
 
     uint8     m_Type;                     // mob type
-    bool	  m_Aggro;
-    bool	  m_TrueDetection;   // Has true sight or sound
-    uint16	  m_Detects;                // mobs detection methods, sight, sound, etc
+    bool      m_Aggro;
+    bool      m_TrueDetection;   // Has true sight or sound
+    uint16    m_Detects;                // mobs detection methods, sight, sound, etc
     uint8     m_Link;                     // link with mobs of it's family
     uint16    m_Behaviour;                // mob behaviour
     SPAWNTYPE m_SpawnType;                // condition for mob to spawn
@@ -268,7 +264,6 @@ protected:
 
 private:
 
-    bool      m_RageMode;                              // Mode rage
     time_point    m_DespawnTimer {time_point::min()};  // Despawn Timer to despawn mob after set duration
     std::unordered_map<int, int16>     m_mobModStat;
     std::unordered_map<int, int16>     m_mobModStatSave;

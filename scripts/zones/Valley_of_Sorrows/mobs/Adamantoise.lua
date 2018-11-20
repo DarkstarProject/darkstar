@@ -3,6 +3,7 @@
 --  HNM: Adamantoise
 -----------------------------------
 local ID = require("scripts/zones/Valley_of_Sorrows/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
@@ -18,6 +19,8 @@ function onMobSpawn(mob)
     if LandKingSystem_HQ == 0 then
         SetDropRate(24,3344,0) -- do not drop clump_of_red_pondweed
     end
+
+    mob:setLocalVar("[rage]timer", 1800) -- 30 minutes
 end
 
 function onMobDeath(mob, player, isKiller)

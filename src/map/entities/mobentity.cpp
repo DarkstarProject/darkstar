@@ -85,7 +85,6 @@ CMobEntity::CMobEntity()
     m_HiPCLvl = 0;
     m_THLvl = 0;
     m_ItemStolen = false;
-    m_RageMode = 0;
 
     strRank = 3;
     vitRank = 3;
@@ -318,47 +317,6 @@ bool CMobEntity::CanDeaggro()
     return !(m_Type & MOBTYPE_NOTORIOUS || m_Type & MOBTYPE_BATTLEFIELD);
 }
 
-/************************************************************************
-*                                                                       *
-*  RAGE MODE                                                            *
-*                                                                       *
-************************************************************************/
-
-bool CMobEntity::hasRageMode()
-{
-    return m_RageMode;
-}
-
-void CMobEntity::addRageMode()
-{
-    if (!m_RageMode)
-    {
-        stats.AGI *= 10;
-        stats.CHR *= 10;
-        stats.DEX *= 10;
-        stats.INT *= 10;
-        stats.MND *= 10;
-        stats.STR *= 10;
-        stats.VIT *= 10;
-    }
-    m_RageMode = true;
-}
-
-void CMobEntity::delRageMode()
-{
-    if (m_RageMode)
-    {
-        stats.AGI /= 10;
-        stats.CHR /= 10;
-        stats.DEX /= 10;
-        stats.INT /= 10;
-        stats.MND /= 10;
-        stats.STR /= 10;
-        stats.VIT /= 10;
-    }
-    m_RageMode = false;
-}
-
 bool CMobEntity::IsFarFromHome()
 {
     return distance(loc.p, m_SpawnPoint) > m_maxRoamDistance;
@@ -585,7 +543,6 @@ void CMobEntity::Spawn()
 
     SetMLevel(level);
     SetSLevel(level);//calculated in function
-    delRageMode();
 
     mobutils::CalculateStats(this);
     mobutils::GetAvailableSpells(this);
@@ -726,6 +683,8 @@ void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         else
         {
             target.param = luautils::OnMobWeaponSkill(PTarget, this, PSkill, &action);
+            this->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PTarget, PSkill->getID(), state.GetSpentTP(), &action);
+            PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTarget, this, PSkill->getID(), state.GetSpentTP(), &action);
         }
 
         if (msg == 0)
@@ -1074,7 +1033,6 @@ void CMobEntity::OnDisengage(CAttackState& state)
     // this will let me decide to walk home or despawn
     m_neutral = true;
 
-    delRageMode();
     m_OwnerID.clean();
 
     CBattleEntity::OnDisengage(state);

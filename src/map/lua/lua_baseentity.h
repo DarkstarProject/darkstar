@@ -657,7 +657,6 @@ public:
     int32 delMobMod(lua_State*);
 
     int32 getBattleTime(lua_State*);          // Get the time in second of the battle
-    int32 rageMode(lua_State*);               // Add rage mode
 
     int32 getBehaviour(lua_State* L);
     int32 setBehaviour(lua_State* L);

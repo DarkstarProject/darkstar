@@ -2,8 +2,9 @@
 -- Area: Jugner Forest
 --  MOB: Knight Crab
 -----------------------------------
-local ID = require("scripts/zones/Jugner_Forest/IDs");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Jugner_Forest/IDs")
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -15,7 +16,7 @@ function onMobSpawn(mob)
     end
 
     -- 5 minute rage timer (ffxiah says 5, ffxiclopedia says 5-10, bg doesn't say at all)
-    mob:setMobMod(dsp.mobMod.RAGE, 300);
+    mob:setLocalVar("[rage]timer", 300)
 end;
 
 function onMobDeath(mob, player, isKiller)
