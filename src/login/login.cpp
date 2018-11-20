@@ -150,7 +150,8 @@ int32 do_init(int32 argc, char** argv)
                         if (inputs[0] == "verlock")
                         {
                             // handle wrap around from 2->3 as 0
-                            version_info.ver_lock = (++version_info.ver_lock % 3);
+                            auto temp = (++version_info.ver_lock) % 3;
+                            version_info.ver_lock = temp;
 
                             auto value = "";
                             switch (version_info.ver_lock)

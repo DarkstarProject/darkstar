@@ -3972,7 +3972,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -3998,7 +3998,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -4096,7 +4096,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
         qStr += (const char*)PChar->GetName();
         qStr += "','TELL','";
-        qStr += RecipientName.c_str();
+        qStr += RecipientName;
         qStr += "','";
         qStr += escape((const char*)data[20]);
         qStr += "',current_timestamp());";
@@ -4221,7 +4221,6 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = data.ref<uint16>(0x04);
-            string_t LinkshellName = (const char*)data[12];
             int8     DecodedName[21];
             int8     EncodedName[16];
 
@@ -5465,7 +5464,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(spellInQuestion + 0x200)); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
                     if (spell != nullptr) {
-                        blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+                        blueutils::SetBlueSpell(PChar, spell, spellIndex, false);
                     }
                     else {
                         ShowDebug("Cannot resolve spell id \n");
