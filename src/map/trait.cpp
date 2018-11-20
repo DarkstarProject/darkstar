@@ -120,7 +120,7 @@ namespace traits
 
     TraitList_t* GetTraits(uint8 JobID)
     {
-        DSP_DEBUG_BREAK_IF(JobID >= sizeof(PTraitsList));
+        DSP_DEBUG_BREAK_IF(JobID >= MAX_JOBTYPE);
 
 	    return &PTraitsList[JobID];
     }
