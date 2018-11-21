@@ -23426,7 +23426,8 @@ INSERT INTO `item_mods` VALUES (19006,30,10);  -- Tizone 75 - Magic Accuracy+10
 INSERT INTO `item_mods` VALUES (19006,256,32); -- Aftermath
 INSERT INTO `item_mods` VALUES (19006,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19006,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
-INSERT INTO `item_mods` VALUES (19007,256,33);  -- Death Penalty 75 - Aftermath
+INSERT INTO `item_mods` VALUES (19007,191,20);  -- Death Pentalty 75 - Enhances "Quick Draw" effect (MACC+20)
+INSERT INTO `item_mods` VALUES (19007,256,33);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19007,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19007,834,20);  -- Enhances "Quick Draw" effect (Damage +20%)
 INSERT INTO `item_mods` VALUES (19008,125,1);  -- Kenkonken 75 - Supresses "Overload"
@@ -23578,7 +23579,8 @@ INSERT INTO `item_mods` VALUES (19075,30,10);  -- Tizona 80 - Magic Accuracy+10
 INSERT INTO `item_mods` VALUES (19075,256,37); -- Aftermath
 INSERT INTO `item_mods` VALUES (19075,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19075,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
-INSERT INTO `item_mods` VALUES (19076,256,38);  -- Death Penalty 80 - Aftermath
+INSERT INTO `item_mods` VALUES (19076,191,20);  -- Death Penalty 80 - Enhances "Quick Draw" effect II (MACC+30)
+INSERT INTO `item_mods` VALUES (19076,256,38);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19076,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19076,834,30);  -- Enhances "Quick Draw" effect II (Quick Draw damage +30%)
 INSERT INTO `item_mods` VALUES (19077,125,1);  -- Kenkonken 80 - Suppresses "Overload"
@@ -23655,7 +23657,8 @@ INSERT INTO `item_mods` VALUES (19095,30,15);  -- Tizona 85 - Magic Accuracy+15
 INSERT INTO `item_mods` VALUES (19095,256,37); -- Aftermath
 INSERT INTO `item_mods` VALUES (19095,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19095,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
-INSERT INTO `item_mods` VALUES (19096,256,38);  -- Death Penalty 85 - Aftermath
+INSERT INTO `item_mods` VALUES (19096,191,40);  -- Death Penalty 85 - Enhances "Quick Draw" effect II (MACC+40)
+INSERT INTO `item_mods` VALUES (19096,256,38);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19096,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19096,834,40);  -- Enhances "Quick Draw" effect III (Damage+40%)
 INSERT INTO `item_mods` VALUES (19097,125,1);  -- Kenkonken 85 - Suppresses "Overload"
@@ -24118,7 +24121,8 @@ INSERT INTO `item_mods` VALUES (19627,256,37); -- Aftermath
 INSERT INTO `item_mods` VALUES (19627,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19627,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19627,616,15); -- Expiacion WS DMG +15%
-INSERT INTO `item_mods` VALUES (19628,256,38);  -- Death Penalty 90 - Aftermath
+INSERT INTO `item_mods` VALUES (19628,191,50);  -- Death Penalty 90 - Enhances "Quick Draw" effect IV (MACC+50)
+INSERT INTO `item_mods` VALUES (19628,256,38);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19628,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19628,788,15);  -- Leadend Salute WS DMG +15%
 INSERT INTO `item_mods` VALUES (19628,834,50);  -- Enahnces "Quick Draw" effect IV (DMG+50%)
@@ -24260,7 +24264,8 @@ INSERT INTO `item_mods` VALUES (19725,256,42); -- Aftermath
 INSERT INTO `item_mods` VALUES (19725,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19725,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19725,616,15); -- Expiacion WS DMG +15%
-INSERT INTO `item_mods` VALUES (19726,256,43);  -- Death Penalty 95 - Aftermath
+INSERT INTO `item_mods` VALUES (19726,191,50);  -- Death Penalty 95 - Enhances "Quick Draw" effect IV (MACC+50)
+INSERT INTO `item_mods` VALUES (19726,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19726,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19726,788,15);  -- Leaden Salute WS damage +15%
 INSERT INTO `item_mods` VALUES (19726,834,50);  -- Enhances "Quick Draw" effect IV (Damage+50%)
@@ -24576,7 +24581,8 @@ INSERT INTO `item_mods` VALUES (19834,256,42); -- Aftermath
 INSERT INTO `item_mods` VALUES (19834,355,46); -- Expiacion
 INSERT INTO `item_mods` VALUES (19834,431,1);  -- Additional Effect - scripts\globals\items\tizona.lua
 INSERT INTO `item_mods` VALUES (19834,616,30); -- Expiacion WS DMG +30%
-INSERT INTO `item_mods` VALUES (19835,256,43);  -- Death Penalty 99 - Aftermath
+INSERT INTO `item_mods` VALUES (19835,191,60);  -- Death Penalty 99 - Enhances "Quick Draw" effect V (MACC+60)
+INSERT INTO `item_mods` VALUES (19835,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19835,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19835,788,30);  -- Leaden Salute WS damage +30%
 INSERT INTO `item_mods` VALUES (19835,834,60);  -- Enhances "Quick Draw" effect V (DMG+60%)
@@ -24817,7 +24823,8 @@ INSERT INTO `item_mods` VALUES (19963,256,42);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19963,355,46);  -- Tizona 99 - Expiacion
 INSERT INTO `item_mods` VALUES (19963,431,1);   -- Additional Effect
 INSERT INTO `item_mods` VALUES (19963,616,30);  -- Expiacion WS DMG +30%
-INSERT INTO `item_mods` VALUES (19964,256,43);  -- Death Penalty 99 AG - Aftermath
+INSERT INTO `item_mods` VALUES (19964,191,60);  -- Death Penalty 99 AG - Enhances "Quick Draw" effect V (MACC+60)
+INSERT INTO `item_mods` VALUES (19964,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (19964,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (19964,788,30);  -- Leaden Salute WS DMG +30%
 INSERT INTO `item_mods` VALUES (19964,834,60);  -- Enhances "Quick Draw" effect V (DMG+60%)
@@ -26103,11 +26110,13 @@ INSERT INTO `item_mods` VALUES (21261,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (21261,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21261,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (21261,786,40); -- Coronach DMG +40%
-INSERT INTO `item_mods` VALUES (21262,256,43);  -- Death Penalty 119 - Aftermath
+INSERT INTO `item_mods` VALUES (21262,191,60);  -- Death Penalty 119 - Enhances "Quick Draw" effect V (MACC+60)
+INSERT INTO `item_mods` VALUES (21262,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (21262,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (21262,788,30);  -- Leaden Salute WS damage +30%
 INSERT INTO `item_mods` VALUES (21262,834,60);  -- Enhances "Quick Draw" effect V (DMG+60%)
-INSERT INTO `item_mods` VALUES (21263,256,43);  -- Death Penalty 119 AG - Aftermath
+INSERT INTO `item_mods` VALUES (21263,191,60);  -- Death Penalty 119 AG - Enhances "Quick Draw" effect V (MACC+60)
+INSERT INTO `item_mods` VALUES (21263,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (21263,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (21263,788,30);  -- Leaden Salute WS damage +30%
 INSERT INTO `item_mods` VALUES (21263,834,60);  -- Enhances "Quick Draw" effect V (DMG+60%)
@@ -26132,7 +26141,8 @@ INSERT INTO `item_mods` VALUES (21267,355,216); -- Coronach
 INSERT INTO `item_mods` VALUES (21267,506,130); -- Extra DMG Chance 13%
 INSERT INTO `item_mods` VALUES (21267,507,300); -- Extra DMG X3
 INSERT INTO `item_mods` VALUES (21267,786,40); -- Coronach DMG +40%
-INSERT INTO `item_mods` VALUES (21268,256,43);  -- Death Penalty 119 III - Aftermath
+INSERT INTO `item_mods` VALUES (21268,191,60);  -- Death Penalty 119 III - Enhances "Quick Draw" effect V (MACC+60)
+INSERT INTO `item_mods` VALUES (21268,256,43);  -- Aftermath
 INSERT INTO `item_mods` VALUES (21268,311,217); -- Magic Damage+217
 INSERT INTO `item_mods` VALUES (21268,355,218); -- Leaden Salute
 INSERT INTO `item_mods` VALUES (21268,788,30);  -- Leaden Salute WS DMG +30%

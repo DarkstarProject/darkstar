@@ -1314,6 +1314,7 @@ dsp.mod =
     SONG_SPELLCASTING_TIME          = 455, --
 
     QUICK_DRAW_DMG                  = 411, --
+    QUICK_DRAW_MACC                 = 191, -- Quick draw magic accuracy
     QUAD_ATTACK                     = 430, -- Quadruple attack chance.
 
     ADDITIONAL_EFFECT               = 431, -- All additional effects

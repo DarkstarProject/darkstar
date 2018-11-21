@@ -475,6 +475,7 @@ enum class Mod
     BUST                      = 332, // # of busts
     QUICK_DRAW_DMG            = 411, // Flat damage increase to base QD damage
     QUICK_DRAW_DMG_PERCENT    = 834, // Percentage increase to QD damage
+    QUICK_DRAW_MACC           = 191, // Quick draw magic accuracy
     PHANTOM_ROLL              = 881, // Phantom Roll+ Effect from SOA Rings.
     PHANTOM_DURATION          = 882, // Phantom Roll Duration +.
 
