@@ -4,22 +4,16 @@
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 
-function disturbMob(mob)
+function onMobSpawn(mob)
     if mob:getID() == ID.mob.ROSE_GARDEN_PH then
         mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
     end
 end
 
-function onMobSpawn(mob)
-    disturbMob(mob)
-end
-
-function onMobEngaged(mob, target)
-    disturbMob(mob)
-end
-
-function onMobFight(mob, target)
-    disturbMob(mob)
+function onMobDisengage(mob)
+    if mob:getID() == ID.mob.ROSE_GARDEN_PH then
+        mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
+    end
 end
 
 function onMobRoam(mob)

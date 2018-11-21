@@ -4,21 +4,13 @@
 -----------------------------------
 local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 
-function disturbMob(mob)
+function onMobSpawn(mob)
     mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
 end
 
-function onMobSpawn(mob)
-    disturbMob(mob)
-end;
-
-function onMobEngaged(mob, target)
-    disturbMob(mob)
-end;
-
-function onMobFight(mob, target)
-    disturbMob(mob)
-end;
+function onMobDisengage(mob)
+    mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
+end
 
 function onMobRoam(mob)
     -- Rose Garden has been left alone for 10.25 hours
