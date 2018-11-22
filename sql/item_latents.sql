@@ -3152,7 +3152,7 @@ INSERT INTO `item_latents` VALUES(18434, 366, 3, 58, 0); -- Kosetsusamonji dmg +
 INSERT INTO `item_latents` VALUES(18434, 273, 2, 58, 0); -- store tp +2
 INSERT INTO `item_latents` VALUES(18484, 366, 5, 58, 0); -- Wamoura Axe dmg +5
 INSERT INTO `item_latents` VALUES(18484, 288, 1, 58, 0); -- double attack +1
-INSERT INTO `item_latents` VALUES(18582, 366, 1, 58, 0); --Yigit Staff dmg +1
+INSERT INTO `item_latents` VALUES(18582, 366, 1, 58, 0); -- Yigit Staff dmg +1
 INSERT INTO `item_latents` VALUES(18582, 6, 2, 58, 0); -- mp% +2
 INSERT INTO `item_latents` VALUES(18684, 366, 2, 58, 0); -- Storm Zamburak dmg +2
 INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10
