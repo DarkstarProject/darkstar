@@ -77,7 +77,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (29,'operation:black_pearl',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (30,'better_than_one',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (31,'seagull_grounded',79,30,-350,-15.245,380,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (32,'requiem',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (32,'requiem',79,30,-458.409,-10.000,-320.966,90,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (33,'saving_private_ryaaf',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (34,'shooting_down_the_baron',79,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (35,'building_bridges',79,15,0.000,0.000,0.000,0,-1,-1,-1,-1);

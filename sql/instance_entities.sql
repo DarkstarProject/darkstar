@@ -148,6 +148,34 @@ INSERT INTO `instance_entities` VALUES (31,17006870);
 INSERT INTO `instance_entities` VALUES (31,17006872);
 INSERT INTO `instance_entities` VALUES (31,17006874);
 
+-- Requiem
+-- mobs
+INSERT INTO `instance_entities` VALUES (32,17006612);
+INSERT INTO `instance_entities` VALUES (32,17006613);
+INSERT INTO `instance_entities` VALUES (32,17006614);
+INSERT INTO `instance_entities` VALUES (32,17006615);
+INSERT INTO `instance_entities` VALUES (32,17006616);
+INSERT INTO `instance_entities` VALUES (32,17006617);
+INSERT INTO `instance_entities` VALUES (32,17006618);
+INSERT INTO `instance_entities` VALUES (32,17006619);
+INSERT INTO `instance_entities` VALUES (32,17006620);
+INSERT INTO `instance_entities` VALUES (32,17006621);
+INSERT INTO `instance_entities` VALUES (32,17006622);
+INSERT INTO `instance_entities` VALUES (32,17006623);
+INSERT INTO `instance_entities` VALUES (32,17006624);
+INSERT INTO `instance_entities` VALUES (32,17006625);
+INSERT INTO `instance_entities` VALUES (32,17006626);
+INSERT INTO `instance_entities` VALUES (32,17006627);
+INSERT INTO `instance_entities` VALUES (32,17006628);
+INSERT INTO `instance_entities` VALUES (32,17006629);
+INSERT INTO `instance_entities` VALUES (32,17006630);
+INSERT INTO `instance_entities` VALUES (32,17006631);
+INSERT INTO `instance_entities` VALUES (32,17006632);
+INSERT INTO `instance_entities` VALUES (32,17006633);
+INSERT INTO `instance_entities` VALUES (32,17006634);
+-- npcs
+INSERT INTO `instance_entities` VALUES (32,17006809);
+INSERT INTO `instance_entities` VALUES (32,17006810);
 -- Golden Salvage
 -- mobs
 INSERT INTO `instance_entities` VALUES (41,17002497);

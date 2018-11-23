@@ -55,9 +55,11 @@ zones[dsp.zone.PERIQIA] =
         EXCALIACE_CAUGHT           = 7541, -- Damn...
     },
 
-    mob = {
+    mob = 
+    {
         -- Seagull Grounded
-        [31] = {
+        [31] = 
+        {
             CRAB1      = 17006594,
             CRAB2      = 17006595,
             CRAB3      = 17006596,
@@ -76,8 +78,31 @@ zones[dsp.zone.PERIQIA] =
             DEBAUCHER2 = 17006610,
             DEBAUCHER3 = 17006611,
         },
+        -- Requiem
+        [32] = 
+        {
+            PUTRID_IMMORTAL_GUARD1 = 17006612,
+            PUTRID_IMMORTAL_GUARD2 = 17006613,
+            BATTEILANT_BHOOT1      = 17006614,
+            BATTEILANT_BHOOT2      = 17006615,
+            DARKLING_DRAUGAR1      = 17006616,
+            DRACONIC_DRAUGAR1      = 17006617,
+            DARKLING_DRAUGAR2      = 17006619,
+            DARKLING_DRAUGAR3      = 17006620,
+            DRACONIC_DRAUGAR2      = 17006621,
+            DRACONIC_DRAUGAR3      = 17006623,
+            BATTEILANT_BHOOT3      = 17006625,
+            BATTEILANT_BHOOT4      = 17006626,
+            DARKLING_DRAUGAR4      = 17006627,
+            DRACONIC_DRAUGAR4      = 17006628,
+            DARKLING_DRAUGAR5      = 17006630,
+            DRACONIC_DRAUGAR5      = 17006631,
+            DARKLING_DRAUGAR6      = 17006633,
+            DARKLING_DRAUGAR7      = 17006634,
+        },
         -- Shades of Vengeance
-        [79] = {
+        [79] = 
+        {
             K23H1LAMIA1  = 17006754,
             K23H1LAMIA2  = 17006755,
             K23H1LAMIA3  = 17006756,
@@ -91,7 +116,8 @@ zones[dsp.zone.PERIQIA] =
         }
     },
 
-    npc = {
+    npc = 
+    {
         EXCALIACE       = 17006593,
         ANCIENT_LOCKBOX = 17006809,
         RUNE_OF_RELEASE = 17006810,
