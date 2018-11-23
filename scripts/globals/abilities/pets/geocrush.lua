@@ -34,7 +34,7 @@ function onPetAbility(target, pet, skill)
     damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.EARTH)
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
 
-    target:delHP(damage)
+    target:takeDamage(damage, pet)
     target:updateEnmityFromDamage(pet,damage)
 
     if (target:hasStatusEffect(dsp.effect.STUN) == false) then

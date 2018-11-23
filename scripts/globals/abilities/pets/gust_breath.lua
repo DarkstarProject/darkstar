@@ -32,6 +32,6 @@ function onUseAbility(pet, target, skill, action)
     pet:setTP(0)
 
     local dmg = AbilityFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS)
-    target:delHP(dmg)
+    target:takeDamage(dmg, pet)
     return dmg
 end

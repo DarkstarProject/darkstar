@@ -20,7 +20,7 @@ function onPetAbility(target, pet, skill)
     local damage = AvatarPhysicalMove(pet,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3)
 
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits)
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, pet)
     target:updateEnmityFromDamage(pet,totaldamage)
 
     return totaldamage

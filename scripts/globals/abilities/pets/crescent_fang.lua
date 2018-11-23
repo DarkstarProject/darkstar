@@ -24,7 +24,7 @@ function onPetAbility(target, pet, skill)
         target:addStatusEffect(dsp.effect.PARALYSIS, 22.5, 0, 90)
     end
 
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, pet)
     target:updateEnmityFromDamage(pet,totaldamage)
 
     return totaldamage

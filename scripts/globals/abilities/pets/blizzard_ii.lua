@@ -22,7 +22,7 @@ function onPetAbility(target, pet, skill)
     damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.ICE)
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
 
-    target:delHP(damage)
+    target:takeDamage(damage, pet)
     target:updateEnmityFromDamage(pet,damage)
 
     return damage

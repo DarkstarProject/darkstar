@@ -24,14 +24,14 @@ function onPetAbility(target, pet, skill, master)
         dmg = MobMagicalMove(pet,target,skill,dmg,dsp.magic.ele.DARK,1,TP_NO_EFFECT,0)
         dmg = mobAddBonuses(pet, nil, target, dmg.dmg, dsp.magic.ele.DARK)
         dmg = AvatarFinalAdjustments(dmg,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
-        target:delHP(dmg)
+        target:takeDamage(damage, pet)
         target:updateEnmityFromDamage(pet,dmg)
         return dmg
     else
         local chance = (100 * power) / skill:getTotalTargets()
         if math.random(0,99) < chance and target:getAnimation() ~= 33 then
             skill:setMsg(dsp.msg.basic.SKILL_ENFEEB_IS)
-            target:delHP(target:getHP())
+            target:takeDamage(target:getHP(), pet)
             return dsp.effect.KO
         else
             skill:setMsg(dsp.msg.basic.EVADES)

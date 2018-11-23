@@ -21,7 +21,7 @@ function onPetAbility(target, pet, skill)
 
     totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,numhits)
 
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, pet)
     target:updateEnmityFromDamage(pet,totaldamage)
 
     if (AvatarPhysicalHit(skill, totalDamage) and target:hasStatusEffect(dsp.effect.POISON) == false) then

@@ -31,7 +31,7 @@ function onPetAbility(target, pet, skill)
     if (duration > 0 and AvatarPhysicalHit(skill, totaldamage) and target:hasStatusEffect(dsp.effect.WEIGHT) == false) then
         target:addStatusEffect(dsp.effect.WEIGHT, 50, 0, duration)
     end
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, pet)
     target:updateEnmityFromDamage(pet,totaldamage)
 
     return totaldamage

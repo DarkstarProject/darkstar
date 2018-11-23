@@ -29,7 +29,7 @@ function onPetAbility(target, pet, skill, master)
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
 
     master:setMP(0)
-    target:delHP(damage)
+    target:takeDamage(damage, pet)
     target:updateEnmityFromDamage(pet,damage)
 
     return damage

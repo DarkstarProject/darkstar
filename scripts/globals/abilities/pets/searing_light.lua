@@ -28,7 +28,7 @@ function onPetAbility(target, pet, skill, master)
     damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.LIGHT)
     damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
 
-    target:delHP(damage)
+    target:takeDamage(damage, pet)
     target:updateEnmityFromDamage(pet,damage)
     master:setMP(0)
 
