@@ -292,6 +292,9 @@ INSERT INTO `mob_pool_mods` VALUES (4836,62,1,1); -- Maat (BLM) NO_STANDBACK
 INSERT INTO `mob_pool_mods` VALUES (4837,62,1,1); -- Maat (RNG) NO_STANDBACK
 INSERT INTO `mob_pool_mods` VALUES (5403,62,1,1); -- Maat (NIN) NO_STANDBACK
 
+INSERT INTO `mob_pool_mods` VALUES (3784,2,-1,1); -- Stray GIL_MAX: don't drop gil
+INSERT INTO `mob_pool_mods` VALUES (2614,368,100,0); -- Memory Receptacle regain 10%
+
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
