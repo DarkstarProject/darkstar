@@ -48,25 +48,6 @@ local function findMother(mob)
     return mother
 end
 
-local function checkStray(mob)
-    local ID = zones[mob:getZoneID()]
-    local mobId = mob:getID()
-    local numStrays = ID.mob.MEMORY_RECEPTACLES[mobId][2]
-
-    if os.time() > mob:getLocalVar("[promy]nextStray") then
-        for i = mobId + 1, mobId + numStrays do
-            local stray = GetMobByID(i)
-            if not stray:isSpawned() then
-                mob:setLocalVar("[promy]nextStray", os.time() + 20)
-                SpawnMob(stray:getID())
-                break
-            end
-        end
-    else
-        mob:AnimationSub(2)
-    end
-end
-
 ------------------------------------
 -- PUBLIC FUNCTIONS
 ------------------------------------
@@ -95,19 +76,23 @@ dsp.promyvion.strayOnSpawn = function(mob)
 end
 
 dsp.promyvion.receptacleOnFight = function(mob, target)
-    local ID = zones[mob:getZoneID()]
-    local mobId = mob:getID()
-    local numStrays = ID.mob.MEMORY_RECEPTACLES[mobId][2]
+    if os.time() > mob:getLocalVar("[promy]nextStray") then
+        local ID = zones[mob:getZoneID()]
+        local mobId = mob:getID()
+        local numStrays = ID.mob.MEMORY_RECEPTACLES[mobId][2]
 
-    -- keep pets linked
-    for i = mobId + 1, mobId + numStrays do
-        local stray = GetMobByID(i)
-        if stray:isSpawned() then
-            stray:updateEnmity(target)
+        for i = mobId + 1, mobId + numStrays do
+            local stray = GetMobByID(i)
+            if not stray:isSpawned() then
+                mob:setLocalVar("[promy]nextStray", os.time() + 20)
+                stray:spawn()
+                stray:updateEnmity(target)
+                break
+            end
         end
+    else
+        mob:AnimationSub(2)
     end
-
-    checkStray(mob)
 end
 
 dsp.promyvion.receptacleOnDeath = function(mob, isKiller)
