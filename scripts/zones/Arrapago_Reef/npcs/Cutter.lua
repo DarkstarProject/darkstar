@@ -13,8 +13,12 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
+    if player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
+        player:setLocalVar("theblackcoffinfight",1)
         player:startEvent(221, 53, -6, 0, 99, 6, 0)
+    elseif player:hasKeyItem(dsp.ki.LIFE_FLOAT) and player:getVar("AgainstAllOdds") == 2 then
+        player:setLocalVar("againstalloddsfight",1)
+        player:startEvent(221, 54, -9, 0, 99, 6, 0)
     else
         player:messageSpecial(ID.text.YOU_NO_REQS)
     end
@@ -22,23 +26,38 @@ end
 
 function onEventUpdate(player,csid,option,target)
 
-    if(csid == 221) then
-        local party = player:getParty()
-        if (party ~= nil) then
+    local party = player:getParty()
+    if player:getLocalVar("theblackcoffinfight") == 1 then
+        if party ~= nil then
             for i,v in ipairs(party) do
-                if (not (v:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN))) then
-                    player:messageText(target,ID.text.MEMBER_NO_REQS, false);
-                    player:instanceEntry(target,1);
+                if not v:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN) then
+                    player:messageText(target,ID.text.MEMBER_NO_REQS, false)
+                    player:instanceEntry(target,1)
                     return
-                elseif (v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50) then
-                    player:messageText(target,ID.text.MEMBER_TOO_FAR, false);
-                    player:instanceEntry(target,1);
+                elseif v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50 then
+                    player:messageText(target,ID.text.MEMBER_TOO_FAR, false)
+                    player:instanceEntry(target,1)
                     return
                 end
             end
         end
 
-        player:createInstance(53,60)
+        player:createInstance(53,60);
+        player:setLocalVar("theblackcoffinfight",0)
+        
+        elseif player:getLocalVar("againstalloddsfight") == 1 then
+        if (party ~= nil) then
+            for i,v in ipairs(party) do
+                if v:getZoneID() == player:getZoneID() and v:checkDistance(player) > 50 then
+                    player:messageText(target,ID.text.MEMBER_TOO_FAR, false)
+                    player:instanceEntry(target,1)
+                    return
+                end
+            end
+        end
+
+        player:createInstance(54,60)
+        player:setLocalVar("againstalloddsfight",0)
     end
 end
 

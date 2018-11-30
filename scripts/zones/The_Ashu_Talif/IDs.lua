@@ -23,6 +23,11 @@ zones[dsp.zone.THE_ASHU_TALIF] =
         TIME_REMAINING_SECONDS     = 7409, -- ime remaining: <number> [second/seconds] (Earth time).
         FADES_INTO_NOTHINGNESS     = 7410, -- The <item> fades into nothingness...
         PARTY_FALLEN               = 7411, -- ll party members have fallen in battle. Mission failure in <number> [minute/minutes].
+        GOWAM_DEATH                = 7557, -- ugh...
+        YAZQUHL_DEATH              = 7560, -- Defeated.. By a Corsiar!?
+        TAKE_THIS                  = 7561, -- Take this!
+        REST_BENEATH               = 7562, -- Time for you to rest beneath the waves
+        STOP_US                    = 7563, -- Theres nothing you can do to stop us!
         BATTLE_HIGH_SEAS           = 7566, -- A battle on the high seas? My warrior's spirit soars in anticipation!
         TIME_IS_NEAR               = 7567, -- My time is near...
         SO_I_FALL                  = 7568, -- And so I fall...
@@ -54,6 +59,11 @@ zones[dsp.zone.THE_ASHU_TALIF] =
             ASHU_TALIF_CREW_7  = 17022987,
             ASHU_TALIF_CREW_8  = 17022988,
             ASHU_TALIF_CREW_9  = 17022989,
+        },
+        -- Against All Odds - Cor AF2
+        [54]    = {
+            GOWAM              = 17022977,
+            YAZQUHL            = 17022978,
         },
     },
     npc =

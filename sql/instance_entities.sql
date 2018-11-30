@@ -255,6 +255,10 @@ INSERT INTO `instance_entities` VALUES (53,17022987);
 INSERT INTO `instance_entities` VALUES (53,17022988);
 INSERT INTO `instance_entities` VALUES (53,17022989);
 
+-- Against All Odds COR AF2
+INSERT INTO `instance_entities` VALUES (54,17022977);
+INSERT INTO `instance_entities` VALUES (54,17022978);
+
 -- Path of Darkness
 -- mobs
 INSERT INTO `instance_entities` VALUES (58,17093132);

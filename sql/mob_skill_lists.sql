@@ -616,6 +616,12 @@ INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1366);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1367);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1368);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1369);
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,33); -- burning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,35); -- flat balde
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,36); -- shinning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,37); -- sereph blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,38); -- circle blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,40); -- vorpal blade
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Elvaan',401,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',402,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',403,?);
