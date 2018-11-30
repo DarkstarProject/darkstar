@@ -37,6 +37,26 @@ zones[dsp.zone.LEBROS_CAVERN] =
     },
 
     mob = {
+        -- Troll Figitives
+        [23] = 
+        {
+            TROLL_FUGITIVE1  = 17035310,
+            TROLL_FUGITIVE2  = 17035311,
+            TROLL_FUGITIVE3  = 17035312,
+            TROLL_FUGITIVE4  = 17035313,
+            TROLL_FUGITIVE5  = 17035314,
+            TROLL_FUGITIVE6  = 17035315,
+            TROLL_FUGITIVE7  = 17035316,
+            TROLL_FUGITIVE8  = 17035317,
+            TROLL_FUGITIVE9  = 17035318,
+            TROLL_FUGITIVE10 = 17035319,
+            TROLL_FUGITIVE11 = 17035320,
+            TROLL_FUGITIVE12 = 17035321,
+            TROLL_FUGITIVE13 = 17035322,
+            TROLL_FUGITIVE14 = 17035323,
+            TROLL_FUGITIVE15 = 17035324,
+
+        },
         -- Wamoura Farm Raid Assault
         [27] =
         {
@@ -58,7 +78,8 @@ zones[dsp.zone.LEBROS_CAVERN] =
         }
     },
 
-    npc = {
+    npc = 
+    {
         ANCIENT_LOCKBOX = 17035478,
         RUNE_OF_RELEASE = 17035479,
     }
