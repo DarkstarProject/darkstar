@@ -38,7 +38,7 @@ function onEventFinish(player,csid,option)
     elseif csid == 42 and option == 0 then
         player:addQuest(AHT_URHGAN,VANISHING_ACT)
         player:setVar("vanishingactCS",2)
-    elseif csid == 45 then
-        npcUtil.completeQuest(player, AHT_URHGAN, VANISHING_ACT, {item=2185, var="vanishingactCS"})
+    elseif csid == 45 and npcUtil.completeQuest(player, AHT_URHGAN, VANISHING_ACT, {item=2185, var="vanishingactCS"}) then
+        player:delKeyItem(dsp.ki.RAINBOW_BERRY)
     end
 end

@@ -19,7 +19,7 @@ function onTrigger(player,npc)
     local currentday = tonumber(os.date("%j"))
     local lastIDtag = player:getVar("LAST_IMPERIAL_TAG")
     local tagCount = player:getCurrency("id_tags")
-    local diffday = currentday - lastIDtag 
+    local diffday = currentday - lastIDtag
     local currentAssault = player:getCurrentAssault()
     local haveimperialIDtag
 
@@ -42,7 +42,7 @@ function onTrigger(player,npc)
             player:setCurrency("id_tags", tagCount)
             player:setVar("LAST_IMPERIAL_TAG",currentday)
         elseif diffday > 0 then
-            tagCount = tagCount + diffday 
+            tagCount = tagCount + diffday
             if tagCount > 3 then -- store 3 TAG max
                 tagCount = 3
             end
@@ -86,7 +86,7 @@ function onEventFinish(player,csid,option)
         elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then
             player:delKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS)
         end
-        npcUtil.giveKeyItem(player, IMPERIAL_ARMY_ID_TAG)
+        npcUtil.giveKeyItem(player, dsp.ki.IMPERIAL_ARMY_ID_TAG)
         player:delAssault(currentAssault)
     end
 
