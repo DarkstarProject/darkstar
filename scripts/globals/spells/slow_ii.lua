@@ -1,8 +1,5 @@
 -----------------------------------------
 -- Spell: Slow II
--- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- caster:getMerit() returns a value which is equal to the number of merit points TIMES the value of each point
--- Slow II value per point is '1' This is a constant set in the table 'merits'
 -----------------------------------------
 require("scripts/globals/magic")
 require("scripts/globals/msg")
@@ -18,9 +15,14 @@ function onSpellCast(caster, target, spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
     local merits = caster:getMerit(dsp.merit.SLOW_II)
 
-    local base = 2440 + merits * 100
-    local power = utils.clamp(base + dMND * 1160/75, 1250, 3906) -- Lowest 128/1024 ~12.5%, Highest 400/1024 ~39.06%
-    power = calculatePotency(power, dMND, spell:getSkillType(), caster, target)
+    -- Lowest ~12.5%
+    -- Highest ~35.1%
+    local power = utils.clamp(math.floor(dMND * 226 / 15) + 2380, 1250, 3510)
+    power = calculatePotency(power, spell:getSkillType(), caster, target)
+
+    if merits > 1 then
+        power = power + merits - 1
+    end
 
     --Duration, including resistance.
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)

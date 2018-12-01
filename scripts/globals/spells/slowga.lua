@@ -1,8 +1,5 @@
 -----------------------------------------
--- Spell: Slow
--- Spell accuracy is most highly affected by Enfeebling Magic Skill, Magic Accuracy, and MND.
--- Slow's potency is calculated with the formula (187.5 + dMND*1.5)/1024, and caps at 300/1024 (~29.3%).
--- And MND of 75 is neccessary to reach the hardcap of Slow.
+-- Spell: Slowga
 -----------------------------------------
 require("scripts/globals/magic")
 require("scripts/globals/msg")
@@ -17,15 +14,10 @@ end
 function onSpellCast(caster,target,spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
 
-    -- FIXME: PRETTY SURE THIS IS ALL WRONG
     --Power
-    local power = 1500
-    if dMND > 0 then
-        power = power + dMND * 20
-    else
-        power = power + dMND * 10
-    end
-    power = utils.clamp(power, 730, 2929) -- Lowest 75/1024, Highest 300/1024 ~7.3%-29.2%
+    -- Lowest ~7.3%
+    -- Highest ~29.2%
+    local power = utils.clamp(math.floor(dMND * 73 / 5) + 1825, 730, 2920)
     power = calculatePotency(power, dMND, spell:getSkillType(), caster, target)
 
     --Duration, including resistance
