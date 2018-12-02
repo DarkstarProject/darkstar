@@ -42,6 +42,8 @@ struct EnmityObject_t
 
 typedef std::unordered_map<uint16,EnmityObject_t> EnmityList_t;
 
+constexpr int16 EnmityCap = 30000;
+
 class CEnmityContainer
 {
 public:
@@ -56,9 +58,9 @@ public:
     void    LogoutReset(uint32 EntityID);		// Sets entry to inactive
     void    AddBaseEnmity(CBattleEntity* PEntity);
     void    UpdateEnmity(CBattleEntity* PEntity, int16 CE, int16 VE, bool withMaster = true, bool tameable = false);
-    void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint16 Damage);
+    void    UpdateEnmityFromDamage(CBattleEntity* PEntity, uint32 Damage);
     void    UpdateEnmityFromCure(CBattleEntity* PEntity, uint8 level, uint16 CureAmount, bool isCureV);
-    void    UpdateEnmityFromAttack(CBattleEntity* PEntity,uint16 Damage);
+    void    UpdateEnmityFromAttack(CBattleEntity* PEntity, uint32 Damage);
     bool    HasID(uint32 ID); //true if ID is in the container with non-zero enmity level
     void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
     uint16  GetCE(CBattleEntity* PEntity);

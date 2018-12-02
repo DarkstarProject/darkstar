@@ -10183,7 +10183,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto damage = (uint16)lua_tointeger(L, 2);
+    uint32 damage = (uint32)lua_tointeger(L, 2);
 
     if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)

@@ -341,9 +341,7 @@ namespace battleutils
 
     uint8 GetEnmityModDamage(uint8 level)
     {
-        if (level >= 100) { level = 99; }
-
-        return ((31 * level) / 50) + 6;
+        return level * 31 / 50 + 6;
     }
 
     uint8 GetEnmityModCure(uint8 level)
