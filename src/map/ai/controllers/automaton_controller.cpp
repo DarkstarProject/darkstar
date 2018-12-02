@@ -1374,7 +1374,7 @@ bool CAutomatonController::CanCastSpells()
 
 bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 {
-    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->Has(RECAST_MAGIC, static_cast<uint16>(spellid)))
+    if (!autoSpell::CanUseSpell(PAutomaton, spellid) || PAutomaton->PRecastContainer->HasRecast(RECAST_MAGIC, static_cast<uint16>(spellid), 0))
         return false;
 
     return CPetController::Cast(targid, spellid);
@@ -1382,7 +1382,7 @@ bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 
 bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
 {
-    if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
+    if(PAutomaton->PRecastContainer->HasRecast(RECAST_ABILITY, wsid, 0))
         return false;
     return CPetController::MobSkill(targid, wsid);
 }
