@@ -1382,7 +1382,7 @@ bool CAutomatonController::Cast(uint16 targid, SpellID spellid)
 
 bool CAutomatonController::MobSkill(uint16 targid, uint16 wsid)
 {
-    if(PAutomaton->PRecastContainer->Has(RECAST_ABILITY, wsid))
+    if(PAutomaton->PRecastContainer->HasRecast(RECAST_ABILITY, wsid))
         return false;
     return CPetController::MobSkill(targid, wsid);
 }
