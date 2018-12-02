@@ -251,6 +251,7 @@ enum class Mod
     FOOD_RACC_CAP             = 189, //
     FOOD_MACCP                =  99, // Macc% see https://www.bg-wiki.com/bg/Category:Magic_Accuracy_Food
     FOOD_MACC_CAP             = 100, // Sets Upper limit for FOOD_MACCP
+    FOOD_DURATION             = 937, // Percentage to increase food duration
 
     // Killer-Effects - (Most by Traits/JobAbility)
     VERMIN_KILLER             = 224, // Enhances "Vermin Killer" effect
@@ -763,9 +764,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 936, // stuff
-    // SPARE = 937, // stuff
     // SPARE = 938, // stuff
+    // SPARE = 939, // stuff
+    // SPARE = 940, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

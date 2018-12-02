@@ -528,6 +528,9 @@ public:
     int32 setMod(lua_State*);                  // Sets Modifier Value
     int32 delMod(lua_State*);                  // Subtracts Modifier Value
 
+    int32 addLatent(lua_State*);               // Adds a latent effect
+    int32 delLatent(lua_State*);               // Removes a latent effect
+
     int32 fold(lua_State*);
     int32 doWildCard(lua_State*);
     int32 addCorsairRoll(lua_State*);          // Adds corsair roll effect

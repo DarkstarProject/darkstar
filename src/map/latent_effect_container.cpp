@@ -73,6 +73,26 @@ void CLatentEffectContainer::DelLatentEffects(uint8 reqLvl, uint8 slot)
     }), m_LatentEffectList.end());
 }
 
+void CLatentEffectContainer::AddLatentEffect(LATENT conditionID, uint16 conditionValue, Mod modID, int16 modValue)
+{
+    m_LatentEffectList.emplace_back(m_POwner, conditionID, conditionValue, MAX_SLOTTYPE, modID, modValue);
+}
+
+bool CLatentEffectContainer::DelLatentEffect(LATENT conditionID, uint16 conditionValue, Mod modID, int16 modValue)
+{
+    // Find and remove the first instance of the latent matching the parameters
+    for (auto iter = m_LatentEffectList.begin(); iter != m_LatentEffectList.end(); ++iter)
+    {
+        CLatentEffect& latent = *iter;
+        if (latent.GetConditionsID() == conditionID && latent.GetConditionsValue() == conditionValue && latent.GetModValue() == modID && latent.GetModPower() == modValue)
+        {
+            m_LatentEffectList.erase(iter);
+            return true;
+        }
+    }
+    return false;
+}
+
 /************************************************************************
 *																		*
 *  Checks all latents that are affected by HP and activates them if  	*
@@ -669,7 +689,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         expression = ((float)m_POwner->health.hp / m_POwner->health.maxhp) * 100 >= latentEffect.GetConditionsValue() && m_POwner->health.tp < 1000;
         break;
     case LATENT_MP_UNDER_PERCENT:
-        expression = m_POwner->health.maxmp && (float)(m_POwner->health.mp / m_POwner->health.maxmp) * 100 <= latentEffect.GetConditionsValue();
+        expression = m_POwner->health.maxmp && ((float)m_POwner->health.mp / m_POwner->health.maxmp) * 100 <= latentEffect.GetConditionsValue();
         break;
     case LATENT_MP_UNDER:
         expression = m_POwner->health.mp <= latentEffect.GetConditionsValue();
