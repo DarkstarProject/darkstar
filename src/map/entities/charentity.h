@@ -345,6 +345,7 @@ public:
     virtual bool OnAttackError(CAttackState&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void OnChangeTarget(CBattleEntity* PNewTarget) override;
+    virtual void OnEngage(CAttackState&) override;
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnCastFinished(CMagicState&, action_t&) override;
     virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg) override;

@@ -42,7 +42,7 @@ enum LATENT
     LATENT_PET_ID                   = 9,  //pettype - PARAM: PETID
     LATENT_WEAPON_DRAWN             = 10, //weapon drawn
     LATENT_WEAPON_SHEATHED          = 11, //weapon sheathed
-    //                              = 12  //Unused
+    LATENT_TARGET_EVEN_MATCH_LOWER  = 12, // Target is even match or lower
     LATENT_STATUS_EFFECT_ACTIVE     = 13, //status effect on player - PARAM: EFFECTID
     LATENT_NO_FOOD_ACTIVE           = 14, //no food effects active on player
     LATENT_PARTY_MEMBERS            = 15, //party size # - PARAM: # OF MEMBERS

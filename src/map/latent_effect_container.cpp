@@ -644,6 +644,16 @@ void CLatentEffectContainer::CheckLatentsWeather(uint16 weather)
     });
 }
 
+void CLatentEffectContainer::CheckLatentsTargetChange()
+{
+    ProcessLatentEffects([this](CLatentEffect& latentEffect)
+    {
+        if (latentEffect.GetConditionsID() == LATENT_TARGET_EVEN_MATCH_LOWER)
+            return ProcessLatentEffect(latentEffect);
+        return false;
+    });
+}
+
 // Process the latent effects container and apply a logic function responsible for
 // filtering the appropriate latents to be activated/deactivated and finally update
 // health post looping if at least one logic function returned true
@@ -712,6 +722,18 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
     case LATENT_WEAPON_SHEATHED:
         expression = m_POwner->animation != ANIMATION_ATTACK;
         break;
+    case LATENT_TARGET_EVEN_MATCH_LOWER:
+    {
+        if (m_POwner->GetBattleTargetID()) {
+            CBattleEntity* PTarget = m_POwner->GetBattleTarget();
+            expression = PTarget != nullptr && m_POwner->GetMLevel() >= PTarget->GetMLevel();
+        }
+        else
+        {
+            expression = false;
+        }
+        break;
+    }
     case LATENT_STATUS_EFFECT_ACTIVE:
         expression = m_POwner->StatusEffectContainer->HasStatusEffect((EFFECT)latentEffect.GetConditionsValue());
         break;

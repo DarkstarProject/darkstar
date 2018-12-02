@@ -584,6 +584,13 @@ bool CCharEntity::CanUseSpell(CSpell* PSpell)
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
 {
     pushPacket(new CLockOnPacket(this, PNewTarget));
+    PLatentEffectContainer->CheckLatentsTargetChange();
+}
+
+void CCharEntity::OnEngage(CAttackState& state)
+{
+    CBattleEntity::OnEngage(state);
+    PLatentEffectContainer->CheckLatentsTargetChange();
 }
 
 void CCharEntity::OnDisengage(CAttackState& state)

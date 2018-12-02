@@ -10856,7 +10856,7 @@ inline int32 CLuaBaseEntity::addLatent(lua_State *L)
     LATENT conditionID = (LATENT)lua_tointeger(L, 1);
     uint16 conditionValue = (uint16)lua_tointeger(L, 2);
     Mod modID = static_cast<Mod>(lua_tointeger(L, 3));
-    int16 modValue = lua_tointeger(L, 4);
+    int16 modValue = (int16)lua_tointeger(L, 4);
 
     ((CCharEntity*)m_PBaseEntity)->PLatentEffectContainer->AddLatentEffect(conditionID, conditionValue, modID, modValue);
 
@@ -10883,7 +10883,7 @@ inline int32 CLuaBaseEntity::delLatent(lua_State *L)
     LATENT conditionID = (LATENT)lua_tointeger(L, 1);
     uint16 conditionValue = (uint16)lua_tointeger(L, 2);
     Mod modID = static_cast<Mod>(lua_tointeger(L, 3));
-    int16 modValue = lua_tointeger(L, 4);
+    int16 modValue = (int16)lua_tointeger(L, 4);
 
     lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->PLatentEffectContainer->DelLatentEffect(conditionID, conditionValue, modID, modValue));
 
