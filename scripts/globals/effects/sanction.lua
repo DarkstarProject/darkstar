@@ -12,9 +12,9 @@ function onEffectGain(target,effect)
 
     local power = effect:getPower()
     if power == 1 then
-        target:addLatent(dsp.latent.HP_UNDER_PERCENT, 95, dsp.mod.REGEN, 1)
+        target:addLatent(dsp.latent.SANCTION_REGEN_BONUS, 95, dsp.mod.REGEN, 1)
     elseif power == 2 then
-        target:addLatent(dsp.latent.MP_UNDER_PERCENT, 75, dsp.mod.REFRESH, 1)
+        target:addLatent(dsp.latent.SANCTION_REFRESH_BONUS, 75, dsp.mod.REFRESH, 1)
     elseif power == 3 then
         target:addMod(dsp.mod.FOOD_DURATION, 100)
     end
@@ -28,9 +28,9 @@ function onEffectLose(target,effect)
 
     local power = effect:getPower()
     if power == 1 then
-        target:delLatent(dsp.latent.HP_UNDER_PERCENT, 95, dsp.mod.REGEN, 1)
+        target:delLatent(dsp.latent.SANCTION_REGEN_BONUS, 95, dsp.mod.REGEN, 1)
     elseif power == 2 then
-        target:delLatent(dsp.latent.MP_UNDER_PERCENT, 75, dsp.mod.REFRESH, 1)
+        target:delLatent(dsp.latent.SANCTION_REFRESH_BONUS, 75, dsp.mod.REFRESH, 1)
     elseif power == 3 then
         target:delMod(dsp.mod.FOOD_DURATION, 100)
     end
