@@ -120,10 +120,12 @@ bool CBaseEntity::IsNameHidden()
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 {
-	if (PInstance)
-		return PInstance->GetEntity(targid, filter);
-	else
-		return loc.zone->GetEntity(targid, filter);
+    if (targid == 0)
+        return nullptr;
+    else if (PInstance)
+        return PInstance->GetEntity(targid, filter);
+    else
+        return loc.zone->GetEntity(targid, filter);
 }
 
 void CBaseEntity::ResetLocalVars()
