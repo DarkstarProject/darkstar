@@ -14,8 +14,15 @@ end
 function onSpellCast(caster, target, spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
 
-    local power = utils.clamp(40 + math.floor(dMND / 5), 40, 50)
-    power = calculatePotency(power, dMND, spell:getSkillType(), caster, target)
+    -- Base evasion reduction is determend by enfeebling skill
+    -- Caps at -40 evasion at 350 skill
+    local basePotency = utils.clamp(math.floor(caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) * 4 / 35), 0, 40)
+
+    -- dMND is tacked on after
+    -- Min cap: 0 at 0 dMND
+    -- Max cap: 10 at 50 dMND
+    basePotency = basePotency + utils.clamp(math.floor(dMND / 5), 0, 10)
+    local power = calculatePotency(basePotency, spell:getSkillType(), caster, target)
 
     local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 

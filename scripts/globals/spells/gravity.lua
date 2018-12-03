@@ -14,8 +14,7 @@ function onSpellCast(caster, target, spell)
     -- Pull base stats.
     local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
-    -- Movement speed reduction caps at -50%
-    local power = math.min(calculatePotency(50, dINT, spell:getSkillType(), caster, target), 50)
+    local power = calculatePotency(26, spell:getSkillType(), caster, target)
 
     -- Duration, including resistance.  Unconfirmed.
     local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
