@@ -5209,7 +5209,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
         {
             CItemContainer* PContainer = PChar->getStorage(safeContainerId);
-            for (int slotIndex = 0; slotIndex < PContainer->GetSize(); ++slotIndex)
+            for (int slotIndex = 1; slotIndex <= PContainer->GetSize(); ++slotIndex)
             {
                 if (slotID == slotIndex && containerID == safeContainerId)
                     continue;
