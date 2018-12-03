@@ -124,7 +124,7 @@ INSERT INTO `item_puppet` VALUES (8612, 'mana_jammer_ii', 3, 3145728);
 INSERT INTO `item_puppet` VALUES (8613, 'mana_channeler', 3, 2097152);
 INSERT INTO `item_puppet` VALUES (8614, 'condenser', 3, 1048576);
 INSERT INTO `item_puppet` VALUES (8615, 'steam_jacket', 3, 1048576);
-INSERT INTO `item_puppet` VALUES (8616, 'percolator', 3, 2097152);
+INSERT INTO `item_puppet` VALUES (8616, 'percolator', 3, 1048576);
 INSERT INTO `item_puppet` VALUES (8617, 'mana_jammer_iii', 3, 4194304);
 INSERT INTO `item_puppet` VALUES (8618, 'stealth_screen_ii', 3, 2097152);
 INSERT INTO `item_puppet` VALUES (8619, 'resister', 3, 1048576);
