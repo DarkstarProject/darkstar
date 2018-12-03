@@ -112,7 +112,7 @@ float CEnmityContainer::CalculateEnmityBonus(CBattleEntity* PEntity)
         }
     }
 
-    float bonus = (100.f + std::clamp(enmityBonus, -50, 100)) / 100.0f;
+    float bonus = (100.f + std::clamp(enmityBonus, -50, 100)) / 100.f;
 
     return bonus;
 }
@@ -225,8 +225,7 @@ void CEnmityContainer::UpdateEnmityFromCure(CBattleEntity* PEntity, uint8 level,
         CureAmount = (CureAmount < 1 ? 1 : CureAmount);
 
         uint8 mod = battleutils::GetEnmityModCure(level);
-
-        CE = (int16)(40.f * CureAmount / mod * bonus * tranquilHeartReduction);
+        CE = (int16)(40 * CureAmount / mod * bonus * tranquilHeartReduction);
         VE = CE * 6;
     }
 
@@ -331,12 +330,11 @@ void CEnmityContainer::SetVE(CBattleEntity* PEntity, uint16 amount)
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint32 Damage)
+void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, int Damage)
 {
     Damage = (Damage < 1 ? 1 : Damage);
 
-    uint8 mod = battleutils::GetEnmityModDamage(m_EnmityHolder->GetMLevel());
-    int16 CE = 80 * Damage / mod;
+    int16 CE = 80 * Damage / battleutils::GetEnmityModDamage(m_EnmityHolder->GetMLevel());
     int16 VE = CE * 3;
 
     UpdateEnmity(PEntity, CE, VE);
@@ -351,13 +349,13 @@ void CEnmityContainer::UpdateEnmityFromDamage(CBattleEntity* PEntity, uint32 Dam
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, uint32 Damage)
+void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, int Damage)
 {
     auto enmity_obj = m_EnmityList.find(PEntity->id);
     if (enmity_obj == m_EnmityList.end())
         return;
 
-    float reduction = (100.f - std::min<int16>(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
+    float reduction = (100 - std::min<int16>(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
     int16 CE = (int16)(-1800 * Damage / PEntity->GetMaxHP() * reduction);
 
     enmity_obj->second.CE = std::clamp<int16>(enmity_obj->second.CE + CE, 0, EnmityCap);
