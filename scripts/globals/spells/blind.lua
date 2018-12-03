@@ -17,7 +17,7 @@ function onSpellCast(caster, target, spell)
 
     -- Base power
     -- Min cap: 5 at -80 dINT
-    -- Max cap: 30 at 120 dINT
+    -- Max cap: 50 at 120 dINT
     local basePotency = utils.clamp(math.floor(dINT * 9 / 40 + 23), 5, 50)
     local potency = calculatePotency(basePotency, spell:getSkillType(), caster, target)
 

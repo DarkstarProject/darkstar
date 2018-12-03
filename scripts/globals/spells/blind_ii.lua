@@ -21,7 +21,7 @@ function onSpellCast(caster, target, spell)
 
     -- Base power
     -- Min cap: 15 at -80 dINT
-    -- Max cap: 40 at 120 dINT
+    -- Max cap: 90 at 120 dINT
     local basePotency = utils.clamp(math.floor(dINT / 3 * 8 + 45), 15, 90)
 
     if (merits > 1) then
