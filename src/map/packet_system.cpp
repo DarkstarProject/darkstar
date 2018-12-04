@@ -632,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
+        if (PChar->m_Costume != 0 || PChar->animation == ANIMATION_SYNTH)
         {
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;

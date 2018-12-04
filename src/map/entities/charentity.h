@@ -262,7 +262,7 @@ public:
 
     uint32			  m_InsideRegionID;				// номер региона, в котором сейчас находится персонаж (??? может засунуть в m_event ???)
     uint8			  m_LevelRestriction;			// ограничение уровня персонажа
-    uint16            m_Costum;                     // карнавальный костюм персонажа (модель)
+    uint16            m_Costume;                     // карнавальный костюм персонажа (модель)
     uint16			  m_Monstrosity;				// Monstrosity model ID
     uint32			  m_AHHistoryTimestamp;			// Timestamp when last asked to view history
     uint32            m_DeathTimestamp;             // Timestamp when death counter has been saved to database
