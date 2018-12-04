@@ -4304,21 +4304,23 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    if (PChar && !lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        uint16 costum = (uint16)lua_tointeger(L, 1);
+        uint16 costume = static_cast<uint16>(lua_tointeger(L, 1));
 
-        if (PChar->m_Costume != costum &&
+        if (PChar->m_Costume != costume &&
             PChar->status != STATUS_SHUTDOWN &&
             PChar->status != STATUS_DISAPPEAR)
         {
-            PChar->m_Costume = costum;
-            PChar->updatemask |= UPDATE_POS;
+            PChar->m_Costume = costume;
+            PChar->updatemask |= UPDATE_LOOK;
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
         }
         return 0;
     }
+
     lua_pushinteger(L, PChar->m_Costume);
     return 1;
 }
