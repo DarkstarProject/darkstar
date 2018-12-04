@@ -8,8 +8,8 @@ function onEquip(pet)
         local master = automaton:getMaster()
         local maneuvers = (master and master:countEffect(dsp.effect.DARK_MANEUVER) > 0) and master:countEffect(dsp.effect.DARK_MANEUVER) or 7
         local mpthreshold = 60 - maneuvers * 10
-        local mpp = (automaton:getMaxMP() > 0) and math.ceil(automaton:getMP()/automaton:getMaxMP() * 100) or 100
-        if mpp < mpthreshold and automaton:getLocalVar("mprestore") < VanadielTime() then
+        local mpp = automaton:getMaxMP() > 0 and math.ceil(automaton:getMP() / automaton:getMaxMP() * 100) or 100
+        if mpp < mpthreshold and not automaton:hasRecast(dsp.recast.ABILITY, 2068) then
             automaton:useMobAbility(2068, automaton)
         else
             return 0

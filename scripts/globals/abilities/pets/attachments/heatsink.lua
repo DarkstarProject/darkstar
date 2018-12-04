@@ -4,11 +4,11 @@
 require("scripts/globals/status")
 
 function onEquip(pet)
-    pet:addMod(dsp.mod.BURDEN_DECAY, 1)
+    pet:addMod(dsp.mod.BURDEN_DECAY, 2)
 end
 
 function onUnequip(pet)
-    pet:delMod(dsp.mod.BURDEN_DECAY, 1)
+    pet:delMod(dsp.mod.BURDEN_DECAY, 2)
 end
 
 function onManeuverGain(pet,maneuvers)

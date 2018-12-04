@@ -42,6 +42,7 @@ namespace puppetutils
     void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl);
     void LoadAutomatonStats(CCharEntity* PChar);
     void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain);
+    void UpdateAttachments(CCharEntity* PChar);
 };
 
 #endif

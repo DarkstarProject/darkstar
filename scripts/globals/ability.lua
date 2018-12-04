@@ -559,7 +559,7 @@ function AbilityFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shado
     end
 
     if (skilltype == MOBSKILL_PHYSICAL) then
-        dmg = target:physicalDmgTaken(dmg);
+        dmg = target:physicalDmgTaken(dmg, skillparam);
     elseif (skilltype == MOBSKILL_MAGICAL) then
         dmg = target:magicDmgTaken(dmg);
     elseif (skilltype == MOBSKILL_BREATH) then

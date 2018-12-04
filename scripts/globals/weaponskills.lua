@@ -249,7 +249,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = finaldmg + firstHitBonus
 
     -- Check for reductions from PDT
-    finaldmg = target:physicalDmgTaken(finaldmg)
+    finaldmg = target:physicalDmgTaken(finaldmg, attacker:getWeaponDamageType(0))
 
     -- Check for reductions from phys resistances
     if (weaponType == dsp.skill.HAND_TO_HAND) then
