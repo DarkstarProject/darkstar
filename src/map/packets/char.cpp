@@ -62,7 +62,7 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint16>(0x1A) = PChar->m_TargID << 1;
                 ref<uint8>(0x1C) = PChar->GetSpeed();
                 ref<uint8>(0x1D) = PChar->speedsub;
-                ref<uint16>(0x30) = PChar->m_Costum;
+                ref<uint16>(0x30) = PChar->m_Costume;
             }
 
             if (updatemask & UPDATE_HP)

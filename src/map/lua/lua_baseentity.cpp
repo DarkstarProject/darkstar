@@ -4310,16 +4310,16 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
     {
         uint16 costum = (uint16)lua_tointeger(L, 1);
 
-        if (PChar->m_Costum != costum &&
+        if (PChar->m_Costume != costum &&
             PChar->status != STATUS_SHUTDOWN &&
             PChar->status != STATUS_DISAPPEAR)
         {
-            PChar->m_Costum = costum;
+            PChar->m_Costume = costum;
             PChar->updatemask |= UPDATE_POS;
         }
         return 0;
     }
-    lua_pushinteger(L, PChar->m_Costum);
+    lua_pushinteger(L, PChar->m_Costume);
     return 1;
 }
 
