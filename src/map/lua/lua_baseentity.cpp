@@ -141,8 +141,6 @@
 #include "../utils/puppetutils.h"
 #include "../utils/zoneutils.h"
 
-#include <sstream>
-
 CLuaBaseEntity::CLuaBaseEntity(lua_State* L)
 {
     if (!lua_isnil(L, 1))
