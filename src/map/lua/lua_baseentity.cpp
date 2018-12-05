@@ -10367,15 +10367,7 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
             (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),  // Sub Power
             (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0)); // Tier
 
-        bool added = ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect);
-        lua_pushboolean(L, added);
-
-        if (added) {
-            std::stringstream message;
-            message << m_PBaseEntity->GetName() << " gained " << PEffect->GetName() << " power=" << PEffect->GetPower() << " duration=" << PEffect->GetDuration();
-            CZone* zone = zoneutils::GetZone(m_PBaseEntity->getZone());
-            zone->PushPacket(m_PBaseEntity, CHAR_INRANGE, new CChatMessagePacket((CCharEntity*)m_PBaseEntity, MESSAGE_SYSTEM_1, message.str().c_str(), std::string()));
-        }
+        lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
     }
 
     return 1;
