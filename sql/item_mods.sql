@@ -44451,7 +44451,7 @@ INSERT INTO `item_mods` VALUES (28011,12,12);     -- INT+12
 INSERT INTO `item_mods` VALUES (28011,13,30);     -- MND+30
 INSERT INTO `item_mods` VALUES (28011,14,17);     -- CHR+17
 INSERT INTO `item_mods` VALUES (28011,26,12);     -- Ranged Accuracy+12
-INSERT INTO `item_mods` VALUES (28011,29,1);      -- Magic Defense Bonus+1
+INSERT INTO `item_mods` VALUES (28011,29,2);      -- Magic Defense Bonus+2
 INSERT INTO `item_mods` VALUES (28011,31,37);     -- Magic Evasion+37
 INSERT INTO `item_mods` VALUES (28011,68,24);     -- Evasion+24
 INSERT INTO `item_mods` VALUES (28011,384,500);   -- Haste+5%
@@ -47659,7 +47659,7 @@ INSERT INTO `item_mods` VALUES (28289,13,10);     -- MND+10
 INSERT INTO `item_mods` VALUES (28289,14,26);     -- CHR+26
 INSERT INTO `item_mods` VALUES (28289,23,14);     -- Attack+14 
 INSERT INTO `item_mods` VALUES (28289,25,14);     -- Accuracy+14 
-INSERT INTO `item_mods` VALUES (28289,29,1);      -- Magic Def. Bonus+1
+INSERT INTO `item_mods` VALUES (28289,29,2);      -- Magic Def. Bonus+2
 INSERT INTO `item_mods` VALUES (28289,31,64);     -- Magic Evasion+64
 INSERT INTO `item_mods` VALUES (28289,68,49);     -- Evasion+49
 INSERT INTO `item_mods` VALUES (28289,161,-3);    -- Physical Damage Taken -3%
