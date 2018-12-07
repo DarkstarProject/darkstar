@@ -4096,15 +4096,14 @@ namespace battleutils
         Mod absorb[8] = { Mod::FIRE_ABSORB, Mod::EARTH_ABSORB, Mod::WATER_ABSORB, Mod::WIND_ABSORB, Mod::ICE_ABSORB, Mod::LTNG_ABSORB, Mod::LIGHT_ABSORB, Mod::DARK_ABSORB };
         Mod nullarray[8] = { Mod::FIRE_NULL, Mod::EARTH_NULL, Mod::WATER_NULL, Mod::WIND_NULL, Mod::ICE_NULL, Mod::LTNG_NULL, Mod::LIGHT_NULL, Mod::DARK_NULL };
 
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGMAGIC) / 100.0f )  ) / 256.0f;
-        resist = std::max<float>(resist, 0);
+        float resist = 1.f + PDefender->getMod(Mod::UDMGMAGIC) / 100.f;
+        resist = std::max(resist, 0.f);
         damage = (int32)(damage * resist);
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGMAGIC) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)      / 100.0f ) ) / 256.0f );
-        resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
-        resist = resist + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGMAGIC_II) / 100.0f ) ) / 256.0f );
-        resist = std::clamp(resist, 0.125f, 1.5f); //Total cap with MDT-% II included is 87.5%
+        resist = 1.f + PDefender->getMod(Mod::DMGMAGIC) / 100.f + PDefender->getMod(Mod::DMG) / 100.f;
+        resist = std::max(resist, 0.5f);
+        resist += PDefender->getMod(Mod::DMGMAGIC_II) / 100.f;
+        resist = std::max(resist, 0.125f); // Total cap with MDT-% II included is 87.5%
         damage = (int32)(damage * resist);
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
@@ -4128,14 +4127,13 @@ namespace battleutils
 
     int32 PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGPHYS) / 100.0f )  ) / 256.0f;
-        resist = std::max<float>(resist, 0);
+        float resist = 1.f + PDefender->getMod(Mod::UDMGPHYS) / 100.f;
+        resist = std::max(resist, 0.f);
         damage = (int32)(damage * resist);
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGPHYS) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)     / 100.0f ) ) / 256.0f );
-        resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
-        resist += floor(PDefender->getMod(Mod::DMGPHYS_II) / 100.f); // Add Burtgang reduction after cap
+        resist = 1.f + PDefender->getMod(Mod::DMGPHYS) / 100.f + PDefender->getMod(Mod::DMG) / 100.f;
+        resist = std::max(resist, 0.5f); // PDT caps at -50%
+        resist += PDefender->getMod(Mod::DMGPHYS_II) / 100.f; // Add Burtgang reduction after 50% cap. Extends cap to -68%
         damage = (int32)(damage * resist);
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
@@ -4157,13 +4155,12 @@ namespace battleutils
 
     int32 RangedDmgTaken(CBattleEntity* PDefender, int32 damage)
     {
-        float resist = 1.0f + floor( 256.0f * ( PDefender->getMod(Mod::UDMGRANGE) / 100.0f )  ) / 256.0f;
-        resist = std::max<float>(resist, 0);
+        float resist = 1.0f + PDefender->getMod(Mod::UDMGRANGE) / 100.f;
+        resist = std::max(resist, 0.f);
         damage = (int32)(damage * resist);
 
-        resist = 1.0f + ( floor( 256.0f * ( PDefender->getMod(Mod::DMGRANGE) / 100.0f ) ) / 256.0f )
-                      + ( floor( 256.0f * ( PDefender->getMod(Mod::DMG)      / 100.0f ) ) / 256.0f );
-        resist = std::clamp(resist, 0.5f, 1.5f); //assuming if its floored at .5f its capped at 1.5f but who's stacking +dmgtaken equip anyway???
+        resist = 1.0f + PDefender->getMod(Mod::DMGRANGE) / 100.f + PDefender->getMod(Mod::DMG) / 100.f;
+        resist = std::max(resist, 0.5f);
         damage = (int32)(damage * resist);
 
         if (dsprand::GetRandomNumber(100) < PDefender->getMod(Mod::ABSORB_DMG_CHANCE) ||
