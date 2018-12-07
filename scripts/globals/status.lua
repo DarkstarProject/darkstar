@@ -1456,6 +1456,12 @@ dsp.mod =
     AUTO_SHIELD_BASH_SLOW           = 848, -- Adds a slow effect to Shield Bash
     AUTO_TP_EFFICIENCY              = 849, -- Causes the Automaton to wait to form a skillchain when its master is > 90% TP
     AUTO_SCAN_RESISTS               = 850, -- Causes the Automaton to scan a target's resistances
+    AUTO_STEAM_JACKET               = 938, -- Causes the Automaton to mitigate damage from successive attacks of the same type
+    AUTO_STEAM_JACKED_REDUCTION     = 939, -- Amount of damage reduced with Steam Jacket
+    AUTO_SCHURZEN                   = 940, -- Prevents fatal damage leaving the automaton at 1HP and consumes an Earth manuever
+    AUTO_EQUALIZER                  = 941, -- Reduces damage received according to damage taken
+    AUTO_PERFORMANCE_BOOST          = 942, -- Increases the performance of other attachments by a percentage
+    AUTO_ANALYZER                   = 943, -- Causes the Automaton to mitigate damage from a special attack a number of times
 
     -- Mythic Weapon Mods
     AUGMENTS_ABSORB                 = 521, -- Direct Absorb spell increase while Liberator is equipped (percentage based)
@@ -1500,9 +1506,9 @@ dsp.mod =
 
     -- The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     -- 570 - 825 used by WS DMG mods these are not spares.
-    -- SPARE = 938, -- stuff
-    -- SPARE = 939, -- stuff
-    -- SPARE = 940, -- stuff
+    -- SPARE = 944, -- stuff
+    -- SPARE = 945, -- stuff
+    -- SPARE = 946, -- stuff
 };
 
 dsp.latent =
@@ -2549,6 +2555,18 @@ dsp.mount =
     SPECTRAL_CHAIR = 18,
     SPHEROID       = 19,
     OMEGA          = 20,
+}
+
+------------------------------------
+-- Automaton Frame IDs
+------------------------------------
+
+dsp.frames =
+{
+    HARLEQUIN  = 0x20,
+    VALOREDGE  = 0x21,
+    SHARPSHOT  = 0x22,
+    STORMWAKER = 0x23,
 }
 
 ------------------------------------

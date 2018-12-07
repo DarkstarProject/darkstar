@@ -1944,6 +1944,30 @@ namespace luautils
         return 0;
     }
 
+    int32 OnUpdateAttachment(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onUpdate"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, maneuvers);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *

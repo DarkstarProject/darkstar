@@ -197,11 +197,12 @@ namespace battleutils
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element);
-    int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
-    int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage, int16 damageType);
+    int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage, int16 damageType);
+    int32               HandleSteamJacket(CBattleEntity* PDefender, int32 damage, int16 damageType);
 
     void                HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CBattleEntity* PAttacker);
-    int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
+    int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage, bool isPhysical);
     int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
     void                HandleTacticalParry(CBattleEntity* PEntity);
     void                HandleTacticalGuard(CBattleEntity* PEntity);

@@ -472,6 +472,7 @@ public:
     int32 timer(lua_State* L);                //execute lua closure after some time
     int32 queue(lua_State* L);
     int32 addRecast(lua_State*);
+    int32 hasRecast(lua_State*);
     int32 resetRecast(lua_State*);            // Reset one recast ID
     int32 resetRecasts(lua_State*);           // Reset recasts for the caller
 
@@ -574,6 +575,7 @@ public:
     int32 removeAmmo(lua_State* L);
 
     int32 getWeaponSkillLevel(lua_State*);      // Get Skill for equipped weapon
+    int32 getWeaponDamageType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSkillType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSubSkillType(lua_State*);    // gets the subskill of weapon equipped
     int32 getWSSkillchainProp(lua_State* L);    // returns weapon skill's skillchain properties (up to 3)
@@ -616,6 +618,7 @@ public:
     int32 getActiveManeuvers(lua_State*);
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
+    int32 updateAttachments(lua_State*);
 
     // Mob Entity-Specific
     int32 setMobLevel(lua_State*);

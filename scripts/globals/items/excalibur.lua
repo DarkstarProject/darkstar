@@ -16,7 +16,7 @@ function onAdditionalEffect(player, target, damage)
         if finalDMG > 0 then
             local physicalResist = target:getMod(dsp.mod.SLASHRES) / 1000
             finalDMG = finalDMG * physicalResist
-            finalDMG = target:physicalDmgTaken(finalDMG)
+            finalDMG = target:physicalDmgTaken(finalDMG, player:getWeaponDamageType(0))
             finalDMG = finalDMG - target:getMod(dsp.mod.PHALANX)
             finalDMG = utils.clamp(finalDMG, 0, 99999)
             finalDMG = utils.stoneskin(target, finalDMG)
