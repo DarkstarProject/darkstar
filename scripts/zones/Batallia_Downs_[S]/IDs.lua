@@ -18,6 +18,10 @@ zones[dsp.zone.BATALLIA_DOWNS_S] =
     },
     mob =
     {
+        LA_VELUE_PH =
+        {
+            [17121554] = 17121576, -- -314.365 -18.745 -56.016
+        },
     },
     npc =
     {
