@@ -20,7 +20,11 @@ zones[dsp.zone.WEST_SARUTABARUTA_S] =
     },
     mob =
     {
-        RAMPONNEAU_PH = 
+        JEDUAH_PH =
+        {
+            [17166542] = 17166543, -- 113.797 -0.8 -310.342
+        },
+        RAMPONNEAU_PH =
         {
             [17166701] = 17166705, -- 78.836 -0.109 -199.204
         },

@@ -35,6 +35,10 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
     },
     mob =
     {
+        KEEPER_OF_HALIDOM_PH =
+        {
+            [17272977] = 17272978, -- 319.939 -0.037 187.231
+        },
         NOBLE_MOLD_PH   =
         {
             [17273276] = 17273278, -- -391.184 -0.269 -159.086
