@@ -3,10 +3,8 @@
 -- Zone: Cloister_of_Storms (202)
 --
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Storms/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,11 +19,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

@@ -3,11 +3,9 @@
 -- Zone: Garlaige_Citadel (200)
 --
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Garlaige_Citadel/TextIDs");
-require("scripts/zones/Garlaige_Citadel/MobIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -28,17 +26,16 @@ function onInitialize(zone)
     zone:registerRegion(21,-190,-1,322,-188,1,324);
     zone:registerRegion(22,-130,-1,322,-128,1,324);
 
-    UpdateNMSpawnPoint(OLD_TWO_WINGS);
-    GetMobByID(OLD_TWO_WINGS):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.OLD_TWO_WINGS);
+    GetMobByID(ID.mob.OLD_TWO_WINGS):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(SKEWER_SAM);
-    GetMobByID(SKEWER_SAM):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.SKEWER_SAM);
+    GetMobByID(ID.mob.SKEWER_SAM):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(SERKET);
-    GetMobByID(SERKET):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.SERKET);
+    GetMobByID(ID.mob.SERKET):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(GARLAIGE_TREASURE_CHEST);
-    UpdateTreasureSpawnPoint(GARLAIGE_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -52,33 +49,30 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
     local regionId = region:GetRegionID();
     local leverSet = math.floor(regionId / 9);              -- the set of levers player is standing on (0, 1, 2)
-    local gateId = BANISHING_GATE_OFFSET + (9 * leverSet);  -- the ID of the related gate
+    local gateId = ID.npc.BANISHING_GATE_OFFSET + (9 * leverSet);  -- the ID of the related gate
 
     -- if all levers are down, open gate for 30 seconds
-    GetNPCByID(BANISHING_GATE_OFFSET + regionId):setAnimation(dsp.anim.OPEN_DOOR);
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + regionId):setAnimation(dsp.anim.OPEN_DOOR);
     if (
         GetNPCByID(gateId + 1):getAnimation() == dsp.anim.OPEN_DOOR and
         GetNPCByID(gateId + 2):getAnimation() == dsp.anim.OPEN_DOOR and
         GetNPCByID(gateId + 3):getAnimation() == dsp.anim.OPEN_DOOR and
         GetNPCByID(gateId + 4):getAnimation() == dsp.anim.OPEN_DOOR
     ) then
-        player:messageSpecial(BANISHING_GATES + leverSet);
+        player:messageSpecial(ID.text.BANISHING_GATES + leverSet);
         GetNPCByID(gateId):openDoor(30);
     end
 
 end;
 
 function onRegionLeave(player,region)
-    GetNPCByID(BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(dsp.anim.CLOSE_DOOR);
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(dsp.anim.CLOSE_DOOR);
 end;
 
 function onEventUpdate(player,csid,option)

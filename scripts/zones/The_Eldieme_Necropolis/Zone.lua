@@ -3,15 +3,13 @@
 -- Zone: The_Eldieme_Necropolis (195)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis/TextIDs"] = nil;
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
-require("scripts/zones/The_Eldieme_Necropolis/TextIDs");
-require("scripts/zones/The_Eldieme_Necropolis/MobIDs");
-require("scripts/globals/conquest");
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(ELDIEME_TREASURE_CHEST);
-    UpdateTreasureSpawnPoint(ELDIEME_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -28,10 +26,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

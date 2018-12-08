@@ -1,25 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Pahpe Rauulih
+--  NPC: Pahpe Rauulih
 -- Type: Standard NPC
--- @zone 94
--- !pos -39.740 -4.499 53.223
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos -39.740 -4.499 53.223 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(427);
-end;
+    player:startEvent(427)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

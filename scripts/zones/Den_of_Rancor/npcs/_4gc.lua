@@ -3,9 +3,7 @@
 --  NPC: Altar of Rancor (Flame of Crimson Rancor)
 -- !pos 199 32 -280 160
 -----------------------------------
-package.loaded["scripts/zones/Den_of_Rancor/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Den_of_Rancor/TextIDs")
+local ID = require("scripts/zones/Den_of_Rancor/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
@@ -18,5 +16,5 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(LANTERN_OFFSET + 2) -- The altar glows an eerie red. The lanterns have been put out.
+    player:messageSpecial(ID.text.LANTERN_OFFSET + 2) -- The altar glows an eerie red. The lanterns have been put out.
 end

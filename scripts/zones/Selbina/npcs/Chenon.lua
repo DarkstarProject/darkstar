@@ -4,10 +4,6 @@
 -- Type: Fish Ranking NPC
 -- !pos -13.472 -8.287 9.497 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

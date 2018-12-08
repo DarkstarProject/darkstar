@@ -169,6 +169,7 @@ public:
     void		clearPlayerEnmity(CCharEntity* PChar); 					// erase chars enmity
 
     uint16		m_RuleMask;
+    uint8       m_isMission;
     bool		locked;
     string_t	m_FastestName;
     uint32		m_FastestTime;

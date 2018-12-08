@@ -3,10 +3,7 @@
 --  NPC: Indescript Markings
 -- NOTE: There are 3 Indescript Markings
 -----------------------------------
-package.loaded["scripts/zones/Pashhow_Marshlands_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Pashhow_Marshlands_[S]/TextIDs");
-require("scripts/zones/Pashhow_Marshlands_[S]/MobIDs");
+local ID = require("scripts/zones/Pashhow_Marshlands_[S]/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
 require("scripts/globals/keyitems");
@@ -18,16 +15,16 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset                = npc:getID() - PASHHOW_S_MARKINGS_OFFSET;
+    local offset                = npc:getID() - ID.npc.INDESCRIPT_MARKINGS_OFFSET;
     local onSabbatical          = player:getQuestStatus(CRYSTAL_WAR,ON_SABBATICAL);
     local onSabbaticalProgress  = player:getVar("OnSabbatical");
     local pantsQuestProgress    = player:getVar("AF_SCH_PANTS");
     local gownQuestProgress     = player:getVar("AF_SCH_BODY");
-    
+
     -- ON SABBATICAL
     if (offset == 0 and onSabbatical == QUEST_ACCEPTED and onSabbaticalProgress == 2) then
         player:startEvent(2);
-    
+
     -- SCH AF SIDEQUEST: PANTS
     elseif (offset == 1 and pantsQuestProgress > 0 and pantsQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SLUG_MUCUS)) then
         npcUtil.giveKeyItem(player, dsp.ki.SLUG_MUCUS);
@@ -47,7 +44,7 @@ function onTrigger(player,npc)
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
         npc:hideNPC(900);
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
-    
+
     -- SCH AF SIDEQUEST: BODY
     elseif (offset == 2 and gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.PEISTE_DUNG)) then
         npcUtil.giveKeyItem(player, dsp.ki.PEISTE_DUNG);
@@ -70,7 +67,7 @@ function onTrigger(player,npc)
 
     -- DEFAULT
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 
     end
 end;

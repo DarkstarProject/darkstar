@@ -2,14 +2,10 @@
 -- Area: Lower Jeuno
 --  NPC: Teigero Bangero
 -- Involved in Quests: Save the Clock Tower, The Lost Cardian
--- @zone 245
--- !pos -58 0 -143
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-- !pos -58 0 -143 245
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

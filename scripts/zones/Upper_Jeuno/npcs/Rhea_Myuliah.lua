@@ -2,12 +2,9 @@
 -- Area: Upper Jeuno
 --   NPC: Rhea Myuliah
 -- Type: Standard NPC
--- @zone 244
--- !pos -56.220 -1 101.805
+-- !pos -56.220 -1 101.805 244
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
@@ -34,7 +31,7 @@ function onTrigger(player,npc)
     player:startEvent(10131);
     --Dancer AF: Road to Divadom
     elseif (player:getQuestStatus(JEUNO, THE_ROAD_TO_DIVADOM) == QUEST_ACCEPTED)  then
-        player:startEvent (0x279A);
+        player:startEvent (10138);
     --Dancer AF: Comeback Queen
     elseif (player:getVar("comebackQueenCS") == 1) then
         player:startEvent(10145);

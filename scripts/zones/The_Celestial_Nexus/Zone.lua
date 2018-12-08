@@ -3,21 +3,15 @@
 -- Zone: The_Celestial_Nexus (181)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Celestial_Nexus/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
+local ID = require("scripts/zones/The_Celestial_Nexus/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

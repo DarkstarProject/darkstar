@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Ru'Aun Gardens
+-- Area: The Shrine of Ru'Avitau
 --  MOB: Suzaku (Pet version)
 -----------------------------------
 
@@ -18,7 +18,7 @@ function onMonsterMagicPrepare(mob, target)
     if (rnd < 0.5) then
         return 176; -- firaga 3
     elseif (rnd < 0.7) then
-         return 147; -- fire 4
+        return 147; -- fire 4
     elseif (rnd < 0.9) then
         return 204; -- flare
     else

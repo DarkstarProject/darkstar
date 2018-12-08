@@ -3,12 +3,10 @@
 -- Zone: Dangruf_Wadi (191)
 --
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs");
-require("scripts/zones/Dangruf_Wadi/MobIDs");
+local ID = require("scripts/zones/Dangruf_Wadi/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/keyitems");
+require("scripts/globals/treasure")
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
@@ -18,14 +16,11 @@ function onInitialize(zone)
     zone:registerRegion(2, -213.5, 2,  92.6, -212.7, 4,   94.0);  -- H-8 Geyser
     zone:registerRegion(3,  -67.3, 2, 532.8,  -66.3, 4,  534.0);  -- J-3 Geyser
 
-    UpdateTreasureSpawnPoint(DANGRUF_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -41,15 +36,15 @@ function onRegionEnter(player,region)
     {
         [1] = function (x)
             player:startEvent(10);
-            SendEntityVisualPacket(DANGRUF_GEYSER_OFFSET, "kkj2");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET, "kkj2");
         end,
         [2] = function (x)
             player:startEvent(11);
-            SendEntityVisualPacket(DANGRUF_GEYSER_OFFSET + 1, "kkj1");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 1, "kkj1");
         end,
         [3] = function (x)
             player:startEvent(12);
-            SendEntityVisualPacket(DANGRUF_GEYSER_OFFSET + 2, "kkj3");
+            SendEntityVisualPacket(ID.npc.GEYSER_OFFSET + 2, "kkj3");
         end,
     }
     if (player:hasKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)) then
@@ -68,18 +63,18 @@ function onEventFinish(player,csid,option)
 end;
 
 function onGameHour(zone)
-    local nm = GetMobByID(GEYSER_LIZARD);
+    local nm = GetMobByID(ID.mob.GEYSER_LIZARD);
     local pop = nm:getLocalVar("pop");
     if (os.time() > pop and not nm:isSpawned()) then
-        UpdateNMSpawnPoint(GEYSER_LIZARD);
+        UpdateNMSpawnPoint(ID.mob.GEYSER_LIZARD);
         nm:spawn();
     end
 end;
 
 function onZoneWeatherChange(weather)
     if (weather == dsp.weather.NONE or weather == dsp.weather.SUNSHINE) then
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.NORMAL);
+        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(dsp.status.NORMAL);
     else
-        GetNPCByID(AN_EMPTY_VESSEL_QM):setStatus(dsp.status.DISAPPEAR);
+        GetNPCByID(ID.npc.AN_EMPTY_VESSEL_QM):setStatus(dsp.status.DISAPPEAR);
     end
 end;

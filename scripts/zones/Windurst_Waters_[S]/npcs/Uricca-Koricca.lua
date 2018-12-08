@@ -1,25 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Uricca-Koricca
+--  NPC: Uricca-Koricca
 -- Type: Standard NPC
--- @zone 94
--- !pos -102.221 -3 48.791
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos -102.221 -3 48.791 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(437);
-end;
+    player:startEvent(437)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

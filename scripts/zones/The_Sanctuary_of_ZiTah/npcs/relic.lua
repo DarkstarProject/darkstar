@@ -4,9 +4,7 @@
 -- !pos 646 -2 -165 121
 -- !pos -18 0 55 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs");
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -24,7 +22,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -2,9 +2,7 @@
 -- Area: Dynamis Buburimu
 --  MOB: Apocalyptic_Beast
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
+local ID = require("scripts/zones/Dynamis-Buburimu/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/titles");
@@ -28,7 +26,7 @@ end;
 function onMobDeath(mob, player, isKiller)
     if (player:hasKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER ) == false) then
         player:addKeyItem(dsp.ki.DYNAMIS_BUBURIMU_SLIVER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DYNAMIS_BUBURIMU_SLIVER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DYNAMIS_BUBURIMU_SLIVER);
     end
     player:addTitle(dsp.title.DYNAMISBUBURIMU_INTERLOPER);
 end;

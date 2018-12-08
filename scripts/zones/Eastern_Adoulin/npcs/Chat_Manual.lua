@@ -2,10 +2,7 @@
 -- Area: Eastern Adoulin
 --   NPC: Chat Manual
 -- Type: Tutorial NPC
--- @zone: 257
---  !pos Unknown (needs retail capture?)
------------------------------------
-package.loaded["scripts/zones/Eastern_Adoulin/TextIDs"] = nil;
+-- !zone: 257
 -----------------------------------
 
 function onTrade(player,npc,trade)

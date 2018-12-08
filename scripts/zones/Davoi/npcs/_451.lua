@@ -3,11 +3,8 @@
 --  NPC: _451 (Elevator Lever)
 -- Notes: Used to operate Elevator @450 (actual npc script is _454)
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
-require("scripts/zones/Davoi/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

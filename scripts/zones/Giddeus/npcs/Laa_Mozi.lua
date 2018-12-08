@@ -4,12 +4,9 @@
 -- Involved in Mission 1-3
 -- !pos -22 0 148 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Giddeus/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

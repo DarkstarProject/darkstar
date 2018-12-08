@@ -2,7 +2,7 @@
 -- Area: Konschtat Highlands
 --  NM:  Ghillie Dhu
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/status");
 require("scripts/globals/utils");
 require("scripts/globals/msg");
@@ -49,7 +49,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.
-    checkRegime(player,mob,81,1);
+    dsp.regime.checkRegime(player, mob, 81, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

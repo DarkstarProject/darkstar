@@ -3,14 +3,13 @@
 -- Zone: Toraimarai_Canal (169)
 --
 -----------------------------------
-package.loaded["scripts/zones/Toraimarai_Canal/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Toraimarai_Canal/TextIDs");
-require("scripts/zones/Toraimarai_Canal/MobIDs");
+local ID = require("scripts/zones/Toraimarai_Canal/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
+-----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(TORAIMARAI_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -22,11 +21,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

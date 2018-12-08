@@ -3,25 +3,22 @@
 -- Zone: Ifrits_Cauldron (205)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ifrits_Cauldron/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ifrits_Cauldron/TextIDs");
-require("scripts/zones/Ifrits_Cauldron/MobIDs");
+local ID = require("scripts/zones/Ifrits_Cauldron/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(ASH_DRAGON);
-    GetMobByID(ASH_DRAGON):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.ASH_DRAGON);
+    GetMobByID(ID.mob.ASH_DRAGON):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(IFRITS_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -39,7 +36,7 @@ function onGameHour(zone)
     -- Opens flame spouts every 3 hours Vana'diel time. Doors are offset from spouts by 5.
     if (VanadielHour() % 3 == 0) then
         for i = 5, 8 do
-            GetNPCByID(FLAME_SPOUT_OFFSET + i):openDoor(90);
+            GetNPCByID(ID.npc.FLAME_SPOUT_OFFSET + i):openDoor(90);
         end
     end
 end;

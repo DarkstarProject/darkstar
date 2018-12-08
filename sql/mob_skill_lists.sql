@@ -616,6 +616,12 @@ INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1366);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1367);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1368);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1369);
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,33); -- burning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,35); -- flat balde
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,36); -- shinning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,37); -- sereph blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,38); -- circle blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,40); -- vorpal blade
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Elvaan',401,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',402,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',403,?);
@@ -2168,8 +2174,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,982); -- Abyssal Drain
 INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,983); -- Abyssal strike
 INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,695); -- Blood Weapon
 INSERT INTO `mob_skill_lists` VALUES ('Zeid',480,1002); -- Summonshadows
--- INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,970); -- Why is Savage Blade here? .. Wrong ID
--- INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,971); -- Why is Royal Bash here?   .. Wrong ID
+INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,988); -- Warp In (Works the same as Ealdnarche's)
+INSERT INTO `mob_skill_lists` VALUES ('Ajido-Marujido',481,989); -- Warp Out (Works the same as Ealdnarche's)
 INSERT INTO `mob_skill_lists` VALUES ('Volker',482,973); -- Red Lotus Blade
 INSERT INTO `mob_skill_lists` VALUES ('Volker',482,974); -- Spirits Within
 INSERT INTO `mob_skill_lists` VALUES ('Volker',482,975); -- Vorpal Blade
@@ -3633,3 +3639,7 @@ INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,924); -- Dread Dive
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,402); -- Feather Barrier
 -- INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,925); -- Feather Barrier (For now using 402. Retail data needed. Diff is likely animation time.)
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,926); -- Stormwind
+INSERT INTO `mob_skill_lists` VALUES ('Nargun',1005,677); -- Thunder Break
+INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1952);
+INSERT INTO `mob_skill_lists` VALUES ('Ignamoth',1006,1956);
+INSERT INTO `mob_skill_lists` VALUES ('Ankabut',1007,704);

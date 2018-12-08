@@ -2,9 +2,6 @@
 -- Area: Bearclaw Pinnacle
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 

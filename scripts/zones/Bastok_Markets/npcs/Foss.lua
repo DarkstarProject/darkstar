@@ -4,9 +4,6 @@
 -- Starts & Finishes Repeatable Quest: Buckets of Gold
 -- !pos -283 -12 -37 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/titles");

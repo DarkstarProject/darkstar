@@ -3,7 +3,7 @@
 --  MOB: Animated Tabar
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(116,1575,0);
     end
 
-    target:showText(mob,ANIMATED_TABAR_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_TABAR_DIALOG);
 
     SpawnMob(17330380):updateEnmity(target);
     SpawnMob(17330381):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_TABAR_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_TABAR_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_TABAR_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_TABAR_DIALOG+1);
 
     DespawnMob(17330380);
     DespawnMob(17330381);

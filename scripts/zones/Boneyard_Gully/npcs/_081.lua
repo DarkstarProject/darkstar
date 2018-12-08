@@ -2,13 +2,10 @@
 -- Area: Boneyard_Gully
 -- NPC:  _081 (Dark Miasma)
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Boneyard_Gully/TextIDs");
 
 function onTrade(player,npc,trade)
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -21,9 +18,9 @@ function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then
         return 1;
-        else
+    else
         return 1;
-   end
+    end
     
 end;
 

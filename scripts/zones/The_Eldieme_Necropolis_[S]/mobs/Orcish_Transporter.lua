@@ -3,8 +3,7 @@
 --  MOB: Orcish_Transporter
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

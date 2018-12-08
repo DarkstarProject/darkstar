@@ -3,12 +3,10 @@
 -- Zone: Attohwa_Chasm (7)
 --
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Attohwa_Chasm/TextIDs");
-require("scripts/zones/Attohwa_Chasm/MobIDs");
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs")
+require("scripts/globals/settings")
+require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -44,8 +42,10 @@ function onInitialize(zone)
     zone:registerRegion(29, -238, 5, -118, 0,0,0);
     zone:registerRegion(30, -385.349, 5, -173.973, 0,0,0);
 
-    UpdateNMSpawnPoint(TIAMAT);
-    GetMobByID(TIAMAT):setRespawnTime(math.random(86400, 259200));
+    UpdateNMSpawnPoint(ID.mob.TIAMAT);
+    GetMobByID(ID.mob.TIAMAT):setRespawnTime(math.random(86400, 259200));
+
+    dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
 end;
 
 function onZoneIn(player,prevZone)
@@ -57,23 +57,19 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
     -- TODO: Gasponia's shouldn't "always" poison you. However, in retail regions constantly reapply themselves without having to re-enter the region. In DSP that doesn't happen so I'm leaving it as-is for now.
     local regionId = region:GetRegionID();
     if (regionId <= 30) then
-        local gasponia = GetNPCByID(GASPONIA_OFFSET + (regionId - 1));
+        local gasponia = GetNPCByID(ID.npc.GASPONIA_OFFSET + (regionId - 1));
         if (gasponia ~= nil) then
             gasponia:openDoor(3);
             if (not player:hasStatusEffect(dsp.effect.POISON)) then
                 player:addStatusEffect(dsp.effect.POISON, 15, 0, math.random(30,60));
-                player:messageSpecial(GASPONIA_POISON);
+                player:messageSpecial(ID.text.GASPONIA_POISON);
             end
         end
     end
@@ -85,7 +81,7 @@ end;
 function onGameHour(zone)
     --[[
         the hard-coded id that was here was wrong. there are 22 miasmas in attohwa chasm
-        starting at MIASMA_OFFSET. some are supposed to toggle open, but need retail test
+        starting at ID.npc.MIASMA_OFFSET. some are supposed to toggle open, but need retail test
         to determine which.  for now, they're just statically set per npc_list.animation
     --]]
 end;

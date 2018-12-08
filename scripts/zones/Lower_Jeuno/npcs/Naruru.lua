@@ -4,14 +4,12 @@
 -- Starts and Finishes Quests: Cook's Pride
 -- !pos -56 0.1 -138 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrigger(player,npc)
     elseif (TheWonderMagicSet == QUEST_COMPLETED and CooksPride == QUEST_AVAILABLE) then
         if (player:getVar("CooksPrideVar") == 0) then
             player:startEvent(189); -- Start quest "Cook's pride" Long CS
-         else
+        else
             player:startEvent(188); -- Start quest "Cook's pride" Short CS
         end
     elseif (CooksPride == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SUPER_SOUP_POT) == false) then
@@ -60,15 +58,15 @@ function onEventFinish(player,csid,option)
         player:setVar("CooksPrideVar",1);
     elseif (csid == 187) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13446);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13446);
         else
             player:addTitle(dsp.title.MERCY_ERRAND_RUNNER);
             player:delKeyItem(dsp.ki.SUPER_SOUP_POT);
             player:setVar("CooksPrideVar",0);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
             player:addItem(13446);
-            player:messageSpecial(ITEM_OBTAINED,13446); -- Mythril Ring
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13446); -- Mythril Ring
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,COOK_S_PRIDE);
         end

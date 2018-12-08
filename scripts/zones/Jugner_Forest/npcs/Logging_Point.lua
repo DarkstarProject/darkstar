@@ -2,22 +2,19 @@
 -- Area: Jugner Forest
 --  NPC: Logging Point
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/logging");
-require("scripts/zones/Jugner_Forest/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x0014);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.LOGGING, 20)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.LOGGING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

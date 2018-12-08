@@ -5,9 +5,7 @@
 -- TODO: Stock needs to be modified based on
 --       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
         16466, 2425     -- Knife
     }
 
-    player:showText(npc, KAHAHHOBICHAI_SHOP_DIALOG)
+    player:showText(npc, ID.text.KAHAHHOBICHAI_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

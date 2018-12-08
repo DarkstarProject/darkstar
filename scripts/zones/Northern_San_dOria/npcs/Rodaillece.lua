@@ -2,20 +2,17 @@
 -- Area: Northern San d'Oria
 --  NPC: Rodaillece
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos -246.943 7.000 46.836
+-- !pos -246.943 7.000 46.836 231
 --
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,RODAILLECE_DIALOG);
+    player:showText(npc,ID.text.RODAILLECE_DIALOG);
 end;
 
 function onEventUpdate(player,csid,option)

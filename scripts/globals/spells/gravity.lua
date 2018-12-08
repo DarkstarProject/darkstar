@@ -1,46 +1,40 @@
 -----------------------------------------
 -- Spell: Gravity
 -----------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/magic")
+require("scripts/globals/msg")
+require("scripts/globals/status")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onSpellCast(caster,target,spell)
-
+function onSpellCast(caster, target, spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT));
-    local power = 50; -- 50% reduction
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
+
+    local power = calculatePotency(26, spell:getSkillType(), caster, target)
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 120;
-    local params = {};
-    params.diff = nil;
-    params.attribute = dsp.mod.INT;
-    params.skillType = 35;
-    params.bonus = 0;
-    params.effect = dsp.effect.WEIGHT;
-    duration = duration * applyResistanceEffect(caster, target, spell, params);
+    local duration = calculateDuration(120, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 
-    if (duration >= 30) then --Do it!
+    local params = {}
+    params.diff = dINT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
+    params.bonus = 0
+    params.effect = dsp.effect.WEIGHT
+    local resist = applyResistanceEffect(caster, target, spell, params)
 
-        if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
-        duration = duration * 2;
-    end
-    caster:delStatusEffect(dsp.effect.SABOTEUR);
-
-        if (target:addStatusEffect(dsp.effect.WEIGHT,power,0,duration)) then
-            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS);
+    if resist >= 0.5 then --Do it!
+        if target:addStatusEffect(params.effect, power, 0, duration * resist) then
+            spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
-            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT);
+            spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
         end
     else
-        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2);
+        spell:setMsg(dsp.msg.basic.MAGIC_RESIST_2)
     end
 
-    return dsp.effect.WEIGHT;
-end;
+    return params.effect
+end

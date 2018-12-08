@@ -3,9 +3,7 @@
 --  NPC: Cumetouflaix
 -- Standard NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(CUMETOUFLAIX_DIALOG);
+    player:messageSpecial(ID.text.CUMETOUFLAIX_DIALOG);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -9,7 +9,7 @@
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/monstertpmoves");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -55,15 +55,6 @@ end;
 function onMobSpawn(mob)
     mob:AnimationSub(1);
     mob:setMobMod(dsp.mobMod.SCRIPTED_2HOUR,1);
-
-    -- drops either vice or deed
-    if (math.random(0,100) <= 25) then
-        SetDropRate(4397,1902,1000); -- Vice of Avarice
-        SetDropRate(4397,1854,0);
-    else
-        SetDropRate(4397,1902,0);
-        SetDropRate(4397,1854,1000); -- Deed of Moderation
-    end
 end;
 
 function onMobEngaged(mob)
@@ -94,5 +85,4 @@ end;
 
 function onMobDespawn(mob)
     mob:setLocalVar("AERN_RERAISES",0);
-    GetNPCByID(Ix_Aern_DRK_QM):updateNPCHideTime(FORCE_SPAWN_QM_RESET_TIME);
 end;

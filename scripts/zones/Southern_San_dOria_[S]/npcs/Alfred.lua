@@ -1,8 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Alfred
--- @zone 80
--- !pos 94 1 -58
+-- !pos 94 1 -58 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -3,10 +3,7 @@
 -- Zone: Residential_Area
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Residential_Area/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Residential_Area/TextIDs");
+local ID = require("scripts/zones/Residential_Area/IDs")
 -----------------------------------
 
 function onInitialize(zone)

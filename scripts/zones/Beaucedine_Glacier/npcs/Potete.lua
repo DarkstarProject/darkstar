@@ -4,8 +4,6 @@
 -- Type: NPC
 -- !pos 104.907 -21.249 141.391 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

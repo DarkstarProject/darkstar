@@ -3,16 +3,14 @@
 -- Salvage: Arrapago Remnants
 --
 -----------------------------------
+local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 require("scripts/globals/instance")
-
-package.loaded["scripts/zones/Arrapago_Remnants/IDs"] = nil;
-local Arrapago = require("scripts/zones/Arrapago_Remnants/IDs");
 -----------------------------------
 
 function afterInstanceRegister(player)
-    local instance = player:getInstance();
-    player:messageSpecial(Arrapago.text.TIME_TO_COMPLETE, instance:getTimeLimit());
-    player:messageSpecial(Arrapago.text.SALVAGE_START, 1);
+    local instance = player:getInstance()
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit())
+    player:messageSpecial(ID.text.SALVAGE_START, 1)
     player:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, 0xFFFF, 0, 0)
     player:addStatusEffectEx(dsp.effect.OBLIVISCENCE, dsp.effect.OBLIVISCENCE, 0, 0, 0)
     player:addStatusEffectEx(dsp.effect.OMERTA, dsp.effect.OMERTA, 0, 0, 0)
@@ -21,44 +19,44 @@ function afterInstanceRegister(player)
     for i = 0,15 do
         player:unequipItem(i)
     end
-end;
+end
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Arrapago.npcs[1][1]) do
-        local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC);
+    for i,v in pairs(ID.npc[1][1]) do
+        local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC)
         npc:setStatus(dsp.status.NORMAL)
     end
     instance:setStage(1)
 
-end;
+end
 
 function onInstanceTimeUpdate(instance, elapsed)
-    updateInstanceTime(instance, elapsed, Arrapago.text)
-end;
+    updateInstanceTime(instance, elapsed, ID.text)
+end
 
 function onInstanceFailure(instance)
 
-    local chars = instance:getChars();
+    local chars = instance:getChars()
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Arrapago.text.MISSION_FAILED,10,10);
-        v:startEvent(102);
+        v:messageSpecial(ID.text.MISSION_FAILED,10,10)
+        v:startEvent(1)
     end
-end;
+end
 
 function onInstanceProgressUpdate(instance, progress)
 
     if instance:getStage() == 1 and progress == 10 then
-        SpawnMob(Arrapago.mobs[1][2].rampart, instance)
+        SpawnMob(ID.mob[1][2].rampart, instance)
     elseif instance:getStage() == 3 and progress == 0 then
-        SpawnMob(Arrapago.mobs[2].astrologer, instance)
+        SpawnMob(ID.mob[2].astrologer, instance)
     end
 
-end;
+end
 
 function onInstanceComplete(instance)
-end;
+end
 
 function onRegionEnter(player,region)
     if region:GetRegionID() <= 10 then
@@ -70,7 +68,7 @@ function onEventUpdate(entity, eventid, result)
     if (eventid >= 200 and eventid <= 203) then
         local instance = entity:getInstance()
         if instance:getProgress() == 0 then
-            for id = Arrapago.mobs[2][eventid-199].mobs_start, Arrapago.mobs[2][eventid-199].mobs_end do
+            for id = ID.mob[2][eventid-199].mobs_start, ID.mob[2][eventid-199].mobs_end do
                 SpawnMob(id, instance)
             end
             instance:setProgress(eventid-199)
@@ -80,20 +78,34 @@ function onEventUpdate(entity, eventid, result)
     end
 end
 
-function onEventFinish(entity, eventid, result)
-    local instance = entity:getInstance()
+function onEventFinish(player, eventid, result)
+    local instance = player:getInstance()
+    if eventid >= 200 and eventid <= 210 and result == 1 then
+        local ALIGN = player:getAlliance()
+        local POS = player:getPos()
+        if ALIGN ~= nil then
+            for i,v in ipairs(ALIGN) do
+                if v:getID() ~= player:getID() then
+                    v:startEvent(3)
+                    v:timer(4000, function(player)
+                    v:setPos(POS.x, POS.y, POS.z, POS.rot)
+                end)
+                end
+            end
+        end
+    end
     if (eventid >= 200 and eventid <= 203) then
-        for id = Arrapago.mobs[1][2].mobs_start, Arrapago.mobs[1][2].mobs_end do
+        for id = ID.mob[1][2].mobs_start, ID.mob[1][2].mobs_end do
             DespawnMob(id, instance)
         end
-        DespawnMob(Arrapago.mobs[1][2].rampart, instance)
-        DespawnMob(Arrapago.mobs[1][2].sabotender, instance)
+        DespawnMob(ID.mob[1][2].rampart, instance)
+        DespawnMob(ID.mob[1][2].sabotender, instance)
     elseif eventid == 204 then
-        for _,v in ipairs(Arrapago.mobs[2]) do
+        for _,v in ipairs(ID.mob[2]) do
             for id = v.mobs_start, v.mobs_end do
                 DespawnMob(id, instance)
             end
         end
-        DespawnMob(Arrapago.mobs[2].astrologer, instance)
+        DespawnMob(ID.mob[2].astrologer, instance)
     end
 end

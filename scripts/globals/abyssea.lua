@@ -7,7 +7,8 @@
 require("scripts/globals/keyitems");
 
 -- weaponskills for red weakness
-local red_weakness = {
+local red_weakness =
+{
     --light
     37, 161, 149, 180,
     --dark
@@ -24,7 +25,8 @@ local red_weakness = {
     144
 }
 
-local yellow_weakness = {
+local yellow_weakness =
+{
     --fire
     [0] = { 146, 147, 176, 204, 591, 321, 455 },
     --earth
@@ -43,7 +45,8 @@ local yellow_weakness = {
     [7] = { 247, 245, 231, 260, 557, 348, 460 }
 }
 
-local blue_weakness = {
+local blue_weakness =
+{
     --6-14
     {196, 197, 198, 199, 212, 213, 214, 215, 18, 23, 24, 25, 118, 119, 120},
     --14-22
@@ -52,60 +55,35 @@ local blue_weakness = {
     {165, 166, 167, 168, 169, 5, 6, 7, 8, 9, 176, 181, 182, 183, 184}
 }
 
------------------------------------
--- getMaxTravStones
 -- returns Traverser Stone KI cap
------------------------------------
-
 function getMaxTravStones(player)
-    local MaxTravStones = 3;
-    if (player:hasKeyItem(dsp.ki.VIRIDIAN_ABYSSITE_OF_AVARICE)) then
-        MaxTravStones = MaxTravStones + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_AVARICE)) then
-        MaxTravStones = MaxTravStones + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.VERMILLION_ABYSSITE_OF_AVARICE)) then
-        MaxTravStones = MaxTravStones + 1;
-    end
-    return MaxTravStones;
-end;
+    local MaxTravStones = 3
 
------------------------------------
--- getTravStonesTotal
+    for ki = dsp.ki.VIRIDIAN_ABYSSITE_OF_AVARICE, dsp.ki.VERMILLION_ABYSSITE_OF_AVARICE do
+        if player:hasKeyItem(ki) then
+            MaxTravStones = MaxTravStones + 1
+        end
+    end
+
+    return MaxTravStones
+end
+
 -- returns total Traverser Stone KI
 -- (NOT the reserve value from currency menu)
------------------------------------
-
 function getTravStonesTotal(player)
-    local STONES = 0;
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE1)) then
-        STONES = STONES + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE2)) then
-        STONES = STONES + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE3)) then
-        STONES = STONES + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE4)) then
-        STONES = STONES + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE5)) then
-        STONES = STONES + 1;
-    end
-    if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
-        STONES = STONES + 1;
-    end
-    return STONES;
-end;
+    local STONES = 0
 
------------------------------------
--- spendTravStones
+    for ki = dsp.ki.TRAVERSER_STONE1, dsp.ki.TRAVERSER_STONE6 do
+        if player:hasKeyItem(ki) then
+            STONES = STONES + 1
+        end
+    end
+
+    return STONES
+end
+
 -- removes Traverser Stone KIs
------------------------------------
-
-function spendTravStones(player,spentstones)
+function spendTravStones(player, spentstones)
     if (spentstones == 4) then
         if (player:hasKeyItem(dsp.ki.TRAVERSER_STONE6)) then
             spentstones = 3;
@@ -186,74 +164,36 @@ function spendTravStones(player,spentstones)
     end
 end;
 
------------------------------------
--- getAbyssiteTotal
 -- returns total "Abyssite of <thing>"
------------------------------------
-
-function getAbyssiteTotal(player,Type)
-    local SOJOURN = 0;
-    local FURTHERANCE = 0;
-    local MERIT = 0;
-    if (Type == "SOJOURN") then
-        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
+function getAbyssiteTotal(player, abyssite)
+    local SOJOURN = 0
+    local FURTHERANCE = 0
+    local MERIT = 0
+    if abyssite == "SOJOURN" then
+        for ki = dsp.ki.IVORY_ABYSSITE_OF_SOJOURN, dsp.ki.EMERALD_ABYSSITE_OF_SOJOURN do
+            if player:hasKeyItem(ki) then
+                SOJOURN = SOJOURN + 1
+            end
         end
-        if (player:hasKeyItem(dsp.ki.SCARLET_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
+        return SOJOURN
+    elseif abyssite == "FURTHERANCE" then
+        for ki = dsp.ki.SCARLET_ABYSSITE_OF_FURTHERANCE, dsp.ki.IVORY_ABYSSITE_OF_FURTHERANCE do
+            if player:hasKeyItem(ki) then
+                FURTHERANCE = FURTHERANCE + 1
+            end
         end
-        if (player:hasKeyItem(dsp.ki.JADE_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
+        return FURTHERANCE
+    elseif abyssite == "MERIT" then
+        for ki = dsp.ki.AZURE_ABYSSITE_OF_MERIT, dsp.ki.INDIGO_ABYSSITE_OF_MERIT do
+            if player:hasKeyItem(ki) then
+                MERIT = MERIT + 1
+            end
         end
-        if (player:hasKeyItem(dsp.ki.SAPPHIRE_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.INDIGO_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.EMERALD_ABYSSITE_OF_SOJOURN)) then
-            SOJOURN = SOJOURN + 1;
-        end
-        return SOJOURN;
-    elseif (Type == "FURTHERANCE") then
-        if (player:hasKeyItem(dsp.ki.SCARLET_ABYSSITE_OF_FURTHERANCE)) then
-            FURTHERANCE = FURTHERANCE + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.SAPPHIRE_ABYSSITE_OF_FURTHERANCE)) then
-            FURTHERANCE = FURTHERANCE + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_FURTHERANCE)) then
-            FURTHERANCE = FURTHERANCE + 1;
-        end
-        return FURTHERANCE;
-    elseif (Type == "MERIT") then
-        if (player:hasKeyItem(dsp.ki.AZURE_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.VIRIDIAN_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.JADE_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.SAPPHIRE_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        if (player:hasKeyItem(dsp.ki.INDIGO_ABYSSITE_OF_MERIT)) then
-            MERIT = MERIT + 1;
-        end
-        return MERIT;
+        return MERIT
     end
-end;
+end
 
------------------------------------
--- getDemiluneAbyssite
 -- returns total value of Demulune KeyItems
------------------------------------
-
 function getDemiluneAbyssite(player)
     local Demilune = 0;
     -- Todo: change this into proper bitmask
@@ -318,8 +258,8 @@ end
 -- [ZoneID] = {Required Trades Event, Has Key Items Event, Missing Key Item Event}
 local POP_EVENTS =
 {
-     [15] = {1010, 1020, 1021}, -- Abyssea-Konschtat
-     [45] = {1010, 1020, 1021}, -- Abyssea-Tahrongi
+    [15]  = {1010, 1020, 1021}, -- Abyssea-Konschtat
+    [45]  = {1010, 1020, 1021}, -- Abyssea-Tahrongi
     [132] = {1010, 1020, 1021}, -- Abyssea-La Theine
     [215] = {1010, 1022, 1023}, -- Abyssea-Attohwa
     [216] = {1010, 1022, 1021}, -- Abyssea-Misareaux
@@ -332,10 +272,8 @@ local POP_EVENTS =
 
 function abysseaOnTrade(player,npc,trade)
     -- validate QM pop data
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[npc:getID()];
+    local zoneId = player:getZoneID()
+    local pop = zones[zoneId].npc.QM_POPS[npc:getID()]
     if (pop == nil) then
         return false;
     end
@@ -358,7 +296,7 @@ function abysseaOnTrade(player,npc,trade)
     if (GetMobByID(nm):isSpawned()) then
         return false;
     end
-    
+
     -- complete trade and pop nm
     player:tradeComplete();
     local dx = player:getXPos() + math.random(-1,1);
@@ -371,11 +309,9 @@ end
 
 function abysseaOnTrigger(player,npc)
     -- validate QM pop data
-    local events = POP_EVENTS[player:getZoneID()];
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[npc:getID()];
+    local zoneId = player:getZoneID()
+    local events = POP_EVENTS[zoneId]
+    local pop = zones[zoneId].npc.QM_POPS[npc:getID()]
     if (pop == nil) then
         return false;
     end
@@ -397,7 +333,7 @@ function abysseaOnTrigger(player,npc)
         player:startEvent(events[1],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8]); -- report required trades
         return true;
     end
-    
+
     -- validate ki-to-pop
     local kis = pop[3];
     if (#kis == 0) then
@@ -436,12 +372,9 @@ function abysseaOnEventUpdate(player,csid,option)
 end
 
 function abysseaOnEventFinish(player,csid,option)
-    -- validate QM pop data
-    local events = POP_EVENTS[player:getZoneID()];
-    local MobIDs = "scripts/zones/" .. player:getZoneName() .. "/MobIDs";
-    package.loaded[MobIDs] = nil;
-    require(MobIDs);
-    local pop = NM_POPS[player:getLocalVar("abysseaQM")];
+    local zoneId = player:getZoneID()
+    local events = POP_EVENTS[zoneId]
+    local pop = zones[zoneId].npc.QM_POPS[player:getLocalVar("abysseaQM")]
     player:setLocalVar("abysseaQM", 0);
     if (pop == nil) then
         return false;
@@ -455,7 +388,7 @@ function abysseaOnEventFinish(player,csid,option)
                 player:delKeyItem(v);
             end
         end
-        
+
         -- pop nm
         local nm = pop[4];
         local dx = player:getXPos() + math.random(-1,1);

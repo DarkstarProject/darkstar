@@ -4,28 +4,25 @@
 -- Note: PH for Tzee Xicu the Manifest
 -- TODO: messages should be zone-wide
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/zones/Castle_Oztroja/MobIDs")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/status")
 -----------------------------------
 
 function onMobEngaged(mob,target)
-    mob:showText(mob, YAGUDO_AVATAR_ENGAGE)
+    mob:showText(mob, ID.text.YAGUDO_AVATAR_ENGAGE)
 end
 
 function onMobDeath(mob, player, isKiller)
     if isKiller then
-        mob:showText(mob, YAGUDO_AVATAR_DEATH)
+        mob:showText(mob, ID.text.YAGUDO_AVATAR_DEATH)
     end
 end
 
 function onMobDespawn(mob)
     local nqId = mob:getID()
 
-    if nqId == YAGUDO_AVATAR then
+    if nqId == ID.mob.YAGUDO_AVATAR then
         local hqId = mob:getID() + 3
         local ToD = GetServerVariable("[POP]Tzee_Xicu_the_Manifest")
         local kills = GetServerVariable("[PH]Tzee_Xicu_the_Manifest")

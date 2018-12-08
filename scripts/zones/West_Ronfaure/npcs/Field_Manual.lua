@@ -2,21 +2,20 @@
 -- Area: West Ronfaure
 --  NPC: Field Manual
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_WEST_RONFAURE,player);
-end;
-
 function onTrade(player,npc,trade)
-end;
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,1,2,3,4,56);
-end;
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,1,2,3,4,56,FOV_MSG_WEST_RONFAURE);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

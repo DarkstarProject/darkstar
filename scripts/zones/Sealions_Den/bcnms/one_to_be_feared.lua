@@ -3,10 +3,7 @@
 -- Name: one_to_be_feared
 -- bcnmID : 992
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
 --instance 1   !pos -780 -103 -90
           -- >     -231              = lieux de combat
@@ -52,7 +49,7 @@ function onBcnmLeave(player,instance,leavecode)
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
-           player:startEvent(32002);
+        player:startEvent(32002);
     end
 
 end;
@@ -64,7 +61,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-     player:addExp(1500);
-     player:setPos(438 ,0 ,-18 ,11 ,24);-- tp lufease
+        player:addExp(1500);
+        player:setPos(438 ,0 ,-18 ,11 ,24);-- tp lufease
     end
 end;

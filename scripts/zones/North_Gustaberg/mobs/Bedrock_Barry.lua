@@ -2,7 +2,7 @@
 -- Area: North Gustaberg
 --  NM:  Bedrock Barry
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -11,7 +11,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,16,1);
+    dsp.regime.checkRegime(player, mob, 16, 1, dsp.regime.type.FIELDS)
 end;
 
 function onMobDespawn(mob)

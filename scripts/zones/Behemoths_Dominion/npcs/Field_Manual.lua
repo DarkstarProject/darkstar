@@ -2,21 +2,20 @@
 -- Field Manual
 -- Area: Behemoth's Dominion
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_BEHEMOTH,player);
-end;
-
 function onTrade(player,npc,trade)
-end;
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,101,102,103,0,0);
-end;
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,101,102,103,0,0,FOV_MSG_BEHEMOTH);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

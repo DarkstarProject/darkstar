@@ -4,6 +4,7 @@
 -- Involved in Quest: Trial by Wind
 -- Involved in Mission: ASA-4 Sugar Coated Directive
 -----------------------------------
+local ID = require("scripts/zones/Cloister_of_Gales/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/status");
@@ -13,7 +14,7 @@ function onMobFight(mob, target)
     local mobId = mob:getID();
 
     -- ASA-4: Astral Flow Behavior - Guaranteed to Use At Least 5 times before killable, at specified intervals.
-    if (mob:getBattlefield():getBcnmID() == 420 and GetMobAction(mobId) == dsp.act.ATTACK) then
+    if (mob:getBattlefield():getBcnmID() == 420 and mob:getCurrentAction() == dsp.act.ATTACK) then
         local astralFlows = mob:getLocalVar("astralflows");
         if ((astralFlows == 0 and mob:getHPP() <= 80)
         or (astralFlows == 1 and mob:getHPP() <= 60)
@@ -66,7 +67,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         player:delKeyItem(dsp.ki.TUNING_FORK_OF_WIND);
         player:addKeyItem(dsp.ki.WHISPER_OF_GALES);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_GALES);
     end
 
 end;

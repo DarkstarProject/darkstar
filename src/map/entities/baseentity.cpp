@@ -30,24 +30,24 @@
 
 CBaseEntity::CBaseEntity()
 {
+    id = 0;
+    targid = 0;
+    objtype = ENTITYTYPE::TYPE_NONE;
+    status = STATUS_DISAPPEAR;
 	m_TargID = 0;
+    memset(&look, 0, sizeof(look));
+    memset(&mainlook, 0, sizeof(mainlook));
+    memset(&loc, 0, sizeof(loc));
+    animation = ANIMATION_NONE;
+    animationsub = 0;
+    speed = 40 + map_config.speed_mod;
+    speedsub = 40 + map_config.speed_mod;
 	namevis = 1;
-
+    allegiance = 0;
+    updatemask = 0;
     PAI = nullptr;
 	PBCNM = nullptr;
 	PInstance = nullptr;
-
-	speed    = 40 + map_config.speed_mod;
-	speedsub = 40 + map_config.speed_mod;
-
-	animationsub = 0;
-	animation    = ANIMATION_NONE;
-
-	status = STATUS_DISAPPEAR;
-    updatemask = 0;
-
-	memset(&loc,  0, sizeof(loc));
-	memset(&look, 0, sizeof(look));
 }
 
 CBaseEntity::~CBaseEntity()
@@ -120,10 +120,12 @@ bool CBaseEntity::IsNameHidden()
 
 CBaseEntity* CBaseEntity::GetEntity(uint16 targid, uint8 filter)
 {
-	if (PInstance)
-		return PInstance->GetEntity(targid, filter);
-	else
-		return loc.zone->GetEntity(targid, filter);
+    if (targid == 0)
+        return nullptr;
+    else if (PInstance)
+        return PInstance->GetEntity(targid, filter);
+    else
+        return loc.zone->GetEntity(targid, filter);
 }
 
 void CBaseEntity::ResetLocalVars()

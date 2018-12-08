@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Spire of Dem
+-- Area: Spire of Holla
 --  NPC: Radiant Aureole
 -----------------------------------
 

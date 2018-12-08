@@ -27,9 +27,9 @@ MOBSKILL_SPECIAL = 3;
 
 --skillparam (PHYSICAL)
 MOBPARAM_NONE = 0;
-MOBPARAM_BLUNT = 1;
+MOBPARAM_PIERCE = 1;
 MOBPARAM_SLASH = 2;
-MOBPARAM_PIERCE = 3;
+MOBPARAM_BLUNT = 3;
 MOBPARAM_H2H = 4;
 
 MOBDRAIN_HP = 0;
@@ -521,9 +521,24 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
         return 0;
     end
 
+    -- Handle Automaton Analyzer which decreases damage from successive special attacks
+    if target:getMod(dsp.mod.AUTO_ANALYZER) > 0 then
+        local analyzerSkill = target:getLocalVar("analyzer_skill")
+        local analyzerHits = target:getLocalVar("analyzer_hits")
+        if analyzerSkill == skill:getID() and target:getMod(dsp.mod.AUTO_ANALYZER) > analyzerHits then
+            -- Successfully mitigating damage at a fixed 40%
+            dmg = dmg * 0.6
+            analyzerHits = analyzerHits + 1
+        else
+            target:setLocalVar("analyzer_skill", skill:getID())
+            analyzerHits = 0
+        end
+        target:setLocalVar("analyzer_hits", analyzerHits)
+    end
+
     if (skilltype == MOBSKILL_PHYSICAL) then
 
-        dmg = target:physicalDmgTaken(dmg);
+        dmg = target:physicalDmgTaken(dmg, skillparam);
 
     elseif (skilltype == MOBSKILL_MAGICAL) then
 

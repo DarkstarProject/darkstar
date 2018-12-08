@@ -2,17 +2,13 @@
 -- Area: Windurst Waters
 --  NPC: Naiko-Paneiko
 -- Involved In Quest: Making Headlines, Riding on the Clouds
--- @zone 238
--- !pos -246 -5 -308
+-- !pos -246 -5 -308 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +18,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
 
@@ -79,7 +75,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 670 or csid == 674) then
         player:addTitle(dsp.title.EDITORS_HATCHET_MAN);
         player:addGil(GIL_RATE*560);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*560);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*560);
         player:delKeyItem(dsp.ki.WINDURST_WOODS_SCOOP);
         player:delKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
         player:delKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);

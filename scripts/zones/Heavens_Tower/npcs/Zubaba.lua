@@ -4,11 +4,9 @@
 -- Involved in Mission 3-2
 -- !pos 15 -27 18 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -49,6 +47,8 @@ function onTrigger(player,npc)
         player:startEvent(157);
     elseif (currentMission == THE_SHADOW_AWAITS and player:hasKeyItem(dsp.ki.SHADOW_FRAGMENT)) then
         player:startEvent(194); -- her reaction after 5-1.
+    elseif (player:getCurrentMission(WINDURST) == MOON_READING and (MissionStatus >= 3 or player:hasCompletedMission(WINDURST, MOON_READING))) then
+        player:startEvent(387);
     else
         player:startEvent(56);
     end
@@ -62,12 +62,14 @@ function onEventFinish(player,csid,option)
 
     if (csid == 121) then
         player:addKeyItem(dsp.ki.CHARM_OF_LIGHT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
         player:setVar("MissionStatus",3);
     elseif (csid == 135 or csid == 151) then
         finishMissionTimeline(player,1,csid,option);
+    elseif (csid == 387) then
+        player:setVar("WindurstSecured",0);
     end
 
 end;

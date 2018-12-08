@@ -3,23 +3,17 @@
 -- Zone: Norg (252)
 --
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -50,7 +44,7 @@ function onEventFinish(player,csid,option)
     if (csid == 1) then
         if (player:hasKeyItem(dsp.ki.MAP_OF_NORG) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_NORG);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_NORG);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_NORG);
         end
         player:completeMission(ZILART,THE_NEW_FRONTIER);
         player:addMission(ZILART,WELCOME_TNORG);

@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos -241 -12 332 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuAun_Gardens/TextIDs");
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

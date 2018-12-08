@@ -2,39 +2,34 @@
 -- Area: Yuhtunga Jungle
 --  MOB: Rose Garden
 -----------------------------------
-require("scripts/zones/Yuhtunga_Jungle/MobIDs");
-
-function disturbMob(mob)
-    mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)); -- 10:00:00 to 10:30:00
-end
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 
 function onMobSpawn(mob)
-    disturbMob(mob);
-end;
+    mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
+end
 
-function onMobEngaged(mob, target)
-    disturbMob(mob);
-end;
-
-function onMobFight(mob, target)
-    disturbMob(mob);
-end;
+function onMobDisengage(mob)
+    mob:setLocalVar("timeToGrow", os.time() + math.random(36000,37800)) -- 10:00:00 to 10:30:00
+end
 
 function onMobRoam(mob)
     -- Rose Garden has been left alone for 10.25 hours
-    if (os.time() > mob:getLocalVar("timeToGrow")) then
-        DisallowRespawn(ROSE_GARDEN, true);
-        DespawnMob(ROSE_GARDEN);
-        DisallowRespawn(VOLUPTUOUS_VILMA, false);
-        SpawnMob(VOLUPTUOUS_VILMA);
+    if os.time() >= mob:getLocalVar("timeToGrow") then
+        DisallowRespawn(ID.mob.ROSE_GARDEN, true)
+        DespawnMob(ID.mob.ROSE_GARDEN)
+        DisallowRespawn(ID.mob.VOLUPTUOUS_VILMA, false)
+        pos = mob:getPos()
+        SpawnMob(ID.mob.VOLUPTUOUS_VILMA):setPos(pos.x, pos.y, pos.z, pos.rot)
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    DisallowRespawn(ROSE_GARDEN, true);
-    DisallowRespawn(ROSE_GARDEN_PH, false);
-    GetMobByID(ROSE_GARDEN_PH):setRespawnTime(GetMobRespawnTime(ROSE_GARDEN_PH));
-end;
+    if os.time() < mob:getLocalVar("timeToGrow") then
+        DisallowRespawn(ID.mob.ROSE_GARDEN, true)
+        DisallowRespawn(ID.mob.ROSE_GARDEN_PH, false)
+        GetMobByID(ID.mob.ROSE_GARDEN_PH):setRespawnTime(GetMobRespawnTime(ID.mob.ROSE_GARDEN_PH))
+    end
+end

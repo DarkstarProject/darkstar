@@ -4,11 +4,8 @@
 -- Involved in Quests: Save the Clock Tower, Community Service
 -- !pos -3 0 11 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/zones/Lower_Jeuno/globals");
-require("scripts/zones/Lower_Jeuno/TextIDs");
-require("scripts/zones/Lower_Jeuno/MobIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
@@ -39,7 +36,7 @@ function onTrigger(player,npc)
 
     local allLampsLit = true;
     for i=0,11 do
-        local lamp = GetNPCByID(LOWER_JEUNO_STREETLAMP_OFFSET + i);
+        local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i);
         if (lamp:getAnimation() == dsp.anim.CLOSE_DOOR) then
             allLampsLit = false;
             break;

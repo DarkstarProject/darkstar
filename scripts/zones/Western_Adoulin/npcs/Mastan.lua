@@ -4,14 +4,11 @@
 -- Type: Standard NPC and Quest NPC
 --  Involved with Quests: 'Order Up'
 --                        'The Curious Case of Melvien'
---  @zone 256
--- !pos -9 0 67
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- !pos -9 0 67 256
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -46,7 +43,7 @@ function onEventFinish(player,csid,option)
         -- Progresses Quest: 'The Curious Case of Melvien'
         if (option == 1) then
             player:addKeyItem(dsp.ki.MELVIENS_DEATH);
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.MELVIENS_DEATH);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.MELVIENS_DEATH);
         end
     end
 end;

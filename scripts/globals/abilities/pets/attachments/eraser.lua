@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Eraser
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 local removable = {
     dsp.effect.PETRIFICATION,
@@ -19,7 +19,7 @@ local removable = {
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_ERASER", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(dsp.effect.LIGHT_MANEUVER) > 0 and automaton:getLocalVar("erase") < VanadielTime() then
+        if not automaton:hasRecast(dsp.recast.ABILITY, 2021) and master and master:countEffect(dsp.effect.LIGHT_MANEUVER) > 0 then
             local erasetarget = false
 
             local function checkEffects(entity)

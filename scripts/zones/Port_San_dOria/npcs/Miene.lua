@@ -3,9 +3,7 @@
 --  NPC: Miene
 -- NPC for Quest "The Pickpocket"
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -15,14 +13,14 @@ require("scripts/globals/titles");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMiene") == 0) then
-            player:messageSpecial(MIENE_DIALOG);
+            player:messageSpecial(ID.text.MIENE_DIALOG);
             player:setVar("FFR",player:getVar("FFR") - 1);
             player:setVar("tradeMiene",1);
-            player:messageSpecial(FLYER_ACCEPTED);
-            player:messageSpecial(FLYERS_HANDED, 17 - player:getVar("FFR"));
+            player:messageSpecial(ID.text.FLYER_ACCEPTED);
+            player:messageSpecial(ID.text.FLYERS_HANDED, 17 - player:getVar("FFR"));
             player:tradeComplete();
         elseif (player:getVar("tradeMiene") == 1) then
-            player:messageSpecial(FLYER_ALREADY);
+            player:messageSpecial(ID.text.FLYER_ALREADY);
         end
     end
 end;

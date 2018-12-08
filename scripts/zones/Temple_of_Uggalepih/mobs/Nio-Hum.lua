@@ -2,7 +2,7 @@
 -- Area: Temple of Uggalepih
 --  MOB: Nio A
 -----------------------------------
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/missions");
 require("scripts/globals/status");
@@ -21,7 +21,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(SANDORIA) == LIGHTBRINGER and player:getVar("MissionStatus") == 5
-        and GetMobByID(NIO_A):isDead() and GetMobByID(NIO_HUM):isDead()
+        and GetMobByID(ID.mob.NIO_A):isDead() and GetMobByID(ID.mob.NIO_HUM):isDead()
     ) then
         player:setVar("Mission8-2Kills", 1);
     end

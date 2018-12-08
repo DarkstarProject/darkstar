@@ -2,9 +2,10 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Duke Berith
 -----------------------------------
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 require("scripts/globals/dynamis");
 require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -36,6 +37,6 @@ function onMobDeath(mob, player, isKiller)
     end
 
     if (Animate_Trigger == 32767) then
-        player:messageSpecial(PRISON_OF_SOULS_HAS_SET_FREE);
+        player:messageSpecial(ID.text.PRISON_OF_SOULS_HAS_SET_FREE);
     end
 end;

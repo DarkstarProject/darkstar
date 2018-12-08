@@ -2,22 +2,19 @@
 -- Area: Mamook
 --  NPC: Logging Point
 -----------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/logging");
-require("scripts/zones/Mamook/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startLogging(player,player:getZoneID(),npc,trade,0x00D7);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.LOGGING, 215)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(LOGGING_IS_POSSIBLE_HERE,1021);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.LOGGING)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

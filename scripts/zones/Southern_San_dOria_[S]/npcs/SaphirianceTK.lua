@@ -1,12 +1,7 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Saphiriance T.K
--- @zone 80
--- !pos 113 1 -40
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+-- !pos 113 1 -40 80
 -----------------------------------
 
 function onTrade(player,npc,trade)

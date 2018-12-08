@@ -3,9 +3,7 @@
 --  NPC: Chayaya
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -33,7 +31,7 @@ function onTrigger(player,npc)
         5496,  68250     -- Scholar Die
     }
 
-    player:showText(npc, CHAYAYA_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHAYAYA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

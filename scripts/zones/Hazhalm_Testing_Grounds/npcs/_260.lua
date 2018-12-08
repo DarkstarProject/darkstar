@@ -2,9 +2,7 @@
 -- Area: Hazhalm Testing Grounds
 --  NPC: Entry Gate (TOAU-36)
 -----------------------------------
-package.loaded["scripts/zones/Hazhalm_Testing_Grounds/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
+local ID = require("scripts/zones/Hazhalm_Testing_Grounds/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/titles");
@@ -30,7 +28,7 @@ function onEventFinish(player,csid,option)
         player:setVar("AhtUrganStatus",0);
         player:setTitle(dsp.title.EMISSARY_OF_THE_EMPRESS);
         player:addKeyItem(dsp.ki.LUMINIAN_DAGGER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LUMINIAN_DAGGER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LUMINIAN_DAGGER);
         player:addMission(TOAU,PATH_OF_BLOOD);
     end
 

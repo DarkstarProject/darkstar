@@ -2,12 +2,9 @@
 -- Area: Selbina
 --  NPC: Romeo
 -- Starts and Finishes Quest: Donate to Recycling
--- @zone 248
--- !pos -11 -11 -6
+-- !pos -11 -11 -6 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
@@ -43,12 +40,12 @@ function onEventFinish(player,csid,option)
         player:addQuest(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
     elseif (csid == 21) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,89);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,89);
         else
             player:completeQuest(OTHER_AREAS_LOG,DONATE_TO_RECYCLING);
             player:addTitle(dsp.title.ECOLOGIST);
             player:addItem(89);
-            player:messageSpecial(ITEM_OBTAINED,89); -- Wastebasket
+            player:messageSpecial(ID.text.ITEM_OBTAINED,89); -- Wastebasket
             player:addFame(SELBINA,30);
             player:tradeComplete();
         end

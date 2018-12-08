@@ -3,17 +3,14 @@
 --     dsp.effect.OVERDRIVE
 --
 -----------------------------------
+require("scripts/globals/status")
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
-function onEffectGain(target,effect)
+function onEffectGain(target, effect)
     target:addMod(dsp.mod.OVERLOAD_THRESH, 5000)
     local pet = target:getPet()
     if pet then
         pet:setLocalVar("overdrive", 1)
-        pet:addMod(dsp.mod.HASTE_MAGIC, 250)
+        pet:addMod(dsp.mod.HASTE_MAGIC, 2500)
         pet:addMod(dsp.mod.MAIN_DMG_RATING, 30)
         pet:addMod(dsp.mod.RANGED_DMG_RATING, 30)
         pet:addMod(dsp.mod.ATTP, 50)
@@ -27,23 +24,15 @@ function onEffectGain(target,effect)
     end
 end
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
-function onEffectTick(target,effect)
+function onEffectTick(target, effect)
 end
 
------------------------------------
--- onEffectLose Action
------------------------------------
-
-function onEffectLose(target,effect)
+function onEffectLose(target, effect)
     target:delMod(dsp.mod.OVERLOAD_THRESH, 5000)
     local pet = target:getPet()
     if pet and pet:getLocalVar("overdrive") ~= 0 then
         pet:setLocalVar("overdrive", 0)
-        pet:delMod(dsp.mod.HASTE_MAGIC, 250)
+        pet:delMod(dsp.mod.HASTE_MAGIC, 2500)
         pet:delMod(dsp.mod.MAIN_DMG_RATING, 30)
         pet:delMod(dsp.mod.RANGED_DMG_RATING, 30)
         pet:delMod(dsp.mod.ATTP, 50)

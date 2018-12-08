@@ -2,14 +2,11 @@
 -- Area: Metalworks
 --   NPC: Baldric
 -- Type: Quest Giver
--- @zone 237
--- !pos -50.858 1.777 -31.141
------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
+-- !pos -50.858 1.777 -31.141 237
 -----------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/quests");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,7 +38,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 555) then
         player:tradeComplete();
         player:addGil(300);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*300);
         player:completeQuest(BASTOK,STARDUST);
     end
 end;

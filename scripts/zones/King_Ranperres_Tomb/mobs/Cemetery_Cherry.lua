@@ -3,12 +3,12 @@
 --  NM:  Cemetery Cherry
 -- !pos 33.000 0.500 -287.000 190
 -----------------------------------
-require("scripts/zones/King_Ranperres_Tomb/MobIDs");
+local ID = require("scripts/zones/King_Ranperres_Tomb/IDs");
 require("scripts/globals/titles");
 -----------------------------------
 
 function spawnSaplings()
-    for i = CHERRY_SAPLING_OFFSET, CHERRY_SAPLING_OFFSET + 12 do
+    for i = ID.mob.CHERRY_SAPLING_OFFSET, ID.mob.CHERRY_SAPLING_OFFSET + 12 do
         local mob = GetMobByID(i);
         if (mob ~= nil and mob:getName() == 'Cherry_Sapling' and not mob:isSpawned()) then
             SpawnMob(i);

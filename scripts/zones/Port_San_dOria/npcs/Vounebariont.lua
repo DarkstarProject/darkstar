@@ -3,12 +3,10 @@
 --  NPC: Vounebariont
 -- Starts and Finishes Quest: Thick Shells
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,7 +49,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(dsp.title.BUG_CATCHER);
         player:addGil(GIL_RATE*750);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*750)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*750)
     end
 
 end;

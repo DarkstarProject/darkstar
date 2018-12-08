@@ -4,16 +4,14 @@
 --  Involved in Quest: Mhaura Fortune
 -- !pos -612.948 12.573 461.963 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
 end;
 
 function onEventUpdate(player,csid,option)

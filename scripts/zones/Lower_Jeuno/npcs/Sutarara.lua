@@ -4,10 +4,7 @@
 -- Involved in Quests: Tenshodo Menbership (before accepting)
 -- !pos 30 0.1 -2 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

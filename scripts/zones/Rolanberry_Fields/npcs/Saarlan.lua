@@ -4,12 +4,10 @@
 -- Legion NPC
 -- !pos 242 24.395 468
 -----------------------------------
-package.loaded["scripts/zones/Rolanberry_Fields/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Rolanberry_Fields/TextIDs");
+local ID = require("scripts/zones/Rolanberry_Fields/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -67,17 +65,17 @@ function onEventFinish(player,csid,option)
             if (GIL >= 360000) then
                 player:addKeyItem(dsp.ki.LEGION_TOME_PAGE_MAXIMUS);
                 player:delGil(360000);
-                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.LEGION_TOME_PAGE_MAXIMUS)
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LEGION_TOME_PAGE_MAXIMUS)
             else
-                player:messageSpecial(NOT_ENOUGH_GIL);
+                player:messageSpecial(ID.text.NOT_ENOUGH_GIL);
             end
         elseif (option == 0x0001000B) then
             if (GIL >= 180000) then
                 player:addKeyItem(dsp.ki.LEGION_TOME_PAGE_MINIMUS);
                 player:delGil(180000);
-                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.LEGION_TOME_PAGE_MINIMUS)
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LEGION_TOME_PAGE_MINIMUS)
             else
-                player:messageSpecial(NOT_ENOUGH_GIL);
+                player:messageSpecial(ID.text.NOT_ENOUGH_GIL);
             end
         elseif (option == 0x00000002) then -- Gaiardas Ring
             LP_COST = 1000;
@@ -185,14 +183,14 @@ function onEventFinish(player,csid,option)
     end
 
     if (LP < LP_COST) then
-        player:messageSpecial(LACK_LEGION_POINTS);
+        player:messageSpecial(ID.text.LACK_LEGION_POINTS);
     elseif (ITEM > 0) then
         if (player:getFreeSlotsCount() >=1) then
             player:delCurrency("legion_point", LP_COST);
             player:addItem(ITEM, 1);
-            player:messageSpecial(ITEM_OBTAINED, ITEM);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, ITEM);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ITEM);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, ITEM);
         end
     end
 

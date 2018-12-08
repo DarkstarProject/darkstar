@@ -3,6 +3,9 @@
 -- Zone: Kazham-Jeuno_Airship
 --
 -----------------------------------
+local ID = require("scripts/zones/Kazham-Jeuno_Airship/IDs")
+require("scripts/globals/zone")
+-----------------------------------
 
 function onInitialize(zone)
 end;
@@ -27,9 +30,9 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10) then
         local prevzone = player:getPreviousZone();
-        if (prevzone == 250) then
+        if (prevzone == dsp.zone.KAZHAM) then
             player:setPos(0,0,0,0,246);
-        elseif (prevzone == 246) then
+        elseif (prevzone == dsp.zone.PORT_JEUNO) then
             player:setPos(0,0,0,0,250);
         end
     end

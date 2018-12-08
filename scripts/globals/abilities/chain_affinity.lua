@@ -6,16 +6,16 @@
 -- Duration: 30 seconds or one Blue Magic spell
 -- May be used with Sneak Attack and Trick Attack.
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player, target, ability)
-    player:addStatusEffect(dsp.effect.CHAIN_AFFINITY,1,0,30);
+    player:addStatusEffect(dsp.effect.CHAIN_AFFINITY,1,0,30)
 
-    return dsp.effect.CHAIN_AFFINITY;
-end;
+    return dsp.effect.CHAIN_AFFINITY
+end

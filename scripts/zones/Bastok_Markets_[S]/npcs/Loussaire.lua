@@ -3,9 +3,7 @@
 --  NPC: Loussaire
 -- !pos -248.677 -8.523 -125.734 87
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -173,7 +171,7 @@ function onEventFinish(player,csid,option)
         local secondKI = player:getLocalVar("secondKI");
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, itemid);
 
         else
             -- Remove LocalVars
@@ -206,7 +204,7 @@ function onEventFinish(player,csid,option)
 
             player:delKeyItem(firstKI);
             player:delKeyItem(secondKI);
-            player:messageSpecial(ITEM_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, itemid);
             player:addItem(itemid);
         end
     end

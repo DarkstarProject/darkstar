@@ -2,12 +2,9 @@
 -- Area: Port Windurst
 --   NPC: Dehn Harzhapan
 -- Type: Standard NPC
--- @zone 240
--- !pos -7.974 -7 152.633
+-- !pos -7.974 -7 152.633 240
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

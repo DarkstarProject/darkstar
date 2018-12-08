@@ -6,15 +6,12 @@
 --                        'Fertile Ground'
 --                        'The Old Man and the Harpoon'
 --                        'Wayward Waypoints'
---  @zone 256
--- !pos 84 0 -60
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- !pos 84 0 -60 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -59,7 +56,7 @@ function onEventFinish(player,csid,option)
         -- Progresses Quest: 'The Old Man and the Harpoon'
         player:delKeyItem(dsp.ki.BROKEN_HARPOON);
         player:addKeyItem(dsp.ki.EXTRAVAGANT_HARPOON);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.EXTRAVAGANT_HARPOON);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.EXTRAVAGANT_HARPOON);
     elseif (csid == 2850) then
         -- Progresses Quest: 'Fertile Ground'
         player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);

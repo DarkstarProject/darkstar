@@ -2,14 +2,11 @@
 -- Area: Western Adoulin
 --  NPC: Vaulois
 -- Type: Standard NPC and Quest Giver
---  Starts, Involved with, and Finishes Quest: 'Transporting'
---  @zone 256
---  !pos 20 0 85 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quest: 'Transporting'
+-- !pos 20 0 85 256
 -----------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,7 +38,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(ADOULIN, TRANSPORTING);
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 300 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 300 * BAYLD_RATE);
         player:addFame(ADOULIN);
     end
 end;

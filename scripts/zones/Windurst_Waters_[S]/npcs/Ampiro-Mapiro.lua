@@ -1,25 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Ampiro-Mapiro
+--  NPC: Ampiro-Mapiro
 -- Type: Standard NPC
--- @zone 94
--- !pos 131.380 -6.75 174.169
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos 131.380 -6.75 174.169 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(423);
-end;
+    player:startEvent(423)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -3,41 +3,29 @@
 --  NPC: Telepoint
 -- !pos 150.258 -21.047 -37.256 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/zones/Xarcabard/TextIDs");
+local ID = require("scripts/zones/Xarcabard/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
-    item = trade:getItemId();
-
-    if (trade:getItemCount() == 1 and item > 4095 and item < 4104) then
-        if (player:getFreeSlotsCount() > 0 and player:hasItem(613) == false) then
-            player:tradeComplete();
-            player:addItem(613);
-            player:messageSpecial(ITEM_OBTAINED,613); -- Faded Crystal
-        else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,613); -- Faded Crystal
-        end
+    -- trade any normal crystal for a faded crystal
+    local item = trade:getItemId()
+    if trade:getItemCount() == 1 and item >= 4096 and item <= 4103 and npcUtil.giveItem(player, 613) then
+        player:tradeComplete()
     end
-
-end;
+end
 
 function onTrigger(player,npc)
-
-    if (player:hasKeyItem(dsp.ki.VAHZL_GATE_CRYSTAL) == false) then
-        player:addKeyItem(dsp.ki.VAHZL_GATE_CRYSTAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VAHZL_GATE_CRYSTAL);
+    if not player:hasKeyItem(dsp.ki.VAHZL_GATE_CRYSTAL) then
+        npcUtil.giveKeyItem(player, dsp.ki.VAHZL_GATE_CRYSTAL)
     else
-        player:messageSpecial(ALREADY_OBTAINED_TELE);
+        player:messageSpecial(ID.text.ALREADY_OBTAINED_TELE)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

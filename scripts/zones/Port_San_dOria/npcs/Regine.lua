@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos 68 -9 -74 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
@@ -21,7 +19,7 @@ function onTrade(player,npc,trade)
             player:confirmTrade();
         end
     elseif (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532)) then
-        player:messageSpecial(FLYER_REFUSED);
+        player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- THE BRUGAIRE CONSORTIUM
     elseif (theBrugaireConsortium == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 593)) then

@@ -4,14 +4,11 @@
 -- Starts Windurst Missions
 -- !pos -227 -8 184 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -40,6 +37,8 @@ function onTrigger(player,npc)
             player:startEvent(109);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(163);
+        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
+            player:startEvent(567);
         else
             flagMission, repeatMission = getMissionMask(player);
             player:startEvent(78,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
@@ -59,7 +58,10 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.NEW_BEST_OF_THE_WEST_RECRUIT);
     elseif (csid == 78 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+    end
+    if (csid == 567) then
+        player:setVar("WWatersRTenText",1);
     end
 
 end;

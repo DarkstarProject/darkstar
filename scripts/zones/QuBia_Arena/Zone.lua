@@ -3,11 +3,9 @@
 -- Zone: Qu'Bia Arena (206)
 --
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
+local ID = require("scripts/zones/QuBia_Arena/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
-require("scripts/zones/QuBia_Arena/TextIDs");
-require("scripts/zones/QuBia_Arena/MobIDs");
-require("scripts/globals/conquest");
 
 function onInitialize(zone)
 end;
@@ -21,10 +19,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -38,7 +33,7 @@ function onEventFinish(player,csid,option)
         local battlefield = player:getBattlefield();
         if (battlefield) then
             local inst = battlefield:getBattlefieldNumber();
-            local instOffset = HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
+            local instOffset = ID.mob.HEIR_TO_THE_LIGHT_OFFSET + (14 * (inst-1));
             local allyPos =
             {
                 [1] = { trionPos = {-403, -201,  413, 58}, playerPos = {-400, -201,  419, 61} },

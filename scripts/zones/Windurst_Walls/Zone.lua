@@ -3,12 +3,12 @@
 -- Zone: Windurst_Walls (239)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Windurst_Walls/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -28,17 +28,15 @@ function onZoneIn(player,prevZone)
     elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
         and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
         cs = 510;
+    elseif (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") == 4) then
+        cs = 443;
     end
 
     return cs;
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -61,12 +59,21 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,-22.40,192,242);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 510) then
         player:startEvent(514);
     elseif (csid == 514) then
         player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
         player:addMission(ASA,BURGEONING_DREAD);
         player:setVar("ASA_Status",0);
+    elseif (csid == 443) then
+        player:completeMission(WINDURST,MOON_READING);
+        player:setVar("MissionStatus",0);
+        player:setRank(10);
+        player:addGil(GIL_RATE*100000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000);
+        player:addItem(183);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,183);
+        player:addTitle(dsp.title.VESTAL_CHAMBERLAIN);
     end
 end;

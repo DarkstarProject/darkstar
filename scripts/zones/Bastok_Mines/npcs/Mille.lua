@@ -3,10 +3,8 @@
 --  NPC: Mille
 -- Norvallen Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -15,20 +13,18 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(dsp.region.NORVALLEN)
-
-    if RegionOwner ~= dsp.nation.BASTOK then
-        player:showText(npc, MILLE_CLOSED_DIALOG)
+    if GetRegionOwner(dsp.region.NORVALLEN) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.MILLE_CLOSED_DIALOG)
     else
         local stock =
         {
             688, 18,    -- Arrowwood Log
             698, 88,    -- Ash Log
             618, 25,    -- Blue Peas
-            621, 25     -- Crying Mustard
+            621, 25,     -- Crying Mustard
         }
 
-        player:showText(npc, MILLE_OPEN_DIALOG)
+        player:showText(npc, ID.text.MILLE_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

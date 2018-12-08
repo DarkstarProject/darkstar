@@ -2,9 +2,9 @@
 -- Area: RoMaeve
 --  MOB: Apocalyptic Weapon
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,122,1);
+    dsp.regime.checkRegime(player, mob, 122, 1, dsp.regime.type.FIELDS)
 end;

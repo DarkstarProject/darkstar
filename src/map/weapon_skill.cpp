@@ -27,18 +27,18 @@
 CWeaponSkill::CWeaponSkill(uint16 id)
 {
 	m_ID = id;
-
+    m_TypeID = 0;
+    memset(m_Job, 0, sizeof(m_Job));
+    m_Skilllevel = 0;
 	m_AnimationId = 0;
-	m_AOE         = 0;
-	m_Skilllevel  = 0;
-	m_TypeID      = 0;
-	m_Range       = 0;
-	m_PrimarySkillchain   = SC_NONE;
+    m_Element = 0;
+    m_PrimarySkillchain = SC_NONE;
     m_SecondarySkillchain = SC_NONE;
-    m_TertiarySkillchain  = SC_NONE;
+    m_TertiarySkillchain = SC_NONE;
+    m_Range = 0;
+    m_AOE = 0;
     m_mainOnly = 0;
-
-	memset(m_Job, 0, sizeof(m_Job));
+    m_unlockId = 0;
 }
 
 void CWeaponSkill::setID(uint16 id)

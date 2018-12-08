@@ -3,15 +3,15 @@
 --
 -- Description: Recovers HP.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target, mob, skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
     --[[
@@ -24,9 +24,9 @@ function onMobWeaponSkill(target, mob, skill)
     skuld     : 250 ish
     carabosse : 100-250 ish (lowest lv mob of the 3)
     ]]
-    local heal = math.random(100,400);
+    local heal = math.random(100,400)
 
-    skill:setMsg(dsp.msg.basic.SELF_HEAL);
+    skill:setMsg(dsp.msg.basic.SELF_HEAL)
 
-    return MobHealMove(mob, heal);
-end;
+    return MobHealMove(mob, heal)
+end

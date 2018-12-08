@@ -4,12 +4,10 @@
 --  Involved in Quest: A purchase of Arms & Sin Hunting
 -- !pos  105 1 382 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Jugner_Forest/TextIDs");
+local ID = require("scripts/zones/Jugner_Forest/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-      local SinHunting = player:getVar("sinHunting");    -- RNG AF1
+    local SinHunting = player:getVar("sinHunting");    -- RNG AF1
 
     if (player:hasKeyItem(dsp.ki.WEAPONS_ORDER) == true) then
         player:startEvent(5);
@@ -33,7 +31,7 @@ function onEventFinish(player,csid,option)
     if (csid == 5) then
         player:delKeyItem(dsp.ki.WEAPONS_ORDER);
         player:addKeyItem(dsp.ki.WEAPONS_RECEIPT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WEAPONS_RECEIPT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WEAPONS_RECEIPT);
     elseif (csid == 10) then
         player:setVar("sinHunting",4);
     end

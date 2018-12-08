@@ -2,14 +2,10 @@
 -- Area: Windurst Waters
 --  NPC: Cochal-Monchal
 -- Involved in Quest: Dark Legacy
--- @zone 238
--- !pos -52 -6 110
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
+-- !pos -52 -6 110 238
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

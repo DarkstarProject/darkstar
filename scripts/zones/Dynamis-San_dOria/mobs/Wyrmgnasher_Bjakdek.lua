@@ -4,10 +4,10 @@
 -- Boss Trigger for Overlord's Tombstone
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
+mixins = {require("scripts/mixins/job_special")};
+require("scripts/globals/status");
 
-function onMobEngaged(mob,target)
+function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)

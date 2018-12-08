@@ -3,21 +3,15 @@
 -- Zone: Dynamis-Tavnazia
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local ID = require("scripts/zones/Dynamis-Tavnazia/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

@@ -3,18 +3,16 @@
 -- Zone: Ordelles_Caves (193)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ordelles_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ordelles_Caves/TextIDs");
-require("scripts/zones/Ordelles_Caves/MobIDs");
+local ID = require("scripts/zones/Ordelles_Caves/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(MORBOLGER);
-    GetMobByID(MORBOLGER):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.MORBOLGER);
+    GetMobByID(ID.mob.MORBOLGER):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(ORDELLES_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -29,10 +27,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)

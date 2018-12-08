@@ -4,9 +4,7 @@
 -- Arrapago Reef Teleporter Back to Aht Urgan Whitegate
 -- !pos 15 -7 627 54
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs");
+local ID = require("scripts/zones/Arrapago_Reef/IDs");
 require("scripts/globals/besieged");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(111);
         end
     else
-        player:messageSpecial(RESPONSE);
+        player:messageSpecial(ID.text.RESPONSE);
     end
 end;
 

@@ -2,73 +2,55 @@
 -- Area: VeLugannon Palace
 --  MOB: Detector
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
-
-    local Detector = mob:getID();
-    GetMobByID(Detector):setLocalVar("1",1);
-
-end;
+    mob:setLocalVar("petCount", 1)
+end
 
 function onMobFight(mob,target)
+    local caretaker = GetMobByID(mob:getID() + 1)
+    local petCount = mob:getLocalVar("petCount")
 
-    local Detector = mob:getID();
-    local Caretaker = Detector + 1;
-    local ExtraVar = GetMobByID(Detector):getLocalVar("1");
-
-   -- Summons a Detector every 15 seconds.
-   -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
-   --       Should be ~10s to start cast, and another ~5 to finish.
-   -- Detectors can also still spawn the Caretakers while sleeping, moving, etc.
-
-    if (GetMobAction(Caretaker) == 16) then
-        GetMobByID(Caretaker):updateEnmity(target);
+    -- Summons a Caretaker every 15 seconds.
+    -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
+    --       Should be ~10s to start cast, and another ~5 to finish.
+    -- Detectors can also still spawn the Caretakers while sleeping, moving, etc.
+    -- Maximum number of pets Detector can spawn is 5
+    if petCount <= 5 and mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3 and not caretaker:isSpawned() then
+        caretaker:setSpawn(mob:getXPos() + 1, mob:getYPos(), mob:getZPos() + 1)
+        caretaker:spawn()
+        caretaker:updateEnmity(target)
+        mob:setLocalVar("petCount", petCount + 1)
     end
 
-    if (ExtraVar <= 6) then  -- Maximum number of pets Detector can spawn is 5
-        if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
-            if (GetMobAction(Caretaker) == 0) then
-                SpawnMob(Caretaker):updateEnmity(target);
-                GetMobByID(Caretaker):setPos(GetMobByID(Detector):getXPos()+1, GetMobByID(Detector):getYPos(), GetMobByID(Detector):getZPos()+1); -- Set Caretaker x and z position +1 from Detector
-                GetMobByID(Detector):setLocalVar("1",ExtraVar+1);
-                return;
-            end
-        end
+    -- make sure pet has a target
+    if caretaker:getCurrentAction() == dsp.act.ROAMING then
+        caretaker:updateEnmity(target)
     end
-
-end;
+end
 
 function onMobDisengage(mob)
+    local caretakerId = mob:getID() + 1
 
-    local Detector = mob:getID();
-    local Caretaker = mob:getID() + 1;
+    mob:resetLocalVars()
 
-    GetMobByID(Detector):resetLocalVars();
-
-    if (GetMobAction(Caretaker) ~= 0) then
-        DespawnMob(Caretaker);
+    if GetMobByID(caretakerId):isSpawned() then
+        DespawnMob(caretakerId)
     end
-
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,743,1);
-end;
+    dsp.regime.checkRegime(player, mob, 743, 1, dsp.regime.type.GROUNDS)
+end
 
-function onMobDespawn( mob )
+function onMobDespawn(mob)
+    local caretakerId = mob:getID() + 1
 
-    local Detector = mob:getID();
-    local Caretaker = mob:getID() + 1;
+    mob:resetLocalVars()
 
-    GetMobByID(Detector):resetLocalVars();
-
-    if (GetMobAction(Caretaker) ~= 0) then
-        DespawnMob(Caretaker);
+    if GetMobByID(caretakerId):isSpawned() then
+        DespawnMob(caretakerId)
     end
-
-end;
+end

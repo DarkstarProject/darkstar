@@ -5,21 +5,18 @@
 -- Involved in Quests: Save the Clock Tower
 -- !pos -43 0 -1 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:hasItemQty(555,1) == true and trade:getItemCount() == 1) then
-        a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
+        local a = player:getVar("saveTheClockTowerNPCz1"); -- NPC Part1
         if (a == 0 or (a ~= 4 and a ~= 5 and a ~= 6 and a ~= 12 and a ~= 20 and a ~= 7 and a ~= 28 and a ~= 13 and a ~= 22 and
            a ~= 14 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 29 and a ~= 30 and a ~= 31)) then
             player:startEvent(91,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
@@ -85,7 +82,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 74) then
         player:setVar("COP_Tenzen_s_Path",3);
         player:addKeyItem(dsp.ki.ENVELOPE_FROM_MONBERAUX);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ENVELOPE_FROM_MONBERAUX);
     elseif (csid == 10) then
         player:setVar("PromathiaStatus",0);
         player:addKeyItem(dsp.ki.MYSTERIOUS_AMULET_DRAINED);
@@ -107,9 +104,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.TWOS_COMPANY);
         player:setVar("theLostCardianVar",0);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addKeyItem(dsp.ki.TWO_OF_SWORDS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TWO_OF_SWORDS); -- Two of Swords (Key Item)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TWO_OF_SWORDS); -- Two of Swords (Key Item)
         player:addFame(JEUNO,30);
         player:completeQuest(JEUNO,THE_LOST_CARDIAN);
         player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"

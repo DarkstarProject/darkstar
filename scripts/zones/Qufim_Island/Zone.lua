@@ -3,26 +3,20 @@
 -- Zone: Qufim_Island (126)
 --
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/quests");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Qufim_Island/IDs");
 require("scripts/globals/conquest");
-require("scripts/zones/Qufim_Island/TextIDs");
+require("scripts/globals/settings");
+require("scripts/globals/quests");
+require("scripts/globals/titles");
+require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetRegionalConquestOverseers(zone:getRegionID())
+    dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -45,11 +39,11 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 100) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12638); -- Fighter's Lorica
         else
             player:addTitle(dsp.title.PARAGON_OF_WARRIOR_EXCELLENCE);
             player:addItem(12638);
-            player:messageSpecial(ITEM_OBTAINED, 12638); -- Fighter's Lorica
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 12638); -- Fighter's Lorica
             player:setVar("theTalekeeperGiftCS",0);
             player:setVar("theTalekeepersGiftKilledNM",0);
             player:addFame(BASTOK,AF3_FAME);

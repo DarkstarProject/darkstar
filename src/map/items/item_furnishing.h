@@ -30,7 +30,7 @@
 
 // List of Moghancements
 
-enum MOGHOUSE_AURA
+enum MOGHANCEMENT_TYPE
 {
     MOGHANCEMENT_FIRE                  = 512, // Reduces the chances of losing materials when synthesis attempts utilizing a fire crystal have failed
     MOGHANCEMENT_ICE                   = 513, // Reduces the chances of losing materials when synthesis attempts utilizing a ice crystal have failed
@@ -108,7 +108,7 @@ public:
 	virtual ~CItemFurnishing();
 
 	uint8	getStorage();
-	uint8	getMoghancement();
+	uint16	getMoghancement();
 	uint8	getElement();
 	uint8	getAura();
 
@@ -117,10 +117,11 @@ public:
 	uint8	getRow();
 	uint8	getLevel();
 	uint8	getRotation();
+    uint8   getOrder(); // Gets Placement order with 0 being the most recently placed furniture
 
     void    setInstalled(bool installed);
 	void	setStorage(uint8 storage);
-	void	setMoghancement(uint8 moghancement);
+	void	setMoghancement(uint16 moghancement);
 	void	setElement(uint8 element);
 	void	setAura(uint8 aura);
 
@@ -128,11 +129,12 @@ public:
 	void	setRow(uint8 row);
 	void	setLevel(uint8 level);
 	void	setRotation(uint8 rotation);
+    void    setOrder(uint8 order);
 	
 private:
 
 	uint8	m_storage;
-	uint8	m_moghancement;
+	uint16	m_moghancement;
 	uint8	m_element;
 	uint8	m_aura;
 };

@@ -1,7 +1,7 @@
 -----------------------------------
 -- Attachment: Condenser
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addMod(dsp.mod.PREVENT_OVERLOAD, 1)

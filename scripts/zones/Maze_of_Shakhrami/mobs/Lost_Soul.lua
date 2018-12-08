@@ -7,7 +7,7 @@ function onMobSpawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getVar("EquipedforAllOccasions") == 1) then
-        player:setVar("EquipedforAllOccasions",2);
+    if (player:getVar("EquippedforAllOccasions") == 1) then
+        player:setVar("EquippedforAllOccasions",2);
     end
 end;

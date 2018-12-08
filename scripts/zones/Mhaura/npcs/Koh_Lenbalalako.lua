@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos -64.412 -17 29.213 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -55,7 +53,7 @@ function onEventFinish(player,csid,option)
         player:setVar("unbridledPassion",2);
     elseif (csid == 10011) then
         player:addKeyItem(dsp.ki.KOHS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KOHS_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KOHS_LETTER);
         player:tradeComplete();
         player:setVar("unbridledPassion",3);
     end

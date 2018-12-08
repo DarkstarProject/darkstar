@@ -6,14 +6,11 @@
 --  Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
 -- !pos -26 -6 103 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -23,11 +20,11 @@ end;
 function onTrigger(player,npc)
 
     -- cs notes
-    -- 0x172 (370) = You have no mission, gtfo
-    -- 0x17b (379) = Not sure yet (Adventurer from the other day?)
-    -- 0x17c (380) = About the book of gods and "some adventurer"
-    -- 0xa0 (160) = 1st cutscene of Windurst Mission 2-1
-    -- 0xa1 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
+    -- 370 (370) = You have no mission, gtfo
+    -- 379 (379) = Not sure yet (Adventurer from the other day?)
+    -- 380 (380) = About the book of gods and "some adventurer"
+    -- 160 (160) = 1st cutscene of Windurst Mission 2-1
+    -- 161 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
 
     local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     local glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
@@ -67,7 +64,7 @@ function onTrigger(player,npc)
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
         player:startEvent(412);
-    elseif (player:hasKeyItem(149) ==true) then
+    elseif (player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) ==true) then
         player:startEvent(412);
     elseif (chasingStatus == QUEST_ACCEPTED) then
         player:startEvent(406); --  Add follow up cutscene
@@ -103,13 +100,13 @@ function onEventFinish(player,csid,option)
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         player:setVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end

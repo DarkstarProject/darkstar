@@ -3,8 +3,7 @@
 --  MOB: Raigegue_R_d_Oraguille
 -----------------------------------
 
--- require("scripts/zones/The_Eldieme_Necropolis_[S]/MobIDs");
------------------------------------
+-- -----------------------------------
 
 function onMobInitialize(mob)
 end;

@@ -2,9 +2,6 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel GK
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/status");
 -----------------------------------
 
@@ -19,12 +16,13 @@ end;
 function onMobEngaged(mob,target)
     -- TODO: Call Wyvern onMobEngage
 
-   local mobid = mob:getID()
+    local mobid = mob:getID()
 
-   for member = mobid-6, mobid+1 do
-      if (GetMobAction(member) == 16) then
-         GetMobByID(member):updateEnmity(target);
-      end
+    for member = mobid-6, mobid+1 do
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
+        end
     end
 end;
 

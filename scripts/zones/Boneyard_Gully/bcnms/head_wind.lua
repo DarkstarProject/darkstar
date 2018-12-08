@@ -3,11 +3,8 @@
 -- Name: head_wind
 -- BCNM: 672
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
  
@@ -38,18 +35,18 @@ function onBcnmLeave(player,instance,leavecode)
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         end
     elseif (leavecode == 4) then
-           player:startEvent(32002);
-   end
+        player:startEvent(32002);
+    end
     
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
+    -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-     player:addExp(1000);
+        player:addExp(1000);
     end
 end;

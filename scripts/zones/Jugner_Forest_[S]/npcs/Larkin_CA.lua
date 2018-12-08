@@ -4,10 +4,6 @@
 -- Type: Campaign Arbiter
 -- !pos 50.217 -1.769 51.095 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

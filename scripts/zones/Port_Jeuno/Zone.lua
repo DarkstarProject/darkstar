@@ -3,10 +3,9 @@
 -- Zone: Port_Jeuno (246)
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Port_Jeuno/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onInitialize(zone)
@@ -25,16 +24,16 @@ function onZoneIn(player,prevZone)
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         if (prevZone == 223) then
-            cs = 0x2722;
+            cs = 10018;
             player:setPos(-87.000, 12.000, 116.000, 128);
         elseif (prevZone == 224) then
-            cs = 0x2724;
+            cs = 10020;
             player:setPos(-50.000, 12.000, -116.000, 0);
         elseif (prevZone == 225) then
-            cs = 0x2723;
+            cs = 10019;
             player:setPos(16.000, 12.000, -117.000, 0);
         elseif (prevZone == 226) then
-            cs = 0x2725;
+            cs = 10021;
             player:setPos(-24.000, 12.000, 116.000, 128);
         else
             local position = math.random(1,3) - 2;
@@ -53,11 +52,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onTransportEvent(player,transport)
@@ -86,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,226);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 324) then
         player:addQuest(ABYSSEA, A_JOURNEY_BEGINS);
     end

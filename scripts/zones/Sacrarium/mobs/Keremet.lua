@@ -16,8 +16,9 @@ function onMobFight(mob,target)
     -- Send spawned skeleton "pets" to Keremet's target
 
     for i = Keremet+1, Keremet+12 do
-        if (GetMobAction(i) == 16) then
-            GetMobByID(i):updateEnmity(target);
+        local m = GetMobByID(i)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 

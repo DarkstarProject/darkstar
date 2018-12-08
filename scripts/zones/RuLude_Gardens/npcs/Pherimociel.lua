@@ -4,17 +4,14 @@
 -- Involved in mission: COP 1-2
 -- !pos -31.627 1.002 67.956 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-      local Hrandom =math.random();
+    local Hrandom =math.random();
 
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 0) then
         player:startEvent(24);
@@ -26,11 +23,11 @@ function onTrigger(player,npc)
         player:startEvent(10046);
     elseif (player:getCurrentMission(COP) == A_PLACE_TO_RETURN and player:getVar("PromathiaStatus") == 1) then
         if (Hrandom<0.2) then
-          player:startEvent(27);
+            player:startEvent(27);
         elseif (Hrandom<0.6) then
-          player:startEvent(28);
+            player:startEvent(28);
         else
-          player:startEvent(29);
+            player:startEvent(29);
         end
     elseif (player:getCurrentMission(COP) == MORE_QUESTIONS_THAN_ANSWERS  and  player:getVar("PromathiaStatus") == 0) then
         player:startEvent(10049);

@@ -3,33 +3,16 @@
 --  NPC: HomePoint#5
 -- !pos 305 -42 -427 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/RuAun_Gardens/TextIDs");
-require("scripts/globals/homepoint");
+require("scripts/globals/homepoint")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+local hpEvent = 8704
+local hpIndex = 63
 
 function onTrigger(player,npc)
-
-    homepointMenu(player, 8704, 63);
-end;
-
-function onEventUpdate(player,csid,option)
-end;
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-
-    if (csid == 8704) then
-
-        if (option == 1) then
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport(player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

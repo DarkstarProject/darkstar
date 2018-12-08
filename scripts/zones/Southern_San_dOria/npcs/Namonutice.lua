@@ -1,8 +1,8 @@
 -----------------------------------
 -- Area: Southern San d'Oria
 --  NPC: Namonutice
---  Fame Checker
---  @zone 230
+-- Fame Checker
+-- !zone 230
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");

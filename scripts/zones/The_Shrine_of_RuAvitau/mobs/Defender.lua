@@ -2,72 +2,54 @@
 -- Area: The Shrine of Ru'Avitau
 --  MOB: Defender
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
-
-    local Defender = mob:getID();
-    GetMobByID(Defender):setLocalVar("1",1);
-
-end;
+    mob:setLocalVar("petCount", 1)
+end
 
 function onMobFight(mob,target)
+    local auraGear = GetMobByID(mob:getID() + 1)
+    local petCount = mob:getLocalVar("petCount")
 
-    local Defender = mob:getID();
-    local AuraGear = Defender + 1;
-    local ExtraVar = GetMobByID(Defender):getLocalVar("1");
-
-   -- Summons a Defender every 15 seconds.
-   -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
-   -- Defenders can also still spawn the AuraGears while sleeping, etc.
-
-    if (GetMobAction(AuraGear) == 16) then
-        GetMobByID(AuraGear):updateEnmity(target);
+    -- Summons an Aura Gear every 15 seconds.
+    -- TODO: Casting animation for before summons. When he spawns them isn't exactly retail accurate.
+    -- Defenders can also still spawn the Aura Gears while sleeping, etc.
+    -- Maximum number of pets Defender can spawn is 5
+    if petCount <= 5 and mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3 and not auraGear:isSpawned() then
+        auraGear:setSpawn(mob:getXPos() + 1, mob:getYPos(), mob:getZPos() + 1)
+        auraGear:spawn()
+        auraGear:updateEnmity(target)
+        mob:setLocalVar("petCount", petCount + 1)
     end
 
-    if (ExtraVar <= 6) then  -- Maximum number of pets Defender can spawn is 5
-        if (mob:getBattleTime() % 15 < 3 and mob:getBattleTime() > 3) then
-            if (GetMobAction(AuraGear) == 0) then
-                SpawnMob(AuraGear):updateEnmity(target);
-                GetMobByID(AuraGear):setPos(GetMobByID(Defender):getXPos()+1, GetMobByID(Defender):getYPos(), GetMobByID(Defender):getZPos()+1); -- Set AuraGear x and z position +1 from Defender
-                GetMobByID(Defender):setLocalVar("1",ExtraVar+1);
-                return;
-            end
-        end
+    -- make sure pet has a target
+    if auraGear:getCurrentAction() == dsp.act.ROAMING then
+        auraGear:updateEnmity(target)
     end
-
-end;
+end
 
 function onMobDisengage(mob)
+    local auraGearId = mob:getID() + 1
 
-    local Defender = mob:getID();
-    local AuraGear = mob:getID() + 1;
+    mob:resetLocalVars()
 
-    GetMobByID(Defender):resetLocalVars();
-
-    if (GetMobAction(AuraGear) ~= 0) then
-        DespawnMob(AuraGear);
+    if GetMobByID(auraGearId):isSpawned() then
+        DespawnMob(auraGearId)
     end
-
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,749,1);
-end;
+    dsp.regime.checkRegime(player, mob, 749, 1, dsp.regime.type.GROUNDS)
+end
 
 function onMobDespawn( mob )
+    local auraGearId = mob:getID() + 1
 
-    local Defender = mob:getID();
-    local AuraGear = mob:getID() + 1;
+    mob:resetLocalVars()
 
-    GetMobByID(Defender):resetLocalVars();
-
-    if (GetMobAction(AuraGear) ~= 0) then
-        DespawnMob(AuraGear);
+    if GetMobByID(auraGearId):isSpawned() then
+        DespawnMob(auraGearId)
     end
-
-end;
+end

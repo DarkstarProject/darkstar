@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Elnonde
--- @zone 80
--- !pos 86 2 -0
+-- !pos 86 2 -0 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

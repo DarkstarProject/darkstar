@@ -1,25 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Kristen
+--  NPC: Kristen
 -- Type: Standard NPC
--- @zone 94
--- !pos 2.195 -2 60.296
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos 2.195 -2 60.296 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(404);
-end;
+    player:startEvent(404)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

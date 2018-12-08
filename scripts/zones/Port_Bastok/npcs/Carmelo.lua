@@ -4,10 +4,12 @@
 -- Start & Finishes Quest: Love and Ice, A Test of True Love
 -- Start Quest: Lovers in the Dusk
 -- Involved in Quest: The Siren's Tear
--- @zone 236
--- !pos -146.476 -7.48 -10.889
+-- !pos -146.476 -7.48 -10.889 236
 -----------------------------------
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+-----------------------------------
 
 
 function onTrade(player,npc,trade)
@@ -68,16 +70,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 185) then
         player:addQuest(BASTOK,LOVE_AND_ICE);
         player:addKeyItem(dsp.ki.CARMELOS_SONG_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CARMELOS_SONG_SHEET);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARMELOS_SONG_SHEET);
     elseif (csid == 186) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17356);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17356);
         else
             player:setVar("LoveAndIceProgress",0);
             player:needToZone(true);
             player:addTitle(dsp.title.SORROW_DROWNER);
             player:addItem(17356);
-            player:messageSpecial(ITEM_OBTAINED,17356); -- Lamia Harp
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17356); -- Lamia Harp
             player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,LOVE_AND_ICE);
         end
@@ -94,6 +96,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 275) then
         player:addQuest(BASTOK,LOVERS_IN_THE_DUSK);
         player:addKeyItem(dsp.ki.CHANSON_DE_LIBERTE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHANSON_DE_LIBERTE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHANSON_DE_LIBERTE);
     end
 end;

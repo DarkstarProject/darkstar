@@ -4,10 +4,8 @@
 -- Leads to painbrush room @ F-7
 -- !pos 60 0.1 8 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,7 +19,7 @@ end;
 function onTrigger(player,npc)
 
     if (player:getZPos() < 11) then
-        player:messageSpecial(THE_DOOR_IS_LOCKED,1136);
+        player:messageSpecial(ID.text.THE_DOOR_IS_LOCKED,1136);
     else
         player:startEvent(47);
     end
@@ -37,7 +35,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 46) then
         player:tradeComplete();
-        player:messageSpecial(YOUR_KEY_BREAKS,0000,1136);
+        player:messageSpecial(ID.text.YOUR_KEY_BREAKS,0000,1136);
     end
 
 end;

@@ -204,6 +204,7 @@ namespace luautils
     int32 OnAttachmentUnequip(CBattleEntity* PEntity, CItemPuppet* attachment);
     int32 OnManeuverGain(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
     int32 OnManeuverLose(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
+    int32 OnUpdateAttachment(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers);
 
     int32 OnItemUse(CBaseEntity* PTarget, CItem* PItem);                        // triggers when item is used
     std::tuple<int32, int32, int32> OnItemCheck(CBaseEntity* PTarget, CItem* PItem, ITEMCHECK param = ITEMCHECK::NONE, CBaseEntity* PCaster = nullptr);    // check to see if item can be used
@@ -261,7 +262,6 @@ namespace luautils
     int32 DisallowRespawn(lua_State* L);                                               // Allow or prevent a mob from spawning
     int32 UpdateNMSpawnPoint(lua_State* L);                                     // Update the spawn point of an NM
     int32 SetDropRate(lua_State*);                                              // Set drop rate of a mob setDropRate(dropid,itemid,newrate)
-    int32 UpdateTreasureSpawnPoint(lua_State* L);                               // Update the spawn point of an Treasure
     int32 UpdateServerMessage(lua_State*);                                      // update server message, first modify in conf and update
 
     int32 OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, uint32 damage); // for items with additional effects

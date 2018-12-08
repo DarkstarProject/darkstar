@@ -2,10 +2,6 @@
 -- Area: Bastok Markets (S)
 --  NPC: Red Canyon
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
------------------------------------
 
 function onTrigger(player,npc)
     player:startEvent(200)

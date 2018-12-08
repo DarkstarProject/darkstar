@@ -3,9 +3,6 @@
 --  NPC: Domenic
 -- BCNM/KSNM Teleporter
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/teleports");
 require("scripts/globals/quests");

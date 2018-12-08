@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Loillie
--- @zone 80
--- !pos 78 -8 -23
+-- !pos 78 -8 -23 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

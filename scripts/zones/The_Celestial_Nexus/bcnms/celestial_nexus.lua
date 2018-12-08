@@ -2,12 +2,9 @@
 -- Area: The Celestial Nexus
 -- Name: The Celestial Nexus (ZM16)
 -----------------------------------
-package.loaded["scripts/zones/The_Celestial_Nexus/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/missions");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
 
 -----------------------------------
 

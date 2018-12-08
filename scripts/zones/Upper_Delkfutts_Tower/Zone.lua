@@ -3,26 +3,20 @@
 -- Zone: Upper_Delkfutts_Tower (158)
 --
 -----------------------------------
-package.loaded["scripts/zones/Upper_Delkfutts_Tower/TextIDs"] = nil;
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
-require("scripts/zones/Upper_Delkfutts_Tower/TextIDs");
-require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/common");
 
 function onInitialize(zone)
     zone:registerRegion(1, -369, -146, 83,  -365, -145,  89); -- Tenth Floor F-6 porter to Middle Delkfutt's Tower
     zone:registerRegion(2, -369, -178, -49, -365, -177, -43); -- Twelfth Floor F-10 porter to Stellar Fulcrum
 
-    UpdateTreasureSpawnPoint(DELKFUTT_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)

@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos -37.268 -9 58.047 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -34,11 +32,11 @@ function onTrade(player,npc,trade)
         if (QuestStatus == QUEST_ACCEPTED) or (player:getLocalVar("OrlandoRepeat") == 1) then
             if (item[1] == itemID) then
                 if (trade:hasItemQty(itemID, 8) and trade:getItemCount() == 8) then
-                -- Correct amount, valid item.
+                    -- Correct amount, valid item.
                     player:setVar("ANTIQUE_PAYOUT", (GIL_RATE*item[2]));
                     player:startEvent(102, GIL_RATE*item[2], itemID);
                 elseif (trade:getItemCount() < 8) then
-                 -- Wrong amount, but valid item.
+                    -- Wrong amount, but valid item.
                     player:startEvent(104);
                 end
             end
@@ -77,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addFame(WINDURST,10);
         player:addGil(payout);
-        player:messageSpecial(GIL_OBTAINED,payout);
+        player:messageSpecial(ID.text.GIL_OBTAINED,payout);
         player:completeQuest(OTHER_AREAS_LOG, ORLANDO_S_ANTIQUES);
         player:setVar("ANTIQUE_PAYOUT", 0);
         player:setLocalVar("OrlandoRepeat", 0);

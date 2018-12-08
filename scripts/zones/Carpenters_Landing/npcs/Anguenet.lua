@@ -4,8 +4,6 @@
 -- Type: Adventurer's Assistant
 -- !pos 214.672 -3.013 -527.561 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

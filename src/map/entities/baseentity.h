@@ -32,6 +32,7 @@
 
 enum ENTITYTYPE
 {
+    TYPE_NONE   = 0x00,
     TYPE_PC     = 0x01,
     TYPE_NPC    = 0x02,
     TYPE_MOB    = 0x04,
@@ -58,6 +59,7 @@ enum ANIMATIONTYPE
     ANIMATION_ATTACK             = 1,
     // Death                        = 2,
     ANIMATION_DEATH              = 3,
+    ANIMATION_EVENT              = 4,
     ANIMATION_CHOCOBO            = 5,
     ANIMATION_FISHING            = 6,
     // Healing                      = 7,

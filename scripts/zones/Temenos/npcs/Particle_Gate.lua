@@ -2,12 +2,9 @@
 -- Area: Temenos
 -- NPC:  Particle_Gate
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/limbus");
 require("scripts/globals/keyitems");
-require("scripts/zones/Temenos/TextIDs");
 
 function onTrade(player,npc,trade)
 end;

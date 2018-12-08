@@ -2,12 +2,9 @@
 -- Area: Rabao
 --   NPC: Dancing Wolf
 -- Type: Standard NPC
--- @zone 247
--- !pos 7.619 7 81.209
+-- !pos 7.619 7 81.209 247
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)

@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
 Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -105,6 +105,7 @@ This file is part of DarkStar-server source code.
 #include "packets/delivery_box.h"
 #include "packets/downloading_data.h"
 #include "packets/entity_update.h"
+#include "packets/furniture_interact.h"
 #include "packets/guild_menu_buy.h"
 #include "packets/guild_menu_sell.h"
 #include "packets/guild_menu_buy_update.h"
@@ -118,6 +119,7 @@ This file is part of DarkStar-server source code.
 #include "packets/linkshell_equip.h"
 #include "packets/linkshell_message.h"
 #include "packets/macroequipset.h"
+#include "packets/map_marker.h"
 #include "packets/menu_config.h"
 #include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
@@ -131,6 +133,7 @@ This file is part of DarkStar-server source code.
 #include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
+#include "packets/release_special.h"
 #include "packets/server_ip.h"
 #include "packets/server_message.h"
 #include "packets/shop_appraise.h"
@@ -271,10 +274,13 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         int32 ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
         if (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            PChar->m_DeathCounter = (uint32)Sql_GetUIntData(SqlHandle, 0);
-            PChar->m_DeathTimestamp = (uint32)time(nullptr);
+            // Update the character's death timestamp based off of how long they were previously dead
+            uint32 secondsSinceDeath = (uint32)Sql_GetUIntData(SqlHandle, 0);
             if (PChar->health.hp == 0)
-                PChar->Die(std::chrono::seconds(PChar->m_DeathCounter));
+            {
+                PChar->SetDeathTimestamp((uint32)time(nullptr) - secondsSinceDeath);
+                PChar->Die(CCharEntity::death_duration - std::chrono::seconds(secondsSinceDeath));
+            }
         }
 
         fmtQuery = "SELECT pos_prevzone FROM chars WHERE charid = %u";
@@ -304,6 +310,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+    else
+        charutils::ClearTempItems(PChar);
 
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
@@ -431,7 +439,7 @@ void SmallPacket0x00D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     charutils::SaveCharStats(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());
-    charutils::SaveCharPoints(PChar);
+    charutils::SaveCharUnlocks(PChar);
 
     PChar->status = STATUS_DISAPPEAR;
     return;
@@ -624,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
+        if (PChar->m_Costume != 0 || PChar->animation == ANIMATION_SYNTH)
         {
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;
@@ -713,9 +721,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (!PChar->m_hasRaise)
             return;
         if (data.ref<uint8>(0x0C) == 0) //ACCEPTED RAISE
-        {
             PChar->Raise();
-        }
+        else
+            PChar->m_hasRaise = 0;
     }
     break;
     case 0x0E: // Fishing
@@ -2279,7 +2287,8 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
         if ((PItem != nullptr) &&
             !(PItem->isSubType(ITEM_LOCKED)) &&
-            !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+            !(PItem->getFlag() & ITEM_FLAG_NOAUCTION) &&
+            PItem->getQuantity() >= quantity)
         {
             if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
             {
@@ -2674,7 +2683,7 @@ void SmallPacket0x05B(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     }
 
     PChar->pushPacket(new CReleasePacket(PChar, RELEASE_EVENT));
-    return;
+    PChar->updatemask |= UPDATE_HP;
 }
 
 /************************************************************************
@@ -3963,7 +3972,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -3989,7 +3998,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -4087,7 +4096,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
         qStr += (const char*)PChar->GetName();
         qStr += "','TELL','";
-        qStr += RecipientName.c_str();
+        qStr += RecipientName;
         qStr += "','";
         qStr += escape((const char*)data[20]);
         qStr += "',current_timestamp());";
@@ -4212,7 +4221,6 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = data.ref<uint16>(0x04);
-            string_t LinkshellName = (const char*)data[12];
             int8     DecodedName[21];
             int8     EncodedName[16];
 
@@ -4908,6 +4916,21 @@ void SmallPacket0x0EA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
 /************************************************************************
 *                                                                       *
+*  Special Release Request                                              *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x0EB(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    if (PChar->m_event.EventID == -1)
+        return;
+
+    PChar->pushPacket(new CSpecialReleasePacket(PChar));
+    return;
+}
+
+/************************************************************************
+*                                                                       *
 *  Cancel Status Effect                                                 *
 *                                                                       *
 ************************************************************************/
@@ -5145,6 +5168,8 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (ItemID == 0)
     {
+        // No item sent means the client has finished placing furniture
+        PChar->UpdateMoghancement();
         return;
     }
 
@@ -5178,7 +5203,43 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PItem->setLevel(level);
         PItem->setRotation(rotation);
 
+        // Update installed furniture placement orders
+        // First we place the furniture into placed items using the order number as the index
+        std::array<CItemFurnishing*, MAX_CONTAINER_SIZE * 2> placedItems = { nullptr };
+        for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
+        {
+            CItemContainer* PContainer = PChar->getStorage(safeContainerId);
+            for (int slotIndex = 1; slotIndex <= PContainer->GetSize(); ++slotIndex)
+            {
+                if (slotID == slotIndex && containerID == safeContainerId)
+                    continue;
+
+                CItem* PContainerItem = PContainer->GetItem(slotIndex);
+                if (PContainerItem != nullptr && PContainerItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PContainerItem);
+                    if (PFurniture->isInstalled())
+                    {
+                        placedItems[PFurniture->getOrder()] = PFurniture;
+                    }
+                }
+            }
+        }
+
+        // Update the item's order number
+        for (int32 i = 0; i < MAX_CONTAINER_SIZE * 2; ++i)
+        {
+            // We can stop updating the order numbers once we hit an empty order number
+            if (placedItems[i] == nullptr)
+                break;
+            placedItems[i]->setOrder(placedItems[i]->getOrder() + 1);
+        }
+        // Set this item to being the most recently placed item
+        PItem->setOrder(0);
+
         PItem->setSubType(ITEM_LOCKED);
+
+        PChar->pushPacket(new CFurnitureInteractPacket(PItem, containerID, slotID));
 
         char extra[sizeof(PItem->m_extra) * 2 + 1];
         Sql_EscapeStringLen(SqlHandle, extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
@@ -5403,7 +5464,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(spellInQuestion + 0x200)); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
                     if (spell != nullptr) {
-                        blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+                        blueutils::SetBlueSpell(PChar, spell, spellIndex, false);
                     }
                     else {
                         ShowDebug("Cannot resolve spell id \n");
@@ -5822,7 +5883,7 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (PChar->StatusEffectContainer->HasPreventActionEffect())
         return;
-    
+
     uint8 type = data.ref<uint8>(0x04);
     if (type == 2)
     {
@@ -5830,7 +5891,7 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         PChar->updatemask |= UPDATE_HP;
         return;
     }
-    
+
     uint8 chairId = data.ref<uint8>(0x08) + ANIMATION_SITCHAIR_0;
     if (chairId < 63 || chairId > 83)
         return;
@@ -5844,6 +5905,17 @@ void SmallPacket0x113(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->animation = PChar->animation == chairId ? ANIMATION_NONE : chairId;
     PChar->updatemask |= UPDATE_HP;
     return;
+}
+
+/************************************************************************
+*                                                                       *
+*  Map Marker Request Packet                                            *
+*                                                                       *
+************************************************************************/
+
+void SmallPacket0x114(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
+{
+    PChar->pushPacket(new CMapMarkerPacket(PChar));
 }
 
 /************************************************************************
@@ -5951,6 +6023,7 @@ void PacketParserInitialize()
     PacketSize[0x0E7] = 0x04; PacketParser[0x0E7] = &SmallPacket0x0E7;
     PacketSize[0x0E8] = 0x04; PacketParser[0x0E8] = &SmallPacket0x0E8;
     PacketSize[0x0EA] = 0x00; PacketParser[0x0EA] = &SmallPacket0x0EA;
+    PacketSize[0x0EB] = 0x00; PacketParser[0x0EB] = &SmallPacket0x0EB;
     PacketSize[0x0F1] = 0x00; PacketParser[0x0F1] = &SmallPacket0x0F1;
     PacketSize[0x0F2] = 0x00; PacketParser[0x0F2] = &SmallPacket0x0F2;
     PacketSize[0x0F4] = 0x04; PacketParser[0x0F4] = &SmallPacket0x0F4;
@@ -5971,7 +6044,7 @@ void PacketParserInitialize()
     PacketSize[0x111] = 0x00; PacketParser[0x111] = &SmallPacket0x111; // Lock Style Request
     PacketSize[0x112] = 0x00; PacketParser[0x112] = &SmallPacket0xFFF;
     PacketSize[0x113] = 0x06; PacketParser[0x113] = &SmallPacket0x113;
-    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0xFFF;
+    PacketSize[0x114] = 0x00; PacketParser[0x114] = &SmallPacket0x114;
     PacketSize[0x115] = 0x02; PacketParser[0x115] = &SmallPacket0x115;
 }
 

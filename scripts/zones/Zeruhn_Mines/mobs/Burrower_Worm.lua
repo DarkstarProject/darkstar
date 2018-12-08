@@ -2,12 +2,9 @@
 -- Area: Zeruhn Mines (172)
 --  Mob: Burrower Worm
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,629,2);
-end;
+    dsp.regime.checkRegime(player, mob, 629, 2, dsp.regime.type.GROUNDS)
+end

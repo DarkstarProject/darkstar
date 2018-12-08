@@ -3,10 +3,7 @@
 -- Zone: Western_Altepa_Desert (125)
 --
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
-require("scripts/zones/Western_Altepa_Desert/MobIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs");
 require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
@@ -14,49 +11,13 @@ require("scripts/globals/weather");
 require("scripts/globals/zone");
 -----------------------------------
 
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 880, 224, DIGREQ_NONE },
-                    { 887, 39, DIGREQ_NONE },
-                    { 645, 14, DIGREQ_NONE },
-                    { 893, 105, DIGREQ_NONE },
-                    { 737, 17, DIGREQ_NONE },
-                    { 643, 64, DIGREQ_NONE },
-                    { 17296, 122, DIGREQ_NONE },
-                    { 942, 6, DIGREQ_NONE },
-                    { 642, 58, DIGREQ_NONE },
-                    { 864, 22, DIGREQ_NONE },
-                    { 843, 4, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 845, 122, DIGREQ_BURROW },
-                    { 844, 71, DIGREQ_BURROW },
-                    { 1845, 33, DIGREQ_BURROW },
-                    { 838, 11, DIGREQ_BURROW },
-                    { 902, 6, DIGREQ_BORE },
-                    { 886, 3, DIGREQ_BORE },
-                    { 867, 3, DIGREQ_BORE },
-                    { 1587, 19, DIGREQ_BORE },
-                    { 888, 25, DIGREQ_BORE },
-                    { 1586, 8, DIGREQ_BORE },
-                    { 885, 10, DIGREQ_BORE },
-                    { 866, 3, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
-
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(KING_VINEGARROON);
-    GetMobByID(KING_VINEGARROON):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.KING_VINEGARROON);
+    GetMobByID(ID.mob.KING_VINEGARROON):setRespawnTime(math.random(900, 10800));
 end;
 
 function onZoneIn( player, prevZone)
@@ -74,11 +35,7 @@ function onZoneIn( player, prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter( player, region)
@@ -97,9 +54,11 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    if (GetMobAction(KING_VINEGARROON) == 24 and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM)) then
-        SpawnMob(KING_VINEGARROON); -- King Vinegarroon
-    elseif (GetMobAction(KING_VINEGARROON) == 16 and (weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM)) then
-        DespawnMob(KING_VINEGARROON);
+    local KV = GetMobByID(ID.mob.KING_VINEGARROON)
+
+    if KV:getCurrentAction() == dsp.act.DESPAWN and (weather == dsp.weather.DUST_STORM or weather == dsp.weather.SAND_STORM) then
+        KV:spawn()
+    elseif KV:getCurrentAction() == dsp.act.ROAMING and weather ~= dsp.weather.DUST_STORM and weather ~= dsp.weather.SAND_STORM then
+        DespawnMob(ID.mob.KING_VINEGARROON)
     end
 end;

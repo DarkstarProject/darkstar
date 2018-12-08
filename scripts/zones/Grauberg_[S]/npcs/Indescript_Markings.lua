@@ -3,9 +3,7 @@
 --  NPC: Indescript Markings
 -- Type: Quest
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local ID = require("scripts/zones/Grauberg_[S]/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/status");
@@ -40,7 +38,7 @@ function onTrigger(player,npc)
 
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

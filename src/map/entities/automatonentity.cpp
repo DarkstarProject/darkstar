@@ -126,6 +126,13 @@ void CAutomatonEntity::setInitialBurden()
 
 uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
 {
+    // Handle Kenkonken Suppress Overload
+    if (PMaster->getMod(Mod::SUPPRESS_OVERLOAD) > 0)
+    {
+        // TODO: Retail research, this is a best guess
+        burden /= 3;
+    }
+
     m_Burden[element] = std::clamp(m_Burden[element] + burden, 0, 255);
 
     if (burden > 0)

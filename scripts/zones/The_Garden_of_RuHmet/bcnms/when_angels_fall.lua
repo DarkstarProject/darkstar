@@ -2,14 +2,11 @@
 -- Area: The_Garden_of_RuHmet
 -- Name: when_angels_fall
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -57,13 +54,13 @@ function onBcnmLeave(player,instance,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
--- print("bc update csid "..csid.." and option "..option);
+    -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);
-  if (csid== 32001) then
-    player:setPos(420,0,445,192);
-end
+    -- print("bc finish csid "..csid.." and option "..option);
+    if (csid== 32001) then
+        player:setPos(420,0,445,192);
+    end
  
 end;

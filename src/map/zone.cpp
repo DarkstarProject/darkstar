@@ -844,18 +844,15 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     PChar->loc.destination = 0;
     PChar->m_InsideRegionID = 0;
 
-    //remove temp items
-    charutils::ClearTempItems(PChar);
-
     if (PChar->isMounted() && !CanUseMisc(MISC_MOUNT))
     {
         PChar->animation = ANIMATION_NONE;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
     }
 
-    if (PChar->m_Costum != 0)
+    if (PChar->m_Costume != 0)
     {
-        PChar->m_Costum = 0;
+        PChar->m_Costume = 0;
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_COSTUME);
     }
 

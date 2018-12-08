@@ -14,10 +14,8 @@
 -- !pos 199.38 -22.559 60
 -- !pos -200.679 -8.57 60
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -57,7 +55,7 @@ function onTrigger(player,npc)
     elseif ((X <= 205.3 and X >= 193.3) and (Y >= -24 and Y <= -22) and (Z >= 54 and Z <= 66)) then
         player:startEvent(31);
     elseif ((X <= -194.6 and X >= -206.6) and (Y >= -8 and Y <= -6) and (Z >= 54 and Z <= 66)) then
-        player:messageSpecial(DOOR_SEALED_SHUT);
+        player:messageSpecial(ID.text.DOOR_SEALED_SHUT);
     end
 
 end;
