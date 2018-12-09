@@ -863,7 +863,9 @@ INSERT INTO `nm_spawn_points` VALUES (17101099,47,-543.752,-3.952,56.330);
 INSERT INTO `nm_spawn_points` VALUES (17101099,48,-542.274,-3.654,57.490);
 INSERT INTO `nm_spawn_points` VALUES (17101099,49,-541.146,-2.807,61.593);
 INSERT INTO `nm_spawn_points` VALUES (17121576,0,-153.108,-10.397,15.353); -- La Velue
+INSERT INTO `nm_spawn_points` VALUES (17150280,0,-515.4,-23.78,-453.51); -- Delicieuse Delphine
 INSERT INTO `nm_spawn_points` VALUES (17166543,0,114.742,-1.007,-288.349); -- Jeduah
+INSERT INTO `nm_spawn_points` VALUES (17178803,0,446.853,23.817,72.982); -- Balam-Quitz
 INSERT INTO `nm_spawn_points` VALUES (17187047,0,-133.001,-20.636,-141.110);
 INSERT INTO `nm_spawn_points` VALUES (17187047,1,-287.202,-20.826,-199.075);
 INSERT INTO `nm_spawn_points` VALUES (17187047,2,-295.626,-21.389,-192.191);
@@ -1731,6 +1733,8 @@ INSERT INTO `nm_spawn_points` VALUES (17223797,0,-429.953,24.5,-305.450); -- Ni'
 INSERT INTO `nm_spawn_points` VALUES (17223797,1,11.309,23.904,-337.923);
 INSERT INTO `nm_spawn_points` VALUES (17223889,0,184.993,24.499,-41.790);
 INSERT INTO `nm_spawn_points` VALUES (17224019,0,-351.884,24.014,513.531);
+INSERT INTO `nm_spawn_points` VALUES (17227972,0,5,-15,-142); -- Black Triple Stars (north)
+INSERT INTO `nm_spawn_points` VALUES (17227992,0,76,-15,-209); -- Black Triple Stars (south)
 INSERT INTO `nm_spawn_points` VALUES (17228150,0,395.000,-24.000,-147.000);
 INSERT INTO `nm_spawn_points` VALUES (17228150,1,388.000,-37.859,-162.602);
 INSERT INTO `nm_spawn_points` VALUES (17228236,0,-691.786,-34.802,-335.763);
@@ -2867,6 +2871,8 @@ INSERT INTO `nm_spawn_points` VALUES (17272958,3,334.000,1.000,226.000);
 INSERT INTO `nm_spawn_points` VALUES (17272958,4,5.000,0.000,-22.000);
 INSERT INTO `nm_spawn_points` VALUES (17272978,0,312,-0.5,159); -- Keeper of Halidom
 INSERT INTO `nm_spawn_points` VALUES (17273278,0,-391.184,-0.269,-159.086);
+INSERT INTO `nm_spawn_points` VALUES (17276982,0,-108.575,-5.699,-5.432); -- Nightmare Vase (west)
+INSERT INTO `nm_spawn_points` VALUES (17276992,0,69,-5,21); -- Nightmare Vase (east)
 INSERT INTO `nm_spawn_points` VALUES (17281061,0,-307.000,2.000,216.000);
 INSERT INTO `nm_spawn_points` VALUES (17281061,1,-299.000,0.000,192.000);
 INSERT INTO `nm_spawn_points` VALUES (17281061,2,-334.000,3.000,182.000);
@@ -3171,6 +3177,7 @@ INSERT INTO `nm_spawn_points` VALUES (17289575,46,-237.054,0.964,-660.702);
 INSERT INTO `nm_spawn_points` VALUES (17289575,47,-208.925,0.517,-661.646);
 INSERT INTO `nm_spawn_points` VALUES (17289575,48,-246.296,0.036,-634.473);
 INSERT INTO `nm_spawn_points` VALUES (17289575,49,-238.409,0.703,-664.933);
+INSERT INTO `nm_spawn_points` VALUES (17293537,0,-159,-19,244); -- Trickster Kinetix
 INSERT INTO `nm_spawn_points` VALUES (17297440,0,-277.763,-20.309,72.189);
 INSERT INTO `nm_spawn_points` VALUES (17297440,1,-236.097,-19.030,20.582);
 INSERT INTO `nm_spawn_points` VALUES (17297440,2,-239.829,-19.017,60.325);
@@ -5867,11 +5874,19 @@ INSERT INTO `nm_spawn_points` VALUES (17617147,46,-284.835,40.359,127.630);
 INSERT INTO `nm_spawn_points` VALUES (17617147,47,-278.404,39.804,124.018);
 INSERT INTO `nm_spawn_points` VALUES (17617147,48,-278.698,40.000,118.521);
 INSERT INTO `nm_spawn_points` VALUES (17617147,49,-273.051,40.231,113.202);
-INSERT INTO `nm_spawn_points` VALUES (17629238,0,754.000, 2.000, -553.000);
+INSERT INTO `nm_spawn_points` VALUES (17629238,0,754.000, 2.000, -553.000); -- Centurio X-I
 INSERT INTO `nm_spawn_points` VALUES (17629238,1,765.000, 1.000, -572.000);
 INSERT INTO `nm_spawn_points` VALUES (17629238,2,781.000, 2.000, -556.000);
 INSERT INTO `nm_spawn_points` VALUES (17629238,3,798.000, 2.000, -567.000);
 INSERT INTO `nm_spawn_points` VALUES (17629238,4,804.000, 2.000, -552.000);
+INSERT INTO `nm_spawn_points` VALUES (17629412,0,-77,-0.5,-56); -- Antican Magister
+INSERT INTO `nm_spawn_points` VALUES (17629281,0,869.240,1.045,-655.214); -- Antican Praefectus
+INSERT INTO `nm_spawn_points` VALUES (17629403,0,195,1,5); -- Nussknacker
+INSERT INTO `nm_spawn_points` VALUES (17629421,0,76,-0.6,-194); -- Antican Proconsul
+INSERT INTO `nm_spawn_points` VALUES (17629430,0,-81,-0.5,-217); -- Diamond Daig
+INSERT INTO `nm_spawn_points` VALUES (17629483,0,-582,-0.5,-412); -- Antican Tribunus
+INSERT INTO `nm_spawn_points` VALUES (17629524,0,-815,-0.5,-340); -- Triarius X-XV
+INSERT INTO `nm_spawn_points` VALUES (17629561,0,-336,-0.5,739); -- Hastatus XI-XII
 INSERT INTO `nm_spawn_points` VALUES (17645578,0,-72.000,-10.000,-170.000);
 INSERT INTO `nm_spawn_points` VALUES (17645578,1,-67.566,-9.052,-158.554);
 INSERT INTO `nm_spawn_points` VALUES (17645578,2,-50.912,-9.966,-171.669);
