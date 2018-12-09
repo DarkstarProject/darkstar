@@ -27,6 +27,11 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
     },
     mob =
     {
+        BLACK_TRIPLE_STARS_PH =
+        {
+            [17227968] = 17227972, -- 4 -16 -119 (north)
+            [17227988] = 17227992, -- 76 -15 -209 (south)
+        },
         DROOLING_DAISY_PH =
         {
             [17228235] = 17228236, -- -691.786 -34.802 -335.763
