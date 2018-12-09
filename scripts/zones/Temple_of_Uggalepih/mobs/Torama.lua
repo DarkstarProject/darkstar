@@ -1,9 +1,9 @@
 -----------------------------------
--- Area: Caedarva Mire
---  MOB: Wild_Karakul
--- Note: PH for Peallaidh
+-- Area: Temple of Uggalepih
+--  MOB: Torama
+-- Note: PH for Flauros
 -----------------------------------
-local ID = require("scripts/zones/Caedarva_Mire/IDs")
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 require("scripts/globals/mobs")
 -----------------------------------
 
@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.PEALLAIDH_PH, 5, 3600) -- 1 hour
+    phOnDespawn(mob, ID.mob.FLAUROS_PH, 10, 3600) -- 1 hour
 end
