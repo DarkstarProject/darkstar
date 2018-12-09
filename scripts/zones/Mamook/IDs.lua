@@ -20,6 +20,11 @@ zones[dsp.zone.MAMOOK] =
     },
     mob =
     {
+        FIREDANCE_MAGMAAL_JA_PH =
+        {
+            [17043773] = 17043779, -- -201.522 17.209 -363.865
+            [17043774] = 17043779, -- -206.458 17.525 -373.798
+        },
         GULOOL_JA_JA   = 17043875,
         CHAMROSH       = 17043887,
         IRIRI_SAMARIRI = 17043888,

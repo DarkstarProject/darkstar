@@ -25,6 +25,10 @@ zones[dsp.zone.INNER_HORUTOTO_RUINS] =
     },
     mob =
     {
+        SLENDLIX_SPINDLETHUMB_PH =
+        {
+            [17563758] = 17563785, -- -238.315 -0.002 -179.249
+        },
         NOCUOUS_WEAPON_PH =
         {
             [17563798] = 17563801, -- -236.855 0.476 -51.263
