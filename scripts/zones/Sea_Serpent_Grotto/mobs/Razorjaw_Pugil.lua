@@ -1,17 +1,15 @@
 -----------------------------------
 -- Area: Seas Serpent Grotto
---  MOB: Royal Leech
--- Note: PH for Masan
+--  MOB: Razorjaw Pugil
+-- Note: PH for Sea Hog
 -----------------------------------
 local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
-require("scripts/globals/regimes")
 require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    dsp.regime.checkRegime(player, mob, 804, 1, dsp.regime.type.GROUNDS)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.MASAN_PH, 10, 14400) -- 4 hours
+    phOnDespawn(mob, ID.mob.SEA_HOG_PH, 10, 3600) -- 1 hour
 end

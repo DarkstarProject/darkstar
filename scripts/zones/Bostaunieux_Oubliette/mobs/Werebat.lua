@@ -10,5 +10,8 @@ require("scripts/globals/mobs")
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 611, 2, dsp.regime.type.GROUNDS)
+end
+
+function onMobDespawn(mob)
     phOnDespawn(mob, ID.mob.ARIOCH_PH, 10, 3600) -- 1 hour
 end

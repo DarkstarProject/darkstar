@@ -10,5 +10,8 @@ require("scripts/globals/mobs")
 
 function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 114, 2, dsp.regime.type.FIELDS)
+end
+
+function onMobDespawn(mob)
     phOnDespawn(mob, ID.mob.KEEPER_OF_HALIDOM_PH, 10, 7200) -- 2 hours
 end
