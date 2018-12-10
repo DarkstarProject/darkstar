@@ -1,4 +1,4 @@
-require("scripts/globals/missions");
+require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/zone")
 
@@ -52,11 +52,14 @@ this_quest.npcs =
                 if questStatus == QUEST_ACCEPTED then
                     if player:hasKeyItem(dsp.ki.EXTRAVAGANT_HARPOON) then
                         player:startEvent(2542) -- Finishing Quest: 'The Old Man and the Harpoon'
+                        return true
                     else
                         player:startEvent(2541) -- Dialogue during Quest: 'The Old Man and the Harpoon'
+                        return true
                     end
                 elseif (SOA_Mission >= LIFE_ON_THE_FRONTIER) and (questStatus == QUEST_AVAILABLE) then
                     player:startEvent(2540) -- Starts Quest: 'The Old Man and the Harpoon'
+                    return true
                 end
             end
         },
@@ -67,13 +70,15 @@ this_quest.npcs =
             onTrigger = function(player, npc)
                 if player:hasKeyItem(dsp.ki.BROKEN_HARPOON) then
                     player:startEvent(2543) -- Progresses Quest: 'The Old Man and the Harpoon'
+                    return true
                 end
             end
         }
     }
 }
 
-this_quest.events = {
+this_quest.events =
+{
     [dsp.zone.WESTERN_ADOULIN] =
     {
         [2540] =
@@ -84,6 +89,7 @@ this_quest.events = {
                 -- Jorin, starting Quest: 'The Old Man and the Harpoon'
                 if npcUtil.giveKeyItem(player, dsp.ki.BROKEN_HARPOON) then
                     player:addQuest(this_quest.logid, this_quest.questid)
+                    return true
                 end
             end
         },
@@ -95,6 +101,7 @@ this_quest.events = {
                 -- Jorin, finishing Quest: 'The Old Man and the Harpoon'
                 if dsp.quests.complete(player, this_quest) then
                     player:delKeyItem(dsp.ki.EXTRAVAGANT_HARPOON)
+                    return true
                 end
             end
         },
@@ -106,6 +113,7 @@ this_quest.events = {
                 -- Shipilolo, progresses Quest: 'The Old Man and the Harpoon'
                 if npcUtil.giveKeyItem(player, dsp.ki.EXTRAVAGANT_HARPOON) then
                     player:delKeyItem(dsp.ki.BROKEN_HARPOON)
+                    return true
                 end
             end
         }

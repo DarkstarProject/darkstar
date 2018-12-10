@@ -12,7 +12,11 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 local ID = require("scripts/zones/Western_Adoulin/IDs");
-local THE_OLD_MAN_AND_THE_HARPOON = require("scripts/quests/adoulin/the_old_man_and_the_harpoon")
+
+local quest_table =
+{
+    require("scripts/quests/adoulin/the_old_man_and_the_harpoon"),
+}
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,7 +29,7 @@ function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
 
-    if not dsp.quests.onTrigger(player, npc, THE_OLD_MAN_AND_THE_HARPOON) then
+    if not dsp.quests.onTrigger(player, npc, quest_table) then
         if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
             if ((Fertile_Ground == QUEST_ACCEPTED) and (not player:hasKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X))) then
                 -- Progresses Quest: 'Fertile Ground'
@@ -51,7 +55,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if not dsp.quests.onEventFinish(player, csid, option, THE_OLD_MAN_AND_THE_HARPOON) then
+    if not dsp.quests.onEventFinish(player, csid, option, quest_table) then
         if (csid == 2850) then
             -- Progresses Quest: 'Fertile Ground'
             player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);

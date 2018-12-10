@@ -543,24 +543,24 @@ dsp.quests.complete = function(player, quest, reward_set)
 end
 
 dsp.quests.check = function(player, params)
-    local quest = params.questTable
-    if quest then
+    local quest_table = params.quest_table
+    if quest_table then
         local zoneid = player:getZoneID()
 
-        local cycle = tonumber(player:getLocalVar("[quests]cycle"))
-        --local needsCycling = cycle < #quest
-        local checkType = params.checkType
+        local cycle = player:getLocalVar("[quests]dialogCycle")
+        local check_type = params.check_type
 
         local targetName
         if params.target then
             targetName = params.target:getName()
         end
         if cycle > 0 and not needsCycling then
-            --player:setLocalVar("[quests]cycle", 0)
+            player:setLocalVar("[quests]dialogCycle", 0)
         end
-
-        --for i, quest in ipairs(questTable) do
-            --if quest and cycle < i then
+        local i = cycle + 1
+        while i <= #quest_table do
+            local quest = quest_table[i]
+            if quest then
                 local exitLoop
                 local checks =
                 {
@@ -579,52 +579,55 @@ dsp.quests.check = function(player, params)
                     [check_enum.onZoneIn] = function(player, params) return quest.onZoneIn(player, params.zone) end,
                     [check_enum.onMobDeath] = function(player, params) return quest.mobs[zoneid][targetName].onMobDeath(params.target, player, params.isKiller, params.isWeaponSkillKill) end,
                 }
-                --exitLoop = checks[params.checkType](player, params)
-                --player:setLocalVar("[quests]cycle", i)
-                if checks[params.checkType] then
-                    checks[params.checkType](player, params)
+                exitLoop = checks[params.check_type](player, params)
+                player:setLocalVar("[quests]cycle", i)
+                print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
+                if exitLoop then
                     return true
                 end
-            --end
-        --end
+                i = i + 1
+            else
+                break
+            end
+        end
     end
-    return nil
+    return false
 end
 
-dsp.quests.onTrade = function(player, npc, trade, questTable)
+dsp.quests.onTrade = function(player, npc, trade, quest_table)
     local params = {}
     params.target = npc
     params.trade = trade
-    params.checkType = check_enum.onTrade
-    params.questTable = questTable
+    params.check_type = check_enum.onTrade
+    params.quest_table = quest_table
     return dsp.quests.check(player, params)
 end
 
-dsp.quests.onTrigger = function(player, npc, questTable)
+dsp.quests.onTrigger = function(player, npc, quest_table)
     local params = {}
     params.target = npc
     params.trade = trade
-    params.checkType = check_enum.onTrigger
-    params.questTable = questTable
+    params.check_type = check_enum.onTrigger
+    params.quest_table = quest_table
     return dsp.quests.check(player, params)
 end
 
-dsp.quests.onEventFinish = function(player, csid, option, questTable)
+dsp.quests.onEventFinish = function(player, csid, option, quest_table)
     local params = {}
     params.csid = csid
     params.option = option
-    params.checkType = check_enum.onEventFinish
-    params.questTable = questTable
+    params.check_type = check_enum.onEventFinish
+    params.quest_table = quest_table
     return dsp.quests.check(player, params)
 end
 
-dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, questTable)
+dsp.quests.onMobDeath = function(mob, entity, isKiller, isWeaponSkillKill, quest_table)
     local params = {}
     params.target = mob
     params.isKiller = isKiller
     params.isWeaponSkillKill = isWeaponSkillKill
     params.type = check_enum.onMobDeath
-    params.questTable = questTable
+    params.quest_table = quest_table
 
     if not entity:isPC() then
         print("what the fuck even")
