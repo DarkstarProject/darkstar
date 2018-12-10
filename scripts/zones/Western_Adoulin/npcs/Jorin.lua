@@ -6,21 +6,25 @@
 -- !pos 92 32 152 256
 -----------------------------------
 require("scripts/globals/quests")
-local THE_OLD_MAN_AND_THE_HARPOON = require("scripts/quests/adoulin/the_old_man_and_the_harpoon")
+
+local quest_table =
+{
+    require("scripts/quests/adoulin/the_old_man_and_the_harpoon"),
+}
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if not dsp.quests.onTrigger(player, npc, THE_OLD_MAN_AND_THE_HARPOON) then
+    if not dsp.quests.onTrigger(player, npc, quest_table) then
         player:startEvent(560) -- Standard dialogue
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    dsp.quests.onEventFinish(player, csid, option, THE_OLD_MAN_AND_THE_HARPOON)
-end;
+    dsp.quests.onEventFinish(player, csid, option, quest_table)
+end
