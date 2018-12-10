@@ -275,7 +275,7 @@ end
             fame = 120,                 -- fame defaults to 30 if not set
             bayld = 500,
             gil = 200,
-            xp = 1000,
+            exp = 1000,
             title = dsp.title.ENTRANCE_DENIED,
             var = {"foo1", "foo2"}      -- variable(s) to set to 0. string or table
         })
@@ -317,8 +317,8 @@ function npcUtil.completeQuest(player, area, quest, params)
         player:messageSpecial(ID.text.BAYLD_OBTAINED, params["bayld"] * BAYLD_RATE)
     end
 
-    if params["xp"] ~= nil and type(params["xp"]) == "number" then
-        player:addExp(params["xp"] * EXP_RATE)
+    if params["exp"] ~= nil and type(params["exp"]) == "number" then
+        player:addExp(params["exp"] * EXP_RATE)
     end
 
     if params["title"] ~= nil then
