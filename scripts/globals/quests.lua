@@ -1,4 +1,5 @@
 require("scripts/globals/log_ids")
+require("scripts/globals/npc_util")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
@@ -12,6 +13,17 @@ dsp.quests.enums =
         JEUNO     = 3, OTHER_AREAS = 4,  OUTLANDS = 5,
         AHT_URGAN = 6, CRYSTAL_WAR = 7,  ABYSSEA  = 8,
         ADOULIN   = 9, COALITION   = 10
+    },
+
+    fame_areas =
+    {
+        SANDORIA          =  0, BASTOK           =  1, WINDURST           =  2,
+        JEUNO             =  3, SELBINA          =  4, MHAURA             =  2,
+        RABAO             =  4, KAZHAM           =  2, NORG               =  5,
+        ABYSSEA_KONSCHTAT =  6, ABYSSEA_TAHRONGI =  7, ABYSSEA_LATHEINE   =  8,
+        ABYSSEA_MISAREAUX =  9, ABYSSEA_VUNKERL  = 10, ABYSSEA_ATTOHWA    = 11,
+        ABYSSEA_ALTEPA    = 12, ABYSSEA_GRAUBERG = 13, ABYSSEA_ULEGUERAND = 14,
+        ADOULIN = 15
     },
 
     var_types =
@@ -306,9 +318,113 @@ dsp.quests.enums =
             WAKING_DREAMS                   = 93, -- + --
             LURE_OF_THE_WILDCAT_WINDURST    = 94,
             BABBAN_NY_MHEILLEA              = 95,
+        },
+
+        adoulin = {
+        -- These also do not match the DAT file order, had
+        -- discrepencies and swapped orders from the start.
+            TWITHERYM_DUST                  = 0,
+            TO_CATCH_A_PREDATOR             = 1,
+            EMPTY_NEST                      = 2,
+            DONT_CLAM_UP_ON_ME_NOW          = 5,
+            HOP_TO_IT                       = 6,
+            BOILING_OVER                    = 9,
+            POISONING_THE_WELL              = 10,
+            UNSULLIED_LANDS                 = 12,
+            NO_RIME_LIKE_THE_PRESENT        = 16,
+            A_GEOTHERMAL_EXPEDITION         = 18,
+            ENDEAVORING_TO_AWAKEN           = 22,
+            FORGING_NEW_BONDS               = 23,
+            LEGACIES_LOST_AND_FOUND         = 24,
+            DESTINYS_DEVICE                 = 25,
+            GRANDDADDY_DEAREST              = 26,
+            WAYWARD_WAYPOINTS               = 27,
+            ONE_GOOD_TURN                   = 28,
+            FAILURE_IS_NOT_AN_OPTION        = 29,
+            ORDER_UP                        = 30,
+            IT_NEVER_GOES_OUT_OF_STYLE      = 31,
+            WATER_WATER_EVERYWHERE          = 32,
+            DIRT_CHEAP                      = 33,
+            FLOWER_POWER                    = 34,
+            ELEMENTARY_MY_DEAR_SYLVIE       = 35,
+            FOR_WHOM_THE_BELL_TOLLS         = 36,
+            THE_BLOODLINE_OF_ZACARIAH       = 37,
+            THE_COMMUNION                   = 38,
+            FLAVORS_OF_OUR_LIVES            = 46,
+            WESTERN_WAYPOINTS_HO            = 50,
+            WESEASTERN_WAYPOINTS_HO         = 51,
+            GRIND_TO_SAWDUST                = 53,
+            BREAKING_THE_ICE                = 54,
+            IM_ON_A_BOAT                    = 55,
+            A_STONES_THROW_AWAY             = 56,
+            HIDE_AND_GO_PEAK                = 57,
+            THE_WHOLE_PLACE_IS_ABUZZ        = 58,
+            OROBON_APPETIT                  = 59,
+            TALK_ABOUT_WRINKLY_SKIN         = 60,
+            NO_LOVE_LOST                    = 61,
+            DID_YOU_FEEL_THAT               = 62,
+            DONT_EVER_LEAF_ME               = 70,
+            KEEP_YOUR_BLOOMERS_ON_ERISA     = 71,
+            SCAREDYCATS                     = 72,
+            RAPTOR_RAPTURE                  = 73,
+            EXOTIC_DELICACIES               = 74, -- + --
+            A_PIONEERS_BEST_IMAGINARY_FRIEND= 75, -- + --
+            HUNGER_STRIKES                  = 76, -- + --
+            THE_OLD_MAN_AND_THE_HARPOON     = 77, -- + --
+            A_CERTAIN_SUBSTITUTE_PATROLMAN  = 78, -- + --
+            IT_SETS_MY_HEART_AFLUTTER       = 79,
+            TRANSPORTING                    = 82,
+            THE_STARVING                    = 84, -- + --
+            FERTILE_GROUND                  = 85,
+            ALWAYS_MORE_QUOTH_THE_RAVENOUS  = 88, -- + --
+            MEGALOMANIAC                    = 89,
+            THE_LONGEST_WAY_ROUND           = 91,
+            A_GOOD_PAIR_OF_CROCS            = 93,
+            CAFETERIA                       = 94,
+            A_SHOT_IN_THE_DARK              = 96,
+            OPEN_THE_FLOODGATES             = 100,
+            NO_LAUGHING_MATTER              = 102,
+            ALL_THE_WAY_TO_THE_BANK         = 103,
+            TO_LAUGH_IS_TO_LOVE             = 104,
+            A_BARREL_OF_LAUGHS              = 105,
+            VEGETABLE_VEGETABLE_REVOLUTION  = 108,
+            VEGETABLE_VEGETABLE_EVOLUTION   = 109,
+            VEGETABLE_VEGETABLE_CRISIS      = 110,
+            VEGETABLE_VEGETABLE_FRUSTRATION = 111,
+            A_THIRST_FOR_THE_AGES           = 114,
+            A_THIRST_FOR_THE_EONS           = 115,
+            A_THIRST_FOR_ETERNITY           = 116,
+            A_THIRST_BEFORE_TIME            = 117,
+            DANCES_WITH_LUOPANS             = 118,
+            CHILDREN_OF_THE_RUNE            = 119,
+            FLOWERS_FOR_SVENJA              = 120,
+            THORN_IN_THE_SIDE               = 121,
+            DO_NOT_GO_INTO_THE_LIGHT        = 122,
+            VELKKOVERT_OPERATIONS           = 123,
+            HYPOCRITICAL_OATH               = 124,
+            THE_GOOD_THE_BAD_THE_CLEMENT    = 125,
+            LERENES_LAMENT                  = 126,
+            THE_SECRET_TO_SUCCESS           = 127,
+            NO_MERCY_FOR_THE_WICKED         = 128,
+            MISTRESS_OF_CEREMONIES          = 129,
+            SAVED_BY_THE_BELL               = 131,
+            QUIESCENCE                      = 132,
+            SICK_AND_TIRED                  = 133,
+            GEOMANCERRIFIC                  = 134,
+            RUNE_FENCING_THE_NIGHT_AWAY     = 135,
+            THE_WEATHERSPOON_INQUISITION    = 136,
+            EYE_OF_THE_BEHOLDER             = 137,
+            THE_CURIOUS_CASE_OF_MELVIEN     = 138,
+            NOTSOCLEAN_BILL                 = 139,
+            IN_THE_LAND_OF_THE_BLIND        = 140,
+            THE_WEATHERSPOON_WAR            = 141,
+            TREASURES_OF_THE_EARTH          = 142,
+            EPIPHANY                        = 143
         }
-    }
+    },
 }
+
+
 
 local check_enum =
 {
@@ -406,8 +522,12 @@ end
 
 dsp.quests.complete = function(player, quest, reward_set)
     if quest then
+        if reward_set == nil then
+            reward_set = quest.rewards.sets[1]
+        end
         if quest.rewards and reward_set then
             -- todo: check inventory (including stack space), award items, return false if cant complete
+            return npcUtil.completeQuest(player, quest.area, quest.questid, reward_set)
         end
 
         -- clear main CHAR_VAR if shouldnt be preserved
@@ -423,38 +543,50 @@ dsp.quests.complete = function(player, quest, reward_set)
 end
 
 dsp.quests.check = function(player, params)
-    local zoneid = player:getZoneID()
+    local quest = params.questTable
+    if quest then
+        local zoneid = player:getZoneID()
 
-    local cycle = player:getLocalVar("[quests]cycle")
-    local needsCycling = cycle < #params.questTable
-    local checkType = params.checkType
+        local cycle = tonumber(player:getLocalVar("[quests]cycle"))
+        --local needsCycling = cycle < #quest
+        local checkType = params.checkType
 
-    local targetName
-    if params.target then
-        targetName = params.target:getName()
-    end
-    if cycle > 0 and not needsCycling then
-        player:setLocalVar("[quests]cycle", 0)
-    end
-
-    for i, quest in ipairs(questTable) do
-        if quest and cycle < i then
-            local exitLoop
-            local checks =
-            {
-                [check_enum.onTrade] = function(player, params) return quest.npcs[zoneid][targetName].onTrade(player, params.target, params.trade) end,
-                [check_enum.onTrigger] = function(player, params) return quest.npcs[zoneid][targetName].onTrigger(player, params.target) end,
-                [check_enum.onEventUpdate] = function(player, params) return quest.npcs[zoneid][targetName].onEventUpdate(player, params.csid, params.option) end,
-                [check_enum.onEventFinish] = function(player, params) return quest.npcs[zoneid][targetName].onEventFinish(player, params.csid, params.option) end,
-                [check_enum.onZoneIn] = function(player, params) return quest.onZoneIn(player, params.zone) end,
-                [check_enum.onMobDeath] = function(player, params) return quest.mobs[zoneid][targetName].onMobDeath(params.target, player, params.isKiller, params.isWeaponSkillKill) end,
-            }
-            exitLoop = checks[params.checkType](player, params)
-            player:setLocalVar("[quests]cycle", i)
-            if exitLoop then
-                return true
-            end
+        local targetName
+        if params.target then
+            targetName = params.target:getName()
         end
+        if cycle > 0 and not needsCycling then
+            --player:setLocalVar("[quests]cycle", 0)
+        end
+
+        --for i, quest in ipairs(questTable) do
+            --if quest and cycle < i then
+                local exitLoop
+                local checks =
+                {
+                    [check_enum.onTrade] = function(player, params) return quest.npcs[zoneid][targetName].onTrade(player, params.target, params.trade) end,
+                    [check_enum.onTrigger] = function(player, params) return quest.npcs[zoneid][targetName].onTrigger(player, params.target) end,
+                    [check_enum.onEventUpdate] = function(player, params)
+                        if quest.events[zoneid][params.csid] then
+                            return quest.events[zoneid][params.csid].onEventUpdate(player, params.option)
+                        end
+                    end,
+                    [check_enum.onEventFinish] = function(player, params)
+                        if quest.events[zoneid][params.csid] then
+                            return quest.events[zoneid][params.csid].onEventFinish(player, params.option)
+                        end
+                    end,
+                    [check_enum.onZoneIn] = function(player, params) return quest.onZoneIn(player, params.zone) end,
+                    [check_enum.onMobDeath] = function(player, params) return quest.mobs[zoneid][targetName].onMobDeath(params.target, player, params.isKiller, params.isWeaponSkillKill) end,
+                }
+                --exitLoop = checks[params.checkType](player, params)
+                --player:setLocalVar("[quests]cycle", i)
+                if checks[params.checkType] then
+                    checks[params.checkType](player, params)
+                    return true
+                end
+            --end
+        --end
     end
     return nil
 end
@@ -473,6 +605,15 @@ dsp.quests.onTrigger = function(player, npc, questTable)
     params.target = npc
     params.trade = trade
     params.checkType = check_enum.onTrigger
+    params.questTable = questTable
+    return dsp.quests.check(player, params)
+end
+
+dsp.quests.onEventFinish = function(player, csid, option, questTable)
+    local params = {}
+    params.csid = csid
+    params.option = option
+    params.checkType = check_enum.onEventFinish
     params.questTable = questTable
     return dsp.quests.check(player, params)
 end
