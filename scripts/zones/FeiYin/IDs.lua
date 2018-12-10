@@ -34,6 +34,10 @@ zones[dsp.zone.FEIYIN] =
     },
     mob =
     {
+        GOLIATH_PH  =
+        {
+            [17613053] = 17613046,
+        },
         NORTHERN_SHADOW_PH  =
         {
             [17613099] = 17613103, -- -159.000 -16.000 146.000
