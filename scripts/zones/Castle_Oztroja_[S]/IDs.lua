@@ -18,6 +18,11 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
     },
     mob =
     {
+        AA_XALMO_THE_SAVAGE_PH =
+        {
+            [17182827] = 17182843,
+            [17182838] = 17182843,
+        },
     },
     npc =
     {
