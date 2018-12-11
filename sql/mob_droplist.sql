@@ -2500,7 +2500,7 @@ INSERT INTO `mob_droplist` VALUES (417,0,0,1000,1624,30);
 INSERT INTO `mob_droplist` VALUES (417,0,0,1000,1650,50);
 INSERT INTO `mob_droplist` VALUES (417,0,0,1000,1781,170);
 INSERT INTO `mob_droplist` VALUES (417,0,0,1000,15349,420);
-INSERT INTO `mob_droplist` VALUES (418,0,0,1000,2827,160);
+INSERT INTO `mob_droplist` VALUES (418,0,0,1000,2827,146); -- (Bugbear Muscleman) Rugged Gold Thread
 INSERT INTO `mob_droplist` VALUES (419,0,0,1000,1624,110);
 INSERT INTO `mob_droplist` VALUES (419,0,0,1000,1650,330);
 INSERT INTO `mob_droplist` VALUES (419,2,0,1000,1654,0);
@@ -32973,6 +32973,9 @@ INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,953,100); -- (Leshonki) Treant 
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,1236,400); -- (Leshonki) Cactus Stems
 INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
 INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
+INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2816,167); -- (Chelicerata) Aptant: Tachus
+INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2815,417); -- (Chelicerata) Aptant: Arkhe
+INSERT INTO `mob_droplist` VALUES (4617,0,0,1000,19306,100); -- (Tikbalang) Lyft Pole
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
