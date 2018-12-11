@@ -89,9 +89,17 @@ zones[dsp.zone.SEA_SERPENT_GROTTO] =
         {
             [17498434] = 17498436, -- 1.654 19.914 -113.913
         },
+        NOVV_THE_WHITEHEARTED_PH =
+        {
+            [17498444] = 17498445,
+        },
         DENN_THE_ORCAVOICED_PH =
         {
             [17498461] = 17498464, -- -102.127 9.797 -308.149
+        },
+        ZUUG_THE_SHORELEAPER_PH =
+        {
+            [17498512] = 17498516,
         },
         CHARYBDIS_PH =
         {

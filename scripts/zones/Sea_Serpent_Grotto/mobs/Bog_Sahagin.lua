@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Bog Sahagin
 -- Note: PH for Mouu the Waverider
 -----------------------------------
