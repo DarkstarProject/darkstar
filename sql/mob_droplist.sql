@@ -32971,6 +32971,8 @@ INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,574,1000); -- (Leshonki) Fruit 
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,574,1000); -- (Leshonki) Fruit Seeds
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,953,100); -- (Leshonki) Treant Bulb
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,1236,400); -- (Leshonki) Cactus Stems
+INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
+INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
