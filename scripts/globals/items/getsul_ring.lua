@@ -16,12 +16,7 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    if target:hasStatusEffect(dsp.effect.ENCHANTMENT) == true then
-        target:delStatusEffect(dsp.effect.ENCHANTMENT)
-        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,180,14681)
-    else
-        target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,180,14681)
-    end
+    target:addStatusEffect(dsp.effect.ENCHANTMENT,0,0,180,14681)
 end
 
 function onEffectGain(target,effect)
