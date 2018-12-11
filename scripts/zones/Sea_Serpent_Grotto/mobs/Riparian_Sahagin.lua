@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Riparian Sahagin
 -- Note: PH for Seww the Squidlimbed and Fyuu the Seabellow
 -----------------------------------

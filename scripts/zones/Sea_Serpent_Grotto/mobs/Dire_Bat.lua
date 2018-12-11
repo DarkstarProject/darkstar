@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Dire Bat
 -----------------------------------
 require("scripts/globals/regimes")

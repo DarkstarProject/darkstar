@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Coastal Sahagin
 -- Note: PH for Denn the Orcavoiced
 -----------------------------------

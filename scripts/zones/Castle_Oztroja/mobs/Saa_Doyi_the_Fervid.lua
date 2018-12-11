@@ -1,11 +1,13 @@
 -----------------------------------
 -- Area: Castle Oztroja (151)
---  MOB: Saa_Doyi_the_Fervid
+--   NM: Saa Doyi the Fervid
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    mob:setRespawnTime(math.random(3600, 7200)); -- 1 to 2 hours
-end;
+    mob:setRespawnTime(math.random(3600, 7200)) -- 1 to 2 hours
+end

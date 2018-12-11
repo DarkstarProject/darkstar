@@ -5340,7 +5340,9 @@ INSERT INTO `nm_spawn_points` VALUES (17498413,0,-301,20,-64); -- Worr the Clawf
 INSERT INTO `nm_spawn_points` VALUES (17498420,0,-233,10,-59); -- Sea Hog
 INSERT INTO `nm_spawn_points` VALUES (17498428,0,-320,16,-98); -- Voll the Sharkfinned
 INSERT INTO `nm_spawn_points` VALUES (17498436,0,3,20,-140); -- Yarr the Pearleyed
+INSERT INTO `nm_spawn_points` VALUES (17498445,0,-37,19,-205); -- Novv the Whitehearted
 INSERT INTO `nm_spawn_points` VALUES (17498464,0,-94,9,-298); -- Denn the Orcavoiced
+INSERT INTO `nm_spawn_points` VALUES (17498516,0,-243,41,-298); -- Zuug the Shoreleaper
 INSERT INTO `nm_spawn_points` VALUES (17498522,0,-138.181,48.389,-338.001);
 INSERT INTO `nm_spawn_points` VALUES (17498522,1,-212.407,38.538,-342.544);
 INSERT INTO `nm_spawn_points` VALUES (17498522,2,-143.426,48.267,-342.433);

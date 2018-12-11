@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Marsh Sahagin
 -- Note: PH for Worr the Clawfisted and Voll the Sharkfinned
 -----------------------------------
