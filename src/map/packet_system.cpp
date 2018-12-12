@@ -4865,9 +4865,8 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     if(PChar->StatusEffectContainer->HasPreventActionEffect())
         return;
 
-    switch (PChar->animation)
-    {
-    case ANIMATION_NONE:
+    const uint8_t request = data.ref<uint8>(0x04);
+    if (PChar->animation == ANIMATION_NONE && request == 0x00)
     {
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
@@ -4885,13 +4884,11 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         }
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 345));
     }
-    break;
-    case ANIMATION_HEALING:
+    else if (PChar->animation == ANIMATION_HEALING && request == 0x02)
     {
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
-    break;
-    }
+    
     return;
 }
 
