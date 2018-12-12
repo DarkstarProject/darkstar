@@ -7509,7 +7509,7 @@ INSERT INTO `mob_groups` VALUES (7445,1594,137,0,128,0,0,0,75,76,0); -- Gigass_T
 INSERT INTO `mob_groups` VALUES (7446,1681,137,1,0,0,0,0,1,1,0);
 INSERT INTO `mob_groups` VALUES (7447,1752,137,0,0,0,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (7448,1770,137,300,0,1534,0,0,81,82,0); -- Gorgotaur in Xarcabard_[S]
-INSERT INTO `mob_groups` VALUES (7449,1790,137,0,32,1544,0,0,0,0,0); -- Graoully
+INSERT INTO `mob_groups` VALUES (7449,1790,137,0,32,1544,0,0,90,90,0); -- Graoully
 INSERT INTO `mob_groups` VALUES (7450,1800,137,3600,0,1552,0,0,84,85,0); -- Greater_Amphiptere in Xarcabard_[S]
 INSERT INTO `mob_groups` VALUES (7451,1852,137,1,0,0,0,0,1,1,0);
 INSERT INTO `mob_groups` VALUES (7452,1875,137,0,0,0,0,0,0,0,0);
