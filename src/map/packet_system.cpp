@@ -4895,8 +4895,8 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
         PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
+    break;
     }
-    
     return;
 }
 
