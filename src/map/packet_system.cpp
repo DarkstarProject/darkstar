@@ -4870,9 +4870,7 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     case ANIMATION_NONE:
     {
         if (data.ref<uint8>(0x04) == 0x02)
-        {
             return;
-        }
 
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
