@@ -460,8 +460,8 @@ local function handleQuestVar(entity, quest, varname, val, get)
     end
 
     local var, vartype
-    if quest.vars.main == varname then
-        var = quest.vars.main
+    if quest.vars.stage == varname then
+        var = quest.vars.stage
         vartype = dsp.quests.enums.var_types.CHAR_VAR
     else
         var = quest.vars.additional[varname]
@@ -469,7 +469,7 @@ local function handleQuestVar(entity, quest, varname, val, get)
     end
 
     if not var then
-        ret.message = " unable to find "..varname.." for quest: "..quest.name.." (logid: "..quest.log_id..")"
+        ret.message = " unable to find "..varname.." for quest: "..quest.name.." (log_id: "..quest.log_id..")"
     else
         if vartype == dsp.quests.enums.var_types.CHAR_VAR then
             if get then
@@ -520,23 +520,39 @@ dsp.quests.getVar = function(entity, quest, varname, val)
     end
 end
 
+dsp.quests.setStage = function(entity, quest, val)
+    local message = "dsp.quests.setStage "
+    return dsp.quests.setVar(entity, quest, quest.vars.stage, val)
+end
+
+dsp.quests.getStage = function(entity, quest)
+    local message = "dsp.quests.getStage "
+    return dsp.quests.getVar(entity, quest, quest.vars.stage)
+end
+
 dsp.quests.complete = function(player, quest, reward_set)
+    local message = "dsp.quests.complete "
     if quest then
         if reward_set == nil then
             reward_set = quest.rewards.sets[1]
         end
         if quest.rewards and reward_set then
             -- todo: check inventory (including stack space), award items, return false if cant complete
-            return npcUtil.completeQuest(player, quest.area, quest.questid, reward_set)
-        end
+            local rewards_given = npcUtil.completeQuest(player, quest.area, quest.quest_id, reward_set)
+            if rewards_given then
+                -- clear stage CHAR_VAR if shouldnt be preserved
+                if not quest.vars.preserve_main_on_complete then
+                    player:setVar(quest.vars.stage, 0)
+                end
+                for name, var in pairs(quest.vars.additional) do
+                    if not var.preserve_on_complete then
+                        handleQuestVar(player, quest, name, 0, "dsp.quests.complete ", nil)
+                    end
+                end
 
-        -- clear main CHAR_VAR if shouldnt be preserved
-        if not quest.vars.preserve_main_on_complete then
-            player:setVar(quest.vars.main, 0)
-        end
-        for name, var in pairs(quest.vars.additional) do
-            if not var.preserve_on_complete then
-                handleQuestVar(player, quest, name, 0, "dsp.quests.complete ", nil)
+                return true
+            else
+                error(message.. "Unable to give quest rewards.")
             end
         end
     end
