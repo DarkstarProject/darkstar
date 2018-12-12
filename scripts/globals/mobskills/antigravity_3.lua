@@ -1,6 +1,5 @@
 ---------------------------------------------------
--- Antigravity
--- Always single gear
+-- Antigravity w/ 3 Gears
 -- Knockback and damage, knockback varies with gear count
 ---------------------------------------------------
 require("scripts/globals/status")

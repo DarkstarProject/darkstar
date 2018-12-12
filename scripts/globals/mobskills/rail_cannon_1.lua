@@ -1,6 +1,6 @@
 ---------------------------------------------------
--- Rail Cannon
---
+-- Rail Cannon 1 gear
+-- 1 Gear: Rail Cannon is single target and ignores Utsusemi
 ---------------------------------------------------
 require("scripts/globals/settings")
 require("scripts/globals/status")
@@ -8,28 +8,17 @@ require("scripts/globals/monstertpmoves")
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId()
-
-    if (mobSkin == 1820) then
-        return 0
-    else
-        return 1
-    end
+    return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local targetcurrentHP = target:getHP()
-    local targetmaxHP = target:getMaxHP()
-    local hpset=targetmaxHP*0.20
+
     local typeEffect = dsp.effect.BIND
     MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30)
 
-    if (targetcurrentHP > hpset) then
-        dmg= targetcurrentHP - hpset
-    else
-        dmg=0
-    end
-
+    local dmgmod = 1
+    local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.LIGHT,dmgmod,TP_NO_EFFECT)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_LIGHT,MOBPARAM_IGNORE_SHADOWS)
     target:delHP(dmg)
     return dmg
 end
