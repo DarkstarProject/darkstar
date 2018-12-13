@@ -56,8 +56,8 @@ zones[dsp.zone.VALKURM_DUNES] =
     },
     npc =
     {
-        SUNSAND_QM    = 17199697,
-        OVERSEER_BASE = 17199707,
+        SUNSAND_QM    = 17199698,
+        OVERSEER_BASE = 17199708,
     },
 }
 

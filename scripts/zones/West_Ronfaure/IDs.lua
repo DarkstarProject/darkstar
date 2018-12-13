@@ -52,8 +52,8 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17187503,
-        OVERSEER_BASE   = 17187523,
+        SIGNPOST_OFFSET = 17187504,
+        OVERSEER_BASE   = 17187524,
     },
 }
 

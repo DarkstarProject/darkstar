@@ -48,10 +48,10 @@ zones[dsp.zone.XARCABARD] =
     },
     npc =
     {
-        OVERSEER_BASE      = 17236288,
-        BOREAL_TIGER_QM    = 17236306,
-        BOREAL_COEURL_QM   = 17236307,
-        BOREAL_HOUND_QM    = 17236308,
+        OVERSEER_BASE      = 17236289,
+        BOREAL_TIGER_QM    = 17236307,
+        BOREAL_COEURL_QM   = 17236308,
+        BOREAL_HOUND_QM    = 17236309,
     },
 }
 

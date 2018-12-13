@@ -48,8 +48,8 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
     },
     npc =
     {
-        FALLEN_EGG = 17195582,
-        RAINBOW    = 17195606,
+        FALLEN_EGG = 17195583,
+        RAINBOW    = 17195607,
     },
 }
 

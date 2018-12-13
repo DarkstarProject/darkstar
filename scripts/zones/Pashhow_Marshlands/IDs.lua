@@ -42,7 +42,7 @@ zones[dsp.zone.PASHHOW_MARSHLANDS] =
     },
     npc =
     {
-        OVERSEER_BASE = 17224324,
+        OVERSEER_BASE = 17224325,
     },
 }
 
