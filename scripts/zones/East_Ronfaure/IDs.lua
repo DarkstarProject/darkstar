@@ -25,7 +25,7 @@ zones[dsp.zone.EAST_RONFAURE] =
         CHEVAL_RIVER_WATER       = 7436, -- You fill your waterskin with water from the river. You now have <item>.
         BLESSED_WATERSKIN        = 7455, -- To get water, trade the waterskin you hold with the river.
         LOGGING_IS_POSSIBLE_HERE = 7486, -- Logging is possible here if you have <item>.
-        REGIME_REGISTERED        = 9868, -- New training regime registered!
+        REGIME_REGISTERED        = 9870, -- New training regime registered!
     },
     mob =
     {
@@ -50,12 +50,12 @@ zones[dsp.zone.EAST_RONFAURE] =
     {
         LOGGING =
         {
-            17191528,
             17191529,
             17191530,
             17191531,
             17191532,
             17191533,
+            17191534,
         },
     },
 }

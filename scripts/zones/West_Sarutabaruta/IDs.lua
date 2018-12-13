@@ -37,9 +37,9 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         MELT_BARE_HANDS             = 7402, -- It looks like it would melt if you touched it with your bare hands...
         HARVESTING_IS_POSSIBLE_HERE = 7438, -- Harvesting is possible here if you have <item>.
         CONQUEST                    = 7454, -- You've earned conquest points!
-        REGIME_REGISTERED           = 10186, -- New training regime registered!
-        DONT_SWAP_JOBS              = 10187, -- hanging your job will result in the cancellation of your current training regime.
-        REGIME_CANCELED             = 10188, -- Training regime canceled.
+        REGIME_REGISTERED           = 10188, -- New training regime registered!
+        DONT_SWAP_JOBS              = 10189, -- hanging your job will result in the cancellation of your current training regime.
+        REGIME_CANCELED             = 10190, -- Training regime canceled.
     },
     mob =
     {
@@ -64,16 +64,16 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17248790,
-        OVERSEER_BASE   = 17248823,
+        SIGNPOST_OFFSET = 17248791,
+        OVERSEER_BASE   = 17248824,
         HARVESTING =
         {
-            17248839,
             17248840,
             17248841,
             17248842,
             17248843,
             17248844,
+            17248845,
         },
     },
 }

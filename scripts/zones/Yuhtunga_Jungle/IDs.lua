@@ -33,7 +33,7 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
         ZILART_MONUMENT             = 7680, -- It is an ancient Zilart monument.
         LOGGING_IS_POSSIBLE_HERE    = 7697, -- Logging is possible here if you have <item>.
         HARVESTING_IS_POSSIBLE_HERE = 7704, -- Harvesting is possible here if you have <item>.
-        REGIME_REGISTERED           = 10049, -- New training regime registered!
+        REGIME_REGISTERED           = 10051, -- New training regime registered!
     },
     mob =
     {
@@ -49,23 +49,23 @@ zones[dsp.zone.YUHTUNGA_JUNGLE] =
     },
     npc =
     {
-        BLUE_RAFFLESIA_OFFSET = 17281584,
-        OVERSEER_BASE         = 17281598,
-        CERMET_HEADSTONE      = 17281623,
+        BLUE_RAFFLESIA_OFFSET = 17281585,
+        OVERSEER_BASE         = 17281599,
+        CERMET_HEADSTONE      = 17281624,
         HARVESTING =
         {
-            17281634,
             17281635,
             17281636,
+            17281637,
         },
         LOGGING =
         {
-            17281628,
             17281629,
             17281630,
             17281631,
             17281632,
             17281633,
+            17281634,
         },
     },
 }

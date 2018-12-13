@@ -25,8 +25,8 @@ zones[dsp.zone.KONSCHTAT_HIGHLANDS] =
         SIGNPOST_DIALOG_1            = 7385, -- North: Valkurm Dunes South: To Gustaberg
         SIGNPOST_DIALOG_2            = 7386, -- You see something stuck behind the signpost.
         SOMETHING_BURIED_HERE        = 7387, -- Something has been buried here.
-        TELEPOINT_HAS_BEEN_SHATTERED = 7479, -- The telepoint has been shattered into a thousand pieces...
-        REGIME_REGISTERED            = 9783, -- New training regime registered!
+        TELEPOINT_HAS_BEEN_SHATTERED = 7481, -- The telepoint has been shattered into a thousand pieces...
+        REGIME_REGISTERED            = 9785, -- New training regime registered!
     },
     mob =
     {

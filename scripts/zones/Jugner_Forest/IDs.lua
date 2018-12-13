@@ -22,7 +22,7 @@ zones[dsp.zone.JUGNER_FOREST] =
         FIND_NOTHING             = 7719, -- You dig and you dig, but find nothing.
         LOGGING_IS_POSSIBLE_HERE = 7897, -- Logging is possible here if you have <item>.
         CONQUEST                 = 8048, -- You've earned conquest points!
-        REGIME_REGISTERED        = 10855, -- New training regime registered!
+        REGIME_REGISTERED        = 10857, -- New training regime registered!
     },
     mob =
     {
@@ -36,15 +36,15 @@ zones[dsp.zone.JUGNER_FOREST] =
     },
     npc =
     {
-        OVERSEER_BASE = 17203846,
+        OVERSEER_BASE = 17203847,
         LOGGING =
         {
-            17203862,
             17203863,
             17203864,
             17203865,
             17203866,
             17203867,
+            17203868,
         },
     },
 }

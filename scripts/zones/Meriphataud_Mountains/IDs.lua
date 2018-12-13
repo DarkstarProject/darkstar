@@ -22,7 +22,7 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         NOTHING_FOUND           = 7488, -- You find nothing.
         CONQUEST                = 7900, -- You've earned conquest points!
-        REGIME_REGISTERED       = 10588, -- New training regime registered!
+        REGIME_REGISTERED       = 10590, -- New training regime registered!
     },
     mob =
     {
@@ -41,7 +41,7 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
     },
     npc =
     {
-        OVERSEER_BASE = 17265269,
+        OVERSEER_BASE = 17265270,
     },
 }
 

@@ -23,7 +23,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         DIG_THROW_AWAY          = 7563, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7565, -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE   = 7659, -- You already possess the gate crystal for this telepoint.
-        REGIME_REGISTERED       = 9948, -- New training regime registered!
+        REGIME_REGISTERED       = 9950, -- New training regime registered!
     },
     mob =
     {
@@ -38,7 +38,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
     },
     npc =
     {
-        OVERSEER_BASE = 17244625,
+        OVERSEER_BASE = 17244626,
     },
 }
 
