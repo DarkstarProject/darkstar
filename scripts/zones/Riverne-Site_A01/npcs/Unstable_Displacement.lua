@@ -8,14 +8,14 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local offset = npc:getID() - ID.npc.RIV_A_DISPLACEMENT_OFFSET;
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
     if (offset == 5 and TradeBCNM(player,player:getZoneID(),trade,npc)) then -- The Wyrmking Descends
         return;
     end
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.RIV_A_DISPLACEMENT_OFFSET;
+    local offset = npc:getID() - ID.npc.DISPLACEMENT_OFFSET;
 
     -- OURYU COMETH
     if (offset == 5) then

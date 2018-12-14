@@ -12,7 +12,7 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.BASTOK_MINES_EXPLORER_MOOGLE)
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE)
 
     applyHalloweenNpcCostumes(zone:getID())
 end
@@ -28,7 +28,7 @@ function onZoneIn(player,prevZone)
         player:setPos(-45, -0, 26, 213)
         player:setHomePoint()
     end
-    
+
     -- MOG HOUSE EXIT
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         position = math.random(1, 5) - 75
@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
         end
         player:setVar("PlayerMainJob", 0)
     end
-    
+
     -- ENTER THE TALEKEEPER
     if prevZone == 172 and player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 5 then
         cs = 176

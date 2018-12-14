@@ -4,19 +4,16 @@
 -- Involved In Mission: Journey Abroad
 -- !pos -52.677 -0.501 -26.299 241
 -----------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/missions");
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(445);
-end;
+    player:startEvent(445)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

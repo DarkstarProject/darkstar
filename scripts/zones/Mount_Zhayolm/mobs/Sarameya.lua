@@ -6,9 +6,10 @@
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Sarameya
 -- TODO: PostAIRewrite: Code the Howl effect and gradual resists.
 -----------------------------------
-require("scripts/globals/magic");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -22,7 +23,7 @@ function onMobSpawn(mob)
     mob:addMod(dsp.mod.SILENCERES, 20);
     mob:addMod(dsp.mod.GRAVITYRES, 20);
     mob:addMod(dsp.mod.LULLABYRES, 30);
-    mob:setMobMod(dsp.mobMod.RAGE, 3600); -- 60 minute rage timer
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end;
 
 function onMobRoam(mob)

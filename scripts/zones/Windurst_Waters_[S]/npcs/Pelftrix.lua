@@ -3,30 +3,28 @@
 --  NPC: Pelftrix
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Waters_[S]/IDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,ID.text.PELFTRIX_SHOP_DIALOG);
-
     local stock =
     {
-        4116,4500,        -- Hi-Potion
-        4132,28000,        -- Hi-Ether
-        1020,300,            -- Sickle
-        1021,500}            -- Hatchet
+        4116, 4500,  -- Hi-Potion
+        4132, 28000, -- Hi-Ether
+        1020, 300,   -- Sickle
+        1021, 500,   -- Hatchet
+    }
 
-    dsp.shop.general(player, stock);
-end;
+    player:showText(npc,ID.text.PELFTRIX_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
     local npcId = npc:getID();
-    local portalId = ID.npc.RUAUN_PINCERSTONES[npcId];
+    local portalId = ID.npc.PINCERSTONES[npcId];
     if (portalId ~= nil) then
         local portal = GetNPCByID(portalId);
         if (portal:getAnimation() == dsp.anim.CLOSE_DOOR) then

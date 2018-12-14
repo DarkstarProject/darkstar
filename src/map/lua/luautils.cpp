@@ -1399,7 +1399,7 @@ namespace luautils
         //player may be entering because of an earlier event (event that changes position)
         // these should probably not call another event from onRegionEnter (use onEventFinish instead)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionEnter"))
         {
@@ -1440,7 +1440,7 @@ namespace luautils
 
         //player may be leaving because of an earlier event (event that changes position)
         if (PChar->m_event.EventID == -1)
-            PChar->m_event.Script.insert(0, filename.c_str());
+            PChar->m_event.Script = filename;
 
         if (prepFile((int8*)filename.c_str(), "onRegionLeave"))
         {
@@ -1944,6 +1944,30 @@ namespace luautils
         return 0;
     }
 
+    int32 OnUpdateAttachment(CBattleEntity* PEntity, CItemPuppet* attachment, uint8 maneuvers)
+    {
+        lua_prepscript("scripts/globals/abilities/pets/attachments/%s.lua", attachment->getName());
+
+        if (prepFile(File, "onUpdate"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PEntity);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, maneuvers);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onUpdate: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
     /************************************************************************
     *                                                                       *
     *  Проверяем возможность использования предмета. Если все хорошо, то    *
@@ -2160,6 +2184,8 @@ namespace luautils
     int32 OnMagicHit(CBattleEntity* PCaster, CBattleEntity* PTarget, CSpell* PSpell)
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
+
+        PTarget->PAI->EventHandler.triggerListener("MAGIC_TAKE", PCaster, PTarget, PSpell);
 
         lua_prepscript("scripts/zones/%s/mobs/%s.lua", PTarget->loc.zone->GetName(), PTarget->GetName());
 

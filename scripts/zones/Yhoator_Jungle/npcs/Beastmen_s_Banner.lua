@@ -3,20 +3,18 @@
 --  NPC: Beastmen_s_Banner
 -- !pos 366.014 -0.185 -394.801 124
 -----------------------------------
-local ID = require("scripts/zones/Yhoator_Jungle/IDs");
+local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.BEASTMEN_BANNER);
-end;
+    player:messageSpecial(ID.text.BEASTMEN_BANNER)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end

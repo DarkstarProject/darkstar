@@ -11,7 +11,7 @@ LOWER_JEUNO = {
         ..............................................................................................]]
     lampTrigger = function(player, npc)
         local lampId = npc:getID();
-        local lampNum = lampId - ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET;
+        local lampNum = lampId - ID.npc.STREETLAMP_OFFSET;
         local lampCs = 120 + lampNum;
 
         if (GetServerVariable("[JEUNO]CommService") == player:getID()) then
@@ -42,7 +42,7 @@ LOWER_JEUNO = {
         Community Service Quest: end of event triggered by lamp click
         ..............................................................................................]]
     lampEventFinish = function(player, csid, option, lampNum)
-        local lampId = ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET + lampNum;
+        local lampId = ID.npc.STREETLAMP_OFFSET + lampNum;
         local lampCs = 120 + lampNum;
 
         if (csid == lampCs and option == 1) then
@@ -50,7 +50,7 @@ LOWER_JEUNO = {
 
             local lampsRemaining = 12;
             for i = 0, 11 do
-                local lamp = GetNPCByID(ID.npc.LOWER_JEUNO_STREETLAMP_OFFSET + i);
+                local lamp = GetNPCByID(ID.npc.STREETLAMP_OFFSET + i);
                 if (lamp:getAnimation() == dsp.anim.OPEN_DOOR) then
                     lampsRemaining = lampsRemaining - 1;
                 end
@@ -119,7 +119,7 @@ LOWER_JEUNO = {
         -122,0,-196,    -- clear path 48
         -123,0,-196     -- end path 49
     },
-    
+
     --[[..............................................................................................
         indices within lampPath that contain lamps
         ..............................................................................................]]

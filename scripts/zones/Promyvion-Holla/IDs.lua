@@ -11,15 +11,15 @@ zones[dsp.zone.PROMYVION_HOLLA] =
     text =
     {
         NOTHING_HAPPENS         = 119, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
     },
     mob =
     {
-        HOLLA_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16842781] = {1, 3, 16843058},
             [16842839] = {2, 5, 16843054},
@@ -36,7 +36,7 @@ zones[dsp.zone.PROMYVION_HOLLA] =
     },
     npc =
     {
-        HOLLA_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = {  78, -4,   78,   82, 4,   82, {46}},    -- floor 1 return
             [21]        = {-122, -4,   -2, -118, 4,    2, {41}},    -- floor 2 return

@@ -23,7 +23,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
         result = 246
     end
     return result
@@ -34,7 +34,7 @@ function onItemUse(target)
 end
 
 function onEffectGain(target,effect)
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         target:addMod(dsp.mod.STR, 3)
         target:addMod(dsp.mod.INT, -4)
         target:addMod(dsp.mod.ATT, 9)
@@ -50,7 +50,7 @@ function onEffectGain(target,effect)
 end
 
 function onEffectLose(target, effect)
-    if (target:getRace() ~= 8) then
+    if (target:getRace() ~= dsp.race.GALKA) then
         target:delMod(dsp.mod.STR, 3)
         target:delMod(dsp.mod.INT, -4)
         target:delMod(dsp.mod.ATT, 9)

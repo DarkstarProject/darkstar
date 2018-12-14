@@ -478,10 +478,10 @@ INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2422);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2423);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2424);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2425);
--- INSERT INTO `mob_skill_lists` VALUES ('Gears',120,2047);
--- INSERT INTO `mob_skill_lists` VALUES ('Gears',120,2043);
--- INSERT INTO `mob_skill_lists` VALUES ('Gears',120,2045);
--- INSERT INTO `mob_skill_lists` VALUES ('Gears',120,2041);
+INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2038);
+INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2039);
+INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2040);
+INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2041);
 INSERT INTO `mob_skill_lists` VALUES ('Ghost',121,476);
 INSERT INTO `mob_skill_lists` VALUES ('Ghost',121,474);
 INSERT INTO `mob_skill_lists` VALUES ('Ghost',121,475);
@@ -616,6 +616,12 @@ INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1366);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1367);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1368);
 INSERT INTO `mob_skill_lists` VALUES ('Hpemde',144,1369);
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,33); -- burning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,35); -- flat balde
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,36); -- shinning blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,37); -- sereph blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,38); -- circle blade
+INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,40); -- vorpal blade
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Elvaan',401,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',402,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',403,?);
@@ -638,6 +644,21 @@ INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,1395);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,1397);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,1398);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,1399);
+INSERT INTO `mob_skill_lists` VALUES ('Gears3',150,2043);
+INSERT INTO `mob_skill_lists` VALUES ('Gears3',150,2044);
+INSERT INTO `mob_skill_lists` VALUES ('Gears3',150,2045);
+INSERT INTO `mob_skill_lists` VALUES ('Gears3',150,2052);
+INSERT INTO `mob_skill_lists` VALUES ('Gears3',150,2053);
+INSERT INTO `mob_skill_lists` VALUES ('Gears2',151,2046);
+INSERT INTO `mob_skill_lists` VALUES ('Gears2',151,2047);
+INSERT INTO `mob_skill_lists` VALUES ('Gears2',151,2048);
+INSERT INTO `mob_skill_lists` VALUES ('Gears2',151,2053);
+INSERT INTO `mob_skill_lists` VALUES ('Gears2',151,2061);
+INSERT INTO `mob_skill_lists` VALUES ('Gears1',152,2049);
+INSERT INTO `mob_skill_lists` VALUES ('Gears1',152,2050);
+INSERT INTO `mob_skill_lists` VALUES ('Gears1',152,2051);
+INSERT INTO `mob_skill_lists` VALUES ('Gears1',152,2053);
+INSERT INTO `mob_skill_lists` VALUES ('Gears1',152,2062);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1828);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1829);
 INSERT INTO `mob_skill_lists` VALUES ('Hydra',164,1830);
@@ -1320,11 +1341,6 @@ INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1781);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1782);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1783);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1784);
-INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2043);
-INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2044);
-INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2045);
-INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2041);
-INSERT INTO `mob_skill_lists` VALUES ('ArmedGears',304,2053);
 -- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1920);
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1921);
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1922);

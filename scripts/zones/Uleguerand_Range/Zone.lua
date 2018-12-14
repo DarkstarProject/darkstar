@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(ID.npc.ULEGUERAND_WATERFALL);
+    local waterfall = GetNPCByID(ID.npc.WATERFALL);
     if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
         if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
             waterfall:setAnimation(dsp.anim.CLOSE_DOOR);

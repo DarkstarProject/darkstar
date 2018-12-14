@@ -66,7 +66,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    local rainbow = GetNPCByID(ID.npc.LA_THEINE_RAINBOW);
+    local rainbow = GetNPCByID(ID.npc.RAINBOW);
     local TOTD = VanadielTOTD();
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
@@ -79,7 +79,7 @@ function onZoneWeatherChange(weather)
 end;
 
 function onTOTDChange(TOTD)
-    local rainbow = GetNPCByID(ID.npc.LA_THEINE_RAINBOW);
+    local rainbow = GetNPCByID(ID.npc.RAINBOW);
     local I_Can_Hear_a_Rainbow = GetServerVariable("I_Can_Hear_a_Rainbow");
 
     if (I_Can_Hear_a_Rainbow == 1 and TOTD >= dsp.time.DAWN and TOTD <= dsp.time.EVENING and rainbow:getAnimation() == dsp.anim.CLOSE_DOOR) then

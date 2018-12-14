@@ -11,7 +11,7 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    SetExplorerMoogles(ID.npc.SELBINA_EXPLORER_MOOGLE);
+    SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE);
 end;
 
 function onZoneIn(player,prevZone)

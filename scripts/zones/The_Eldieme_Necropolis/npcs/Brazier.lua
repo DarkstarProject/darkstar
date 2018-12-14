@@ -28,7 +28,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 44 and option == 0) then
         local LanternOrder = player:getVar("saveMySisterFireLantern");
-        local offset = player:getVar("saveMySisterLanternID") - ID.npc.ELDIEME_BRAZIER_OFFSET;
+        local offset = player:getVar("saveMySisterLanternID") - ID.npc.BRAZIER_OFFSET;
         player:setVar("saveMySisterLanternID",0);
 
         if (LanternOrder == 0) then

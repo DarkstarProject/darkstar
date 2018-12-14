@@ -8,6 +8,7 @@ require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -135,11 +136,11 @@ function onEventFinish(player,csid,option)
             player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
         end
     elseif (csid == 161 and option == 1) then
-        if (player:getPreviousZone() == 102) then -- Holla
+        if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
             player:setVar("LastSkyWarpHolla", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 108) then -- Dem
+        elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
             player:setVar("LastSkyWarpDem", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 117) then -- Mea
+        elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
             player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
         dsp.teleport.to(player, dsp.teleport.id.SKY);

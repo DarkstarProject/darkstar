@@ -11,15 +11,15 @@ zones[dsp.zone.PROMYVION_DEM] =
     text =
     {
         NOTHING_HAPPENS         = 119, -- Nothing happens...
-        ITEM_CANNOT_BE_OBTAINED = 6381, -- You cannot obtain the <item>. Come back after sorting your inventory.
-        ITEM_OBTAINED           = 6387, -- Obtained: <item>.
-        GIL_OBTAINED            = 6388, -- Obtained <number> gil.
-        KEYITEM_OBTAINED        = 6390, -- Obtained key item: <keyitem>.
-        NOTHING_OUT_OF_ORDINARY = 6401, -- There is nothing out of the ordinary here.
+        ITEM_CANNOT_BE_OBTAINED = 6382, -- You cannot obtain the <item>. Come back after sorting your inventory.
+        ITEM_OBTAINED           = 6388, -- Obtained: <item>.
+        GIL_OBTAINED            = 6389, -- Obtained <number> gil.
+        KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
+        NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
     },
     mob =
     {
-        DEM_MEMORY_RECEPTACLES =
+        MEMORY_RECEPTACLES =
         {
             [16850971] = {1, 3, 16851268},
             [16851025] = {2, 5, 16851272},
@@ -36,7 +36,7 @@ zones[dsp.zone.PROMYVION_DEM] =
     },
     npc =
     {
-        DEM_MEMORY_STREAMS =
+        MEMORY_STREAMS =
         {
             [11]        = { 157, -4,  -82,  161, 4,  -77, {46}},    -- floor 1 return
             [21]        = {-383, -4,   -2, -278, 4,    2, {41}},    -- floor 2 return

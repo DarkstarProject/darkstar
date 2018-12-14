@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Opacus Cell
+-- 5374
+-- Unlocks job abilities, weapon skills
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -11,6 +15,5 @@ end
 
 function onItemUse(target)
     target:delStatusEffectSilent(dsp.effect.IMPAIRMENT)
-    target:messageText(target, 7217)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 9) 
 end
-

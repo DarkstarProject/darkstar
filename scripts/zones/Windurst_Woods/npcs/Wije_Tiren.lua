@@ -4,17 +4,17 @@
 -- Standard Merchant NPC
 -- Confirmed shop stock, August 2013
 -----------------------------------
-require("scripts/globals/shop");
-local ID = require("scripts/zones/Windurst_Woods/IDs");
+local ID = require("scripts/zones/Windurst_Woods/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.WIJETIREN_SHOP_DIALOG);
+    player:showText(npc,ID.text.WIJETIREN_SHOP_DIALOG)
 
-    stock = {
+    local stock = {
         4148,   290,       --Antidote
         4509,    10,       --Distilled Water
         4151,   728,       --Echo Drops
@@ -24,12 +24,11 @@ function onTrigger(player,npc)
         5014,    98,       --Scroll of Herb Pastoral
         2864,  9200        --Federation Waystone
     }
-    dsp.shop.general(player, stock, WINDURST);
-
-end;
+    dsp.shop.general(player, stock, WINDURST)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

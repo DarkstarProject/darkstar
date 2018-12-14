@@ -3,18 +3,18 @@
 --  HNM: Nidhogg
 -----------------------------------
 local ID = require("scripts/zones/Dragons_Aery/IDs")
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
         GetNPCByID(ID.npc.FAFNIR_QM):setStatus(dsp.status.DISAPPEAR)
     end
+
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
 end
 
 function onMobFight(mob, target)

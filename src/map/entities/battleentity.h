@@ -228,6 +228,8 @@ enum SLOTTYPE
     SLOT_LINK2 = 0x11,
 };
 
+#define MAX_SLOTTYPE	18
+
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
 // для возможности различить эти орудия при экипировке и избавиться от ошибки
 // использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи)
@@ -480,6 +482,7 @@ public:
 
     bool            isDead();					// проверяем, мертва ли сущность
     bool            isAlive();
+    bool            isInAssault();
     bool            isInDynamis();
     bool            hasImmunity(uint32 imID);
     bool            isAsleep();

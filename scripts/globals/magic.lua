@@ -1325,7 +1325,7 @@ function calculateDuration(duration, magicSkill, spellGroup, caster, target, use
     return math.floor(duration)
 end
 
-function calculatePotency(basePotency, dStat, magicSkill, caster, target)
+function calculatePotency(basePotency, magicSkill, caster, target)
     if magicSkill ~= dsp.skill.ENFEEBLING_MAGIC then
         return basePotency
     end
@@ -1338,7 +1338,7 @@ function calculatePotency(basePotency, dStat, magicSkill, caster, target)
         end
     end
 
-    return math.floor((basePotency + dStat) * (1 + caster:getMod(dsp.mod.ENF_MAG_POTENCY) / 100))
+    return math.floor(basePotency * (1 + caster:getMod(dsp.mod.ENF_MAG_POTENCY) / 100))
 end
 
 -- Output magic hit rate for all levels

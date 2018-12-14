@@ -56,11 +56,8 @@ typedef u_int SOCKET;
 *                                                                       *
 ************************************************************************/
 
-CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket)
+CTCPRequestPacket::CTCPRequestPacket(SOCKET* socket) : m_data(nullptr), m_size(0), m_socket(socket), blowfish(blowfish_t())
 {
-    m_data = nullptr;
-    m_socket = socket;
-
     uint8 keys[24] =
     {
         0x30, 0x73, 0x3D, 0x6D,

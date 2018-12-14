@@ -15,7 +15,7 @@ function onMobSkillCheck(target,mob,skill)
     for i,v in pairs(targets) do
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
-            if (race == 5 or race == 6) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) then
+            if (race == dsp.race.TARU_M or race == dsp.race.TARU_F) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) then
                 mob:showText(mob, ID.text.PROMATHIA_TEXT + 2)
                 return 0
             end
@@ -29,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = 30
     local duration = 30
 
-    if target:isPC() and ((target:getRace() == 5 or target:getRace() == 6) and not target:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)) then
+    if target:isPC() and ((target:getRace() == dsp.race.TARU_M or target:getRace() == dsp.race.TARU_F) and not target:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration))
     else
         skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)

@@ -13,8 +13,12 @@ end
 function onSpellCast(caster, target, spell)
     local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
-    local power = math.min(caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC) / 25 + 1, 4)
-    power = calculatePotency(power, dINT, spell:getSkillType(), caster, target)
+    local skill = caster:getSkillLevel(dsp.skill.ENFEEBLING_MAGIC)
+    local power = math.max(skill / 25, 1)
+    if skill > 400 then
+        power = math.min((skill - 225) / 5, 55) -- Cap is 55 hp/tick
+    end
+    power = calculatePotency(power, spell:getSkillType(), caster, target)
 
     local duration = calculateDuration(30, spell:getSkillType(), spell:getSpellGroup(), caster, target)
 

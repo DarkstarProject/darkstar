@@ -475,7 +475,6 @@ void CDataLoader::ExpireAHItems()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            std::string qStr2;
             // iterate through the expired auctions and return them to the seller
             uint32 saleID = (uint32)Sql_GetUIntData(SqlHandle, 0);
             uint32 itemID = (uint32)Sql_GetUIntData(SqlHandle, 1);

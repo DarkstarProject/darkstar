@@ -310,6 +310,8 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (!PChar->loc.zoning)
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
+    else
+        charutils::ClearTempItems(PChar);
 
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
@@ -630,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
+        if (PChar->m_Costume != 0 || PChar->animation == ANIMATION_SYNTH)
         {
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;
@@ -3970,7 +3972,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -3996,7 +3998,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
                         qStr += (const char*)PChar->GetName();
                         qStr += "','LINKSHELL','";
-                        qStr += name.c_str();
+                        qStr += name;
                         qStr += "','";
                         qStr += escape((const char*)data[6]);
                         qStr += "',current_timestamp());";
@@ -4094,7 +4096,7 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
         qStr += (const char*)PChar->GetName();
         qStr += "','TELL','";
-        qStr += RecipientName.c_str();
+        qStr += RecipientName;
         qStr += "','";
         qStr += escape((const char*)data[20]);
         qStr += "',current_timestamp());";
@@ -4219,7 +4221,6 @@ void SmallPacket0x0C4(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             uint32   LinkshellID = 0;
             uint16   LinkshellColor = data.ref<uint16>(0x04);
-            string_t LinkshellName = (const char*)data[12];
             int8     DecodedName[21];
             int8     EncodedName[16];
 
@@ -4868,6 +4869,9 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case ANIMATION_NONE:
     {
+        if (data.ref<uint8>(0x04) == 0x02)
+            return;
+
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
             PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL &&
@@ -5208,7 +5212,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
         {
             CItemContainer* PContainer = PChar->getStorage(safeContainerId);
-            for (int slotIndex = 0; slotIndex < PContainer->GetSize(); ++slotIndex)
+            for (int slotIndex = 1; slotIndex <= PContainer->GetSize(); ++slotIndex)
             {
                 if (slotID == slotIndex && containerID == safeContainerId)
                     continue;
@@ -5463,7 +5467,7 @@ void SmallPacket0x102(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                     CBlueSpell* spell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(spellInQuestion + 0x200)); // the spells in this packet are offsetted by 0x200 from their spell IDs.
 
                     if (spell != nullptr) {
-                        blueutils::SetBlueSpell(PChar, spell, spellIndex, (spellToAdd > 0));
+                        blueutils::SetBlueSpell(PChar, spell, spellIndex, false);
                     }
                     else {
                         ShowDebug("Cannot resolve spell id \n");

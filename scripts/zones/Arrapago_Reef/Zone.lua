@@ -8,6 +8,7 @@ require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onInitialize(zone)
@@ -21,6 +22,9 @@ function onZoneIn(player,prevZone)
         if prevZone == dsp.zone.THE_ASHU_TALIF then
             if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2) then
                 cs = 9
+            elseif player:getVar("AgainstAllOdds") == 3 then
+                player:setPos(-456, -3, -405, 64)
+                cs = 238
             else
                 player:setPos(-456, -3, -405, 64)
             end
@@ -83,6 +87,8 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,55)
     elseif (csid == 237) then
         player:startEvent(240)
+    elseif csid == 238 then
+        npcUtil.completeQuest(player, AHT_URHGAN, AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
     elseif (csid == 240) then
         player:setVar("AgainstAllOdds",2)
     end

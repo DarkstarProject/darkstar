@@ -54,6 +54,18 @@ INSERT INTO `item_latents` VALUES(14726, 68, 6, 25, 0); -- Melody Earring +1, EV
 INSERT INTO `item_latents` VALUES(15139, 63, 10, 13, 64); -- Abyss Sollerets, Enhances "Last Resort" effect
 INSERT INTO `item_latents` VALUES(15672, 63, 10, 13, 64); -- Abyss Sollerets +1, Enhances "Last Resort" effect
 
+INSERT INTO `item_latents` VALUES(15807, 12, 4, 58, 0); -- Balrahn's Ring INT +4
+INSERT INTO `item_latents` VALUES(15807, 13, 4, 58, 0); -- MND +4
+INSERT INTO `item_latents` VALUES(15807, 14, 4, 58, 0); -- CHR +4
+INSERT INTO `item_latents` VALUES(15807, 369, 1, 58, 0); -- Refresh +1
+
+INSERT INTO `item_latents` VALUES(15808, 8, 4, 58, 0); -- Ulthalam's Ring STR +4
+INSERT INTO `item_latents` VALUES(15808, 9, 4, 58, 0); -- DEX +4
+INSERT INTO `item_latents` VALUES(15808, 370, 1, 58, 0); -- regen +1
+
+INSERT INTO `item_latents` VALUES(15809, 11, 6, 58, 0); -- Jalzahns's Ring AGI +6
+INSERT INTO `item_latents` VALUES(15809, 365, 1, 58, 0); -- Snapshot
+
 INSERT INTO `item_latents` VALUES(16017, 28, 1, 22, 4); -- Ardent Earring, MATT+1 if BLM is in party
 INSERT INTO `item_latents` VALUES(16018, 30, 1, 22, 5); -- Ataraxy Earring, MACC+1 if RDM is in party
 INSERT INTO `item_latents` VALUES(16029, 2, 10, 22, 16); -- Booster Earring, HP+10 if BLU is in party
@@ -3099,3 +3111,48 @@ INSERT INTO `item_latents` VALUES(17810,8,8,6,1);
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(11667, 369, 1, 57, 0); -- Rollers Ring Refresh +1 with Eleven COR Roll
 INSERT INTO `item_latents` VALUES(11667, 368, 10, 57, 0); -- Rollers Ring Regain +10 with Eleven COR Roll
+
+-- -------------------------------------------------------
+-- Assault latent gears
+-- -------------------------------------------------------
+INSERT INTO `item_latents` VALUES(14937, 71, 3, 58, 0); -- storm gages hmp +3
+INSERT INTO `item_latents` VALUES(15519, 370, 1, 58, 0); -- storm muffler regen +1
+INSERT INTO `item_latents` VALUES(15520, 68, 7, 58, 0); -- storm torque eva +7
+INSERT INTO `item_latents` VALUES(15483, 2, 75, 58, 0); -- Storm Mantle hp +75
+INSERT INTO `item_latents` VALUES(15489, 71, 2, 58, 0); -- Storm Cape hmp +2
+INSERT INTO `item_latents` VALUES(15882, 25, 15, 58, 0); -- storm belt acc +15
+INSERT INTO `item_latents` VALUES(15883, 12, 6, 58, 0); -- storm sash int +6
+INSERT INTO `item_latents` VALUES(15883, 14, 6, 58, 0); -- chr +6
+INSERT INTO `item_latents` VALUES(15692, 169, 12, 58, 0); -- storm crackows movement +12
+INSERT INTO `item_latents` VALUES(15774, 25, 10, 58, 0); -- Storm ring
+INSERT INTO `item_latents` VALUES(15968, 23, 10, 58, 0); -- storm loop
+INSERT INTO `item_latents` VALUES(15969, 5, 15, 58, 0); -- storm earring mp +15
+INSERT INTO `item_latents` VALUES(15969, 27, -4, 58, 0); -- enmity -4
+INSERT INTO `item_latents` VALUES(16165, 109, 5, 58, 0); -- storm shield shiel skill +5
+INSERT INTO `item_latents` VALUES(17661, 366, 4, 58, 0); -- storm scimatar dmg +4
+INSERT INTO `item_latents` VALUES(17661, 27, 5, 58, 0); -- enmity +5
+INSERT INTO `item_latents` VALUES(17851, 442, 1, 58, 0); -- storm fife
+INSERT INTO `item_latents` VALUES(17950, 366, 4, 58, 0); -- Marid Ancus dmg +4
+INSERT INTO `item_latents` VALUES(17950, 391, 2, 58, 0); -- charm +2
+INSERT INTO `item_latents` VALUES(18064, 366, 2, 58, 0); -- Volunteer's Scythe dmg +2
+INSERT INTO `item_latents` VALUES(18064, 23, 6, 58, 0); -- att +6
+INSERT INTO `item_latents` VALUES(18112, 366, 9, 58, 0); -- Puk Lance dmg +9
+INSERT INTO `item_latents` VALUES(18263, 366, 2, 58, 0); -- Imperial Bow dmg +2
+INSERT INTO `item_latents` VALUES(18263, 26, 10, 58, 0); -- ranged acc +10
+INSERT INTO `item_latents` VALUES(18364, 366, 2, 58, 0); -- Pahluwan Katars dmg +2
+INSERT INTO `item_latents` VALUES(18364, 291, 1, 58, 0); -- counter +1
+INSERT INTO `item_latents` VALUES(18387, 366, 3, 58, 0); -- Djinnbringer dmg +3
+INSERT INTO `item_latents` VALUES(18387, 25, 5, 58, 0); -- acc +5
+INSERT INTO `item_latents` VALUES(18407, 366, 2, 58, 0); -- Imperial Wand dmg +2
+INSERT INTO `item_latents` VALUES(18407, 5, 20, 58, 0); -- mp +20
+INSERT INTO `item_latents` VALUES(18407, 27, -3, 58, 0); -- enmity -3
+INSERT INTO `item_latents` VALUES(18416, 366, 4, 58, 0); -- Karasuageha dmg +4
+INSERT INTO `item_latents` VALUES(18416, 289, 1, 58, 0); -- subtle blow +1
+INSERT INTO `item_latents` VALUES(18434, 366, 3, 58, 0); -- Kosetsusamonji dmg +3
+INSERT INTO `item_latents` VALUES(18434, 273, 2, 58, 0); -- store tp +2
+INSERT INTO `item_latents` VALUES(18484, 366, 5, 58, 0); -- Wamoura Axe dmg +5
+INSERT INTO `item_latents` VALUES(18484, 288, 1, 58, 0); -- double attack +1
+INSERT INTO `item_latents` VALUES(18582, 366, 1, 58, 0); -- Yigit Staff dmg +1
+INSERT INTO `item_latents` VALUES(18582, 6, 2, 58, 0); -- mp% +2
+INSERT INTO `item_latents` VALUES(18684, 366, 2, 58, 0); -- Storm Zamburak dmg +2
+INSERT INTO `item_latents` VALUES(18684, 24, 10, 58, 0); -- ranged att +10

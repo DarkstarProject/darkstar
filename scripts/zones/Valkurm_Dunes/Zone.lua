@@ -64,7 +64,7 @@ function onEventFinish( player, csid, option)
 end;
 
 function onZoneWeatherChange(weather)
-    local qm1 = GetNPCByID(ID.npc.VALKURM_SUNSAND_QM); -- Quest: An Empty Vessel
+    local qm1 = GetNPCByID(ID.npc.SUNSAND_QM); -- Quest: An Empty Vessel
     if (weather == dsp.weather.DUST_STORM) then
         qm1:setStatus(dsp.status.NORMAL);
     else

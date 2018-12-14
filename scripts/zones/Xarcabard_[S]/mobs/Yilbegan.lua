@@ -1,13 +1,10 @@
 -----------------------------------
--- Area:
+-- Area: Xarcabard [S]
 --  VNM: Yilbegan
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER);
-end;
+    player:addTitle(dsp.title.YILBEGAN_HIDEFLAYER)
+end

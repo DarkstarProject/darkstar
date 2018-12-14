@@ -62,7 +62,6 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 ref<uint16>(0x1A) = PChar->m_TargID << 1;
                 ref<uint8>(0x1C) = PChar->GetSpeed();
                 ref<uint8>(0x1D) = PChar->speedsub;
-                ref<uint16>(0x30) = PChar->m_Costum;
             }
 
             if (updatemask & UPDATE_HP)
@@ -119,7 +118,10 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
             {
                 ref<uint16>(0x3C) = PChar->PPet->targid;
             }
+
+            ref<uint16>(0x30) = PChar->m_Costume;
             ref<uint8>(0x43) = 0x04;
+
             if (updatemask & UPDATE_LOOK)
             {
                 look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);

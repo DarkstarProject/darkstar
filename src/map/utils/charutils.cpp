@@ -912,7 +912,7 @@ namespace charutils
                         PItem->setSignature(EncodedString);
                     }
 
-                    if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
+                    if (PItem->isType(ITEM_FURNISHING) && (PItem->getLocationID() == LOC_MOGSAFE || PItem->getLocationID() == LOC_MOGSAFE2))
                     {
                         if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                         {

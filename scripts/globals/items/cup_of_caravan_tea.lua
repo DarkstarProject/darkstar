@@ -13,7 +13,7 @@ require("scripts/globals/status")
 
 function onItemCheck(target)
     result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD) == true or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) == true) then
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
         result = 246
     end
     return result

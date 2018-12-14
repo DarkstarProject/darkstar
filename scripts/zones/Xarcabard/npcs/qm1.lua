@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Xarcabard
--- NPC:  qm1 (???)
+--  NPC: qm1 (???)
 -- Involved in Quests: The Three Magi
 -- !pos -331 -29 -49 112
 -----------------------------------

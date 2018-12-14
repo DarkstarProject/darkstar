@@ -48,9 +48,9 @@ function onEventUpdate( player, csid, option)
     if (csid == 2) then
         lightCutsceneUpdate(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 4) then
-        if (player:getPreviousZone() == 153) then
+        if (player:getPreviousZone() == dsp.zone.THE_BOYAHDA_TREE) then
             player:updateEvent(0,0,0,0,0,7);
-        elseif (player:getPreviousZone() == 119) then
+        elseif (player:getPreviousZone() == dsp.zone.MERIPHATAUD_MOUNTAINS) then
             player:updateEvent(0,0,0,0,0,1);
         end
     end

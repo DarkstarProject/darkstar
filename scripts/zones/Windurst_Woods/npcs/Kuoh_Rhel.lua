@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     elseif inAStew == QUEST_ACCEPTED then
         player:startEvent(236) -- reminder dialog
     -- Uncomment once conquest tally in place
-    --elseif (inAStew == QUEST_COMPLETED) then
+    --elseif inAStew == QUEST_COMPLETED then
         --player:startEvent(240) -- new dialog between repeats
     elseif (inAStew == QUEST_COMPLETED) then
         player:startEvent(234) -- start repeat

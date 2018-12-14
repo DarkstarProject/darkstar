@@ -12,7 +12,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onInitialize(zone)
-    for k, v in pairs(ID.npc.RUAUN_PORTALS) do
+    for k, v in pairs(ID.npc.PORTALS) do
         zone:registerRegion(k,unpack(v["coords"]));
     end
 
@@ -39,7 +39,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onRegionEnter(player,region)
-    local p = ID.npc.RUAUN_PORTALS[region:GetRegionID()];
+    local p = ID.npc.PORTALS[region:GetRegionID()];
 
     if (p["green"] ~= nil) then -- green portal
         if (player:getVar("skyShortcut") == 1) then

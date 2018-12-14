@@ -42,7 +42,7 @@ enum MOBMODIFIER : int
     MOBMOD_SUBLINK            = 10, // sub link group
     MOBMOD_LINK_RADIUS        = 11, // link radius
     MOBMOD_DRAW_IN            = 12, // 1 - player draw in, 2 - alliance draw in -- only add as a spawn mod!
-    MOBMOD_RAGE               = 13, // define rage timer -- only add as a spawn mod!
+    MOBMOD_RAGE               = 13, // define rage timer -- only add as a spawn mod! (OBSOLETE - use rage mixin)
     MOBMOD_SKILL_LIST         = 14, // uses given mob skill list
     MOBMOD_MUG_GIL            = 15, // amount gil carried for mugging
     MOBMOD_MAIN_2HOUR         = 16, // give mob its main job two hour, value can maybe be sent to skill
@@ -83,7 +83,7 @@ enum MOBMODIFIER : int
     MOBMOD_ROAM_TURNS         = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE          = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     MOBMOD_BEHAVIOR           = 53, // Add behaviors to mob
-    MOBMOD_GIL_BONUS          = 54, // Allow mob to drop gil. Multipler to gil dropped by mob (bonus / 100) * total
+    MOBMOD_GIL_BONUS          = 54, // Allow mob to drop gil. Multiplier to gil dropped by mob (bonus / 100) * total
     MOBMOD_IDLE_DESPAWN       = 55, // Time (in seconds) to despawn after being idle
     MOBMOD_HP_STANDBACK       = 56, // mob will always standback with hp % higher to value
     MOBMOD_MAGIC_DELAY        = 57, // Amount of seconds mob waits before casting first spell
@@ -95,7 +95,8 @@ enum MOBMODIFIER : int
     MOBMOD_ATTACK_SKILL_LIST  = 63, // skill list to use in place of regular attacks
     MOBMOD_CHARMABLE          = 64, // mob is charmable
     MOBMOD_NO_MOVE            = 65, // Mob will not be able to move
-    MOBMOD_MULTI_HIT          = 66  // Mob will not be able to move
+    MOBMOD_MULTI_HIT          = 66, // Mob will not be able to move
+    MOBMOD_NO_AGGRO           = 67  // If set, mob cannot aggro until unset.
 };
 
 #endif

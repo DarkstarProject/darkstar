@@ -68,7 +68,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (20,'the_susanoo_shuffle',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (21,'excavation_duty',61,30,124.999,-39.309,19.999,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (22,'lebros_supplies',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (23,'troll_fugitives',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (23,'troll_fugitives',61,30,-459.912,-9.860,342.319,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (24,'evade_and_escape',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (25,'siegemaster_assassination',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (26,'apkallu_breeding',61,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
@@ -77,7 +77,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (29,'operation:black_pearl',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (30,'better_than_one',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (31,'seagull_grounded',79,30,-350,-15.245,380,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (32,'requiem',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
+-- INSERT INTO `instance_list` VALUES (32,'requiem',79,30,-458.409,-10.000,-320.966,90,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (33,'saving_private_ryaaf',79,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (34,'shooting_down_the_baron',79,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (35,'building_bridges',79,15,0.000,0.000,0.000,0,-1,-1,-1,-1);
@@ -99,7 +99,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (51,'nyzul_isle_investigation',72,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (52,'nyzul_isle_uncharted_survey',72,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 INSERT INTO `instance_list` VALUES (53,'the_black_coffin',54,30,0,-22,24,64,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (54,'against_all_odds',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
+INSERT INTO `instance_list` VALUES (54,'against_all_odds',54,30,-9.000,-22.000,17.000,252,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (55,'scouting_the_ashu_talif',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (56,'royal_painter_escort',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (57,'targeting_the_captain',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);

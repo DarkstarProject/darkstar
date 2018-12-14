@@ -26,7 +26,7 @@ end
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
     local kindCardian = player:getQuestStatus(JEUNO, THE_KIND_CARDIAN)
-    local kindCardianCS = player:getVar("theKindCardianVar");
+    local kindCardianCS = player:getVar("theKindCardianVar")
     local allNewC3000 = player:getQuestStatus(WINDURST, THE_ALL_NEW_C_3000)
     local canCardiansCry = player:getQuestStatus(WINDURST, CAN_CARDIANS_CRY)
 

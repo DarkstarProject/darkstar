@@ -8,7 +8,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = math.floor((npc:getID() - ID.npc.TAHRONGI_SIGNPOST_OFFSET) / 2);
+    local offset = math.floor((npc:getID() - ID.npc.SIGNPOST_OFFSET) / 2);
     player:messageSpecial(ID.text.SIGN_1 + offset);
 end;
 

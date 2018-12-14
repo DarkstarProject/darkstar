@@ -40,6 +40,7 @@ g_mixins.job_special = function(mob)
             [dsp.job.NIN] = dsp.jsa.MIJIN_GAKURE,
             [dsp.job.DRG] = dsp.jsa.CALL_WYVERN,
             [dsp.job.SMN] = dsp.jsa.ASTRAL_FLOW,
+            [dsp.job.BLU] = dsp.jsa.AZURE_LORE,
         }
 
         if mob:getLocalVar("usedMainSpec") == 0 and mob:getHPP() < mob:getLocalVar("useMainSpecAtHPP") and mob:getBattleTime() >= mob:getLocalVar("waitJobSpec") then
