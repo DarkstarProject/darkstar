@@ -2,6 +2,7 @@
 -- Area: Arrapago Reef
 --  MOB: Lamia No.19
 -----------------------------------
+mixins = {require("scripts/mixins/families/lamie")}
 
 function onMobSpawn(mob)
 end;

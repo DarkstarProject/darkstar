@@ -679,16 +679,17 @@ INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2181);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2180);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2179);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2178);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1929);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1761);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752); -- Gusting Gouge
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753); -- hysteric Barrage
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1929);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1761); -- arrow deludge
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1930);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1754);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1755,?);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1754);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1755);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1756);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1757,?);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1758);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1813);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1814);
 -- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1812);
@@ -752,9 +753,14 @@ INSERT INTO `mob_skill_lists` VALUES ('Marid',180,1706);
 INSERT INTO `mob_skill_lists` VALUES ('Marid',180,1707);
 -- INSERT INTO `mob_skill_lists` VALUES ('Marid',180,1708,?);
 INSERT INTO `mob_skill_lists` VALUES ('MemoryReceptacle',181,542);
-INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1758);
-INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1771);
--- INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1772);
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1765); -- Gusting Gouge
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1766); -- Hysteric Barrage
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1768); -- Dukkeripen Shadows
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1769); -- Dukkeripen Paralyze
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1770); -- Dukkeripen Heal
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1771); -- Tail Slap
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1772); -- Torrent
+INSERT INTO `mob_skill_lists` VALUES ('Merrow',182,1930); -- Tidal Slash
 -- INSERT INTO `mob_skill_lists` VALUES ('Mimic',439,?);
 INSERT INTO `mob_skill_lists` VALUES ('Mimic',183,588);
 -- INSERT INTO `mob_skill_lists` VALUES ('Moblin',440,?);
