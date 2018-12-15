@@ -3,7 +3,11 @@
 --  Mob: Merrow Shadowdancer
 -- Note: Minion of Experimental Lamia
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
+mixins = 
+    {
+        require("scripts/mixins/job_special"),
+        require("scripts/mixins/families/lamie")
+    }
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
