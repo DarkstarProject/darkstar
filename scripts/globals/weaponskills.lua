@@ -35,6 +35,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     -- apply WSC
     local weaponDamage = attacker:getWeaponDmg()
     local weaponType = attacker:getWeaponSkillType(0)
+    local damageType = attacker:getWeaponDamageType(0)
 
     if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3)
@@ -249,7 +250,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = finaldmg + firstHitBonus
 
     -- Check for reductions from PDT
-    finaldmg = target:physicalDmgTaken(finaldmg, attacker:getWeaponDamageType(0))
+    finaldmg = target:physicalDmgTaken(finaldmg, damageType)
 
     -- Check for reductions from phys resistances
     if (weaponType == dsp.skill.HAND_TO_HAND) then
@@ -264,7 +265,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     attacker:delStatusEffectSilent(dsp.effect.BUILDING_FLOURISH)
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.PHYSICAL, damageType, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded
 end
 
@@ -319,7 +320,8 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     else
         shadowsAbsorbed = shadowsAbsorbed + 1
     end
-    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, dsp.slot.MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
+    damageType = dsp.damageType.ELEMENTAL + params.ele
+    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, dsp.attackType.MAGICAL, damageType, dsp.slot.MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
     return dmg, false, 1, 0
 end
 
@@ -882,7 +884,7 @@ end
     finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.RANGED, attacker:getWeaponDamageType(dsp.slot.RANGED), dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     return finaldmg, crit, tpHitsLanded, extraHitsLanded, shadowsAbsorbed
 end
 
@@ -994,7 +996,7 @@ function getFlourishAnimation(skill)
     end
 end
 
-function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, attackType, damageType, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if primary then
@@ -1027,7 +1029,7 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
         action:reaction(defender:getID(), dsp.reaction.EVADE)
     end
     local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)

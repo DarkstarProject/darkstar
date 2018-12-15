@@ -25,7 +25,7 @@ function onMobWeaponSkill(target, mob, skill)
         end
     end
 
-    target:takeDamage(realDmg, mob)
+    target:takeDamage(realDmg, mob, dsp.attackType.MAGICAL, dsp.damageType.NONE)
 
     return realDmg
 end

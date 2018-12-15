@@ -65,7 +65,7 @@ function onUseAbility(player, target, ability)
     damage = damage * (pdif / 1000)
 
     damage = utils.stoneskin(target, damage)
-    target:takeDamage(damage, player)
+    target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
 
     ability:setMsg(dsp.msg.basic.JA_DAMAGE)

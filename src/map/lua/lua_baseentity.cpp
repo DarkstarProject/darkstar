@@ -7233,7 +7233,7 @@ inline int32 CLuaBaseEntity::restoreHP(lua_State *L)
 /************************************************************************
 *  Function: takeDamage()
 *  Purpose : Takes damage from the provided attacker. If no attacker is provided then it clears the last attacker.
-*  Example : target:takeDamage(500, attacker=nil, shouldWakeUp=true)
+*  Example : target:takeDamage(500, attacker=nil, attackType=ATTACK_NONE, damageType=DAMAGE_NONE, shouldWakeUp=true)
 *  Notes   :
 ************************************************************************/
 
@@ -7246,7 +7246,6 @@ inline int32 CLuaBaseEntity::takeDamage(lua_State *L)
 
     int32 damage = (int32)(lua_tointeger(L, 1));
     if (damage > 0) {
-
         // Attempt to retrieve the attacker
         CBattleEntity* PAttacker = nullptr;
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2)) {
@@ -7255,11 +7254,13 @@ inline int32 CLuaBaseEntity::takeDamage(lua_State *L)
             DSP_DEBUG_BREAK_IF(PLuaAttacker->m_PBaseEntity->objtype == TYPE_NPC);
             PAttacker = (CBattleEntity*)PLuaAttacker->m_PBaseEntity;
         }
+        ATTACKTYPE attackType = !lua_isnil(L, 3) && lua_isnumber(L, 3) ? (ATTACKTYPE)(uint16)lua_tonumber(L, 3) : ATTACK_NONE;
+        DAMAGETYPE damageType = !lua_isnil(L, 4) && lua_isnumber(L, 4) ? (DAMAGETYPE)(uint16)lua_tonumber(L, 4) : DAMAGE_NONE;
 
-        ((CBattleEntity*)m_PBaseEntity)->takeDamage(damage, PAttacker);
+        ((CBattleEntity*)m_PBaseEntity)->takeDamage(damage, PAttacker, attackType, damageType);
 
         // Attempt to wake up the target unless shouldWakeUp is provided and is false
-        if (lua_isnil(L, 3) || !lua_isboolean(L, 3) || lua_toboolean(L, 3))
+        if (lua_isnil(L, 5) || !lua_isboolean(L, 5) || lua_toboolean(L, 5))
             ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->WakeUp();
     }
 
@@ -11738,7 +11739,7 @@ inline int32 CLuaBaseEntity::getWeaponSkillLevel(lua_State *L)
 /************************************************************************
 *  Function: getWeaponDamageType()
 *  Purpose : Returns the primary type of a weapon in a slot
-*  Example : if (attacker:getWeaponDamageType(SLOT_MAIN) == MOBPARAM_PIERCE)
+*  Example : if (attacker:getWeaponDamageType(SLOT_MAIN) == dsp.damageType.PIERCING)
 *  Notes   : Used to identify which damage type is the weapon
 ************************************************************************/
 
@@ -11869,7 +11870,7 @@ inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
 /************************************************************************
 *  Function: takeWeaponskillDamage()
 *  Purpose : Calls Battle Utils to calculate final weapon skill damage against a foe
-*  Example : defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
+*  Example : defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
 *  Notes   : Global function of same name in weaponskills.lua, calls this member function from within
 ************************************************************************/
 
@@ -11879,20 +11880,24 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isboolean(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isboolean(L, 6));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isnumber(L, 7));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 8) || !lua_isnumber(L, 8));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 9) || !lua_isnumber(L, 9));
 
     auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
     auto damage = (int32)lua_tointeger(L, 2);
-    auto slot = (uint8)lua_tointeger(L, 3);
-    auto primary = lua_toboolean(L, 4);
-    auto tpMultiplier = (float)lua_tonumber(L, 5);
-    auto bonusTP = (uint16)lua_tointeger(L, 6);
-    auto targetTPMultiplier = (float)lua_tonumber(L, 7);
+    ATTACKTYPE attackType = (ATTACKTYPE)(uint16)lua_tonumber(L, 3);
+    DAMAGETYPE damageType = (DAMAGETYPE)(uint16)lua_tonumber(L, 4);
+    auto slot = (uint8)lua_tointeger(L, 5);
+    auto primary = lua_toboolean(L, 6);
+    auto tpMultiplier = (float)lua_tonumber(L, 7);
+    auto bonusTP = (uint16)lua_tointeger(L, 8);
+    auto targetTPMultiplier = (float)lua_tonumber(L, 9);
 
-    lua_pushinteger(L, (lua_Integer)battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, primary, tpMultiplier, bonusTP, targetTPMultiplier));
+    lua_pushinteger(L, (lua_Integer)battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, attackType, damageType, slot, primary, tpMultiplier, bonusTP, targetTPMultiplier));
     return 1;
 }
 
@@ -14532,7 +14537,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillLevel),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity, getWeaponDamageType),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDamageType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),

@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 90))
 
     mob:takeDamage(dmg1)
-    target:takeDamage(dmg2, mob)
+    target:takeDamage(dmg2, mob, dsp.attackType.MAGICAL, dsp.damageType.NONE)
 
     return dmg2
 end

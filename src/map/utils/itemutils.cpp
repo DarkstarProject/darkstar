@@ -553,7 +553,7 @@ namespace itemutils
 
         PUnarmedItem = new CItemWeapon(0);
 
-        PUnarmedItem->setDmgType(DAMAGE_NONE);
+        PUnarmedItem->setDmgType(DAMAGE_IMPACT);
         PUnarmedItem->setSkillType(SKILL_NONE);
         PUnarmedItem->setDamage(3);
 

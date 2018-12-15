@@ -87,7 +87,7 @@ function onUseAbility(player,target,ability,action)
         end
 
         dmg = utils.stoneskin(target, dmg)
-        target:takeDamage(dmg, player)
+        target:takeDamage(dmg, player, dsp.attackType.PHYSICAL, player:getWeaponDamageType(0))
         target:updateEnmityFromDamage(player,dmg)
 
         action:animation(target:getID(), getFlourishAnimation(player:getWeaponSkillType(dsp.slot.MAIN)))
