@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    if (csid == 1 and EventUpdateBCNM(player,csid,option)) then
+    if (EventUpdateBCNM(player,csid,option)) then
         return;
     end
 end;

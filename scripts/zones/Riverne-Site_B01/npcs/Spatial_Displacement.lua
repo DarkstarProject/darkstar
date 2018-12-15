@@ -13,7 +13,9 @@ function onTrigger(player,npc)
         player:startEvent(offset + 2);
     elseif (offset == 34) then
         player:startEvent(22);
-    elseif (offset >= 35 and offset <= 41) then
+    elseif (offset == 35) then
+        player:startEvent(32003);
+    elseif (offset > 35 and offset <= 41) then
         player:startEvent(offset);
     end
 end;
@@ -28,5 +30,10 @@ function onEventFinish(player,csid,option)
         player:setPos(-538.526,-29.5,359.219,255,25); -- back to Misareaux Coast (Retail confirmed)
     elseif (csid == 17 and option == 0) then
         -- TODO: Go! Go! Gobmuffin quest. Player just ported to J-6 island
+    elseif (csid == 32003 and option == 4) then
+        EventFinishBCNM(player,csid,option)
+        if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
+            player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0);
+        end;
     end;
 end;
