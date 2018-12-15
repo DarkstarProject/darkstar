@@ -7251,8 +7251,8 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 
 /************************************************************************
 *  Function: takeDamage()
-*  Purpose : Takes damage from the provided attacker. 
-*  Example : target:takeDamage(500, attacker, shouldWakeUp=true)
+*  Purpose : Takes damage from the provided attacker. If no attacker is provided then it clears the last attacker.
+*  Example : target:takeDamage(500, attacker=None, shouldWakeUp=true)
 *  Notes   :
 ************************************************************************/
 
@@ -7262,17 +7262,25 @@ inline int32 CLuaBaseEntity::takeDamage(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isuserdata(L, 2));
 
-    CLuaBaseEntity* PLuaAttacker = Lunar<CLuaBaseEntity>::check(L, 2);
+    int32 damage = (int32)(lua_tointeger(L, 1));
+    if (damage > 0) {
 
-    DSP_DEBUG_BREAK_IF(PLuaAttacker == nullptr);
-    DSP_DEBUG_BREAK_IF(PLuaAttacker->m_PBaseEntity->objtype == TYPE_NPC);
+        // Attempt to retrieve the attacker
+        CBattleEntity* PAttacker = nullptr;
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2)) {
+            CLuaBaseEntity* PLuaAttacker = Lunar<CLuaBaseEntity>::check(L, 2);
+            DSP_DEBUG_BREAK_IF(PLuaAttacker == nullptr);
+            DSP_DEBUG_BREAK_IF(PLuaAttacker->m_PBaseEntity->objtype == TYPE_NPC);
+            PAttacker = (CBattleEntity*)PLuaAttacker->m_PBaseEntity;
+        }
 
-    ((CBattleEntity*)m_PBaseEntity)->takeDamage((int32)(lua_tointeger(L, 1)), (CBattleEntity*)PLuaAttacker->m_PBaseEntity);
+        ((CBattleEntity*)m_PBaseEntity)->takeDamage(damage, PAttacker);
 
-    if (lua_isnil(L, 3) || !lua_isboolean(L, 3) || lua_toboolean(L, 3))
-        ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->WakeUp();
+        // Attempt to wake up the target unless shouldWakeUp is provided and is false
+        if (lua_isnil(L, 3) || !lua_isboolean(L, 3) || lua_toboolean(L, 3))
+            ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->WakeUp();
+    }
 
     return 0;
 }
