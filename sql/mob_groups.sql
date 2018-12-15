@@ -10552,6 +10552,7 @@ INSERT INTO `mob_groups` VALUES (10479,5555,51,0,128,4616,0,0,78,78,0); -- Cheli
 INSERT INTO `mob_groups` VALUES (10480,5556,137,0,128,4617,0,0,82,82,0); -- Tikbalang
 INSERT INTO `mob_groups` VALUES (10481,1835,76,0,128,0,0,0,66,69,0); -- Guard Skeleton (Silver Sea Remnants)
 INSERT INTO `mob_groups` VALUES (10482,5757,169,0,128,4424,0,0,85,85,0); -- Brazen Bones
+INSERT INTO `mob_groups` VALUES (10483,5758,105,0,32,2188,5500,0,51,51,0); -- Prankster Maverix
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);

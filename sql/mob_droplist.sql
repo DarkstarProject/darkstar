@@ -13199,7 +13199,7 @@ INSERT INTO `mob_droplist` VALUES (2187,0,0,1000,912,360);
 INSERT INTO `mob_droplist` VALUES (2187,0,0,1000,925,30);
 INSERT INTO `mob_droplist` VALUES (2187,2,0,1000,4370,0);
 INSERT INTO `mob_droplist` VALUES (2187,0,0,1000,4370,160);
--- 2188 available
+INSERT INTO `mob_droplist` VALUES (2188,0,0,1000,15945,233); -- (Prankster Maverix) Volant Belt
 INSERT INTO `mob_droplist` VALUES (2189,0,0,1000,645,20);
 INSERT INTO `mob_droplist` VALUES (2189,0,0,1000,702,10);
 INSERT INTO `mob_droplist` VALUES (2189,0,0,1000,823,0);
