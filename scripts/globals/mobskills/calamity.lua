@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
 
     -- Didn't see any numbers, so just giving it something on par with other AAs.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

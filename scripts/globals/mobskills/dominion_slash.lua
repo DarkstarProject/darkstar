@@ -40,6 +40,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     -- Damage is HIGHLY conflicting.  Witnessed anywhere from 300 to 900.
     -- TP DMG VARIES can sort of account for this, but I feel like it's still not right.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

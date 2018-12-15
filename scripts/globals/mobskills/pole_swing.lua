@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.6
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

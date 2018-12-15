@@ -25,6 +25,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.BIO, 5, 3, 120, FLAG_ERASABLE, 10)
     MobStatusEffectMove(mob, target, dsp.effect.MAX_HP_DOWN, 10, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -19,7 +19,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded)
 
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.CHARM_I, 0, 0, 60)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
 
     return dmg
 end

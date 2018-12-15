@@ -44,6 +44,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob,target,dsp.effect.PARALYSIS, 40, 0, 60)
     MobStatusEffectMove(mob,target,dsp.effect.STUN, 1, 0, 4)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

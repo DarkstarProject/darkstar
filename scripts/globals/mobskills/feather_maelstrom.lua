@@ -22,6 +22,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded)
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect1, 6, 3, 60)
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect2, 1, 0, 60)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

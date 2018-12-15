@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
     target:delStatusEffect(dsp.effect.PHYSICAL_SHIELD)
     target:delStatusEffect(dsp.effect.MAGIC_SHIELD)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

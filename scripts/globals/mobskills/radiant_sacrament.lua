@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobStatusEffectMove(mob, target, dsp.effect.MAGIC_DEF_DOWN, 20, 0, 60) -- Needs adjusted to retail values for power/duration
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

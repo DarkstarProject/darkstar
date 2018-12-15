@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded)
 
     mob:AnimationSub(1) -- Mob loses Staff on using Stave Toss
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

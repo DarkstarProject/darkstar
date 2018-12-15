@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
 
    -- TODO: Dispelled messages.  No examples of damage+dispel working to crib notes from.
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

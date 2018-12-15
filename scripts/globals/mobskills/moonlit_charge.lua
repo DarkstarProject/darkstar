@@ -20,7 +20,7 @@ function onMobWeaponSkill(target, mob, skill)
     local damage = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,0,TP_NO_EFFECT,1,2,3)
     totaldamage = MobFinalAdjustments(damage.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,numhits)
     target:addStatusEffect(dsp.effect.BLINDNESS, 20, 0, 30)
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, mob)
 
     return totaldamage
 

@@ -28,6 +28,6 @@ function onMobWeaponSkill(target, mob, skill)
    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4)
 
     -- <100 damage to pretty much anything, except on rare occasions.
-   target:delHP(dmg)
+   target:takeDamage(dmg, mob)
     return dmg
 end

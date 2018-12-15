@@ -42,6 +42,6 @@ function onMobWeaponSkill(target, mob, skill)
         mob:setHP(0)
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

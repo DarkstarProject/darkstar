@@ -16,6 +16,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     target:dispelStatusEffect()
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

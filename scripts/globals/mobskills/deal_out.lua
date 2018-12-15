@@ -28,6 +28,6 @@ function onMobWeaponSkill(target, mob, skill)
         mob:resetEnmity(target)
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

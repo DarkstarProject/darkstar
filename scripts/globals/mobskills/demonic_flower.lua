@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, 1, 0, 90))
 
     mob:delHP(dmg1)
-    target:delHP(dmg2)
+    target:takeDamage(dmg2, mob)
 
     return dmg2
 end

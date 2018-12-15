@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, 60)
 
     -- About 300-400 to a DD.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

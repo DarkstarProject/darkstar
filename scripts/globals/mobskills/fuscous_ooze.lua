@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
     local baseDamage = mob:getWeaponDmg()*3.7
     local info = MobMagicalMove(mob,target,skill,baseDamage,dsp.magic.ele.WATER,dmgmod,TP_NO_EFFECT)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WATER,MOBPARAM_IGNORE_SHADOWS)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

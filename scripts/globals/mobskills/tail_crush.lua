@@ -28,6 +28,6 @@ function onMobWeaponSkill(target, mob, skill)
     local power = mob:getMainLvl()/10 + 10
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 3, 60)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.BLINDNESS, 18, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

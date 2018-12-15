@@ -29,6 +29,6 @@ function onMobWeaponSkill(target, mob, skill)
     distance = utils.clamp(distance, 0, 40)
     dmg = dmg * ((50 - distance) / 50)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

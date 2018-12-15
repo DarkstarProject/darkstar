@@ -564,7 +564,6 @@ function MobFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbeh
     dmg = utils.stoneskin(target, dmg);
 
     if (dmg > 0) then
-        target:wakeUp();
         target:updateEnmityFromDamage(mob,dmg);
         target:handleAfflatusMiseryDamage(dmg);
     end

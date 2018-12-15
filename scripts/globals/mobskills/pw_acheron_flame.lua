@@ -36,7 +36,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS)
 
     MobStatusEffectMove(mob, target, typeEffect, power, 3, 60)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
 
     return dmg
 end

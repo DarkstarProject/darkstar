@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 25, 0, 60)
 
     -- Never actually got a good damage sample.  Putting it between Gekko and Kasha.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

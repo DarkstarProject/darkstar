@@ -36,7 +36,7 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 15, 0, 60)
 
-	target:delHP(dmg)
+	target:takeDamage(dmg, mob)
 
     if (mob:getFamily() == 313 and bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) == 0 and mob:AnimationSub() == 1) then -- re-enable no turn if third head is dead (Tinnin), else it's re-enabled after the upcoming Pyric Blast
         mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))

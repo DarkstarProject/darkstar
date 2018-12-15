@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 15, 3, 120)
     MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, 60)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

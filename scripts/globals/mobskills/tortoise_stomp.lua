@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.DEFENSE_DOWN
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 30, 0, 180)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

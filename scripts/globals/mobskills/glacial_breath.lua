@@ -35,6 +35,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

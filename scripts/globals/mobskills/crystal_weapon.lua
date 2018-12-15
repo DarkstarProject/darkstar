@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg() * 5,accmod,dmgmod,TP_MAB_BONUS,1)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,element,MOBPARAM_IGNORE_SHADOWS)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

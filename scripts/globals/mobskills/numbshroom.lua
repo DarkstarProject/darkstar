@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 35, 0, 180)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -22,7 +22,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
 
     local typeEffect = dsp.effect.PLAGUE
 

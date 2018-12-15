@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 4.5
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     
     -- Apply poison if it hits
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.POISON, 100, 3, math.random(3,6) * 3)  -- 3-6 ticks

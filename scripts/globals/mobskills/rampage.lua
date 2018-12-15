@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
 
     -- Witnessed 1100 to a DD.  Going with it :D
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -34,6 +34,6 @@ function onMobWeaponSkill(target, mob, skill)
     mob:AnimationSub(1)
     mob:setLocalVar("AMBUSH",1) -- Used it for the last time!
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

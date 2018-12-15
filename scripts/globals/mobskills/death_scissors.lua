@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
         dmg = dmg * 0.7
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

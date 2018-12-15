@@ -28,7 +28,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW)
 
    -- Witnessed 280 to a melee, 400 to a BRD, and 500 to a wyvern, so...
-   target:delHP(dmg)
+   target:takeDamage(dmg, mob)
    MobStatusEffectMove(mob, target, dsp.effect.SLEEP_I, 1, 0, math.random(30, 60))
    return dmg
 end

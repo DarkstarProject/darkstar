@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 25, 0, 60)
 
     -- About 400-500
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -22,6 +22,6 @@ function onMobWeaponSkill(target, mob, skill)
 
         MobPhysicalDrainMove(mob, target, skill, MOBDRAIN_MP, dmg)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

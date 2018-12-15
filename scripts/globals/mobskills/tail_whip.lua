@@ -18,6 +18,6 @@ function onMobWeaponSkill(target, mob, skill)
     local typeEffect = dsp.effect.WEIGHT
         MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 50, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

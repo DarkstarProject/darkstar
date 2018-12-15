@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_3_SHADOW)
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.TERROR, 1, 0, 9)
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.BIND, 1, 0, 30)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     mob:resetEnmity(target)
     return dmg
 end

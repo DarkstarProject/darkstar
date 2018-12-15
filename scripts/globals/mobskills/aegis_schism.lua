@@ -27,6 +27,6 @@ function onMobWeaponSkill(target, mob, skill)
     local duration = 120
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

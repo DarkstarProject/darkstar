@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, (skill:getTP()*30/1000)+30)
 
     -- 242 to a NIN, but shadows ate some hits...
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

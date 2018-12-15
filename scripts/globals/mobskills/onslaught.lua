@@ -32,7 +32,7 @@ function onMobWeaponSkill(target, mob, skill)
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, duration)
 
     -- About 300-400 to a DD.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
     
 end

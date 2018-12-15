@@ -29,6 +29,6 @@ function onMobWeaponSkill(target, mob, skill)
    MobStatusEffectMove(mob, target, dsp.effect.PETRIFICATION, 1, 0, math.random(8, 15) + mob:getMainLvl()/3)
    MobStatusEffectMove(mob, target, dsp.effect.POISON, math.ceil(mob:getMainLvl() / 5), 3, 60)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

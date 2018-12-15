@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobBuffMove(mob, dsp.effect.HASTE, 2998, 0, 300) -- There is no message for the self buff aspect, only dmg.
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

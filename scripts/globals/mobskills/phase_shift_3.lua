@@ -21,7 +21,7 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_2_SHADOW)
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 15)
     MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.BIND, 1, 0, 30)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     mob:setUnkillable(false)
     return dmg
 end

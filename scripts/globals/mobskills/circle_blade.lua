@@ -24,6 +24,6 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,MOBPARAM_1_SHADOW)
 
     -- About 200-300
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

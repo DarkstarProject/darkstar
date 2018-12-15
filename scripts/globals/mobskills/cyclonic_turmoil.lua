@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
         total = total+1
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
 
     if (total == 0) then
         return dmg

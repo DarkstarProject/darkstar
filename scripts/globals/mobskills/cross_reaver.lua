@@ -29,6 +29,6 @@ function onMobWeaponSkill(target, mob, skill)
 
    MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4)
 
-   target:delHP(dmg)
+   target:takeDamage(dmg, mob)
     return dmg
 end

@@ -34,7 +34,7 @@ function onMobWeaponSkill(target, mob, skill)
     end
     local dmg = MobFinalAdjustments(damage,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     mob:resetEnmity(target)
     return dmg
 end

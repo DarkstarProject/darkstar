@@ -26,6 +26,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobStatusEffectMove(mob, target, dsp.effect.SLOW, 3000, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

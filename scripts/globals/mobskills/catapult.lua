@@ -32,6 +32,6 @@ function onMobWeaponSkill(target, mob, skill)
        mob:addTP(80)
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

@@ -23,6 +23,6 @@ function onMobWeaponSkill(target, mob, skill)
         target:delStatusEffectSilent(dsp.effect.FIELD_SUPPORT_FOOD)
     end
     target:addStatusEffectEx(dsp.effect.FIELD_SUPPORT_FOOD,dsp.effect.FOOD, 255, 0, 1800)
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

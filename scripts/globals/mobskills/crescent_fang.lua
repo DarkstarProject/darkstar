@@ -24,7 +24,7 @@ function onMobWeaponSkill(target, mob, skill)
         target:addStatusEffect(dsp.effect.PARALYSIS, 50, 0, 90)
     end
 
-    target:delHP(totaldamage)
+    target:takeDamage(totaldamage, mob)
 
     return totaldamage
 

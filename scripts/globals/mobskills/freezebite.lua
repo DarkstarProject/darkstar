@@ -32,7 +32,7 @@ function onMobWeaponSkill(target, mob, skill)
     params.atkmulti = 1
     local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(mob, target, 0, 0, true, nil, nil, params)
     
-    target:delHP(damage)
+    target:takeDamage(damage, mob)
     return damage
 end
     

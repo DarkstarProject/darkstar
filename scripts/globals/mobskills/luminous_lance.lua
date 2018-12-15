@@ -39,6 +39,6 @@ function onMobWeaponSkill(target, mob, skill)
     -- Cannot be resisted
     target:addStatusEffect(dsp.effect.STUN, 0, 0, 20)
     
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end

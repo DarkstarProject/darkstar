@@ -34,6 +34,6 @@ function onMobWeaponSkill(target, mob, skill)
     end
 
     -- AA EV: Approx 900 damage to 75 DRG/35 THF.  400 to a NIN/WAR in Arhat, but took shadows.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob)
     return dmg
 end
