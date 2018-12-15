@@ -10367,7 +10367,15 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
             (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),  // Sub Power
             (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0)); // Tier
 
-        lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+        CBattleEntity* PEntity = ((CBattleEntity*)m_PBaseEntity);
+        if (PEffect->GetStatusID() == EFFECT_FOOD && PEntity)
+        {
+            int16 durationModifier = PEntity->getMod(Mod::FOOD_DURATION);
+            if (durationModifier)
+                PEffect->SetDuration((uint32)(PEffect->GetDuration() + PEffect->GetDuration() * (durationModifier / 100.0f)));
+        }
+
+        lua_pushboolean(L, PEntity->StatusEffectContainer->AddStatusEffect(PEffect));
     }
 
     return 1;
