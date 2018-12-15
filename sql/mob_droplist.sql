@@ -32973,6 +32973,7 @@ INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: 
 INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2816,167); -- (Chelicerata) Aptant: Tachus
 INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2815,417); -- (Chelicerata) Aptant: Arkhe
 INSERT INTO `mob_droplist` VALUES (4617,0,0,1000,19306,100); -- (Tikbalang) Lyft Pole
+INSERT INTO `mob_droplist` VALUES (4618,0,0,1000,15854,113); -- (Burlibix Brawnback) Sortie Ring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

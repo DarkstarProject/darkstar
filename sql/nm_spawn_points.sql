@@ -869,6 +869,7 @@ INSERT INTO `nm_spawn_points` VALUES (17101099,48,-542.274,-3.654,57.490);
 INSERT INTO `nm_spawn_points` VALUES (17101099,49,-541.146,-2.807,61.593);
 INSERT INTO `nm_spawn_points` VALUES (17109338,0,273,-15,-377); -- Skogs Fru
 INSERT INTO `nm_spawn_points` VALUES (17113381,0,204.878,0.886,-347.779); -- Drumskull Zogdregg
+INSERT INTO `nm_spawn_points` VALUES (17121399,0,-152,-9.2,464); -- Burlibix Brawnback
 INSERT INTO `nm_spawn_points` VALUES (17121576,0,-153.108,-10.397,15.353); -- La Velue
 INSERT INTO `nm_spawn_points` VALUES (17125433,0,358.667,-0.5,-181.406); -- Hawkeyed Dnatbat (La Vaule [S])
 INSERT INTO `nm_spawn_points` VALUES (17125452,0,137.606,3.346,-279.05); -- Ashmaker Gotblut (La Vaule [S])

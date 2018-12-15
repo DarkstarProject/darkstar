@@ -18,6 +18,11 @@ zones[dsp.zone.BATALLIA_DOWNS_S] =
     },
     mob =
     {
+        BURLIBIX_BRAWNBACK_PH =
+        {
+            [17121398] = 17121399,
+            [17121402] = 17121399,
+        },
         LA_VELUE_PH =
         {
             [17121554] = 17121576, -- -314.365 -18.745 -56.016
