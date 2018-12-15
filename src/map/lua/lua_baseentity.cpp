@@ -7231,28 +7231,9 @@ inline int32 CLuaBaseEntity::restoreHP(lua_State *L)
 }
 
 /************************************************************************
-*  Function: delHP()
-*  Purpose : Subtracts from the Hit Points of an Entity
-*  Example : player:delHP(500)
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::delHP(lua_State *L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
-
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
-    ((CBattleEntity*)m_PBaseEntity)->takeDamage((int32)(lua_tointeger(L, 1)));
-
-    return 0;
-}
-
-/************************************************************************
 *  Function: takeDamage()
 *  Purpose : Takes damage from the provided attacker. If no attacker is provided then it clears the last attacker.
-*  Example : target:takeDamage(500, attacker=None, shouldWakeUp=true)
+*  Example : target:takeDamage(500, attacker=nil, shouldWakeUp=true)
 *  Notes   :
 ************************************************************************/
 
@@ -14324,7 +14305,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
 

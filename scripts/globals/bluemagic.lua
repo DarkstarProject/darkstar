@@ -244,7 +244,7 @@ function BlueFinalAdjustments(caster, target, spell, dmg, params)
     -- handling stoneskin
     dmg = utils.stoneskin(target, dmg);
 
-    target:delHP(dmg);
+    target:takeDamage(dmg, caster);
     target:updateEnmityFromDamage(caster,dmg);
     target:handleAfflatusMiseryDamage(dmg);
     -- TP has already been dealt with.

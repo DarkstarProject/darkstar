@@ -40,7 +40,7 @@ function onUseAbility(player,target,ability)
     healMP = utils.clamp(healMP, 0,target:getMaxMP() - target:getMP())
     -- printf("Devotion MP Healed: %d", healMP)
 
-    player:delHP(damageHP)
+    player:takeDamage(damageHP)
     target:addMP(healMP)
 
     return healMP

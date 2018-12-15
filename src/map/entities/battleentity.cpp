@@ -1279,10 +1279,6 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
 
-            // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
-            if (PSpell->dealsDamage())
-                PTarget->PLastAttacker = this;
-
             // Remove Saboteur
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)
                 StatusEffectContainer->DelStatusEffect(EFFECT_SABOTEUR);

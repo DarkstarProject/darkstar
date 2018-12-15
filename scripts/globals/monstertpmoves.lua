@@ -619,7 +619,7 @@ function MobDrainMove(mob, target, drainType, drain)
                 drain = target:getHP();
             end
 
-            target:delHP(drain);
+            target:takeDamage(drain, mob);
             mob:addHP(drain);
 
             return dsp.msg.basic.SKILL_DRAIN_HP;
@@ -631,7 +631,7 @@ function MobDrainMove(mob, target, drainType, drain)
             drain = target:getHP();
         end
 
-        target:delHP(drain);
+        target:takeDamage(drain, mob);
         return dsp.msg.basic.DAMAGE;
     end
 

@@ -43,7 +43,7 @@ function onUseAbility(player,target,ability)
     -- Log HP Headed for Debug
     -- printf("Martyr Healed HP: %d", healHP)
 
-    player:delHP(damageHP)
+    player:takeDamage(damageHP)
     target:addHP(healHP)
 
     return healHP

@@ -20,7 +20,7 @@ function onAdditionalEffect(player, target, damage)
             finalDMG = finalDMG - target:getMod(dsp.mod.PHALANX)
             finalDMG = utils.clamp(finalDMG, 0, 99999)
             finalDMG = utils.stoneskin(target, finalDMG)
-            target:delHP(finalDMG)
+            target:takeDamage(finalDMG, player)
             return dsp.subEffect.LIGHT_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, finalDMG
         end
     end

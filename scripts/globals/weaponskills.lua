@@ -340,7 +340,7 @@ function souleaterBonus(attacker, numhits)
             end
             hitscounted = hitscounted + 1
         end
-        attacker:delHP(numhits*0.10*attacker:getHP())
+        attacker:takeDamage(numhits*0.10*attacker:getHP())
         return damage
     else
         return 0
