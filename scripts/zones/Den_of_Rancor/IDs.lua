@@ -43,6 +43,10 @@ zones[dsp.zone.DEN_OF_RANCOR] =
             [17432793] = 17432798,
             [17432794] = 17432798,
         },
+        BISTRE_HEARTED_MALBERRY_PH =
+        {
+            [17432822] = 17432845,
+        },
         OGAMA_PH =
         {
             [17432972] = 17432974,

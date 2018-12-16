@@ -4182,6 +4182,7 @@ INSERT INTO `nm_spawn_points` VALUES (17428611,0,-131,-0.6,-7); -- Sozu Terberry
 INSERT INTO `nm_spawn_points` VALUES (17432659,0,0.5,36,-87); -- Carmine-tailed Janberry
 INSERT INTO `nm_spawn_points` VALUES (17428737,0,240,-0.5,60); -- Flauros
 INSERT INTO `nm_spawn_points` VALUES (17432798,0,100,17,-180); -- Tawny-fingered Mugberry
+INSERT INTO `nm_spawn_points` VALUES (17432845,0,-32,16,-178); -- Bistre-hearted Malberry
 INSERT INTO `nm_spawn_points` VALUES (17432974,0,-34,36,-358); -- Ogama
 INSERT INTO `nm_spawn_points` VALUES (17436881,0,70.8,-8,-119.5); -- Marquis Sabnock
 INSERT INTO `nm_spawn_points` VALUES (17436913,0,-44.116,-4.496,37.549);
