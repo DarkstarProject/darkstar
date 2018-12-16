@@ -228,7 +228,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
             PCurrentMob->m_disableScent = (weather == WEATHER_RAIN || weather == WEATHER_SQUALL || weather == WEATHER_BLIZZARDS);
         }
 
-        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL && PCurrentMob->PMaster == nullptr && PCurrentMob->m_SpawnType == SPAWNTYPE_WEATHER)
+        if (PCurrentMob->m_EcoSystem == SYSTEM_ELEMENTAL && PCurrentMob->PMaster == nullptr && PCurrentMob->m_SpawnType & SPAWNTYPE_WEATHER)
         {
             if (PCurrentMob->m_Element == element)
             {
@@ -242,7 +242,7 @@ void CZoneEntities::WeatherChange(WEATHER weather)
                 PCurrentMob->m_AllowRespawn = false;
             }
         }
-        else if (PCurrentMob->m_SpawnType == SPAWNTYPE_FOG)
+        else if (PCurrentMob->m_SpawnType & SPAWNTYPE_FOG)
         {
             if (weather == WEATHER_FOG)
             {
@@ -674,7 +674,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             {
                 CMobEntity* PMob = (CMobEntity*)it->second;
 
-                if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
+                if (PMob->m_SpawnType & SPAWNTYPE_ATNIGHT)
                 {
                     PMob->SetDespawnTime(1ms);
                     PMob->m_AllowRespawn = false;
@@ -690,7 +690,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             {
                 CMobEntity* PMob = (CMobEntity*)it->second;
 
-                if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
+                if (PMob->m_SpawnType & SPAWNTYPE_ATEVENING)
                 {
                     PMob->SetDespawnTime(1ms);
                     PMob->m_AllowRespawn = false;
@@ -716,7 +716,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             {
                 CMobEntity* PMob = (CMobEntity*)it->second;
 
-                if (PMob->m_SpawnType == SPAWNTYPE_ATEVENING)
+                if (PMob->m_SpawnType & SPAWNTYPE_ATEVENING)
                 {
                     PMob->SetDespawnTime(0s);
                     PMob->m_AllowRespawn = true;
@@ -731,7 +731,7 @@ void CZoneEntities::TOTDChange(TIMETYPE TOTD)
             {
                 CMobEntity* PMob = (CMobEntity*)it->second;
 
-                if (PMob->m_SpawnType == SPAWNTYPE_ATNIGHT)
+                if (PMob->m_SpawnType & SPAWNTYPE_ATNIGHT)
                 {
                     PMob->SetDespawnTime(0s);
                     PMob->m_AllowRespawn = true;
