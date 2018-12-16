@@ -32978,6 +32978,7 @@ INSERT INTO `mob_droplist` VALUES (4619,0,0,1000,11405,113); -- (Habergoass) Kyo
 INSERT INTO `mob_droplist` VALUES (4620,0,0,1000,18453,100); -- (Grand'Goule) Unshomaru
 INSERT INTO `mob_droplist` VALUES (4621,0,0,1000,16298,100); -- (Splacknuck) Knack Pendant
 INSERT INTO `mob_droplist` VALUES (4622,0,0,1000,19239,105); -- (Marquis Sabnock) Astrolabe
+INSERT INTO `mob_droplist` VALUES (4623,0,0,1000,2833,212); -- (Donnergugi) Thunder Coral
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
