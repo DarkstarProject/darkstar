@@ -25,6 +25,10 @@ zones[dsp.zone.DEN_OF_RANCOR] =
     },
     mob =
     {
+        CELESTE_EYED_TOZBERRY_PH =
+        {
+            [17432622] = 17432624,
+        },
         FRIAR_RUSH_PH =
         {
             [17432638] = 17432640,
