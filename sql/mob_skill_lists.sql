@@ -78,6 +78,7 @@ INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greataxe',12,1193);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greatkatana',13,1197);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greatsword',14,1191);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Handtohand',15,1188);
+INSERT INTO `mob_skill_lists` VALUES ('Splacknuck',16,518);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Katana',17,1196);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Marksmanship',18,1201);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Polearm',19,1195);

@@ -144,6 +144,7 @@ INSERT INTO `nm_spawn_points` VALUES (17387606,0,174.212,2.068,-20.285); -- Tige
 INSERT INTO `nm_spawn_points` VALUES (17387644,0,-60.045,-0.517,41.996); -- Poisonhand Gnadgad
 INSERT INTO `nm_spawn_points` VALUES (16793646,0,-634,0.001,-669); -- Serra
 INSERT INTO `nm_spawn_points` VALUES (16793742,0,523,-8,762); -- Intulo
+INSERT INTO `nm_spawn_points` VALUES (16793776,0,88,-45,920); -- Splacknuck
 INSERT INTO `nm_spawn_points` VALUES (16797969,0,-237.096,-176.729,66.510);
 INSERT INTO `nm_spawn_points` VALUES (16797969,1,-240.915,-176.729,71.196);
 INSERT INTO `nm_spawn_points` VALUES (16797969,2,-244.554,-176.729,78.238);
