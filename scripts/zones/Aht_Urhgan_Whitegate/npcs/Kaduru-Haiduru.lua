@@ -4,9 +4,6 @@
 -- Teleport NPC
 -----------------------------------
 
------------------------------------
--- onTrigger
------------------------------------
 function onTrigger(player, npc)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
@@ -24,9 +21,6 @@ function onTrigger(player, npc)
     end
 end
 
------------------------------------
--- onTrade
------------------------------------
 function onTrade(player, npc, trade)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
@@ -57,15 +51,9 @@ function onTrade(player, npc, trade)
     end
 end
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player, csid, option) 
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player, csid, option)
     local timesUsed = player:getVar("Kaduru_TimesUsed")
     if csid == 0x009A then

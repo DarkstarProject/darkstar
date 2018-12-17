@@ -8,15 +8,9 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 
 require("scripts/globals/besieged");
 
------------------------------------
--- onTrade Action
------------------------------------
 function onTrade(player,npc,trade)
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
 function onTrigger(player,npc)
     if getAstralCandescence() == 1 then
         player:startEvent(0x0067)
@@ -25,15 +19,9 @@ function onTrigger(player,npc)
     end
 end;
 
------------------------------------
--- onEventUpdate
------------------------------------
 function onEventUpdate(player,csid,option)
 end;
 
------------------------------------
--- onEventFinish
------------------------------------
 function onEventFinish(player,csid,option)
     if csid == 0x0067 and option == 1 then
         local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
