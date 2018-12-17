@@ -1,6 +1,8 @@
 -----------------------------------
--- Area:
---  MOB:
+-- Area: Arrapago Remnants
+--  MOB: Merrow Icedancer
+-----------------------------------
+mixins = {require("scripts/mixins/families/lamie")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
