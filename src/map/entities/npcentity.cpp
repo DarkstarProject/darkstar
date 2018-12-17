@@ -30,17 +30,17 @@
 #include "../packets/entity_update.h"
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 CNpcEntity::CNpcEntity()
 {
-	objtype = TYPE_NPC;
-	look.face = 0x32;
+    objtype = TYPE_NPC;
+    look.face = 0x32;
         widescan = 1;
-	allegiance = ALLEGIANCE_MOB;
+    allegiance = ALLEGIANCE_MOB;
     PAI = std::make_unique<CAIContainer>(this);
 }
 
@@ -57,25 +57,6 @@ uint32 CNpcEntity::getEntityFlags()
 void CNpcEntity::setEntityFlags(uint32 EntityFlags)
 {
     m_flags = EntityFlags;
-}
-
-void CNpcEntity::HideModel(bool hide)
-{
-    if (hide)
-    {
-        // Copied over from mobentity
-        // i'm not sure if this is right
-        m_flags |= 0x80;
-    }
-    else
-    {
-        m_flags &= ~0x80;
-    }
-}
-
-bool CNpcEntity::IsModelHidden()
-{
-    return (m_flags & 0x80) == 0x80;
 }
 
 void CNpcEntity::HideHP(bool hide)

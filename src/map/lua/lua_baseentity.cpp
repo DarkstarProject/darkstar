@@ -9856,31 +9856,6 @@ int32 CLuaBaseEntity::canChangeState(lua_State* L)
 }
 
 /************************************************************************
-*  Function: hideModel()
-*  Purpose : Toggles an NPC or Mob to either hidden or visible
-*  Example : npc:hideModel(true) -- or false to show
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::hideModel(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
-
-    if (m_PBaseEntity->objtype == TYPE_MOB)
-    {
-        ((CMobEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
-    }
-    else if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        ((CNpcEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
-    }
-    m_PBaseEntity->updatemask |= UPDATE_HP;
-    return 0;
-}
-
-/************************************************************************
 *  Function: wakeUp()
 *  Purpose : Removes any Sleep Effect from the Entity's Status Effect Container
 *  Example : target:wakeUp()
@@ -14423,7 +14398,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canChangeState),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideModel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
