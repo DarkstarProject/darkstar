@@ -1877,10 +1877,14 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PAttacker->PMaster != nullptr)
         {
-            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            }
             PDefender->updatemask |= UPDATE_STATUS;
         }
         else
@@ -1891,8 +1895,11 @@ namespace battleutils
             }
             else
             {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->id;
+                    PDefender->m_OwnerID.targid = PAttacker->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
         }
@@ -2033,18 +2040,25 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PDefender->objtype == TYPE_MOB)
         {
             if (PAttacker->PMaster != nullptr)
             {
-                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                    PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
             else
             {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->id;
+                    PDefender->m_OwnerID.targid = PAttacker->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
         }
@@ -3064,15 +3078,22 @@ namespace battleutils
 
         PDefender->takeDamage(damage, PAttacker);
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PAttacker->PMaster != nullptr)
         {
-            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            }
         }
         else
         {
-            PDefender->m_OwnerID.id = PAttacker->id;
-            PDefender->m_OwnerID.targid = PAttacker->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->id;
+                PDefender->m_OwnerID.targid = PAttacker->targid;
+            }
         }
         PDefender->updatemask |= UPDATE_STATUS;
 
@@ -4061,8 +4082,11 @@ namespace battleutils
                     mob->m_HiPCLvl = PAttacker->GetMLevel();
                 }
 
-                mob->m_OwnerID.id = PAttacker->id;
-                mob->m_OwnerID.targid = PAttacker->targid;
+                if (!mob->CalledForHelp())
+                {
+                    mob->m_OwnerID.id = PAttacker->id;
+                    mob->m_OwnerID.targid = PAttacker->targid;
+                }
                 mob->updatemask |= UPDATE_STATUS;
             }
         }

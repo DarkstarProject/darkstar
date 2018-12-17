@@ -430,12 +430,13 @@ void CMobEntity::CallForHelp(bool call)
     if (call)
     {
         m_flags |= FLAG_CALL_FOR_HELP;
+        m_OwnerID.clean();
     }
     else
     {
         m_flags &= ~FLAG_CALL_FOR_HELP;
     }
-    updatemask |= UPDATE_HP;
+    updatemask |= UPDATE_COMBAT;
 }
 
 bool CMobEntity::CalledForHelp()
