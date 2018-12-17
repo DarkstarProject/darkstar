@@ -89,7 +89,7 @@ class CCharEntity;
 class CCharEmotionPacket : public CBasicPacket
 {
 public:
-	CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, uint8 EmoteID, uint8 EmoteMode, uint16 extra);
+    CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, uint8 EmoteID, uint8 EmoteMode, uint16 extra);
 };
 
 #endif
