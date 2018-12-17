@@ -3,8 +3,6 @@
 -- NPC: Kaduru-Haiduru
 -- Teleport NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 
 -----------------------------------
 -- onTrigger
@@ -12,8 +10,8 @@ require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
 function onTrigger(player, npc)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date");
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date");
-    local currentDate = os.date("%j");
     local timesUsed = player:getVar("Kaduru_TimesUsed");
+    local currentDate = os.date("%j");
 
     if ((canUse_KaduruHaiduru_Service(player) == 1)) then
         player:startEvent(0x0097, 0, 0, timesUsed, 0, 0, 0, 0, 0, 0);
@@ -28,8 +26,8 @@ end
 
 function onTrade(player, npc, trade)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date");
-    local timesUsed = player:getVar("Kaduru_TimesUsed");
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date");
+    local timesUsed = player:getVar("Kaduru_TimesUsed");
 
     if ((canUse_KaduruHaiduru_Service(player) == 1) and (timesUsed == 3)) then
         if (trade:getItemCount() == 1) then
@@ -60,38 +58,34 @@ end
 -- onEventUpdate
 -----------------------------------
 function onEventUpdate(player, csid, option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
 end;
 
 -----------------------------------
 -- onEventFinish
 -----------------------------------
 function onEventFinish(player, csid, option)
-    printf("CSID: %u",csid);
-    printf("RESULT: %u",option);
-
+    --printf("CSID: %u",csid);
+    --printf("RESULT: %u",option);
     local timesUsed = player:getVar("Kaduru_TimesUsed");
     if (csid == 0x009A) then
         if (option == 1) then       -- Duchy of Jeuno
             player:setPos(0, 3, -6, 190, 243);
         elseif (option == 2) then   -- Nation of Allegiance
-            local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date");
-            if (caughtUsingShihuDanhuDate == 0) then
-                local nation = player:getNation();
-                switch (nation): caseof
-                {
-                    [0] = function(x)  -- San d'Oria
-                        player:setPos(110, 0, -7, 175, 231);
-                    end,
-                    [1] = function(x)  -- Bastok
-                        player:setPos(90, 0, -67, 248, 234);
-                    end,
-                    [2] = function(x)  -- Windurst
-                        player:setPos(192, -12, 218, 60, 240);
-                    end,
-                }
-            end
+            local nation = player:getNation();
+            switch (nation): caseof
+            {
+                [0] = function(x)  -- San d'Oria
+                    player:setPos(110, 0, -7, 175, 231);
+                end,
+                [1] = function(x)  -- Bastok
+                    player:setPos(90, 0, -67, 248, 234);
+                end,
+                [2] = function(x)  -- Windurst
+                    player:setPos(192, -12, 218, 60, 240);
+                end,
+            }
         end
         if (timesUsed < 3) then
             player:setVar("Kaduru_TimesUsed", (timesUsed + 1));
