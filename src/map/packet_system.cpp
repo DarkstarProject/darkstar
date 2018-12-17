@@ -2737,8 +2737,26 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, data));
-    return;
+    const auto TargetID = data.ref<uint32>(0x04);
+    const auto TargetIndex = data.ref<uint16>(0x08);
+    const auto EmoteID = data.ref<uint8>(0x0A);
+    const auto EmoteMode = data.ref<uint8>(0x0B);
+
+    // Invalid Emote ID.
+    if (EmoteID < EMOTE_BOW || EmoteID > EMOTE_JOB)
+        return;
+
+    // Invalid Emote Mode.
+    if (EmoteMode < EMOTEMODE_ALL || EmoteMode > EMOTEMODE_MOTION)
+        return;
+
+    const auto extra = data.ref<uint16>(0x0C);
+
+    // Attempting to use locked job emote.
+    if (EmoteID == EMOTE_JOB && extra && !(PChar->jobs.unlocked & (1 << (extra - 0x1E))))
+        return;
+
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, TargetID, TargetIndex, EmoteID, EmoteMode, extra));
 }
 
 /************************************************************************
