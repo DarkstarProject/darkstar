@@ -6,6 +6,7 @@
 -----------------------------------
 
 require("scripts/globals/besieged");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 
 -----------------------------------
 -- onTrade Action
@@ -23,7 +24,7 @@ function onTrigger(player,npc)
     if (getAstralCandescence() == 1) then
         player:startEvent(0x0067);
     else
-        player:messageSpecial(0); -- Missing the denied due to lack of Astral Candescence message.
+        player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK); -- Missing the denied due to lack of Astral Candescence message.
     end
 
 end;
