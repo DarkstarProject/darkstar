@@ -20,7 +20,7 @@ function onTrigger(player, target)
     local targ
     if not target then
         targ = player:getCursorTarget()
-        if not targ or not targ:isMob()) then
+        if not targ or not targ:isMob() then
             error(player, "You must either supply a mob ID or target a mob.")
             return
         end
