@@ -79,7 +79,7 @@ end;
 
 function onEventFinish(player, csid, option)
     local timesUsed = player:getVar("Kaduru_TimesUsed")
-    if csid == 0x009A then
+    if csid == 0x009A then        -- At this point we should already have used Kaduru-Haiduru 3 times.
         if option == 1 then       -- Duchy of Jeuno
             player:setPos(0, 3, -6, 190, 243)
         elseif option == 2 then   -- Nation of Allegiance
@@ -96,9 +96,6 @@ function onEventFinish(player, csid, option)
                     player:setPos(192, -12, 218, 60, 240)
                 end,
             }
-        end
-        if timesUsed < 3 then
-            player:setVar("Kaduru_TimesUsed", (timesUsed + 1))
         end
         player:tradeComplete()
     elseif (csid == 0x0098) then    -- Duchy of Jeuno only
