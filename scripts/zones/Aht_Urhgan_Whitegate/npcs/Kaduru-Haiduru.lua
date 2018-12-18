@@ -10,9 +10,9 @@ local function canUse_KaduruHaiduru_Service(player)
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
     local currentDate = os.date("%j")
 
-    if ((shihuDanhuEncounters < 1) or (shihuDanhuDate == 0) or
-        ((shihuDanhuEncounters == 1) and ((currentDate - shihuDanhuDate) < 1) and (caughtUsingShihuDanhuDate == 0)) or 
-        (((shihuDanhuEncounters >= 2) and ((currentDate - caughtUsingShihuDanhuDate) >= 1)) and (caughtUsingShihuDanhuDate ~= 0))) then
+    if shihuDanhuEncounters < 1 or shihuDanhuDate == 0 or
+        (shihuDanhuEncounters == 1 and currentDate - shihuDanhuDate < 1 and caughtUsingShihuDanhuDate == 0) or
+        (shihuDanhuEncounters >= 2 and currentDate - caughtUsingShihuDanhuDate >= 1 and caughtUsingShihuDanhuDate ~= 0) then
         -- We've never used Shihu-Danhu's services-- Allow Pass.
         -- , or
         -- We've talked to the little brother only 1 time, and
