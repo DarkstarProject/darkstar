@@ -4,6 +4,29 @@
 -- Teleport NPC
 -----------------------------------
 
+local function canUse_KaduruHaiduru_Service(player)
+    local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
+    local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
+    local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
+    local currentDate = os.date("%j")
+
+    if ((shihuDanhuEncounters < 1) or (shihuDanhuDate == 0) or
+        ((shihuDanhuEncounters == 1) and ((currentDate - shihuDanhuDate) < 1) and (caughtUsingShihuDanhuDate == 0)) or 
+        (((shihuDanhuEncounters >= 2) and ((currentDate - caughtUsingShihuDanhuDate) >= 1)) and (caughtUsingShihuDanhuDate ~= 0))) then
+        -- We've never used Shihu-Danhu's services-- Allow Pass.
+        -- , or
+        -- We've talked to the little brother only 1 time, and
+        -- It's the same day, and this is the first time caught-- Allow Pass.
+        -- , or
+        -- We've talked to the little brother more than once, and
+        -- It has been more than one real-life day since we've used the brother and been caught-- Allow Pass.
+        return true
+    end
+    -- Encountered and used Shihu-Danhu's services more than once, and
+    -- Have been caught by Kaduru-Haiduru,
+    return false
+end;
+
 function onTrigger(player, npc)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
@@ -86,27 +109,4 @@ function onEventFinish(player, csid, option)
         end
         player:tradeComplete()
     end
-end;
-
-function canUse_KaduruHaiduru_Service(player)
-    local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
-    local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
-    local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
-    local currentDate = os.date("%j")
-
-    if ((shihuDanhuEncounters < 1) or (shihuDanhuDate == 0) or
-        ((shihuDanhuEncounters == 1) and ((currentDate - shihuDanhuDate) < 1) and (caughtUsingShihuDanhuDate == 0)) or 
-        (((shihuDanhuEncounters >= 2) and ((currentDate - caughtUsingShihuDanhuDate) >= 1)) and (caughtUsingShihuDanhuDate ~= 0))) then
-        -- We've never used Shihu-Danhu's services-- Allow Pass.
-        -- , or
-        -- We've talked to the little brother only 1 time, and
-        -- It's the same day, and this is the first time caught-- Allow Pass.
-        -- , or
-        -- We've talked to the little brother more than once, and
-        -- It has been more than one real-life day since we've used the brother and been caught-- Allow Pass.
-        return true
-    end
-    -- Encountered and used Shihu-Danhu's services more than once, and
-    -- Have been caught by Kaduru-Haiduru,
-    return false
 end;
