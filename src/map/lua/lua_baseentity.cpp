@@ -8723,6 +8723,27 @@ inline int32 CLuaBaseEntity::registerBattlefield(lua_State* L)
     return 1;
 }
 
+inline int32 CLuaBaseEntity::battlefieldAtCapacity(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr || m_PBaseEntity->loc.zone->m_BattlefieldHandler == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    auto PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto PZone = PChar->loc.zone == nullptr ? zoneutils::GetZone(PChar->loc.destination) : PChar->loc.zone;
+
+    DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
+
+    uint8 full = 0;
+
+    if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
+        PZone->m_BattlefieldHandler->ReachedMaxCapacity((int)lua_tointeger(L, 1)))
+    {
+        full = 1;
+    }
+    lua_pushinteger(L, full);
+    return 1;
+}
+
 /************************************************************************
 *  Function: enterBattlefield(area)
 *  Purpose : Places an entity into a battlefield they are registered for (or tries enter a specific area if not full)
@@ -13658,6 +13679,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getBattlefieldID),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,registerBattlefield),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,battlefieldAtCapacity),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,enterBattlefield),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leaveBattlefield),
 
