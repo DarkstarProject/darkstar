@@ -484,7 +484,6 @@ public:
     int32 getNearbyEntities(lua_State* L);
     int32 canChangeState(lua_State* L);
 
-    int32 hideModel(lua_State* L);
     int32 wakeUp(lua_State*);                  //wakes target if necessary
 
     int32 recalculateStats(lua_State* L);

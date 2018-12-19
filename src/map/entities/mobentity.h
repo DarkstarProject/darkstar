@@ -147,8 +147,6 @@ public:
     void      saveMobModifiers();                      // save current state of modifiers
     void      restoreMobModifiers();                   // restore to saved state
 
-    void      HideModel(bool hide);                    // hide / show model
-    bool      IsModelHidden();
     void      CallForHelp(bool call);
     bool      CalledForHelp();
     void      HideHP(bool hide);

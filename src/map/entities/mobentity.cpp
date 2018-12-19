@@ -387,25 +387,6 @@ void CMobEntity::restoreMobModifiers()
     m_mobModStat = m_mobModStatSave;
 }
 
-void CMobEntity::HideModel(bool hide)
-{
-    if (hide)
-    {
-        // I got this from ambush antlion
-        // i'm not sure if this is right
-        m_flags |= FLAG_HIDE_MODEL;
-    }
-    else
-    {
-        m_flags &= ~FLAG_HIDE_MODEL;
-    }
-}
-
-bool CMobEntity::IsModelHidden()
-{
-    return m_flags & FLAG_HIDE_MODEL;
-}
-
 void CMobEntity::HideHP(bool hide)
 {
     if (hide)
