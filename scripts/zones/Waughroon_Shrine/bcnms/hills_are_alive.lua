@@ -24,7 +24,7 @@ function onBattlefieldInitialise(battlefield)
 end
 
 function onBattlefieldTick(battlefield, tick)
-    g_Battlfield.onBattlefieldTick(battlefield, tick)
+    dsp.battlefield.onBattlefieldTick(battlefield, tick)
 end
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

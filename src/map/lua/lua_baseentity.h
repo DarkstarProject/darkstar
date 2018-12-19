@@ -432,8 +432,10 @@ public:
     int32 getBattlefield(lua_State* L);    // returns CBattlefield* or nullptr if not available
     int32 getBattlefieldID(lua_State*);    // returns entity->PBattlefield->GetID() or -1 if not available
     int32 registerBattlefield(lua_State*); // attempt to register a battlefield, returns BATTLEFIELD_RETURNCODE
+    int32 battlefieldAtCapacity(lua_State*);     // 1 if this battlefield is full
     int32 enterBattlefield(lua_State*);    // enter a battlefield entity is registered with
     int32 leaveBattlefield(lua_State*);    // leave battlefield if inside one
+
 
     // Battle Utilities
     int32 isAlive(lua_State* L);

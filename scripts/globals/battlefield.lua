@@ -12,7 +12,7 @@ local MaxAreas =
 
     -- dynamis
     {Max = 1, Zones = {39, 40, 41, 42, 134, 135, 185, 186, 187, 188,
-                                140}}, -- ghelsba
+                                29, 140}}, -- riverneb, ghelsba
 }
 
 function onBattlefieldHandlerInitialise(zone)
@@ -130,7 +130,7 @@ function dsp.battlefield.SendTimePrompts(battlefield, players)
 
     if message ~= 0 then
         for i, player in pairs(players) do
-            player:messageBasic(msgBasic.TIME_LEFT, remainingTime)
+            player:messageBasic(dsp.msg.basic.TIME_LEFT, remainingTime)
         end
         battlefield:setLastTimeUpdate(message)
     end
