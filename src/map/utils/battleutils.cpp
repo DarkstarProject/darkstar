@@ -2023,7 +2023,7 @@ namespace battleutils
 
         if (!isRanged)
         {
-            damage = getOverWhelmDamageBonus(PAttacker, PDefender, (uint16)damage);
+            damage = getOverWhelmDamageBonus(PAttacker, PDefender, damage);
         }
 
         HandleAfflatusMiseryDamage(PDefender, damage);
@@ -3513,7 +3513,7 @@ namespace battleutils
     *	Samurai overwhelm damage bonus                                      *
     *                                                                       *
     ************************************************************************/
-    uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage)
+    int32 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, int32 damage)
     {
         if (m_PChar->objtype == TYPE_PC) // Some mobskills use TakeWeaponskillDamage function, which calls upon this one.
         {
@@ -3522,7 +3522,7 @@ namespace battleutils
             {
                 uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
                 // ShowDebug("Merits: %u\n", meritCount);
-                float tmpDamage = damage;
+                float tmpDamage = static_cast<float>(damage);
 
                 switch (meritCount)
                 {
@@ -3533,7 +3533,7 @@ namespace battleutils
                     case 5:	tmpDamage += tmpDamage * 0.19f; break;
                     default: break;
                 }
-                damage = (uint16)floor(tmpDamage);
+                damage = static_cast<int32>(floor(tmpDamage));
             }
         }
         return damage;
