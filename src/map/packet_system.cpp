@@ -2743,7 +2743,7 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     const auto emoteMode = data.ref<EmoteMode>(0x0B);
 
     // Invalid Emote ID.
-    if (EmoteID < Emote::BOW || EmoteID > Emote::JOB)
+    if (EmoteID < Emote::POINT || EmoteID > Emote::JOB)
         return;
 
     // Invalid Emote Mode.
