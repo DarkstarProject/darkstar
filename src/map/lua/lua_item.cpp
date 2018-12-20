@@ -281,6 +281,40 @@ inline int32 CLuaItem::isShield(lua_State* L)
 
     return 1;
 }
+
+inline int32 CLuaItem::getAppraisalID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (CItem* PItem = dynamic_cast<CItem*>(m_PLuaItem))
+    {
+        lua_pushinteger(L, PItem->getAppraisalID());
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaItem::getAppraisalID - not a valid item.\n" CL_RESET);
+        lua_pushboolean(L, 0);
+    }
+
+    return 1;
+}
+
+inline int32 CLuaItem::setAppraisalID(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PLuaItem == nullptr);
+
+    if (CItem* PItem = dynamic_cast<CItem*>(m_PLuaItem))
+    {
+        if (PItem->getAppraisalID() != 0)
+        {
+            ShowWarning(CL_YELLOW"CLuaItem::setAppraisalID - item already has an appraisal id\n" CL_RESET);
+        }
+        auto appraisalId = (uint8)lua_tointeger(L, 1);
+        PItem->setAppraisalID(appraisalId);
+    }
+
+    return 0;
+}
 //==========================================================//
 
 const char CLuaItem::className[] = "CItem";
@@ -307,5 +341,7 @@ Lunar<CLuaItem>::Register_t CLuaItem::methods[] =
     LUNAR_DECLARE_METHOD(CLuaItem,isTwoHanded),
     LUNAR_DECLARE_METHOD(CLuaItem,isHandToHand),
     LUNAR_DECLARE_METHOD(CLuaItem,isShield),
+    LUNAR_DECLARE_METHOD(CLuaItem,getAppraisalID),
+    LUNAR_DECLARE_METHOD(CLuaItem,setAppraisalID),
     {nullptr,nullptr}
 };

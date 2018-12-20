@@ -51,6 +51,8 @@ CItem::CItem(uint16 id)
     m_slotID     = -1;
     m_locationID = -1;
 
+    m_Appraisal  = 0;
+
     memset(m_extra, 0, sizeof m_extra);
 }
 
@@ -347,4 +349,19 @@ void CItem::setSent(bool sent)
 bool CItem::isSent()
 {
     return m_sent;
+}
+
+/************************************************************************
+*                                                                       *
+*  Appraisal                                                            *
+*                                                                       *
+************************************************************************/
+const uint8 CItem::getAppraisalID()
+{
+    return m_Appraisal;
+}
+
+void CItem::setAppraisalID(uint8 appraisalID)
+{
+    m_Appraisal = appraisalID;
 }

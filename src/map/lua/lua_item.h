@@ -75,6 +75,9 @@ public:
     int32 isTwoHanded(lua_State*);          // is a two handed weapon
     int32 isHandToHand(lua_State*);         // is a hand to hand weapon (or unarmed H2H)
     int32 isShield(lua_State*);             // is a Shield
+
+    int32 getAppraisalID(lua_State*);       // get the items appraisal origin id
+    int32 setAppraisalID(lua_State*);       // set the items appraisal origin id
 };
 
 #endif
