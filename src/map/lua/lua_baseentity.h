@@ -139,6 +139,7 @@ public:
     int32 sendGuild(lua_State*);             // Sends guild shop menu
     int32 openSendBox(lua_State*);           // Opens send box (to deliver items)
     int32 leavegame(lua_State*);             // Character leaving game
+    int32 sendEmote(lua_State*);             // Character emits emote packet.
 
     // Location and Positioning
     int32 isBehind(lua_State*);              // true if you're behind the input target

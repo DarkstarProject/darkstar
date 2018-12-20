@@ -69,6 +69,9 @@ enum class Emote : uint8
     PSYCH = 36,
     HUH = 37,
     SHOCKED = 38,
+    LOGGING = 40,    // Only used for HELM
+    EXCAVATION = 41, // Only used for HELM
+    HARVESTING = 42, // Only used for HELM
     HURRAY = 43,
     TOSS = 44,
     DANCE1 = 65,
