@@ -86,6 +86,7 @@
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
+#include "../packets/char_emotion.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
 #include "../packets/char_mounts.h"
@@ -2291,6 +2292,38 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
 
     ((CCharEntity*)m_PBaseEntity)->status = STATUS_SHUTDOWN;
     charutils::SendToZone((CCharEntity*)m_PBaseEntity, 1, 0);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: sendEmote()
+*  Purpose : Makes a player entity emit an emote.
+*  Example : player:sendEmote(npc, dsp.emote.EXCAVATION, dsp.emoteMode.MOTION)
+*  Notes   : Currently only used for HELM animations.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::sendEmote(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC)
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    const auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    const auto PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    if (PChar && PTarget)
+    {
+        const auto emoteID = static_cast<Emote>(lua_tointeger(L, 2));
+        const auto emoteMode = static_cast<EmoteMode>(lua_tointeger(L, 3));
+
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE,
+                                    new CCharEmotionPacket(PChar, PTarget->GetBaseEntity()->id,
+                                                           PTarget->GetBaseEntity()->targid, emoteID, emoteMode, 0));
+    }
 
     return 0;
 }
@@ -14048,6 +14081,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendEmote),
 
     // Location and Positioning
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
