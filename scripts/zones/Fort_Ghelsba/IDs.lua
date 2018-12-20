@@ -19,6 +19,10 @@ zones[dsp.zone.FORT_GHELSBA] =
     },
     mob =
     {
+        HUNDREDSCAR_HAJWAJ_PH =
+        {
+            [17354823] = 17354828,
+        },
         ORCISH_PANZER = 17354894,
     },
     npc =

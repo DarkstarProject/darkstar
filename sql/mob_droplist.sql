@@ -9277,9 +9277,9 @@ INSERT INTO `mob_droplist` VALUES (1715,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (1715,0,0,1000,1452,150);
 INSERT INTO `mob_droplist` VALUES (1715,0,0,1000,1452,150);
 INSERT INTO `mob_droplist` VALUES (1716,0,0,1000,18422,100);
-INSERT INTO `mob_droplist` VALUES (1717,2,0,1000,656,0);
-INSERT INTO `mob_droplist` VALUES (1717,0,0,1000,13051,30);
-INSERT INTO `mob_droplist` VALUES (1717,0,0,1000,17412,100);
+INSERT INTO `mob_droplist` VALUES (1717,2,0,1000,656,0); -- (Hundredscar Hajwaj) Beastcoin - steal
+INSERT INTO `mob_droplist` VALUES (1717,0,0,1000,13051,861); -- (Hundredscar Hajwaj) Coarse Leggings
+INSERT INTO `mob_droplist` VALUES (1717,0,0,1000,17412,100); -- (Hundredscar Hajwaj) Wild Cudgel
 INSERT INTO `mob_droplist` VALUES (1718,2,0,1000,846,0);
 INSERT INTO `mob_droplist` VALUES (1718,0,0,1000,1616,300);
 INSERT INTO `mob_droplist` VALUES (1718,0,0,1000,1649,10);
