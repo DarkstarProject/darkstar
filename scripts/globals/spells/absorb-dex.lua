@@ -29,8 +29,8 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_DEX)
-            caster:addStatusEffect(dsp.effect.DEX_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE) -- caster gains DEX
-            target:addStatusEffect(dsp.effect.DEX_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE)    -- target loses DEX
+            caster:addStatusEffect(dsp.effect.DEX_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK) -- caster gains DEX
+            target:addStatusEffect(dsp.effect.DEX_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK)    -- target loses DEX
         end
     end
     return dsp.effect.DEX_DOWN
