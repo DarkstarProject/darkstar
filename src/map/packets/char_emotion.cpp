@@ -30,7 +30,7 @@
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 
-CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, uint8 EmoteID, uint8 EmoteMode, uint16 extra)
+CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, Emote EmoteID, EmoteMode emoteMode, uint16 extra)
 {
     this->id(0x5A);
     this->length(56);
@@ -39,18 +39,18 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint
     ref<uint32>(0x08) = TargetID;
     ref<uint16>(0x0C) = PChar->targid;
     ref<uint16>(0x0E) = TargetIndex;
-    ref<uint8>(0x10)  = EmoteID == EMOTE_JOB ? EmoteID + (extra - 0x1F) : EmoteID;
+    ref<uint8>(0x10)  = EmoteID == Emote::JOB ? static_cast<uint8>(EmoteID) + (extra - 0x1F) : static_cast<uint8>(EmoteID);
 
-    if (EmoteID == EMOTE_HURRAY)
+    if (EmoteID == Emote::HURRAY)
     {
         auto PWeapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
         if (PWeapon && PWeapon->getID() != 65535)
             ref<uint16>(0x12) = PWeapon->getID();
     }
-    else if (EmoteID == EMOTE_JOB)
+    else if (EmoteID == Emote::JOB)
     {
         ref<uint8>(0x12) = (extra - 0x1F);
     }
 
-    ref<uint8>(0x16) = EmoteMode;
+    ref<uint8>(0x16) = static_cast<uint8>(emoteMode);
 }
