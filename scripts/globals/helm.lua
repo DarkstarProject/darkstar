@@ -34,6 +34,7 @@ local helmInfo =
     [dsp.helm.type.HARVESTING] =
     {
         id = "HARVESTING",
+        animation = dsp.emote.HARVESTING,
         mod = dsp.mod.HARVESTING_RESULT,
         settingRate = "HARVESTING_RATE",
         settingBreak = "HARVESTING_BREAK_CHANCE",
@@ -310,10 +311,11 @@ local helmInfo =
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.EXCAVATION] =
     {
         id = "EXCAVATION",
+        animation = dsp.emote.EXCAVATION,
         mod = nil,
         settingRate = "EXCAVATION_RATE",
         settingBreak = "EXCAVATION_BREAK_CHANCE",
@@ -378,7 +380,7 @@ local helmInfo =
                     { 425.145,  47.862,  487.601},
                     { 439.581,  47.928,  475.796},
                 },
-            },    
+            },
             [dsp.zone.KORROLOKA_TUNNEL] =
             {
                 drops =
@@ -407,7 +409,7 @@ local helmInfo =
                     {  61.417,   0.342,  -29.337},
                     {  61.890,   0.012,   90.298},
                 },
-            },    
+            },
             [dsp.zone.MAZE_OF_SHAKHRAMI] =
             {
                 drops =
@@ -438,15 +440,16 @@ local helmInfo =
                     { 255.750,  -0.179, -144.886},
                     { 405.577,  -0.284,  -44.539},
                 },
-            },    
+            },
         },
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.LOGGING] =
     {
         id = "LOGGING",
+        animation = dsp.emote.LOGGING,
         mod = dsp.mod.LOGGING_RESULT,
         settingRate = "LOGGING_RATE",
         settingBreak = "LOGGING_BREAK_CHANCE",
@@ -869,10 +872,11 @@ local helmInfo =
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.MINING] =
     {
         id = "MINING",
+        animation = dsp.emote.EXCAVATION,
         mod = dsp.mod.MINING_RESULT,
         settingRate = "MINING_RATE",
         settingBreak = "MINING_BREAK_CHANCE",
@@ -1313,7 +1317,7 @@ local rocks = {769,770,771,772,773,774,776,775}
 local function doesToolBreak(player, info)
     local roll  = math.random(100)
     local mod   = info.mod
-    
+
     if mod then
         roll = roll + (player:getMod(mod) / 10)
     end
@@ -1328,12 +1332,12 @@ end
 
 function pickItem(player, info)
     local zoneId = player:getZoneID()
-    
+
     -- found nothing
     if math.random(100) >= _G[info.settingRate] then
         return 0
     end
-    
+
     -- possible drops
     local drops = info.zone[zoneId].drops
 
@@ -1384,7 +1388,7 @@ dsp.helm.initZone = function(zone, helmType)
     local zoneId = zone:getID()
     local info = helmInfo[helmType]
     local npcs = zones[zoneId].npc[info.id]
-    
+
     for _, npcId in ipairs(npcs) do
         local npc = GetNPCByID(npcId)
         if npc then
@@ -1397,14 +1401,15 @@ end
 dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
     local info = helmInfo[helmType]
     local zoneId = player:getZoneID()
-    
+
     if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
         -- start event
         local item  = pickItem(player, info)
         local broke = doesToolBreak(player, info) and 1 or 0
         local full  = (player:getFreeSlotsCount() == 0) and 1 or 0
         player:startEvent(csid, item, broke, full)
-        
+        player:sendEmote(npc, info.animation, dsp.emoteMode.MOTION)
+
         -- success! reward item and decrement number of remaining uses on the point
         if item ~= 0 and full == 0 then
             player:addItem(item)
