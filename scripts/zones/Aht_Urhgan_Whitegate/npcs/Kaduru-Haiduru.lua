@@ -10,21 +10,12 @@ local function canUse_KaduruHaiduru_Service(player)
     local shihuDanhuDate = player:getVar("ShihuDanhu_TP_date")
     local currentDate = os.date("%j")
 
-    if shihuDanhuEncounters < 1 or shihuDanhuDate == 0 or
-        (shihuDanhuEncounters == 1 and currentDate - shihuDanhuDate < 1 and caughtUsingShihuDanhuDate == 0) or
-        (shihuDanhuEncounters >= 2 and currentDate - caughtUsingShihuDanhuDate >= 1 and caughtUsingShihuDanhuDate ~= 0) then
-        -- We've never used Shihu-Danhu's services-- Allow Pass.
-        -- , or
-        -- We've talked to the little brother only 1 time, and
-        -- It's the same day, and this is the first time caught-- Allow Pass.
-        -- , or
-        -- We've talked to the little brother more than once, and
-        -- It has been more than one real-life day since we've used the brother and been caught-- Allow Pass.
-        return true
+   -- Kaduru-Haiduru can be used unless the following are true.
+    if (currentDate - shihuDanhuDate < 1) and shihuDanhuEncounters > 1 or
+        (currentDate - caughtUsingShihuDanhuDate < 1) then
+        return false
     end
-    -- Encountered and used Shihu-Danhu's services more than once, and
-    -- Have been caught by Kaduru-Haiduru,
-    return false
+    return true
 end;
 
 function onTrigger(player, npc)
