@@ -625,13 +625,9 @@ namespace battleutils
             switch (Action->spikesEffect)
             {
                 case SPIKE_BLAZE:
-                    PAttacker->takeDamage(Action->spikesParam, PDefender, ATTACK_MAGICAL, DAMAGE_FIRE);
-                    break;
                 case SPIKE_ICE:
-                    PAttacker->takeDamage(Action->spikesParam, PDefender, ATTACK_MAGICAL, DAMAGE_ICE);
-                    break;
                 case SPIKE_SHOCK:
-                    PAttacker->takeDamage(Action->spikesParam, PDefender, ATTACK_MAGICAL, DAMAGE_LIGHTNING);
+                    PAttacker->takeDamage(Action->spikesParam, PDefender, ATTACK_MAGICAL, GetSpikesDamageType(Action->spikesEffect));
                     break;
 
                 case SPIKE_DREAD:

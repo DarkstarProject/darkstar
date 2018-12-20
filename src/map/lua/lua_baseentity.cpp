@@ -7273,8 +7273,8 @@ inline int32 CLuaBaseEntity::takeDamage(lua_State *L)
             DSP_DEBUG_BREAK_IF(PLuaAttacker->m_PBaseEntity->objtype == TYPE_NPC);
             PAttacker = (CBattleEntity*)PLuaAttacker->m_PBaseEntity;
         }
-        ATTACKTYPE attackType = !lua_isnil(L, 3) && lua_isnumber(L, 3) ? (ATTACKTYPE)(uint16)lua_tonumber(L, 3) : ATTACK_NONE;
-        DAMAGETYPE damageType = !lua_isnil(L, 4) && lua_isnumber(L, 4) ? (DAMAGETYPE)(uint16)lua_tonumber(L, 4) : DAMAGE_NONE;
+        ATTACKTYPE attackType = !lua_isnil(L, 3) && lua_isnumber(L, 3) ? (ATTACKTYPE)lua_tointeger(L, 3) : ATTACK_NONE;
+        DAMAGETYPE damageType = !lua_isnil(L, 4) && lua_isnumber(L, 4) ? (DAMAGETYPE)lua_tointeger(L, 4) : DAMAGE_NONE;
 
         ((CBattleEntity*)m_PBaseEntity)->takeDamage(damage, PAttacker, attackType, damageType);
 
@@ -11908,8 +11908,8 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
 
     auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
     auto damage = (int32)lua_tointeger(L, 2);
-    ATTACKTYPE attackType = (ATTACKTYPE)(uint16)lua_tonumber(L, 3);
-    DAMAGETYPE damageType = (DAMAGETYPE)(uint16)lua_tonumber(L, 4);
+    ATTACKTYPE attackType = (ATTACKTYPE)lua_tointeger(L, 3);
+    DAMAGETYPE damageType = (DAMAGETYPE)lua_tointeger(L, 4);
     auto slot = (uint8)lua_tointeger(L, 5);
     auto primary = lua_toboolean(L, 6);
     auto tpMultiplier = (float)lua_tonumber(L, 7);

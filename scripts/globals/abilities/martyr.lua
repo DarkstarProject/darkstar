@@ -43,6 +43,7 @@ function onUseAbility(player,target,ability)
     -- Log HP Headed for Debug
     -- printf("Martyr Healed HP: %d", healHP)
 
+    damageHP = utils.stoneskin(player, damageHP)
     player:takeDamage(damageHP)
     target:addHP(healHP)
 
