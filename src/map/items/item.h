@@ -125,6 +125,9 @@ public:
     virtual const int8* getSignature();
     virtual void setSignature(int8* signature);
 
+    const uint8 getAppraisalID();
+    void        setAppraisalID(uint8 appraisalID);
+
     uint8       m_extra[0x18];  // any extra data pertaining to item (augments, furniture location, etc)
 
 protected:
@@ -153,6 +156,8 @@ private:
     string_t    m_name;
     string_t    m_send;
     string_t    m_recv;
+
+    uint8       m_Appraisal;    // Appraisal ID for item distribution.
 };
 
 #endif
