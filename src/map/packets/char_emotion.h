@@ -30,6 +30,7 @@
 
 enum class Emote : uint8
 {
+    POINT = 0,
     BOW = 1,
     SALUTE = 2,
     KNEEL = 3,
