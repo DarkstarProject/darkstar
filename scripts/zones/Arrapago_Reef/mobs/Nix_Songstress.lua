@@ -2,7 +2,7 @@
 -- Area: Arrapago Reef
 --  Mob: Nix Songstress
 -----------------------------------
-mixins = {require("scripts/mixins/families/lamie")}
+mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

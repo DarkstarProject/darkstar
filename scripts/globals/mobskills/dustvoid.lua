@@ -20,7 +20,7 @@ function onMobWeaponSkill(target,mob,skill)
     local dmgmod = 1
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT)
     local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_IGNORE_SHADOWS)
-    for i = 0,15 do 
+    for i = dsp.slot.MAIN, dsp.slot.BACK do 
         target:unequipItem(i)
     end
     target:delHP(dmg)

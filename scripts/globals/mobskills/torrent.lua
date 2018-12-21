@@ -12,7 +12,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    for i = 0,15 do 
+    for i = dsp.slot.MAIN, dsp.slot.BACK do 
         target:unequipItem(i)
     end
     skill:setMsg(dsp.msg.basic.NONE)

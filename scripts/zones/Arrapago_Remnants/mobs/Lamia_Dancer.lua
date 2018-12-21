@@ -2,7 +2,7 @@
 -- Area: Arrapago Remnants
 --  MOB: Lamia Dancer
 -----------------------------------
-mixins = {require("scripts/mixins/families/lamie")}
+mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
