@@ -11,7 +11,7 @@ local function canUse_KaduruHaiduru_Service(player)
     local currentDate = os.date("%j")
 
    -- Kaduru-Haiduru can be used unless the following are true.
-    if (currentDate - shihuDanhuDate < 1) and shihuDanhuEncounters > 1 or
+    if (currentDate - shihuDanhuDate < 1 and shihuDanhuEncounters > 1) or
         (currentDate - caughtUsingShihuDanhuDate < 1) then
         return false
     end
