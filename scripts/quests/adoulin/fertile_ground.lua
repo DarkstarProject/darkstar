@@ -23,17 +23,18 @@ this_quest.vars =
 
 this_quest.requirements =
 {
-    quests_missions =
-    { 
-        quests =
+    quests =
+    {
         {
-            -- [1] = { ['quest'] = require("scripts/globals/quests/adoulin/the_old_man_and_the_harpoon") }
-        },
-        missions = {}
+            ['area'] = ADOULIN,
+            ['quest_id'] = dsp.quests.enums.quest_ids.adoulin.THE_OLD_MAN_AND_THE_HARPOON
+        }
+        -- [1] = { ['quest'] = require("scripts/globals/quests/adoulin/the_old_man_and_the_harpoon") }
     },
     fame =
     {
-        {this_quest.area, 2}
+        ['area'] = this_quest.area,
+        ['level'] = 2
     }
 }
 
