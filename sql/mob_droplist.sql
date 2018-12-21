@@ -32981,6 +32981,7 @@ INSERT INTO `mob_droplist` VALUES (4622,0,0,1000,19239,105); -- (Marquis Sabnock
 INSERT INTO `mob_droplist` VALUES (4623,0,0,1000,2833,212); -- (Donnergugi) Thunder Coral
 INSERT INTO `mob_droplist` VALUES (4624,0,0,1000,16299,60); -- (Mind Hoarder) Lleu's Charm
 INSERT INTO `mob_droplist` VALUES (4625,0,0,1000,2814,250); -- (Demoiselle Desolee) Aptant: Bellum
+INSERT INTO `mob_droplist` VALUES (4626,0,0,1000,11404,63); -- (Hazmat) Promptitude Solea
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

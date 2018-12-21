@@ -32,6 +32,10 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
     },
     mob =
     {
+        HAZMAT_PH =
+        {
+            [17596515] = 17596520,
+        },
         HOVERING_HOTPOT_PH =
         {
             [17596623] = 17596628, -- 182.157 -0.012 29.941
