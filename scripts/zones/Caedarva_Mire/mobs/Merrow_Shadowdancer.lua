@@ -6,7 +6,7 @@
 mixins = 
     {
         require("scripts/mixins/job_special"),
-        require("scripts/mixins/families/lamie")
+        require("scripts/mixins/weapon_break")
     }
 -----------------------------------
 
