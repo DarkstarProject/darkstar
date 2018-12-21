@@ -8733,14 +8733,14 @@ inline int32 CLuaBaseEntity::battlefieldAtCapacity(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(PZone->m_BattlefieldHandler == nullptr);
 
-    uint8 full = 0;
+    bool full = false;
 
     if (PZone != nullptr && PZone->m_BattlefieldHandler != nullptr &&
         PZone->m_BattlefieldHandler->ReachedMaxCapacity((int)lua_tointeger(L, 1)))
     {
-        full = 1;
+        full = true;
     }
-    lua_pushinteger(L, full);
+    lua_pushboolean(L, full);
     return 1;
 }
 

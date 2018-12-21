@@ -800,7 +800,8 @@ function TradeBCNM(player, npc, trade, onUpdate)
     -- open menu of valid battlefields
     local validBattlefields = findBattlefields(player, npc, itemId)
     print("TURAYDOOOOOOOOO")
-    if validBattlefields ~= 0 and player:battlefieldAtCapacity(validBattlefields) ~= 1 then
+    local battlefieldId = getBattlefieldIdByBit(player, validBattlefields)
+    if validBattlefields ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then
         if not onUpdate then
             player:startEvent(32000, 0, 0, 0, validBattlefields, 0, 0, 0, 0)
         end
@@ -825,7 +826,8 @@ function EventTriggerBCNM(player, npc)
     elseif not player:hasStatusEffect(dsp.effect.BATTLEFIELD) then
         local mask = findBattlefields(player, npc, 0)
         -- mask = 268435455 -- uncomment to open menu with all possible battlefields
-        if mask ~= 0 and player:battlefieldAtCapacity(mask) ~= 1 then
+        local battlefieldId = getBattlefieldIdByBit(player, mask)
+        if mask ~= 0 and not player:battlefieldAtCapacity(battlefieldId) then
             player:startEvent(32000, 0, 0, 0, mask, 0, 0, 0, 0)
             return true
         end
