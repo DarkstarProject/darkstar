@@ -34,8 +34,8 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     -- apply WSC
     local weaponDamage = attacker:getWeaponDmg()
-    local weaponType = attacker:getWeaponSkillType(0)
-    local damageType = attacker:getWeaponDamageType(0)
+    local weaponType = attacker:getWeaponSkillType(dsp.slot.MAIN)
+    local damageType = attacker:getWeaponDamageType(dsp.slot.MAIN)
 
     if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3)
@@ -103,7 +103,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
         -- Handle Fencer
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
-        
+
         if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
             local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
             if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then

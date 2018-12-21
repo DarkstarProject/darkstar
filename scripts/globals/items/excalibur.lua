@@ -14,7 +14,7 @@ function onAdditionalEffect(player, target, damage)
     if math.random(100) <= chance then
         local finalDMG = math.floor(player.getHP(player) / 4)
         if finalDMG > 0 then
-            local damageType = player:getWeaponDamageType(0)
+            local damageType = player:getWeaponDamageType(dsp.slot.MAIN)
             local physicalResist = target:getMod(dsp.mod.SLASHRES) / 1000
             finalDMG = finalDMG * physicalResist
             finalDMG = target:physicalDmgTaken(finalDMG, damageType)

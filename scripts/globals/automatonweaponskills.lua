@@ -19,8 +19,8 @@ function doAutoPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, 
 
     -- apply WSC
     local weaponDamage = params.weaponDamage or attacker:getWeaponDmg();
-    local weaponType = params.weaponType or attacker:getWeaponSkillType(0);
-    local damageType = attacker:getWeaponDamageType(0)
+    local weaponType = params.weaponType or attacker:getWeaponSkillType(dsp.slot.MAIN);
+    local damageType = attacker:getWeaponDamageType(dsp.slot.MAIN)
 
     if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
         local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3);
