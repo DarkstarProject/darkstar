@@ -53,7 +53,7 @@ function onSpellCast(caster, target, spell)
     local bio = target:getStatusEffect(dsp.effect.BIO)
 
     -- Do it!
-    if target:addStatusEffect(dsp.effect.DIA, 1 + dotBonus, 3, duration, dsp.effectFlag.ERASABLE, 5, 1) then
+    if target:addStatusEffect(dsp.effect.DIA, 1 + dotBonus, 3, duration, 0, 5, 1) then
         spell:setMsg(dsp.msg.basic.MAGIC_DMG)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
