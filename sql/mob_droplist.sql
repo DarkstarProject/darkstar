@@ -32983,6 +32983,7 @@ INSERT INTO `mob_droplist` VALUES (4624,0,0,1000,16299,60); -- (Mind Hoarder) Ll
 INSERT INTO `mob_droplist` VALUES (4625,0,0,1000,2814,250); -- (Demoiselle Desolee) Aptant: Bellum
 INSERT INTO `mob_droplist` VALUES (4626,0,0,1000,11404,63); -- (Hazmat) Promptitude Solea
 INSERT INTO `mob_droplist` VALUES (4627,0,0,1000,2847,421); -- (Supplespine Mujwuj) Blue Jaspar
+INSERT INTO `mob_droplist` VALUES (4628,0,0,1000,15940,118); -- (Gwyllgi) Gosha Sarashi
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
