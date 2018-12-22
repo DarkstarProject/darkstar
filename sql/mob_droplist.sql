@@ -32028,9 +32028,9 @@ INSERT INTO `mob_droplist` VALUES (4354,0,0,1000,5375,100);
 INSERT INTO `mob_droplist` VALUES (4355,2,0,1000,842,0);
 INSERT INTO `mob_droplist` VALUES (4355,0,0,1000,842,100);
 INSERT INTO `mob_droplist` VALUES (4355,0,0,1000,5581,80);
-INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,5581,80);
-INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,14945,100);
-INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,18437,100);
+INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,5581,100); -- (Zizzy Zillah) Ziz Meat
+INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,14945,286); -- (Zizzy Zillah) Fencing Bracers
+INSERT INTO `mob_droplist` VALUES (4356,0,0,1000,18437,429); -- (Zizzy Zillah) Namikirimaru
 INSERT INTO `mob_droplist` VALUES (4357,0,0,1000,17742,20);
 INSERT INTO `mob_droplist` VALUES (4357,0,0,1000,17743,20);
 INSERT INTO `mob_droplist` VALUES (4357,0,0,1000,17744,20);

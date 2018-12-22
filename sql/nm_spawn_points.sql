@@ -816,6 +816,7 @@ INSERT INTO `nm_spawn_points` VALUES (17027466,46,279.456,-15.640,-269.086);
 INSERT INTO `nm_spawn_points` VALUES (17027466,47,265.377,-13.377,-284.305);
 INSERT INTO `nm_spawn_points` VALUES (17027466,48,263.817,-15.161,-301.018);
 INSERT INTO `nm_spawn_points` VALUES (17027466,49,278.707,-18.142,-296.619);
+INSERT INTO `nm_spawn_points` VALUES (17043554,0,83,14.5,-222); -- Zizzy Zillah
 INSERT INTO `nm_spawn_points` VALUES (17043779,0,-209,19,-388); -- Firedance Magmaal Ja
 INSERT INTO `nm_spawn_points` VALUES (17072150,0,-105,-8,94); -- Cookieduster Lipiroon
 INSERT INTO `nm_spawn_points` VALUES (17101099,0,-538.583,-7.218,46.353);
