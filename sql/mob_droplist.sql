@@ -32985,6 +32985,7 @@ INSERT INTO `mob_droplist` VALUES (4626,0,0,1000,11404,63); -- (Hazmat) Promptit
 INSERT INTO `mob_droplist` VALUES (4627,0,0,1000,2847,421); -- (Supplespine Mujwuj) Blue Jaspar
 INSERT INTO `mob_droplist` VALUES (4628,0,0,1000,15940,118); -- (Gwyllgi) Gosha Sarashi
 INSERT INTO `mob_droplist` VALUES (4629,0,0,1000,2848,222); -- (Trembler Tabitha) Grimy Bronze Sheet
+INSERT INTO `mob_droplist` VALUES (4630,0,0,1000,16018,333); -- (Naa Zeku the Unwaiting) Ataraxy Earring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

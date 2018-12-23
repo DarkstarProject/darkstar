@@ -10565,6 +10565,7 @@ INSERT INTO `mob_groups` VALUES (10492,5767,200,0,32,4626,0,0,57,58,0); -- Hazma
 INSERT INTO `mob_groups` VALUES (10493,5768,104,0,32,4627,3000,0,50,50,0); -- Supplespine Mujwuj
 INSERT INTO `mob_groups` VALUES (10494,5769,190,0,32,4628,1500,0,31,34,0); -- Gwyllgi
 INSERT INTO `mob_groups` VALUES (10495,5770,198,0,32,4629,1300,0,55,55,0); -- Trembler Tabitha
+INSERT INTO `mob_groups` VALUES (10496,5771,119,0,32,4630,3800,0,65,65,0); -- Naa Zeku the Unwaiting (estimated level based on HP)
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);
