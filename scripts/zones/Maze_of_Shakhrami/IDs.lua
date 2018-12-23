@@ -27,6 +27,11 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
     },
     mob =
     {
+        TREMBLER_TABITHA_PH =
+        {
+            [17588276] = 17588278,
+            [17588277] = 17588278,
+        },
         ICHOROUS_IRE   = 17588225,
         ARGUS          = 17588674,
         LEECH_KING     = 17588685,
