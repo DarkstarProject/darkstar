@@ -1147,7 +1147,7 @@ INSERT INTO `item_usable` VALUES (5327,'bottle_of_potion_drops',1,1,30,0,0,0,0,0
 INSERT INTO `item_usable` VALUES (5328,'bottle_of_hi-potion_drops',1,2,31,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5329,'tarutaru_snare',4,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5330,'mithra_snare',4,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5332,'kabura_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5333,'sleep_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5334,'blind_bolt_quiver',1,1,55,0,0,0,0,0);

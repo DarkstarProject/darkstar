@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
     local playerpoints = ((#chars -3)*100)
 
         if (csid == 100 and option == 1) then
-        if id == 23 then
+        if id == 21 or id == 23 then
             points = 1000 - math.max(playerpoints, 0)
         end
         for i,v in pairs(chars) do
