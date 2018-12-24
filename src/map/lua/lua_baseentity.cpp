@@ -12778,6 +12778,26 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
 }
 
 /************************************************************************
+*  Function: getMobFlags()
+*  Purpose : Get Mob flags
+*  Example : Not in use in scripts
+*  Notes   : Currently only used through !getMobFlags command
+************************************************************************/
+inline int32 CLuaBaseEntity::getMobFlags(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    if (auto PMob = dynamic_cast<CMobEntity*>(m_PBaseEntity))
+    {
+        lua_pushinteger(L, PMob->getEntityFlags());
+        return 1;
+    }
+
+    return 0;
+}
+
+/************************************************************************
 *  Function: spawn()
 *  Purpose : Forces a mob to spawn with optional Despawn/Respawn values
 *  Example : mob:spawn(60,3600); mob:spawn()
@@ -14579,6 +14599,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMobFlags),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),

@@ -296,8 +296,7 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
     {
         if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
         {
-            auto mob = dynamic_cast<CMobEntity*>(PTarget);
-            if (mob != nullptr)
+            if (auto mob = dynamic_cast<CMobEntity*>(PTarget))
             {
                 if (PTarget->isDead())
                 {
@@ -308,8 +307,11 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
                 {
                     if (m_PEntity->objtype == TYPE_PC)
                     {
-                        mob->m_OwnerID.id = m_PEntity->id;
-                        mob->m_OwnerID.targid = m_PEntity->targid;
+                        if (!mob->CalledForHelp())
+                        {
+                            mob->m_OwnerID.id = m_PEntity->id;
+                            mob->m_OwnerID.targid = m_PEntity->targid;
+                        }
                         mob->updatemask |= UPDATE_STATUS;
                     }
                     mob->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
