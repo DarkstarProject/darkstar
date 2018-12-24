@@ -90,8 +90,8 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA] =
         CLOUD_GOOD_TRADE               = 10109, -- Here, take 'em and scram. And don't say I ain't never did nothin' for you!
         CLOUD_BAD_ITEM                 = 10110, -- What the hell is this junk!? Why don't you try bringin' what I asked for before I shove one of my sandals up your...nose!
         CAPUCINE_SHOP_DIALOG           = 10311, -- Hello! You seem to be working very hard. I'm really thankful! But you needn't rush around so fast. Take your time! I can wait if it makes the job easier for you!
-        TUTORIAL_NPC                   = 13511, -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
-        TEAR_IN_FABRIC_OF_SPACE        = 16479, -- There appears to be a tear in the fabric of space...
+        TUTORIAL_NPC                   = 13516, -- Greetings and well met! Guardian of the Kingdom, Alaune, at your most humble service.
+        TEAR_IN_FABRIC_OF_SPACE        = 16487, -- There appears to be a tear in the fabric of space...
     },
     mob =
     {

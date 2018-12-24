@@ -331,7 +331,7 @@ dsp.aftermath.canOverwrite = function(player, tp, aftermathId, aftermathType)
     {
         -- Relic
         [1] = function(x)
-            local newDuration = aftermath.duration(tp)
+            local newDuration = aftermath.duration(tp) * 1000
             canOverwrite = newDuration > effect:getTimeRemaining()
         end,
 
