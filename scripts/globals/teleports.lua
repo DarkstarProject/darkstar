@@ -41,9 +41,9 @@ local ids =
     EXITPROMHOLLA       = 27,
     EXITPROMDEM         = 28,
     LUFAISE             = 29,
-    CHOCOWINDURST       = 30,
-    CHOCOSANDORIA       = 31,
-    CHOCOBASTOK         = 32,
+    CHOCO_WINDURST      = 30,
+    CHOCO_SANDORIA      = 31,
+    CHOCO_BASTOK        = 32,
     DUCALGUARD          = 33,
     PURGONORGO          = 34,
     AZOUPH_SP           = 35,
@@ -69,6 +69,7 @@ local ids =
     WHITEGATE           = 55,
     SEA                 = 56,
     HOME_NATION         = 57,
+    CHOCO_UPPER_JEUNO   = 58
 }
 dsp.teleport.id = ids
 
