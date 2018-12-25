@@ -17,6 +17,12 @@ zones[dsp.zone.BEAUCEDINE_GLACIER_S] =
     },
     mob =
     {
+        GRANDGOULE_PH =
+        {
+            [17334475] = 17334482,
+            [17334476] = 17334482,
+            [17334477] = 17334482,
+        },
     },
     npc =
     {

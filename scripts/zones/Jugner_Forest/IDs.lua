@@ -31,6 +31,10 @@ zones[dsp.zone.JUGNER_FOREST] =
             [17203581] = 17203585, -- 535.504 -1.517 152.171 (southeast)
             [17203637] = 17203642, -- 239.541 -0.365 559.722 (northwest)
         },
+        SUPPLESPINE_MUJWUJ_PH =
+        {
+            [17203437] = 17203475,
+        },
         KING_ARTHRO = 17203216,
         FRAELISSA   = 17203447,
     },

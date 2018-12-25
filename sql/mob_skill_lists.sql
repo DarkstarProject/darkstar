@@ -72,15 +72,20 @@ INSERT INTO `mob_skill_lists` VALUES ('Amphiptere',6,2433);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Archery',7,1200);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Axe',8,1192);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Club',9,1198);
+INSERT INTO `mob_skill_lists` VALUES ('Prankster_Maverix',10,513);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Dagger',11,1189);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greataxe',12,1193);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greatkatana',13,1197);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Greatsword',14,1191);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Handtohand',15,1188);
+INSERT INTO `mob_skill_lists` VALUES ('Splacknuck',16,518);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Katana',17,1196);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Marksmanship',18,1201);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Polearm',19,1195);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Scythe',20,1194);
+INSERT INTO `mob_skill_lists` VALUES ('Demoiselle_Desolee',21,659);
+INSERT INTO `mob_skill_lists` VALUES ('Gwyllgi',22,466);
+INSERT INTO `mob_skill_lists` VALUES ('Gwyllgi',22,470);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Staff',23,1199);
 INSERT INTO `mob_skill_lists` VALUES ('AnimatedWeapon-Sword',24,1190);
 INSERT INTO `mob_skill_lists` VALUES ('Antica',25,791);
@@ -2741,11 +2746,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,317); -- vampiric lash
 INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,319); -- bad breath
 INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,320); -- sweet breath
 
-INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,726); -- drain whip 
+INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,726); -- drain whip
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,319); -- bad breath
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,2575); -- tainting breath
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,2574); -- thousand spears
-INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,1332); -- extremely bad breath 
+INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,1332); -- extremely bad breath
 
 INSERT INTO `mob_skill_lists` VALUES ('Fear_Gorta',797,220); -- curse
 INSERT INTO `mob_skill_lists` VALUES ('Fear_Gorta',797,1339); -- bane
@@ -2825,7 +2830,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Carabosse',812,2194); -- lethe arrows
 
 INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2193); -- zephyr arrow  -- group 813 used only after benediction
 INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2194); -- lethe arrows
-INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2195); -- spring breeze 
+INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2195); -- spring breeze
 INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2196); -- summer breeze
 INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2197); -- autumn breeze
 INSERT INTO `mob_skill_lists` VALUES ('Carabosse_Post_Benediction',813,2198); -- winter breeze
@@ -2941,7 +2946,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Glavoid',839,2190); -- extreme purgation
 INSERT INTO `mob_skill_lists` VALUES ('Glavoid',839,2191); -- desiccation
 -- INSERT INTO `mob_skill_lists` VALUES ('Glavoid',839,2605); -- disgorge
 
-INSERT INTO `mob_skill_lists` VALUES ('Hedetet',840,353); -- death scissors 
+INSERT INTO `mob_skill_lists` VALUES ('Hedetet',840,353); -- death scissors
 INSERT INTO `mob_skill_lists` VALUES ('Hedetet',840,2221); -- hell scissors
 
 INSERT INTO `mob_skill_lists` VALUES ('Iratham',841,2566); -- diabolic claw

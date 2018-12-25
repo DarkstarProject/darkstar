@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1483,8 +1483,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 172, 1, 255); -- Water IV
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 227, 1, 255); -- Poisonga III
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 360, 1, 255); -- Dispelga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 365, 1, 255); -- Breakga
-INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga 
-INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga 
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 362, 1, 255); -- Bindga
+INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 361, 1, 255); -- Blindga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 366, 1, 255); -- Graviga
 INSERT INTO `mob_spell_lists` VALUES ('Oupire', 150, 274, 1, 255); -- Sleepga II
 
@@ -1737,7 +1737,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,6,1,255); -- Cure Vi
 INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,47,1,255); -- Protect V
 INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,52,1,255); -- Shell V
 INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,54,1,255); -- Stoneskin
--- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV 
+-- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,157,1,255); -- Aero IV
 -- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,158,1,255); -- Aero V
 -- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,184,1,255); -- Aeroga III
 -- INSERT INTO `mob_spell_lists` VALUES ('Carabosse',177,208,1,255); -- Tornado
@@ -1754,11 +1754,9 @@ INSERT INTO `mob_spell_lists` VALUES ('La_Theine_Liege',179,184,1,255); -- aerog
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,163,1,255); -- Stone V
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,191,1,255); -- Stonega III
 INSERT INTO `mob_spell_lists` VALUES ('Megamaw_Mikey',180,210,1,255); -- Quake
-
--- Free ID to use: 181
-
+INSERT INTO `mob_spell_lists` VALUES ('Trembler_Tabitha',181,210,1,255); -- Quake
 INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',182,201,1,255); -- Waterga III
-INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',182,226,1,255); -- Poisonga II 
+INSERT INTO `mob_spell_lists` VALUES ('Poroggo_Dom_Juan',182,226,1,255); -- Poisonga II
 
 INSERT INTO `mob_spell_lists` VALUES ('Abas',183,172,1,255); -- Water IV
 INSERT INTO `mob_spell_lists` VALUES ('Abas',183,201,1,255); -- Waterga III
@@ -1784,7 +1782,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Chukwa',185,215,1,255); -- Flood II
 
 INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',186,357,1,255); -- Slowga
 INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',186,365,1,255); -- Breakga
-INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',186,54,1,255);  -- Stoneskin 
+INSERT INTO `mob_spell_lists` VALUES ('Cuelebre',186,54,1,255);  -- Stoneskin
 
 INSERT INTO `mob_spell_lists` VALUES ('Glavoid',187,192,1,255); -- Stonega IV
 INSERT INTO `mob_spell_lists` VALUES ('Glavoid',187,211,1,255); -- Quake II
@@ -2225,7 +2223,7 @@ INSERT INTO `mob_spell_lists` VALUES ('Dragua',262,163,1,255); -- stone_v
 INSERT INTO `mob_spell_lists` VALUES ('Dragua',262,192,1,255); -- stonega_iv
 INSERT INTO `mob_spell_lists` VALUES ('Dragua',262,357,1,255); -- slowga
 INSERT INTO `mob_spell_lists` VALUES ('Dragua',262,499,1,255); -- stoneja
- 
+
 INSERT INTO `mob_spell_lists` VALUES ('Hedjedjet_pre_50',263,362,1,255); -- bindga
 
 INSERT INTO `mob_spell_lists` VALUES ('Hedjedjet_post_50',264,362,1,255); -- bindga

@@ -23,6 +23,10 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
             [17182827] = 17182843,
             [17182838] = 17182843,
         },
+        ZHUU_BUXU_THE_SILENT =
+        {
+            [17182813] = 17182813,
+        },
     },
     npc =
     {
