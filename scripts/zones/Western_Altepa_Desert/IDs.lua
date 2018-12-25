@@ -28,8 +28,8 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
         ALREADY_HAVE_ALL_FRAGS     = 7347, -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
         FOUND_ALL_FRAGS            = 7348, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT            = 7349, -- It is an ancient Zilart monument.
-        SENSE_OMINOUS_PRESENCE     = 7393, -- You sense an ominous presence...
-        REGIME_REGISTERED          = 9810, -- New training regime registered!
+        SENSE_OMINOUS_PRESENCE     = 7395, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 9812, -- New training regime registered!
     },
     mob =
     {

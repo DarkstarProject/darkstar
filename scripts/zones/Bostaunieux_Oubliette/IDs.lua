@@ -43,6 +43,13 @@ zones[dsp.zone.BOSTAUNIEUX_OUBLIETTE] =
         {
             [17461322] = 17461433, -- -259 0.489 -188
         },
+        MANES_PH                =
+        {
+            [17461469] = 17461471,
+            [17461470] = 17461471,
+            [17461476] = 17461471,
+            [17461477] = 17461471,
+        },
         DREXERION_THE_CONDEMNED = 17461338,
         PHANDURON_THE_CONDEMNED = 17461343,
         BLOODSUCKER             = 17461478,

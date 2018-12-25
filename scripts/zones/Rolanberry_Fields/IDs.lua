@@ -21,9 +21,9 @@ zones[dsp.zone.ROLANBERRY_FIELDS] =
         DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         SIGN                    = 7400, -- North: Grand Duchy of Jeuno, Sauromugue Champaign South: Pashhow Marshlands
-        REGIME_REGISTERED       = 9770, -- New training regime registered!
-        AWAIT_YOUR_CHALLENGE    = 12168, -- We await your challenge, traveler.
-        LACK_LEGION_POINTS      = 12205, -- It would seem that you lack the necessary amount of Legion points.
+        REGIME_REGISTERED       = 9772, -- New training regime registered!
+        AWAIT_YOUR_CHALLENGE    = 12170, -- We await your challenge, traveler.
+        LACK_LEGION_POINTS      = 12207, -- It would seem that you lack the necessary amount of Legion points.
     },
     mob =
     {

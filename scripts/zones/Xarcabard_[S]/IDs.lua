@@ -18,6 +18,10 @@ zones[dsp.zone.XARCABARD_S] =
     },
     mob =
     {
+        GRAOULLY_PH =
+        {
+            [17338384] = 17338386,
+        },
     },
     npc =
     {
