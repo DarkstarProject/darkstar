@@ -129,10 +129,6 @@ INSERT INTO `instance_entities` VALUES (21,17035540);
 INSERT INTO `instance_entities` VALUES (21,17035541);
 INSERT INTO `instance_entities` VALUES (21,17035552);
 INSERT INTO `instance_entities` VALUES (21,17035554);
-INSERT INTO `instance_entities` VALUES (21,17037312);
-INSERT INTO `instance_entities` VALUES (21,17037313);
-INSERT INTO `instance_entities` VALUES (21,17037314);
-INSERT INTO `instance_entities` VALUES (21,17037315);
 
 -- Troll Fugitives
 -- Mobs
