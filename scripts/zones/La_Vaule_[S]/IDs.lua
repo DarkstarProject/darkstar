@@ -18,6 +18,14 @@ zones[dsp.zone.LA_VAULE_S] =
     },
     mob =
     {
+        HAWKEYED_DNATBAT_PH =
+        {
+            [17125431] = 17125433, -- 375.737 0.272 -174.487
+        },
+        ASHMAKER_GOTBLUT_PH =
+        {
+            [17125450] = 17125452, -- 234.481 3.424 -241.751
+        },
     },
     npc =
     {

@@ -22,24 +22,33 @@ zones[dsp.zone.JUGNER_FOREST] =
         FIND_NOTHING             = 7719, -- You dig and you dig, but find nothing.
         LOGGING_IS_POSSIBLE_HERE = 7897, -- Logging is possible here if you have <item>.
         CONQUEST                 = 8048, -- You've earned conquest points!
-        REGIME_REGISTERED        = 10855, -- New training regime registered!
+        REGIME_REGISTERED        = 10857, -- New training regime registered!
     },
     mob =
     {
+        PANZER_PERCIVAL_PH =
+        {
+            [17203581] = 17203585, -- 535.504 -1.517 152.171 (southeast)
+            [17203637] = 17203642, -- 239.541 -0.365 559.722 (northwest)
+        },
+        SUPPLESPINE_MUJWUJ_PH =
+        {
+            [17203437] = 17203475,
+        },
         KING_ARTHRO = 17203216,
         FRAELISSA   = 17203447,
     },
     npc =
     {
-        OVERSEER_BASE = 17203846,
+        OVERSEER_BASE = 17203847,
         LOGGING =
         {
-            17203862,
             17203863,
             17203864,
             17203865,
             17203866,
             17203867,
+            17203868,
         },
     },
 }

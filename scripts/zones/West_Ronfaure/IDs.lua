@@ -28,7 +28,7 @@ zones[dsp.zone.WEST_RONFAURE] =
         ZOVRIACE_DIALOG         = 7382, -- Let me be! I return to Southgate with word on La Theine.
         DISMAYED_CUSTOMER       = 7408, -- You find some worthless scraps of paper.
         CONQUEST                = 7530, -- You've earned conquest points!
-        REGIME_REGISTERED       = 10424, -- New training regime registered!
+        REGIME_REGISTERED       = 10426, -- New training regime registered!
     },
     mob =
     {
@@ -52,8 +52,8 @@ zones[dsp.zone.WEST_RONFAURE] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17187503,
-        OVERSEER_BASE   = 17187523,
+        SIGNPOST_OFFSET = 17187504,
+        OVERSEER_BASE   = 17187524,
     },
 }
 

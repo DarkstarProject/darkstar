@@ -21,20 +21,27 @@ zones[dsp.zone.QUFIM_ISLAND] =
         THESE_WITHERED_FLOWERS         = 7328, -- These withered flowers seem unable to bloom.
         NOW_THAT_NIGHT_HAS_FALLEN      = 7329, -- Now that night has fallen, the flowers bloom with a strange glow.
         CONQUEST                       = 7377, -- You've earned conquest points!
-        AN_EMPTY_LIGHT_SWIRLS          = 7739, -- An empty light swirls about the cave, eating away at the surroundings...
-        GIGANTIC_FOOTPRINT             = 7823, -- There is a gigantic footprint here.
-        MYSTERIOUS_VOICE               = 7837, -- You hear a mysterious, floating voice: Bring forth the <item>...
-        YOU_CANNOT_ENTER_DYNAMIS       = 7849, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
-        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7851, -- Players who have not reached level <number> are prohibited from entering Dynamis.
-        HOMEPOINT_SET                  = 12695, -- Home point set!
-        REGIME_REGISTERED              = 10331, -- New training regime registered!
+        AN_EMPTY_LIGHT_SWIRLS          = 7741, -- An empty light swirls about the cave, eating away at the surroundings...
+        GIGANTIC_FOOTPRINT             = 7825, -- There is a gigantic footprint here.
+        MYSTERIOUS_VOICE               = 7839, -- You hear a mysterious, floating voice: Bring forth the <item>...
+        YOU_CANNOT_ENTER_DYNAMIS       = 7851, -- You cannot enter Dynamis - [Dummy/San d'Oria/Bastok/Windurst/Jeuno/Beaucedine/Xarcabard/Valkurm/Buburimu/Qufim/Tavnazia] for <number> [day/days] (Vana'diel time).
+        PLAYERS_HAVE_NOT_REACHED_LEVEL = 7853, -- Players who have not reached level <number> are prohibited from entering Dynamis.
+        HOMEPOINT_SET                  = 12697, -- Home point set!
+        REGIME_REGISTERED              = 10333, -- New training regime registered!
     },
     mob =
     {
+        TRICKSTER_KINETIX_PH =
+        {
+            [17293533] = 17293537, -- -138.180 -20.928 228.793
+            [17293534] = 17293537, -- -157.659 -25.501 235.862
+            [17293535] = 17293537, -- -152.269 -20 243
+            [17293536] = 17293537, -- -137.651 -23.507 231.528
+        },
     },
     npc =
     {
-        OVERSEER_BASE = 17293714,
+        OVERSEER_BASE = 17293715,
     },
 }
 

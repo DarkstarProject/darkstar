@@ -23,19 +23,18 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
         DIG_THROW_AWAY          = 7563, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7565, -- You dig and you dig, but find nothing.
         ALREADY_OBTAINED_TELE   = 7659, -- You already possess the gate crystal for this telepoint.
-        REGIME_REGISTERED       = 9948, -- New training regime registered!
+        REGIME_REGISTERED       = 9950, -- New training regime registered!
     },
     mob =
     {
         DUNE_WIDOW_PH     =
         {
-            [17244395] = 17244396, -- -85.000 2.952 -46.000
-            [17244387] = 17244396, -- -38.000 -7.000 -35.000
-            [17244281] = 17244396, -- -75.000 -7.000 -1.000
-            [17244413] = 17244396, -- -36.319 -16.343 127.472
-            [17244436] = 17244396, -- -129.646 -10.544 106.096
-            [17244397] = 17244396, -- -110.259 -11.813 54.668
-            [17244406] = 17244396, -- -63.693 -15.468 37.550
+            [17244395] = 17244396,
+        },
+        DONNERGUGI_PH     =
+        {
+            [17244258] = 17244268,
+            [17244263] = 17244268,
         },
         CENTURIO_XII_I    = 17244372,
         DECURIO_I_III     = 17244523,
@@ -44,7 +43,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
     },
     npc =
     {
-        OVERSEER_BASE = 17244625,
+        OVERSEER_BASE = 17244626,
     },
 }
 

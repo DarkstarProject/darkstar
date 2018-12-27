@@ -1483,6 +1483,23 @@ dsp.mod =
     SYNTH_SKILL_GAIN                = 852, -- Synthesis skill gain rate
     SYNTH_FAIL_RATE                 = 861, -- Synthesis failure rate (percent)
     SYNTH_HQ_RATE                   = 862, -- High-quality success rate (not a percent)
+    DESYNTH_SUCCESS                 = 916, -- Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE            = 917, -- Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH           = 918, -- Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER           = 919, -- Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND            = 920, -- Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE             = 921, -- Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING       = 922, -- Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT           = 923, -- Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK            = 924, -- Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD            = 925, -- Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH           = 926, -- Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH       = 927, -- Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH           = 928, -- Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER         = 929, -- Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE            = 930, -- Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY         = 931, -- Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK            = 932, -- Amount synthesis failure rate is reduced when doing cooking
 
     WEAPONSKILL_DAMAGE_BASE         = 570, -- Specific to 1 Weaponskill: See modifier.h for how this is used
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
@@ -1541,7 +1558,7 @@ dsp.latent =
     SONG_ROLL_ACTIVE         = 25, -- any song or roll active
     TIME_OF_DAY              = 26, -- PARAM: 0: DAYTIME 1: NIGHTTIME 2: DUSK-DAWN
     HOUR_OF_DAY              = 27, -- PARAM: 1: NEW DAY, 2: DAWN, 3: DAY, 4: DUSK, 5: EVENING, 6: DEAD OF NIGHT
-    FIRESDAY                 = 28, 
+    FIRESDAY                 = 28,
     EARTHSDAY                = 29,
     WATERSDAY                = 30,
     WINDSDAY                 = 31,
@@ -1558,7 +1575,7 @@ dsp.latent =
     WEAPON_DRAWN_HP_UNDER    = 43, -- PARAM: HP PERCENT
     --                       = 44  -- Unused
     MP_UNDER_VISIBLE_GEAR    = 45, -- mp less than or equal to %, calculated using MP bonuses from visible gear only
-    HP_OVER_VISIBLE_GEAR     = 46, -- hp more than or equal to %, calculated using HP bonuses from visible gear only 
+    HP_OVER_VISIBLE_GEAR     = 46, -- hp more than or equal to %, calculated using HP bonuses from visible gear only
     WEAPON_BROKEN            = 47,
     IN_DYNAMIS               = 48,
     FOOD_ACTIVE              = 49, -- food effect (foodId) active - PARAM: FOOD ITEMID
@@ -2578,4 +2595,67 @@ dsp.itemCheck =
     NONE    = 0,
     EQUIP   = 1,
     UNEQUIP = 2,
+}
+
+------------------------------------
+-- Emote Values
+------------------------------------
+dsp.emote =
+{
+    POINT = 0,
+    BOW = 1,
+    SALUTE = 2,
+    KNEEL = 3,
+    LAUGH = 4,
+    CRY = 5,
+    NO = 6,
+    YES = 7,
+    WAVE = 8,
+    GOODBYE = 9,
+    WELCOME = 10,
+    JOY = 11,
+    CHEER = 12,
+    CLAP = 13,
+    PRAISE = 14,
+    SMILE = 15,
+    POKE = 16,
+    SLAP = 17,
+    STAGGER = 18,
+    SIGH = 19,
+    COMFORT = 20,
+    SURPRISED = 21,
+    AMAZED = 22,
+    STARE = 23,
+    BLUSH = 24,
+    ANGRY = 25,
+    DISGUSTED = 26,
+    MUTED = 27,
+    DOZE = 28,
+    PANIC = 29,
+    GRIN = 30,
+    DANCE = 31,
+    THINK = 32,
+    FUME = 33,
+    DOUBT = 34,
+    SULK = 35,
+    PSYCH = 36,
+    HUH = 37,
+    SHOCKED = 38,
+    LOGGING = 40,    -- Only used for HELM
+    EXCAVATION = 41, -- Only used for HELM
+    HARVESTING = 42, -- Only used for HELM
+    HURRAY = 43,
+    TOSS = 44,
+    DANCE1 = 65,
+    DANCE2 = 66,
+    DANCE3 = 67,
+    DANCE4 = 68,
+    JOB = 74
+}
+
+dsp.emoteMode =
+{
+    ALL = 0,
+    TEXT = 1,
+    MOTION = 2
 }

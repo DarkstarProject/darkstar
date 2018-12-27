@@ -26,7 +26,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
         SHINING_OBJECT_SLIPS_AWAY     = 7438, -- The shining object slips through your fingers and is washed further down the stream.
         REACH_WATER_FROM_HERE         = 7445, -- You can reach the water from here.
         CONQUEST                      = 7481, -- You've earned conquest points!
-        REGIME_REGISTERED             = 10396, -- New training regime registered!
+        REGIME_REGISTERED             = 10398, -- New training regime registered!
     },
     mob =
     {
@@ -62,7 +62,7 @@ zones[dsp.zone.NORTH_GUSTABERG] =
     },
     npc =
     {
-        OVERSEER_BASE = 17212058,
+        OVERSEER_BASE = 17212059,
     },
 }
 

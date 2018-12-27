@@ -39,7 +39,7 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_ERASE)
-            target:addStatusEffect(dsp.effect.STR_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE) -- target loses STR
+            target:addStatusEffect(dsp.effect.STR_DOWN,ABSORB_SPELL_AMOUNT*resist, ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK) -- target loses STR
         end
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

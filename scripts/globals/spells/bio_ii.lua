@@ -58,7 +58,7 @@ function onSpellCast(caster,target,spell)
     local dotdmg = 3 + math.floor(caster:getSkillLevel(dsp.skill.DARK_MAGIC) / 60)
 
     -- Do it!
-    if (target:addStatusEffect(dsp.effect.BIO,dotdmg,3,duration,FLAG_ERASABLE, 10,2)) then
+    if (target:addStatusEffect(dsp.effect.BIO,dotdmg,3,duration,0, 10,2)) then
         spell:setMsg(dsp.msg.basic.MAGIC_DMG)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

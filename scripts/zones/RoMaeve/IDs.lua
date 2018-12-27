@@ -22,6 +22,11 @@ zones[dsp.zone.ROMAEVE] =
     },
     mob =
     {
+        NIGHTMARE_VASE_PH =
+        {
+            [17276981] = 17276982, -- -101.575 -6.099 -1.520 (west)
+            [17276987] = 17276992, -- 59.825 -5.760 25.123 (east)
+        },
         MOKKURKALFI_I     = 17276929,
         MOKKURKALFI_II    = 17276930,
         ELDHRIMNIR        = 17277126,

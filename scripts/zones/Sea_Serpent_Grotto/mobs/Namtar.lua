@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --   NM: Ghast
 -----------------------------------
 require("scripts/globals/regimes")

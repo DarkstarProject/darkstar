@@ -23,7 +23,7 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
         HEIH_PORHIAAP_DIALOG    = 7389, -- These grrrasslands make up East Sarutabaruta. Lately the number of monsters has drrramatically increased, causing us all sorts of trrrouble.
         SAMA_GOHJIMA_PREDIALOG  = 7391, -- The ministerrr of the Orastery is in the laborrratory beneath here. To get there, you should check the walls verrry carrrefully.
         SAMA_GOHJIMA_POSTDIALOG = 7392, -- Were you able to find the laborrratory? There are many such hidden passages in the Horutoto Ruins.
-        REGIME_REGISTERED       = 9922, -- New training regime registered!
+        REGIME_REGISTERED       = 9924, -- New training regime registered!
     },
     mob =
     {
@@ -36,10 +36,7 @@ zones[dsp.zone.EAST_SARUTABARUTA] =
         },
         SPINY_SPIPI_PH        =
         {
-            [17252656] = 17252657, -- 285.575 -12.656 126.129
-            [17252634] = 17252657, -- 367.961 -12.894 83.454
-            [17252655] = 17252657, -- 354.185 -4.590 244.205
-            [17252654] = 17252657, -- 421.795 -5.536 277.605
+            [17252656] = 17252657
         },
         DUKE_DECAPOD          = 17252725,
     },

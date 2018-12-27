@@ -29,16 +29,21 @@ zones[dsp.zone.TAHRONGI_CANYON] =
         POISONOUS_LOOKING_BUDS       = 7410, -- The flowers have poisonous-looking buds.
         CANT_TAKE_ANY_MORE           = 7411, -- You can't take any more.
         MINING_IS_POSSIBLE_HERE      = 7432, -- Mining is possible here if you have <item>.
-        TELEPOINT_HAS_BEEN_SHATTERED = 7509, -- The telepoint has been shattered into a thousand pieces...
-        SPROUT_LOOKS_WITHERED        = 7552, -- There is something sprouting from the ground here. It looks a little withered.
-        REPULSIVE_CREATURE_EMERGES   = 7553, -- A repulsive creature emerges from the ground!
-        SPROUT_DOES_NOT_NEED_WATER   = 7554, -- The sprout does not need any more water now.
-        NOTHING_HAPPENS              = 7555, -- Nothing happens.
-        SPROUT_LOOKING_BETTER        = 7556, -- The sprout is looking better.
-        REGIME_REGISTERED            = 9821, -- New training regime registered!
+        TELEPOINT_HAS_BEEN_SHATTERED = 7511, -- The telepoint has been shattered into a thousand pieces...
+        SPROUT_LOOKS_WITHERED        = 7554, -- There is something sprouting from the ground here. It looks a little withered.
+        REPULSIVE_CREATURE_EMERGES   = 7555, -- A repulsive creature emerges from the ground!
+        SPROUT_DOES_NOT_NEED_WATER   = 7556, -- The sprout does not need any more water now.
+        NOTHING_HAPPENS              = 7557, -- Nothing happens.
+        SPROUT_LOOKING_BETTER        = 7558, -- The sprout is looking better.
+        REGIME_REGISTERED            = 9823, -- New training regime registered!
     },
     mob =
     {
+        SERPOPARD_ISHTAR_PH =
+        {
+            [17256560] = 17256563, -- -9.176 -8.191 -64.347 (south)
+            [17256686] = 17256690, -- 22.360 23.757 281.584 (north)
+        },
         HERBAGE_HUNTER_PH =
         {
             [17256835] = 17256836, -- -119.301,24.087,448.636
@@ -48,15 +53,15 @@ zones[dsp.zone.TAHRONGI_CANYON] =
     },
     npc =
     {
-        SIGNPOST_OFFSET = 17257031,
+        SIGNPOST_OFFSET = 17257032,
         EXCAVATION =
         {
-            17257053,
             17257054,
             17257055,
             17257056,
             17257057,
             17257058,
+            17257059,
         },
     },
 }

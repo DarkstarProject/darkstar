@@ -1,13 +1,11 @@
 ---------------------------------------------------
 -- Antigravity
+-- Always single gear
 -- Knockback and damage, knockback varies with gear count
 ---------------------------------------------------
 require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
 ---------------------------------------------------
--- todo The potency of the knockback effect varies with
---  the number of gears in the enemy formation. A single gear produces only a
---  slight knockback, whereas triple gears produce a very strong knockback.
 
 function onMobSkillCheck(target,mob,skill)
     return 0

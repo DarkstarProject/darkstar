@@ -17,6 +17,10 @@ zones[dsp.zone.SAUROMUGUE_CHAMPAIGN_S] =
     },
     mob =
     {
+        BALAM_QUITZ_PH =
+        {
+            [17178778] = 17178803, -- 481.509 24.184 98.264
+        },
     },
     npc =
     {

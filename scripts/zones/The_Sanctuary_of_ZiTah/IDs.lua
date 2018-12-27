@@ -30,11 +30,15 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
         FOUND_ALL_FRAGS            = 7739, -- You have obtained <keyitem>! You now have all 8 fragments of light!
         ZILART_MONUMENT            = 7740, -- It is an ancient Zilart monument.
         STURDY_BRANCH              = 7763, -- It is a beautiful, sturdy branch.
-        SENSE_OMINOUS_PRESENCE     = 7846, -- You sense an ominous presence...
-        REGIME_REGISTERED          = 10266, -- New training regime registered!
+        SENSE_OMINOUS_PRESENCE     = 7848, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10268, -- New training regime registered!
     },
     mob =
     {
+        KEEPER_OF_HALIDOM_PH =
+        {
+            [17272977] = 17272978, -- 319.939 -0.037 187.231
+        },
         NOBLE_MOLD_PH   =
         {
             [17273276] = 17273278, -- -391.184 -0.269 -159.086
@@ -48,8 +52,8 @@ zones[dsp.zone.THE_SANCTUARY_OF_ZITAH] =
     },
     npc =
     {
-        OVERSEER_BASE    = 17273363,
-        CERMET_HEADSTONE = 17273388,
+        OVERSEER_BASE    = 17273364,
+        CERMET_HEADSTONE = 17273389,
     },
 }
 

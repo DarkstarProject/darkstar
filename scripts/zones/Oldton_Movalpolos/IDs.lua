@@ -22,6 +22,11 @@ zones[dsp.zone.OLDTON_MOVALPOLOS] =
     },
     mob =
     {
+        BUGBEAR_STRONGMAN_PH  =
+        {
+            [16822421] = 16822423, -- -81.31 31.493 210.675 (west)
+            [16822426] = 16822427, -- 58.013,15.5,-121.928 (east)
+        },
         GOBLIN_WOLFMAN        = 16822459,
     },
     npc =
