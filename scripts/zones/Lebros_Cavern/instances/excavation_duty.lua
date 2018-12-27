@@ -21,11 +21,6 @@ function onInstanceCreated(instance)
 
     instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC):setPos(49.999,-40.837,96.999,0)
     instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC):setPos(50.000,-40.070,99.999,0)
-    instance:getEntity(bit.band(ID.npc._1rx, 0xFFF), dsp.objType.NPC):setAnimation(9)
-    instance:getEntity(bit.band(ID.npc._1ry, 0xFFF), dsp.objType.NPC):setAnimation(9)
-    instance:getEntity(bit.band(ID.npc._1rz, 0xFFF), dsp.objType.NPC):setAnimation(9)
-    instance:getEntity(bit.band(ID.npc._jr0, 0xFFF), dsp.objType.NPC):setAnimation(9)
-    instance:getEntity(bit.band(ID.npc._jr1, 0xFFF), dsp.objType.NPC):setAnimation(9)
 
 end
 

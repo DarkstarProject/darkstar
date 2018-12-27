@@ -17,6 +17,7 @@ zones[dsp.zone.LEBROS_CAVERN] =
         KEYITEM_LOST               = 6392, -- Lost key item: <keyitem>.
         NOT_HAVE_ENOUGH_GIL        = 6393, -- You do not have enough gil.
         ITEMS_OBTAINED             = 6397, -- You obtain <number> <item>!
+        MINE_COUNTDOWN             = 6980, -- #....
         TEMP_ITEM                  = 7210, -- Obtained temporary item:
         ASSAULT_21_START           = 7367, -- Commencing <assault>! Objective: Remove the obstructions
         ASSAULT_22_START           = 7368, -- Commencing <assault>! Objective: Deliver the provisions
