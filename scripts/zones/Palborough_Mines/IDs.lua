@@ -38,6 +38,11 @@ zones[dsp.zone.PALBOROUGH_MINES] =
         {
             [17363205] = 17363208, -- 130.386 -32.313 73.967
         },
+        BEHYA_HUNDREDWALL_PH =
+        {
+            [17363256] = 17363258,
+            [17363257] = 17363258,
+        },
         NI_GHU_NESTFENDER   = 17363318,
     },
     npc =

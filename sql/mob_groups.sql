@@ -10568,6 +10568,7 @@ INSERT INTO `mob_groups` VALUES (10495,5770,198,0,32,4629,1300,0,55,55,0); -- Tr
 INSERT INTO `mob_groups` VALUES (10496,5771,119,0,32,4630,3800,0,65,65,0); -- Naa Zeku the Unwaiting (estimated level based on HP)
 INSERT INTO `mob_groups` VALUES (10497,5772,97,0,32,4631,9500,0,81,83,0); -- Centipedal_Centruroides
 INSERT INTO `mob_groups` VALUES (10498,5773,25,0,32,4632,5550,0,57,60,0); -- Okyupete
+INSERT INTO `mob_groups` VALUES (10499,5774,143,0,32,4633,775,0,30,30,0); -- Be'Hya Hundredwall
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);
