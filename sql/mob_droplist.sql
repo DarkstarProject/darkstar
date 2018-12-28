@@ -32988,6 +32988,7 @@ INSERT INTO `mob_droplist` VALUES (4628,0,0,1000,15940,118); -- (Gwyllgi) Gosha 
 INSERT INTO `mob_droplist` VALUES (4629,0,0,1000,2848,222); -- (Trembler Tabitha) Grimy Bronze Sheet
 INSERT INTO `mob_droplist` VALUES (4630,0,0,1000,16018,333); -- (Naa Zeku the Unwaiting) Ataraxy Earring
 INSERT INTO `mob_droplist` VALUES (4631,0,0,1000,17970,100); -- (Centipedal Centruroides) Lyft Tabar
+INSERT INTO `mob_droplist` VALUES (4632,0,0,1000,16297,62); -- (Okyupete) Shepherd's Chain
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
