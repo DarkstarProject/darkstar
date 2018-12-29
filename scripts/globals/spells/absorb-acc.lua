@@ -29,8 +29,8 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_ACC)
-            caster:addStatusEffect(dsp.effect.ACCURACY_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE) -- caster gains ACC
-            target:addStatusEffect(dsp.effect.ACCURACY_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE)    -- target loses ACC
+            caster:addStatusEffect(dsp.effect.ACCURACY_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK) -- caster gains ACC
+            target:addStatusEffect(dsp.effect.ACCURACY_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK)    -- target loses ACC
         end
     end
     return dsp.effect.ACCURACY_BOOST

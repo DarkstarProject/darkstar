@@ -26,6 +26,10 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
     },
     mob =
     {
+        NAA_ZEKU_THE_UNWAITING_PH =
+        {
+            [17264763] = 17264768,
+        },
         PATRIPATAN_PH       =
         {
             [17264967] = 17264972, -- 551.767,-32.570,590.205

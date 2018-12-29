@@ -1885,10 +1885,14 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PAttacker->PMaster != nullptr)
         {
-            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            }
             PDefender->updatemask |= UPDATE_STATUS;
         }
         else
@@ -1899,8 +1903,11 @@ namespace battleutils
             }
             else
             {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->id;
+                    PDefender->m_OwnerID.targid = PAttacker->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
         }
@@ -2031,7 +2038,7 @@ namespace battleutils
 
         if (!isRanged)
         {
-            damage = getOverWhelmDamageBonus(PAttacker, PDefender, (uint16)damage);
+            damage = getOverWhelmDamageBonus(PAttacker, PDefender, damage);
         }
 
         HandleAfflatusMiseryDamage(PDefender, damage);
@@ -2041,18 +2048,25 @@ namespace battleutils
         if (damage < 0)
             damage = -corrected;
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PDefender->objtype == TYPE_MOB)
         {
             if (PAttacker->PMaster != nullptr)
             {
-                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                    PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
             else
             {
-                PDefender->m_OwnerID.id = PAttacker->id;
-                PDefender->m_OwnerID.targid = PAttacker->targid;
+                if (!PMob || !PMob->CalledForHelp())
+                {
+                    PDefender->m_OwnerID.id = PAttacker->id;
+                    PDefender->m_OwnerID.targid = PAttacker->targid;
+                }
                 PDefender->updatemask |= UPDATE_STATUS;
             }
         }
@@ -3072,15 +3086,22 @@ namespace battleutils
 
         PDefender->takeDamage(damage, PAttacker, ATTACK_SPECIAL, appliedEle == ELEMENT_NONE ? DAMAGE_NONE : (DAMAGETYPE)(DAMAGE_ELEMENTAL + appliedEle));
 
+        auto PMob = dynamic_cast<CMobEntity*>(PDefender);
         if (PAttacker->PMaster != nullptr)
         {
-            PDefender->m_OwnerID.id = PAttacker->PMaster->id;
-            PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->PMaster->id;
+                PDefender->m_OwnerID.targid = PAttacker->PMaster->targid;
+            }
         }
         else
         {
-            PDefender->m_OwnerID.id = PAttacker->id;
-            PDefender->m_OwnerID.targid = PAttacker->targid;
+            if (!PMob || !PMob->CalledForHelp())
+            {
+                PDefender->m_OwnerID.id = PAttacker->id;
+                PDefender->m_OwnerID.targid = PAttacker->targid;
+            }
         }
         PDefender->updatemask |= UPDATE_STATUS;
 
@@ -3521,7 +3542,7 @@ namespace battleutils
     *	Samurai overwhelm damage bonus                                      *
     *                                                                       *
     ************************************************************************/
-    uint16 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage)
+    int32 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, int32 damage)
     {
         if (m_PChar->objtype == TYPE_PC) // Some mobskills use TakeWeaponskillDamage function, which calls upon this one.
         {
@@ -3530,7 +3551,7 @@ namespace battleutils
             {
                 uint8 meritCount = m_PChar->PMeritPoints->GetMeritValue(MERIT_OVERWHELM, m_PChar);
                 // ShowDebug("Merits: %u\n", meritCount);
-                float tmpDamage = damage;
+                float tmpDamage = static_cast<float>(damage);
 
                 switch (meritCount)
                 {
@@ -3541,7 +3562,7 @@ namespace battleutils
                     case 5:	tmpDamage += tmpDamage * 0.19f; break;
                     default: break;
                 }
-                damage = (uint16)floor(tmpDamage);
+                damage = static_cast<int32>(floor(tmpDamage));
             }
         }
         return damage;
@@ -4069,8 +4090,11 @@ namespace battleutils
                     mob->m_HiPCLvl = PAttacker->GetMLevel();
                 }
 
-                mob->m_OwnerID.id = PAttacker->id;
-                mob->m_OwnerID.targid = PAttacker->targid;
+                if (!mob->CalledForHelp())
+                {
+                    mob->m_OwnerID.id = PAttacker->id;
+                    mob->m_OwnerID.targid = PAttacker->targid;
+                }
                 mob->updatemask |= UPDATE_STATUS;
             }
         }

@@ -1,11 +1,9 @@
 ---------------------------------------------
 --  Arrow Deluge
---
 --  Description: Delivers a threefold ranged attack to targets in an area of effect.
 --  Type: Physical
 --  Utsusemi/Blink absorb: 2-3 shadows
 --  Range: Unknown
---  Notes: Used only by Lamia equipped with a bow. If they lost their bow, they'll use Hysteric Barrage instead.
 ---------------------------------------------
 
 require("scripts/globals/settings")
@@ -14,7 +12,11 @@ require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0
+    if mob:getMainJob() == dsp.job.RNG then
+        return 0
+    else
+        return 1
+    end
 end
 
 function onMobWeaponSkill(target, mob, skill)

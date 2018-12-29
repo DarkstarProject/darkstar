@@ -29,8 +29,8 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_VIT)
-            caster:addStatusEffect(dsp.effect.VIT_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE) -- caster gains VIT
-            target:addStatusEffect(dsp.effect.VIT_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE)    -- target loses VIT
+            caster:addStatusEffect(dsp.effect.VIT_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK) -- caster gains VIT
+            target:addStatusEffect(dsp.effect.VIT_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK)    -- target loses VIT
         end
     end
     return dsp.effect.VIT_DOWN

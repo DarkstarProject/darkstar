@@ -43,8 +43,20 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         {
             [17195256] = 17195259, -- 450.472 70.657 238.237
         },
-        BATTERING_RAM       = 17195316,
-        NIHNIKNOOVI         = 17195475,
+        LUMBERING_LAMBERT_PH =
+        {
+            [17195143] = 17195317, -- -372 -16 -6
+            [17195316] = 17195317, -- -117 -1 -136
+            [17195317] = 17195318, -- Lumbering can't spawn if Bloodtear is up
+        },
+        BLOODTEAR_PH =
+        {
+            [17195143] = 17195318, -- -372 -16 -6
+            [17195316] = 17195318, -- -117 -1 -136
+            [17195317] = 17195318, -- -216 -8 -107
+            [17195318] = 17195317, -- Bloodtear can't spawn if Lumbering is up
+        },
+        NIHNIKNOOVI    = 17195475,
     },
     npc =
     {

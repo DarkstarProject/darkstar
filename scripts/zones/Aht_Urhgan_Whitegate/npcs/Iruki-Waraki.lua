@@ -16,19 +16,11 @@ require("scripts/globals/pets")
 
 
 function onTrade(player,npc,trade)
-
-    local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress")
-    
-    if player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and player:hasItem(17859) == false then
-        if npcUtil.tradeHas(trade, {{"gil", 10000}}) then
-            player:confirmTrade()
-            npcUtil.giveItem(player,17859)
-        end
-    elseif OperationTeatimeProgress == 1 then
-        if npcUtil.tradeHas(trade,{4161, 5570}) then -- Trade Chai and Sleeping Potion
-            player:confirmTrade()
-            player:startEvent(780)
-        end
+    if npcUtil.tradeHas(trade, {{"gil", 10000}}) and player:getQuestStatus(AHT_URHGAN,NO_STRINGS_ATTACHED) == QUEST_COMPLETED and not player:hasItem(17859) then
+        player:confirmTrade()
+        npcUtil.giveItem(player, 17859)
+    elseif npcUtil.tradeHas(trade, {4161, 5570}) and player:getVar("OperationTeatimeProgress") == 1 then -- Chai, Sleeping Potion
+        player:startEvent(780)
     end
 end
 
@@ -72,7 +64,7 @@ function onTrigger(player,npc)
     elseif Job ~= dsp.job.PUP and NoStringsAttached == QUEST_COMPLETED then
         player:startEvent(267) -- asking you how are you doing with your automaton
 
-        
+
     --Quest: Operation teatime
     elseif Job == dsp.job.PUP and LvL >= AF2_QUEST_LEVEL and NoStringsAttached == QUEST_COMPLETED and TheWaywardAutomation == QUEST_COMPLETED and OperationTeatime == QUEST_AVAILABLE then
         player:startEvent(778)
@@ -108,5 +100,6 @@ function onEventFinish(player,csid,option)
         player:addQuest(AHT_URHGAN,OPERATION_TEATIME)
     elseif csid == 780 then
         player:setVar("OperationTeatimeProgress",2)
+        player:confirmTrade()
     end
 end

@@ -144,6 +144,7 @@ INSERT INTO `nm_spawn_points` VALUES (17387606,0,174.212,2.068,-20.285); -- Tige
 INSERT INTO `nm_spawn_points` VALUES (17387644,0,-60.045,-0.517,41.996); -- Poisonhand Gnadgad
 INSERT INTO `nm_spawn_points` VALUES (16793646,0,-634,0.001,-669); -- Serra
 INSERT INTO `nm_spawn_points` VALUES (16793742,0,523,-8,762); -- Intulo
+INSERT INTO `nm_spawn_points` VALUES (16793776,0,88,-45,920); -- Splacknuck
 INSERT INTO `nm_spawn_points` VALUES (16797969,0,-237.096,-176.729,66.510);
 INSERT INTO `nm_spawn_points` VALUES (16797969,1,-240.915,-176.729,71.196);
 INSERT INTO `nm_spawn_points` VALUES (16797969,2,-244.554,-176.729,78.238);
@@ -815,7 +816,9 @@ INSERT INTO `nm_spawn_points` VALUES (17027466,46,279.456,-15.640,-269.086);
 INSERT INTO `nm_spawn_points` VALUES (17027466,47,265.377,-13.377,-284.305);
 INSERT INTO `nm_spawn_points` VALUES (17027466,48,263.817,-15.161,-301.018);
 INSERT INTO `nm_spawn_points` VALUES (17027466,49,278.707,-18.142,-296.619);
+INSERT INTO `nm_spawn_points` VALUES (17043554,0,83,14.5,-222); -- Zizzy Zillah
 INSERT INTO `nm_spawn_points` VALUES (17043779,0,-209,19,-388); -- Firedance Magmaal Ja
+INSERT INTO `nm_spawn_points` VALUES (17072150,0,-105,-8,94); -- Cookieduster Lipiroon
 INSERT INTO `nm_spawn_points` VALUES (17101099,0,-538.583,-7.218,46.353);
 INSERT INTO `nm_spawn_points` VALUES (17101099,1,-534.618,-7.928,46.110);
 INSERT INTO `nm_spawn_points` VALUES (17101099,2,-534.518,-6.746,51.792);
@@ -868,7 +871,9 @@ INSERT INTO `nm_spawn_points` VALUES (17101099,48,-542.274,-3.654,57.490);
 INSERT INTO `nm_spawn_points` VALUES (17101099,49,-541.146,-2.807,61.593);
 INSERT INTO `nm_spawn_points` VALUES (17109338,0,273,-15,-377); -- Skogs Fru
 INSERT INTO `nm_spawn_points` VALUES (17113381,0,204.878,0.886,-347.779); -- Drumskull Zogdregg
+INSERT INTO `nm_spawn_points` VALUES (17121399,0,-152,-9.2,464); -- Burlibix Brawnback
 INSERT INTO `nm_spawn_points` VALUES (17121576,0,-153.108,-10.397,15.353); -- La Velue
+INSERT INTO `nm_spawn_points` VALUES (17121603,0,137,8.5,-472); -- Habergoass
 INSERT INTO `nm_spawn_points` VALUES (17125433,0,358.667,-0.5,-181.406); -- Hawkeyed Dnatbat (La Vaule [S])
 INSERT INTO `nm_spawn_points` VALUES (17125452,0,137.606,3.346,-279.05); -- Ashmaker Gotblut (La Vaule [S])
 INSERT INTO `nm_spawn_points` VALUES (17137705,0,678.599,-10.219,532.811); -- Ankabut
@@ -883,7 +888,9 @@ INSERT INTO `nm_spawn_points` VALUES (17154148,0,-93.112,-3.5,179.625); -- BaTho
 INSERT INTO `nm_spawn_points` VALUES (17166543,0,114.742,-1.007,-288.349); -- Jeduah
 INSERT INTO `nm_spawn_points` VALUES (17170475,0,24.514,-70.143,-220.559); -- Ratatoskr
 INSERT INTO `nm_spawn_points` VALUES (17170499,0,24.01,-67.138,-240.132); -- Kirtimukha
+INSERT INTO `nm_spawn_points` VALUES (17170569,0,-51.734,-28.457,686.549); -- Demoiselle Desolee
 INSERT INTO `nm_spawn_points` VALUES (17178803,0,446.853,23.817,72.982); -- Balam-Quitz
+INSERT INTO `nm_spawn_points` VALUES (17182813,0,-103.220,-0.246,-159.507); -- Zhuu Buxu the Silent (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182843,0,50,-0.7,-148); -- Aa Xalmo the Savage
 INSERT INTO `nm_spawn_points` VALUES (17187047,0,-133.001,-20.636,-141.110);
 INSERT INTO `nm_spawn_points` VALUES (17187047,1,-287.202,-20.826,-199.075);
@@ -1317,6 +1324,7 @@ INSERT INTO `nm_spawn_points` VALUES (17203448,46,197.987,-3.632,-376.425);
 INSERT INTO `nm_spawn_points` VALUES (17203448,47,200.561,-6.615,-389.385);
 INSERT INTO `nm_spawn_points` VALUES (17203448,48,202.317,-8.000,-402.152);
 INSERT INTO `nm_spawn_points` VALUES (17203448,49,202.223,-7.582,-420.354);
+INSERT INTO `nm_spawn_points` VALUES (17203475,0,50.114,-0.184,-240.493); -- Supplespine Mujwuj
 INSERT INTO `nm_spawn_points` VALUES (17203547,0,276.000,0.000,265.000);
 INSERT INTO `nm_spawn_points` VALUES (17203547,1,290.000,0.000,211.000);
 INSERT INTO `nm_spawn_points` VALUES (17203547,2,320.000,0.000,177.000);
@@ -2209,6 +2217,7 @@ INSERT INTO `nm_spawn_points` VALUES (17240413,46,196.589,8.958,19.674);
 INSERT INTO `nm_spawn_points` VALUES (17240413,47,234.765,8.136,10.814);
 INSERT INTO `nm_spawn_points` VALUES (17240413,48,200.606,8.867,22.649);
 INSERT INTO `nm_spawn_points` VALUES (17240413,49,222.503,8.874,3.716);
+INSERT INTO `nm_spawn_points` VALUES (17244268,0,217,-8.2,376); -- Donnergugi
 INSERT INTO `nm_spawn_points` VALUES (17244372,0,-44.353,-0.433,-243.704);
 INSERT INTO `nm_spawn_points` VALUES (17244372,1,-34.786,0.465,-228.886);
 INSERT INTO `nm_spawn_points` VALUES (17244372,2,3.701,0.000,-243.510);
@@ -2682,6 +2691,7 @@ INSERT INTO `nm_spawn_points` VALUES (17261003,46,449.242,20.000,76.954);
 INSERT INTO `nm_spawn_points` VALUES (17261003,47,441.055,20.000,163.465);
 INSERT INTO `nm_spawn_points` VALUES (17261003,48,445.677,20.000,92.984);
 INSERT INTO `nm_spawn_points` VALUES (17261003,49,442.604,20.000,117.292);
+INSERT INTO `nm_spawn_points` VALUES (17264768,0,407.659,-1.452,-319.434); -- Naa Zeku the Unwaiting
 INSERT INTO `nm_spawn_points` VALUES (17264818,0,630.430,-16.372,-494.748); -- Daggerclaw Dracos
 INSERT INTO `nm_spawn_points` VALUES (17264828,0,723.000,-16.000,-397.000);
 INSERT INTO `nm_spawn_points` VALUES (17264828,1,665.821,0.762,-414.117);
@@ -3400,6 +3410,7 @@ INSERT INTO `nm_spawn_points` VALUES (17301538,46,-5.326,0.571,-14.812);
 INSERT INTO `nm_spawn_points` VALUES (17301538,47,-30.577,0.141,8.469);
 INSERT INTO `nm_spawn_points` VALUES (17301538,48,-21.907,-0.202,-18.879);
 INSERT INTO `nm_spawn_points` VALUES (17301538,49,0.627,0.175,-7.521);
+INSERT INTO `nm_spawn_points` VALUES (17334482,0,-242,-80.3,-127); -- Grand'Goule
 INSERT INTO `nm_spawn_points` VALUES (17350826,0,123.357,-0.102,332.706);
 INSERT INTO `nm_spawn_points` VALUES (17350826,1,94.576,-1.274,333.168);
 INSERT INTO `nm_spawn_points` VALUES (17350826,2,98.658,-0.319,328.269);
@@ -3450,6 +3461,7 @@ INSERT INTO `nm_spawn_points` VALUES (17350826,46,117.194,0.000,329.266);
 INSERT INTO `nm_spawn_points` VALUES (17350826,47,125.767,-0.122,326.887);
 INSERT INTO `nm_spawn_points` VALUES (17350826,48,128.214,-0.551,312.489);
 INSERT INTO `nm_spawn_points` VALUES (17350826,49,112.702,-0.308,326.545);
+INSERT INTO `nm_spawn_points` VALUES (17354828,0,1,-28,-52); -- Hundredscar Hajwaj
 INSERT INTO `nm_spawn_points` VALUES (17358932,0,16.179,-1.321,-27.321);
 INSERT INTO `nm_spawn_points` VALUES (17358932,1,11.790,-1.379,-19.023);
 INSERT INTO `nm_spawn_points` VALUES (17358932,2,-8.000,-0.500,-53.000);
@@ -4173,10 +4185,13 @@ INSERT INTO `nm_spawn_points` VALUES (17408019,48,81.548,6.710,44.110);
 INSERT INTO `nm_spawn_points` VALUES (17408019,49,88.734,6.894,38.870);
 INSERT INTO `nm_spawn_points` VALUES (17428554,0,94.330,0,-14.457); -- Sozu Sarberry
 INSERT INTO `nm_spawn_points` VALUES (17428611,0,-131,-0.6,-7); -- Sozu Terberry
+INSERT INTO `nm_spawn_points` VALUES (17432624,0,146,15.412,-102); -- Celeste-eyed Tozberry
 INSERT INTO `nm_spawn_points` VALUES (17432659,0,0.5,36,-87); -- Carmine-tailed Janberry
 INSERT INTO `nm_spawn_points` VALUES (17428737,0,240,-0.5,60); -- Flauros
 INSERT INTO `nm_spawn_points` VALUES (17432798,0,100,17,-180); -- Tawny-fingered Mugberry
+INSERT INTO `nm_spawn_points` VALUES (17432845,0,-32,16,-178); -- Bistre-hearted Malberry
 INSERT INTO `nm_spawn_points` VALUES (17432974,0,-34,36,-358); -- Ogama
+INSERT INTO `nm_spawn_points` VALUES (17436881,0,70.8,-8,-119.5); -- Marquis Sabnock
 INSERT INTO `nm_spawn_points` VALUES (17436913,0,-44.116,-4.496,37.549);
 INSERT INTO `nm_spawn_points` VALUES (17436913,1,-41.898,-4.000,56.042);
 INSERT INTO `nm_spawn_points` VALUES (17436913,2,-31.121,-4.000,50.880);
@@ -4778,6 +4793,7 @@ INSERT INTO `nm_spawn_points` VALUES (17461343,47,-94.985,0.358,-233.485);
 INSERT INTO `nm_spawn_points` VALUES (17461343,48,-77.298,0.250,-223.686);
 INSERT INTO `nm_spawn_points` VALUES (17461343,49,-65.492,0.250,-247.396);
 INSERT INTO `nm_spawn_points` VALUES (17461433,0,-259,0.489,-188); -- Arioch
+INSERT INTO `nm_spawn_points` VALUES (17461471,0,-60.4,17,-138); -- Manes
 INSERT INTO `nm_spawn_points` VALUES (17461478,0,-150.093,17.000,-220.382);
 INSERT INTO `nm_spawn_points` VALUES (17461478,1,-141.934,16.929,-220.501);
 INSERT INTO `nm_spawn_points` VALUES (17461478,2,-138.522,16.998,-215.991);
@@ -5393,6 +5409,7 @@ INSERT INTO `nm_spawn_points` VALUES (17498522,46,-150.407,48.460,-333.947);
 INSERT INTO `nm_spawn_points` VALUES (17498522,47,-138.264,48.466,-341.724);
 INSERT INTO `nm_spawn_points` VALUES (17498522,48,-130.664,48.315,-338.463);
 INSERT INTO `nm_spawn_points` VALUES (17498522,49,-164.707,48.330,-330.263);
+INSERT INTO `nm_spawn_points` VALUES (17555664,0,-65.363,7.726,75.649); -- Gwyllgi
 INSERT INTO `nm_spawn_points` VALUES (17555721,0,133.000,-0.500,220.000);
 INSERT INTO `nm_spawn_points` VALUES (17555890,0,228.000,7.134,-311.000);
 INSERT INTO `nm_spawn_points` VALUES (17555890,1,220.463,8.136,-302.294);
@@ -5627,6 +5644,7 @@ INSERT INTO `nm_spawn_points` VALUES (17584416,46,-219.000,-0.500,214.000);
 INSERT INTO `nm_spawn_points` VALUES (17584416,47,-206.000,-0.500,212.000);
 INSERT INTO `nm_spawn_points` VALUES (17584416,48,-206.000,-0.500,212.000);
 INSERT INTO `nm_spawn_points` VALUES (17584416,49,-194.000,-1.250,215.000);
+INSERT INTO `nm_spawn_points` VALUES (17588278,0,-103.8,0.3,-96.7); -- Trembler Tabitha
 INSERT INTO `nm_spawn_points` VALUES (17588674,0,220.000,18.800,-64.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,1,221.000,20.000,-112.000);
 INSERT INTO `nm_spawn_points` VALUES (17588674,2,244.000,20.000,-79.000);
@@ -5735,6 +5753,7 @@ INSERT INTO `nm_spawn_points` VALUES (17596507,46,-140.154,0.000,240.837);
 INSERT INTO `nm_spawn_points` VALUES (17596507,47,-132.983,0.000,178.993);
 INSERT INTO `nm_spawn_points` VALUES (17596507,48,-140.219,0.000,170.706);
 INSERT INTO `nm_spawn_points` VALUES (17596507,49,-92.879,0.000,218.895);
+INSERT INTO `nm_spawn_points` VALUES (17596520,0,5.839,7.014,197.462); -- Hazmat
 INSERT INTO `nm_spawn_points` VALUES (17596628,0,158.000,0.000,20.000); -- Hovering Hotpot, need aditional spawn positions
 INSERT INTO `nm_spawn_points` VALUES (17596720,0,-155.000,19.000,244.000);
 INSERT INTO `nm_spawn_points` VALUES (17596720,1,-123.968,19.123,196.309);
@@ -5786,6 +5805,7 @@ INSERT INTO `nm_spawn_points` VALUES (17596720,46,-154.830,19.167,195.725);
 INSERT INTO `nm_spawn_points` VALUES (17596720,47,-143.700,19.530,240.467);
 INSERT INTO `nm_spawn_points` VALUES (17596720,48,-159.615,19.250,233.174);
 INSERT INTO `nm_spawn_points` VALUES (17596720,49,-132.043,19.397,244.589);
+INSERT INTO `nm_spawn_points` VALUES (17612859,0,40,-15.5,-38); -- Mind Hoarder
 INSERT INTO `nm_spawn_points` VALUES (17613046,0,-165.4,-0.098,189.481); -- Goliath
 INSERT INTO `nm_spawn_points` VALUES (17613096,0,-189.000,-15.000,116.000);
 INSERT INTO `nm_spawn_points` VALUES (17613096,1,-201.000,-15.000,113.000);
