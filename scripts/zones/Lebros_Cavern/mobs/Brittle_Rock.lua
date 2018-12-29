@@ -10,7 +10,7 @@ function onMobSpawn(mob)
     mob:addMod(dsp.mod.DMG,-98)
     mob:setMobMod(dsp.mobMod.NO_MOVE, 1)
     mob:SetAutoAttackEnabled(false)
-    mob:setMod(dsp.mod.DEF,900)
+    mob:setMod(dsp.mod.DEF,1500)
     mob:setMod(dsp.mod.MDEF,900)
 end
 
