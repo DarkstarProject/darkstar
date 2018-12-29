@@ -4,9 +4,10 @@
 -- Quests: Inheritance (Ground Strike WSNM "Maharaja")
 -- !pos -660 0 -338 125
 -----------------------------------
-require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/wsquest")
+-----------------------------------
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.ground_strike,player,ID.mob.MAHARAJA)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.ground_strike, player, ID.mob.MAHARAJA)
 end
