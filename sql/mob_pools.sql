@@ -5905,6 +5905,33 @@ INSERT INTO `mob_pools` VALUES (5844,'Ankabut','Ankabut',235,0x00003601000000000
 INSERT INTO `mob_pools` VALUES (5845,'Kegpaunch_Doshgnosh','Kegpaunch_Doshgnosh',190,0x0000AC0100000000000000000000000000000000,1,1,7,240,100,0,1,0,1,2,0,0,1868,155,0,0,0,1,1,190);
 INSERT INTO `mob_pools` VALUES (5846,'Boll_Weevil','Boll_Weevil',49,0x0000980100000000000000000000000000000000,1,1,8,240,100,0,1,0,1,2,0,0,244,129,0,0,0,0,0,49);
 INSERT INTO `mob_pools` VALUES (5847,'Drumskull_Zogdregg','Drumskull_Zogdregg',334,0x0000190400000000000000000000000000000000,4,4,5,240,100,0,1,0,1,2,16,0,290,1155,0,0,298,1,0,334);
+INSERT INTO `mob_pools` VALUES (5848,'Slippery_Sucker','Slippery_Sucker',172,0x0000140100000000000000000000000000000000,1,1,7,240,100,0,0,0,1,2,23,0,0,0,0,0,0,1,0,172);
+
+--  `poolid` int(10) unsigned NOT NULL,
+--  `name` varchar(24) DEFAULT NULL,
+--  `packet_name` varchar(24) DEFAULT NULL,
+--  `familyid` smallint(4) unsigned NOT NULL DEFAULT '0',
+--  `modelid` binary(20) NOT NULL,
+--  `mJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `sJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `cmbSkill` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',
+--  `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',
+--  `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',
+--  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `links` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',
+--  `immunity` int(10) NOT NULL DEFAULT '0',
+--  `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',
+--  `flag` int(11) unsigned NOT NULL DEFAULT '0',
+--  `entityFlags` int(11) unsigned NOT NULL DEFAULT '0',
+--  `animationsub` tinyint(1) NOT NULL DEFAULT '0',
+--  `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `spellList` smallint(4) NOT NULL DEFAULT '0',
+--  `namevis` tinyint(4) NOT NULL DEFAULT '1',
+--  `roamflag` smallint(3) unsigned NOT NULL DEFAULT '0',
+--  `skill_list_id` smallint(5) unsigned NOT NULL DEFAULT '0',
 
 /*!40000 ALTER TABLE `mob_pools` ENABLE KEYS */;
 UNLOCK TABLES;
