@@ -26,7 +26,7 @@ function onAdditionalEffect(mob, player)
         end
         duration = utils.clamp(duration, 1, 30)
         duration = duration * resist
-        if nto player:hasStatusEffect(dsp.effect.POISON) then
+        if not player:hasStatusEffect(dsp.effect.POISON) then
             player:addStatusEffect(dsp.effect.POISON, 30, 3, duration)
         end
         return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON
