@@ -67,5 +67,3 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
     end
 
 end;
-
-

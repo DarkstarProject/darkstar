@@ -6,9 +6,6 @@
 require("scripts/globals/quests");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (player:getQuestStatus(BASTOK,BLADE_OF_EVIL) == QUEST_ACCEPTED) then

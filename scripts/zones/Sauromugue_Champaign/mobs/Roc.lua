@@ -6,9 +6,6 @@ mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobFight(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.ROC_STAR);
 end;

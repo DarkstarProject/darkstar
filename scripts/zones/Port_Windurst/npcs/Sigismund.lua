@@ -47,6 +47,3 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestCatchAFallingStar_prog",2);
     end
 end;
-
-
-

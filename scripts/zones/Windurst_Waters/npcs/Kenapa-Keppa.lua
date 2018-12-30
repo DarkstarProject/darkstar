@@ -199,6 +199,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FLOWER_PROGRESS",3);
     end
 end;
-
-
-

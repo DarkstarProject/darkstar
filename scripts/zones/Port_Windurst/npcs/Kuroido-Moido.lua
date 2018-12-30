@@ -95,6 +95,3 @@ function onEventFinish(player,csid,option)
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLACK_HALO_LEARNED)
     end
 end
-
-
-

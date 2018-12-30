@@ -64,4 +64,3 @@ function onEventFinish(player,csid,option)
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FLAMES);
     end
 end;
-

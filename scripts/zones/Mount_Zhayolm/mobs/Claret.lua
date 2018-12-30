@@ -9,9 +9,6 @@ require("scripts/globals/magic");
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:addMod(dsp.mod.REGEN, math.floor(mob:getMaxHP()*.004));
     mob:addMod(dsp.mod.BINDRES, 40);

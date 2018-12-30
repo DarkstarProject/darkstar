@@ -13,4 +13,3 @@ end
 function onMobDespawn(mob)
     phOnDespawn(mob, ID.mob.DELICIEUSE_DELPHINE_PH, 10, 3600) -- 1 hour
 end
-

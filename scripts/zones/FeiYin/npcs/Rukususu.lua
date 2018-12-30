@@ -38,4 +38,3 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
     end
 end;
-

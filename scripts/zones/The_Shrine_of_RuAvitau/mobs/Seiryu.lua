@@ -5,9 +5,6 @@
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMonsterMagicPrepare(mob,target)
     if (mob:hasStatusEffect(dsp.effect.HUNDRED_FISTS,0) == false) then
         local rnd = math.random();

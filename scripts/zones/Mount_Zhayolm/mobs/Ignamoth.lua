@@ -11,9 +11,6 @@ function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
 end
 
-function onMobFight(mob,target)
-end
-
 function onAdditionalEffect(mob, target, damage)
     -- Todo adding damage on addition effect
     local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS)

@@ -8,9 +8,6 @@ require("scripts/globals/titles");
 
 local offsets = {1, 3, 5, 2, 4, 6};
 
-function onMobInitialize(mob)
-end;
-
 function onMobEngaged(mob, target)
     mob:resetLocalVars();
 end;

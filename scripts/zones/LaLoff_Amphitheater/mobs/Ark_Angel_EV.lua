@@ -9,9 +9,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.REGAIN, 50);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     local mobid = mob:getID()
 

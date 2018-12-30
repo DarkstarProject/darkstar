@@ -50,4 +50,3 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.LETTER_FROM_ZONPAZIPPA);
     end
 end;
-

@@ -37,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 16);
     end
 end;
-

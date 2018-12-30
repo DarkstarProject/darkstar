@@ -11,9 +11,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.BINDRES,20);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     mob:setMod(dsp.mod.REGAIN, 25);
 end;

@@ -40,4 +40,3 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterFireLantern", 0);
     end
 end;
-

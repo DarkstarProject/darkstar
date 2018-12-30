@@ -34,4 +34,3 @@ elseif (csid == 104) then
 player:setVar("BASTOK91",4);
 end
 end;
-

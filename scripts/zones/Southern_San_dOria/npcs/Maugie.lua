@@ -52,4 +52,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA,GRIMY_SIGNPOSTS);
     end
 end;
-

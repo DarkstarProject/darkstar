@@ -16,12 +16,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.SILENCERES,40);
 end;
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob, target)
-end;
-
 function onAdditionalEffect(mob, player)
     local chance = 25;
     local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.EARTH,dsp.effect.PETRIFICATION);

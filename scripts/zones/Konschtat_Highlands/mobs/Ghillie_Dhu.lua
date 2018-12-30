@@ -16,9 +16,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobRoam(mob)
     -- Fairly sure he shouldn't be storing up max TP while idle.
     if (mob:getMod(dsp.mod.REGAIN) ~= 0) then

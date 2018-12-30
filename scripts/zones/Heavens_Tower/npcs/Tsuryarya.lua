@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("TinyException",0);
     end
 end;
-
