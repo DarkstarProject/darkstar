@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Tahrongi_Canyon/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
+require("scripts/globals/chocobo")
 require("scripts/globals/weather")
 require("scripts/globals/helm")
 require("scripts/globals/zone")
@@ -18,6 +19,7 @@ end;
 
 function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.EXCAVATION)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)

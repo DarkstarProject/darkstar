@@ -6,11 +6,13 @@
 local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/quests");
 require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

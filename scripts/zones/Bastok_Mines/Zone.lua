@@ -8,6 +8,7 @@ require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
+require("scripts/globals/chocobo")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -15,6 +16,7 @@ function onInitialize(zone)
     SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE)
 
     applyHalloweenNpcCostumes(zone:getID())
+    dsp.chocobo.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

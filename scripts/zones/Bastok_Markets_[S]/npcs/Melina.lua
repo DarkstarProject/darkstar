@@ -1,14 +1,14 @@
 -----------------------------------
--- Area: Southern Sand'Oria [S]
---  NPC: Chauxnatte
+-- Area: Bastok Markets [S]
+--  NPC: Melina
 -- Type: Chocobo Renter
--- !pos 85 1 -51 80
+-- !pos -210.667 0.000 75.819 87
 -----------------------------------
 require("scripts/globals/chocobo")
 -----------------------------------
 
-local eventSucceed = 106
-local eventFail    = 107
+local eventSucceed = 6
+local eventFail    = 7
 
 function onTrade(player,npc,trade)
 end
