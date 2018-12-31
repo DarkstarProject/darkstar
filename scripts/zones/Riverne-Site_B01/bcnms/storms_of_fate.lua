@@ -47,9 +47,6 @@ function onBattlefieldLeave(player,battlefield,leavecode)
         player:startEvent(32002);
     end
 
-    if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
-        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0);
-    end;
 end;
 
 function onEventUpdate(player,csid,option)

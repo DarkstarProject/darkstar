@@ -185,25 +185,38 @@ end
 
 function dsp.battlefield.HandleLootRolls(battlefield, lootTable, players, npc)
     players = players or battlefield:getPlayers()
-    local lootGroup = lootTable[math.random(1, #lootTable)]
-    print("fuck")
     if battlefield:getStatus() == dsp.battlefield.status.WON and battlefield:getLocalVar("lootSeen") == 0 then
-        print("shit")
         if npc then
             npc:setAnimation(90)
         end
-        if lootGroup then
-            print("ass")
-            for _, entry in pairs(lootGroup) do
-                local chansu = entry.droprate / 1000
-                local watashiNoChansu = math.random()
-                print("CHAAAAAAAAAAAAAAANSUU "..chansu)
-                if watashiNoChansu <= chansu then
-                    players[1]:addTreasure(entry.itemid, npc)
+        for i = 1, #lootTable, 1 do
+            local lootGroup = lootTable[i]
+            if lootGroup then
+                local max = 0
+                for _, entry in pairs(lootGroup) do
+                    max = max + entry.droprate
                 end
+                local roll = math.random(max)
+                for _, entry in pairs(lootGroup) do
+                    max = max - entry.droprate
+                    if roll > max then
+                        if entry.itemid ~= 0 then
+                            if entry.itemid == 65535 then
+                                local gil = entry.amount/#players
+                                for i = 1, #players, 1 do
+                                    players[i]:addGil(gil)
+                                    players[i]:messageSpecial(zones[players[1]:getZoneID()].text.GIL_OBTAINED, gil)
+                                end
+                                break
+                            end
+                            players[1]:addTreasure(entry.itemid, npc)
+                        end
+                        break
+                    end
+                end
+            else
+                printf("fuckin loot groups")
             end
-        else
-            printf("fuckin loot groups")
         end
         battlefield:setLocalVar("cutsceneTimer", 10)
         battlefield:setLocalVar("lootSeen", 1)

@@ -12,6 +12,8 @@ local loot =
     [4] = 
     {
         {
+            {itemid = 0, droprate = 50},     -- Nothing
+            {itemid = 13251, droprate = 95}, -- Ocean Belt
             {itemid = 13254, droprate = 95}, -- Jungle Belt
             {itemid = 13253, droprate = 95}, -- Steppe Belt
             {itemid = 13255, droprate = 95}, -- Desert Belt
@@ -41,6 +43,18 @@ local loot =
             {itemid = 13447, droprate = 30}, -- Platinum Ring
         },
         {
+            {itemid = 0, droprate = 100},    -- Nothing
+            {itemid = 4818, droprate = 176}, -- Scroll Of Quake
+            {itemid = 4902, droprate = 10},  -- Light Spirit Pact
+            {itemid = 4814, droprate = 176}, -- Scroll Of Freeze
+            {itemid = 4719, droprate = 176}, -- Scroll Of Regen Iii
+            {itemid = 4172, droprate = 60},  -- Reraiser
+            {itemid = 4174, droprate = 60},  -- Vile Elixir
+            {itemid = 4621, droprate = 176}, -- Scroll Of Raise Ii
+        },
+        {
+            {itemid = 0, droprate = 100},    -- Nothing
+            {itemid = 4818, droprate = 176}, -- Scroll Of Quake
             {itemid = 4902, droprate = 10},  -- Light Spirit Pact
             {itemid = 4814, droprate = 176}, -- Scroll Of Freeze
             {itemid = 4719, droprate = 176}, -- Scroll Of Regen Iii
@@ -60,11 +74,27 @@ local loot =
             {itemid = 859, droprate = 59},   -- Ram Skin
             {itemid = 746, droprate = 90},   -- Platinum Ingot
         },
+        {
+            {itemid = 0, droprate = 100},    -- Nothing
+            {itemid = 895, droprate = 59},   -- Ram Horn
+            {itemid = 700, droprate = 59},   -- Mahogany Log
+            {itemid = 653, droprate = 200},  -- Mythril Ingot
+            {itemid = 1116, droprate = 59},  -- Manticore Hide
+            {itemid = 866, droprate = 90},   -- Handful Of Wyvern Scales
+            {itemid = 1122, droprate = 90},  -- Wyvern Skin
+            {itemid = 703, droprate = 176},  -- Petrified Log
+            {itemid = 654, droprate = 59},   -- Darksteel Ingot
+            {itemid = 859, droprate = 59},   -- Ram Skin
+            {itemid = 746, droprate = 90},   -- Platinum Ingot
+        },
     },
     
     -- BCNM Dropping Like Flies
     [10] = 
     {
+        {
+            {itemid = 65535, droprate = 1000, amount = 4000}, -- Gil
+        },
         {
             {itemid = 846, droprate = 1000}, -- Insect Wing
         },
@@ -72,8 +102,8 @@ local loot =
             {itemid = 1601, droprate = 1000},-- Mannequin Head
         },
         {
+            {itemid = 0, droprate = 636},    -- Nothing
             {itemid = 12486, droprate = 364},-- Emperor Hairpin
-            {itemid = 846, droprate = 636},  -- Insect Wing
         },
         {
             {itemid = 12400, droprate = 175},-- Ashigaru Targe
@@ -219,9 +249,11 @@ local loot =
     [12] = 
     {
         {
+            {itemid = 0, droprate = 910},    -- Nothing
             {itemid = 13056, droprate = 90}, -- Peacock Charm
         },
         {
+            {itemid = 0, droprate = 467},    -- Nothing
             {itemid = 18086, droprate = 48}, -- Behourd Lance
             {itemid = 18046, droprate = 61}, -- Mutilator
             {itemid = 18210, droprate = 46}, -- Raifu
@@ -229,6 +261,7 @@ local loot =
             {itemid = 18350, droprate = 76}, -- Tourney Patas
         },
         {
+            {itemid = 0, droprate = 413},    -- Nothing
             {itemid = 17696, droprate = 42}, -- Buzzard Tuck
             {itemid = 17936, droprate = 77}, -- De Saintres Axe
             {itemid = 17693, droprate = 73}, -- Grudge Sword
@@ -280,6 +313,8 @@ local loot =
         },
         {
             {itemid = 939, droprate = 1000}, -- Hecteyes Eye
+        },
+        {
             {itemid = 914, droprate = 1000}, -- Vial Of Mercury
         },
     },
@@ -294,11 +329,19 @@ local loot =
             {itemid = 18005, droprate = 208}, -- Heart Snatcher
         },
         {
+            {itemid = 0, droprate = 638},     -- Nothing
             {itemid = 1133, droprate = 10},   -- Vial Of Dragon Blood
             {itemid = 4486, droprate = 176},  -- Dragon Heart
             {itemid = 4272, droprate = 176},  -- Slice Of Dragon Meat
         },
         {
+            {itemid = 0, droprate = 638},     -- Nothing
+            {itemid = 1133, droprate = 10},   -- Vial Of Dragon Blood
+            {itemid = 4486, droprate = 176},  -- Dragon Heart
+            {itemid = 4272, droprate = 176},  -- Slice Of Dragon Meat
+        },
+        {
+            {itemid = 0, droprate = 392},     -- Nothing
             {itemid = 19026, droprate = 354}, -- Spear Strap
             {itemid = 19024, droprate = 165}, -- Sword Strap
             {itemid = 19025, droprate = 89},  -- Pole Grip
