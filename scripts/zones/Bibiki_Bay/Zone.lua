@@ -5,8 +5,9 @@
 -----------------------------------
 local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/chocobo_digging");
-require("scripts/globals/settings");
 require("scripts/globals/keyitems");
+require("scripts/globals/settings");
+require("scripts/globals/zone");
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -25,9 +26,9 @@ function onZoneIn(player,prevZone)
     local bibiki = player:getVar("bibiki");
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if ((prevZone == 3) and (bibiki == 3)) then
+        if ((prevZone == dsp.zone.MANACLIPPER) and (bibiki == 3)) then
             cs = 11;
-        elseif ((prevZone ==3) and (bibiki == 4)) then
+        elseif ((prevZone == dsp.zone.MANACLIPPER) and (bibiki == 4)) then
             cs = 10;
         else
             player:setPos(669.917,-23.138,911.655,111);
