@@ -1090,7 +1090,7 @@ INSERT INTO `mob_pools` VALUES (1029,'Diabolos_Diamond','Diabolos_Diamond',35,0x
 INSERT INTO `mob_pools` VALUES (1030,'Diabolos_Heart','Diabolos_Heart',35,0x0000790400000000000000000000000000000000,8,4,7,240,100,0,1,1,0,18,0,0,191,155,0,0,106,1,0,35);
 INSERT INTO `mob_pools` VALUES (1031,'Diabolos_Spade','Diabolos_Spade',35,0x0000790400000000000000000000000000000000,1,1,6,240,100,0,1,1,0,18,0,0,191,155,0,0,0,1,0,35);
 INSERT INTO `mob_pools` VALUES (1032,'Diabolos_s_Shard','Diabolos_s_Shard',35,0x0000790400000000000000000000000000000000,1,1,12,240,100,0,0,0,1,26,0,0,0,0,0,0,0,1,0,35);
-INSERT INTO `mob_pools` VALUES (1033,'Diamond_Daig','Diamond_Daig',49,0x0000980100000000000000000000000000000000,7,7,4,240,100,0,1,0,1,2,0,0,0,3,0,0,4,1,0,49);
+INSERT INTO `mob_pools` VALUES (1033,'Diamond_Daig','Diamond_Daig',49,0x0000980100000000000000000000000000000000,7,7,4,240,100,0,1,0,1,2,5,0,0,3,0,0,4,1,0,49);
 INSERT INTO `mob_pools` VALUES (1034,'Diamond_Quadav','Diamond_Quadav',202,0x00009F0200000000000000000000000000000000,3,3,11,265,100,0,1,1,1,2,0,0,185,133,0,0,1,1,0,202);
 INSERT INTO `mob_pools` VALUES (1035,'Diatryma','Diatryma',125,0x0000500100000000000000000000000000000000,1,1,11,240,100,0,1,0,0,1,0,0,680,131,0,0,0,1,0,125);
 INSERT INTO `mob_pools` VALUES (1036,'Digger_Wasp','Digger_Wasp',48,0x0000100100000000000000000000000000000000,1,1,2,240,100,0,1,0,1,0,0,0,237,643,0,0,0,1,0,48);
@@ -5829,7 +5829,9 @@ INSERT INTO `mob_pools` VALUES (5768,'Supplespine_Mujwuj','Supplespine_Mujwuj',1
 INSERT INTO `mob_pools` VALUES (5769,'Gwyllgi','Gwyllgi',143,0x00006C0100000000000000000000000000000000,1,1,3,240,100,0,1,0,0,2,7,0,0,0,0,0,0,1,0,22);
 INSERT INTO `mob_pools` VALUES (5770,'Trembler_Tabitha','Trembler_Tabitha',258,0x0000A90100000000000000000000000000000000,4,4,7,240,100,0,0,0,1,2,23,32,0,129,0,0,181,1,64,258);
 INSERT INTO `mob_pools` VALUES (5771,'Naa_Zeku_the_Unwaiting','Naa_Zeku_the_Unwaiting',270,0x0000560200000000000000000000000000000000,12,12,10,240,100,0,1,0,1,2,7,32,0,131,0,0,0,1,0,270);
-
+INSERT INTO `mob_pools` VALUES (5772,'Centipedal_Centruroides','Centipedal_Centruroides',217,0x0000C30800000000000000000000000000000000,1,1,1,240,100,0,1,0,1,2,7,0,0,0,0,0,0,1,0,217);
+INSERT INTO `mob_pools` VALUES (5773,'Okyupete','Okyupete',125,0x0000500100000000000000000000000000000000,1,1,11,240,100,0,1,0,1,2,7,0,0,0,0,0,0,1,0,125);
+INSERT INTO `mob_pools` VALUES (5774,'BeHya_Hundredwall','BeHya_Hundredwall',202,0x0000850200000000000000000000000000000000,1,1,2,240,100,0,1,0,1,2,7,32,0,0,0,0,0,1,0,202);
 INSERT INTO `mob_pools` VALUES (5775,'Cait_Sith','Cait_Sith',60,0x00001C0000000000000000000000000000000000,5,3,2,240,100,0,1,1,0,2,0,0,0,0,0,0,3,1,0,60);
 INSERT INTO `mob_pools` VALUES (5776,'Paramount_Botulus','Paramount_Botulus',112,0x00000C0800000000000000000000000000000000,4,4,12,240,100,0,1,0,0,2,0,0,1,135,0,0,2,1,0,112);
 INSERT INTO `mob_pools` VALUES (5777,'Paramount_Gallu','Paramount_Gallu',467,0x00000B08506172616D6F756E7447616C6C750000,1,4,12,240,100,0,1,0,0,2,0,0,7,135,0,0,2,1,0,467);
@@ -5903,6 +5905,34 @@ INSERT INTO `mob_pools` VALUES (5844,'Ankabut','Ankabut',235,0x00003601000000000
 INSERT INTO `mob_pools` VALUES (5845,'Kegpaunch_Doshgnosh','Kegpaunch_Doshgnosh',190,0x0000AC0100000000000000000000000000000000,1,1,7,240,100,0,1,0,1,2,0,0,1868,155,0,0,0,1,1,190);
 INSERT INTO `mob_pools` VALUES (5846,'Boll_Weevil','Boll_Weevil',49,0x0000980100000000000000000000000000000000,1,1,8,240,100,0,1,0,1,2,0,0,244,129,0,0,0,0,0,49);
 INSERT INTO `mob_pools` VALUES (5847,'Drumskull_Zogdregg','Drumskull_Zogdregg',334,0x0000190400000000000000000000000000000000,4,4,5,240,100,0,1,0,1,2,16,0,290,1155,0,0,298,1,0,334);
+INSERT INTO `mob_pools` VALUES (5848,'Slippery_Sucker','Slippery_Sucker',172,0x0000140100000000000000000000000000000000,1,1,7,240,100,0,0,0,1,2,23,0,0,0,0,0,0,1,0,172);
+INSERT INTO `mob_pools` VALUES (5849,'Gloom_Eye','Gloom_Eye',4,0x0000080100000000000000000000000000000000,1,1,11,240,100,0,1,0,0,2,7,0,0,0,0,0,0,1,0,28);
+
+--  `poolid` int(10) unsigned NOT NULL,
+--  `name` varchar(24) DEFAULT NULL,
+--  `packet_name` varchar(24) DEFAULT NULL,
+--  `familyid` smallint(4) unsigned NOT NULL DEFAULT '0',
+--  `modelid` binary(20) NOT NULL,
+--  `mJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `sJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `cmbSkill` tinyint(2) unsigned NOT NULL DEFAULT '1',
+--  `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',
+--  `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',
+--  `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',
+--  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `links` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',
+--  `immunity` int(10) NOT NULL DEFAULT '0',
+--  `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',
+--  `flag` int(11) unsigned NOT NULL DEFAULT '0',
+--  `entityFlags` int(11) unsigned NOT NULL DEFAULT '0',
+--  `animationsub` tinyint(1) NOT NULL DEFAULT '0',
+--  `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',
+--  `spellList` smallint(4) NOT NULL DEFAULT '0',
+--  `namevis` tinyint(4) NOT NULL DEFAULT '1',
+--  `roamflag` smallint(3) unsigned NOT NULL DEFAULT '0',
+--  `skill_list_id` smallint(5) unsigned NOT NULL DEFAULT '0',
 
 /*!40000 ALTER TABLE `mob_pools` ENABLE KEYS */;
 UNLOCK TABLES;

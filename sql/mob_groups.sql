@@ -10566,6 +10566,11 @@ INSERT INTO `mob_groups` VALUES (10493,5768,104,0,32,4627,3000,0,50,50,0); -- Su
 INSERT INTO `mob_groups` VALUES (10494,5769,190,0,32,4628,1500,0,31,34,0); -- Gwyllgi
 INSERT INTO `mob_groups` VALUES (10495,5770,198,0,32,4629,1300,0,55,55,0); -- Trembler Tabitha
 INSERT INTO `mob_groups` VALUES (10496,5771,119,0,32,4630,3800,0,65,65,0); -- Naa Zeku the Unwaiting (estimated level based on HP)
+INSERT INTO `mob_groups` VALUES (10497,5772,97,0,32,4631,9500,0,81,83,0); -- Centipedal_Centruroides
+INSERT INTO `mob_groups` VALUES (10498,5773,25,0,32,4632,5550,0,57,60,0); -- Okyupete
+INSERT INTO `mob_groups` VALUES (10499,5774,143,0,32,4633,775,0,30,30,0); -- Be'Hya Hundredwall
+INSERT INTO `mob_groups` VALUES (10500,5848,126,0,32,4634,3500,0,42,42,0); -- Slippery Sucker
+INSERT INTO `mob_groups` VALUES (10501,5849,166,0,32,4635,8600,0,73,74,0); -- Gloom Eye
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);
