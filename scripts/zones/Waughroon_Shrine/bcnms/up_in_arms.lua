@@ -20,7 +20,7 @@ require("scripts/globals/battlefield")
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
 function onBattlefieldInitialise(battlefield)
-    battlefield:setLocalVar("loot", 1)
+    --battlefield:setLocalVar("loot", 1)
 end
 
 function onBattlefieldTick(battlefield, tick)

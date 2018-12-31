@@ -173,10 +173,22 @@ local loot =
     [79] = 
     {
         {
+            {itemid = 65535, droprate = 1000, amount = 15000}, -- Gil
+        },
+        {
             {itemid = 793, droprate = 1000}, -- Black Pearl
         },
         {
             {itemid = 792, droprate = 1000}, -- Pearl
+        },
+        {
+            {itemid = 792, droprate = 1000}, -- Pearl
+        },
+        {
+            {itemid = 1311, droprate = 1000},-- Piece Of Oxblood
+        },
+        {
+            {itemid = 1311, droprate = 1000},-- Piece Of Oxblood
         },
         {
             {itemid = 1311, droprate = 1000},-- Piece Of Oxblood
@@ -214,9 +226,10 @@ local loot =
             {itemid = 775, droprate = 11},   -- Black Rock
             {itemid = 772, droprate = 11},   -- Green Rock
             {itemid = 776, droprate = 9},    -- White Rock
-            {itemid = 17440, droprate = 13}, -- Kraken Club
         },
         {
+            {itemid = 0, droprate = 900},    -- Nothing
+            {itemid = 17440, droprate = 13}, -- Kraken Club
             {itemid = 15185, droprate = 55}, -- Walkure Mask
         },
     },
@@ -288,9 +301,6 @@ local loot =
     [82] = 
     {
         {
-            {itemid = 843, droprate = 1000},  -- Giant Bird Plume
-        },
-        {
             {itemid = 17827, droprate = 217}, -- Michishiba-no-tsuyu
             {itemid = 17699, droprate = 174}, -- Dissector
             {itemid = 17275, droprate = 333}, -- Coffinmaker
@@ -319,17 +329,14 @@ local loot =
             {itemid = 645, droprate = 29},    -- Chunk Of Darksteel Ore
             {itemid = 902, droprate = 29},    -- Demon Horn
             {itemid = 702, droprate = 29},    -- Ebony Log
-            {itemid = 737, droprate = 101},   -- Chunk Of Gold Ore
+            {itemid = 745, droprate = 101},   -- Gold Ingot
             {itemid = 823, droprate = 29},    -- Spool Of Gold Thread
-            {itemid = 1465, droprate = 29},   -- Slab Of Granite
-            {itemid = 700, droprate = 43},    -- Mahogany Log
             {itemid = 644, droprate = 29},    -- Chunk Of Mythril Ore
             {itemid = 703, droprate = 58},    -- Petrified Log
             {itemid = 738, droprate = 14},    -- Chunk Of Platinum Ore
             {itemid = 830, droprate = 58},    -- Square Of Rainbow Cloth
             {itemid = 895, droprate = 14},    -- Ram Horn
-            {itemid = 4174, droprate = 58},   -- Vile Elixir
-            {itemid = 4175, droprate = 29},   -- Vile Elixir +1
+            {itemid = 1132, droprate = 159},  -- Square Of Raxa
             {itemid = 837, droprate = 72},    -- Spool Of Malboro Fiber
         },
         {

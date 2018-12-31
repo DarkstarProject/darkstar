@@ -63,7 +63,7 @@ local loot =
     [105] = 
     {
         {
-            {itemid = 1603, droprate = 100}, -- Mannequin Hands
+            {itemid = 1603, droprate = 1000}, -- Mannequin Hands
         },
         {
             {itemid = 915, droprate = 250},  -- Jar Of Toad Oil
@@ -81,13 +81,16 @@ local loot =
             {itemid = 826, droprate = 260},  -- Square Of Linen Cloth
         },
         {
-            {itemid = 18209, droprate = 100},-- Platoon Cutter
+            {itemid = 0, droprate = 800},    -- Nothing
+            {itemid = 18209, droprate = 167},-- Platoon Cutter
         },
         {
-            {itemid = 924, droprate = 100},  -- Vial Of Fiend Blood
+            {itemid = 0, droprate = 500},    -- Nothing
+            {itemid = 924, droprate = 500},  -- Vial Of Fiend Blood
         },
         {
-            {itemid = 924, droprate = 100},  -- Vial Of Fiend Blood
+            {itemid = 0, droprate = 500},    -- Nothing
+            {itemid = 924, droprate = 500},  -- Vial Of Fiend Blood
         },
         {
             {itemid = 18170, droprate = 235},-- Platoon Edge
