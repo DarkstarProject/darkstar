@@ -5,10 +5,12 @@
 -----------------------------------
 local ID = require("scripts/zones/Kazham/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/chocobo")
 require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

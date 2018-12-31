@@ -11,6 +11,7 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/weather");
 require("scripts/globals/quests");
 require("scripts/globals/status");
@@ -23,6 +24,7 @@ end;
 
 function onInitialize(zone)
     LA_THEINE_PLATEAU.moveFallenEgg();
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)

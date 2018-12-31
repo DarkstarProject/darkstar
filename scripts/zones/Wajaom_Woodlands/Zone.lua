@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
+require("scripts/globals/chocobo")
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/helm")
@@ -19,6 +20,7 @@ end;
 
 function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

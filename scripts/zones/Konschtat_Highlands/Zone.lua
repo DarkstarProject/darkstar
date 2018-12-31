@@ -8,6 +8,7 @@ require("scripts/globals/icanheararainbow");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -15,6 +16,7 @@ function onChocoboDig(player, precheck)
 end;
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)

@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
+require("scripts/globals/chocobo")
 require("scripts/globals/helm")
 require("scripts/globals/zone")
 -----------------------------------
@@ -29,6 +30,7 @@ function onInitialize(zone)
 
     dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    dsp.chocobo.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

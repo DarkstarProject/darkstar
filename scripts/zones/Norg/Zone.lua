@@ -7,9 +7,11 @@ local ID = require("scripts/zones/Norg/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

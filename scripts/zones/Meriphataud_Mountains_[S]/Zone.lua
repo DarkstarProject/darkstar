@@ -4,10 +4,12 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/Meriphataud_Mountains_[S]/IDs");
+require("scripts/globals/chocobo")
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
