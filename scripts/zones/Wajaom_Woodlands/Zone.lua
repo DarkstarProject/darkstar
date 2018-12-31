@@ -10,6 +10,7 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -29,7 +30,7 @@ function onZoneIn(player,prevZone)
         else
             player:setPos(610.542,-28.547,356.247,122);
         end
-    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == 50) then
+    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
         cs = 510;
     end
     return cs;

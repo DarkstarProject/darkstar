@@ -30,11 +30,11 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 224) then
+        if (prevZone == dsp.zone.BASTOK_JEUNO_AIRSHIP) then
             cs = 73;
             player:setPos(-36.000, 7.000, -58.000, 194);
         else
-            position = math.random(1,5) + 57;
+            local position = math.random(1,5) + 57;
             player:setPos(position,8.5,-239,192);
             if (player:getMainJob() ~= player:getVar("PlayerMainJob")) then
                 cs = 30004;
