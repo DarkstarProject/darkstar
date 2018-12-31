@@ -9,9 +9,6 @@ function onMobSpawn(mob)
     mob:SetMagicCastingEnabled(false);
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local form = mob:AnimationSub();
 

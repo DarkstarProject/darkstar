@@ -6,12 +6,6 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
     local popTime = mob:getLocalVar("lastPetPop");
     -- ffxiclopedia says 30 sec, bgwiki says 1-2 min..

@@ -230,6 +230,3 @@ function onEventFinish(player,csid,option)
     player:setPos(-561,0,443,242,33); -- APOLLYON_NW_SW exit
    end
 end;
-
-
-

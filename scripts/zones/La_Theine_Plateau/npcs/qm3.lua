@@ -43,6 +43,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Tenzen_s_Path",1);
     end
 end;
-
-
-

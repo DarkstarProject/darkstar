@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("NoFear",0);
     end
 end;
-

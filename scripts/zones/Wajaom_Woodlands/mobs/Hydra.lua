@@ -6,9 +6,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
 
     local battletime = mob:getBattleTime();

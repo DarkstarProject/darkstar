@@ -10,11 +10,5 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
 end;

@@ -36,4 +36,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRADERS_SACK);
     end
 end;
-

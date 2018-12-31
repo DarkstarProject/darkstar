@@ -40,5 +40,3 @@ function onEventFinish(player,csid,option)
         player:setVar("rootProblemQ2",2);
     end
 end;
-
-

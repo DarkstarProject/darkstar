@@ -12,9 +12,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.BINDRES,20)
 end
 
-function onMobSpawn(mob)
-end
-
 function onAdditionalEffect(mob, target, damage)
     -- Guesstimating 1 in 4 chance to slow on melee.
     if math.random(1, 100) >= 25 or target:hasStatusEffect(dsp.effect.SLOW) then

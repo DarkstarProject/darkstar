@@ -6,12 +6,6 @@ local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
     local mobID = mob:getID();
 

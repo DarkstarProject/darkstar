@@ -13,4 +13,3 @@ function onMobDespawn(mob)
     mob:setRespawnTime(math.random(216000,259200));
 
 end;
-

@@ -26,4 +26,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",8,true);
     end
 end;
-

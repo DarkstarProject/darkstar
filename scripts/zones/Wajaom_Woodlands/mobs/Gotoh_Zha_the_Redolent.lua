@@ -27,9 +27,6 @@ require("scripts/globals/status")
 --    Should onCriticalHit count WS crit hits if regular WS hits do not count?
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     -- useMainSpecAtHPP needs set every spawn or it defaults to 46-60
     mob:setLocalVar("useSpecAtHpMin", 66)

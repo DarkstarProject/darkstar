@@ -41,4 +41,3 @@ function onEventFinish(player,csid,option)
         player:setVar("ratraceCS",6);
     end
 end;
-

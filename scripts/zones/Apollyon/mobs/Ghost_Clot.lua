@@ -4,9 +4,6 @@
 
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     GetMobByID(16932993):updateEnmity(target);
     GetMobByID(16932994):updateEnmity(target);

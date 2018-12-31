@@ -40,4 +40,3 @@ function onEventFinish(player,csid,option)
         player:setVar("gotitallCS",4)
     end
 end
-

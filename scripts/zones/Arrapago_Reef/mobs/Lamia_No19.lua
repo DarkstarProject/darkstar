@@ -4,9 +4,6 @@
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     local mobId = mob:getID();
     SpawnMob(mobId+1):updateEnmity(target);

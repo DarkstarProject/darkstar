@@ -3,9 +3,6 @@
 --  MOB: Suzaku (Pet version)
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;
 

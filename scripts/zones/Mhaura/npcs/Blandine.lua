@@ -43,4 +43,3 @@ function onEventFinish(player,csid,option)
         player:setVar("SmallDialogByBlandine",0);
     end
 end;
-

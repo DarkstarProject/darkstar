@@ -41,4 +41,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FiresOfDiscProg",6);
     end
 end;
-

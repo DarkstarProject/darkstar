@@ -3,9 +3,6 @@
 --  MOB: DRACONIC_DRAUGAR
 -----------------------------------
 
-function onMobSpawn(mob)
-end
-
 function onMobEngaged(mob,target)
     local instance = mob:getInstance()
     local mobID = mob:getID()
