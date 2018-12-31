@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -21,6 +22,7 @@ function onInitialize(zone)
     GetMobByID(ID.mob.CENTURIO_XII_I):setRespawnTime(math.random(900, 10800))
 
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
+    dsp.chocobo.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

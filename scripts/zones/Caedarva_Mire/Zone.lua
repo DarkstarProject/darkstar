@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Caedarva_Mire/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/titles")
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)

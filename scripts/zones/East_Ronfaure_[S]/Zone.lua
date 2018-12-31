@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/East_Ronfaure_[S]/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,7 +18,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(86.131,-65.817,273.861,25);
     end
-    if (prevZone == 80) then
+    if (prevZone == dsp.zone.SOUTHERN_SAN_DORIA_S) then
         if (player:getCurrentMission(WOTG) == WHILE_THE_CAT_IS_AWAY) then
             cs = 7;
         end

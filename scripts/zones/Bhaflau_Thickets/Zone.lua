@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-100,-13.5,-479.514,60);
     end
-    if (prevZone == 66) then
+    if (prevZone == dsp.zone.MAMOOL_JA_TRAINING_GROUNDS) then
         player:setPos(-186,-10,-802,80);
     end
     return cs;

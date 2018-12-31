@@ -10,6 +10,7 @@ require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -24,11 +25,11 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 46) then
+        if (prevZone == dsp.zone.OPEN_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 201;
-        elseif (prevZone == 59) then
+        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 204;
-        elseif (prevZone == 58) then
+        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
             cs = 204;
         else
             -- MOG HOUSE EXIT
@@ -66,7 +67,7 @@ function onRegionEnter(player,region)
             if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE and player:needToZone() == false) then
-                if (prevZone ~= 50) then
+                if (prevZone ~= dsp.zone.AHT_URHGAN_WHITEGATE) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
             elseif (player:getCurrentMission(TOAU) == FINDERS_KEEPERS) then
