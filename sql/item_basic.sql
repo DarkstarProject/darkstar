@@ -4673,7 +4673,7 @@ INSERT INTO `item_basic` VALUES (5010,402,'scroll_of_archers_prelude','archers_p
 INSERT INTO `item_basic` VALUES (5011,403,'scroll_of_sheepfoe_mambo','sheepfoe_mambo',1,1676,32,0,561);
 INSERT INTO `item_basic` VALUES (5012,404,'scroll_of_dragonfoe_mambo','dragonfoe_mambo',1,34444,32,0,2290);
 INSERT INTO `item_basic` VALUES (5013,405,'scroll_of_fowl_aubade','fowl_aubade',1,1676,32,0,1426);
-INSERT INTO `item_basic` VALUES (5014,406,'scroll_of_herb_pastoral','herb_pastoral',1,1676,32,0,389);
+INSERT INTO `item_basic` VALUES (5014,406,'scroll_of_herb_pastoral','herb_pastoral',1,1676,32,0,49);
 INSERT INTO `item_basic` VALUES (5016,408,'scroll_of_shining_fantasia','shining_fantasia',1,34444,32,0,850);
 INSERT INTO `item_basic` VALUES (5017,409,'scroll_of_scops_operetta','scops_operetta',1,1676,32,0,821);
 INSERT INTO `item_basic` VALUES (5018,410,'scroll_of_puppets_operetta','puppets_operetta',1,1676,32,0,2982);
