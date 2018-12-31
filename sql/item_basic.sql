@@ -4592,10 +4592,10 @@ INSERT INTO `item_basic` VALUES (4900,292,'thunder_spirit_pact','thunder_spirit'
 INSERT INTO `item_basic` VALUES (4901,293,'water_spirit_pact','water_spirit',1,34444,30,0,43);
 INSERT INTO `item_basic` VALUES (4902,294,'light_spirit_pact','light_spirit',1,34444,30,0,43);
 INSERT INTO `item_basic` VALUES (4903,295,'dark_spirit_pact','dark_spirit',1,34444,30,0,43);
-INSERT INTO `item_basic` VALUES (4912,841,'scroll_of_distract','distract',1,1548,29,0,0);
-INSERT INTO `item_basic` VALUES (4913,0,'scroll_of_distract_ii','distract_ii',1,34316,29,0,0);
-INSERT INTO `item_basic` VALUES (4914,0,'scroll_of_frazzle','frazzle',1,1548,29,0,0);
-INSERT INTO `item_basic` VALUES (4915,0,'scroll_of_frazzle_ii','frazzle_ii',1,34316,29,0,0);
+INSERT INTO `item_basic` VALUES (4912,841,'scroll_of_distract','distract',1,1676,29,0,0);
+INSERT INTO `item_basic` VALUES (4913,842,'scroll_of_distract_ii','distract_ii',1,34444,29,0,0);
+INSERT INTO `item_basic` VALUES (4914,843,'scroll_of_frazzle','frazzle',1,1676,29,0,0);
+INSERT INTO `item_basic` VALUES (4915,844,'scroll_of_frazzle_ii','frazzle_ii',1,34444,29,0,0);
 INSERT INTO `item_basic` VALUES (4916,828,'scroll_of_fira','fira',1,34444,29,0,43);
 INSERT INTO `item_basic` VALUES (4917,829,'scroll_of_fira_ii','fira_ii',1,34444,29,0,43);
 INSERT INTO `item_basic` VALUES (4918,830,'scroll_of_blizzara','blizzara',1,34444,29,0,43);
