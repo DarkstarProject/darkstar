@@ -17,10 +17,10 @@ function onTrigger(player, npc)
     else
         player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK) -- Missing the denied due to lack of Astral Candescence message.
     end
-end;
+end
 
 function onEventUpdate(player, csid, option)
-end;
+end
 
 function onEventFinish(player, csid, option)
     if csid == 103 and option == 1 then
