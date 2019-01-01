@@ -8,10 +8,10 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/besieged")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
 end;
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     if getAstralCandescence() == 1 then
         player:startEvent(103)
     else
