@@ -652,8 +652,14 @@ void CLatentEffectContainer::CheckLatentsTargetChange()
 {
     ProcessLatentEffects([this](CLatentEffect& latentEffect)
     {
-        if (latentEffect.GetConditionsID() == LATENT_SIGNET_BONUS)
+        switch (latentEffect.GetConditionsID())
+        {
+        case LATENT_SIGNET_BONUS:
+        case LATENT_VS_ECOSYSTEM:
             return ProcessLatentEffect(latentEffect);
+        default:
+            break;
+        }
         return false;
     });
 }
@@ -1102,6 +1108,12 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect)
         break;
     case LATENT_ELEVEN_ROLL_ACTIVE:
         expression = m_POwner->StatusEffectContainer->CheckForElevenRoll();
+        break;
+    case LATENT_VS_ECOSYSTEM:
+        if (CBattleEntity* PTarget = m_POwner->GetBattleTarget())
+        {
+            expression = PTarget->m_EcoSystem == latentEffect.GetConditionsValue();
+        }
         break;
     default:
         latentFound = false;
