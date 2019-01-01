@@ -1399,14 +1399,14 @@ function onTrade(player,npc,trade)
 
             if itemId ~= nil or itemId ~= 0 then
                 player:addTreasure(itemId, player)
-                player:startEvent(0x02A7, 1, itemId)
+                player:startEvent(679, 1, itemId)
             end
         end
     end
 end; 
 
 function onTrigger(player,npc)
-    player:startEvent(0x02A6, 300)
+    player:startEvent(678, 300)
 end; 
 
 function onEventUpdate(player,csid,option)
@@ -1417,7 +1417,7 @@ end;
 function onEventFinish(player,csid,option)
     --printf("CSID: %u",csid)
     --printf("RESULT: %u",option)
-    if (csid == 0x02A7) then
+    if (csid == 679) then
         player:tradeComplete()
     end
 end;
