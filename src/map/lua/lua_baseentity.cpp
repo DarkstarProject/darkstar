@@ -3156,6 +3156,12 @@ inline int32 CLuaBaseEntity::addItem(lua_State *L)
                     int8 encoded[12];
                     PItem->setSignature(EncodeStringSignature((int8*)signature, encoded));
                 }
+                lua_getfield(L, 1, "appraisal");
+                if (!lua_isnil(L, -1) && lua_isnumber(L, -1))
+                {
+                    uint8* appid = (uint8*)lua_tointeger(L, -1);
+                    PItem->setAppraisalID(appid);
+                }
                 lua_pop(L, 2);
 
                 if (PItem->isType(ITEM_ARMOR))
