@@ -4,7 +4,6 @@
 -- Enchantment: "Teleport" (Upper Jeuno Chocobo Stables)
 -----------------------------------------
 require("scripts/globals/teleports")
-require("scripts/globals/keyitems")
 require("scripts/globals/status")
 -----------------------------------------
 
