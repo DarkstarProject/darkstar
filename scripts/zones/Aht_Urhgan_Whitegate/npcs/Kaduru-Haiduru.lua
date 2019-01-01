@@ -3,6 +3,7 @@
 -- NPC: Kaduru-Haiduru
 -- Teleport NPC
 -----------------------------------
+require("scripts/globals/zone")
 
 local function canUse_KaduruHaiduru_Service(player)
     local caughtUsingShihuDanhuDate = player:getVar("Kaduru_ShihuDanhu_date")
@@ -74,19 +75,14 @@ function onEventFinish(player, csid, option)
         if option == 1 then       -- Duchy of Jeuno
             player:setPos(0, 3, -6, 190, 243)
         elseif option == 2 then   -- Nation of Allegiance
-            local nation = player:getNation()
-            switch (nation): caseof
+            local nationDestination = 
             {
-                [0] = function(x)  -- San d'Oria
-                    player:setPos(110, 0, -7, 175, 231)
-                end,
-                [1] = function(x)  -- Bastok
-                    player:setPos(90, 0, -67, 248, 234)
-                end,
-                [2] = function(x)  -- Windurst
-                    player:setPos(192, -12, 218, 60, 240)
-                end,
+                [dsp.nation.SANDORIA] = {110,   0,  -7, 175, 231},
+                [dsp.nation.BASTOK  ] = { 90,   0, -67, 248, 234},
+                [dsp.nation.WINDURST] = {192, -12, 218,  60, 240}
             }
+            local destination = nationDestination[player:getNation()]
+            player:setPos(unpack(destination))
         end
         player:tradeComplete()
     elseif csid == 152 then    -- Duchy of Jeuno only
