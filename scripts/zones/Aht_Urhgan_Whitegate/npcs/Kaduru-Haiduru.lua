@@ -81,8 +81,7 @@ function onEventFinish(player, csid, option)
                 [dsp.nation.BASTOK  ] = { 90,   0, -67, 248, 234},
                 [dsp.nation.WINDURST] = {192, -12, 218,  60, 240}
             }
-            local destination = nationDestination[player:getNation()]
-            player:setPos(unpack(destination))
+            player:setPos(unpack(nationDestination[player:getNation()]))
         end
         player:tradeComplete()
     elseif csid == 152 then    -- Duchy of Jeuno only
