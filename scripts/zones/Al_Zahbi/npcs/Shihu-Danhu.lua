@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     if getAstralCandescence() == 1 then
-        player:startEvent(0x0067)
+        player:startEvent(103)
     else
         player:messageSpecial(ID.text.NEED_CANDESCENCE_BACK) -- Missing the denied due to lack of Astral Candescence message.
     end
@@ -23,7 +23,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if csid == 0x0067 and option == 1 then
+    if csid == 103 and option == 1 then
         local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
         player:setVar("ShihuDanhu_TP_date", os.date("%j"))

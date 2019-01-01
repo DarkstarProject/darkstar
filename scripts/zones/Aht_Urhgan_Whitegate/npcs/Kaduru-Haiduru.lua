@@ -25,13 +25,13 @@ function onTrigger(player, npc)
     local currentDate = os.date("%j")
 
     if canUse_KaduruHaiduru_Service(player) then
-        player:startEvent(0x0097, 0, 0, timesUsed, 0, 0, 0, 0, 0, 0)
+        player:startEvent(151, 0, 0, timesUsed, 0, 0, 0, 0, 0, 0)
     else
         if caughtUsingShihuDanhuDate == 0 then
             player:setVar("Kaduru_ShihuDanhu_date", os.date("%j"))
             player:setVar("Kaduru_TimesUsed", 0)
         end
-        player:startEvent(0x0099, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        player:startEvent(153, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     end
 end
 
@@ -43,7 +43,7 @@ function onTrade(player, npc, trade)
     if canUse_KaduruHaiduru_Service(player) and timesUsed == 3 then
         if trade:getItemCount() == 1 then
             if trade:hasItemQty(2185, 1) then
-                player:startEvent(0x009A, 0, player:getNation(), 0, 0, 0, 0, 0, 0, 0)
+                player:startEvent(154, 0, player:getNation(), 0, 0, 0, 0, 0, 0, 0)
                 player:setVar("ShihuDanhu_TP_date", 0)
                 player:setVar("Kaduru_ShihuDanhu_date", 0)
             end
@@ -51,7 +51,7 @@ function onTrade(player, npc, trade)
     elseif canUse_KaduruHaiduru_Service(player) and timesUsed < 3 then
         if trade:getItemCount() == 1 then
             if trade:hasItemQty(2185, 1) then
-                player:startEvent(0x0098, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+                player:startEvent(152, 0, 0, 0, 0, 0, 0, 0, 0, 0)
                 player:setVar("ShihuDanhu_TP_date", 0)
                 player:setVar("Kaduru_ShihuDanhu_date", 0)
             end
@@ -61,7 +61,7 @@ function onTrade(player, npc, trade)
             player:setVar("Kaduru_ShihuDanhu_date", os.date("%j"))
             player:setVar("Kaduru_TimesUsed", 0)
         end
-        player:startEvent(0x009B, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+        player:startEvent(155, 0, 0, 0, 0, 0, 0, 0, 0, 0)
     end
 end
 
@@ -70,7 +70,7 @@ end;
 
 function onEventFinish(player, csid, option)
     local timesUsed = player:getVar("Kaduru_TimesUsed")
-    if csid == 0x009A then        -- At this point we should already have used Kaduru-Haiduru 3 times.
+    if csid == 154 then        -- At this point we should already have used Kaduru-Haiduru 3 times.
         if option == 1 then       -- Duchy of Jeuno
             player:setPos(0, 3, -6, 190, 243)
         elseif option == 2 then   -- Nation of Allegiance
@@ -89,7 +89,7 @@ function onEventFinish(player, csid, option)
             }
         end
         player:tradeComplete()
-    elseif (csid == 0x0098) then    -- Duchy of Jeuno only
+    elseif csid == 152 then    -- Duchy of Jeuno only
         -- We have either not used Kaduru-Haiduru enough, or we were reset after using Shihu-Danhu.
         player:setPos(0, 3, -6, 190, 243)
         if timesUsed < 3 then
