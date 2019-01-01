@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Al Zahbi
--- NPC:  Shihu-Danhu
+--  NPC: Shihu-Danhu
 -- Warp NPC
 -- !pos 62.768 -1.98 -51.299 48
 -----------------------------------
-local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
-
-require("scripts/globals/besieged");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/besieged")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,10 +19,10 @@ function onTrigger(player,npc)
     end
 end;
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end;
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 103 and option == 1 then
         local shihuDanhuEncounters = player:getVar("ShihuDanhu_Encounters")
         -- If you use TP, you need to wait 1 real day for using Kaduru TP
@@ -49,4 +49,4 @@ function onEventFinish(player,csid,option)
         -- TODO: elseif candesence is lost, then
         -- tele to bat downs, rolanberry, qufim, sauro. POSITIONS ARE DIFFERENT. need packet captures.
     end
-end;
+end
