@@ -32921,8 +32921,8 @@ INSERT INTO `mob_droplist` VALUES (4586,0,0,1000,1414,129);
 INSERT INTO `mob_droplist` VALUES (4586,0,0,1000,1181,49);
 INSERT INTO `mob_droplist` VALUES (4586,4,0,1000,919,0);
 INSERT INTO `mob_droplist` VALUES (4586,4,0,1000,1237,0);
-INSERT INTO `mob_droplist` VALUES (4587,0,0,1000,3096,142); -- 14.2% Spotted Flytrap off Boartrap
-INSERT INTO `mob_droplist` VALUES (4587,0,0,1000,1617,85); -- 8.5% Flytrap Leaf off Boartrap
+INSERT INTO `mob_droplist` VALUES (4587,0,0,1000,3096,142); -- (Boartrap) Spotted Flytrap
+INSERT INTO `mob_droplist` VALUES (4587,0,0,1000,1617,85); -- (Boartrap) Flytrap Leaf
 INSERT INTO `mob_droplist` VALUES (4588,0,0,1000,2840,160);
 INSERT INTO `mob_droplist` VALUES (4589,0,0,1000,18607,450);
 INSERT INTO `mob_droplist` VALUES (4590,0,0,1000,16186,270);
@@ -32930,28 +32930,21 @@ INSERT INTO `mob_droplist` VALUES (4591,0,0,1000,19230,400);
 INSERT INTO `mob_droplist` VALUES (4592,0,0,1000,2857,390);
 INSERT INTO `mob_droplist` VALUES (4593,0,0,1000,19045,400);
 INSERT INTO `mob_droplist` VALUES (4594,0,0,1000,16024,220);
-INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- 4.9% Wilhelm's Earring off Goblintrap
+INSERT INTO `mob_droplist` VALUES (4595,0,0,1000,16036,49); -- (Goblintrap) Wilhelm's Earring
 INSERT INTO `mob_droplist` VALUES (4596,0,0,1000,16032,169);
-INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,15852,55); -- 5.5% Nasatya's Ring off Boll Weevil
-
--- Drachenlizard (http://www.ffxidb.com/zones/88/drachenlizard)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,852,40); -- Lizard Skin (4%)
-INSERT INTO `mob_droplist` VALUES (4598,2,0,1000,926,0); -- Lizard Tail (Steal)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,926,200); -- Lizard Tail (20%)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3552,70); -- Squamous Hide (7%)
-INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,4362,60); -- Lizard Egg (6%)
-INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,816,253); -- 25.3% Silk Thread off Champion Crawler
-INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,3550,115); -- 11.5% Wyrdstrand off Champion Crawler
+INSERT INTO `mob_droplist` VALUES (4597,0,0,1000,15852,55); -- (Boll Weevil) Nasatya's Ring
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,852,40); -- (Drachenlizard) Lizard Skin
+INSERT INTO `mob_droplist` VALUES (4598,2,0,1000,926,0); -- (Drachenlizard) Lizard Tail (Steal)
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,926,200); -- (Drachenlizard) Lizard Tail
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,3552,70); -- (Drachenlizard) Squamous Hide
+INSERT INTO `mob_droplist` VALUES (4598,0,0,1000,4362,60); -- (Drachenlizard) Lizard Egg
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,816,253); -- (Champion Crawler) Silk Thread
+INSERT INTO `mob_droplist` VALUES (4599,0,0,1000,3550,115); -- (Champion Crawler) Wyrdstrand
 INSERT INTO `mob_droplist` VALUES (4600,0,0,1000,19232,148);
-
--- Ankabut
-INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,19277,133); -- 13.3% Tsugumi
-
--- Kegpaunch Doshgnosh
-INSERT INTO `mob_droplist` VALUES (4602,0,0,1000,11529,108); -- 10.8% Frugal Cape
-INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2820,170); -- Aptant: Geoc off Drumskull Zogdregg
-INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2822,230); -- Aptant: Secan
-
+INSERT INTO `mob_droplist` VALUES (4601,0,0,1000,19277,133); -- (Ankabut) Tsugumi
+INSERT INTO `mob_droplist` VALUES (4602,0,0,1000,11529,108); -- (Kegpaunch Doshgnosh) Frugal Cape
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2820,170); -- (Drumskull Zogdregg) Aptant: Geoc
+INSERT INTO `mob_droplist` VALUES (4603,0,0,1000,2822,230); -- (Drumskull Zogdregg) Aptant: Secan
 INSERT INTO `mob_droplist` VALUES (4604,0,0,1000,18947,164); -- (Ba'Tho Mercifulheart) Moliones's Sickle
 INSERT INTO `mob_droplist` VALUES (4604,0,0,1000,2504,222); -- (Ba'Tho Mercifulheart) Heavy Quadav Chestplate
 INSERT INTO `mob_droplist` VALUES (4605,0,0,1000,15014,400); -- (Da'Dha Hundredmask) Patrician's Cuffs

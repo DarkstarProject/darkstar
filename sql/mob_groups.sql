@@ -12736,9 +12736,8 @@ INSERT INTO `mob_groups` VALUES (14631,830,22,1056,0,591,0,0,58,60,0);  -- Promy
 
 INSERT INTO `mob_groups` VALUES (14632,5842,122,7200,0,0,0,0,77,79,0); -- Nargun
 INSERT INTO `mob_groups` VALUES (14633,5843,61,0,32,4600,0,0,80,82,0);  -- Ignamoth
-
 INSERT INTO `mob_groups` VALUES (14634,5844,88,0,32,4601,0,0,50,53,0); -- Ankabut
-INSERT INTO `mob_groups` VALUES (14635,5845,141,3600,0,4602,0,0,25,25,0); -- Kegpaunch Doshgnosh
+INSERT INTO `mob_groups` VALUES (14635,5845,141,3600,0,4602,800,0,25,25,0); -- Kegpaunch Doshgnosh
 
 /*!40000 ALTER TABLE `mob_groups` ENABLE KEYS */;
 UNLOCK TABLES;
