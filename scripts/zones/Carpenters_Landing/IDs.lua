@@ -27,10 +27,11 @@ zones[dsp.zone.CARPENTERS_LANDING] =
         CRYPTONBERRY_ASSASSIN_2HR  = 7472, -- ..Take up thy lanternsss. The truth we shall illuminate.
         CRYPTONBERRY_EXECUTOR_2HR  = 7473, -- Through this we ssseek our just reward...
         MYCOPHILE_MUSHROOM         = 7490, -- There is a rotten mushroom here. There are 3 openings in its cap.
+        HERCULES_TREE_NOTHING_YET  = 7492, -- There is nothing here yet. Check again in the morning.
     },
     mob =
     {
-        ORCTRAP_PH            = 
+        ORCTRAP_PH            =
         {
             [16785673] = 16785676, -- 181.819 -5.887 -524.872
         },
@@ -38,9 +39,19 @@ zones[dsp.zone.CARPENTERS_LANDING] =
         OVERGROWN_IVY         = 16785709,
         CRYPTONBERRY_EXECUTOR = 16785710,
         MYCOPHILE             = 16785722,
+        HERCULES_BEETLE       = 16785723,
     },
     npc =
     {
+        HERCULES_BEETLE_TREES =
+        {
+            16785730,
+            16785731,
+            16785732,
+            16785733,
+            16785734,
+            16785784,
+        },
         LOGGING =
         {
             16785773,
