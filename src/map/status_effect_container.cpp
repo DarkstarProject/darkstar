@@ -197,8 +197,10 @@ bool CStatusEffectContainer::CanGainStatusEffect(CStatusEffect* PStatusEffect)
     switch (statusEffect) {
         case EFFECT_SLEEP:
         case EFFECT_SLEEP_II:
+            if (m_POwner->hasImmunity(IMMUNITY_SLEEP) || m_POwner->hasImmunity(IMMUNITY_DARKSLEEP)) return false;
+            break;
         case EFFECT_LULLABY:
-            if (m_POwner->hasImmunity(IMMUNITY_SLEEP)) return false;
+            if (m_POwner->hasImmunity(IMMUNITY_SLEEP) || m_POwner->hasImmunity(IMMUNITY_LIGHTSLEEP)) return false;
             break;
         case EFFECT_WEIGHT:
             if (m_POwner->hasImmunity(IMMUNITY_GRAVITY)) return false;
