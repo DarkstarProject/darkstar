@@ -2070,6 +2070,42 @@ dsp.objType =
 }
 
 ----------------------------------
+-- Attack Type
+----------------------------------
+
+dsp.attackType =
+{
+    NONE     = 0,
+    PHYSICAL = 1,
+    MAGICAL  = 2,
+    RANGED   = 3,
+    SPECIAL  = 4,
+    BREATH   = 5,
+}
+
+----------------------------------
+-- Damage Type
+----------------------------------
+
+dsp.damageType = 
+{
+    NONE      = 0,
+    PIERCING  = 1,
+    SLASHING  = 2,
+    BLUNT     = 3,
+    HTH       = 4,
+    ELEMENTAL = 5,
+    FIRE      = 6,
+    EARTH     = 7,
+    WATER     = 8,
+    WIND      = 9,
+    ICE       = 10,
+    LIGHTNING = 11,
+    LIGHT     = 12,
+    DARK      = 13,
+}
+
+----------------------------------
 -- Drop Type (not currently used in code base)
 ----------------------------------
 

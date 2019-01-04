@@ -161,7 +161,7 @@ end;
 function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadowbehav)
 
     -- physical attack missed, skip rest
-    if (skilltype == MOBSKILL_PHYSICAL and dmg == 0) then
+    if (skilltype == dsp.attackType.PHYSICAL and dmg == 0) then
         return 0;
     end
 
@@ -216,7 +216,7 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
 
     -- handle Third Eye using shadowbehav as a guide
     teye = target:getStatusEffect(dsp.effect.THIRD_EYE);
-    if (teye ~= nil and skilltype==MOBSKILL_PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
+    if (teye ~= nil and skilltype==dsp.attackType.PHYSICAL) then --T.Eye only procs when active with PHYSICAL stuff
         if (shadowbehav == MOBPARAM_WIPE_SHADOWS) then --e.g. aoe moves
             target:delStatusEffect(dsp.effect.THIRD_EYE);
         elseif (shadowbehav ~= MOBPARAM_IGNORE_SHADOWS) then --it can be absorbed by shadows
@@ -243,16 +243,16 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     --TODO: Handle anything else (e.g. if you have Magic Shield and its a Magic skill, then do 0 damage.
 
 
-    if (skilltype == MOBSKILL_PHYSICAL and target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD)) then
+    if (skilltype == dsp.attackType.PHYSICAL and target:hasStatusEffect(dsp.effect.PHYSICAL_SHIELD)) then
         return 0;
     end
 
-    if (skilltype == MOBSKILL_RANGED and target:hasStatusEffect(dsp.effect.ARROW_SHIELD)) then
+    if (skilltype == dsp.attackType.RANGED and target:hasStatusEffect(dsp.effect.ARROW_SHIELD)) then
         return 0;
     end
 
     -- handle elemental resistence
-    if (skilltype == MOBSKILL_MAGICAL and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
+    if (skilltype == dsp.attackType.MAGICAL and target:hasStatusEffect(dsp.effect.MAGIC_SHIELD)) then
         return 0;
     end
 
@@ -263,12 +263,12 @@ function AvatarFinalAdjustments(dmg,mob,skill,target,skilltype,skillparam,shadow
     end
 
     --handle invincible
-    if (target:hasStatusEffect(dsp.effect.INVINCIBLE) and skilltype==MOBSKILL_PHYSICAL) then
+    if (target:hasStatusEffect(dsp.effect.INVINCIBLE) and skilltype==dsp.attackType.PHYSICAL) then
         return 0;
     end
     -- handle pd
     if ((target:hasStatusEffect(dsp.effect.PERFECT_DODGE) or target:hasStatusEffect(dsp.effect.ALL_MISS) )
-            and skilltype==MOBSKILL_PHYSICAL) then
+            and skilltype==dsp.attackType.PHYSICAL) then
         return 0;
     end
     

@@ -21,7 +21,8 @@ function onUseAbility(player,target,ability)
 
     dmg = dmg * resist
 
-    target:delHP(dmg)
+    dmg = utils.stoneskin(target, dmg)
+    target:takeDamage(dmg, player, dsp.attackType.SPECIAL, dsp.damageType.ELEMENTAL)
 
     player:setLocalVar("MijinGakure", 1)
     player:setHP(0)

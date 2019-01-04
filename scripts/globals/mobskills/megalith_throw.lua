@@ -16,12 +16,12 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 2.5
     local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_BLUNT,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,info.hitslanded)
 
     local typeEffect = dsp.effect.SLOW
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1000, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     return dmg
 end

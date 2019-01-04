@@ -22,8 +22,8 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 2.8
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded)
-    target:delHP(dmg)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,info.hitslanded)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
 
     local typeEffect = dsp.effect.PARALYSIS
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 30, 0, 180)

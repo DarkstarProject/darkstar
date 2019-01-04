@@ -26,12 +26,12 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 2
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,info.hitslanded)
 
     local typeEffect = dsp.effect.DISEASE
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 180)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
     return dmg
 end
