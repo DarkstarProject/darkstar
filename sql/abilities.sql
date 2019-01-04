@@ -40,7 +40,7 @@ CREATE TABLE `abilities` (
 
 INSERT INTO `abilities` VALUES (0,'mighty_strikes',1,0,1,3600,0,0,0,33,2000,0,6,20.0,0,1,300,0,0,NULL);
 INSERT INTO `abilities` VALUES (1,'hundred_fists',2,0,1,3600,0,0,0,34,2000,0,6,20.0,0,1,300,0,0,NULL);
-INSERT INTO `abilities` VALUES (2,'benediction',3,0,1,3600,0,102,0,35,2000,0,6,20.0,1,0,0,0,0,NULL);
+INSERT INTO `abilities` VALUES (2,'benediction',3,0,1,3600,0,102,0,35,2000,0,6,20.0,0,0,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (3,'manafont',4,0,1,3600,0,0,0,36,2000,0,6,20.0,0,1,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (4,'chainspell',5,0,1,3600,0,0,0,37,2000,0,6,20.0,0,1,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (5,'perfect_dodge',6,0,1,3600,0,0,0,38,2000,0,6,20.0,0,1,0,0,0,NULL);
@@ -185,7 +185,7 @@ INSERT INTO `abilities` VALUES (145,'feral_howl',9,75,4,300,105,0,0,146,2000,0,6
 INSERT INTO `abilities` VALUES (146,'killer_instinct',9,75,1,300,106,0,0,147,2000,0,6,20.0,1,0,0,2562,1,'TOAU');
 INSERT INTO `abilities` VALUES (147,'nightingale',10,75,1,600,109,0,0,161,2000,0,6,20.0,0,1,300,2624,1,'TOAU');
 INSERT INTO `abilities` VALUES (148,'troubadour',10,75,1,600,110,0,0,162,2000,0,6,20.0,0,1,300,2626,1,'TOAU');
-INSERT INTO `abilities` VALUES (149,'stealth_shot',11,75,1,300,127,0,0,150,2000,0,6,20.0,0,1,3000,2688,1,'TOAU');
+INSERT INTO `abilities` VALUES (149,'stealth_shot',11,75,1,300,127,0,0,150,2000,0,6,20.0,0,1,300,2688,1,'TOAU');
 INSERT INTO `abilities` VALUES (150,'flashy_shot',11,75,1,600,128,0,0,151,2000,0,6,20.0,0,1,300,2690,1,'TOAU');
 INSERT INTO `abilities` VALUES (151,'shikikoyo',12,75,2,300,136,452,0,152,2000,0,6,20.0,0,1,80,2752,1,'TOAU');
 INSERT INTO `abilities` VALUES (152,'blade_bash',12,75,4,180,137,110,0,202,2000,0,3,4.4,0,0,0,2754,1,'TOAU');
@@ -210,12 +210,12 @@ INSERT INTO `abilities` VALUES (170,'drain_samba_iii',19,65,1,60,216,0,0,2,2000,
 INSERT INTO `abilities` VALUES (171,'aspir_samba',19,25,1,60,216,0,0,3,2000,0,14,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (172,'aspir_samba_ii',19,60,1,60,216,0,0,4,2000,0,14,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (173,'haste_samba',19,45,1,60,216,0,0,5,2000,0,14,20.0,0,1,300,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (174,'curing_waltz',19,15,27,6,217,306,0,6,2000,0,14,20.0,0,3,3,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (175,'curing_waltz_ii',19,30,27,8,217,306,0,7,2000,0,14,20.0,0,3,3,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (176,'curing_waltz_iii',19,45,27,10,217,306,0,8,2000,0,14,20.0,0,3,3,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (177,'curing_waltz_iv',19,70,27,12,217,306,0,9,2000,0,14,20.0,0,3,3,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (174,'curing_waltz',19,15,27,6,217,306,0,6,2000,0,14,20.0,0,0,0,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (175,'curing_waltz_ii',19,30,27,8,217,306,0,7,2000,0,14,20.0,0,0,0,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (176,'curing_waltz_iii',19,45,27,10,217,306,0,8,2000,0,14,20.0,0,0,0,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (177,'curing_waltz_iv',19,70,27,12,217,306,0,9,2000,0,14,20.0,0,0,0,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (178,'healing_waltz',19,35,27,8,215,0,0,10,2000,0,14,20.0,0,1,300,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (179,'divine_waltz',19,25,27,13,225,306,0,11,2000,0,14,20.0,1,3,3,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (179,'divine_waltz',19,25,27,13,225,306,0,11,2000,0,14,20.0,1,0,0,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (180,'spectral_jig',19,25,1,30,218,0,0,12,2000,0,14,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (181,'chocobo_jig',19,55,1,60,218,126,0,13,2000,0,14,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (182,'jigs',19,25,1,0,0,0,0,0,2000,0,14,20.0,0,0,0,0,0,'WOTG');
@@ -243,7 +243,7 @@ INSERT INTO `abilities` VALUES (203,'parsimony',20,10,1,1,231,0,0,177,2000,0,6,2
 INSERT INTO `abilities` VALUES (204,'alacrity',20,25,1,1,231,0,0,178,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (205,'ebullience',20,55,1,1,231,0,0,179,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (206,'manifestation',20,40,1,1,231,0,0,180,2000,0,6,20.0,0,1,80,0,32,'WOTG');
-INSERT INTO `abilities` VALUES (207,'stratagems',20,10,1,0,233,0,0,0,2000,0,6,20.0,0,1111,1111,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (207,'stratagems',20,10,1,0,233,0,0,0,2000,0,6,20.0,0,0,0,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (208,'velocity_shot',11,45,1,300,129,0,0,186,2000,0,6,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (209,'snarl',9,45,257,30,107,0,0,87,2000,0,6,20.0,0,0,0,0,192,'WOTG');
 INSERT INTO `abilities` VALUES (210,'retaliation',1,60,1,180,8,0,0,185,2000,0,6,20.0,0,1,80,0,0,'WOTG');

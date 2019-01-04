@@ -10109,15 +10109,17 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto CE = (int16)lua_tointeger(L, 2);
-    auto VE = (int16)lua_tointeger(L, 3);
+    int32 CE = (int32)lua_tointeger(L, 2);
+    int32 VE = (int32)lua_tointeger(L, 3);
 
-    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+
+    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && PMob->isCharmed) ||
         m_PBaseEntity->objtype == TYPE_PET)
     {
         if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
-            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmity((CBattleEntity*)m_PBaseEntity, CE, VE);
+            static_cast<CMobEntity*>(PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(m_PBaseEntity), CE, VE);
         }
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
@@ -10125,7 +10127,7 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
         if (PEntity != nullptr && (CE > 0 || VE > 0) &&
             PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
-            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmity((CBattleEntity*)PEntity->GetBaseEntity(), CE, VE);
+            PMob->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), CE, VE);
         }
     }
     return 0;
@@ -10255,26 +10257,30 @@ int32 CLuaBaseEntity::transferEnmity(lua_State* L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    int damage = lua_tointeger(L, 2);
+    int32 damage = (int32)lua_tointeger(L, 2);
 
-    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
-        m_PBaseEntity->objtype == TYPE_PET)
+    auto PBaseMob = static_cast<CMobEntity*>(m_PBaseEntity);
+
+    // This is a mob attacking a target and losing enmity from doing damage
+    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET
+        || (m_PBaseEntity->objtype == TYPE_MOB && PBaseMob->isCharmed))
     {
         if (PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
-            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
+            static_cast<CMobEntity*>(PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack(static_cast<CBattleEntity*>(m_PBaseEntity), damage);
         }
     }
+    // This is a mob being attacked and gaining enmity on the attacker
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
         if (PEntity->GetBaseEntity() && damage > 0 &&
             PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
-            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
+            PBaseMob->PEnmityContainer->UpdateEnmityFromDamage(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), damage);
         }
     }
     return 0;
@@ -10297,7 +10303,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto amount = (uint16)lua_tointeger(L, 2);
+    auto amount = (int32)lua_tointeger(L, 2);
 
     auto PCurer = [&]() -> CCharEntity*
     {
@@ -10318,7 +10324,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 
     if (PEntity != nullptr && PCurer)
     {
-        battleutils::GenerateCureEnmity(PCurer, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
+        battleutils::GenerateCureEnmity(PCurer, static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), amount);
     }
 
     return 0;

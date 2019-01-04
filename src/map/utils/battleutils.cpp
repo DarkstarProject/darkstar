@@ -339,19 +339,19 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    uint8 GetEnmityModDamage(uint8 level)
+    int16 GetEnmityModDamage(int16 level)
     {
         return level * 31 / 50 + 6;
     }
 
-    uint8 GetEnmityModCure(uint8 level)
+    int16 GetEnmityModCure(int16 level)
     {
         if (level <= 10)
             return level + 10;
         else if (level <= 50)
-            return (20 + (level - 10) / 2);
-        else
-            return (uint8)(40 + (level - 50) * 0.6);
+            return 20 + (level - 10) / 2;
+
+        return (int16)(40 + (level - 50) * 0.6);
     }
 
     /************************************************************************
@@ -3417,14 +3417,14 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount)
+    void GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, int32 amount)
     {
         DSP_DEBUG_BREAK_IF(PSource == nullptr);
         DSP_DEBUG_BREAK_IF(PTarget == nullptr);
 
         for (SpawnIDList_t::const_iterator it = PSource->SpawnMOBList.begin(); it != PSource->SpawnMOBList.end(); ++it)
         {
-            CMobEntity* PCurrentMob = (CMobEntity*)it->second;
+            CMobEntity* PCurrentMob = static_cast<CMobEntity*>(it->second);
 
             if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasID(PTarget->id))
             {
