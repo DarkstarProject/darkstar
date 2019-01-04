@@ -73,4 +73,3 @@ function onEventFinish(player,csid,option)
         player:setPos(-444,-4,420,127);
     end
 end;
-

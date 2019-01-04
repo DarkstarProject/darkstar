@@ -32,7 +32,7 @@ function onMobWeaponSkill(target, mob, skill)
         shadows = MOBPARAM_IGNORE_SHADOWS
     end
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,shadows)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,shadows)
 
     local typeEffect = dsp.effect.PARALYSIS
     local power = 20
@@ -44,6 +44,6 @@ function onMobWeaponSkill(target, mob, skill)
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, 120)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
     return dmg
 end

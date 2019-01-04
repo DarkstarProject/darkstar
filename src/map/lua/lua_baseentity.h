@@ -139,6 +139,7 @@ public:
     int32 sendGuild(lua_State*);             // Sends guild shop menu
     int32 openSendBox(lua_State*);           // Opens send box (to deliver items)
     int32 leavegame(lua_State*);             // Character leaving game
+    int32 sendEmote(lua_State*);             // Character emits emote packet.
 
     // Location and Positioning
     int32 isBehind(lua_State*);              // true if you're behind the input target
@@ -351,6 +352,7 @@ public:
     int32 setHP(lua_State*);                // Set hp of Entity to value
     int32 restoreHP(lua_State*);            // Modify hp of Entity, but check if alive first
     int32 delHP(lua_State*);                // Subtract hp of Entity
+    int32 takeDamage(lua_State*);           // Takes damage from the provided attacker
     int32 hideHP(lua_State* L);
 
     int32 getMP(lua_State*);                // Gets MP of Entity
@@ -472,6 +474,7 @@ public:
     int32 timer(lua_State* L);                //execute lua closure after some time
     int32 queue(lua_State* L);
     int32 addRecast(lua_State*);
+    int32 hasRecast(lua_State*);
     int32 resetRecast(lua_State*);            // Reset one recast ID
     int32 resetRecasts(lua_State*);           // Reset recasts for the caller
 
@@ -483,7 +486,6 @@ public:
     int32 getNearbyEntities(lua_State* L);
     int32 canChangeState(lua_State* L);
 
-    int32 hideModel(lua_State* L);
     int32 wakeUp(lua_State*);                  //wakes target if necessary
 
     int32 recalculateStats(lua_State* L);
@@ -528,6 +530,9 @@ public:
     int32 setMod(lua_State*);                  // Sets Modifier Value
     int32 delMod(lua_State*);                  // Subtracts Modifier Value
 
+    int32 addLatent(lua_State*);               // Adds a latent effect
+    int32 delLatent(lua_State*);               // Removes a latent effect
+
     int32 fold(lua_State*);
     int32 doWildCard(lua_State*);
     int32 addCorsairRoll(lua_State*);          // Adds corsair roll effect
@@ -571,6 +576,7 @@ public:
     int32 removeAmmo(lua_State* L);
 
     int32 getWeaponSkillLevel(lua_State*);      // Get Skill for equipped weapon
+    int32 getWeaponDamageType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSkillType(lua_State*);       // gets the type of weapon equipped
     int32 getWeaponSubSkillType(lua_State*);    // gets the subskill of weapon equipped
     int32 getWSSkillchainProp(lua_State* L);    // returns weapon skill's skillchain properties (up to 3)
@@ -613,6 +619,7 @@ public:
     int32 getActiveManeuvers(lua_State*);
     int32 removeOldestManeuver(lua_State*);
     int32 removeAllManeuvers(lua_State*);
+    int32 updateAttachments(lua_State*);
 
     // Mob Entity-Specific
     int32 setMobLevel(lua_State*);
@@ -624,6 +631,7 @@ public:
 
     int32 getModelSize(lua_State *L);       // Gets model size
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
+    int32 getMobFlags(lua_State*);
 
     int32 spawn(lua_State* L);
     int32 isSpawned(lua_State*);

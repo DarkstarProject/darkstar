@@ -64,14 +64,8 @@ function onMobRoam(mob)
 
 end
 
-function onMobEngaged(mob,target)
-end
-
 function onMobDisengage(mob,target)
 end
 
 function onMobDeath(mob, player, isKiller)
-end
-
-function onMobDespawn(mob)
 end

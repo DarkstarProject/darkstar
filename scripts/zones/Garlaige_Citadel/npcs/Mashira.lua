@@ -41,4 +41,3 @@ MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
         player:tradeComplete();
     end
 end;
-

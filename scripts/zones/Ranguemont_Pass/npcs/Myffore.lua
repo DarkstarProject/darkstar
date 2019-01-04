@@ -21,4 +21,3 @@ function onEventFinish(player,csid,option,npc)
         GetNPCByID(DoorID):openDoor(10);
     end
 end;
-

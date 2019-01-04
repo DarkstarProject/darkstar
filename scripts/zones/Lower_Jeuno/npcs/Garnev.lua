@@ -45,4 +45,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,DEAL_WITH_TENSHODO);
     end
 end;
-

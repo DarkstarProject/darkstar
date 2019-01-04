@@ -5,11 +5,11 @@
 -- Involved in Quest: Making the Grade, Riding on the Clouds
 -- !pos -120 -6 124 239
 -----------------------------------
-local ID = require("scripts/zones/Windurst_Walls/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Windurst_Walls/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,7 +48,7 @@ function onTrade(player,npc,trade)
             player:setVar("rootProblem",2);
         end
     elseif (trade:hasItemQty(17299,4) and count == 4 and trade:getGil() == 0) then -- trade:getItemCount() is apparently checking total of all 8 slots combined. Could have sworn that wasn't how it worked before.
-        if (player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
+        if (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 2) then
             player:startEvent(407); -- now Koru remembers something that you need to inquire his former students.
         end;
     end;

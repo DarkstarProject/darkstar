@@ -29,8 +29,8 @@ function onSpellCast(caster,target,spell)
             spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_ABSORB_CHR)
-            caster:addStatusEffect(dsp.effect.CHR_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_DISPELABLE) -- caster gains CHR
-            target:addStatusEffect(dsp.effect.CHR_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK,FLAG_ERASABLE)    -- target loses CHR
+            caster:addStatusEffect(dsp.effect.CHR_BOOST,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK) -- caster gains CHR
+            target:addStatusEffect(dsp.effect.CHR_DOWN,ABSORB_SPELL_AMOUNT*resist*((100+(caster:getMod(dsp.mod.AUGMENTS_ABSORB)))/100), ABSORB_SPELL_TICK, ABSORB_SPELL_AMOUNT*ABSORB_SPELL_TICK)    -- target loses CHR
         end
     end
     return dsp.effect.CHR_DOWN

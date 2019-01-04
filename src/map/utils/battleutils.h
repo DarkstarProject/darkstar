@@ -147,8 +147,8 @@ namespace battleutils
     uint8               GetGuardRate(CBattleEntity* PAttacker, CBattleEntity* PDefender);
     float               GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent);
 
-    int32               TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE attackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
-    int32               TakeWeaponskillDamage(CCharEntity* PAttacker, CBattleEntity* PDefender, int32 damage, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier);
+    int32               TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE physicalAttackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter = false);
+    int32               TakeWeaponskillDamage(CCharEntity* PAttacker, CBattleEntity* PDefender, int32 damage, ATTACKTYPE attackType, DAMAGETYPE damageType, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier);
     int32               TakeSkillchainDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, int32 lastSkillDamage, CBattleEntity* taChar);
 
     bool                TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell);
@@ -186,7 +186,7 @@ namespace battleutils
     void                unCharm(CBattleEntity* PEntity);
 
     uint16              doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
-    uint16              getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, uint16 damage);
+    int32               getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, int32 damage);
     uint16              jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 
     void                TransferEnmity(CBattleEntity* PHateReceiver, CBattleEntity* PHateGiver, CMobEntity* PMob, uint8 percentToTransfer);
@@ -197,11 +197,12 @@ namespace battleutils
 
     int32               BreathDmgTaken(CBattleEntity* PDefender, int32 damage);
     int32               MagicDmgTaken(CBattleEntity* PDefender, int32 damage, ELEMENT element);
-    int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage);
-    int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage);
+    int32               PhysicalDmgTaken(CBattleEntity* PDefender, int32 damage, int16 damageType);
+    int32               RangedDmgTaken(CBattleEntity* PDefender, int32 damage, int16 damageType);
+    int32               HandleSteamJacket(CBattleEntity* PDefender, int32 damage, int16 damageType);
 
     void                HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CBattleEntity* PAttacker);
-    int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage);
+    int32               HandleSevereDamage(CBattleEntity* PDefender, int32 damage, bool isPhysical);
     int32               HandleSevereDamageEffect(CBattleEntity* PDefender, EFFECT effect, int32 damage, bool removeEffect);
     void                HandleTacticalParry(CBattleEntity* PEntity);
     void                HandleTacticalGuard(CBattleEntity* PEntity);
@@ -241,6 +242,8 @@ namespace battleutils
     int32               GetMeritValue(CBattleEntity*, MERIT_TYPE);
 
     int32               GetScaledItemModifier(CBattleEntity*, CItemArmor*, Mod);
+    DAMAGETYPE          GetSpikesDamageType(SUBEFFECT spikesType);
+    DAMAGETYPE          GetEnspellDamageType(ENSPELL enspellType);
 };
 
 #endif

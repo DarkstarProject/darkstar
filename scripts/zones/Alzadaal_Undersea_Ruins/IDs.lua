@@ -27,6 +27,11 @@ zones[dsp.zone.ALZADAAL_UNDERSEA_RUINS] =
     },
     mob =
     {
+        COOKIEDUSTER_LIPIROON_PH =
+        {
+            [17072142] = 17072150,
+            [17072144] = 17072150,
+        },
         OB                      = 17072171,
         CHEESE_HOARDER_GIGIROON = 17072172,
         ARMED_GEARS             = 17072178,

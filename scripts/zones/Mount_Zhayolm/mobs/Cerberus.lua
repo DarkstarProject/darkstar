@@ -5,9 +5,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
     if (mob:getHPP() > 25) then
         mob:setMod(dsp.mod.REGAIN, 10)

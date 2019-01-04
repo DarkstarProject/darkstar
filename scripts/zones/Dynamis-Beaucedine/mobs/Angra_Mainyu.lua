@@ -9,9 +9,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobEngaged(mob,target)
 
     SpawnMob(17326082):updateEnmity(target); -- Fire_Pukis

@@ -11,12 +11,6 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.MAGIC_COOL, 60);
 end;
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then
         spell:setAoE(dsp.magic.aoe.RADIAL);

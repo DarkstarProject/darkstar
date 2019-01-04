@@ -18,6 +18,10 @@ zones[dsp.zone.ROLANBERRY_FIELDS_S] =
     },
     mob =
     {
+        DELICIEUSE_DELPHINE_PH =
+        {
+            [17150279] = 17150280, -- -484.535 -23.756 -467.462
+        },
     },
     npc =
     {

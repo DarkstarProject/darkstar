@@ -17,7 +17,15 @@ zones[dsp.zone.BEADEAUX_S] =
     },
     mob =
     {
-        DA_DHA_HUNDREDMASK_PH = 
+        EATHO_CRUELHEART_PH =
+        {
+            [17154068] = 17154069,
+        },
+        BATHO_MERCIFULHEART_PH =
+        {
+            [17154147] = 17154148,
+        },
+        DA_DHA_HUNDREDMASK_PH =
         {
             [17154095] = 17154195, -- -37.741 0.344 -127.037
         },

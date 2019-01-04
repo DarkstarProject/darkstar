@@ -1,5 +1,5 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Pond Sahagin
 -----------------------------------
 require("scripts/globals/regimes")

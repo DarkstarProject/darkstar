@@ -7,9 +7,6 @@ require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     -- adjust drops based on number of HQ Aern Organs traded to QM
     local qm = GetNPCByID(ID.npc.IXAERN_MNK_QM);
@@ -24,9 +21,6 @@ function onMobSpawn(mob)
     qm:setLocalVar("[SEA]IxAern_DropRate", 0);
     
     mob:AnimationSub(1); -- Reset the subanim - otherwise it will respawn with bracers on. Note that Aerns are never actually supposed to be in subanim 0.
-end;
-
-function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)

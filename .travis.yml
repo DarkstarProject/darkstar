@@ -4,6 +4,9 @@ sudo: required
 
 cache: ccache
 
+git:
+  submodules: false
+
 addons:
   apt:
     sources:

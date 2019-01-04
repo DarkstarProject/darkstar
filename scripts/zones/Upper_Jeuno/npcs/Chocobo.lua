@@ -123,4 +123,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,CHOCOBO_S_WOUNDS);
     end
 end;
-

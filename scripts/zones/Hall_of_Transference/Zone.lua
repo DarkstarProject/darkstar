@@ -30,15 +30,15 @@ function onZoneIn(player,prevZone)
 
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
         if (player:getVar("cspromy3") == 1) then
-            if (prevZone == 102) then
+            if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
                 end
-            elseif (prevZone == 108) then
+            elseif (prevZone == dsp.zone.KONSCHTAT_HIGHLANDS) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
                     cs = 155;
                 end
-            elseif (prevZone == 117) then
+            elseif (prevZone == dsp.zone.TAHRONGI_CANYON) then
                 if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
                     cs = 155;
                 end

@@ -42,4 +42,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,STARDUST);
     end
 end;
-

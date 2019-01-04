@@ -75,5 +75,3 @@ function onEventFinish(player,csid,option)
         player:setVar("TokakaSpokenTo",1);
     end
 end;
-
-

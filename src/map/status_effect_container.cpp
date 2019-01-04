@@ -348,7 +348,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
     if (CanGainStatusEffect(PStatusEffect))
     {
-
         // check for minimum duration
         if (PStatusEffect->GetDuration() < effects::EffectsParams[statusId].MinDuration) {
             PStatusEffect->SetDuration(effects::EffectsParams[statusId].MinDuration);

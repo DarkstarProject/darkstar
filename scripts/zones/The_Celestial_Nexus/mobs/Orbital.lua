@@ -12,12 +12,6 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.REGAIN, 50);
 end;
 
-function onMobSpawn(mob)
-end;
-
-function onMobFight(mob, target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;
 

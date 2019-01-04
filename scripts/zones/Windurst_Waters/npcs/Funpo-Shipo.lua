@@ -30,4 +30,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",13,true);
     end
 end;
-

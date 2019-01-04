@@ -61,4 +61,3 @@ end;
 function onEventFinish(player,csid,option,npc)
     npc:wait(0);
 end;
-

@@ -27,7 +27,7 @@ zones[dsp.zone.SOUTH_GUSTABERG] =
         FIRE_TAKE               = 7406, -- You take <item> out of the fire.
         FIRE_LONGER             = 7407, -- It may take a little while more to cook the <item>.
         MEAT_ALREADY_PUT        = 7408, -- The <item> is already in the fire.
-        REGIME_REGISTERED       = 9896, -- New training regime registered!
+        REGIME_REGISTERED       = 9898, -- New training regime registered!
     },
     mob =
     {

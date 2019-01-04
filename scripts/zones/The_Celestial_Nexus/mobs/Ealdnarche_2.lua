@@ -20,8 +20,5 @@ function onMobSpawn(mob)
     mob:setMobMod(dsp.mobMod.GA_CHANCE,25);
 end;
 
-function onMobFight(mob, target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;

@@ -523,9 +523,10 @@ int32 CBattleEntity::addMP(int32 mp)
     return abs(mp);
 }
 
-int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/)
+int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullptr*/, ATTACKTYPE attackType /* = ATTACK_NONE*/, DAMAGETYPE damageType /* = DAMAGE_NONE*/)
 {
     PLastAttacker = attacker;
+    PAI->EventHandler.triggerListener("TAKE_DAMAGE", this, amount, attacker, (uint16)attackType, (uint16)damageType);
     return addHP(-amount);
 }
 
@@ -1278,10 +1279,6 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         else
         {
             actionTarget.param = luautils::OnSpellCast(this, PTarget, PSpell);
-
-            // Manually set the attacker here since the spell scripts call CLuaBaseEntity::delHP and do not provide the attacker
-            if (PSpell->dealsDamage())
-                PTarget->PLastAttacker = this;
 
             // Remove Saboteur
             if (PSpell->getSkillType() == SKILLTYPE::SKILL_ENFEEBLING_MAGIC)

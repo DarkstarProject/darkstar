@@ -6,9 +6,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
 
     local Keremet = mob:getID();

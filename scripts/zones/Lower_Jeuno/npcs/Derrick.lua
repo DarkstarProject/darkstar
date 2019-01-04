@@ -96,6 +96,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);
     end
 end;
-
-
-

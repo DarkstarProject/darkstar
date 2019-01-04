@@ -25,17 +25,17 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         FAURBELLANT_2                = 7425, -- Ah, the <item>! Thank you for making such a long journey to bring this! May the Gates of Paradise open to all.
         FAURBELLANT_3                = 7426, -- Please deliver that <item> to the high priest in the San d'Oria Cathedral.
         FAURBELLANT_4                = 7427, -- My thanks again for your services. May the Gates of Paradise open to all.
-        UNLOCK_SUMMONER              = 7571, -- You can now become a summoner.
-        UNLOCK_CARBUNCLE             = 7572, -- You can now summon Carbuncle.
-        CANNOT_REMOVE_FRAG           = 7586, -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
-        ALREADY_OBTAINED_FRAG        = 7587, -- You have already obtained this monument's <keyitem>. Try searching for another.
-        ALREADY_HAVE_ALL_FRAGS       = 7588, -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
-        FOUND_ALL_FRAGS              = 7589, -- You have obtained <keyitem>! You now have all 8 fragments of light!
-        ZILART_MONUMENT              = 7590, -- It is an ancient Zilart monument.
-        TELEPOINT_HAS_BEEN_SHATTERED = 7751, -- The telepoint has been shattered into a thousand pieces...
-        BROKEN_EGG                   = 7822, -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
-        CHOCOBO_TRACKS               = 7883, -- There are chocobo tracks on the ground here.
-        REGIME_REGISTERED            = 10121, -- New training regime registered!
+        UNLOCK_SUMMONER              = 7573, -- You can now become a summoner.
+        UNLOCK_CARBUNCLE             = 7574, -- You can now summon Carbuncle.
+        CANNOT_REMOVE_FRAG           = 7588, -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...
+        ALREADY_OBTAINED_FRAG        = 7589, -- You have already obtained this monument's <keyitem>. Try searching for another.
+        ALREADY_HAVE_ALL_FRAGS       = 7590, -- You have obtained all of the fragments. You must hurry to the ruins of the ancient shrine!
+        FOUND_ALL_FRAGS              = 7591, -- You have obtained <keyitem>! You now have all 8 fragments of light!
+        ZILART_MONUMENT              = 7592, -- It is an ancient Zilart monument.
+        TELEPOINT_HAS_BEEN_SHATTERED = 7753, -- The telepoint has been shattered into a thousand pieces...
+        BROKEN_EGG                   = 7824, -- There is a broken egg on the ground here. Perhaps there is a nest in the boughs of this tree.
+        CHOCOBO_TRACKS               = 7885, -- There are chocobo tracks on the ground here.
+        REGIME_REGISTERED            = 10123, -- New training regime registered!
     },
     mob =
     {
@@ -43,8 +43,20 @@ zones[dsp.zone.LA_THEINE_PLATEAU] =
         {
             [17195256] = 17195259, -- 450.472 70.657 238.237
         },
-        BATTERING_RAM       = 17195316,
-        NIHNIKNOOVI         = 17195475,
+        LUMBERING_LAMBERT_PH =
+        {
+            [17195143] = 17195317, -- -372 -16 -6
+            [17195316] = 17195317, -- -117 -1 -136
+            [17195317] = 17195318, -- Lumbering can't spawn if Bloodtear is up
+        },
+        BLOODTEAR_PH =
+        {
+            [17195143] = 17195318, -- -372 -16 -6
+            [17195316] = 17195318, -- -117 -1 -136
+            [17195317] = 17195318, -- -216 -8 -107
+            [17195318] = 17195317, -- Bloodtear can't spawn if Lumbering is up
+        },
+        NIHNIKNOOVI    = 17195475,
     },
     npc =
     {

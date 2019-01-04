@@ -7,9 +7,6 @@ require("scripts/globals/status");
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     --[[ TODO:
         Summons pet when party is engaged.  Randomly chosen between Tiger and Mandragora.

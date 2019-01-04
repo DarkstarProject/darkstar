@@ -8,6 +8,3 @@ function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 115, 1, dsp.regime.type.FIELDS)
     dsp.regime.checkRegime(player, mob, 116, 2, dsp.regime.type.FIELDS)
 end;
-
-function onMobDespawn(mob)
-end;

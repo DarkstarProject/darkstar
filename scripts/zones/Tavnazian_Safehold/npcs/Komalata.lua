@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     if player:getCurrentMission(COP) >= SHELTERING_DOUBT then
         table.insert(stock, 625)      -- Apple Vinegar
         table.insert(stock, 91)
-        table.insert(stock, 18214)    -- Black Bread
+        table.insert(stock, 4364)    -- Black Bread
         table.insert(stock, 110)
         table.insert(stock, 610)      -- San d'Orian Flour
         table.insert(stock, 55)
@@ -43,4 +43,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

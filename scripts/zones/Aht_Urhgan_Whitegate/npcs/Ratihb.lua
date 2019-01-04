@@ -54,4 +54,3 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.LIFE_FLOAT)
     end
 end
-

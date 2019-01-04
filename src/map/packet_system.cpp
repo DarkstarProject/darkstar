@@ -632,7 +632,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        if (PChar->m_Costum != 0 || PChar->animation == ANIMATION_SYNTH)
+        if (PChar->m_Costume != 0 || PChar->animation == ANIMATION_SYNTH)
         {
             PChar->pushPacket(new CReleasePacket(PChar, RELEASE_STANDARD));
             return;
@@ -674,19 +674,16 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if(PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        if (auto PMob = dynamic_cast<CMobEntity*>(PChar->GetBattleTarget()))
         {
-            CMobEntity* MOB = (CMobEntity*)it->second;
-
-            if (MOB->animation == ANIMATION_ATTACK &&
-                MOB->GetBattleTargetID() == PChar->id)
+            if (!PMob->CalledForHelp() && PMob->PEnmityContainer->HasID(PChar->id))
             {
-                MOB->CallForHelp(true);
+                PMob->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
-
                 return;
             }
         }
+
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 22));
     }
     break;
@@ -2737,8 +2734,26 @@ void SmallPacket0x05D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, data));
-    return;
+    const auto TargetID = data.ref<uint32>(0x04);
+    const auto TargetIndex = data.ref<uint16>(0x08);
+    const auto EmoteID = data.ref<Emote>(0x0A);
+    const auto emoteMode = data.ref<EmoteMode>(0x0B);
+
+    // Invalid Emote ID.
+    if (EmoteID < Emote::POINT || EmoteID > Emote::JOB)
+        return;
+
+    // Invalid Emote Mode.
+    if (emoteMode < EmoteMode::ALL || emoteMode > EmoteMode::MOTION)
+        return;
+
+    const auto extra = data.ref<uint16>(0x0C);
+
+    // Attempting to use locked job emote.
+    if (EmoteID == Emote::JOB && extra && !(PChar->jobs.unlocked & (1 << (extra - 0x1E))))
+        return;
+
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, TargetID, TargetIndex, EmoteID, emoteMode, extra));
 }
 
 /************************************************************************
@@ -4869,6 +4884,9 @@ void SmallPacket0x0E8(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     {
     case ANIMATION_NONE:
     {
+        if (data.ref<uint8>(0x04) == 0x02)
+            return;
+
         if (PChar->PPet == nullptr ||
             (PChar->PPet->m_EcoSystem != SYSTEM_AVATAR &&
             PChar->PPet->m_EcoSystem != SYSTEM_ELEMENTAL &&
@@ -5209,7 +5227,7 @@ void SmallPacket0x0FA(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         for (auto safeContainerId : {LOC_MOGSAFE, LOC_MOGSAFE2})
         {
             CItemContainer* PContainer = PChar->getStorage(safeContainerId);
-            for (int slotIndex = 0; slotIndex < PContainer->GetSize(); ++slotIndex)
+            for (int slotIndex = 1; slotIndex <= PContainer->GetSize(); ++slotIndex)
             {
                 if (slotID == slotIndex && containerID == safeContainerId)
                     continue;

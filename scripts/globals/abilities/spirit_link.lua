@@ -43,11 +43,11 @@ function onUseAbility(player,target,ability)
             end
         else
             player:delStatusEffect(dsp.effect.STONESKIN)
-            player:delHP((drainamount-skin))
+            player:takeDamage(drainamount - skin)
         end
 
     else
-        player:delHP(drainamount)
+        player:takeDamage(drainamount)
     end
 
     local pet = player:getPet()

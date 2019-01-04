@@ -10,11 +10,13 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/pathfind");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

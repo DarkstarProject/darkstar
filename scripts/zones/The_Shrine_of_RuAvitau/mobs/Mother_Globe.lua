@@ -7,9 +7,6 @@
 require("scripts/globals/status")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     mob:addStatusEffectEx(dsp.effect.SHOCK_SPIKES,0,60,0,0) -- ~60 damage
     -- TODO: Effect can be stolen, giving a THF (Aura Steal) or BLU (Voracious Trunk) a 60 minute shock spikes effect (unknown potency).

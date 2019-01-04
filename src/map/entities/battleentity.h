@@ -228,9 +228,21 @@ enum SLOTTYPE
     SLOT_LINK2 = 0x11,
 };
 
+#define MAX_SLOTTYPE	18
+
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
 // для возможности различить эти орудия при экипировке и избавиться от ошибки
 // использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи)
+
+enum ATTACKTYPE
+{
+    ATTACK_NONE = 0,
+    ATTACK_PHYSICAL = 1,
+    ATTACK_MAGICAL = 2,
+    ATTACK_RANGED = 3,
+    ATTACK_SPECIAL = 4,
+    ATTACK_BREATH = 5,
+};
 
 enum DAMAGETYPE
 {
@@ -238,7 +250,16 @@ enum DAMAGETYPE
     DAMAGE_PIERCING = 1,
     DAMAGE_SLASHING = 2,
     DAMAGE_IMPACT = 3,
-    DAMAGE_HTH = 4
+    DAMAGE_HTH = 4,
+    DAMAGE_ELEMENTAL = 5,
+    DAMAGE_FIRE = 6,
+    DAMAGE_EARTH = 7,
+    DAMAGE_WATER = 8,
+    DAMAGE_WIND = 9,
+    DAMAGE_ICE = 10,
+    DAMAGE_LIGHTNING = 11,
+    DAMAGE_LIGHT = 12,
+    DAMAGE_DARK = 13,
 };
 
 enum REACTION
@@ -521,7 +542,7 @@ public:
     virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
 
     //Deals damage and updates the last attacker which is used when sending a player death message
-    virtual int32   takeDamage(int32 amount, CBattleEntity* attacker = nullptr);
+    virtual int32   takeDamage(int32 amount, CBattleEntity* attacker = nullptr, ATTACKTYPE attackType = ATTACK_NONE, DAMAGETYPE damageType = DAMAGE_NONE);
 
     int16		    getMod(Mod modID);		// величина модификатора
 

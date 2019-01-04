@@ -4,11 +4,11 @@
 -- Exact formula is unknown.
 --
 -- Raw Value is said to be 30%
--- It is said to increase to 50% w/ Saboteur
 -----------------------------------------
 require("scripts/globals/magic")
 require("scripts/globals/msg")
 require("scripts/globals/status")
+require("scripts/globals/utils")
 -----------------------------------------
 
 function onMagicCastingCheck(caster, target, spell)
@@ -18,12 +18,11 @@ end
 function onSpellCast(caster, target, spell)
     local dMND = caster:getStat(dsp.mod.MND) - target:getStat(dsp.mod.MND)
 
-    local power = calculatePotency(30, dMND, spell:getSkillType(), caster, target)
+    -- Spell casting increase
+    local power = calculatePotency(30, spell:getSkillType(), caster, target)
 
-    -- Sub Power: Magic Accuracy Modifier
-    -- Magic Accuracy penalty = floor(dMND/5)+20
-    -- Caps at -40 magic accuracy
-    local subPower = math.min(math.floor(dMND / 5) + 20, 40)
+    -- Magic Accuracy reduction (not affected by enfeebling skill)
+    local subPower = 20 + utils.clamp(math.floor(dMND / 5), 0, 20)
 
     --Duration, including resistance.
     local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)

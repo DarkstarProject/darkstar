@@ -149,7 +149,7 @@ CCharEntity::CCharEntity()
     m_mkeCurrent = 0;
     m_asaCurrent = 0;
 
-    m_Costum = 0;
+    m_Costume = 0;
     m_Monstrosity = 0;
     m_hasTractor = 0;
     m_hasRaise = 0;
@@ -584,6 +584,13 @@ bool CCharEntity::CanUseSpell(CSpell* PSpell)
 void CCharEntity::OnChangeTarget(CBattleEntity* PNewTarget)
 {
     pushPacket(new CLockOnPacket(this, PNewTarget));
+    PLatentEffectContainer->CheckLatentsTargetChange();
+}
+
+void CCharEntity::OnEngage(CAttackState& state)
+{
+    CBattleEntity::OnEngage(state);
+    PLatentEffectContainer->CheckLatentsTargetChange();
 }
 
 void CCharEntity::OnDisengage(CAttackState& state)
@@ -1670,7 +1677,7 @@ void CCharEntity::UpdateMoghancement()
     for (auto containerID : {LOC_MOGSAFE, LOC_MOGSAFE2})
     {
         CItemContainer* PContainer = getStorage(containerID);
-        for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+        for (int slotID = 1; slotID <= PContainer->GetSize(); ++slotID)
         {
             CItem* PItem = PContainer->GetItem(slotID);
             if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))
@@ -1712,7 +1719,7 @@ void CCharEntity::UpdateMoghancement()
         for (auto containerID : { LOC_MOGSAFE, LOC_MOGSAFE2 })
         {
             CItemContainer* PContainer = getStorage(containerID);
-            for (int slotID = 0; slotID < PContainer->GetSize(); ++slotID)
+            for (int slotID = 1; slotID <= PContainer->GetSize(); ++slotID)
             {
                 CItem* PItem = PContainer->GetItem(slotID);
                 if (PItem != nullptr && PItem->isType(ITEM_FURNISHING))

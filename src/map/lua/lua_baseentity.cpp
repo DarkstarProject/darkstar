@@ -86,6 +86,7 @@
 #include "../packets/char_appearance.h"
 #include "../packets/char_jobs.h"
 #include "../packets/char_job_extra.h"
+#include "../packets/char_emotion.h"
 #include "../packets/char_equip.h"
 #include "../packets/char_health.h"
 #include "../packets/char_mounts.h"
@@ -2296,6 +2297,38 @@ inline int32 CLuaBaseEntity::leavegame(lua_State *L)
 }
 
 /************************************************************************
+*  Function: sendEmote()
+*  Purpose : Makes a player entity emit an emote.
+*  Example : player:sendEmote(npc, dsp.emote.EXCAVATION, dsp.emoteMode.MOTION)
+*  Notes   : Currently only used for HELM animations.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::sendEmote(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC)
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+
+    const auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    const auto PTarget = Lunar<CLuaBaseEntity>::check(L, 1);
+
+    if (PChar && PTarget)
+    {
+        const auto emoteID = static_cast<Emote>(lua_tointeger(L, 2));
+        const auto emoteMode = static_cast<EmoteMode>(lua_tointeger(L, 3));
+
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE,
+                                    new CCharEmotionPacket(PChar, PTarget->GetBaseEntity()->id,
+                                                           PTarget->GetBaseEntity()->targid, emoteID, emoteMode, 0));
+    }
+
+    return 0;
+}
+
+/************************************************************************
 *  Function: isBehind()
 *  Purpose : Returns true if entity is behind another entity
 *  Example : if (attacker:isBehind(target)) then
@@ -4304,22 +4337,24 @@ inline int32 CLuaBaseEntity::costume(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    if (PChar && !lua_isnil(L, 1) && lua_isnumber(L, 1))
     {
-        uint16 costum = (uint16)lua_tointeger(L, 1);
+        uint16 costume = static_cast<uint16>(lua_tointeger(L, 1));
 
-        if (PChar->m_Costum != costum &&
+        if (PChar->m_Costume != costume &&
             PChar->status != STATUS_SHUTDOWN &&
             PChar->status != STATUS_DISAPPEAR)
         {
-            PChar->m_Costum = costum;
-            PChar->updatemask |= UPDATE_POS;
+            PChar->m_Costume = costume;
+            PChar->updatemask |= UPDATE_LOOK;
+            PChar->pushPacket(new CCharUpdatePacket(PChar));
         }
         return 0;
     }
-    lua_pushinteger(L, PChar->m_Costum);
+
+    lua_pushinteger(L, PChar->m_Costume);
     return 1;
 }
 
@@ -7248,6 +7283,43 @@ inline int32 CLuaBaseEntity::delHP(lua_State *L)
 }
 
 /************************************************************************
+*  Function: takeDamage()
+*  Purpose : Takes damage from the provided attacker. If no attacker is provided then it clears the last attacker.
+*  Example : target:takeDamage(500, attacker=nil, attackType=ATTACK_NONE, damageType=DAMAGE_NONE, shouldWakeUp=true)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::takeDamage(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+
+    int32 damage = (int32)(lua_tointeger(L, 1));
+    if (damage > 0) {
+        // Attempt to retrieve the attacker
+        CBattleEntity* PAttacker = nullptr;
+        if (!lua_isnil(L, 2) && lua_isuserdata(L, 2)) {
+            CLuaBaseEntity* PLuaAttacker = Lunar<CLuaBaseEntity>::check(L, 2);
+            DSP_DEBUG_BREAK_IF(PLuaAttacker == nullptr);
+            DSP_DEBUG_BREAK_IF(PLuaAttacker->m_PBaseEntity->objtype == TYPE_NPC);
+            PAttacker = (CBattleEntity*)PLuaAttacker->m_PBaseEntity;
+        }
+        ATTACKTYPE attackType = !lua_isnil(L, 3) && lua_isnumber(L, 3) ? (ATTACKTYPE)lua_tointeger(L, 3) : ATTACK_NONE;
+        DAMAGETYPE damageType = !lua_isnil(L, 4) && lua_isnumber(L, 4) ? (DAMAGETYPE)lua_tointeger(L, 4) : DAMAGE_NONE;
+
+        ((CBattleEntity*)m_PBaseEntity)->takeDamage(damage, PAttacker, attackType, damageType);
+
+        // Attempt to wake up the target unless shouldWakeUp is provided and is false
+        if (lua_isnil(L, 5) || !lua_isboolean(L, 5) || lua_toboolean(L, 5))
+            ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->WakeUp();
+    }
+
+    return 0;
+}
+
+/************************************************************************
 *  Function: hideHP()
 *  Purpose : Toggles the display of the Hit Points bar for a Mob or NPC
 *  Example : mob:hideHP(true)
@@ -9591,7 +9663,7 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
 
     CBattleEntity* PBattleEntity = dynamic_cast<CBattleEntity*>(m_PBaseEntity);
     if(PBattleEntity)
@@ -9609,6 +9681,35 @@ inline int32 CLuaBaseEntity::addRecast(lua_State* L)
         }
     }
     return 0;
+}
+
+/************************************************************************
+*  Function: hasRecast()
+*  Purpose : Checks to see if a particular Ability is on cooldown
+*  Example : automaton:hasRecast(RECAST_ABILITY, skill:getID(), recast)
+*  Notes   : Recast parameter is optional to check charges
+************************************************************************/
+
+inline int32 CLuaBaseEntity::hasRecast(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    bool hasRecast = false;
+    CBattleEntity* PBattleEntity = dynamic_cast<CBattleEntity*>(m_PBaseEntity);
+    if (PBattleEntity)
+    {
+        RECASTTYPE recastContainer = (RECASTTYPE)lua_tointeger(L, 1);
+        auto recastID = (uint16)lua_tointeger(L, 2);
+        uint32 recast = 0;
+        if (!lua_isnil(L, 3) && lua_isnumber(L, 3))
+            recast = (uint32)lua_tointeger(L, 3);
+
+        hasRecast = PBattleEntity->PRecastContainer->HasRecast(recastContainer, recastID, recast);
+    }
+    lua_pushboolean(L, hasRecast);
+    return 1;
 }
 
 /************************************************************************
@@ -9822,31 +9923,6 @@ int32 CLuaBaseEntity::canChangeState(lua_State* L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     lua_pushboolean(L, m_PBaseEntity->PAI->CanChangeState());
     return 1;
-}
-
-/************************************************************************
-*  Function: hideModel()
-*  Purpose : Toggles an NPC or Mob to either hidden or visible
-*  Example : npc:hideModel(true) -- or false to show
-*  Notes   :
-************************************************************************/
-
-inline int32 CLuaBaseEntity::hideModel(lua_State* L)
-{
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isboolean(L, 1));
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC);
-
-    if (m_PBaseEntity->objtype == TYPE_MOB)
-    {
-        ((CMobEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
-    }
-    else if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        ((CNpcEntity*)m_PBaseEntity)->HideModel(lua_toboolean(L, 1));
-    }
-    m_PBaseEntity->updatemask |= UPDATE_HP;
-    return 0;
 }
 
 /************************************************************************
@@ -10336,7 +10412,15 @@ inline int32 CLuaBaseEntity::addStatusEffect(lua_State *L)
             (n >= 6 ? (uint16)lua_tointeger(L, 6) : 0),  // Sub Power
             (n >= 7 ? (uint16)lua_tointeger(L, 7) : 0)); // Tier
 
-        lua_pushboolean(L, ((CBattleEntity*)m_PBaseEntity)->StatusEffectContainer->AddStatusEffect(PEffect));
+        CBattleEntity* PEntity = ((CBattleEntity*)m_PBaseEntity);
+        if (PEffect->GetStatusID() == EFFECT_FOOD && PEntity)
+        {
+            int16 durationModifier = PEntity->getMod(Mod::FOOD_DURATION);
+            if (durationModifier)
+                PEffect->SetDuration((uint32)(PEffect->GetDuration() + PEffect->GetDuration() * (durationModifier / 100.0f)));
+        }
+
+        lua_pushboolean(L, PEntity->StatusEffectContainer->AddStatusEffect(PEffect));
     }
 
     return 1;
@@ -10837,6 +10921,60 @@ inline int32 CLuaBaseEntity::delMod(lua_State *L)
 }
 
 /************************************************************************
+*  Function: addLatent()
+*  Purpose : Adds the specified latent to the player
+*  Example : player:addLatent(dsp.latent.LATENT_HP_UNDER_PERCENT, 95, dsp.mod.REGEN, 1)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addLatent(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+
+    LATENT conditionID = (LATENT)lua_tointeger(L, 1);
+    uint16 conditionValue = (uint16)lua_tointeger(L, 2);
+    Mod modID = static_cast<Mod>(lua_tointeger(L, 3));
+    int16 modValue = (int16)lua_tointeger(L, 4);
+
+    ((CCharEntity*)m_PBaseEntity)->PLatentEffectContainer->AddLatentEffect(conditionID, conditionValue, modID, modValue);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: delLatent()
+*  Purpose : Removes the specified latent to the player. Returns if successfully removed or not.
+*  Example : player:delLatent(dsp.latent.LATENT_HP_UNDER_PERCENT, 95, dsp.mod.REGEN, 1)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::delLatent(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+
+    LATENT conditionID = (LATENT)lua_tointeger(L, 1);
+    uint16 conditionValue = (uint16)lua_tointeger(L, 2);
+    Mod modID = static_cast<Mod>(lua_tointeger(L, 3));
+    int16 modValue = (int16)lua_tointeger(L, 4);
+
+    lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->PLatentEffectContainer->DelLatentEffect(conditionID, conditionValue, modID, modValue));
+
+    return 0;
+}
+
+/************************************************************************
 *  Function: fold()
 *  Purpose : Removes the most recent Phantom Roll or Bust effect
 *  Example : target:fold()
@@ -11294,8 +11432,9 @@ inline int32 CLuaBaseEntity::isSpellAoE(lua_State* L)
 /************************************************************************
 *  Function: physicalDmgTaken()
 *  Purpose : Returns the value of Physical Damage taken after calculation
-*  Example : dmg = target:physicalDmgTaken(dmg)
-*  Notes   : Passes argument to PhysicalDmgTaken member of battleutils
+*  Example : dmg = target:physicalDmgTaken(dmg, damageType)
+*  Notes   : Passes argument to PhysicalDmgTaken member of battleutils.
+*            DamageType is optional and defaults to weapon type if not provided.
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::physicalDmgTaken(lua_State *L)
@@ -11305,7 +11444,9 @@ inline int32 CLuaBaseEntity::physicalDmgTaken(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    lua_pushinteger(L, battleutils::PhysicalDmgTaken((CBattleEntity*)m_PBaseEntity, (int32)lua_tointeger(L, 1)));
+    int16 damageType = !lua_isnil(L, 2) && lua_isnumber(L, 2) ? (int16)lua_tointeger(L, 2) : 0;
+
+    lua_pushinteger(L, battleutils::PhysicalDmgTaken((CBattleEntity*)m_PBaseEntity, (int32)lua_tointeger(L, 1), damageType));
     return 1;
 }
 
@@ -11345,7 +11486,9 @@ inline int32 CLuaBaseEntity::rangedDmgTaken(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    lua_pushinteger(L, battleutils::RangedDmgTaken((CBattleEntity*)m_PBaseEntity, (int32)lua_tointeger(L, 1)));
+    int16 damageType = !lua_isnil(L, 2) && lua_isnumber(L, 2) ? (int16)lua_tointeger(L, 2) : 0;
+
+    lua_pushinteger(L, battleutils::RangedDmgTaken((CBattleEntity*)m_PBaseEntity, (int32)lua_tointeger(L, 1), damageType));
     return 1;
 }
 
@@ -11629,6 +11772,39 @@ inline int32 CLuaBaseEntity::getWeaponSkillLevel(lua_State *L)
 }
 
 /************************************************************************
+*  Function: getWeaponDamageType()
+*  Purpose : Returns the primary type of a weapon in a slot
+*  Example : if (attacker:getWeaponDamageType(SLOT_MAIN) == dsp.damageType.PIERCING)
+*  Notes   : Used to identify which damage type is the weapon
+************************************************************************/
+
+inline int32 CLuaBaseEntity::getWeaponDamageType(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
+
+    if (!lua_isnil(L, 1) && lua_isnumber(L, 1))
+    {
+        uint8 SLOT = (uint8)lua_tointeger(L, 1);
+        if (SLOT > 3)
+        {
+            lua_pushinteger(L, 0);
+            return 1;
+        }
+        CItemWeapon* weapon = ((CBattleEntity*)m_PBaseEntity)->m_Weapons[SLOT];
+        if (weapon == nullptr)
+        {
+            lua_pushinteger(L, 0);
+            return 1;
+        }
+        lua_pushinteger(L, weapon->getDmgType());
+        return 1;
+    }
+    ShowError(CL_RED"lua::getWeaponDamageType :: Invalid slot specified!" CL_RESET);
+    return 0;
+}
+
+/************************************************************************
 *  Function: getWeaponSkillType()
 *  Purpose : Returns the primary type of a weapon in a slot
 *  Example : if (attacker:getWeaponSkillType(SLOT_MAIN) == SKILL_HAND_TO_HAND)
@@ -11729,7 +11905,7 @@ inline int32 CLuaBaseEntity::getWSSkillchainProp(lua_State* L)
 /************************************************************************
 *  Function: takeWeaponskillDamage()
 *  Purpose : Calls Battle Utils to calculate final weapon skill damage against a foe
-*  Example : defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
+*  Example : defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
 *  Notes   : Global function of same name in weaponskills.lua, calls this member function from within
 ************************************************************************/
 
@@ -11739,20 +11915,24 @@ int32 CLuaBaseEntity::takeWeaponskillDamage(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isboolean(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isboolean(L, 6));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isnumber(L, 7));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 8) || !lua_isnumber(L, 8));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 9) || !lua_isnumber(L, 9));
 
     auto PChar = static_cast<CCharEntity*>(Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity);
     auto damage = (int32)lua_tointeger(L, 2);
-    auto slot = (uint8)lua_tointeger(L, 3);
-    auto primary = lua_toboolean(L, 4);
-    auto tpMultiplier = (float)lua_tonumber(L, 5);
-    auto bonusTP = (uint16)lua_tointeger(L, 6);
-    auto targetTPMultiplier = (float)lua_tonumber(L, 7);
+    ATTACKTYPE attackType = (ATTACKTYPE)lua_tointeger(L, 3);
+    DAMAGETYPE damageType = (DAMAGETYPE)lua_tointeger(L, 4);
+    auto slot = (uint8)lua_tointeger(L, 5);
+    auto primary = lua_toboolean(L, 6);
+    auto tpMultiplier = (float)lua_tonumber(L, 7);
+    auto bonusTP = (uint16)lua_tointeger(L, 8);
+    auto targetTPMultiplier = (float)lua_tonumber(L, 9);
 
-    lua_pushinteger(L, (lua_Integer)battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, slot, primary, tpMultiplier, bonusTP, targetTPMultiplier));
+    lua_pushinteger(L, (lua_Integer)battleutils::TakeWeaponskillDamage(PChar, static_cast<CBattleEntity*>(m_PBaseEntity), damage, attackType, damageType, slot, primary, tpMultiplier, bonusTP, targetTPMultiplier));
     return 1;
 }
 
@@ -12425,6 +12605,26 @@ inline int32 CLuaBaseEntity::removeAllManeuvers(lua_State* L)
 
     return 0;
 }
+
+/************************************************************************
+*  Function: updateAttachmentsPerformance()
+*  Purpose : Updates all of the attachments
+*  Example : master:updateAttachments()
+*  Notes   : Called when Optic Fiber has changed.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::updateAttachments(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_PC);
+
+    CCharEntity* PEntity = (CCharEntity*)m_PBaseEntity;
+
+    puppetutils::UpdateAttachments(PEntity);
+
+    return 0;
+}
+
 /************************************************************************
 *  Function: setMobLevel()
 *  Purpose : Updates the monsters level and recalculates stats
@@ -12623,6 +12823,26 @@ inline int32 CLuaBaseEntity::setMobFlags(lua_State* L)
             PTarget->updatemask |= UPDATE_HP;
         }
     }
+    return 0;
+}
+
+/************************************************************************
+*  Function: getMobFlags()
+*  Purpose : Get Mob flags
+*  Example : Not in use in scripts
+*  Notes   : Currently only used through !getMobFlags command
+************************************************************************/
+inline int32 CLuaBaseEntity::getMobFlags(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    if (auto PMob = dynamic_cast<CMobEntity*>(m_PBaseEntity))
+    {
+        lua_pushinteger(L, PMob->getEntityFlags());
+        return 1;
+    }
+
     return 0;
 }
 
@@ -13930,6 +14150,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendGuild),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,openSendBox),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,leavegame),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,sendEmote),
 
     // Location and Positioning
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isBehind),
@@ -14146,6 +14367,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,restoreHP),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delHP),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,takeDamage),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideHP),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMP),
@@ -14268,6 +14490,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,timer),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,queue),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,addRecast),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, hasRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecast),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,resetRecasts),
 
@@ -14279,7 +14502,6 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getNearbyEntities),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,canChangeState),
 
-    LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideModel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,wakeUp),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,recalculateStats),
@@ -14323,6 +14545,9 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMod),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,delMod),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addLatent),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,delLatent),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,fold),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,doWildCard),
@@ -14368,6 +14593,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAmmo),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillLevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponDamageType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWeaponSubSkillType),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getWSSkillchainProp),
@@ -14411,6 +14637,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getActiveManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateAttachments),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobLevel),
@@ -14422,6 +14649,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getModelSize),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobFlags),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getMobFlags),
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,spawn),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,isSpawned),
