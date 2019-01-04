@@ -19,23 +19,13 @@ end
 function onMobFight(mob,target)
     local battleTime = mob:getBattleTime()
 
-    if battleTime > 20 and battleTime % 25 == 0 then
-        local mobId = mob:getID()
-        local pets = {}
-
-        for i = mobId + 1, mobId + 5 do
-            if not GetMobByID(i):isSpawned() then
-                table.insert(pets, i)
-            end
-        end
-
-        if #pets > 0 then
-            local petId = pets[math.random(#pets)]
-            local pet = GetMobByID(petId)
-            pet:setSpawn(mob:getXPos() - 0.5, mob:getYPos(), mob:getZPos(), mob:getRotPos())
-            pet:spawn()
-            pet:updateEnmity(target)
-        end
+    if battleTime - 5 % 20 == 0 then -- every 20 seconds after 5 seconds, source: https://www.youtube.com/watch?v=AVsEbYjSAHM
+        local random = math.random(1,100);
+        local petId = mob:getID() + 1 + math.floor(random / 25); -- approximately 1% chance to spawn bomb bastard
+        local pet = GetMobByID(petId)
+        pet:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos(), mob:getRotPos())
+        pet:spawn()
+        pet:updateEnmity(target)
     end
 end
 
