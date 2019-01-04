@@ -7,9 +7,6 @@ mixins = {require("scripts/mixins/job_special")};
 local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;
 

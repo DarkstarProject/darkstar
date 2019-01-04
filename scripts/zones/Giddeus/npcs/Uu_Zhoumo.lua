@@ -49,4 +49,3 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SHIELD_OFFERING);
     end
 end;
-

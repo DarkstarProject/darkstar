@@ -69,7 +69,7 @@ function onTrigger(player, arg1, arg2, arg3, arg4, arg5, arg6)
     end
 
     -- validate duration
-    if (duration < 1) then
+    if (duration < 0) then
         error(player, "Invalid duration.");
         return;
     end

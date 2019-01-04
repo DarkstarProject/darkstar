@@ -7,11 +7,13 @@ local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/conquest")
 require("scripts/globals/settings")
+require("scripts/globals/chocobo")
 require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
     applyHalloweenNpcCostumes(zone:getID())
+    dsp.chocobo.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

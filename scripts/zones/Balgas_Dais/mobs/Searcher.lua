@@ -8,8 +8,5 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.HP_STANDBACK, 50);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;

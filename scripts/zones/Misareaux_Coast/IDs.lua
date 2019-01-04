@@ -23,6 +23,10 @@ zones[dsp.zone.MISAREAUX_COAST] =
     },
     mob =
     {
+        OKYUPETE_PH =
+        {
+            [16879839] = 16879847,
+        },
         PM6_2_MOB_OFFSET = 16879893,
         BOGGELMANN       = 16879897,
         GRATION          = 16879899,

@@ -13,4 +13,3 @@ end
 function onMobDespawn(mob)
     phOnDespawn(mob, ID.mob.GOBLINTRAP_PH, 5, 3600) -- 1 hour
 end
-

@@ -6,12 +6,6 @@ local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 2) then

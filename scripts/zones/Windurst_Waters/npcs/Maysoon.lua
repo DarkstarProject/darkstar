@@ -43,6 +43,3 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     end
 end;
-
-
-

@@ -34,6 +34,3 @@ function onMobDeath(mob, player, isKiller)
         end
     end
 end;
-
-function onMobDespawn(mob)
-end;

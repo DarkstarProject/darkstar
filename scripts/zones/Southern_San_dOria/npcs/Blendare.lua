@@ -37,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("BrothersCS", 1)
     end
 end;
-

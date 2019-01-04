@@ -5,9 +5,6 @@
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobEngaged(mob,target)
     mob:setMod(dsp.mod.REGAIN, 50);
 end;

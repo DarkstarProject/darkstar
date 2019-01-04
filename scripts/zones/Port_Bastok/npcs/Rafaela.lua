@@ -25,4 +25,3 @@ PastPerfectVar = player:getVar("PastPerfectVar");
     end
 
 end;
-

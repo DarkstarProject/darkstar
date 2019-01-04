@@ -29,4 +29,3 @@ function onEventFinish(player,csid,option)
         player:setVar("underTheSeaVar",1);
     end
 end;
-

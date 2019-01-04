@@ -28,4 +28,3 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterVar", 2);
     end
 end;
-

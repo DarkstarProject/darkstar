@@ -67,5 +67,3 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SHINY_EARRING);
     end;
 end;
-
-

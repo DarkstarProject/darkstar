@@ -49,6 +49,3 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end
 end;
-
-
-

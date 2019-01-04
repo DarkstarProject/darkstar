@@ -37,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_louverance_story",1);
     end
 end;
-

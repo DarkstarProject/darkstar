@@ -60,6 +60,3 @@ function onEventFinish(player,csid,option)
         player:setVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
     end
 end;
-
-
-

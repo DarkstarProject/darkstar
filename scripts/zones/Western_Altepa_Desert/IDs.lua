@@ -57,6 +57,7 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
     },
     npc =
     {
+        ALTEPA_GATE = 17289744,
     },
 }
 

@@ -40,4 +40,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
     end
 end;
-

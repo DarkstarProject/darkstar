@@ -17,7 +17,7 @@ end
 function onZoneIn( player, prevZone)
     local cs = -1
 
-    if prevZone == 134 then -- warp player to a correct position after dynamis
+    if prevZone == dsp.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
         player:setPos(-284.751,-39.923,-422.948,235)
     end
 

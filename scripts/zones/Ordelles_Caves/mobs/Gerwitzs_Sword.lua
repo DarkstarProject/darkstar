@@ -7,9 +7,6 @@
 require("scripts/globals/quests");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (player:getVar("darkPuppetCS") >= 3) then

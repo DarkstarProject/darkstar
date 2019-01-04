@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Apollyon/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/limbus")
+require("scripts/globals/zone")
 
 -----------------------------------
 --  onInitialize
@@ -54,7 +55,7 @@ zone:registerRegion(34, -283,-4,356,  -276,4,363); -- appolyon NW telporter floo
 zone:registerRegion(35, -243,-4,516,  -236,4,523); -- appolyon NW telporter floor3 to floor4
 zone:registerRegion(36, -523,-4,636,  -516,4,643); -- appolyon NW telporter floor4 to floor5
 zone:registerRegion(37, -563,-4,356,  -556,4,363); -- appolyon NW telporter floor5 to entrance
-                                                                
+
 end;
 
 -----------------------------------
@@ -72,18 +73,18 @@ end;
 
 function onZoneIn(player,prevZone)
 cs = -1;
-    if (prevZone~=33) then
+    if (prevZone ~= dsp.zone.ALTAIEU) then
       local playerLimbusID = player:getVar("LimbusID");
         if (playerLimbusID== 1290 or playerLimbusID== 1291 or playerLimbusID== 1294 or playerLimbusID== 1295 or playerLimbusID== 1296 or playerLimbusID== 1297) then
         player:setPos(-668,0.1,-666);
         else
         player:setPos(643,0.1,-600);
         end
- 
+
     elseif ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
         player:setPos(643,0.1,-600);
     end
-    
+
 return cs;
 end;
 
@@ -131,7 +132,7 @@ function onRegionEnter(player,region)
                   RegisterLimbusInstance(player,1296);
               end   --create instance appolyon CENTER
         end,
-        
+
         -- ///////////////////////APOLLYON SE TELEPORTER///////////////////////////////////////////
         [20] = function (x)
              -- print("SE_telporter_f1_to_f2");
@@ -204,15 +205,15 @@ function onRegionEnter(player,region)
               if (IsMobDead(16932985)==true and player:getAnimation()==0) then player:startEvent(202);end --202
          end,
     }
-    
+
 end;
 -----------------------------------
 -- onRegionLeave
 -----------------------------------
-    
+
 function onRegionLeave(player,region)
 end;
- 
+
 function onEventUpdate(player,csid,option)
    if (csid == 209 and option == 0 and GetServerVariable("[SW_Apollyon]MimicTrigger")==0) then
     SpawnCofferSWfloor3();
@@ -230,6 +231,3 @@ function onEventFinish(player,csid,option)
     player:setPos(-561,0,443,242,33); -- APOLLYON_NW_SW exit
    end
 end;
-
-
-

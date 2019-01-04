@@ -53,4 +53,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(SANDORIA,THE_SETTING_SUN);
     end;
 end;
-

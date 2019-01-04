@@ -7,9 +7,11 @@ local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
 require("scripts/globals/chocobo_digging");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
+require("scripts/globals/chocobo")
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -18,6 +20,7 @@ end;
 
 function onInitialize(zone)
     dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -29,7 +32,7 @@ function onZoneIn(player,prevZone)
         else
             player:setPos(610.542,-28.547,356.247,122);
         end
-    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == 50) then
+    elseif (player:getVar("threemenandaclosetCS") == 2 and prevZone == dsp.zone.AHT_URHGAN_WHITEGATE) then
         cs = 510;
     end
     return cs;

@@ -24,7 +24,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-286.271,-21.619,320.084,255);
     end
-    if (prevZone == 127 and player:getVar("theTalekeepersGiftKilledNM") >= 3) then
+    if (prevZone == dsp.zone.BEHEMOTHS_DOMINION and player:getVar("theTalekeepersGiftKilledNM") >= 3) then
         cs = 100;
     end
     return cs;
