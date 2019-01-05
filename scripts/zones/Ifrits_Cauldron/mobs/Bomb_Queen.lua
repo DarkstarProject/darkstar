@@ -19,7 +19,7 @@ end
 function onMobFight(mob,target)
     local battleTime = mob:getBattleTime()
 
-    if battleTime - 5 % 20 == 0 then -- every 20 seconds after 5 seconds, source: https://www.youtube.com/watch?v=AVsEbYjSAHM
+    if (battleTime - 5) % 20 == 0 then -- every 20 seconds after 5 seconds, source: https://www.youtube.com/watch?v=AVsEbYjSAHM
         local random = math.random(1,100);
         local petId = mob:getID() + 1 + math.floor(random / 25); -- approximately 1% chance to spawn bomb bastard
         local pet = GetMobByID(petId)
