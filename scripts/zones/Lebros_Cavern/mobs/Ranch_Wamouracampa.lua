@@ -3,9 +3,6 @@
 --  MOB: Ranch Wamouracampa
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
 
 end;

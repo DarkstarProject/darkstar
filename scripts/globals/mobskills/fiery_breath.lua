@@ -33,8 +33,8 @@ function onMobWeaponSkill(target, mob, skill)
     dmgmod = dmgmod * ((128-math.abs(angle))/128)
     dmgmod = utils.clamp(dmgmod, 50, 1600)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.FIRE,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.FIRE)
     return dmg
 end

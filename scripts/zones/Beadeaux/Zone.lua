@@ -11,6 +11,7 @@ require("scripts/globals/treasure")
 require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -32,7 +33,7 @@ function onZoneIn(player,prevZone)
         player:setPos(387.382,38.029,19.694,3)
     end
 
-    if prevZone == 109 then
+    if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
         if player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100 then
             cs = 121
         elseif player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then

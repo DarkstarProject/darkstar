@@ -27,4 +27,3 @@ function onEventFinish(player,csid,option)
         player:setMentor(1);
     end
 end;
-

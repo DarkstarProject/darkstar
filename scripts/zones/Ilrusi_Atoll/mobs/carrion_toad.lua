@@ -3,9 +3,6 @@
 --  MOB: Carrion Toad
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;
 

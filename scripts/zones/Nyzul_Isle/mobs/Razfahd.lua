@@ -16,9 +16,6 @@ function onMobSpawn(mob)
     mob:setUnkillable(true);
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local warp = mob:getLocalVar("warp");
 
@@ -33,7 +30,4 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
 end;

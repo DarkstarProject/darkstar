@@ -15,4 +15,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

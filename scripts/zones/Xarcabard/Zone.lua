@@ -19,7 +19,7 @@ function onZoneIn( player, prevZone)
 
     local UnbridledPassionCS = player:getVar("unbridledPassion")
 
-    if prevZone == 135 then -- warp player to a correct position after dynamis
+    if prevZone == dsp.zone.DYNAMIS_XARCABARD then -- warp player to a correct position after dynamis
         player:setPos(569.312,-0.098,-270.158,90)
     end
 

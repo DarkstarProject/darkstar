@@ -6,12 +6,6 @@ mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-function onMobFight(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.SIMURGH_POACHER);
 end;

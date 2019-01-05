@@ -22,6 +22,10 @@ zones[dsp.zone.RANGUEMONT_PASS] =
     },
     mob =
     {
+        GLOOM_EYE_PH =
+        {
+            [17457200] = 17457204,
+        },
         TAISAIJIN_PH =
         {
             17457213, -- -18.325 1.830 -114.932

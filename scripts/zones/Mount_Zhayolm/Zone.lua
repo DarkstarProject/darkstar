@@ -5,8 +5,6 @@
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")
 require("scripts/globals/helm")
------------------------------------
------------------------------------
 require("scripts/globals/zone")
 -----------------------------------
 

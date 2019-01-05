@@ -348,13 +348,6 @@ bool CStatusEffectContainer::AddStatusEffect(CStatusEffect* PStatusEffect, bool 
 
     if (CanGainStatusEffect(PStatusEffect))
     {
-        if (PStatusEffect->GetStatusID() == EFFECT_FOOD && m_POwner)
-        {
-            int16 durationModifier = m_POwner->getMod(Mod::FOOD_DURATION);
-            if (durationModifier)
-                PStatusEffect->SetDuration((uint32)(PStatusEffect->GetDuration() + PStatusEffect->GetDuration() * (durationModifier / 100.0f)));
-        }
-
         // check for minimum duration
         if (PStatusEffect->GetDuration() < effects::EffectsParams[statusId].MinDuration) {
             PStatusEffect->SetDuration(effects::EffectsParams[statusId].MinDuration);

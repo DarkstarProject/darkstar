@@ -21,6 +21,10 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
     },
     mob =
     {
+        GWYLLGI_PH            =
+        {
+            [17555661] = 17555664,
+        },
         CRYPT_GHOST_PH        =
         {
             [17555665] = 17555668,

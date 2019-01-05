@@ -49,4 +49,3 @@ function onEventFinish(player,csid,option)
         player:addFame(SELBINA,30);
     end
 end;
-

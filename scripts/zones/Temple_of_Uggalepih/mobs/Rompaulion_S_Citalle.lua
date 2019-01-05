@@ -4,9 +4,6 @@
 -- Involved with San d'Oria quest "Knight Stalker"
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     -- Get credit if other NM is dead/despawned or in the process of dieing/fading out
     local Cleuvarion = GetMobByID(mob:getID() - 1);

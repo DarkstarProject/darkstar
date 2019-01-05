@@ -44,4 +44,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,CANDLE_MAKING);
     end
 end;
-

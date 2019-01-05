@@ -4,9 +4,11 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

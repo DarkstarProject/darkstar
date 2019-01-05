@@ -118,7 +118,7 @@ function onSpellCast(caster,target,spell)
             dmg = adjustForTarget(target,dmg,spell:getElement())
             dmg = finalMagicAdjustments(caster,target,spell,dmg)
             final = dmg
-            target:delHP(final)
+            target:takeDamage(final, caster, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
             target:updateEnmityFromDamage(caster,final)
         elseif (caster:getObjType() == dsp.objType.PC) then
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

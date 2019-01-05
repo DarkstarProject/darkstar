@@ -674,19 +674,16 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if(PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        if (auto PMob = dynamic_cast<CMobEntity*>(PChar->GetBattleTarget()))
         {
-            CMobEntity* MOB = (CMobEntity*)it->second;
-
-            if (MOB->animation == ANIMATION_ATTACK &&
-                MOB->GetBattleTargetID() == PChar->id)
+            if (!PMob->CalledForHelp() && PMob->PEnmityContainer->HasID(PChar->id))
             {
-                MOB->CallForHelp(true);
+                PMob->CallForHelp(true);
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
-
                 return;
             }
         }
+
         PChar->pushPacket(new CMessageBasicPacket(PChar, PChar, 0, 0, 22));
     }
     break;

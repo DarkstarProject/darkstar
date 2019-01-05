@@ -6,9 +6,6 @@ require("scripts/globals/status");
 local ID = require("scripts/zones/The_Ashu_Talif/IDs")
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     local allies = mob:getInstance():getAllies();
     for i,v in pairs(allies) do

@@ -7,12 +7,14 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

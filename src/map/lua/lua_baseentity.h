@@ -352,6 +352,7 @@ public:
     int32 setHP(lua_State*);                // Set hp of Entity to value
     int32 restoreHP(lua_State*);            // Modify hp of Entity, but check if alive first
     int32 delHP(lua_State*);                // Subtract hp of Entity
+    int32 takeDamage(lua_State*);           // Takes damage from the provided attacker
     int32 hideHP(lua_State* L);
 
     int32 getMP(lua_State*);                // Gets MP of Entity
@@ -630,6 +631,7 @@ public:
 
     int32 getModelSize(lua_State *L);       // Gets model size
     int32 setMobFlags(lua_State*);          // Used to manipulate the mob's flags for testing.
+    int32 getMobFlags(lua_State*);
 
     int32 spawn(lua_State* L);
     int32 isSpawned(lua_State*);

@@ -3,10 +3,10 @@
 --  NPC: Hot Springs
 -- !pos 444 -37 -18 139
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/settings");
-local ID = require("scripts/zones/Horlais_Peak/IDs");
+local ID = require("scripts/zones/Horlais_Peak/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET) == 1) and (player:hasKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY) == true) then
+    if (player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET) == QUEST_ACCEPTED) and (player:hasKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY) == true) then
         player:addKeyItem(dsp.ki.CURILLAS_BOTTLE_FULL)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_FULL);
         player:delKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY);

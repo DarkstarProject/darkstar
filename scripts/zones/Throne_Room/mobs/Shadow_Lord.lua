@@ -7,9 +7,6 @@ local ID = require("scripts/zones/Throne_Room/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
     -- 1st form
     -- after change magic or physical immunity every 5min or 1k dmg

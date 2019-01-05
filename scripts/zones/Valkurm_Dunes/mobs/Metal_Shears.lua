@@ -20,9 +20,6 @@ function onAdditionalEffect(mob,target,damage)
     end
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;
 

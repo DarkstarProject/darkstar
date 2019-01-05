@@ -41,9 +41,6 @@ function onMobSpawn(mob)
     end;
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobRoam(mob)
     local roamTime = mob:getLocalVar("roamTime");
     if (mob:AnimationSub() == 0 and os.time() - roamTime > 60) then

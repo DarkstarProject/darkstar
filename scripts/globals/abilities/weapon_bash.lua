@@ -35,7 +35,7 @@ function onUseAbility(player,target,ability)
 
     -- Calculating and applying Weapon Bash damage
     local damage = math.floor(((darkKnightLvl + 11) / 4) + player:getMod(dsp.mod.WEAPON_BASH))
-    target:delHP(damage)
+    target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
     return damage
 end

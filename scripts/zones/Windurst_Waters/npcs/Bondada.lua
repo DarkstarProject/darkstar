@@ -35,6 +35,3 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
     end
 end;
-
-
-

@@ -6,9 +6,6 @@
 local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
 require("scripts/globals/quests");
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     if (player:getQuestStatus(JEUNO,A_NEW_DAWN) == QUEST_ACCEPTED and player:getVar("ANewDawn_Event") == 4) then
         player:setVar("ANewDawn_Event",5);

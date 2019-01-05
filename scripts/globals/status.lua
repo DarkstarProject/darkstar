@@ -1483,6 +1483,23 @@ dsp.mod =
     SYNTH_SKILL_GAIN                = 852, -- Synthesis skill gain rate
     SYNTH_FAIL_RATE                 = 861, -- Synthesis failure rate (percent)
     SYNTH_HQ_RATE                   = 862, -- High-quality success rate (not a percent)
+    DESYNTH_SUCCESS                 = 916, -- Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE            = 917, -- Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH           = 918, -- Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER           = 919, -- Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND            = 920, -- Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE             = 921, -- Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING       = 922, -- Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT           = 923, -- Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK            = 924, -- Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD            = 925, -- Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH           = 926, -- Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH       = 927, -- Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH           = 928, -- Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER         = 929, -- Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE            = 930, -- Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY         = 931, -- Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK            = 932, -- Amount synthesis failure rate is reduced when doing cooking
 
     WEAPONSKILL_DAMAGE_BASE         = 570, -- Specific to 1 Weaponskill: See modifier.h for how this is used
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
@@ -2050,6 +2067,42 @@ dsp.objType =
     MOB  = 0x04,
     PET  = 0x08,
     SHIP = 0x10,
+}
+
+----------------------------------
+-- Attack Type
+----------------------------------
+
+dsp.attackType =
+{
+    NONE     = 0,
+    PHYSICAL = 1,
+    MAGICAL  = 2,
+    RANGED   = 3,
+    SPECIAL  = 4,
+    BREATH   = 5,
+}
+
+----------------------------------
+-- Damage Type
+----------------------------------
+
+dsp.damageType = 
+{
+    NONE      = 0,
+    PIERCING  = 1,
+    SLASHING  = 2,
+    BLUNT     = 3,
+    HTH       = 4,
+    ELEMENTAL = 5,
+    FIRE      = 6,
+    EARTH     = 7,
+    WATER     = 8,
+    WIND      = 9,
+    ICE       = 10,
+    LIGHTNING = 11,
+    LIGHT     = 12,
+    DARK      = 13,
 }
 
 ----------------------------------
