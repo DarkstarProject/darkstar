@@ -10,25 +10,27 @@ require("scripts/globals/treasure")
 
 function onInitialize(zone)
     dsp.treasure.initZone(zone)
-end;
+end
 
 function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
-end;
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if ((player:getXPos() == 0) and (player:getYPos() == 0) and (player:getZPos() == 0)) then
-        player:setPos(-140.008,3.787,202.715,64);
+function onZoneIn(player, prevZone)
+    local cs = -1
+
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(-140.008, 3.787, 202.715, 64)
     end
-    return cs;
-end;
 
-function onRegionEnter(player,region)
-end;
+    return cs
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onRegionEnter(player, region)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
+
+function onEventFinish(player, csid, option)
+end
