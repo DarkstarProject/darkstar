@@ -32985,6 +32985,7 @@ INSERT INTO `mob_droplist` VALUES (4632,0,0,1000,16297,62); -- (Okyupete) Shephe
 INSERT INTO `mob_droplist` VALUES (4633,0,0,1000,2841,444); -- (Be'Hya Hundredwall) Quadav Silver Ingot
 INSERT INTO `mob_droplist` VALUES (4634,0,0,1000,16023,185); -- (Slippery Sucker) Mystique Earring
 INSERT INTO `mob_droplist` VALUES (4635,0,0,1000,16300,333); -- (Gloom Eye) Wit Pendant
+INSERT INTO `mob_droplist` VALUES (4636,0,0,1000,2838,321); -- (Quu Xijo the Illusory) Ephemeral Cloth
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
