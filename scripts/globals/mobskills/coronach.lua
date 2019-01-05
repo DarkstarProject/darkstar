@@ -24,9 +24,9 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.5
     
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,3,3,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
     
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
     return dmg
     
 end

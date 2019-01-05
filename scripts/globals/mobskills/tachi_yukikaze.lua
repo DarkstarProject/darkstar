@@ -21,11 +21,11 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 3
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1.56,1.88,2.50)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
 
     MobStatusEffectMove(mob, target, dsp.effect.BLINDNESS, 25, 0, 60)
 
     -- Never actually got a good damage sample.  Putting it between Gekko and Kasha.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
     return dmg
 end

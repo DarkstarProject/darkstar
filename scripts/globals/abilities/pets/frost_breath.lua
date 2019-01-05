@@ -31,7 +31,7 @@ function onUseAbility(pet, target, skill, action)
     dmgmod = (dmgmod * (1+gear))*deep
     pet:setTP(0)
 
-    local dmg = AbilityFinalAdjustments(dmgmod,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_IGNORE_SHADOWS)
-    target:delHP(dmg)
+    local dmg = AbilityFinalAdjustments(dmgmod,pet,skill,target,dsp.attackType.BREATH,dsp.damageType.ICE,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, pet, dsp.attackType.BREATH, dsp.damageType.ICE)
     return dmg
 end
