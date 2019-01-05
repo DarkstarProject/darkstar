@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
--- NPC: ??? (Spawn Vulpangue(ZNM T1))
+--  NPC: ??? (Spawn Vulpangue(ZNM T1))
 -- !pos -697 -7 -123 51
 -----------------------------------
 local ID = require("scripts/zones/Wajaom_Woodlands/IDs")
