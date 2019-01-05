@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Wajaom Woodlands
--- ZNM: Vulpangue
+--  ZNM: Vulpangue
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/weather")
