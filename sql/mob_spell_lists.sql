@@ -2583,6 +2583,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,645,75,255); -- Exuvati
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,646,74,255); -- Magic Hammer
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,647,65,255); -- Zephyr Mantle
 
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,157,1,255); -- aero 4
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,185,1,255); -- aeroaga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,186,1,255); -- aeroaga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,359,1,255); -- silencega
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
