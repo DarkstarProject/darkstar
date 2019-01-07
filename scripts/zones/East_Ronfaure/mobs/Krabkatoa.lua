@@ -1,10 +1,10 @@
 -----------------------------------
--- Area:
---  MOB: Krabkatoa
+-- Area: East Ronfaure
+--  VNM: Krabkatoa
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.KRABKATOA_STEAMER);
-end;
+    player:addTitle(dsp.title.KRABKATOA_STEAMER)
+end

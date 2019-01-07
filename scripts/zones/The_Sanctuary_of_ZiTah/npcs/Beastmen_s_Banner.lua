@@ -3,20 +3,18 @@
 --  NPC: Beastmen_s_Banner
 -- !pos -399.822 0.161 -168.998 121
 -----------------------------------
-local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs");
+local ID = require("scripts/zones/The_Sanctuary_of_ZiTah/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.BEASTMEN_BANNER);
-end;
+    player:messageSpecial(ID.text.BEASTMEN_BANNER)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end

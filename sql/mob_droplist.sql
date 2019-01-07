@@ -6139,10 +6139,13 @@ INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,3128,90);
 INSERT INTO `mob_droplist` VALUES (1142,0,0,1000,18456,560);
 INSERT INTO `mob_droplist` VALUES (1143,2,0,1000,2889,0);
 INSERT INTO `mob_droplist` VALUES (1143,0,0,1000,2889,100);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1622,30);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1640,470);
-INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1680,0);
-INSERT INTO `mob_droplist` VALUES (1144,2,0,1000,4372,0);
+
+-- Gigantobugard, Misareaux Coast (http://ffxidb.com/zones/25/gigantobugard)
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1622,70); -- Bugard Tusk (6.7%)
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1640,330); -- Bugard Skin (33.0%)
+INSERT INTO `mob_droplist` VALUES (1144,0,0,1000,1680,120); -- High Quality Bugard Skin (11.7%)
+INSERT INTO `mob_droplist` VALUES (1144,2,0,1000,4372,0); -- Giant Sheep Meat (Steal)
+
 INSERT INTO `mob_droplist` VALUES (1145,0,0,1000,637,140);
 INSERT INTO `mob_droplist` VALUES (1146,0,0,1000,1036,40);
 INSERT INTO `mob_droplist` VALUES (1147,0,0,1000,497,450);

@@ -34,15 +34,13 @@ function onEffectTick(target,effect)
                 target:delMod(dsp.mod.STONESKIN,dmg)
             else
                 target:delStatusEffect(dsp.effect.STONESKIN)
-                target:delHP(dmg - skin)
-                target:wakeUp()
+                target:takeDamage(dmg - skin)
                 if (target:getHPP() < 51 ) then
                     complete = true
                 end
             end
         else
-            target:delHP(dmg)
-            target:wakeUp()
+            target:takeDamage(dmg)
             if (target:getHPP() < 51 ) then
                 complete = true
             end

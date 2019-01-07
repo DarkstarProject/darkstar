@@ -30,6 +30,6 @@ function onMobWeaponSkill(target, mob, skill)
         dmg=0
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
     return dmg
 end

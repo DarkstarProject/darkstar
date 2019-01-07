@@ -82,7 +82,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
         local wsParams = {}
         wsParams.enmityMult = enmityMult
-        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, dsp.slot.MAIN, tpHits, extraHits, 0, 0, action, nil)
+        damage = takeWeaponskillDamage(target, player, wsParams, primary, damage, dsp.attackType.BREATH, dsp.damageType.ELEMENTAL, dsp.slot.MAIN, tpHits, extraHits, 0, 0, action, nil)
     end
 
     -- Apply aftermath

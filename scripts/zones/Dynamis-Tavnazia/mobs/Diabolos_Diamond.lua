@@ -1,5 +1,5 @@
 -----------------------------------
--- Area:
+-- Area: Dynamis-Tavnazia
 --  MOB: Diabolos_Diamond
 -----------------------------------
 local ID = require("scripts/zones/Dynamis-Tavnazia/IDs")

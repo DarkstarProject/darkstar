@@ -1465,19 +1465,30 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
 
     -- gil
     if roll <= info.gil[1] then
+        players = player:getParty()
+        for i = 1, #players, 1 do
+            if player:getZoneID() ~= players[i]:getZoneID() then
+                table.remove(players, i)
+            end
+        end
         local gilAmount = math.random(info.gil[2], info.gil[3])
-        player:addGil(gilAmount)
-        player:messageSpecial(ID.text.GIL_OBTAINED, gilAmount)
+        local gil = gilAmount/#players
+        for i = 1, #players, 1 do
+            if player:getZoneID() == players[i]:getZoneID() then
+                players[i]:addGil(gil)
+                players[i]:messageSpecial(ID.text.GIL_OBTAINED, gil)
+            end
+        end
 
     -- gem
     elseif roll <= (info.gil[1] + info.gem[1]) then
         local gemIndex = math.random(table.getn(info.gem) - 1) + 1
-        npcUtil.giveItem(player, info.gem[gemIndex])
+        player:addTreasure(info.gem[gemIndex], npc)
 
     -- item
     elseif info.item then
         local itemIndex = math.random(table.getn(info.item) - 1) + 1
-        npcUtil.giveItem(player, info.item[itemIndex])
+        player:addTreasure(info.item[itemIndex], npc)
     end
 
     player:confirmTrade()

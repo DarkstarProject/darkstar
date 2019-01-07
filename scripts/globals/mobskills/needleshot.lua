@@ -23,7 +23,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 0.8
     local dmgmod = 2.2
     local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_DMG_VARIES,1,2,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_RANGED,MOBPARAM_PIERCE,info.hitslanded)
-    target:delHP(dmg)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
+    target:takeDamage(dmg, mob, dsp.attackType.RANGED, dsp.damageType.PIERCING)
     return dmg
 end
