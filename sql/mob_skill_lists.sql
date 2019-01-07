@@ -1287,7 +1287,7 @@ INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1725);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1727);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1728);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1730);
--- INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,2359);
+INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,2359);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1815);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1816);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1817);

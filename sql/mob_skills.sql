@@ -2181,7 +2181,7 @@ INSERT INTO `mob_skills` VALUES (2338,1641,'rampant_stance',1,15.0,2000,1000,4,0
 -- INSERT INTO `mob_skills` VALUES (2356,2100,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2357,2101,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2358,2102,'tabula_rasa',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2359,2103,'strap_cutter',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2359,1201,'strap_cutter',0,20.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2360,2104,'wind_shear',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2361,2105,'stave_toss',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2362,2106,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
