@@ -37,9 +37,7 @@ dsp.besieged.onEventFinish = function(player, csid, option)
             player:delCurrency("imperial_standing", 100)
         end
         
-        player:delStatusEffect(dsp.effect.SIGIL)
-        player:delStatusEffect(dsp.effect.SANCTION)
-        player:delStatusEffect(dsp.effect.SIGNET)
+        player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         local duration = getSanctionDuration(player)
         local subPower = 0 -- getImperialDefenseStats()
         player:addStatusEffect(dsp.effect.SANCTION, option / 16, 0, duration, subPower)

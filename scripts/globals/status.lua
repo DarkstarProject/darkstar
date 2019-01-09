@@ -858,6 +858,7 @@ dsp.effectFlag =
     BLOODPACT       = 0x200000,
     ON_JOBCHANGE    = 0x400000,
     NO_CANCEL       = 0x800000,
+    INFLUENCE       = 0x1000000,
 }
 
 ------------------------------------
