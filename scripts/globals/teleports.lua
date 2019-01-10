@@ -134,6 +134,30 @@ local destinations =
     [ids.SEA]                   = { -31.800,    0.000, -618.700, 190,  33}, -- {R}
 }
 
+-- Use to call to player:getNationTeleport
+-- Called nation for lack of a better name
+dsp.teleport.nation =
+{
+    OUTPOST_SANDORIA   = 0,
+    OUTPOST_BASTOK     = 1,
+    OUTPOST_WINDURST   = 2,
+    RUNIC_PORTAL       = 3,
+    MAW                = 4,
+    CAMPAIGN_SANDORIA  = 5,
+    CAMPAIGN_BASTOK    = 6,
+    CAMPAIGN_WINDURST  = 7
+}
+
+dsp.teleport.runic_portal =
+{
+    AZOUPH  = 0x02,
+    DVUCCA  = 0x04,
+    MAMOOL  = 0x08,
+    HALVUNG = 0x10,
+    ILRUSI  = 0x20,
+    NYZUL   = 0x40,
+}
+
 dsp.teleport.to = function(player, destination)
     local dest = destinations[destination]
     if dest then
