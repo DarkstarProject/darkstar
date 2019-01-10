@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local rank = getMercenaryRank(player)
+    local rank = dsp.besieged.getMercenaryRank(player)
     local haveimperialIDtag
     local tokens = 3--player:getAssaultPoint(ILRUSI_ASSAULT_POINT)
 

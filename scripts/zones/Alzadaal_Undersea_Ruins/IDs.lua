@@ -39,6 +39,8 @@ zones[dsp.zone.ALZADAAL_UNDERSEA_RUINS] =
     },
     npc =
     {
+        RUNIC_PORTAL_NORTH      = 17072236,
+        RUNIC_PORTAL_SOUTH      = 17072237,
     },
 }
 

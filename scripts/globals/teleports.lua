@@ -146,6 +146,16 @@ dsp.teleport.nation =
     CAMPAIGN_WINDURST  = 7
 }
 
+dsp.teleport.runic_portal =
+{
+    AZOUPH  = 0x02,
+    DVUCCA  = 0x04,
+    MAMOOL  = 0x08,
+    HALVUNG = 0x10,
+    ILRUSI  = 0x20,
+    NYZUL   = 0x40,
+}
+
 dsp.teleport.to = function(player, destination)
     local dest = destinations[destination]
     if dest then

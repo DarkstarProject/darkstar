@@ -13,11 +13,11 @@ dsp = dsp or {}
 dsp.besieged = dsp.besieged or {}
 
 dsp.besieged.onTrigger = function(player, npc, eventBase)
-    local mercRank = getMercenaryRank(player)
+    local mercRank = dsp.besieged.getMercenaryRank(player)
     if mercRank == 0 then
         player:startEvent(eventBase + 1, npc)
     else
-        local maps = bit.bor(getMapBitmask(player), bit.lshift(getAstralCandescence(), 31))
+        local maps = getMapBitmask(player)
         player:startEvent(eventBase, player:getCurrency("imperial_standing"), maps, mercRank, 0, unpack(getImperialDefenseStats()))
     end
 end
@@ -25,8 +25,8 @@ end
 dsp.besieged.onEventUpdate = function(player, csid, option)
     local itemId = getISPItem(option)
     if itemId and option < 0x40000000 then
-        local maps = bit.bor(getMapBitmask(player), bit.lshift(getAstralCandescence(), 31))
-        player:updateEvent(player:getCurrency("imperial_standing"), maps, getMercenaryRank(player), player:canEquipItem(itemId) and 2 or 1, unpack(getImperialDefenseStats()))
+        local maps = getMapBitmask(player)
+        player:updateEvent(player:getCurrency("imperial_standing"), maps, dsp.besieged.getMercenaryRank(player), player:canEquipItem(itemId) and 2 or 1, unpack(getImperialDefenseStats()))
     end
 end
 
@@ -50,7 +50,7 @@ dsp.besieged.onEventFinish = function(player, csid, option)
         player:delCurrency("imperial_standing", 1000)
     elseif option < 0x40000000 then
         -- Player bought an item
-        item, price = getISPItem(option)
+        local item, price = getISPItem(option)
         if item then
             if npcUtil.giveItem(player, item) then
                 player:delCurrency("imperial_standing", price)
@@ -69,69 +69,41 @@ PERIQIA_ASSAULT_POINT = 3
 ILRUSI_ASSAULT_POINT = 4
 NYZUL_ISLE_ASSAULT_POINT = 5
 
-function hasRunicPortal(player, portal)
-    local runicPortal = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
-    local bit = {}
-
-    for i = 6, 1, -1 do
-        twop = 2 ^ i
-
-        if runicPortal >= twop then
-            bit[i]= 1
-            runicPortal = runicPortal - twop
-        else
-            bit[i] = 0
-        end
-    end
-
-    return bit[portal]
+dsp.besieged.addRunicPortal = function(player, portal)
+    player:addNationTeleport(dsp.teleport.nation.RUNIC_PORTAL, portal)
 end
 
-function hasAssaultOrders(player)
+dsp.besieged.hasRunicPortal = function(player, portal)
+    local runicPortals = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
+    return bit.band(runicPortals, portal) ~= 0
+end
+
+dsp.besieged.hasAssaultOrders = function(player)
     local event = 0
     local keyitem = 0
 
-    if player:hasKeyItem(dsp.ki.LEUJAOAM_ASSAULT_ORDERS) then -- assault @ Azouph Isle
-        event = 120
-        keyitem = dsp.ki.LEUJAOAM_ASSAULT_ORDERS
-    elseif player:hasKeyItem(dsp.ki.MAMOOL_JA_ASSAULT_ORDERS) then -- assault @ Mamool Ja
-        event = 121
-        keyitem = dsp.ki.MAMOOL_JA_ASSAULT_ORDERS
-    elseif player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) then -- assault @ Halvung
-        event = 122
-        keyitem = dsp.ki.LEBROS_ASSAULT_ORDERS
-    elseif player:hasKeyItem(dsp.ki.PERIQIA_ASSAULT_ORDERS) then -- assault @ Dvucca Isle
-        event = 123
-        keyitem = dsp.ki.PERIQIA_ASSAULT_ORDERS
-    elseif player:hasKeyItem(dsp.ki.ILRUSI_ASSAULT_ORDERS) then -- assault @ Ilrusi Atoll
-        event = 124
-        keyitem = dsp.ki.ILRUSI_ASSAULT_ORDERS
-    elseif player:hasKeyItem(dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS) then -- assault @  Nyzul Isle
-        event = 125
-        keyitem = dsp.ki.NYZUL_ISLE_ASSAULT_ORDERS
+    for i = 0, 5 do
+        local ki = dsp.ki.LEBROS_ASSAULT_ORDERS + i
+        if player:hasKeyItem(ki) then
+            event = 120 + i
+            keyitem = ki
+            break
+        end
     end
 
     return event, keyitem
 end
 
-function getMapBitmask(player)
-    local mamook = player:hasKeyItem(dsp.ki.MAP_OF_MAMOOK) and 1 or 0 -- Map of Mammok
-    local halvung = player:hasKeyItem(dsp.ki.MAP_OF_HALVUNG) and 1 or 0 -- Map of Halvung
-    local arrapago = player:hasKeyItem(dsp.ki.MAP_OF_ARRAPAGO_REEF) and 1 or 0 -- Map of Arrapago Reef
-
-    return bit.bor(bit.bor(mamook, bit.lshift(halvung, 1)), bit.lshift(arrapago, 2))
-end
-
 -- TODO: Implement Astral Candescence
-function getAstralCandescence()
+dsp.besieged.getAstralCandescence = function()
     return 1 -- Hardcoded to 1 for now
 end
 
-function getMercenaryRank(player)
+dsp.besieged.getMercenaryRank = function(player)
     local rank = 0
     local badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
     
-    for _,v in ipairs(badges) do
+    for _, v in ipairs(badges) do
         if player:hasKeyItem(v) then
             rank = rank + 1
         end
@@ -154,6 +126,15 @@ function getRecommendedAssaultLevel(assaultid)
     return assaultLevels[assaultid]
 end
 
+function getMapBitmask(player)
+    local mamook = player:hasKeyItem(dsp.ki.MAP_OF_MAMOOK) and 1 or 0 -- Map of Mammok
+    local halvung = player:hasKeyItem(dsp.ki.MAP_OF_HALVUNG) and 2 or 0 -- Map of Halvung
+    local arrapago = player:hasKeyItem(dsp.ki.MAP_OF_ARRAPAGO_REEF) and 4 or 0 -- Map of Arrapago Reef
+    local astral = bit.lshift(dsp.besieged.getAstralCandescence(), 31) -- Include astral candescence in the top byte
+
+    return bit.bor(mamook, halvung, arrapago, astral)
+end
+
 -----------------------------------------------------------------------------------
 -- function getSanctionDuration(player) returns the duration of the sanction effect
 -- in seconds. Duration is known to go up with mercenary rank but data published on
@@ -165,9 +146,9 @@ end
 -- I decided to use the formula duration (with AC) = 3 hours + (mercenary rank - 1) * 20 minutes.
 -----------------------------------------------------------------------------------
 function getSanctionDuration(player)
-    local duration = 10800 + 1200 * (getMercenaryRank(player) - 1)
+    local duration = 10800 + 1200 * (dsp.besieged.getMercenaryRank(player) - 1)
 
-    if getAstralCandescence() == 0 then
+    if dsp.besieged.getAstralCandescence() == 0 then
         duration = duration / 2
     end
 
