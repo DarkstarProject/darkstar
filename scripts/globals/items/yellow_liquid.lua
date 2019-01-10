@@ -3,16 +3,16 @@
 --  Item: Yellow Liquid
 -----------------------------------------
 require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    
     local result = 0
-    
+
     if (target:hasStatusEffect(dsp.effect.FOOD)) then
-        result = 246
+        result = dsp.msg.basic.IS_FULL
     end
-    
+
     return result
 end
 
