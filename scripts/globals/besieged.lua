@@ -6,6 +6,7 @@
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/status")
+require("scripts/globals/teleports")
 -----------------------------------
 
 dsp = dsp or {}
@@ -23,7 +24,7 @@ end
 
 dsp.besieged.onEventUpdate = function(player, csid, option)
     local itemId = getISPItem(option)
-    if itemId and option < 1073741824 then
+    if itemId and option < 0x40000000 then
         local maps = bit.bor(getMapBitmask(player), bit.lshift(getAstralCandescence(), 31))
         player:updateEvent(player:getCurrency("imperial_standing"), maps, getMercenaryRank(player), player:canEquipItem(itemId) and 2 or 1, unpack(getImperialDefenseStats()))
     end
@@ -42,12 +43,12 @@ dsp.besieged.onEventFinish = function(player, csid, option)
         local subPower = 0 -- getImperialDefenseStats()
         player:addStatusEffect(dsp.effect.SANCTION, option / 16, 0, duration, subPower)
         player:messageSpecial(ID.text.SANCTION)
-    elseif option % 256 == 17 then
+    elseif bit.band(option, 0xFF) == 17 then
         -- Player bought a map
-        local ki = dsp.ki.MAP_OF_MAMOOK + (option - 17) / 256
+        local ki = dsp.ki.MAP_OF_MAMOOK + bit.rshift(option, 8)
         npcUtil.giveKeyItem(player, ki)
         player:delCurrency("imperial_standing", 1000)
-    elseif option < 1073741824 then
+    elseif option < 0x40000000 then
         -- Player bought an item
         item, price = getISPItem(option)
         if item then
@@ -69,7 +70,7 @@ ILRUSI_ASSAULT_POINT = 4
 NYZUL_ISLE_ASSAULT_POINT = 5
 
 function hasRunicPortal(player, portal)
-    local runicPortal = player:getNationTeleport(3)
+    local runicPortal = player:getNationTeleport(dsp.teleport.nation.RUNIC_PORTAL)
     local bit = {}
 
     for i = 6, 1, -1 do
