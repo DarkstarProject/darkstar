@@ -32986,6 +32986,7 @@ INSERT INTO `mob_droplist` VALUES (4633,0,0,1000,2841,444); -- (Be'Hya Hundredwa
 INSERT INTO `mob_droplist` VALUES (4634,0,0,1000,16023,185); -- (Slippery Sucker) Mystique Earring
 INSERT INTO `mob_droplist` VALUES (4635,0,0,1000,16300,333); -- (Gloom Eye) Wit Pendant
 INSERT INTO `mob_droplist` VALUES (4636,0,0,1000,2838,321); -- (Quu Xijo the Illusory) Ephemeral Cloth
+INSERT INTO `mob_droplist` VALUES (4637,0,0,1000,19238,154); -- (Timeworn Warrior) Jasper Tathlum
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
