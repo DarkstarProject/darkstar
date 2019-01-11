@@ -26,9 +26,9 @@ install:
 
 before_script:
   - g++ --version
+  - python3 ./tools/price_checker.py
   - sh autogen.sh
   - mysql -u root -e 'create database dspdb_test;'
-  - python3 ./tools/price_checker.py
 
 script:
   - ./configure
