@@ -34,7 +34,7 @@ def log(message, *args):
 
 
 def process_npc(path):
-    with open(path, 'r') as npc_file:
+    with open(path, mode='r', errors='ignore') as npc_file:
         found_stock = False
         found_brace = False
         for line in npc_file:
@@ -73,7 +73,7 @@ def process_npc(path):
 
 # process item_basic for item ids and base sell prices
 sql_line = 'INSERT INTO `item_basic` VALUES'
-with open(os.path.join(local_path, '../sql/item_basic.sql'), 'r') as items:
+with open(os.path.join(local_path, '../sql/item_basic.sql'), mode='r', errors='ignore') as items:
     for line in items:
         split = process_matches(sql_line, line)
 
@@ -102,7 +102,7 @@ with os.scandir(os.path.join(local_path, '../scripts/zones')) as iterator:
 
 # process guild_shops.sql for item ids and min_price
 sql_line = 'INSERT INTO `guild_shops` VALUES'
-with open(os.path.join(local_path, '../sql/guild_shops.sql'), 'r') as guilds:
+with open(os.path.join(local_path, '../sql/guild_shops.sql'), mode='r', errors='ignore') as guilds:
     for line in guilds:
         split = process_matches(sql_line, line)
         if len(split) != 0:
