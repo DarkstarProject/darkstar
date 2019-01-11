@@ -25,7 +25,7 @@ addons:
 
 install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 90
-  - sudo update-alternatives --install /usr/local/bin/python /usr/bin/python3.7 90
+  - sudo update-alternatives --install /usr/local/bin/python3 python3 /usr/bin/python3.7 90
 
 before_script:
   - g++ --version
