@@ -11,6 +11,9 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.HUMBABA)
+    GetMobByID(ID.mob.HUMBABA):setRespawnTime(math.random(3600, 4200))
+
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
