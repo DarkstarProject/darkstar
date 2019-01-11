@@ -37,6 +37,7 @@ zones[dsp.zone.EASTERN_ALTEPA_DESERT] =
             [17244263] = 17244268,
         },
         CENTURIO_XII_I    = 17244372,
+        NANDI             = 17244471,
         DECURIO_I_III     = 17244523,
         TSUCHIGUMO_OFFSET = 17244524,
         CACTROT_RAPIDO    = 17244539,

@@ -4,10 +4,11 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.AUTO_SPIKES, mob:getShortID())
+    mob:setMobMod(dsp.mobMod.AUTO_SPIKES, 1)
     mob:addStatusEffect(dsp.effect.ICE_SPIKES, 45, 0, 0)
     mob:getStatusEffect(dsp.effect.ICE_SPIKES):setFlag(dsp.effectFlag.DEATH)
 end
@@ -36,7 +37,7 @@ function onSpikesDamage(mob, target, damage)
         dmg = 0
     end
 
-    return dsp.subEffect.ICE_SPIKES, 44, dmg
+    return dsp.subEffect.ICE_SPIKES, dsp.msg.basic.SPIKES_EFFECT_DMG, dmg
 end
 
 function onMobDeath(mob, player, isKiller)
