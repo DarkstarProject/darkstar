@@ -11,9 +11,8 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.DOOM
 
-    skill:setMsg(MobGazeMove(mob, target, typeEffect, 10, 3, 30))
+    skill:setMsg(MobGazeMove(mob, target, dsp.effect.DOOM, 10, 3, 30))
 
-    return typeEffect
+    return dsp.effect.DOOM
 end

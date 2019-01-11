@@ -12,6 +12,10 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
+    if (target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(dsp.mod.DEATHRES)) then
+        spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
+        return 0
+    end
 
     skill:setMsg(dsp.msg.basic.FALL_TO_GROUND)
     target:setHP(0)
