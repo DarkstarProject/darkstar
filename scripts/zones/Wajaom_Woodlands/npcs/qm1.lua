@@ -8,7 +8,7 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2580) and npcUtil.popFromQM(player, npc, ID.mob.VULPANGUE) then
+    if npcUtil.tradeHas(trade, 2580) and npcUtil.popFromQM(player, npc, ID.mob.VULPANGUE, {claim=true, hide=300}) then
         player:confirmTrade()
         player:messageSpecial(ID.text.DRAWS_NEAR)
     end
