@@ -107,6 +107,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Apkallu',27,1716);
 INSERT INTO `mob_skill_lists` VALUES ('Apkallu',27,1717);
 INSERT INTO `mob_skill_lists` VALUES ('Gloom_Eye',28,548);
 INSERT INTO `mob_skill_lists` VALUES ('Gloom_Eye',28,549);
+INSERT INTO `mob_skill_lists` VALUES ('Likho',29,551);
+INSERT INTO `mob_skill_lists` VALUES ('Likho',29,555);
 
 INSERT INTO `mob_skill_lists` VALUES ('Avatar-Carbuncle',34,906);
 INSERT INTO `mob_skill_lists` VALUES ('Avatar-Carbuncle',34,907);

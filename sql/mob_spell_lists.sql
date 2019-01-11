@@ -2116,6 +2116,8 @@ INSERT INTO `mob_spell_lists` VALUES ('Sobek',235, 362, 1, 255); -- bindga
 
 INSERT INTO `mob_spell_lists` VALUES ('Itzpapalotl',236,177,1,255); -- firaga_iv
 
+INSERT INTO `mob_spell_lists` VALUES ('Likho',237,175,1,255); -- firaga_ii
+
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,153,1,255); -- blizzard_v
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,182,1,255); -- blizzaga_iv
 INSERT INTO `mob_spell_lists` VALUES ('Bukhis',245,356,1,255); -- paralyga
