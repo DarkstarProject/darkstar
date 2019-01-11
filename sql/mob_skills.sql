@@ -1528,7 +1528,7 @@ INSERT INTO `mob_skills` VALUES (1704,1171,'onrush',0,7.0,2000,1500,4,0,0,0,0,0,
 INSERT INTO `mob_skills` VALUES (1705,1172,'stampede',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1706,1173,'flailing_trunk',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1707,1174,'voracious_trunk',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1708,1452,'proboscis_shower',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1708,1175,'proboscis_shower',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1709,1181,'abrasive_tantara',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1710,1182,'deafening_tantara',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1711,1180,'frenetic_rip',0,7.0,2000,1500,4,0,0,0,0,0,0);
@@ -1614,7 +1614,7 @@ INSERT INTO `mob_skills` VALUES (1790,1228,'gates_of_hades',1,20.0,2000,1500,4,0
 INSERT INTO `mob_skills` VALUES (1791,1217,'incinerate',4,12.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1792,1536,'nullsong',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1793,62,'vampiric_root',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1794,1538,'perdition',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1794,1214,'perdition',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1795,1539,'malediction',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1796,1540,'piercing_shriek',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1797,1320,'rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
@@ -1933,7 +1933,7 @@ INSERT INTO `mob_skills` VALUES (2107,1450,'decollation',0,7.0,2000,1000,4,0,0,0
 INSERT INTO `mob_skills` VALUES (2108,1451,'nosferatus_kiss',1,20.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2109,1452,'heliovoid',1,20.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2110,1454,'wings_of_gehenna',1,20.0,2000,1000,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (2111,1454,'eternal_damnation',4,15.0,2000,1000,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2111,1453,'eternal_damnation',4,15.0,2000,1000,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2112,1856,'nocturnal_servitude',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2113,1456,'hellsnap',1,15.0,2000,1000,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2114,1460,'hellclap',4,10.0,2000,1000,4,0,0,0,0,0,0);
