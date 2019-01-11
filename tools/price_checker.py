@@ -131,4 +131,5 @@ for error in errors:
     print(error)
 print('Found {0} errors'.format(len(errors)))
 
-sys.exit(len(errors))
+#sys.exit(len(errors))
+sys.exit(1)
