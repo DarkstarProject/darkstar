@@ -11,7 +11,6 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-
     skill:setMsg(MobGazeMove(mob, target, dsp.effect.DOOM, 10, 3, 30))
 
     return dsp.effect.DOOM
