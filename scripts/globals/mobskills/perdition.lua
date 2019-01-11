@@ -13,7 +13,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (target:hasStatusEffect(dsp.effect.MAGIC_SHIELD) or math.random(0,99) < target:getMod(dsp.mod.DEATHRES)) then
-        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT
+        skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)
         return 0
     end
 
