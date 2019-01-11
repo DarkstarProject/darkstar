@@ -32994,6 +32994,7 @@ INSERT INTO `mob_droplist` VALUES (4638,0,0,1000,16021,250); -- (Eyegouger) Braw
 INSERT INTO `mob_droplist` VALUES (4638,2,0,1000,847,0); -- (Eyegouger) Bird Feather (steal)
 INSERT INTO `mob_droplist` VALUES (4639,0,0,1000,2829,150); -- (Humbaba) Radiant Velvet
 INSERT INTO `mob_droplist` VALUES (4640,0,0,1000,15853,205); -- (Dynast Beetle) Dasra's Ring
+INSERT INTO `mob_droplist` VALUES (4641,0,0,1000,11342,156); -- (Myradrosh) Restorer Cloak
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
