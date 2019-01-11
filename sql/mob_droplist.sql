@@ -32993,6 +32993,7 @@ INSERT INTO `mob_droplist` VALUES (4637,0,0,1000,19238,154); -- (Timeworn Warrio
 INSERT INTO `mob_droplist` VALUES (4638,0,0,1000,16021,250); -- (Eyegouger) Brawn Earring
 INSERT INTO `mob_droplist` VALUES (4638,2,0,1000,847,0); -- (Eyegouger) Bird Feather (steal)
 INSERT INTO `mob_droplist` VALUES (4639,0,0,1000,2829,150); -- (Humbaba) Radiant Velvet
+INSERT INTO `mob_droplist` VALUES (4640,0,0,1000,15853,205); -- (Dynast Beetle) Dasra's Ring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
