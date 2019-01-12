@@ -27,204 +27,268 @@ CREATE TABLE `guild_item_points` (
 -- ----------------------------
 
 -- Fishing / Amateur
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 0); -- Bastore Sardine
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 1); -- Crayfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 2); -- Bastore Sardine
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 3); -- Moat Carp
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 4); -- Crayfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 5); -- Bibikibo
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 6); -- Moat Carp
-INSERT INTO `guild_item_points` VALUES (0, 0, 0, 0, 0, 7); -- Cobalt Jellyfish
+INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 0, 0, 0); -- Bastore Sardine
+INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 0, 0, 1); -- Crayfish
+INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 0, 0, 2); -- Bastore Sardine
+INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 0, 0, 3); -- Moat Carp
+INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 0, 0, 4); -- Crayfish
+INSERT INTO `guild_item_points` VALUES (0, 4314, 0, 0, 0, 5); -- Bibikibo
+INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 0, 0, 6); -- Moat Carp
+INSERT INTO `guild_item_points` VALUES (0, 4443, 0, 0, 0, 7); -- Cobalt Jellyfish
 
 -- Fishing / Recruit
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 0); -- Copper Frog
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 1); -- Forest Carp
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 2); -- Quus
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 3); -- Cheval Salmon
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 4); -- Greedie
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 5); -- Bastore Sweeper
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 6); -- Blindfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 1, 0, 0, 7); -- Yellow Globe
+INSERT INTO `guild_item_points` VALUES (0, 4515, 1, 0, 0, 0); -- Copper Frog
+INSERT INTO `guild_item_points` VALUES (0, 4289, 1, 0, 0, 1); -- Forest Carp
+INSERT INTO `guild_item_points` VALUES (0, 4514, 1, 0, 0, 2); -- Quus
+INSERT INTO `guild_item_points` VALUES (0, 4379, 1, 0, 0, 3); -- Cheval Salmon
+INSERT INTO `guild_item_points` VALUES (0, 4500, 1, 0, 0, 4); -- Greedie
+INSERT INTO `guild_item_points` VALUES (0, 5473, 1, 0, 0, 5); -- Bastore Sweeper
+INSERT INTO `guild_item_points` VALUES (0, 4313, 1, 0, 0, 6); -- Blindfish
+INSERT INTO `guild_item_points` VALUES (0, 4403, 1, 0, 0, 7); -- Yellow Globe
 
 -- Fishing / Initiate
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 0); -- Pipira
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 1); -- Giant Catfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 2); -- Nebimonite
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 3); -- Tricolored Carp
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 4); -- Lungfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 5); -- Moorish Idol
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 6); -- Elshimo Frog
-INSERT INTO `guild_item_points` VALUES (0, 0, 2, 0, 0, 7); -- Tiger Cod
+INSERT INTO `guild_item_points` VALUES (0, 4464, 2, 0, 0, 0); -- Pipira
+INSERT INTO `guild_item_points` VALUES (0, 4469, 2, 0, 0, 1); -- Giant Catfish
+INSERT INTO `guild_item_points` VALUES (0, 4361, 2, 0, 0, 2); -- Nebimonite
+INSERT INTO `guild_item_points` VALUES (0, 4426, 2, 0, 0, 3); -- Tricolored Carp
+INSERT INTO `guild_item_points` VALUES (0, 4315, 2, 0, 0, 4); -- Lungfish
+INSERT INTO `guild_item_points` VALUES (0, 5121, 2, 0, 0, 5); -- Moorish Idol
+INSERT INTO `guild_item_points` VALUES (0, 4290, 2, 0, 0, 6); -- Elshimo Frog
+INSERT INTO `guild_item_points` VALUES (0, 4483, 2, 0, 0, 7); -- Tiger Cod
 
 -- Fishing / Novice
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 0); -- Shining Trout
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 1); -- Crystal Bass
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 2); -- Nosteau Herring
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 3); -- Veydal Wrasse
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 4); -- Gugru Tuna
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 5); -- Coral Butterfly
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 6); -- Shining Trout
-INSERT INTO `guild_item_points` VALUES (0, 0, 3, 0, 0, 7); -- Ogre Eel
+INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 0, 0, 0); -- Shining Trout
+INSERT INTO `guild_item_points` VALUES (0, 4528, 3, 0, 0, 1); -- Crystal Bass
+INSERT INTO `guild_item_points` VALUES (0, 5796, 3, 0, 0, 2); -- Nosteau Herring
+INSERT INTO `guild_item_points` VALUES (0, 5804, 3, 0, 0, 3); -- Veydal Wrasse
+INSERT INTO `guild_item_points` VALUES (0, 5805, 3, 0, 0, 4); -- Gugru Tuna
+INSERT INTO `guild_item_points` VALUES (0, 4580, 3, 0, 0, 5); -- Coral Butterfly
+INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 0, 0, 6); -- Shining Trout
+INSERT INTO `guild_item_points` VALUES (0, 5795, 3, 0, 0, 7); -- Ogre Eel
 
 -- Fishing / Apprentice
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 0); -- Monke-Onke
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 1); -- Giant Donko
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 2); -- Gold Lobster
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 3); -- Icefish
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 4); -- Zafmlug Bass
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 5); -- Gold Lobster
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 6); -- Black Eel
-INSERT INTO `guild_item_points` VALUES (0, 0, 4, 0, 0, 7); -- Zafmlug Bass
+INSERT INTO `guild_item_points` VALUES (0, 5801, 4, 0, 0, 0); -- Monke-Onke
+INSERT INTO `guild_item_points` VALUES (0, 5800, 4, 0, 0, 1); -- Giant Donko
+INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 0, 0, 2); -- Gold Lobster
+INSERT INTO `guild_item_points` VALUES (0, 4470, 4, 0, 0, 3); -- Icefish
+INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 0, 0, 4); -- Zafmlug Bass
+INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 0, 0, 5); -- Gold Lobster
+INSERT INTO `guild_item_points` VALUES (0, 4429, 4, 0, 0, 6); -- Black Eel
+INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 0, 0, 7); -- Zafmlug Bass
 
 -- Fishing / Journeyman
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 0); -- Gold Carp
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 1); -- Elshimo Newt
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 2); -- Bhefhel Marlin
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 3); -- Red Terrapin
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 4); -- Bluetail
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 5); -- Bhefhel Marlin
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 6); -- Trilobite
-INSERT INTO `guild_item_points` VALUES (0, 0, 5, 0, 0, 7); -- Bluetail
+INSERT INTO `guild_item_points` VALUES (0, 4427, 5, 0, 0, 0); -- Gold Carp
+INSERT INTO `guild_item_points` VALUES (0, 4579, 5, 0, 0, 1); -- Elshimo Newt
+INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 0, 0, 2); -- Bhefhel Marlin
+INSERT INTO `guild_item_points` VALUES (0, 4402, 5, 0, 0, 3); -- Red Terrapin
+INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 0, 0, 4); -- Bluetail
+INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 0, 0, 5); -- Bhefhel Marlin
+INSERT INTO `guild_item_points` VALUES (0, 4317, 5, 0, 0, 6); -- Trilobite
+INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 0, 0, 7); -- Bluetail
 
 -- Fishing / Craftsman
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 0); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 1); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 2); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 3); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 4); -- Bladefish
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 5); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 6); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 6, 0, 0, 7); -- Noble Lady
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 0); -- Crescent Fish
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 1); -- Crescent Fish
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 2); -- Zebra Eel
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 3); -- Zebra Eel
+INSERT INTO `guild_item_points` VALUES (0, 4471, 6, 0, 0, 4); -- Bladefish
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 5); -- Zebra Eel
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 6); -- Crescent Fish
+INSERT INTO `guild_item_points` VALUES (0, 4485, 6, 0, 0, 7); -- Noble Lady
 
 -- Fishing / Artisan
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 0); -- Gavial Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 1); -- Jungle Catfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 2); -- Three-eyed Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 3); -- Jungle Catfish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 4); -- Silver Shark
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 5); -- Three-eyed Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 6); -- Gavial Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 7, 0, 0, 7); -- Silver Shark
+INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 0, 0, 0); -- Gavial Fish
+INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 0, 0, 1); -- Jungle Catfish
+INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 0, 0, 2); -- Three-eyed Fish
+INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 0, 0, 3); -- Jungle Catfish
+INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 0, 0, 4); -- Silver Shark
+INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 0, 0, 5); -- Three-eyed Fish
+INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 0, 0, 6); -- Gavial Fish
+INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 0, 0, 7); -- Silver Shark
 
 -- Fishing / Adept
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 0); -- Emperor Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 1); -- Emperor Fish
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 2); -- Bastore Bream
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 3); -- Grimmonite
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 4); -- Gigant Squid
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 5); -- Grimmonite
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 6); -- Gigant Squid
-INSERT INTO `guild_item_points` VALUES (0, 0, 8, 0, 0, 7); -- Grimmonite
+INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 0, 0, 0); -- Emperor Fish
+INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 0, 0, 1); -- Emperor Fish
+INSERT INTO `guild_item_points` VALUES (0, 4461, 8, 0, 0, 2); -- Bastore Bream
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 3); -- Grimmonite
+INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 0, 0, 4); -- Gigant Squid
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 5); -- Grimmonite
+INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 0, 0, 6); -- Gigant Squid
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 7); -- Grimmonite
 
 -- Fishing / Veteran
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 0); -- Sea Zombie
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 1); -- Titanictus
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 2); -- Sea Zombie
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 3); -- Armored Pisces
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 4); -- Titanictus
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 5); -- Takitaro
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 6); -- Takitaro
-INSERT INTO `guild_item_points` VALUES (0, 0, 9, 0, 0, 7); -- Black Sole
+INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 0, 0, 0); -- Sea Zombie
+INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 0, 0, 1); -- Titanictus
+INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 0, 0, 2); -- Sea Zombie
+INSERT INTO `guild_item_points` VALUES (0, 4316, 9, 0, 0, 3); -- Armored Pisces
+INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 0, 0, 4); -- Titanictus
+INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 0, 0, 5); -- Takitaro
+INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 0, 0, 6); -- Takitaro
+INSERT INTO `guild_item_points` VALUES (0, 4384, 9, 0, 0, 7); -- Black Sole
 
 -- Woodworking / Amateur
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 0); -- Ash Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 1); -- Maple Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 2); -- Workbench
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 3); -- Ash Staff
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 4); -- Ash Club
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 5); -- Harpoon
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 6); -- Lauan Shield
-INSERT INTO `guild_item_points` VALUES (1, 0, 0, 0, 0, 7); -- Flute
+INSERT INTO `guild_item_points` VALUES (1, 17095, 0, 0, 0, 0); -- Ash Pole
+INSERT INTO `guild_item_points` VALUES (1, 17122, 0, 0, 0, 0); -- Ash Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 17049, 0, 0, 0, 1); -- Maple Wand
+INSERT INTO `guild_item_points` VALUES (1, 17087, 0, 0, 0, 1); -- Maple Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 22, 0, 0, 0, 2); -- Workbench
+INSERT INTO `guild_item_points` VALUES (1, 17088, 0, 0, 0, 3); -- Ash Staff
+INSERT INTO `guild_item_points` VALUES (1, 17123, 0, 0, 0, 3); -- Ash Staff +1
+INSERT INTO `guild_item_points` VALUES (1, 17024, 0, 0, 0, 4); -- Ash Club
+INSERT INTO `guild_item_points` VALUES (1, 17137, 0, 0, 0, 4); -- Ash Club +1
+INSERT INTO `guild_item_points` VALUES (1, 16832, 0, 0, 0, 5); -- Harpoon
+INSERT INTO `guild_item_points` VALUES (1, 16862, 0, 0, 0, 5); -- Harpoon +1
+INSERT INTO `guild_item_points` VALUES (1, 12289, 0, 0, 0, 6); -- Lauan Shield
+INSERT INTO `guild_item_points` VALUES (1, 12333, 0, 0, 0, 6); -- Lauan Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 17345, 0, 0, 0, 7); -- Flute
+INSERT INTO `guild_item_points` VALUES (1, 17372, 0, 0, 0, 7); -- Flute +1
 
 -- Woodworking / Recruit
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 0); -- Self Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 1); -- Holly Clogs
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 2); -- Ash Clogs
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 3); -- Maple Table
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 4); -- Willow Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 5); -- Light Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 6); -- Holly Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 1, 0, 0, 7); -- Maple Shield
+INSERT INTO `guild_item_points` VALUES (1, 17153, 1, 0, 0, 0); -- Self Bow
+INSERT INTO `guild_item_points` VALUES (1, 17176, 1, 0, 0, 0); -- Self Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 12985, 1, 0, 0, 1); -- Holly Clogs
+INSERT INTO `guild_item_points` VALUES (1, 12991, 1, 0, 0, 1); -- Holly Clogs +1
+INSERT INTO `guild_item_points` VALUES (1, 12984, 1, 0, 0, 2); -- Ash Clogs
+INSERT INTO `guild_item_points` VALUES (1, 12983, 1, 0, 0, 2); -- Ash Clogs +1
+INSERT INTO `guild_item_points` VALUES (1, 23, 1, 0, 0, 3); -- Maple Table
+INSERT INTO `guild_item_points` VALUES (1, 17050, 1, 0, 0, 4); -- Willow Wand
+INSERT INTO `guild_item_points` VALUES (1, 17138, 1, 0, 0, 4); -- Willow Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 17216, 1, 0, 0, 5); -- Light Crossbow
+INSERT INTO `guild_item_points` VALUES (1, 17228, 1, 0, 0, 5); -- Light Crossbow +1
+INSERT INTO `guild_item_points` VALUES (1, 17096, 1, 0, 0, 6); -- Holly Pole
+INSERT INTO `guild_item_points` VALUES (1, 17124, 1, 0, 0, 6); -- Holly Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 12290, 1, 0, 0, 7); -- Maple Shield
+INSERT INTO `guild_item_points` VALUES (1, 12330, 1, 0, 0, 7); -- Maple Shield +1
 
 -- Woodworking / Initiate
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 0); -- Yew Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 1); -- Maple Harp
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 2); -- Tarutaru Stool
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 3); -- Harp
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 4); -- Brass Spear
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 5); -- Elm Shield
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 6); -- Elm Staff
-INSERT INTO `guild_item_points` VALUES (1, 0, 2, 0, 0, 7); -- Chestnut Club
+INSERT INTO `guild_item_points` VALUES (1, 17051, 2, 0, 0, 0); -- Yew Wand
+INSERT INTO `guild_item_points` VALUES (1, 17140, 2, 0, 0, 0); -- Yew Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 17353, 2, 0, 0, 1); -- Maple Harp
+INSERT INTO `guild_item_points` VALUES (1, 17373, 2, 0, 0, 1); -- Maple Harp +1
+INSERT INTO `guild_item_points` VALUES (1, 92, 2, 0, 0, 2); -- Tarutaru Stool
+INSERT INTO `guild_item_points` VALUES (1, 17354, 2, 0, 0, 3); -- Harp
+INSERT INTO `guild_item_points` VALUES (1, 17374, 2, 0, 0, 3); -- Harp +1
+INSERT INTO `guild_item_points` VALUES (1, 16834, 2, 0, 0, 4); -- Brass Spear
+INSERT INTO `guild_item_points` VALUES (1, 16864, 2, 0, 0, 4); -- Brass Spear +1
+INSERT INTO `guild_item_points` VALUES (1, 12291, 2, 0, 0, 5); -- Elm Shield
+INSERT INTO `guild_item_points` VALUES (1, 12291, 2, 0, 0, 5); -- Elm Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 12319, 2, 0, 0, 6); -- Elm Staff
+INSERT INTO `guild_item_points` VALUES (1, 17025, 2, 0, 0, 7); -- Chestnut Club (290 / 8640)
+INSERT INTO `guild_item_points` VALUES (1, 17139, 2, 0, 0, 7); -- Solid Club (447 / 8640)
 
 -- Woodworking / Novice
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 0); -- Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 1); -- Composite Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 2); -- Great Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 3); -- Spiked Club
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 4); -- Chestnut Sabots
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 5); -- Chestnut Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 6); -- Mahogany Shield
-INSERT INTO `guild_item_points` VALUES (1, 0, 3, 0, 0, 7); -- Spear
+INSERT INTO `guild_item_points` VALUES (1, 17217, 3, 0, 0, 0); -- Crossbow
+INSERT INTO `guild_item_points` VALUES (1, 17225, 3, 0, 0, 0); -- Crossbow +1
+INSERT INTO `guild_item_points` VALUES (1, 17155, 3, 0, 0, 1); -- Composite Bow
+INSERT INTO `guild_item_points` VALUES (1, 17179, 3, 0, 0, 1); -- Composite Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 17162, 3, 0, 0, 2); -- Great Bow
+INSERT INTO `guild_item_points` VALUES (1, 17180, 3, 0, 0, 2); -- Great Bow  +1
+INSERT INTO `guild_item_points` VALUES (1, 17424, 3, 0, 0, 3); -- Spiked Club (300 / 9120)
+INSERT INTO `guild_item_points` VALUES (1, 17425, 3, 0, 0, 3); -- Spiked Club +1
+INSERT INTO `guild_item_points` VALUES (1, 12986, 3, 0, 0, 4); -- Chestnut Sabots
+INSERT INTO `guild_item_points` VALUES (1, 13022, 3, 0, 0, 4); -- Chestnut Sabots +1
+INSERT INTO `guild_item_points` VALUES (1, 17052, 3, 0, 0, 5); -- Chestnut Wand
+INSERT INTO `guild_item_points` VALUES (1, 17141, 3, 0, 0, 5); -- Solid Wand
+INSERT INTO `guild_item_points` VALUES (1, 12292, 3, 0, 0, 6); -- Mahogany Shield (830 / 12960)
+INSERT INTO `guild_item_points` VALUES (1, 12334, 3, 0, 0, 6); -- Strong Shield (1043 / 12960)
+INSERT INTO `guild_item_points` VALUES (1, 16835, 3, 0, 0, 7); -- Spear
+INSERT INTO `guild_item_points` VALUES (1, 16865, 3, 0, 0, 7); -- Spear +1
 
 -- Woodworking / Apprentice
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 0); -- Ebony Sabots
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 1); -- Oak Staff
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 2); -- Lance
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 3); -- Zamburak
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 4); -- Oak Cudgel
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 5); -- Halberd
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 6); -- Rose Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 4, 0, 0, 7); -- Oak Shield
+INSERT INTO `guild_item_points` VALUES (1, 12987, 4, 0, 0, 0); -- Ebony Sabots
+INSERT INTO `guild_item_points` VALUES (1, 13023, 4, 0, 0, 0); -- Ebony Sabots +1
+INSERT INTO `guild_item_points` VALUES (1, 17091, 4, 0, 0, 1); -- Oak Staff
+INSERT INTO `guild_item_points` VALUES (1, 17127, 4, 0, 0, 1); -- Oak Staff +1
+INSERT INTO `guild_item_points` VALUES (1, 16845, 4, 0, 0, 2); -- Lance
+INSERT INTO `guild_item_points` VALUES (1, 16876, 4, 0, 0, 2); -- Lance +1
+INSERT INTO `guild_item_points` VALUES (1, 17218, 4, 0, 0, 3); -- Zamburak
+INSERT INTO `guild_item_points` VALUES (1, 17229, 4, 0, 0, 3); -- Zamburak +1
+INSERT INTO `guild_item_points` VALUES (1, 17027, 4, 0, 0, 4); -- Oak Cudgel
+INSERT INTO `guild_item_points` VALUES (1, 17142, 4, 0, 0, 4); -- Oak Cudgel +1
+INSERT INTO `guild_item_points` VALUES (1, 16836, 4, 0, 0, 5); -- Halberd
+INSERT INTO `guild_item_points` VALUES (1, 16866, 4, 0, 0, 5); -- Halberd +1
+INSERT INTO `guild_item_points` VALUES (1, 17053, 4, 0, 0, 6); -- Rose Wand
+INSERT INTO `guild_item_points` VALUES (1, 17143, 4, 0, 0, 6); -- Rose Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 12293, 4, 0, 0, 7); -- Oak Shield
+INSERT INTO `guild_item_points` VALUES (1, 12331, 4, 0, 0, 7); -- Oak Shield +1
 
 -- Woodworking / Journeyman
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 0); -- Rose Harp
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 1); -- Great Club
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 2); -- Mythril Lance
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 3); -- Arbalest
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 4); -- Kamayari
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 5); -- War Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 6); -- Oak Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 5, 0, 0, 7); -- Desk
+INSERT INTO `guild_item_points` VALUES (1, 17355, 5, 0, 0, 0); -- Rose Harp
+INSERT INTO `guild_item_points` VALUES (1, 17376, 5, 0, 0, 0); -- Rose Harp +1
+INSERT INTO `guild_item_points` VALUES (1, 17030, 5, 0, 0, 1); -- Great Club
+INSERT INTO `guild_item_points` VALUES (1, 17408, 5, 0, 0, 1); -- Great Club +1
+INSERT INTO `guild_item_points` VALUES (1, 16847, 5, 0, 0, 2); -- Mythril Lance
+INSERT INTO `guild_item_points` VALUES (1, 16877, 5, 0, 0, 2); -- Mythril Lance +1
+INSERT INTO `guild_item_points` VALUES (1, 17219, 5, 0, 0, 3); -- Arbalest
+INSERT INTO `guild_item_points` VALUES (1, 17226, 5, 0, 0, 3); -- Arbalest +1
+INSERT INTO `guild_item_points` VALUES (1, 16871, 5, 0, 0, 4); -- Kamayari
+INSERT INTO `guild_item_points` VALUES (1, 16872, 5, 0, 0, 4); -- Kamayari +1
+INSERT INTO `guild_item_points` VALUES (1, 17164, 5, 0, 0, 5); -- War Bow
+INSERT INTO `guild_item_points` VALUES (1, 17173, 5, 0, 0, 5); -- War Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 17098, 5, 0, 0, 6); -- Oak Pole
+INSERT INTO `guild_item_points` VALUES (1, 17120, 5, 0, 0, 6); -- Oak Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 21, 5, 0, 0, 7); -- Desk
 
 -- Woodworking / Craftsman
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 0); -- Coffer
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 1); -- Rapid Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 2); -- Ebony Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 3); -- Revenging Staff
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 4); -- Chest
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 5); -- Mahogany Staff
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 6); -- Angel's Flute
-INSERT INTO `guild_item_points` VALUES (1, 0, 6, 0, 0, 7); -- Lightning Bow
+INSERT INTO `guild_item_points` VALUES (1, 49, 6, 0, 0, 0); -- Coffer
+INSERT INTO `guild_item_points` VALUES (1, 17157, 6, 0, 0, 1); -- Rapid Bow
+INSERT INTO `guild_item_points` VALUES (1, 17189, 6, 0, 0, 1); -- Rapid Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 17054, 6, 0, 0, 2); -- Ebony Wand
+INSERT INTO `guild_item_points` VALUES (1, 17427, 6, 0, 0, 2); -- Ebony Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 17561, 6, 0, 0, 3); -- Revenging Staff
+INSERT INTO `guild_item_points` VALUES (1, 17562, 6, 0, 0, 3); -- Revenging Staff +1
+INSERT INTO `guild_item_points` VALUES (1, 51, 6, 0, 0, 4); -- Chest
+INSERT INTO `guild_item_points` VALUES (1, 17092, 6, 0, 0, 5); -- Mahogany Staff (2310 / 17760)
+INSERT INTO `guild_item_points` VALUES (1, 17520, 6, 0, 0, 5); -- Heavy Staff (2310 / 17760)
+INSERT INTO `guild_item_points` VALUES (1, 17350, 6, 0, 0, 6); -- Angel's Flute (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17378, 6, 0, 0, 6); -- Angel's Flute (1280 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17240, 6, 0, 0, 7); -- Lightning Bow
+INSERT INTO `guild_item_points` VALUES (1, 17241, 6, 0, 0, 7); -- Lightning Bow +1
 
 -- Woodworking / Artisan
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 0); -- Commode
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 1); -- Round Shield
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 2); -- Water Barrel
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 3); -- Chiffonier
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 4); -- Bureau
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 5); -- Tarutaru Folding Screen
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 6); -- Ebony Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 7, 0, 0, 7); -- Ebony Harp
+INSERT INTO `guild_item_points` VALUES (1, 56, 7, 0, 0, 0); -- Commode
+INSERT INTO `guild_item_points` VALUES (1, 12295, 7, 0, 0, 1); -- Round Shield
+INSERT INTO `guild_item_points` VALUES (1, 12352, 7, 0, 0, 1); -- Round Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 95, 7, 0, 0, 2); -- Water Barrel
+INSERT INTO `guild_item_points` VALUES (1, 59, 7, 0, 0, 3); -- Chiffonier
+INSERT INTO `guild_item_points` VALUES (1, 30, 7, 0, 0, 4); -- Bureau
+INSERT INTO `guild_item_points` VALUES (1, 104, 7, 0, 0, 5); -- Tarutaru Folding Screen
+INSERT INTO `guild_item_points` VALUES (1, 17100, 7, 0, 0, 6); -- Ebony Pole
+INSERT INTO `guild_item_points` VALUES (1, 17525, 7, 0, 0, 6); -- Ebony Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 17357, 7, 0, 0, 7); -- Ebony Harp (2587 / 18240)
+INSERT INTO `guild_item_points` VALUES (1, 17833, 7, 0, 0, 7); -- Ebony Harp +1 (2700 / 18240)
 
 -- Woodworking / Adept
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 0); -- Cermet Lance
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 1); -- Eremite's Wand
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 2); -- Mythic Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 3); -- Leo Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 4); -- Repeating Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 5); -- Nymph Shield
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 6); -- Obelisk Lance
-INSERT INTO `guild_item_points` VALUES (1, 0, 8, 0, 0, 7); -- Cabinet
+INSERT INTO `guild_item_points` VALUES (1, 16849, 8, 0, 0, 0); -- Cermet Lance
+INSERT INTO `guild_item_points` VALUES (1, 16879, 8, 0, 0, 0); -- Cermet Lance +1
+INSERT INTO `guild_item_points` VALUES (1, 17441, 8, 0, 0, 1); -- Eremite's Wand
+INSERT INTO `guild_item_points` VALUES (1, 17442, 8, 0, 0, 1); -- Eremite's Wand +1
+INSERT INTO `guild_item_points` VALUES (1, 17101, 8, 0, 0, 2); -- Mythic Pole
+INSERT INTO `guild_item_points` VALUES (1, 17526, 8, 0, 0, 2); -- Mythic Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 17236, 8, 0, 0, 3); -- Leo Crossbow
+INSERT INTO `guild_item_points` VALUES (1, 17237, 8, 0, 0, 3); -- Leo Crossbow +1
+INSERT INTO `guild_item_points` VALUES (1, 17221, 8, 0, 0, 4); -- Repeating Crossbow (5425 / 20640)
+INSERT INTO `guild_item_points` VALUES (1, 17233, 8, 0, 0, 4); -- Machine Crossbow (6200 / 20640)
+INSERT INTO `guild_item_points` VALUES (1, 12364, 8, 0, 0, 5); -- Nymph Shield
+INSERT INTO `guild_item_points` VALUES (1, 12365, 8, 0, 0, 5); -- Nymph Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 16890, 8, 0, 0, 6); -- Obelisk Lance
+INSERT INTO `guild_item_points` VALUES (1, 16891, 8, 0, 0, 6); -- Obelisk Lance +1
+INSERT INTO `guild_item_points` VALUES (1, 55, 8, 0, 0, 7); -- Cabinet
 
 -- Woodworking / Veteran
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 0); -- Ox Tongue
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 1); -- Gendawa
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 2); -- Shigeto Bow
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 3); -- Eight-Sided Pole
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 4); -- Star Globe
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 5); -- Cythara Anglica
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 6); -- Royal Bookshelf
-INSERT INTO `guild_item_points` VALUES (1, 0, 9, 0, 0, 7); -- Bookshelf
+INSERT INTO `guild_item_points` VALUES (1, 16840, 9, 0, 0, 0); -- Ox Tongue
+INSERT INTO `guild_item_points` VALUES (1, 16894, 9, 0, 0, 0); -- Ox Tongue +1
+INSERT INTO `guild_item_points` VALUES (1, 17205, 9, 0, 0, 1); -- Gendawa
+INSERT INTO `guild_item_points` VALUES (1, 17206, 9, 0, 0, 1); -- Gendawa +1
+INSERT INTO `guild_item_points` VALUES (1, 18142, 9, 0, 0, 2); -- Shigeto Bow
+INSERT INTO `guild_item_points` VALUES (1, 18143, 9, 0, 0, 2); -- Shigeto Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 17102, 9, 0, 0, 3); -- Eight-Sided Pole
+INSERT INTO `guild_item_points` VALUES (1, 17568, 9, 0, 0, 3); -- Eight-Sided Pole +1
+INSERT INTO `guild_item_points` VALUES (1, 139, 9, 0, 0, 4); -- Star Globe
+INSERT INTO `guild_item_points` VALUES (1, 17364, 9, 0, 0, 5); -- Cythara Anglica
+INSERT INTO `guild_item_points` VALUES (1, 17837, 9, 0, 0, 5); -- Cythara Anglica +1
+INSERT INTO `guild_item_points` VALUES (1, 76, 9, 0, 0, 6); -- Royal Bookshelf
+INSERT INTO `guild_item_points` VALUES (1, 77, 9, 0, 0, 7); -- Bookshelf
 
 -- Blacksmithing/ Amateur
 INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 0); -- Bronze Knuckles
