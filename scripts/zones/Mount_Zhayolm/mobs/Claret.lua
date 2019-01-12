@@ -5,11 +5,16 @@
 -- Spawned with Pectin: @additem 2591
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Claret
 -----------------------------------
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/magic")
 require("scripts/globals/status")
 -----------------------------------
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+end
 
 function onMobSpawn(mob)
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
     mob:addMod(dsp.mod.REGEN, math.floor(mob:getMaxHP()*.004))
     mob:addMod(dsp.mod.BINDRES, 40)
     mob:addMod(dsp.mod.MOVE, 15)
