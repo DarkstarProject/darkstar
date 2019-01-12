@@ -27,104 +27,104 @@ CREATE TABLE `guild_item_points` (
 -- ----------------------------
 
 -- Fishing / Amateur
-INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 0, 0, 0); -- Bastore Sardine
-INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 0, 0, 1); -- Crayfish
-INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 0, 0, 2); -- Bastore Sardine
-INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 0, 0, 3); -- Moat Carp
-INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 0, 0, 4); -- Crayfish
-INSERT INTO `guild_item_points` VALUES (0, 4314, 0, 0, 0, 5); -- Bibikibo
-INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 0, 0, 6); -- Moat Carp
-INSERT INTO `guild_item_points` VALUES (0, 4443, 0, 0, 0, 7); -- Cobalt Jellyfish
+INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 24, 3600, 0); -- Bastore Sardine (24 / 3600)
+INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 30, 3840, 1); -- Crayfish (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (0, 4360, 0, 24, 3600, 2); -- Bastore Sardine (24 / 3600)
+INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 30, 3840, 3); -- Moat Carp (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (0, 4472, 0, 30, 3840, 4); -- Crayfish (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (0, 4314, 0, 300, 7680, 5); -- Bibikibo (300 / 7680)
+INSERT INTO `guild_item_points` VALUES (0, 4401, 0, 30, 3840, 6); -- Moat Carp (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (0, 4443, 0, 24, 3600, 7); -- Cobalt Jellyfish (24 / 3600)
 
 -- Fishing / Recruit
-INSERT INTO `guild_item_points` VALUES (0, 4515, 1, 0, 0, 0); -- Copper Frog
-INSERT INTO `guild_item_points` VALUES (0, 4289, 1, 0, 0, 1); -- Forest Carp
-INSERT INTO `guild_item_points` VALUES (0, 4514, 1, 0, 0, 2); -- Quus
-INSERT INTO `guild_item_points` VALUES (0, 4379, 1, 0, 0, 3); -- Cheval Salmon
-INSERT INTO `guild_item_points` VALUES (0, 4500, 1, 0, 0, 4); -- Greedie
-INSERT INTO `guild_item_points` VALUES (0, 5473, 1, 0, 0, 5); -- Bastore Sweeper
-INSERT INTO `guild_item_points` VALUES (0, 4313, 1, 0, 0, 6); -- Blindfish
-INSERT INTO `guild_item_points` VALUES (0, 4403, 1, 0, 0, 7); -- Yellow Globe
+INSERT INTO `guild_item_points` VALUES (0, 4515, 1, 60, 5040, 0); -- Copper Frog (60 / 5040)
+INSERT INTO `guild_item_points` VALUES (0, 4289, 1, 45, 4800, 1); -- Forest Carp (45 / 4800)
+INSERT INTO `guild_item_points` VALUES (0, 4514, 1, 60, 5040, 2); -- Quus (60 / 5040)
+INSERT INTO `guild_item_points` VALUES (0, 4379, 1, 60, 5040, 3); -- Cheval Salmon (60 / 5040)
+INSERT INTO `guild_item_points` VALUES (0, 5473, 1, 279, 7920, 4); -- Bastore Sweeper (279 / 7920)
+INSERT INTO `guild_item_points` VALUES (0, 5473, 1, 279, 7920, 5); -- Bastore Sweeper (279 / 7920)
+INSERT INTO `guild_item_points` VALUES (0, 4313, 1, 675, 11280, 6); -- Blindfish (675 / 11280)
+INSERT INTO `guild_item_points` VALUES (0, 4403, 1, 60, 5040, 7); -- Yellow Globe (60 / 5040)
 
 -- Fishing / Initiate
-INSERT INTO `guild_item_points` VALUES (0, 4464, 2, 0, 0, 0); -- Pipira
-INSERT INTO `guild_item_points` VALUES (0, 4469, 2, 0, 0, 1); -- Giant Catfish
-INSERT INTO `guild_item_points` VALUES (0, 4361, 2, 0, 0, 2); -- Nebimonite
-INSERT INTO `guild_item_points` VALUES (0, 4426, 2, 0, 0, 3); -- Tricolored Carp
-INSERT INTO `guild_item_points` VALUES (0, 4315, 2, 0, 0, 4); -- Lungfish
-INSERT INTO `guild_item_points` VALUES (0, 5121, 2, 0, 0, 5); -- Moorish Idol
-INSERT INTO `guild_item_points` VALUES (0, 4290, 2, 0, 0, 6); -- Elshimo Frog
-INSERT INTO `guild_item_points` VALUES (0, 4483, 2, 0, 0, 7); -- Tiger Cod
+INSERT INTO `guild_item_points` VALUES (0, 4464, 2, 138, 6720, 0); -- Pipira (138 / 6720)
+INSERT INTO `guild_item_points` VALUES (0, 4469, 2, 300, 8640, 1); -- Giant Catfish (300 / 8640)
+INSERT INTO `guild_item_points` VALUES (0, 4361, 2, 156, 6960, 2); -- Nebimonite (156 / 6960)
+INSERT INTO `guild_item_points` VALUES (0, 4426, 2, 156, 6960, 3); -- Tricolored Carp (156 / 6960)
+INSERT INTO `guild_item_points` VALUES (0, 4315, 2, 720, 12000, 4); -- Lungfish (720 / 12000)
+INSERT INTO `guild_item_points` VALUES (0, 5121, 2, 714, 12000, 5); -- Moorish Idol (714 / 12000)
+INSERT INTO `guild_item_points` VALUES (0, 4290, 2, 156, 6960, 6); -- Elshimo Frog (156 / 6960)
+INSERT INTO `guild_item_points` VALUES (0, 4483, 2, 156, 6960, 7); -- Tiger Cod (156 / 6960)
 
 -- Fishing / Novice
-INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 0, 0, 0); -- Shining Trout
-INSERT INTO `guild_item_points` VALUES (0, 4528, 3, 0, 0, 1); -- Crystal Bass
-INSERT INTO `guild_item_points` VALUES (0, 5796, 3, 0, 0, 2); -- Nosteau Herring
-INSERT INTO `guild_item_points` VALUES (0, 5804, 3, 0, 0, 3); -- Veydal Wrasse
-INSERT INTO `guild_item_points` VALUES (0, 5805, 3, 0, 0, 4); -- Gugru Tuna
-INSERT INTO `guild_item_points` VALUES (0, 4580, 3, 0, 0, 5); -- Coral Butterfly
-INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 0, 0, 6); -- Shining Trout
-INSERT INTO `guild_item_points` VALUES (0, 5795, 3, 0, 0, 7); -- Ogre Eel
+INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 78, 6720, 0); -- Shining Trout (78 / 6720)
+INSERT INTO `guild_item_points` VALUES (0, 4528, 3, 375, 9840, 1); -- Crystal Bass (375 / 9840)
+INSERT INTO `guild_item_points` VALUES (0, 5796, 3, 240, 8640, 2); -- Nosteau Herring (240 / 8640)
+INSERT INTO `guild_item_points` VALUES (0, 5804, 3, 1350, 15120, 3); -- Veydal Wrasse (1350 / 15120)
+INSERT INTO `guild_item_points` VALUES (0, 5805, 3, 300, 9120, 4); -- Gugru Tuna (300 / 9120)
+INSERT INTO `guild_item_points` VALUES (0, 4580, 3, 375, 9840, 5); -- Coral Butterfly (375 / 9840)
+INSERT INTO `guild_item_points` VALUES (0, 5791, 3, 78, 6720, 6); -- Shining Trout (78 / 6720)
+INSERT INTO `guild_item_points` VALUES (0, 5795, 3, 96, 6960, 7); -- Ogre Eel (96 / 6960)
 
 -- Fishing / Apprentice
-INSERT INTO `guild_item_points` VALUES (0, 5801, 4, 0, 0, 0); -- Monke-Onke
-INSERT INTO `guild_item_points` VALUES (0, 5800, 4, 0, 0, 1); -- Giant Donko
-INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 0, 0, 2); -- Gold Lobster
-INSERT INTO `guild_item_points` VALUES (0, 4470, 4, 0, 0, 3); -- Icefish
-INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 0, 0, 4); -- Zafmlug Bass
-INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 0, 0, 5); -- Gold Lobster
-INSERT INTO `guild_item_points` VALUES (0, 4429, 4, 0, 0, 6); -- Black Eel
-INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 0, 0, 7); -- Zafmlug Bass
+INSERT INTO `guild_item_points` VALUES (0, 5801, 4, 900, 13440, 0); -- Monke-Onke (900 / 13440)
+INSERT INTO `guild_item_points` VALUES (0, 5800, 4, 576, 11760, 1); -- Giant Donko (576 / 11760)
+INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 576, 11760, 2); -- Gold Lobster (576 / 11760)
+INSERT INTO `guild_item_points` VALUES (0, 4470, 4, /, 800, 3); -- Icefish (459 / 10,800)
+INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 93, 7440, 4); -- Zafmlug Bass (93 / 7440)
+INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 576, 11760, 5); -- Gold Lobster (576 / 11760)
+INSERT INTO `guild_item_points` VALUES (0, 4429, 4, 576, 11760, 6); -- Black Eel (576 / 11760)
+INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 93, 7440, 7); -- Zafmlug Bass (93 / 7440)
 
 -- Fishing / Journeyman
-INSERT INTO `guild_item_points` VALUES (0, 4427, 5, 0, 0, 0); -- Gold Carp
-INSERT INTO `guild_item_points` VALUES (0, 4579, 5, 0, 0, 1); -- Elshimo Newt
-INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 0, 0, 2); -- Bhefhel Marlin
-INSERT INTO `guild_item_points` VALUES (0, 4402, 5, 0, 0, 3); -- Red Terrapin
-INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 0, 0, 4); -- Bluetail
-INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 0, 0, 5); -- Bhefhel Marlin
-INSERT INTO `guild_item_points` VALUES (0, 4317, 5, 0, 0, 6); -- Trilobite
-INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 0, 0, 7); -- Bluetail
+INSERT INTO `guild_item_points` VALUES (0, 4427, 5, 900, 13680, 0); -- Gold Carp (900 / 13680)
+INSERT INTO `guild_item_points` VALUES (0, 4579, 5, 525, 11760, 1); -- Elshimo Newt (525 / 11760)
+INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 900, 13680, 2); -- Bhefhel Marlin (900 / 13680)
+INSERT INTO `guild_item_points` VALUES (0, 4402, 5, 900, 13680, 3); -- Red Terrapin (900 / 13680)
+INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 900, 13680, 4); -- Bluetail (900 / 13680)
+INSERT INTO `guild_item_points` VALUES (0, 5806, 5, 900, 13680, 5); -- Bhefhel Marlin (900 / 13680)
+INSERT INTO `guild_item_points` VALUES (0, 4317, 5, 120, 8400, 6); -- Trilobite (120 / 8400)
+INSERT INTO `guild_item_points` VALUES (0, 5798, 5, 900, 13680, 7); -- Bluetail (900 / 13680)
 
 -- Fishing / Craftsman
-INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 0); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 1); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 2); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 3); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 4471, 6, 0, 0, 4); -- Bladefish
-INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 0, 0, 5); -- Zebra Eel
-INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 0, 0, 6); -- Crescent Fish
-INSERT INTO `guild_item_points` VALUES (0, 4485, 6, 0, 0, 7); -- Noble Lady
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 1320, 15360, 0); -- Crescent Fish (1320 / 15360)
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 1320, 15360, 1); -- Crescent Fish (1320 / 15360)
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 1200, 15120, 2); -- Zebra Eel (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 1200, 15120, 3); -- Zebra Eel (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (0, 4471, 6, 1200, 15120, 4); -- Bladefish (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (0, 4288, 6, 1200, 15120, 5); -- Zebra Eel (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (0, 4473, 6, 1320, 15360, 6); -- Crescent Fish (1320 / 15360)
+INSERT INTO `guild_item_points` VALUES (0, 4485, 6, 1200, 15120, 7); -- Noble Lady (1200 / 15120)
 
 -- Fishing / Artisan
-INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 0, 0, 0); -- Gavial Fish
-INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 0, 0, 1); -- Jungle Catfish
-INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 0, 0, 2); -- Three-eyed Fish
-INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 0, 0, 3); -- Jungle Catfish
-INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 0, 0, 4); -- Silver Shark
-INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 0, 0, 5); -- Three-eyed Fish
-INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 0, 0, 6); -- Gavial Fish
-INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 0, 0, 7); -- Silver Shark
+INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 1500, 16080, 0); -- Gavial Fish (1500 / 16080)
+INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 1800, 16800, 1); -- Jungle Catfish (1800 / 16800)
+INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 1500, 16080, 2); -- Three-eyed Fish (1500 / 16080)
+INSERT INTO `guild_item_points` VALUES (0, 4307, 7, 1800, 16800, 3); -- Jungle Catfish (1800 / 16800)
+INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 1500, 16080, 4); -- Silver Shark (1500 / 16080)
+INSERT INTO `guild_item_points` VALUES (0, 4478, 7, 1500, 16080, 5); -- Three-eyed Fish (1500 / 16080)
+INSERT INTO `guild_item_points` VALUES (0, 4477, 7, 1500, 16080, 6); -- Gavial Fish (1500 / 16080)
+INSERT INTO `guild_item_points` VALUES (0, 4451, 7, 1500, 16080, 7); -- Silver Shark (1500 / 16080)
 
 -- Fishing / Adept
-INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 0, 0, 0); -- Emperor Fish
-INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 0, 0, 1); -- Emperor Fish
-INSERT INTO `guild_item_points` VALUES (0, 4461, 8, 0, 0, 2); -- Bastore Bream
-INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 3); -- Grimmonite
-INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 0, 0, 4); -- Gigant Squid
-INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 5); -- Grimmonite
-INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 0, 0, 6); -- Gigant Squid
-INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 0, 0, 7); -- Grimmonite
+INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 1800, 17040, 0); -- Emperor Fish (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (0, 4454, 8, 1800, 17040, 1); -- Emperor Fish (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (0, 4461, 8, 1800, 17040, 2); -- Bastore Bream (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 2100, 17520, 3); -- Grimmonite (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 1800, 17040, 4); -- Gigant Squid (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 2100, 17520, 5); -- Grimmonite (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4474, 8, 1800, 17040, 6); -- Gigant Squid (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (0, 4304, 8, 2100, 17520, 7); -- Grimmonite (2100 / 17520)
 
 -- Fishing / Veteran
-INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 0, 0, 0); -- Sea Zombie
-INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 0, 0, 1); -- Titanictus
-INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 0, 0, 2); -- Sea Zombie
-INSERT INTO `guild_item_points` VALUES (0, 4316, 9, 0, 0, 3); -- Armored Pisces
-INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 0, 0, 4); -- Titanictus
-INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 0, 0, 5); -- Takitaro
-INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 0, 0, 6); -- Takitaro
-INSERT INTO `guild_item_points` VALUES (0, 4384, 9, 0, 0, 7); -- Black Sole
+INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 2100, 17520, 0); -- Sea Zombie (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 2100, 17520, 1); -- Titanictus (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4475, 9, 2100, 17520, 2); -- Sea Zombie (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4316, 9, 2850, 18720, 3); -- Armored Pisces (2850 / 18720)
+INSERT INTO `guild_item_points` VALUES (0, 4476, 9, 2100, 17520, 4); -- Titanictus (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 2100, 17520, 5); -- Takitaro (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 2100, 17520, 6); -- Takitaro (2100 / 17520)
+INSERT INTO `guild_item_points` VALUES (0, 4384, 9, 2100, 17520, 7); -- Black Sole (2100 / 17520)
 
 -- Woodworking / Amateur
 INSERT INTO `guild_item_points` VALUES (1, 17095, 0, 0, 0, 0); -- Ash Pole
