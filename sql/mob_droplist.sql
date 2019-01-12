@@ -32997,6 +32997,7 @@ INSERT INTO `mob_droplist` VALUES (4640,0,0,1000,15853,205); -- (Dynast Beetle) 
 INSERT INTO `mob_droplist` VALUES (4641,0,0,1000,11342,156); -- (Myradrosh) Restorer Cloak
 INSERT INTO `mob_droplist` VALUES (4642,0,0,1000,16025,250); -- (Nandi) Rathe Earring
 INSERT INTO `mob_droplist` VALUES (4643,0,0,1000,16016,200); -- (Powderer Penny) Chary Earring
+INSERT INTO `mob_droplist` VALUES (4644,0,0,1000,16034,81); -- (Hoar-knuckled Rimberry) Sarabande Earring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
