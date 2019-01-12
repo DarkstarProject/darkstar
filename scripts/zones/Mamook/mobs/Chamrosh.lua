@@ -1,11 +1,20 @@
 -----------------------------------
 -- Area: Mamook
 --  ZNM: Chamrosh (Tier-1 ZNM)
+-- Does not use normal colibri mimic mechanics, changes form every
+-- 2.5 mins. st form mimics all spells 2nd form cast spells from list only
 -----------------------------------
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/status")
 -----------------------------------
+-- todo: when mimics a spell will cast the next tier spell
+
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+end
 
 function onMobSpawn(mob)
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
     mob:setLocalVar("changeTime",150)
     mob:setLocalVar("useWise", math.random(25,50))
     mob:addMod(dsp.mod.UFASTCAST,150)
