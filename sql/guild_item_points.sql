@@ -70,7 +70,7 @@ INSERT INTO `guild_item_points` VALUES (0, 5795, 3, 96, 6960, 7); -- Ogre Eel (9
 INSERT INTO `guild_item_points` VALUES (0, 5801, 4, 900, 13440, 0); -- Monke-Onke (900 / 13440)
 INSERT INTO `guild_item_points` VALUES (0, 5800, 4, 576, 11760, 1); -- Giant Donko (576 / 11760)
 INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 576, 11760, 2); -- Gold Lobster (576 / 11760)
-INSERT INTO `guild_item_points` VALUES (0, 4470, 4, /, 800, 3); -- Icefish (459 / 10,800)
+INSERT INTO `guild_item_points` VALUES (0, 4470, 4, 459, 10800, 3); -- Icefish (459 / 10800)
 INSERT INTO `guild_item_points` VALUES (0, 4385, 4, 93, 7440, 4); -- Zafmlug Bass (93 / 7440)
 INSERT INTO `guild_item_points` VALUES (0, 4383, 4, 576, 11760, 5); -- Gold Lobster (576 / 11760)
 INSERT INTO `guild_item_points` VALUES (0, 4429, 4, 576, 11760, 6); -- Black Eel (576 / 11760)
@@ -480,101 +480,172 @@ INSERT INTO `guild_item_points` VALUES (3, 12526, 0, 79, 3840, 3); -- Copper Hai
 INSERT INTO `guild_item_points` VALUES (3, 16551, 0, 194, 6240, 4); -- Sapara (194 / 6240)
 INSERT INTO `guild_item_points` VALUES (3, 16801, 0, 214, 6240, 4); -- Sapara +1 (214 / 6240)
 INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 5); -- Copper Ring (19 / 3600)
-INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 5); -- Copper Ring +1 (21 / 3600)
+INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 27, 3600, 5); -- Copper Ring +1 (27 / 3600)
 INSERT INTO `guild_item_points` VALUES (3, 12449, 0, 327, 7920, 6); -- Brass Cap (327 / 7920)
 INSERT INTO `guild_item_points` VALUES (3, 12528, 0, 388, 7920, 6); -- Brass Cap +1 (388 / 7920)
 INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 7); -- Copper Ring (19 / 3600)
-INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 7); -- Copper Ring +1 (21 / 3600)
+INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 27, 3600, 7); -- Copper Ring +1 (27 / 3600)
 
 -- Goldsmithing / Recruit
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 0); -- Brass Hairpin
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 1); -- Brass Baghnakhs
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 2); -- Brass Dagger
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 3); -- Brass Zaghnal
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 4); -- Brass Knuckles
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 5); -- Brass Ring
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 6); -- Brass Harness
-INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 7); -- Brass Axe
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 259, 7680, 0); -- Brass Hairpin (259 / 7680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 264, 7680, 0); -- Brass Hairpin +1 (264 / 7680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 338, 8400, 1); -- Brass Baghnakhs (338 / 8400)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 338, 8400, 1); -- Brass Baghnakhs +1 (338 / 8400)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 186, 6720, 2); -- Brass Dagger (186 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 221, 6720, 2); -- Brass Dagger +1 (221 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 140, 6240, 3); -- Brass Zaghnal (140 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 181, 6240, 3); -- Brass Zaghnal +1 (181 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 180, 6720, 4); -- Brass Knuckles (180 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 222, 6720, 4); -- Brass Knuckles +1 (222 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 248, 2440, 5); -- Brass Leggings (248 / 2440)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 309, 2440, 5); -- Brass Leggings +1 (309 / 2440)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 497, 558, 6); -- Brass Harness (497 / 558)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 558, 558, 6); -- Brass Harness +1 (558 / 558)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 312, 8160, 7); -- Brass Axe (312 / 8160)
+INSERT INTO `guild_item_points` VALUES (3, 0, 1, 343, 8160, 7); -- Brass Axe +1 (343 / 8160)
 
 -- Goldsmithing / Initiate
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 0); -- Poet's Circlet
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 1); -- Brass Mask
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 2); -- Brass Rod
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 3); -- Silver Hairpin
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 4); -- Brass Hammer
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 5); -- Silver Belt
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 6); -- Brass Finger Gauntlets
-INSERT INTO `guild_item_points` VALUES (3, 0, 2, 0, 0, 7); -- Silver Earring
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 414, 9600, 0); -- Poet's Circlet (414 / 9600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 495, 9600, 0); -- Poet's Circlet +1 (495 / 9600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 800, 12480, 1); -- Brass Mask (800 / 12480)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 832, 12480, 1); -- Brass Mask1 (832 / 12480)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 138, 6720, 2); -- Brass Rod (138 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 219, 6720, 2); -- Brass Rod +1 (219 / 6720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 345, 9120, 3); -- Silver Hairpin (345 / 9120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 364, 9120, 3); -- Silver Hairpin +1 (364 / 9120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 463, 10080, 4); -- Brass Hammer (463 / 10080)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 544, 10080, 4); -- Brass Hammer +1 (544 / 10080)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 357, 9120, 5); -- Silver Belt (357 / 9120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 441, 9120, 5); -- Silver Belt +1 (441 / 9120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 432, 9840, 6); -- Brass Finger Gauntlets (432 / 9840)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 544, 9840, 6); -- Brass Finger Gauntlets (544 / 9840)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 250, 8160, 7); -- Silver Earring (250 / 8160)
+INSERT INTO `guild_item_points` VALUES (3, 0, 2, 350, 8160, 7); -- Silver Earring +1 (350 / 8160)
 
 -- Goldsmithing / Novice
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 0); -- Chain Choker
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 1); -- Brass Cuisses
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 2); -- Chain Belt
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 3); -- Silver Mask
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 4); -- Spark Bilbo
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 5); -- Chain Gorget
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 6); -- Silver Mittens
-INSERT INTO `guild_item_points` VALUES (3, 0, 3, 0, 0, 7); -- Spark Spear
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 810, 12720, 0); -- Chain Choker (810 / 12720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 1110, 12720, 0); -- Chain Choker +1 (1110 / 12720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 672, 12000, 1); -- Brass Cuisses (672 / 12000)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 752, 12000, 1); -- Brass Cuisses +1 (752 / 12000)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 1020, 13680, 2); -- Chain Belt (1020 / 13680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 1320, 13680, 2); -- Chain Belt +1 (1320 / 13680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 2850, 18240, 3); -- Silver Mask (2850 / 18240)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 3350, 18240, 3); -- Silver Mask +1 (3350 / 18240)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 669, 12000, 4); -- Spark Bilbo (669 / 12000)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 706, 12000, 4); -- Spark Bilbo +1 (706 / 12000)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 1020, 13680, 5); -- Chain Gorget (1020 / 13680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 1320, 13680, 5); -- Chain Gorget +1 (1320 / 13680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 2350, 17520, 6); -- Silver Mittens (2350 / 17520)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 2850, 17520, 6); -- Silver Mittens +1 (2850 / 17520)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 240, 8640, 7); -- Spark Spear (240 / 8640)
+INSERT INTO `guild_item_points` VALUES (3, 0, 3, 390, 8640, 7); -- Spark Spear +1 (390 / 8640)
 
 -- Goldsmithing / Apprentice
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 0); -- Banded Helm
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 1); -- Buckler
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 2); -- Mythril Baselard
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 3); -- Mythril Ring
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 4); -- Silver Mail
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 5); -- Sollerets
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 6); -- Silver Bangles
-INSERT INTO `guild_item_points` VALUES (3, 0, 4, 0, 0, 7); -- Mythril Earring
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 4275, 19920, 0); -- Banded Helm (4275 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 5025, 19920, 0); -- Banded Helm +1 (5025 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 3117, 18270, 1); -- Buckler (3117 / 18270)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 3842, 18270, 1); -- Buckler +1 (3842 / 18270)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 1976, 16800, 2); -- Mythril Baselard (1976 / 16800)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 2028, 16800, 2); -- Mythril Baselard +1 (2028 / 16800)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 750, 12720, 3); -- Mythril Ring (750 / 12720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 1050, 12720, 3); -- Mythril Ring +1 (1050 / 12720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 4400, 19920, 4); -- Silver Mail (4400 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 4900, 19920, 4); -- Silver Mail +1 (4900 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 3225, 18960, 5); -- Sollerets (3225 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 3975, 18960, 5); -- Sollerets +1 (3975 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 992, 13920, 6); -- Silver Bangles (992 / 13920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 1054, 13920, 6); -- Silver Bangles +1 (1054 / 13920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 750, 12720, 7); -- Mythril Earring (750 / 12720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 4, 1050, 12720, 7); -- Mythril Earring (1050 / 12720)
 
 -- Goldsmithing / Journeyman
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 0); -- Gold Ring
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 1); -- Spark Kris
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 2); -- Mythril Gorget
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 3); -- Melody Earring
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 4); -- Heater Shield
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 5); -- Gold Earring
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 6); -- Mythril Degen
-INSERT INTO `guild_item_points` VALUES (3, 0, 5, 0, 0, 7); -- Wingedge
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1750, 16560, 0); -- Gold Ring (1750 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 2450, 16560, 0); -- Gold Ring +1 (2450 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 6037, 20880, 1); -- Spark Kris (6037 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 6912, 20880, 1); -- Spark Kris +1 (6912 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 2805, 18480, 2); -- Mythril Gorget (2805 / 18480)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 3630, 18480, 2); -- Mythril Gorget +1 (3630 / 18480)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1794, 16560, 3); -- Hydro Baghnakhs (1794 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1872, 16560, 3); -- Hydro Baghnakhs +1 (1872 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 3168, 18960, 4); -- Heater Shield (3168 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 3828, 18960, 4); -- Heater Shield +1 (3828 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1750, 16560, 5); -- Gold Earring (1750 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 2450, 16560, 5); -- Gold Earring +1 (2450 / 16560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 3100, 18720, 6); -- Mythril Degen (3100 / 18720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 3150, 18720, 6); -- Mythril Degen +1 (3150 / 18720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1260, 15120, 7); -- Wingedge (1260 / 15120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 5, 1260, 15120, 7); -- Wingedge +1 (1260 / 15120)
 
 -- Goldsmithing / Craftsman
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 0); -- Mythril Cuisses
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 1); -- Gold Bangles
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 2); -- Mythril Leggings
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 3); -- Platinum Ring
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 4); -- Mythril Gauntlets
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 5); -- Mythril Breastplate
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 6); -- Mailbreaker
-INSERT INTO `guild_item_points` VALUES (3, 0, 6, 0, 0, 7); -- Mythril Cuisses
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3547, 19200, 0); -- Mythril Cuisses (3547 / 19200)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3630, 19200, 0); -- Mythril Cuisses +1 (3630 / 19200)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3870, 19680, 1); -- Gold Bangles (3870 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 4470, 19680, 1); -- Gold Bangles +1 (4470 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3630, 19440, 2); -- Mythril Leggings (3630 / 19440)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 4455, 19440, 2); -- Mythril Leggings +1 (4455 / 19440)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 6200, 20880, 3); -- Platinum Ring (6200 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 8800, 20880, 3); -- Platinum Ring +1 (8800 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3960, 19680, 4); -- Mythril Gauntlets (3960 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 4785, 19680, 4); -- Mythril Gauntlets +1 (4785 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 7507, 21360, 5); -- Mythril Breastplate (7507 / 21360)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 8332, 21360, 5); -- Mythril Breastplate (8332 / 21360)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3037, 18720, 6); -- Mailbreaker (3037 / 18720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3150, 18720, 6); -- Mailbreaker +1 (3150 / 18720)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3547, 19200, 7); -- Mythril Cuisses (3547 / 19200)
+INSERT INTO `guild_item_points` VALUES (3, 0, 6, 3630, 19200, 7); -- Mythril Cuisses (3630 / 19200)
 
 -- Goldsmithing / Artisan
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 0); -- Gold Patas
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 1); -- Diamond Knuckles
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 2); -- Gold Sword
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 3); -- Ashura
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 4); -- Moonring Blade
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 5); -- Gold Sabatons
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 6); -- Gold Buckler
-INSERT INTO `guild_item_points` VALUES (3, 0, 7, 0, 0, 7); -- Gold Cuisses
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 6370, 21120, 0); -- Gold Patas (6370 / 21120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 6492, 21120, 0); -- Gold Patas +1 (6492 / 21120)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 5637, 20640, 1); -- Diamond Knuckles (5637 / 20640)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 5775, 20640, 1); -- Diamond Knuckles +1 (5775 / 20640)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 14640, 22560, 2); -- Gold Sword (14640 / 22560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 14792, 22560, 2); -- Gold Sword (14792 / 22560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 3250, 18960, 3); -- Ashura (3250 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 3300, 18960, 3); -- Ashura +1 (3300 / 18960)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 3990, 19680, 4); -- Moonring Blade (3990 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 4095, 19680, 4); -- Moonring Blade +1 (4095 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 4950, 20400, 5); -- Gold Sabatons (4950 / 20400)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 6075, 20400, 5); -- Gold Sabatons +1 (6075 / 20400)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 4080, 19920, 6); -- Gold Buckler (4080 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 4207, 19920, 6); -- Gold Buckler +1 (4207 / 19920)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 3937, 19680, 7); -- Gold Cuisses (3937 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 7, 4050, 19680, 7); -- Gold Cuisses +1 (4050 / 19680)
 
 -- Goldsmithing / Adept
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 0); -- Kazaridachi
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 1); -- Diamond Shield
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 2); -- Golden Spear
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 3); -- Platinum Bangles
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 4); -- Platinum Mace
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 5); -- Epee
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 6); -- Jeweled Collar
-INSERT INTO `guild_item_points` VALUES (3, 0, 8, 0, 0, 7); -- Jagdplaute
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 7950, 21600, 0); -- Kazaridachi (7950 / 21600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 7950, 21600, 0); -- Kazaridachi +1 (7950 / 21600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 5640, 20880, 1); -- Diamond Shield (5640 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 6815, 20880, 1); -- Diamond Shield +1 (6815 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 5460, 20640, 2); -- Golden Spear (5460 / 20640)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 6435, 20640, 2); -- Golden Spear +1 (6435 / 20640)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 5697, 20880, 3); -- Platinum Bangles (5697 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 7022, 20880, 3); -- Platinum Bangles +1 (7022 / 20880)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 8342, 21600, 4); -- Platinum Mace (8342 / 21600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 8697, 21600, 4); -- Platinum Mace (8697 / 21600)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 10920, 22080, 5); -- Epee (10920 / 22080)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 11895, 22080, 5); -- Epee +1 (11895 / 22080)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 3780, 19680, 6); -- Jeweled Collar (3780 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 4060, 19680, 6); -- Jeweled Collar +1 (4060 / 19680)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 13545, 22560, 7); -- Jagdplaute (13545 / 22560)
+INSERT INTO `guild_item_points` VALUES (3, 0, 8, 13702, 22560, 7); -- Jagdplaute +1 (13702 / 22560)
 
 -- Goldsmithing / Veteran
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 0); -- Verdun
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 1); -- Orichalcum Dagger
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 2); -- Muscle Belt
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 3); -- Brisingamen
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 4); -- Orichalcum Ring
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 5); -- Koenig Shield
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 6); -- Millionaire Desk
-INSERT INTO `guild_item_points` VALUES (3, 0, 9, 0, 0, 7); -- Orichalcum Earring
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 17340, 22800, 0); -- Verdun (17340 / 22800)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 17977, 22800, 0); -- Verdun +1 (17977 / 22800)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 22200, 23040, 1); -- Orichalcum Dagger (22200 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 22800, 23040, 1); -- Orichalcum Dagger +1 (22800 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 1800, 17040, 2); -- Muscle Belt (1800 / 17040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 2925, 17040, 2); -- Muscle Belt (2925 / 17040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 21105, 23040, 3); -- Brisingamen (21105 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 22680, 23040, 3); -- Brisingamen +1 (22680 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 29750, 23280, 4); -- Orichalcum Ring (29750 / 23280)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 31450, 23280, 4); -- Triton Ring (31450 / 23280)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 22312, 23040, 5); -- Koenig Shield (22312 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 23587, 23040, 5); -- Kaiser Shield (23587 / 23040)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 24500, 23280, 6); -- Millionaire Desk (24500 / 23280)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 29750, 23280, 7); -- Orichalcum Earring (29750 / 23280)
+INSERT INTO `guild_item_points` VALUES (3, 0, 9, 31450, 23280, 7); -- Triton Earring (31450 / 23280)
 
 -- Clothcraft / Amateur
 INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 0); -- Gloves
