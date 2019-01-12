@@ -19998,6 +19998,7 @@ INSERT INTO `item_mods` VALUES (16426,23,10);
 INSERT INTO `item_mods` VALUES (16428,165,3);
 INSERT INTO `item_mods` VALUES (16428,292,7);
 INSERT INTO `item_mods` VALUES (16429,431,1);
+INSERT INTO `item_mods` VALUES (16431,431,1); -- Stun claws - Additional effect: "Stun"
 INSERT INTO `item_mods` VALUES (16433,23,3);
 INSERT INTO `item_mods` VALUES (16433,25,2);
 INSERT INTO `item_mods` VALUES (16434,25,2);
@@ -20905,6 +20906,7 @@ INSERT INTO `item_mods` VALUES (17480,25,3);
 INSERT INTO `item_mods` VALUES (17481,14,3);
 INSERT INTO `item_mods` VALUES (17481,25,3);
 INSERT INTO `item_mods` VALUES (17485,54,6);
+INSERT INTO `item_mods` VALUES (17486,431,1); -- Stun claws +1 - Additional effect: "Stun"
 INSERT INTO `item_mods` VALUES (17487,431,1);
 INSERT INTO `item_mods` VALUES (17491,25,2);
 INSERT INTO `item_mods` VALUES (17492,12,3);

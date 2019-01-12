@@ -1544,7 +1544,7 @@ INSERT INTO `mob_skills` VALUES (1720,1195,'wind_shear',1,10.0,2000,1500,4,0,0,7
 INSERT INTO `mob_skills` VALUES (1721,1196,'obfuscate',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1722,1197,'zephyr_mantle',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1723,1198,'ill_wind',1,15.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1724,1468,'white_wind',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1724,1199,'white_wind',1,15.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1725,1200,'kibosh',0,7,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1726,1201,'cutpurse',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1727,1202,'sandspray',4,7,2000,1500,4,0,0,0,0,0,0);
@@ -2180,9 +2180,8 @@ INSERT INTO `mob_skills` VALUES (2338,1641,'rampant_stance',1,15.0,2000,1000,4,0
 -- INSERT INTO `mob_skills` VALUES (2355,2099,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2356,2100,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2357,2101,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2358,2102,'tabula_rasa',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (2359,1201,'strap_cutter',0,20.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (2360,2104,'wind_shear',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (2360,1195,'wind_shear_znm',1,10.0,2000,1500,4,0,0,7,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2361,2105,'stave_toss',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2362,2106,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (2363,2107,'.',0,7.0,2000,1500,4,0,0,0,0,0,0);

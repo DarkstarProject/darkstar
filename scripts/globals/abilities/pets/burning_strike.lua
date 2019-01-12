@@ -26,8 +26,8 @@ function onPetAbility(target, pet, skill)
     damage.dmg = damage.dmg*resist
     --add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
     damage.dmg = mobAddBonuses(pet,spell,target,damage.dmg,1)
-    totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,numhits)
-    target:delHP(totaldamage)
+    totaldamage = AvatarFinalAdjustments(damage.dmg,pet,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.BLUNT,numhits)
+    target:takeDamage(totaldamage, pet, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(pet,totaldamage)
 
     return totaldamage
