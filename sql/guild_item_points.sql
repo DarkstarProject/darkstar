@@ -127,168 +127,164 @@ INSERT INTO `guild_item_points` VALUES (0, 4463, 9, 2100, 17520, 6); -- Takitaro
 INSERT INTO `guild_item_points` VALUES (0, 4384, 9, 2100, 17520, 7); -- Black Sole (2100 / 17520)
 
 -- Woodworking / Amateur
-INSERT INTO `guild_item_points` VALUES (1, 17095, 0, 0, 0, 0); -- Ash Pole
-INSERT INTO `guild_item_points` VALUES (1, 17122, 0, 0, 0, 0); -- Ash Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 17049, 0, 0, 0, 1); -- Maple Wand
-INSERT INTO `guild_item_points` VALUES (1, 17087, 0, 0, 0, 1); -- Maple Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 22, 0, 0, 0, 2); -- Workbench
-INSERT INTO `guild_item_points` VALUES (1, 17088, 0, 0, 0, 3); -- Ash Staff
-INSERT INTO `guild_item_points` VALUES (1, 17123, 0, 0, 0, 3); -- Ash Staff +1
-INSERT INTO `guild_item_points` VALUES (1, 17024, 0, 0, 0, 4); -- Ash Club
-INSERT INTO `guild_item_points` VALUES (1, 17137, 0, 0, 0, 4); -- Ash Club +1
-INSERT INTO `guild_item_points` VALUES (1, 16832, 0, 0, 0, 5); -- Harpoon
-INSERT INTO `guild_item_points` VALUES (1, 16862, 0, 0, 0, 5); -- Harpoon +1
-INSERT INTO `guild_item_points` VALUES (1, 12289, 0, 0, 0, 6); -- Lauan Shield
-INSERT INTO `guild_item_points` VALUES (1, 12333, 0, 0, 0, 6); -- Lauan Shield +1
-INSERT INTO `guild_item_points` VALUES (1, 17345, 0, 0, 0, 7); -- Flute
-INSERT INTO `guild_item_points` VALUES (1, 17372, 0, 0, 0, 7); -- Flute +1
+INSERT INTO `guild_item_points` VALUES (1, 17095, 0, 105, 5040, 0); -- Ash Pole (105 / 5040)
+INSERT INTO `guild_item_points` VALUES (1, 17122, 0, 120, 5040, 0); -- Ash Pole +1 (120 / 5040)
+INSERT INTO `guild_item_points` VALUES (1, 17868, 0, 52, 4080, 1); -- Humus (52 / 4080)
+INSERT INTO `guild_item_points` VALUES (1, 17869, 0, 97, 4080, 1); -- Rich Humus (97 / 4080)
+INSERT INTO `guild_item_points` VALUES (1, 22, 0, 94, 4800, 2); -- Workbench (94 / 4800)
+INSERT INTO `guild_item_points` VALUES (1, 22, 0, 94, 4800, 3); -- Workbench (94 / 4800)
+INSERT INTO `guild_item_points` VALUES (1, 12289, 0, 30, 3840, 4); -- Lauan Shield (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 12333, 0, 38, 3840, 4); -- Lauan Shield +1 (38 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 16832, 0, 27, 3840, 5); -- Harpoon (27 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 16862, 0, 30, 3840, 5); -- Harpoon +1 (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 12289, 0, 30, 3840, 6); -- Lauan Shield (30 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 12333, 0, 38, 3840, 6); -- Lauan Shield +1 (38 / 3840)
+INSERT INTO `guild_item_points` VALUES (1, 17868, 0, 52, 4080, 7); -- Humus (52 / 4080)
+INSERT INTO `guild_item_points` VALUES (1, 17869, 0, 97, 4080, 7); -- Rich Humus (97 / 4080)
 
 -- Woodworking / Recruit
-INSERT INTO `guild_item_points` VALUES (1, 17153, 1, 0, 0, 0); -- Self Bow
-INSERT INTO `guild_item_points` VALUES (1, 17176, 1, 0, 0, 0); -- Self Bow +1
-INSERT INTO `guild_item_points` VALUES (1, 12985, 1, 0, 0, 1); -- Holly Clogs
-INSERT INTO `guild_item_points` VALUES (1, 12991, 1, 0, 0, 1); -- Holly Clogs +1
-INSERT INTO `guild_item_points` VALUES (1, 12984, 1, 0, 0, 2); -- Ash Clogs
-INSERT INTO `guild_item_points` VALUES (1, 12983, 1, 0, 0, 2); -- Ash Clogs +1
-INSERT INTO `guild_item_points` VALUES (1, 23, 1, 0, 0, 3); -- Maple Table
-INSERT INTO `guild_item_points` VALUES (1, 17050, 1, 0, 0, 4); -- Willow Wand
-INSERT INTO `guild_item_points` VALUES (1, 17138, 1, 0, 0, 4); -- Willow Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 17216, 1, 0, 0, 5); -- Light Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 17228, 1, 0, 0, 5); -- Light Crossbow +1
-INSERT INTO `guild_item_points` VALUES (1, 17096, 1, 0, 0, 6); -- Holly Pole
-INSERT INTO `guild_item_points` VALUES (1, 17124, 1, 0, 0, 6); -- Holly Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 12290, 1, 0, 0, 7); -- Maple Shield
-INSERT INTO `guild_item_points` VALUES (1, 12330, 1, 0, 0, 7); -- Maple Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 17153, 1, 134, 6240, 0); -- Self Bow (134 / 6240)
+INSERT INTO `guild_item_points` VALUES (1, 17176, 1, 154, 6240, 0); -- Self Bow +1 (154 / 6240)
+INSERT INTO `guild_item_points` VALUES (1, 12985, 1, 325, 8400, 1); -- Holly Clogs (325 / 8400)
+INSERT INTO `guild_item_points` VALUES (1, 12991, 1, 406, 8400, 1); -- Holly Clogs +1 (406 / 8400)
+INSERT INTO `guild_item_points` VALUES (1, 17389, 1, 135, 6240, 2); -- Bamboo Fishing Rod (135 / 6240)
+INSERT INTO `guild_item_points` VALUES (1, 23, 1, 158, 6480, 3); -- Maple Table (158 / 6480)
+INSERT INTO `guild_item_points` VALUES (1, 17050, 1, 74, 5280, 4); -- Willow Wand (74 / 5280)
+INSERT INTO `guild_item_points` VALUES (1, 17138, 1, 119, 5280, 4); -- Willow Wand +1 (119 / 5280)
+INSERT INTO `guild_item_points` VALUES (1, 17216, 1, 45, 4800, 5); -- Light Crossbow (45 / 4800)
+INSERT INTO `guild_item_points` VALUES (1, 17228, 1, 53, 4800, 5); -- Light Crossbow +1 (53 / 4800)
+INSERT INTO `guild_item_points` VALUES (1, 17096, 1, 423, 9360, 6); -- Holly Pole (423 / 9360)
+INSERT INTO `guild_item_points` VALUES (1, 17124, 1, 435, 9360, 6); -- Holly Pole +1 (435 / 9360)
+INSERT INTO `guild_item_points` VALUES (1, 12290, 1, 121, 6000, 7); -- Maple Shield  (121 / 6000)
+INSERT INTO `guild_item_points` VALUES (1, 12330, 1, 152, 6000, 7); -- Maple Shield +1 (152 / 6000)
 
 -- Woodworking / Initiate
-INSERT INTO `guild_item_points` VALUES (1, 17051, 2, 0, 0, 0); -- Yew Wand
-INSERT INTO `guild_item_points` VALUES (1, 17140, 2, 0, 0, 0); -- Yew Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 17353, 2, 0, 0, 1); -- Maple Harp
-INSERT INTO `guild_item_points` VALUES (1, 17373, 2, 0, 0, 1); -- Maple Harp +1
-INSERT INTO `guild_item_points` VALUES (1, 92, 2, 0, 0, 2); -- Tarutaru Stool
-INSERT INTO `guild_item_points` VALUES (1, 17354, 2, 0, 0, 3); -- Harp
-INSERT INTO `guild_item_points` VALUES (1, 17374, 2, 0, 0, 3); -- Harp +1
-INSERT INTO `guild_item_points` VALUES (1, 16834, 2, 0, 0, 4); -- Brass Spear
-INSERT INTO `guild_item_points` VALUES (1, 16864, 2, 0, 0, 4); -- Brass Spear +1
-INSERT INTO `guild_item_points` VALUES (1, 12291, 2, 0, 0, 5); -- Elm Shield
-INSERT INTO `guild_item_points` VALUES (1, 12291, 2, 0, 0, 5); -- Elm Shield +1
-INSERT INTO `guild_item_points` VALUES (1, 12319, 2, 0, 0, 6); -- Elm Staff
-INSERT INTO `guild_item_points` VALUES (1, 17025, 2, 0, 0, 7); -- Chestnut Club (290 / 8640)
-INSERT INTO `guild_item_points` VALUES (1, 17139, 2, 0, 0, 7); -- Solid Club (447 / 8640)
+INSERT INTO `guild_item_points` VALUES (1, 17051, 2, 261, 8160, 0); -- Yew Wand (261 / 8160)
+INSERT INTO `guild_item_points` VALUES (1, 17140, 2, 414, 8160, 0); -- Yew Wand +1 (414 / 8160)
+INSERT INTO `guild_item_points` VALUES (1, 1179, 2, 25, 5280, 1); -- Shihei (25 / 5280)
+INSERT INTO `guild_item_points` VALUES (1, 92, 2, 246, 8160, 2); -- Tarutaru Stool (246 / 8160)
+INSERT INTO `guild_item_points` VALUES (1, 17354, 2, 500, 10320, 3); -- Harp (500 / 10320)
+INSERT INTO `guild_item_points` VALUES (1, 17374, 2, 600, 10320, 3); -- Harp +1 (600 / 10320)
+INSERT INTO `guild_item_points` VALUES (1, 16834, 2, 400, 9600, 4); -- Brass Spear (400 / 9600)
+INSERT INTO `guild_item_points` VALUES (1, 16864, 2, 410, 9600, 4); -- Brass Spear +1 (410 / 9600)
+INSERT INTO `guild_item_points` VALUES (1, 12291, 2, 363, 9360, 5); -- Elm Shield (363 / 9360)
+INSERT INTO `guild_item_points` VALUES (1, 12319, 2, 457, 9360, 5); -- Elm Shield +1 (457 / 9360)
+INSERT INTO `guild_item_points` VALUES (1, 17090, 2, 601, 11040, 6); -- Elm Staff (601 / 11040)
+INSERT INTO `guild_item_points` VALUES (1, 17126, 2, 887, 11040, 6); -- Elm Staff +1 (887 / 11040)
+INSERT INTO `guild_item_points` VALUES (1, 17025, 2, 290, 8640, 7); -- Chestnut Club (290 / 8640)
+INSERT INTO `guild_item_points` VALUES (1, 17139, 2, 447, 8640, 7); -- Solid Club (447 / 8640)
 
 -- Woodworking / Novice
-INSERT INTO `guild_item_points` VALUES (1, 17217, 3, 0, 0, 0); -- Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 17225, 3, 0, 0, 0); -- Crossbow +1
-INSERT INTO `guild_item_points` VALUES (1, 17155, 3, 0, 0, 1); -- Composite Bow
-INSERT INTO `guild_item_points` VALUES (1, 17179, 3, 0, 0, 1); -- Composite Bow +1
-INSERT INTO `guild_item_points` VALUES (1, 17162, 3, 0, 0, 2); -- Great Bow
-INSERT INTO `guild_item_points` VALUES (1, 17180, 3, 0, 0, 2); -- Great Bow  +1
-INSERT INTO `guild_item_points` VALUES (1, 17424, 3, 0, 0, 3); -- Spiked Club (300 / 9120)
-INSERT INTO `guild_item_points` VALUES (1, 17425, 3, 0, 0, 3); -- Spiked Club +1
-INSERT INTO `guild_item_points` VALUES (1, 12986, 3, 0, 0, 4); -- Chestnut Sabots
-INSERT INTO `guild_item_points` VALUES (1, 13022, 3, 0, 0, 4); -- Chestnut Sabots +1
-INSERT INTO `guild_item_points` VALUES (1, 17052, 3, 0, 0, 5); -- Chestnut Wand
-INSERT INTO `guild_item_points` VALUES (1, 17141, 3, 0, 0, 5); -- Solid Wand
-INSERT INTO `guild_item_points` VALUES (1, 12292, 3, 0, 0, 6); -- Mahogany Shield (830 / 12960)
-INSERT INTO `guild_item_points` VALUES (1, 12334, 3, 0, 0, 6); -- Strong Shield (1043 / 12960)
-INSERT INTO `guild_item_points` VALUES (1, 16835, 3, 0, 0, 7); -- Spear
-INSERT INTO `guild_item_points` VALUES (1, 16865, 3, 0, 0, 7); -- Spear +1
+INSERT INTO `guild_item_points` VALUES (1, 17217, 3, 471, 10560, 0); -- Crossbow (471 / 10560)
+INSERT INTO `guild_item_points` VALUES (1, 17225, 3, 471, 10560, 0); -- Crossbow +1 (471 / 10560)
+INSERT INTO `guild_item_points` VALUES (1, 17155, 3, 1250, 14640, 1); -- Composite Bow (1250 / 14640)
+INSERT INTO `guild_item_points` VALUES (1, 17179, 3, 1300, 14640, 1); -- Composite Bow +1 (1300 / 14640)
+INSERT INTO `guild_item_points` VALUES (1, 17162, 3, 3116, 18720, 2); -- Great Bow (3116 / 18720)
+INSERT INTO `guild_item_points` VALUES (1, 17180, 3, 3496, 18720, 2); -- Great Bow  +1 (3496 / 18720)
+INSERT INTO `guild_item_points` VALUES (1, 17424, 3, 300, 9120, 3); -- Spiked Club (300 / 9120)
+INSERT INTO `guild_item_points` VALUES (1, 17425, 3, 330, 9120, 3); -- Spiked Club +1 (330 / 9120)
+INSERT INTO `guild_item_points` VALUES (1, 12986, 3, 612, 11520, 4); -- Chestnut Sabots (612 / 11520)
+INSERT INTO `guild_item_points` VALUES (1, 13022, 3, 646, 11520, 4); -- Chestnut Sabots +1 (646 / 11520)
+INSERT INTO `guild_item_points` VALUES (1, 17052, 3, 714, 12240, 5); -- Chestnut Wand (714 / 12240)
+INSERT INTO `guild_item_points` VALUES (1, 17141, 3, 1134, 12240, 5); -- Solid Wand (1134 / 12240)
+INSERT INTO `guild_item_points` VALUES (1, 12292, 3, 830, 12960, 6); -- Mahogany Shield (830 / 12960)
+INSERT INTO `guild_item_points` VALUES (1, 12334, 3, 1043, 12960, 6); -- Strong Shield (1043 / 12960)
+INSERT INTO `guild_item_points` VALUES (1, 16835, 3, 840, 12960, 7); -- Spear (840 / 12960)
+INSERT INTO `guild_item_points` VALUES (1, 16865, 3, 870, 12960, 7); -- Spear +1 (870 / 12960)
 
 -- Woodworking / Apprentice
-INSERT INTO `guild_item_points` VALUES (1, 12987, 4, 0, 0, 0); -- Ebony Sabots
-INSERT INTO `guild_item_points` VALUES (1, 13023, 4, 0, 0, 0); -- Ebony Sabots +1
-INSERT INTO `guild_item_points` VALUES (1, 17091, 4, 0, 0, 1); -- Oak Staff
-INSERT INTO `guild_item_points` VALUES (1, 17127, 4, 0, 0, 1); -- Oak Staff +1
-INSERT INTO `guild_item_points` VALUES (1, 16845, 4, 0, 0, 2); -- Lance
-INSERT INTO `guild_item_points` VALUES (1, 16876, 4, 0, 0, 2); -- Lance +1
-INSERT INTO `guild_item_points` VALUES (1, 17218, 4, 0, 0, 3); -- Zamburak
-INSERT INTO `guild_item_points` VALUES (1, 17229, 4, 0, 0, 3); -- Zamburak +1
-INSERT INTO `guild_item_points` VALUES (1, 17027, 4, 0, 0, 4); -- Oak Cudgel
-INSERT INTO `guild_item_points` VALUES (1, 17142, 4, 0, 0, 4); -- Oak Cudgel +1
-INSERT INTO `guild_item_points` VALUES (1, 16836, 4, 0, 0, 5); -- Halberd
-INSERT INTO `guild_item_points` VALUES (1, 16866, 4, 0, 0, 5); -- Halberd +1
-INSERT INTO `guild_item_points` VALUES (1, 17053, 4, 0, 0, 6); -- Rose Wand
-INSERT INTO `guild_item_points` VALUES (1, 17143, 4, 0, 0, 6); -- Rose Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 12293, 4, 0, 0, 7); -- Oak Shield
-INSERT INTO `guild_item_points` VALUES (1, 12331, 4, 0, 0, 7); -- Oak Shield +1
+INSERT INTO `guild_item_points` VALUES (1, 12987, 4, 1344, 15120, 0); -- Ebony Sabots (1344 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 13023, 4, 1400, 15120, 0); -- Ebony Sabots +1 (1400 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17091, 4, 1218, 14880, 1); -- Oak Staff (1218 / 14880)
+INSERT INTO `guild_item_points` VALUES (1, 17127, 4, 1798, 14880, 1); -- Oak Staff +1 (1798 / 14880)
+INSERT INTO `guild_item_points` VALUES (1, 16845, 4, 1535, 15840, 2); -- Lance (1535 / 15840)
+INSERT INTO `guild_item_points` VALUES (1, 16876, 4, 1561, 15840, 2); -- Lance +1 (1561 / 15840)
+INSERT INTO `guild_item_points` VALUES (1, 17218, 4, 1710, 16320, 3); -- Zamburak (1710 / 16320)
+INSERT INTO `guild_item_points` VALUES (1, 17229, 4, 1748, 16320, 3); -- Zamburak +1 (1748 / 16320)
+INSERT INTO `guild_item_points` VALUES (1, 17027, 4, 1248, 14880, 4); -- Oak Cudgel (1248 / 14880)
+INSERT INTO `guild_item_points` VALUES (1, 17142, 4, 1768, 14880, 4); -- Oak Cudgel +1 (1768 / 14880)
+INSERT INTO `guild_item_points` VALUES (1, 16836, 4, 1350, 15120, 5); -- Halberd (1350 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 16866, 4, 1400, 15120, 5); -- Halberd +1 (1400 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17053, 4, 1360, 15360, 6); -- Rose Wand (1360 / 15360)
+INSERT INTO `guild_item_points` VALUES (1, 17143, 4, 2160, 15360, 6); -- Rose Wand +1 (2160 / 15360)
+INSERT INTO `guild_item_points` VALUES (1, 12293, 4, 1950, 16800, 7); -- Oak Shield (1950 / 16800)
+INSERT INTO `guild_item_points` VALUES (1, 12331, 4, 2450, 16800, 7); -- Oak Shield +1 (2450 / 16800)
 
 -- Woodworking / Journeyman
-INSERT INTO `guild_item_points` VALUES (1, 17355, 5, 0, 0, 0); -- Rose Harp
-INSERT INTO `guild_item_points` VALUES (1, 17376, 5, 0, 0, 0); -- Rose Harp +1
-INSERT INTO `guild_item_points` VALUES (1, 17030, 5, 0, 0, 1); -- Great Club
-INSERT INTO `guild_item_points` VALUES (1, 17408, 5, 0, 0, 1); -- Great Club +1
-INSERT INTO `guild_item_points` VALUES (1, 16847, 5, 0, 0, 2); -- Mythril Lance
-INSERT INTO `guild_item_points` VALUES (1, 16877, 5, 0, 0, 2); -- Mythril Lance +1
-INSERT INTO `guild_item_points` VALUES (1, 17219, 5, 0, 0, 3); -- Arbalest
-INSERT INTO `guild_item_points` VALUES (1, 17226, 5, 0, 0, 3); -- Arbalest +1
-INSERT INTO `guild_item_points` VALUES (1, 16871, 5, 0, 0, 4); -- Kamayari
-INSERT INTO `guild_item_points` VALUES (1, 16872, 5, 0, 0, 4); -- Kamayari +1
-INSERT INTO `guild_item_points` VALUES (1, 17164, 5, 0, 0, 5); -- War Bow
-INSERT INTO `guild_item_points` VALUES (1, 17173, 5, 0, 0, 5); -- War Bow +1
-INSERT INTO `guild_item_points` VALUES (1, 17098, 5, 0, 0, 6); -- Oak Pole
-INSERT INTO `guild_item_points` VALUES (1, 17120, 5, 0, 0, 6); -- Oak Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 21, 5, 0, 0, 7); -- Desk
+INSERT INTO `guild_item_points` VALUES (1, 17355, 5, 2500, 18000, 0); -- Rose Harp (2500 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 17376, 5, 3000, 18000, 0); -- Rose Harp +1 (3000 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 17030, 5, 1102, 14640, 1); -- Great Club (1102 / 14640)
+INSERT INTO `guild_item_points` VALUES (1, 17408, 5, 1160, 14640, 1); -- Great Club +1 (1160 / 14640)
+INSERT INTO `guild_item_points` VALUES (1, 16847, 5, 2580, 18000, 2); -- Mythril Lance (2580 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 16877, 5, 2640, 18000, 2); -- Mythril Lance +1 (2640 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 17219, 5, 2550, 18000, 3); -- Arbalest (2550 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 17226, 5, 2635, 18000, 3); -- Arbalest +1 (2635 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 16871, 5, 4070, 19686, 4); -- Kamayari (4070 / 19686)
+INSERT INTO `guild_item_points` VALUES (1, 16872, 5, 4162, 19686, 4); -- Kamayari +1 (4162 / 19686)
+INSERT INTO `guild_item_points` VALUES (1, 17164, 5, 4080, 19680, 5); -- War Bow (4080 / 19680)
+INSERT INTO `guild_item_points` VALUES (1, 17173, 5, 4160, 19680, 5); -- War Bow +1 (4160 / 19680)
+INSERT INTO `guild_item_points` VALUES (1, 17098, 5, 1560, 16080, 6); -- Oak Pole (1560 / 16080)
+INSERT INTO `guild_item_points` VALUES (1, 17120, 5, 1620, 16080, 6); -- Oak Pole +1 (1620 / 16080)
+INSERT INTO `guild_item_points` VALUES (1, 17156, 5, 2465, 18000, 7); -- Kaman (2465 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 17182, 5, 2550, 18000, 7); -- Kaman +1 (2550 / 18000)
 
 -- Woodworking / Craftsman
-INSERT INTO `guild_item_points` VALUES (1, 49, 6, 0, 0, 0); -- Coffer
-INSERT INTO `guild_item_points` VALUES (1, 17157, 6, 0, 0, 1); -- Rapid Bow
-INSERT INTO `guild_item_points` VALUES (1, 17189, 6, 0, 0, 1); -- Rapid Bow +1
-INSERT INTO `guild_item_points` VALUES (1, 17054, 6, 0, 0, 2); -- Ebony Wand
-INSERT INTO `guild_item_points` VALUES (1, 17427, 6, 0, 0, 2); -- Ebony Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 17561, 6, 0, 0, 3); -- Revenging Staff
-INSERT INTO `guild_item_points` VALUES (1, 17562, 6, 0, 0, 3); -- Revenging Staff +1
-INSERT INTO `guild_item_points` VALUES (1, 51, 6, 0, 0, 4); -- Chest
-INSERT INTO `guild_item_points` VALUES (1, 17092, 6, 0, 0, 5); -- Mahogany Staff (2310 / 17760)
-INSERT INTO `guild_item_points` VALUES (1, 17520, 6, 0, 0, 5); -- Heavy Staff (2310 / 17760)
-INSERT INTO `guild_item_points` VALUES (1, 17350, 6, 0, 0, 6); -- Angel's Flute (1200 / 15120)
-INSERT INTO `guild_item_points` VALUES (1, 17378, 6, 0, 0, 6); -- Angel's Flute (1280 / 15120)
-INSERT INTO `guild_item_points` VALUES (1, 17240, 6, 0, 0, 7); -- Lightning Bow
-INSERT INTO `guild_item_points` VALUES (1, 17241, 6, 0, 0, 7); -- Lightning Bow +1
+INSERT INTO `guild_item_points` VALUES (1, 49, 6, 1278, 15360, 0); -- Coffer (1278 / 15360)
+INSERT INTO `guild_item_points` VALUES (1, 17157, 6, 3655, 19440, 1); -- Rapid Bow (3655 / 19440)
+INSERT INTO `guild_item_points` VALUES (1, 17189, 6, 3762, 19440, 1); -- Rapid Bow +1 (3762 / 19440)
+INSERT INTO `guild_item_points` VALUES (1, 17054, 6, 1912, 17040, 2); -- Ebony Wand (1912 / 17040)
+INSERT INTO `guild_item_points` VALUES (1, 17427, 6, 3037, 17040, 2); -- Ebony Wand +1 (3037 / 17040)
+INSERT INTO `guild_item_points` VALUES (1, 16839, 6, 2415, 18000, 3); -- Partisan (2415 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 16874, 6, 2520, 18000, 3); -- Partisan +1 (2520 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 51, 6, 195, 9600, 4); -- Chest (195 / 9600)
+INSERT INTO `guild_item_points` VALUES (1, 17092, 6, 2310, 17760, 5); -- Mahogany Staff (2310 / 17760)
+INSERT INTO `guild_item_points` VALUES (1, 17520, 6, 2310, 17760, 5); -- Heavy Staff (2310 / 17760)
+INSERT INTO `guild_item_points` VALUES (1, 17350, 6, 1200, 15120, 6); -- Angel's Flute (1200 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17378, 6, 1280, 15120, 6); -- Angel's Flute +1 (1280 / 15120)
+INSERT INTO `guild_item_points` VALUES (1, 17099, 6, 7200, 21600, 7); -- Mahogany Pole (7200 / 21600)
+INSERT INTO `guild_item_points` VALUES (1, 17521, 6, 7700, 21600, 7); -- Mahogany Pole +1 (7700 / 21600)
 
 -- Woodworking / Artisan
-INSERT INTO `guild_item_points` VALUES (1, 56, 7, 0, 0, 0); -- Commode
-INSERT INTO `guild_item_points` VALUES (1, 12295, 7, 0, 0, 1); -- Round Shield
-INSERT INTO `guild_item_points` VALUES (1, 12352, 7, 0, 0, 1); -- Round Shield +1
-INSERT INTO `guild_item_points` VALUES (1, 95, 7, 0, 0, 2); -- Water Barrel
-INSERT INTO `guild_item_points` VALUES (1, 59, 7, 0, 0, 3); -- Chiffonier
-INSERT INTO `guild_item_points` VALUES (1, 30, 7, 0, 0, 4); -- Bureau
-INSERT INTO `guild_item_points` VALUES (1, 104, 7, 0, 0, 5); -- Tarutaru Folding Screen
-INSERT INTO `guild_item_points` VALUES (1, 17100, 7, 0, 0, 6); -- Ebony Pole
-INSERT INTO `guild_item_points` VALUES (1, 17525, 7, 0, 0, 6); -- Ebony Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 17357, 7, 0, 0, 7); -- Ebony Harp (2587 / 18240)
-INSERT INTO `guild_item_points` VALUES (1, 17833, 7, 0, 0, 7); -- Ebony Harp +1 (2700 / 18240)
+INSERT INTO `guild_item_points` VALUES (1, 56, 7, 4900, 20400, 0); -- Commode (4900 / 20400)
+INSERT INTO `guild_item_points` VALUES (1, 12295, 7, 2817, 18480, 1); -- Round Shield (2817 / 18480)
+INSERT INTO `guild_item_points` VALUES (1, 12352, 7, 2990, 18480, 1); -- Round Shield +1 (2990 / 18480)
+INSERT INTO `guild_item_points` VALUES (1, 95, 7, 2500, 18000, 2); -- Water Barrel (2500 / 18000)
+INSERT INTO `guild_item_points` VALUES (1, 59, 7, 4594, 20160, 3); -- Chiffonier (4594 / 20160)
+INSERT INTO `guild_item_points` VALUES (1, 30, 7, 7010, 21360, 4); -- Bureau (7010 / 21360)
+INSERT INTO `guild_item_points` VALUES (1, 104, 7, 427, 11760, 5); -- Tarutaru Folding Screen (427 / 11760)
+INSERT INTO `guild_item_points` VALUES (1, 17100, 7, 4350, 19920, 6); -- Ebony Pole (4350 / 19920)
+INSERT INTO `guild_item_points` VALUES (1, 17525, 7, 4495, 19920, 6); -- Ebony Pole +1 (4495 / 19920)
+INSERT INTO `guild_item_points` VALUES (1, 17357, 7, 2587, 18240, 7); -- Ebony Harp (2587 / 18240)
+INSERT INTO `guild_item_points` VALUES (1, 17833, 7, 2700, 18240, 7); -- Ebony Harp +1 (2700 / 18240)
 
 -- Woodworking / Adept
-INSERT INTO `guild_item_points` VALUES (1, 16849, 8, 0, 0, 0); -- Cermet Lance
-INSERT INTO `guild_item_points` VALUES (1, 16879, 8, 0, 0, 0); -- Cermet Lance +1
-INSERT INTO `guild_item_points` VALUES (1, 17441, 8, 0, 0, 1); -- Eremite's Wand
-INSERT INTO `guild_item_points` VALUES (1, 17442, 8, 0, 0, 1); -- Eremite's Wand +1
-INSERT INTO `guild_item_points` VALUES (1, 17101, 8, 0, 0, 2); -- Mythic Pole
-INSERT INTO `guild_item_points` VALUES (1, 17526, 8, 0, 0, 2); -- Mythic Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 17236, 8, 0, 0, 3); -- Leo Crossbow
-INSERT INTO `guild_item_points` VALUES (1, 17237, 8, 0, 0, 3); -- Leo Crossbow +1
-INSERT INTO `guild_item_points` VALUES (1, 17221, 8, 0, 0, 4); -- Repeating Crossbow (5425 / 20640)
-INSERT INTO `guild_item_points` VALUES (1, 17233, 8, 0, 0, 4); -- Machine Crossbow (6200 / 20640)
-INSERT INTO `guild_item_points` VALUES (1, 12364, 8, 0, 0, 5); -- Nymph Shield
-INSERT INTO `guild_item_points` VALUES (1, 12365, 8, 0, 0, 5); -- Nymph Shield +1
-INSERT INTO `guild_item_points` VALUES (1, 16890, 8, 0, 0, 6); -- Obelisk Lance
-INSERT INTO `guild_item_points` VALUES (1, 16891, 8, 0, 0, 6); -- Obelisk Lance +1
-INSERT INTO `guild_item_points` VALUES (1, 55, 8, 0, 0, 7); -- Cabinet
+INSERT INTO `guild_item_points` VALUES (1, 16849, 8, 2650, 18480, 0); -- Cermet Lance (2650 / 18480)
+INSERT INTO `guild_item_points` VALUES (1, 16879, 8, 3312, 18480, 0); -- Cermet Lance +1 (3312 / 18480)
+INSERT INTO `guild_item_points` VALUES (1, 17359, 8, 7000, 21360, 1); -- Mythic Harp (7000 / 21360)
+INSERT INTO `guild_item_points` VALUES (1, 17834, 8, 7120, 21360, 1); -- Mythic Harp +1 (7120 / 21360)
+INSERT INTO `guild_item_points` VALUES (1, 17101, 8, 4740, 20400, 2); -- Mythic Pole (4740 / 20400)
+INSERT INTO `guild_item_points` VALUES (1, 17526, 8, 5727, 20400, 2); -- Mythic Pole +1 (5727 / 20400)
+INSERT INTO `guild_item_points` VALUES (1, 358, 8, 7070, 21360, 3); -- Credenza (7070 / 21360)
+INSERT INTO `guild_item_points` VALUES (1, 17221, 8, 5425, 20640, 4); -- Repeating Crossbow (5425 / 20640)
+INSERT INTO `guild_item_points` VALUES (1, 17233, 8, 6200, 20640, 4); -- Machine Crossbow (6200 / 20640)
+INSERT INTO `guild_item_points` VALUES (1, 12364, 8, 2560, 18240, 5); -- Nymph Shield (2560 / 18240)
+INSERT INTO `guild_item_points` VALUES (1, 12365, 8, 2760, 18240, 5); -- Nymph Shield +1 (2760 / 18240)
+INSERT INTO `guild_item_points` VALUES (1, 16890, 8, 12750, 22560, 6); -- Armoire (12750 / 22560)
+INSERT INTO `guild_item_points` VALUES (1, 55, 8, 3200, 18960, 7); -- Cabinet (3200 / 18960)
 
 -- Woodworking / Veteran
-INSERT INTO `guild_item_points` VALUES (1, 16840, 9, 0, 0, 0); -- Ox Tongue
-INSERT INTO `guild_item_points` VALUES (1, 16894, 9, 0, 0, 0); -- Ox Tongue +1
-INSERT INTO `guild_item_points` VALUES (1, 17205, 9, 0, 0, 1); -- Gendawa
-INSERT INTO `guild_item_points` VALUES (1, 17206, 9, 0, 0, 1); -- Gendawa +1
-INSERT INTO `guild_item_points` VALUES (1, 18142, 9, 0, 0, 2); -- Shigeto Bow
-INSERT INTO `guild_item_points` VALUES (1, 18143, 9, 0, 0, 2); -- Shigeto Bow +1
-INSERT INTO `guild_item_points` VALUES (1, 17102, 9, 0, 0, 3); -- Eight-Sided Pole
-INSERT INTO `guild_item_points` VALUES (1, 17568, 9, 0, 0, 3); -- Eight-Sided Pole +1
-INSERT INTO `guild_item_points` VALUES (1, 139, 9, 0, 0, 4); -- Star Globe
-INSERT INTO `guild_item_points` VALUES (1, 17364, 9, 0, 0, 5); -- Cythara Anglica
-INSERT INTO `guild_item_points` VALUES (1, 17837, 9, 0, 0, 5); -- Cythara Anglica +1
-INSERT INTO `guild_item_points` VALUES (1, 76, 9, 0, 0, 6); -- Royal Bookshelf
-INSERT INTO `guild_item_points` VALUES (1, 77, 9, 0, 0, 7); -- Bookshelf
+INSERT INTO `guild_item_points` VALUES (1, 16840, 9, 7950, 21600, 0); -- Ox Tongue (7950 / 21600)
+INSERT INTO `guild_item_points` VALUES (1, 16894, 9, 7200, 21600, 0); -- Ox Tongue +1 (7200 / 21600)
+INSERT INTO `guild_item_points` VALUES (1, 17205, 9, 11305, 22320, 1); -- Gendawa (11305 / 22320)
+INSERT INTO `guild_item_points` VALUES (1, 17206, 9, 12255, 22320, 1); -- Gendawa +1 (12255 / 22320)
+INSERT INTO `guild_item_points` VALUES (1, 18142, 9, 7680, 23040, 2); -- Shigeto Bow (7680 / 23040)
+INSERT INTO `guild_item_points` VALUES (1, 17102, 9, 1200, 15600, 3); -- Eight-Sided Pole (1200 / 15600)
+INSERT INTO `guild_item_points` VALUES (1, 17568, 9, 1800, 15600, 3); -- Eight-Sided Pole +1 (1800 / 15600)
+INSERT INTO `guild_item_points` VALUES (1, 139, 9, 13430, 22560, 4); -- Star Globe (13430 / 22560)
+INSERT INTO `guild_item_points` VALUES (1, 17364, 9, 5697, 20880, 5); -- Cythara Anglica (5697 / 20880)
+INSERT INTO `guild_item_points` VALUES (1, 17837, 9, 7022, 20880, 5); -- Cythara Anglica +1 (7022 / 20880)
+INSERT INTO `guild_item_points` VALUES (1, 76, 9, 7520, 22560, 6); -- Royal Bookshelf (7520 / 22560)
+INSERT INTO `guild_item_points` VALUES (1, 77, 9, 14600, 22560, 7); -- Bookshelf (14600 / 22560)
 
 -- Blacksmithing/ Amateur
 INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 0); -- Bronze Knuckles
