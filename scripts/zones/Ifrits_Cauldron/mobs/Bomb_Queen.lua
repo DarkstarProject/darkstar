@@ -23,10 +23,12 @@ function onMobFight(mob,target)
         local random = math.random(1,100);
         local petId = mob:getID() + 1 + math.floor(random / 25); -- approximately 1% chance to spawn bomb bastard
         local pet = GetMobByID(petId)
-        pet:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos(), mob:getRotPos())
+        local pos = mob:getPos()
+        pet:setSpawn(unpack(pos))
         pet:spawn()
         pet:updateEnmity(target)
     end
+
 end
 
 function onMobDeath(mob, player, isKiller)
