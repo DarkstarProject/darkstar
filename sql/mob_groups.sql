@@ -10579,6 +10579,7 @@ INSERT INTO `mob_groups` VALUES (10506,5854,197,0,128,4640,5500,0,56,65,0); -- D
 INSERT INTO `mob_groups` VALUES (10507,5855,114,0,128,4642,4500,0,48,49,0); -- Nandi
 INSERT INTO `mob_groups` VALUES (10508,5856,124,0,128,4643,3500,0,62,62,0); -- Powderer Penny (est. level by HP and other Nov 2019 NMs added to zone)
 INSERT INTO `mob_groups` VALUES (10509,5857,124,0,32,4644,7250,0,73,73,0); -- Hoar-knuckled Rimberry
+INSERT INTO `mob_groups` VALUES (10510,5858,124,7200,0,4645,7250,0,67,68,0); -- Acolnahuacatl
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);

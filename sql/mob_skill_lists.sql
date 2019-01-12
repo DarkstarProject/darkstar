@@ -112,6 +112,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Likho',29,555);
 INSERT INTO `mob_skill_lists` VALUES ('Myradrosh',30,1699);
 INSERT INTO `mob_skill_lists` VALUES ('Myradrosh',30,1701);
 INSERT INTO `mob_skill_lists` VALUES ('Nandi',31,287);
+INSERT INTO `mob_skill_lists` VALUES ('Acolnahuacatl',32,653);
 
 INSERT INTO `mob_skill_lists` VALUES ('Avatar-Carbuncle',34,906);
 INSERT INTO `mob_skill_lists` VALUES ('Avatar-Carbuncle',34,907);
