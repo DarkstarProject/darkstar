@@ -2,11 +2,16 @@
 -- Area: Mount Zhayolm
 --  ZNM: Brass Borer
 -----------------------------------
+mixins = {require("scripts/mixins/rage")}
 require("scripts/globals/status")
 ----------------------------------
 -- TODO: Halting movement during stance change. Stack Amber Scutum Def Boost effects for super cannonball
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
+end
 
 function onMobSpawn(mob)
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
     mob:setLocalVar("formTime", os.time() + math.random(43,47))
     mob:setLocalVar("defUp", math.random(25,50))
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
