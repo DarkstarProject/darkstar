@@ -286,123 +286,205 @@ INSERT INTO `guild_item_points` VALUES (1, 17837, 9, 7022, 20880, 5); -- Cythara
 INSERT INTO `guild_item_points` VALUES (1, 76, 9, 7520, 22560, 6); -- Royal Bookshelf (7520 / 22560)
 INSERT INTO `guild_item_points` VALUES (1, 77, 9, 14600, 22560, 7); -- Bookshelf (14600 / 22560)
 
--- Blacksmithing/ Amateur
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 0); -- Bronze Knuckles
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 1); -- Bronze Sword
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 2); -- Xiphos
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 3); -- Bronze Dagger
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 4); -- Bronze Zaghnal
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 5); -- Bronze Knife
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 6); -- Bronze Mace
-INSERT INTO `guild_item_points` VALUES (2, 0, 0, 0, 0, 7); -- Bronze Axe
+-- Blacksmithing / Amateur
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 61, 4320, 0); -- Bronze Knuckles (61 / 4320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 61, 4320, 0); -- Bronze Knuckles +1 (61 / 4320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 67, 4320, 1); -- Bronze Sword (67 / 4320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 75, 4320, 1); -- Bronze Sword +1 (75 / 4320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 168, 6000, 2); -- Xiphos (168 / 6000)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 188, 6000, 2); -- Xiphos +1 (188 / 6000)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 39, 3840, 3); -- Bronze Dagger (39 / 3840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 47, 3840, 3); -- Bronze Dagger +1 (47 / 3840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 86, 4800, 4); -- Bronze Zaghnal (86 / 4800)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 93, 4800, 4); -- Bronze Zaghnal +1 (93 / 4800)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 41, 4080, 5); -- Bronze Knife (41 / 4080)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 48, 4080, 5); -- Bronze Knife +1 (48 / 4080)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 47, 4080, 6); -- Bronze Mace (47 / 4080)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 57, 4080, 6); -- Bronze Mace +1 (57 / 4080)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 79, 4560, 7); -- Bronze Axe (79 / 4560)
+INSERT INTO `guild_item_points` VALUES (2, 0, 0, 86, 4560, 7); -- Bronze Axe +1 (86 / 4560)
 
--- Blacksmithing/ Recruit
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 0); -- Scale Cuisses
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 1); -- Scale Greaves
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 2); -- Aspis
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 3); -- Bronze Hammer
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 4); -- Bronze Rod
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 5); -- Scale Mail
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 6); -- Scale Finger Gauntlets
-INSERT INTO `guild_item_points` VALUES (2, 0, 1, 0, 0, 7); -- Bronze Harness
+-- Blacksmithing / Recruit
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 358, 8640, 0); -- Scale Cuisses (358 / 8640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 410, 8640, 0); -- Solid Cuisses (410 / 8640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 217, 7200, 1); -- Scale Greaves (217 / 7200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 269, 7200, 1); -- Solid Greaves (269 / 7200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 189, 6960, 2); -- Aspis (189 / 6960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 233, 6960, 2); -- Aspis +1 (233 / 6960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 85, 5520, 3); -- Bronze Hammer (85 / 5520)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 100, 5520, 3); -- Bronze Hammer +1 (100 / 5520)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 406, 9120, 4); -- Dagger (406 / 9120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 484, 9120, 4); -- Dagger +1 (484 / 9120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 446, 9600, 5); -- Scale Mail (446 / 9600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 498, 9600, 5); -- Solid Mail (498 / 9600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 238, 7440, 6); -- Scale Finger Gauntlets (238 / 7440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 290, 7440, 6); -- Solid Finger Gauntlets (290 / 7440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 64, 5040, 7); -- Bronze Harness (64 / 5040)
+INSERT INTO `guild_item_points` VALUES (2, 0, 1, 64, 5040, 7); -- Bronze Harness +1 (64 / 5040)
 
--- Blacksmithing/ Initiate
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 0); -- Mace
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 1); -- Iron Visor
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 2); -- Knife
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 3); -- Scimitar
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 4); -- Baghnakhs
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 5); -- Longsword
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 6); -- Butterfly Axe
-INSERT INTO `guild_item_points` VALUES (2, 0, 2, 0, 0, 7); -- Metal Knuckles
+-- Blacksmithing / Initiate
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 808, 12480, 0); -- Mace (808 / 12480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 980, 12480, 0); -- Mace +1 (980 / 12480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 3024, 18480, 1); -- Iron Visor (3024 / 18480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 3078, 18480, 1); -- Iron Visor +1 (3078 / 18480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 485, 10320, 2); -- Knife (485 / 10320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 578, 10320, 2); -- Knife +1 (578 / 10320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 905, 12960, 3); -- Scimitar (905 / 12960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 998, 12960, 3); -- Scimitar +1 (998 / 12960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 1440, 15120, 4); -- Baghnakhs (1440 / 15120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 1740, 15120, 4); -- Baghnakhs +1 (1740 / 15120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 1536, 15600, 5); -- Longsword (1536 / 15600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 1689, 15600, 5); -- Longsword +1 (1689 / 15600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 168, 7200, 6); -- Butterfly Axe (168 / 7200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 183, 7200, 6); -- Butterfly Axe +1 (183 / 7200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 873, 12720, 7); -- Metal Knuckles (873 / 12720)
+INSERT INTO `guild_item_points` VALUES (2, 0, 2, 873, 12720, 7); -- Metal Knuckles +1 (873 / 12720)
 
--- Blacksmithing/ Novice
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 0); -- Targe
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 1); -- Fleuret
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 2); -- Tuck
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 3); -- Wakizashi
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 4); -- Rod
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 5); -- Iron Scale Mail
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 6); -- Mythril Mace
-INSERT INTO `guild_item_points` VALUES (2, 0, 3, 0, 0, 7); -- Greataxe
+-- Blacksmithing / Novice
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 680, 12000, 0); -- Targe (680 / 12000)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2120, 12000, 0); -- Targe +1 (2120 / 12000)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2128, 17040, 1); -- Fleuret (2128 / 17040)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 3648, 17040, 1); -- Fleuret +1 (3648 / 17040)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2146, 17040, 2); -- Tuck (2146 / 17040)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2432, 17040, 2); -- Tuck +1 (2432 / 17040)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 300, 9120, 3); -- Wakizashi (300 / 9120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 302, 9120, 3); -- Wakizashi +1 (302 / 9120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 442, 10320, 4); -- Rod (442 / 10320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 702, 10320, 4); -- Rod +1 (702 / 10320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 4644, 20160, 5); -- Iron Scale Mail (4644 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 5184, 20160, 5); -- Iron Scale Mail +1 (5184 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2256, 17280, 6); -- Mythril Mace (2256 / 17280)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 2736, 17280, 6); -- Mythril Mace +1 (2736 / 17280)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 910, 13200, 7); -- Greataxe (910 / 13200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 3, 991, 13200, 7); -- Greataxe +1 (991 / 13200)
 
--- Blacksmithing/ Apprentice
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 0); -- Shinobi-Gatana
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 1); -- Mythril Scythe
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 2); -- Tulwar
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 3); -- Mythril Kukri
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 4); -- Heavy Axe
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 5); -- Mythril Axe
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 6); -- Knight's Sword
-INSERT INTO `guild_item_points` VALUES (2, 0, 4, 0, 0, 7); -- Mythril Claymore
+-- Blacksmithing / Apprentice
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 933, 13680, 0); -- Shinobi-Gatana (933 / 13680)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 902, 13680, 0); -- Shinobi-Gatana +1 (902 / 13680)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 6900, 21120, 1); -- Mythril Scythe (6900 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 6900, 21120, 1); -- Mythril Scythe (6900 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 4850, 20160, 2); -- Tulwar (4850 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5330, 20160, 2); -- Tulwar +1 (5330 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 2484, 17760, 3); -- Mythril Kukri (2484 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 2944, 17760, 3); -- Mythril Kukri +1 (2944 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5152, 20400, 4); -- Heavy Axe (5152 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5612, 20400, 4); -- Heavy Axe +1 (5612 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5400, 20640, 5); -- Mythril Axe (5400 / 20640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5940, 20640, 5); -- Mythril Axe +1 (5940 / 20640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 7750, 21600, 6); -- Knight's Sword (7750 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 7200, 21600, 6); -- Knight's Sword +1 (7200 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5250, 20400, 7); -- Mythril Claymore (5250 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 4, 5275, 20400, 7); -- Fine Claymore (5275 / 20400)
 
--- Blacksmithing/ Journeyman
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 0); -- Darksteel Claws
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 1); -- Breastplate
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 2); -- Greatsword
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 3); -- Sallet
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 4); -- Uchigatana
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 5); -- Tanegashima
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 6); -- Schlaeger
-INSERT INTO `guild_item_points` VALUES (2, 0, 5, 0, 0, 7); -- Broadsword
+-- Blacksmithing / Journeyman
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 4320, 19920, 0); -- Darksteel Claws (4320 / 19920)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 5220, 19920, 0); -- Darksteel Claws +1 (5220 / 19920)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 5460, 20640, 1); -- Breastplate (5460 / 20640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 6060, 20640, 1); -- Breastplate +1 (6060 / 20640)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 6758, 21120, 2); -- Greatsword (6758 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 7040, 21120, 2); -- Greatsword +1 (7040 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 3540, 19200, 3); -- Sallet (3540 / 19200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 4140, 19200, 3); -- Sallet +1 (4140 / 19200)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 667, 12480, 4); -- Uchigatana (667 / 12480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 667, 12480, 4); -- Uchigatana (667 / 12480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 1866, 16800, 5); -- Tanegashima (1866 / 16800)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 1875, 16800, 5); -- Tanegashima +1 (1875 / 16800)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 8600, 21600, 6); -- Schlaeger (8600 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 9675, 21600, 6); -- Schlaeger +1 (9675 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 3344, 18960, 7); -- Broadsword (3344 / 18960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 5, 3572, 18960, 7); -- Broadsword +1 (3572 / 18960)
 
--- Blacksmithing/ Craftsman
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 0); -- Kote
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 1); -- Zunari Kabuto
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 2); -- Sakurafubuki
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 3); -- Nodowa
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 4); -- Darksteel Mufflers
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 5); -- Darksteel Kukri
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 6); -- Hien
-INSERT INTO `guild_item_points` VALUES (2, 0, 6, 0, 0, 7); -- Mythril Zaghnal
+-- Blacksmithing / Craftsman
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 3300, 18960, 0); -- Kote (3300 / 18960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 3300, 18960, 0); -- Kote +1 (3300 / 18960)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 3604, 19440, 1); -- Zunari Kabuto (3604 / 19440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 3604, 19440, 1); -- Zunari Kabuto +1 (3604 / 19440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 2310, 17760, 2); -- Sakurafubuki (2310 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 2442, 17760, 2); -- Sakurafubuki +1 (2442 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 2722, 18480, 3); -- Nodowa (2722 / 18480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 3547, 18480, 3); -- Nodowa +1 (3547 / 18480)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 5170, 20400, 4); -- Darksteel Mufflers (5170 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 6270, 20400, 4); -- Darksteel Mufflers +1 (6270 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 5940, 20880, 5); -- Darksteel Kukri (5940 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 7040, 20880, 5); -- Darksteel Kukri +1 (7040 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 2325, 17760, 6); -- Hien (2325 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 2402, 17760, 6); -- Hien +1 (2402 / 17760)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 6976, 21360, 7); -- Mythril Zaghnal (6976 / 21360)
+INSERT INTO `guild_item_points` VALUES (2, 0, 6, 7120, 21360, 7); -- Mythril Zaghnal +1 (7120 / 21360)
 
--- Blacksmithing/ Artisan
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 0); -- Bastard Sword
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 1); -- Darksteel Scythe
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 2); -- Darksteel Kris
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 3); -- Mikazuki
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 4); -- Darksteel Cap
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 5); -- Darksteel Subligar
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 6); -- Holy Breastplate
-INSERT INTO `guild_item_points` VALUES (2, 0, 7, 0, 0, 7); -- Schwert
+-- Blacksmithing / Artisan
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 12150, 22320, 0); -- Bastard Sword (12150 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7440, 22320, 0); -- Bastard Sword +1 (7440 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 12535, 22320, 1); -- Darksteel Scythe (12535 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7440, 22320, 1); -- Darksteel Scythe +1 (7440 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 5670, 20880, 2); -- Darksteel Kris (5670 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 6720, 20880, 2); -- Darksteel Kris +1 (6720 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 3740, 19440, 3); -- Mikazuki (3740 / 19440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 3808, 19440, 3); -- Mikazuki +1 (3808 / 19440)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7020, 21360, 4); -- Darksteel Cap (7020 / 21360)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7020, 21360, 4); -- Darksteel Cap +1 (7020 / 21360)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7280, 21840, 5); -- Darksteel Subligar (7280 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 9880, 21840, 5); -- Darksteel Subligar +1 (9880 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7280, 21840, 6); -- Holy Breastplate (7280 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 7280, 21840, 6); -- Divine Breastplate (7280 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 9100, 21840, 7); -- Schwert (9100 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 7, 9100, 21840, 7); -- Schwert +1 (9100 / 21840)
 
--- Blacksmithing/ Adept
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 0); -- Thick Mufflers
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 1); -- Darksteel Cuirass
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 2); -- Darksteel Maul
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 3); -- Darksteel Sabatons
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 4); -- Darksteel Tabar
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 5); -- Mythril Heart
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 6); -- Flamberge
-INSERT INTO `guild_item_points` VALUES (2, 0, 8, 0, 0, 7); -- Darksteel Cuisses
+-- Blacksmithing / Adept
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 6345, 21120, 0); -- Thick Mufflers (6345 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 6480, 21120, 0); -- Thick Mufflers +1 (6480 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 11830, 22320, 1); -- Darksteel Cuirass (11830 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 13130, 22320, 1); -- Darksteel Cuirass +1 (13130 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 5880, 20880, 2); -- Darksteel Maul (5880 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 6492, 20880, 2); -- Darksteel Maul +1 (6492 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 5720, 20880, 3); -- Darksteel Sabatons (5720 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 6435, 20880, 3); -- Darksteel Sabatons (6435 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 7200, 21600, 4); -- Darksteel Tabar (7200 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 7200, 21600, 4); -- Darksteel Tabar +1 (7200 / 21600)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 5075, 20400, 5); -- Flanged Mace (5075 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 5075, 20400, 5); -- Flanged Mace +1 (5075 / 20400)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 14850, 22560, 6); -- Flamberge (14850 / 22560)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 14850, 22560, 6); -- Flamberge +1 (14850 / 22560)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 6500, 21120, 7); -- Darksteel Cuisses (6500 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 8, 7150, 21120, 7); -- Darksteel Cuisses +1 (7150 / 21120)
 
--- Blacksmithing/ Veteran
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 0); -- Ritter Shield
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 1); -- Buzdygan
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 2); -- Misericorde
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 3); -- Anelace
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 4); -- Culverin
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 5); -- Nadziak
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 6); -- Tabarzin
-INSERT INTO `guild_item_points` VALUES (2, 0, 9, 0, 0, 7); -- Gully
+-- From here on using http://www011.upp.so-net.ne.jp/iris/gtable.html as primary source
+
+-- Blacksmithing / Veteran
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 6440, 21120, 0); -- Ritter Shield (6440 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 7840, 21120, 0); -- Ritter Shield +1 (7840 / 21120)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 11925, 22320, 1); -- Buzdygan (11925 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 13250, 22320, 1); -- Buzdygan +1 (13250 / 22320)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 4637, 20160, 2); -- Misericorde (4637 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 5962, 20160, 2); -- Misericorde +1 (5962 / 20160)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 8820, 21840, 3); -- Anelace (8820 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 10220, 21840, 3); -- Anelace +1 (10220 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 8082, 21840, 4); -- Culverin (8082 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 9407, 21840, 4); -- Culverin +1 (9407 / 21840)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 5565, 20880, 5); -- Nadziak (5565 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 6890, 20880, 5); -- Nadziak +1 (6890 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 11792, 20880, 6); -- Tabarzin (11792 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 11792, 20880, 6); -- Tabarzin +1 (11792 / 20880)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 2890, 18720, 7); -- Gully (2890 / 18720)
+INSERT INTO `guild_item_points` VALUES (2, 0, 9, 4590, 18720, 7); -- Gully +1 (4590 / 18720)
 
 -- Goldsmithing / Amateur
-INSERT INTO `guild_item_points` VALUES (3, 12449, 0, 327, 7920, 0); -- Brass Cap [327 / 7920]
-INSERT INTO `guild_item_points` VALUES (3, 12528, 0, 388, 7920, 0); -- Brass Cap +1 [388 / 7920]
-INSERT INTO `guild_item_points` VALUES (3, 16551, 0, 194, 6240, 1); -- Sapara [194 / 6240]
-INSERT INTO `guild_item_points` VALUES (3, 16801, 0, 214, 6240, 1); -- Sapara +1 [214 / 6240]
-INSERT INTO `guild_item_points` VALUES (3, 12496, 0, 39, 3840, 2); -- Copper Hairpin [39 / 3840]
-INSERT INTO `guild_item_points` VALUES (3, 12526, 0, 79, 3840, 2); -- Copper Hairpin +1 [79 / 3840]
-INSERT INTO `guild_item_points` VALUES (3, 12496, 0, 39, 3840, 3); -- Copper Hairpin [39 / 3840]
-INSERT INTO `guild_item_points` VALUES (3, 12526, 0, 79, 3840, 3); -- Copper Hairpin +1 [79 / 3840]
-INSERT INTO `guild_item_points` VALUES (3, 16551, 0, 194, 6240, 4); -- Sapara [194 / 6240]
-INSERT INTO `guild_item_points` VALUES (3, 16801, 0, 214, 6240, 4); -- Sapara +1 [214 / 6240]
-INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 5); -- Copper Ring [19 / 3600]
-INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 5); -- Copper Ring +1 [21 / 3600]
-INSERT INTO `guild_item_points` VALUES (3, 12449, 0, 327, 7920, 6); -- Brass Cap [327 / 7920]
-INSERT INTO `guild_item_points` VALUES (3, 12528, 0, 388, 7920, 6); -- Brass Cap +1 [388 / 7920]
-INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 7); -- Copper Ring [19 / 3600]
-INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 7); -- Copper Ring +1 [21 / 3600]
+INSERT INTO `guild_item_points` VALUES (3, 12449, 0, 327, 7920, 0); -- Brass Cap (327 / 7920)
+INSERT INTO `guild_item_points` VALUES (3, 12528, 0, 388, 7920, 0); -- Brass Cap +1 (388 / 7920)
+INSERT INTO `guild_item_points` VALUES (3, 16551, 0, 194, 6240, 1); -- Sapara (194 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 16801, 0, 214, 6240, 1); -- Sapara +1 (214 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 12496, 0, 39, 3840, 2); -- Copper Hairpin (39 / 3840)
+INSERT INTO `guild_item_points` VALUES (3, 12526, 0, 79, 3840, 2); -- Copper Hairpin +1 (79 / 3840)
+INSERT INTO `guild_item_points` VALUES (3, 12496, 0, 39, 3840, 3); -- Copper Hairpin (39 / 3840)
+INSERT INTO `guild_item_points` VALUES (3, 12526, 0, 79, 3840, 3); -- Copper Hairpin +1 (79 / 3840)
+INSERT INTO `guild_item_points` VALUES (3, 16551, 0, 194, 6240, 4); -- Sapara (194 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 16801, 0, 214, 6240, 4); -- Sapara +1 (214 / 6240)
+INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 5); -- Copper Ring (19 / 3600)
+INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 5); -- Copper Ring +1 (21 / 3600)
+INSERT INTO `guild_item_points` VALUES (3, 12449, 0, 327, 7920, 6); -- Brass Cap (327 / 7920)
+INSERT INTO `guild_item_points` VALUES (3, 12528, 0, 388, 7920, 6); -- Brass Cap +1 (388 / 7920)
+INSERT INTO `guild_item_points` VALUES (3, 13454, 0, 19, 3600, 7); -- Copper Ring (19 / 3600)
+INSERT INTO `guild_item_points` VALUES (3, 13492, 0, 21, 3600, 7); -- Copper Ring +1 (21 / 3600)
 
 -- Goldsmithing / Recruit
 INSERT INTO `guild_item_points` VALUES (3, 0, 1, 0, 0, 0); -- Brass Hairpin
