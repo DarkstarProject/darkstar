@@ -48,6 +48,8 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
+    local currentday = tonumber(os.date("%j"))
+    
     if (csid == 818 or csid == 820) and option == 100 then
         if player:getLocalVar("SalvageValid") == 1 then
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
@@ -65,7 +67,7 @@ function onEventFinish(player,csid,option)
             player:delCurrency("ILRUSI_ASSAULT_POINT",500)
             player:addKeyItem(dsp.ki.REMNANTS_PERMIT)
         end
+        player:setLocalVar("SalvageValid",0)
+        player:setVar("LAST_PERMIT",currentday)
     end
-    player:setLocalVar("SalvageValid",0)
-    player:setVar("LAST_PERMIT",currentday)
 end

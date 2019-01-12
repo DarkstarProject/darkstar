@@ -26,7 +26,7 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 3.3
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,MOBPARAM_WIPE_SHADOWS)
 
     -- These are here as it doesn't look right otherwise
     mob:hideName(false)
@@ -34,6 +34,6 @@ function onMobWeaponSkill(target, mob, skill)
     mob:AnimationSub(1)
     mob:setLocalVar("AMBUSH",1) -- Used it for the last time!
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
     return dmg
 end

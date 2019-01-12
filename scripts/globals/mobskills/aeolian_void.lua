@@ -22,8 +22,8 @@ function onMobWeaponSkill(target,mob,skill)
     MobStatusEffectMove(mob,target,typeEffectTwo,15,0,60)
 
     local dmgmod = MobBreathMove(mob,target, 0.25,2.5,dsp.magic.ele.EARTH,300)
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.EARTH,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.EARTH)
     return dmg
 end

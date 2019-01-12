@@ -3,34 +3,33 @@
 -- NPC:  Elevator
 -- !pos -294 -143 27 158
 -----------------------------------
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/npc_util")
+-----------------------------------
 
-local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs");
-require("scripts/globals/keyitems");
-
-function onTrade(player,npc,trade)
-    if (trade:hasItemQty(549,1) and trade:getItemCount() == 1) then -- Trade Delkfutt Key
-        player:startEvent(6);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 549) then -- Delkfutt Key
+        player:startEvent(6)
     end
-end;
+end
 
-function onTrigger(player,npc)
-    if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
-        player:startEvent(6);
+function onTrigger(player, npc)
+    if player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+        player:startEvent(6)
     else
-        player:messageSpecial(ID.text.THIS_ELEVATOR_GOES_DOWN);
+        player:messageSpecial(ID.text.THIS_ELEVATOR_GOES_DOWN)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-
-    if (csid == 6) then
-        if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
-            player:tradeComplete();
-            player:addKeyItem(dsp.ki.DELKFUTT_KEY);
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
+function onEventFinish(player, csid, option)
+    if csid == 6 then
+        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+            player:confirmTrade()
+            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
         end
     end
-end;
+end

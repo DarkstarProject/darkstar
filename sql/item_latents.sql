@@ -85,9 +85,16 @@ INSERT INTO `item_latents` VALUES(16030, 26, 1, 22, 17); -- Soarer Earring, RACC
 INSERT INTO `item_latents` VALUES(16014, 23, 4, 22, 1); -- Stormer Earring, ATT+4 if WAR is in party
 INSERT INTO `item_latents` VALUES(16020, 10, 1, 22, 7); -- Survivor Earring, VIT+1 if PLD is in party
 INSERT INTO `item_latents` VALUES(16033, 71, 1, 22, 20); -- Sylph Earring, Healing MP +1 if SCH is in party
+INSERT INTO `item_latents` VALUES(16686, 165, 7, 59, 3); -- Arcanabane - Vs. arcana: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(16792, 25, 7, 59, 19); -- Goshisho's Scythe - Vs. undead: Accuracy+7
 INSERT INTO `item_latents` VALUES(16899, 110, 5, 25, 0); -- Hototogisu, parry skill +5 song/roll active
+INSERT INTO `item_latents` VALUES(16912, 165, 5, 59, 17); -- Kitsutsuki - Vs. plantoids: Critical hit rate +5%
+INSERT INTO `item_latents` VALUES(16968, 165, 7, 59, 3); -- Kamewari - Vs. arcana: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(16969, 165, 5, 59, 9); -- Onikiri - Vs. demons: Critical hit rate +5%
 INSERT INTO `item_latents` VALUES(17073, 406, 30, 7, 2); -- Mistilteinn drains 30TP if TP >= 30
 INSERT INTO `item_latents` VALUES(17073, 369, 1, 7, 2); -- Mistilteinn adds Refresh 1MP per tick
+INSERT INTO `item_latents` VALUES(17208, 26, 10, 59, 12); -- Hamayumi - Vs. Empty: Ranged Accuracy+10
+INSERT INTO `item_latents` VALUES(17208, 66, 10, 59, 12); -- Vs. Empty: Ranged Attack+10%
 INSERT INTO `item_latents` VALUES(17365, 8, 4, 25, 0); -- Frenzy Fife, STR+4 song/roll active
 
 INSERT INTO `item_latents` VALUES(17590, 171, 83, 49, 4468); -- Primate Staff
@@ -103,10 +110,21 @@ INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4468);
 INSERT INTO `item_latents` VALUES(17592, 171, 83, 49, 4596);
 INSERT INTO `item_latents` VALUES(17592, 25, 10, 49, 4596);
 
+INSERT INTO `item_latents` VALUES(17759, 165, 7, 59, 20); -- Koggelmander - Vs. vermin: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(17804, 25, 7, 59, 6); -- Ushikirimaru - Vs. beasts: Accuracy+7
+INSERT INTO `item_latents` VALUES(17964, 165, 7, 59, 17); -- Barkborer - Vs. plantoid: Critical hit rate +7%
 INSERT INTO `item_latents` VALUES(18256, 25, 1, 25, 0); -- Orphic Egg, ACC+1 song/roll active
 INSERT INTO `item_latents` VALUES(18256, 23, 1, 25, 0); -- Orphic Egg, ATT+1 song/roll active
 INSERT INTO `item_latents` VALUES(18256, 68, 1, 25, 0); -- Orphic Egg, EVA+1 song/roll active
+INSERT INTO `item_latents` VALUES(18438, 165, 8, 59, 20); -- Kumokirimaru - Vs. vermin: Critical hit rate +8%
 INSERT INTO `item_latents` VALUES(18486, 171, -30, 25, 0); -- Wardancer, Delay: 474 (504 - 30) song/roll active
+
+INSERT INTO `item_latents` VALUES(18504, 165, 7, 59, 17); -- Eventreuse - Vs. plantoid: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(18767, 25, 3, 59, 8); -- Birdbanes - Vs. birds: Accuracy+3
+INSERT INTO `item_latents` VALUES(18865, 165, 7, 59, 20); -- Zonure - Vs. vermin: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(19113, 165, 7, 59, 14); -- Ermine's Tail - Vs. lizards: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(19158, 165, 7, 59, 14); -- Scheherazade - Vs. lizards: Critical hit rate +7%
+INSERT INTO `item_latents` VALUES(19273, 165, 7, 59, 6); -- Onishibari - Vs. beasts: Critical hit rate +7%
 
 INSERT INTO `item_latents` VALUES(27342, 63, 10, 13, 64); -- Fallen's Sollerets, "Last Resort"+1
 INSERT INTO `item_latents` VALUES(27343, 63, 10, 13, 64); -- Fallen's Sollerets +1, "Last Resort"+1

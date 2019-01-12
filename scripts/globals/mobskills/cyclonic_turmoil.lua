@@ -17,7 +17,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*2.8,dsp.magic.ele.WIND,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_WIND,MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.WIND,MOBPARAM_WIPE_SHADOWS)
     local dispel1 = target:dispelStatusEffect()
     local dispel2 = target:dispelStatusEffect()
     local total = 0
@@ -30,7 +30,7 @@ function onMobWeaponSkill(target, mob, skill)
         total = total+1
     end
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.WIND)
 
     if (total == 0) then
         return dmg

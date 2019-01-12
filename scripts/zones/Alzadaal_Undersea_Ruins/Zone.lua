@@ -133,7 +133,7 @@ function onRegionEnter(player,region)
         end,
         [23] = function (x)
             if player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING then
-                player:startEvent(1, getMercenaryRank(player))
+                player:startEvent(1, dsp.besieged.getMercenaryRank(player))
             end
         end,
     }
