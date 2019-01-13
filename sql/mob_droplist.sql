@@ -13327,9 +13327,9 @@ INSERT INTO `mob_droplist` VALUES (2208,0,0,1000,15097,80);
 INSERT INTO `mob_droplist` VALUES (2209,0,0,1000,1452,40);
 INSERT INTO `mob_droplist` VALUES (2209,0,0,1000,4249,1000);
 INSERT INTO `mob_droplist` VALUES (2209,0,0,1000,15126,120);
-INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,2695,1000);
-INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,18952,100);
-INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,19040,500);
+INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,2695,1000); -- (Marquis Forneus) bamboo_medicine_basket
+INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,18952,131); -- (Marquis Forneus) faucheuse
+INSERT INTO `mob_droplist` VALUES (2210,0,0,1000,19040,131); -- (Marquis Forneus) shark_strap
 INSERT INTO `mob_droplist` VALUES (2211,0,0,1000,1449,90);
 INSERT INTO `mob_droplist` VALUES (2211,0,0,1000,4249,1000);
 INSERT INTO `mob_droplist` VALUES (2211,0,0,1000,15114,100);

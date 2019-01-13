@@ -29,6 +29,7 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
         },
         DUU_MASA_THE_ONECUT    = 17182790,
         DEE_ZELKO_THE_ESOTERIC = 17183031,
+        MARQUIS_FORNEUS        = 17183032,
         LOO_KUTTO_THE_PENSIVE  = 17183033,
         FLESHGNASHER           = 17183034,
         ASTERION               = 17183037,

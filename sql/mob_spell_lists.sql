@@ -2467,7 +2467,6 @@ INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,644,73,255); -- MindBla
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,645,75,255); -- Exuvation
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,646,74,255); -- Magic Hammer
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,647,65,255); -- Zephyr Mantle
-
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,146,1,255); -- Fire 3
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,151,1,255); -- Blizzard 3
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,156,1,255); -- Aero 3
@@ -2480,6 +2479,19 @@ INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,185,1,255); -- Aeraga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,190,1,255); -- Stonaga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,195,1,255); -- Thundaga 2
 INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,200,1,255); -- Waterga 2
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,242,1,255); -- absorb-acc
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,245,1,255); -- drain
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,247,1,255); -- aspir
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,252,1,255); -- stun
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,266,1,255); -- absorb-str
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,267,1,255); -- absorb-dex
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,268,1,255); -- absorb-vit
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,269,1,255); -- absorb-agi
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,270,1,255); -- absorb-int
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,271,1,255); -- absorb-mnd
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,272,1,255); -- absorb-chr
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,275,1,255); -- absorb-tp
+INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,277,1,255); -- dread_spikes
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

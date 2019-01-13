@@ -902,6 +902,7 @@ INSERT INTO `nm_spawn_points` VALUES (17182790,0,-228,-0.68,148); -- Duu Masa th
 INSERT INTO `nm_spawn_points` VALUES (17182813,0,-103.220,-0.246,-159.507); -- Zhuu Buxu the Silent (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182843,0,50,-0.7,-148); -- Aa Xalmo the Savage
 INSERT INTO `nm_spawn_points` VALUES (17183031,0,-76.862,-40.277,-58.230); -- Dee Zelko the Esoteric
+INSERT INTO `nm_spawn_points` VALUES (17183032,0,-343.345,-16.984,141.193); -- Marquis Forneus
 INSERT INTO `nm_spawn_points` VALUES (17183033,0,7.990,-16.5,-187.812); -- Loo Kutto the Pensive
 INSERT INTO `nm_spawn_points` VALUES (17183034,0,174.370,-16.539,-141.226); -- Fleshgnasher
 INSERT INTO `nm_spawn_points` VALUES (17183037,0,-18.05,-16.926,18.064); -- Asterion
