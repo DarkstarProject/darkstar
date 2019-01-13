@@ -12665,7 +12665,7 @@ INSERT INTO `mob_droplist` VALUES (2058,0,0,1000,5842,100);
 INSERT INTO `mob_droplist` VALUES (2059,0,0,1000,4110,1000);
 INSERT INTO `mob_droplist` VALUES (2059,0,0,1000,4110,400);
 INSERT INTO `mob_droplist` VALUES (2059,0,0,1000,4110,150);
-INSERT INTO `mob_droplist` VALUES (2060,0,0,1000,2849,100);
+INSERT INTO `mob_droplist` VALUES (2060,0,0,1000,2849,378); -- (Likho) Likho Talon
 INSERT INTO `mob_droplist` VALUES (2061,0,0,1000,2637,1000);
 INSERT INTO `mob_droplist` VALUES (2061,0,0,1000,11368,410);
 INSERT INTO `mob_droplist` VALUES (2061,0,0,1000,11369,420);
@@ -32990,6 +32990,15 @@ INSERT INTO `mob_droplist` VALUES (4634,0,0,1000,16023,185); -- (Slippery Sucker
 INSERT INTO `mob_droplist` VALUES (4635,0,0,1000,16300,333); -- (Gloom Eye) Wit Pendant
 INSERT INTO `mob_droplist` VALUES (4636,0,0,1000,2838,321); -- (Quu Xijo the Illusory) Ephemeral Cloth
 INSERT INTO `mob_droplist` VALUES (4637,0,0,1000,19238,154); -- (Timeworn Warrior) Jasper Tathlum
+INSERT INTO `mob_droplist` VALUES (4638,0,0,1000,16021,250); -- (Eyegouger) Brawn Earring
+INSERT INTO `mob_droplist` VALUES (4638,2,0,1000,847,0); -- (Eyegouger) Bird Feather (steal)
+INSERT INTO `mob_droplist` VALUES (4639,0,0,1000,2829,150); -- (Humbaba) Radiant Velvet
+INSERT INTO `mob_droplist` VALUES (4640,0,0,1000,15853,205); -- (Dynast Beetle) Dasra's Ring
+INSERT INTO `mob_droplist` VALUES (4641,0,0,1000,11342,156); -- (Myradrosh) Restorer Cloak
+INSERT INTO `mob_droplist` VALUES (4642,0,0,1000,16025,250); -- (Nandi) Rathe Earring
+INSERT INTO `mob_droplist` VALUES (4643,0,0,1000,16016,200); -- (Powderer Penny) Chary Earring
+INSERT INTO `mob_droplist` VALUES (4644,0,0,1000,16034,81); -- (Hoar-knuckled Rimberry) Sarabande Earring
+INSERT INTO `mob_droplist` VALUES (4645,0,0,1000,11534,81); -- (Acolnahuacatl) Echo Cape
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
