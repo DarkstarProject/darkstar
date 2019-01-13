@@ -12954,9 +12954,9 @@ INSERT INTO `mob_droplist` VALUES (2107,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2107,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2107,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2107,0,0,1000,1450,30);
-INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,2699,1000);
-INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,18862,100);
-INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,19155,100);
+INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,2699,1000); -- (Maa Illmu the Bestower) bamboo_charcoal_basket
+INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,18862,165); -- (Maa Illmu the Bestower) clearpath
+INSERT INTO `mob_droplist` VALUES (2108,0,0,1000,19155,114); -- (Maa Illmu the Bestower) cruadin
 INSERT INTO `mob_droplist` VALUES (2109,2,0,1000,1449,0);
 INSERT INTO `mob_droplist` VALUES (2109,0,0,1000,1449,90);
 INSERT INTO `mob_droplist` VALUES (2109,0,0,1000,1464,80);

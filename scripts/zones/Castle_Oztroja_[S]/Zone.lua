@@ -25,6 +25,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.VEE_LADU_THE_TITTERER)
     GetMobByID(ID.mob.VEE_LADU_THE_TITTERER):setRespawnTime(math.random(900, 10800))
 
+    UpdateNMSpawnPoint(ID.mob.MAA_ILLMU_THE_BESTOWER)
+    GetMobByID(ID.mob.MAA_ILLMU_THE_BESTOWER):setRespawnTime(math.random(900, 10800))
+
     UpdateNMSpawnPoint(ID.mob.ASTERION)
     GetMobByID(ID.mob.ASTERION):setRespawnTime(math.random(900, 10800))
 end
