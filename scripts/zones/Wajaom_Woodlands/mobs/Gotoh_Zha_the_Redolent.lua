@@ -3,10 +3,10 @@
 --  ZNM: Gotoh Zha the Redolent
 -----------------------------------
 mixins = 
-    {
+{
     require("scripts/mixins/job_special"),
     require("scripts/mixins/rage")
-    }
+}
 require("scripts/globals/status")
 -----------------------------------
 -- Detailed Notes & Todos
@@ -75,14 +75,14 @@ end
 function onCriticalHit(mob)
     local RND = math.random(1, 100)
     if mob:AnimationSub() == 0 and RND <= 10 then
-        mob:useMobAbility(2361)
+        mob:AnimationSub(1)
     end
 end
 
 function onWeaponskillHit(mob, attacker, weaponskill)
     local RND = math.random(1, 100)
     if mob:AnimationSub() == 0 and RND <= 10 then
-        mob:useMobAbility(2361)
+        mob:AnimationSub(1)
     end
 
     return 0

@@ -1369,6 +1369,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1923);
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1924);
 -- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1925);
 -- INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1926);
+INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,2361);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1743);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1744);
 INSERT INTO `mob_skill_lists` VALUES ('Khromasoul',308,1745);
