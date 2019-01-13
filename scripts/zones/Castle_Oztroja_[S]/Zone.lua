@@ -13,6 +13,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.DEE_ZELKO_THE_ESOTERIC)
     GetMobByID(ID.mob.DEE_ZELKO_THE_ESOTERIC):setRespawnTime(math.random(900, 10800))
 
+    UpdateNMSpawnPoint(ID.mob.LOO_KUTTO_THE_PENSIVE)
+    GetMobByID(ID.mob.LOO_KUTTO_THE_PENSIVE):setRespawnTime(math.random(900, 10800))
+
     UpdateNMSpawnPoint(ID.mob.FLESHGNASHER)
     GetMobByID(ID.mob.FLESHGNASHER):setRespawnTime(math.random(900, 10800))
 

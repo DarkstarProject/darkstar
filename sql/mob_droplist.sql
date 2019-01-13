@@ -12762,9 +12762,9 @@ INSERT INTO `mob_droplist` VALUES (2077,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2077,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2077,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (2077,0,0,1000,1450,30);
-INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,2696,1000);
-INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,15829,100);
-INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,18450,100);
+INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,2696,1000); -- (Loo Kutto the Pensive) bamboo_bugcage
+INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,15829,92); -- (Loo Kutto the Pensive) skirmishers_ring
+INSERT INTO `mob_droplist` VALUES (2078,0,0,1000,18450,154); -- (Loo Kutto the Pensive) mukademaru
 INSERT INTO `mob_droplist` VALUES (2079,0,0,1000,4484,1000);
 INSERT INTO `mob_droplist` VALUES (2079,0,0,1000,4484,500);
 INSERT INTO `mob_droplist` VALUES (2079,0,0,1000,4484,330);
