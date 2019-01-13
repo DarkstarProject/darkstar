@@ -898,9 +898,11 @@ INSERT INTO `nm_spawn_points` VALUES (17170499,0,24.01,-67.138,-240.132); -- Kir
 INSERT INTO `nm_spawn_points` VALUES (17170569,0,-51.734,-28.457,686.549); -- Demoiselle Desolee
 INSERT INTO `nm_spawn_points` VALUES (17174709,0,133.834,22.199,-208.7); -- Centipedal Centruroides
 INSERT INTO `nm_spawn_points` VALUES (17178803,0,446.853,23.817,72.982); -- Balam-Quitz
+INSERT INTO `nm_spawn_points` VALUES (17182790,0,-228,-0.68,148); -- Duu Masa the Onecut (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182813,0,-103.220,-0.246,-159.507); -- Zhuu Buxu the Silent (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182843,0,50,-0.7,-148); -- Aa Xalmo the Savage
 INSERT INTO `nm_spawn_points` VALUES (17183031,0,-76.862,-40.277,-58.230); -- Dee Zelko the Esoteric
+INSERT INTO `nm_spawn_points` VALUES (17183034,0,174.370,-16.539,-141.226); -- Fleshgnasher
 INSERT INTO `nm_spawn_points` VALUES (17183037,0,-18.05,-16.926,18.064); -- Asterion
 INSERT INTO `nm_spawn_points` VALUES (17187047,0,-133.001,-20.636,-141.110);
 INSERT INTO `nm_spawn_points` VALUES (17187047,1,-287.202,-20.826,-199.075);

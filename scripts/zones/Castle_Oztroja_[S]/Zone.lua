@@ -7,8 +7,14 @@ local ID = require("scripts/zones/Castle_Oztroja_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.DUU_MASA_THE_ONECUT)
+    GetMobByID(ID.mob.DUU_MASA_THE_ONECUT):setRespawnTime(math.random(900, 10800))
+
     UpdateNMSpawnPoint(ID.mob.DEE_ZELKO_THE_ESOTERIC)
     GetMobByID(ID.mob.DEE_ZELKO_THE_ESOTERIC):setRespawnTime(math.random(900, 10800))
+
+    UpdateNMSpawnPoint(ID.mob.FLESHGNASHER)
+    GetMobByID(ID.mob.FLESHGNASHER):setRespawnTime(math.random(900, 10800))
 
     UpdateNMSpawnPoint(ID.mob.ASTERION)
     GetMobByID(ID.mob.ASTERION):setRespawnTime(math.random(900, 10800))

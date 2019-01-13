@@ -4549,7 +4549,7 @@ INSERT INTO `mob_droplist` VALUES (817,0,0,1000,4774,430);
 INSERT INTO `mob_droplist` VALUES (817,0,0,1000,4775,150);
 INSERT INTO `mob_droplist` VALUES (817,0,0,1000,4804,20);
 INSERT INTO `mob_droplist` VALUES (817,0,0,1000,4820,10);
-INSERT INTO `mob_droplist` VALUES (818,0,0,1000,16272,100);
+INSERT INTO `mob_droplist` VALUES (818,0,0,1000,16272,429); -- (Duu Masa the Onecut) Naraenten Bead Necklace
 INSERT INTO `mob_droplist` VALUES (819,0,0,1000,3198,100);
 INSERT INTO `mob_droplist` VALUES (819,0,0,1000,3198,50);
 INSERT INTO `mob_droplist` VALUES (819,0,0,1000,3198,30);
@@ -5343,9 +5343,9 @@ INSERT INTO `mob_droplist` VALUES (975,0,0,1000,5093,100);
 INSERT INTO `mob_droplist` VALUES (975,0,0,1000,11755,1000);
 INSERT INTO `mob_droplist` VALUES (975,0,0,1000,17078,100);
 INSERT INTO `mob_droplist` VALUES (975,0,0,1000,19291,100);
-INSERT INTO `mob_droplist` VALUES (976,0,0,1000,2697,1000);
-INSERT INTO `mob_droplist` VALUES (976,0,0,1000,16247,100);
-INSERT INTO `mob_droplist` VALUES (976,0,0,1000,19217,100);
+INSERT INTO `mob_droplist` VALUES (976,0,0,1000,2697,1000); -- (Fleshgnasher) bamboo_flower_basket
+INSERT INTO `mob_droplist` VALUES (976,0,0,1000,16247,131); -- (Fleshgnasher) caloyer_cape
+INSERT INTO `mob_droplist` VALUES (976,0,0,1000,19217,131); -- (Fleshgnasher) basilisk
 INSERT INTO `mob_droplist` VALUES (977,0,0,1000,640,10);
 INSERT INTO `mob_droplist` VALUES (977,0,0,1000,768,30);
 INSERT INTO `mob_droplist` VALUES (977,0,0,1000,1654,20);
