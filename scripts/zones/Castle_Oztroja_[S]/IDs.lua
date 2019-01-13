@@ -32,6 +32,7 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
         MARQUIS_FORNEUS        = 17183032,
         LOO_KUTTO_THE_PENSIVE  = 17183033,
         FLESHGNASHER           = 17183034,
+        VEE_LADU_THE_TITTERER  = 17183035,
         ASTERION               = 17183037,
     },
     npc =

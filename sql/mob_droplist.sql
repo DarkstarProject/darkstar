@@ -29956,9 +29956,9 @@ INSERT INTO `mob_droplist` VALUES (3986,0,0,1000,4358,360);
 INSERT INTO `mob_droplist` VALUES (3986,2,0,1000,4382,0);
 INSERT INTO `mob_droplist` VALUES (3986,0,0,1000,4382,80);
 INSERT INTO `mob_droplist` VALUES (3987,0,0,1000,1047,60);
-INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,2698,1000);
-INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,16180,100);
-INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,19272,100);
+INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,2698,1000); -- (Vee Ladu the Titterer) bamboo_birdcage
+INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,16180,131); -- (Vee Ladu the Titterer) harpy_shield
+INSERT INTO `mob_droplist` VALUES (3988,0,0,1000,19272,131); -- (Vee Ladu the Titterer) yagentoshiro
 INSERT INTO `mob_droplist` VALUES (3989,0,0,1000,1450,10);
 INSERT INTO `mob_droplist` VALUES (3990,0,0,1000,1450,10);
 INSERT INTO `mob_droplist` VALUES (3991,0,0,1000,1450,10);
