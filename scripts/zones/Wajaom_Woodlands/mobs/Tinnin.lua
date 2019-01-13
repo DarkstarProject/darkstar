@@ -5,13 +5,16 @@
 -- Spawned with Monkey Wine: @additem 2573
 -- Wiki: http://ffxiclopedia.wikia.com/wiki/Tinnin
 -----------------------------------
-mixins = {require("scripts/mixins/rage")}
+mixins = 
+{
+    require("scripts/mixins/job_special"),
+    require("scripts/mixins/rage")
+}
 require("scripts/globals/magic")
 require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1)
     mob:setMobMod(dsp.mobMod.GIL_MIN, 12000)
     mob:setMobMod(dsp.mobMod.GIL_MAX, 30000)
     mob:setMobMod(dsp.mobMod.MUG_GIL, 8000)
