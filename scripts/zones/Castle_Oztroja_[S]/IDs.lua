@@ -27,6 +27,8 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
         {
             [17182813] = 17182813,
         },
+        DEE_ZELKO_THE_ESOTERIC = 17183031,
+        ASTERION               = 17183037,
     },
     npc =
     {

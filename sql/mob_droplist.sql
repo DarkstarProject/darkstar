@@ -1153,9 +1153,9 @@ INSERT INTO `mob_droplist` VALUES (196,0,0,1000,4125,100);
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,5667,60);
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,11720,100);
 INSERT INTO `mob_droplist` VALUES (196,0,0,1000,11843,100);
-INSERT INTO `mob_droplist` VALUES (197,0,0,1000,2700,1000);
-INSERT INTO `mob_droplist` VALUES (197,0,0,1000,16355,100);
-INSERT INTO `mob_droplist` VALUES (197,0,0,1000,18499,100);
+INSERT INTO `mob_droplist` VALUES (197,0,0,1000,2700,1000); -- (Asterion) bamboo_tea_basket
+INSERT INTO `mob_droplist` VALUES (197,0,0,1000,16355,115); -- (Asterion) bediveres_hose
+INSERT INTO `mob_droplist` VALUES (197,0,0,1000,18499,164); -- (Asterion) alastor
 INSERT INTO `mob_droplist` VALUES (198,0,0,1000,3171,600);
 INSERT INTO `mob_droplist` VALUES (198,0,0,1000,3171,300);
 INSERT INTO `mob_droplist` VALUES (198,0,0,1000,3171,200);
@@ -3845,9 +3845,9 @@ INSERT INTO `mob_droplist` VALUES (669,0,0,1000,816,70);
 INSERT INTO `mob_droplist` VALUES (669,0,0,1000,867,200);
 INSERT INTO `mob_droplist` VALUES (669,0,0,1000,4124,100);
 INSERT INTO `mob_droplist` VALUES (669,0,0,1000,4203,100);
-INSERT INTO `mob_droplist` VALUES (670,0,0,1000,2694,1000);
-INSERT INTO `mob_droplist` VALUES (670,0,0,1000,15923,100);
-INSERT INTO `mob_droplist` VALUES (670,0,0,1000,18861,100);
+INSERT INTO `mob_droplist` VALUES (670,0,0,1000,2694,1000); -- (Dee Zelko the Esoteric) Bamboo Grass Basket
+INSERT INTO `mob_droplist` VALUES (670,0,0,1000,15923,100); -- (Dee Zelko the Esoteric) Grenadier Belt
+INSERT INTO `mob_droplist` VALUES (670,0,0,1000,18861,100); -- (Dee Zelko the Esoteric) Grandeur
 INSERT INTO `mob_droplist` VALUES (671,0,0,1000,896,200);
 INSERT INTO `mob_droplist` VALUES (671,0,0,1000,897,450);
 INSERT INTO `mob_droplist` VALUES (671,2,0,1000,897,0);
