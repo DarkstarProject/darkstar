@@ -30,6 +30,9 @@ function onInitialize(zone)
 
     UpdateNMSpawnPoint(ID.mob.ASTERION)
     GetMobByID(ID.mob.ASTERION):setRespawnTime(math.random(900, 10800))
+
+    UpdateNMSpawnPoint(ID.mob.SUU_XICU_THE_CANTABILE)
+    GetMobByID(ID.mob.SUU_XICU_THE_CANTABILE):setRespawnTime(math.random(900, 10800))
 end
 
 function onZoneIn(player,prevZone)

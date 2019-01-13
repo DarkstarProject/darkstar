@@ -35,6 +35,7 @@ zones[dsp.zone.CASTLE_OZTROJA_S] =
         VEE_LADU_THE_TITTERER  = 17183035,
         MAA_ILLMU_THE_BESTOWER = 17183036,
         ASTERION               = 17183037,
+        SUU_XICU_THE_CANTABILE = 17183038,
     },
     npc =
     {

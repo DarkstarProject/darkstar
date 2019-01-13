@@ -19825,9 +19825,9 @@ INSERT INTO `mob_droplist` VALUES (3406,0,0,1000,15728,100);
 INSERT INTO `mob_droplist` VALUES (3406,0,0,1000,16097,100);
 INSERT INTO `mob_droplist` VALUES (3407,0,0,1000,896,180);
 INSERT INTO `mob_droplist` VALUES (3407,0,0,1000,897,560);
-INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,2701,1000);
-INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,19111,100);
-INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,19216,100);
+INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,2701,1000); -- (Suu Xicu the Cantabile) bamboo_snakecage
+INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,19111,125); -- (Suu Xicu the Cantabile) silktone
+INSERT INTO `mob_droplist` VALUES (3408,0,0,1000,19216,88); -- (Suu Xicu the Cantabile) failnaught
 INSERT INTO `mob_droplist` VALUES (3409,0,0,1000,747,80);
 INSERT INTO `mob_droplist` VALUES (3409,0,0,1000,12946,460);
 INSERT INTO `mob_droplist` VALUES (3409,0,0,1000,1316,350);

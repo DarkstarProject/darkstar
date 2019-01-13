@@ -908,6 +908,7 @@ INSERT INTO `nm_spawn_points` VALUES (17183034,0,174.370,-16.539,-141.226); -- F
 INSERT INTO `nm_spawn_points` VALUES (17183035,0,-57.602,-0.823,-58.06); -- Vee Ladu the Titterer
 INSERT INTO `nm_spawn_points` VALUES (17183036,0,-17.176,-16.250,-16.468); -- Maa Illmu the Bestower
 INSERT INTO `nm_spawn_points` VALUES (17183037,0,-18.05,-16.926,18.064); -- Asterion
+INSERT INTO `nm_spawn_points` VALUES (17183038,0,-214.770,-0.681,96.357); -- Suu Xicu the Cantabile
 INSERT INTO `nm_spawn_points` VALUES (17187047,0,-133.001,-20.636,-141.110);
 INSERT INTO `nm_spawn_points` VALUES (17187047,1,-287.202,-20.826,-199.075);
 INSERT INTO `nm_spawn_points` VALUES (17187047,2,-295.626,-21.389,-192.191);
