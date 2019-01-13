@@ -22,6 +22,8 @@ zones[dsp.zone.WAJAOM_WOODLANDS] =
         ENIGMATIC_LIGHT             = 7343, -- The <item> is giving off an enigmatic light.
         LEYPOINT                    = 7398, -- An eerie red glow emanates from this stone platform. The surrounding air feels alive with energy...
         HARVESTING_IS_POSSIBLE_HERE = 7406, -- Harvesting is possible here if you have <item>.
+        BROKEN_SHARDS               = 8492, --Broken shards of insect wing are scattered all over...
+        DRAWS_NEAR                  = 8515, -- Something draws near!
     },
     mob =
     {

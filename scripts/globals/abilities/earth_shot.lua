@@ -31,7 +31,7 @@ function onUseAbility(player, target, ability, action)
     dmg = adjustForTarget(target, dmg, dsp.magic.ele.EARTH)
 
     params.targetTPMult = 0 -- Quick Draw does not feed TP
-    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
+    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.attackType.MAGICAL, dsp.damageType.EARTH, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
 
     if dmg > 0 then
         local effects = {}
@@ -39,7 +39,7 @@ function onUseAbility(player, target, ability, action)
         if rasp ~= nil then
             table.insert(effects, rasp)
         end
-    
+
         local threnody = target:getStatusEffect(dsp.effect.THRENODY)
         if threnody ~= nil and threnody:getSubPower() == dsp.mod.THUNDERRES then
             table.insert(effects, threnody)

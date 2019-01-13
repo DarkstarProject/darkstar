@@ -12,7 +12,7 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     local amount = 9999 * skill:getTotalTargets()
-    local dmg = MobFinalAdjustments(amount,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_FIRE,MOBPARAM_WIPE_SHADOWS)
-    target:delHP(dmg)
+    local dmg = MobFinalAdjustments(amount,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.FIRE,MOBPARAM_WIPE_SHADOWS)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.FIRE)
     return dmg
 end

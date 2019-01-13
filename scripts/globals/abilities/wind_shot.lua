@@ -31,8 +31,8 @@ function onUseAbility(player, target, ability, action)
     dmg = adjustForTarget(target, dmg, dsp.magic.ele.WIND)
 
     params.targetTPMult = 0 -- Quick Draw does not feed TP
-    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
-    
+    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.attackType.MAGICAL, dsp.damageType.WIND, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
+
     if dmg > 0 then
         local effects = {}
         local choke = target:getStatusEffect(dsp.effect.CHOKE)
@@ -50,7 +50,7 @@ function onUseAbility(player, target, ability, action)
             effects[counter] = frightfulRoar
             counter = counter + 1
         end]]
-        
+
         if #effects > 0 then
             local effect = effects[math.random(#effects)]
             local duration = effect:getDuration()
