@@ -1313,13 +1313,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Claret',290,433);  -- Digest
 INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1317); -- Mucous_Spread
 INSERT INTO `mob_skill_lists` VALUES ('Claret',290,1319); -- Epoxy_Spread
 
-INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,478);
-INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,479);
-INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,484);
-INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,485);
--- INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,1795);
--- INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,1156);
--- INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,256);
+INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,478); -- Hell Slash
+INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,479); -- Horror Cloud
+INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,484); -- Black Cloud
+INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,485); -- Blood Saber
+INSERT INTO `mob_skill_lists` VALUES ('Velionis',292,1795); -- Malediction
 -- INSERT INTO `mob_skill_lists` VALUES ('LilApkallu',294,1716);
 INSERT INTO `mob_skill_lists` VALUES ('LilApkallu',294,1715);
 INSERT INTO `mob_skill_lists` VALUES ('LilApkallu',294,1713);

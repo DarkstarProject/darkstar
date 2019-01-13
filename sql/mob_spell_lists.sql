@@ -2439,6 +2439,19 @@ INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,645,75,255); -- Exuvati
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,646,74,255); -- Magic Hammer
 INSERT INTO `mob_spell_lists` VALUES ('Humanoid_BLU',299,647,65,255); -- Zephyr Mantle
 
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,146,1,255); -- Fire 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,151,1,255); -- Blizzard 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,156,1,255); -- Aero 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,161,1,255); -- Stone 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,166,1,255); -- Thunder 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,171,1,255); -- Water 3
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,175,1,255); -- Firaga 2
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,180,1,255); -- Blizzaga 2
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,185,1,255); -- Aeraga 2
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,190,1,255); -- Stonaga 2
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,195,1,255); -- Thundaga 2
+INSERT INTO `mob_spell_lists` VALUES ('Velionis',300,200,1,255); -- Waterga 2
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
