@@ -762,7 +762,6 @@ INSERT INTO `mob_skill_lists` VALUES ('MamoolJa',176,1734);
 -- INSERT INTO `mob_skill_lists` VALUES ('MamoolJa',176,1738);
 -- INSERT INTO `mob_skill_lists` VALUES ('MamoolJa',176,1839);
 -- INSERT INTO `mob_skill_lists` VALUES ('MamoolJa',176,1840);
-INSERT INTO `mob_skill_lists` VALUES ('MamoolJa',176,1920);
 -- INSERT INTO `mob_skill_lists` VALUES ('MamoolJaKnight',433,?);
 INSERT INTO `mob_skill_lists` VALUES ('Mandragora',178,300);
 INSERT INTO `mob_skill_lists` VALUES ('Mandragora',178,301);
