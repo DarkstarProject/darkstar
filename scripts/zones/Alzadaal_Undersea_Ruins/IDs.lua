@@ -24,6 +24,7 @@ zones[dsp.zone.ALZADAAL_UNDERSEA_RUINS] =
         MEMBER_IMBUED_ITEM      = 7451, -- One or more party members are carrying imbued items. Unable to enter area.
         IMBUED_ITEM             = 7452, -- You are carrying imbued items. Unable to enter area.
         MYTHIC_REQUIRED         = 7454, -- You do not have the appropriate mythic weapon equipped. Unable to enter area.
+        SLIMY_TOUCH             = 7747, -- The ground here is slimy to the touch...
     },
     mob =
     {
@@ -39,6 +40,8 @@ zones[dsp.zone.ALZADAAL_UNDERSEA_RUINS] =
     },
     npc =
     {
+        RUNIC_PORTAL_NORTH      = 17072236,
+        RUNIC_PORTAL_SOUTH      = 17072237,
     },
 }
 

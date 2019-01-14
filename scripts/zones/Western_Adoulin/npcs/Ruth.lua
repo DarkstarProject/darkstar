@@ -37,6 +37,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2523) then
         -- Progresses Quest: 'A Pioneers Best (Imaginary) Friend'
+        player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.IONIS, 0, 0, 9000);
     end
 end;

@@ -17,6 +17,8 @@ zones[dsp.zone.AYDEEWA_SUBTERRANE] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7049, -- You can't fish here.
         MINING_IS_POSSIBLE_HERE = 7320, -- Mining is possible here if you have <item>.
+        BLOOD_STAINS            = 8029, -- The ground is smeared with bloodstains...
+        DRAWS_NEAR              = 8030, -- Something draws near!
     },
     mob =
     {

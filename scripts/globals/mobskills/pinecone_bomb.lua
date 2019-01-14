@@ -20,12 +20,12 @@ function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2.3
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,info.hitslanded)
 
     local typeEffect = dsp.effect.SLEEP_I
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 30)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
     return dmg
 end

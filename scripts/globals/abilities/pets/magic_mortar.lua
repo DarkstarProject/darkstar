@@ -38,6 +38,6 @@ function onPetAbility(target, automaton, skill, master, action)
        automaton:addTP(80)
     end
 
-    target:delHP(damage)
+    target:takeDamage(damage, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
     return damage
 end

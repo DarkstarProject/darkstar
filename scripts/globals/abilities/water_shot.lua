@@ -31,7 +31,7 @@ function onUseAbility(player, target, ability, action)
     dmg = adjustForTarget(target, dmg, dsp.magic.ele.WATER)
 
     params.targetTPMult = 0 -- Quick Draw does not feed TP
-    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
+    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.attackType.MAGICAL, dsp.damageType.WATER, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
 
     if dmg > 0 then
         local effects = {}
@@ -49,7 +49,7 @@ function onUseAbility(player, target, ability, action)
         if threnody ~= nil and threnody:getSubPower() == dsp.mod.FIRERES then
             table.insert(effects, threnody)
         end
-        
+
         if #effects > 0 then
             local effect = effects[math.random(#effects)]
             local duration = effect:getDuration()

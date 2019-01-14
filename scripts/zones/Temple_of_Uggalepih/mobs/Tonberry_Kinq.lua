@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  NM:  Tonberry Kinq
+--   NM: Tonberry Kinq
 -----------------------------------
 mixins =
 {

@@ -3,23 +3,21 @@
 --  NPC: ??? (Uggalepih Offering ITEM)
 -- !pos 388 0 269 159
 -----------------------------------
-local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-
-    respawn = GetServerVariable("[TEMP]Respawn_qm2_for_offering");
-
-    if (player:hasItem(1183) == false and player:getFreeSlotsCount() >= 1 and respawn <= os.time()) then
-        player:addItem(1183);
-        player:messageSpecial(ID.text.ITEM_OBTAINED,1183); -- Uggalepih Offering
-        SetServerVariable("[TEMP]Respawn_qm2_for_offering",os.time() + 7200); -- 2 hours
-        -- ??? dissapears for 2 hours and reappears on new position
+function onTrigger(player, npc)
+    if not player:hasItem(1183) then
+        if npcUtil.giveItem(player, 1183) then -- Uggalepih Offering
+            npc:setStatus(dsp.status.DISAPPEAR)
+            npc:updateNPCHideTime(math.random(900, 7200)) -- 15 minutes to 2 hours
+            -- TODO: ??? reappears at new position
+        end
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-
-end;
+end

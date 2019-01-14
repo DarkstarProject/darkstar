@@ -20,6 +20,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.WOODLAND_SAGE)
     GetMobByID(ID.mob.WOODLAND_SAGE):setRespawnTime(math.random(900, 10800))
 
+    UpdateNMSpawnPoint(ID.mob.POWDERER_PENNY)
+    GetMobByID(ID.mob.POWDERER_PENNY):setRespawnTime(math.random(5400, 7200))
+
     UpdateNMSpawnPoint(ID.mob.BISQUE_HEELED_SUNBERRY)
     GetMobByID(ID.mob.BISQUE_HEELED_SUNBERRY):setRespawnTime(math.random(900, 10800))
 
