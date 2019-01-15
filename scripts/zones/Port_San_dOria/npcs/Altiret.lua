@@ -2,64 +2,37 @@
 -- Area: Port San d'Oria
 --  NPC: Altiret
 -- NPC for Quest "The Pickpocket"
+-- !pos 21.263 -3.999 -65.776 232
 -----------------------------------
 local ID = require("scripts/zones/Port_San_dOria/IDs");
-require("scripts/globals/settings");
+require("scripts/globals/npc_util");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    -- THE PICKPOCKET
+    if player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 579) then
+        player:startEvent(550);
 
-    -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-    -- "The Pickpocket" Quest status
-    thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
+    -- FLYERS FOR REGINE
+    elseif player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+        player:messageSpecial(ID.text.FLYER_REFUSED);
 
-    -- "The Pickpocket" Quest, trading for light axe
-    if (thePickpocket == 1) then
-        local count = trade:getItemCount();
-        local freeSlot = player:getFreeSlotsCount();
-        local giltGlasses = trade:hasItemQty(579, 1);
-        if (count == 1 and freeSlot > 0 and giltGlasses == true) then
-            player:tradeComplete();
-            player:addFame(SANDORIA,30);
-            player:addTitle(dsp.title.PICKPOCKET_PINCHER);
-            player:completeQuest(SANDORIA,THE_PICKPOCKET);
-            player:startEvent(550);
-        elseif (giltGlasses == false) then
-            player:startEvent(551);
-        else
-            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 579);
-        end;
-    -- "Flyers for Regine"
-    elseif (FlyerForRegine == 1) then
-        local count = trade:getItemCount();
-        local MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(ID.text.FLYER_REFUSED);
-        elseif (MagicFlyer == false) then
-            player:startEvent(551);
-        end
+    -- DEFAULT DIALOG
     else
         player:startEvent(551);
     end
 end;
 
 function onTrigger(player,npc)
-
-    -- Vars for the Quest "The Pickpocket"
-    local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-    local openingCS = player:getVar("thePickpocket");
-
-    -- "The Pickpocket" Quest dialog
-    if (thePickpocket == 0 and openingCS == 1) then
+    -- THE PICKPOCKET
+    if player:getVar("thePickpocket") > 0 then
         player:startEvent(547);
-        player:addQuest(SANDORIA,THE_PICKPOCKET);
-    elseif (thePickpocket == 1) then
-        player:startEvent(547);
-    elseif (thePickpocket == 2) then
+    elseif player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_COMPLETED then
         player:startEvent(580);
+
+    -- STANDARD DIALOG
     else
         player:startEvent(559);
     end;
@@ -69,10 +42,10 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-
-    -- "The Pickpocket" reward with light axe, done with quest
-    if (csid == 550) then
-        player:addItem(16667);
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 16667);
+    -- THE PICKPOCKET
+    if csid == 547 and player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_AVAILABLE then
+        player:addQuest(SANDORIA, THE_PICKPOCKET);
+    elseif csid == 550 and npcUtil.completeQuest(player, SANDORIA, THE_PICKPOCKET, {item = 16667, title = dsp.title.PICKPOCKET_PINCHER, var = {"thePickpocket", "[pickpocket]skipNPC"}}) then
+        player:confirmTrade();
     end;
 end;

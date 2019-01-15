@@ -12,7 +12,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.MAURINNE_DIALOG);
+    if player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_MAURINNE)
+        player:showText(npc, ID.text.PICKPOCKET_MAURINNE + 1)
+    else
+        player:showText(npc,ID.text.MAURINNE_DIALOG);
+    end
 end;
 
 function onEventUpdate(player,csid,option)

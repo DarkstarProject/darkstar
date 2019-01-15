@@ -2,6 +2,7 @@
 -- Area: Port San d'Oria
 --  NPC: Miene
 -- NPC for Quest "The Pickpocket"
+-- !pos 0.750 -4.000 -81.438 232
 -----------------------------------
 local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/npc_util");
@@ -40,7 +41,7 @@ function onTrigger(player,npc)
     elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 0) then
         player:startEvent(549);
         player:setVar("thePickpocketEagleButton",1);
-    elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 1) then
+    elseif (thePickpocket == QUEST_ACCEPTED and player:getVar("thePickpocketEagleButton") == 1 and not player:hasItem(578)) then
         player:startEvent(611);
     else
         player:startEvent(553);
@@ -54,9 +55,7 @@ function onEventFinish(player,csid,option)
 
     -- "The Pickpocket" Quest, recieving Eagle Button
     if (csid == 549 or csid == 611) then
-        if (player:hasItem(578) == false) then
-            npcUtil.giveItem(player, 578);
-        else
+        if not npcUtil.giveItem(player, 578) then
             player:startEvent(552);
         end;
     end;

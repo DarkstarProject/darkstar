@@ -12,7 +12,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,ID.text.RODAILLECE_DIALOG);
+    if player:getVar("thePickpocket") == 1 and not player:getMaskBit(player:getVar("[pickpocket]skipNPC"), 3) then
+        player:showText(npc, ID.text.PICKPOCKET_RODAILLECE)
+        player:setMaskBit(player:getVar("[pickpocket]skipNPC"), "[pickpocket]skipNPC", 3, true)
+    else
+        player:showText(npc,ID.text.RODAILLECE_DIALOG);
+    end
 end;
 
 function onEventUpdate(player,csid,option)

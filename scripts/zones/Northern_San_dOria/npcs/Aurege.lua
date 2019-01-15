@@ -17,7 +17,10 @@ end;
 function onTrigger(player,npc)
     local exitTheGambler = player:getQuestStatus(SANDORIA,EXIT_THE_GAMBLER);
 
-    if (player:hasKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB)) then
+    if player:getVar("thePickpocket") == 1 and not player:getMaskBit(player:getVar("[pickpocket]skipNPC"), 2) then
+        player:showText(npc, ID.text.PICKPOCKET_AUREGE)
+        player:setMaskBit(player:getVar("[pickpocket]skipNPC"), "[pickpocket]skipNPC", 2, true)
+    elseif (player:hasKeyItem(dsp.ki.MAP_OF_KING_RANPERRES_TOMB)) then
         player:startEvent(514);
     elseif (exitTheGambler == QUEST_COMPLETED) then
         player:startEvent(516);

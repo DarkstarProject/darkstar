@@ -11,11 +11,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    local thePickpocket = player:getQuestStatus(SANDORIA, THE_PICKPOCKET);
-
-    if (thePickpocket > 0) then
-        player:showText(npc, 7265);
+    if player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_ADALEFONT)
     else
         player:showText(npc, ID.text.ADALEFONT_DIALOG);
     end

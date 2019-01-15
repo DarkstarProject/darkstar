@@ -21,7 +21,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:startEvent(567);
+    if player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_SOLGIERTE)
+    else
+        player:startEvent(567);
+    end
 end;
 
 function onEventUpdate(player,csid,option)

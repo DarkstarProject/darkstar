@@ -13,8 +13,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
-    player:openSendBox();
+    if player:getVar("thePickpocket") == 1 and not player:getMaskBit(player:getVar("[pickpocket]skipNPC"), 0) then
+        player:showText(npc, ID.text.PICKPOCKET_MEINEMELLE)
+        player:setMaskBit(player:getVar("[pickpocket]skipNPC"), "[pickpocket]skipNPC", 0, true)
+    else
+        player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
+        player:openSendBox();
+    end
 end;
 
 function onEventUpdate(player,csid,option)

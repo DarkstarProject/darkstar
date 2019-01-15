@@ -24,6 +24,8 @@ function onTrigger(player,npc)
 
     if (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,13) == false) then
         player:startEvent(747);
+    elseif player:getVar("thePickpocket") == 1 then
+        player:showText(npc, ID.text.PICKPOCKET_PARCARIN)
     else
         player:startEvent(566);
     end
