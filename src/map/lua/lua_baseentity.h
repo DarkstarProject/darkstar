@@ -125,6 +125,7 @@ public:
     int32 closeDoor(lua_State*);             // npc.closeDoor(timeToStayClosed)
     int32 setElevator(lua_State* L);
 
+    int32 addPeriodicTrigger(lua_State* L);  // Adds a periodic trigger to the NPC that allows time based scripting
     int32 showNPC(lua_State*);               // Show an NPC
     int32 hideNPC(lua_State*);               // hide an NPC
     int32 updateNPCHideTime(lua_State*);     // Updates the length of time a NPC remains hidden, if shorter than the original hide time.
@@ -153,6 +154,9 @@ public:
     int32 getCurrentRegion(lua_State*);      // Get Entity conquest region
     int32 getContinentID(lua_State*);        // узнаем континент, на котором находится сущность
     int32 isInMogHouse(lua_State*);          // Check if entity inside a mog house
+
+    int32 getPlayerRegionInZone(lua_State*); // Returns the player's current region in the zone. (regions made with registerRegion)
+    int32 updateToEntireZone(lua_State*);    // Forces an update packet to update the NPC entity zone-wide
 
     int32 getPos(lua_State*);                // Get Entity position (x,y,z)
     int32 showPosition(lua_State*);          // Display current position of character
