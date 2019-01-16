@@ -114,7 +114,7 @@ bool CMobSpellContainer::HasMPSpells() const
 std::optional<SpellID> CMobSpellContainer::GetAggroSpell()
 {
     // high chance to return ga spell
-    if(HasGaSpells() && dsprand::GetRandomNumber(100) <= m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
+    if(HasGaSpells() && dsprand::GetRandomNumber(100) < m_PMob->getMobMod(MOBMOD_GA_CHANCE)){
         return GetGaSpell();
     }
 
