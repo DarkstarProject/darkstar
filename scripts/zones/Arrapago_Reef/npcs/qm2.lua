@@ -3,17 +3,17 @@
 --  NPC: ??? (Spawn Velionis(ZNM T1))
 -- !pos 311 -3 27 54
 -----------------------------------
-local ID = require("scripts/zones/Arrapago_Reef/IDs");
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(2600,1) and trade:getItemCount() == 1) then -- Trade Golden Teeth
-        if (not GetMobByID(ID.mob.VELIONIS):isSpawned()) then
-            player:tradeComplete();
-            SpawnMob(ID.mob.VELIONIS):updateClaim(player);
-        end
+    if npcUtil.tradeHas(trade, 2600) and npcUtil.popFromQM(player, npc, ID.mob.VELIONIS) then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NOTHING_HAPPENS);
-end;
+    player:messageSpecial(ID.text.GLITTERING_FRAGMENTS)
+end

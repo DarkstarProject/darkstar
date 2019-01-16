@@ -7,7 +7,7 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID())
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
 end
 
 function onAdditionalEffect(mob,target,damage)

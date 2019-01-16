@@ -26,6 +26,7 @@ zones[dsp.zone.CASTLE_ZVAHL_BAILEYS] =
             [17436879] = 17436881,
             [17436882] = 17436881,
         },
+        LIKHO            = 17436714,
         MARQUIS_ALLOCEN  = 17436913,
         MARQUIS_AMON     = 17436918,
         DUKE_HABORYM     = 17436923,

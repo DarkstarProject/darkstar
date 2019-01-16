@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	10.3.7-MariaDB
+-- Server version   10.3.7-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -7153,6 +7153,11 @@ INSERT INTO `item_basic` VALUES (10062,0,'♪warmachine','♪warmachine',1,61504
 INSERT INTO `item_basic` VALUES (10063,0,'♪xzomit','♪xzomit',1,61504,0,0,0);
 INSERT INTO `item_basic` VALUES (10064,0,'♪hippogryph','♪hippogryph',1,61504,0,0,0);
 INSERT INTO `item_basic` VALUES (10065,0,'♪spectral_chair','♪spectral_chair',1,61504,0,0,0);
+INSERT INTO `item_basic` VALUES (10066,0,'♪spheroid','♪spheroid',1,61504,0,0,0);
+INSERT INTO `item_basic` VALUES (10067,0,'♪omega','♪omega',1,61504,0,0,0);
+INSERT INTO `item_basic` VALUES (10068,0,'♪coeurl','♪coeurl',1,61504,0,0,0);
+INSERT INTO `item_basic` VALUES (10069,0,'♪goobbue','♪goobbue',1,61504,0,0,0);
+INSERT INTO `item_basic` VALUES (10070,0,'♪raaz','♪raaz',1,61504,0,0,0);
 INSERT INTO `item_basic` VALUES (10112,0,'cipher_of_zeids_alter_ego','cipher_zeid',1,61504,0,0,0);
 INSERT INTO `item_basic` VALUES (10113,0,'cipher_of_lions_alter_ego','cipher_lion',1,61504,0,0,0);
 INSERT INTO `item_basic` VALUES (10114,0,'cipher_of_tenzens_alter_ego','cipher_tenzen',1,61504,0,0,0);

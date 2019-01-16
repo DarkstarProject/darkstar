@@ -37,6 +37,7 @@ zones[dsp.zone.CRAWLERS_NEST] =
             [17584391] = 17584398, -- -101.000 -1.000 285.000
         },
         AWD_GOGGIE        = 17584135,
+        DYNAST_BEETLE     = 17584312,
         DREADBUG          = 17584425,
         MIMIC             = 17584426,
     },

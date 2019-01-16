@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: The Sanctuary of Zi'Tah
---  MOB: Huwasi (NM)
+--   NM: Huwasi
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    UpdateNMSpawnPoint(mob:getID());
-end;
+    UpdateNMSpawnPoint(mob:getID())
+end

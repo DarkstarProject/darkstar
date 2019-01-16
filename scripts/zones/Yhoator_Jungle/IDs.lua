@@ -33,7 +33,13 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
     },
     mob =
     {
+        HOAR_KNUCKLED_RIMBERRY_PH =
+        {
+            [17285392] = 17285394,
+            [17285393] = 17285394,
+        },
         WOODLAND_SAGE          = 17285220,
+        POWDERER_PENNY         = 17285248,
         BISQUE_HEELED_SUNBERRY = 17285460,
         BRIGHT_HANDED_KUNBERRY = 17285526,
         KAPPA_AKUSO            = 17285544,
