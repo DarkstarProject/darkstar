@@ -454,9 +454,8 @@ void CTransportHandler::insertElevator(Elevator_t* elevator)
         return;
     }
 
-    //Note that permanent elevators (ones that always move, ie metalworks)
-    //require opposite animations from lever-triggered elevators
-    if (!elevator->isPermanent)
+    //Inconsistant animations throughout the elevators
+    if (elevator->animationsReversed)
         elevator->state ^= 1;
 
     //Ensure that the doors start in the correct positions

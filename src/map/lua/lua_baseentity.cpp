@@ -1967,8 +1967,10 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 3));
-
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isboolean(L, 7));
     Elevator_t* elevator = new Elevator_t;
 
     // ID should be 0 for most elevators, except special ones such as Port Bastok drawbridge
@@ -1983,9 +1985,9 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
         return 0;
     }
 
-    elevator->activated = (!lua_isnil(L, 5) && lua_isnumber(L, 5)) ? (lua_tointeger(L, 5) != 0) : 0;
-    elevator->isPermanent = (!lua_isnil(L, 6) && lua_isnumber(L, 6)) ? (lua_tointeger(L, 6) != 0) : 0;
-
+    elevator->activated = (lua_tointeger(L, 5) != 0);
+    elevator->isPermanent = (lua_tointeger(L, 6) != 0);
+    elevator->animationsReversed = (bool)lua_toboolean(L, 7);
     elevator->movetime = 3;// ((elevator->UpperDoor == nullptr) || (elevator->LowerDoor == nullptr) ? 0 : 3);
     elevator->interval = 8;// ((elevator.UpperDoor == nullptr) || (elevator.LowerDoor == nullptr) || (!elevator.isPermanent) ? 8 : 8);
 
@@ -2586,13 +2588,15 @@ inline int32 CLuaBaseEntity::getPlayerRegionInZone(lua_State* L)
 
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     lua_pushinteger(L, PChar->m_InsideRegionID);
+
     return 1;
 }
 /************************************************************************
 *  Function: updateToEntireZone
-*  Purpose : Updates an NPC zone-wide, immediately.
-*  Example : drawBridge:updateToEntireZone
-*  Notes   : Currently only used for port bastok drawbridge
+*  Purpose : Updates NPC status/animation then sends an update packet zone-wide.
+*  Example : drawBridge:updateToEntireZone()
+*  Notes   : Currently only used for port bastok drawbridge as
+             setAnimation() only updates for chars in range.
 ************************************************************************/
 inline int32 CLuaBaseEntity::updateToEntireZone(lua_State* L)
 {
@@ -2603,9 +2607,11 @@ inline int32 CLuaBaseEntity::updateToEntireZone(lua_State* L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
     PNpc->status = (STATUSTYPE)lua_tointeger(L, 1);
     PNpc->animation = (UINT8)lua_tointeger(L,2);
 
+    //If this flag is high, update the NPC's name to match the current time
     if (!lua_isnil(L, 3) && (bool)lua_toboolean(L, 3) == true)
     {
         PNpc->name.resize(10);

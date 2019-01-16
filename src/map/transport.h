@@ -24,17 +24,9 @@
 #ifndef _CTRANSPORT_H
 #define _CTRANSPORT_H
 
-#include "../common/cbasetypes.h"
-
 #include <vector>
-
+#include "../common/cbasetypes.h"
 #include "entities/npcentity.h"
-
-enum ELEVATOR
-{
-    ELEVATOR_KUFTAL_TUNNEL_DSPPRNG_RCK = 1,
-    ELEVATOR_PORT_BASTOK_DRWBRDG = 2
-};
 
 enum TRANSPORTSTATE {
     STATE_TRANSPORT_INIT = 0,
@@ -58,8 +50,6 @@ enum ELEVATORSTATE {
     STATE_ELEVATOR_ASCEND,
     STATE_ELEVATOR_DESCEND
 };
-#define INTERVAL_KUFTAL_TUNNEL_DSPPRNG_RCK	360
-#define INTERVAL_PORT_BASTOK_DRWBRDG		360
 
 struct Transport_Time
 {
@@ -69,6 +59,7 @@ struct Transport_Time
     uint16 timeDepartDock;
     uint16 timeVoyageStart;
 };
+
 struct Transport_Ship : Transport_Time
 {
     uint8  animationArrive;
@@ -120,6 +111,7 @@ struct Elevator_t
 
     bool activated;
     bool isPermanent;
+    bool animationsReversed;
 
     void closeDoor(CNpcEntity*);
     void openDoor(CNpcEntity*);
@@ -130,6 +122,7 @@ class CTransportHandler
 {
 public:
     static	CTransportHandler * getInstance();
+
     void startElevator(int32 elevatorID);
     void TransportTimer();
     void insertElevator(Elevator_t* elevator);
@@ -141,7 +134,6 @@ private:
     static CTransportHandler * _instance;
 
     CTransportHandler();
-
 
     void startElevator(Elevator_t *);
     void arriveElevator(Elevator_t *);

@@ -2460,10 +2460,9 @@ dsp.behavior =
 dsp.elevator =
 {
     TIMED_AUTOMATIC           = 0,
-    PORT_BASTOK_DRWBRDG       = 2,
-    DAVOI_LIFT                = 3,
-    PALBOROUGH_MINES_LIFT     = 4,
-    FORT_GHELSBA_LIFT         = 5
+    DAVOI_LIFT                = 1,
+    PALBOROUGH_MINES_LIFT     = 2,
+    FORT_GHELSBA_LIFT         = 3
 }
 
 ------------------------------------

@@ -30,12 +30,12 @@
 
 struct Trigger_t
 {
-    uint8 id;
+    uint8 id;                       //trigger id unique to the NPC.
 
-    CNpcEntity* npc;
+    CNpcEntity* npc;                //NPC entity that the trigger belongs to
 
-    uint16 period;                  //The time 
-    uint16 minuteOffset;
+    uint16 period;                  //The time in vanadiel minutes between two firings of the trigger
+    uint16 minuteOffset;            //The time in vanadiel minutes after SE epoch which the period syncs to
 
     uint32 lastTrigger;             //Used to store the last firing of the trigger
 };

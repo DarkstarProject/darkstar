@@ -15,7 +15,8 @@ function onSpawn(npc)
         elevator = npc:getID(),              -- actual elevator npc's id is usually the smallest, except here
         started = 0,                         -- is the elevator already running
         regime = 0,                          --
+        reversedAnimations = true,
     }
 
-    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.started, elevator.regime);
+    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.started, elevator.regime, elevator.reversedAnimations);
 end;
