@@ -1,8 +1,6 @@
 -----------------------------------
--- Area: Quicksand Caves
---   NM: Antican_Consul
------------------------------------
-mixins = {require("scripts/mixins/job_special")}
+-- Area: The Boyahda Tree
+--   NM: Ancient Goobbue
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

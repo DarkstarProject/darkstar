@@ -1,8 +1,6 @@
 -----------------------------------
--- Area: Quicksand Caves
---   NM: Antican_Consul
------------------------------------
-mixins = {require("scripts/mixins/job_special")}
+-- Area: Toraimorai Canal
+--   NM: Oni_Carcass
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

@@ -1,8 +1,6 @@
 -----------------------------------
--- Area: Quicksand Caves
---   NM: Antican_Consul
------------------------------------
-mixins = {require("scripts/mixins/job_special")}
+-- Area: Phomiuna_Aqueducts
+--   NM: Tres Duendes
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

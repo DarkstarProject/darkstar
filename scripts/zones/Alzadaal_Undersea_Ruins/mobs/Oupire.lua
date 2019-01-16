@@ -17,3 +17,7 @@ end
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.OUPIRE_IMPALER)
 end
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(14400, 18000)) -- 4 to 5 hours
+end
