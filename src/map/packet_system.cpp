@@ -1557,7 +1557,7 @@ void SmallPacket0x04D(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     uint8 boxtype = data.ref<uint8>(0x05);
     uint8 slotID = data.ref<uint8>( 0x06);
 
-    ShowDebug(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
+    ShowInfo(CL_CYAN"DeliveryBox Action (%02hx)\n" CL_RESET, data.ref<uint8>(0x04));
     PrintPacket(data);
 
     if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
