@@ -13,7 +13,7 @@ function onTrade(player, npc, trade)
             player:startEvent(107)
         end
     elseif (player:getVar("SahaginKeyItems") == 2) then -- If player was told to use a Gold Beastcoin
-        if npcUtil.tradeHas(trade, {{748, 3}, {1135, 1}}) then
+        if npcUtil.tradeHas(trade, {748, 1135}) then
             player:startEvent(107)
         end
     end
