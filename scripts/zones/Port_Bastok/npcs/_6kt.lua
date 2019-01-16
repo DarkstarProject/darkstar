@@ -12,16 +12,16 @@ function onSpawn(npc)
     bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.OPEN_DOOR, true)
 
     --Events for when the airship arrives
-    npc:addPeriodicTrigger(0, 360, 4, 0, false)
-    npc:addPeriodicTrigger(1, 360, 8, 0, false)
+    npc:addPeriodicTrigger(0, 360, 4)
+    npc:addPeriodicTrigger(1, 360, 9)
     
     --Events for when the airship departs
-    npc:addPeriodicTrigger(2, 360, 80, 0, false)
-    npc:addPeriodicTrigger(3, 360, 84, 0, false)
+    npc:addPeriodicTrigger(2, 360, 80)
+    npc:addPeriodicTrigger(3, 360, 85)
 
     --Events for when the drawbridge has finished closing
-    npc:addPeriodicTrigger(4, 360, 12, 0, false)
-    npc:addPeriodicTrigger(5, 360, 88, 0, false)
+    npc:addPeriodicTrigger(4, 360, 13)
+    npc:addPeriodicTrigger(5, 360, 89)
 end;
 
 function onTimeTrigger(npc, triggerID)

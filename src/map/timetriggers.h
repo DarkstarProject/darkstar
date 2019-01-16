@@ -28,25 +28,16 @@
 #include <vector>
 #include "entities/npcentity.h"
 
-enum TRIGGERSTATE
-{
-    STATE_TRIGGER_LOADED = 0,
-    STATE_TRIGGER_FIRED
-};
 struct Trigger_t
 {
     uint8 id;
-    uint8 state;
 
     CNpcEntity* npc;
 
     uint16 period;                  //The time 
     uint16 minuteOffset;
-    uint16 triggerOffset;
 
     uint32 lastTrigger;             //Used to store the last firing of the trigger
-
-    bool retroactive;
 };
 
 class CTriggerHandler

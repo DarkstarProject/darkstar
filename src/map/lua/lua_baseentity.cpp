@@ -2006,17 +2006,11 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
 
 inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
 {
-    //Usage npc:addPeriodicTrigger( triggerID, minute offset, period, offset trigger, retroactive flag)
+    //Usage npc:addPeriodicTrigger( triggerID, minute offset, period )
+
     //triggerID is an ID unique to the NPC
-    //period is the time in vanadiel minutes that separates two triggers of this event
     //minute offset is the time in vanadiel minutes after the se epoch that the trigger period should synchronize to
-    //offset trigger is the time in vanadiel minutes from [0,period-1] that the trigger should activate
-    //NOTE: do not use a value too close to the period for the offset trigger (at least 3 less should be ok)
-    //retroactive flag is only used during initialization of the server.
-    //It denotes if the trigger should be activated when starting the server
-    //if the time offset is past the trigger offset.
-    //Example: the dock NPC in selbina should step out of the way of the ramp if the server
-    //starts with the boat docked. Her default position is standing in the way.
+    //period is the time in vanadiel minutes that separates two triggers of the event
 
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
@@ -2024,16 +2018,12 @@ inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isboolean(L, 5));
     
     Trigger_t* trigger = new Trigger_t;
 
     trigger->id = (uint8)lua_tointeger(L, 1);
     trigger->period = (uint16)lua_tointeger(L, 2);
     trigger->minuteOffset = (uint16)lua_tointeger(L, 3);
-    trigger->triggerOffset = (uint16)lua_tointeger(L, 4);
-    trigger->retroactive = (bool)lua_toboolean(L, 5);
     trigger->npc = (CNpcEntity*)zoneutils::GetEntity((uint32)m_PBaseEntity->id, TYPE_NPC);
 
     if (!trigger->npc)

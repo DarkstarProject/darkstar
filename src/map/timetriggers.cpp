@@ -42,7 +42,6 @@ CTriggerHandler::CTriggerHandler()
 
 void CTriggerHandler::insertTrigger(Trigger_t* trigger)
 {
-    trigger->state = STATE_TRIGGER_FIRED;
     trigger->lastTrigger = (uint32)trunc((CVanaTime::getInstance()->getDate() - trigger->minuteOffset) / trigger->period);
     triggerList.push_back(trigger);
 }
@@ -50,7 +49,6 @@ void CTriggerHandler::insertTrigger(Trigger_t* trigger)
 void CTriggerHandler::triggerTimer()
 {
     uint32 vanaTime = CVanaTime::getInstance()->getDate();
-    uint32 timeOffset = 0;
     uint32 timeCount = 0;
     Trigger_t* trigger = nullptr;
 
@@ -59,33 +57,11 @@ void CTriggerHandler::triggerTimer()
         trigger = triggerList.at(i);
 
         timeCount = (uint32)trunc((vanaTime - trigger->minuteOffset) / trigger->period);
-        timeOffset = (vanaTime - trigger->minuteOffset) % trigger->period;
-        //printf(" %d ", timeOffset);
 
-        if (trigger->state == STATE_TRIGGER_LOADED)
+        if (timeCount > trigger->lastTrigger)
         {
-            if (timeOffset >= trigger->triggerOffset)
-            {
-                trigger->state = STATE_TRIGGER_FIRED;
-                trigger->lastTrigger = timeCount;
-                luautils::OnTimeTrigger(trigger->npc, trigger->id);
-            }
-        }
-        else if (trigger->state == STATE_TRIGGER_FIRED)
-        {
-            if (timeCount > trigger->lastTrigger)
-            {
-                trigger->state = STATE_TRIGGER_LOADED;
-
-                //This is needed for triggers that start with offsets close to 0
-                if (timeOffset >= trigger->triggerOffset)
-                {
-                    trigger->state = STATE_TRIGGER_FIRED;
-                    trigger->lastTrigger = timeCount;
-                    luautils::OnTimeTrigger(trigger->npc, trigger->id);
-                }
-            }
-
+            luautils::OnTimeTrigger(trigger->npc, trigger->id);
+            trigger->lastTrigger = timeCount;
         }
     }
 }
