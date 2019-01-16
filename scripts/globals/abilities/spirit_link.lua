@@ -7,6 +7,7 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/msg")
+require("scripts/globals/wyvern")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
@@ -69,6 +70,25 @@ function onUseAbility(player,target,ability)
     if (pet:getHP() < pet:getMaxHP()) then -- sleep is only removed if it heals the wyvern
         removeSleepEffects(pet)
     end
+
+    local empathy = player:getMerit(dsp.merit.EMPATHY)
+    if (empathy > 0) then
+        local effects = utils.shuffle(player:getStatusEffects())
+        local copied = 0
+        -- find a buff and copy it to the wyvern
+        for i, effect in ipairs(effects) do
+            if canCopyEffectToWyvern(effect) then
+                copyEffectToWyvern(pet, effect)
+                -- up to a max of empathy merits
+                copied = copied + 1
+                if (copied == empathy) then
+                    break
+                end
+            end
+        end
+        addWyvernExp(pet, empathy * 200)
+    end
+
 
     pet:addHP(healPet) --add the hp to pet
     pet:addStatusEffect(dsp.effect.REGEN,regenAmount,3,90,0,0,0) -- 90 seconds of regen
