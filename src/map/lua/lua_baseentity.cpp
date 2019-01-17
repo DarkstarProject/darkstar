@@ -10114,8 +10114,8 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
 
     CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
 
-    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && PMob->isCharmed) ||
-        m_PBaseEntity->objtype == TYPE_PET)
+    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET
+        || (m_PBaseEntity->objtype == TYPE_MOB && PMob->isCharmed))
     {
         if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
@@ -10124,8 +10124,7 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
-        if (PEntity != nullptr && (CE > 0 || VE > 0) &&
-            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        if (PEntity != nullptr && (CE > 0 || VE > 0) && PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
             PMob->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), CE, VE);
         }

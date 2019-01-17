@@ -356,7 +356,7 @@ void CEnmityContainer::UpdateEnmityFromAttack(CBattleEntity* PEntity, int32 Dama
     float reduction = (100 - std::min<int16>(PEntity->getMod(Mod::ENMITY_LOSS_REDUCTION), 100)) / 100.0f;
     int32 CE = (int32)(-1800 * Damage / PEntity->GetMaxHP() * reduction);
 
-    enmity_obj->second.CE = std::clamp<int16>(enmity_obj->second.CE + CE, 0, EnmityCap);
+    enmity_obj->second.CE = std::clamp(enmity_obj->second.CE + CE, 0, EnmityCap);
 }
 
 /************************************************************************
@@ -422,12 +422,13 @@ void CEnmityContainer::DecayEnmity()
     }
 }
 
-bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity)
+bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity) const
 {
-    return distance(m_EnmityHolder->loc.p, PEntity->loc.p) <= (m_EnmityHolder->m_Type == MOBTYPE_NOTORIOUS ? 28 : 25);
+    float maxRange = square(m_EnmityHolder->m_Type == MOBTYPE_NOTORIOUS ? 28.f : 25.f);
+    return distanceSquared(m_EnmityHolder->loc.p, PEntity->loc.p) <= maxRange;
 }
 
-int16 CEnmityContainer::GetHighestTH()
+int16 CEnmityContainer::GetHighestTH() const
 {
     CBattleEntity* PEntity = nullptr;
     int16 THLvl = 0;
