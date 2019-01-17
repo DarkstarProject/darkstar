@@ -4,17 +4,20 @@
 --
 -----------------------------------
 local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
-require("scripts/globals/settings");
-require("scripts/globals/quests");
 require("scripts/globals/missions");
+require("scripts/globals/settings");
+require("scripts/globals/chocobo")
+require("scripts/globals/quests");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
     local cs = -1;
-    if (prevZone == 81) then
+    if (prevZone == dsp.zone.EAST_RONFAURE_S) then
         if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
             cs = 62;
         elseif (player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then

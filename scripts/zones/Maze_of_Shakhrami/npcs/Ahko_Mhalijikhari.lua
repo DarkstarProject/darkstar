@@ -43,4 +43,3 @@ function onEventFinish(player,csid,option)
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION);
     end
 end;
-

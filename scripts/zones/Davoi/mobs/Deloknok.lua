@@ -7,9 +7,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     local theFirstMeeting = player:getQuestStatus(BASTOK,THE_FIRST_MEETING);

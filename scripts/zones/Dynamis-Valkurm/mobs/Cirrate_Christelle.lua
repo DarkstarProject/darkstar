@@ -8,9 +8,6 @@ require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
 
 if (GetServerVariable("[DynaValkurm]Boss_Trigger") == 0) then

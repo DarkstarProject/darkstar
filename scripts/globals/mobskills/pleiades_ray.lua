@@ -25,7 +25,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 1
     local info = MobMagicalMove(mob, target, skill, mob:getWeaponDmg() * 7, dsp.magic.ele.FIRE, dmgmod, TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, MOBSKILL_MAGICAL, MOBPARAM_FIRE, MOBPARAM_WIPE_SHADOWS)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.FIRE, MOBPARAM_WIPE_SHADOWS)
     local duration = 120
 
     MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 40, 3, duration)
@@ -36,6 +36,6 @@ function onMobWeaponSkill(target, mob, skill)
     MobStatusEffectMove(mob, target, dsp.effect.SILENCE, 1, 0, duration)
     MobStatusEffectMove(mob, target, dsp.effect.SLOW, 1250, 0, duration)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.FIRE)
     return dmg
 end

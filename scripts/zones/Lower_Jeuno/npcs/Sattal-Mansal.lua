@@ -48,6 +48,3 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,MYSTERIES_OF_BEADEAUX_II);
     end
 end;
-
-
-

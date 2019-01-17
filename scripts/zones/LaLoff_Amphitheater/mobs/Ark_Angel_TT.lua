@@ -11,9 +11,6 @@ function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;
 
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     local mobid = mob:getID()
 

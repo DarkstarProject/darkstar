@@ -47,4 +47,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GANTINEUXS_LETTER);
     end
 end;
-

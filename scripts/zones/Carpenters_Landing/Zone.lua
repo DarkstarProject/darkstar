@@ -3,6 +3,7 @@
 -- Zone: Carpenters_Landing (2)
 --
 -----------------------------------
+local func = require("scripts/zones/Carpenters_Landing/globals")
 local ID = require("scripts/zones/Carpenters_Landing/IDs")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
@@ -18,6 +19,7 @@ function onInitialize(zone)
     GetMobByID(ID.mob.TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
 
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    func.herculesTreeOnGameHour()
 end;
 
 function onZoneIn(player,prevZone)
@@ -31,6 +33,14 @@ end;
 function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
 end;
+
+function onGameHour(zone)
+    local hour = VanadielHour()
+
+    if hour == 7 or hour == 22 then
+        func.herculesTreeOnGameHour()
+    end
+end
 
 function onRegionEnter(player,region)
 end;

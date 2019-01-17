@@ -15,6 +15,6 @@ function onPetAbility(target, pet, skill)
     local dint = pet:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
     local dmg = 500 + dint*1.5 + skill:getTP()/20
     target:updateEnmityFromDamage(pet,dmg)
-    target:delHP(dmg)
+    target:takeDamage(dmg, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
     return dmg
 end

@@ -11,7 +11,7 @@ require("scripts/globals/treasure")
 function onInitialize(zone)
     -- Charybdis PH alternates, remove one
     local keys = {}
-    for k, v in pairs(ID.mob.CHARYBDIS_PH) do table.insert(keys,k) end
+    for k, v in pairs(ID.mob.CHARYBDIS_PH) do table.insert(keys, k) end
     DespawnMob(keys[math.random(#keys)])
 
     dsp.treasure.initZone(zone)
@@ -21,19 +21,19 @@ function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        player:setPos(-60.566,-2.127,412,54)
+        player:setPos(-60.566, -2.127, 412, 54)
     end
     return cs
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

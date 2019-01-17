@@ -24,9 +24,6 @@ local stage3Position =
     460, 0, -446,
 }
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         if (skillID == 165) then
@@ -90,9 +87,6 @@ function onMobRoam(mob)
     end
 end;
 
-function onMobFight(mob, target)
-end;
-
 function onCriticalHit(mob)
     mob:showText(mob,ID.text.OW);
 end;
@@ -102,7 +96,4 @@ function onMobDeath(mob, player, isKiller)
     mob:showText(mob,ID.text.ABQUHBAH);
     local instance = mob:getInstance();
     instance:fail();
-end;
-
-function onMobDespawn(mob)
 end;

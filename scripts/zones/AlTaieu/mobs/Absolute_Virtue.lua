@@ -22,9 +22,6 @@ function onMobSpawn(mob)
     end
 end;
 
-function onMobFight(mob, target)
-end;
-
 function onSpellPrecast(mob, spell)
     if (spell:getID() == 218) then -- Meteor
         spell:setAoE(dsp.magic.aoe.RADIAL);
@@ -33,9 +30,6 @@ function onSpellPrecast(mob, spell)
         spell:setAnimation(280); -- AoE Meteor Animation
         spell:setMPCost(1);
     end
-end;
-
-function onMonsterMagicPrepare(caster, target)
 end;
 
 function onMagicHit(caster, target, spell)
@@ -50,9 +44,6 @@ function onMagicHit(caster, target, spell)
         end
     end
     return 1;
-end;
-
-function onMobDespawn(mob)
 end;
 
 function onMobDeath(mob, player, isKiller)

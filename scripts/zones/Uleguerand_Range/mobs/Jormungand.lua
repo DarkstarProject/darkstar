@@ -6,9 +6,6 @@
 require("scripts/globals/status");
 require("scripts/globals/titles");
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.

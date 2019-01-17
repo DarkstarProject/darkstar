@@ -49,4 +49,3 @@ function onMobDespawn(mob)
     UpdateNMSpawnPoint(nqId)
     GetMobByID(nqId):setRespawnTime(math.random(75600, 86400))
 end
-

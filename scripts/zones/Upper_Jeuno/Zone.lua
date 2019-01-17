@@ -6,9 +6,11 @@
 local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Yhoator_Jungle/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/chocobo_digging")
 require("scripts/globals/conquest")
+require("scripts/globals/chocobo")
 require("scripts/globals/helm")
 require("scripts/globals/zone")
 -----------------------------------
@@ -19,6 +20,9 @@ function onInitialize(zone)
     UpdateNMSpawnPoint(ID.mob.WOODLAND_SAGE)
     GetMobByID(ID.mob.WOODLAND_SAGE):setRespawnTime(math.random(900, 10800))
 
+    UpdateNMSpawnPoint(ID.mob.POWDERER_PENNY)
+    GetMobByID(ID.mob.POWDERER_PENNY):setRespawnTime(math.random(5400, 7200))
+
     UpdateNMSpawnPoint(ID.mob.BISQUE_HEELED_SUNBERRY)
     GetMobByID(ID.mob.BISQUE_HEELED_SUNBERRY):setRespawnTime(math.random(900, 10800))
 
@@ -29,6 +33,7 @@ function onInitialize(zone)
 
     dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    dsp.chocobo.initZone(zone)
 end
 
 function onConquestUpdate(zone, updatetype)

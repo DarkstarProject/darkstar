@@ -349,7 +349,7 @@ bool CPathFind::FindPath(const position_t& start, const position_t& end)
 
 bool CPathFind::FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, uint16 roamFlags)
 {
-    auto m_turnLength = dsprand::GetRandomNumber(1, (int)maxTurns);
+    auto m_turnLength = dsprand::GetRandomNumber((int)maxTurns) + 1;
 
     position_t startPosition = start;
 

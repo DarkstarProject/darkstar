@@ -43,4 +43,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMALL_BAG);
     end
 end;
-

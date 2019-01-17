@@ -8,12 +8,12 @@ local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
     if npcUtil.tradeHas(trade, 1267) and npcUtil.popFromQM(player, npc, ID.mob.DEATH_FROM_ABOVE) then -- Bee Larvae
         player:confirmTrade()
     end
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     player:messageSpecial(ID.text.NM_OFFSET + 4)
 end

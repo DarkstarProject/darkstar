@@ -19,6 +19,10 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS_S] =
     },
     mob =
     {
+        CENTIPEDAL_CENTRUROIDES_PH =
+        {
+            [17174708] = 17174709,
+        },
         BLOODLAPPER = 17174889,
     },
     npc =

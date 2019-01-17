@@ -31,7 +31,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
     local currentday = tonumber(os.date("%j"));
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 221 or prevZone == 47) then
+        if (prevZone == dsp.zone.SHIP_BOUND_FOR_MHAURA or prevZone == dsp.zone.OPEN_SEA_ROUTE_TO_MHAURA) then
             cs = 202;
             player:setPos(14.960,-3.430,18.423,192);
         else

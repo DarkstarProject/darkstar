@@ -32,9 +32,6 @@ end;
 function onMobDisEngage(mob, target)
 end;
 
-function onMobFight(mob, target)
-end;
-
 --[[ onMobskill -- When this functionlity is added, this should work.
 function onUseAbility(mob,target,ability)
     local mobId = mob:getID()

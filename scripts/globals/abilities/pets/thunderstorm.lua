@@ -32,9 +32,9 @@ function onPetAbility(target, pet, skill)
     damage = damage + (dINT * 1.5)
     damage = MobMagicalMove(pet,target,skill,damage,dsp.magic.ele.LIGHTNING,1,TP_NO_EFFECT,0)
     damage = mobAddBonuses(pet, nil, target, damage.dmg, dsp.magic.ele.LIGHTNING)
-    damage = AvatarFinalAdjustments(damage,pet,skill,target,MOBSKILL_MAGICAL,MOBPARAM_NONE,1)
+    damage = AvatarFinalAdjustments(damage,pet,skill,target,dsp.attackType.MAGICAL,dsp.damageType.LIGHTNING,1)
 
-    target:delHP(damage)
+    target:takeDamage(damage, pet, dsp.attackType.MAGICAL, dsp.damageType.LIGHTNING)
     target:updateEnmityFromDamage(pet,damage)
 
     return damage

@@ -93,4 +93,3 @@ function onEventFinish(player,csid,option)
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);
     end
 end;
-

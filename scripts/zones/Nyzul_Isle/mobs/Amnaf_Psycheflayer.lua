@@ -23,9 +23,6 @@ function onMobEngaged(mob,target)
     mob:showText(mob,ID.text.CANNOT_LET_YOU_PASS);
 end;
 
-function onMobFight(mob,target)
-end;
-
 --[[
 function onSpikesDamage(mob,target,damage)
     -- Amnaf's Ice Spikes from blm spell will process first on retail.

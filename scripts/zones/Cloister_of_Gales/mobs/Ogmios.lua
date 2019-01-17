@@ -7,9 +7,6 @@ require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     player:setVar("BCNM_Killed",1);

@@ -7,12 +7,6 @@ require("scripts/globals/status");
 
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
-function onMobInitialize(mob)
-end;
-
-function onMobSpawn(mob)
-end;
-
 function onMobEngaged(mob,target)
     -- TODO: Call Wyvern onMobEngage
 

@@ -1,10 +1,11 @@
 -----------------------------------
--- Area: Sauromugue Champaign (120)
---  NM:  Deadly_Dodo
+-- Area: Giddeus (145)
+--   NM: Quu Xijo the Illusory
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-end;
+    mob:setRespawnTime(math.random(3600, 4200)) -- 60 to 70 minutes
+end

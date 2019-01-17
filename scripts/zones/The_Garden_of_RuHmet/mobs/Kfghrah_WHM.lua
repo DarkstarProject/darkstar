@@ -26,9 +26,6 @@ function onMobRoam(mob)
     end;
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local changeTime = mob:getLocalVar("changeTime");
     local battleForm;

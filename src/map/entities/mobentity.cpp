@@ -518,9 +518,9 @@ void CMobEntity::Spawn()
     uint8 level = m_minLevel;
 
     // Generate a random level between min and max level
-    if (m_maxLevel != m_minLevel)
+    if (m_maxLevel > m_minLevel)
     {
-        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel);
+        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel + 1);
     }
 
     SetMLevel(level);

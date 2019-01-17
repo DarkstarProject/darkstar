@@ -19,8 +19,5 @@ function onMobInitialize(mob)
     mob:AnimationSub(0)
 end
 
-function onMobFight(mob,target)
-end
-
 function onMobDeath(mob, player, isKiller)
 end
