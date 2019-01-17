@@ -114,7 +114,7 @@ INSERT INTO `item_mods_pet` VALUES (13975,27,-2,1);     -- Evoker's Bracers Avat
 INSERT INTO `item_mods_pet` VALUES (14103,27,-2,1);     -- Evoker's Pigaches Avatar: Enmity -2
 INSERT INTO `item_mods_pet` VALUES (14103,68,5,1);      -- Avatar: Enhances evasion +5 (?)
 INSERT INTO `item_mods_pet` VALUES (14227,3,10,2);      -- Drachen Brais Wyvern: HP+10%
-INSERT INTO `item_mods_pet` VALUES (14228,25,14,1);     -- Evoker's Spats Avatar: Enhances accuracy +14
+INSERT INTO `item_mods_pet` VALUES (14228,25,10,1);     -- Evoker's Spats Avatar: Enhances accuracy +10
 INSERT INTO `item_mods_pet` VALUES (14228,27,-2,1);     -- Avatar: Enmity -2
 INSERT INTO `item_mods_pet` VALUES (14405,2,65,2);      -- Wyvern Mail Wyvern: HP+65
 INSERT INTO `item_mods_pet` VALUES (14405,72,65,2);     -- Wyvern: HP recovered while healing +1
@@ -135,7 +135,7 @@ INSERT INTO `item_mods_pet` VALUES (14958,63,5,0);      -- Beast Bazubands Pet: 
 INSERT INTO `item_mods_pet` VALUES (15031,384,300,3);    -- Pantin Dastanas Automaton: Haste +3%
 INSERT INTO `item_mods_pet` VALUES (15032,384,300,3);    -- Pantin Dastanas +1 Automaton: Haste +3%
 INSERT INTO `item_mods_pet` VALUES (15101,165,3,1);     -- Summoner's Dblt. Avatar: Critical Hit Rate +3%
-INSERT INTO `item_mods_pet` VALUES (15116,25,14,1);      -- Summoner's Brcr. Avatar: Enhances accuracy +14
+INSERT INTO `item_mods_pet` VALUES (15116,25,7,1);      -- Summoner's Brcr. Avatar: Enhances accuracy +7
 -- INSERT INTO `item_mods_pet` VALUES (15131,unimplemented,1,1); -- Summoner's Spats Avatar: Shortens magic recast time for spirits
 INSERT INTO `item_mods_pet` VALUES (15146,23,7,1);      -- Summoner's Pgch. Avatar: Enhances attack +7
 INSERT INTO `item_mods_pet` VALUES (15146,357,-2,1);    -- "Blood Pact" ability delay -2
