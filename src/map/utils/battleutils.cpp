@@ -76,21 +76,21 @@
 
 
 /************************************************************************
-*	lists used in battleutils											*
+*   lists used in battleutils                                           *
 ************************************************************************/
 
 std::array<std::array<uint16, 14>, 100> g_SkillTable;
 std::array<std::array<uint8, MAX_JOBTYPE>, MAX_SKILLTYPE> g_SkillRanks;
 std::array<std::array<uint16, MAX_SKILLCHAIN_COUNT + 1>, MAX_SKILLCHAIN_LEVEL + 1> g_SkillChainDamageModifiers;
 
-std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;			// Holds all Weapon skills
-std::array<CMobSkill*, 4096> g_PMobSkillList;		        	// List of mob skills
+std::array<CWeaponSkill*, MAX_WEAPONSKILL_ID> g_PWeaponSkillList;           // Holds all Weapon skills
+std::array<CMobSkill*, 4096> g_PMobSkillList;                   // List of mob skills
 
 std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
-std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;	// List of mob skills defined from mob_skill_lists.sql
+std::unordered_map<uint16, std::vector<uint16>>  g_PMobSkillLists;  // List of mob skills defined from mob_skill_lists.sql
 
 /************************************************************************
-*  battleutils															*
+*  battleutils                                                          *
 ************************************************************************/
 
 namespace battleutils
@@ -105,9 +105,9 @@ namespace battleutils
     void LoadSkillTable()
     {
         const char* fmtQuery = "SELECT r0,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,r11,r12,r13 \
-						    FROM skill_caps \
-							ORDER BY level \
-							LIMIT 100";
+                            FROM skill_caps \
+                            ORDER BY level \
+                            LIMIT 100";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery);
 
@@ -123,8 +123,8 @@ namespace battleutils
         }
 
         fmtQuery = "SELECT skillid,war,mnk,whm,blm,rdm,thf,pld,drk,bst,brd,rng,sam,nin,drg,smn,blu,cor,pup,dnc,sch,geo,run \
-				FROM skill_ranks \
-				LIMIT 64";
+                FROM skill_ranks \
+                LIMIT 64";
 
         ret = Sql_Query(SqlHandle, fmtQuery);
 
@@ -143,16 +143,16 @@ namespace battleutils
     }
 
     /************************************************************************
-    *  Load Weapon Skills from database										*
+    *  Load Weapon Skills from database                                     *
     ************************************************************************/
 
     void LoadWeaponSkillsList()
     {
         const char* fmtQuery = "SELECT weaponskillid, name, jobs, type, skilllevel, element, animation, "
                             "animationTime, `range`, aoe, primary_sc, secondary_sc, tertiary_sc, main_only, unlock_id "
-							"FROM weapon_skills "
-							"WHERE weaponskillid < %u "
-							"ORDER BY type, skilllevel ASC";
+                            "FROM weapon_skills "
+                            "WHERE weaponskillid < %u "
+                            "ORDER BY type, skilllevel ASC";
 
         int32 ret = Sql_Query(SqlHandle, fmtQuery, MAX_WEAPONSKILL_ID);
 
@@ -265,7 +265,7 @@ namespace battleutils
     }
 
     /************************************************************************
-    *  Clear Weapon Skills List												*
+    *  Clear Weapon Skills List                                             *
     ************************************************************************/
 
     void FreeWeaponSkillsList()
@@ -277,7 +277,7 @@ namespace battleutils
     }
 
     /************************************************************************
-    *  Clear Mob Skills List												*
+    *  Clear Mob Skills List                                                *
     ************************************************************************/
     void FreeMobSkillList()
     {
@@ -288,7 +288,7 @@ namespace battleutils
     }
 
     /************************************************************************
-    *	Get Skill Rank By SkillId and JobId									*
+    *   Get Skill Rank By SkillId and JobId                                 *
     ************************************************************************/
 
     uint8 GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID)
@@ -297,7 +297,7 @@ namespace battleutils
     }
 
     /************************************************************************
-    *	Return Max Skill by SkillType, JobType, and level					*
+    *   Return Max Skill by SkillType, JobType, and level                   *
     ************************************************************************/
 
     uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level)
@@ -373,7 +373,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    * Get List of Weapon Skills from skill type								*
+    * Get List of Weapon Skills from skill type                             *
     *                                                                       *
     ************************************************************************/
 
@@ -386,7 +386,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *  Get Mob Skill by Id													*
+    *  Get Mob Skill by Id                                                  *
     *                                                                       *
     ************************************************************************/
 
@@ -748,7 +748,7 @@ namespace battleutils
     {
         int lvlDiff = std::clamp((PDefender->GetMLevel() - PAttacker->GetMLevel()), -5, 5) * 2;
 
-        if (dsprand::GetRandomNumber(100) <= chance + lvlDiff)
+        if (dsprand::GetRandomNumber(100) < chance + lvlDiff)
         {
             // spikes landed
             if (spikesType == SUBEFFECT_CURSE_SPIKES)
@@ -792,7 +792,7 @@ namespace battleutils
             }
             case SUBEFFECT_ICE_SPIKES:
             {
-                if (dsprand::GetRandomNumber(100) <= 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
+                if (dsprand::GetRandomNumber(100) < 20 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_PARALYSIS) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_PARALYSIS, EFFECT_PARALYSIS, 20, 0, 30));
                 }
@@ -800,7 +800,7 @@ namespace battleutils
             }
             case SUBEFFECT_SHOCK_SPIKES:
             {
-                if (dsprand::GetRandomNumber(100) <= 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
+                if (dsprand::GetRandomNumber(100) < 30 + lvlDiff && PAttacker->StatusEffectContainer->HasStatusEffect(EFFECT_STUN) == false)
                 {
                     PAttacker->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_STUN, EFFECT_STUN, 1, 0, 3));
                 }
@@ -1059,7 +1059,7 @@ namespace battleutils
                     Action->addEffectMessage = 161;
                     Action->addEffectParam = Samba;
 
-                    PAttacker->addHP(Samba);	// does not do any additional drain to targets HP, only a portion of it
+                    PAttacker->addHP(Samba);    // does not do any additional drain to targets HP, only a portion of it
                     if (PChar != nullptr) {
                         PChar->updatemask |= UPDATE_HP;
                     }
@@ -1171,7 +1171,7 @@ namespace battleutils
 
     // TODO: remove function, move additional effects into items script files (deleting from switch as they get done)
     void HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action) {
-        /*	CItemWeapon* PAmmo = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_AMMO]);
+        /*  CItemWeapon* PAmmo = (CItemWeapon*)PAttacker->getStorage(LOC_INVENTORY)->GetItem(PAttacker->equip[SLOT_AMMO]);
             //add effects dont have 100% proc, presume level dependant. 95% chance but -5% for each level diff.
             //capped at 5% proc when mob is 18 (!!!) levels higher than you.
             uint8 chance = 95;
@@ -1753,9 +1753,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *  Calculates damage based on damage and resistance to damage type		*
-    *																		*
+    *                                                                       *
+    *  Calculates damage based on damage and resistance to damage type      *
+    *                                                                       *
     ************************************************************************/
 
     int32 TakePhysicalDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, PHYSICAL_ATTACK_TYPE physicalAttackType, int32 damage, bool isBlocked, uint8 slot, uint16 tpMultiplier, CBattleEntity* taChar, bool giveTPtoVictim, bool giveTPtoAttacker, bool isCounter)
@@ -1805,8 +1805,8 @@ namespace battleutils
                 {
                     case DAMAGE_PIERCING: damage = (damage * (PDefender->getMod(Mod::PIERCERES))) / 1000; break;
                     case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(Mod::SLASHRES))) / 1000; break;
-                    case DAMAGE_IMPACT:	  damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
-                    case DAMAGE_HTH:	  damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
+                    case DAMAGE_IMPACT:   damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
+                    case DAMAGE_HTH:      damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
                 }
             }
             else
@@ -2019,9 +2019,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
+    *                                                                       *
     *  Handles Damage from Weaponskills (dmg type reductions calced in lua) *
-    *																		*
+    *                                                                       *
     ************************************************************************/
 
     int32 TakeWeaponskillDamage(CCharEntity* PAttacker, CBattleEntity* PDefender, int32 damage, ATTACKTYPE attackType, DAMAGETYPE damageType, uint8 slot, bool primary, float tpMultiplier, uint16 bonusTP, float targetTPMultiplier)
@@ -2165,10 +2165,10 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *  Calculate Probability attack will hit (20% min cap - 95% max cap)	*
-    *  attackNumber: 0=main, 1=sub, 2=kick									*
-    *																		*
+    *                                                                       *
+    *  Calculate Probability attack will hit (20% min cap - 95% max cap)    *
+    *  attackNumber: 0=main, 1=sub, 2=kick                                  *
+    *                                                                       *
     ************************************************************************/
 
     uint8 GetHitRateEx(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 attackNumber, int8 offsetAccuracy) //subWeaponAttack is for calculating acc of dual wielded sub weapon
@@ -2235,9 +2235,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *  Crit Rate															*
-    *																		*
+    *                                                                       *
+    *  Crit Rate                                                            *
+    *                                                                       *
     ************************************************************************/
 
     uint8 GetCritHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool ignoreSneakTrickAttack)
@@ -2305,9 +2305,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *	Formula for calculating damage ratio								*
-    *																		*
+    *                                                                       *
+    *   Formula for calculating damage ratio                                *
+    *                                                                       *
     ************************************************************************/
 
     float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)
@@ -2408,7 +2408,7 @@ namespace battleutils
     }
 
     /************************************************************************
-    *  	Formula for Strength												*
+    *   Formula for Strength                                                *
     ************************************************************************/
 
     int32 GetFSTR(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 SlotID)
@@ -2477,7 +2477,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *  Multihit calculator											        *
+    *  Multihit calculator                                                  *
     *                                                                       *
     ************************************************************************/
 
@@ -2682,9 +2682,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *  Intimidation from Killer Effects (chance to intimidate)				*
-    *																		*
+    *                                                                       *
+    *  Intimidation from Killer Effects (chance to intimidate)              *
+    *                                                                       *
     ************************************************************************/
 
     bool IsIntimidated(CBattleEntity* PAttacker, CBattleEntity* PDefender)
@@ -2696,21 +2696,21 @@ namespace battleutils
 
         switch (PAttacker->m_EcoSystem)
         {
-            case SYSTEM_AMORPH:		KillerEffect = PDefender->getMod(Mod::AMORPH_KILLER);   break;
-            case SYSTEM_AQUAN:		KillerEffect = PDefender->getMod(Mod::AQUAN_KILLER);    break;
-            case SYSTEM_ARCANA:		KillerEffect = PDefender->getMod(Mod::ARCANA_KILLER);   break;
-            case SYSTEM_BEAST:		KillerEffect = PDefender->getMod(Mod::BEAST_KILLER);    break;
-            case SYSTEM_BIRD:		KillerEffect = PDefender->getMod(Mod::BIRD_KILLER);     break;
-            case SYSTEM_DEMON:		KillerEffect = PDefender->getMod(Mod::DEMON_KILLER);    break;
-            case SYSTEM_DRAGON:		KillerEffect = PDefender->getMod(Mod::DRAGON_KILLER);   break;
-            case SYSTEM_EMPTY:		KillerEffect = PDefender->getMod(Mod::EMPTY_KILLER);    break;
-            case SYSTEM_HUMANOID:	KillerEffect = PDefender->getMod(Mod::HUMANOID_KILLER); break;
-            case SYSTEM_LIZARD:		KillerEffect = PDefender->getMod(Mod::LIZARD_KILLER);   break;
+            case SYSTEM_AMORPH:     KillerEffect = PDefender->getMod(Mod::AMORPH_KILLER);   break;
+            case SYSTEM_AQUAN:      KillerEffect = PDefender->getMod(Mod::AQUAN_KILLER);    break;
+            case SYSTEM_ARCANA:     KillerEffect = PDefender->getMod(Mod::ARCANA_KILLER);   break;
+            case SYSTEM_BEAST:      KillerEffect = PDefender->getMod(Mod::BEAST_KILLER);    break;
+            case SYSTEM_BIRD:       KillerEffect = PDefender->getMod(Mod::BIRD_KILLER);     break;
+            case SYSTEM_DEMON:      KillerEffect = PDefender->getMod(Mod::DEMON_KILLER);    break;
+            case SYSTEM_DRAGON:     KillerEffect = PDefender->getMod(Mod::DRAGON_KILLER);   break;
+            case SYSTEM_EMPTY:      KillerEffect = PDefender->getMod(Mod::EMPTY_KILLER);    break;
+            case SYSTEM_HUMANOID:   KillerEffect = PDefender->getMod(Mod::HUMANOID_KILLER); break;
+            case SYSTEM_LIZARD:     KillerEffect = PDefender->getMod(Mod::LIZARD_KILLER);   break;
             case SYSTEM_LUMINION:   KillerEffect = PDefender->getMod(Mod::LUMINION_KILLER); break;
             case SYSTEM_LUMORIAN:   KillerEffect = PDefender->getMod(Mod::LUMORIAN_KILLER); break;
-            case SYSTEM_PLANTOID:	KillerEffect = PDefender->getMod(Mod::PLANTOID_KILLER); break;
-            case SYSTEM_UNDEAD:		KillerEffect = PDefender->getMod(Mod::UNDEAD_KILLER);   break;
-            case SYSTEM_VERMIN:		KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
+            case SYSTEM_PLANTOID:   KillerEffect = PDefender->getMod(Mod::PLANTOID_KILLER); break;
+            case SYSTEM_UNDEAD:     KillerEffect = PDefender->getMod(Mod::UNDEAD_KILLER);   break;
+            case SYSTEM_VERMIN:     KillerEffect = PDefender->getMod(Mod::VERMIN_KILLER);   break;
             default: break;
         }
 
@@ -2724,9 +2724,9 @@ namespace battleutils
     }
 
     /************************************************************************
-    *																		*
-    *  Gets SkillChain Effect												*
-    *																		*
+    *                                                                       *
+    *  Gets SkillChain Effect                                               *
+    *                                                                       *
     ************************************************************************/
 #define PAIR(x, y) ((x << 8) + y)
 
@@ -3469,7 +3469,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Transfer Enmity (used with ACCOMPLICE & COLLABORATOR ability type)  *
+    *   Transfer Enmity (used with ACCOMPLICE & COLLABORATOR ability type)  *
     *                                                                       *
     ************************************************************************/
 
@@ -3488,7 +3488,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Effect from soul eater		                                        *
+    *   Effect from soul eater                                              *
     *                                                                       *
     ************************************************************************/
     uint16 doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage)
@@ -3518,7 +3518,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Samurai get merit storeTP value                                     *
+    *   Samurai get merit storeTP value                                     *
     *                                                                       *
     ************************************************************************/
     uint8 getStoreTPbonusFromMerit(CBattleEntity* PEntity)
@@ -3537,7 +3537,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Samurai overwhelm damage bonus                                      *
+    *   Samurai overwhelm damage bonus                                      *
     *                                                                       *
     ************************************************************************/
     int32 getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, int32 damage)
@@ -3553,11 +3553,11 @@ namespace battleutils
 
                 switch (meritCount)
                 {
-                    case 1:	tmpDamage += tmpDamage * 0.05f; break;
-                    case 2:	tmpDamage += tmpDamage * 0.10f; break;
-                    case 3:	tmpDamage += tmpDamage * 0.15f; break;
-                    case 4:	tmpDamage += tmpDamage * 0.17f; break;
-                    case 5:	tmpDamage += tmpDamage * 0.19f; break;
+                    case 1: tmpDamage += tmpDamage * 0.05f; break;
+                    case 2: tmpDamage += tmpDamage * 0.10f; break;
+                    case 3: tmpDamage += tmpDamage * 0.15f; break;
+                    case 4: tmpDamage += tmpDamage * 0.17f; break;
+                    case 5: tmpDamage += tmpDamage * 0.19f; break;
                     default: break;
                 }
                 damage = static_cast<int32>(floor(tmpDamage));
@@ -3569,7 +3569,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	get barrage shot count		                                        *
+    *   get barrage shot count                                              *
     *                                                                       *
     ************************************************************************/
 
@@ -3591,10 +3591,10 @@ namespace battleutils
             return 0;
         }
 
-        uint8 lvl = PChar->jobs.job[JOB_RNG];		// Get Ranger level of char
-        uint8 shotCount = 0;					// the total number of extra hits
+        uint8 lvl = PChar->jobs.job[JOB_RNG];       // Get Ranger level of char
+        uint8 shotCount = 0;                    // the total number of extra hits
 
-        if (PChar->GetSJob() == JOB_RNG)		// if rng is sub then use the sub level
+        if (PChar->GetSJob() == JOB_RNG)        // if rng is sub then use the sub level
             lvl = PChar->GetSLevel();
 
         // Hunters bracers+1 will add an extra shot
@@ -3604,11 +3604,11 @@ namespace battleutils
         if (PItemHands && PItemHands->getID() == 14900)
             shotCount++;
 
-        if (lvl < 30)	return 0;
-        else if (lvl < 50)	shotCount += 3;
-        else if (lvl < 75)	shotCount += 4;
-        else if (lvl < 90)	shotCount += 5;
-        else if (lvl < 99)	shotCount += 6;
+        if (lvl < 30)   return 0;
+        else if (lvl < 50)  shotCount += 3;
+        else if (lvl < 75)  shotCount += 4;
+        else if (lvl < 90)  shotCount += 5;
+        else if (lvl < 99)  shotCount += 6;
         else if (lvl >= 99) shotCount += 7;
 
 
@@ -3628,7 +3628,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Jump DRG Job ability		                                        *
+    *   Jump DRG Job ability                                                *
     *                                                                       *
     ************************************************************************/
 
@@ -3671,7 +3671,7 @@ namespace battleutils
         uint8 fstrslot = SLOT_MAIN;
 
         uint8 hitrate = battleutils::GetHitRate(PAttacker, PVictim);
-        uint8 realHits = 0;			// to store the real number of hit for tp multipler
+        uint8 realHits = 0;         // to store the real number of hit for tp multipler
         uint16 totalDamage = 0;
         uint16 damageForRound = 0;
         bool hitTarget = false;
@@ -3781,7 +3781,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Entity charms another		                                        *
+    *   Entity charms another                                               *
     *                                                                       *
     ************************************************************************/
 
@@ -3790,13 +3790,13 @@ namespace battleutils
         //Gear with Charm + does not affect the success rate of Charm, but increases the duration of the Charm.
         //Each +1 to Charm increases the duration of charm by 5%; +20 Charm doubles the duration of charm.
 
-        //Too Weak			30 Minutes
-        //Easy Prey			20 Minutes
-        //Decent Challenge	10 Minutes
-        //Even Match		3.0 Minutes
-        //Tough				1.5 Minutes
-        //VT				1 minute	guess
-        //IT				30 seconds	guess
+        //Too Weak          30 Minutes
+        //Easy Prey         20 Minutes
+        //Decent Challenge  10 Minutes
+        //Even Match        3.0 Minutes
+        //Tough             1.5 Minutes
+        //VT                1 minute    guess
+        //IT                30 seconds  guess
 
         uint32 CharmTime = 0;
 
@@ -3932,7 +3932,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Returns the percentage chance that one entity has to charm another. *
+    *   Returns the percentage chance that one entity has to charm another. *
     *                                                                       *
     ************************************************************************/
 
@@ -4048,7 +4048,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	calculate if charm is successful                                    *
+    *   calculate if charm is successful                                    *
     *                                                                       *
     ************************************************************************/
 
@@ -4464,7 +4464,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	handle the /assist command		                                    *
+    *   handle the /assist command                                          *
     *                                                                       *
     ************************************************************************/
     void assistTarget(CCharEntity* PChar, uint16 TargID)
@@ -4736,7 +4736,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Does the wild card effect to a specific character                   *
+    *   Does the wild card effect to a specific character                   *
     *                                                                       *
     ************************************************************************/
     void DoWildCardToEntity(CCharEntity* PCaster, CCharEntity* PTarget, uint8 roll)
@@ -4830,7 +4830,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Get the Snapshot shot time reduction                                *
+    *   Get the Snapshot shot time reduction                                *
     *                                                                       *
     ************************************************************************/
     int16 GetSnapshotReduction(CCharEntity* m_PChar, int16 delay)
@@ -4853,7 +4853,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Get any ranged attack bonuses here	                                *
+    *   Get any ranged attack bonuses here                                  *
     *                                                                       *
     ************************************************************************/
     int32 GetRangedAttackBonuses(CBattleEntity* battleEntity)
@@ -4877,7 +4877,7 @@ namespace battleutils
 
     /************************************************************************
     *                                                                       *
-    *	Get any ranged accuracy bonuses here	                            *
+    *   Get any ranged accuracy bonuses here                                *
     *                                                                       *
     ************************************************************************/
     int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity)

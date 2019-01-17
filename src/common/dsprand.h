@@ -11,8 +11,11 @@ public:
 
     static void seed(void)
     {
+        std::array<uint32_t, std::mt19937::state_size> seed_data;
         std::random_device rd;
-        mt().seed(rd());
+        std::generate(seed_data.begin(), seed_data.end(), std::ref(rd));
+        std::seed_seq seq(seed_data.begin(), seed_data.end());
+        mt().seed(seq);
     }
 
     /*Generates a random number in the half-open interval [min, max)
