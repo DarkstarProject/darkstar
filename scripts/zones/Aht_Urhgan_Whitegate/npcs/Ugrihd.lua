@@ -55,6 +55,7 @@ function onEventFinish(player, csid, option, npc)
         local remainder = quantity % 99
         local coinType = bit.band(option, 0xFF)
         local item = ImperialPieces[coinType].item
+        local price = ImperialPieces[coinType].price
 
         if player:getCurrency("imperial_standing") < quantity * price then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item)
@@ -79,7 +80,7 @@ function onEventFinish(player, csid, option, npc)
             player:addItem(item, remainder)
         end
         
-        player:delCurrency("imperial_standing", ImperialPieces[coinType].price * quantity)
+        player:delCurrency("imperial_standing", quantity * price)
         npc:showText(npc, ID.text.UGRIHD_PURCHASE_DIALOGUE)
         player:messageSpecial(ID.text.ITEM_OBTAINED, item)
     end
