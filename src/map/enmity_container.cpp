@@ -276,13 +276,13 @@ void CEnmityContainer::LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percen
 *                                                                       *
 ************************************************************************/
 
-int32 CEnmityContainer::GetCE(CBattleEntity* PEntity)
+int32 CEnmityContainer::GetCE(CBattleEntity* PEntity) const
 {
     auto PEnmity = m_EnmityList.find(PEntity->id);
     return PEnmity != m_EnmityList.end() ? PEnmity->second.CE : 0;
 }
 
-int32 CEnmityContainer::GetVE(CBattleEntity* PEntity)
+int32 CEnmityContainer::GetVE(CBattleEntity* PEntity) const
 {
     auto PEnmity = m_EnmityList.find(PEntity->id);
     return PEnmity != m_EnmityList.end() ? PEnmity->second.VE : 0;
@@ -294,7 +294,7 @@ int32 CEnmityContainer::GetVE(CBattleEntity* PEntity)
 *                                                                       *
 ************************************************************************/
 
-void CEnmityContainer::SetCE(CBattleEntity* PEntity, int32 amount)
+void CEnmityContainer::SetCE(CBattleEntity* PEntity, const int32 amount)
 {
     auto PEnmity = m_EnmityList.find(PEntity->id);
     if (PEnmity != m_EnmityList.end())
@@ -308,7 +308,7 @@ void CEnmityContainer::SetCE(CBattleEntity* PEntity, int32 amount)
     }
 }
 
-void CEnmityContainer::SetVE(CBattleEntity* PEntity, int32 amount)
+void CEnmityContainer::SetVE(CBattleEntity* PEntity, const int32 amount)
 {
     auto PEnmity = m_EnmityList.find(PEntity->id);
     if (PEnmity != m_EnmityList.end())
