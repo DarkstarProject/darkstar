@@ -3,9 +3,10 @@ require("scripts/globals/common")
 require("scripts/globals/status")
 require("scripts/globals/msg")
 
-function getSummoningSkillOverCap(summoner)
+function getSummoningSkillOverCap(avatar)
+    local summoner = avatar:getMaster()
     local summoningSkill = summoner:getSkillLevel(dsp.skill.SUMMONING_MAGIC)
-    local maxSkill = summoner:getMaxSkillLevel(summoner:getMainLvl(), dsp.job.SMN, dsp.skill.SUMMONING_MAGIC)
+    local maxSkill = summoner:getMaxSkillLevel(avatar:getMainLvl(), dsp.job.SMN, dsp.skill.SUMMONING_MAGIC)
     return math.max(summoningSkill - maxSkill, 0)
 end
 
@@ -13,7 +14,7 @@ function AvatarPhysicalMove(avatar,target,skill,numberofhits,accmod,dmgmod,dmgmo
 
     local returninfo = {}
 
-    local acc = avatar:getACC() + utils.clamp(getSummoningSkillOverCap(avatar:getMaster()), 0, 200)
+    local acc = avatar:getACC() + utils.clamp(getSummoningSkillOverCap(avatar), 0, 200)
     local eva = target:getEVA()
     local dmg = avatar:getWeaponDmg()
     local minFstr, maxFstr = avatarFSTR(avatar:getStat(dsp.mod.STR), target:getStat(dsp.mod.VIT))
