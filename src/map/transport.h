@@ -121,27 +121,27 @@ struct Elevator_t
 class CTransportHandler
 {
 public:
-    static	CTransportHandler * getInstance();
-
+    virtual ~CTransportHandler() = default;
+    static CTransportHandler* getInstance();
+    
     void startElevator(int32 elevatorID);
     void TransportTimer();
-    void insertElevator(Elevator_t* elevator);
+    void insertElevator(Elevator_t elevator);
 
     void InitializeTransport();
 
 private:
 
-    static CTransportHandler * _instance;
+    static std::unique_ptr<CTransportHandler> _instance;
 
-    CTransportHandler();
+    CTransportHandler() = default;
 
     void startElevator(Elevator_t *);
     void arriveElevator(Elevator_t *);
 
-    std::vector<Elevator_t*> ElevatorList;
-    std::vector<Transport_Ship*> shipList;
-    std::vector<TransportZone_Town*> townZoneList;
-    std::vector<TransportZone_Voyage*> voyageZoneList;
+    std::vector<Elevator_t> ElevatorList;
+    std::vector<TransportZone_Town> townZoneList;
+    std::vector<TransportZone_Voyage> voyageZoneList;
 };
 
 #endif

@@ -6,20 +6,15 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onSpawn(npc)
-    local bridge = GetNPCByID(npc:getID() - 2)
-    local upperDoor = GetNPCByID(npc:getID() - 1)
-
-    bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.OPEN_DOOR, true)
-
-    --Events for when the airship arrives
+    --Triggers to open the drawbridge
     npc:addPeriodicTrigger(0, 360, 4)
-    npc:addPeriodicTrigger(1, 360, 9)
-    
-    --Events for when the airship departs
     npc:addPeriodicTrigger(2, 360, 80)
+    
+    --Triggers to close the drawbridge
+    npc:addPeriodicTrigger(1, 360, 9)
     npc:addPeriodicTrigger(3, 360, 85)
-
-    --Events for when the drawbridge has finished closing
+    
+    --Triggers to re-open the walkway
     npc:addPeriodicTrigger(4, 360, 13)
     npc:addPeriodicTrigger(5, 360, 89)
 end;

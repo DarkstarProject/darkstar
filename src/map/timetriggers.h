@@ -43,16 +43,17 @@ struct Trigger_t
 class CTriggerHandler
 {
 public:
-    static	CTriggerHandler * getInstance();
+    virtual ~CTriggerHandler() = default;
+    static	CTriggerHandler* getInstance();
     
-    void insertTrigger(Trigger_t*);
+    void insertTrigger(Trigger_t);
     void triggerTimer();
 private:
 
-    static CTriggerHandler * _instance;
+    static std::unique_ptr<CTriggerHandler> _instance;
 
-    CTriggerHandler();
+    CTriggerHandler() = default;
 
-    std::vector<Trigger_t*> triggerList;
+    std::vector<Trigger_t> triggerList;
 };
 #endif

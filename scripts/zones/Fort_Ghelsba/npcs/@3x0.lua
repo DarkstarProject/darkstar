@@ -24,11 +24,9 @@ function onSpawn(npc)
         lowerDoor = npc:getID() +1,
         upperDoor = npc:getID() +2,
         elevator = npc:getID(),
-        started = 0,
-        regime = 0,
         reversedAnimations = true,
     }
 
-    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.started, elevator.regime, elevator.reversedAnimations);
+    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.reversedAnimations)
     
 end

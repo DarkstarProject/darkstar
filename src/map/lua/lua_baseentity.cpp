@@ -1961,6 +1961,7 @@ inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
 
 inline int32 CLuaBaseEntity::setElevator(lua_State *L)
 {
+    //Parameters: setElevator(id, lower door id, upper door id, elevator platform id, animations reversed bool)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
@@ -1968,32 +1969,31 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isnumber(L, 5));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 6) || !lua_isnumber(L, 6));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 7) || !lua_isboolean(L, 7));
-    Elevator_t* elevator = new Elevator_t;
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isboolean(L, 5));
+    Elevator_t elevator;
 
-    // ID should be 0 for most elevators, except special ones such as Port Bastok drawbridge
-    elevator->id = (uint8)lua_tointeger(L, 1);
-    elevator->LowerDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 2), TYPE_NPC);
-    elevator->UpperDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 3), TYPE_NPC);
-    elevator->Elevator = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 4), TYPE_NPC);
+    elevator.id = (uint8)lua_tointeger(L, 1);
+    elevator.LowerDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 2), TYPE_NPC);
+    elevator.UpperDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 3), TYPE_NPC);
+    elevator.Elevator = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 4), TYPE_NPC);
+    elevator.animationsReversed = (bool)lua_toboolean(L, 5);
 
-    if (!elevator->Elevator)
+    if (!elevator.Elevator || !elevator.LowerDoor || !elevator.UpperDoor)
     {
-        ShowWarning("Elevator id %d initialization failed - elevator ID resolved to no entity.", lua_tointeger(L, 4));
+        ShowWarning("Elevator id %d initialization failed - an ID resolved to no entity.", lua_tointeger(L, 4));
         return 0;
     }
 
-    elevator->activated = (lua_tointeger(L, 5) != 0);
-    elevator->isPermanent = (lua_tointeger(L, 6) != 0);
-    elevator->animationsReversed = (bool)lua_toboolean(L, 7);
-    elevator->movetime = 3;// ((elevator->UpperDoor == nullptr) || (elevator->LowerDoor == nullptr) ? 0 : 3);
-    elevator->interval = 8;// ((elevator.UpperDoor == nullptr) || (elevator.LowerDoor == nullptr) || (!elevator.isPermanent) ? 8 : 8);
+    //ID of 0 means it is a timed, automatic elevator
+    elevator.activated = (elevator.id == 0) ? true : false;
+    elevator.isPermanent = (elevator.id == 0) ? true : false;
+    
+    elevator.movetime = 3;
+    elevator.interval = 8;
 
-    elevator->zoneID = m_PBaseEntity->loc.zone->GetID();
+    elevator.zoneID = m_PBaseEntity->loc.zone->GetID();
 
-    elevator->Elevator->name.resize(10);
+    elevator.Elevator->name.resize(10);
     CTransportHandler::getInstance()->insertElevator(elevator);
 
     return 0;
@@ -2021,14 +2021,14 @@ inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
     
-    Trigger_t* trigger = new Trigger_t;
+    Trigger_t trigger;
 
-    trigger->id = (uint8)lua_tointeger(L, 1);
-    trigger->period = (uint16)lua_tointeger(L, 2);
-    trigger->minuteOffset = (uint16)lua_tointeger(L, 3);
-    trigger->npc = (CNpcEntity*)zoneutils::GetEntity((uint32)m_PBaseEntity->id, TYPE_NPC);
+    trigger.id = (uint8)lua_tointeger(L, 1);
+    trigger.period = (uint16)lua_tointeger(L, 2);
+    trigger.minuteOffset = (uint16)lua_tointeger(L, 3);
+    trigger.npc = (CNpcEntity*)zoneutils::GetEntity((uint32)m_PBaseEntity->id, TYPE_NPC);
 
-    if (!trigger->npc)
+    if (!trigger.npc)
     {
         ShowWarning("Trigger initialization failed - npc ID %d resolved to no entity.", m_PBaseEntity->id);
         return 0;

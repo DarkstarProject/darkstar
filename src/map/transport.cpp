@@ -33,26 +33,17 @@
 #include "packets/entity_update.h"
 #include <cstdlib>
 
-/************************************************************************
-*                                                                       *
-*  Создание глобальной ссылки на объект класса                          *
-*                                                                       *
-************************************************************************/
+std::unique_ptr<CTransportHandler> CTransportHandler::_instance;
 
-CTransportHandler* CTransportHandler::_instance = nullptr;
 
 CTransportHandler* CTransportHandler::getInstance()
 {
-    if (_instance == nullptr) {
-        _instance = new CTransportHandler();
-    }
-    return _instance;
+    if (!_instance)
+        _instance.reset(new CTransportHandler);
+
+    return _instance.get();
 }
 
-CTransportHandler::CTransportHandler()
-{
-
-}
 void Transport_Ship::setVisible(bool visible)
 {
     if (visible)
@@ -118,7 +109,7 @@ void Elevator_t::closeDoor(CNpcEntity* npc)
 
 /************************************************************************
 *                                                                       *
-*  Инициализация транспорта (корабли и самолеты)                        *
+*  Loads transportation from the database table transport               *
 *                                                                       *
 ************************************************************************/
 
@@ -138,51 +129,48 @@ void CTransportHandler::InitializeTransport()
     {
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
-            TransportZone_Town* zoneTown = new TransportZone_Town;
+            TransportZone_Town zoneTown;
 
-            zoneTown->ship.dock.zone = zoneutils::GetZone((Sql_GetUIntData(SqlHandle, 1) >> 12) & 0x0FFF);
+            zoneTown.ship.dock.zone = zoneutils::GetZone((Sql_GetUIntData(SqlHandle, 1) >> 12) & 0x0FFF);
 
-            zoneTown->ship.dock.p.x = Sql_GetFloatData(SqlHandle, 3);
-            zoneTown->ship.dock.p.y = Sql_GetFloatData(SqlHandle, 4);
-            zoneTown->ship.dock.p.z = Sql_GetFloatData(SqlHandle, 5);
-            zoneTown->ship.dock.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 6);
-            zoneTown->ship.dock.boundary = (uint16)Sql_GetIntData(SqlHandle, 7);
-            zoneTown->ship.dock.prevzone = (uint8)Sql_GetIntData(SqlHandle, 8);
+            zoneTown.ship.dock.p.x = Sql_GetFloatData(SqlHandle, 3);
+            zoneTown.ship.dock.p.y = Sql_GetFloatData(SqlHandle, 4);
+            zoneTown.ship.dock.p.z = Sql_GetFloatData(SqlHandle, 5);
+            zoneTown.ship.dock.p.rotation = (uint8)Sql_GetIntData(SqlHandle, 6);
+            zoneTown.ship.dock.boundary = (uint16)Sql_GetIntData(SqlHandle, 7);
+            zoneTown.ship.dock.prevzone = (uint8)Sql_GetIntData(SqlHandle, 8);
 
-            zoneTown->npcDoor = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle, 2), TYPE_NPC);
-            zoneTown->ship.npc = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle, 1), TYPE_SHIP);
-            zoneTown->ship.npc->name.resize(8);
+            zoneTown.npcDoor = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle, 2), TYPE_NPC);
+            zoneTown.ship.npc = zoneutils::GetEntity(Sql_GetUIntData(SqlHandle, 1), TYPE_SHIP);
+            zoneTown.ship.npc->name.resize(8);
 
-            zoneTown->ship.animationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
-            zoneTown->ship.animationDepart = (uint8)Sql_GetIntData(SqlHandle, 10);
+            zoneTown.ship.animationArrive = (uint8)Sql_GetIntData(SqlHandle, 9);
+            zoneTown.ship.animationDepart = (uint8)Sql_GetIntData(SqlHandle, 10);
 
-            zoneTown->ship.timeOffset = (uint16)Sql_GetIntData(SqlHandle, 11);
-            zoneTown->ship.timeInterval = (uint16)Sql_GetIntData(SqlHandle, 12);
-            zoneTown->ship.timeArriveDock = (uint16)Sql_GetIntData(SqlHandle, 14);
-            zoneTown->ship.timeDepartDock = zoneTown->ship.timeArriveDock + (uint16)Sql_GetIntData(SqlHandle, 13);
-            zoneTown->ship.timeVoyageStart = zoneTown->ship.timeDepartDock + (uint16)Sql_GetIntData(SqlHandle, 15) - 1;
+            zoneTown.ship.timeOffset = (uint16)Sql_GetIntData(SqlHandle, 11);
+            zoneTown.ship.timeInterval = (uint16)Sql_GetIntData(SqlHandle, 12);
+            zoneTown.ship.timeArriveDock = (uint16)Sql_GetIntData(SqlHandle, 14);
+            zoneTown.ship.timeDepartDock = zoneTown.ship.timeArriveDock + (uint16)Sql_GetIntData(SqlHandle, 13);
+            zoneTown.ship.timeVoyageStart = zoneTown.ship.timeDepartDock + (uint16)Sql_GetIntData(SqlHandle, 15) - 1;
             
 
-            zoneTown->ship.state = STATE_TRANSPORT_INIT;
-            zoneTown->ship.setVisible(false);
-            zoneTown->closeDoor(false);
+            zoneTown.ship.state = STATE_TRANSPORT_INIT;
+            zoneTown.ship.setVisible(false);
+            zoneTown.closeDoor(false);
 
-            if (zoneTown->npcDoor == nullptr || zoneTown->ship.npc == nullptr)
+            if (zoneTown.npcDoor == nullptr || zoneTown.ship.npc == nullptr)
             {
                 ShowError("Transport <%u>: transport or door not found\n", (uint8)Sql_GetIntData(SqlHandle, 0));
-                delete zoneTown;
                 continue;
             }
-            if (zoneTown->ship.timeArriveDock < 10)
+            if (zoneTown.ship.timeArriveDock < 10)
             {
                 ShowError("Transport <%u>: time_anim_arrive must be > 10\n", (uint8)Sql_GetIntData(SqlHandle, 0));
-                delete zoneTown;
                 continue;
             }
-            if (zoneTown->ship.timeInterval < zoneTown->ship.timeVoyageStart)
+            if (zoneTown.ship.timeInterval < zoneTown.ship.timeVoyageStart)
             {
                 ShowError("Transport <%u>: time_interval must be > time_anim_arrive + time_waiting + time_anim_depart\n", (uint8)Sql_GetIntData(SqlHandle, 0));
-                delete zoneTown;
                 continue;
             }
             
@@ -202,29 +190,26 @@ void CTransportHandler::InitializeTransport()
         while (Sql_NextRow(SqlHandle) == SQL_SUCCESS)
         {
 
-            TransportZone_Voyage* voyageZone = new TransportZone_Voyage;
+            TransportZone_Voyage voyageZone;
 
-            voyageZone->voyageZone = nullptr;
-            voyageZone->voyageZone = zoneutils::GetZone((uint8)Sql_GetUIntData(SqlHandle, 0));
+            voyageZone.voyageZone = nullptr;
+            voyageZone.voyageZone = zoneutils::GetZone((uint8)Sql_GetUIntData(SqlHandle, 0));
 
-            if (voyageZone->voyageZone != nullptr && voyageZone->voyageZone->GetID() > 0)
+            if (voyageZone.voyageZone != nullptr && voyageZone.voyageZone->GetID() > 0)
             {
-                voyageZone->timeOffset = (uint16)Sql_GetIntData(SqlHandle, 1);
-                voyageZone->timeInterval = (uint16)Sql_GetIntData(SqlHandle, 2);
+                voyageZone.timeOffset = (uint16)Sql_GetIntData(SqlHandle, 1);
+                voyageZone.timeInterval = (uint16)Sql_GetIntData(SqlHandle, 2);
 
-                voyageZone->timeArriveDock = (uint16)Sql_GetIntData(SqlHandle, 4);
-                voyageZone->timeDepartDock = voyageZone->timeArriveDock + (uint16)Sql_GetIntData(SqlHandle, 3);
-                voyageZone->timeVoyageStart = voyageZone->timeDepartDock + (uint16)Sql_GetIntData(SqlHandle, 5);
+                voyageZone.timeArriveDock = (uint16)Sql_GetIntData(SqlHandle, 4);
+                voyageZone.timeDepartDock = voyageZone.timeArriveDock + (uint16)Sql_GetIntData(SqlHandle, 3);
+                voyageZone.timeVoyageStart = voyageZone.timeDepartDock + (uint16)Sql_GetIntData(SqlHandle, 5);
 
-                voyageZone->state = STATE_TRANSPORTZONE_INIT;
+                voyageZone.state = STATE_TRANSPORTZONE_INIT;
 
                 voyageZoneList.push_back(voyageZone);
             }
             else
-            {
                 ShowError("TransportZone <%u>: zone not found\n", (uint8)Sql_GetIntData(SqlHandle, 0));
-                delete voyageZone;
-            }
         }
     }
 }
@@ -236,7 +221,7 @@ void CTransportHandler::InitializeTransport()
 ************************************************************************/
 
 void CTransportHandler::TransportTimer()
-{//FIRST TRY
+{
 
     uint32 vanaTime = CVanaTime::getInstance()->getDate();
     uint16 shipTimerOffset = 0;
@@ -244,7 +229,7 @@ void CTransportHandler::TransportTimer()
     //Loop through town zones and update transportion accordingly
     for (uint32 i = 0; i < townZoneList.size(); ++i)
     {
-        TransportZone_Town* townZone = townZoneList.at(i);
+        TransportZone_Town* townZone = &townZoneList.at(i);
  
         shipTimerOffset = ((vanaTime - townZone->ship.timeOffset) % townZone->ship.timeInterval);
 
@@ -324,7 +309,7 @@ void CTransportHandler::TransportTimer()
     //Loop through voyage zones and zone passengers accordingly
     for (uint32 i = 0; i < voyageZoneList.size(); i++)
     {
-        TransportZone_Voyage* zoneIterator = voyageZoneList.at(i);
+        TransportZone_Voyage* zoneIterator = &voyageZoneList.at(i);
 
         shipTimerOffset = ((vanaTime - zoneIterator->timeOffset) % zoneIterator->timeInterval);
 
@@ -364,9 +349,10 @@ void CTransportHandler::TransportTimer()
 
     }
 
+    //Loop through elevators
     for (uint32 i = 0; i < ElevatorList.size(); ++i)
     {
-        Elevator_t * elevator = ElevatorList.at(i);
+        Elevator_t * elevator = &ElevatorList.at(i);
 
         if (elevator->activated)
         {
@@ -375,20 +361,13 @@ void CTransportHandler::TransportTimer()
             if (elevator->state == STATE_ELEVATOR_TOP)
             {
                 if (vanaTime >= elevator->lastTrigger + elevator->interval)
-                {
-                    elevator->state = STATE_ELEVATOR_DESCEND;
-                    elevator->Elevator->animation = ANIMATION_ELEVATOR_DOWN;
                     startElevator(elevator);
-                }
+
             }
             else if (elevator->state == STATE_ELEVATOR_BOTTOM)
             {
                 if (vanaTime >= elevator->lastTrigger + elevator->interval)
-                {
-                    elevator->state = STATE_ELEVATOR_ASCEND;
-                    elevator->Elevator->animation = ANIMATION_ELEVATOR_UP;
                     startElevator(elevator);
-                }
             }
             else if (elevator->state == STATE_ELEVATOR_DESCEND)
             {
@@ -414,70 +393,65 @@ void CTransportHandler::TransportTimer()
 }
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Initializes an elevator                                              *
 *                                                                       *
 ************************************************************************/
 
-void CTransportHandler::insertElevator(Elevator_t* elevator)
+void CTransportHandler::insertElevator(Elevator_t elevator)
 {    
     // check to see if this elevator already exists
     for (uint32 i = 0; i < ElevatorList.size(); ++i)
     {
-        Elevator_t* PElevator = ElevatorList.at(i);
+        Elevator_t* PElevator = &ElevatorList.at(i);
 
-        if (PElevator->Elevator->GetName() == elevator->Elevator->GetName() && PElevator->zoneID == elevator->zoneID)
+        if (PElevator->Elevator->GetName() == elevator.Elevator->GetName() && PElevator->zoneID == elevator.zoneID)
         {
             DSP_DEBUG_BREAK_IF(true);
         }
     }
 
     //Double check that the NPC entities all exist
-    if (elevator->LowerDoor == nullptr || elevator->UpperDoor == nullptr || elevator->Elevator == nullptr)
+    if (elevator.LowerDoor == nullptr || elevator.UpperDoor == nullptr || elevator.Elevator == nullptr)
     {
-        ShowError("Elevator %d could not load NPC entity. Ignoring this elevator.\n", elevator->Elevator->id);
+        ShowError("Elevator %d could not load NPC entity. Ignoring this elevator.\n", elevator.Elevator->id);
         return;
     }
+
     //Have permanent elevators wait until their next cycle to begin moving
     uint32 VanaTime = CVanaTime::getInstance()->getDate();
-    elevator->lastTrigger = VanaTime - (VanaTime % elevator->interval) + elevator->interval;
-    elevator->Elevator->name[8] = 8;
+    elevator.lastTrigger = VanaTime - (VanaTime % elevator.interval) + elevator.interval;
+    elevator.Elevator->name[8] = 8;
 
     //Initialize the elevator into the correct state based on
     //its animation value in the database. 
-    if (elevator->Elevator->animation == ANIMATION_ELEVATOR_DOWN)
-        elevator->state = STATE_ELEVATOR_BOTTOM;
-    else if (elevator->Elevator->animation == ANIMATION_ELEVATOR_UP)
-        elevator->state = STATE_ELEVATOR_TOP;
+    if (elevator.Elevator->animation == ANIMATION_ELEVATOR_DOWN)
+        elevator.state = STATE_ELEVATOR_BOTTOM;
+    else if (elevator.Elevator->animation == ANIMATION_ELEVATOR_UP)
+        elevator.state = STATE_ELEVATOR_TOP;
     else
     {
-        ShowError("Elevator %d has unexpected animation. Ignoring this elevator.\n", elevator->Elevator->id);
+        ShowError("Elevator %d has unexpected animation. Ignoring this elevator.\n", elevator.Elevator->id);
         return;
     }
-
+    if (elevator.Elevator->id == 16814511)
+        printf("ohboy");
     //Inconsistant animations throughout the elevators
-    if (elevator->animationsReversed)
-        elevator->state ^= 1;
+    if (elevator.animationsReversed)
+        elevator.state ^= 1;
 
     //Ensure that the doors start in the correct positions
     //regardless of their values in the database.
-    if (elevator->state == STATE_ELEVATOR_TOP)
-    {
-        elevator->LowerDoor->animation = ANIMATION_CLOSE_DOOR;
-        elevator->UpperDoor->animation = ANIMATION_OPEN_DOOR;
-    }
-    else
-    {
-        elevator->LowerDoor->animation = ANIMATION_OPEN_DOOR;
-        elevator->UpperDoor->animation = ANIMATION_CLOSE_DOOR;
-    }
-     
+
+    elevator.LowerDoor->animation = (elevator.state == STATE_ELEVATOR_TOP) ? ANIMATION_CLOSE_DOOR : ANIMATION_OPEN_DOOR;
+    elevator.UpperDoor->animation = (elevator.state == STATE_ELEVATOR_TOP) ? ANIMATION_OPEN_DOOR : ANIMATION_CLOSE_DOOR;
+
     ElevatorList.push_back(elevator);
     return;
 }
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Called when a lever is pulled in the field.                          *
 *                                                                       *
 ************************************************************************/
 
@@ -485,7 +459,7 @@ void CTransportHandler::startElevator(int32 elevatorID)
 {
     for (uint32 i = 0; i < ElevatorList.size(); ++i)
     {
-        Elevator_t * elevator = ElevatorList.at(i);
+        Elevator_t * elevator = &ElevatorList.at(i);
 
         if (elevator->id == elevatorID)
         {
@@ -497,29 +471,30 @@ void CTransportHandler::startElevator(int32 elevatorID)
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Called when an elevator should start moving.                         *
 *                                                                       *
 ************************************************************************/
 void CTransportHandler::startElevator(Elevator_t * elevator)
 {
     uint32 VanaTime = CVanaTime::getInstance()->getDate();
 
-    //Called when a lever is pulled in the field
+    //Take care of animation and state changes
+    if (elevator->state == STATE_ELEVATOR_TOP)
+    {
+        elevator->state = STATE_ELEVATOR_DESCEND;
+        elevator->Elevator->animation = elevator->animationsReversed ? ANIMATION_ELEVATOR_UP : ANIMATION_ELEVATOR_DOWN;
+    }
+    else if (elevator->state == STATE_ELEVATOR_BOTTOM)
+    {
+        elevator->state = STATE_ELEVATOR_ASCEND;
+        elevator->Elevator->animation = elevator->animationsReversed ? ANIMATION_ELEVATOR_DOWN : ANIMATION_ELEVATOR_UP;
+    }
+    else
+        return;
+
+    //Update elevator params
     if (!elevator->isPermanent)
     {
-        if (elevator->state == STATE_ELEVATOR_TOP)
-        {
-            elevator->state = STATE_ELEVATOR_DESCEND;
-            elevator->Elevator->animation = ANIMATION_ELEVATOR_UP;
-        }
-        else if (elevator->state == STATE_ELEVATOR_BOTTOM)
-        {
-            elevator->state = STATE_ELEVATOR_ASCEND;
-            elevator->Elevator->animation = ANIMATION_ELEVATOR_DOWN;
-        }
-        else
-            return; //the platform isn't settled yet
-
         elevator->lastTrigger = VanaTime;
         elevator->activated = true;
     }
@@ -547,15 +522,17 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
 
 /************************************************************************
 *                                                                       *
-*                                                                       *
+*  Called when an elevator has finished moving.                         *
 *                                                                       *
 ************************************************************************/
 
 void CTransportHandler::arriveElevator(Elevator_t * elevator)
 {
+    //Disable manual elevators
     if (!elevator->isPermanent)
         elevator->activated = false;
 
+    //Take care of doors
     if (elevator->state == STATE_ELEVATOR_BOTTOM)
         elevator->openDoor(elevator->LowerDoor);
     else if (elevator->state == STATE_ELEVATOR_TOP)
