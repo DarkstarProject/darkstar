@@ -63,8 +63,8 @@ public:
     void    UpdateEnmityFromAttack(CBattleEntity* PEntity, int32 Damage);
     bool    HasID(uint32 ID); //true if ID is in the container with non-zero enmity level
     void    LowerEnmityByPercent(CBattleEntity* PEntity, uint8 percent, CBattleEntity* HateReceiver); // lower % of hate or transfer it
-    int32  GetCE(CBattleEntity* PEntity);
-    int32  GetVE(CBattleEntity* PEntity);
+    int32   GetCE(CBattleEntity* PEntity);
+    int32   GetVE(CBattleEntity* PEntity);
     void    SetCE(CBattleEntity* PEntity, int32 amount);
     void    SetVE(CBattleEntity* PEntity, int32 amount);
     void    DecayEnmity();
