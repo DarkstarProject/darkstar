@@ -9,7 +9,7 @@ require("scripts/globals/status")
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.AUTO_SPIKES, 1)
     mob:addStatusEffect(dsp.effect.BLAZE_SPIKES, 250, 0, 0)
-    mob:getStatusEffect(dsp.effect.BLAZE_SPIKES):setFlag(32)
+    mob:getStatusEffect(dsp.effect.BLAZE_SPIKES):setFlag(dsp.effectFlag.DEATH)
     mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 300)
 end
 
@@ -24,10 +24,10 @@ end
 function onMobFight(mob,target)
     local FastCast = mob:getLocalVar("HPP")
     if mob:getHPP() <= FastCast then
-	    if mob:getHPP() > 10 then
+        if mob:getHPP() > 10 then
             mob:addMod(dsp.mod.FASTCAST, 15)
             mob:setLocalVar("HPP", mob:getHPP() - 10)
-		end
+        end
     end
 end
 
