@@ -52,7 +52,7 @@ function onMobFight(mob,target)
             mob:setMod(dsp.mod.UDMGRANGE, -50);
             mob:setMod(dsp.mod.UDMGMAGIC, -50);
             mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
+            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
             currentForm = 2;
             mob:setLocalVar("form", currentForm)
         end
