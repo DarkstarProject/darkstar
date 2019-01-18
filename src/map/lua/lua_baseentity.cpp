@@ -1961,7 +1961,8 @@ inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
 
 inline int32 CLuaBaseEntity::setElevator(lua_State *L)
 {
-    //Parameters: setElevator(id, lower door id, upper door id, elevator platform id, animations reversed bool)
+    //Usage: setElevator(id, lower door id, upper door id, elevator platform id, animations reversed bool)
+    //If giving the elevator ANIMATION_ELEVATOR_UP makes it go down, set this bool to true
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
@@ -1970,6 +1971,7 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isboolean(L, 5));
+
     Elevator_t elevator;
 
     elevator.id = (uint8)lua_tointeger(L, 1);
@@ -2002,17 +2004,16 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
 /************************************************************************
 *  Function: addPeriodicTrigger()
 *  Purpose : registers a periodic trigger for an NPC
-*  Example : BastokDrawbridge:addPeriodicTrigger(open at time x)
-*  Notes   : 
+*  Example : BastokDrawbridge:addPeriodicTrigger(0, 360, 80)
+*  Notes   : See usage below
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
 {
-    //Usage npc:addPeriodicTrigger( triggerID, minute offset, period )
-
+    //Usage npc:addPeriodicTrigger( triggerID, period, minute offset )
     //triggerID is an ID unique to the NPC
-    //minute offset is the time in vanadiel minutes after the se epoch that the trigger period should synchronize to
     //period is the time in vanadiel minutes that separates two triggers of the event
+    //minute offset is the time in vanadiel minutes after the se epoch that the trigger period should synchronize to
 
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);

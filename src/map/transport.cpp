@@ -356,35 +356,15 @@ void CTransportHandler::TransportTimer()
 
         if (elevator->activated)
         {
-            uint16 elevatorOffset = vanaTime % elevator->interval;
-
-            if (elevator->state == STATE_ELEVATOR_TOP)
-            {
-                if (vanaTime >= elevator->lastTrigger + elevator->interval)
-                    startElevator(elevator);
-
-            }
-            else if (elevator->state == STATE_ELEVATOR_BOTTOM)
+            if (elevator->state == STATE_ELEVATOR_TOP || elevator->state == STATE_ELEVATOR_BOTTOM)
             {
                 if (vanaTime >= elevator->lastTrigger + elevator->interval)
                     startElevator(elevator);
             }
-            else if (elevator->state == STATE_ELEVATOR_DESCEND)
+            else if (elevator->state == STATE_ELEVATOR_ASCEND || elevator->state == STATE_ELEVATOR_DESCEND)
             {
                 if (vanaTime >= elevator->lastTrigger + elevator->movetime)
-                {
-                    elevator->state = STATE_ELEVATOR_BOTTOM;
                     arriveElevator(elevator);
-                }
-            }
-            else if (elevator->state == STATE_ELEVATOR_ASCEND)
-            {
-                if (vanaTime >= elevator->lastTrigger + elevator->movetime)
-                {
-                    elevator->state = STATE_ELEVATOR_TOP;
-                    arriveElevator(elevator);
-                }
-
             }
             else
                 ShowError("Unexpected state reached for elevator %d\n", elevator->Elevator->id);
@@ -433,8 +413,7 @@ void CTransportHandler::insertElevator(Elevator_t elevator)
         ShowError("Elevator %d has unexpected animation. Ignoring this elevator.\n", elevator.Elevator->id);
         return;
     }
-    if (elevator.Elevator->id == 16814511)
-        printf("ohboy");
+
     //Inconsistant animations throughout the elevators
     if (elevator.animationsReversed)
         elevator.state ^= 1;
@@ -504,17 +483,14 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
     ref<uint32>(&elevator->Elevator->name[0], 4) = CVanaTime::getInstance()->getVanaTime();
 
     //Take care of doors
-    if ((elevator->LowerDoor != nullptr) && (elevator->UpperDoor != nullptr))
+    if (elevator->state == STATE_ELEVATOR_ASCEND)
+        elevator->closeDoor(elevator->LowerDoor);
+    else if (elevator->state == STATE_ELEVATOR_DESCEND)
+        elevator->closeDoor(elevator->UpperDoor);
+    else
     {
-        if (elevator->state == STATE_ELEVATOR_ASCEND)
-            elevator->closeDoor(elevator->LowerDoor);
-        else if (elevator->state == STATE_ELEVATOR_DESCEND)
-            elevator->closeDoor(elevator->UpperDoor);
-        else
-        {
-            ShowError("Elevator %d has malfunctioned\n", elevator->Elevator->id);
-            return;
-        }
+        ShowError("Elevator %d has malfunctioned\n", elevator->Elevator->id);
+        return;
     }
 
     zoneutils::GetZone(elevator->zoneID)->PushPacket(nullptr, CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator, ENTITY_UPDATE, UPDATE_COMBAT));
@@ -531,6 +507,9 @@ void CTransportHandler::arriveElevator(Elevator_t * elevator)
     //Disable manual elevators
     if (!elevator->isPermanent)
         elevator->activated = false;
+
+    //Update state
+    elevator->state = (elevator->state == STATE_ELEVATOR_ASCEND) ? STATE_ELEVATOR_TOP : STATE_ELEVATOR_BOTTOM;
 
     //Take care of doors
     if (elevator->state == STATE_ELEVATOR_BOTTOM)
