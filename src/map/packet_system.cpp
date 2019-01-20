@@ -772,10 +772,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x12: // dismount
     {
-        if (PChar->StatusEffectContainer->HasPreventActionEffect())
-            return;
-
-        if (!PChar->isMounted())
+        if (PChar->StatusEffectContainer->HasPreventActionEffect() || !PChar->isMounted())
             return;
 
         PChar->animation = ANIMATION_NONE;
