@@ -3,114 +3,108 @@
 --  NPC: Zalsuhm
 -- Standard Info NPC
 -----------------------------------
-require("scripts/globals/equipment");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
+require("scripts/globals/equipment")
+require("scripts/globals/quests")
+-----------------------------------
 
 function getQuestId(mainJobId)
 
-    return (UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId);
+    return (UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId)
 
-end;
+end
 
 function onTrade(player,npc,trade)
-
-    -- printf("LowerJeuno_Zalsuhm.onTrade() - ");
-
     if (trade:getItemCount() == 1) then
         for i, wepId in pairs(BaseNyzulWeapons) do
-            if (trade:hasItemQty(wepId, 1)) then
+            if trade:hasItemQty(wepId, 1) then
                 local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(i))
-                -- printf("\tUnlockingAMyth" .. i .. " = %u", unlockingAMyth);
-
                 if (unlockingAMyth == QUEST_ACCEPTED) then
-                    -- TODO: Logic for checking weapons current WS points
-                    local wsPoints = 0;
-                    -- printf("\twsPoints = %u", wsPoints);
-
-                    if (wsPoints >= 0 and wsPoints <= 49) then
-                        player:startEvent(10091); -- Lowest Tier Dialog
-                    elseif (wsPoints <= 200) then
-                        player:startEvent(10092); -- Mid Tier Dialog
-                    elseif (wsPoints <= 249) then
-                        player:startEvent(10093); -- High Tier Dialog
-                    elseif (wsPoints >= 250) then
-                        player:startEvent(10088, i); -- Quest Complete!
+                    local wsPoints = trade:getItem(0):getWeaponskillPoints()
+                    if wsPoints >= 0 and wsPoints <= 49 then
+                        player:startEvent(10091)
+                    elseif wsPoints <= 200 then
+                        player:startEvent(10092)
+                    elseif wsPoints <= 249 then
+                        player:startEvent(10093)
+                    elseif wsPoints >= 250 then
+                        player:startEvent(10088, i)
                     end
                 end
 
-                return;
+                return
             end
         end
     end
 
-end;
+end
 
 function onTrigger(player,npc)
-
-    -- printf("LowerJeuno_Zalsuhm.onTrigger() - ");
-
-    local mainJobId = player:getMainJob();
-
+    local mainJobId = player:getMainJob()
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
-    -- printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
+    local nyzulWeapon = isBaseNyzulWeapon(player:getEquipID(dsp.slot.MAIN))
 
-    local mainWeaponId = player:getEquipID(dsp.slot.MAIN);
-    -- printf("\tmainWeaponId: %u", mainWeaponId);
-        
-    local nyzulWeapon = isBaseNyzulWeapon(mainWeaponId);
-    -- printf("\tIsBaseNyzulWeapon: %s", (nyzulWeapon and "TRUE" or "FALSE"));
-
-    if (unlockingAMyth == QUEST_AVAILABLE) then
-        local zalsuhmUpset = player:getVar("Upset_Zalsuhm");
-        if (player:needToZone() and zalsuhmUpset > 0) then -- Zalsuhm is still angry
-            player:startEvent(10090);
+    if unlockingAMyth == QUEST_AVAILABLE then
+        if player:needToZone() and player:getVar("Upset_Zalsuhm") > 0 then
+            player:startEvent(10090)
         else
-            if (zalsuhmUpset > 0) then
-                player:setVar("Upset_Zalsuhm", 0);
+            if player:getVar("Upset_Zalsuhm") > 0 then
+                player:setVar("Upset_Zalsuhm", 0)
             end
 
-            if (nyzulWeapon) then -- The player has a Nyzul weapon in the mainHand, try to initiate quest
-                player:startEvent(10086, mainJobId);
+            if nyzulWeapon then
+                player:startEvent(10086, mainJobId)
             else
-                player:startEvent(10085); -- Default dialog
+                player:startEvent(10085)
             end
         end
-    elseif (unlockingAMyth == QUEST_ACCEPTED) then -- Quest is active for current job
-        player:startEvent(10087); -- Zalsuhm asks for the player to show him the weapon if they sense a change
-    else -- Quest is complete for the current job
-        player:startEvent(10089);
+    elseif unlockingAMyth == QUEST_ACCEPTED then
+        player:startEvent(10087)
+    else
+        player:startEvent(10089)
     end
-    
-end;
+end
 
 function onEventUpdate(player,csid,option)
-
-    -- printf("LowerJeuno_Zalsuhm.onEventUpdate() - ");
-    -- printf("\tCSID: %u", csid);
-    -- printf("\tRESULT: %u", option);
-
-end;
+end
 
 function onEventFinish(player,csid,option)
-
-    -- printf("LowerJeuno_Zalsuhm.onEventFinish() - ");
-    -- printf("\tCSID: %u", csid);
-    -- printf("\tRESULT: %u", option);
-
-    -- Zalsuhm wants to research the player's Nyzul Weapon
-    if (csid == 10086) then
-        -- The player chose "He has shifty eyes" (turns down the quest)
-        if (option == 53) then
-            player:setVar("Upset_Zalsuhm", 1);
-            player:needToZone(true);
-        elseif (option <= dsp.job.SCH) then -- Just to make sure we didn't get into an invalid state
-            -- The player chose "More power" (accepts the quest)
-            local questId = getQuestId(option);
-            player:addQuest(JEUNO, questId);
+    local questId = getQuestId(option)
+    if csid == 10086 then
+        if option == 53 then
+            player:setVar("Upset_Zalsuhm", 1)
+            player:needToZone(true)
+        elseif option <= dsp.job.SCH then
+            player:addQuest(JEUNO, questId)
         end
-    elseif (csid == 10088 and option <= dsp.job.SCH) then -- The quest is completed
-        local questId = getQuestId(option);
-        player:completeQuest(JEUNO, questId);
+    elseif csid == 10088 and option <= dsp.job.SCH then
+        local jobs = 
+        {
+            [1]  = 24,
+            [2]  = 15,
+            [3]  = 29,
+            [4]  = 30,
+            [5]  = 20,
+            [6]  = 17,
+            [7]  = 21,
+            [8]  = 25,
+            [9]  = 23,
+            [10] = 18,
+            [11] = 33,
+            [12] = 28,
+            [13] = 27,
+            [14] = 26,
+            [15] = 31,
+            [16] = 22,
+            [17] = 34,
+            [18] = 16,
+            [19] = 19,
+            [20] = 32,
+        }
+        local skill = jobs[option]
+        
+        player:completeQuest(JEUNO, questId)
+        player:messageSpecial(ID.text.MYTHIC_LEARNED, player:getMainJob())
+        player:addLearnedWeaponskill(skill)
     end
-
-end;
+end
