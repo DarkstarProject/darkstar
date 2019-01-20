@@ -775,7 +775,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         if (PChar->StatusEffectContainer->HasPreventActionEffect())
             return;
 
-        if (PChar->animation != ANIMATION_CHOCOBO && PChar->animation != ANIMATION_MOUNT)
+        if (!PChar->isMounted())
             return;
 
         PChar->animation = ANIMATION_NONE;
