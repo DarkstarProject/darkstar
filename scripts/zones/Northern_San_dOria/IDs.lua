@@ -93,15 +93,17 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         BONCORT_MESSAGE          = 13370, -- Boncort looks over curiously for a moment.
         CAPIRIA_MESSAGE          = 13371, -- Capiria looks over curiously for a moment.
         VILLION_MESSAGE          = 13372, -- Villion looks over curiously for a moment.
-        RETRIEVE_DIALOG_ID       = 18112, -- You retrieve <item> from the porter moogle's care.
+        RETRIEVE_DIALOG_ID       = 18112 -- You retrieve <item> from the porter moogle's care.
     },
     mob =
     {
     },
     npc =
     {
-        EXPLORER_MOOGLE = 17723648,
-    },
+        EXPLORER_MOOGLE              = 17723648,
+        EPHEMERAL_MOOGLE_WOODWORKING = 17723846,
+        EPHEMERAL_MOOGLE_SMITHING    = 17723847
+    }
 }
 
 return zones[dsp.zone.NORTHERN_SAN_DORIA]
