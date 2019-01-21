@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
         local y = npc:getYPos();
         local z = npc:getZPos();
         mob:setSpawn(x-1,y,z)
-        SpawnMob(ID.mob.GOBLIN_WOLFMAN):updateClaim(player); -- A chill runs down your spine!
+        SpawnMob(ID.mob.GOBLIN_WOLFMAN):updateClaim(player);
         OLDTON_MOVALPOLOS.moveScrawledWriting(900) --15 minute timer
     end
 end;
