@@ -469,6 +469,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Euvhi',109,1451);
 INSERT INTO `mob_skill_lists` VALUES ('Euvhi',109,1453);
 INSERT INTO `mob_skill_lists` VALUES ('EvilWeapon',110,513);
 INSERT INTO `mob_skill_lists` VALUES ('EvilWeapon',110,514);
+INSERT INTO `mob_skill_lists` VALUES ('Konjac',111,433); -- digest
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1821);
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1822);
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1824);
