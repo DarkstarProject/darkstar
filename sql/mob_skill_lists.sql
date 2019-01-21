@@ -500,6 +500,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2422);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2423);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2424);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2425);
+INSERT INTO `mob_skill_lists` VALUES ('Magnotaur',119,498); -- triclip
+INSERT INTO `mob_skill_lists` VALUES ('Magnotaur',119,499); -- back_swish
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2038);
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2039);
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2040);
