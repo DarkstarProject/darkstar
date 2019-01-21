@@ -34,3 +34,7 @@ script:
   - make
   - sh travis_sql.sh
   - sh travis_lua.sh
+  
+notifications:
+  email:
+    on_success: always
