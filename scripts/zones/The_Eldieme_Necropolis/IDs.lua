@@ -45,8 +45,6 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         },
         LICH_C_MAGNUS = 17575937,
         YUM_KIMIL     = 17576264,
-        DOG_GUARDIAN  = 17576265,
-        OWL_GUARDIAN  = 17576266,
         STURM         = 17576267,
         TAIFUN        = 17576268,
         TROMBE        = 17576269,
@@ -54,9 +52,11 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
     },
     npc =
     {
-        BRAZIER_OFFSET  = 17576343,
-        TREASURE_CHEST  = 17576356,
-        TREASURE_COFFER = 17576357,
+        GATE_OFFSET        = 17576306,
+        BRAZIER_OFFSET     = 17576343,
+        TREASURE_CHEST     = 17576356,
+        TREASURE_COFFER    = 17576357,
+        SARCOPHAGUS_OFFSET = 17576394,
     },
 }
 
