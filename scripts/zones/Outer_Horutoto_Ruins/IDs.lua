@@ -36,6 +36,10 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
     mob =
     {
+        DESMODONT_PH                =
+        {
+            [17571868] = 17571870,
+        },
         AH_PUCH_PH                  =
         {
             [17571893] = 17571903, -- -418,-1,629

@@ -16,7 +16,7 @@ function onMobFight(mob,target)
     -- Gains regain at under 25% HP
     if (mob:getHPP() < 25 and not mob:hasStatusEffect(dsp.effect.REGAIN)) then
         mob:addStatusEffect(dsp.effect.REGAIN,5,3,0);
-        mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
+        mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
     end
 end;
 
