@@ -20,7 +20,7 @@ local ImperialPieces =
     [2] = -- Imperial Silver Piece
     {
         item = 2185,
-        price = 100
+        price = 100z
     },
     [3] = -- Imperial Mythril Piece
     {
