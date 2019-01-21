@@ -6,6 +6,7 @@
 local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/equipment")
 require("scripts/globals/quests")
+require("scripts/globals/status")
 -----------------------------------
 
 function getQuestId(mainJobId)
@@ -80,26 +81,26 @@ function onEventFinish(player,csid,option)
     elseif csid == 10088 and option <= dsp.job.SCH then
         local jobs = 
         {
-            [1]  = 24,
-            [2]  = 15,
-            [3]  = 29,
-            [4]  = 30,
-            [5]  = 20,
-            [6]  = 17,
-            [7]  = 21,
-            [8]  = 25,
-            [9]  = 23,
-            [10] = 18,
-            [11] = 33,
-            [12] = 28,
-            [13] = 27,
-            [14] = 26,
-            [15] = 31,
-            [16] = 22,
-            [17] = 34,
-            [18] = 16,
-            [19] = 19,
-            [20] = 32,
+            [dsp.job.WAR] = 24,
+            [dsp.job.MNK] = 15,
+            [dsp.job.WHM] = 29,
+            [dsp.job.BLM] = 30,
+            [dsp.job.RDM] = 20,
+            [dsp.job.THF] = 17,
+            [dsp.job.PLD] = 21,
+            [dsp.job.DRK] = 25,
+            [dsp.job.BST] = 23,
+            [dsp.job.BRD] = 18,
+            [dsp.job.RNG] = 33,
+            [dsp.job.SAM] = 28,
+            [dsp.job.NIN] = 27,
+            [dsp.job.DRG] = 26,
+            [dsp.job.SMN] = 31,
+            [dsp.job.BLU] = 22,
+            [dsp.job.COR] = 34,
+            [dsp.job.PUP] = 16,
+            [dsp.job.DNC] = 19,
+            [dsp.job.SCH] = 32,
         }
         local skill = jobs[option]
         
