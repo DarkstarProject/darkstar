@@ -32999,6 +32999,8 @@ INSERT INTO `mob_droplist` VALUES (4642,0,0,1000,16025,250); -- (Nandi) Rathe Ea
 INSERT INTO `mob_droplist` VALUES (4643,0,0,1000,16016,200); -- (Powderer Penny) Chary Earring
 INSERT INTO `mob_droplist` VALUES (4644,0,0,1000,16034,81); -- (Hoar-knuckled Rimberry) Sarabande Earring
 INSERT INTO `mob_droplist` VALUES (4645,0,0,1000,11534,81); -- (Acolnahuacatl) Echo Cape
+INSERT INTO `mob_droplist` VALUES (4646,0,0,1000,2817,200); -- (Canal Moocher) Aptant: Pera
+INSERT INTO `mob_droplist` VALUES (4646,0,0,1000,2820,200); -- (Canal Moocher) Aptant: Geoc
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

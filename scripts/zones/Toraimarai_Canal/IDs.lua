@@ -23,6 +23,12 @@ zones[dsp.zone.TORAIMARAI_CANAL] =
     },
     mob =
     {
+        CANAL_MOOCHER_PH =
+        {
+            [17469575] = 17469578,
+            [17469576] = 17469578,
+            [17469577] = 17469578,
+        },
         MAGIC_SLUDGE      = 17469516,
         HINGE_OILS_OFFSET = 17469666,
         MIMIC             = 17469761,
