@@ -21,6 +21,10 @@ zones[dsp.zone.ULEGUERAND_RANGE] =
     },
     mob =
     {
+        SKVADER_PH =
+        {
+            [16797769] = 16797770,
+        },
         BONNACON_PH =
         {
             [16798050] = 16798056, -- -623.154 -40.604 -51.621
