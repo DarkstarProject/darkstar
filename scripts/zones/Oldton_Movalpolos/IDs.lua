@@ -31,8 +31,9 @@ zones[dsp.zone.OLDTON_MOVALPOLOS] =
     },
     npc =
     {
-        OVERSEER_BASE  = 16822509,
-        TREASURE_CHEST = 16822531,
+        OVERSEER_BASE    = 16822509,
+        TREASURE_CHEST   = 16822531,
+        SCRAWLED_WRITING = 16822469,
         MINING =
         {
             16822525,
