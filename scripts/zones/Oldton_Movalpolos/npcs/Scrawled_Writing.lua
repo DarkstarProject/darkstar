@@ -4,7 +4,6 @@
 -- Allows players to spawn NM Goblin Wolfman
 -----------------------------------
 local ID = require("scripts/zones/Oldton_Movalpolos/IDs");
-require("scripts/zones/Oldton_Movalpolos/globals")
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -17,7 +16,7 @@ function onTrade(player,npc,trade)
         local z = npc:getZPos();
         mob:setSpawn(x-1,y,z)
         SpawnMob(ID.mob.GOBLIN_WOLFMAN):updateClaim(player);
-        OLDTON_MOVALPOLOS.moveScrawledWriting(900) --15 minute timer
+        npc:setStatus(dsp.status.DISAPPEAR);
     end
 end;
 
