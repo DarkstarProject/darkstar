@@ -6072,8 +6072,10 @@ INSERT INTO `mob_droplist` VALUES (1135,0,0,1000,896,430);
 INSERT INTO `mob_droplist` VALUES (1135,4,0,1000,897,0);
 INSERT INTO `mob_droplist` VALUES (1135,0,0,1000,897,1000);
 INSERT INTO `mob_droplist` VALUES (1135,0,0,1000,16785,60);
-INSERT INTO `mob_droplist` VALUES (1136,2,0,1000,838,0);
-INSERT INTO `mob_droplist` VALUES (1136,0,0,1000,838,170);
+
+-- Giant Spider (Eastern Altepa Desert) http://ffxidb.com/zones/114/giant-spider
+INSERT INTO `mob_droplist` VALUES (1136,2,0,1000,838,0); -- Spider's Web (Steal)
+INSERT INTO `mob_droplist` VALUES (1136,0,0,1000,838,10); -- Spider's Web (1.0%)
 INSERT INTO `mob_droplist` VALUES (1137,0,0,1000,1538,80);
 INSERT INTO `mob_droplist` VALUES (1138,2,0,1000,1449,0);
 INSERT INTO `mob_droplist` VALUES (1138,0,0,1000,1449,90);
