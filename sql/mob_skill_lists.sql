@@ -3373,8 +3373,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,402); -- Feather_Barrier
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,922); -- Blind_Vortex
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,923); -- Giga_Scream
 -- INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,2703); -- Dread_Wind
+INSERT INTO `mob_skill_lists` VALUES ('Calchas',934,722); -- venom_storm
 
--- 934 free
+-- 935 free
 
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,406); -- Hammer_Beak
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,407); -- Poison_Pick

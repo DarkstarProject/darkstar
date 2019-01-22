@@ -33004,6 +33004,7 @@ INSERT INTO `mob_droplist` VALUES (4646,0,0,1000,2820,200); -- (Canal Moocher) A
 INSERT INTO `mob_droplist` VALUES (4647,0,0,1000,2820,200); -- (Skvader) Aptant: Geoc
 INSERT INTO `mob_droplist` VALUES (4647,0,0,1000,2821,200); -- (Skvader) Aptant: Haelan
 INSERT INTO `mob_droplist` VALUES (4648,0,0,1000,18770,167); -- (Magnotaur) Pygme Sainti
+INSERT INTO `mob_droplist` VALUES (4649,0,0,1000,19278,250); -- (Calchas) Fuchingiri
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
