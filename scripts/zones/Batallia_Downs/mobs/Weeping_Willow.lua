@@ -18,7 +18,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    local JACK = mob:getID()+6
-    SpawnMob(JACK)
-    GetMobByID(JACK):setPos( mob:getXPos(), mob:getYPos(), mob:getZPos(), 0);
+    GetMobByID(mob:getID() + 6):setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos())
 end
