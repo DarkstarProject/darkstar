@@ -14,7 +14,7 @@ local scrawledWritingPositions =
 }
 
 function onTrade(player, npc, trade)
-    if npcUtil.tradeHas(trade, 4541) and npcUtil.popFromQM(player, npc, ID.mob.GOBLIN_WOLFMAN, {radius = 2, hide = 10}) then
+    if npcUtil.tradeHas(trade, 4541) and npcUtil.popFromQM(player, npc, ID.mob.GOBLIN_WOLFMAN, {radius = 2, hide = 900}) then
         player:confirmTrade()
         local newPosition = npcUtil.pickNewPosition(npc:getID(), scrawledWritingPositions, true)
         npcUtil.queueMove(npc, newPosition)
