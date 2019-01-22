@@ -20,12 +20,9 @@ end
 
 function onMobFight(mob, target)
     -- every ~20 seconds after first pet, a new pet will spawn around queen's position.
-    -- 50% chance for Prince/Princess. 1% chance for Bastard.
-
-    local mobId = mob:getID()
-
+    -- 49.75% (99/400) chance for Prince/Princess. 1% (4/400) chance for Bastard.
     if os.time() > mob:getLocalVar("petCooldown") then
-        local petId = mob:getID() + 1 + math.floor(math.random(0, 100) / 25)
+        local petId = mob:getID() + 1 + math.floor(math.random(0, 399) / 99)
         local pet = GetMobByID(petId)
 
         if pet and not pet:isSpawned() then
