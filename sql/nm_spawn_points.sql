@@ -876,6 +876,7 @@ INSERT INTO `nm_spawn_points` VALUES (17101099,49,-541.146,-2.807,61.593);
 INSERT INTO `nm_spawn_points` VALUES (17109235,0,470,-18,-241); -- Myradrosh
 INSERT INTO `nm_spawn_points` VALUES (17109338,0,273,-15,-377); -- Skogs Fru
 INSERT INTO `nm_spawn_points` VALUES (17113381,0,204.878,0.886,-347.779); -- Drumskull Zogdregg
+INSERT INTO `nm_spawn_points` VALUES (17117295,0,75.93,-40.153,-108.19); -- Warabouc
 INSERT INTO `nm_spawn_points` VALUES (17121399,0,-152,-9.2,464); -- Burlibix Brawnback
 INSERT INTO `nm_spawn_points` VALUES (17121576,0,-153.108,-10.397,15.353); -- La Velue
 INSERT INTO `nm_spawn_points` VALUES (17121603,0,137,8.5,-472); -- Habergoass
