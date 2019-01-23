@@ -26,7 +26,7 @@ function onTrigger(player,npc)
         GetNPCByID(ID.npc.ALTEPA_GATE + 8):getAnimation() == dsp.anim.OPEN_DOOR
     then
         local openTime = math.random(15, 30) * 60
-        for i = ALTEPA_GATE, ALTEPA_GATE + 8 do
+        for i = ID.npc.ALTEPA_GATE, ID.npc.ALTEPA_GATE + 8 do
             GetNPCByID(i):openDoor(openTime)
         end
     end
