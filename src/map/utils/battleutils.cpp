@@ -597,7 +597,7 @@ namespace battleutils
                 bool crit = battleutils::GetCritHitRate(PDefender, PAttacker, true) > dsprand::GetRandomNumber(100);
 
                 // Dmg math.
-                float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0);
+                float DamageRatio = GetDamageRatio(PDefender, PAttacker, crit, 0.f);
                 uint16 dmg = (uint32)((PDefender->GetMainWeaponDmg() + battleutils::GetFSTR(PDefender, PAttacker, SLOT_MAIN)) * DamageRatio);
                 dmg = attackutils::CheckForDamageMultiplier(((CCharEntity*)PDefender), PDefender->m_Weapons[SLOT_MAIN], dmg, PHYSICAL_ATTACK_TYPE::NORMAL, SLOT_MAIN);
                 uint16 bonus = dmg * (PDefender->getMod(Mod::RETALIATION) / 100);
@@ -2312,12 +2312,12 @@ namespace battleutils
     *                                                                       *
     ************************************************************************/
 
-    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, uint16 bonusAttPercent)
+    float GetDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, float bonusAttPercent)
     {
         // used to apply a % of attack bonus
         float attPercentBonus = 0;
         if (bonusAttPercent >= 1)
-            attPercentBonus = (float)(PAttacker->ATT() * bonusAttPercent / 100);
+            attPercentBonus = PAttacker->ATT() * bonusAttPercent;
 
         //wholly possible for DEF to be near 0 with the amount of debuffs/effects now.
         float ratio = (float)(PAttacker->ATT() + attPercentBonus) / (float)((PDefender->DEF() == 0) ? 1 : PDefender->DEF());
@@ -3700,11 +3700,11 @@ namespace battleutils
                 if (!battleutils::IsAbsorbByShadow(PVictim))
                 {
                     // successful hit, add damage
-                    uint16 AttMultiplerPercent = 0;
+                    float AttMultiplerPercent = 0.f;
 
                     // get jump attack bonus from gear
                     if (PAttacker->objtype == TYPE_PC)
-                        AttMultiplerPercent = PAttacker->getMod(Mod::JUMP_ATT_BONUS);
+                        AttMultiplerPercent = PAttacker->getMod(Mod::JUMP_ATT_BONUS) / 100.f;
 
                     float DamageRatio = battleutils::GetDamageRatio(PAttacker, PVictim, false, AttMultiplerPercent);
                     damageForRound = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PVictim, SLOT_MAIN)) * DamageRatio);
@@ -3712,7 +3712,7 @@ namespace battleutils
                     // bonus applies to jump only, not high jump
                     if (tier == 1)
                     {
-                        float jumpBonus = ((PAttacker->VIT() / (float)256) + 1);
+                        float jumpBonus = 1.f + PAttacker->VIT() / 256.f;
                         damageForRound = (uint16)(damageForRound * jumpBonus);
                     }
 
