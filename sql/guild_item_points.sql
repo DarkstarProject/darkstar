@@ -648,132 +648,181 @@ INSERT INTO `guild_item_points` VALUES (3, 0, 9, 29750, 23280, 7); -- Orichalcum
 INSERT INTO `guild_item_points` VALUES (3, 0, 9, 31450, 23280, 7); -- Triton Earring (31450 / 23280)
 
 -- Clothcraft / Amateur
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 0); -- Gloves (303/7680)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 0); -- Gloves +1 (373/7680)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 1); -- Brais (211/6480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 1); -- Brais +1 (282/6480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 2); -- Cape (85/4800)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 2); -- Cape +1 (111/4800)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 3); -- Gaiters (282/2440)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 3); -- Gaiters +1 (352/2440)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 4); -- Doublet (119/5280)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 4); -- Doublet +1 (148/5280)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 5); -- Cape (85/4800)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 5); -- Cape +1 (111/4800)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 6); -- Headgear (70/4560)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 6); -- Headgear +1 (128/4560)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 7); -- Vagabond's Hose (110/5040)
-INSERT INTO `guild_item_points` VALUES (4, 0, 0, 0, 0, 7); -- Vagabond's Hose +1 (118/5040)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 303, 7680, 0); -- Gloves (303/7680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 373, 7680, 0); -- Gloves +1 (373/7680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 211, 6480, 1); -- Brais (211/6480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 282, 6480, 1); -- Brais +1 (282/6480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 85, 4800, 2); -- Cape (85/4800)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 111, 4800, 2); -- Cape +1 (111/4800)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 282, 2440, 3); -- Gaiters (282/2440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 352, 2440, 3); -- Gaiters +1 (352/2440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 119, 5280, 4); -- Doublet (119/5280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 148, 5280, 4); -- Doublet +1 (148/5280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 85, 4800, 5); -- Cape (85/4800)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 111, 4800, 5); -- Cape +1 (111/4800)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 70, 4560, 6); -- Headgear (70/4560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 128, 4560, 6); -- Headgear +1 (128/4560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 110, 5040, 7); -- Vagabond's Hose (110/5040)
+INSERT INTO `guild_item_points` VALUES (4, 0, 0, 118, 5040, 7); -- Vagabond's Hose +1 (118/5040)
 
 -- Clothcraft / Recruit
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 0); -- Tunic (280/7920)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 0); -- Tunic +1 (312/7920)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 1); -- Cotton Doublet (858/12480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 1); -- Cotton Doublet +1 (2518/12480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 2); -- Kenpogi (249/7440)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 2); -- Kenpogi +1 (280/7440)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 3); -- Kyahan (127/6000)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 3); -- Kyahan +1 (159/6000)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 4); -- Tekko (137/6240)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 4); -- Tekko +1 (168/6240)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 5); -- Slacks (187/6720)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 5); -- Slacks +1 (218/6720)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 6); -- Cotton Cape (506/10080)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 6); -- Cotton Cape +1 (660/10080)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 7); -- Vagabond's Tunica (118/6000)
-INSERT INTO `guild_item_points` VALUES (4, 0, 1, 0, 0, 7); -- Vagabond's Tunica +1 (126/6000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 280, 7920, 0); -- Tunic (280/7920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 312, 7920, 0); -- Tunic +1 (312/7920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 858, 12480, 1); -- Cotton Doublet (858/12480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 2518, 12480, 1); -- Cotton Doublet +1 (2518/12480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 249, 7440, 2); -- Kenpogi (249/7440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 280, 7440, 2); -- Kenpogi +1 (280/7440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 127, 6000, 3); -- Kyahan (127/6000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 159, 6000, 3); -- Kyahan +1 (159/6000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 137, 6240, 4); -- Tekko (137/6240)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 168, 6240, 4); -- Tekko +1 (168/6240)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 187, 6720, 5); -- Slacks (187/6720)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 218, 6720, 5); -- Slacks +1 (218/6720)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 506, 10080, 6); -- Cotton Cape (506/10080)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 660, 10080, 6); -- Cotton Cape +1 (660/10080)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 118, 6000, 7); -- Vagabond's Tunica (118/6000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 1, 126, 6000, 7); -- Vagabond's Tunica +1 (126/6000)
 
 -- Clothcraft / Initiate
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 0); -- Cotton Tekko (675/11760)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 0); -- Cotton Tekko +1 (829/11760)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 1); -- Cotton Kyahan (629/11280)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 1); -- Cotton Kyahan +1 (629/11280)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 2); -- Cotton Dogi (460/10080)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 2); -- Cotton Dogi +1 (476/10080)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 3); -- Cotton Hachimaki (814/12480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 3); -- Cotton Hachimaki +1 (814/12480)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 4); -- Gambison (2500/17760)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 4); -- Gambison +1 (2550/17760)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 5); -- Linen Cuffs (349/9120)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 5); -- Linen Cuffs +1 (430/9120)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 6); -- Heko Obi (99/6240)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 6); -- Heko Obi +1 (131/6240)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 7); -- Linen Robe (617/11280)
-INSERT INTO `guild_item_points` VALUES (4, 0, 2, 0, 0, 7); -- Linen Robe (617/11280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 675, 11760, 0); -- Cotton Tekko (675/11760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 829, 11760, 0); -- Cotton Tekko +1 (829/11760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 629, 11280, 1); -- Cotton Kyahan (629/11280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 629, 11280, 1); -- Cotton Kyahan +1 (629/11280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 460, 10080, 2); -- Cotton Dogi (460/10080)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 476, 10080, 2); -- Cotton Dogi +1 (476/10080)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 814, 12480, 3); -- Cotton Hachimaki (814/12480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 814, 12480, 3); -- Cotton Hachimaki +1 (814/12480)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 2500, 17760, 4); -- Gambison (2500/17760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 2550, 17760, 4); -- Gambison +1 (2550/17760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 349, 9120, 5); -- Linen Cuffs (349/9120)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 430, 9120, 5); -- Linen Cuffs +1 (430/9120)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 99, 6240, 6); -- Heko Obi (99/6240)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 131, 6240, 6); -- Heko Obi +1 (131/6240)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 617, 11280, 7); -- Linen Robe (617/11280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 2, 617, 11280, 7); -- Linen Robe (617/11280)
 
 -- Clothcraft / Novice
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 0); -- Soil Kyahan (1836/16560)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 0); -- Soil Kyahan +1 (1872/16560)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 1); -- Mist Tunic (3120/18720)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 2); -- Mist Mitts (1395/15120)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 3); -- Cloak (1748/16320)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 3); -- Cloak +1 (1794/16320)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 4); -- Soil Tekko (1584/15840)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 4); -- Soil Tekko +1 (1944/15840)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 5); -- Soil Sitabaki (2304/17520)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 5); -- Soil Sitabaki +1 (2664/17520)
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 6); -- Mist Slacks
-INSERT INTO `guild_item_points` VALUES (4, 0, 3, 0, 0, 7); -- Soil Hachimaki
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1836, 16560, 0); -- Soil Kyahan (1836/16560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1872, 16560, 0); -- Soil Kyahan +1 (1872/16560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 3120, 18720, 1); -- Mist Tunic (3120/18720)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1395, 15120, 2); -- Mist Mitts (1395/15120)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1748, 16320, 3); -- Cloak (1748/16320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1794, 16320, 3); -- Cloak +1 (1794/16320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1584, 15840, 4); -- Soil Tekko (1584/15840)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1944, 15840, 4); -- Soil Tekko +1 (1944/15840)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 2304, 17520, 5); -- Soil Sitabaki (2304/17520)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 2664, 17520, 5); -- Soil Sitabaki +1 (2664/17520)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 2460, 17760, 6); -- Mist Slacks (2460/17760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1116, 14160, 7); -- Soil Hachimaki (1116/14160)
+INSERT INTO `guild_item_points` VALUES (4, 0, 3, 1152, 14160, 7); -- Soil Hachimaki +1 (1152/14160)
 
 -- Clothcraft / Apprentice
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 0); -- Wool Bracers
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 1); -- Wool Socks
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 2); -- Wool Slops
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 3); -- Wool Cap
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 4); -- Wool Robe
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 5); -- Hemp Gorget
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 6); -- Wool Hose
-INSERT INTO `guild_item_points` VALUES (4, 0, 4, 0, 0, 7); -- Wool Cuffs
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 3440, 19200, 0); -- Wool Bracers (3440/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 4240, 19200, 0); -- Wool Bracers +1 (4240/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 3200, 18960, 1); -- Wool Socks (3200/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 4000, 18960, 1); -- Wool Socks +1 (4000/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 2108, 17280, 2); -- Wool Slops (2108/17280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 2448, 17280, 2); -- Wool Slops +1 (2448/17280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 1155, 14640, 3); -- Wool Cap (1155/14640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 1251, 14640, 3); -- Wool Cap +1 (1251/14640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 2584, 18000, 4); -- Wool Robe (2584/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 2584, 18000, 4); -- Wool Robe +1 (2584/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 180, 8400, 5); -- Hemp Gorget (180/8400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 320, 8400, 5); -- Hemp Gorget +1 (320/8400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 4800, 20160, 6); -- Wool Hose (4800/20160)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 4880, 20160, 6); -- Wool Hose (4880/20160)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 1462, 15600, 7); -- Wool Cuffs (1462/15600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 4, 1802, 15600, 7); -- Wool Cuffs +1 (1802/15600)
 
 -- Clothcraft / Journeyman
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 0); -- Black Mitts
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 1); -- Velvet Robe
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 2); -- Scarlet Ribbon
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 3); -- Red Cape
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 4); -- Black Slacks
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 5); -- Black Cape
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 6); -- Linen Doublet
-INSERT INTO `guild_item_points` VALUES (4, 0, 5, 0, 0, 7); -- Silver Obi
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2550, 18000, 0); -- Black Mitts (2550/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2720, 18000, 0); -- Black Mitts +1 (2720/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 4256, 19920, 1); -- Velvet Robe (4256/19920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 4816, 19920, 1); -- Velvet Robe +1 (4816/19920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 250, 9600, 2); -- Scarlet Ribbon (250/9600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 350, 9600, 2); -- Scarlet Ribbon +1 (350/9600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2178, 17520, 3); -- Red Cape (2178/17520)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2838, 17520, 3); -- Red Cape +1 (2838/17520)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 1150, 14640, 4); -- Black Slacks (1150/14640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 1342, 14640, 4); -- Black Slacks +1 (1342/14640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 1386, 15600, 5); -- Black Cape (1386/15600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 1806, 15600, 5); -- Black Cape +1 (1806/15600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2508, 18000, 6); -- Linen Doublet (2508/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 2552, 18000, 6); -- Linen Doublet +1 (2552/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 613, 12240, 7); -- Silver Obi (613/12240)
+INSERT INTO `guild_item_points` VALUES (4, 0, 5, 824, 12240, 7); -- Silver Obi +1 (824/12240)
 
 -- Clothcraft / Craftsman
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 0); -- Silk Coat
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 1); -- Silk Headband
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 2); -- White Slacks
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 3); -- Wool Doublet
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 4); -- Green Ribbon
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 5); -- White Cloak
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 6); -- Silk Slops
-INSERT INTO `guild_item_points` VALUES (4, 0, 6, 0, 0, 7); -- Velvet Cuffs
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 7030, 21360, 0); -- Silk Coat (7030/21360)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 7030, 21360, 0); -- Silk Coat +1 (7030/21360)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2280, 17760, 1); -- Silk Headband (2280/17760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2375, 17760, 1); -- Silk Headband +1 (2375/17760)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 5100, 20400, 2); -- White Slacks (5100/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 5950, 20400, 2); -- White Slacks (5950/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 4992, 20400, 3); -- Wool Doublet (4992/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 5632, 20400, 3); -- Wool Doublet +1 (5632/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2025, 17280, 4); -- Green Ribbon (2025/17280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2137, 17280, 4); -- Green Ribbon +1 (2137/17280)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 7650, 21600, 5); -- White Cloak (7650/21600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 7650, 21600, 5); -- White Cloak +1 (7650/21600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 5735, 20880, 6); -- Silk Slops (5735/20880)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 6660, 20880, 6); -- Silk Slops +1 (6660/20880)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2408, 18000, 7); -- Velvet Cuffs (2408/18000)
+INSERT INTO `guild_item_points` VALUES (4, 0, 6, 2968, 18000, 7); -- Velvet Cuffs (2968/18000)
 
 -- Clothcraft / Artisan
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 0); -- Green Beret
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 1); -- Silk Cloak
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 2); -- Shinobi Kyahan
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 3); -- Shinobi Tekko
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 4); -- Jester's Cape
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 5); -- Silk Mitts
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 6); -- Shinobi Hakama
-INSERT INTO `guild_item_points` VALUES (4, 0, 7, 0, 0, 7); -- Shinobi Tekko
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3055, 18960, 0); -- Green Beret (3055/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3250, 18960, 0); -- Green Beret +1 (3250/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 6375, 21120, 1); -- Silk Cloak (6375/21120)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 6500, 21120, 1); -- Silk Cloak +1 (6500/21120)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3382, 19200, 2); -- Shinobi Kyahan (3382/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 4207, 19200, 2); -- Shinobi Kyahan +1 (4207/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3630, 19200, 3); -- Shinobi Tekko (3630/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 4455, 19200, 3); -- Shinobi Tekko (4455/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3217, 18960, 4); -- Jester's Cape (3217/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 4192, 18960, 4); -- Jester's Cape +1 (4192/18960)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 4830, 20400, 5); -- Silk Mitts (4830/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 5980, 20400, 5); -- Silk Mitts +1 (5980/20400)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3465, 19200, 6); -- Shinobi Hakama (3465/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3547, 19200, 6); -- Shinobi Hakama +1 (3547/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 3630, 19440, 7); -- Shinobi Tekko (3630/19440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 7, 4455, 19440, 7); -- Shinobi Tekko +1 (4455/19440)
 
 -- Clothcraft / Adept
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 0); -- Arhat's Tekko
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 1); -- Rainbow Obi
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 2); -- Noble's Slacks
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 3); -- Rainbow Headband
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 4); -- Noble's Mitts
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 5); -- Arhat's Sune-Ate
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 6); -- Arhat's Hakama
-INSERT INTO `guild_item_points` VALUES (4, 0, 8, 0, 0, 7); -- Arhat's Jinpachi
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3225, 19200, 0); -- Arhat's Tekko (3225/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3762, 19200, 0); -- Arhat's Tekko +1 (3762/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3840, 19680, 1); -- Rainbow Obi (3840/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3840, 19680, 1); -- Rainbow Obi +1 (3840/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 7750, 21600, 2); -- Noble's Slacks (7750/21600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 9000, 21600, 2); -- Noble's Slacks +1 (9000/21600)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 5300, 20640, 3); -- Rainbow Headband (5300/20640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 5962, 20640, 3); -- Rainbow Headband +1 (5962/20640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 5590, 20640, 4); -- Noble's Mitts (5590/20640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 6880, 20640, 4); -- Noble's Mitts +1 (6880/20640)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3762, 19680, 5); -- Arhat's Sune-Ate (3762/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 4300, 19680, 5); -- Arhat's Sune-Ate +1 (4300/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 4300, 19920, 6); -- Arhat's Hakama (4300/19920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 4837, 19920, 6); -- Arhat's Hakama +1 (4837/19920)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3225, 19200, 7); -- Arhat's Jinpachi (3225/19200)
+INSERT INTO `guild_item_points` VALUES (4, 0, 8, 3762, 19200, 7); -- Arhat's Jinpachi +1 (3762/19200)
 
 -- Clothcraft / Veteran
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 0); -- Rasetsu Tekko
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 1); -- Rasetsu Hakama
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 2); -- Tarutaru Sash
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 3); -- Errant Slops
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 4); -- Errant Hat
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 5); -- Rasetsu Sune-Ate
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 6); -- Errant Cuffs
-INSERT INTO `guild_item_points` VALUES (4, 0, 9, 0, 0, 7); -- Rasetsu Jinpachi
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 15000, 22560, 0); -- Rasetsu Tekko (15000/22560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 16250, 22560, 0); -- Rasetsu Tekko +1 (16250/22560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 12375, 22320, 1); -- Rasetsu Hakama (12375/22320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 13625, 22320, 1); -- Rasetsu Hakama +1 (13625/22320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 3600, 19440, 2); -- Tarutaru Sash (3600/19440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 4200, 19440, 2); -- Tarutaru Sash +1 (4200/19440)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 3750, 19680, 3); -- Errant Slops (3750/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 5000, 19680, 3); -- Errant Slops +1 (5000/19680)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 4500, 20160, 4); -- Errant Hat (4500/20160)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 5750, 20160, 4); -- Errant Hat +1 (5750/20160)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 12000, 22320, 5); -- Rasetsu Sune-Ate (12000/22320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 13250, 22320, 5); -- Rasetsu Sune-Ate +1 (13250/22320)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 6875, 21360, 6); -- Errant Cuffs (6875/21360)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 8125, 21360, 6); -- Errant Cuffs (8125/21360)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 13750, 22560, 7); -- Rasetsu Jinpachi (13750/22560)
+INSERT INTO `guild_item_points` VALUES (4, 0, 9, 15000, 22560, 7); -- Rasetsu Jinpachi (15000/22560)
 
 -- Leathercraft / Amateur
 INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 0); -- Leather Vest
