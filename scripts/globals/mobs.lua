@@ -7,6 +7,9 @@ require("scripts/globals/status")
 require("scripts/globals/zone")
 -----------------------------------
 
+dsp = dsp or {}
+dsp.mob = dsp.mob or {}
+
 -- onMobDeathEx is called from the core
 function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
     -- Things that happen only to the person who landed killing blow
@@ -46,7 +49,7 @@ local function lotteryPrimed(phList)
 end
 
 -- potential lottery placeholder was killed
-function phOnDespawn(ph, phList, chance, cooldown, immediate)
+dsp.mob.phOnDespawn = function(ph, phList, chance, cooldown, immediate)
     if type(immediate) ~= "boolean" then immediate = false end
 
     local phId = ph:getID()
@@ -81,4 +84,3 @@ function phOnDespawn(ph, phList, chance, cooldown, immediate)
 
     return false
 end
-

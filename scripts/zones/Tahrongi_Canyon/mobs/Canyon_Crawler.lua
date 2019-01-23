@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.HERBAGE_HUNTER_PH,10,math.random(3600,7200)) -- 1 to 2 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.HERBAGE_HUNTER_PH,10,math.random(3600,7200)) -- 1 to 2 hours
 end

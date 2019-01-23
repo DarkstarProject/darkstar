@@ -14,6 +14,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.RHOITOS_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
-    phOnDespawn(mob,ID.mob.POLYBOTES_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
+    dsp.mob.phOnDespawn(mob,ID.mob.RHOITOS_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
+    dsp.mob.phOnDespawn(mob,ID.mob.POLYBOTES_PH,5,math.random(7200,14400)); -- 2 to 4 hours (could not find info, so using Ogygos' cooldown)
 end;

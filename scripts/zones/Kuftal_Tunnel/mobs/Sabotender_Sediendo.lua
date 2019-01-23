@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.SABOTENDER_MARIACHI_PH,5,math.random(10800,28800)); -- 3 to 8 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.SABOTENDER_MARIACHI_PH,5,math.random(10800,28800)); -- 3 to 8 hours
 end;
