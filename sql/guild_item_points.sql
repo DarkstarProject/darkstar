@@ -1004,104 +1004,184 @@ INSERT INTO `guild_item_points` VALUES (5, 0, 9, 2500, 18240, 7); -- Errant Piga
 INSERT INTO `guild_item_points` VALUES (5, 0, 9, 3750, 18240, 7); -- Errant Pigaches +1 (3750/18240)
 
 -- Bonecraft / Amateur
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 0); -- Bone Hairpin
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 1); -- Shell Ring
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 2); -- Bone Hairpin
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 3); -- Shell Earring
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 4); -- Shell Ring
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 5); -- Cat Baghnakhs
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 6); -- Cat Baghnakhs
-INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 7); -- Shell Earring
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 112, 5040, 0); -- Bone Hairpin (112/5040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 187, 5040, 0); -- Bone Hairpin +1 (187/5040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 151, 5760, 1); -- Shell Ring (151/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 212, 5760, 1); -- Shell Ring +1 (212/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 112, 5040, 2); -- Bone Hairpin (112/5040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 187, 5040, 2); -- Bone Hairpin +1 (187/5040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 151, 5760, 3); -- Shell Earring (151/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 212, 5760, 3); -- Shell Earring +1 (212/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 151, 5760, 4); -- Shell Ring (151/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 212, 5760, 4); -- Shell Ring +1 (212/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 29, 3840, 5); -- Cat Baghnakhs (29/3840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 35, 3840, 5); -- Cat Baghnakhs +1 (35/3840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 29, 3840, 6); -- Cat Baghnakhs (29/3840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 35, 3840, 6); -- Cat Baghnakhs +1 (35/3840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 151, 5760, 7); -- Shell Earring (151/5760)
+INSERT INTO `guild_item_points` VALUES (6, 0, 0, 212, 5760, 7); -- Shell Earring +1 (212/5760)
 
 -- Bonecraft / Recruit
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 0); -- Bone Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 1); -- Bone Mask
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 2); -- Fang Necklace
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 3); -- Bone Mask
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 4); -- Fang Necklace
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 5); -- Bone Ring
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 6); -- Bone Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 1, 0, 0, 7); -- Bone Earring
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 544, 10320, 0); -- Bone Mittens (544/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 664, 10320, 0); -- Bone Mittens +1 (664/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 652, 11280, 1); -- Bone Mask (652/11280)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 773, 11280, 1); -- Bone Mask +1 (773/11280)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 141, 6240, 2); -- Fang Necklace (141/6240)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 235, 6240, 2); -- Spike Necklace (235/6240)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 652, 11280, 3); -- Bone Mask (652/11280)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 773, 11280, 3); -- Bone Mask +1 (773/11280)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 141, 6240, 4); -- Fang Necklace (141/6240)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 235, 6240, 4); -- Spike Necklace (235/6240)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 302, 8160, 5); -- Bone Ring (302/8160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 423, 8160, 5); -- Bone Ring +1 (423/8160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 544, 10320, 6); -- Bone Mittens (544/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 664, 10320, 6); -- Bone Mittens +1 (664/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 302, 8160, 7); -- Bone Earring (302/8160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 1, 423, 8160, 7); -- Bone Earring +1 (423/8160)
 
 -- Bonecraft / Initiate
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 0); -- Bone Harness
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 1); -- Horn Hairpin
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 2); -- Bone Leggings
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 3); -- Gemshorn
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 4); -- Bone Pick
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 5); -- Bone Subligar
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 6); -- Beetle Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 2, 0, 0, 7); -- Bone Axe
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 362, 9120, 0); -- Bone Harness (362/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 374, 9120, 0); -- Bone Harness +1 (374/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 950, 13200, 1); -- Horn Hairpin (950/13200)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 988, 13200, 1); -- Horn Hairpin +1 (988/13200)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 495, 10320, 2); -- Bone Leggings (495/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 616, 10320, 2); -- Bone Leggings +1 (616/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 860, 12720, 3); -- Gemshorn (860/12720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 1032, 12720, 3); -- Gemshorn +1 (1032/12720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 362, 9120, 4); -- Bone Pick (362/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 374, 9120, 4); -- Bone Pick +1 (374/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 362, 9120, 5); -- Bone Subligar (362/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 374, 9120, 5); -- Bone Subligar +1 (374/9120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 282, 8400, 6); -- Beetle Mittens (282/8400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 306, 8400, 6); -- Beetle Mittens +1 (306/8400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 205, 7680, 7); -- Bone Axe (205/7680)
+INSERT INTO `guild_item_points` VALUES (6, 0, 2, 317, 7680, 7); -- Bone Axe +1 (317/7680)
 
 -- Bonecraft / Novice
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 0); -- Horn Ring
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 1); -- Bone Cudgel
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 2); -- Beetle Leggings
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 3); -- Beetle Harness
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 4); -- Beetle Subligar
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 5); -- Turtle Shield
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 6); -- Shade Leggings
-INSERT INTO `guild_item_points` VALUES (6, 0, 3, 0, 0, 7); -- Beetle Gorget
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 1200, 14400, 0); -- Horn Ring (1200/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 1680, 14400, 0); -- Horn Ring +1 (1680/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 768, 12480, 1); -- Bone Cudgel (768/12480)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 1088, 12480, 1); -- Bone Cudgel +1 (1088/12480)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 966, 13440, 2); -- Beetle Leggings (966/13440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 1202, 13440, 2); -- Beetle Leggings +1 (1202/13440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 471, 10560, 3); -- Beetle Harness (471/10560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 495, 10560, 3); -- Beetle Harness +1 (495/10560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 471, 10560, 4); -- Beetle Subligar (471/10560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 495, 10560, 4); -- Beetle Subligar +1 (495/10560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 615, 11520, 5); -- Turtle Shield (615/11520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 735, 11520, 5); -- Turtle Shield +1 (735/11520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 3797, 19440, 6); -- Shade Leggings (3797/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 3989, 19440, 6); -- Shade Leggings +1 (3989/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 448, 10320, 7); -- Beetle Gorget (448/10320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 3, 542, 10320, 7); -- Beetle Gorget +1 (542/10320)
 
 -- Bonecraft / Apprentice
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 0); -- Horn
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 1); -- Carapace Subligar
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 2); -- Carapace Ring
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 3); -- Carapace Leggings
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 4); -- Carapace Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 5); -- Carapace Mask
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 6); -- Carapace Gorget
-INSERT INTO `guild_item_points` VALUES (6, 0, 4, 0, 0, 7); -- Bone Knife
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 780, 12960, 0); -- Horn (780/12960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 840, 12960, 0); -- Horn +1 (840/12960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1540, 15840, 1); -- Carapace Subligar (1540/15840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1610, 15840, 1); -- Carapace Subligar +1 (1610/15840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1812, 16560, 2); -- Carapace Ring (1812/16560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 2537, 16560, 2); -- Carapace Ring +1 (2537/16560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1470, 15600, 3); -- Carapace Leggings (1470/15600)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1540, 15600, 3); -- Carapace Leggings +1 (1540/15600)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1050, 14160, 4); -- Carapace Mittens (1050/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1120, 14160, 4); -- Carapace Mittens +1 (1120/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1050, 14160, 5); -- Carapace Mask (1050/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 1120, 14160, 5); -- Carapace Mask +1 (1120/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 2310, 17520, 6); -- Carapace Gorget (2310/17520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 3010, 17520, 6); -- Carapace Gorget +1 (3010/17520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 750, 12720, 7); -- Bone Knife (750/12720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 4, 825, 12720, 7); -- Bone Knife +1 (825/12720)
 
 -- Bonecraft / Journeyman
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 0); -- Bone Scythe
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 1); -- Blood Stone
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 2); -- Bandit's Gun
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 3); -- Tortoise Earring
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 4); -- Shell Hairpin
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 5); -- Turtle Bangles
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 6); -- Beetle Knife
-INSERT INTO `guild_item_points` VALUES (6, 0, 5, 0, 0, 7); -- Bone Rod
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 825, 13440, 0); -- Bone Scythe (825/13440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 907, 13440, 0); -- Bone Scythe +1 (907/13440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 450, 11040, 1); -- Scorpion Ring (450/11040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 600, 11040, 1); -- Scorpion Ring +1 (600/11040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 2000, 17040, 2); -- Bandit's Gun (2000/17040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 2100, 17040, 2); -- Bandit's Gun +1 (2100/17040)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 1750, 16560, 3); -- Tortoise Earring (1750/16560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 2450, 16560, 3); -- Tortoise Earring +1 (2450/16560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 750, 12960, 4); -- Shell Hairpin (750/12960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 850, 12960, 4); -- Shell Hairpin +1 (850/12960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 3332, 18960, 5); -- Turtle Bangles (3332/18960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 4107, 18960, 5); -- Turtle Bangles (4107/18960)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 1025, 14160, 6); -- Beetle Knife (1025/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 1127, 14160, 6); -- Beetle Knife +1 (1127/14160)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 1122, 14640, 7); -- Bone Rod (1122/14640)
+INSERT INTO `guild_item_points` VALUES (6, 0, 5, 1122, 14640, 7); -- Bone Rod +1 (1122/14640)
 
 -- Bonecraft / Craftsman
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 0); -- Crumhorn
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 1); -- Scorpion Subligar
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 2); -- Pirate's Gun
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 3); -- Scorpion Leggings
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 4); -- Scorpion Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 5); -- Scorpion Mask
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 6); -- Bone Patas
-INSERT INTO `guild_item_points` VALUES (6, 0, 6, 0, 0, 7); -- Fang Earring
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1845, 16800, 0); -- Crumhorn (1845/16800)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1947, 16800, 0); -- Crumhorn +1 (1947/16800)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1575, 16080, 1); -- Scorpion Subligar (1575/16080)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1680, 16080, 1); -- Scorpion Subligar +1 (1680/16080)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 4320, 19920, 2); -- Pirate's Gun (4320/19920)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 4352, 19920, 2); -- Pirate's Gun +1 (4352/19920)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1575, 16080, 3); -- Scorpion Leggings (1575/16080)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1680, 16080, 3); -- Scorpion Leggings +1 (1680/16080)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1050, 14400, 4); -- Scorpion Mittens (1050/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1155, 14400, 4); -- Scorpion Mittens +1 (1155/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1050, 14400, 5); -- Scorpion Mask (1050/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1150, 14400, 5); -- Scorpion Mask +1 (1150/14400)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1230, 15120, 6); -- Bone Patas (1230/15120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 1332, 15120, 6); -- Bone Patas +1 (1332/15120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 2500, 18000, 7); -- Fang Earring (2500/18000)
+INSERT INTO `guild_item_points` VALUES (6, 0, 6, 3500, 18000, 7); -- Fang Earring +1 (3500/18000)
 
 -- Bonecraft / Artisan
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 0); -- Coral Cap
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 1); -- Coral Gorget
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 2); -- Coral Cuisses
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 3); -- Coral Visor
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 4); -- Coral Mittens
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 5); -- Coral Hairpin
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 6); -- Tigerfangs
-INSERT INTO `guild_item_points` VALUES (6, 0, 7, 0, 0, 7); -- Hornet Fleuret
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 2992, 18720, 0); -- Coral Cap (2992/18720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3150, 18720, 0); -- Coral Cap +1 (3150/18720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 1560, 16320, 1); -- Coral Gorget (1560/16320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 1690, 16320, 1); -- Coral Gorget +1 (1690/16320)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 4375, 19920, 2); -- Coral Cuisses (4375/19920)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 4500, 19920, 2); -- Coral Cuisses +1 (4500/19920)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3000, 18720, 3); -- Coral Visor (3000/18720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3120, 18720, 3); -- Coral Visor +1 (3120/18720)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 6412, 21120, 4); -- Coral Mittens (6412/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 6412, 21120, 4); -- Coral Mittens +1 (6412/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3262, 19200, 5); -- Coral Hairpin (3262/19200)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3375, 19200, 5); -- Coral Hairpin +1 (3375/19200)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3625, 19440, 6); -- Tigerfangs (3625/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3770, 19440, 6); -- Tigerfangs +1 (3770/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3840, 19680, 7); -- Hornet Fleuret (3840/19680)
+INSERT INTO `guild_item_points` VALUES (6, 0, 7, 3960, 19680, 7); -- Hornet Fleuret +1 (3960/19680)
 
 -- Bonecraft / Adept
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 0); -- Dragon Mask
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 1); -- Coral Bangles
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 2); -- Dragon Cuisses
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 3); -- Dragon Greaves
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 4); -- Dragon Finger Gauntlets
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 5); -- Coral Earring
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 6); -- Coral Sword
-INSERT INTO `guild_item_points` VALUES (6, 0, 8, 0, 0, 7); -- Darksteel Shield
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 7840, 21600, 0); -- Dragon Mask (7840/21600)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 8120, 21600, 0); -- Dragon Mask +1 (8120/21600)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 3600, 19440, 1); -- Coral Bangles (3600/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 4162, 19440, 1); -- Coral Bangles +1 (4162/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 9487, 21840, 2); -- Dragon Cuisses (9487/21840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 9762, 21840, 2); -- Dragon Cuisses +1 (9762/21840)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 6090, 20880, 3); -- Dragon Greaves (6090/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 7200, 20880, 3); -- Dragon Greaves +1 (7200/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 6900, 21360, 4); -- Dragon Finger Gauntlets (6900/21360)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 7200, 21360, 4); -- Dragon Finger Gauntlets +1 (7200/21360)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 3750, 19680, 5); -- Coral Earring (3750/19680)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 5250, 19680, 5); -- Coral Earring (5250/19680)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 16280, 22800, 6); -- Coral Sword (16280/22800)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 16280, 22800, 6); -- Coral Sword +1 (16280/22800)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 5400, 20640, 7); -- Darksteel Shield (5400/20640)
+INSERT INTO `guild_item_points` VALUES (6, 0, 8, 5400, 20640, 7); -- Darksteel Shield +1 (5400/20640)
 
 -- Bonecraft / Veteran
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 0); -- Gavial Finger Gauntlets
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 1); -- Scorpion Gauntlets
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 2); -- Carapace Gauntlets
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 3); -- Scorpion Helm
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 4); -- Carapace Helm
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 5); -- Carapace Breastplate
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 6); -- Scorpion Breastplate
-INSERT INTO `guild_item_points` VALUES (6, 0, 9, 0, 0, 7); -- Demon Helm
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 2000, 17520, 0); -- Gavial Finger Gauntlets (2000/17520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 2625, 17520, 0); -- Gavial Finger Gauntlets (2625/17520)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 5940, 20880, 1); -- Scorpion Gauntlets (5940/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 7040, 20880, 1); -- Scorpion Gauntlets +1 (7040/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 5850, 20880, 2); -- Carapace Gauntlets (5850/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 6825, 20880, 2); -- Carapace Gauntlets +1 (6825/20880)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 6490, 21120, 3); -- Scorpion Helm (6490/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 7590, 21120, 3); -- Scorpion Helm +1 (7590/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 6337, 21120, 4); -- Carapace Helm (6337/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 7312, 21120, 4); -- Carapace Helm +1 (7312/21120)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 13455, 22560, 5); -- Carapace Breastplate (13455/22560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 14430, 22560, 5); -- Carapace Breastplate +1 (14430/22560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 13860, 22560, 6); -- Scorpion Breastplate (13860/22560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 14960, 22560, 6); -- Scorpion Breastplate +1 (14960/22560)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 3570, 19440, 7); -- Demon Helm (3570/19440)
+INSERT INTO `guild_item_points` VALUES (6, 0, 9, 4845, 19440, 7); -- Demon Helm +1 (4845/19440)
 
 -- Alchemy / Amateur
 INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 0); -- Deodorizer
