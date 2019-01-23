@@ -825,104 +825,183 @@ INSERT INTO `guild_item_points` VALUES (4, 0, 9, 13750, 22560, 7); -- Rasetsu Ji
 INSERT INTO `guild_item_points` VALUES (4, 0, 9, 15000, 22560, 7); -- Rasetsu Jinpachi (15000/22560)
 
 -- Leathercraft / Amateur
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 0); -- Leather Vest
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 1); -- Leather Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 2); -- Vagabond's Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 3); -- Leather Highboots
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 4); -- Leather Bandana
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 5); -- Rabbit Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 6); -- Vagabond's Boots
-INSERT INTO `guild_item_points` VALUES (5, 0, 0, 0, 0, 7); -- Cesti
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 92, 4800, 0); -- Leather Vest (92/4800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 153, 4800, 0); -- Leather Vest +1 (153/4800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 90, 4800, 1); -- Leather Gloves (90/4800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 110, 4800, 1); -- Leather Gloves (110/4800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 63, 4320, 2); -- Vagabond's Gloves (63/4320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 71, 4320, 2); -- Vagabond's Gloves +1 (71/4320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 84, 4560, 3); -- Leather Highboots (84/4560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 104, 4560, 3); -- Leather Highboots +1 (104/4560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 52, 4080, 4); -- Leather Bandana (52/4080)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 120, 4080, 4); -- Leather Bandana +1 (120/4080)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 134, 5520, 5); -- Leather Trousers (134/5520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 154, 5520, 5); -- Leather Trousers +1 (154/5520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 63, 4320, 6); -- Vagabond's Boots (63/4320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 71, 4320, 6); -- Vagabond's Boots +1 (71/4320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 24, 3600, 7); -- Cesti (24/3600)
+INSERT INTO `guild_item_points` VALUES (5, 0, 0, 32, 3600, 7); -- Cesti +1 (32/3600)
 
 -- Leathercraft / Recruit
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 0); -- Solea
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 1); -- Lizard Helm
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 2); -- Leather Belt
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 3); -- Lizard Cesti
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 4); -- Lizard Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 5); -- Fisherman's Boots
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 6); -- Lizard Jerkin
-INSERT INTO `guild_item_points` VALUES (5, 0, 1, 0, 0, 7); -- Fisherman's Gloves
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 121, 6000, 0); -- Solea (121/6000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 152, 6000, 0); -- Solea +1 (152/6000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 177, 6270, 1); -- Lizard Helm (177/6270)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 177, 6270, 1); -- Lizard Helm +1 (177/6270)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 85, 5520, 2); -- Leather Belt (85/5520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 111, 5520, 2); -- Leather Belt +1 (111/5520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 252, 7680, 3); -- Lizard Cesti (252/7680)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 333, 7680, 3); -- Lizard Cesti +1 (333/7680)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 81, 5280, 4); -- Lizard Mantle (81/5280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 95, 5280, 4); -- Lizard Mantle +1 (95/5280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 180, 6720, 5); -- Fisherman's Boots (180/6720)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 519, 6720, 5); -- Fisherman's Boots +1 (519/6720)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 245, 7440, 6); -- Lizard Jerkin (245/7440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 259, 7440, 6); -- Lizard Jerkin +1 (259/7440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 360, 8640, 7); -- Fisherman's Gloves (360/8640)
+INSERT INTO `guild_item_points` VALUES (5, 0, 1, 360, 8640, 7); -- Fisherman's Gloves +1 (360/8640)
 
 -- Leathercraft / Initiate
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 0); -- Studded Bandana
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 1); -- Studded Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 2); -- Chocobo Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 3); -- Dhalmel Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 4); -- Warrior's Belt
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 5); -- Chocobo Boots
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 6); -- Sandals
-INSERT INTO `guild_item_points` VALUES (5, 0, 2, 0, 0, 7); -- Leather Ring
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 1102, 13920, 0); -- Studded Bandana (1102/13920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 1140, 13920, 0); -- Studded Bandana +1 (1140/13920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 1710, 16090, 1); -- Studded Gloves (1710/16090)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 2090, 16090, 1); -- Studded Gloves +1 (2090/16090)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 519, 10560, 2); -- Chocobo Gloves (519/10560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 570, 10560, 2); -- Chocobo Gloves +1 (570/10560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 552, 10800, 3); -- Dhalmel Mantle (552/10800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 706, 10800, 3); -- Dhalmel Mantle +1 (706/10800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 330, 8880, 4); -- Warrior's Belt (330/8880)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 400, 8880, 4); -- Warrior's Belt +1 (400/8880)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 519, 10560, 5); -- Chocobo Boots (519/10560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 570, 10560, 5); -- Chocobo Boots +1 (570/10560)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 748, 12000, 6); -- Sandals (748/12000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 939, 12000, 6); -- Sandals +1 (939/12000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 250, 8160, 7); -- Leather Ring (250/8160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 2, 350, 8160, 7); -- Leather Ring (350/8160)
 
 -- Leathercraft / Novice
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 0); -- Mist Pumps
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 1); -- Wolf Gorget
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 2); -- Wolf Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 3); -- Leather Gorget
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 4); -- Shoes
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 5); -- Magic Belt
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 6); -- Cuir Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 3, 0, 0, 7); -- Studded Vest
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1305, 14880, 0); -- Mist Pumps (1305/14880)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 608, 11520, 1); -- Wolf Gorget (608/11520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 684, 11520, 1); -- Wolf Gorget (684/11520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1224, 14640, 2); -- Wolf Mantle (1224/14640)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1564, 14640, 2); -- Wolf Mantle +1 (1564/14640)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 665, 12000, 3); -- Field Boots (665/12000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1140, 12000, 3); -- Field Boots +1 (1140/12000)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1104, 14160, 4); -- Shoes (1104/14160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1196, 14160, 4); -- Shoes +1 (1196/14160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 506, 10800, 5); -- Magic Belt (506/10800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 660, 10800, 5); -- Magic Belt +1 (660/10800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1624, 15840, 6); -- Cuir Gloves (1624/15840)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 1680, 15840, 6); -- Cuir Gloves +1 (1680/15840)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 2280, 17520, 7); -- Studded Vest (2280/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 3, 2318, 17520, 7); -- Studded Vest +1 (2318/17520)
 
 -- Leathercraft / Apprentice
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 0); -- Corsette
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 1); -- Ram Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 2); -- Cuir Highboots
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 3); -- Cuir Bouilli
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 4); -- Waistbelt
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 5); -- Cuir Trousers
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 6); -- Chocobo Jack Coat
-INSERT INTO `guild_item_points` VALUES (5, 0, 4, 0, 0, 7); -- Barbarian's Belt
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 3250, 18960, 0); -- Corsette (3250/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 3750, 18960, 0); -- Corsette +1 (3750/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 900, 13440, 1); -- Ram Mantle (900/13440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1000, 13440, 1); -- Ram Mantle +1 (1000/13440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1736, 16320, 2); -- Cuir Highboots (1736/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1792, 16320, 2); -- Cuir Highboots +1 (1792/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1960, 16800, 3); -- Cuir Bouilli (1960/16800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 2072, 16800, 3); -- Cuir Bouilli +1 (2072/16800)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1680, 16080, 4); -- Waistbelt (1680/16080)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1740, 16080, 4); -- Waistbelt +1 (1740/16080)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1008, 13920, 5); -- Cuir Trousers (1008/13920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1232, 13920, 5); -- Cuir Trousers +1 (1232/13920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1297, 15120, 6); -- Chocobo Jack Coat (1297/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 1349, 15120, 6); -- Chocobo Jack Coat +1 (1349/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 506, 11280, 7); -- Barbarian's Belt (506/11280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 4, 660, 11280, 7); -- Barbarian's Belt (660/11280)
 
 -- Leathercraft / Journeyman
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 0); -- Raptor Helm
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 1); -- Raptor Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 2); -- Himantes
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 3); -- Raptor Ledelsens
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 4); -- Raptor Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 5); -- Raptor Trousers
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 6); -- Desert Boots
-INSERT INTO `guild_item_points` VALUES (5, 0, 5, 0, 0, 7); -- Leather Shield
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 2240, 17520, 0); -- Raptor Helm (2240/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 2400, 17520, 0); -- Raptor Helm +1 (2400/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 3600, 19200, 1); -- Raptor Gloves (3600/19200)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 3760, 19200, 1); -- Raptor Gloves +1 (3760/19200)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1140, 14640, 2); -- Himantes (1140/14640)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1720, 14640, 2); -- Himantes +1 (1720/14640)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 3360, 18960, 3); -- Raptor Ledelsens (3360/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 4160, 18960, 3); -- Raptor Ledelsens +1 (4160/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1280, 15120, 4); -- Raptor Mantle (1280/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1440, 15120, 4); -- Raptor Mantle +1 (1440/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 2160, 17280, 5); -- Raptor Trousers (2160/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 2320, 17280, 5); -- Raptor Trousers +1 (2320/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1700, 16320, 6); -- Moccasins (1700/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1785, 16320, 6); -- Moccasins +1 (1785/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1280, 15120, 7); -- Leather Shield (1280/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 5, 1360, 15120, 7); -- Leather Shield +1 (1360/15120)
 
 -- Leathercraft / Craftsman
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 0); -- Beak Helm
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 1); -- Beak Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 2); -- Beak Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 3); -- Battle Boots
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 4); -- Beak Trousers
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 5); -- Beak Ledelsens
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 6); -- Beak Jerkin
-INSERT INTO `guild_item_points` VALUES (5, 0, 6, 0, 0, 7); -- Hard Leather Ring
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 2687, 18240, 0); -- Beak Helm (2687/18240)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 2795, 18240, 0); -- Beak Helm +1 (2795/18240)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 3600, 19200, 1); -- Beak Gloves (3600/19200)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 3760, 19200, 1); -- Beak Gloves +1 (3760/19200)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 1612, 16320, 2); -- Beak Mantle (1612/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 1720, 16320, 2); -- Beak Mantle +1 (1720/16320)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 2860, 18480, 3); -- Battle Boots (2860/18480)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 3190, 18480, 3); -- Battle Boots +1 (3190/18480)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 3225, 18960, 4); -- Beak Trousers (3225/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 3225, 18960, 4); -- Beak Trousers +1 (3225/18960)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 4515, 20160, 5); -- Beak Ledelsens (4515/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 4622, 20160, 5); -- Beak Ledelsens +1 (4622/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 2150, 17520, 6); -- Beak Jerkin (2150/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 2150, 17520, 6); -- Beak Jerkin +1 (2150/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 770, 13200, 7); -- Hard Leather Ring (770/13200)
+INSERT INTO `guild_item_points` VALUES (5, 0, 6, 880, 13200, 7); -- Hard Leather Ring +1 (880/13200)
 
 -- Leathercraft / Artisan
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 0); -- Silk Pumps
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 1); -- Tiger Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 2); -- Coeurl Cesti
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 3); -- Tiger Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 4); -- Battle Hose
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 5); -- Tiger Trousers
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 6); -- Black Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 7, 0, 0, 7); -- Swordbelt
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 4485, 20160, 0); -- Silk Pumps (4485/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 5635, 20160, 0); -- Silk Pumps +1 (5635/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 1912, 17040, 1); -- Tiger Gloves (1912/17040)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2040, 17040, 1); -- Tiger Gloves +1 (2040/17040)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 1980, 17280, 2); -- Coeurl Cesti (1980/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2070, 17280, 2); -- Coeurl Cesti +1 (2070/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 1250, 15360, 3); -- Tiger Mantle (1250/15360)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 1375, 15360, 3); -- Tiger Mantle +1 (1375/15360)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 3680, 19440, 4); -- Battle Hose (3680/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 3795, 19440, 4); -- Battle Hose (3795/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2040, 17280, 5); -- Tiger Trousers (2040/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2160, 17280, 5); -- Tiger Trousers +1 (2160/17280)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2200, 17520, 6); -- Black Mantle (2200/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 3300, 17520, 6); -- Black Mantle +1 (3300/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2178, 17520, 7); -- Swordbelt (2178/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 7, 2838, 17520, 7); -- Swordbelt (2838/17520)
 
 -- Leathercraft / Adept
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 0); -- Ogre Jerkin
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 1); -- Ogre Mask
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 2); -- Coeurl Mantle
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 3); -- Koenigs Belt
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 4); -- Ogre Ledelsens
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 5); -- Coeurl Mask
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 6); -- Ogre Gloves
-INSERT INTO `guild_item_points` VALUES (5, 0, 8, 0, 0, 7); -- Ogre Trousers
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4560, 20160, 0); -- Ogre Jerkin (4560/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 5760, 20160, 0); -- Ogre Jerkin +1 (5760/20160)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4200, 19920, 1); -- Ogre Mask (4200/19920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 5400, 19920, 1); -- Ogre Mask +1 (5400/19920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 2100, 17520, 2); -- Coeurl Mantle (2100/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 2800, 17520, 2); -- Coeurl Mantle +1 (2800/17520)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4785, 20400, 3); -- Koenigs Belt (4785/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 6235, 20400, 3); -- Koenigs Belt +1 (6235/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 5040, 20400, 4); -- Ogre Ledelsens (5040/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 6240, 20400, 4); -- Ogre Ledelsens +1 (6240/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 3500, 19440, 5); -- Coeurl Mask (3500/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4200, 19440, 5); -- Coeurl Mask +1 (4200/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 3600, 19440, 6); -- Ogre Gloves (3600/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4800, 19440, 6); -- Ogre Gloves +1 (4800/19440)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 4800, 20400, 7); -- Ogre Trousers (4800/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 8, 6000, 20400, 7); -- Ogre Trousers +1 (6000/20400)
 
 -- Leathercraft / Veteran
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 0); -- Bison Gamashes
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 1); -- Bison Kecks
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 2); -- Cardinal Vest
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 3); -- Bison Wristbands
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 4); -- Tiger Mask
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 5); -- Barone Cosciales
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 6); -- Tiger Mask
-INSERT INTO `guild_item_points` VALUES (5, 0, 9, 0, 0, 7); -- Errant Pigaches
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 6492, 21120, 0); -- Bison Gamashes (6492/21120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 7717, 21120, 0); -- Bison Gamashes +1 (7717/21120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 6247, 21120, 1); -- Bison Kecks (6247/21120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 7472, 21120, 1); -- Bison Kecks +1 (7472/21120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 4800, 20400, 2); -- Cardinal Vest (4800/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 6000, 20400, 2); -- Cardinal Vest +1 (6000/20400)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 4042, 19920, 3); -- Bison Wristbands (4042/19920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 5267, 19920, 3); -- Bison Wristbands +1 (5267/19920)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 1080, 15120, 4); -- Tiger Mask (1080/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 2280, 15120, 4); -- Tiger Mask +1 (2280/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 6737, 21360, 5); -- Barone Cosciales (6737/21360)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 6737, 21360, 5); -- Barone Cosciales +1 (6737/21360)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 1080, 15120, 6); -- Tiger Mask (1080/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 2280, 15120, 6); -- Tiger Mask +1 (2280/15120)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 2500, 18240, 7); -- Errant Pigaches (2500/18240)
+INSERT INTO `guild_item_points` VALUES (5, 0, 9, 3750, 18240, 7); -- Errant Pigaches +1 (3750/18240)
 
 -- Bonecraft / Amateur
 INSERT INTO `guild_item_points` VALUES (6, 0, 0, 0, 0, 0); -- Bone Hairpin
