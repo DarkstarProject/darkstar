@@ -33,6 +33,13 @@ dsp.quests.enums =
         SERVER_VAR = 3,
     },
 
+    quest_status =
+    {
+        QUEST_AVAILABLE = 0,
+        QUEST_ACCEPTED  = 1,
+        QUEST_COMPLETED = 2,
+    },
+
     quest_ids =
     {
         sandoria =
@@ -597,7 +604,7 @@ dsp.quests.check = function(player, params)
                 }
                 exitLoop = checks[params.check_type](player, params)
                 player:setLocalVar("[quests]cycle", i)
-                print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
+                --print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
                 if exitLoop then
                     return true
                 end
@@ -608,6 +615,60 @@ dsp.quests.check = function(player, params)
         end
     end
     return false
+end
+
+dsp.quests.checkRequirements = function(player, quest)
+    local quest_status_check = player:getQuestStatus(quest.area, quest.quest_id)
+
+    if quest_status_check == dsp.quests.enums.quest_status.QUEST_AVAILABLE
+    or (quest_status_check == dsp.quests.enums.quest_status.QUEST_COMPLETED and quest.repeatable) then
+        -- Check all required quests
+        if quest.requirements.quests then
+            for i, required_quest in ipairs(quest.requirements.quests) do
+                local required_quest_status = player:getQuestStatus(required_quest.area, required_quest.quest_id)
+                if required_quest_status ~= dsp.quests.enums.quest_status.QUEST_COMPLETED then
+                -- or (required_quest.stage and (dsp.quests.getStage(player, required_quest) < required_quest.stage)) then -- getStage requires a full quest table
+                    return false
+                end
+            end
+        end
+        -- Check all required missions
+        if quest.requirements.missions then
+            for i, required_mission in ipairs(quest.requirements.missions) do
+                if player:getCurrentMission(required_mission.mission_log) < required_mission.mission_id then
+                -- or (required_mission.stage and (dsp.quests.getStage(player, required_mission) < required_mission.stage)) then -- getStage requires a full quest table
+                    return false
+                end
+            end
+        end
+        -- Check if player possesses all required key items to start quest
+        if quest.requirements.key_items then
+            for i, required_key_item in ipairs(quest.requirements.key_items) do
+                if not player:hasKeyItem(required_key_item) then
+                    return false
+                end
+            end
+        end
+        -- Check fame requirement
+        if quest.requirements.fame then
+            if player:getFameLevel(quest.requirements.fame.area) < quest.requirements.fame.level then
+                return false
+            end
+        end
+        -- Make sure player is on the right job, if applicable
+        if quest.requirements.main_job and (player:getMainJob() ~= quest.requirements.main_job) then
+            return false
+        end
+        -- Finally, make sure the player is high enough level
+        if quest.requirements.level and (player:getMainLvl() < quest.requirements.level) then
+            return false 
+        end
+
+        -- We haven't failed any of the requirement checks, so we must meet the quest's requirements
+        return true
+    else
+        return false
+    end
 end
 
 dsp.quests.onTrade = function(player, npc, trade, quest_table)

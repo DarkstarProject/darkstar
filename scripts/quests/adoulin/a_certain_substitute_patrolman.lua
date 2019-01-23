@@ -29,16 +29,17 @@ this_quest.vars =
 
 this_quest.requirements =
 {
-    quests_missions =
-    { 
-        quests = {},
+    missions =
+    {
         {
-            -- [1] = { ['mission'] = require("scripts/globals/missions/adoulin/life_on_the_frontier") }
+            ['mission_log'] = ADOULIN,
+            ['mission_id'] = LIFE_ON_THE_FRONTIER
         }
     },
     fame =
     {
-        {this_quest.area, 1}
+        ['area'] = this_quest.area,
+        ['level'] = 1
     }
 }
 
@@ -68,17 +69,14 @@ this_quest.npcs =
         ["Rising_Solstice"] =
         {
             onTrigger = function(player, npc)
-                local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN)
-                if ACSP == QUEST_ACCEPTED then
-                    if dsp.quests.getStage(player, this_quest) >= 1 then
-                        if dsp.quests.getStage(player, this_quest) == 8 then
-                            player:startEvent(2552) -- Finishes Quest: 'A Certain Substitute Patrolman'
-                        else
-                            player:startEvent(2551) -- Dialogue during Quest: 'A Certain Substitute Patrolman'
-                        end
-                        return true
+                if dsp.quests.getStage(player, this_quest) >= 1 then
+                    if dsp.quests.getStage(player, this_quest) == 8 then
+                        player:startEvent(2552) -- Finishes Quest: 'A Certain Substitute Patrolman'
+                    else
+                        player:startEvent(2551) -- Dialogue during Quest: 'A Certain Substitute Patrolman'
                     end
-                elseif ACSP == QUEST_AVAILABLE then
+                    return true
+                elseif dsp.quests.checkRequirements(player, this_quest) then
                     player:startEvent(2550) -- Starts Quest: 'A Certain Substitute Patrolman'
                     return true
                 end

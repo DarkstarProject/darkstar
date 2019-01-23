@@ -26,18 +26,18 @@ this_quest.vars =
 
 this_quest.requirements =
 {
-    quests_missions =
-    { 
-        quests = {},
-        missions =
+    missions =
+    {
         {
-            -- [1] = { ['mission'] = require("scripts/globals/missions/adoulin/life_on_the_frontier") }
-            -- [1] = { ['quest'] = require("scripts/globals/missions/adoulin/life_on_the_frontier"), ['stage'] = x }
+            ['mission_log'] = ADOULIN,
+            ['mission_id'] = LIFE_ON_THE_FRONTIER
         }
+        -- [1] = { ['quest'] = require("scripts/globals/missions/adoulin/life_on_the_frontier"), ['stage'] = x }
     },
     fame =
     {
-        {this_quest.area, 1}
+        ['area'] = this_quest.area,
+        ['level'] = 1
     }
     -- trade = { {item, qty} },
     -- keyitems = {...},
@@ -75,7 +75,7 @@ this_quest.npcs =
                         player:startEvent(2541) -- Dialogue during Quest: 'The Old Man and the Harpoon'
                         return true
                     end
-                elseif (player:getCurrentMission(SOA) >= LIFE_ON_THE_FRONTIER) and (questStatus == QUEST_AVAILABLE) then
+                elseif dsp.quests.checkRequirements(player, this_quest) then
                     player:startEvent(2540) -- Starts Quest: 'The Old Man and the Harpoon'
                     return true
                 end

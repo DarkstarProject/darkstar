@@ -38,17 +38,17 @@ this_quest.vars =
 
 this_quest.requirements =
 {
-    quests_missions =
+    quests =
     { 
-        quests =
         {
-            -- [1] = { ['quest'] = require("scripts/globals/quests/adoulin/megalomaniac") }
-        },
-        missions = {}
+            ['area'] = ADOULIN,
+            ['quest_id'] = dsp.quests.enums.quest_ids.adoulin.MEGALOMANIAC
+        } 
     },
     fame =
     {
-        {this_quest.area, 4}
+        ['area'] = this_quest.area,
+        ['level'] = 4
     }
 }
 
@@ -60,7 +60,7 @@ this_quest.rewards =
         {
             exp = 1000,
             bayld = 500,
-            -- kinetic_units = 3000, -- Kinetic units need to be implemented before we reward them.
+            -- TODO: kinetic_units = 3000, -- Kinetic units need to be implemented before we reward them.
             fame_area = dsp.quests.enums.fame_areas.ADOULIN
         }
     }
