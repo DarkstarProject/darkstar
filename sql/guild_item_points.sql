@@ -1341,101 +1341,165 @@ INSERT INTO `guild_item_points` VALUES (7, 0, 9, 6890, 20880, 6); -- Ice Shield 
 INSERT INTO `guild_item_points` VALUES (7, 0, 9, 900, 14400, 7); -- Strength Potion (900/14400)
 
 -- Cooking / Amateur
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 0); -- Pet Food Alpha
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 1); -- Roasted Corn
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 2); -- Orange Juice
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 3); -- Boiled Crayfish
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 4); -- Pebble Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 5); -- Salmon Sub
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 6); -- Salmon Sub
-INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 7); -- Roasted Corn
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 4, 3360, 0); -- Pet Food Alpha (4/3360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 46, 4080, 1); -- Roasted Corn (46/4080)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 55, 4080, 1); -- Roasted Corn +1 (55/4080)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 75, 4560, 2); -- Orange Juice (75/4560)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 150, 5760, 3); -- Boiled Crayfish (150/5760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 180, 5760, 3); -- Boiled Crayfish +1 (180/5760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 75, 4560, 4); -- Orange Juice (75/4560)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 417, 8880, 5); -- Salmon Sub (417/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 432, 8880, 5); -- Salmon Sub +1 (432/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 417, 8880, 6); -- Salmon Sub (417/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 432, 8880, 6); -- Salmon Sub +1 (432/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 46, 4080, 7); -- Roasted Corn (46/4080)
+INSERT INTO `guild_item_points` VALUES (8, 0, 0, 55, 4080, 7); -- Roasted Corn +1 (55/4080)
 
 -- Cooking / Recruit
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 0); -- Roast Mutton
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 1); -- Pea Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 2); -- Roast Mutton
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 3); -- Tortilla
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 4); -- Pea Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 5); -- Roast Carp
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 6); -- Roast Carp
-INSERT INTO `guild_item_points` VALUES (8, 0, 1, 0, 0, 7); -- Tortilla
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 270, 7680, 0); -- Roast Mutton (270/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 300, 7680, 0); -- Roast Mutton +1 (300/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 420, 9360, 1); -- Pea Soup (420/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 541, 9360, 1); -- Pea Soup +1 (541/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 270, 7680, 2); -- Roast Mutton (270/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 300, 7680, 2); -- Roast Mutton +1 (300/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 52, 5040, 3); -- Tortilla (52/5040)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 78, 5040, 3); -- Tortilla +1 (78/5040)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 420, 9360, 4); -- Pea Soup (420/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 541, 9360, 4); -- Pea Soup +1 (541/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 195, 6960, 5); -- Roast Carp (195/6960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 240, 6960, 5); -- Roast Carp +1 (240/6960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 195, 6960, 6); -- Roast Carp (195/6960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 240, 6960, 6); -- Roast Carp +1 (240/6960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 52, 5040, 7); -- Tortilla (52/5040)
+INSERT INTO `guild_item_points` VALUES (8, 0, 1, 78, 5040, 7); -- Tortilla +1 (78/5040)
 
 -- Cooking / Initiate
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 0); -- Smoked Salmon
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 1); -- Dhalmel Steak
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 2); -- Puls
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 3); -- Baked Apple
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 4); -- Vegetable Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 5); -- Meat Jerky
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 6); -- Boiled Crab
-INSERT INTO `guild_item_points` VALUES (8, 0, 2, 0, 0, 7); -- Baked Popoto
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 82, 6000, 0); -- Smoked Salmon (82/6000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 540, 10800, 1); -- Dhalmel Steak (540/10800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 585, 10800, 1); -- Wild Steak (585/10800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 225, 7920, 2); -- Puls (225/7920)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 450, 7920, 2); -- Puls +1 (450/7920)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 165, 7200, 3); -- Baked Apple (165/7200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 195, 7200, 3); -- Baked Apple +1 (195/7200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 376, 9360, 4); -- Vegetable Soup (376/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 664, 9360, 4); -- Vegetable Soup +1 (664/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 45, 5520, 5); -- Meat Jerky (45/5520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 63, 5520, 5); -- Meat Jerky (63/5520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 675, 11760, 6); -- Boiled Crab (675/11760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 825, 11760, 6); -- Boiled Crab +1 (825/11760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 120, 6720, 7); -- Baked Popoto (120/6720)
+INSERT INTO `guild_item_points` VALUES (8, 0, 2, 127, 6720, 7); -- Baked Popoto +1 (127/6720)
 
 -- Cooking / Novice
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 0); -- Mushroom Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 1); -- Windurst Salad
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 2); -- Acorn Cookie
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 3); -- Iron Bread
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 4); -- Nebimonite Bake
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 5); -- Black Bread
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 6); -- Buffalo Jerky
-INSERT INTO `guild_item_points` VALUES (8, 0, 3, 0, 0, 7); -- Roast Trout
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 1500, 15600, 0); -- Mushroom Soup (1500/15600)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 1740, 15600, 0); -- Mushroom Soup +1 (1740/15600)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 558, 11280, 1); -- Windurst Salad (558/11280)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 613, 11280, 1); -- Windurst Salad +1 (613/11280)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 9, 5760, 2); -- Acorn Cookie (9/5760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 10, 5760, 2); -- Acorn Cookie +1 (10/5760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 37, 6240, 3); -- Iron Bread (37/6240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 114, 6240, 3); -- Iron Bread +1 (114/6240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 450, 10320, 4); -- Nebimonite Bake (450/10320)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 675, 10320, 4); -- Nebimonite Bake +1 (675/10320)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 45, 6240, 5); -- Black Bread (45/6240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 60, 6240, 5); -- Black Bread +1 (60/6240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 252, 8640, 6); -- Buffalo Jerky (252/8640)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 567, 8640, 6); -- Buffalo Jerky (567/8640)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 225, 8400, 7); -- Roast Trout (225/8400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 3, 247, 8400, 7); -- Roast Trout (247/8400)
 
 -- Cooking / Apprentice
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 0); -- Tomato Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 1); -- Apple Pie
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 2); -- Apple Pie
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 3); -- Fish Mithkabob
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 4); -- Pickled Herring
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 5); -- Pickled Herring
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 6); -- Cinna-cookie
-INSERT INTO `guild_item_points` VALUES (8, 0, 4, 0, 0, 7); -- Goulash
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 441, 10800, 0); -- Tomato Soup (441/10800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 1341, 10800, 0); -- Tomato Soup (1341/10800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 120, 7680, 1); -- Apple Pie (120/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 132, 7680, 1); -- Apple Pie +1 (132/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 120, 7680, 2); -- Apple Pie (120/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 132, 7680, 2); -- Apple Pie +1 (132/7680)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 270, 9360, 3); -- Fish Mithkabob (270/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 306, 9360, 3); -- Fish Mithkabob +1 (306/9360)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 180, 8400, 4); -- Pickled Herring (180/8400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 270, 8400, 4); -- Pickled Herring +1 (270/8400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 180, 8400, 5); -- Pickled Herring (180/8400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 270, 8400, 5); -- Pickled Herring +1 (270/8400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 6, 6480, 6); -- Cinna-cookie (6/6480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 7, 6480, 6); -- Cinna-cookie +1 (7/6480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 558, 11520, 7); -- Goulash (558/11520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 4, 613, 11520, 7); -- Goulash (613/11520)
 
 -- Cooking / Journeyman
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 0); -- Beaugreen Saute
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 1); -- Pamama Tart
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 2); -- Bataquiche
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 3); -- Egg Soup
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 4); -- Sis Kebabi
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 5); -- Eel Kabob
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 6); -- Sis Kebab
-INSERT INTO `guild_item_points` VALUES (8, 0, 5, 0, 0, 7); -- Bretzel
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 247, 9600, 0); -- Beaugreen Saute (247/9600)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 865, 9600, 0); -- Beaugreen Saute +1 (865/9600)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 384, 10560, 1); -- Pamama Tart (384/10560)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 918, 10560, 1); -- Pamama Tart +1 (918/10560)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 184, 8880, 2); -- Bataquiche (184/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 276, 8880, 2); -- Bataquiche +1 (276/8880)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 450, 11040, 3); -- Egg Soup (450/11040)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 525, 11040, 3); -- Egg Soup +1 (525/11040)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 600, 12000, 4); -- Sis Kebabi (600/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 750, 12000, 4); -- Sis Kebabi +1 (750/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 750, 12960, 5); -- Eel Kabob (750/12960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 825, 12960, 5); -- Eel Kabob +1 (825/12960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 600, 12000, 6); -- Sis Kebabi (600/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 750, 12000, 6); -- Sis Kebabi +1 (750/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 9, 7200, 7); -- Bretzel (9/7200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 5, 13, 7200, 7); -- Bretzel +1 (13/7200)
 
 -- Cooking / Craftsman
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 0); -- Raisin Bread
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 1); -- Squid Sushi
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 2); -- Irmik Helvasi
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 3); -- Herb Quus
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 4); -- Dhalmel Stew
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 5); -- Colored Egg
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 6); -- Mutton Tortilla
-INSERT INTO `guild_item_points` VALUES (8, 0, 6, 0, 0, 7); -- Balik Sis
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 525, 12000, 0); -- Raisin Bread (525/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 451, 11520, 1); -- Squid Sushi (451/11520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 483, 11520, 1); -- Squid Sushi +1 (483/11520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 622, 12480, 2); -- Irmik Helvasi (622/12480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 661, 12480, 2); -- Irmik Helvasi +1 (661/12480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 534, 12000, 3); -- Herb Quus (534/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 879, 12000, 3); -- Herb Quus +1 (879/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 778, 13440, 4); -- Dhalmel Stew (778/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 855, 13440, 4); -- Dhalmel Stew +1 (855/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 156, 9120, 5); -- Colored Egg (156/9120)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 345, 9120, 5); -- Colored Egg +1 (345/9120)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 607, 12480, 6); -- Mutton Tortilla (607/12480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 880, 12480, 6); -- Mutton Tortilla +1 (880/12480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 900, 13920, 7); -- Balik Sis (900/13920)
+INSERT INTO `guild_item_points` VALUES (8, 0, 6, 975, 13920, 7); -- Balik Sis +1 (975/13920)
 
 -- Cooking / Artisan
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 0); -- Boiled Cockatrice
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 1); -- Herb Crawler Eggs
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 2); -- Salmon Meuniere
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 3); -- Navarin
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 4); -- Chocomilk
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 5); -- Rarab Meatball
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 6); -- Shallops Tropicale
-INSERT INTO `guild_item_points` VALUES (8, 0, 7, 0, 0, 7); -- Turtle Soup
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 693, 13200, 0); -- Boiled Cockatrice (693/13200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 637, 12960, 1); -- Herb Crawler Eggs (637/12960)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 382, 11280, 2); -- Salmon Meuniere (382/11280)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 382, 11280, 2); -- Salmon Meuniere +1 (382/11280)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 618, 12720, 3); -- Whitefish Stew (618/12720)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 427, 11760, 4); -- Chocomilk (427/11760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 1495, 11760, 4); -- Chocomilk +1 (1495/11760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 480, 12000, 5); -- Rarab Meatball (480/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 810, 12000, 5); -- Rarab Meatball +1 (810/12000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 2106, 17520, 6); -- Shallops Tropicale (2106/17520)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 1800, 16800, 7); -- Turtle Soup (1800/16800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 7, 2100, 16800, 7); -- Turtle Soup (2100/16800)
 
 -- Cooking / Adept
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 0); -- Karni Yarik
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 1); -- Seafood Stew
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 2); -- Pepperoni
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 3); -- Bream Risotto
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 4); -- Bass Meuniere
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 5); -- Steamed Catfish
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 6); -- Coeurl Sautee
-INSERT INTO `guild_item_points` VALUES (8, 0, 8, 0, 0, 7); -- Shark Fin Soup
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 675, 13440, 0); -- Karni Yarik (675/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 750, 13440, 0); -- Karni Yarik +1 (750/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 1980, 17280, 1); -- Seafood Stew (1980/17280)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 228, 10560, 2); -- Pepperoni (228/10560)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 2208, 17760, 3); -- Bream Risotto (2208/17760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 2688, 17760, 3); -- Bream Risotto +1 (2688/17760)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 457, 12240, 4); -- Bass Meuniere (457/12240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 915, 12240, 4); -- Bass Meuniere +1 (915/12240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 783, 13920, 5); -- Steamed Catfish  (783/13920)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 924, 14400, 6); -- Coeurl Sautee (924/14400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 1449, 14400, 6); -- Coeurl Sautee +1 (1449/14400)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 1725, 16800, 7); -- Shark Fin Soup (1725/16800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 8, 2100, 16800, 7); -- Shark Fin Soup (2100/16800)
 
 -- Cooking / Veteran
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 0); -- Urchin Sushi
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 1); -- Rice Dumpling
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 2); -- Dorado Sushi
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 3); -- Sea Bass Croute
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 4); -- Flounder Meuniere
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 5); -- Brain Stew
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 6); -- Sweet Rice Cake
-INSERT INTO `guild_item_points` VALUES (8, 0, 9, 0, 0, 7); -- Salmon Croute
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 2550, 18240, 0); -- Urchin Gunkan (2550/18240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 3060, 18240, 0); -- Urchin Gunkan +1 (3060/18240)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 210, 10800, 1); -- Rice Dumpling (210/10800)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 661, 13440, 2); -- Dorado Sushi (661/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 991, 13440, 2); -- Dorado Sushi +1 (991/13440)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 2727, 18480, 3); -- Sea Bass Croute (2727/18480)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 2395, 18000, 4); -- Flounder Meuniere (2395/18000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 3195, 18000, 4); -- Flounder Meuniere +1 (3195/18000)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 3330, 19200, 5); -- Brain Stew (3330/19200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 4995, 19200, 5); -- Brain Stew +1 (4995/19200)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 147, 10320, 6); -- Sweet Rice Cake (147/10320)
+INSERT INTO `guild_item_points` VALUES (8, 0, 9, 1350, 16080, 7); -- Salmon Croute (1350/16080)
