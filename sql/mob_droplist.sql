@@ -2771,16 +2771,18 @@ INSERT INTO `mob_droplist` VALUES (464,0,0,1000,18754,20);
 INSERT INTO `mob_droplist` VALUES (464,0,0,1000,18851,20);
 INSERT INTO `mob_droplist` VALUES (464,0,0,1000,18944,20);
 INSERT INTO `mob_droplist` VALUES (464,0,0,1000,19102,20);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,837,70);
-INSERT INTO `mob_droplist` VALUES (465,2,0,1000,920,0);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,920,50);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4172,640);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4173,440);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4174,830);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4175,430);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13402,340);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13622,70);
-INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13978,350);
+
+-- Capricious Cassie (Fei'yin) http://ffxidb.com/zones/204/capricious-cassie
+INSERT INTO `mob_droplist` VALUES (465,2,0,1000,920,0); -- Malboro Vine (Steal)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,837,140); -- Malboro Fiber (14%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4172,900); -- Reraiser (90%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4173,240); -- Hi-reraiser (24%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4174,780); -- Vile Elixir (78%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,4175,290); -- Vile Elixir +1 (29%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13402,200); -- Cassie Earring (20%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13622,380); -- Amity Cape (38%)
+INSERT INTO `mob_droplist` VALUES (465,0,0,1000,13978,260); -- Aiming Bracelets (26%)
+
 INSERT INTO `mob_droplist` VALUES (466,0,0,1000,2930,1620);
 INSERT INTO `mob_droplist` VALUES (466,0,0,1000,2930,810);
 INSERT INTO `mob_droplist` VALUES (466,0,0,1000,3227,100);
