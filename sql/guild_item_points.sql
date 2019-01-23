@@ -1103,7 +1103,7 @@ INSERT INTO `guild_item_points` VALUES (6, 13363, 5, 2450, 16560, 3); -- Tortois
 INSERT INTO `guild_item_points` VALUES (6, 12506, 5, 750, 12960, 4); -- Shell Hairpin (750 / 12960)
 INSERT INTO `guild_item_points` VALUES (6, 13836, 5, 850, 12960, 4); -- Shell Hairpin +1 (850 / 12960)
 INSERT INTO `guild_item_points` VALUES (6, 13981, 5, 3332, 18960, 5); -- Turtle Bangles (3332 / 18960)
-INSERT INTO `guild_item_points` VALUES (6, 13981, 5, 4107, 18960, 5); -- Turtle Bangles +1 (4107 / 18960)
+INSERT INTO `guild_item_points` VALUES (6, 13982, 5, 4107, 18960, 5); -- Turtle Bangles +1 (4107 / 18960)
 INSERT INTO `guild_item_points` VALUES (6, 17612, 5, 1025, 14160, 6); -- Beetle Knife (1025 / 14160)
 INSERT INTO `guild_item_points` VALUES (6, 17613, 5, 1127, 14160, 6); -- Beetle Knife +1 (1127 / 14160)
 INSERT INTO `guild_item_points` VALUES (6, 17062, 5, 1122, 14640, 7); -- Bone Rod (1122 / 14640)
