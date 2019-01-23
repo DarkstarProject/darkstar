@@ -1184,104 +1184,161 @@ INSERT INTO `guild_item_points` VALUES (6, 0, 9, 3570, 19440, 7); -- Demon Helm 
 INSERT INTO `guild_item_points` VALUES (6, 0, 9, 4845, 19440, 7); -- Demon Helm +1 (4845/19440)
 
 -- Alchemy / Amateur
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 0); -- Deodorizer
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 1); -- Water Tank
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 2); -- Antidote
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 3); -- Wax Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 4); -- Beeswax
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 5); -- Silencing Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 6); -- Deodorizer
-INSERT INTO `guild_item_points` VALUES (7, 0, 0, 0, 0, 7); -- Antidote
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 80, 4560, 0); -- Deodorizer (80/4560)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 210, 6480, 1); -- Water Tank (210/6480)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 79, 4560, 2); -- Antidote (79/4560)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 10, 3360, 3); -- Tsurara (10/3360)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 30, 3840, 4); -- Beeswax (30/3840)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 150, 5760, 5); -- Silencing Potion (150/5760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 80, 4560, 6); -- Deodorizer (80/4560)
+INSERT INTO `guild_item_points` VALUES (7, 0, 0, 79, 4560, 7); -- Antidote (79/4560)
 
 -- Alchemy / Recruit
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 0); -- Silence Baghnakhs
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 1); -- Poison Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 2); -- Silence Dagger
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 3); -- Mercury
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 4); -- Bee Spatha
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 5); -- Cracker
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 6); -- Echo Drops
-INSERT INTO `guild_item_points` VALUES (7, 0, 1, 0, 0, 7); -- Silence Dagger
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 825, 12240, 0); -- Silence Baghnakhs (825/12240)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 825, 12240, 0); -- Silence Baghnakhs +1 (825/12240)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 100, 5760, 1); -- Poison Potion (100/5760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 406, 9120, 2); -- Silence Dagger (406/9120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 406, 9120, 2); -- Silence Dagger +1 (406/9120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 300, 8160, 3); -- Mercury (300/8160)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 705, 11520, 4); -- Bee Spatha (705/11520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 775, 11520, 4); -- Bee Spatha +1 (775/11520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 100, 5760, 5); -- Bittern (100/5760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 200, 6960, 6); -- Echo Drops (200/6960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 406, 9120, 7); -- Silence Dagger (406/9120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 1, 406, 9120, 7); -- Silence Dagger +1 (406/9120)
 
 -- Alchemy / Initiate
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 0); -- Poison Dagger
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 1); -- Mokuto
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 2); -- Poison Knife
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 3); -- Twinkle Shower
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 4); -- Mokuto
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 5); -- Poison Baselard
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 6); -- Eye Drops
-INSERT INTO `guild_item_points` VALUES (7, 0, 2, 0, 0, 7); -- Poison Dagger
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 959, 13200, 0); -- Poison Dagger (959/13200)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 1142, 13200, 0); -- Poison Dagger +1 (1142/13200)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 894, 12960, 1); -- Mokuto (894/12960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 902, 12960, 1); -- Mokuto +1 (902/12960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 1226, 14400, 2); -- Poison Knife (1226/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 1453, 14400, 2); -- Poison Knife +1 (1453/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 300, 8640, 3); -- Silent Oil (300/8640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 894, 12960, 4); -- Mokuto (894/12960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 902, 12960, 4); -- Mokuto +1 (902/12960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 330, 8800, 5); -- Poison Baselard (330/8800)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 457, 8800, 5); -- Poison Baselard +1 (457/8800)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 519, 10560, 6); -- Eye Drops (519/10560)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 959, 13200, 7); -- Poison Dagger (959/13200)
+INSERT INTO `guild_item_points` VALUES (7, 0, 2, 1142, 13200, 7); -- Poison Dagger +1 (1142/13200)
 
 -- Alchemy / Novice
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 0); -- Poison Baghnakhs
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 1); -- Poison Claws
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 2); -- Blind Dagger
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 3); -- Blind Knife
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 4); -- Busuto
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 5); -- Poison Cesti
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 6); -- Inferno Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 3, 0, 0, 7); -- Poison Kukri
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 638, 11760, 0); -- Poison Baghnakhs (638/11760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 748, 11760, 0); -- Poison Baghnakhs +1 (748/11760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 2400, 17520, 1); -- Poison Claws (2400/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 2400, 17520, 1); -- Poison Claws +1 (2400/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 100, 6960, 2); -- Blind Dagger (100/6960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 120, 6960, 2); -- Blind Dagger +1 (120/6960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 135, 7440, 3); -- Blind Knife (135/7440)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 161, 7440, 3); -- Blind Knife +1 (161/7440)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 1200, 14400, 4); -- Busuto (1200/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 1230, 14400, 4); -- Busuto +1 (1230/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 992, 13680, 5); -- Poison Cesti (992/13680)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 1312, 13680, 5); -- Poison Cesti +1 (1312/13680)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 3488, 19200, 6); -- Inferno Sword (3488/19200)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 3488, 19200, 6); -- Inferno Sword +1 (3488/19200)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 1620, 15840, 7); -- Poison Kukri (1620/15840)
+INSERT INTO `guild_item_points` VALUES (7, 0, 3, 1620, 15840, 7); -- Poison Kukri +1 (1620/15840)
 
 -- Alchemy / Apprentice
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 0); -- Fire Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 1); -- Acid Knife
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 2); -- Bokuto
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 3); -- Acid Dagger
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 4); -- Poison Katars
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 5); -- Flame Claymore
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 6); -- Potion Tank
-INSERT INTO `guild_item_points` VALUES (7, 0, 4, 0, 0, 7); -- Inferno Axe
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 1320, 15120, 0); -- Fire Sword (1320/15120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 1320, 15120, 0); -- Fire Sword +1 (1320/15120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 2480, 17760, 1); -- Acid Knife (2480/17760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 2880, 17760, 1); -- Acid Knife +1 (2880/17760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 1240, 14880, 2); -- Bokuto (1240/14880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 1426, 14880, 2); -- Bokuto +1 (1426/14880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 1717, 16320, 3); -- Acid Dagger (1717/16320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 2003, 16320, 3); -- Acid Dagger +1 (2003/16320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 2464, 17760, 4); -- Poison Katars (2464/17760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 3024, 17760, 4); -- Poison Katars +1 (3024/17760)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 979, 13920, 5); -- Flame Claymore (979/13920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 979, 13920, 5); -- Flame Claymore +1 (979/13920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 210, 8640, 6); -- Potion Tank (210/8640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 349, 10080, 7); -- Inferno Axe (349/10080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 4, 380, 10080, 7); -- Inferno Axe +1 (380/10080)
 
 -- Alchemy / Journeyman
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 0); -- Yoto
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 1); -- Holy Degen
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 2); -- Acid Claws
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 3); -- Holy Mace
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 4); -- Holy Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 5); -- Homura
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 6); -- Homura
-INSERT INTO `guild_item_points` VALUES (7, 0, 5, 0, 0, 7); -- Ether Tank
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 1200, 14880, 0); -- Yoto (1200/14880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 1350, 14880, 0); -- Yoto +1 (1350/14880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 5600, 20640, 1); -- Holy Degen (5600/20640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 6300, 20640, 1); -- Holy Degen +1 (6300/20640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 2976, 18720, 2); -- Acid Claws (2976/18720)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 3596, 18720, 2); -- Acid Claws +1 (3596/18720)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 3102, 18270, 3); -- Holy Mace (3102/18270)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 3762, 18270, 3); -- Holy Mace +1 (3762/18270)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 4300, 19920, 4); -- Holy Sword (4300/19920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 4800, 19920, 4); -- Holy Sword (4800/19920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 2300, 17520, 5); -- Homura (2300/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 2392, 17520, 5); -- Homura +1 (2392/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 2300, 17520, 6); -- Homura (2300/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 2392, 17520, 6); -- Homura +1 (2392/17520)
+INSERT INTO `guild_item_points` VALUES (7, 0, 5, 210, 9120, 7); -- Ether Tank (210/9120)
 
 -- Alchemy / Craftsman
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 0); -- Acid Kukri
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 1); -- Cermet Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 2); -- Cermet Claws
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 3); -- Hanger
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 4); -- Divine Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 5); -- Acid Baselard
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 6); -- Saber
-INSERT INTO `guild_item_points` VALUES (7, 0, 6, 0, 0, 7); -- Cermet Knife
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 2944, 18720, 0); -- Acid Kukri (2944/18720)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 3404, 18720, 0); -- Acid Kukri +1 (3404/18720)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 9460, 21840, 1); -- Cermet Sword (9460/21840))
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 10560, 21840, 1); -- Cermet Sword +1 (10560/21840)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 5280, 20640, 2); -- Cermet Claws (5280/20640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 6380, 20640, 2); -- Cermet Claws +1 (6380/20640)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 10185, 22080, 3); -- Hanger (10185/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 11235, 22080, 3); -- Hanger +1 (11235/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 4928, 20400, 4); -- Divine Sword (4928/20400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 5488, 20400, 4); -- Divine Sword +1 (5488/20400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 3720, 19440, 5); -- Acid Baselard (3720/19440)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 4320, 19440, 5); -- Acid Baselard +1 (4320/19440)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 8200, 22080, 6); -- Saber (8200/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 11275, 22080, 6); -- Saber +1 (11275/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 5850, 20800, 7); -- Cermet Knife (5850/20800)
+INSERT INTO `guild_item_points` VALUES (7, 0, 6, 6975, 20800, 7); -- Cermet Knife +1 (6975/20800)
 
 -- Alchemy / Artisan
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 0); -- Cermet Kukri
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 1); -- Jamadhars
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 2); -- Venom Claws
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 3); -- Venom Kukri
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 4); -- Cutlass
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 5); -- Venom Baselard
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 6); -- Holy Shield
-INSERT INTO `guild_item_points` VALUES (7, 0, 7, 0, 0, 7); -- Holy Maul
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 8910, 21840, 0); -- Cermet Kukri (8910/21840)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 9075, 21840, 0); -- Cermet Kukri +1 (9075/21840)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 6710, 21120, 1); -- Jamadhars (6710/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 6862, 21120, 1); -- Jamadhars +1 (6862/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 5040, 20400, 2); -- Venom Claws (5040/20400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 5040, 20400, 2); -- Venom Claws +1 (5040/20400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 7290, 21360, 3); -- Venom Kukri (7290/21360)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 7425, 21360, 3); -- Venom Kukri +1 (7425/21360)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 12250, 22320, 4); -- Cutlass (12250/22320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 12372, 22320, 4); -- Cutlass +1 (12372/22320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 6370, 21120, 5); -- Venom Baselard (6370/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 6370, 21120, 5); -- Venom Baselard +1 (6370/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 8450, 21600, 6); -- Stun Knife (8450/21600)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 8612, 21600, 6); -- Stun Knife +1 (8612/21600)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 3192, 18960, 7); -- Holy Maul (3192/18960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 7, 3752, 18960, 7); -- Holy Maul +1 (3752/18960)
 
 -- Alchemy / Adept
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 0); -- Venom Kris
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 1); -- Bloody Sword
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 2); -- Stun Claws
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 3); -- Stun Kukri
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 4); -- Holy Lance
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 5); -- Bloody Rapier
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 6); -- Stun Jamadhars
-INSERT INTO `guild_item_points` VALUES (7, 0, 8, 0, 0, 7); -- Holy Wand
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 5670, 20880, 0); -- Venom Kris (5670/20880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 6195, 20880, 0); -- Venom Kris +1 (6195/20880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 12375, 22320, 1); -- Bloody Sword (12375/22320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 13062, 22320, 1); -- Bloody Sword +1 (13062/22320)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 6480, 21120, 2); -- Stun Claws (6480/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 6615, 21120, 2); -- Stun Claws +1 (6615/21120)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 9585, 22080, 3); -- Stun Kukri (9585/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 9762, 22080, 3); -- Stun Kukri +1 (9762/22080)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 3150, 18960, 4); -- Holy Lance (3150/18960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 4275, 18960, 4); -- Holy Lance +1 (4275/18960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 7600, 21600, 5); -- Bloody Rapier (7600/21600)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 8550, 21600, 5); -- Bloody Rapier +1 (8550/21600)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 7370, 21360, 6); -- Stun Jamadhars (7370/21360)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 7537, 21360, 6); -- Stun Jamadhars +1 (7537/21360)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 3060, 18960, 7); -- Holy Wand (3060/18960)
+INSERT INTO `guild_item_points` VALUES (7, 0, 8, 3240, 18960, 7); -- Holy Wand +1 (3240/18960)
 
 -- Alchemy / Veteran
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 0); -- Mind Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 1); -- Charisma Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 2); -- Dexterity Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 3); -- Intelligence Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 4); -- Vitality Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 5); -- Agility Potion
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 6); -- Ice Shield
-INSERT INTO `guild_item_points` VALUES (7, 0, 9, 0, 0, 7); -- Strength Potion
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 900, 14400, 0); -- Mind Potion (900/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 750, 13920, 1); -- Charisma Potion (750/13920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 900, 14400, 2); -- Dexterity Potion (900/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 840, 14400, 3); -- Intelligence Potion (840/14400)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 750, 13920, 4); -- Vitality Potion (750/13920)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 810, 14160, 5); -- Agility Potion (810/14160)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 5565, 20880, 6); -- Ice Shield (5565/20880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 6890, 20880, 6); -- Ice Shield +1 (6890/20880)
+INSERT INTO `guild_item_points` VALUES (7, 0, 9, 900, 14400, 7); -- Strength Potion (900/14400)
 
 -- Cooking / Amateur
 INSERT INTO `guild_item_points` VALUES (8, 0, 0, 0, 0, 0); -- Pet Food Alpha
