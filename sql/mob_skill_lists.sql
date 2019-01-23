@@ -469,6 +469,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Euvhi',109,1451);
 INSERT INTO `mob_skill_lists` VALUES ('Euvhi',109,1453);
 INSERT INTO `mob_skill_lists` VALUES ('EvilWeapon',110,513);
 INSERT INTO `mob_skill_lists` VALUES ('EvilWeapon',110,514);
+INSERT INTO `mob_skill_lists` VALUES ('Konjac',111,433); -- digest
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1821);
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1822);
 INSERT INTO `mob_skill_lists` VALUES ('Flan',112,1824);
@@ -499,6 +500,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2422);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2423);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2424);
 INSERT INTO `mob_skill_lists` VALUES ('Gargoyle',118,2425);
+INSERT INTO `mob_skill_lists` VALUES ('Magnotaur',119,498); -- triclip
+INSERT INTO `mob_skill_lists` VALUES ('Magnotaur',119,499); -- back_swish
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2038);
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2039);
 INSERT INTO `mob_skill_lists` VALUES ('Gear',120,2040);
@@ -646,6 +649,8 @@ INSERT INTO `mob_skill_lists` VALUES ('Gowam',146,40); -- vorpal blade
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Elvaan',401,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',402,?);
 -- INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Galka',403,?);
+INSERT INTO `mob_skill_lists` VALUES ('Warabouc',148,383); -- tusk
+INSERT INTO `mob_skill_lists` VALUES ('Warabouc',148,385); -- bone_crunch
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,347);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,419);
 INSERT INTO `mob_skill_lists` VALUES ('Humanoid-Hume',149,422);
@@ -3370,8 +3375,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,402); -- Feather_Barrier
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,922); -- Blind_Vortex
 INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,923); -- Giga_Scream
 -- INSERT INTO `mob_skill_lists` VALUES ('Bennu',933,2703); -- Dread_Wind
+INSERT INTO `mob_skill_lists` VALUES ('Calchas',934,722); -- venom_storm
 
--- 934 free
+-- 935 free
 
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,406); -- Hammer_Beak
 INSERT INTO `mob_skill_lists` VALUES ('Chickcharney',936,407); -- Poison_Pick

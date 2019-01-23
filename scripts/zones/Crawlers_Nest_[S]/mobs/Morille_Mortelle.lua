@@ -7,6 +7,10 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 require("scripts/globals/msg");
 
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+end
+
 function onMobSpawn(mob)
     mob:setMod(dsp.mod.DOUBLE_ATTACK, 20);
     mob:setMod(dsp.mod.STORETP, 10);

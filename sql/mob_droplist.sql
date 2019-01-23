@@ -4753,7 +4753,7 @@ INSERT INTO `mob_droplist` VALUES (856,0,0,1000,1449,150);
 INSERT INTO `mob_droplist` VALUES (856,0,0,1000,1452,150);
 INSERT INTO `mob_droplist` VALUES (856,0,0,1000,1452,150);
 INSERT INTO `mob_droplist` VALUES (857,0,0,1000,2276,100);
-INSERT INTO `mob_droplist` VALUES (858,0,0,1000,16019,200);
+INSERT INTO `mob_droplist` VALUES (858,0,0,1000,16019,109); -- (Elusive Edwin) Forte Earring
 INSERT INTO `mob_droplist` VALUES (859,2,0,1000,1452,0);
 INSERT INTO `mob_droplist` VALUES (859,0,0,1000,1452,10);
 INSERT INTO `mob_droplist` VALUES (859,0,0,1000,1470,80);
@@ -32967,8 +32967,8 @@ INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,574,1000); -- (Leshonki) Fruit 
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,574,1000); -- (Leshonki) Fruit Seeds
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,953,100); -- (Leshonki) Treant Bulb
 INSERT INTO `mob_droplist` VALUES (4614,0,0,1000,1236,400); -- (Leshonki) Cactus Stems
-INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
-INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,204); -- (Konjac) Aptant: Durus
+INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2812,200); -- (Konjac) Aptant: Aecus
+INSERT INTO `mob_droplist` VALUES (4615,0,0,1000,2813,200); -- (Konjac) Aptant: Durus
 INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2816,167); -- (Chelicerata) Aptant: Tachus
 INSERT INTO `mob_droplist` VALUES (4616,0,0,1000,2815,417); -- (Chelicerata) Aptant: Arkhe
 INSERT INTO `mob_droplist` VALUES (4617,0,0,1000,19306,100); -- (Tikbalang) Lyft Pole
@@ -33001,6 +33001,15 @@ INSERT INTO `mob_droplist` VALUES (4642,0,0,1000,16025,250); -- (Nandi) Rathe Ea
 INSERT INTO `mob_droplist` VALUES (4643,0,0,1000,16016,200); -- (Powderer Penny) Chary Earring
 INSERT INTO `mob_droplist` VALUES (4644,0,0,1000,16034,81); -- (Hoar-knuckled Rimberry) Sarabande Earring
 INSERT INTO `mob_droplist` VALUES (4645,0,0,1000,11534,81); -- (Acolnahuacatl) Echo Cape
+INSERT INTO `mob_droplist` VALUES (4646,0,0,1000,2817,200); -- (Canal Moocher) Aptant: Pera
+INSERT INTO `mob_droplist` VALUES (4646,0,0,1000,2820,200); -- (Canal Moocher) Aptant: Geoc
+INSERT INTO `mob_droplist` VALUES (4647,0,0,1000,2820,200); -- (Skvader) Aptant: Geoc
+INSERT INTO `mob_droplist` VALUES (4647,0,0,1000,2821,200); -- (Skvader) Aptant: Haelan
+INSERT INTO `mob_droplist` VALUES (4648,0,0,1000,18770,167); -- (Magnotaur) Pygme Sainti
+INSERT INTO `mob_droplist` VALUES (4649,0,0,1000,19278,250); -- (Calchas) Fuchingiri
+INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2812,200); -- (Warabouc) Aptant: Aecus
+INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2820,200); -- (Warabouc) Aptant: Geoc
+INSERT INTO `mob_droplist` VALUES (4651,0,0,1000,17971,112); -- (Gharial) Tartaglia
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
