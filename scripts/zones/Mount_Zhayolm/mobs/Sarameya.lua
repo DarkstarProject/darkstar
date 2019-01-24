@@ -75,23 +75,8 @@ function onMobFight(mob, target)
     end
 end
 
-function onAdditionalEffect(mob, player)
-    local chance = 40
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.WATER,dsp.effect.POISON)
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0
-    else
-        local duration = 30
-        if (mob:getMainLvl() > player:getMainLvl()) then
-            duration = duration + (mob:getMainLvl() - player:getMainLvl())
-        end
-        duration = utils.clamp(duration,1,30)
-        duration = duration * resist
-        if (player:hasStatusEffect(dsp.effect.POISON) == false) then
-            player:addStatusEffect(dsp.effect.POISON, 50, 3, duration) -- Don't know potency on the poison.
-        end
-        return dsp.subEffect.POISON, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.POISON
-    end
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.POISON, {chance = 40, power = 50})
 end
 
 function onMobDeath(mob, player, isKiller)

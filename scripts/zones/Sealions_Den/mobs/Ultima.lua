@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Sealions Den
---  MOB: Ultima
+--   NM: Ultima
 -----------------------------------
-require("scripts/globals/status");
 require("scripts/globals/titles");
-require("scripts/globals/msg");
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -19,21 +18,9 @@ function onMobFight(mob,target)
     end
 end;
 
-function onAdditionalEffect(mob, player)
-    local chance = 20;
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local duration = 60;
-        local power = 20;
-        duration = duration * resist;
-        if (player:hasStatusEffect(dsp.effect.PARALYSIS) == false) then
-            player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration);
-        end
-        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE, {duration = 60})
+end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.ULTIMA_UNDERTAKER);

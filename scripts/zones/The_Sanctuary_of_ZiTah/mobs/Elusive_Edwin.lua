@@ -2,9 +2,7 @@
 -- Area: The Sanctuary of Zi'Tah
 --   NM: Elusive Edwin
 -----------------------------------
-require("scripts/globals/status")
-require("scripts/globals/magic")
-require("scripts/globals/msg")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -12,22 +10,7 @@ function onMobInitialize(mob)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    if math.random(100) > 20 or applyResistanceAddEffect(mob, target, dsp.magic.ele.WIND, dsp.effect.SILENCE) <= 0.5 then
-        return 0, 0, 0
-    else
-        local duration = 30
-        if mob:getMainLvl() > target:getMainLvl() then
-            duration = duration + mob:getMainLvl() - target:getMainLvl()
-        end
-        duration = utils.clamp(duration, 1, 30)
-        duration = duration * resist
-
-        if not target:hasStatusEffect(dsp.effect.SILENCE) then
-            target:addStatusEffect(dsp.effect.SILENCE, 1, 0, duration)
-        end
-
-        return dsp.subEffect.SILENCE, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.SILENCE
-    end
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.SILENCE)
 end
 
 function onMobDeath(mob, player, isKiller)
