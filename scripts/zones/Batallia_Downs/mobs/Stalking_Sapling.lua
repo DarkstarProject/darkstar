@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.TOTTERING_TOBY_PH,20,3600); -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.TOTTERING_TOBY_PH,20,3600); -- 1 hour
 end;

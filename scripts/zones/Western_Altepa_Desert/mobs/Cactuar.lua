@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.CACTUAR_CANTAUTOR_PH, 5, math.random(3600,43200)) -- 1 to 12 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.CACTUAR_CANTAUTOR_PH, 5, math.random(3600,43200)) -- 1 to 12 hours
 end

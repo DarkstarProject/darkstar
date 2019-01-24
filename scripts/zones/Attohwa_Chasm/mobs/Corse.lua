@@ -10,5 +10,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.CITIPATI_PH,20,math.random(10800,21600)); -- 3 to 6 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.CITIPATI_PH,20,math.random(10800,21600)); -- 3 to 6 hours
 end;

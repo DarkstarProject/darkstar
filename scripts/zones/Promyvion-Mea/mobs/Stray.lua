@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion-Mea
---  MOB: Stray
+--   NM: Stray
 -----------------------------------
 require("scripts/globals/promyvion")
 -----------------------------------

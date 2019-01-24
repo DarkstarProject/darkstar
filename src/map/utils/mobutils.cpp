@@ -883,8 +883,6 @@ void SetupNMMob(CMobEntity* PMob)
     uint8 mLvl = PMob->GetMLevel();
 
     PMob->setMobMod(MOBMOD_NO_DESPAWN, 1);
-    // enmity range is larger
-    PMob->m_enmityRange = 28;
 
     // NMs cure earlier
     PMob->defaultMobMod(MOBMOD_HP_HEAL_CHANCE, 50);
