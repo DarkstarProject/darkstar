@@ -287,14 +287,14 @@ function addWyvernExp(wyvern, exp)
 end
 
 function canCopyEffectToWyvern(effect)
-    return empathyEffects[effect.getType()] ~= nil
+    return empathyEffects[effect:getType()] ~= nil
 end
 
 function copyEffectToWyvern(pet, effect)
-    local type = effect.getType()
-    local power = effect.getPower()
-    local tick = effect.getTickTime()
-    local duration = effect.getDuration()
+    local type = effect:getType()
+    local power = effect:getPower()
+    local tick = effect:getTickTime()
+    local duration = effect:getDuration()
     pet:addStatusEffect(type, power, tick, duration)
 end
 
