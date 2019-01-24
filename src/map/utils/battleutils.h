@@ -163,12 +163,12 @@ namespace battleutils
     uint8               GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage, int8 accBonus);
     int32               CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
 
-    uint8               GetEnmityModDamage(uint8 level);
-    uint8               GetEnmityModCure(uint8 level);
+    int16               GetEnmityModDamage(int16 level);
+    int16               GetEnmityModCure(int16 level);
     bool                isValidSelfTargetWeaponskill(int wsid);
     bool                CanUseWeaponskill(CCharEntity* PChar, CWeaponSkill* PSkill);
     int16               CalculateBaseTP(int delay);
-    void                GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, uint16 amount);
+    void                GenerateCureEnmity(CCharEntity* PSource, CBattleEntity* PTarget, int32 amount);
     void                GenerateInRangeEnmity(CBattleEntity* PSource, int16 CE, int16 VE);
 
     CItemWeapon*        GetEntityWeapon(CBattleEntity* PEntity, SLOTTYPE Slot);
