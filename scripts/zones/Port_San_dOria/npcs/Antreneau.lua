@@ -21,30 +21,30 @@ function onTrigger(player,npc)
     local diaryPage = player:getVar("DiaryPage")
     local fameLevel = player:getFameLevel(SANDORIA)
 
-    if (player:getVar("aTasteForMeat") == 0 and aTasteForMeat == QUEST_COMPLETED and fameLevel >= 8 and medicineWoman == QUEST_COMPLETED and diaryPage >= 4) then
+    if player:getVar("aTasteForMeat") == 0 and aTasteForMeat == QUEST_COMPLETED and fameLevel >= 8 and medicineWoman == QUEST_COMPLETED and diaryPage >= 4 then
         local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
 
-        if (overTheHillsAndFarAway == QUEST_AVAILABLE) then
+        if overTheHillsAndFarAway == QUEST_AVAILABLE then
             player:startEvent(725) -- Start
-        elseif (overTheHillsAndFarAway == QUEST_ACCEPTED) then
+        elseif overTheHillsAndFarAway == QUEST_ACCEPTED then
             player:startEvent(726) -- Talks about the map.
-        elseif (overTheHillsAndFarAway == QUEST_COMPLETED) then
+        elseif overTheHillsAndFarAway == QUEST_COMPLETED then
             player:startEvent(727) -- Found his uncle Louverance.
         end
     else
-        if (aTasteForMeat == QUEST_COMPLETED and player:getVar("aTasteForMeat") == 1) then
+        if aTasteForMeat == QUEST_COMPLETED and player:getVar("aTasteForMeat") == 1 then
             if (player:getFreeSlotsCount() == 0) then
                 player:startEvent(538) -- NPC knows when your inventory is full.
             else
                 player:startEvent(530) -- Shares his Grilled Hare
             end
-        elseif (aTasteForMeat == QUEST_ACCEPTED) then
+        elseif aTasteForMeat == QUEST_ACCEPTED then
             if (player:hasItem(4358) == true) then
                 player:startEvent(531) -- Those are fine piece of hare meat, give them to the chef!
             else
                 player:startEvent(525) -- By the Goddess...
             end
-        elseif (aTasteForMeat == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 0) then
+        elseif aTasteForMeat == QUEST_AVAILABLE and player:getVar("aTasteForMeat") == 0 then
             player:startEvent(527) -- Start
         else
             player:startEvent(533) -- Go on, take it.
@@ -61,12 +61,12 @@ end
 
 function onEventFinish(player,csid,option)
 
-    if (csid == 725) then
+    if csid == 725 then
         player:addQuest(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
     else
-        if (csid == 527) then
+        if csid == 527 then
             player:setVar("aTasteForMeat", 1)
-        elseif (csid == 530) then
+        elseif csid == 530 then
             player:addItem(4371,1)
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4371)
             player:setVar("aTasteForMeat", 0)
