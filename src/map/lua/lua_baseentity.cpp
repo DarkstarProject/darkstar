@@ -2610,7 +2610,7 @@ inline int32 CLuaBaseEntity::updateToEntireZone(lua_State* L)
     CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
 
     PNpc->status = (STATUSTYPE)lua_tointeger(L, 1);
-    PNpc->animation = (UINT8)lua_tointeger(L,2);
+    PNpc->animation = (uint8)lua_tointeger(L,2);
 
     //If this flag is high, update the NPC's name to match the current time
     if (!lua_isnil(L, 3) && (bool)lua_toboolean(L, 3) == true)

@@ -462,11 +462,13 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
     {
         elevator->state = STATE_ELEVATOR_DESCEND;
         elevator->Elevator->animation = elevator->animationsReversed ? ANIMATION_ELEVATOR_UP : ANIMATION_ELEVATOR_DOWN;
+        elevator->closeDoor(elevator->UpperDoor);
     }
     else if (elevator->state == STATE_ELEVATOR_BOTTOM)
     {
         elevator->state = STATE_ELEVATOR_ASCEND;
         elevator->Elevator->animation = elevator->animationsReversed ? ANIMATION_ELEVATOR_DOWN : ANIMATION_ELEVATOR_UP;
+        elevator->closeDoor(elevator->LowerDoor);
     }
     else
         return;
@@ -481,17 +483,6 @@ void CTransportHandler::startElevator(Elevator_t * elevator)
         elevator->lastTrigger = VanaTime -  VanaTime % elevator->interval; //Keep the elevators synced to Vanadiel time
 
     ref<uint32>(&elevator->Elevator->name[0], 4) = CVanaTime::getInstance()->getVanaTime();
-
-    //Take care of doors
-    if (elevator->state == STATE_ELEVATOR_ASCEND)
-        elevator->closeDoor(elevator->LowerDoor);
-    else if (elevator->state == STATE_ELEVATOR_DESCEND)
-        elevator->closeDoor(elevator->UpperDoor);
-    else
-    {
-        ShowError("Elevator %d has malfunctioned\n", elevator->Elevator->id);
-        return;
-    }
 
     zoneutils::GetZone(elevator->zoneID)->PushPacket(nullptr, CHAR_INZONE, new CEntityUpdatePacket(elevator->Elevator, ENTITY_UPDATE, UPDATE_COMBAT));
 }
