@@ -636,6 +636,9 @@ int _vShowMessage(MSGTYPE flag, const std::string& string)
 		case MSG_NAVMESH: //Bright Red  (Navmesh related errors)
 			strcat(prefix,CL_RED"[Navmesh Error]" CL_RESET);
 			break;
+		case MSG_ACTION: //Bright White  (mostly useless "player did this" info)
+			strcat(prefix,CL_WHITE"[Action Info]" CL_RESET);
+			break;
 		default:
 			ShowError("In function _vShowMessage() -> Invalid flag passed.\n");
 			return 1;

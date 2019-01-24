@@ -93,7 +93,7 @@ extern int32 stdout_with_ansisequence;		// If the color ansi sequences are to be
 extern int32 msg_silent;					// Specifies how silent the console is. [Skotlex]
 extern char timestamp_format[20];			// For displaying Timestamps [Skotlex]
 
-enum MSGTYPE 
+enum MSGTYPE
 {
     MSG_NONE            = 0x0001,
     MSG_STATUS          = 0x0002,
@@ -106,6 +106,7 @@ enum MSGTYPE
     MSG_SQL             = 0x0100,
     MSG_LUASCRIPT       = 0x0200,
     MSG_NAVMESH         = 0x0400,
+    MSG_ACTION          = 0x0800
 };
 
 void ClearScreen(void);
@@ -177,6 +178,12 @@ int32 ShowNavError(const std::string& fmt_string, Args... args)
 {
     std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
 	return _vShowMessage(MSG_NAVMESH, fmt_string_v);
+}
+template<typename... Args>
+int32 ShowAction(const std::string& fmt_string, Args... args)
+{
+    std::string fmt_string_v = fmt::sprintf(fmt_string, args...);
+    return _vShowMessage(MSG_ACTION, fmt_string_v);
 }
 
 #endif /* _SHOWMSG_H_ */
