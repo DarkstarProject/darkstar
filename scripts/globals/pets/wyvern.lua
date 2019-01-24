@@ -287,7 +287,7 @@ function addWyvernExp(wyvern, exp)
 end
 
 function canCopyEffectToWyvern(effect)
-    return empathyEffects[effects.getType()] ~= nil
+    return empathyEffects[effect.getType()] ~= nil
 end
 
 function copyEffectToWyvern(pet, effect)

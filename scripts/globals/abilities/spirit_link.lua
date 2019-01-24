@@ -7,7 +7,7 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/msg")
-require("scripts/globals/wyvern")
+require("scripts/globals/pets/wyvern")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
