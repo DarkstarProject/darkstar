@@ -18,25 +18,25 @@ function onTrigger(player,npc)
     local toCureaCough = player:getQuestStatus(SANDORIA, TO_CURE_A_COUGH)
     local diaryPage = player:getVar("DiaryPage")
 
-    if (diaryPage == 0) then
+    if diaryPage == 0 then
         player:startEvent(639)          -- see diary, option to read (reads page 1)
-    elseif (diaryPage == 1) then
+    elseif diaryPage == 1 then
         player:startEvent(640)          -- reads page 2
-    elseif (diaryPage == 2) then
-        if (medicineWoman == QUEST_COMPLETED and aSquiresTestII == QUEST_COMPLETED) then
-            if (toCureaCough == QUEST_ACCEPTED) then
+    elseif diaryPage == 2 then
+        if medicineWoman == QUEST_COMPLETED and aSquiresTestII == QUEST_COMPLETED then
+            if toCureaCough == QUEST_ACCEPTED then
                 player:startEvent(641)  -- reads page 3
             else
                 player:startEvent(640)  -- reads page 2
             end
-        elseif (medicineWoman == QUEST_AVAILABLE and aSquiresTestII == QUEST_AVAILABLE) then
+        elseif medicineWoman == QUEST_AVAILABLE and aSquiresTestII == QUEST_AVAILABLE then
             player:startEvent(641)      -- reads page 3
         else
             player:startEvent(640)      -- reads page 2
         end
-    elseif (diaryPage >= 3) then
+    elseif diaryPage >= 3 then
         player:startEvent(722)          -- reads page 4
-    --elseif (diaryPage >= 4) then
+    --elseif diaryPage >= 4 then
     --    player:startEvent(723)        -- read last page
     end
 
@@ -49,16 +49,16 @@ function onEventFinish(player,csid,option)
     
     local diaryPage = player:getVar("DiaryPage")
 
-    if (option >= diaryPage) then
-        if (csid == 639 and option == 0) then
+    if option >= diaryPage then
+        if csid == 639 and option == 0 then
             player:setVar("DiaryPage", 1)    -- has read page 1
-        elseif (csid == 640 and option == 2) then
+        elseif csid == 640 and option == 2 then
             player:setVar("DiaryPage", 2)    -- has read page 2
-        elseif (csid == 641 and option == 3) then
+        elseif csid == 641 and option == 3 then
             player:setVar("DiaryPage", 3)    -- has read page 3
-        elseif (csid == 722 and option == 4) then
+        elseif csid == 722 and option == 4 then
             player:setVar("DiaryPage", 4)    -- has read page 4
-        --elseif (csid == 723 and option == 5) then
+        --elseif csid == 723 and option == 5 then
         --    player:setVar("DiaryPage", 5)    -- has read the last page
         end
     end
