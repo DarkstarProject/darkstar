@@ -33,13 +33,13 @@ function onTrigger(player,npc)
         end
     else
         if aTasteForMeat == QUEST_COMPLETED and player:getVar("aTasteForMeat") == 1 then
-            if (player:getFreeSlotsCount() == 0) then
+            if player:getFreeSlotsCount() == 0 then
                 player:startEvent(538) -- NPC knows when your inventory is full.
             else
                 player:startEvent(530) -- Shares his Grilled Hare
             end
         elseif aTasteForMeat == QUEST_ACCEPTED then
-            if (player:hasItem(4358) == true) then
+            if player:hasItem(4358) then
                 player:startEvent(531) -- Those are fine piece of hare meat, give them to the chef!
             else
                 player:startEvent(525) -- By the Goddess...
