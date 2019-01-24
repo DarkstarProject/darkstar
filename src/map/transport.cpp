@@ -282,24 +282,24 @@ void CTransportHandler::TransportTimer()
 
             else if (shipTimerOffset >= townZone->ship.timeDepartDock)
             {
-                UINT32 departTime = shipTimerOffset - townZone->ship.timeDepartDock;
+                uint32 departTime = shipTimerOffset - townZone->ship.timeDepartDock;
                 townZone->ship.state = STATE_TRANSPORT_DEPARTING;
                 townZone->ship.spawn();
-                townZone->ship.animateSetup(townZone->ship.animationDepart, (UINT32)(CVanaTime::getInstance()->getVanaTime() - departTime * 2.4));
+                townZone->ship.animateSetup(townZone->ship.animationDepart, (uint32)(CVanaTime::getInstance()->getVanaTime() - departTime * 2.4));
             }
             else if (shipTimerOffset >= townZone->ship.timeArriveDock)
             {
                 townZone->ship.state = STATE_TRANSPORT_DOCKED;
                 townZone->openDoor(false);
                 townZone->ship.spawn();
-                townZone->ship.animateSetup(townZone->ship.animationArrive, (UINT32)(CVanaTime::getInstance()->getVanaTime() - shipTimerOffset * 2.4));
+                townZone->ship.animateSetup(townZone->ship.animationArrive, (uint32)(CVanaTime::getInstance()->getVanaTime() - shipTimerOffset * 2.4));
             }
             else
             {
                 townZone->ship.state = STATE_TRANSPORT_ARRIVING;
 
                 townZone->ship.spawn();
-                townZone->ship.animateSetup(townZone->ship.animationArrive, (UINT32)(CVanaTime::getInstance()->getVanaTime() - shipTimerOffset * 2.4));
+                townZone->ship.animateSetup(townZone->ship.animationArrive, (uint32)(CVanaTime::getInstance()->getVanaTime() - shipTimerOffset * 2.4));
             }
         }
         else
