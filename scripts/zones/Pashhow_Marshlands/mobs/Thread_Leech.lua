@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.BLOODPOOL_VORAX_PH,5,600); -- 10 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.BLOODPOOL_VORAX_PH,5,600); -- 10 minutes
 end;

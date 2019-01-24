@@ -15,6 +15,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.WORR_THE_CLAWFISTED_PH, 10, 7200) -- 2 hours
-    phOnDespawn(mob, ID.mob.VOLL_THE_SHARKFINNED_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.WORR_THE_CLAWFISTED_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.VOLL_THE_SHARKFINNED_PH, 10, 7200) -- 2 hours
 end

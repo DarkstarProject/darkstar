@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.BUGBEAR_STRONGMAN_PH, 10, 1) -- no cooldown
+    dsp.mob.phOnDespawn(mob, ID.mob.BUGBEAR_STRONGMAN_PH, 10, 1) -- no cooldown
 end
