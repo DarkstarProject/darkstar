@@ -2493,6 +2493,12 @@ INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,272,1,255); -- absor
 INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,275,1,255); -- absorb-tp
 INSERT INTO `mob_spell_lists` VALUES ('Marquis_Forneus',301,277,1,255); -- dread_spikes
 
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,157,1,255); -- aero 4
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,185,1,255); -- aeroaga_ii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,186,1,255); -- aeroaga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,208,1,255); -- tornado
+INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',300,359,1,255); -- silencega
+
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

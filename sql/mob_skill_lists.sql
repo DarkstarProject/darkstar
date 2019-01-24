@@ -1300,7 +1300,6 @@ INSERT INTO `mob_skill_lists` VALUES ('Vulpangue',286,1718);
 INSERT INTO `mob_skill_lists` VALUES ('Chamrosh',287,1701);
 INSERT INTO `mob_skill_lists` VALUES ('Chamrosh',287,1700);
 INSERT INTO `mob_skill_lists` VALUES ('Chamrosh',287,1699);
--- INSERT INTO `mob_skill_lists` VALUES ('Chamrosh',287,1702);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1725);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1727);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1728);

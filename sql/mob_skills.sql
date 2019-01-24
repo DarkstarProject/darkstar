@@ -1522,7 +1522,7 @@ INSERT INTO `mob_skills` VALUES (1697,1168,'seaspray',4,12.0,2000,1000,4,0,0,0,0
 INSERT INTO `mob_skills` VALUES (1699,1176,'pecking_flurry',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1700,1177,'snatch_morsel',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1701,1178,'feather_tickle',0,7.0,2000,1500,4,0,0,0,0,0,0);
--- INSERT INTO `mob_skills` VALUES (1702,1446,'wisecrack',0,7.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1702,1179,'wisecrack',1,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1703,1170,'barrier_tusk',0,7.0,2000,1500,1,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1704,1171,'onrush',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1705,1172,'stampede',0,7.0,2000,1500,4,0,0,0,0,0,0);
