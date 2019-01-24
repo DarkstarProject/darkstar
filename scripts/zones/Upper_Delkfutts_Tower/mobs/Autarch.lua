@@ -4,15 +4,16 @@
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.AUTO_SPIKES, mob:getShortID())
+    mob:setMobMod(dsp.mobMod.AUTO_SPIKES, 1)
     mob:addStatusEffect(dsp.effect.SHOCK_SPIKES, 40, 0, 0)
-    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(32)
+    mob:getStatusEffect(dsp.effect.SHOCK_SPIKES):setFlag(dsp.effectFlag.DEATH)
 end
 
-function onSpikesDamage(mob,target,damage)
+function onSpikesDamage(mob, target, damage)
     local INT_diff = mob:getStat(dsp.mod.INT) - target:getStat(dsp.mod.INT)
 
     if INT_diff > 20 then
@@ -32,7 +33,7 @@ function onSpikesDamage(mob,target,damage)
         dmg = 0
     end
 
-    return dsp.subEffect.SHOCK_SPIKES, 44, dmg
+    return dsp.subEffect.SHOCK_SPIKES, dsp.msg.basic.SPIKES_EFFECT_DMG, dmg
 end
 
 function onMobDeath(mob, player, isKiller)

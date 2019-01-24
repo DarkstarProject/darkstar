@@ -37,13 +37,12 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     local weaponType = attacker:getWeaponSkillType(dsp.slot.MAIN)
     local damageType = attacker:getWeaponDamageType(dsp.slot.MAIN)
 
-    if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
-        local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3)
+    if weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE then
+        local h2hSkill = attacker:getSkillLevel(1) * 0.11 + 3
+        weaponDamage = attacker:getWeaponDmg()
 
-        if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
-            weaponDamage = attacker:getMod(dsp.mod.KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
-        else
-            weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0)
+        if params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK) then
+            weaponDamage = attacker:getMod(dsp.mod.KICK_DMG) -- Use Kick damage if footwork is on
         end
 
         weaponDamage = weaponDamage + h2hSkill

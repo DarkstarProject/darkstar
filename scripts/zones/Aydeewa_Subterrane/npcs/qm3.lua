@@ -8,12 +8,12 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2602) and not GetMobByID(ID.mob.CHIGRE):isSpawned() then -- Spoilt Blood
+    if npcUtil.tradeHas(trade, 2602) and npcUtil.popFromQM(player, npc, ID.mob.CHIGRE) then
         player:confirmTrade()
-        SpawnMob(ID.mob.CHIGRE):updateClaim(player)
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NOTHING_HAPPENS)
+    player:messageSpecial(ID.text.BLOOD_STAINS)
 end

@@ -3,34 +3,33 @@
 --  NPC: Sahagin Key Door
 -- !pos 40 8.6 20.012 176
 -----------------------------------
-require("scripts/globals/settings");
-local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs");
+local ID = require("scripts/zones/Sea_Serpent_Grotto/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-
-    if (trade:hasItemQty(1197,1) and trade:getItemCount() == 1) then
-        npc:openDoor(8); --Open the door if a Sahagin key has been traded
-        player:messageSpecial(ID.text.SAHAGIN_DOOR_TRADED,0,1197); -- Give a message telling the PC the item is lost
-        player:tradeComplete();
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 1197) then
+        npc:openDoor(8) -- Open the door if a Sahagin key has been traded
+        player:messageSpecial(ID.text.SAHAGIN_DOOR_TRADED, 0, 1197) -- Give a message telling the PC the item is lost
+        player:confirmTrade()
     end
-end;
+end
 
-function onTrigger(player,npc)
-    X = player:getXPos();
-    Z = player:getZPos();
+function onTrigger(player, npc)
+    local X = player:getXPos()
+    local Z = player:getZPos()
 
-    if (X > 94 and Z >= 40) then
-        player:messageSpecial(ID.text.SAHAGIN_DOOR_OUTSIDE); -- Give a message if standing on the "outside" of the door (closest to Norg)
-    elseif (X < 104 and X >= 94 and Z <= 40) then
-        player:messageSpecial(ID.text.SAHAGIN_DOOR_INSIDE); -- Give a message if standing on the "inside" of the door
+    if X > 94 and Z >= 40 then
+        player:messageSpecial(ID.text.SAHAGIN_DOOR_OUTSIDE) -- Give a message if standing on the "outside" of the door (closest to Norg)
+    elseif X < 104 and X >= 94 and Z <= 40 then
+        player:messageSpecial(ID.text.SAHAGIN_DOOR_INSIDE) -- Give a message if standing on the "inside" of the door
     end
-    return 1 -- Keeps the door closed; it should not open onTrigger
-end;
 
-function onEventUpdate(player,csid,option)
-end;
+    return 1 -- Keeps the door closed it should not open onTrigger
+end
 
-function onEventFinish(player,csid,option)
+function onEventUpdate(player, csid, option)
+end
 
-end;
+function onEventFinish(player, csid, option)
+end

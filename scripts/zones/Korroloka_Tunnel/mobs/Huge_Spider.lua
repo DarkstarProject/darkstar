@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.FALCATUS_ARANEI_PH,5,math.random(7200,14400)); -- 2 to 4 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.FALCATUS_ARANEI_PH,5,math.random(7200,14400)); -- 2 to 4 hours
 end

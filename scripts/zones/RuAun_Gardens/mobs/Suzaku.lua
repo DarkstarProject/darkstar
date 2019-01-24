@@ -4,11 +4,11 @@
 -----------------------------------
 local ID = require("scripts/zones/RuAun_Gardens/IDs")
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/magic")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ADD_EFFECT, mob:getShortID())
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
 end
 
 -- Return the selected spell ID.
@@ -29,17 +29,7 @@ function onMonsterMagicPrepare(mob, target)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    local dmg = math.random(110, 130)
-    local params = {}
-    params.bonusmab = 0
-    params.includemab = false
-
-    dmg = addBonusesAbility(mob, dsp.magic.ele.FIRE, target, dmg, params)
-    dmg = dmg * applyResistanceAddEffect(mob, target, dsp.magic.ele.FIRE, 0)
-    dmg = adjustForTarget(target, dmg, dsp.magic.ele.FIRE)
-    dmg = finalMagicNonSpellAdjustments(mob, target, dsp.magic.ele.FIRE, dmg)
-
-    return dsp.subEffect.FIRE_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENFIRE)
 end
 
 function onMobDeath(mob, player, isKiller)

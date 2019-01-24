@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.STINGING_SOPHIE_PH,5,math.random(1200,3600)); -- 20 to 60 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.STINGING_SOPHIE_PH,5,math.random(1200,3600)); -- 20 to 60 minutes
 end;
