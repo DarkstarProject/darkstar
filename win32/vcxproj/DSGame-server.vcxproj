@@ -431,6 +431,7 @@
     <ClInclude Include="..\..\src\map\spell.h" />
     <ClInclude Include="..\..\src\map\status_effect.h" />
     <ClInclude Include="..\..\src\map\status_effect_container.h" />
+    <ClInclude Include="..\..\src\map\timetriggers.h" />
     <ClInclude Include="..\..\src\map\time_server.h" />
     <ClInclude Include="..\..\src\map\trade_container.h" />
     <ClInclude Include="..\..\src\map\trait.h" />
@@ -461,6 +462,7 @@
     <ClInclude Include="..\..\src\map\zone_entities.h" />
     <ClInclude Include="..\..\src\map\zone_instance.h" />
     <ClInclude Include="gameserver.h" />
+    <ClInclude Include="timetriggers.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\common\blowfish.cpp" />
@@ -676,6 +678,7 @@
     <ClCompile Include="..\..\src\map\spell.cpp" />
     <ClCompile Include="..\..\src\map\status_effect.cpp" />
     <ClCompile Include="..\..\src\map\status_effect_container.cpp" />
+    <ClCompile Include="..\..\src\map\timetriggers.cpp" />
     <ClCompile Include="..\..\src\map\time_server.cpp" />
     <ClCompile Include="..\..\src\map\trade_container.cpp" />
     <ClCompile Include="..\..\src\map\trait.cpp" />

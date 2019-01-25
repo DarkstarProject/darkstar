@@ -26,6 +26,7 @@
 #include "utils/guildutils.h"
 #include "utils/instanceutils.h"
 #include "time_server.h"
+#include "timetriggers.h"
 #include "transport.h"
 #include "vana_time.h"
 #include "utils/zoneutils.h"
@@ -125,7 +126,9 @@ int32 time_server(time_point tick,CTaskMgr::CTask* PTask)
         }
     }
 
+    CTriggerHandler::getInstance()->triggerTimer();
     CTransportHandler::getInstance()->TransportTimer();
+    
 	instanceutils::CheckInstance();
     return 0;
 }
