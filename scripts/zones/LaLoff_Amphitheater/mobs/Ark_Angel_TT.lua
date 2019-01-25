@@ -2,13 +2,12 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel TT
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(dsp.mod.UFASTCAST, 30);
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;
 
 function onMobEngaged(mob,target)

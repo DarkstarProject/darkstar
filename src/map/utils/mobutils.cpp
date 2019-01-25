@@ -799,20 +799,12 @@ void SetupDynamisMob(CMobEntity* PMob)
     // no gil drop and no mugging!
     PMob->setMobMod(MOBMOD_GIL_MAX, -1);
     PMob->setMobMod(MOBMOD_MUG_GIL, -1);
-    PMob->setMobMod(MOBMOD_PROC_2HOUR, 80);
 
     // used for dynamis stat-spawned mobs
     PMob->m_StatPoppedMobs = false;
 
     // dynamis mobs have true sight
     PMob->m_TrueDetection = true;
-
-    // Hydra's and beastmen can 2 hour
-    if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-            PMob->m_EcoSystem == SYSTEM_UNDEAD)
-    {
-        PMob->setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    }
 
     // boost dynamis mobs weapon damage
     PMob->setMobMod(MOBMOD_WEAPON_BONUS, 135);
@@ -906,15 +898,7 @@ void SetupNMMob(CMobEntity* PMob)
             // whm nms have stronger regen effect
             PMob->addModifier(Mod::REGEN, mLvl/4);
         }
-
-        // add two hours
-        if(PMob->m_EcoSystem == SYSTEM_BEASTMEN ||
-                PMob->m_EcoSystem == SYSTEM_HUMANOID)
-        {
-            PMob->defaultMobMod(MOBMOD_MAIN_2HOUR, 1);
-        }
     }
-
 }
 
 void RecalculateSpellContainer(CMobEntity* PMob)
@@ -976,7 +960,6 @@ void InitializeMob(CMobEntity* PMob, CZone* PZone)
     PMob->defaultMobMod(MOBMOD_SKILL_LIST, PMob->m_MobSkillList);
     PMob->defaultMobMod(MOBMOD_LINK_RADIUS, 10);
     PMob->defaultMobMod(MOBMOD_TP_USE_CHANCE, 30);
-    PMob->defaultMobMod(MOBMOD_PROC_2HOUR, 60);
     PMob->defaultMobMod(MOBMOD_SIGHT_RANGE, (int16)CMobEntity::sight_range);
     PMob->defaultMobMod(MOBMOD_SOUND_RANGE, (int16)CMobEntity::sound_range);
 

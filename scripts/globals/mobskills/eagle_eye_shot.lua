@@ -1,20 +1,12 @@
 ---------------------------------------------------
 -- Eagle Eye Shot
 ---------------------------------------------------
-
-require("scripts/globals/settings")
-require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-
+require("scripts/globals/status")
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
-        return 0
-    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
-        return 0
-    end
-    return 1
+    return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)

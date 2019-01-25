@@ -3,15 +3,13 @@
 --   NM: Jailer of Fortitude
 -----------------------------------
 local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs");
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/settings");
 require("scripts/globals/limbus");
 require("scripts/globals/status");
 require("scripts/globals/magic");
 
 function onMobSpawn(mob)
-    -- Give it two hour
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);

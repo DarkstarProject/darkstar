@@ -1,22 +1,17 @@
 ---------------------------------------------------
 -- Mijin Gakure
 ---------------------------------------------------
-
+require("scripts/globals/monstertpmoves")
 require("scripts/globals/settings")
 require("scripts/globals/status")
-require("scripts/globals/monstertpmoves")
-
 ---------------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
-        return 0
-    elseif (skill:getParam() == 2 and math.random() <= 0.5) then -- not always used
+    if skill:getParam() == 2 and math.random() <= 0.5 then -- not always used
         return 1
-    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
+    else
         return 0
     end
-    return 1
 end
 
 function onMobWeaponSkill(target, mob, skill)
