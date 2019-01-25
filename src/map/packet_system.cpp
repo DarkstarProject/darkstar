@@ -772,6 +772,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x12: // dismount
     {
+        if (PChar->StatusEffectContainer->HasPreventActionEffect() || !PChar->isMounted())
+            return;
+
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
@@ -779,7 +782,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x13: // tractor menu
     {
-        if (data.ref<uint8>(0x0C) == 0) //ACCEPTED TRACTOR
+        if (data.ref<uint8>(0x0C) == 0 && PChar->m_hasTractor != 0) //ACCEPTED TRACTOR
         {
             //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
             PChar->loc.p = PChar->m_StartActionPos;

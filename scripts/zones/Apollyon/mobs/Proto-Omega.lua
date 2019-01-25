@@ -4,9 +4,7 @@
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/titles");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -59,19 +57,9 @@ function onMobFight(mob,target)
     end
 end;
 
-function onAdditionalEffect(mob, player)
-    local chance = 20; -- wiki lists ~20% stun chance
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.THUNDER,dsp.effect.STUN);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local duration = 5 * resist;
-        if (player:hasStatusEffect(dsp.effect.STUN) == false) then
-            player:addStatusEffect(dsp.effect.STUN, 0, 0, duration);
-        end
-        return dsp.subEffect.STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN)
+end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.APOLLYON_RAVAGER);

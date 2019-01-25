@@ -302,9 +302,9 @@ enum class Mod
     CHAKRA_REMOVAL            = 124, // Extra statuses removed by Chakra
     SUBTLE_BLOW               = 289, // How much TP to reduce.
     COUNTER                   = 291, // Percent chance to counter
-    KICK_ATTACK               = 292, // Percent chance to kick
+    KICK_ATTACK_RATE          = 292, // Percent chance to kick
     PERFECT_COUNTER_ATT       = 428, // TODO: Raises weapon damage by 20 when countering while under the Perfect Counter effect. This also affects Weapon Rank (though not if fighting barehanded).
-    FOOTWORK_ATT_BONUS        = 429, // TODO: Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 100/1024 to 152/1024)
+    FOOTWORK_ATT_BONUS        = 429, // Raises the attack bonus of Footwork. (Tantra Gaiters +2 raise 25/256 to 38/256)
     COUNTERSTANCE_EFFECT      = 543, // Counterstance effect in percents
     DODGE_EFFECT              = 552, // Dodge effect in percents
     FOCUS_EFFECT              = 561, // Focus effect in percents

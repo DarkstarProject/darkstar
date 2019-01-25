@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: The Shrine of Ru'Avitau
---  MOB: Kirin
+--   NM: Kirin
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-
 local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
-require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")};
 require("scripts/globals/titles");
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobInitialize( mob )
     mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
@@ -53,18 +53,8 @@ function onMobFight( mob, target )
 end
 
 function onAdditionalEffect(mob, target, damage)
-    local dmg = math.random(90,110)
-    local params = {};
-    params.bonusmab = 0;
-    params.includemab = false;
-
-    dmg = addBonusesAbility(mob, dsp.magic.ele.EARTH, target, dmg, params);
-    dmg = dmg * applyResistanceAddEffect(mob,target,dsp.magic.ele.EARTH,0);
-    dmg = adjustForTarget(target,dmg,dsp.magic.ele.EARTH);
-    dmg = finalMagicNonSpellAdjustments(mob,target,dsp.magic.ele.EARTH,dmg);
-
-    return dsp.subEffect.EARTH_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg;
-end;
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENSTONE)
+end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle( dsp.title.KIRIN_CAPTIVATOR );

@@ -99,11 +99,12 @@ dsp.besieged.getAstralCandescence = function()
     return 1 -- Hardcoded to 1 for now
 end
 
+dsp.besieged.badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
+
 dsp.besieged.getMercenaryRank = function(player)
     local rank = 0
-    local badges = { 780, 783, 784, 794, 795, 825, 826, 827, 894, 900, 909 }
     
-    for _, v in ipairs(badges) do
+    for _, v in ipairs(dsp.besieged.badges) do
         if player:hasKeyItem(v) then
             rank = rank + 1
         end
