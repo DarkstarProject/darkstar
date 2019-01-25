@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  Mob: Lamia Nercomancer
+--  Mob: Lamia Necromancer
 -----------------------------------
 mixins = {require("scripts/mixins/weapon_break")}
 -----------------------------------
