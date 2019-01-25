@@ -858,6 +858,7 @@ dsp.effectFlag =
     BLOODPACT       = 0x200000,
     ON_JOBCHANGE    = 0x400000,
     NO_CANCEL       = 0x800000,
+    INFLUENCE       = 0x1000000,
 }
 
 ------------------------------------
@@ -1109,7 +1110,7 @@ dsp.mod =
     SUBTLE_BLOW                     = 289,
     ENF_MAG_POTENCY                 = 290, -- Increases Enfeebling magic potency %
     COUNTER                         = 291,
-    KICK_ATTACK                     = 292,
+    KICK_ATTACK_RATE                = 292,
     AFFLATUS_SOLACE                 = 293,
     AFFLATUS_MISERY                 = 294,
     CLEAR_MIND                      = 295,

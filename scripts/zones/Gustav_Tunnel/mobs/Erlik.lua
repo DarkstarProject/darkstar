@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.BAOBHAN_SITH_PH,5,math.random(14400,28800)); -- 4 to 8 hours
+    dsp.mob.phOnDespawn(mob,ID.mob.BAOBHAN_SITH_PH,5,math.random(14400,28800)); -- 4 to 8 hours
 end;

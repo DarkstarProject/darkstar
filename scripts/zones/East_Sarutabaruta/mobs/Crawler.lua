@@ -14,5 +14,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.SPINY_SPIPI_PH, 10, math.random(2700,7200)) -- 45 to 120 minutes
+    dsp.mob.phOnDespawn(mob, ID.mob.SPINY_SPIPI_PH, 10, math.random(2700,7200)) -- 45 to 120 minutes
 end

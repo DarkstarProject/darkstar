@@ -3,21 +3,23 @@
 --  NPC: ??? (Spawn Iriz Ima(ZNM T2))
 -- !pos 253 -23 116 51
 -----------------------------------
-local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
+local ID = require("scripts/zones/Wajaom_Woodlands/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(2577,1) and trade:getItemCount() == 1 and not GetMobByID(ID.mob.IRIZ_IMA):isSpawned()) then -- Trade Senorita Pamamas
-        player:tradeComplete();
-        SpawnMob(ID.mob.IRIZ_IMA):updateClaim(player);
+    if npcUtil.tradeHas(trade, 2577) and npcUtil.popFromQM(player, npc, ID.mob.IRIZ_IMA) then
+        player:confirmTrade()
+        player:messageSpecial(ID.text.DRAWS_NEAR)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NOTHING_HAPPENS);
-end;
+    player:messageSpecial(ID.text.PAMAMA_PEELS)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

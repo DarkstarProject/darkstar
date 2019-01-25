@@ -208,6 +208,28 @@ dsp.aftermath.addStatusEffect = function(player, tp, weaponSlot, aftermathType)
     if not weapon then return end
 
     local id = weapon:getMod(dsp.mod.AFTERMATH)
+
+    -- Verify the aftermath ID matches the aftermath Type
+    local invalid = false
+    switch (aftermathType) : caseof
+    {
+        -- Relic
+        [1] = function(x)
+            invalid = id > 28
+        end,
+        
+        -- Mythic
+        [2] = function(x)
+            invalid = id < 29 or id > 43
+        end,
+        
+        -- Empyrean
+        [3] = function(x)
+            invalid = id < 44
+        end
+    }
+    if invalid then return end
+
     local aftermath = dsp.aftermath.effects[id]
     if not aftermath then return end
 

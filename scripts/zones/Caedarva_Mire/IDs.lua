@@ -61,6 +61,8 @@ zones[dsp.zone.CAEDARVA_MIRE] =
             17101322,
             17101323,
         },
+        RUNIC_PORTAL_AZOUPH = 17101271,
+        RUNIC_PORTAL_DVUCCA = 17101274,
     },
 }
 

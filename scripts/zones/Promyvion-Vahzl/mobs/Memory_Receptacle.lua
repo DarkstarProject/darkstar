@@ -1,12 +1,12 @@
 -----------------------------------
 -- Area: Promyvion-Vahzl
---  MOB: Memory Receptacle
+--   NM: Memory Receptacle
 -----------------------------------
 require("scripts/globals/promyvion")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:SetAutoAttackEnabled(false) -- Recepticles only use TP moves.
+    mob:SetAutoAttackEnabled(false) -- Receptacles only use TP moves.
 end
 
 function onMobFight(mob, target)

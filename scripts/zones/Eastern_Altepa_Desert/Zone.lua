@@ -15,6 +15,9 @@ function onChocoboDig(player, precheck)
 end
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.NANDI)
+    GetMobByID(ID.mob.NANDI):setRespawnTime(math.random(3600, 4200))
+
     UpdateNMSpawnPoint(ID.mob.CACTROT_RAPIDO)
     GetMobByID(ID.mob.CACTROT_RAPIDO):setRespawnTime(math.random(900, 10800))
 

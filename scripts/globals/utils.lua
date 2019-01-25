@@ -25,6 +25,7 @@ function utils.clamp(input, min_val, max_val)
     return input;
 end;
 
+-- returns unabsorbed damage
 function utils.stoneskin(target, dmg)
     --handling stoneskin
     if (dmg > 0) then

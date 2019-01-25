@@ -10,6 +10,9 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.MYRADROSH)
+    GetMobByID(ID.mob.MYRADROSH):setRespawnTime(math.random(5400, 7200))
+
     dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
 end;
 

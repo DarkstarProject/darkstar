@@ -508,7 +508,7 @@ void CZone::UpdateWeather()
     uint8 WeatherChance = 0;
 
     // Random time between 3 minutes and 30 minutes for the next weather change
-    WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1620));
+    WeatherNextUpdate = (dsprand::GetRandomNumber(180, 1801));
 
     // Find the timestamp since the start of vanadiel
     WeatherDay = CVanaTime::getInstance()->getVanaTime();
@@ -538,11 +538,11 @@ void CZone::UpdateWeather()
 
     // 15% chance for rare weather, 35% chance for common weather, 50% chance for normal weather
     // * Percentages were generated from a 6 hour sample and rounded down to closest multiple of 5*
-    if (WeatherChance <= 15) //15% chance to have the weather_rare
+    if (WeatherChance < 15) //15% chance to have the weather_rare
     {
         Weather = weatherType.rare;
     }
-    else if (WeatherChance <= 50) // 35% chance to have weather_common
+    else if (WeatherChance < 50) // 35% chance to have weather_common
     {
         Weather = weatherType.common;
     }
