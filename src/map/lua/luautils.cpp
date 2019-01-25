@@ -53,6 +53,7 @@
 #include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
+#include "../timetriggers.h"
 #include "../transport.h"
 #include "../packets/action.h"
 #include "../packets/char_update.h"
@@ -3677,6 +3678,30 @@ namespace luautils
         if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onTransportEvent: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)
+    {
+        lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+        if (prepFile(File, "onTimeTrigger"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PNpc);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, triggerID);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onTimeTrigger: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
         }

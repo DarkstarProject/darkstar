@@ -33010,11 +33010,12 @@ INSERT INTO `mob_droplist` VALUES (4649,0,0,1000,19278,250); -- (Calchas) Fuchin
 INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2812,200); -- (Warabouc) Aptant: Aecus
 INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2820,200); -- (Warabouc) Aptant: Geoc
 INSERT INTO `mob_droplist` VALUES (4651,0,0,1000,17971,112); -- (Gharial) Tartaglia
-INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1062,110); -- Oldton Chest Key
-INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1625,40); -- Moblin Helm
-INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1631,10); -- Moblin Armor
-INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1632,80); -- Moblin Mail
-INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1729,200); -- Moblin Hotrok
+INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1695,155); -- (Mantrap) Habaneros
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1062,110); -- Oldton Chest Key
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1625,40); -- Moblin Helm
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1631,10); -- Moblin Armor
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1632,80); -- Moblin Mail
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1729,200); -- Moblin Hotrok
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

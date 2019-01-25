@@ -1304,13 +1304,13 @@ INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1725);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1727);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1728);
 INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,1730);
--- INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,2359);
+INSERT INTO `mob_skill_lists` VALUES ('CheeseHoarder',288,2359);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1815);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1816);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1817);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1818);
 INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1819);
--- INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1820);
+INSERT INTO `mob_skill_lists` VALUES ('BrassBorer',289,1820);
 INSERT INTO `mob_skill_lists` VALUES ('Claret',290,2549); -- Fluid_Toss_Claret
 INSERT INTO `mob_skill_lists` VALUES ('Claret',290,431);  -- Fluid_Spread
 INSERT INTO `mob_skill_lists` VALUES ('Claret',290,433);  -- Digest
