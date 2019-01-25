@@ -43,7 +43,8 @@ end
 function onTrigger(player,npc)
     local mainJobId = player:getMainJob()
     local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
-    local nyzulWeapon = isBaseNyzulWeapon(player:getEquipID(dsp.slot.MAIN))
+    local nyzulWeaponMain = isBaseNyzulWeapon(player:getEquipID(dsp.slot.MAIN))
+    local nyzulWeaponRanged = isBaseNyzulWeapon(player:getEquipID(dsp.slot.RANGED))
 
     if unlockingAMyth == QUEST_AVAILABLE then
         if player:needToZone() and player:getVar("Upset_Zalsuhm") > 0 then
@@ -53,7 +54,7 @@ function onTrigger(player,npc)
                 player:setVar("Upset_Zalsuhm", 0)
             end
 
-            if nyzulWeapon then
+            if nyzulWeaponMain or nyzulWeaponRanged then
                 player:startEvent(10086, mainJobId)
             else
                 player:startEvent(10085)
