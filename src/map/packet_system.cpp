@@ -4013,13 +4013,13 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string ls_name((const char*)PChar->PLinkshell1->getName());
                         DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
                         char escaped_ls[19 * 2 + 1];
-                        Sql_EscapeString(SqlHandle, escaped_ls, (const char*)PChar->GetName());
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
 
                         std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
                         Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
 
                         const char* fmtQuery = "INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('%s','LINKSHELL','%s','%s',current_timestamp())";
-                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, ls_name.data(), escaped_full_string.data()) == SQL_ERROR)
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_ls, escaped_full_string.data()) == SQL_ERROR)
                         {
                             ShowError("packet_system::call: Failed to log MESSAGE_LINKSHELL.\n");
                         }
@@ -4044,13 +4044,13 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string ls_name((const char*)PChar->PLinkshell2->getName());
                         DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
                         char escaped_ls[19 * 2 + 1];
-                        Sql_EscapeString(SqlHandle, escaped_ls, (const char*)PChar->GetName());
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
 
                         std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
                         Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
 
                         const char* fmtQuery = "INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('%s','LINKSHELL','%s','%s',current_timestamp())";
-                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, ls_name.data(), escaped_full_string.data()) == SQL_ERROR)
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_ls, escaped_full_string.data()) == SQL_ERROR)
                         {
                             ShowError("packet_system::call: Failed to log MESSAGE_LINKSHELL2.\n");
                         }
