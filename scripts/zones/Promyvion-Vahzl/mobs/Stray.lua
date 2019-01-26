@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Promyvion-Vahzl
---  MOB: Stray
+--   NM: Stray
 -----------------------------------
 require("scripts/globals/promyvion")
 -----------------------------------

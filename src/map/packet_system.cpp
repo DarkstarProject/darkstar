@@ -772,6 +772,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x12: // dismount
     {
+        if (PChar->StatusEffectContainer->HasPreventActionEffect() || !PChar->isMounted())
+            return;
+
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
@@ -779,7 +782,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x13: // tractor menu
     {
-        if (data.ref<uint8>(0x0C) == 0) //ACCEPTED TRACTOR
+        if (data.ref<uint8>(0x0C) == 0 && PChar->m_hasTractor != 0) //ACCEPTED TRACTOR
         {
             //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
             PChar->loc.p = PChar->m_StartActionPos;
@@ -4010,7 +4013,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string ls_name((const char*)PChar->PLinkshell1->getName());
                         DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
                         char escaped_ls[19 * 2 + 1];
-                        Sql_EscapeString(SqlHandle, escaped_ls, (const char*)PChar->GetName());
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
 
                         std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
                         Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
@@ -4041,7 +4044,7 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
                         std::string ls_name((const char*)PChar->PLinkshell2->getName());
                         DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
                         char escaped_ls[19 * 2 + 1];
-                        Sql_EscapeString(SqlHandle, escaped_ls, (const char*)PChar->GetName());
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
 
                         std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
                         Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);

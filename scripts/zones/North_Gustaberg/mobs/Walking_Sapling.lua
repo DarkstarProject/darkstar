@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.MAIGHDEAN_UAINE_PH,5,math.random(900,10800)); -- 15 to 180 minutes
+    dsp.mob.phOnDespawn(mob,ID.mob.MAIGHDEAN_UAINE_PH,5,math.random(900,10800)); -- 15 to 180 minutes
 end;

@@ -1110,7 +1110,7 @@ dsp.mod =
     SUBTLE_BLOW                     = 289,
     ENF_MAG_POTENCY                 = 290, -- Increases Enfeebling magic potency %
     COUNTER                         = 291,
-    KICK_ATTACK                     = 292,
+    KICK_ATTACK_RATE                = 292,
     AFFLATUS_SOLACE                 = 293,
     AFFLATUS_MISERY                 = 294,
     CLEAR_MIND                      = 295,
@@ -2514,10 +2514,9 @@ dsp.behavior =
 dsp.elevator =
 {
     TIMED_AUTOMATIC           = 0,
-    PORT_BASTOK_DRWBRDG       = 2,
-    DAVOI_LIFT                = 3,
-    PALBOROUGH_MINES_LIFT     = 4,
-    FORT_GHELSBA_LIFT         = 5
+    DAVOI_LIFT                = 1,
+    PALBOROUGH_MINES_LIFT     = 2,
+    FORT_GHELSBA_LIFT         = 3
 }
 
 ------------------------------------

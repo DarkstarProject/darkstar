@@ -52,6 +52,7 @@
 #include "../recast_container.h"
 #include "../spell.h"
 #include "../status_effect_container.h"
+#include "../timetriggers.h"
 #include "../trade_container.h"
 #include "../transport.h"
 #include "../treasure_pool.h"
@@ -1960,39 +1961,81 @@ inline int32 CLuaBaseEntity::closeDoor(lua_State *L)
 
 inline int32 CLuaBaseEntity::setElevator(lua_State *L)
 {
+    //Usage: setElevator(id, lower door id, upper door id, elevator platform id, animations reversed bool)
+    //If giving the elevator ANIMATION_ELEVATOR_UP makes it go down, set this bool to true
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 4) || !lua_isnumber(L, 4));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 5) || !lua_isboolean(L, 5));
 
     Elevator_t elevator;
 
-    // ID should be 0 for most elevators, except special ones such as Port Bastok drawbridge
     elevator.id = (uint8)lua_tointeger(L, 1);
     elevator.LowerDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 2), TYPE_NPC);
     elevator.UpperDoor = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 3), TYPE_NPC);
     elevator.Elevator = (CNpcEntity*)zoneutils::GetEntity((uint32)lua_tointeger(L, 4), TYPE_NPC);
+    elevator.animationsReversed = (bool)lua_toboolean(L, 5);
 
-    if (!elevator.Elevator)
+    if (!elevator.Elevator || !elevator.LowerDoor || !elevator.UpperDoor)
     {
-        ShowWarning("Elevator id %d initialization failed - elevator ID resolved to no entity.", lua_tointeger(L, 4));
+        ShowWarning("Elevator id %d initialization failed - an ID resolved to no entity.", lua_tointeger(L, 4));
         return 0;
     }
 
-    elevator.isMoving = false;
-    elevator.isStarted = (!lua_isnil(L, 5) && lua_isnumber(L, 5)) ? (lua_tointeger(L, 5) != 0) : 0;
-    elevator.isPermanent = (!lua_isnil(L, 6) && lua_isnumber(L, 6)) ? (lua_tointeger(L, 6) != 0) : 0;
+    //ID of 0 means it is a timed, automatic elevator
+    elevator.activated = (elevator.id == 0) ? true : false;
+    elevator.isPermanent = (elevator.id == 0) ? true : false;
+    
+    elevator.movetime = 3;
+    elevator.interval = 8;
 
-    elevator.movetime = ((elevator.UpperDoor == nullptr) || (elevator.LowerDoor == nullptr) ? 0 : 3);
-    elevator.interval = 8;// ((elevator.UpperDoor == nullptr) || (elevator.LowerDoor == nullptr) || (!elevator.isPermanent) ? 8 : 8);
-
-    elevator.zone = m_PBaseEntity->loc.zone->GetID();
+    elevator.zoneID = m_PBaseEntity->loc.zone->GetID();
 
     elevator.Elevator->name.resize(10);
     CTransportHandler::getInstance()->insertElevator(elevator);
+
+    return 0;
+}
+
+/************************************************************************
+*  Function: addPeriodicTrigger()
+*  Purpose : registers a periodic trigger for an NPC
+*  Example : BastokDrawbridge:addPeriodicTrigger(0, 360, 80)
+*  Notes   : See usage below
+************************************************************************/
+
+inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
+{
+    //Usage npc:addPeriodicTrigger( triggerID, period, minute offset )
+    //triggerID is an ID unique to the NPC
+    //period is the time in vanadiel minutes that separates two triggers of the event
+    //minute offset is the time in vanadiel minutes after the se epoch that the trigger period should synchronize to
+
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
+    
+    Trigger_t trigger;
+
+    trigger.id = (uint8)lua_tointeger(L, 1);
+    trigger.period = (uint16)lua_tointeger(L, 2);
+    trigger.minuteOffset = (uint16)lua_tointeger(L, 3);
+    trigger.npc = (CNpcEntity*)zoneutils::GetEntity((uint32)m_PBaseEntity->id, TYPE_NPC);
+
+    if (!trigger.npc)
+    {
+        ShowWarning("Trigger initialization failed - npc ID %d resolved to no entity.", m_PBaseEntity->id);
+        return 0;
+    }
+
+    CTriggerHandler::getInstance()->insertTrigger(trigger);
 
     return 0;
 }
@@ -2532,7 +2575,54 @@ inline int32 CLuaBaseEntity::isInMogHouse(lua_State* L)
     lua_pushboolean(L, ((CCharEntity*)m_PBaseEntity)->m_moghouseID);
     return 1;
 }
+/************************************************************************
+*  Function: getPlayerRegionInZone
+*  Purpose : Returns the player's current region inside the zone
+*  Example : local regionID = player:getPlayerRegionInZone()
+*  Notes   : This refers to regions added via the registerRegion function
+             Currently only used for port bastok drawbridge
+************************************************************************/
+inline int32 CLuaBaseEntity::getPlayerRegionInZone(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
 
+    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    lua_pushinteger(L, PChar->m_InsideRegionID);
+
+    return 1;
+}
+/************************************************************************
+*  Function: updateToEntireZone
+*  Purpose : Updates NPC status/animation then sends an update packet zone-wide.
+*  Example : drawBridge:updateToEntireZone()
+*  Notes   : Currently only used for port bastok drawbridge as
+             setAnimation() only updates for chars in range.
+************************************************************************/
+inline int32 CLuaBaseEntity::updateToEntireZone(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
+
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
+
+    CNpcEntity* PNpc = (CNpcEntity*)m_PBaseEntity;
+
+    PNpc->status = (STATUSTYPE)lua_tointeger(L, 1);
+    PNpc->animation = (uint8)lua_tointeger(L,2);
+
+    //If this flag is high, update the NPC's name to match the current time
+    if (!lua_isnil(L, 3) && (bool)lua_toboolean(L, 3) == true)
+    {
+        PNpc->name.resize(10);
+        ref<uint32>(&PNpc->name[0], 4) = CVanaTime::getInstance()->getVanaTime();
+        PNpc->name[8] = 8;
+    }
+
+    PNpc->loc.zone->PushPacket(nullptr, CHAR_INZONE, new CEntityUpdatePacket(PNpc, ENTITY_UPDATE, UPDATE_COMBAT));
+    return 1;
+}
 /************************************************************************
 *  Function: getPos()
 *  Purpose : Returns a table of signed coordinates (x,y,z,rot)
@@ -10109,23 +10199,24 @@ inline int32 CLuaBaseEntity::addEnmity(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto CE = (int16)lua_tointeger(L, 2);
-    auto VE = (int16)lua_tointeger(L, 3);
+    int32 CE = (int32)lua_tointeger(L, 2);
+    int32 VE = (int32)lua_tointeger(L, 3);
 
-    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
-        m_PBaseEntity->objtype == TYPE_PET)
+    CMobEntity* PMob = static_cast<CMobEntity*>(m_PBaseEntity);
+
+    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET
+        || (m_PBaseEntity->objtype == TYPE_MOB && PMob->isCharmed))
     {
         if (PEntity && PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
-            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmity((CBattleEntity*)m_PBaseEntity, CE, VE);
+            static_cast<CMobEntity*>(PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(m_PBaseEntity), CE, VE);
         }
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
-        if (PEntity != nullptr && (CE > 0 || VE > 0) &&
-            PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        if (PEntity != nullptr && (CE > 0 || VE > 0) && PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
-            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmity((CBattleEntity*)PEntity->GetBaseEntity(), CE, VE);
+            PMob->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), CE, VE);
         }
     }
     return 0;
@@ -10255,26 +10346,30 @@ int32 CLuaBaseEntity::transferEnmity(lua_State* L)
 inline int32 CLuaBaseEntity::updateEnmityFromDamage(lua_State *L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto damage = (uint16)lua_tointeger(L, 2);
+    int32 damage = (int32)lua_tointeger(L, 2);
 
-    if (m_PBaseEntity->objtype == TYPE_PC || (m_PBaseEntity->objtype == TYPE_MOB && ((CMobEntity*)m_PBaseEntity)->isCharmed) ||
-        m_PBaseEntity->objtype == TYPE_PET)
+    auto PBaseMob = static_cast<CMobEntity*>(m_PBaseEntity);
+
+    // This is a mob attacking a target and losing enmity from doing damage
+    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET
+        || (m_PBaseEntity->objtype == TYPE_MOB && PBaseMob->isCharmed))
     {
         if (PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
-            ((CMobEntity*)PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack((CBattleEntity*)m_PBaseEntity, damage);
+            static_cast<CMobEntity*>(PEntity->GetBaseEntity())->PEnmityContainer->UpdateEnmityFromAttack(static_cast<CBattleEntity*>(m_PBaseEntity), damage);
         }
     }
+    // This is a mob being attacked and gaining enmity on the attacker
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
         if (PEntity->GetBaseEntity() && damage > 0 &&
             PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
-            ((CMobEntity*)m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage((CBattleEntity*)PEntity->GetBaseEntity(), damage);
+            PBaseMob->PEnmityContainer->UpdateEnmityFromDamage(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), damage);
         }
     }
     return 0;
@@ -10297,7 +10392,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
 
     CLuaBaseEntity* PEntity = Lunar<CLuaBaseEntity>::check(L, 1);
-    auto amount = (uint16)lua_tointeger(L, 2);
+    auto amount = (int32)lua_tointeger(L, 2);
 
     auto PCurer = [&]() -> CCharEntity*
     {
@@ -10318,7 +10413,7 @@ inline int32 CLuaBaseEntity::updateEnmityFromCure(lua_State *L)
 
     if (PEntity != nullptr && PCurer)
     {
-        battleutils::GenerateCureEnmity(PCurer, (CBattleEntity*)PEntity->GetBaseEntity(), amount);
+        battleutils::GenerateCureEnmity(PCurer, static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), amount);
     }
 
     return 0;
@@ -11582,7 +11677,7 @@ inline int32 CLuaBaseEntity::getMeleeHitDamage(lua_State *L)
 
     if (dsprand::GetRandomNumber(100) < hitrate)
     {
-        float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0);
+        float DamageRatio = battleutils::GetDamageRatio(PAttacker, PDefender, false, 0.f);
         int damage = (uint16)((PAttacker->GetMainWeaponDmg() + battleutils::GetFSTR(PAttacker, PDefender, SLOT_MAIN)) * DamageRatio);
         lua_pushinteger(L, damage);
         return 1;
@@ -14138,6 +14233,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,closeDoor),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setElevator),
 
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,addPeriodicTrigger),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,showNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,hideNPC),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateNPCHideTime),
@@ -14714,6 +14810,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getDespoilDebuff),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,itemStolen),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTHlevel),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlayerRegionInZone),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateToEntireZone),
 
     {nullptr,nullptr}
 };

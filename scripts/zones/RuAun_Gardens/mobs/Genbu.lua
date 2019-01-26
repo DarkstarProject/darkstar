@@ -4,7 +4,7 @@
 -----------------------------------
 local ID = require("scripts/zones/RuAun_Gardens/IDs")
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/magic")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -12,17 +12,7 @@ function onMobInitialize(mob)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    local dmg = math.random(140, 160)
-    local params = {}
-    params.bonusmab = 0
-    params.includemab = false
-
-    dmg = addBonusesAbility(mob, dsp.magic.ele.WATER, target, dmg, params)
-    dmg = dmg * applyResistanceAddEffect(mob, target, dsp.magic.ele.WATER, 0)
-    dmg = adjustForTarget(target, dmg, dsp.magic.ele.WATER)
-    dmg = finalMagicNonSpellAdjustments(mob, target, dsp.magic.ele.WATER, dmg)
-
-    return dsp.subEffect.WATER_DAMAGE, dsp.msg.basic.ADD_EFFECT_DMG, dmg
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENWATER)
 end
 
 function onMobDeath(mob, player, isKiller)

@@ -1,22 +1,22 @@
 -----------------------------------
 -- Area: Selbina
 --  NPC: Bretta
--- !pos Poor Bretta lost in the depths of the database. Go find her.
+-- !pos 23.156 -2.558 -29.996 248
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    if (player:getZPos() > -28.750) then
-        player:startEvent(1133, 1152 - ((os.time() - 1009810584)%1152));
+    if player:getZPos() > -28.750 then
+        player:startEvent(1133, 1152 - ((os.time() - 1009810584) % 1152))
     else
-        player:startEvent(222);
+        player:startEvent(222)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

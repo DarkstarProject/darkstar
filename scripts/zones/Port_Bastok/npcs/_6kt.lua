@@ -6,16 +6,52 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onSpawn(npc)
-
-    local elevator =
-    {
-        id = dsp.elevator.PORT_BASTOK_DRWBRDG, -- id is usually 0, but 2 for port bastok drawbridge since it's special
-        lowerDoor = npc:getID(),           -- lowerDoor's npcid
-        upperDoor = npc:getID() - 1,       -- upperDoor usually has a smaller id than lowerDoor
-        elevator = npc:getID() - 2,        -- actual elevator npc's id is usually the smallest
-        started = 1,                       -- is the elevator already running
-        regime = 1                         --
-    };
-
-    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.started, elevator.regime);
+    --Triggers to open the drawbridge
+    npc:addPeriodicTrigger(0, 360, 4)
+    npc:addPeriodicTrigger(2, 360, 80)
+    
+    --Triggers to close the drawbridge
+    npc:addPeriodicTrigger(1, 360, 9)
+    npc:addPeriodicTrigger(3, 360, 85)
+    
+    --Triggers to re-open the walkway
+    npc:addPeriodicTrigger(4, 360, 13)
+    npc:addPeriodicTrigger(5, 360, 89)
 end;
+
+function onTimeTrigger(npc, triggerID)
+--npc is the moghouse-side door to the bridge
+    local upperDoor = GetNPCByID(npc:getID() - 1)
+    local bridge = GetNPCByID(npc:getID() - 2)
+
+    if npc == nil or upperDoor == nil or bridge == nil then
+        error("Drawbridge NPC failure")
+        return
+    end
+
+    if (triggerID == 0 or triggerID == 2) then
+        --drawbridge needs to open        
+        local players = npc:getZone():getPlayers()
+
+        --If a player is on the bridge, kick them off
+        for _, player in pairs(players) do
+            if player:getPlayerRegionInZone() == 2 then
+                player:startEvent(70)
+            end
+        end
+        
+        bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.CLOSE_DOOR, true)
+        upperDoor:setAnimation(dsp.animation.CLOSE_DOOR)
+        npc:setAnimation(dsp.animation.CLOSE_DOOR)
+
+    elseif (triggerID == 1 or triggerID == 3) then
+        --drawbridge needs to close
+        bridge:updateToEntireZone(dsp.status.NORMAL, dsp.animation.OPEN_DOOR, true)
+        
+    elseif (triggerID == 4 or triggerID == 5) then
+        --drawbridge has finished closing, reopen entry to walkers
+        upperDoor:setAnimation(dsp.animation.OPEN_DOOR)
+        npc:setAnimation(dsp.animation.OPEN_DOOR)
+    end
+
+end

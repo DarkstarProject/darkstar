@@ -15,5 +15,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.MOUU_THE_WAVERIDER_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.MOUU_THE_WAVERIDER_PH, 10, 7200) -- 2 hours
 end

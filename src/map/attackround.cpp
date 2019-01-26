@@ -345,7 +345,7 @@ void CAttackRound::CreateKickAttacks()
     if (m_attacker->objtype == TYPE_PC)
     {
         // kick attack mod (All jobs)
-        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK);
+        uint16 kickAttack = m_attacker->getMod(Mod::KICK_ATTACK_RATE);
 
         if (m_attacker->GetMJob() == JOB_MNK) // MNK (Main job)
         {

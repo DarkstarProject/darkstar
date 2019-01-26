@@ -647,7 +647,6 @@ public:
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
     uint16		    m_Immunity;					// Mob immunity
     uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
     time_point  	charmTime;					// to hold the time entity is charmed

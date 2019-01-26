@@ -13,6 +13,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.HIPPOLYTOS_PH,5,1); -- no cooldown
-    phOnDespawn(mob,ID.mob.EURYMEDON_PH,5,1); -- no cooldown
+    dsp.mob.phOnDespawn(mob,ID.mob.HIPPOLYTOS_PH,5,1); -- no cooldown
+    dsp.mob.phOnDespawn(mob,ID.mob.EURYMEDON_PH,5,1); -- no cooldown
 end;
