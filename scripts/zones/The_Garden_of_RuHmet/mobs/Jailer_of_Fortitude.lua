@@ -10,6 +10,13 @@ require("scripts/globals/status");
 require("scripts/globals/magic");
 
 function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.INVINCIBLE, cooldown = 180, hpp = math.random(90, 95)}, -- "Has access to Invincible, which it may use several times."
+        },
+    })
+
     -- Change animation to humanoid w/ prismatic core
     mob:AnimationSub(1);
     mob:setModelId(1169);

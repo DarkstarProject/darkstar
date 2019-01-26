@@ -10,6 +10,23 @@ function onMobInitialize(mob)
     mob:addMod(dsp.mod.UFASTCAST, 30);
 end;
 
+function onMobSpawn(mob)
+    dsp.mix.jobSpecial.config(mob, {
+        between = 30,
+        specials =
+        {
+            {id = dsp.jsa.BLOOD_WEAPON},
+            {
+                id = dsp.jsa.MANAFONT,
+                endCode = function(mob) -- "Uses Manafont and ... Will cast Sleepga followed by Meteor."
+                    mob:castSpell(273) -- sleepga
+                    mob:castSpell(218) -- meteor
+                end,
+            },
+        },
+    })
+end
+
 function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
