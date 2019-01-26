@@ -3,9 +3,7 @@
 -- Zone: Open_sea_route_to_Mhaura (47)
 --
 -----------------------------------
-package.loaded["scripts/zones/Open_sea_route_to_Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Open_sea_route_to_Mhaura/TextIDs");
+local ID = require("scripts/zones/Open_sea_route_to_Mhaura/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,17 +20,13 @@ end;
 
 function onTransportEvent(player,transport)
     player:startEvent(1028);
-    player:messageSpecial(DOCKING_IN_MHAURA);
+    player:messageSpecial(ID.text.DOCKING_IN_MHAURA);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1028) then
         player:setPos(0,0,0,0,249);
     end

@@ -2,12 +2,9 @@
 -- Area: Southern San d'Oria
 --  NPC: Arpetion
 --  General Info NPC
---  @zone 230
--- !pos -11 1 -30
+-- !pos -11 1 -30 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -20,7 +17,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -30,11 +27,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

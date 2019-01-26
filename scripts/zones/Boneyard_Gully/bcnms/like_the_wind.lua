@@ -4,12 +4,9 @@
 -- BCNM: 673
 -- Mask: 1
 -----------------------------------
-package.loaded["scripts/zones/Boneyard_Gully/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Boneyard_Gully/TextIDs");
 
 -----------------------------------
  
@@ -19,8 +16,8 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    if (player:hasKeyItem(MIASMA_FILTER)) then
-        player:delKeyItem(MIASMA_FILTER);
+    if (player:hasKeyItem(dsp.ki.MIASMA_FILTER)) then
+        player:delKeyItem(dsp.ki.MIASMA_FILTER);
     end;
 end;
 
@@ -35,7 +32,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);    
+        player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
     elseif (leavecode == 4) then
         player:startEvent(32002);
     end
@@ -45,13 +42,12 @@ end;
 function onBcnmDestroy(player,instance)
 end;
 
-
 function onEventUpdate(player,csid,option)
 -- print("bc update csid "..csid.." and option "..option);
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
         player:addExp(2000);
     end

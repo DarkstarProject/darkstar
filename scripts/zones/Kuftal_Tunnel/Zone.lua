@@ -3,28 +3,22 @@
 -- Zone: Kuftal_Tunnel (174)
 --
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/weather");
-require("scripts/globals/zone");
+require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(GUIVRE);
-    GetMobByID(GUIVRE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.GUIVRE);
+    GetMobByID(ID.mob.GUIVRE):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(17490304);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -39,21 +33,51 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
-function onZoneWeatherChange(weather)
+function onGameHour(zone)
+    local phase = VanadielMoonPhase();      -- 0% to 100%
+    local dir   = VanadielMoonDirection();  -- 0 (neither) 1 (waning) or 2 (waxing)
+    local boulderOpen =
+    {
+        [1] = {
+            [ 1] = function() return (phase >= 29 and phase <= 43) end,
+            [ 3] = function() return (phase >= 12 and phase <= 26) end,
+            [ 5] = function() return (phase <= 10  or phase >= 95) end,
+            [ 7] = function() return (phase >= 79 and phase <= 93) end,
+            [ 9] = function() return (phase >= 62 and phase <= 76) end,
+            [11] = function() return (phase >= 45 and phase <= 60) end,
+            [13] = function() return (phase >= 29 and phase <= 43) end,
+            [15] = function() return (phase >= 12 and phase <= 26) end,
+            [17] = function() return (phase <= 10  or phase >= 95) end,
+            [19] = function() return (phase >= 79 and phase <= 93) end,
+            [21] = function() return (phase >= 62 and phase <= 76) end,
+            [23] = function() return (phase >= 45 and phase <= 60) end,
+        },
+        [2] = {
+            [ 1] = function() return (phase >= 57 and phase <= 71) end,
+            [ 3] = function() return (phase >= 74 and phase <= 88) end,
+            [ 5] = function() return (phase <=  5  or phase >= 90) end,
+            [ 7] = function() return (phase >=  7 and phase <= 21) end,
+            [ 9] = function() return (phase >= 24 and phase <= 38) end,
+            [11] = function() return (phase >= 40 and phase <= 55) end,
+            [13] = function() return (phase >= 57 and phase <= 71) end,
+            [15] = function() return (phase >= 74 and phase <= 88) end,
+            [17] = function() return (phase <=  5  or phase >= 90) end,
+            [19] = function() return (phase >=  7 and phase <= 21) end,
+            [21] = function() return (phase >= 24 and phase <= 38) end,
+            [23] = function() return (phase >= 40 and phase <= 55) end,
+        }
+    };
 
-    if (weather == WEATHER_WIND or weather == WEATHER_GALES) then
-        GetNPCByID(DOOR_ROCK):setAnimation(9); -- Rock Up
-    else
-        GetNPCByID(DOOR_ROCK):setAnimation(8); -- Rock Down
+    if (dir > 0) then
+        local shouldOpen = boulderOpen[dir][VanadielHour()];
+        local boulder = GetNPCByID(ID.npc.DOOR_ROCK);
+        if (shouldOpen ~= nil and shouldOpen() and boulder:getAnimation() == dsp.anim.CLOSE_DOOR) then
+            boulder:openDoor(144 * 6); -- one vanadiel hour is 144 earth seconds. lower boulder for 6 vanadiel hours.
+        end
     end
-
 end;

@@ -3,10 +3,8 @@
 -- Name: Shattering stars - Maat Fight
 -- !pos -345 104 -260 144
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 
@@ -16,7 +14,6 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    -- player:messageSpecial(107);
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -48,7 +45,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
             player:addItem(4181);
-            player:messageSpecial(ITEM_OBTAINED,4181);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4181);
         end
         local pjob = player:getMainJob();
         player:setVar("maatDefeated",pjob);
@@ -56,7 +53,7 @@ function onEventFinish(player,csid,option)
         if (bit.band(maatsCap, bit.lshift(1, (pjob -1))) ~= 1) then
             player:setVar("maatsCap",bit.bor(maatsCap, bit.lshift(1, (pjob -1))))
         end
-        player:addTitle(MAAT_MASHER);
+        player:addTitle(dsp.title.MAAT_MASHER);
     end
 
 end;

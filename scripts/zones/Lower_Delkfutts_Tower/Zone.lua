@@ -3,12 +3,11 @@
 -- Zone: Lower_Delkfutts_Tower (184)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,11 +16,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -33,9 +28,9 @@ function onZoneIn(player,prevZone)
     end
     if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1) then
         cs = 15;
-    elseif (ENABLE_COP == 1 and prevZone == 126 and player:getCurrentMission(COP) == ANCIENT_FLAMES_BECKON) then
+    elseif (ENABLE_COP == 1 and prevZone == dsp.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == ANCIENT_FLAMES_BECKON) then
         cs = 22;
-    elseif (player:getCurrentMission(ACP) == BORN_OF_HER_NIGHTMARES and prevZone == 126) then
+    elseif (player:getCurrentMission(ACP) == BORN_OF_HER_NIGHTMARES and prevZone == dsp.zone.QUFIM_ISLAND) then
         cs = 34;
     end
 
@@ -63,13 +58,9 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 15) then
         player:setVar("ZilartStatus",2);
@@ -92,7 +83,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:startEvent(38);
     elseif (csid == 38) then
-         player:startEvent(39);
+        player:startEvent(39);
     elseif (csid == 39) then
         player:completeMission(COP,ANCIENT_FLAMES_BECKON);
         player:addMission(COP,THE_RITES_OF_LIFE);

@@ -1,48 +1,35 @@
 -----------------------------------
 -- Area: Bastok Markets
 --  NPC: Oggodett
--- Only sells when Bastok controlls Aragoneu Region
---
--- Updated Aug-09-2013 by Zerahn, based on bgwiki and gamerescape
+-- Aragoneu Regional Goods
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Bastok_Markets/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    local RegionOwner = GetRegionOwner(ARAGONEU);
-    if (RegionOwner ~= NATION_BASTOK) then
-        player:showText(npc,OGGODETT_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.ARAGONEU) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.OGGODETT_CLOSED_DIALOG)
     else
-        player:showText(npc,OGGODETT_OPEN_DIALOG);
-
         local stock =
         {
-            631,    36,  -- Horo Flour
-            629,    44,  -- Millioncorn
-            4415,  114,  -- Roasted Corn
-            4505,   92,  -- Sunflower Seeds
-            841,    36   -- Yagudo Feather
+            631,    36,    -- Horo Flour
+            629,    43,    -- Millioncorn
+            4415,  111,    -- Roasted Corn
+            4505,   90,    -- Sunflower Seeds
+            841,    36,     -- Yagudo Feather
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.OGGODETT_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

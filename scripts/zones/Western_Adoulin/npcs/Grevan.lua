@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Grevan
 -- Type: Standard NPC and Quest NPC
---  Involved With Quest: 'Order Up'
---  @zone 256
---  !pos 50 0 6 256
+-- Involved With Quest: 'Order Up'
+-- !pos 50 0 6 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------
@@ -44,7 +43,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit("Order_Up_NPCs", 10, true);
     end
 end;
-
-
-
-

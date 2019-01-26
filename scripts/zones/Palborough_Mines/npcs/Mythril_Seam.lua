@@ -3,13 +3,11 @@
 --  NPC: Mythril Seam
 -- Involved In Mission: Journey Abroad
 -- Involved in quest: Rock Racketeer
--- @zone 143
--- !pos -68 -7 173  //  Rock Racketeer !pos 210 -32 -63
------------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
+-- !pos -68 -7 173 143
+-- Rock Racketeer !pos 210 -32 -63 143
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Palborough_Mines/TextIDs");
+local ID = require("scripts/zones/Palborough_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -33,7 +31,7 @@ function onTrade(player,npc,trade)
                     player:startEvent(43,12,0,597); -- chunk of mine gravel (597)
                 end
             else
-                player:startEvent(52,8,598); -- pickaxe breaks
+                player:startEvent(47,8,598); -- pickaxe breaks
                 player:tradeComplete();
             end
 
@@ -52,8 +50,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
@@ -62,13 +58,13 @@ function onEventFinish(player,csid,option)
     if (csid == 51) then
         player:tradeComplete();
         player:addItem(598);
-        player:messageSpecial(ITEM_OBTAINED, 598);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 598);
 
     -- Standard
     elseif (csid == 43) then
         player:tradeComplete();
         player:addItem(597);
-        player:messageSpecial(ITEM_OBTAINED,597); -- Mine Gravel
+        player:messageSpecial(ID.text.ITEM_OBTAINED,597); -- Mine Gravel
     end
 
 end;

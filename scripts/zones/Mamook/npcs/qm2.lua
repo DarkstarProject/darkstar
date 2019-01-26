@@ -3,22 +3,19 @@
 --  NPC: ??? (Spawn Iriri Samariri(ZNM T2))
 -- !pos -118 7 -80 65
 -----------------------------------
-package.loaded["scripts/zones/Mamook/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mamook/TextIDs");
-require("scripts/zones/Mamook/MobIDs");
+local ID = require("scripts/zones/Mamook/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2579) and not GetMobByID(IRIRI_SAMARIRI):isSpawned()) then -- Trade Samariri Corpsehair
+    if (npcUtil.tradeHas(trade, 2579) and not GetMobByID(ID.mob.IRIRI_SAMARIRI):isSpawned()) then -- Trade Samariri Corpsehair
         player:confirmTrade();
-        SpawnMob(IRIRI_SAMARIRI):updateClaim(player);
+        SpawnMob(ID.mob.IRIRI_SAMARIRI):updateClaim(player);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS);
+    player:messageSpecial(ID.text.NOTHING_HAPPENS);
 end;
 
 function onEventUpdate(player,csid,option)

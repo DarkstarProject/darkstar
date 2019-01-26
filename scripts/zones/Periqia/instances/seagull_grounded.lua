@@ -3,32 +3,32 @@
 -- Assault: Seagull Grounded
 --
 -----------------------------------
-require("scripts/zones/Periqia/IDs");
+local ID = require("scripts/zones/Periqia/IDs")
 -----------------------------------
 
 function afterInstanceRegister(player)
     local instance = player:getInstance();
-    player:messageSpecial(Periqia.text.ASSAULT_31_START, 1);
-    player:messageSpecial(Periqia.text.TIME_TO_COMPLETE, instance:getTimeLimit());
+    player:messageSpecial(ID.text.ASSAULT_31_START, 1);
+    player:messageSpecial(ID.text.TIME_TO_COMPLETE, instance:getTimeLimit());
 end;
 
 function onInstanceCreated(instance)
 
-    for i,v in pairs(Periqia.mobs[31]) do
+    for i,v in pairs(ID.mob[31]) do
         SpawnMob(v, instance);
     end
 
-    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
+    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
     rune:setPos(-495,-9.899,-72,0);
     box:setPos(-495,-9.695,-75,0);
 
-    instance:getEntity(bit.band(Periqia.npcs.EXCALIACE, 0xFFF), TYPE_NPC):setStatus(1);
-    instance:getEntity(bit.band(Periqia.npcs._1K6, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._1KX, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._1KZ, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._JK1, 0xFFF), TYPE_NPC):setAnimation(8);
-    instance:getEntity(bit.band(Periqia.npcs._JK3, 0xFFF), TYPE_NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc.EXCALIACE, 0xFFF), dsp.objType.NPC):setStatus(1);
+    instance:getEntity(bit.band(ID.npc._1K6, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc._1KX, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc._1KZ, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc._JK1, 0xFFF), dsp.objType.NPC):setAnimation(8);
+    instance:getEntity(bit.band(ID.npc._JK3, 0xFFF), dsp.objType.NPC):setAnimation(8);
 
 end;
 
@@ -54,7 +54,7 @@ function onInstanceTimeUpdate(instance, elapsed)
         end
         if (wipe) then
             for i,v in pairs(players) do
-                v:messageSpecial(Periqia.text.PARTY_FALLEN, 3);
+                v:messageSpecial(ID.text.PARTY_FALLEN, 3);
             end
             instance:setWipeTime(elapsed);
         end
@@ -87,9 +87,9 @@ function onInstanceTimeUpdate(instance, elapsed)
     if (message ~= 0) then
         for i,v in pairs(players) do
             if (remainingTimeLimit >= 60) then
-                v:messageSpecial(Periqia.text.TIME_REMAINING_MINUTES, remainingTimeLimit / 60);
+                v:messageSpecial(ID.text.TIME_REMAINING_MINUTES, remainingTimeLimit / 60);
             else
-                v:messageSpecial(Periqia.text.TIME_REMAINING_SECONDS, remainingTimeLimit);
+                v:messageSpecial(ID.text.TIME_REMAINING_SECONDS, remainingTimeLimit);
             end
         end
         instance:setLastTimeUpdate(message);
@@ -101,7 +101,7 @@ function onInstanceFailure(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Periqia.text.MISSION_FAILED,10,10);
+        v:messageSpecial(ID.text.MISSION_FAILED,10,10);
         v:startEvent(102);
     end
 end;
@@ -119,15 +119,16 @@ function onInstanceComplete(instance)
     local chars = instance:getChars();
 
     for i,v in pairs(chars) do
-        v:messageSpecial(Periqia.text.RUNE_UNLOCKED_POS, 8, 8);
+        v:messageSpecial(ID.text.RUNE_UNLOCKED_POS, 8, 8);
     end
 
-    local rune = instance:getEntity(bit.band(Periqia.npcs.RUNE_OF_RELEASE, 0xFFF), TYPE_NPC);
-    local box = instance:getEntity(bit.band(Periqia.npcs.ANCIENT_LOCKBOX, 0xFFF), TYPE_NPC);
-    rune:setStatus(STATUS_NORMAL);
-    box:setStatus(STATUS_NORMAL);
+    local rune = instance:getEntity(bit.band(ID.npc.RUNE_OF_RELEASE, 0xFFF), dsp.objType.NPC);
+    local box = instance:getEntity(bit.band(ID.npc.ANCIENT_LOCKBOX, 0xFFF), dsp.objType.NPC);
+    rune:setStatus(dsp.status.NORMAL);
+    box:setStatus(dsp.status.NORMAL);
 
 end;
+
 function onEventUpdate(player,csid,option)
 end
 

@@ -1,7 +1,7 @@
 ----------------------------------
 -- Area: Temple of Uggalipeh
--- NM:    Manipulator
--- Notes: Paths around the 2 staircases
+--   NM: Manipulator
+-- Note: Paths around the 2 staircases
 -----------------------------------
 
 local path =
@@ -59,27 +59,26 @@ local path =
     -17.497, -8.500, -101.427,
     -17.408, -8.500, -97.263,
     -17.573, -8.500, -95.179
-};
+}
 
 function onMobSpawn(mob)
-    onMobRoam(mob); -- what?
-end;
+    onMobRoam(mob) -- what?
+end
 
 function onPath(mob)
-    pathfind.patrol(mob, path);
-end;
+    dsp.path.patrol(mob, path)
+end
 
 function onMobRoam(mob)
     -- move to start position if not moving
-    if (mob:isFollowingPath() == false) then
-        mob:pathThrough(pathfind.first(path));
+    if not mob:isFollowingPath() then
+        mob:pathThrough(dsp.path.first(path))
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    -- Set Manipulator's spawnpoint and respawn time
-    mob:setRespawnTime(7200); -- 2 hours
-end;
+    mob:setRespawnTime(7200) -- 2 hours
+end

@@ -2,38 +2,35 @@
 -- Area: Northern San d'Oria
 --  NPC: Andreas
 -- Type: Guildworker's Union Representative
---  @zone 231
--- !pos -189.282 10.999 262.626
------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
+-- !pos -189.282 10.999 262.626 231
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 local keyitems = {
     [0] = {
-        id = WOOD_PURIFICATION,
+        id = dsp.ki.WOOD_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = WOOD_ENSORCELLMENT,
+        id = dsp.ki.WOOD_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = LUMBERJACK,
+        id = dsp.ki.LUMBERJACK,
         rank = 3,
         cost = 10000
     },
-     [3] = {
-        id = BOLTMAKER,
+    [3] = {
+        id = dsp.ki.BOLTMAKER,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_CARPENTER,
+        id = dsp.ki.WAY_OF_THE_CARPENTER,
         rank = 9,
         cost = 20000
     }
@@ -91,19 +88,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 731) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 731) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
     elseif (csid == 732) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

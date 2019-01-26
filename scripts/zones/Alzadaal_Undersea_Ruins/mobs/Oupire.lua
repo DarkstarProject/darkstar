@@ -1,13 +1,10 @@
 -----------------------------------
--- Area:
---  MOB: Oupire
+-- Area: Alzadaal Undersea Ruins
+--   NM: Oupire
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(OUPIRE_IMPALER);
-end;
+    player:addTitle(dsp.title.OUPIRE_IMPALER)
+end

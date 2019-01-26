@@ -1,11 +1,9 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Door:House
--- @zone 80
--- !pos 148 0 27
+-- !pos 148 0 27 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs")
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 -----------------------------------
@@ -22,20 +20,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 63) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,751);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,751);
         else
             player:completeQuest(CRYSTAL_WAR, KNOT_QUITE_THERE);
             player:addItem(751);
-            player:messageSpecial(ITEM_OBTAINED,751); --Platinum Beastcoin
+            player:messageSpecial(ID.text.ITEM_OBTAINED,751); --Platinum Beastcoin
             player:setVar("KnotQuiteThere",0);
         end
     end

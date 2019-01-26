@@ -4,11 +4,9 @@
 -- Involved in Quest: To Cure a Cough
 -- !pos 257 -45 212 101
 -----------------------------------
-package.loaded["scripts/zones/East_Ronfaure/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/East_Ronfaure/TextIDs");
+local ID = require("scripts/zones/East_Ronfaure/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,11 +18,11 @@ function onTrigger(player,npc)
     local Z = player:getZPos();
 
     if ((X > 251.6 and X < 263.6) and (Z < 219.7 and Z > 207.7)) then
-        if (player:hasKeyItem(SCROLL_OF_TREASURE) == true) then
+        if (player:hasKeyItem(dsp.ki.SCROLL_OF_TREASURE) == true) then
             player:startEvent(20);
-            player:delKeyItem(SCROLL_OF_TREASURE);
+            player:delKeyItem(dsp.ki.SCROLL_OF_TREASURE);
             player:addGil(GIL_RATE*3000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         else
             player:startEvent(5);
         end
@@ -47,11 +45,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

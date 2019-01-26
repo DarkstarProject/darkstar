@@ -3,9 +3,7 @@
 --  NPC: Five of Spades
 --  Invloved in quests: A Greeting Cardian
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Buburimu_Peninsula/TextIDs");
+local ID = require("scripts/zones/Buburimu_Peninsula/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -19,18 +17,14 @@ function onTrigger(player,npc)
     if (AGreetingCardian == QUEST_ACCEPTED and AGCcs == 4) then
         player:startEvent(1); -- A Greeting Cardian step three
     else
-        player:showText(npc,FIVEOFSPADES_DIALOG); -- Standard Dialog
+        player:showText(npc,ID.text.FIVEOFSPADES_DIALOG); -- Standard Dialog
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:setVar("AGreetingCardian_Event",5);
     end

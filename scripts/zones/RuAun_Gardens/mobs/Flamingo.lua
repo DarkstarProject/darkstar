@@ -2,9 +2,9 @@
 -- Area: RuAun Gardens
 --  MOB: Flamingo
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,142,1);
+    dsp.regime.checkRegime(player, mob, 142, 1, dsp.regime.type.FIELDS)
 end;

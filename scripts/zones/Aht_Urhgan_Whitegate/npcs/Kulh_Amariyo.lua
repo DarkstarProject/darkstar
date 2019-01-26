@@ -2,38 +2,31 @@
 -- Area: Aht Urhgan Whitegate
 --  NPC: Kulh Amariyo
 -- Standard Merchant NPC
+-- TODO: Stock needs to be modified based on
+--       status of Astral Candescence
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,KULHAMARIYO_SHOP_DIALOG);
-
     local stock =
     {
-        0x1178,38,        -- Crayfish
-     0x1552,1200,        -- Yilanbaligi (not available when AC is missing)
-     0x1553,1800,        -- Sazanbaligu (not available when AC is missing)
-     0x1554,4650,        -- Kayabaligi (not available when AC is missing)
-     0x1555,130}        -- Alabaligi (not available when AC is missing)
+        4472,   38,    -- Crayfish
+        5458, 1200,    -- Yilanbaligi (Requires Astral Candescence)
+        5459, 1800,    -- Sazanbaligu (Requires Astral Candescence)
+        5460, 4650,    -- Kayabaligi (Requires Astral Candescence)
+        5461,  130     -- Alabaligi (Requires Astral Candescence)
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.KULHAMARIYO_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

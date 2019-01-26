@@ -4,9 +4,7 @@
 -- Involved in Quest : Warding Vampires, Riding on the Clouds, Lure of the Wildcat (San d'Oria)
 -- !pos 35 0.1 60 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -17,7 +15,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart Flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -31,8 +29,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_1",0);
             player:tradeComplete();
-            player:addKeyItem(SCOWLING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SCOWLING_STONE);
+            player:addKeyItem(dsp.ki.SCOWLING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCOWLING_STONE);
         end
     end
 
@@ -58,21 +56,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 24 and option == 1) then
         player:addQuest(SANDORIA,WARDING_VAMPIRES);
     elseif (csid == 23) then
         player:tradeComplete();
-        player:addTitle(VAMPIRE_HUNTER_DMINUS);
+        player:addTitle(dsp.title.VAMPIRE_HUNTER_DMINUS);
         player:addGil(GIL_RATE*900);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*900);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*900);
         if (player:getQuestStatus(SANDORIA,WARDING_VAMPIRES) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,WARDING_VAMPIRES);

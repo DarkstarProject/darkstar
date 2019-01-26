@@ -1,13 +1,13 @@
 -----------------------------------
 -- Attachment: Replicator
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_REPLICATOR", function(automaton, target)
         local master = automaton:getMaster()
         local hpthreshold = (automaton:getLocalVar("damagegauge") > 0) and 75 or 50
-        if master and master:countEffect(dsp.effects.WIND_MANEUVER) > 0 and automaton:getHPP() <= hpthreshold and not automaton:hasStatusEffect(dsp.effects.BLINK) and automaton:getLocalVar("blink") < VanadielTime() then
+        if master and master:countEffect(dsp.effect.WIND_MANEUVER) > 0 and automaton:getHPP() <= hpthreshold and not automaton:hasStatusEffect(dsp.effect.BLINK) then
             automaton:useMobAbility(2132, automaton)
         end
     end)

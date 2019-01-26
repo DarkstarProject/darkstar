@@ -4,12 +4,10 @@
 -- Type: Adventurer's Assistant
 -- !pos 10.012 1.453 121.883 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,7 +32,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:hasKeyItem(LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
+    if (player:hasKeyItem(dsp.ki.LIMIT_BREAKER) == false and player:getMainLvl() >= 75) then
         player:startEvent(10045,75,2,10,7,30,302895,4095);
     elseif (player:getMainLvl() == 75 and player:levelCap() == 75 and MAX_LEVEL >= 80 and player:getQuestStatus(JEUNO,NEW_WORLDS_AWAIT) == QUEST_AVAILABLE) then
         player:startEvent(10045,0,1,1,0);
@@ -56,7 +54,7 @@ function onTrigger(player,npc)
         player:startEvent(10045,0,1,4,1);
     elseif (player:getQuestStatus(JEUNO,BEYOND_INFINITY) == QUEST_ACCEPTED) then
         player:startEvent(10045,0,1,5,1); -- player:startEvent(10045,0,1,6,1);
-    elseif (player:hasKeyItem(LIMIT_BREAKER) == true and player:getMainLvl() >= 75) then
+    elseif (player:hasKeyItem(dsp.ki.LIMIT_BREAKER) == true and player:getMainLvl() >= 75) then
         player:startEvent(10045,0,1,0,0);
     else
         player:startEvent(10045,0,2,0,0);
@@ -64,18 +62,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local meritCount = player:getMeritCount();
 
     if (csid == 10045 and option == 4) then
-        player:addKeyItem(LIMIT_BREAKER);
-        player:messageSpecial(KEYITEM_OBTAINED,LIMIT_BREAKER);
+        player:addKeyItem(dsp.ki.LIMIT_BREAKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIMIT_BREAKER);
     elseif (csid == 10045) then
         if (option == 5) then
             player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
@@ -92,14 +86,14 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(80);
         player:completeQuest(JEUNO,NEW_WORLDS_AWAIT);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_80);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_80);
     elseif (csid == 10136) then
         player:tradeComplete();
         player:setMerits(meritCount - 4);
         player:addFame(JEUNO,50);
         player:levelCap(85);
         player:completeQuest(JEUNO,EXPANDING_HORIZONS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_85);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_85);
     elseif (csid == 10137) then
         player:tradeComplete();
         player:setMerits(meritCount - 5);
@@ -107,15 +101,15 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(90);
         player:completeQuest(JEUNO,BEYOND_THE_STARS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_90);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_90);
     elseif (csid == 10138) then
         player:tradeComplete();
         player:setMerits(meritCount - 10);
         player:addFame(JEUNO,50);
         player:levelCap(95);
         player:completeQuest(JEUNO,DORMANT_POWERS_DISLODGED);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_95);
-        player:addKeyItem(SOUL_GEM);
-        player:messageSpecial(KEYITEM_OBTAINED,SOUL_GEM);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_95);
+        player:addKeyItem(dsp.ki.SOUL_GEM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOUL_GEM);
     end
 end;

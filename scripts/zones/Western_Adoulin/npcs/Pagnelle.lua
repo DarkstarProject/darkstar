@@ -2,15 +2,12 @@
 -- Area: Western Adoulin
 --  NPC: Pagnelle
 -- Type: Standard NPC and Quest NPC
---  Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
---  @zone 256
---  !pos -8 0 -100 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- Starts, Involved with, and Finishes Quest: 'Raptor Rapture'
+-- !pos -8 0 -100 256
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,7 +36,7 @@ function onTrigger(player,npc)
             -- Progresses Quest: 'Raptor Rapture', spoke to Ilney.
             player:startEvent(5035);
         elseif (Raptor_Rapture_Status == 6) then
-            local Has_Rockberries = player:hasKeyItem(ROCKBERRY1) and player:hasKeyItem(ROCKBERRY2) and player:hasKeyItem(ROCKBERRY3)
+            local Has_Rockberries = player:hasKeyItem(dsp.ki.ROCKBERRY1) and player:hasKeyItem(dsp.ki.ROCKBERRY2) and player:hasKeyItem(dsp.ki.ROCKBERRY3)
             if (Has_Rockberries) then
                 -- Progresses Quest: 'Raptor Rapture', turning in rockberries.
                 player:startEvent(5037);
@@ -81,16 +78,16 @@ function onEventFinish(player,csid,option)
         player:setVar("Raptor_Rapture_Status", 6);
     elseif (csid == 5037) then
         -- Progresses Quest: 'Raptor Rapture', brought rockberries, now need to go to Rala.
-        player:delKeyItem(ROCKBERRY1);
-        player:delKeyItem(ROCKBERRY2);
-        player:delKeyItem(ROCKBERRY3);
+        player:delKeyItem(dsp.ki.ROCKBERRY1);
+        player:delKeyItem(dsp.ki.ROCKBERRY2);
+        player:delKeyItem(dsp.ki.ROCKBERRY3);
         player:setVar("Raptor_Rapture_Status", 7);
     elseif (csid == 5039) then
         -- Finishing Quest: 'Raptor Rapture'
         player:setVar("Raptor_Rapture_Status", 0);
         player:completeQuest(ADOULIN, RAPTOR_RAPTURE);
         player:addCurrency('bayld', 1000 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 1000 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 1000 * BAYLD_RATE);
         player:addFame(ADOULIN);
         player:needToZone(true);
     end

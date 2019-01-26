@@ -4,8 +4,7 @@
 -- Type: Patrol NPC
 -- !pos -436.356 -15.851 -258.168 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/West_Ronfaure/IDs")
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -1007,20 +1006,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
 
-    if (npc:atPoint(pathfind.get(path, 288))) then
+    if (npc:atPoint(dsp.path.get(path, 288))) then
         local Colmaie = GetNPCByID(npc:getID() + 4);
-        Colmaie:showText(npc, ZOVRIACE_REPORT);
+        Colmaie:showText(npc, ID.text.ZOVRIACE_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
 
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 
 end;
 
@@ -1028,16 +1027,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ZOVRIACE_DIALOG);
+    player:showText(npc, ID.text.ZOVRIACE_DIALOG);
     npc:wait();
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

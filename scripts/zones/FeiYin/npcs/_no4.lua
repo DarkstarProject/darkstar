@@ -6,11 +6,9 @@
 --     Involved in Quests: Curses, Foiled A-Golem!?,SMN AF2: Class Reunion, SMN AF3: Carbuncle Debacle
 --    Involved in Missions: Windurst 5-1/7-2/8-2
 -----------------------------------
-package.loaded["scripts/zones/FeiYin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/FeiYin/TextIDs");
+local ID = require("scripts/zones/FeiYin/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -24,9 +22,9 @@ function onTrigger(player,npc)
         player:startEvent(22);
 
     -- Curses, Foiled A_Golem!?
-    elseif (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
+    elseif (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
         player:startEvent(14); -- deliver spell
-    elseif (player:hasKeyItem(SHANTOTTOS_EXSPELL)) then
+    elseif (player:hasKeyItem(dsp.ki.SHANTOTTOS_EXSPELL)) then
         player:startEvent(13); -- spell erased, try again!
 
     -- standard dialog
@@ -36,22 +34,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Curses, Foiled A_Golem!?
     if (csid == 14) then
         player:setVar("foiledagolemdeliverycomplete",1);
-        player:delKeyItem(SHANTOTTOS_NEW_SPELL); -- remove key item
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL); -- remove key item
     elseif (csid == 22) then
-        player:addKeyItem(RHINOSTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,RHINOSTERY_RING);
-        if (player:hasKeyItem(AURASTERY_RING) and player:hasKeyItem(OPTISTERY_RING)) then
+        player:addKeyItem(dsp.ki.RHINOSTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RHINOSTERY_RING);
+        if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.OPTISTERY_RING)) then
             player:setVar("MissionStatus",2)
         end
     end

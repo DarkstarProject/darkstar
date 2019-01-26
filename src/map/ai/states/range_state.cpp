@@ -154,14 +154,14 @@ bool CRangeState::CanUseRangedAttack(CBattleEntity* PTarget)
 
     switch (SkillType)
     {
-        case SKILL_THR:
+        case SKILL_THROWING:
         {
             // remove barrage, doesn't work here
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_BARRAGE);
             break;
         }
-        case SKILL_ARC:
-        case SKILL_MRK:
+        case SKILL_ARCHERY:
+        case SKILL_MARKSMANSHIP:
         {
             PRanged = (CItemWeapon*)m_PEntity->getEquip(SLOT_AMMO);
             if (PRanged != nullptr && PRanged->isType(ITEM_WEAPON))

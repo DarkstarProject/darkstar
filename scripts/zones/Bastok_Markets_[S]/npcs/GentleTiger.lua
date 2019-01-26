@@ -4,9 +4,7 @@
 -- Type: Quest
 -- !pos -203  -10  1
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,17 +32,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 46) then
         player:setVar("OnSabbatical", 2);
     elseif (csid == 160) then
         player:setVar("FiresOfDiscProg",6);
     end
 end;
-

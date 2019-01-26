@@ -279,7 +279,7 @@ namespace message
                     {
                         if (PInviter->PParty == nullptr)
                         {
-                            // PInviter->PParty = new CParty(PInviter);
+                            PInviter->PParty = new CParty(PInviter);
                         }
                         if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
                         {
@@ -571,7 +571,7 @@ namespace message
                     }
                 }
             }
-            catch (zmq::error_t e)
+            catch (zmq::error_t& e)
             {
                 if (!zSocket)
                 {
@@ -631,7 +631,7 @@ namespace message
         {
             zSocket->connect(server.c_str());
         }
-        catch (zmq::error_t err)
+        catch (zmq::error_t& err)
         {
             ShowFatalError("Message: Unable to connect chat socket: %s\n", err.what());
         }

@@ -3,13 +3,12 @@
 -- Zone: Hall_of_Transference
 --
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_Transference/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Hall_of_Transference/TextIDs");
+local ID = require("scripts/zones/Hall_of_Transference/IDs");
 require("scripts/globals/teleports");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -31,16 +30,16 @@ function onZoneIn(player,prevZone)
 
     elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS) then
         if (player:getVar("cspromy3") == 1) then
-            if (prevZone == 102) then
-                if (player:hasKeyItem(LIGHT_OF_DEM) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+            if (prevZone == dsp.zone.LA_THEINE_PLATEAU) then
+                if (player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
                     cs = 155;
                 end
-            elseif (prevZone == 108) then
-                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_MEA) and not(player:hasKeyItem(LIGHT_OF_DEM))) then
+            elseif (prevZone == dsp.zone.KONSCHTAT_HIGHLANDS) then
+                if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
                     cs = 155;
                 end
-            elseif (prevZone == 117) then
-                if (player:hasKeyItem(LIGHT_OF_HOLLA) and player:hasKeyItem(LIGHT_OF_DEM) and not(player:hasKeyItem(LIGHT_OF_MEA))) then
+            elseif (prevZone == dsp.zone.TAHRONGI_CANYON) then
+                if (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) and player:hasKeyItem(dsp.ki.LIGHT_OF_DEM) and not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
                     cs = 155;
                 end
             -- cs you got when you enter hall of transference for the last promyvion
@@ -114,13 +113,9 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 103 and option == 1) then
         player:setPos(340.082, 19.103, -59.979, 127, 102);     -- To La Theine Plateau {R}
@@ -131,32 +126,32 @@ function onEventFinish(player,csid,option)
     elseif (csid == 155) then
         player:setVar("cspromy3",0)
         player:setVar("cslastpromy",1)
-        if (not(player:hasKeyItem(LIGHT_OF_DEM))) then
+        if (not(player:hasKeyItem(dsp.ki.LIGHT_OF_DEM))) then
             -- print("shouldbezonedtodem")
             player:setPos(185.891, 0, -52.331, 128, 18); -- To Promyvion Dem {R}
-        elseif (not(player:hasKeyItem(LIGHT_OF_HOLLA))) then
+        elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA))) then
             -- print("shouldbezonedtoholla")
             player:setPos(92.033, 0, 80.380, 255, 16); -- To Promyvion Holla {R}
-        elseif (not(player:hasKeyItem(LIGHT_OF_MEA))) then
+        elseif (not(player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
             player:setPos(-93.268, 0, 170.749, 162, 20); -- To Promyvion Mea {R}
         end
     elseif (csid == 161 and option == 1) then
-        if (player:getPreviousZone() == 102) then -- Holla
+        if (player:getPreviousZone() == dsp.zone.LA_THEINE_PLATEAU) then -- Holla
             player:setVar("LastSkyWarpHolla", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 108) then -- Dem
+        elseif (player:getPreviousZone() == dsp.zone.KONSCHTAT_HIGHLANDS) then -- Dem
             player:setVar("LastSkyWarpDem", tonumber(os.date("%j")));
-        elseif (player:getPreviousZone() == 117) then -- Mea
+        elseif (player:getPreviousZone() == dsp.zone.TAHRONGI_CANYON) then -- Mea
             player:setVar("LastSkyWarpMea", tonumber(os.date("%j")));
         end
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 169 and option == 1) then
         player:setVar("MeaChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 170 and option == 1) then
         player:setVar("HollaChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     elseif (csid == 171 and option == 1) then
         player:setVar("DemChipRegistration",0);
-        toSkyGreenPorterLeft(player);
+        dsp.teleport.to(player, dsp.teleport.id.SKY);
     end
 end;

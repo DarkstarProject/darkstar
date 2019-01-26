@@ -3,10 +3,7 @@
 -- Zone: Outer Ra’Kanzar (274)
 --
 -----------------------------------
-package.loaded["scripts/zones/Outer_RaKaznar/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Outer_RaKaznar/TextIDs");
+local ID = require("scripts/zones/Outer_RaKaznar/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -24,11 +21,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

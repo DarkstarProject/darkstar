@@ -3,11 +3,9 @@
 -- Name: Storms of Fate
 -- !pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_B01/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Riverne-Site_B01/TextIDs");
+local ID = require("scripts/zones/Riverne-Site_B01/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/bcnm");
@@ -19,7 +17,7 @@ end;
 
 -- Physically entering the BCNM via bcnmEnter(bcnmid)
 function onBcnmEnter(player,instance)
-    player:delStatusEffect(dsp.effects.LEVEL_RESTRICTION); -- can't be capped at 50 for this fight !
+    player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION); -- can't be capped at 50 for this fight !
 end;
 
 -- Leaving the BCNM by every mean possible, given by the LeaveCode
@@ -44,7 +42,7 @@ function onBcnmLeave(player,instance,leavecode)
     end
 
     if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
-        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION, 50, 0, 0);
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0);
     end;
 end;
 
@@ -57,12 +55,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2) then
-            player:addKeyItem(WHISPER_OF_THE_WYRMKING);
-            player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_THE_WYRMKING);
+            player:addKeyItem(dsp.ki.WHISPER_OF_THE_WYRMKING);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_THE_WYRMKING);
             player:setVar('StormsOfFate',3);
-            player:addTitle(CONQUEROR_OF_FATE);
+            player:addTitle(dsp.title.CONQUEROR_OF_FATE);
             if (ENABLE_COP_ZONE_CAP == 1) then -- restore level cap on exit if the setting is enabled
-                player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION, 50, 0, 0);
+                player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION, 50, 0, 0);
             end;
         end
     end

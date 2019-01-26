@@ -3,12 +3,10 @@
 --  NPC: Gudav
 -- Starts Quests: A Foreman's Best Friend
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,15 +36,13 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 110) then
         player:addQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);
     elseif (csid == 112) then
-        if (player:hasKeyItem(MAP_OF_THE_GUSGEN_MINES) == false) then
-            player:addKeyItem(MAP_OF_THE_GUSGEN_MINES);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_THE_GUSGEN_MINES);
+        if (player:hasKeyItem(dsp.ki.MAP_OF_THE_GUSGEN_MINES) == false) then
+            player:addKeyItem(dsp.ki.MAP_OF_THE_GUSGEN_MINES);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_GUSGEN_MINES);
         end
         player:addFame(BASTOK,60);
         player:completeQuest(BASTOK,A_FOREMAN_S_BEST_FRIEND);

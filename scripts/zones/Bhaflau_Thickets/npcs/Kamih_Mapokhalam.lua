@@ -3,10 +3,8 @@
 --  NPC: Kamih Mapokhalam
 -- 20 -30 597 z 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Bhaflau_Thickets/TextIDs");
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +15,7 @@ function onTrade(player,npc,trade)
         player:tradeComplete();
         player:startEvent(121);
     elseif (count == 3 and trade:hasItemQty(2186,3)) then -- Mythril
-        if (player:hasKeyItem(MAP_OF_ALZADAAL_RUINS)) then
+        if (player:hasKeyItem(dsp.ki.MAP_OF_ALZADAAL_RUINS)) then
             player:startEvent(147);
         else
             player:startEvent(146);
@@ -35,20 +33,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 121) then
         player:setPos(325.137,-3.999,-619.968,0,72); -- To Alzadaal Undersea Ruins G-8 {R}
     elseif (csid == 146) then
         player:tradeComplete();
-        player:addKeyItem(MAP_OF_ALZADAAL_RUINS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_ALZADAAL_RUINS);
+        player:addKeyItem(dsp.ki.MAP_OF_ALZADAAL_RUINS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_ALZADAAL_RUINS);
     end
 
 end;

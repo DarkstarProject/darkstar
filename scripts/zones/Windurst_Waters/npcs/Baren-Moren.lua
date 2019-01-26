@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Hat in Hand
 -- !pos -66 -3 -148 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -95,44 +93,41 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
     if (csid == 48 and option == 1) then
         player:addQuest(WINDURST,HAT_IN_HAND);
-        player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 49 and option == 1) then
         player:setVar("QuestHatInHand_var2",1);
-        player:addKeyItem(NEW_MODEL_HAT);
-        player:messageSpecial(KEYITEM_OBTAINED,NEW_MODEL_HAT);
+        player:addKeyItem(dsp.ki.NEW_MODEL_HAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_MODEL_HAT);
     elseif (csid == 52 and option >= 4 and player:getFreeSlotsCount(0) == 0) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12543);
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12543);
     elseif (csid == 52 and option >= 1) then
         if (option == 5) then          --    80 = HAT + FULL REWARD  =  8 NPCS - Option 5
             player:addGil(GIL_RATE*500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*500);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*500);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,12543);
             end
         elseif (option == 4) then     -- 50 = HAT + GOOD REWARD  >= 6 NPCS - Option 4
             player:addGil(GIL_RATE*400);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*400);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*400);
             if (player:hasItem(12543) == false) then
                 player:addItem(12543,1);
-                player:messageSpecial(ITEM_OBTAINED,12543);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,12543);
             end
         elseif (option == 3) then     -- 30 = PARTIAL REWARD -   >= 4 NPCS - Option 3
             player:addGil(GIL_RATE*300);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*300);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*300);
         elseif (option == 2) then     -- 20 = POOR REWARD         >= 2 NPCS - Option 2
             player:addGil(GIL_RATE*150);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*150);
 --        else (option == 1) then     -- 0/nill = NO REWARD      >= 0 NPCS - Option 1
         end
         if (hatstatus == 1) then
@@ -144,7 +139,7 @@ printf("RESULT: %u",option);
         player:setVar("QuestHatInHand_count",0);
         player:setVar("QuestHatInHand_var",0);
         player:needToZone(true);
-        player:delKeyItem(NEW_MODEL_HAT);
+        player:delKeyItem(dsp.ki.NEW_MODEL_HAT);
         player:setVar("QuestHatInHand_var2",0);
 
 

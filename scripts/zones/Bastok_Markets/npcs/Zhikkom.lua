@@ -4,13 +4,10 @@
 -- Standard Merchant NPC
 -- !pos -288.669 -10.319 -135.064 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Bastok_Markets/IDs")
+require("scripts/globals/shop")
 
 function onTrigger(player,npc)
-    player:showText(npc,ZHIKKOM_SHOP_DIALOG);
     local stock =
     {
         16537, 31648, 1, -- Mythril Sword
@@ -26,5 +23,7 @@ function onTrigger(player,npc)
         16565,  1711, 3, -- Spatha
         16512,  3215, 3, -- Bilbo
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end;
+
+    player:showText(npc, ID.text.ZHIKKOM_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end

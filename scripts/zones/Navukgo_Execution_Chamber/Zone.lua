@@ -3,11 +3,8 @@
 -- Zone: Navukgo_Execution_Chamber (64)
 --
 -----------------------------------
-package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/missions");
-require("scripts/globals/settings");
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
+local ID = require("scripts/zones/Navukgo_Execution_Chamber/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)
@@ -30,13 +27,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 1) then
         player:setVar("AhtUrganStatus",1);

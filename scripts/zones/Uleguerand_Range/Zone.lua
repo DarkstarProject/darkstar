@@ -3,10 +3,7 @@
 -- Zone: Uleguerand_Range (5)
 --
 -----------------------------------
-package.loaded["scripts/zones/Uleguerand_Range/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Uleguerand_Range/TextIDs");
-require("scripts/zones/Uleguerand_Range/MobIDs");
+local ID = require("scripts/zones/Uleguerand_Range/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/weather");
@@ -15,16 +12,12 @@ require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(JORMUNGAND);
-    GetMobByID(JORMUNGAND):setRespawnTime(math.random(86400, 259200));
+    UpdateNMSpawnPoint(ID.mob.JORMUNGAND);
+    GetMobByID(ID.mob.JORMUNGAND):setRespawnTime(math.random(86400, 259200));
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -51,14 +44,14 @@ function onEventFinish(player,csid,option)
 end;
 
 function onZoneWeatherChange(weather)
-    local waterfall = GetNPCByID(ULEGUERAND_WATERFALL);
-    if (weather == WEATHER_SNOW or weather == WEATHER_BLIZZARDS) then
-        if (waterfall:getAnimation() ~= ANIMATION_CLOSE_DOOR) then
-            waterfall:setAnimation(ANIMATION_CLOSE_DOOR);
+    local waterfall = GetNPCByID(ID.npc.WATERFALL);
+    if (weather == dsp.weather.SNOW or weather == dsp.weather.BLIZZARDS) then
+        if (waterfall:getAnimation() ~= dsp.anim.CLOSE_DOOR) then
+            waterfall:setAnimation(dsp.anim.CLOSE_DOOR);
         end
     else
-        if (waterfall:getAnimation() ~= ANIMATION_OPEN_DOOR) then
-            waterfall:setAnimation(ANIMATION_OPEN_DOOR);
+        if (waterfall:getAnimation() ~= dsp.anim.OPEN_DOOR) then
+            waterfall:setAnimation(dsp.anim.OPEN_DOOR);
         end
     end
 end;

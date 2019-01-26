@@ -4,10 +4,8 @@
 -- Involved In Quest: Recollections
 -- !pos -14 0 69 162
 -----------------------------------
-package.loaded["scripts/zones/Castle_Zvahl_Keep/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Castle_Zvahl_Keep/TextIDs");
+local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,19 +24,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 8) then
         player:tradeComplete();
         player:setVar("recollectionsQuest",3);
-        player:addKeyItem(FOE_FINDER_MK_I);
-        player:messageSpecial(KEYITEM_OBTAINED,FOE_FINDER_MK_I);
+        player:addKeyItem(dsp.ki.FOE_FINDER_MK_I);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.FOE_FINDER_MK_I);
     end
 
 end;

@@ -1,10 +1,13 @@
 -----------------------------------
 -- Area: Ghelsba Outpost
---  MOB: Fodderchief Vokdek
+--   NM: Fodderchief Vokdek
 -- Involved in Mission: Save the Children
 -----------------------------------
+require("scripts/globals/status");
+-----------------------------------
 
-function onMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1);
 end;
 
 function onMobDeath(mob, player, isKiller)

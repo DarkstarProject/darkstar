@@ -3,11 +3,8 @@
 --  NPC: Ahko Mhalijikhari
 -- Type: Quest NPC
 -- !pos -344.617 -12.226 -166.233 198
---  61  62  0x003f  64  65
+--  61  62  63  64  65
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -20,9 +17,9 @@ function onTrigger(player,npc)
     --player:startEvent(64);
     if (player:getQuestStatus(WINDURST,ECO_WARRIOR_WIN) ~= QUEST_AVAILABLE and player:getVar("ECO_WARRIOR_ACTIVE") == 238) then
 
-        if (player:hasKeyItem(INDIGESTED_MEAT)) then
+        if (player:hasKeyItem(dsp.ki.INDIGESTED_MEAT)) then
             player:startEvent(65); -- After NM's dead
-        elseif (player:hasStatusEffect(dsp.effects.LEVEL_RESTRICTION) == false) then
+        elseif (player:hasStatusEffect(dsp.effect.LEVEL_RESTRICTION) == false) then
             player:startEvent(62); --
         else
             player:startEvent(64);
@@ -33,20 +30,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-     printf("RESULT: %u",option);
+    printf("RESULT: %u",option);
     if (csid == 62 and option == 1) then
-        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION,20,0,0);
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,20,0,0);
     elseif (csid == 65) then
         player:setVar("ECOR_WAR_WIN-NMs_killed",0);
-        player:delStatusEffect(dsp.effects.LEVEL_RESTRICTION);
+        player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION);
     elseif (csid == 64) then
-        player:delStatusEffect(dsp.effects.LEVEL_RESTRICTION);
+        player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION);
     end
 end;
-

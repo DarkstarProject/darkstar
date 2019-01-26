@@ -1,11 +1,11 @@
 -----------------------------------
 -- Area: Sauromugue Champaign
--- NM:   Climbpix Highrise
+--   NM: Climbpix Highrise
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,97,2);
-    checkRegime(player,mob,98,2);
-end;
+    dsp.regime.checkRegime(player, mob, 97, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 98, 2, dsp.regime.type.FIELDS)
+end

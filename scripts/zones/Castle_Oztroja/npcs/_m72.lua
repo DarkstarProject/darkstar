@@ -4,55 +4,35 @@
 -- Notes: Opens door _477 when _m72 to _m75 are lit
 -- !pos -60 -72 -139 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/settings")
 -----------------------------------
 
 function onTrigger(player,npc)
+    local brassDoor = GetNPCByID(npc:getID() - 2)
 
-    DoorID = npc:getID() - 2;
-    Torch1 = npc:getID();
-    Torch2 = npc:getID() + 1;
-    Torch3 = npc:getID() + 2;
-    Torch4 = npc:getID() + 3;
-    DoorA = GetNPCByID(DoorID):getAnimation();
-    TorchStand1A = npc:getAnimation();
-    TorchStand2A = GetNPCByID(Torch2):getAnimation();
-    TorchStand3A = GetNPCByID(Torch3):getAnimation();
-    TorchStand4A = GetNPCByID(Torch4):getAnimation();
-
-    if (DoorA == 9 and TorchStand1A == 9) then
-        player:startEvent(10);
+    if npc:getAnimation() == dsp.anim.CLOSE_DOOR and brassDoor:getAnimation() == dsp.anim.CLOSE_DOOR then
+        player:startEvent(10)
     else
-        player:messageSpecial(TORCH_LIT);
+        player:messageSpecial(ID.text.TORCH_LIT)
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    if (option == 1) then
-        GetNPCByID(Torch1):openDoor(55);
-        if ((DoorA == 9)) then
-            GetNPCByID(DoorID):openDoor(35); -- confirmed retail tested
-            -- The lamps shouldn't go off here, but I couldn't get the torches to update animation times without turning them off first
-            -- They need to be reset to the door open time(35s) + 4s (39 seconds)
-            GetNPCByID(Torch1):setAnimation(9);
-            GetNPCByID(Torch2):setAnimation(9);
-            GetNPCByID(Torch3):setAnimation(9);
-            GetNPCByID(Torch4):setAnimation(9);
-            GetNPCByID(Torch1):openDoor(39); -- confirmed retail tested
-            GetNPCByID(Torch2):openDoor(39);
-            GetNPCByID(Torch3):openDoor(39);
-            GetNPCByID(Torch4):openDoor(39);
+    if option == 1 then
+        local brassDoor = GetNPCByID(ID.npc.BRASS_DOOR_FLOOR_4_H7)
+        if brassDoor:getAnimation() == dsp.anim.CLOSE_DOOR then
+            brassDoor:openDoor(35)
+            for i = 2, 5 do
+                local torch = GetNPCByID(ID.npc.BRASS_DOOR_FLOOR_4_H7 + i)
+                torch:setAnimation(dsp.anim.CLOSE_DOOR)
+                torch:openDoor(39)
+            end
+        else
+            GetNPCByID(ID.npc.BRASS_DOOR_FLOOR_4_H7 + 2):openDoor()
         end
     end
-end;
+end

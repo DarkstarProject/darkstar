@@ -5,9 +5,7 @@
 -- Involved in Quest: 20 in Pirate Years, I'll Take the Big Box
 -- !pos 33 -6 67 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -26,14 +24,14 @@ function onTrigger(player,npc)
 
         questStatus = player:getVar("AyameAndKaede_Event")
 
-        if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == false) then
+        if ((questStatus == 1 or questStatus == 2) and player:hasKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL) == false) then
             player:startEvent(242);
-        elseif (questStatus == 2 and player:hasKeyItem(STRANGELY_SHAPED_CORAL) == true) then
+        elseif (questStatus == 2 and player:hasKeyItem(dsp.ki.STRANGELY_SHAPED_CORAL) == true) then
             player:startEvent(245);
         elseif (questStatus == 3) then
             player:startEvent(243);
-        elseif (player:hasKeyItem(SEALED_DAGGER)) then
-            player:startEvent(246,SEALED_DAGGER);
+        elseif (player:hasKeyItem(dsp.ki.SEALED_DAGGER)) then
+            player:startEvent(246,dsp.ki.SEALED_DAGGER);
         else
             player:startEvent(27);
         end
@@ -53,26 +51,21 @@ function onTrigger(player,npc)
 
 end;
 
--- 27  0x00f0  242  243  245  246  247  262  263  264  265  0x0105
-
+-- 27  240  242  243  245  246  247  262  263  264  265  261
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 242) then
         player:setVar("AyameAndKaede_Event", 2);
     elseif (csid == 245) then
         player:setVar("AyameAndKaede_Event", 3);
     elseif (csid == 246) then
-        player:delKeyItem(SEALED_DAGGER);
-        player:addTitle(SHADOW_WALKER);
-        player:unlockJob(JOBS.NIN);
-        player:messageSpecial(UNLOCK_NINJA);
+        player:delKeyItem(dsp.ki.SEALED_DAGGER);
+        player:addTitle(dsp.title.SHADOW_WALKER);
+        player:unlockJob(dsp.job.NIN);
+        player:messageSpecial(ID.text.UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
         player:completeQuest(BASTOK,AYAME_AND_KAEDE);

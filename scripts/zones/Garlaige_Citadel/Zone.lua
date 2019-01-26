@@ -3,12 +3,10 @@
 -- Zone: Garlaige_Citadel (200)
 --
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Garlaige_Citadel/TextIDs");
-require("scripts/zones/Garlaige_Citadel/MobIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 require("scripts/globals/conquest");
-require("scripts/globals/zone");
+require("scripts/globals/treasure")
+require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
@@ -28,17 +26,16 @@ function onInitialize(zone)
     zone:registerRegion(21,-190,-1,322,-188,1,324);
     zone:registerRegion(22,-130,-1,322,-128,1,324);
 
-    UpdateNMSpawnPoint(OLD_TWO_WINGS);
-    GetMobByID(OLD_TWO_WINGS):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.OLD_TWO_WINGS);
+    GetMobByID(ID.mob.OLD_TWO_WINGS):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(SKEWER_SAM);
-    GetMobByID(SKEWER_SAM):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.SKEWER_SAM);
+    GetMobByID(ID.mob.SKEWER_SAM):setRespawnTime(math.random(900, 10800));
 
-    UpdateNMSpawnPoint(SERKET);
-    GetMobByID(SERKET):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.SERKET);
+    GetMobByID(ID.mob.SERKET):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(17596812);
-    UpdateTreasureSpawnPoint(17596813);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -49,61 +46,37 @@ function onZoneIn(player,prevZone)
     end
 
     return cs;
-
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
-    local gateid;
-    local regionID = region:GetRegionID();
-    local mylever = BANISHING_GATE_OFFSET + regionID;
-    GetNPCByID(mylever):setAnimation(8);
+    local regionId = region:GetRegionID();
+    local leverSet = math.floor(regionId / 9);              -- the set of levers player is standing on (0, 1, 2)
+    local gateId = ID.npc.BANISHING_GATE_OFFSET + (9 * leverSet);  -- the ID of the related gate
 
-    if (regionID >= 1 and regionID <= 4) then
-        gateid = BANISHING_GATE_OFFSET;
-        msg_offset = 0;
-    elseif (regionID >= 10 and regionID <= 13) then
-        gateid = BANISHING_GATE_OFFSET + 9;
-        msg_offset = 1;
-    elseif (regionID >= 19 and regionID <= 22) then
-        gateid = BANISHING_GATE_OFFSET + 18;
-        msg_offset = 2;
-    end;
-
-    -- Open Gate
-    local gate1 = GetNPCByID(gateid + 1);
-    local gate2 = GetNPCByID(gateid + 2);
-    local gate3 = GetNPCByID(gateid + 3);
-    local gate4 = GetNPCByID(gateid + 4);
-
-    if (gate1:getAnimation() == 8 and gate2:getAnimation() == 8 and gate3:getAnimation() == 8 and gate4:getAnimation() == 8) then
-        player:messageSpecial(BANISHING_GATES + msg_offset); -- Banishing gate opening
-        GetNPCByID(gateid):openDoor(30);
+    -- if all levers are down, open gate for 30 seconds
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + regionId):setAnimation(dsp.anim.OPEN_DOOR);
+    if (
+        GetNPCByID(gateId + 1):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 2):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 3):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(gateId + 4):getAnimation() == dsp.anim.OPEN_DOOR
+    ) then
+        player:messageSpecial(ID.text.BANISHING_GATES + leverSet);
+        GetNPCByID(gateId):openDoor(30);
     end
 
 end;
 
 function onRegionLeave(player,region)
-
-    local regionID = region:GetRegionID();
-    local mylever = BANISHING_GATE_OFFSET + regionID;
-    GetNPCByID(mylever):setAnimation(9);
-
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + region:GetRegionID()):setAnimation(dsp.anim.CLOSE_DOOR);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

@@ -3,12 +3,9 @@
 -- NPC:  Shimmering Circle
 -- !pos -220 0 12 168
 -------------------------------------
-package.loaded["scripts/zones/Chamber_of_Oracles/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Chamber_of_Oracles/TextIDs");
 
 -------------------------------------
 
@@ -22,10 +19,6 @@ require("scripts/zones/Chamber_of_Oracles/TextIDs");
     --- The Scarlet King
     --- Roar! A Cat Burglar Bares Her Fangs
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -34,10 +27,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (EventTriggerBCNM(player,npc)) then
@@ -45,10 +34,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

@@ -3,9 +3,7 @@
 --  NPC: _i9y (Crystal Receptor)
 -- !pos -389.980 -3.198 -203.595 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/PsoXja/TextIDs");
+local ID = require("scripts/zones/PsoXja/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,13 +13,11 @@ function onTrigger(player,npc)
     if (npc:getAnimation() == 9) then
         player:startEvent(58);
     else
-        player:messageSpecial(DEVICE_IN_OPERATION);
+        player:messageSpecial(ID.text.DEVICE_IN_OPERATION);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)

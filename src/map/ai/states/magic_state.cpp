@@ -41,16 +41,15 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
     m_PSpell(nullptr),
     m_flags(flags)
 {
-    CSpell* PSpell = spell::GetSpell(spellid);
+    auto PSpell = spell::GetSpell(spellid);
+    if (PSpell == nullptr)
+    {
+        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(spellid), 0, MSGBASIC_CANNOT_CAST_SPELL));
+    }
 
     m_PSpell = PSpell->clone();
 
-    if (!m_PSpell)
-    {
-        throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, m_PEntity, static_cast<uint16>(m_PSpell->getID()), 0, MSGBASIC_CANNOT_CAST_SPELL));
-    }
     auto PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
-
     if (!PTarget || m_errorMsg)
     {
         throw CStateInitException(std::move(m_errorMsg));
@@ -67,7 +66,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
         throw CStateInitException(std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, static_cast<uint16>(m_PSpell->getID()), 0, errorMsg == 1 ? MSGBASIC_CANNOT_CAST_SPELL : errorMsg));
     }
 
-    m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, GetSpell()));
+    m_castTime = std::chrono::milliseconds(battleutils::CalculateSpellCastTime(m_PEntity, this));
     m_startPos = m_PEntity->loc.p;
 
     action_t action;
@@ -268,7 +267,8 @@ uint32 CMagicState::GetRecast()
     uint32 RecastTime = 0;
 
     if (!m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_CHAINSPELL) &&
-        !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY))
+        !m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_SPONTANEITY) &&
+        !m_instantCast)
     {
         RecastTime = battleutils::CalculateSpellRecastTime(m_PEntity, GetSpell());
     }
@@ -287,32 +287,45 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
     {
         m_PEntity->addModifier(Mod::ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
     }
-
-    if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
+    if (m_PSpell->isNa())
     {
-        if (PTarget->isDead())
-        {
-            ((CMobEntity*)PTarget)->m_DropItemTime = m_PSpell->getAnimationTime();
-        }
+        m_PEntity->addModifier(Mod::ENMITY, -(m_PEntity->getMod(Mod::DIVINE_BENISON) >> 1)); // Half of divine benison mod amount = -enmity
+    }
 
-        if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+    if (PTarget != nullptr)
+    {
+        if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != m_PEntity->allegiance)
         {
-            if (m_PEntity->objtype == TYPE_PC)
+            if (auto mob = dynamic_cast<CMobEntity*>(PTarget))
             {
-                ((CMobEntity*)PTarget)->m_OwnerID.id = m_PEntity->id;
-                ((CMobEntity*)PTarget)->m_OwnerID.targid = m_PEntity->targid;
-                ((CMobEntity*)PTarget)->updatemask |= UPDATE_STATUS;
+                if (PTarget->isDead())
+                {
+                    mob->m_DropItemTime = m_PSpell->getAnimationTime();
+                }
+
+                if (!(m_PSpell->isHeal()) || m_PSpell->tookEffect())  //can't claim mob with cure unless it does damage
+                {
+                    if (m_PEntity->objtype == TYPE_PC)
+                    {
+                        if (!mob->CalledForHelp())
+                        {
+                            mob->m_OwnerID.id = m_PEntity->id;
+                            mob->m_OwnerID.targid = m_PEntity->targid;
+                        }
+                        mob->updatemask |= UPDATE_STATUS;
+                    }
+                    mob->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
+                    if (mob->m_HiPCLvl < m_PEntity->GetMLevel())
+                        mob->m_HiPCLvl = m_PEntity->GetMLevel();
+                    enmityApplied = true;
+                }
             }
-            ((CMobEntity*)PTarget)->PEnmityContainer->UpdateEnmity(m_PEntity, ce, ve);
-            if (PTarget && ((CMobEntity*)PTarget)->m_HiPCLvl < m_PEntity->GetMLevel())
-                ((CMobEntity*)PTarget)->m_HiPCLvl = m_PEntity->GetMLevel();
+        }
+        else if (PTarget->allegiance == m_PEntity->allegiance)
+        {
+            battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
             enmityApplied = true;
         }
-    }
-    else if (PTarget->allegiance == m_PEntity->allegiance)
-    {
-        battleutils::GenerateInRangeEnmity(m_PEntity, ce, ve);
-        enmityApplied = true;
     }
 
     if (m_PEntity->StatusEffectContainer->HasStatusEffect(EFFECT_TRANQUILITY) && m_PSpell->getSpellGroup() == SPELLGROUP_WHITE)
@@ -326,6 +339,10 @@ void CMagicState::ApplyEnmity(CBattleEntity* PTarget, int ce, int ve)
         m_PEntity->delModifier(Mod::ENMITY, -m_PEntity->StatusEffectContainer->GetStatusEffect(EFFECT_EQUANIMITY)->GetPower());
         if (enmityApplied)
             m_PEntity->StatusEffectContainer->DelStatusEffect(EFFECT_EQUANIMITY);
+    }
+    if (m_PSpell->isNa())
+    {
+        m_PEntity->delModifier(Mod::ENMITY, -(m_PEntity->getMod(Mod::DIVINE_BENISON) >> 1)); // Half of divine benison mod amount = -enmity
     }
 }
 

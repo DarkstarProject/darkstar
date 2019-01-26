@@ -23,7 +23,7 @@ function onTrigger(player, keyId, target)
         error(player, "You must supply a Key Item ID.");
         return;
     end
-    keyId = tonumber(keyId) or _G[string.upper(keyId)];
+    keyId = tonumber(keyId) or dsp.ki[string.upper(keyId)];
     if (keyId == nil or keyId == 0) then
         error(player, "Invalid Key Item ID.");
         return;
@@ -45,11 +45,9 @@ function onTrigger(player, keyId, target)
     if (targ:hasKeyItem(keyId)) then
         player:PrintToPlayer(string.format("%s already has key item %i.", targ:getName(), keyId));
     else
-        local TextIDs = "scripts/zones/" .. targ:getZoneName() .. "/TextIDs";
-        package.loaded[TextIDs] = nil;
-        require(TextIDs);
+        local ID = zones[targ:getZoneID()]
         targ:addKeyItem( keyId );
-        targ:messageSpecial( KEYITEM_OBTAINED, keyId );
+        targ:messageSpecial( ID.text.KEYITEM_OBTAINED, keyId );
         player:PrintToPlayer(string.format("Key item %i was given to %s.", keyId, targ:getName()));
     end
 end;

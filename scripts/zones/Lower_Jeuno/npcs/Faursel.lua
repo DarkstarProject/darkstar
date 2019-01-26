@@ -5,12 +5,10 @@
 -- Involved in Quests: The Road to Aht Urhgan
 -- !pos 37.985 3.118 -45.208 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/teleports");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -104,12 +102,12 @@ function onEventFinish(player,csid,option)
             player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",VanadielYear());
         end
     elseif (csid == 10067) then
-        player:addKeyItem(MAP_OF_WAJAOM_WOODLANDS);
-        player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_WAJAOM_WOODLANDS);
-        player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:addKeyItem(dsp.ki.MAP_OF_WAJAOM_WOODLANDS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_WAJAOM_WOODLANDS);
+        player:addKeyItem(dsp.ki.BOARDING_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOARDING_PERMIT);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",4);
-        toWajaomLaypoint(player);
+        dsp.teleport.to(player, dsp.teleport.id.WAJAOM_LEYPOINT);
     elseif (csid == 10068) then
         player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
@@ -117,8 +115,8 @@ function onEventFinish(player,csid,option)
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Year",0);
         player:addFame(JEUNO, 30);
     elseif (csid == 10070) then
-        player:addKeyItem(BOARDING_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,BOARDING_PERMIT);
+        player:addKeyItem(dsp.ki.BOARDING_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOARDING_PERMIT);
         player:completeQuest(JEUNO,THE_ROAD_TO_AHT_URHGAN);
         player:setVar("THE_ROAD_TO_AHT_URHGAN",0);
         player:setVar("THE_ROAD_TO_AHT_URHGAN_Day",0);

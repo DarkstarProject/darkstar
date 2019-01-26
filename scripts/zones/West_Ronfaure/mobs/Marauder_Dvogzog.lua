@@ -3,12 +3,12 @@
 --  MOB: Marauder Dvogzog
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/missions");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobDeath(mob, player, isKiller)
@@ -16,5 +16,5 @@ function onMobDeath(mob, player, isKiller)
         player:setVar("Mission7-1MobKilled",1);
         player:needToZone(true);
     end
-    checkRegime(player,mob,4,1);
+    dsp.regime.checkRegime(player, mob, 4, 1, dsp.regime.type.FIELDS)
 end;

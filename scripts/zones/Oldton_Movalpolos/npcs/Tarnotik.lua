@@ -4,9 +4,6 @@
 -- Type: Standard NPC
 -- !pos 160.896 10.999 -55.659 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -33,17 +30,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 32) then
         player:setPos(-116,-119,-620,253,13);
     elseif (csid == 34) then
         player:setVar("COP_Louverance_s_Path",8);
     end
 end;
-

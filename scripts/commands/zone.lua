@@ -331,7 +331,7 @@ function onTrigger(player, bytes)
     else
         -- destination is a zone ID.
         zone = tonumber(bytes);
-        if (zone == nil or zone < 0 or zone > 293) then
+        if (zone == nil or zone < 0 or zone > 297) then
             error(player, "Invalid zone ID.");
             return;
         end

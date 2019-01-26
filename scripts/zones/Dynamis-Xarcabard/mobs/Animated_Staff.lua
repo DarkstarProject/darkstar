@@ -3,7 +3,7 @@
 --  MOB: Animated Staff
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(115,1582,0);
     end
 
-    target:showText(mob,ANIMATED_STAFF_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_STAFF_DIALOG);
 
     SpawnMob(17330337):updateEnmity(target);
     SpawnMob(17330338):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_STAFF_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_STAFF_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_STAFF_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_STAFF_DIALOG+1);
 
     DespawnMob(17330337);
     DespawnMob(17330338);

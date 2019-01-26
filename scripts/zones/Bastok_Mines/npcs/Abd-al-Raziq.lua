@@ -4,32 +4,30 @@
 -- Type: Alchemy Guild Master
 -- !pos 126.768 1.017 -0.234 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_ALCHEMY);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.ALCHEMY);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_ALCHEMY,newRank);
+        player:setSkillRank(dsp.skill.ALCHEMY,newRank);
         player:startEvent(121,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_ALCHEMY);
-    local testItem = getTestItem(player,npc,SKILL_ALCHEMY);
+    local craftSkill = player:getSkillLevel(dsp.skill.ALCHEMY);
+    local testItem = getTestItem(player,npc,dsp.skill.ALCHEMY);
     local guildMember = isGuildMember(player,1);
 
     if (guildMember == 1) then guildMember = 150995375; end
 
-    if (canGetNewRank(player,craftSkill,SKILL_ALCHEMY) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.ALCHEMY) == 1) then getNewRank = 100; end
 
     if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and getNewRank ~= 100) then
         local item = 0;
@@ -50,21 +48,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 120 and option == 1) then
         local crystal = 4101; -- water crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.alchemy);
         end
     end

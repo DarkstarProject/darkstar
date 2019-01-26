@@ -3,37 +3,16 @@
 --  NPC: HomePoint#3
 -- !pos 73.59 -36.149 38.87 26
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
-require("scripts/globals/homepoint");
+require("scripts/globals/homepoint")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+local hpEvent = 8702
+local hpIndex = 121
 
 function onTrigger(player,npc)
-
-    homepointMenu(player, 8702, 121);
-end;
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    if (csid == 8702) then
-
-        if (option == 1) then
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport(player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

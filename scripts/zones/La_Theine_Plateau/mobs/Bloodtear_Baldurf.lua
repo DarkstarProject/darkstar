@@ -2,40 +2,17 @@
 -- Area: La Theine Plateau
 --  MOB: Bloodtear_Baldurf
 -----------------------------------
-require("scripts/globals/titles");
-require("scripts/zones/La_Theine_Plateau/MobIDs");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ALWAYS_AGGRO, 1);
-    mob:setMobMod(MOBMOD_MAIN_2HOUR, 1);
-    mob:setMobMod(MOBMOD_2HOUR_MULTI, 1);
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-end;
-
-function onMobSpawn(mob)
-end;
+    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1)
+    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1) -- not currently implemented
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1)
+end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(THE_HORNSPLITTER);
-end;
-
-function onMobDespawn(mob)
-    local mobID = mob:getID();
-    local chanceForLambert = 0;
-
-    if (GetServerVariable("[POP]Lumbering_Lambert") <= os.time()) then
-        chanceForLambert = math.random(1,100);
-    end
-
-    if (chanceForLambert > 95 and GetMobAction(Battering_Ram) == ACTION_NONE and GetMobAction(Lumbering_Lambert) == ACTION_NONE) then
-        UpdateNMSpawnPoint(Lumbering_Lambert);
-        GetMobByID(Lumbering_Lambert):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DisallowRespawn(mobID, true);
-    else
-        GetMobByID(Battering_Ram):setRespawnTime(GetMobRespawnTime(Battering_Ram));
-        DisallowRespawn(mobID, true);
-    end
-
-    SetServerVariable("[POP]Bloodtear_Baldurf", os.time() + math.random(75600, 86400)); -- 21-24hours repop
-end;
+    player:addTitle(dsp.title.THE_HORNSPLITTER)
+end

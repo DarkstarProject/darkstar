@@ -2,17 +2,10 @@
 -- Area: Bearclaw Pinnacle
 -- NPC:  Wind Pillar
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -20,10 +13,6 @@ function onTrade(player,npc,trade)
     end
     
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     
@@ -34,10 +23,6 @@ function onTrigger(player,npc)
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

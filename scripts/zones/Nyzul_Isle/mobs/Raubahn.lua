@@ -2,13 +2,13 @@
 -- Area: Nyzul Isle (Nashmeira's Plea)
 --  MOB: Raubahn
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
-        mob:showText(mob,NyzulIsle.text.CARVE);
+        mob:showText(mob,ID.text.CARVE);
     end);
 
     --[[ Todo:
@@ -67,32 +67,32 @@ function onMobSpawn(mob)
                 end
 
                 -- RESIST message only shows for first reraise,
-                -- 2nd reraise should use NyzulIsle.text.NOW_UNDERSTAND instead
+                -- 2nd reraise should use ID.text.NOW_UNDERSTAND instead
                 if (phys >= magic and phys >= ranged) then
-                    mob:showText(mob,NyzulIsle.text.RESIST_MELEE);
-                    mob:setMod(MOD_UDMGPHYS, -100);
+                    mob:showText(mob,ID.text.RESIST_MELEE);
+                    mob:setMod(dsp.mod.UDMGPHYS, -100);
                 elseif (magic >= phys and magic >= ranged) then
-                    mob:showText(mob,NyzulIsle.text.RESIST_MAGIC);
-                    mob:addMod(MOD_UDMGMAGIC, -100);
+                    mob:showText(mob,ID.text.RESIST_MAGIC);
+                    mob:addMod(dsp.mod.UDMGMAGIC, -100);
                 else
-                    mob:showText(mob,NyzulIsle.text.RESIST_RANGE);
-                    mob:addMod(MOD_UDMGRANGE, -100);
+                    mob:showText(mob,ID.text.RESIST_RANGE);
+                    mob:addMod(dsp.mod.UDMGRANGE, -100);
                 end
             end
         else
             -- We're out of raises, so we can go away now
-            mob:setMobMod(MOBMOD_BEHAVIOR, 0);
+            mob:setMobMod(dsp.mobMod.BEHAVIOR, 0);
         end
     end)
 
     -- We're able to be raised initially and shouldn't despawn
-    mob:setMobMod(MOBMOD_BEHAVIOR, 5);
+    mob:setMobMod(dsp.mobMod.BEHAVIOR, 5);
 end;
 
 function onMobEngaged(mob,target)
     -- localVar because we don't want it to repeat every reraise.
     if (mob:getLocalVar("started") == 0) then
-        mob:showText(mob,NyzulIsle.text.PRAY);
+        mob:showText(mob,ID.text.PRAY);
         mob:setLocalVar("started", 1);
     end
 end;
@@ -106,7 +106,7 @@ function onMobFight(mob,target)
         if (mob:getHPP() <= hpTrigger and usedAzure == 0) then
             mob:setLocalVar("usedAzureLore", 1);
             mob:setLocalVar("AzureLoreHP", math.random(20,50); -- Re-rolling the % for next "life"
-            mob:useMobAbility(jobSpec.AZURE_LORE);
+            mob:useMobAbility(dsp.jsa.AZURE_LORE);
         end
     end
     ]]
@@ -115,16 +115,13 @@ end;
 function onSpellPrecast(mob, spell)
     -- Eyes on Me
     if (spell == 641) then
-        mob:showText(mob,NyzulIsle.text.BEHOLD);
+        mob:showText(mob,ID.text.BEHOLD);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
     -- If he's out of reraises, display text
-    if (isKiller and mob:getMobMod(MOBMOD_BEHAVIOR) == 0) then
-        mob:showText(mob,NyzulIsle.text.MIRACLE);
+    if (isKiller and mob:getMobMod(dsp.mobMod.BEHAVIOR) == 0) then
+        mob:showText(mob,ID.text.MIRACLE);
     end
-end;
-
-function onMobDespawn(mob)
 end;

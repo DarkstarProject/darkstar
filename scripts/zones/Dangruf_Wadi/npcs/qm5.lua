@@ -1,53 +1,59 @@
 -----------------------------------
 --  NPC: ??? (QM5)
---     Type: Eggblix dice roll game part 3
---     @zone 191
---     Involved in quest "As Thick As Thieves"
+-- Type: Eggblix (dice roll game part 3)
+-- !pos -462.436 2.456 -141.171 191
+-- Involved in quest "As Thick As Thieves"
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local ID = require("scripts/zones/Dangruf_Wadi/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS");
+    local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
 
-    if (thickAsThievesGamblingCS == 4) then
-        if (trade:hasItemQty(4362,1) and trade:getItemCount() == 1) then -- Trade 1x lizard egg
-            local rand1 = math.random(1,999);
-            local rand2 = math.random(1,999);
+    if npcUtil.tradeHas(trade, 4362) then -- Trade 1x lizard egg
+        if thickAsThievesGamblingCS == 4 then
+            local rand1 = math.random(1,999)
+            local rand2 = math.random(1,999)
 
             if (rand1 > rand2) then
-                player:startEvent(138,1092,0,rand1,rand2); -- complete 2/3 gamble mini quest
+                player:messageSpecial(ID.text.YOU_PLACE_ITEM,0,4362)
+                player:startEvent(138,1092,0,rand1,rand2) -- complete 3/3 gamble mini quest
             else
-                player:startEvent(141,0,0,rand1,rand2); -- player looses
+                player:messageSpecial(ID.text.YOU_PLACE_ITEM,0,4362)
+                player:startEvent(141,0,0,rand1,rand2) -- player looses
             end
+        elseif thickAsThievesGamblingCS < 4 then -- trading out of order
+            player:messageSpecial(ID.text.JUST_WONT_DO)
+        elseif thickAsThievesGamblingCS > 4 then
+            player:messageSpecial(ID.text.BEAT_EGGBLIX)
         end
     end
 
-end;
+end
 
 function onTrigger(player,npc)
-end;
+    player:messageSpecial(ID.text.BROKEN_EGGS)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
 
-    if (csid == 141 and option == 1) then -- player looses dice game
-        player:tradeComplete();
-        player:setVar("thickAsThievesGamblingCS",2);
-    elseif (csid == 138 and option == 0) then -- player wins dice game
-        player:tradeComplete();
-        player:setVar("thickAsThievesGamblingCS",5);
+    if (csid == 138 or csid == 141) and option == 2 then -- player gives up
+        player:confirmTrade()
+        player:messageSpecial(ID.text.YOU_GAVE_UP)
+    elseif csid == 141 and option == 1 then -- player looses dice game
+        player:confirmTrade()
+        player:messageSpecial(ID.text.GOBLIN_BEAT_YOU)
+    elseif csid == 138 and option == 0 then -- player wins dice game
+        player:confirmTrade()
+        player:messageSpecial(ID.text.YOU_BEAT_GOBLIN)
+        player:setVar("thickAsThievesGamblingCS",5)
     end
 
-end;
-
+end

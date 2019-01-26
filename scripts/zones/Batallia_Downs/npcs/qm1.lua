@@ -4,19 +4,16 @@
 -- !pos -407.526 -23.507 412.544 105
 -- Notes: Spawns Vegnix Greenthumb for ACP mission "Gatherer of Light (I)"
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Batallia_Downs/TextIDs");
-require("scripts/zones/Batallia_Downs/MobIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/keyitems");
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (not GetMobByID(VEGNIX_GREENTHUMB):isSpawned() and player:hasKeyItem(BOWL_OF_BLAND_GOBLIN_SALAD) and not player:hasKeyItem(SEEDSPALL_ROSEUM) and not player:hasKeyItem(VIRIDIAN_KEY)) then
-        SpawnMob(VEGNIX_GREENTHUMB):updateClaim(player);
+    if (not GetMobByID(ID.mob.VEGNIX_GREENTHUMB):isSpawned() and player:hasKeyItem(dsp.ki.BOWL_OF_BLAND_GOBLIN_SALAD) and not player:hasKeyItem(dsp.ki.SEEDSPALL_ROSEUM) and not player:hasKeyItem(dsp.ki.VIRIDIAN_KEY)) then
+        SpawnMob(ID.mob.VEGNIX_GREENTHUMB):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;

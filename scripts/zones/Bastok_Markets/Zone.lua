@@ -3,19 +3,14 @@
 -- Zone: Bastok_Markets (235)
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/chocobo");
 require("scripts/globals/events/harvest_festivals");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 -----------------------------------
 
 function onInitialize(zone)
     applyHalloweenNpcCostumes(zone:getID())
-
-    setChocoboPrices();
 end;
 
 function onZoneIn(player,prevZone)
@@ -41,11 +36,7 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
@@ -60,18 +51,14 @@ function onGameDay()
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 0) then
-        player:messageSpecial(ITEM_OBTAINED,0x218);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     end
 end;

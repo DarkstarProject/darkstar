@@ -3,9 +3,8 @@
 --  NPC: Perchond
 -- !pos -182.844 4 -164.948 166
 -----------------------------------
-package.loaded["scripts/zones/Ranguemont_Pass/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/quests");
+local ID = require("scripts/zones/Ranguemont_Pass/IDs")
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,22 +30,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 3) then
         player:setVar("sinHunting",2);
     elseif (csid == 5) then
         player:tradeComplete();
-        player:addKeyItem(PERCHONDS_ENVELOPE);
-        player:messageSpecial(KEYITEM_OBTAINED,PERCHONDS_ENVELOPE);
+        player:addKeyItem(dsp.ki.PERCHONDS_ENVELOPE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERCHONDS_ENVELOPE);
         player:setVar("sinHunting",3);
     end
 
 end;
-

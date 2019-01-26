@@ -2,11 +2,8 @@
 -- Area: Jade Sepulcher
 -- BCNM: TOAU-29 Puppet in Peril
 -----------------------------------
-package.loaded["scripts/zones/Jade_Sepulcher/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Jade_Sepulcher/TextIDs");
 
 ----------------------------------------
 
@@ -29,7 +26,7 @@ end;
 function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
    
-    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage        
+    if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:hasCompletedMission(TOAU,PUPPET_IN_PERIL)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,4,1);
         else

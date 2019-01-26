@@ -3,10 +3,7 @@
 -- Zone: Residential_Area
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Residential_Area/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Residential_Area/TextIDs");
+local ID = require("scripts/zones/Residential_Area/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,12 +23,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

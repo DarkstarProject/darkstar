@@ -1,29 +1,25 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Yasmina
+--  NPC: Yasmina
 -- Type: Chocobo Renter
--- @zone 94
--- !pos -34.972 -5.815 221.845
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
+-- !pos -34.972 -5.815 221.845 94
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+require("scripts/globals/chocobo")
 -----------------------------------
+
+local eventSucceed = 6
+local eventFail    = 7
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(6, 10, 10);
-end;
+    dsp.chocobo.renterOnTrigger(player, eventSucceed, eventFail)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+    dsp.chocobo.renterOnEventFinish(player, csid, option, eventSucceed)
+end

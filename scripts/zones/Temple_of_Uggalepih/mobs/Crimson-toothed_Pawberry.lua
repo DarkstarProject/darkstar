@@ -1,12 +1,13 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
---  MOB: Crimson-toothed Pawberry
+--   NM: Crimson-toothed Pawberry
 -----------------------------------
-mixins = {require("scripts/mixins/families/tonberry")}
-mixins = {require("scripts/mixins/job_special")};
-
-require("scripts/globals/status");
+mixins =
+{
+    require("scripts/mixins/families/tonberry"),
+    require("scripts/mixins/job_special")
+}
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    SetServerVariable("[POP]Crimson-toothed_Pawberry",os.time() + 900); -- 15min
-end;
+end

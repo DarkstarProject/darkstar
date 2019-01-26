@@ -126,6 +126,13 @@ void CAutomatonEntity::setInitialBurden()
 
 uint8 CAutomatonEntity::addBurden(uint8 element, int8 burden)
 {
+    // Handle Kenkonken Suppress Overload
+    if (PMaster->getMod(Mod::SUPPRESS_OVERLOAD) > 0)
+    {
+        // TODO: Retail research, this is a best guess
+        burden /= 3;
+    }
+
     m_Burden[element] = std::clamp(m_Burden[element] + burden, 0, 255);
 
     if (burden > 0)
@@ -184,7 +191,7 @@ void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
 
     if (PSpell->tookEffect())
     {
-        puppetutils::TrySkillUP(this, SKILL_AMA, PTarget->GetMLevel());
+        puppetutils::TrySkillUP(this, SKILL_AUTOMATON_MAGIC, PTarget->GetMLevel());
     }
 }
 
@@ -198,7 +205,7 @@ void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, action_t& actio
     // Ranged attack skill up
     if (PSkill->getID() == 1949 && !PSkill->hasMissMsg())
     {
-        puppetutils::TrySkillUP(this, SKILL_ARA, PTarget->GetMLevel());
+        puppetutils::TrySkillUP(this, SKILL_AUTOMATON_RANGED, PTarget->GetMLevel());
     }
 }
 

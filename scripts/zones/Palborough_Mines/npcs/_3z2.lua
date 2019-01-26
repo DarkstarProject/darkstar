@@ -3,11 +3,8 @@
 --  NPC: Old Toolbox
 -- Continues Quest: The Eleventh's Hour (100%)
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Palborough_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,11 +20,9 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 14) then
-        player:setPos(-73, 0, 60, 1, 0xac);
+        player:setPos(-73, 0, 60, 1, 172);
     end
 
 end;

@@ -205,18 +205,17 @@ void CTargetFind::findWithinCone(CBattleEntity* PTarget, float distance, float a
 
 void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
 {
-    CCharEntity* PChar = (CCharEntity*)findMaster(m_PBattleEntity);
-    CBattleEntity* PBattleTarget = nullptr;
-
-    for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+    CCharEntity* PChar = dynamic_cast<CCharEntity*>(findMaster(m_PBattleEntity));
+    if (PChar)
     {
-
-        PBattleTarget = (CBattleEntity*)it->second;
-
-        if (PBattleTarget && isMobOwner(PBattleTarget)){
-            addEntity(PBattleTarget, withPet);
+        for (SpawnIDList_t::const_iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        {
+            CBattleEntity* PBattleTarget = dynamic_cast<CBattleEntity*>(it->second);
+            if (PBattleTarget && isMobOwner(PBattleTarget))
+            {
+                addEntity(PBattleTarget, withPet);
+            }
         }
-
     }
 }
 
@@ -336,7 +335,7 @@ bool CTargetFind::validEntity(CBattleEntity* PTarget)
         return false;
     }
 
-    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden())
+    if (m_PTarget == PTarget || PTarget->getZone() != m_zone || PTarget->IsNameHidden() || PTarget->status == STATUS_INVISIBLE)
     {
         return false;
     }

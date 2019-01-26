@@ -1,5 +1,5 @@
 -----------------------------------
--- Area:
+-- Area: Monarch Linn
 --  MOB: Ouryu
 -----------------------------------
 require("scripts/globals/titles");
@@ -18,7 +18,7 @@ function onMobFight(mob,target)
         return
     end
 
-    if (mob:hasStatusEffect(dsp.effects.INVINCIBLE) == false and mob:actionQueueEmpty() == true) then
+    if (mob:hasStatusEffect(dsp.effect.INVINCIBLE) == false and mob:actionQueueEmpty() == true) then
         local changeTime = mob:getLocalVar("changeTime");
         local twohourTime = mob:getLocalVar("twohourTime");
 
@@ -32,7 +32,7 @@ function onMobFight(mob,target)
             mob:setLocalVar("twohourTime", math.random((mob:getBattleTime()/15)+12, (mob:getBattleTime()/15)+16));
         elseif (mob:AnimationSub() == 0 and mob:getBattleTime() - changeTime > 60) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effects.ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effect.ALL_MISS, 0, 1, 0, 0);
             mob:SetMobSkillAttack(731);
             --and record the time this phase was started
             mob:setLocalVar("changeTime", mob:getBattleTime());
@@ -45,7 +45,7 @@ function onMobFight(mob,target)
         elseif (mob:AnimationSub() == 2 and
                 mob:getBattleTime() - changeTime > 120) then
             mob:AnimationSub(1);
-            mob:addStatusEffectEx(dsp.effects.ALL_MISS, 0, 1, 0, 0);
+            mob:addStatusEffectEx(dsp.effect.ALL_MISS, 0, 1, 0, 0);
             mob:SetMobSkillAttack(731);
             mob:setLocalVar("changeTime", mob:getBattleTime());
         end
@@ -54,6 +54,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(MIST_MELTER);
+    player:addTitle(dsp.title.MIST_MELTER);
 
 end;

@@ -1,10 +1,9 @@
 -----------------------------------
--- Area: Caedarva Mire
---  MOB: Khimaira
+-- Area: Halvung
+--  MOB: Kirlirger the Abhorrent
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
+mixins = {require("scripts/mixins/job_special")};
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;

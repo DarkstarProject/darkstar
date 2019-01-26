@@ -1,12 +1,8 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Illeuse
--- @zone 80
--- !pos -44.203 2 -36.216
+-- !pos -44.203 2 -36.216 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -24,13 +20,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 31) then -- Gifts of Griffon Trade
         player:tradeComplete();
         local mask = player:getVar("GiftsOfGriffonPlumes");

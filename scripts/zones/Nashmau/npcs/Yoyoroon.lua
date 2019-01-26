@@ -3,48 +3,50 @@
 --  NPC: Yoyoroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Nashmau/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,YOYOROON_SHOP_DIALOG);
-
     local stock =
     {
-        0x08BF,4940,        -- Tension Spring
-     0x08C0,9925,        -- Inhibitor
-     0x08C2,9925,        -- Mana Booster
-     0x08C3,4940,        -- Loudspeaker
-     0x08C6,4940,        -- Accelerator
-     0x08C7,9925,        -- Scope
-     0x08CA,9925,        -- Shock Absorber
-     0x08CB,4940,        -- Armor Plate
-     0x08CE,4940,        -- Stabilizer
-     0x08CF,9925,        -- Volt Gun
-     0x08D2,4940,        -- Mana Jammer
-     0x08D4,9925,        -- Stealth Screen
-     0x08D6,4940,        -- Auto-Repair Kit
-     0x08D8,9925,        -- Damage Gauge
-     0x08DA,4940,        -- Mana Tank
-     0x08DC,9925}        -- Mana Conserver
+        2239,  4940,    -- Tension Spring
+        2243,  4940,    -- Loudspeaker
+        2246,  4940,    -- Accelerator
+        2251,  4940,    -- Armor Plate
+        2254,  4940,    -- Stabilizer
+        2258,  4940,    -- Mana Jammer
+        2262,  4940,    -- Auto-Repair Kit
+        2266,  4940,    -- Mana Tank
+        2240,  9925,    -- Inhibitor
+        8462,  9925,    -- Speedloader
+        2242,  9925,    -- Mana Booster
+        2247,  9925,    -- Scope
+        2250,  9925,    -- Shock Absorber
+        2255,  9925,    -- Volt Gun
+        2260,  9925,    -- Stealth Screen
+        2264,  9925,    -- Damage Gauge
+        2268,  9925,    -- Mana Conserver
+        2238, 19890,    -- Strobe
+        2409, 19890,    -- Flame Holder
+        2410, 19890,    -- Ice Maker
+        2248, 19890,    -- Pattern Reader
+        2411, 19890,    -- Replicator
+        2252, 19890,    -- Analyzer
+        2256, 19890,    -- Heat Seeker
+        2259, 19890,    -- Heatsink
+        2263, 19890,    -- Flashbulb
+        2267, 19890,    -- Mana Converter
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.YOYOROON_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

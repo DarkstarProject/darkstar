@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(CERULEAN_CRYSTAL) == false) then
+    if (player:hasKeyItem(dsp.ki.CERULEAN_CRYSTAL) == false) then
         player:startEvent(1);
     else
         if (player:getCurrentMission(ZILART) == THE_MITHRA_AND_THE_CRYSTAL) then
@@ -27,16 +27,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 1 and player:getCurrentMission(ZILART) == THE_TEMPLE_OF_DESOLATION) then
-        player:addTitle(SEALER_OF_THE_PORTAL_OF_THE_GODS);
+        player:addTitle(dsp.title.SEALER_OF_THE_PORTAL_OF_THE_GODS);
         player:completeMission(ZILART,THE_TEMPLE_OF_DESOLATION);
         player:addMission(ZILART,THE_HALL_OF_THE_GODS);
     elseif (csid == 4) then

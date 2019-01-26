@@ -4,49 +4,36 @@
 -- Notes: Mechanism for Altepa Gate
 -- !pos -499 10 224 125
 -----------------------------------
-package.loaded["scripts/zones/Western_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Altepa_Desert/TextIDs");
+local ID = require("scripts/zones/Western_Altepa_Desert/IDs")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    local SapphireID = npc:getID();
-    local Ruby = GetNPCByID(SapphireID-3):getAnimation();
-    local Topaz = GetNPCByID(SapphireID-2):getAnimation();
-    local Emerald = GetNPCByID(SapphireID-1):getAnimation();
-    local Sapphire = npc:getAnimation();
-
-    if (Sapphire ~= 8) then
-        npc:setAnimation(8);
-        GetNPCByID(SapphireID-4):setAnimation(8);
+    if npc:getAnimation() ~= dsp.anim.OPEN_DOOR then
+        npc:setAnimation(dsp.anim.OPEN_DOOR)
+        GetNPCByID(npc:getID() - 4):setAnimation(dsp.anim.OPEN_DOOR)
     else
-        player:messageSpecial(DOES_NOT_RESPOND);
+        player:messageSpecial(ID.text.DOES_NOT_RESPOND)
     end
 
-    if (Emerald == 8 and Ruby == 8 and Topaz == 8) then
-        local rand = math.random(15,30);
-        local timeDoor = rand * 60;
-
-        -- Add timer for the door
-        GetNPCByID(SapphireID-8):openDoor(timeDoor);
-        -- Add same timer for the 4 center lights
-        GetNPCByID(SapphireID-7):openDoor(timeDoor);
-        GetNPCByID(SapphireID-6):openDoor(timeDoor);
-        GetNPCByID(SapphireID-5):openDoor(timeDoor);
-        GetNPCByID(SapphireID-4):openDoor(timeDoor);
+    if
+        GetNPCByID(ID.npc.ALTEPA_GATE + 5):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(ID.npc.ALTEPA_GATE + 6):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(ID.npc.ALTEPA_GATE + 7):getAnimation() == dsp.anim.OPEN_DOOR and
+        GetNPCByID(ID.npc.ALTEPA_GATE + 8):getAnimation() == dsp.anim.OPEN_DOOR
+    then
+        local openTime = math.random(15, 30) * 60
+        for i = ID.npc.ALTEPA_GATE, ID.npc.ALTEPA_GATE + 8 do
+            GetNPCByID(i):openDoor(openTime)
+        end
     end
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

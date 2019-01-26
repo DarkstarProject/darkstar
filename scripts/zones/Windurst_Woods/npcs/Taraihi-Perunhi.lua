@@ -4,24 +4,22 @@
 -- Only sells when Windurst controlls Derfland Region
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Windurst_Woods/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
+require("scripts/globals/shop")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    onHalloweenTrade(player,trade,npc);
-end;
+    onHalloweenTrade(player,trade,npc)
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(DERFLAND);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,TARAIHIPERUNHI_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.DERFLAND)
+    if RegionOwner ~= dsp.nation.WINDURST then
+        player:showText(npc,ID.text.TARAIHIPERUNHI_CLOSED_DIALOG)
     else
-        player:showText(npc,TARAIHIPERUNHI_OPEN_DIALOG);
+        player:showText(npc,ID.text.TARAIHIPERUNHI_OPEN_DIALOG)
 
         local stock =
         {
@@ -32,18 +30,12 @@ function onTrigger(player,npc)
             633,    14, -- Olive Oil
             951,   110  -- Wijnruit
         }
-        showShop(player,WINDURST,stock);
-
+        dsp.shop.general(player, stock, WINDURST)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

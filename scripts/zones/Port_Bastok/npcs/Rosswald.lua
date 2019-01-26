@@ -1,48 +1,37 @@
 -----------------------------------
 -- Area: Port Bastok
 --  NPC: Rosswald
--- Only sells when Bastok controlls Zulkheim Region
--- Confirmed shop stock, August 2013
+-- Zulkheim Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Port_Bastok/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(ZULKHEIM);
-    if (RegionOwner ~= NATION_BASTOK) then
-        player:showText(npc,ROSSWALD_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.ZULKHEIM) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.ROSSWALD_CLOSED_DIALOG)
     else
-        player:showText(npc,ROSSWALD_OPEN_DIALOG);
-
         local stock =
         {
-            4372,    44,  -- Giant Sheep Meat
-            622,     44,  -- Dried Marjoram
-            610,     55,  -- San d'Orian Flour
-            611,     36,  -- Rye Flour
-            1840,  1840,  -- Semolina
-            4366,    22,  -- La Theine Cabbage
-            4378,    55   -- Selbina Milk
+            4372,   44,    -- Giant Sheep Meat
+            622,    44,    -- Dried Marjoram
+            610,    55,    -- San d'Orian Flour
+            611,    36,    -- Rye Flour
+            1840, 1840,    -- Semolina
+            4366,   22,    -- La Theine Cabbage
+            4378,   55,    -- Selbina Milk
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.ROSSWALD_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

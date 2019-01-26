@@ -4,10 +4,7 @@
 -- Type: Entry to Alzadaal Undersea Ruins
 -- !pos -639.000 12.323 -260.000 79
 -----------------------------------
-package.loaded["scripts/zones/Caedarva_Mire/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
-require("scripts/zones/Caedarva_Mire/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,13 +27,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 223) then
         player:setPos(-235,-4,220,0,72);

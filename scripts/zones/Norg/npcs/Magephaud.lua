@@ -3,6 +3,11 @@
 --  NPC: Magephaud
 -- Standard Info NPC
 -----------------------------------
+local ID = require("scripts/zones/Norg/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
+-----------------------------------
 
 function onTrade(player,npc,trade)
     EveryonesGrudge = player:getQuestStatus(OUTLANDS,EVERYONES_GRUDGE);
@@ -25,17 +30,12 @@ function onTrigger(player,npc)
     else
         player:startEvent(115);
     end
-    -- printf("CSID: %u",nFame);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 116) then
         player:addQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:setVar("EveryonesGrudgeStarted",1);
@@ -43,12 +43,9 @@ function onEventFinish(player,csid,option)
         player:completeQuest(OUTLANDS,EVERYONES_GRUDGE);
         player:tradeComplete();
         player:addFame(NORG,80);
-        player:addKeyItem(291);    -- Permanent Tonberry key
-        player:messageSpecial(KEYITEM_OBTAINED,291);
+        player:addKeyItem(dsp.ki.TONBERRY_PRIEST_KEY);    -- Permanent Tonberry key
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TONBERRY_PRIEST_KEY);
         player:setVar("EveryonesGrudgeStarted",0);
-        player:addTitle(HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
+        player:addTitle(dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end
 end;
-
-
-

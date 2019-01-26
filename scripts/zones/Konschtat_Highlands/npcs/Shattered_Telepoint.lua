@@ -3,10 +3,8 @@
 --  NPC: Shattered telepoint
 -- !pos 135 19 220 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +14,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(913,0,0,1); -- first time in promy -> have you made your preparations cs
-    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(LIGHT_OF_HOLLA) or player:hasKeyItem(LIGHT_OF_MEA))) then
+    elseif (player:getCurrentMission(COP) == THE_MOTHERCRYSTALS and (player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA) or player:hasKeyItem(dsp.ki.LIGHT_OF_MEA))) then
         if (player:getVar("cspromy2") == 1) then
             player:startEvent(912);  -- cs you get nearing second promyvion
         else
@@ -25,19 +23,15 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(COP) > THE_MOTHERCRYSTALS or player:hasCompletedMission(COP,THE_LAST_VERSE) or (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") > 1)) then
         player:startEvent(913); -- normal cs (third promyvion and each entrance after having that promyvion visited or mission completed)
     else
-        player:messageSpecial(TELEPOINT_HAS_BEEN_SHATTERED);
+        player:messageSpecial(ID.text.TELEPOINT_HAS_BEEN_SHATTERED);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 912) then
         player:setVar("cspromy2",0);

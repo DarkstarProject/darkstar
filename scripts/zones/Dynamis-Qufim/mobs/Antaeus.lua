@@ -2,16 +2,11 @@
 -- Area: Dynamis Qufim
 --  MOB: Antaeus
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Qufim/TextIDs");
+local ID = require("scripts/zones/Dynamis-Qufim/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/dynamis");
 require("scripts/globals/titles");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobEngaged(mob,target)
     if (GetServerVariable("[DynaQufim]Boss_Trigger") == 0) then
@@ -45,9 +40,9 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:hasKeyItem(DYNAMIS_QUFIM_SLIVER ) == false) then
-        player:addKeyItem(DYNAMIS_QUFIM_SLIVER);
-        player:messageSpecial(KEYITEM_OBTAINED,DYNAMIS_QUFIM_SLIVER);
+    if (player:hasKeyItem(dsp.ki.DYNAMIS_QUFIM_SLIVER ) == false) then
+        player:addKeyItem(dsp.ki.DYNAMIS_QUFIM_SLIVER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DYNAMIS_QUFIM_SLIVER);
     end
-    player:addTitle(DYNAMISQUFIM_INTERLOPER);
+    player:addTitle(dsp.title.DYNAMISQUFIM_INTERLOPER);
 end;

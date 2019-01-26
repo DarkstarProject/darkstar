@@ -3,10 +3,7 @@
 -- Zone: Spire_of_Mea (21)
 --
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Spire_of_Mea/TextIDs");
+local ID = require("scripts/zones/Spire_of_Mea/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -24,11 +21,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

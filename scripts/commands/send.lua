@@ -285,7 +285,7 @@ end;
 function getBytePos(s,needle)
     local i;
     local b;
-    for i=1,string.len(s),1 do 
+    for i=1,string.len(s),1 do
         if (string.byte(s, i) == needle) then
             return i;
         end

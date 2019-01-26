@@ -3,11 +3,8 @@
 --  MOB: Ashu Talif Crew
 -----------------------------------
 require("scripts/globals/status");
-local TheAshuTalif = require("scripts/zones/The_Ashu_Talif/IDs");
+local ID = require("scripts/zones/The_Ashu_Talif/IDs")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobEngaged(mob,target)
     local allies = mob:getInstance():getAllies();

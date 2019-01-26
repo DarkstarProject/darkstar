@@ -3,9 +3,7 @@
 --  NPC: Raqtibahl
 -- (Corsair's Frac) !pos -59 -4 -39 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 
     -- magicmart flyer
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
-        player:messageSpecial(FLYER_REFUSED);
+        player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- gold chain, velvet cloth, red grass cloth, sailcloth
     elseif (letterRed == 2 and trade:getItemCount() == 4 and trade:hasItemQty(761,1) and trade:hasItemQty(828,1) and trade:hasItemQty(1829,1) and trade:hasItemQty(1997,1)) then
@@ -31,7 +29,7 @@ end;
 
 function onTrigger(player,npc)
     local letterRed = player:getVar("LeleroonsLetterRed");
-    if (player:hasKeyItem(LELEROONS_LETTER_RED)) then
+    if (player:hasKeyItem(dsp.ki.LELEROONS_LETTER_RED)) then
         player:startEvent(753); -- accept letter, now bring me four items
     elseif (letterRed == 2) then
         player:startEvent(754); -- i'm waiting for four items
@@ -51,16 +49,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 753) then
         player:setVar("LeleroonsLetterRed", 2);
-        player:delKeyItem(LELEROONS_LETTER_RED);
+        player:delKeyItem(dsp.ki.LELEROONS_LETTER_RED);
     elseif (csid == 755) then
         player:tradeComplete();
         player:setVar("LeleroonsLetterRed", 3);
@@ -71,6 +65,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 756) then
         player:setVar("LeleroonsLetterRed", 5);
         player:addItem(14522); -- corsair's frac
-        player:messageSpecial(ITEM_OBTAINED,14522);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,14522);
     end;
 end;

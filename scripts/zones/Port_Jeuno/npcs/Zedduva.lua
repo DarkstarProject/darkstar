@@ -1,14 +1,10 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Zedduva
--- @zone 246
--- !pos -61 7 -54
------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
+-- !pos -61 7 -54 246
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(AIRSHIP_PASS) == true and player:getGil() >= 200) then
+    if (player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true and player:getGil() >= 200) then
         player:startEvent(36);
     else
         player:startEvent(44);
@@ -27,13 +23,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 36) then
         Z = player:getZPos();
@@ -44,4 +36,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

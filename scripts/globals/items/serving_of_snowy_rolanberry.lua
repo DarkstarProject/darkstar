@@ -8,31 +8,32 @@
 -- Intelligence 2
 -- Wind Res 5
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,14400,4594);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,14400,4594)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_MPP, 19);
-    target:addMod(MOD_FOOD_MP_CAP, 60);
-    target:addMod(MOD_INT, 2);
-    target:addMod(MOD_WINDRES, 5);
-end;
+    target:addMod(dsp.mod.FOOD_MPP, 19)
+    target:addMod(dsp.mod.FOOD_MP_CAP, 60)
+    target:addMod(dsp.mod.INT, 2)
+    target:addMod(dsp.mod.WINDRES, 5)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_MPP, 19);
-    target:delMod(MOD_FOOD_MP_CAP, 60);
-    target:delMod(MOD_INT, 2);
-    target:delMod(MOD_WINDRES, 5);
-end;
+    target:delMod(dsp.mod.FOOD_MPP, 19)
+    target:delMod(dsp.mod.FOOD_MP_CAP, 60)
+    target:delMod(dsp.mod.INT, 2)
+    target:delMod(dsp.mod.WINDRES, 5)
+end

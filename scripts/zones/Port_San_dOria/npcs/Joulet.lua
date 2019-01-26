@@ -4,9 +4,7 @@
 --  Starts The Competition
 -- !pos -18 -2 -45 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
@@ -31,7 +29,7 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addFame(SANDORIA,30);
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
-            player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
+            player:messageSpecial(ID.text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
             player:startEvent(307);
         elseif (player:getQuestStatus(SANDORIA,THE_COMPETITION) >= QUEST_ACCEPTED) then -- regular turn-ins. Still allowed after completion of the quest.
             player:tradeComplete();
@@ -39,7 +37,7 @@ function onTrade(player,npc,trade)
             player:addGil((GIL_RATE*10*MoatCarp) + (GIL_RATE*15*ForestCarp));
             player:setVar("theCompetitionFishCountVar",totalFish);
             player:startEvent(305);
-            player:messageSpecial(GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
+            player:messageSpecial(ID.text.GIL_OBTAINED,MoatCarp*10 + ForestCarp*15);
         else
             player:startEvent(306);
         end
@@ -52,31 +50,27 @@ function onTrigger(player,npc)
     if (player:getQuestStatus(SANDORIA,THE_COMPETITION) == QUEST_AVAILABLE and player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_AVAILABLE) then -- If you haven't started either quest yet
         player:startEvent(304, 4401, 4289); -- Moat Carp = 4401, 4289 = Forest Carp
     elseif (player:getQuestStatus(SANDORIA,THE_RIVALRY) == QUEST_ACCEPTED) then
-        player:messageSpecial(JOULET_HELP_OTHER_BROTHER, 0, 0, 0, 0, true);
+        player:showText(npc, ID.text.JOULET_HELP_OTHER_BROTHER);
     elseif ((player:getQuestStatus(SANDORIA,THE_COMPETITION)) == QUEST_ACCEPTED) then
-        player:messageSpecial(JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"), 0, 0, true);
+        player:showText(npc, ID.text.JOULET_CARP_STATUS, 0, player:getVar("theCompetitionFishCountVar"));
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 307) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17386);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17386);
         else
             player:tradeComplete();
             player:addItem(17386);
-            player:messageSpecial(ITEM_OBTAINED, 17386);
-            player:addTitle(CARP_DIEM);
-            player:addKeyItem(TESTIMONIAL);
-            player:messageSpecial(KEYITEM_OBTAINED,TESTIMONIAL);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 17386);
+            player:addTitle(dsp.title.CARP_DIEM);
+            player:addKeyItem(dsp.ki.TESTIMONIAL);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TESTIMONIAL);
             player:setVar("theCompetitionFishCountVar",0);
             player:completeQuest(SANDORIA,THE_COMPETITION);
         end

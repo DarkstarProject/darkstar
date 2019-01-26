@@ -5,14 +5,12 @@
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- !pos -22 0 -60 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +36,7 @@ function onTrigger(player,npc)
         player:startEvent(182); -- mentions song runes in Valkurm
 
     -- THE REQUIEM (Bard AF2)
-    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == JOBS.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
+    elseif (painfulMemory == QUEST_COMPLETED and theRequiem == QUEST_AVAILABLE and player:getMainJob() == dsp.job.BRD and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (player:getVar("TheRequiemCS") == 0) then
             player:startEvent(145); -- Long dialog & Start Quest "The Requiem"
         else
@@ -46,13 +44,13 @@ function onTrigger(player,npc)
         end;
     elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 2) then
         player:startEvent(146); -- During Quest "The Requiem" (before trading Holy Water)
-    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(STAR_RING1) == false) then
+    elseif (theRequiem == QUEST_ACCEPTED and player:getVar("TheRequiemCS") == 3 and player:hasKeyItem(dsp.ki.STAR_RING1) == false) then
         if (math.random(1,2) == 1) then
             player:startEvent(147); -- oh, did you take the holy water and play the requiem? you must do both!
         else
             player:startEvent(149); -- his stone sarcophagus is deep inside the eldieme necropolis.
         end;
-    elseif (theRequiem == QUEST_ACCEPTED and player:hasKeyItem(STAR_RING1) == true) then
+    elseif (theRequiem == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.STAR_RING1) == true) then
         player:startEvent(150); -- Finish Quest "The Requiem"
     elseif (theRequiem == QUEST_COMPLETED) then
         player:startEvent(134); -- Standard dialog after "The Requiem"
@@ -83,14 +81,14 @@ function onEventFinish(player,csid,option)
         player:setVar("TheRequiemCS",2);
     elseif (csid == 151) then
         player:setVar("TheRequiemCS",3);
-        player:messageSpecial(ITEM_OBTAINED,4154); -- Holy Water (just message)
+        player:messageSpecial(ID.text.ITEM_OBTAINED,4154); -- Holy Water (just message)
         player:setVar("TheRequiemRandom",math.random(1,5)); -- pick a random sarcophagus
     elseif (csid == 150) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14098);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14098);
         else
             player:addItem(14098);
-            player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14098); -- Choral Slippers
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,THE_REQUIEM);
         end;

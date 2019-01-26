@@ -3,26 +3,16 @@
 --No need for addMod since blinks never stack.
 --
 -----------------------------------
-require("scripts/globals/status");
------------------------------------
--- onEffectGain Action
+require("scripts/globals/status")
 -----------------------------------
 
 function onEffectGain(target,effect)
-    target:setMod(MOD_BLINK,effect:getPower());
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+    target:setMod(dsp.mod.BLINK,effect:getPower())
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-    target:setMod(MOD_BLINK,0);
-end;
+    target:setMod(dsp.mod.BLINK,0)
+end

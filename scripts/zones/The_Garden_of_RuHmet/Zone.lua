@@ -3,12 +3,10 @@
 -- Zone: The_Garden_of_RuHmet (35)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/conquest")
 require("scripts/globals/settings");
 require("scripts/globals/status");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
-require("scripts/zones/The_Garden_of_RuHmet/MobIDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -54,24 +52,25 @@ function onInitialize(zone)
     zone:registerRegion(33,  97,-4,-427, 102,4,-421);--mithra niv 3 182 vers niv 2
 
     -- Give the Fortitude ??? a random spawn
-    local qm1 = GetNPCByID(Jailer_of_Fortitude_QM);
+    local qm1 = GetNPCByID(ID.npc.JAILER_OF_FORTITUDE_QM);
     local qm1position = math.random(1,5);
-    qm1:setPos(Jailer_of_Fortitude_QM_POS[qm1position][1], Jailer_of_Fortitude_QM_POS[qm1position][2], Jailer_of_Fortitude_QM_POS[qm1position][3]);
+    qm1:setPos(ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][1], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][2], ID.npc.JAILER_OF_FORTITUDE_QM_POS[qm1position][3]);
 
     -- Give the Ix'Aern DRK ??? a random spawn
-    local qm2 = GetNPCByID(Ix_Aern_DRK_QM);
+    local qm2 = GetNPCByID(ID.npc.IXAERN_DRK_QM);
     local qm2position = math.random(1,4);
     qm2:setLocalVar("position",qm2position);
-    qm2:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+    qm2:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
     qm2:setLocalVar("hatedPlayer",0);
 
     -- Give the Faith ??? a random spawn
-    local qm3 = GetNPCByID(Jailer_of_Faith_QM);
+    local qm3 = GetNPCByID(ID.npc.JAILER_OF_FAITH_QM);
     local qm3position = math.random(1,5);
-    qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
+    qm3:setPos(ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][1], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][2], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][3]);
 
     -- Give Ix'DRG a random placeholder by picking one of the four groups at random, then adding a random number of 0-2 for the specific mob.
-    SetServerVariable("[SEA]IxAernDRG_PH", AwAernDRGGroups[math.random(1, #AwAernDRGGroups)] + math.random(0, 2));
+    local groups = ID.mob.AWAERN_DRG_GROUPS
+    SetServerVariable("[SEA]IxAernDRG_PH", groups[math.random(1, #groups)] + math.random(0, 2));
 end;
 
 function afterZoneIn(player)
@@ -91,8 +90,8 @@ end;
 
 function onGameHour(zone)
     local VanadielHour = VanadielHour();
-    local qm2 = GetNPCByID(Ix_Aern_DRK_QM); -- Ix'aern drk
-    local qm3 = GetNPCByID(Jailer_of_Faith_QM); -- Jailer of Faith
+    local qm2 = GetNPCByID(ID.npc.IXAERN_DRK_QM); -- Ix'aern drk
+    local qm3 = GetNPCByID(ID.npc.JAILER_OF_FAITH_QM); -- Jailer of Faith
     local s = math.random(6,12) -- wait time till change to next spawn pos, random 15~30 mins.
 
     -- Jailer of Faith spawn randomiser
@@ -103,24 +102,20 @@ function onGameHour(zone)
         -- Get a new random position from the possible places
         local qm3position = math.random(1,5);
         -- Set the new ??? place
-        qm3:setPos(Jailer_of_Faith_QM_POS[qm3position][1], Jailer_of_Faith_QM_POS[qm3position][2], Jailer_of_Faith_QM_POS[qm3position][3]);
+        qm3:setPos(ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][1], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][2], ID.npc.JAILER_OF_FAITH_QM_POS[qm3position][3]);
     end
 
     -- Ix'DRK spawn randomiser
-    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= STATUS_DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
+    if (VanadielHour % 12 == 0 and qm2:getStatus() ~= dsp.status.DISAPPEAR) then -- Change ??? position every 12 hours Vana'diel time (30 mins)
         qm2:hideNPC(30);
         local qm2position = math.random(1,4);
         qm2:setLocalVar("position",qm2position);
-        qm2:setPos(Ix_Aern_DRK_QM_POS[qm2position][1], Ix_Aern_DRK_QM_POS[qm2position][2], Ix_Aern_DRK_QM_POS[qm2position][3]);
+        qm2:setPos(ID.npc.IXAERN_DRK_QM_POS[qm2position][1], ID.npc.IXAERN_DRK_QM_POS[qm2position][2], ID.npc.IXAERN_DRK_QM_POS[qm2position][3]);
     end
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -148,7 +143,7 @@ function onRegionEnter(player,region)
             end, --101
 
             [2] = function (x)
-                if (player:hasKeyItem(BRAND_OF_DAWN) and player:hasKeyItem(BRAND_OF_TWILIGHT)) then
+                if (player:hasKeyItem(dsp.ki.BRAND_OF_DAWN) and player:hasKeyItem(dsp.ki.BRAND_OF_TWILIGHT)) then
                     player:startEvent(156);
                 else
                     player:startEvent(183);
@@ -201,22 +196,18 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
-    if ((csid >0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
+    if ((csid >149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",1);
     end
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101 and option == 1) then
-        player:setPos(540,-1,-499.900,62,0x24);
+        player:setPos(540,-1,-499.900,62,36);
         player:setVar("Ru-Hmet-TP",0);
-    elseif ((csid > 0x0095 and csid < 0x00B8) or csid == 102 or csid == 103 or csid == 101) then
+    elseif ((csid > 149 and csid < 184) or csid == 102 or csid == 103 or csid == 101) then
         player:setVar("Ru-Hmet-TP",0);
     elseif (csid == 201) then
         player:setVar("PromathiaStatus",1);

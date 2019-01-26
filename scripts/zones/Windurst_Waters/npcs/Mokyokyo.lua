@@ -4,19 +4,16 @@
 -- Starts Windurst Missions
 -- !pos -55 -8 227 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Waters/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
 
-    if (player:getNation() ~= NATION_WINDURST) then
+    if (player:getNation() ~= dsp.nation.WINDURST) then
         player:startEvent(103); -- for other nation
     else
         CurrentMission = player:getCurrentMission(WINDURST);
@@ -37,33 +34,35 @@ function onTrigger(player,npc)
         elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(130);
         elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
-            player:startEvent(131);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+            player:startEvent(135);
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(232);
+        elseif (player:hasCompletedMission(WINDURST,MOON_READING) == true) then
+            player:startEvent(837);
         else
             flagMission, repeatMission = getMissionMask(player);
-            player:startEvent(111,flagMission,0,0,0,STAR_CRESTED_SUMMONS,repeatMission);
+            player:startEvent(111,flagMission,0,0,0,dsp.ki.STAR_CRESTED_SUMMONS,repeatMission);
         end
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
 printf("RESULT: %u",option);
 
     finishMissionTimeline(player,2,csid,option);
 
     if (csid == 118 and option == 1) then
-        player:addTitle(FRESH_NORTH_WINDS_RECRUIT);
+        player:addTitle(dsp.title.FRESH_NORTH_WINDS_RECRUIT);
     elseif (csid == 111 and (option == 12 or option == 15)) then
-        player:addKeyItem(STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,STAR_CRESTED_SUMMONS);
+        player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
-
+    if (csid == 837) then
+        player:setVar("WWatersRTenText",1);
+    end
+    
 end;

@@ -6,12 +6,9 @@ require("scripts/globals/titles");
 require("scripts/globals/dynamis");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(DYNAMISJEUNO_INTERLOPER); -- Add title
+    player:addTitle(dsp.title.DYNAMISJEUNO_INTERLOPER); -- Add title
 
     local npc = GetNPCByID(17547510); -- Spawn ???
     npc:setPos(mob:getXPos(),mob:getYPos(),mob:getZPos());

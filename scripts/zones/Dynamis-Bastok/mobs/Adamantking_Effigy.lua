@@ -9,7 +9,7 @@ require("scripts/globals/status");
 require("scripts/globals/msg");
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)
@@ -21,7 +21,7 @@ function onMobDeath(mob, player, isKiller)
     -- Time Bonus: 001 019 041
     if (mobID == 17539350 and mob:isInBattlefieldList() == false) then
         player:addTimeToDynamis(20);
-        mob:addInBattlefieldList(); 
+        mob:addInBattlefieldList();
     elseif (mobID == 17539368 and mob:isInBattlefieldList() == false) then
         player:addTimeToDynamis(20);
         mob:addInBattlefieldList();
@@ -32,12 +32,12 @@ function onMobDeath(mob, player, isKiller)
     elseif (mobID == 17539356 or mobID == 17539357 or mobID == 17539374 or mobID == 17539387 or
         mobID == 17539426 or mobID == 17539429 or mobID == 17539171) then
         player:restoreHP(2000);
-        player:messageBasic(msgBasic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_HP,(player:getMaxHP()-player:getHP()));
         -- MP Bonus: 026 031 038 081 104
     elseif (mobID == 17539118 or mobID == 17539161 or mobID == 17539383 or
         mobID == 17539425 or mobID == 17539446) then
         player:restoreMP(2000);
-        player:messageBasic(msgBasic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
+        player:messageBasic(dsp.msg.basic.RECOVERS_MP,(player:getMaxMP()-player:getMP()));
     end
 
 end;

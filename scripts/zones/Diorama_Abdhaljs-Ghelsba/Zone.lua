@@ -3,10 +3,7 @@
 -- Zone: Diorama_Abdhaljs-Ghelsba
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Diorama_Abdhaljs-Ghelsba/TextIDs");
+local ID = require("scripts/zones/Diorama_Abdhaljs-Ghelsba/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,12 +19,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

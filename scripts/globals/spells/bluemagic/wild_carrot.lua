@@ -12,48 +12,48 @@
 --
 -- Combos: Resist Sleep
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local minCure = 120;
-    local divisor = 1;
-    local constant = 60;
-    local power = getCurePowerOld(caster);
+    local minCure = 120
+    local divisor = 1
+    local constant = 60
+    local power = getCurePowerOld(caster)
 
     if (power > 299) then
-        divisor = 15.6666;
-        constant = 170.43;
+        divisor = 15.6666
+        constant = 170.43
     elseif (power > 179) then
-        divisor =  2;
-        constant = 105;
+        divisor =  2
+        constant = 105
     end
 
-    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true);
+    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,true)
 
-    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == TYPE_PC or target:getObjType() == TYPE_MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
         --Applying server mods....
-        final = final * CURE_POWER;
+        final = final * CURE_POWER
     end
 
-    local diff = (target:getMaxHP() - target:getHP());
+    local diff = (target:getMaxHP() - target:getHP())
     if (final > diff) then
-        final = diff;
+        final = diff
     end
 
-    target:addHP(final);
-    target:wakeUp();
-    caster:updateEnmityFromCure(target,final);
-    spell:setMsg(msgBasic.MAGIC_RECOVERS_HP);
+    target:addHP(final)
+    target:wakeUp()
+    caster:updateEnmityFromCure(target,final)
+    spell:setMsg(dsp.msg.basic.MAGIC_RECOVERS_HP)
 
-    return final;
-end;
+    return final
+end

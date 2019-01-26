@@ -3,9 +3,6 @@
 --  NPC: Pakh Jatalfih
 -- !pos 34 8 -35 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -17,7 +14,7 @@ function onTrigger(player,npc)
 
     local pNation = player:getNation();
 
-    if (pNation == NATION_WINDURST) then
+    if (pNation == dsp.nation.WINDURST) then
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
@@ -39,29 +36,25 @@ function onTrigger(player,npc)
             player:startEvent(137);
         elseif (currentMission == MAGICITE and MissionStatus == 6) then
             player:startEvent(37);
-        elseif (player:hasKeyItem(MESSAGE_TO_JEUNO_WINDURST)) then
+        elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(57);
         elseif (player:getRank() >= 5) then
             player:startEvent(57);
         else
             player:startEvent(107);
         end
-    elseif (pNation == NATION_SANDORIA) then
+    elseif (pNation == dsp.nation.SANDORIA) then
         player:startEvent(52);
-    elseif (pNation == NATION_BASTOK) then
+    elseif (pNation == dsp.nation.BASTOK) then
         player:startEvent(51);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 43) then
         player:setVar("MissionStatus",2);

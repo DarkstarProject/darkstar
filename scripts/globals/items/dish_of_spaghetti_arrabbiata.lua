@@ -12,49 +12,46 @@
 -- Store TP +6
 -- Sleep resistance +8
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,1800,5211);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,5211)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_FOOD_HPP, 17);
-    target:addMod(MOD_FOOD_HP_CAP, 140);
-    target:addMod(MOD_STR, 5);
-    target:addMod(MOD_VIT, 2);
-    target:addMod(MOD_INT, -7);
-    target:addMod(MOD_FOOD_ATTP, 22);
-    target:addMod(MOD_FOOD_ATT_CAP, 90);
-    target:addMod(MOD_FOOD_RATTP, 22);
-    target:addMod(MOD_FOOD_RATT_CAP, 90);
-    target:addMod(MOD_STORETP, 6);
-    target:addMod(MOD_SLEEPRES, 8);
-end;
+    target:addMod(dsp.mod.FOOD_HPP, 17)
+    target:addMod(dsp.mod.FOOD_HP_CAP, 140)
+    target:addMod(dsp.mod.STR, 5)
+    target:addMod(dsp.mod.VIT, 2)
+    target:addMod(dsp.mod.INT, -7)
+    target:addMod(dsp.mod.FOOD_ATTP, 22)
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 90)
+    target:addMod(dsp.mod.FOOD_RATTP, 22)
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 90)
+    target:addMod(dsp.mod.STORETP, 6)
+    target:addMod(dsp.mod.SLEEPRES, 8)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_HPP, 17);
-    target:delMod(MOD_FOOD_HP_CAP, 140);
-    target:delMod(MOD_STR, 5);
-    target:delMod(MOD_VIT, 2);
-    target:delMod(MOD_INT, -7);
-    target:delMod(MOD_FOOD_ATTP, 22);
-    target:delMod(MOD_FOOD_ATT_CAP, 90);
-    target:delMod(MOD_FOOD_RATTP, 22);
-    target:delMod(MOD_FOOD_RATT_CAP, 90);
-    target:delMod(MOD_STORETP, 6);
-    target:delMod(MOD_SLEEPRES, 8);
-end;
+    target:delMod(dsp.mod.FOOD_HPP, 17)
+    target:delMod(dsp.mod.FOOD_HP_CAP, 140)
+    target:delMod(dsp.mod.STR, 5)
+    target:delMod(dsp.mod.VIT, 2)
+    target:delMod(dsp.mod.INT, -7)
+    target:delMod(dsp.mod.FOOD_ATTP, 22)
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 90)
+    target:delMod(dsp.mod.FOOD_RATTP, 22)
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 90)
+    target:delMod(dsp.mod.STORETP, 6)
+    target:delMod(dsp.mod.SLEEPRES, 8)
+end

@@ -3,17 +3,14 @@
 --  NPC: Vola
 -- Starts and Finishes Quest: Fistful of Fury
 -- Involved in Quests: Beat Around the Bushin (before the quest)
--- @zone 245
--- !pos 43 3 -45
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
+-- !pos 43 3 -45 245
 -----------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(216); -- Start Quest "Fistful of Fury"
     elseif (FistfulOfFury == QUEST_ACCEPTED) then
         player:startEvent(215); -- During Quest "Fistful of Fury"
-    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == JOBS.MNK and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then
+    elseif (BeatAroundTheBushin == QUEST_AVAILABLE and player:getMainJob() == dsp.job.MNK and player:getMainLvl() >= 71 and player:getFameLevel(NORG) >= 6) then
         player:startEvent(160); -- Start Quest "Beat Around the Bushin"
     elseif (BeatAroundTheBushin ~= QUEST_AVAILABLE) then
         player:startEvent(214); -- During & After Quest "Beat Around the Bushin"
@@ -43,22 +40,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 216 and option == 1) then
         player:addQuest(JEUNO,FISTFUL_OF_FURY);
     elseif (csid == 213) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13202);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13202);
         else
-            player:addTitle(BROWN_BELT);
+            player:addTitle(dsp.title.BROWN_BELT);
             player:addItem(13202);
-            player:messageSpecial(ITEM_OBTAINED,13202);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13202);
             player:addFame(NORG,125);
             player:tradeComplete();
             player:completeQuest(JEUNO,FISTFUL_OF_FURY);
@@ -67,6 +60,3 @@ function onEventFinish(player,csid,option)
         player:setVar("BeatAroundTheBushin",1); -- For the next quest "Beat around the Bushin"
     end
 end;
-
-
-

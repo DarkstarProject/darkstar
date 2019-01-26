@@ -3,12 +3,10 @@
 --  NPC: Ronan
 -- Start & Finishes Quest: Out of One's Shell
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
             player:startEvent(86);
         end
     elseif (OutOfOneShell == QUEST_ACCEPTED) then
-        player:showText(npc,RONAN_DIALOG_1);
+        player:showText(npc,ID.text.RONAN_DIALOG_1);
     elseif (OutOfOneShell == QUEST_COMPLETED) then
         player:startEvent(89);
     elseif (player:getQuestStatus(BASTOK,THE_QUADAV_S_CURSE) == QUEST_COMPLETED and player:getFameLevel(BASTOK) >= 2) then
@@ -44,13 +42,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 82) then
         player:addQuest(BASTOK,OUT_OF_ONE_S_SHELL);
@@ -60,14 +54,14 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
     elseif (csid == 86) then
         if (player:getFreeSlotsCount() >= 1) then
-            player:addTitle(SHELL_OUTER);
+            player:addTitle(dsp.title.SHELL_OUTER);
             player:setVar("OutOfOneShell",0);
             player:addItem(12501);
-            player:messageSpecial(ITEM_OBTAINED,12501);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12501);
             player:addFame(BASTOK,120);
             player:completeQuest(BASTOK,OUT_OF_ONE_S_SHELL);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12501);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12501);
         end
     end
 

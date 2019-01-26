@@ -2,10 +2,7 @@
 -- Area: The_Shrouded_Maw
 -- Name: darkness_named
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
-require("scripts/zones/The_Shrouded_Maw/MobIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 require("scripts/globals/titles");
@@ -14,9 +11,9 @@ require("scripts/globals/titles");
 function onBcnmRegister(player,instance)
     -- "close" all floor tiles
     local inst = player:getBattlefieldID();
-    local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    local tile = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
-        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
     end
 end;
 
@@ -36,11 +33,11 @@ function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         player:addExp(1000);
         if (player:getCurrentMission(COP) == DARKNESS_NAMED and player:getVar("PromathiaStatus") == 2) then
-            player:addTitle(TRANSIENT_DREAMER);
+            player:addTitle(dsp.title.TRANSIENT_DREAMER);
             player:setVar("PromathiaStatus",3);
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
         else
-            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0); 
+            player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
         end
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -51,4 +48,4 @@ function onEventUpdate(player,csid,option)
 end;
         
 function onEventFinish(player,csid,option)
-end;    
+end;

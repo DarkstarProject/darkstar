@@ -69,14 +69,15 @@ WEAPON_SKILL_POWER  = 1.000; -- Multiplies damage dealt by Weapon Skills.
 WEAPON_SKILL_POINTS = 1.000; -- Multiplies points earned during weapon unlocking.
 USE_ADOULIN_WEAPON_SKILL_CHANGES = false; -- true/false. Change to toggle new Adoulin weapon skill damage calculations
 
-HARVESTING_BREAK_CHANCE = 0.33; -- % chance for the sickle to break during harvesting.  Set between 0 and 1.
-EXCAVATION_BREAK_CHANCE = 0.33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 1.
-LOGGING_BREAK_CHANCE    = 0.33; -- % chance for the hatchet to break during logging.  Set between 0 and 1.
-MINING_BREAK_CHANCE     = 0.33; -- % chance for the pickaxe to break during mining.  Set between 0 and 1.
-HARVESTING_RATE         = 0.50; -- % chance to recieve an item from haresting.  Set between 0 and 1.
-EXCAVATION_RATE         = 0.50; -- % chance to recieve an item from excavation.  Set between 0 and 1.
-LOGGING_RATE            = 0.50; -- % chance to recieve an item from logging.  Set between 0 and 1.
+HARVESTING_BREAK_CHANCE = 33; -- % chance for the sickle to break during harvesting.  Set between 0 and 100.
+EXCAVATION_BREAK_CHANCE = 33; -- % chance for the pickaxe to break during excavation.  Set between 0 and 100.
+LOGGING_BREAK_CHANCE    = 33; -- % chance for the hatchet to break during logging.  Set between 0 and 100.
+MINING_BREAK_CHANCE     = 33; -- % chance for the pickaxe to break during mining.  Set between 0 and 100.
+HARVESTING_RATE         = 50; -- % chance to recieve an item from haresting.  Set between 0 and 100.
+EXCAVATION_RATE         = 50; -- % chance to recieve an item from excavation.  Set between 0 and 100.
+LOGGING_RATE            = 50; -- % chance to recieve an item from logging.  Set between 0 and 100.
 MINING_RATE             = 50; -- % chance to recieve an item from mining.  Set between 0 and 100.
+DIGGING_RATE            = 85; -- % chance to receive an item from chocbo digging during favorable weather.  Set between 0 and 100.
 
 HEALING_TP_CHANGE       = -100; -- Change in TP for each healing tick. Default is -100
 
@@ -93,7 +94,7 @@ LandKingSystem_NQ = 0;
 LandKingSystem_HQ = 0;
 
 -- DYNAMIS SETTINGS
-    BETWEEN_2DYNA_WAIT_TIME = 1;        -- wait time between 2 Dynamis (in real day) min: 1 day
+    BETWEEN_2DYNA_WAIT_TIME = 24;       -- Hours before player can renter Dynamis. Default is 1 Earthday (24 hours).
         DYNA_MIDNIGHT_RESET = true;     -- if true, makes the wait time count by number of server midnights instead of full 24 hour intervals
              DYNA_LEVEL_MIN = 65;       -- level min for entering in Dynamis
     TIMELESS_HOURGLASS_COST = 500000;   -- refund for the timeless hourglass for Dynamis.
@@ -104,32 +105,21 @@ RELIC_3RD_UPGRADE_WAIT_TIME = 3600;     -- wait time for 3rd relic upgrade (stag
 FREE_COP_DYNAMIS = 1 ; -- Authorize player to entering inside COP Dynamis without completing COP mission ( 1 = enable 0= disable)
 
 -- QUEST/MISSION SPECIFIC SETTINGS
-WSNM_LEVEL = 70; -- Min Level to get WSNM Quests
-WSNM_SKILL_LEVEL = 240;
 AF1_QUEST_LEVEL = 40; -- Minimum level to start AF1 quest
 AF2_QUEST_LEVEL = 50; -- Minimum level to start AF2 quest
 AF3_QUEST_LEVEL = 50; -- Minimum level to start AF3 quest
 AF1_FAME = 20; -- base fame for completing an AF1 quest
 AF2_FAME = 40; -- base fame for completing an AF2 quest
 AF3_FAME = 60; -- base fame for completing an AF3 quest
-DEBUG_MODE = 0; -- Set to 1 to activate auto-warping to the next location (only supported by certain missions / quests).
-QM_RESET_TIME = 300; -- Default time (in seconds) you have from killing ???-pop mission NMs to click again and get key item, until ??? resets.
 OldSchoolG1 = false; -- Set to true to require farming Exoray Mold, Bombd Coal, and Ancient Papyrus drops instead of allowing key item method.
 OldSchoolG2 = false; -- Set true to require the NMs for "Atop the Highest Mountains" be dead to get KI like before SE changed it.
 FrigiciteDuration = 30; -- When OldSChoolG2 is enabled, this is the time (in seconds) you have from killing Boreal NMs to click the "???" target.
 
--- JOB ABILITY/TRAIT SPECIFIC SETTINGS
-CIRCLE_KILLER_EFFECT = 20; -- Intimidation percentage granted by circle effects. (made up number)
-KILLER_EFFECT = 10; -- Intimidation percentage from killer job traits.
-
 -- SPELL SPECIFIC SETTINGS
 DIA_OVERWRITE = 1; --Set to 1 to allow Bio to overwrite same tier Dia.  Default is 1.
 BIO_OVERWRITE = 0; --Set to 1 to allow Dia to overwrite same tier Bio.  Default is 0.
-BARELEMENT_OVERWRITE = 1; --Set to 1 to allow Barelement spells to overwrite each other (prevent stacking).  Default is 1.
-BARSTATUS_OVERWRITE = 1; --Set to 1 to allow Barstatus spells to overwrite each other (prevent stacking).  Default is 1.
 STONESKIN_CAP = 350; -- soft cap for hp absorbed by stoneskin
 BLINK_SHADOWS = 2;   -- number of shadows supplied by Blink spell
-ENSPELL_DURATION = 180; -- duration of RDM en-spells
 SPIKE_EFFECT_DURATION = 180; -- the duration of RDM, BLM spikes effects (not Reprisal)
 ELEMENTAL_DEBUFF_DURATION = 120; -- base duration of elemental debuffs
 AQUAVEIL_COUNTER = 1;  -- Base amount of hits Aquaveil absorbs to prevent spell interrupts. Retail is 1.
@@ -137,6 +127,7 @@ ABSORB_SPELL_AMOUNT = 8; -- how much of a stat gets absorbed by DRK absorb spell
 ABSORB_SPELL_TICK = 9; -- duration of 1 absorb spell tick
 SNEAK_INVIS_DURATION_MULTIPLIER = 1; -- multiplies duration of sneak,invis,deodorize to reduce player torture. 1 = retail behavior.
 USE_OLD_CURE_FORMULA = false; -- true/false. if true, uses older cure formula (3*MND + VIT + 3*(healing skill/5)) // cure 6 will use the newer formula
+USE_OLD_MAGIC_DAMAGE = false; -- true/false. if true, uses older magic damage formulas
 
 -- CELEBRATIONS
 EXPLORER_MOOGLE = 1; -- Enables Explorer Moogle teleports
@@ -148,7 +139,7 @@ HALLOWEEN_YEAR_ROUND = 0; -- Set to 1 to have Harvest Festival initialize outsid
 HOMEPOINT_HEAL = 0; --Set to 1 if you want Home Points to heal you like in single-player Final Fantasy games.
 RIVERNE_PORTERS = 120; -- Time in seconds that Unstable Displacements in Cape Riverne stay open after trading a scale.
 LANTERNS_STAY_LIT = 1200; -- time in seconds that lanterns in the Den of Rancor stay lit.
-ENABLE_COP_ZONE_CAP=1; -- enable or disable lvl cap
+ENABLE_COP_ZONE_CAP = 1; -- enable or disable lvl cap
 TIMEZONE_OFFSET = 9.0; -- Offset from UTC used to determine when "JP Midnight" is for the server.  Default is JST (+9.0).
 ALLOW_MULTIPLE_EXP_RINGS = 0; -- Set to 1 to remove ownership restrictions on the Chariot/Empress/Emperor Band trio.
 BYPASS_EXP_RING_ONE_PER_WEEK = 0; -- -- Set to 1 to bypass the limit of one ring per Conquest Tally Week.

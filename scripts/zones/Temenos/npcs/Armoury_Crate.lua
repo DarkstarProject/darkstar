@@ -2,26 +2,15 @@
 -- Area: Temenos
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Temenos/TextIDs");
 require("scripts/globals/limbus");
 
 -----------------------------------
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
     local  CofferID = npc:getID();
@@ -42,7 +31,7 @@ function onTrigger(player,npc)
             addtime=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][3];
             DespawnOtherCoffer=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][4];
             MimicID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5];
-            lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6];    
+            lootID=ARMOURY_CRATES_LIST_TEMENOS[coffer+1][6];
         end
     end
 
@@ -54,7 +43,7 @@ function onTrigger(player,npc)
     printf("lootID: %u",lootID);
     local coffer = CofferID-16928768;
 
-    if (CofferType == cTIME) then 
+    if (CofferType == cTIME) then
         player:addTimeToSpecialBattlefield(InstanceRegion,addtime);
     elseif (CofferType == cITEM) then
         if (InstanceRegion == Central_Temenos_4th_Floor and coffer~=79) then
@@ -72,16 +61,16 @@ function onTrigger(player,npc)
             -- despawn les coffer du meme groupe
             for coffer = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
                 if (ARMOURY_CRATES_LIST_TEMENOS[coffer+1][5] == MimicID) then
-                    GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(STATUS_DISAPPEAR);
-                end      
+                    GetNPCByID(16928768+ARMOURY_CRATES_LIST_TEMENOS[coffer]):setStatus(dsp.status.DISAPPEAR);
+                end
             end
         else
             player:BCNMSetLoot(lootID, InstanceRegion, CofferID);
             player:getBCNMloot();
-        end    
-    elseif (CofferType == cRESTORE) then 
+        end
+    elseif (CofferType == cRESTORE) then
         player:RestoreAndHealOnBattlefield(InstanceRegion);
-    elseif (CofferType == cMIMIC) then 
+    elseif (CofferType == cMIMIC) then
         if (coffer == 284) then
             GetMobByID(16928844):setSpawn(X,Y,Z);
             SpawnMob(16928844):setPos(X,Y,Z)
@@ -121,56 +110,52 @@ function onTrigger(player,npc)
                 if (GetMobAction(16928841) > 0) then DespawnMob(16928841); end
                 if (GetMobAction(16928842) > 0) then DespawnMob(16928842); end
                 if (GetMobAction(16928843) > 0) then DespawnMob(16928843); end
-                GetNPCByID(16929228):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929228):setStatus(dsp.status.NORMAL);
             elseif (coffer == 174 or coffer == 216 or coffer == 321 or coffer == 45) then
                 --floor 2
                 if (GetMobAction(16928849) > 0) then DespawnMob(16928849); end
                 if (GetMobAction(16928850) > 0) then DespawnMob(16928850); end
                 if (GetMobAction(16928851) > 0) then DespawnMob(16928851); end
                 if (GetMobAction(16928852) > 0) then DespawnMob(16928852); end
-                GetNPCByID(16929229):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929229):setStatus(dsp.status.NORMAL);
             elseif (coffer == 181 or coffer == 217 or coffer == 348 or coffer == 46) then
                 --floor 3
                 if (GetMobAction(16928858) > 0) then DespawnMob(16928858); end
                 if (GetMobAction(16928859) > 0) then DespawnMob(16928859); end
                 if (GetMobAction(16928860) > 0) then DespawnMob(16928860); end
                 if (GetMobAction(16928861) > 0) then DespawnMob(16928861); end
-                GetNPCByID(16929230):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929230):setStatus(dsp.status.NORMAL);
             elseif (coffer == 182 or coffer == 236 or coffer == 360 or coffer == 47) then
                 --floor 4
                 if (GetMobAction(16928867) > 0) then DespawnMob(16928867); end
                 if (GetMobAction(16928868) > 0) then DespawnMob(16928868); end
                 if (GetMobAction(16928869) > 0) then DespawnMob(16928869); end
                 if (GetMobAction(16928870) > 0) then DespawnMob(16928870); end
-                GetNPCByID(16929231):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929231):setStatus(dsp.status.NORMAL);
             elseif (coffer == 183 or coffer == 261 or coffer == 393 or coffer == 68) then
                 --floor 5
                 if (GetMobAction(16928876) > 0) then DespawnMob(16928876); end
                 if (GetMobAction(16928877) > 0) then DespawnMob(16928877); end
                 if (GetMobAction(16928878) > 0) then DespawnMob(16928878); end
                 if (GetMobAction(16928879) > 0) then DespawnMob(16928879); end
-                GetNPCByID(16929232):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929232):setStatus(dsp.status.NORMAL);
             elseif (coffer == 277 or coffer == 190 or coffer ==  127 or coffer == 69) then
                 --floor 6
                 if (GetMobAction(16928885) > 0) then DespawnMob(16928885); end
                 if (GetMobAction(16928886) > 0) then DespawnMob(16928886); end
                 if (GetMobAction(16928887) > 0) then DespawnMob(16928887); end
                 if (GetMobAction(16928888) > 0) then DespawnMob(16928888); end
-                GetNPCByID(16929233):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929233):setStatus(dsp.status.NORMAL);
             elseif (coffer == 70 or coffer == 123) then
                 --floor 7
                 if (GetMobAction(16928892) > 0) then DespawnMob(16928892); end
                 if (GetMobAction(16928893) > 0) then DespawnMob(16928893); end
-                GetNPCByID(16929234):setStatus(STATUS_NORMAL);
+                GetNPCByID(16929234):setStatus(dsp.status.NORMAL);
             end
         end
     end
-    npc:setStatus(STATUS_DISAPPEAR);
+    npc:setStatus(dsp.status.DISAPPEAR);
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
 end;

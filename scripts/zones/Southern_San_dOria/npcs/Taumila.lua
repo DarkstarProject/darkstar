@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: Tiger's Teeth (R)
 -- !pos -140 -5 -8 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -40,21 +38,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 574 and option == 0) then
         player:addQuest(SANDORIA,TIGER_S_TEETH);
     elseif (csid == 572) then
         player:tradeComplete();
-        player:addTitle(FANG_FINDER);
+        player:addTitle(dsp.title.FANG_FINDER);
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100)
         if (player:getQuestStatus(SANDORIA,TIGER_S_TEETH) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,TIGER_S_TEETH);

@@ -4,29 +4,19 @@
 -- Involved in Mission: Magicite
 -- !pos -99 24 -105 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
+require("scripts/globals/status")
 -----------------------------------
-require("scripts/globals/keyitems");
-require("scripts/zones/Castle_Oztroja/TextIDs");
------------------------------------
-
-function onTrade(player,npc,trade)
-end;
 
 function onTrigger(player,npc)
-
-    if (npc:getAnimation() == 9) then
-        player:messageSpecial(ITS_LOCKED);
+    if npc:getAnimation() == dsp.anim.CLOSE_DOOR then
+        player:messageSpecial(ID.text.ITS_LOCKED)
+        return 1
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

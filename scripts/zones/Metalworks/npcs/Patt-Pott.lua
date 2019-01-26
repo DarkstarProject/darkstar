@@ -4,9 +4,7 @@
 -- Type: Consulate Representative
 -- !pos 23 -17 42 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -47,26 +45,22 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 254) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_BASTOK);
-        player:delKeyItem(LETTER_TO_THE_CONSULS_WINDURST);
+        player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_WINDURST);
         player:setVar("MissionStatus",3);
     elseif (csid == 256) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS_BASTOK2);
         player:setVar("MissionStatus",8);
     elseif (csid == 257) then
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
-        player:delKeyItem(KINDRED_CREST);
-        player:addKeyItem(KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,KINDRED_REPORT);
+        player:delKeyItem(dsp.ki.KINDRED_CREST);
+        player:addKeyItem(dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     elseif (csid == 255) then
         player:tradeComplete();
         player:setVar("MissionStatus",7);

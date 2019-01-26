@@ -288,7 +288,7 @@ std::vector<position_t> CNavMesh::findPath(const position_t& start, const positi
 
             CNavMesh::ToFFXIPos(pathPos);
 
-            ret.push_back({0, pathPos[0], pathPos[1], pathPos[2], 0});
+            ret.push_back({pathPos[0], pathPos[1], pathPos[2], 0, 0});
         }
     }
 
@@ -343,7 +343,7 @@ std::pair<int16, position_t> CNavMesh::findRandomPosition(const position_t& star
 
     CNavMesh::ToFFXIPos(randomPt);
 
-    return std::make_pair(0, position_t{0, randomPt[0], randomPt[1], randomPt[2], 0});
+    return std::make_pair(0, position_t{randomPt[0], randomPt[1], randomPt[2], 0, 0});
 }
 
 bool CNavMesh::inWater(const position_t& point)

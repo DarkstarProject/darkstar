@@ -3,9 +3,6 @@
 --  NPC: Moogle
 --
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
 require("scripts/globals/moghouse")
 
 function onTrade(player,npc,trade)
@@ -17,13 +14,9 @@ function onTrigger(player,npc)
 end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid)
-    -- printf("RESULT: %u",option)
     moogleEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid)
-    -- printf("RESULT: %u",option)
     moogleEventFinish(player,csid,option)
 end

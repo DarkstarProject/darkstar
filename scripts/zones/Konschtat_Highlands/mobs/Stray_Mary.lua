@@ -5,8 +5,5 @@
 require("scripts/globals/titles");
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(MARYS_GUIDE);
-end;
-
-function onMobDespawn(mob)
+    player:addTitle(dsp.title.MARYS_GUIDE);
 end;

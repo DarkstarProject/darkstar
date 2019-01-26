@@ -3,21 +3,15 @@
 -- Zone: Dynamis-Windurst
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Windurst/TextIDs");
+local ID = require("scripts/zones/Dynamis-Windurst/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -56,14 +50,10 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 0) then
-        player:setPos(-217.000,1.000,-119.000,94,0xEF);
+        player:setPos(-217.000,1.000,-119.000,94,239);
     end
 end;

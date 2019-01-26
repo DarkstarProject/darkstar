@@ -392,7 +392,7 @@ INSERT INTO `blue_spell_mods` VALUES ('606', '13', '1'); -- MND+1
 -- ----------------------------
 -- Frost Breath
 -- ----------------------------
-INSERT INTO `blue_spell_mods` VALUES ('608', '12', '1'); -- INT+1
+INSERT INTO `blue_spell_mods` VALUES ('608', '12', '-2'); -- INT-2
 
 -- ----------------------------
 -- Infrasonics
@@ -403,7 +403,7 @@ INSERT INTO `blue_spell_mods` VALUES ('610', '12', '1'); -- INT+1
 -- Disseverment
 -- ----------------------------
 INSERT INTO `blue_spell_mods` VALUES ('611', '12', '1'); -- INT+1
-INSERT INTO `blue_spell_mods` VALUES ('611', '13', '1'); -- MND+1
+INSERT INTO `blue_spell_mods` VALUES ('611', '13', '-1'); -- MND-1
 
 -- ----------------------------
 -- Actinic Burst
@@ -629,7 +629,7 @@ INSERT INTO `blue_spell_mods` VALUES ('658', '8', '2'); -- STR+2
 -- ----------------------------
 -- Demoralizing Roar
 -- ----------------------------
-INSERT INTO `blue_spell_mods` VALUES ('659', '8', '2'); -- STR-2
+INSERT INTO `blue_spell_mods` VALUES ('659', '8', '-2'); -- STR-2
 INSERT INTO `blue_spell_mods` VALUES ('659', '10', '3'); -- VIT+3
 
 -- ----------------------------

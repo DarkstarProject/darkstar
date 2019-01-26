@@ -2,17 +2,11 @@
 -- Area: Spire of Mea
 -- NPC:  Web of Recollection
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Spire_of_Mea/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Spire_of_Mea/IDs");
 
 function onTrade(player,npc,trade)
     
@@ -22,24 +16,16 @@ function onTrade(player,npc,trade)
     
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then
         return 1;
     else
-        player:messageSpecial(FAINT_SCRAPING);
+        player:messageSpecial(ID.text.FAINT_SCRAPING);
         return 1;
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

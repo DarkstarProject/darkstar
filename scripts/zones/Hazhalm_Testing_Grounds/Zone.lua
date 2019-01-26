@@ -3,11 +3,9 @@
 -- Zone: Hazhalm_Testing_Grounds (78)
 --
 -----------------------------------
-package.loaded["scripts/zones/Hazhalm_Testing_Grounds/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/settings");
-require("scripts/zones/Hazhalm_Testing_Grounds/TextIDs");
+local ID = require("scripts/zones/Hazhalm_Testing_Grounds/IDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -30,13 +28,9 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 6) then
         player:setVar("AhtUrganStatus",1);

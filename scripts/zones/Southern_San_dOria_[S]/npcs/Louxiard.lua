@@ -3,9 +3,6 @@
 --  NPC: Louxiard
 -- !pos -93 -4 49 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -34,13 +31,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 21) then
         player:addQuest(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON); -- Gifts of Griffon Quest Start
 

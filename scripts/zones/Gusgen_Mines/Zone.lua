@@ -3,16 +3,15 @@
 -- Zone: Gusgen_Mines (196)
 --
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
-----------------------------------
-
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local ID = require("scripts/zones/Gusgen_Mines/IDs");
+require("scripts/globals/conquest");
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(17580403);
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)
@@ -24,22 +23,14 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

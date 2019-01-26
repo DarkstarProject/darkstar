@@ -1,26 +1,29 @@
 -----------------------------------------
-require("scripts/globals/status");
+-- Cirrocumulus Cell
+-- ID 5370
+-- Unlocks back and waist equipment
+-----------------------------------------
+require("scripts/globals/status")
 -----------------------------------------
 
 function onItemCheck(target)
-    local encumbrance = target:getStatusEffect(dsp.effects.ENCUMBRANCE_I)
+    local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I)
     if (encumbrance) then
         local power = encumbrance:getPower()
         if bit.band(power, 0x8400) > 0 then
-            return 0;
+            return 0
         end
     end
-    return -1;
-end;
+    return -1
+end
 
 function onItemUse(target)
-    local encumbrance = target:getStatusEffect(dsp.effects.ENCUMBRANCE_I)
+    local encumbrance = target:getStatusEffect(dsp.effect.ENCUMBRANCE_I)
     local power = encumbrance:getPower()
     local newpower = bit.band(power, bit.bnot(0x8400))
-    target:delStatusEffectSilent(dsp.effects.ENCUMBRANCE_I)
+    target:delStatusEffectSilent(dsp.effect.ENCUMBRANCE_I)
     if (newpower > 0) then
-        target:addStatusEffectEx(dsp.effects.ENCUMBRANCE_I, dsp.effects.ENCUMBRANCE_I, newpower, 0, 0)
+        target:addStatusEffectEx(dsp.effect.ENCUMBRANCE_I, dsp.effect.ENCUMBRANCE_I, newpower, 0, 0)
     end
-    target:messageText(target, 7213)
-end;
-
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 5)
+end

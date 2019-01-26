@@ -4,9 +4,7 @@
 -- Adventurer's Assistant
 -- !pos -237 -12 -41 235
 -------------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -21,16 +19,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 6) then
         player:tradeComplete();
         player:addGil(GIL_RATE*50);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*50);
     end
 end;

@@ -2,46 +2,34 @@
 -- Area: Port San d'Oria
 --  NPC: Albinie
 -- Standard Merchant NPC
--- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/shop");
-require("scripts/zones/Port_San_dOria/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Port_San_dOria/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
+    local stock =
+    {
+        699, 5688, 1,    -- Oak Log
+        644, 1800, 1,    -- Mythril Ore
+        835,  225, 1,    -- Flax Flower
+        694, 2543, 2,    -- Chestnut Log
+        640,   10, 2,    -- Copper Ore
+        643,  810, 2,    -- Iron Ore
+        833,   18, 2,    -- Moko Grass
+        4570,  50, 2,    -- Bird Egg
+        698,   86, 3,    -- Ash Log
+        1,   1800, 3,    -- Chocobo Bedding
+    }
 
-    player:showText(npc,ALBINIE_SHOP_DIALOG);
-
-stock =
-{
-    0x02bb,5688,1, --Oak Log
-    0x0284,1800,1, --Mythril Ore
-    0x0343,225,1,  --Flax Flower
-
-    0x02b6,2543,2, --Chestnut Log
-    0x0280,10,2,   --Copper Ore
-    0x0283,810,2,  --Iron Ore
-    0x0341,18,2,   --Moko Grass
-    0x11da,50,2,   --Bird Egg
-
-    0x02ba,86,3,   --Ash Log
-    0x0001,1800,3  --Chocobo Bedding
-}
-showNationShop(player, NATION_SANDORIA, stock);
-end;
+    player:showText(npc, ID.text.ALBINIE_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

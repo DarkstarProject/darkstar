@@ -3,17 +3,8 @@
 --  NPC: Adamantshell
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
 end;
@@ -28,13 +19,13 @@ function onMobDespawn(mob)
 
  if (mobID ==16933008) then --
        GetNPCByID(16932864+232):setPos(108,-1,-518);
-    GetNPCByID(16932864+232):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+232):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16933013) then --
        GetNPCByID(16932864+233):setPos(109,-1,-521);
-    GetNPCByID(16932864+233):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+233):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16933007) then --
       GetNPCByID(16932864+234):setPos(112,-1,-523);
-    GetNPCByID(16932864+234):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+234):setStatus(dsp.status.NORMAL);
  end
 
 end;

@@ -6,15 +6,12 @@
 --                        'Fertile Ground'
 --                        'The Old Man and the Harpoon'
 --                        'Wayward Waypoints'
---  @zone 256
--- !pos 84 0 -60
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- !pos 84 0 -60 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,13 +26,13 @@ function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
-        if ((TOMATH == QUEST_ACCEPTED) and player:hasKeyItem(BROKEN_HARPOON)) then
+        if ((TOMATH == QUEST_ACCEPTED) and player:hasKeyItem(dsp.ki.BROKEN_HARPOON)) then
             -- Progresses Quest: 'The Old Man and the Harpoon'
             player:startEvent(2543);
-        elseif ((Fertile_Ground == QUEST_ACCEPTED) and (not player:hasKeyItem(BOTTLE_OF_FERTILIZER_X))) then
+        elseif ((Fertile_Ground == QUEST_ACCEPTED) and (not player:hasKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X))) then
             -- Progresses Quest: 'Fertile Ground'
             player:startEvent(2850);
-        elseif (Wayward_Waypoints and (not player:hasKeyItem(WAYPOINT_RECALIBRATION_KIT))) then
+        elseif (Wayward_Waypoints and (not player:hasKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT))) then
             -- Progresses Quest: 'Wayward Waypoints'
             player:startEvent(79);
         elseif ((ACSP == QUEST_ACCEPTED) and (player:getVar("ACSP_NPCs_Visited") == 5)) then
@@ -57,14 +54,14 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2543) then
         -- Progresses Quest: 'The Old Man and the Harpoon'
-        player:delKeyItem(BROKEN_HARPOON);
-        player:addKeyItem(EXTRAVAGANT_HARPOON);
-        player:messageSpecial(KEYITEM_OBTAINED, EXTRAVAGANT_HARPOON);
+        player:delKeyItem(dsp.ki.BROKEN_HARPOON);
+        player:addKeyItem(dsp.ki.EXTRAVAGANT_HARPOON);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.EXTRAVAGANT_HARPOON);
     elseif (csid == 2850) then
         -- Progresses Quest: 'Fertile Ground'
-        player:addKeyItem(BOTTLE_OF_FERTILIZER_X);
+        player:addKeyItem(dsp.ki.BOTTLE_OF_FERTILIZER_X);
     elseif (csid == 79) then
-        player:addKeyItem(WAYPOINT_RECALIBRATION_KIT);
+        player:addKeyItem(dsp.ki.WAYPOINT_RECALIBRATION_KIT);
         player:setVar("WW_Need_Shipilolo", 0);
     elseif (csid == 2557) then
         -- Progresses Quest: 'A Certain Substitute Patrolman'

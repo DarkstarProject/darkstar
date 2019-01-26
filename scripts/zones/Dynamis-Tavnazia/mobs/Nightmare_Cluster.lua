@@ -3,14 +3,11 @@
 --  NPC: Nightmare_Cluster
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)

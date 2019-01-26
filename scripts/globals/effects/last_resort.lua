@@ -1,34 +1,25 @@
 -----------------------------------
 --
---     EFFECT_LAST_RESORT
---     
+--     dsp.effect.LAST_RESORT
+--
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/globals/status");
+function onEffectGain(target, effect)
+    target:addMod(dsp.mod.ATTP, 25 + target:getMerit(dsp.merit.LAST_RESORT_EFFECT))
+    target:addMod(dsp.mod.HASTE_ABILITY, target:getMod(dsp.mod.DESPERATE_BLOWS) + target:getMerit(dsp.merit.DESPERATE_BLOWS))
 
------------------------------------
--- onEffectGain Action
------------------------------------
+    -- Gear that affects this mod is handled by a Latent Effect because the gear must remain equipped
+    target:addMod(dsp.mod.DEFP, -25 - target:getMerit(dsp.merit.LAST_RESORT_EFFECT))
+end
 
-function onEffectGain(target,effect)
-    target:addMod(MOD_ATTP,15 + target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:addMod(MOD_DEFP,-15 - target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:addMod(MOD_HASTE_ABILITY, 156+effect:getPower())
-end;
+function onEffectTick(target, effect)
+end
 
------------------------------------
--- onEffectTick Action
------------------------------------
-
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
-
-function onEffectLose(target,effect)
-    target:delMod(MOD_ATTP,15 + target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:delMod(MOD_DEFP,-15 - target:getMerit(MERIT_LAST_RESORT_EFFECT));
-    target:delMod(MOD_HASTE_ABILITY, 156+effect:getPower())
-end;
+function onEffectLose(target, effect)
+    target:delMod(dsp.mod.ATTP, 25 + target:getMerit(dsp.merit.LAST_RESORT_EFFECT))
+    target:delMod(dsp.mod.HASTE_ABILITY, target:getMod(dsp.mod.DESPERATE_BLOWS) + target:getMerit(dsp.merit.DESPERATE_BLOWS))
+     -- Gear that affects this mod is handled by a Latent Effect because the gear must remain equipped
+    target:delMod(dsp.mod.DEFP, -25 - target:getMerit(dsp.merit.LAST_RESORT_EFFECT))
+end

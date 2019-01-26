@@ -235,32 +235,24 @@ uint8 CBattlefield::getPlayerMainLevel()
 }
 
 void CBattlefield::capPlayerToBCNM()
-{ //adjust player's level to the appropriate cap and remove buffs
+{
+    //adjust player's level to the appropriate cap and remove buffs
     if (m_PlayerList.size() == 0)
     {
         ShowWarning("battlefield:getPlayerMainLevel - No players in battlefield!\n");
         return;
     }
-    uint8 cap = getLevelCap();
+
+    uint8 cap = std::clamp<uint8>(getLevelCap(), 0, 99);
     if (cap != 0)
-    {   // Other missions lines and things like dragoon quest battle can be done similarly to CoP_Battle_cap.
-        // Might be better to add a type flag to the sql to tell bcnm/isnm/which expansions mission than doing by bcnmID like this.
-        if ((map_config.CoP_Battle_cap == 0) && (m_BcnmID == 768 || m_BcnmID == 800 || m_BcnmID == 832 || m_BcnmID == 960
-            || m_BcnmID == 704 || m_BcnmID == 961 || m_BcnmID == 864 || m_BcnmID == 672 || m_BcnmID == 736 || m_BcnmID == 992 || m_BcnmID == 640))
+    {
+        if (map_config.lv_cap_mission_bcnm == 0 && m_isMission == 1)
         {
             cap = 99;
         }
-        if (cap < 99 && cap > 1)
+        else if (cap < 99 && cap > 0)
         {
             cap = cap + map_config.Battle_cap_tweak;
-        }
-        if (cap > 99)
-        {
-            cap = 99;
-        }
-        if (cap < 1)
-        {
-            cap = 1;
         }
 
         for (const auto& player : m_PlayerList)

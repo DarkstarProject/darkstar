@@ -2,21 +2,17 @@
 -- Area: FeiYin
 --  MOB: Droma
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 require("scripts/globals/keyitems");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
-    checkGoVregime(player,mob,714,2);
-
+    dsp.regime.checkRegime(player, mob, 714, 2, dsp.regime.type.GROUNDS)
     -- Curses, Foiled A-Golem!?
-    if (player:hasKeyItem(SHANTOTTOS_NEW_SPELL)) then
-        player:delKeyItem(SHANTOTTOS_NEW_SPELL);
-        player:addKeyItem(SHANTOTTOS_EXSPELL);
+    if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then
+        player:delKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL);
+        player:addKeyItem(dsp.ki.SHANTOTTOS_EXSPELL);
     end
 
 end;

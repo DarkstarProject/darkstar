@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.6.13-log
+-- Server version   5.6.13-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -195,15 +195,15 @@ INSERT INTO `mob_pool_mods` VALUES (1851,32,1,1);
 -- -------------------------
 --  Race Runner
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def 
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack 
+INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
+INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
 
 -- -------------------------
 --  Bloodlapper
 -- -------------------------
-INSERT INTO `mob_pool_mods` VALUES (459, 430, 20, 0); -- Quad Attack 
-INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack 
-INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP  
+INSERT INTO `mob_pool_mods` VALUES (459, 430, 20, 0); -- Quad Attack
+INSERT INTO `mob_pool_mods` VALUES (459, 23, 50, 0); -- Attack
+INSERT INTO `mob_pool_mods` VALUES (459, 73, 25, 0); -- Store TP
 
 -- Add promyvian boss mods
 INSERT INTO `mob_pool_mods` VALUES (681,14,706,1);
@@ -280,6 +280,21 @@ INSERT INTO `mob_pool_mods` VALUES (4204,28,10,1);
 -- Morbolger
 INSERT INTO `mob_pool_mods` VALUES (2742,37,1,1);
 
+INSERT INTO `mob_pool_mods` VALUES (5408,30,1036,1); -- Maat (PLD) SPECIAL_SKILL: maats_bash
+INSERT INTO `mob_pool_mods` VALUES (5408,33,50,1); -- Maat (PLD) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (5408,58,40,1); -- Maat (PLD) SPECIAL_DELAY: 40 sec
+INSERT INTO `mob_pool_mods` VALUES (5409,30,1036,1); -- Maat (DRK) SPECIAL_SKILL: maats_bash
+INSERT INTO `mob_pool_mods` VALUES (5409,33,50,1); -- Maat (DRK) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (5409,58,40,1); -- Maat (DRK) SPECIAL_DELAY: 40 sec
+INSERT INTO `mob_pool_mods` VALUES (4932,30,1017,1); -- Maat (BST) SPECIAL_SKILL: call_beast
+INSERT INTO `mob_pool_mods` VALUES (4932,33,50,1); -- Maat (BST) SPECIAL_COOLDOWN: 50 sec
+INSERT INTO `mob_pool_mods` VALUES (4836,62,1,1); -- Maat (BLM) NO_STANDBACK
+INSERT INTO `mob_pool_mods` VALUES (4837,62,1,1); -- Maat (RNG) NO_STANDBACK
+INSERT INTO `mob_pool_mods` VALUES (5403,62,1,1); -- Maat (NIN) NO_STANDBACK
+
+INSERT INTO `mob_pool_mods` VALUES (3784,2,-1,1); -- Stray GIL_MAX: don't drop gil
+INSERT INTO `mob_pool_mods` VALUES (3784,28,-100,1); -- Stray EXP_BONUS: don't give XP
+INSERT INTO `mob_pool_mods` VALUES (2614,368,100,0); -- Memory Receptacle regain 10%
 
 /*!40000 ALTER TABLE `mob_pool_mods` ENABLE KEYS */;
 UNLOCK TABLES;

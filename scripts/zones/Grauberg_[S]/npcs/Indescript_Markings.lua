@@ -3,27 +3,23 @@
 --  NPC: Indescript Markings
 -- Type: Quest
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local ID = require("scripts/zones/Grauberg_[S]/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
+require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
     local gownQuestProgress = player:getVar("AF_SCH_BODY");
 
-    player:delStatusEffect(dsp.effects.SNEAK);
+    player:delStatusEffect(dsp.effect.SNEAK);
 
     -- SCH AF Quest - Boots
-    if (gownQuestProgress > 0 and gownQuestProgress < 3 and player:hasKeyItem(SAMPLE_OF_GRAUBERG_CHERT) == false) then
-
-        player:addKeyItem(SAMPLE_OF_GRAUBERG_CHERT);
-        player:messageSpecial(KEYITEM_OBTAINED, SAMPLE_OF_GRAUBERG_CHERT);
+    if (gownQuestProgress > 0 and gownQuestProgress < 3 and not player:hasKeyItem(dsp.ki.SAMPLE_OF_GRAUBERG_CHERT)) then
+        npcUtil.giveKeyItem(player, dsp.ki.SAMPLE_OF_GRAUBERG_CHERT);
         player:setVar("AF_SCH_BODY", gownQuestProgress + 1);
 
         -- Move the markings around
@@ -41,18 +37,13 @@ function onTrigger(player,npc)
         local newPosition = npcUtil.pickNewPosition(npc:getID(), positions);
 
         npc:setPos(newPosition.x, newPosition.y, newPosition.z);
-        -- player:PrintToPlayer("Markings moved to position index " .. newPosition);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

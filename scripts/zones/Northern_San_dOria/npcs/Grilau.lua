@@ -3,22 +3,20 @@
 --  NPC: Grilau
 -- !pos -241.987 6.999 57.887 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    CurrentMission = player:getCurrentMission(SANDORIA);
-    OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
-    BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
-    TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
-    MissionStatus = player:getVar("MissionStatus");
-    Count = trade:getItemCount();
+    local CurrentMission = player:getCurrentMission(SANDORIA);
+    local OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
+    local BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
+    local TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
+    local MissionStatus = player:getVar("MissionStatus");
+    local Count = trade:getItemCount();
 
     if (CurrentMission ~= 255) then
         if (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
@@ -44,25 +42,25 @@ end;
 
 function onTrigger(player,npc)
 
-local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
+    local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
 
-    if (player:getNation() ~= NATION_SANDORIA) then
+    if (player:getNation() ~= dsp.nation.SANDORIA) then
         player:startEvent(1011); -- for Non-San d'Orians
     else
-        CurrentMission = player:getCurrentMission(SANDORIA);
-        MissionStatus = player:getVar("MissionStatus");
-        pRank = player:getRank();
-        cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
+        local CurrentMission = player:getCurrentMission(SANDORIA);
+        local MissionStatus = player:getVar("MissionStatus");
+        local pRank = player:getRank();
+        local cs, p, offset = getMissionOffset(player,1,CurrentMission,MissionStatus);
 
         if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
             if (cs == 0) then
-                player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
+                player:showText(npc,ID.text.ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
         elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
             player:startEvent(1000); -- Start First Mission "Smash the Orcish scouts"
-        elseif (player:hasKeyItem(ANCIENT_SANDORIAN_BOOK)) then
+        elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1035);
         elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then
             player:startEvent(1037);
@@ -77,7 +75,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
         elseif (CurrentMission ~= 255) then
             player:startEvent(1001); -- Have mission already activated
         else
-            mission_mask, repeat_mask = getMissionMask(player);
+            local mission_mask, repeat_mask = getMissionMask(player);
             player:startEvent(1009,mission_mask, 0, 0 ,0 ,0 ,repeat_mask); -- Mission List
         end
     end
@@ -95,16 +93,16 @@ function onEventFinish(player,csid,option)
 
     finishMissionTimeline(player,1,csid,option);
     if (csid == 1035) then
-       player:setVar("MissionStatus",4);
-       player:delKeyItem(ANCIENT_SANDORIAN_BOOK);
-       player:setVar("Wait1DayForRanperre_date", os.date("%j"));
+        player:setVar("MissionStatus",4);
+        player:delKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
+        player:setVar("Wait1DayForRanperre_date", os.date("%j"));
     elseif (csid == 1037) then
-       player:setVar("MissionStatus",6);
+        player:setVar("MissionStatus",6);
     elseif (csid == 1039) then
-       player:setVar("MissionStatus",7);
-       player:setVar("Wait1DayForRanperre_date",0);
+        player:setVar("MissionStatus",7);
+        player:setVar("Wait1DayForRanperre_date",0);
     elseif (csid == 1033) then
-       finishMissionTimeline(player,2,csid,option);
+        finishMissionTimeline(player,2,csid,option);
     elseif (csid == 52) then
         player:setVar("SecretWeaponStatus",1);
     elseif (csid == 1043) then

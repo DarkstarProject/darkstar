@@ -4,9 +4,6 @@
 -- Type: Quest NPC
 -- !pos -173 -5 64 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -35,8 +32,8 @@ function onEventFinish(player,csid,option)
             player:addQuest(BASTOK, THE_COLD_LIGHT_OF_DAY);
         end
     elseif (csid == 104) then
-        local fame = player:hasCompleteQuest(BASTOK, THE_COLD_LIGHT_OF_DAY) and 8 or 50;
-        if (npcUtil.completeQuest(player, BASTOK, THE_COLD_LIGHT_OF_DAY, {title=CRAB_CRUSHER, gil=500, fame=fame})) then
+        local fame = player:hasCompletedQuest(BASTOK, THE_COLD_LIGHT_OF_DAY) and 8 or 50;
+        if (npcUtil.completeQuest(player, BASTOK, THE_COLD_LIGHT_OF_DAY, {title=dsp.title.CRAB_CRUSHER, gil=500, fame=fame})) then
             player:confirmTrade();
         end
         

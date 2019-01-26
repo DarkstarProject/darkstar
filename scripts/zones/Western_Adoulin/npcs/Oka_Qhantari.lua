@@ -3,8 +3,7 @@
 --  NPC: Oka Qhantari
 -- Type: Standard NPC and Quest NPC
 --  Involved With Quest: 'Order Up'
---  @zone 256
--- !pos -30 3 -6
+-- !pos -30 3 -6 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------

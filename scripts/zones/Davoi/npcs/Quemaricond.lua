@@ -4,11 +4,9 @@
 -- Involved in Mission: Infiltrate Davoi
 -- !pos 23 0.1 -23 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -24,13 +22,13 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
 
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -42,25 +40,21 @@ function onTrigger(player,npc)
         player:startEvent(117);
         npc:wait();
     else
-        player:showText(npc, QUEMARICOND_DIALOG);
+        player:showText(npc, ID.text.QUEMARICOND_DIALOG);
         npc:wait(2000);
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 117) then
         player:setVar("MissionStatus",4);
-        player:addKeyItem(ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:addKeyItem(dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

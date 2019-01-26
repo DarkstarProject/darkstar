@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Mainchelite
--- @zone 80
--- !pos -16 1 -30
+-- !pos -16 1 -30 80
 -- CS IDs:
 -- 5 = Generic Greeting for Iron Ram members
--- 0x006 = Mid Initiation of other nation
+-- 6 = Mid Initiation of other nation
 -- 7 = Ask player to Join Iron Rams
 -- 8 = Ask if changed mind about joining Iron rams (after player has declined)
 -- 9 = Mid Initiation of other nation
@@ -13,18 +12,16 @@
 -- 11 = Player works for another nation, offer to switch +give quest
 -- 12 = Complete investigation
 -- 13 = "How fares the search, <player>?"
--- 0x00E = "How fares the search, <player>?"
+-- 14 = "How fares the search, <player>?"
 -- 15 = No Red Recommendation Letter and has no nation affiliation
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,10 +34,10 @@ function onTrigger(player,npc)
     local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
     local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR,SNAKE_ON_THE_PLAINS);
     local SteamedRams = player:getQuestStatus(CRYSTAL_WAR,STEAMED_RAMS);
-    local RedLetter = player:hasKeyItem(RED_RECOMMENDATION_LETTER);
-    local CharredPropeller = player:hasKeyItem(CHARRED_PROPELLER);
-    local OxidizedPlate = player:hasKeyItem(OXIDIZED_PLATE);
-    local ShatteredLumber = player:hasKeyItem(PIECE_OF_SHATTERED_LUMBER);
+    local RedLetter = player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
+    local CharredPropeller = player:hasKeyItem(dsp.ki.CHARRED_PROPELLER);
+    local OxidizedPlate = player:hasKeyItem(dsp.ki.OXIDIZED_PLATE);
+    local ShatteredLumber = player:hasKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
 
     if (TheFightingFourth == QUEST_ACCEPTED or SnakeOnThePlains == QUEST_ACCEPTED) then
         player:startEvent(9);
@@ -60,20 +57,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 7 and option == 0) then
         player:addQuest(CRYSTAL_WAR,STEAMED_RAMS);
         player:setVar("RED_R_LETTER_USED",1);
-        player:delKeyItem(RED_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
     elseif (csid == 7 and option == 1) then
         player:setVar("RED_R_LETTER_USED",1);
-        player:delKeyItem(RED_RECOMMENDATION_LETTER);
+        player:delKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
     elseif (csid == 8 and option == 0) then
         player:addQuest(CRYSTAL_WAR, STEAMED_RAMS);
     elseif (csid == 10 and option == 0) then
@@ -86,26 +79,26 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:setCampaignAllegiance(1);
                 player:setVar("RED_R_LETTER_USED",0);
-                player:addTitle(KNIGHT_OF_THE_IRON_RAM);
-                player:addKeyItem(BRONZE_RIBBON_OF_SERVICE);
+                player:addTitle(dsp.title.KNIGHT_OF_THE_IRON_RAM);
+                player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
-                player:delKeyItem(CHARRED_PROPELLER);
-                player:delKeyItem(OXIDIZED_PLATE);
-                player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
-                player:messageSpecial(KEYITEM_OBTAINED, BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:delKeyItem(dsp.ki.CHARRED_PROPELLER);
+                player:delKeyItem(dsp.ki.OXIDIZED_PLATE);
+                player:delKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(1);
             player:setVar("RED_R_LETTER_USED",0);
-            player:addTitle(KNIGHT_OF_THE_IRON_RAM);
+            player:addTitle(dsp.title.KNIGHT_OF_THE_IRON_RAM);
             player:completeQuest(CRYSTAL_WAR,STEAMED_RAMS);
-            player:delKeyItem(CHARRED_PROPELLER);
-            player:delKeyItem(OXIDIZED_PLATE);
-            player:delKeyItem(PIECE_OF_SHATTERED_LUMBER);
+            player:delKeyItem(dsp.ki.CHARRED_PROPELLER);
+            player:delKeyItem(dsp.ki.OXIDIZED_PLATE);
+            player:delKeyItem(dsp.ki.PIECE_OF_SHATTERED_LUMBER);
         end
     elseif (csid == 13 and option == 1) then
         player:delQuest(CRYSTAL_WAR,STEAMED_RAMS);

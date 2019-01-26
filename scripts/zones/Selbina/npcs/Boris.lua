@@ -4,26 +4,19 @@
 -- Type: Item Deliverer
 -- !pos 61.074 -14.655 -7.1 248
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
+local ID = require("scripts/zones/Selbina/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc, BORIS_DELIVERY_DIALOG);
-    player:openSendBox();
-end;
+    player:showText(npc, ID.text.BORIS_DELIVERY_DIALOG)
+    player:openSendBox()
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

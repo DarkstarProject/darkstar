@@ -2,38 +2,35 @@
 -- Area: Metalworks
 --  NPC: Lorena
 -- Type: Blacksmithing Guildworker's Union Representative
---  @zone 237
--- !pos -104.990 1 30.995
+-- !pos -104.990 1 30.995 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 
 local keyitems = {
     [0] = {
-        id = METAL_PURIFICATION,
+        id = dsp.ki.METAL_PURIFICATION,
         rank = 3,
         cost = 40000
     },
     [1] = {
-        id = METAL_ENSORCELLMENT,
+        id = dsp.ki.METAL_ENSORCELLMENT,
         rank = 3,
         cost = 40000
     },
     [2] = {
-        id = CHAINWORK,
+        id = dsp.ki.CHAINWORK,
         rank = 3,
         cost = 10000
     },
     [3] = {
-        id = SHEETING,
+        id = dsp.ki.SHEETING,
         rank = 3,
         cost = 10000
     },
     [4] = {
-        id = WAY_OF_THE_BLACKSMITH,
+        id = dsp.ki.WAY_OF_THE_BLACKSMITH,
         rank = 9,
         cost = 20000
     }
@@ -92,19 +89,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 800) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 800) then
         unionRepresentativeTriggerFinish(player, option, target, 2, "guild_smithing", keyitems, items);
     elseif (csid == 801) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

@@ -3,10 +3,7 @@
 -- Zone: Woh Gates
 --
 -----------------------------------
-package.loaded["scripts/zones/Woh_Gates/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Woh_Gates/TextIDs");
+local ID = require("scripts/zones/Woh_Gates/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,11 +23,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

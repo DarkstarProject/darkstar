@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Barenngo
 -- Type: Standard NPC and Quest NPC
---  Involved with Quests: 'Dont Ever Leaf Me'
---  @zone 256
---  !pos -101 3 14 256
+-- Involved with Quests: 'Dont Ever Leaf Me'
+-- !pos -101 3 14 256
 -----------------------------------
 require("scripts/globals/quests");
 -----------------------------------

@@ -3,16 +3,6 @@
 --  NPC: Kaiser Behemoth
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Apollyon/TextIDs");
------------------------------------
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
 end;
@@ -26,15 +16,15 @@ function onMobDespawn(mob)
 
  if (mobID ==16932977) then -- recover
        GetNPCByID(16932864+179):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+179):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+179):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932978) then -- timer 1
        GetNPCByID(16932864+262):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+262):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+262):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932980) then -- timer 2
       GetNPCByID(16932864+97):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+97):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+97):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16932981) then -- timer 3
       GetNPCByID(16932864+98):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+98):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+98):setStatus(dsp.status.NORMAL);
  end
 end;

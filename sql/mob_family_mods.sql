@@ -134,6 +134,8 @@ INSERT INTO `mob_family_mods` VALUES (394,43,2,1);
 INSERT INTO `mob_family_mods` VALUES (150,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (394,4,30,1);
 INSERT INTO `mob_family_mods` VALUES (236,4,30,1);
+INSERT INTO `mob_family_mods` VALUES (481,41,988,1);
+INSERT INTO `mob_family_mods` VALUES (481,42,989,1);
 
 -- Adjust magic damage taken
 INSERT INTO `mob_family_mods` VALUES (4,389,-25,0);

@@ -4,9 +4,7 @@
 -- Starts and Finished Quest: Wondering Minstrel
 -- !pos -59 -4 22 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -54,25 +52,21 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 634) then    -- WONDERING_MINSTREL: Quest Start
         player:addQuest(WINDURST,WONDERING_MINSTREL);
     elseif (csid == 638) then  -- WONDERING_MINSTREL: Quest Finish
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17349);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17349);
         else
             player:tradeComplete(trade);
             player:completeQuest(WINDURST,WONDERING_MINSTREL)
             player:addItem(17349);
-            player:messageSpecial(ITEM_OBTAINED,17349);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17349);
             player:addFame(WINDURST,75);
-            player:addTitle(DOWN_PIPER_PIPEUPPERER);
+            player:addTitle(dsp.title.DOWN_PIPER_PIPEUPPERER);
             player:needToZone(true);
             player:setVar("QuestWonderingMin_var",0);
         end

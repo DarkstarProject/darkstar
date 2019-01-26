@@ -1,41 +1,32 @@
 -----------------------------------
 -- Area: Bastok Mines
 --  NPC: Galdeo
--- Only sells when Bastok controlls Li'Telor Region
+--  Li'Telor Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs");
-require("scripts/globals/conquest");
-require("scripts/globals/shop");
------------------------------------
+local ID = require("scripts/zones/Bastok_Mines/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(LITELOR);
-    if (RegionOwner ~= NATION_BASTOK) then
-        player:showText(npc,GALDEO_CLOSED_DIALOG);
+    if GetRegionOwner(dsp.region.LITELOR) ~= dsp.nation.BASTOK then
+        player:showText(npc, ID.text.GALDEO_CLOSED_DIALOG)
     else
-        player:showText(npc,GALDEO_OPEN_DIALOG);
         local stock =
         {
-            623,    119, -- Bay Leaves
-            4154,  6440  -- Holy Water
+            623,   119,    -- Bay Leaves
+            4154, 6440,    -- Holy Water
         }
-        showShop(player,BASTOK,stock);
 
+        player:showText(npc, ID.text.GALDEO_OPEN_DIALOG)
+        dsp.shop.general(player, stock, BASTOK)
     end
-
-end;
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

@@ -1,36 +1,35 @@
 --------------------------------------
---     Spell: Hailstorm
+-- Spell: Hailstorm
 --     Changes the weather around target party member to "snowy."
 --------------------------------------
- 
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
+require("scripts/globals/magic")
+require("scripts/globals/status")
+--------------------------------------
 
------------------------------------------
--- OnSpellCast
------------------------------------------
+function onMagicCastingCheck(caster, target, spell)
+    return 0
+end
 
-function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+function onSpellCast(caster, target, spell)
+    target:delStatusEffectSilent(dsp.effect.FIRESTORM)
+    target:delStatusEffectSilent(dsp.effect.SANDSTORM)
+    target:delStatusEffectSilent(dsp.effect.RAINSTORM)
+    target:delStatusEffectSilent(dsp.effect.WINDSTORM)
+    target:delStatusEffectSilent(dsp.effect.HAILSTORM)
+    target:delStatusEffectSilent(dsp.effect.THUNDERSTORM)
+    target:delStatusEffectSilent(dsp.effect.AURORASTORM)
+    target:delStatusEffectSilent(dsp.effect.VOIDSTORM)
 
-function onSpellCast(caster,target,spell)
-    
-    target:delStatusEffectSilent(dsp.effects.FIRESTORM);
-    target:delStatusEffectSilent(dsp.effects.SANDSTORM);
-    target:delStatusEffectSilent(dsp.effects.RAINSTORM);
-    target:delStatusEffectSilent(dsp.effects.WINDSTORM);
-    target:delStatusEffectSilent(dsp.effects.HAILSTORM);
-    target:delStatusEffectSilent(dsp.effects.THUNDERSTORM);
-    target:delStatusEffectSilent(dsp.effects.AURORASTORM);
-    target:delStatusEffectSilent(dsp.effects.VOIDSTORM);
-    
-    local merit = caster:getMerit(MERIT_STORMSURGE);
-    local power = 0;
+    local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+    duration = calculateDurationForLvl(duration, 45, target:getMainLvl())
+
+    local merit = caster:getMerit(dsp.merit.STORMSURGE)
+    local power = 0
     if merit > 0 then
-        power = merit + caster:getMod(MOD_STORMSURGE_EFFECT) + 2;
+        power = merit + caster:getMod(dsp.mod.STORMSURGE_EFFECT) + 2
     end
-    target:addStatusEffect(dsp.effects.HAILSTORM,power,0,180);
-    return dsp.effects.HAILSTORM;
-end;
+    
+    target:addStatusEffect(dsp.effect.HAILSTORM,power, 0, duration)
+
+    return dsp.effect.HAILSTORM
+end

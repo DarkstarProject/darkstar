@@ -163,8 +163,8 @@ inline int32 CLuaZone::getRegionID(lua_State* L)
 const char CLuaZone::className[] = "CZone";
 Lunar<CLuaZone>::Register_t CLuaZone::methods[] =
 {
-    LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
     LUNAR_DECLARE_METHOD(CLuaZone,registerRegion),
+    LUNAR_DECLARE_METHOD(CLuaZone,levelRestriction),
     LUNAR_DECLARE_METHOD(CLuaZone,getPlayers),
     LUNAR_DECLARE_METHOD(CLuaZone,getID),
     LUNAR_DECLARE_METHOD(CLuaZone,getRegionID),

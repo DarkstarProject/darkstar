@@ -3,42 +3,36 @@
 --  NPC: ???
 --  Quest - DNC AF1
 -----------------------------------
-package.loaded["scripts/zones/Grauberg_[S]/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/harvesting");
-require("scripts/zones/Grauberg_[S]/TextIDs");
+local ID = require("scripts/zones/Grauberg_[S]/IDs");
+require("scripts/globals/keyitems");
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==2) then
+    local tuw = player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ);
+    local tuwStatus = player:getVar("QuestStatus_DNC_AF1");
+    
+    if (tuw == QUEST_ACCEPTED and tuwStatus == 2) then
         player:startEvent(12);
-
-    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==3) then
-        if (GetMobAction(17142108) == 0) then
-            SpawnMob(17142108):updateEnmity(player);
-        end
-
-    elseif (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==4) then
+    elseif (tuw == QUEST_ACCEPTED and tuwStatus == 3 and not GetMobByID(ID.mob.MIGRATORY_HIPPOGRYPH):isSpawned()) then
+        SpawnMob(ID.mob.MIGRATORY_HIPPOGRYPH):updateEnmity(player);
+    elseif (tuw == QUEST_ACCEPTED and tuwStatus == 4) then
         player:startEvent(13);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-
 end;
 
 function onEventFinish(player,csid,option)
     if (csid==12) then
         player:setVar("QuestStatus_DNC_AF1", 3);
-
     elseif (csid==13) then
-        player:addKeyItem(THE_ESSENCE_OF_DANCE);
-        player:messageSpecial(KEYITEM_OBTAINED,THE_ESSENCE_OF_DANCE);
+        player:addKeyItem(dsp.ki.THE_ESSENCE_OF_DANCE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.THE_ESSENCE_OF_DANCE);
         player:setVar("QuestStatus_DNC_AF1", 5);
     end
-
 end;

@@ -22,7 +22,7 @@
 */
 
 #ifndef _CMENUMERITPACKET_H
-#define _CMENUMERTIPACKET_H
+#define _CMENUMERITPACKET_H
 
 #include "../../common/cbasetypes.h"
 

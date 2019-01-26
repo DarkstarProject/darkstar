@@ -7,39 +7,36 @@
 -- Intelligence -8
 -- Demon Killer +2 (?)
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:getRace() ~= 8) then
-        result = 247;
+    local result = 0
+    if (target:getRace() ~= dsp.race.GALKA) then
+        result = dsp.msg.basic.CANNOT_EAT
     end
-    if (target:getMod(MOD_EAT_RAW_MEAT) == 1) then
-        result = 0;
+    if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then
+        result = 0
     end
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,300,4272);
-end;
-
------------------------------------------
--- onEffectGain Action
------------------------------------------
+    target:addStatusEffect(dsp.effect.FOOD,0,0,300,4272)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_STR, 6);
-    target:addMod(MOD_INT, -8);
-    target:addMod(MOD_DEMON_KILLER,2);
-end;
+    target:addMod(dsp.mod.STR, 6)
+    target:addMod(dsp.mod.INT, -8)
+    target:addMod(dsp.mod.DEMON_KILLER,2)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_STR, 6);
-    target:delMod(MOD_INT, -8);
-    target:delMod(MOD_DEMON_KILLER,2);
-end;
+    target:delMod(dsp.mod.STR, 6)
+    target:delMod(dsp.mod.INT, -8)
+    target:delMod(dsp.mod.DEMON_KILLER,2)
+end

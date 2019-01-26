@@ -4,9 +4,7 @@
 -- Involved in Quest: The Holy Crest
 -- !pos 641 -15 7 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,17 +18,13 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_FOUND);
+    player:messageSpecial(ID.text.NOTHING_FOUND);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 56) then
         player:tradeComplete();

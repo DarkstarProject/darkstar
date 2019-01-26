@@ -1,10 +1,9 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Thierride
--- @zone 80
--- !pos -124 -2 14
+-- !pos -124 -2 14 80
 -----------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -52,13 +51,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 334) then
         player:addQuest(CRYSTAL_WAR,BEANS_AHOY);
@@ -70,11 +65,11 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 340 or csid == 342) then
         if (player:hasItem(5704,1) or player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5704)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,5704)
 
         else
             player:addItem(5704,1);
-            player:messageSpecial(ITEM_OBTAINED,5704);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5704);
             player:setVar("BeansAhoy_ConquestWeek",getConquestTally());
             if (csid == 340) then
                 player:completeQuest(CRYSTAL_WAR,BEANS_AHOY);

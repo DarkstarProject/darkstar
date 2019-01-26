@@ -88,14 +88,17 @@ CParty::CParty(CBattleEntity* PEntity)
 
 CParty::CParty(uint32 id)
 {
+    m_PAlliance = nullptr;
+
     m_PartyID = id;
     m_PartyType = PARTY_PCS;
     m_PartyNumber = 0;
 
     m_PLeader = nullptr;
-    m_PAlliance = nullptr;
     m_PSyncTarget = nullptr;
     m_PQuaterMaster = nullptr;
+
+    m_EffectsChanged = false;
 }
 
 /************************************************************************

@@ -3,9 +3,7 @@
 -- Zone: Phomiuna_Aqueducts (27)
 --
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 -----------------------------------
@@ -14,11 +12,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -33,7 +27,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
     end
 end;
 
@@ -41,11 +35,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

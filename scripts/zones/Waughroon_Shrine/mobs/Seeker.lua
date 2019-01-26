@@ -7,10 +7,7 @@
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_HP_STANDBACK, 50);
-end;
-
-function onMobSpawn(mob)
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK, 50);
 end;
 
 function onMobDeath(mob, player, isKiller)

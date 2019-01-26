@@ -3,21 +3,15 @@
 -- Zone: Mine_Shaft_2716 (13)
 --
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
+local ID = require("scripts/zones/Mine_Shaft_2716/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -32,11 +26,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

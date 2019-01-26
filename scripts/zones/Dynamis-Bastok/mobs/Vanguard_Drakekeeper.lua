@@ -1,13 +1,9 @@
 -----------------------------------
 -- Area: Dynamis Bastok
---  NPC: DRG Vanguard Drakekeeper + Vanguard's Wyvern
+--  MOB: Vanguard_Drakekeeper
+-----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
-end;
+end

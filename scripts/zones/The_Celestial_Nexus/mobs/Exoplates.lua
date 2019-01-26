@@ -9,7 +9,7 @@ require("scripts/globals/magic");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
+    mob:addMod(dsp.mod.REGAIN, 50);
 end;
 
 function onMobSpawn(mob)
@@ -43,19 +43,17 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     local eald_narche = GetMobByID(mob:getID() - 1);
-    eald_narche:delStatusEffect(dsp.effects.PHYSICAL_SHIELD, 0, 1, 0, 0);
-    eald_narche:delStatusEffect(dsp.effects.ARROW_SHIELD, 0, 1, 0, 0);
-    eald_narche:delStatusEffect(dsp.effects.MAGIC_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effect.PHYSICAL_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effect.ARROW_SHIELD, 0, 1, 0, 0);
+    eald_narche:delStatusEffect(dsp.effect.MAGIC_SHIELD, 0, 1, 0, 0);
 end;
 
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 32004) then
         DespawnMob(target:getID());
@@ -65,8 +63,8 @@ function onEventFinish(player,csid,option,target)
         mob = SpawnMob(target:getID()+1);
         mob:updateEnmity(player);
         -- the "30 seconds of rest" you get before he attacks you, and making sure he teleports first in range
-        mob:addStatusEffectEx(dsp.effects.BIND, 0, 1, 0, 30);
-        mob:addStatusEffectEx(dsp.effects.SILENCE, 0, 1, 0, 40);
+        mob:addStatusEffectEx(dsp.effect.BIND, 0, 1, 0, 30);
+        mob:addStatusEffectEx(dsp.effect.SILENCE, 0, 1, 0, 40);
     end
 
 end;

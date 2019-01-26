@@ -3,9 +3,6 @@
 --  NPC: Red Ghost
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/pathfind");
 -----------------------------------
@@ -28,12 +25,12 @@ local path =
 };
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -52,13 +49,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 314) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",15,true);
     end

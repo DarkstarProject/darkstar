@@ -110,7 +110,7 @@ function onPath(npc)
     end
 
     -- go back and forth the set path
-    -- pathfind.patrol(npc, path);
+    -- dsp.path.patrol(npc, path);
 
 end;
 
@@ -123,11 +123,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

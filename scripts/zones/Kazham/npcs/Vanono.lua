@@ -2,12 +2,9 @@
 -- Area: Kazham
 --   NPC: Vanono
 -- Type: Standard NPC
--- @zone 250
--- !pos -23.140 -5 -23.101
+-- !pos -23.140 -5 -23.101 250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
 -----------------------------------
 require("scripts/globals/missions");
 -----------------------------------
@@ -28,17 +25,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 264) then
         player:setVar("MissionStatus",4);
     end
 
 end;
-

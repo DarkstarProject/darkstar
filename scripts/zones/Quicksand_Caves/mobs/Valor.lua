@@ -4,23 +4,23 @@
 -- Coming of Age (San dOria Mission 8-1)
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/zones/Quicksand_Caves/MobIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_IDLE_DESPAWN, 180);
+    mob:setMobMod(dsp.mobMod.IDLE_DESPAWN, 180);
 end;
 
 function onMobSpawn(mob)
     DespawnMob(mob:getID(), 180);
-    mob:addMod(MOD_SLEEPRES, 50);
-    mob:addMod(MOD_LULLABYRES, 50);
+    mob:addMod(dsp.mod.SLEEPRES, 50);
+    mob:addMod(dsp.mod.LULLABYRES, 50);
 end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(SANDORIA) == COMING_OF_AGE and player:getVar("MissionStatus") == 2
-        and GetMobByID(VALOR):isDead() and GetMobByID(HONOR):isDead()
+        and GetMobByID(ID.mob.VALOR):isDead() and GetMobByID(ID.mob.HONOR):isDead()
     ) then
         player:setVar("MissionStatus",3);
     end

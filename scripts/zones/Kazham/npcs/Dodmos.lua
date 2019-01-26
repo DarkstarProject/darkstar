@@ -4,18 +4,16 @@
 --  Starts Quest: Trial Size Trial By Fire
 -- !pos 102.647 -14.999 -97.664 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
-    if (trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == JOBS.SMN) then
+    if (trade:hasItemQty(1544,1) == true and player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE) == QUEST_ACCEPTED  and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(287,0,1544,0,20);
     end
 
@@ -24,7 +22,7 @@ end;
 function onTrigger(player,npc)
     local TrialSizeFire = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
 
-    if (player:getMainLvl() >= 20 and player:getMainJob() == JOBS.SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
+    if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeFire == QUEST_AVAILABLE and player:getFameLevel(KAZHAM) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(286,0,1544,0,20);     --mini tuning fork, zone, level
     elseif (TrialSizeFire == QUEST_ACCEPTED) then
         local FireFork = player:hasItem(1544);
@@ -43,31 +41,26 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 286 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
         else
             player:setVar("TrialSizeFire_date", 0);
             player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
             player:addItem(1544);
-            player:messageSpecial(ITEM_OBTAINED,1544);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1544);
         end
     elseif (csid == 290 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
         else
             player:addItem(1544);
-            player:messageSpecial(ITEM_OBTAINED,1544);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1544);
         end
     elseif (csid == 287 and option == 1) then
-        toCloisterOfFlames(player);
+        dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FLAMES);
     end
 end;
-

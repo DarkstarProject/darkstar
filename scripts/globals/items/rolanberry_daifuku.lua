@@ -15,51 +15,52 @@
 -- Ranged Accuracy +10% (cap 75)
 -- Magic Accuracy +14
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,1800,6339);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6339)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_HP, 20);
-    target:addMod(MOD_VIT, 3);
-    target:addMod(MOD_FOOD_ACCP, 10);
-    target:addMod(MOD_FOOD_ACC_CAP, 50);
-    target:addMod(MOD_FOOD_RACCP, 10);
-    target:addMod(MOD_FOOD_RACC_CAP, 50);
-    target:addMod(MOD_MACC, 3);
-    target:addPetMod(MOD_HP, 20);
-    target:addPetMod(MOD_VIT, 3);
-    target:addPetMod(MOD_FOOD_ACCP, 10);
-    target:addPetMod(MOD_FOOD_ACC_CAP, 75);
-    target:addPetMod(MOD_FOOD_RACCP, 10);
-    target:addPetMod(MOD_FOOD_RACC_CAP, 75);
-    target:addPetMod(MOD_MACC, 14);
-end;
+    target:addMod(dsp.mod.HP, 20)
+    target:addMod(dsp.mod.VIT, 3)
+    target:addMod(dsp.mod.FOOD_ACCP, 10)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 50)
+    target:addMod(dsp.mod.FOOD_RACCP, 10)
+    target:addMod(dsp.mod.FOOD_RACC_CAP, 50)
+    target:addMod(dsp.mod.MACC, 3)
+    target:addPetMod(dsp.mod.HP, 20)
+    target:addPetMod(dsp.mod.VIT, 3)
+    target:addPetMod(dsp.mod.FOOD_ACCP, 10)
+    target:addPetMod(dsp.mod.FOOD_ACC_CAP, 75)
+    target:addPetMod(dsp.mod.FOOD_RACCP, 10)
+    target:addPetMod(dsp.mod.FOOD_RACC_CAP, 75)
+    target:addPetMod(dsp.mod.MACC, 14)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 20);
-    target:delMod(MOD_VIT, 3);
-    target:delMod(MOD_FOOD_ACCP, 10);
-    target:delMod(MOD_FOOD_ACC_CAP, 50);
-    target:delMod(MOD_FOOD_RACCP, 10);
-    target:delMod(MOD_FOOD_RACC_CAP, 50);
-    target:delMod(MOD_MACC, 3);
-    target:delPetMod(MOD_HP, 20);
-    target:delPetMod(MOD_VIT, 3);
-    target:delPetMod(MOD_FOOD_ACCP, 10);
-    target:delPetMod(MOD_FOOD_ACC_CAP, 75);
-    target:delPetMod(MOD_FOOD_RACCP, 10);
-    target:delPetMod(MOD_FOOD_RACC_CAP, 75);
-    target:delPetMod(MOD_MACC, 14);
-end;
+    target:delMod(dsp.mod.HP, 20)
+    target:delMod(dsp.mod.VIT, 3)
+    target:delMod(dsp.mod.FOOD_ACCP, 10)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 50)
+    target:delMod(dsp.mod.FOOD_RACCP, 10)
+    target:delMod(dsp.mod.FOOD_RACC_CAP, 50)
+    target:delMod(dsp.mod.MACC, 3)
+    target:delPetMod(dsp.mod.HP, 20)
+    target:delPetMod(dsp.mod.VIT, 3)
+    target:delPetMod(dsp.mod.FOOD_ACCP, 10)
+    target:delPetMod(dsp.mod.FOOD_ACC_CAP, 75)
+    target:delPetMod(dsp.mod.FOOD_RACCP, 10)
+    target:delPetMod(dsp.mod.FOOD_RACC_CAP, 75)
+    target:delPetMod(dsp.mod.MACC, 14)
+end

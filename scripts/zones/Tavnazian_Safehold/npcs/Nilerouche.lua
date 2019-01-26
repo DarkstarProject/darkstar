@@ -3,38 +3,30 @@
 --  NPC: Nilerouche
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,NILEROUCHE_SHOP_DIALOG);
-
     local stock =
     {
-        0x426d,108,        -- Lufaise Fly
-     0x43e7,2640,        -- Clothespole
-     0x02b0,200,        -- Arrowwood Log
-     0x02b2,7800,        -- Elm Log
-     0x121e,66000,        -- Scroll of Banish III
-     0x0b37,9200}        -- Safehold Waystone
+        17005,   108,    -- Lufaise Fly
+        17383,  2640,    -- Clothespole
+        688,     200,    -- Arrowwood Log
+        690,    7800,    -- Elm Log
+        2871,  10000,    -- Safehold Waystone
+        4913, 175827,    -- Scroll of Distract II
+        4915, 217000,    -- Scroll of Frazzle II
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.NILEROUCHE_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

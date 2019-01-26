@@ -3,12 +3,10 @@
 -- NPC:  Those Who Lurk in Shadows
 -- !pos -221 -24 19 206
 -----------------------------------
-package.loaded["scripts/zones/QuBia_Arena/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/QuBia_Arena/TextIDs");
+local ID = require("scripts/zones/QuBia_Arena/IDs");
 
 -----------------------------------
 
@@ -30,8 +28,8 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
     -- print("leave code "..leavecode);
-    if (player:hasKeyItem(MARK_OF_SEED)) then
-        player:delKeyItem(MARK_OF_SEED);
+    if (player:hasKeyItem(dsp.ki.MARK_OF_SEED)) then
+        player:delKeyItem(dsp.ki.MARK_OF_SEED);
     end
 
     if (leavecode == 2) then -- Play end CS. Need time and battle id for record keeping + storage
@@ -58,10 +56,10 @@ function onEventFinish(player,csid,option)
             player:addMission(ACP,REMEMBER_ME_IN_YOUR_DREAMS);
         end
 
-        if (player:hasKeyItem(IVORY_KEY) == false and player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III) then
-            player:addKeyItem(IVORY_KEY);
+        if (player:hasKeyItem(dsp.ki.IVORY_KEY) == false and player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III) then
+            player:addKeyItem(dsp.ki.IVORY_KEY);
             player:setVar("LastIvoryKey", os.date("%j"));
-            player:messageSpecial(KEYITEM_OBTAINED,IVORY_KEY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IVORY_KEY);
         end
     end
 end;

@@ -2,14 +2,10 @@
 -- Area: Port Bastok
 --  NPC: Kagetora
 -- Involved in Quest: Ayame and Kaede, 20 in Pirate Years
--- @zone 236
--- !pos -96 -2 29
------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-- !pos -96 -2 29 236
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 241) then
         player:setVar("AyameAndKaede_Event",1);

@@ -4,9 +4,7 @@
 -- Type: Mission NPC [ Windurst Mission 6-2 NPC ]~
 -- !pos -100.188 -62.125 145.422 151
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs");
+local ID = require("scripts/zones/Castle_Oztroja/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -22,24 +20,19 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 45) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13134);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13134);
         else
-            player:delKeyItem(HOLY_ONES_INVITATION);
-            player:addKeyItem(HOLY_ONES_OATH);
-            player:messageSpecial(KEYITEM_OBTAINED,HOLY_ONES_OATH);
+            player:delKeyItem(dsp.ki.HOLY_ONES_INVITATION);
+            player:addKeyItem(dsp.ki.HOLY_ONES_OATH);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_ONES_OATH);
             player:addItem(13134); -- Ashura Necklace
-            player:messageSpecial(ITEM_OBTAINED,13134);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13134);
             player:setVar("MissionStatus",3);
         end
     end
 end;
-

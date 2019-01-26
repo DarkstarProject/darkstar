@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: Yhoator Jungle
---  NM:  Hoar-knuckled Rimberry
+--   NM: Hoar-knuckled Rimberry
 -----------------------------------
 mixins = {require("scripts/mixins/families/tonberry")}
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,133,1);
-end;
+    dsp.regime.checkRegime(player, mob, 133, 1, dsp.regime.type.FIELDS)
+end

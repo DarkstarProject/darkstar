@@ -1,25 +1,18 @@
 -----------------------------------
 -- Area: Bhaflau Thickets
---  MOB: Harvestman
+--   NM: Harvestman
 -- !pos 398.130 -10.675 179.169 52
 -----------------------------------
-require("scripts/globals/msg");
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
-function onAdditionalEffect(mob,target,damage)
-    -- Guesstimating 1 in 4 chance to poison on melee.
-    if ((math.random(1,100) >= 25) or (target:hasStatusEffect(dsp.effects.POISON) == true)) then
-        return 0,0,0;
-    else
-        local duration = math.random(6,9); -- 2-3 Tick's
-        target:addStatusEffect(dsp.effects.POISON,100,3,duration);
-        return SUBEFFECT_POISON,msgBasic.ADD_EFFECT_STATUS,EFFECT_POISON;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.POISON, {power = 100, duration = math.random(6, 9)})
+end
 
 function onMobDeath(mob, player, isKiller)
 end;

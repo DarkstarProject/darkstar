@@ -4,10 +4,7 @@
 -- Type: Quest NPC
 -- !pos -340.857 -11.003 -149.008 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,17 +22,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 432) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",13,true);
     end
 
 end;
-

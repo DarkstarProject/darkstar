@@ -6,9 +6,7 @@
 --  Involved with Quest: 'All the Way to the Bank'
 --  !pos 70 0 -13 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");
@@ -18,7 +16,7 @@ function onTrade(player,npc,trade)
     local exoticDelacacies = player:getQuestStatus(ADOULIN, EXOTIC_DELICACIES);
 
     -- ALL THE WAY TO THE BANK
-    if (player:hasKeyItem(TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
+    if (player:hasKeyItem(dsp.ki.TARUTARU_SAUCE_INVOICE) and npcUtil.tradeHas( trade, {{"gil",5600}} )) then
         local ATWTTB_Paid_Flapano = player:getMaskBit(player:getVar("ATWTTB_Payments"), 2);
         if (not ATWTTB_Paid_Flapano) then
             player:startEvent(5071);
@@ -55,7 +53,7 @@ function onTrigger(player,npc)
     
     -- SHOP
     else
-        player:showText(npc, FLAPANO_SHOP_TEXT);
+        player:showText(npc, ID.text.FLAPANO_SHOP_TEXT);
         local stock =
         {
             5943, 125,   -- Smoked Mackerel
@@ -66,7 +64,7 @@ function onTrigger(player,npc)
             4405, 160,   -- Rice Ball
             5676, 76475, -- Mushroom Sautee
         }
-        showShop(player, STATIC, stock);
+        dsp.shop.general(player, stock);
 
         if (exoticDelicacies ~= QUEST_COMPLETED) then
             player:setVar("Flapano_Odd_Even", 0);
@@ -83,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade();
         player:setMaskBit("ATWTTB_Payments", 2, true);
         if (player:isMaskFull(player:getVar("ATWTTB_Payments"), 5)) then
-            npcUtil.giveKeyItem(TARUTARU_SAUCE_RECEIPT);
+            npcUtil.giveKeyItem(dsp.ki.TARUTARU_SAUCE_RECEIPT);
         end
 
     -- EXOTIC DELICACIES

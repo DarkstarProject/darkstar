@@ -2,14 +2,11 @@
 -- Area: Apollyon CS
 --  MOB: Carnagechief_Jackbodokk
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)
@@ -17,9 +14,9 @@ function onMobEngaged(mob,target)
     local X = mob:getXPos();
     local Y = mob:getYPos();
     local Z = mob:getZPos();
-    SpawnMob(16933130):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-    SpawnMob(16933131):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-    SpawnMob(16933132):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    SpawnMob(16933130):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    SpawnMob(16933131):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+    SpawnMob(16933132):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobFight(mob,target)
@@ -32,10 +29,10 @@ function onMobFight(mob,target)
 
 
     if (lifepourcent < 50 and GetNPCByID(16933245):getAnimation() == 8) then
-        SpawnMob(16933134):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-        SpawnMob(16933135):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-        SpawnMob(16933133):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
-        SpawnMob(16933136):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+        SpawnMob(16933134):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933135):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933133):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
+        SpawnMob(16933136):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
         GetNPCByID(16933245):setAnimation(9);
     end
 

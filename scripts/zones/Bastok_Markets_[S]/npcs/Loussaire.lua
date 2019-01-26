@@ -3,9 +3,7 @@
 --  NPC: Loussaire
 -- !pos -248.677 -8.523 -125.734 87
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -35,24 +33,24 @@ function onTrigger(player,npc)
              loafersQuestProgress == 2 or pantsQuestProgress == 2 or gownQuestProgress == 2) and AFProgress > 0) then
 
             local itemid   = 14580; -- Scholar's Gown
-            local FristKI  = PEISTE_DUNG;
-            local SecondKI = SAMPLE_OF_GRAUBERG_CHERT;
+            local FristKI  = dsp.ki.PEISTE_DUNG;
+            local SecondKI = dsp.ki.SAMPLE_OF_GRAUBERG_CHERT;
 
             if (loafersQuestProgress == 1 or loafersQuestProgress == 2) then
                 itemid   = 15748; -- Scholar's Loafers
-                FristKI  = RAFFLESIA_DREAMSPIT;
-                SecondKI = DROGAROGAN_BONEMEAL;
+                FristKI  = dsp.ki.RAFFLESIA_DREAMSPIT;
+                SecondKI = dsp.ki.DROGAROGAN_BONEMEAL;
 
             elseif (pantsQuestProgress == 1 or pantsQuestProgress == 2) then
                 itemid   = 16311; -- Scholar's Pants
-                FristKI  = SLUG_MUCUS;
-                SecondKI = DJINN_EMBER;
+                FristKI  = dsp.ki.SLUG_MUCUS;
+                SecondKI = dsp.ki.DJINN_EMBER;
             end
 
             player:startEvent(50, itemid, FristKI, SecondKI);
 
         -- Nothing in progress and meet the starting requirements.
-        elseif (downwardHelix == QUEST_COMPLETED and mJob == JOBS.SCH and mLvl >= AF2_QUEST_LEVEL) then
+        elseif (downwardHelix == QUEST_COMPLETED and mJob == dsp.job.SCH and mLvl >= AF2_QUEST_LEVEL) then
 
              -- If a player has completed any of the paths, it will be a different cutscene.
             local counter = 0;
@@ -75,23 +73,23 @@ function onTrigger(player,npc)
             end;
 
             -- Check Key Items and give them their dynamic event.
-            if (player:hasKeyItem(RAFFLESIA_DREAMSPIT) and player:hasKeyItem(DROGAROGAN_BONEMEAL) and loafersQuestProgress == 3) then -- Scholar's Loafers
+            if (player:hasKeyItem(dsp.ki.RAFFLESIA_DREAMSPIT) and player:hasKeyItem(dsp.ki.DROGAROGAN_BONEMEAL) and loafersQuestProgress == 3) then -- Scholar's Loafers
                 player:startEvent(cutsceneID, 15748);
                 player:setLocalVar("item", 15748);
-                player:setLocalVar("firstKI", RAFFLESIA_DREAMSPIT);
-                player:setLocalVar("secondKI", DROGAROGAN_BONEMEAL);
+                player:setLocalVar("firstKI", dsp.ki.RAFFLESIA_DREAMSPIT);
+                player:setLocalVar("secondKI", dsp.ki.DROGAROGAN_BONEMEAL);
 
-            elseif (player:hasKeyItem(SLUG_MUCUS) and player:hasKeyItem(DJINN_EMBER) and pantsQuestProgress == 3) then -- Scholar's Pants
+            elseif (player:hasKeyItem(dsp.ki.SLUG_MUCUS) and player:hasKeyItem(dsp.ki.DJINN_EMBER) and pantsQuestProgress == 3) then -- Scholar's Pants
                 player:startEvent(cutsceneID, 16311);
                 player:setLocalVar("item", 16311);
-                player:setLocalVar("firstKI", SLUG_MUCUS);
-                player:setLocalVar("secondKI", DJINN_EMBER);
+                player:setLocalVar("firstKI", dsp.ki.SLUG_MUCUS);
+                player:setLocalVar("secondKI", dsp.ki.DJINN_EMBER);
 
-            elseif (player:hasKeyItem(PEISTE_DUNG) and player:hasKeyItem(SAMPLE_OF_GRAUBERG_CHERT) and gownQuestProgress == 3) then -- Scholar's Gown
+            elseif (player:hasKeyItem(dsp.ki.PEISTE_DUNG) and player:hasKeyItem(dsp.ki.SAMPLE_OF_GRAUBERG_CHERT) and gownQuestProgress == 3) then -- Scholar's Gown
                 player:startEvent(cutsceneID, 14580);
                 player:setLocalVar("item", 14580);
-                player:setLocalVar("firstKI", PEISTE_DUNG);
-                player:setLocalVar("secondKI", SAMPLE_OF_GRAUBERG_CHERT);
+                player:setLocalVar("firstKI", dsp.ki.PEISTE_DUNG);
+                player:setLocalVar("secondKI", dsp.ki.SAMPLE_OF_GRAUBERG_CHERT);
 
             -- Show them the normal Menu to select from.
             else
@@ -129,21 +127,19 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 49 or csid == 53) then
         -- Display Loafers
         if (option == 2) then
-            player:updateEvent(option,RAFFLESIA_DREAMSPIT,DROGAROGAN_BONEMEAL,0,0,0,0,0);
+            player:updateEvent(option,dsp.ki.RAFFLESIA_DREAMSPIT,dsp.ki.DROGAROGAN_BONEMEAL,0,0,0,0,0);
 
         -- Display Pants
         elseif (option == 4) then
-            player:updateEvent(option,SLUG_MUCUS,DJINN_EMBER,0,0,0,0,0);
+            player:updateEvent(option,dsp.ki.SLUG_MUCUS,dsp.ki.DJINN_EMBER,0,0,0,0,0);
 
         -- Display Gown
         elseif (option == 6) then
-            player:updateEvent(option,PEISTE_DUNG,SAMPLE_OF_GRAUBERG_CHERT,0,0,0,0,0);
+            player:updateEvent(option,dsp.ki.PEISTE_DUNG,dsp.ki.SAMPLE_OF_GRAUBERG_CHERT,0,0,0,0,0);
 
         -- Confirm Loafers
         elseif (option == 1) then
@@ -164,8 +160,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 49 and option == 0) then
         player:setVar("AF_Loussaire", 1);
@@ -177,7 +171,7 @@ function onEventFinish(player,csid,option)
         local secondKI = player:getLocalVar("secondKI");
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, itemid);
 
         else
             -- Remove LocalVars
@@ -210,7 +204,7 @@ function onEventFinish(player,csid,option)
 
             player:delKeyItem(firstKI);
             player:delKeyItem(secondKI);
-            player:messageSpecial(ITEM_OBTAINED, itemid);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, itemid);
             player:addItem(itemid);
         end
     end

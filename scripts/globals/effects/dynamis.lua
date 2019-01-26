@@ -1,44 +1,24 @@
 -----------------------------------
 --
---     EFFECT_DYNAMIS
+--     dsp.effect.DYNAMIS
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
-
------------------------------------
--- onEventUpdate
------------------------------------
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-end;
-
------------------------------------
--- onEventFinish
------------------------------------
+    -- printf("onUpdate CSID: %u",csid)
+    -- printf("onUpdate RESULT: %u",option)
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-end;
+    -- printf("onFinish CSID: %u",csid)
+    -- printf("onFinish RESULT: %u",option)
+end

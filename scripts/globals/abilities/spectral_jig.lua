@@ -6,28 +6,28 @@
 -- Recast Time: 30 seconds
 -- Duration: 3 minutes
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/utils");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/utils")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-   return 0,0;
-end;
+   return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    local baseDuration = 180;
-    local durationMultiplier = 1.0 + utils.clamp(player:getMod(MOD_JIG_DURATION), 0, 50) / 100;
-    local finalDuration = math.floor(baseDuration * durationMultiplier * SNEAK_INVIS_DURATION_MULTIPLIER);
+    local baseDuration = 180
+    local durationMultiplier = 1.0 + utils.clamp(player:getMod(dsp.mod.JIG_DURATION), 0, 50) / 100
+    local finalDuration = math.floor(baseDuration * durationMultiplier * SNEAK_INVIS_DURATION_MULTIPLIER)
 
-    if (player:hasStatusEffect(dsp.effects.SNEAK) == false) then
-        player:addStatusEffect(dsp.effects.SNEAK,0,10,finalDuration);
-        player:addStatusEffect(dsp.effects.INVISIBLE,0,10,finalDuration);
-        ability:setMsg(msgBasic.SPECTRAL_JIG); -- Gains the effect of sneak and invisible
+    if (player:hasStatusEffect(dsp.effect.SNEAK) == false) then
+        player:addStatusEffect(dsp.effect.SNEAK,0,10,finalDuration)
+        player:addStatusEffect(dsp.effect.INVISIBLE,0,10,finalDuration)
+        ability:setMsg(dsp.msg.basic.SPECTRAL_JIG) -- Gains the effect of sneak and invisible
     else
-        ability:setMsg(msgBasic.NO_EFFECT); -- no effect on player.
+        ability:setMsg(dsp.msg.basic.NO_EFFECT) -- no effect on player.
     end
 
-    return 1;
-end;
+    return 1
+end

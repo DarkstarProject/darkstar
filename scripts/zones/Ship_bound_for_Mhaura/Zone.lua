@@ -3,10 +3,7 @@
 -- Zone: Ship_bound_for_Mhaura (221)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
+local ID = require("scripts/zones/Ship_bound_for_Mhaura/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,13 +23,9 @@ function onTransportEvent(player,transport)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 512) then
         player:setPos(0,0,0,0,249);
     end

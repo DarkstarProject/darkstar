@@ -1,29 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Romaa Mihgo
+--  NPC: Romaa Mihgo
 -- Type: Standard NPC
--- @zone 94
--- !pos -1.967 -3 -26.337
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos -1.967 -3 -26.337 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(11);
-end;
+    player:startEvent(11)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

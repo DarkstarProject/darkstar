@@ -91,45 +91,45 @@ enum JOBTYPE
 
 enum SKILLTYPE
 {
-    SKILL_NON = 0,
-    SKILL_H2H = 1,
-    SKILL_DAG = 2,
-    SKILL_SWD = 3,
-    SKILL_GSD = 4,
+    SKILL_NONE = 0,
+    SKILL_HAND_TO_HAND = 1,
+    SKILL_DAGGER = 2,
+    SKILL_SWORD = 3,
+    SKILL_GREAT_SWORD = 4,
     SKILL_AXE = 5,
-    SKILL_GAX = 6,
-    SKILL_SYH = 7,
-    SKILL_POL = 8,
-    SKILL_KAT = 9,
-    SKILL_GKT = 10,
-    SKILL_CLB = 11,
-    SKILL_STF = 12,
+    SKILL_GREAT_AXE = 6,
+    SKILL_SCYTHE = 7,
+    SKILL_POLEARM = 8,
+    SKILL_KATANA = 9,
+    SKILL_GREAT_KATANA = 10,
+    SKILL_CLUB = 11,
+    SKILL_STAFF = 12,
     // 13~21 unused
-    SKILL_AME = 22,
-    SKILL_ARA = 23,
-    SKILL_AMA = 24,
-    SKILL_ARC = 25,
-    SKILL_MRK = 26,
-    SKILL_THR = 27,
-    SKILL_GRD = 28,
-    SKILL_EVA = 29,
-    SKILL_SHL = 30,
-    SKILL_PAR = 31,
-    SKILL_DIV = 32,
-    SKILL_HEA = 33,
-    SKILL_ENH = 34,
-    SKILL_ENF = 35,
-    SKILL_ELE = 36,
-    SKILL_DRK = 37,
-    SKILL_SUM = 38,
-    SKILL_NIN = 39,
-    SKILL_SNG = 40,
-    SKILL_STR = 41,
-    SKILL_WND = 42,
-    SKILL_BLU = 43,
-    SKILL_GEO = 44,
+    SKILL_AUTOMATON_MELEE = 22,
+    SKILL_AUTOMATON_RANGED = 23,
+    SKILL_AUTOMATON_MAGIC = 24,
+    SKILL_ARCHERY = 25,
+    SKILL_MARKSMANSHIP = 26,
+    SKILL_THROWING = 27,
+    SKILL_GUARD = 28,
+    SKILL_EVASION = 29,
+    SKILL_SHIELD = 30,
+    SKILL_PARRY = 31,
+    SKILL_DIVINE_MAGIC = 32,
+    SKILL_HEALING_MAGIC = 33,
+    SKILL_ENHANCING_MAGIC = 34,
+    SKILL_ENFEEBLING_MAGIC = 35,
+    SKILL_ELEMENTAL_MAGIC = 36,
+    SKILL_DARK_MAGIC = 37,
+    SKILL_SUMMONING_MAGIC = 38,
+    SKILL_NINJUTSU = 39,
+    SKILL_SINGING = 40,
+    SKILL_STRING_INSTRUMENT = 41,
+    SKILL_WIND_INSTRUMENT = 42,
+    SKILL_BLUE_MAGIC = 43,
+    SKILL_GEOMANCY = 44,
     SKILL_HND = 45,
-    // 46~47 unused
+    // 46-47 unused
     SKILL_FISHING = 48,
     SKILL_WOODWORKING = 49,
     SKILL_SMITHING = 50,
@@ -151,6 +151,7 @@ enum SUBSKILLTYPE
     SUBSKILL_XBO = 0,
     SUBSKILL_GUN = 1,
     SUBSKILL_CNN = 2,
+    SUBSKILL_SHURIKEN = 3,
 
     SUBSKILL_ANI = 10,
 
@@ -227,9 +228,21 @@ enum SLOTTYPE
     SLOT_LINK2 = 0x11,
 };
 
+#define MAX_SLOTTYPE	18
+
 // CROSSBOW и GUN - это Piercing, разделение сделано из-за одинакового skilltype
 // для возможности различить эти орудия при экипировке и избавиться от ошибки
 // использования пуль с арбалетом и арбалетных стрел с огнестрельным оружием (только персонажи)
+
+enum ATTACKTYPE
+{
+    ATTACK_NONE = 0,
+    ATTACK_PHYSICAL = 1,
+    ATTACK_MAGICAL = 2,
+    ATTACK_RANGED = 3,
+    ATTACK_SPECIAL = 4,
+    ATTACK_BREATH = 5,
+};
 
 enum DAMAGETYPE
 {
@@ -237,7 +250,16 @@ enum DAMAGETYPE
     DAMAGE_PIERCING = 1,
     DAMAGE_SLASHING = 2,
     DAMAGE_IMPACT = 3,
-    DAMAGE_HTH = 4
+    DAMAGE_HTH = 4,
+    DAMAGE_ELEMENTAL = 5,
+    DAMAGE_FIRE = 6,
+    DAMAGE_EARTH = 7,
+    DAMAGE_WATER = 8,
+    DAMAGE_WIND = 9,
+    DAMAGE_ICE = 10,
+    DAMAGE_LIGHTNING = 11,
+    DAMAGE_LIGHT = 12,
+    DAMAGE_DARK = 13,
 };
 
 enum REACTION
@@ -477,12 +499,14 @@ public:
 
     uint8           GetSpeed();
 
-    bool		    isDead();					// проверяем, мертва ли сущность
-    bool		    isAlive();
-    bool			isInDynamis();
-    bool			hasImmunity(uint32 imID);
-    bool			isAsleep();
-	bool			isMounted();
+    bool            isDead();					// проверяем, мертва ли сущность
+    bool            isAlive();
+    bool            isInAssault();
+    bool            isInDynamis();
+    bool            hasImmunity(uint32 imID);
+    bool            isAsleep();
+    bool            isMounted();
+    bool            isSitting();
 
     JOBTYPE		    GetMJob();					// главная профессия
     JOBTYPE		    GetSJob();					// дополнительная профессия
@@ -516,6 +540,9 @@ public:
     virtual int16	addTP(int16 tp);			// увеличиваем/уменьшаем количество tp
     virtual int32	addHP(int32 hp);			// увеличиваем/уменьшаем количество hp
     virtual int32 	addMP(int32 mp);			// увеличиваем/уменьшаем количество mp
+
+    //Deals damage and updates the last attacker which is used when sending a player death message
+    virtual int32   takeDamage(int32 amount, CBattleEntity* attacker = nullptr, ATTACKTYPE attackType = ATTACK_NONE, DAMAGETYPE damageType = DAMAGE_NONE);
 
     int16		    getMod(Mod modID);		// величина модификатора
 
@@ -620,7 +647,6 @@ public:
     skills_t	    WorkingSkills;				// структура всех доступных сущности умений, ограниченных уровнем
     uint16		    m_Immunity;					// Mob immunity
     uint16			m_magicEvasion;		        // store this so it can be removed easily
-    uint8			m_enmityRange;              // only get enmity from entities this close
     bool            m_unkillable;               // entity is not able to die (probably until some action removes this flag)
 
     time_point  	charmTime;					// to hold the time entity is charmed
@@ -639,6 +665,7 @@ public:
     CParty*			PParty;					    // описание группы, в которой состоит сущность
     CBattleEntity*	PPet;					    // питомец сущности
     CBattleEntity*	PMaster;				    // владелец/хозяин сущности (распространяется на все боевые сущности)
+    CBattleEntity*	PLastAttacker;
 
     std::unique_ptr<CStatusEffectContainer> StatusEffectContainer;
     std::unique_ptr<CRecastContainer> PRecastContainer;         //

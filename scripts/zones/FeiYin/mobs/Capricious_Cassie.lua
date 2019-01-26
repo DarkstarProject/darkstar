@@ -1,15 +1,13 @@
 -----------------------------------
 -- Area: Fei'Yin
---  NM:  Capricious_Cassie
+--   NM: Capricious_Cassie
 -----------------------------------
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/titles")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CASSIENOVA);
+    player:addTitle(dsp.title.CASSIENOVA);
 end;
 
 function onMobDespawn(mob)

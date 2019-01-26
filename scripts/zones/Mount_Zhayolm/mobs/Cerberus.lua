@@ -5,19 +5,16 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
     if (mob:getHPP() > 25) then
-        mob:setMod(MOD_REGAIN, 10)
+        mob:setMod(dsp.mod.REGAIN, 10)
     else
-        mob:setMod(MOD_REGAIN, 70)
+        mob:setMod(dsp.mod.REGAIN, 70)
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(CERBERUS_MUZZLER);
+    player:addTitle(dsp.title.CERBERUS_MUZZLER);
 end;
 
 function onMobDespawn(mob)

@@ -3,11 +3,9 @@
 --  NPC: Gold Skull
 -- Mission NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,15 +17,15 @@ function onTrigger(player,npc)
         currentMission = player:getCurrentMission(BASTOK);
         missionStatus = player:getVar("MissionStatus");
 
-        if (player:hasKeyItem(SWORD_OFFERING)) then
+        if (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
             player:startEvent(53);
-        elseif (player:hasKeyItem(KINDRED_REPORT)) then
+        elseif (player:hasKeyItem(dsp.ki.KINDRED_REPORT)) then
             player:startEvent(68);
         elseif (currentMission == THE_EMISSARY_WINDURST2) then
             if (missionStatus == 7) then
                 player:startEvent(62);
             elseif (missionStatus == 8) then
-                player:showText(npc,GOLD_SKULL_DIALOG + 27);
+                player:showText(npc,ID.text.GOLD_SKULL_DIALOG + 27);
             elseif (missionStatus == 9) then
                 player:startEvent(57);
             end
@@ -37,7 +35,7 @@ function onTrigger(player,npc)
             elseif (missionStatus == 12) then
                 player:startEvent(54);
             elseif (missionStatus == 14) then
-                player:showText(npc,GOLD_SKULL_DIALOG);
+                player:showText(npc,ID.text.GOLD_SKULL_DIALOG);
             elseif (missionStatus == 15) then
                 player:startEvent(57);
             end
@@ -49,18 +47,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 53) then
-        player:addKeyItem(DULL_SWORD);
-        player:messageSpecial(KEYITEM_OBTAINED,DULL_SWORD);
-        player:delKeyItem(SWORD_OFFERING);
+        player:addKeyItem(dsp.ki.DULL_SWORD);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DULL_SWORD);
+        player:delKeyItem(dsp.ki.SWORD_OFFERING);
     end
 
 end;

@@ -2,39 +2,33 @@
 -- Area: Dangruf Wadi
 --  NPC: qm1
 -- Type: spawns Chocoboleech
--- !pos  -430 4 115 191
+-- !pos -430 4 115 191
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local ID = require("scripts/zones/Dangruf_Wadi/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
+    if npcUtil.tradeHas(trade, 1898) and npcUtil.popFromQM(player, npc, ID.mob.CHOCOBOLEECH, {radius=1}) then -- fresh blood
+        player:confirmTrade()
 
-    local x = npc:getXPos();
-    local y = npc:getYPos();
-    local z = npc:getZPos();
-    local mob = GetMobByID(17559869);
-
-    -- Trade Fresh Blood
-    if (GetMobAction(17559869) == 0 and trade:hasItemQty(1898,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(17559869):updateClaim(player); -- Chocoboleech
-        mob:setPos(x+1,y,z);
-        npc:setStatus(STATUS_DISAPPEAR);
+        local positions =
+        {
+            {-430.330, 4.400, 115.100},
+            {-492.926, 4.337,  -7.936},
+            { -75.392, 2.531, 293.357},
+        }
+        local newPosition = npcUtil.pickNewPosition(npc:getID(), positions, true)
+        npcUtil.queueMove(npc, newPosition)
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(SMALL_HOLE);
-end;
+    player:messageSpecial(ID.text.SMALL_HOLE)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

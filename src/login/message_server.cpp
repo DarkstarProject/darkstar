@@ -71,7 +71,7 @@ void message_server_send(uint64 ipp, MSGSERVTYPE type, zmq::message_t* extra, zm
         memcpy(newPacket.data(), packet->data(), packet->size());
         zSocket->send(newPacket);
     }
-    catch (zmq::error_t e)
+    catch (zmq::error_t& e)
     {
         ShowError("Message: %s\n", e.what());
     }
@@ -188,7 +188,7 @@ void message_server_parse(MSGSERVTYPE type, zmq::message_t* extra, zmq::message_
             target.s_addr = (unsigned long)ip;
             ShowDebug("Message:  -> rerouting to %s:%lu\n", inet_ntoa(target), port);
             ip |= (port << 32);
-            
+
             if (type == MSG_CHAT_PARTY || type == MSG_PT_RELOAD || type == MSG_PT_DISBAND)
             {
                 ref<uint32>((uint8*)extra->data(), 0) = Sql_GetUIntData(ChatSqlHandle, 2);
@@ -229,7 +229,7 @@ void message_server_listen()
             int more;
             size_t size = sizeof(more);
             zSocket->getsockopt(ZMQ_RCVMORE, &more, &size);
-            
+
             if (more)
             {
                 zSocket->recv(&type);
@@ -247,7 +247,7 @@ void message_server_listen()
                 }
             }
         }
-        catch (zmq::error_t e)
+        catch (zmq::error_t& e)
         {
             // Context was terminated
             // Exit loop
@@ -293,7 +293,7 @@ void message_server_init()
     {
         zSocket->bind(server.c_str());
     }
-    catch (zmq::error_t err)
+    catch (zmq::error_t& err)
     {
         ShowFatalError("Unable to bind chat socket: %s\n", err.what());
     }
@@ -306,7 +306,7 @@ void message_server_close()
     Sql_Free(ChatSqlHandle);
 
     zContext.close();
-    
+
     if (zSocket)
     {
         zSocket->close();

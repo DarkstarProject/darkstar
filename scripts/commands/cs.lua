@@ -24,7 +24,7 @@ function onTrigger(player, csid, op1, op2, op3, op4, op5, op6, op7, op8, texttab
     -- play cutscene
     if (op1 == nil) then
         player:startEvent(csid);
-    else    
+    else
         player:startEvent(csid, op1, op2, op3, op4, op5, op6, op7, op8, texttable);
     end
 end

@@ -8,35 +8,36 @@
 -- Attack+21% (Max. 55)
 -- "Undead Killer"+5
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,3600,6212);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,6212)
+end
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_HP, 25);
-    target:addMod(MOD_FOOD_ACCP, 11);
-    target:addMod(MOD_FOOD_ACC_CAP, 58);
-    target:addMod(MOD_FOOD_ATTP, 21);
-    target:addMod(MOD_FOOD_ATT_CAP, 55);
-    target:addMod(MOD_UNDEAD_KILLER, 5);
-end;
+    target:addMod(dsp.mod.HP, 25)
+    target:addMod(dsp.mod.FOOD_ACCP, 11)
+    target:addMod(dsp.mod.FOOD_ACC_CAP, 58)
+    target:addMod(dsp.mod.FOOD_ATTP, 21)
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 55)
+    target:addMod(dsp.mod.UNDEAD_KILLER, 5)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_HP, 25);
-    target:delMod(MOD_FOOD_ACCP, 11);
-    target:delMod(MOD_FOOD_ACC_CAP, 58);
-    target:delMod(MOD_FOOD_ATTP, 21);
-    target:delMod(MOD_FOOD_ATT_CAP, 55);
-    target:delMod(MOD_UNDEAD_KILLER, 5);
-end;
+    target:delMod(dsp.mod.HP, 25)
+    target:delMod(dsp.mod.FOOD_ACCP, 11)
+    target:delMod(dsp.mod.FOOD_ACC_CAP, 58)
+    target:delMod(dsp.mod.FOOD_ATTP, 21)
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 55)
+    target:delMod(dsp.mod.UNDEAD_KILLER, 5)
+end

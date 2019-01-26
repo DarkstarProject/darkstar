@@ -1,21 +1,21 @@
 -----------------------------------
 --
---     EFFECT_FROST
---     
+--     dsp.effect.FROST
+--
 -----------------------------------
 
-require("scripts/globals/status");
-require("scripts/globals/magic");
+require("scripts/globals/status")
+require("scripts/globals/magic")
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_REGEN_DOWN, effect:getPower());
-    target:addMod(MOD_AGI, -getElementalDebuffStatDownFromDOT(effect:getPower()));
-end;
+    target:addMod(dsp.mod.REGEN_DOWN, effect:getPower())
+    target:addMod(dsp.mod.AGI, -getElementalDebuffStatDownFromDOT(effect:getPower()))
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_REGEN_DOWN, effect:getPower());
-    target:delMod(MOD_AGI, -getElementalDebuffStatDownFromDOT(effect:getPower()));
-end;
+    target:delMod(dsp.mod.REGEN_DOWN, effect:getPower())
+    target:delMod(dsp.mod.AGI, -getElementalDebuffStatDownFromDOT(effect:getPower()))
+end

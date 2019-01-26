@@ -1,13 +1,14 @@
 ------------------------------------------------------------------------
 -- This file holds all global (not zone specific) text references
 ------------------------------------------------------------------------
-
+dsp = dsp or {}
+dsp.msg = dsp.msg or {}
 
 ------------------------------------
--- Chat types
+-- Message Channels
 ------------------------------------
 
-chatType =
+dsp.msg.channel =
 {
     SAY            = 0,
     SHOUT          = 1,
@@ -40,13 +41,23 @@ chatType =
     NS_LINKSHELL3  = 31, -- (assumed as it follows pattern and color)
     UNKNOWN_32     = 32, -- Looks the same as 31
     UNITY          = 33
-};
+}
+
+-- used by PrintToArea
+dsp.msg.area =
+{
+    SYSTEM      = 0, -- Server wide like the purple stuff :)
+    SAY         = 1, -- Will display in small area around player
+    SHOUT       = 2, -- Will display in wide area around player
+    PARTY       = 3, -- Will display to players entire party/alliance
+    YELL        = 4  -- If yell is enabled in zone, will display.
+}
 
 ------------------------------------
 -- Message Basic
 ------------------------------------
 
-msgBasic =
+dsp.msg.basic =
 {
     NONE    = 0, -- Display nothing
     HIT_DMG = 1, -- <actor> hits <target> for <amount> points of damage.
@@ -54,10 +65,15 @@ msgBasic =
     -- Magic
     MAGIC_DMG              = 2,   -- <caster> casts <spell>. <target> takes <amount> damage.
     MAGIC_RECOVERS_HP      = 7,   -- <caster> casts <spell>. <target> recovers <amount> HP.
+    MAGIC_UNABLE_TO_CAST   = 17,  -- Unable to cast spells at this time.
+    MAGIC_UNABLE_TO_CAST_2 = 18,  -- Unable to cast spells at this time.
+    MAGIC_CANNOT_CAST      = 47,  -- <caster> cannot cast <spell>.
+    MAGIC_CANNOT_BE_CAST   = 48,  -- <spell> cannot be cast on <target>. (example: tractor)
     MAGIC_NO_EFFECT        = 75,  -- <caster>'s <spell> has no effect on <target>.
     MAGIC_REMOVE_EFFECT    = 83,  -- <caster> casts <spell>. <caster> successfully removes <target>'s <status>.
     MAGIC_RESIST           = 85,  -- <caster> casts <spell>. <target> resists the spell.
     MAGIC_TELEPORT         = 93,  -- <caster> casts <spell>. <target> vanishes.
+    MAGIC_FAIL             = 114, -- <caster> casts <spell> on <target>, but the spell fails to take effect
     MAGIC_RESIST_2         = 284, -- <target> resists the effects of the spell!
     MAGIC_DRAIN_HP         = 227, -- <caster> casts <spell>. <amount> HP drained from <target>.
     MAGIC_DRAIN_MP         = 228, -- <caster> casts <spell>. <amount> MP drained from <target>.
@@ -73,16 +89,20 @@ msgBasic =
     MAGIC_ABSORB_MND       = 334, -- <caster> casts <spell>. <target>'s MND is drained.
     MAGIC_ABSORB_CHR       = 335, -- <caster> casts <spell>. <target>'s CHR is drained.
     MAGIC_ERASE            = 341, -- <caster> casts <spell>. <target>'s <status> effect disappears!
+    MAGIC_STEAL            = 430, -- <caster> casts <spell>. 1 of <target>'s effects is drained.
     MAGIC_TP_REDUCE        = 431, -- <caster> casts <spell>. <target>'s TP is reduced.
-    MSGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
+    MAGIC_ABSORB_TP        = 454, -- <caster> casts <spell>. <amount> TP drained from <target>.
     MAGIC_ABSORB_ACC       = 533, -- <caster> casts <spell>. <target>'s Accuracy is drained.
     MAGIC_ABSORB_AILMENT   = 572, -- <caster> casts <spell>. <caster> absorbs <number> of <target>'s status ailments.
+    MAGIC_MUST_ASTRAL_FLOW = 581, -- Unable to cast <spell>. Astral Flow must be in effect to cast this spell.
 
     -- Weaponskill / Mobskill (0-255 WS, 256+ monster skill)
     SKILL_RECOVERS_MP      = 224, -- <user> uses <skill>. <target> recovers <amount> MP.
     SKILL_RECOVERS_HP      = 103, -- The <player> uses .. <target> recovers .. HP.
     SELF_HEAL              = 238, -- <user> uses <skill>. <user> recovers <amount> HP.
     SELF_HEAL_SECONDARY    = 263, -- <target> recovers <amount> HP.
+    AOE_REGAIN_HP          = 357, -- <target> regains <amount> HP.
+    AOE_REGAIN_MP          = 358, -- <target> regains <amount> MP.
     SKILL_ERASE            = 159, -- <user> uses <skill> <target>'s <status> effect disappears!
     DAMAGE                 = 185, -- player uses, target takes 10 damage. DEFAULT
     DAMAGE_SECONDARY       = 264,
@@ -94,6 +114,7 @@ msgBasic =
     SKILL_NO_EFFECT        = 189, -- <user> uses <skill>. No effect on <target>.
     SKILL_ENFEEB_IS        = 242, -- <user> uses <skill>. <target> is <status>.
     SKILL_ENFEEB           = 243, -- <user> uses <skill>. <target> receives the effect of <status>.
+    SKILL_ENFEEB_2         = 142, -- <user> uses <skill>. <target> receives the effect of <status> and <status>.
     ABILITIES_RECHARGED    = 360, -- <user> uses <skill>. All of <target>'s abilities are recharged.
 
     -- Job Ability messages (offset JA by 16)
@@ -118,7 +139,8 @@ msgBasic =
     IS_EFFECT              = 277, -- "is <status>" - that's the entire message.
     EVADES                 = 282,
     NO_EFFECT              = 283, -- "No effect" - that's the entire message.
-    FAMILIAR               = 108,
+    FAMILIAR_PC            = 108, -- The <player> uses .. Pet's powers increase!
+    FAMILIAR_MOB           = 109, -- The <mob> uses .. Pet's powers increase!
     DISAPPEAR_NUM          = 231, -- <num> of <target>'s effects disappear!
     TP_REDUCED             = 362, -- tp reduced to
     ATTR_DRAINED           = 369,
@@ -127,7 +149,6 @@ msgBasic =
     DEFEATS_TARG           = 6,   -- The <player> defeats <target>.
     ALREADY_CLAIMED        = 12,  -- Cannot attack. Your target is already claimed.
     IS_INTERRUPTED         = 16,  -- The <player>'s casting is interrupted.
-    UNABLE_TO_CAST         = 18,  -- Unable to cast spells at this time.
     CANNOT_PERFORM         = 71,  -- The <player> cannot perform that action.
     CANNOT_PERFORM_TARG    = 72,  -- That action cannot be performed on <target>.
     UNABLE_TO_USE_JA       = 87,  -- Unable to use job ability.
@@ -153,6 +174,8 @@ msgBasic =
     MUG_SUCCESS            = 129, -- <user> uses <ability>. <user> mugs <amount> gil from <target>.
     MUG_FAIL               = 244, -- <user> fails to mug <target>.
     FULL_INVENTORY         = 356, --  Cannot execute command. Your inventory is full.
+    OBTAINED_KEY_ITEM      = 758, -- Obtained key item: <key item>.
+    ALREADY_HAVE_KEY_ITEM  = 759, -- You already have key item: <key item>.
 
     -- Distance
     TARG_OUT_OF_RANGE      = 4,   -- <target> is out of range.
@@ -161,7 +184,7 @@ msgBasic =
     TOO_FAR_AWAY           = 78,  -- <target> is too far away.
 
     -- Weaponskills
-    READIES_WS              = 43,   -- ${actor} readies ${weapon_skill}.
+    READIES_WS             = 43,  -- ${actor} readies ${weapon_skill}.
     CANNOT_USE_WS          = 190, -- The <player> cannot use that weapon ability.
     NOT_ENOUGH_TP          = 192, -- The <player> does not have enough TP.
 
@@ -172,7 +195,7 @@ msgBasic =
     NO_EFFECT_ON_PET       = 336, -- No effect on that pet.
     NO_JUG_PET_ITEM        = 337, -- You do not have the necessary item equipped to call a beast.
     MUST_HAVE_FOOD         = 347, -- You must have pet food equipped to use that command.
-    STATUS_INCREASED        = 562,  -- The status parameters of ${target} have increased.
+    STATUS_INCREASED       = 562, -- The status parameters of ${target} have increased.
     PET_CANNOT_DO_ACTION   = 574, -- <player>'s pet is currently unable to perform that action.
     PET_NOT_ENOUGH_TP      = 575, -- <player>'s pet does not have enough TP to perform that action.
 
@@ -185,6 +208,7 @@ msgBasic =
     -- Items
     ITEM_USES               = 28,   -- ${actor} uses a ${item}.
     ITEM_UNABLE_TO_USE      = 55,   -- Unable to use item.
+    ITEM_UNABLE_TO_USE_2    = 56,   -- Unable to use item.
     ITEM_FAILS_TO_ACTIVATE  = 62,   -- The ${item} fails to activate.
     ITEM_NO_PETRAS          = 65,   -- You are not carrying any Petras.${lb}You cannot use the ${item}.
     ITEM_DOES_NOT_HAVE      = 91,   -- ${actor} does not have any ${item}.
@@ -231,7 +255,7 @@ msgBasic =
     STATUS_WEARS_OFF        = 206,  -- ${target}'s ${status} effect wears off.
     ABOUT_TO_WEAR_OFF       = 251,  -- The effect of ${status} is about to wear off.
     ALL_ABILITIES_RECHARGED = 361,  -- All of ${target}'s abilities are recharged.
-    
+
     -- Charm
     CANNOT_CHARM           = 210, -- <actor> cannot charm <target>!
     VERY_DIFFICULT_CHARM   = 211, -- It would be very difficult for <actor> to charm <target>.
@@ -259,14 +283,14 @@ msgBasic =
     -- DNC
     NO_FINISHINGMOVES      = 524, -- You have not earned enough finishing moves to perform that action.
     SPECTRAL_JIG           = 532, -- <user> uses <ability>. <target> receives the effect of Sneak and Invisible.
-    
+
     -- Fields / Grounds of Valor
     FOV_DEFEATED_TARGET     = 558,  -- You defeated a designated target.${lb}(Progress: ${number}/${number2})
     FOV_COMPLETED_REGIME    = 559,  -- You have successfully completed the training regime.
     FOV_OBTAINS_GIL         = 565,  -- ${target} obtains ${gil}.
     FOV_OBTAINS_TABS        = 566,  -- ${target} obtains ${number} tab.${lb}(Total: ${number})
     FOV_REGIME_BEGINS_ANEW  = 643,  -- Your current training regime will begin anew!
-    
+
     -- Depoil Statuses
     DESPOIL_ATT_DOWN        = 593,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Attack Down.
     DESPOIL_DEF_DOWN        = 594,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Defense Down.
@@ -275,4 +299,4 @@ msgBasic =
     DESPOIL_EVA_DOWN        = 597,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Evasion Down.
     DESPOIL_ACC_DOWN        = 598,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Accuracy Down.
     DESPOIL_SLOW            = 599,  -- ${actor} uses ${ability}.${lb}${actor} steals a ${item} from ${target}.${lb}Additional effect: ${target} is afflicted with Slow.
-};
+}

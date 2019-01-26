@@ -3,10 +3,7 @@
 -- Zone: Celennia Memorial Library (284)
 --
 -----------------------------------
-package.loaded["scripts/zones/Celennia_Memorial_Library/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Celennia_Memorial_Library/TextIDs");
+local ID = require("scripts/zones/Celennia_Memorial_Library/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,11 +23,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

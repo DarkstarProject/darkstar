@@ -3,22 +3,24 @@
 --  NPC: Satata
 -- Working 100%
 -----------------------------------
-require("scripts/globals/settings");
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/magic")
 -----------------------------------
 
+function onSpawn(npc)
+    npcUtil.castingAnimation(npc, dsp.magic.spellGroup.BLACK, 12)
+end
+
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(235);
-end;
+    player:startEvent(235)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

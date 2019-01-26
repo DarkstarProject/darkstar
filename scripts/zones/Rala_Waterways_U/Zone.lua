@@ -3,10 +3,7 @@
 -- Zone: Rala Waterways U
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Rala_Waterways_U/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Rala_Waterways_U/TextIDs");
+local ID = require("scripts/zones/Rala_Waterways_U/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,12 +19,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

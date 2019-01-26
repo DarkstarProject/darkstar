@@ -3,16 +3,10 @@
 -- NPC:  Mahogany Door
 -- !pos 299 0.1 349 163
 -------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
+local ID = require("scripts/zones/Sacrificial_Chamber/IDs");
 
 function onTrade(player,npc,trade)
 
@@ -22,23 +16,15 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (EventTriggerBCNM(player,npc)) then
         return 1;
     else
-        player:messageSpecial(DOOR_SHUT);
+        player:messageSpecial(ID.text.DOOR_SHUT);
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

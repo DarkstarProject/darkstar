@@ -3,10 +3,8 @@
 --  NPC: Oil lamp
 -- !pos -63.699 -26.227 43.009 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
+local ID = require("scripts/zones/Phomiuna_Aqueducts/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +14,7 @@ function onTrigger(player,npc)
 
     local DoorOffset = npc:getID();
 
-    player:messageSpecial(LAMP_OFFSET); -- fire lamp
+    player:messageSpecial(ID.text.LAMP_OFFSET); -- fire lamp
     npc:openDoor(7); -- lamp animation
 
     local element = VanadielDayElement();
@@ -35,12 +33,8 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 end;

@@ -3,12 +3,12 @@
 --  Mob: Veteran Quadav
 -- Note: PH for Zi'Ghi Boneeater
 -----------------------------------
-require("scripts/zones/Palborough_Mines/MobIDs");
+local ID = require("scripts/zones/Palborough_Mines/IDs");
 require("scripts/globals/mobs");
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ZI_GHI_BONEEATER_PH,20,3600); -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.ZI_GHI_BONEEATER_PH,20,3600); -- 1 hour
 end;

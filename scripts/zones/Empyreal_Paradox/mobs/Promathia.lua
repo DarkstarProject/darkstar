@@ -2,16 +2,14 @@
 -- Area: Empyreal Paradox
 --  MOB: Promathia
 -----------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs");
+local ID = require("scripts/zones/Empyreal_Paradox/IDs");
 require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
-    mob:addMod(MOD_UFASTCAST,50);
+    mob:addMod(dsp.mod.REGAIN, 50);
+    mob:addMod(dsp.mod.UFASTCAST,50);
 end;
 
 function onMobEngaged(mob,target)
@@ -20,7 +18,7 @@ function onMobEngaged(mob,target)
         if (v:getName() == "Prishe") then
             if not v:getTarget() then
                 v:entityAnimationPacket("prov");
-                v:showText(v, PRISHE_TEXT);
+                v:showText(v, ID.text.PRISHE_TEXT);
                 v:setLocalVar("ready", mob:getID());
             end
         else
@@ -30,7 +28,7 @@ function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)
-    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(dsp.effects.STUN)) then
+    if (mob:AnimationSub() == 3 and not mob:hasStatusEffect(dsp.effect.STUN)) then
         mob:AnimationSub(0);
         mob:stun(1500);
     end
@@ -57,12 +55,10 @@ end;
 
 function onEventUpdate(player,csid,option)
     -- printf("updateCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,target)
     -- printf("finishCSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 32004) then
         DespawnMob(target:getID());

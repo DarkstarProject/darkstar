@@ -1,26 +1,14 @@
 -----------------------------------
 --
--- dsp.effects.PROWESS : Increased treasure casket discovery
+-- dsp.effect.PROWESS : Increased treasure casket discovery
 --
 -----------------------------------
 
------------------------------------
--- onEffectGain Action
------------------------------------
-
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end

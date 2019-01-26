@@ -2,16 +2,13 @@
 -- Area: Port Bastok
 --  NPC: Agapito
 -- Start & Finishes Quest: The Stars of Ifrit
--- @zone 236
--- !pos -72.093 -3.097 9.309
------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
+-- !pos -72.093 -3.097 9.309 236
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,9 +17,9 @@ end;
 function onTrigger(player,npc)
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
-    if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(AIRSHIP_PASS) == true) then
+    if (player:getFameLevel(BASTOK) >= 3 and TheStarsOfIfrit == QUEST_AVAILABLE and player:hasKeyItem(dsp.ki.AIRSHIP_PASS) == true) then
         player:startEvent(180);
-    elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == true) then
+    elseif (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARRIER_PIGEON_LETTER) == true) then
         player:startEvent(181);
     else
         player:startEvent(17);
@@ -30,21 +27,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 180) then
         player:addQuest(BASTOK,THE_STARS_OF_IFRIT);
     elseif (csid == 181) then
         player:addGil(GIL_RATE*2100);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2100);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2100);
         player:addFame(BASTOK,100);
-        player:addTitle(STAR_OF_IFRIT);
+        player:addTitle(dsp.title.STAR_OF_IFRIT);
         player:completeQuest(BASTOK,THE_STARS_OF_IFRIT);
     end
 end;
-

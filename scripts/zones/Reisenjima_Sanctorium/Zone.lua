@@ -3,11 +3,7 @@
 -- Zone: Reisenjima Sanctorium (293)
 --
 -----------------------------------
-package.loaded["scripts/zones/Reisenjima_Sanctorium/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Reisenjima_Sanctorium/TextIDs");
-require("scripts/globals/settings");
-require("scripts/globals/zone");
+local ID = require("scripts/zones/Reisenjima_Sanctorium/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -30,11 +26,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

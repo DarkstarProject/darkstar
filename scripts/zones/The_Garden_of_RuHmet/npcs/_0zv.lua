@@ -2,6 +2,7 @@
 -- Area: The Garden of Ru'Hmet
 --  NPC: particle gate
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -10,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasKeyItem(BRAND_OF_TWILIGHT)==false) then
+    if (player:hasKeyItem(dsp.ki.BRAND_OF_TWILIGHT)==false) then
         player:startEvent(111);
     end
 
@@ -18,15 +19,11 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-  if (csid == 111 and option==1) then
-      player:messageSpecial(KEYITEM_OBTAINED,BRAND_OF_TWILIGHT);
-      player:addKeyItem(BRAND_OF_TWILIGHT);
-  end
+    if (csid == 111 and option==1) then
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_TWILIGHT);
+        player:addKeyItem(dsp.ki.BRAND_OF_TWILIGHT);
+    end
 end;

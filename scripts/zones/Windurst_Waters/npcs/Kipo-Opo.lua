@@ -4,11 +4,9 @@
 -- Type: Cooking Adv. Image Support
 -- !pos -119.750 -5.239 64.500 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,4);
-    local SkillLevel = player:getSkillLevel(SKILL_COOKING);
-    local Cost = getAdvImageSupportCost(player,SKILL_COOKING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.COOKING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(dsp.effects.COOKING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effect.COOKING_IMAGERY) == false) then
             player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),0,0,0); -- p1 = skill level
         else
             player:startEvent(10015,Cost,SkillLevel,0,495,player:getGil(),28589,0,0);
@@ -31,18 +29,14 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    local Cost = getAdvImageSupportCost(player,SKILL_COOKING);
+    local Cost = getAdvImageSupportCost(player,dsp.skill.COOKING);
 
     if (csid == 10015 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(COOKING_SUPPORT,0,8,0);
-        player:addStatusEffect(dsp.effects.COOKING_IMAGERY,3,0,480);
+        player:messageSpecial(ID.text.COOKING_SUPPORT,0,8,0);
+        player:addStatusEffect(dsp.effect.COOKING_IMAGERY,3,0,480);
     end
 end;

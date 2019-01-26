@@ -2,29 +2,21 @@
 -- Area: Northern San d'Oria
 --  NPC: Maurine
 -- Type: Standard Dialogue NPC
---  @zone 231
--- !pos 144.852 0.000 136.828
+-- !pos 144.852 0.000 136.828 231
 --
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,MAURINE_DIALOG);
+    player:showText(npc,ID.text.MAURINE_DIALOG);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

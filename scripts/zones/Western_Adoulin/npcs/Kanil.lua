@@ -2,13 +2,10 @@
 -- Area: Western Adoulin
 --  NPC: Kanil
 -- Type: Shop NPC
---  @zone 256
---  !pos 154 4 -5 256
------------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
+-- !pos 154 4 -5 256
 -----------------------------------
 require("scripts/globals/shop");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,16 +13,16 @@ end;
 
 function onTrigger(player,npc)
     -- Standard shop
-    player:showText(npc, KANIL_SHOP_TEXT);
+    player:showText(npc, ID.text.KANIL_SHOP_TEXT);
     local stock = {
-        0x0262, 60,     -- San D'Or. Flour
-        0x119D, 12,     -- Distilled Water
-        0x03A8, 16,     -- Rock Salt
-        0x0279, 16,     -- Olive Oil
-        0x14B3, 148,    -- Salsa
-        0x05F3, 316,    -- Apple Mint
+        610, 60,     -- San D'Or. Flour
+        4509, 12,     -- Distilled Water
+        936, 16,     -- Rock Salt
+        633, 16,     -- Olive Oil
+        5299, 148,    -- Salsa
+        1523, 316,    -- Apple Mint
     }
-    showShop(player, STATIC, stock);
+    dsp.shop.general(player, stock);
 end;
 
 function onEventUpdate(player,csid,option)

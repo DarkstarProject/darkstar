@@ -1,12 +1,9 @@
 -----------------------------------
 -- Area: Southern SandOria [S]
 --  NPC: Rholont
--- @zone 80
--- !pos -168 -2 56
+-- !pos -168 -2 56 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -44,30 +41,26 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 47) then
         player:addQuest(CRYSTAL_WAR,CLAWS_OF_THE_GRIFFON);
     elseif (csid == 23) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2528);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2528);
         else
             player:setVar("GiftsOfGriffonProg",2);
             player:addItem(2528,7); -- Plume d'or
-            player:messageSpecial(ITEM_OBTAINED,2528);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,2528);
         end
 
     elseif (csid == 24) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,812);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,812);
         else
             player:addItem(812,1)
-            player:messageSpecial(ITEM_OBTAINED,812);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,812);
             player:setVar("GiftsOfGriffonProg",0);
             player:setVar("GiftsOfGriffonPlumes",0);
             player:completeQuest(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON);
@@ -79,8 +72,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 60) then
         player:completeQuest(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON);
         player:setVar("WrathOfTheGriffon",0);
-        player:addKeyItem(MILITARY_SCRIP);
-        player:messageSpecial(KEYITEM_OBTAINED,MILITARY_SCRIP);
+        player:addKeyItem(dsp.ki.MILITARY_SCRIP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MILITARY_SCRIP);
     end
 
 end;

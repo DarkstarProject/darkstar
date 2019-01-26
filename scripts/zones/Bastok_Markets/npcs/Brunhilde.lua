@@ -4,13 +4,10 @@
 -- Standard Merchant NPC
 -- !pos -305.775 -10.319 -152.173 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Bastok_Markets/IDs")
+require("scripts/globals/shop")
 
 function onTrigger(player,npc)
-    player:showText(npc, BRUNHILDE_SHOP_DIALOG);
     local stock =
     {
         12448,   154, 3,    -- Bronze Cap
@@ -27,5 +24,7 @@ function onTrigger(player,npc)
         12544, 45208, 1,    -- Breastplate
         12672, 23846, 1,    -- Gauntlets
     }
-    showNationShop(player, NATION_BASTOK, stock);
-end;
+
+    player:showText(npc, ID.text.BRUNHILDE_SHOP_DIALOG)
+    dsp.shop.nation(player, stock, dsp.nation.BASTOK)
+end

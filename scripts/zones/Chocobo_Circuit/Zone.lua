@@ -3,10 +3,7 @@
 -- Zone: Chocobo_Circuit
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Chocobo_Circuit/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Chocobo_Circuit/TextIDs");
+local ID = require("scripts/zones/Chocobo_Circuit/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -22,12 +19,7 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

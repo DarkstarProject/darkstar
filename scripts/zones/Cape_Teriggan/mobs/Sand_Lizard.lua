@@ -2,9 +2,9 @@
 -- Area: Cape Teriggan
 --  MOB: Sand Lizard
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,104,2);
+    dsp.regime.checkRegime(player, mob, 104, 2, dsp.regime.type.FIELDS)
 end;

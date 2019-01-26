@@ -64,7 +64,7 @@ typedef u_int SOCKET;
 #include "packets/party_list.h"
 #include "packets/search_list.h"
 
-#define DEFAULT_BUFLEN	1024
+#define DEFAULT_BUFLEN  1024
 #define CODE_LVL 17
 #define CODE_JOB 13
 #define CODE_ZONE 20
@@ -102,12 +102,12 @@ void search_config_default();
 void search_config_read(const int8* file);
 
 void login_config_default();
-void login_config_read(const int8* file);		// We only need the search server port defined here
+void login_config_read(const int8* file);       // We only need the search server port defined here
 
 /************************************************************************
-*																		*
-*  Отображения содержимого входящего пакета в консоли					*
-*																		*
+*                                                                       *
+*  Отображения содержимого входящего пакета в консоли                   *
+*                                                                       *
 ************************************************************************/
 
 void PrintPacket(char* data, int size)
@@ -121,7 +121,7 @@ void PrintPacket(char* data, int size)
     {
         char msgtmp[50];
         memset(&msgtmp, 0, 50);
-        sprintf(msgtmp, "%s %02hx", message, (uint8)data[y]);
+        sprintf(msgtmp, "%s %02x", message, (uint8)data[y]);
         strncpy(message, msgtmp, 50);
         if (((y + 1) % 16) == 0)
         {
@@ -139,9 +139,9 @@ void PrintPacket(char* data, int size)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 int32 main(int32 argc, char **argv)
@@ -264,7 +264,7 @@ int32 main(int32 argc, char **argv)
         ShowMessage(CL_GREEN"AH task to return items older than %u days is running\n" CL_RESET, search_config.expire_days);
         CTaskMgr::getInstance()->AddTask("ah_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, ah_cleanup, std::chrono::seconds(search_config.expire_interval));
     }
-    //	ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
+    //  ShowMessage(CL_CYAN"[TASKMGR] Starting task manager thread..\n" CL_RESET);
 
     std::thread(TaskManagerThread).detach();
 
@@ -408,7 +408,7 @@ void search_config_read(const int8* file)
 
 /************************************************************************
 *                                                                       *
-*  login_darkstar			                                            *
+*  login_darkstar                                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -420,7 +420,7 @@ void login_config_default()
 
 /************************************************************************
 *                                                                       *
-*  login_darkstar			                                            *
+*  login_darkstar                                                       *
 *                                                                       *
 ************************************************************************/
 
@@ -460,9 +460,9 @@ void login_config_read(const int8* file)
 }
 
 /************************************************************************
-*																		*
-*																		*
-*																		*
+*                                                                       *
+*                                                                       *
+*                                                                       *
 ************************************************************************/
 
 void TCPComm(SOCKET socket)
@@ -813,7 +813,7 @@ search_req _HandleSearchRequest(CTCPRequestPacket& PTCPRequest)
                 areas[areaCount] = (uint16)unpackBitsLE(&data[0x11], bitOffset, 10);
                 areaCount++;
                 bitOffset += 10;
-                //	printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);
+                //  printf("SEARCH::Area List Entry found(%2X)!\n",areas[areaCount-1]);
             }
             break;
         }

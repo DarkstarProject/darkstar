@@ -1,12 +1,12 @@
 -----------------------------------
 -- Attachment: Reactive Shield
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_REACTIVE_SHIELD", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(dsp.effects.FIRE_MANEUVER) > 0 and automaton:getLocalVar("blazespikes") < VanadielTime() then
+        if not automaton:hasRecast(dsp.recast.ABILITY, 2031) and master and master:countEffect(dsp.effect.FIRE_MANEUVER) > 0 then
             automaton:useMobAbility(2031, automaton)
         end
     end)

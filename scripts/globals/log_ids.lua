@@ -2,7 +2,6 @@
 --  Area/Content Identifiers
 -----------------------------------
 
-STATIC = -1; -- Just so shop NPC scripts have something to check against. Not sent to core.
 SANDORIA =
 {
     ['full_name'] = "San d' Oria",
@@ -270,7 +269,7 @@ function GetQMLogInfo(cmdParamText, logNameTable)
         else
             logName = logName .. "_LOG";
             ret = _G[logName];
-            if ((type(ret) == "table") and (type(ret.full_name) == "string")) then 
+            if ((type(ret) == "table") and (type(ret.full_name) == "string")) then
                 return ret;
             end
         end

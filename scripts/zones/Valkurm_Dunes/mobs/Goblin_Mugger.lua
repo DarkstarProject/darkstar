@@ -2,9 +2,9 @@
 -- Area: Valkurm Dunes
 --  MOB: Goblin Mugger
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,57,2);
+    dsp.regime.checkRegime(player, mob, 57, 2, dsp.regime.type.FIELDS)
 end;

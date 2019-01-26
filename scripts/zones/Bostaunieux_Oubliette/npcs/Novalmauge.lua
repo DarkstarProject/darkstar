@@ -1,19 +1,18 @@
 -----------------------------------
 -- Area: Bostaunieux Obliette
 --  NPC: Novalmauge
--- Starts and Finishes Quest: The Rumor
+-- Starts and Finishes Quest: The Rumor, Souls in Shadow
 -- Involved in Quest: The Holy Crest, Trouble at the Sluice
 -- !pos 70 -24 21 167
 -----------------------------------
-package.loaded["scripts/zones/Bostaunieux_Oubliette/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/shop");
-require("scripts/globals/quests");
-require("scripts/zones/Bostaunieux_Oubliette/TextIDs");
-require("scripts/globals/pathfind");
+require("scripts/globals/settings")
+require("scripts/globals/titles")
+require("scripts/globals/keyitems")
+require("scripts/globals/shop")
+require("scripts/globals/quests")
+local ID = require("scripts/zones/Bostaunieux_Oubliette/IDs")
+require("scripts/globals/pathfind")
+require("scripts/globals/wsquest")
 -----------------------------------
 
 local path =
@@ -25,102 +24,104 @@ local path =
 51.917370, -23.924366, 19.970068,
 74.570229, -24.024828, 20.103880,
 44.533886, -23.947662, 19.926519
-};
+}
+
+local wsQuest = dsp.wsquest.spiral_hell
 
 function onSpawn(npc)
-    npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
-    onPath(npc);
-end;
+    npc:initNpcAi()
+    npc:setPos(dsp.path.first(path))
+    onPath(npc)
+end
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
-end;
+    dsp.path.patrol(npc, path)
+end
 
 function onTrade(player,npc,trade)
+    local wsQuestEvent = dsp.wsquest.getTradeEvent(wsQuest,player,trade)
 
-    if (player:getVar("troubleAtTheSluiceVar") == 2) then
+    if (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent)
+    elseif (player:getVar("troubleAtTheSluiceVar") == 2) then
         if (trade:hasItemQty(959,1) and trade:getItemCount() == 1) then -- Trade Dahlia
-            player:startEvent(17);
-            npc:wait();
+            player:startEvent(17)
+            npc:wait()
         end
     end
     if (player:getQuestStatus(SANDORIA,THE_RUMOR) == QUEST_ACCEPTED) then
-        local count = trade:getItemCount();
+        local count = trade:getItemCount()
         local BeastBlood = trade:hasItemQty(930,1)
         if (BeastBlood == true and count == 1) then
-            player:startEvent(12);
-            npc:wait();
+            player:startEvent(12)
+            npc:wait()
         end
     end
-end;
+end
 
 function onTrigger(player,npc)
+    local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
+    local troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE)
+    local TheHolyCrest = player:getVar("TheHolyCrest_Event")
+    local tatsVar = player:getVar("troubleAtTheSluiceVar")
+    local theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR)
+    local crestCheck = player:getVar("theHolyCrestCheck")
 
-    local troubleAtTheSluice = player:getQuestStatus(SANDORIA,TROUBLE_AT_THE_SLUICE);
-    local TheHolyCrest = player:getVar("TheHolyCrest_Event");
-    local tatsVar = player:getVar("troubleAtTheSluiceVar");
-    local theRumor = player:getQuestStatus(SANDORIA,THE_RUMOR);
-    local crestCheck = player:getVar("theHolyCrestCheck");
+    npc:wait()
 
-    npc:wait();
+    if (wsQuestEvent ~= nil) then
+        player:startEvent(wsQuestEvent)
 
     -- The Holy Crest Quest
-    if (TheHolyCrest == 1) then
-        player:startEvent(6);
+    elseif (TheHolyCrest == 1) then
+        player:startEvent(6)
     elseif (TheHolyCrest == 2 and crestCheck == 0) then
-        player:startEvent(7);
-        player:setVar("theHolyCrestCheck",1);
+        player:startEvent(7)
+        player:setVar("theHolyCrestCheck",1)
     -- Trouble at the Sluice Quest
     elseif (tatsVar == 1) then
-        player:startEvent(15);
-        player:setVar("troubleAtTheSluiceVar",2);
+        player:startEvent(15)
+        player:setVar("troubleAtTheSluiceVar",2)
     elseif (tatsVar == 2) then
-        player:startEvent(16);
+        player:startEvent(16)
     -- The rumor Quest
     elseif (theRumor == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 3 and player:getMainLvl() >= 10) then
-        player:startEvent(13);
+        player:startEvent(13)
     elseif (theRumor == QUEST_ACCEPTED) then
-        player:startEvent(11);
+        player:startEvent(11)
     elseif (theRumor == QUEST_COMPLETED) then
-        player:startEvent(14); -- Standard dialog after "The Rumor"
-        player:setVar("theHolyCrestCheck",0);
+        player:startEvent(14) -- Standard dialog after "The Rumor"
+        player:setVar("theHolyCrestCheck",0)
     else
-        player:startEvent(10); -- Standard dialog
+        player:startEvent(10) -- Standard dialog
     end
-end;
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
     if (csid == 6) then
-        player:setVar("TheHolyCrest_Event",2);
+        player:setVar("TheHolyCrest_Event",2)
     elseif (csid == 17) then
-        player:tradeComplete();
-        player:addKeyItem(NEUTRALIZER);
-        player:messageSpecial(KEYITEM_OBTAINED,NEUTRALIZER);
-        player:setVar("troubleAtTheSluiceVar",0);
-        player:setVar("theHolyCrestCheck",0);
+        player:tradeComplete()
+        player:addKeyItem(dsp.ki.NEUTRALIZER)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEUTRALIZER)
+        player:setVar("troubleAtTheSluiceVar",0)
+        player:setVar("theHolyCrestCheck",0)
     elseif (csid == 13 and option == 1) then
-        player:addQuest(SANDORIA,THE_RUMOR);
+        player:addQuest(SANDORIA,THE_RUMOR)
     elseif (csid == 12) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4853); -- Scroll of Drain
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4853) -- Scroll of Drain
         else
-            player:tradeComplete();
-            player:addItem(4853);
-            player:messageSpecial(ITEM_OBTAINED, 4853); -- Scroll of Drain
+            player:tradeComplete()
+            player:addItem(4853)
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 4853) -- Scroll of Drain
 
-            player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_RUMOR);
+            player:addFame(SANDORIA,30)
+            player:completeQuest(SANDORIA,THE_RUMOR)
         end
+    else
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.SPIRAL_HELL_LEARNED)
     end
 
-    npc:wait(0);
-end;
+    npc:wait(0)
+end

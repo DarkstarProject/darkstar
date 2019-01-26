@@ -3,12 +3,10 @@
 --  NPC: Edigey
 -- Starts and Ends Quest: Don't Forget the Antidote
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,30 +32,25 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 2 and option == 1) then
         player:addQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:setVar("DontForgetAntidoteVar",1);
     elseif (csid == 4 and player:getVar("DontForgetAntidoteVar") == 1) then --If completing for the first time
         player:setVar("DontForgetAntidoteVar",0);
         player:tradeComplete();
-        player:addTitle(262);
+        player:addTitle(dsp.title.DESERT_HUNTER);
         player:addItem(16974); -- Dotanuki
-        player:messageSpecial(ITEM_OBTAINED, 16974);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 16974);
         player:completeQuest(OUTLANDS,DONT_FORGET_THE_ANTIDOTE);
         player:addFame(RABAO,60);
     elseif (csid == 4) then --Subsequent completions
         player:tradeComplete();
         player:addGil(GIL_RATE*1800);
-        player:messageSpecial(GIL_OBTAINED, 1800);
+        player:messageSpecial(ID.text.GIL_OBTAINED, 1800);
         player:addFame(RABAO,30);
     end
 
 end;
-

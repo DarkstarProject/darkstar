@@ -2,10 +2,10 @@
 -- Area: Valley of Sorrows
 --  MOB: Valley Manticore
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,140,2);
-    checkRegime(player,mob,141,2);
+    dsp.regime.checkRegime(player, mob, 140, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 141, 2, dsp.regime.type.FIELDS)
 end;

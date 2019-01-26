@@ -3,37 +3,16 @@
 --  NPC: HomePoint#1
 -- !pos -107 3.2 295 261
 -----------------------------------
-package.loaded["scripts/zones/Ceizak_Battlegrounds/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Ceizak_Battlegrounds/TextIDs");
-require("scripts/globals/homepoint");
+require("scripts/globals/homepoint")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+local hpEvent = 8700
+local hpIndex = 46
 
 function onTrigger(player,npc)
-
-    homepointMenu(player, 8700, 46);
-end;
-
-function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+    dsp.homepoint.onTrigger(player, hpEvent, hpIndex)
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-
-    if (csid == 8700) then
-
-        if (option == 1) then
-            player:setHomePoint();
-            player:messageSpecial(HOMEPOINT_SET);
-        else
-            hpTeleport(player, option);
-        end
-    end
-end;
+    dsp.homepoint.onEventFinish(player, csid, option, hpEvent)
+end

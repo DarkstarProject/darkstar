@@ -2,6 +2,8 @@
 -- func: return <player>
 -- desc: Warps GM or target player to their previous zone
 ---------------------------------------------------------------------------------------------------
+require("scripts/globals/zone")
+-----------------------------------
 
 cmdprops =
 {
@@ -26,15 +28,15 @@ function onTrigger(player, target)
             error(player, string.format( "Player named '%s' not found!", target ) );
             return;
         end
-    end    
+    end
 
     -- get previous zone
     zoneId = targ:getPreviousZone();
-    if (zoneId == nil or zoneId == 0 or zoneId == 214) then
+    if (zoneId == nil or zoneId == dsp.zone.UNKNOWN or zoneId == dsp.zone.RESIDENTIAL_AREA) then
         error(player, "Previous zone was a Mog House or there was a problem fetching the ID.");
         return;
     end
-    
+
     -- zone target
     targ:setPos( 0, 0, 0, 0, zoneId );
     if (targ:getID() ~= player:getID()) then

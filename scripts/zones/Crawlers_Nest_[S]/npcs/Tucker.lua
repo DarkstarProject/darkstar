@@ -2,9 +2,7 @@
 -- Area: Crawlers' Nest [S]
 --  NPC: Tucker
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs");
+local ID = require("scripts/zones/Crawlers_Nest_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -49,13 +47,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 6) then
         player:setVar("SheetsofVellum", 1);
@@ -63,28 +57,28 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
             player:addItem(2550, 4);
-            player:messageSpecial(ITEM_OBTAINED + 9, 2550, 4);
+            player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
             player:setVar("SheetsofVellum", 2);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 2550);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end
     elseif (csid == 10) then
         if (player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
             player:addItem(2550, 4);
-            player:messageSpecial(ITEM_OBTAINED + 9, 2550, 4);
+            player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
             player:setVar("SheetsofVellum", 3);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 2550);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end
     elseif (csid == 11) then
         if (player:getFreeSlotsCount() > 0) then
             player:tradeComplete();
             player:addItem(2550, 4);
-            player:messageSpecial(ITEM_OBTAINED + 9, 2550, 4);
+            player:messageSpecial(ID.text.ITEM_OBTAINED + 9, 2550, 4);
             player:setVar("SheetsofVellum", 4);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 2550);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2550);
         end
     end
 

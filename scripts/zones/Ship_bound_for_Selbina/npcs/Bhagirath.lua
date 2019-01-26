@@ -4,9 +4,7 @@
 -- Notes: Tells ship ETA time
 -- !pos 0.278 -14.707 -1.411 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
+local ID = require("scripts/zones/Ship_bound_for_Selbina/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -47,10 +45,10 @@ function onTrigger(player,npc)
 
     vHour = math.floor( vMinutes / 60 + 0.5);
 
-    local message = ON_WAY_TO_SELBINA;
+    local message = ID.text.ON_WAY_TO_SELBINA;
 
     if (vMinutes <= 30) then
-        message = ARRIVING_SOON_SELBINA;
+        message = ID.text.ARRIVING_SOON_SELBINA;
     elseif (vMinutes < 60) then
         vHour = 0;
     end
@@ -63,11 +61,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

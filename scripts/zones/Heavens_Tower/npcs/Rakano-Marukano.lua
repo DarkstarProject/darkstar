@@ -4,8 +4,6 @@
 -- Type: Immigration NPC
 -- !pos 6.174 -1 32.285 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/conquest");
 -----------------------------------
 
@@ -14,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local new_nation = NATION_WINDURST;
+    local new_nation = dsp.nation.WINDURST;
     local old_nation = player:getNation();
     local rank = getNationRank(new_nation);
 
@@ -44,16 +42,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10002 and option == 1) then
-        local new_nation = NATION_WINDURST;
+        local new_nation = dsp.nation.WINDURST;
         local rank = getNationRank(new_nation);
         local cost = 0;
 

@@ -3,10 +3,8 @@
 -- Zone: AlTaieu (33)
 --
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/AlTaieu/TextIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -16,11 +14,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -29,9 +23,9 @@ function onZoneIn(player,prevZone)
         player:setPos(-25,-1 ,-620 ,33);
     end
     if (player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY and player:getVar("PromathiaStatus") == 0) then
-       cs=1;
+        cs=1;
     elseif (player:getCurrentMission(COP) == DAWN and player:getVar("PromathiaStatus") == 0) then
-      cs=167;
+        cs=167;
     end
     return cs;
 end;
@@ -40,18 +34,14 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1) then
         player:setVar("PromathiaStatus",1);
-        player:addKeyItem(LIGHT_OF_ALTAIEU);
-        player:messageSpecial(KEYITEM_OBTAINED,LIGHT_OF_ALTAIEU);
-        player:addTitle(SEEKER_OF_THE_LIGHT);
+        player:addKeyItem(dsp.ki.LIGHT_OF_ALTAIEU);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIGHT_OF_ALTAIEU);
+        player:addTitle(dsp.title.SEEKER_OF_THE_LIGHT);
     elseif (csid == 167) then
         player:setVar("PromathiaStatus",1);
     end

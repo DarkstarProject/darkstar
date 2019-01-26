@@ -5,10 +5,8 @@
 -- Notes: Used to obtain Power Sandals
 -- !pos 183, 0, -190 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,13 +18,13 @@ function onTrigger(player,npc)
     -- Give Player Power Sandals if they don't have them
     if (player:hasItem(POWER_SANDALS) == false) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, POWER_SANDALS);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, POWER_SANDALS);
         else
             player:addItem(POWER_SANDALS);
-            player:messageSpecial(ITEM_OBTAINED, POWER_SANDALS);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, POWER_SANDALS);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -36,6 +34,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

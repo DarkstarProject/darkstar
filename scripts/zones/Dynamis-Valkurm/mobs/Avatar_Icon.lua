@@ -2,18 +2,15 @@
 -- Area: Dynamis Valkurm
 -- NPC:  Manifest_Icon
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
 
 -----------------------------------
 -- onMobSpawn Action
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 -----------------------------------

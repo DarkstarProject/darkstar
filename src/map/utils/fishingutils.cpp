@@ -30,11 +30,11 @@
 
 #include "../lua/luautils.h"
 
-#include "../packets/caught_fish.h"
 #include "../packets/char_update.h"
 #include "../packets/char_sync.h"
 #include "../packets/fishing.h"
 #include "../packets/inventory_finish.h"
+#include "../packets/message_name.h"
 #include "../packets/message_text.h"
 #include "../packets/release.h"
 #include "../packets/message_system.h"
@@ -192,8 +192,16 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 		if( ret != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
 		{
+            // array to store fish ids that i can get
+            std::vector<int32> fishIDs((int32)Sql_NumRows(SqlHandle));
+            int32 fishCounter = 0;
+            bool caughtQuestedFish = false;
+            
             while(Sql_NextRow(SqlHandle) == SQL_SUCCESS)
 			{
+                // store fish id
+                fishIDs[fishCounter] = Sql_GetIntData(SqlHandle, 0);
+                
                 // ловля предметов, необходимых для поисков
 
                 uint8 logid = (uint8)Sql_GetIntData(SqlHandle,5);
@@ -210,10 +218,23 @@ bool CheckFisherLuck(CCharEntity* PChar)
 
 					    PChar->UContainer->SetType(UCONTAINER_FISHING);
 					    PChar->UContainer->SetItem(0, PFish);
+                        
+                        // got my quested fish
+                        caughtQuestedFish = true;
 					    break;
                     }
 	            }
+                fishCounter++;
                 // TODO: ловля простых предметов
+            }
+            
+            if (!caughtQuestedFish)
+            {
+                int32 luckyFish = dsprand::GetRandomNumber((int32)Sql_NumRows(SqlHandle));
+                PFish = new CItemFish(*itemutils::GetItemPointer(fishIDs[luckyFish]));
+
+                PChar->UContainer->SetType(UCONTAINER_FISHING);
+                PChar->UContainer->SetItem(0, PFish);
             }
 		}						
 	}
@@ -381,7 +402,7 @@ void FishingAction(CCharEntity* PChar, FISHACTION action, uint16 stamina, uint32
                 // TODO: анализируем RodFlag
 
 				charutils::AddItem(PChar, LOC_INVENTORY, PFish->getID(), 1);
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCaughtFishPacket(PChar, PFish->getID(), MessageOffset + 0x27));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageNamePacket(PChar, MessageOffset + 0x27, PChar, PFish->getID()));
 
 				if (PFish->isType(ITEM_USABLE))
 				{

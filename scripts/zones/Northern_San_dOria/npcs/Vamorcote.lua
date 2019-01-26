@@ -2,16 +2,13 @@
 -- Area: Northern San d'Oria
 --   NPC: Vamorcote
 -- Starts and Finishes Quest: The Setting Sun
--- @zone 231
--- !pos -137.070 10.999 161.855
+-- !pos -137.070 10.999 161.855 231
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,22 +39,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 654 and option == 1) then --Player accepts the quest
         player:addQuest(SANDORIA,THE_SETTING_SUN);
     elseif (csid == 658) then --The player trades the Engraved Key to the NPC. Here come the rewards!
         player:tradeComplete();
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_SETTING_SUN);
     end;
 end;
-

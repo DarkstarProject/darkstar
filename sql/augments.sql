@@ -80,8 +80,8 @@ INSERT INTO `augments` VALUES (45, 0, 366, 1, 0, 0); -- DMG:+1 (melee, not range
 INSERT INTO `augments` VALUES (46, 0, 366, -1, 0, 0); -- DMG:-1 (melee, not ranged...Mainhand only?)
 INSERT INTO `augments` VALUES (47, 0, 380, 1, 0, 0); -- Delay:+1% (melee, not ranged)
 INSERT INTO `augments` VALUES (48, 0, 380, -1, 0, 0); -- Delay:-1% (melee, not ranged)
-INSERT INTO `augments` VALUES (49, 0, 384, 1, 0, 0); -- Haste+1
-INSERT INTO `augments` VALUES (50, 0, 384, -1, 0, 0); -- Slow+1
+INSERT INTO `augments` VALUES (49, 0, 384, 100, 0, 0); -- Haste+1
+INSERT INTO `augments` VALUES (50, 0, 384, -100, 0, 0); -- Slow+1
 INSERT INTO `augments` VALUES (51, 0, 72, 1, 0, 0); -- HP recovered while healing+1
 INSERT INTO `augments` VALUES (52, 0, 71, 1, 0, 0); -- MP recovered while healing+1
 INSERT INTO `augments` VALUES (53, 0, 168, -1, 0, 0); -- Spell interruption rate down 1%
@@ -106,20 +106,20 @@ INSERT INTO `augments` VALUES (69, 0, 24, 1, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (70, 0, 30, 33, 0, 0); -- Mag. Acc.+33 Mag.Atk.Bns+33
 INSERT INTO `augments` VALUES (70, 0, 28, 33, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (71, 0, 160, -1, 0, 0); -- Damage Taken -1%
-INSERT INTO `augments` VALUES (72, 0, 0, 0, 0, 0); -- 72 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (73, 0, 0, 0, 0, 0); -- 73 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (72, 0, 0, 0, 0, 0); -- 72 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (73, 0, 0, 0, 0, 0); -- 73 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (74, 0, 0, 0, 0, 0); -- Cap. Point +1%
 INSERT INTO `augments` VALUES (75, 0, 0, 0, 0, 0); -- Cap. Point +33%
 INSERT INTO `augments` VALUES (76, 0, 0, 0, 0, 0); -- DMG+33 Unsure if main hand or off hand so leaving values blank for now, goes up in increments of 1 after the initial 33.
 INSERT INTO `augments` VALUES (77, 0, 0, 0, 0, 0); -- Delay -33% Unsure if main hand or off hand so leaving values blank for now, goes up in increments of 1 after the initial 33.
-
--- 78 to 95 currently unused. Leave at zero.
 INSERT INTO `augments` VALUES (78, 0, 0, 0, 0, 0); -- HP+2 (count by 2)
 INSERT INTO `augments` VALUES (79, 0, 0, 0, 0, 0); -- HP+3 (count by 3)
 INSERT INTO `augments` VALUES (80, 0, 0, 0, 0, 0); -- Mag. Acc+1/Mag. Dmg+1
 INSERT INTO `augments` VALUES (81, 0, 0, 0, 0, 0); -- Eva+1/Mag Eva$+d (corrupted)
 INSERT INTO `augments` VALUES (82, 0, 0, 0, 0, 0); -- MP+2 (count by 2)
 INSERT INTO `augments` VALUES (83, 0, 0, 0, 0, 0); -- MP+3 (count by 3)
+
+-- 84 to 95 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (84, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (85, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (86, 0, 0, 0, 0, 0);
@@ -155,7 +155,7 @@ INSERT INTO `augments` VALUES (108, 0, 28, 1, 1, 0); -- Cont.
 INSERT INTO `augments` VALUES (109, 0, 288, 1, 1, 0); -- Pet: Dbl.Atk.+1 Crit.hit rate+1
 INSERT INTO `augments` VALUES (109, 0, 165, 1, 1, 0); -- Cont.
 INSERT INTO `augments` VALUES (110, 0, 370, 1, 1, 0); -- Pet: Regen+1
-INSERT INTO `augments` VALUES (111, 0, 384, 1, 1, 0); -- Pet: Haste+1
+INSERT INTO `augments` VALUES (111, 0, 384, 100, 1, 0); -- Pet: Haste+1
 INSERT INTO `augments` VALUES (112, 0, 160, -1, 1, 0); -- Pet: Damage taken -1%
 INSERT INTO `augments` VALUES (113, 0, 26, 1, 1, 0); -- Pet: Rng.Acc.+1
 INSERT INTO `augments` VALUES (114, 0, 24, 1, 1, 0); -- Pet: Rng.Atk.+1
@@ -168,10 +168,14 @@ INSERT INTO `augments` VALUES (120, 0, 28, 1, 1, 1); -- Avatar: Mag.Atk.Bns.+1
 INSERT INTO `augments` VALUES (121, 0, 0, 0, 1, 0); -- Pet: Breath +1
 INSERT INTO `augments` VALUES (122, 0, 345, 20, 1, 0); -- Pet: TP Bonus +20
 INSERT INTO `augments` VALUES (123, 0, 288, 1, 1, 0); -- Pet: Dbl.Att.+1
-INSERT INTO `augments` VALUES (124, 0, 0, 0, 0, 0); -- 124 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (125, 0, 0, 0, 0, 0); -- 125 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (126, 0, 0, 0, 0, 0); -- 126 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (127, 0, 0, 0, 0, 0); -- 127 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (124, 0, 23, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 24, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 25, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (124, 0, 26, 1, 1, 0); -- Pet: Acc+1/R.Acc+1/Atk.+1/R.Atk.+1
+INSERT INTO `augments` VALUES (125, 0, 30, 1, 1, 0); -- Pet: Mag.Acc.+1/Mag.Dmg.+1
+INSERT INTO `augments` VALUES (125, 0, 311, 1, 1, 0); -- Pet: Mag.Acc.+1/Mag.Dmg.+1
+INSERT INTO `augments` VALUES (126, 0, 311, 1, 1, 0); -- Pet: Magic Damage +1
+INSERT INTO `augments` VALUES (127, 0, 163, -1, 1, 0); -- Pet: Magic Damage Taken -1%
 INSERT INTO `augments` VALUES (128, 0, 0, 0, 0, 0); -- 128 doesnt seem to be a valid Augment, incomplete or garbled text displays
 INSERT INTO `augments` VALUES (129, 0, 25, 1, 0, 0); -- Accuracy+1 Rng.Acc.+1
 INSERT INTO `augments` VALUES (129, 0, 26, 1, 0, 0); -- Cont.
@@ -197,13 +201,13 @@ INSERT INTO `augments` VALUES (145, 0, 291, 1, 0, 0); -- Counter+1
 INSERT INTO `augments` VALUES (146, 0, 259, 1, 0, 0); -- Dual Wield+1
 INSERT INTO `augments` VALUES (147, 0, 303, 1, 0, 0); -- Treasure Hunter+1
 INSERT INTO `augments` VALUES (148, 0, 0, 0, 0, 0); -- Gilfinder+1
-INSERT INTO `augments` VALUES (149, 0, 0, 0, 0, 0); -- 149 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (150, 0, 0, 0, 0, 0); -- 150 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (149, 0, 0, 0, 0, 0); -- 149 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (150, 0, 0, 0, 0, 0); -- 150 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (151, 0, 173, 1, 0, 0); -- Martial Arts+1
-INSERT INTO `augments` VALUES (152, 0, 0, 0, 0, 0); -- 152 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (152, 0, 0, 0, 0, 0); -- 152 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (153, 0, 485, 1, 0, 0); -- Shield Mastery+1 (tested in retail, this is correct)
 
--- 154 to 175 currently unused. Leave at zero.
+-- 154 to 175 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (154, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (155, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (156, 0, 0, 0, 0, 0);
@@ -241,18 +245,18 @@ INSERT INTO `augments` VALUES (185, 0, 249, 1, 0, 0); -- Resist Bind+1
 INSERT INTO `augments` VALUES (186, 0, 250, 1, 0, 0); -- Resist Gravity+1
 INSERT INTO `augments` VALUES (187, 0, 251, 1, 0, 0); -- Resist Slow+1
 INSERT INTO `augments` VALUES (188, 0, 252, 1, 0, 0); -- Resist Charm+1
-INSERT INTO `augments` VALUES (189, 0, 0, 0, 0, 0); -- 189 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (190, 0, 0, 0, 0, 0); -- 190 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (191, 0, 0, 0, 0, 0); -- 191 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (192, 0, 0, 0, 0, 0); -- 192 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (193, 0, 0, 0, 0, 0); -- 193 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (189, 0, 0, 0, 0, 0); -- 189 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (190, 0, 0, 0, 0, 0); -- 190 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (191, 0, 0, 0, 0, 0); -- 191 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (192, 0, 0, 0, 0, 0); -- 192 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (193, 0, 0, 0, 0, 0); -- 193 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (194, 0, 292, 1, 0, 0); -- Kick Attacks+1 Rate or Damage? Assuming Rate for now.
 INSERT INTO `augments` VALUES (195, 0, 289, 1, 0, 0); -- Subtle Blow+1
-INSERT INTO `augments` VALUES (196, 0, 0, 0, 0, 0); -- 196 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (197, 0, 0, 0, 0, 0); -- 197 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (196, 0, 0, 0, 0, 0); -- 196 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (197, 0, 0, 0, 0, 0); -- 197 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (198, 0, 306, 1, 0, 0); -- Zanshin+1
 
--- 199 to 210 currently unused. Leave at zero.
+-- 199 to 210 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (199, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (200, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (201, 0, 0, 0, 0, 0);
@@ -269,11 +273,11 @@ INSERT INTO `augments` VALUES (210, 0, 0, 0, 0, 0);
 
 INSERT INTO `augments` VALUES (211, 0, 365, 1, 0, 0); -- Snapshot+1
 INSERT INTO `augments` VALUES (212, 0, 305, 1, 0, 0); -- Recycle+1
-INSERT INTO `augments` VALUES (213, 0, 0, 0, 0, 0); -- 213 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (214, 0, 0, 0, 0, 0); -- 214 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (213, 0, 0, 0, 0, 0); -- 213 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (214, 0, 0, 0, 0, 0); -- 214 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (215, 0, 308, 1, 0, 0); -- Ninja tool expertise+1
 
--- 216 to 256 currently unused. Leave at zero.
+-- 216 to 232 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (216, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (217, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (218, 0, 0, 0, 0, 0);
@@ -291,11 +295,19 @@ INSERT INTO `augments` VALUES (229, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (230, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (231, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (232, 0, 0, 0, 0, 0);
+-- End unused block
+
 INSERT INTO `augments` VALUES (233, 0, 0, 0, 0, 0); -- Blood Boon+1: Mod undefined as of yet so leaving blank.
+
+-- 234 to 236 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (234, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (235, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (236, 0, 0, 0, 0, 0);
+-- End unused block
+
 INSERT INTO `augments` VALUES (237, 0, 0, 0, 0, 0); -- Occult Acumen+1: Mod undefined as of yet so leaving blank.
+
+-- 238 to 256 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (238, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (239, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (240, 0, 0, 0, 0, 0);
@@ -330,7 +342,7 @@ INSERT INTO `augments` VALUES (266, 0, 89, 1, 0, 0); -- Great Katana skill+1
 INSERT INTO `augments` VALUES (267, 0, 90, 1, 0, 0); -- Club skill+1
 INSERT INTO `augments` VALUES (268, 0, 91, 1, 0, 0); -- Staff skill+1
 
--- 269 to 277 currently unused. Leave at zero.
+-- 269 to 277 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (269, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (270, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (271, 0, 0, 0, 0, 0);
@@ -348,10 +360,10 @@ INSERT INTO `augments` VALUES (280, 0, 414, 1, 0, 0); -- Magic skill+1 (for auto
 INSERT INTO `augments` VALUES (281, 0, 104, 1, 0, 0); -- Archery skill+1
 INSERT INTO `augments` VALUES (282, 0, 105, 1, 0, 0); -- Marksmanship skill+1
 INSERT INTO `augments` VALUES (283, 0, 106, 1, 0, 0); -- Throwing skill+1
-INSERT INTO `augments` VALUES (284, 0, 0, 0, 0, 0); -- 284 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (285, 0, 0, 0, 0, 0); -- 285 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (284, 0, 0, 0, 0, 0); -- 284 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (285, 0, 0, 0, 0, 0); -- 285 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (286, 0, 109, 1, 0, 0); -- Shield skill+1
-INSERT INTO `augments` VALUES (287, 0, 0, 0, 0, 0); -- 287 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (287, 0, 0, 0, 0, 0); -- 287 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (288, 0, 111, 1, 0, 0); -- Divine magic skill+1
 INSERT INTO `augments` VALUES (289, 0, 112, 1, 0, 0); -- Healing magic skill+1
 INSERT INTO `augments` VALUES (290, 0, 113, 1, 0, 0); -- Enha.mag. skill+1
@@ -367,7 +379,7 @@ INSERT INTO `augments` VALUES (299, 0, 122, 1, 0, 0); -- Blue Magic skill+1
 INSERT INTO `augments` VALUES (300, 0, 0, 0, 0, 0); -- Geomancy Skill+1
 INSERT INTO `augments` VALUES (301, 0, 0, 0, 0, 0); -- Handbell Skill+1
 
--- 302 to 319 currently unused. Leave at zero.
+-- 302 to 319 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (302, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (303, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (304, 0, 0, 0, 0, 0);
@@ -414,7 +426,7 @@ INSERT INTO `augments` VALUES (342, 0, 0, 0, 0, 0); -- Waltz TP cost -1
 INSERT INTO `augments` VALUES (343, 0, 315, 1, 0, 0); -- "Drain" and "Aspir" Potency +1
 INSERT INTO `augments` VALUES (343, 0, 0, 0, 0, 0); -- Cont.
 
--- 344 to 349 currently unused. Leave at zero.
+-- 344 to 349 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (344, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (345, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (346, 0, 0, 0, 0, 0);
@@ -428,10 +440,10 @@ INSERT INTO `augments` VALUES (351, 0, 0, 0, 0, 0); -- Occ. quickens spellcastin
 INSERT INTO `augments` VALUES (352, 0, 0, 0, 0, 0); -- Occ. grants dmg. bonus based on TP+1%
 INSERT INTO `augments` VALUES (353, 0, 345, 50, 0, 0); -- TP Bonus +50
 INSERT INTO `augments` VALUES (354, 0, 430, 1, 0, 0);  -- Quadruple Attack+1
-INSERT INTO `augments` VALUES (355, 0, 0, 0, 0, 0); -- 355 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (355, 0, 0, 0, 0, 0); -- 355 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (356, 0, 375, 1, 0, 0); -- Potency of Cure received+1%
 
--- 354 to 362 currently unused. Leave at zero.
+-- 354 to 362 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (357, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (358, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (359, 0, 0, 0, 0, 0);
@@ -441,17 +453,17 @@ INSERT INTO `augments` VALUES (361, 0, 0, 0, 0, 0);
 
 INSERT INTO `augments` VALUES (362, 0, 311, 1, 0, 0); -- Magic Damage+1
 INSERT INTO `augments` VALUES (363, 0, 518, 1, 0, 0); -- Chance of successful block+1
-INSERT INTO `augments` VALUES (364, 0, 0, 0, 0, 0); -- 364 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (365, 0, 0, 0, 0, 0); -- 365 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (364, 0, 0, 0, 0, 0); -- 364 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (365, 0, 0, 0, 0, 0); -- 365 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (366, 0, 0, 0, 0, 0); -- Blood Pact Ability Delay II: Mod undefined as of yet so leaving blank.
-INSERT INTO `augments` VALUES (367, 0, 0, 0, 0, 0); -- 367 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (367, 0, 0, 0, 0, 0); -- 367 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (368, 0, 301, 1, 0, 0); -- Phalanx+1
 INSERT INTO `augments` VALUES (369, 0, 0, 0, 0, 0); -- Blood Pact Dmg+1: Mod undefined as of yet so leaving blank.
 INSERT INTO `augments` VALUES (370, 0, 0, 0, 0, 0); -- Reverse Flourish+1: Mod undefined as of yet so leaving blank.
 INSERT INTO `augments` VALUES (371, 0, 0, 0, 0, 0); -- Regen Potency+1: Mod undefined as of yet so leaving blank.
 INSERT INTO `augments` VALUES (372, 0, 0, 0, 0, 0); -- Embolden+1: Mod undefined as of yet so leaving blank.
 
--- 373 to 511 currently unused. Leave at zero.
+-- 373 to 511 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (373, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (374, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (375, 0, 0, 0, 0, 0);
@@ -701,7 +713,7 @@ INSERT INTO `augments` VALUES (558, 0, 12, 1, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (559, 0, 8, 1, 0, 0); -- STR+1 MND+1
 INSERT INTO `augments` VALUES (559, 0, 13, 1, 0, 0); -- Cont.
 
--- 560 to 739 currently unused. Leave at zero.
+-- 560 to 739 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (560, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (561, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (562, 0, 0, 0, 0, 0);
@@ -985,7 +997,7 @@ INSERT INTO `augments` VALUES (797, 0, 59, -1, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (797, 0, 60, -1, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (797, 0, 61, -1, 0, 0); -- Cont.
 
--- 798 to 927 currently unused. Leave at zero.
+-- 798 to 927 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (798, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (799, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (800, 0, 0, 0, 0, 0);
@@ -1020,37 +1032,38 @@ INSERT INTO `augments` VALUES (828, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (829, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (830, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (831, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (832, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (833, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (834, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (835, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (836, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (837, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (838, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (839, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (840, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (841, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (842, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (843, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (844, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (845, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (846, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (847, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (848, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (849, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (850, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (851, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (852, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (853, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (854, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (855, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (856, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (857, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (858, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (859, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (860, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (861, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (862, 0, 0, 0, 0, 0);
+-- NOTICE: additional effect augments will not work until we finish refactoring additional effects. See Teo in discrod for details.
+INSERT INTO `augments` VALUES (832, 0, 0, 0, 0, 0); -- Additional Effect: Fire Dmg      (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (833, 0, 0, 0, 0, 0); -- Additional Effect: Ice Dmg       (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (834, 0, 0, 0, 0, 0); -- Additional Effect: Wind Dmg      (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (835, 0, 0, 0, 0, 0); -- Additional Effect: Earth Dmg     (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (836, 0, 0, 0, 0, 0); -- Additional Effect: Lightning Dmg (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (837, 0, 0, 0, 0, 0); -- Additional Effect: Water Dmg     (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (838, 0, 0, 0, 0, 0); -- Additional Effect: Light Dmg     (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (839, 0, 0, 0, 0, 0); -- Additional Effect: Darkness Dmg  (Base of 5, each additional point +1 for range of 5 to 36)
+INSERT INTO `augments` VALUES (840, 0, 0, 0, 0, 0); -- Additional Effect: Disease +1
+INSERT INTO `augments` VALUES (841, 0, 0, 0, 0, 0); -- Additional Effect: Paralysis +1
+INSERT INTO `augments` VALUES (842, 0, 0, 0, 0, 0); -- Additional Effect: Silence +1
+INSERT INTO `augments` VALUES (843, 0, 0, 0, 0, 0); -- Additional Effect: Slow +1
+INSERT INTO `augments` VALUES (844, 0, 0, 0, 0, 0); -- Additional Effect: Stun +1
+INSERT INTO `augments` VALUES (845, 0, 0, 0, 0, 0); -- Additional Effect: Poison +1
+INSERT INTO `augments` VALUES (846, 0, 0, 0, 0, 0); -- Additional Effect: Flash +1
+INSERT INTO `augments` VALUES (847, 0, 0, 0, 0, 0); -- Additional Effect: Blindness +1
+INSERT INTO `augments` VALUES (848, 0, 0, 0, 0, 0); -- Additional Effect: Weakens Defense +1
+INSERT INTO `augments` VALUES (849, 0, 0, 0, 0, 0); -- Additional Effect: Sleep +1
+INSERT INTO `augments` VALUES (850, 0, 0, 0, 0, 0); -- Additional Effect: Weakens Attack +1
+INSERT INTO `augments` VALUES (851, 0, 0, 0, 0, 0); -- Additional Effect: Impairs Evasion +1
+INSERT INTO `augments` VALUES (852, 0, 0, 0, 0, 0); -- Additional Effect: Lowers Accuracy +1
+INSERT INTO `augments` VALUES (853, 0, 0, 0, 0, 0); -- Additional Effect: Lowers Magic Evasion +1
+INSERT INTO `augments` VALUES (854, 0, 0, 0, 0, 0); -- Additional Effect: Lowers Magic Attack +1
+INSERT INTO `augments` VALUES (855, 0, 0, 0, 0, 0); -- Additional Effect: Lowers Magic Defense +1
+INSERT INTO `augments` VALUES (856, 0, 0, 0, 0, 0); -- Additional Effect: Lowers Magic Accuracy +1
+INSERT INTO `augments` VALUES (857, 0, 0, 0, 0, 0); 
+INSERT INTO `augments` VALUES (858, 0, 0, 0, 0, 0); 
+INSERT INTO `augments` VALUES (859, 0, 0, 0, 0, 0); 
+INSERT INTO `augments` VALUES (860, 0, 0, 0, 0, 0); 
+INSERT INTO `augments` VALUES (861, 0, 0, 0, 0, 0); 
+INSERT INTO `augments` VALUES (862, 0, 0, 0, 0, 0); 
 INSERT INTO `augments` VALUES (863, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (864, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (865, 0, 0, 0, 0, 0);
@@ -1084,8 +1097,8 @@ INSERT INTO `augments` VALUES (892, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (893, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (894, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (895, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (896, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (897, 0, 0, 0, 0, 0);
+INSERT INTO `augments` VALUES (896, 0, 432, 1, 0, 0); -- Sword Enhancement Spell Damage +1
+INSERT INTO `augments` VALUES (897, 0, 96, 1, 0, 0); -- Enhances Souleater Effect +1%
 INSERT INTO `augments` VALUES (898, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (899, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (900, 0, 0, 0, 0, 0);
@@ -1266,7 +1279,7 @@ INSERT INTO `augments` VALUES (1014, 0, 0, 0, 0, 0); -- Cont.
 INSERT INTO `augments` VALUES (1015, 0, 354, 1, 0, 0); -- Dark Affinity: (otherwise same as augID 1008)
 INSERT INTO `augments` VALUES (1015, 0, 0, 0, 0, 0); -- Cont.
 
--- 1016 to 1023 currently unused. Leave at zero.
+-- 1016 to 1023 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1016, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1017, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1018, 0, 0, 0, 0, 0);
@@ -1337,7 +1350,7 @@ INSERT INTO `augments` VALUES (1078, 5, 780, 1, 0, 0); -- Sniper Shot:DMG+5% (in
 INSERT INTO `augments` VALUES (1079, 5, 785, 1, 0, 0); -- Detonator:DMG+5% (increases by 5)
 INSERT INTO `augments` VALUES (1080, 5, 840, 1, 0, 0); -- Weapon Skill:DMG+5% (increases by 5)
 
--- 1081 to 1248 currently unused. Leave at zero.
+-- 1081 to 1151 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1081, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1082, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1083, 0, 0, 0, 0, 0);
@@ -1409,13 +1422,17 @@ INSERT INTO `augments` VALUES (1148, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1149, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1150, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1151, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1152, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1153, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1154, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1155, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1156, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1157, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1158, 0, 0, 0, 0, 0);
+-- End unused block
+
+INSERT INTO `augments` VALUES (1152, 0, 1, 10, 0, 0); -- DEF +10
+INSERT INTO `augments` VALUES (1153, 0, 68, 3, 0, 0); -- Evasion +3
+INSERT INTO `augments` VALUES (1154, 0, 31, 3, 0, 0); -- Mag. Evasion +3
+INSERT INTO `augments` VALUES (1155, 0, 161, -2, 0, 0); -- Physical Damage Taken -2%
+INSERT INTO `augments` VALUES (1156, 0, 163, -2, 0, 0); -- Magic Damage Taken -2%
+INSERT INTO `augments` VALUES (1157, 0, 168, 2, 0, 0); -- Spell Interruption Rate Down 2%
+INSERT INTO `augments` VALUES (1158, 0, 0, 0, 0, 0); -- Occ. Resistance to Status Ailments +2
+
+-- 1159 to 1248 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1159, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1160, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1161, 0, 0, 0, 0, 0);
@@ -1503,15 +1520,15 @@ INSERT INTO `augments` VALUES (1242, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1243, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1244, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1245, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1246, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1247, 0, 0, 0, 0, 0);
 -- End unused block
 
+INSERT INTO `augments` VALUES (1246, 0, 161, -2, 1, 0); -- Pet: Phy. Dmg. Taken -2%
+INSERT INTO `augments` VALUES (1247, 0, 163, -2, 1, 0); -- Pet: Magic Dmg. Taken -2%
 INSERT INTO `augments` VALUES (1248, 0, 0, 0, 0, 0); -- Enhancing Magic Effect Duration +1: Mod undefined as of yet so leaving blank.
 INSERT INTO `augments` VALUES (1249, 0, 477, 1, 0, 0); -- Helix Effect Duration+1
 INSERT INTO `augments` VALUES (1250, 0, 0, 0, 0, 0); -- Indi Effect Duration+1: Mod undefined as of yet so leaving blank.
 
--- 1251 to 1263 currently unused. Leave at zero.
+-- 1251 to 1263 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1251, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1252, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1253, 0, 0, 0, 0, 0);
@@ -1525,7 +1542,11 @@ INSERT INTO `augments` VALUES (1260, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1261, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1262, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1263, 0, 0, 0, 0, 0);
+-- End unused block
+
 INSERT INTO `augments` VALUES (1264, 0, 0, 0, 0, 0); -- Meditate Effect Duration +1: Mod undefined as of yet so leaving blank.
+
+-- 1265 to 1279 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1265, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1266, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1267, 0, 0, 0, 0, 0);
@@ -1566,7 +1587,7 @@ INSERT INTO `augments` VALUES (1299, 0, 0, 0, 0, 0); -- Enhances Tablua Rasa eff
 INSERT INTO `augments` VALUES (1300, 0, 0, 0, 0, 0); -- Enhances Bolster effect
 INSERT INTO `augments` VALUES (1301, 0, 0, 0, 0, 0); -- Enhances Elemental Sforzo effect
 
- -- 1302 to 1327 currently unused. Leave at zero.
+ -- 1302 to 1327 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1302, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1303, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1304, 0, 0, 0, 0, 0);
@@ -1599,26 +1620,26 @@ INSERT INTO `augments` VALUES (1328, 0, 0, 0, 0, 0); -- Enhances "Savagery" effe
 INSERT INTO `augments` VALUES (1329, 0, 0, 0, 0, 0); -- Enhances "Aggressive Aim" effect
 INSERT INTO `augments` VALUES (1330, 0, 0, 0, 0, 0); -- Enhances "Warriors Charge" effect
 INSERT INTO `augments` VALUES (1331, 0, 0, 0, 0, 0); -- Enhances "Tomahawk" effect
-INSERT INTO `augments` VALUES (1332, 0, 0, 0, 0, 0); -- 1332 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1333, 0, 0, 0, 0, 0); -- 1333 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1332, 0, 0, 0, 0, 0); -- 1332 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1333, 0, 0, 0, 0, 0); -- 1333 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1334, 0, 0, 0, 0, 0); -- Enhances "Penance" effect
 INSERT INTO `augments` VALUES (1335, 0, 0, 0, 0, 0); -- Enhances "Formless Strikes" effect
 INSERT INTO `augments` VALUES (1336, 0, 0, 0, 0, 0); -- Enhances "Invigorate" effect
 INSERT INTO `augments` VALUES (1337, 0, 0, 0, 0, 0); -- Enhances "Mantra" effect
-INSERT INTO `augments` VALUES (1338, 0, 0, 0, 0, 0); -- 1338 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1339, 0, 0, 0, 0, 0); -- 1339 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1338, 0, 0, 0, 0, 0); -- 1338 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1339, 0, 0, 0, 0, 0); -- 1339 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1340, 0, 0, 0, 0, 0); -- Enhances "Protectra V" effect
 INSERT INTO `augments` VALUES (1341, 0, 0, 0, 0, 0); -- Enhances "Martyr" effect
 INSERT INTO `augments` VALUES (1342, 0, 0, 0, 0, 0); -- Enhances "Shellra V" effect
 INSERT INTO `augments` VALUES (1343, 0, 0, 0, 0, 0); -- Enhances "Devotion" effect
-INSERT INTO `augments` VALUES (1344, 0, 0, 0, 0, 0); -- 1344 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1345, 0, 0, 0, 0, 0); -- 1345 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1344, 0, 0, 0, 0, 0); -- 1344 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1345, 0, 0, 0, 0, 0); -- 1345 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1346, 0, 0, 0, 0, 0); -- Increases Ancient Magic II damage
 INSERT INTO `augments` VALUES (1347, 0, 0, 0, 0, 0); -- Reduces Ancient Magic II casting time
 INSERT INTO `augments` VALUES (1348, 0, 0, 0, 0, 0); -- Increases Ancient Magic II accuracy
 INSERT INTO `augments` VALUES (1349, 0, 0, 0, 0, 0); -- Reduces Ancient Magic II MP cost
-INSERT INTO `augments` VALUES (1350, 0, 0, 0, 0, 0); -- 1350 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1351, 0, 0, 0, 0, 0); -- 1351 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1350, 0, 0, 0, 0, 0); -- 1350 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1351, 0, 0, 0, 0, 0); -- 1351 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1352, 0, 0, 0, 0, 0); -- Enhances "Dia III" effect
 INSERT INTO `augments` VALUES (1353, 0, 0, 0, 0, 0); -- Enhances "Slow II" effect
 INSERT INTO `augments` VALUES (1354, 0, 0, 0, 0, 0); -- Enhances "Phalanx II" effect
@@ -1629,104 +1650,104 @@ INSERT INTO `augments` VALUES (1358, 0, 0, 0, 0, 0); -- Enhances "Aura Steal" ef
 INSERT INTO `augments` VALUES (1359, 0, 0, 0, 0, 0); -- Enhances "Ambush" effect
 INSERT INTO `augments` VALUES (1360, 0, 0, 0, 0, 0); -- Enhances "Feint" effect
 INSERT INTO `augments` VALUES (1361, 0, 0, 0, 0, 0); -- Enh. "Assassins Charge" effect
-INSERT INTO `augments` VALUES (1362, 0, 0, 0, 0, 0); -- 1362 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1363, 0, 0, 0, 0, 0); -- 1363 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1362, 0, 0, 0, 0, 0); -- 1362 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1363, 0, 0, 0, 0, 0); -- 1363 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1364, 0, 0, 0, 0, 0); -- Enhances "Iron Will" effect
 INSERT INTO `augments` VALUES (1365, 0, 0, 0, 0, 0); -- Enhances "Fealty" effect
 INSERT INTO `augments` VALUES (1366, 0, 0, 0, 0, 0); -- Enhances "Chivalry" effect
 INSERT INTO `augments` VALUES (1367, 0, 0, 0, 0, 0); -- Enhances "Guardian" effect
-INSERT INTO `augments` VALUES (1368, 0, 0, 0, 0, 0); -- 1368 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1369, 0, 0, 0, 0, 0); -- 1369 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1368, 0, 0, 0, 0, 0); -- 1368 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1369, 0, 0, 0, 0, 0); -- 1369 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1370, 0, 0, 0, 0, 0); -- Enhances "Dark Seal" effect
 INSERT INTO `augments` VALUES (1371, 0, 0, 0, 0, 0); -- Enhances "Diabolic Eye" effect
 INSERT INTO `augments` VALUES (1372, 0, 0, 0, 0, 0); -- Enhances "Muted Soul" effect
 INSERT INTO `augments` VALUES (1373, 0, 0, 0, 0, 0); -- Enhances "Desperate Blows" effect
-INSERT INTO `augments` VALUES (1374, 0, 0, 0, 0, 0); -- 1374 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1375, 0, 0, 0, 0, 0); -- 1375 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1374, 0, 0, 0, 0, 0); -- 1374 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1375, 0, 0, 0, 0, 0); -- 1375 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1376, 0, 0, 0, 0, 0); -- Enhances "Killer Instinct" effect
 INSERT INTO `augments` VALUES (1377, 0, 503, 1, 0, 0); -- Enhances "Feral Howl effect"
 INSERT INTO `augments` VALUES (1378, 0, 0, 0, 0, 0); -- Enhances Beast Affinity effect
 INSERT INTO `augments` VALUES (1379, 0, 0, 0, 0, 0); -- Enhances Beast Healer effect
-INSERT INTO `augments` VALUES (1380, 0, 0, 0, 0, 0); -- 1380 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1381, 0, 0, 0, 0, 0); -- 1381 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1380, 0, 0, 0, 0, 0); -- 1380 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1381, 0, 0, 0, 0, 0); -- 1381 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1382, 0, 0, 0, 0, 0); -- Enhances "Foe Sirvente" effect
 INSERT INTO `augments` VALUES (1383, 0, 0, 0, 0, 0); -- Enhances "Troubadour" effect
 INSERT INTO `augments` VALUES (1384, 0, 0, 0, 0, 0); -- Enh. "Adventurers Dirge" effect
 INSERT INTO `augments` VALUES (1385, 0, 0, 0, 0, 0); -- Enhances "Nightingale" effect
-INSERT INTO `augments` VALUES (1386, 0, 0, 0, 0, 0); -- 1386 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1387, 0, 0, 0, 0, 0); -- 1387 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1386, 0, 0, 0, 0, 0); -- 1386 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1387, 0, 0, 0, 0, 0); -- 1387 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1388, 0, 0, 0, 0, 0); -- Enhances "Recycle" effect
 INSERT INTO `augments` VALUES (1389, 0, 0, 0, 0, 0); -- Enhances "Snapshot" effect
 INSERT INTO `augments` VALUES (1390, 0, 0, 0, 0, 0); -- Enhances "Flashy Shot" effect
 INSERT INTO `augments` VALUES (1391, 0, 0, 0, 0, 0); -- Enhances "Stealth Shot" effect
-INSERT INTO `augments` VALUES (1392, 0, 0, 0, 0, 0); -- 1392 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1393, 0, 0, 0, 0, 0); -- 1393 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1392, 0, 0, 0, 0, 0); -- 1392 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1393, 0, 0, 0, 0, 0); -- 1393 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1394, 0, 0, 0, 0, 0); -- Enhances "Shikikoyo" effect
 INSERT INTO `augments` VALUES (1395, 0, 0, 0, 0, 0); -- Enhances "Overwhelm" effect
 INSERT INTO `augments` VALUES (1396, 0, 0, 0, 0, 0); -- Enhances "Blade Bash" effect
 INSERT INTO `augments` VALUES (1397, 0, 0, 0, 0, 0); -- Enhances "Ikishoten" effect
-INSERT INTO `augments` VALUES (1398, 0, 0, 0, 0, 0); -- 1398 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1399, 0, 0, 0, 0, 0); -- 1399 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1398, 0, 0, 0, 0, 0); -- 1398 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1399, 0, 0, 0, 0, 0); -- 1399 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1400, 0, 0, 0, 0, 0); -- Increases elem. ninjutsu III damage
 INSERT INTO `augments` VALUES (1401, 0, 0, 0, 0, 0); -- Enhances "Sange" effect
 INSERT INTO `augments` VALUES (1402, 0, 0, 0, 0, 0); -- Enh. Ninja Tool Expertise effect
 INSERT INTO `augments` VALUES (1403, 0, 0, 0, 0, 0); -- Reduces elem. ninjutsu III cast time
-INSERT INTO `augments` VALUES (1404, 0, 0, 0, 0, 0); -- 1404 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1405, 0, 0, 0, 0, 0); -- 1405 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1404, 0, 0, 0, 0, 0); -- 1404 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1405, 0, 0, 0, 0, 0); -- 1405 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1406, 0, 0, 0, 0, 0); -- Enhances Deep Breathing effect
 INSERT INTO `augments` VALUES (1407, 0, 0, 0, 0, 0); -- Enhances Angon effect
 INSERT INTO `augments` VALUES (1408, 0, 0, 0, 0, 0); -- Enhances Strafe effect
 INSERT INTO `augments` VALUES (1409, 0, 0, 0, 0, 0); -- Enhances Empathy effect
-INSERT INTO `augments` VALUES (1410, 0, 0, 0, 0, 0); -- 1410 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1411, 0, 0, 0, 0, 0); -- 1411 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1410, 0, 0, 0, 0, 0); -- 1410 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1411, 0, 0, 0, 0, 0); -- 1411 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1412, 0, 0, 0, 0, 0); -- Reduces Sp Blood Pact MP cost
 INSERT INTO `augments` VALUES (1413, 0, 0, 0, 0, 0); -- Inc Sp Blood Pact magic burst dmg
 INSERT INTO `augments` VALUES (1414, 0, 0, 0, 0, 0); -- Increases Sp Blood Pact accuracy
 INSERT INTO `augments` VALUES (1415, 0, 0, 0, 0, 0); -- Inc. Sp. Blood Pact magic crit. dmg.
-INSERT INTO `augments` VALUES (1416, 0, 0, 0, 0, 0); -- 1416 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1417, 0, 0, 0, 0, 0); -- 1417 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1416, 0, 0, 0, 0, 0); -- 1416 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1417, 0, 0, 0, 0, 0); -- 1417 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1418, 0, 0, 0, 0, 0); -- Enhances "Convergence" effect
 INSERT INTO `augments` VALUES (1419, 0, 0, 0, 0, 0); -- Enhances "Enchainment" effect
 INSERT INTO `augments` VALUES (1420, 0, 0, 0, 0, 0); -- Enhances "Assimilation" effect
 INSERT INTO `augments` VALUES (1421, 0, 0, 0, 0, 0); -- Enhances "Diffusion" effect
-INSERT INTO `augments` VALUES (1422, 0, 0, 0, 0, 0); -- 1422 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1423, 0, 0, 0, 0, 0); -- 1423 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1422, 0, 0, 0, 0, 0); -- 1422 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1423, 0, 0, 0, 0, 0); -- 1423 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1424, 0, 0, 0, 0, 0); -- Enhances "Winning Streak" effect
 INSERT INTO `augments` VALUES (1425, 0, 0, 0, 0, 0); -- Enhances "Loaded Deck" effect
 INSERT INTO `augments` VALUES (1426, 0, 0, 0, 0, 0); -- Enhances "Fold" effect
 INSERT INTO `augments` VALUES (1427, 0, 0, 0, 0, 0); -- Enhances "Snake Eye" effect
-INSERT INTO `augments` VALUES (1428, 0, 0, 0, 0, 0); -- 1428 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1429, 0, 0, 0, 0, 0); -- 1429 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1428, 0, 0, 0, 0, 0); -- 1428 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1429, 0, 0, 0, 0, 0); -- 1429 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1430, 0, 0, 0, 0, 0); -- Enhances "Optimization" effect
 INSERT INTO `augments` VALUES (1431, 0, 0, 0, 0, 0); -- Enhances "Fine-Tuning" effect
 INSERT INTO `augments` VALUES (1432, 0, 0, 0, 0, 0); -- Enhances "Ventriloquy" effect
 INSERT INTO `augments` VALUES (1433, 0, 0, 0, 0, 0); -- Enhances "Role Reversal" effect
-INSERT INTO `augments` VALUES (1434, 0, 0, 0, 0, 0); -- 1434 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1435, 0, 0, 0, 0, 0); -- 1435 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1434, 0, 0, 0, 0, 0); -- 1434 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1435, 0, 0, 0, 0, 0); -- 1435 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1436, 0, 0, 0, 0, 0); -- Enhances "No Foot" Rise effect
 INSERT INTO `augments` VALUES (1437, 0, 0, 0, 0, 0); -- Enhances "Fan Dance" effect
 INSERT INTO `augments` VALUES (1438, 0, 0, 0, 0, 0); -- Enhances "Saber Dance" effect
 INSERT INTO `augments` VALUES (1439, 0, 0, 0, 0, 0); -- Enhances "Closed Position" effect
-INSERT INTO `augments` VALUES (1440, 0, 0, 0, 0, 0); -- 1440 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1441, 0, 0, 0, 0, 0); -- 1441 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1440, 0, 0, 0, 0, 0); -- 1440 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1441, 0, 0, 0, 0, 0); -- 1441 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1442, 0, 0, 0, 0, 0); -- Enh. "Altruism" and "Focalization"
 INSERT INTO `augments` VALUES (1443, 0, 0, 0, 0, 0); -- Enhances "Enlightenment" effect
 INSERT INTO `augments` VALUES (1444, 0, 0, 0, 0, 0); -- Enh. "Tranquility" and "Equanimity"
 INSERT INTO `augments` VALUES (1445, 0, 0, 0, 0, 0); -- Enhances Stormsurge effect
-INSERT INTO `augments` VALUES (1446, 0, 0, 0, 0, 0); -- 1446 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1447, 0, 0, 0, 0, 0); -- 1447 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1446, 0, 0, 0, 0, 0); -- 1446 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1447, 0, 0, 0, 0, 0); -- 1447 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1448, 0, 0, 0, 0, 0); -- Enhances "Mending Halation" effect
 INSERT INTO `augments` VALUES (1449, 0, 0, 0, 0, 0); -- Enhances "Radial Arcana" effect
 INSERT INTO `augments` VALUES (1450, 0, 0, 0, 0, 0); -- Enhances "Curative Recantation" effect
 INSERT INTO `augments` VALUES (1451, 0, 0, 0, 0, 0); -- Enhances "Primeval Zeal" effect
-INSERT INTO `augments` VALUES (1452, 0, 0, 0, 0, 0); -- 1452 currently unused. Leave at zero.
-INSERT INTO `augments` VALUES (1453, 0, 0, 0, 0, 0); -- 1453 currently unused. Leave at zero.
+INSERT INTO `augments` VALUES (1452, 0, 0, 0, 0, 0); -- 1452 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+INSERT INTO `augments` VALUES (1453, 0, 0, 0, 0, 0); -- 1453 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1454, 0, 0, 0, 0, 0); -- Enhances "Battuta" effect
 INSERT INTO `augments` VALUES (1455, 0, 0, 0, 0, 0); -- Enhances "Rayke" effect
 INSERT INTO `augments` VALUES (1456, 0, 0, 0, 0, 0); -- Enhances "Inspire" effect
 INSERT INTO `augments` VALUES (1457, 0, 0, 0, 0, 0); -- Enhances "Sleight of Sword" effect
 
--- 1458 to 1791 currently unused. Leave at zero.
+-- 1458 to 1471 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1458, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1459, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1460, 0, 0, 0, 0, 0);
@@ -1741,7 +1762,11 @@ INSERT INTO `augments` VALUES (1468, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1469, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1470, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1471, 0, 0, 0, 0, 0);
-INSERT INTO `augments` VALUES (1472, 0, 0, 0, 0, 0);
+-- End unused block
+
+INSERT INTO `augments` VALUES (1472, 0, 0, 0, 0, 0); -- Parrying rate +1% (not +skill)
+
+-- 1473 to 1791 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1473, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1474, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1475, 0, 0, 0, 0, 0);
@@ -2081,7 +2106,7 @@ INSERT INTO `augments` VALUES (1806, 0, 8, 1, 1, 0); -- Pet: STR+1 DEX+1 VIT+1
 INSERT INTO `augments` VALUES (1806, 0, 9, 1, 1, 0); -- Cont.
 INSERT INTO `augments` VALUES (1806, 0, 10, 1, 1, 0); -- Cont.
 
--- 1807 to 2046 currently unused. Leave at zero.
+-- 1807 to 2046 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
 INSERT INTO `augments` VALUES (1807, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1808, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (1809, 0, 0, 0, 0, 0);
@@ -2324,6 +2349,6 @@ INSERT INTO `augments` VALUES (2045, 0, 0, 0, 0, 0);
 INSERT INTO `augments` VALUES (2046, 0, 0, 0, 0, 0);
 -- End unused block
 
-INSERT INTO `augments` VALUES (2047, 0, 0, 0, 0, 0); -- ??? (it literally just says "???")
+INSERT INTO `augments` VALUES (2047, 0, 0, 0, 0, 0); -- ??? (it literally just says "???") - used by WotG scenario reward
 
 -- Dump completed on 2017-03-02  0:17:46

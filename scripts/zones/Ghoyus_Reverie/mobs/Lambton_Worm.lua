@@ -5,9 +5,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(LAMBTON_WORM_DESEGMENTER);
+    player:addTitle(dsp.title.LAMBTON_WORM_DESEGMENTER);
 end;

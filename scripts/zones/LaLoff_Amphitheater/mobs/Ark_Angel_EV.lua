@@ -2,25 +2,20 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel EV
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(MOD_REGAIN, 50);
-end;
-
-function onMobSpawn(mob)
+    mob:addMod(dsp.mod.REGAIN, 50);
 end;
 
 function onMobEngaged(mob,target)
     local mobid = mob:getID()
 
     for member = mobid-4, mobid+3 do
-        if (GetMobAction(member) == 16) then
-            GetMobByID(member):updateEnmity(target);
+        local m = GetMobByID(member)
+        if m:getCurrentAction() == dsp.act.ROAMING then
+            m:updateEnmity(target)
         end
     end
 

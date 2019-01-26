@@ -3,9 +3,7 @@
 -- Name: Mission 5-2
 -- !pos -111 -6 0.1 165
 -----------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
--------------------------------------
-require("scripts/zones/Throne_Room/TextIDs");
+local ID = require("scripts/zones/Throne_Room/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -54,8 +52,8 @@ function onEventFinish(player,csid,option)
             player:startEvent(7);
         end
     elseif (csid==7) then
-        player:addKeyItem(SHADOW_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,SHADOW_FRAGMENT);
+        player:addKeyItem(dsp.ki.SHADOW_FRAGMENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHADOW_FRAGMENT);
         player:setVar("MissionStatus",4);
         player:setPos(378, -12, -20, 125, 161);
     end

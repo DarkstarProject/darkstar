@@ -2,13 +2,10 @@
 -- Area: Southern San d'Oria
 --  NPC: Exoroche
 -- Involved in Quests: Father and Son, A Boy's Dream
--- @zone 230
--- !pos 72 -1 60
+-- !pos 72 -1 60 230
 
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -21,7 +18,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -39,11 +36,11 @@ function onTrigger(player,npc)
         player:startEvent(50);
     elseif (player:getVar("aBoysDreamCS") >= 7) then
         player:startEvent(32);
-    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(STRANGE_SHEET_OF_PAPER)) then
+    elseif (player:getVar("UnderOathCS") == 4 and player:hasKeyItem(dsp.ki.STRANGE_SHEET_OF_PAPER)) then
         player:startEvent(77);
     elseif (player:getVar("UnderOathCS") == 5) then
         player:startEvent(79);
-    elseif (player:hasKeyItem(KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
+    elseif (player:hasKeyItem(dsp.ki.KNIGHTS_CONFESSION) and player:getVar("UnderOathCS") == 6) then
         player:startEvent(51);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(19);
@@ -54,13 +51,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 542) then
         player:setVar("QuestfatherAndSonVar",1);
     elseif (csid == 50) then

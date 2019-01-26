@@ -3,11 +3,9 @@
 --  NPC: Corann
 -- Start & Finishes Quest: The Quadav's Curse
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -43,13 +41,9 @@ OutOfOneShell = player:getQuestStatus(BASTOK,OUT_OF_ONE_S_SHELL);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 80) then
         player:addQuest(BASTOK,THE_QUADAV_S_CURSE);
@@ -58,11 +52,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,THE_QUADAV_S_CURSE);
         player:addFame(BASTOK,120);
         player:addItem(12832);
-        player:messageSpecial(ITEM_OBTAINED,12832);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12832);
     end
 
 end;
-
-
-
-

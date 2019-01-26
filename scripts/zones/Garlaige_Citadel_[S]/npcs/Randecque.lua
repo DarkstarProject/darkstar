@@ -4,11 +4,9 @@
 -- !pos 61 -6 137 164
 -- Notes: Gives Red Letter required to start "Steamed Rams"
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,23 +20,19 @@ function onTrigger(player,npc)
             -- message for other nations missing
             player:startEvent(3);
         end
-    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == true) then
+    elseif (player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER) == true) then
         player:startEvent(2);
-    elseif (player:hasKeyItem(RED_RECOMMENDATION_LETTER) == false) then
+    elseif (player:hasKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER) == false) then
         player:startEvent(1);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 1 and option == 0) then
-        player:addKeyItem(RED_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, RED_RECOMMENDATION_LETTER);
+        player:addKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RED_RECOMMENDATION_LETTER);
     end
 end;

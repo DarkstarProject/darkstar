@@ -3,19 +3,16 @@
 -- Zone: Labyrinth_of_Onzozo (213)
 --
 -----------------------------------
-package.loaded["scripts/zones/Labyrinth_of_Onzozo/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Labyrinth_of_Onzozo/TextIDs");
-require("scripts/zones/Labyrinth_of_Onzozo/MobIDs");
+local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs");
 require("scripts/globals/conquest");
-require("scripts/globals/zone");
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(MYSTICMAKER_PROFBLIX);
-    GetMobByID(MYSTICMAKER_PROFBLIX):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.MYSTICMAKER_PROFBLIX);
+    GetMobByID(ID.mob.MYSTICMAKER_PROFBLIX):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(17649900);
+    dsp.treasure.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -27,22 +24,14 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

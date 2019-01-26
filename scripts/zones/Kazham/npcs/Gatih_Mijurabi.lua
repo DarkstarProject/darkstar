@@ -2,12 +2,12 @@
 -- Area: Kazham
 --   NPC: Gatih Mijurabi
 -- Type: Standard NPC
--- @zone 250
--- !pos 58.249 -13.086 -49.084
+-- !pos 58.249 -13.086 -49.084 250
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
+local ID = require("scripts/zones/Kazham/IDs")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,23 +30,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 191) then
         player:addQuest(OUTLANDS, PERSONAL_HYGIENE);
     elseif (csid == 193) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13247);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13247);
         else
             player:completeQuest(OUTLANDS, PERSONAL_HYGIENE);
             player:addItem(13247); -- Mithran Stone
-            player:messageSpecial(ITEM_OBTAINED,13247);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13247);
         end
     end
 end;
-

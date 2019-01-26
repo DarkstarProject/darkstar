@@ -28,16 +28,26 @@
 #include "../map.h"
 #include "itemutils.h"
 
-std::array<CItem*, MAX_ITEMID> g_pItemList;// глобальный массив указателей на игровые предметы
-std::array<DropList_t*, MAX_DROPID> g_pDropList;    // глобальный массив списков выпадающих предметов
-std::array<LootList_t*, MAX_LOOTID> g_pLootList;
+std::array<CItem*, MAX_ITEMID> g_pItemList;      // global array of pointers to game items
+std::array<DropList_t*, MAX_DROPID> g_pDropList; // global array of monster droplist items
+std::array<LootList_t*, MAX_LOOTID> g_pLootList; // global array of BCNM lootlist items
 
 CItemWeapon* PUnarmedItem;
 CItemWeapon* PUnarmedH2HItem;
 
+DropItem_t::DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate)
+    : DropType(DropType)
+    , ItemID(ItemID)
+    , DropRate(DropRate)
+{ }
+
+DropGroup_t::DropGroup_t(uint16 GroupRate)
+    : GroupRate(GroupRate)
+{ }
+
 /************************************************************************
 *                                                                       *
-*  Собственно методы работы с глобальной коллекцией предметов           *
+*  Actually methods of working with a global collection of items        *
 *                                                                       *
 ************************************************************************/
 
@@ -46,7 +56,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Создаем пустой экземпляр предмета по ID (private метод)              *
+    *  Create an empty instance of the item by ID (private method)          *
     *                                                                       *
     ************************************************************************/
 
@@ -89,19 +99,18 @@ namespace itemutils
             return new CItemGeneral(ItemID);
         }
 
-
         return nullptr;
     }
 
     /************************************************************************
     *                                                                       *
-    *  Создаем новый экземпляр предмета по ID                               *
+    *  Create a new copy of the item ID                                     *
     *                                                                       *
     ************************************************************************/
 
     CItem* GetItem(uint16 ItemID)
     {
-        if( (ItemID == 0xFFFF) )
+        if (ItemID == 0xFFFF)
         {
             return new CItemCurrency(ItemID);
         }
@@ -149,7 +158,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Создаем копию предмета                                               *
+    *  Create a copy of the item                                            *
     *                                                                       *
     ************************************************************************/
 
@@ -194,7 +203,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Получаем указатель на предмет из коллекции (только для чтения)       *
+    *  Get a pointer to an item (read-only)                                 *
     *                                                                       *
     ************************************************************************/
 
@@ -226,7 +235,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Список выпадаемых из монстров предметов                              *
+    *  Get the monsters item drop list                                      *
     *                                                                       *
     ************************************************************************/
 
@@ -258,7 +267,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Загружаем базу предметов                                             *
+    *  Load the items                                                       *
     *                                                                       *
     ************************************************************************/
 
@@ -454,7 +463,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Загружаем списки предметов, выпадающих из монстров                   *
+    *  load lists of items monsters drop                                    *
     *                                                                       *
     ************************************************************************/
 
@@ -473,19 +482,29 @@ namespace itemutils
                     g_pDropList[DropID] = new DropList_t;
                 }
 
-                DropItem_t DropItem;
+                DropList_t* dropList = g_pDropList[DropID];
 
-                DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
-                DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
-                DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
-                DropItem.GroupId = (uint8)Sql_GetIntData(SqlHandle,4);
-                DropItem.GroupRate = (uint16)Sql_GetIntData(SqlHandle,5);
+                uint16 ItemID = (uint16)Sql_GetIntData(SqlHandle, 1);
+                uint8 DropType = (uint8)Sql_GetIntData(SqlHandle, 2);
+                uint16 DropRate = (uint16)Sql_GetIntData(SqlHandle, 3);
 
-                g_pDropList[DropID]->push_back(DropItem);
+                if (DropType == DROP_GROUPED)
+                {
+                    uint8 GroupId = (uint8)Sql_GetIntData(SqlHandle, 4);
+                    uint16 GroupRate = (uint16)Sql_GetIntData(SqlHandle, 5);
+                    while (GroupId >= dropList->Groups.size())
+                    {
+                        dropList->Groups.emplace_back(GroupRate);
+                    }
+                    dropList->Groups[GroupId].Items.emplace_back(DropType, ItemID, DropRate);
+                }
+                else
+                {
+                    dropList->Items.emplace_back(DropType, ItemID, DropRate);
+                }
             }
         }
     }
-
 
     /************************************************************************
     *                                                                       *
@@ -522,7 +541,7 @@ namespace itemutils
 
     /************************************************************************
     *                                                                       *
-    *  Инициализация системы игровых предметов                              *
+    *  Initialization of the  game objects             bbbb                 *
     *                                                                       *
     ************************************************************************/
 
@@ -534,20 +553,20 @@ namespace itemutils
 
         PUnarmedItem = new CItemWeapon(0);
 
-        PUnarmedItem->setDmgType(DAMAGE_NONE);
-        PUnarmedItem->setSkillType(SKILL_NON);
+        PUnarmedItem->setDmgType(DAMAGE_IMPACT);
+        PUnarmedItem->setSkillType(SKILL_NONE);
         PUnarmedItem->setDamage(3);
 
         PUnarmedH2HItem = new CItemWeapon(0);
 
         PUnarmedH2HItem->setDmgType(DAMAGE_HTH);
-        PUnarmedH2HItem->setSkillType(SKILL_H2H);
+        PUnarmedH2HItem->setSkillType(SKILL_HAND_TO_HAND);
         PUnarmedH2HItem->setDamage(3);
     }
 
     /************************************************************************
     *                                                                       *
-    *  Освобождаем базу предметов (метод только для "галочки")              *
+    *  Release the list of items                                            *
     *                                                                       *
     ************************************************************************/
 

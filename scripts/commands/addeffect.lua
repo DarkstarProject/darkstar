@@ -55,7 +55,7 @@ function onTrigger(player, arg1, arg2, arg3, arg4, arg5, arg6)
         error(player, "Invalid effect.");
         return;
     else
-        id = tonumber(id) or _G[string.upper(id)];
+        id = tonumber(id) or dsp.effect[string.upper(id)];
         if (id == nil) then
             error(player, "Invalid player or effect.");
             return;
@@ -69,7 +69,7 @@ function onTrigger(player, arg1, arg2, arg3, arg4, arg5, arg6)
     end
 
     -- validate duration
-    if (duration < 1) then
+    if (duration < 0) then
         error(player, "Invalid duration.");
         return;
     end

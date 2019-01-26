@@ -4,49 +4,34 @@
 -- Spawns Adamantoise or Aspidochelone
 -- !pos 0 0 -37 59
 -----------------------------------
-package.loaded["scripts/zones/Valley_of_Sorrows/TextIDs"] = nil;
+local ID = require("scripts/zones/Valley_of_Sorrows/IDs")
+require("scripts/globals/npc_util")
+require("scripts/globals/settings")
+require("scripts/globals/status")
 -----------------------------------
-require("scripts/zones/Valley_of_Sorrows/TextIDs");
-require("scripts/zones/Valley_of_Sorrows/MobIDs");
-require("scripts/globals/settings");
-require("scripts/globals/status");
 
 function onSpawn(npc)
-    if (LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1) then
-        npc:setStatus(STATUS_DISAPPEAR);
+    if LandKingSystem_NQ < 1 and LandKingSystem_HQ < 1 then
+        npc:setStatus(dsp.status.DISAPPEAR)
     end
-end;
+end
 
 function onTrade(player,npc,trade)
-    local nq = GetMobByID(ADAMANTOISE);
-    local hq = GetMobByID(ASPIDOCHELONE);
-
-    if (not nq:isSpawned() and not hq:isSpawned()) then
-        -- Trade Clump of Blue Pondweed
-        if (trade:hasItemQty(3343,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_NQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(ADAMANTOISE):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
-            end
-        -- Trade Clump of Red Pondweed
-        elseif (trade:hasItemQty(3344,1) and trade:getItemCount() == 1) then
-            if (LandKingSystem_HQ ~= 0) then
-                player:tradeComplete();
-                SpawnMob(ASPIDOCHELONE):updateClaim(player);
-                npc:setStatus(STATUS_DISAPPEAR);
-            end
+    if not GetMobByID(ID.mob.ADAMANTOISE):isSpawned() and not GetMobByID(ID.mob.ASPIDOCHELONE):isSpawned() then
+        if LandKingSystem_NQ ~= 0 and npcUtil.tradeHas(trade, 3343) and npcUtil.popFromQM(player, npc, ID.mob.ADAMANTOISE) then
+            player:confirmTrade()
+        elseif LandKingSystem_HQ ~= 0 and npcUtil.tradeHas(trade, 3344) and npcUtil.popFromQM(player, npc, ID.mob.ASPIDOCHELONE) then
+            player:confirmTrade()        
         end
     end
-
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

@@ -2,11 +2,8 @@
 -- Area: Meriphataud Mountains
 --  MOB: Patripatan
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,63,1);
-end;
-
-function onMobDespawn(mob)
+    dsp.regime.checkRegime(player, mob, 63, 1, dsp.regime.type.FIELDS)
 end;

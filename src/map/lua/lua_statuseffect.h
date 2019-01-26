@@ -68,6 +68,7 @@ public:
     int32 resetStartTime(lua_State*);
 
     int32 addMod(lua_State*);
+    int32 getFlag(lua_State*);
     int32 setFlag(lua_State*);
     int32 unsetFlag(lua_State*);
 };

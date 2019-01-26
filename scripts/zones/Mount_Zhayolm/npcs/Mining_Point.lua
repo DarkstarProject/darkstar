@@ -2,26 +2,19 @@
 -- Area: Mount Zhayolm
 --  NPC: Mining Point
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
--------------------------------------
-require("scripts/globals/mining");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+require("scripts/globals/helm")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    startMining(player,player:getZoneID(),npc,trade,0x0099);
-end;
+    dsp.helm.onTrade(player, npc, trade, dsp.helm.type.MINING, 153)
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(MINING_IS_POSSIBLE_HERE,605);
-end;
+    dsp.helm.onTrigger(player, dsp.helm.type.MINING)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end

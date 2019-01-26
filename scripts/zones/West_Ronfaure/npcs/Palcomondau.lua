@@ -4,8 +4,7 @@
 -- Type: Patrol
 -- !pos -349.796 -45.345 344.733 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/West_Ronfaure/IDs")
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -305,20 +304,20 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     onPath(npc);
 end;
 
 function onPath(npc)
 
-    if (npc:atPoint(pathfind.get(path, 45))) then
+    if (npc:atPoint(dsp.path.get(path, 45))) then
         local Gachemage = GetNPCByID(npc:getID() + 3);
-        Gachemage:showText(npc, PALCOMONDAU_REPORT);
+        Gachemage:showText(npc, ID.text.PALCOMONDAU_REPORT);
         -- small delay after path finish
         npc:wait(8000);
     end
 
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 
 end;
 
@@ -326,16 +325,12 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, PALCOMONDAU_DIALOG);
+    player:showText(npc, ID.text.PALCOMONDAU_DIALOG);
     --npc:wait(1500);
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

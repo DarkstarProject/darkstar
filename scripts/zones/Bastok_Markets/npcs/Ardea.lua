@@ -5,9 +5,6 @@
 -- Involved in quests: Chasing Quotas, Rock Racketeer
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -17,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
 
-    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETTER);
+    local RockRacketeer = player:getQuestStatus(WINDURST,ROCK_RACKETEER);
     local Quotas_Status = player:getVar("ChasingQuotas_Progress");
 
     -- Rock Racketeer
-    if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(SHARP_GRAY_STONE)) then
+    if (RockRacketeer == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SHARP_GRAY_STONE)) then
         player:startEvent(261);
 
     elseif (Quotas_Status == 3) then
@@ -35,17 +32,13 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     -- Rock Racketeer
     if (csid == 261 and option ~= 1) then
-        player:delKeyItem(SHARP_GRAY_STONE);
+        player:delKeyItem(dsp.ki.SHARP_GRAY_STONE);
         player:addGil(GIL_RATE*10);
         player:setVar("rockracketeer_sold",1);
     elseif (csid == 261 and option ~= 2) then

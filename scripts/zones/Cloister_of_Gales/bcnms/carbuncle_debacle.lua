@@ -2,10 +2,7 @@
 -- Area: Cloister of Gales
 -- BCNM: Carbuncle Debacle
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
--------------------------------------
 
-require("scripts/zones/Cloister_of_Gales/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 
@@ -47,6 +44,6 @@ function onEventFinish(player,csid,option)
 
     if (csid == 32001) then
         player:setVar("CarbuncleDebacleProgress",7);
-        player:delKeyItem(DAZEBREAKER_CHARM);
+        player:delKeyItem(dsp.ki.DAZEBREAKER_CHARM);
     end;
 end;

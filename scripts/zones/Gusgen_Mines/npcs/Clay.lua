@@ -4,12 +4,10 @@
 -- Involved in Quest: A Potter's Preference
 -- !pos 117 -21 432 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Gusgen_Mines/TextIDs");
+local ID = require("scripts/zones/Gusgen_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,13 +19,13 @@ function onTrigger(player,npc)
 
     if (player:hasItem(GUSGENCLAY) == false) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,GUSGENCLAY);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,GUSGENCLAY);
         else
             player:addItem(GUSGENCLAY);
-            player:messageSpecial(ITEM_OBTAINED, GUSGENCLAY);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, GUSGENCLAY);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_THE_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
@@ -37,6 +35,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

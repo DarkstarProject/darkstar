@@ -3,45 +3,37 @@
 --  NPC: Torapiont
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Selbina/TextIDs");
-require("scripts/globals/shop");
+local ID = require("scripts/zones/Selbina/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,TORAPIONT_SHOP_DIALOG);
-
     local stock =
     {
-        0x401B,11491,        --Claws
-     0x4043,7727,        --Mythril Dagger
-     0x4081,11588,        --Tuck
-     0x40C8,37800,        --Mythril Claymore
-     0x4103,11040,        --Battleaxe
-     0x4141,4095,        --Greataxe
-     0x429A,333,        --Willow Wand
-     0x429B,1409,        --Yew Wand
-     0x42C1,571,        --Holly Staff
-     0x439B,9,        --Dart
-     0x43B8,5,        --Crossbow Bolt
-     0x43A6,3,        --Wooden Arrow
-     0x43A8,7}        --Iron Arrow
+        16411, 11491,    -- Claws
+        16451,  7727,    -- Mythril Dagger
+        16513, 11588,    -- Tuck
+        16584, 37800,    -- Mythril Claymore
+        16643, 11040,    -- Battleaxe
+        16705,  4095,    -- Greataxe
+        17050,   333,    -- Willow Wand
+        17051,  1409,    -- Yew Wand
+        17089,   571,    -- Holly Staff
+        17307,     9,    -- Dart
+        17336,     5,    -- Crossbow Bolt
+        17318,     3,    -- Wooden Arrow
+        17320,     7,    -- Iron Arrow
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.TORAPIONT_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

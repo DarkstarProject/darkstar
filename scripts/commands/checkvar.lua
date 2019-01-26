@@ -21,7 +21,7 @@ function onTrigger(player, arg1, arg2)
     if (arg2 == nil) then
         -- no player provided. shift arguments by one.
         targ = nil;
-        varName = arg1;    
+        varName = arg1;
     else
         targ = arg1;
         varName = arg2;

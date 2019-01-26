@@ -5,9 +5,6 @@
 -- Involved in quest: No Strings Attached
 -- !pos -285.382 -13.021 -84.743 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -29,13 +26,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 434) then
         player:setVar("NoStringsAttachedProgress",1);

@@ -4,6 +4,7 @@
 -- Involved in Mission: Secrets of Worship
 -- !pos 45.500 -1.500 10.000 28
 -----------------------------------
+local ID = require("scripts/zones/Sacrarium/IDs")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -13,13 +14,13 @@ function onTrigger(player,npc)
     if (player:getXPos() > 45) then
         if (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(6,0,582);
-        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:getCurrentMission(COP) == THE_SECRETS_OF_WORSHIP and player:getVar("PromathiaStatus") == 4 and player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY) == true) then
             player:startEvent(5);
-        elseif (player:hasKeyItem(RELIQUIARIUM_KEY) == true) then
+        elseif (player:hasKeyItem(dsp.ki.RELIQUIARIUM_KEY) == true) then
             player:startEvent(110);
         end
     else
-        player:messageSpecial(CANNOT_OPEN_SIDE);
+        player:messageSpecial(ID.text.CANNOT_OPEN_SIDE);
     end
     return 1;
 end;
@@ -28,8 +29,6 @@ function onTrade(player,npc,trade)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)

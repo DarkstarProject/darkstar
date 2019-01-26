@@ -4,15 +4,12 @@
 -- Waughroon Shrine Burning Circle
 -- !pos -345 104 -260 144
 -------------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
 
     ---- 0: Rank 2 Final Mission for Bastok "The Emissary" and Sandy "Journey Abroad"
     ---- 1: Worms Turn
@@ -36,10 +33,6 @@ require("scripts/zones/Waughroon_Shrine/TextIDs");
     ---- 19: The Palborough Project
     ---- 20: Shell Shocked
     ---- 21: Beyond infinity
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -47,10 +40,6 @@ function onTrade(player,npc,trade)
     end
 
 end;
-
------------------------------------
--- onTrigger Action
------------------------------------
 
 function onTrigger(player,npc)
 
@@ -60,10 +49,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

@@ -7,19 +7,19 @@
 --  Range: Unknown cone
 --  Notes:
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
-    local dmgmod = MobBreathMove(mob, target, 0.167, 1.875, ELE_EARTH, 500);
+    local dmgmod = MobBreathMove(mob, target, 0.167, 1.875, dsp.magic.ele.EARTH, 500)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_EARTH,MOBPARAM_IGNORE_SHADOWS);
-    target:delHP(dmg);
-    return dmg;
-end;
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.EARTH,MOBPARAM_IGNORE_SHADOWS)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.EARTH)
+    return dmg
+end

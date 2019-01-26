@@ -4,23 +4,30 @@
 -- Type: Standard NPC
 -- !pos -2.502 -47.999 -15.083 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:startEvent(89);
+
+    local pNation = player:getNation();
+    local currentMission = player:getCurrentMission(pNation);
+    local MissionStatus = player:getVar("MissionStatus");
+    
+    if (player:getCurrentMission(WINDURST) == MOON_READING and MissionStatus >= 3) or (player:hasCompletedMission(WINDURST, MOON_READING)) then
+        player:startEvent(404);
+    else
+        player:startEvent(89);
+    end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
+    if (csid == 404) then
+        player:setVar("TremendousWish",0);
+    end
 end;
-

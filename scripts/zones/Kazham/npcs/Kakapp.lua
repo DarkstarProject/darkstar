@@ -3,10 +3,6 @@
 --  NPC: Kakapp
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     -- item IDs
@@ -57,13 +53,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 226) then    -- correct trade, onto next opo
         if player:getVar("OPO_OPO_PROGRESS") == 7 then

@@ -4,9 +4,7 @@
 -- Type: Travelling Merchant NPC / NPC Quiver Maker / San d'Oria 1st Place
 -- !pos 23 2 -13 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -101,7 +99,7 @@ function onTrade(player,npc,trade)
                 if (v[1] == itemId) then
                     local itemQty = trade:getSlotQty(i);
                     if (itemQty % 99 ~= 0) then
-                        player:messageSpecial(NOKKHI_BAD_COUNT);
+                        player:messageSpecial(ID.text.NOKKHI_BAD_COUNT);
                         return;
                     end;
                     local stacks = itemQty / 99;
@@ -112,7 +110,7 @@ function onTrade(player,npc,trade)
                 end
             end
             if (not validSlot) then
-                player:messageSpecial(NOKKHI_BAD_ITEM);
+                player:messageSpecial(ID.text.NOKKHI_BAD_ITEM);
                 return;
             end
         end
@@ -120,21 +118,21 @@ function onTrade(player,npc,trade)
 
     -- check for correct number of carnations
     if (carnationsNeeded == 0 or trade:getItemQty(948) ~= carnationsNeeded) then
-        player:messageSpecial(NOKKHI_BAD_COUNT);
+        player:messageSpecial(ID.text.NOKKHI_BAD_COUNT);
         return;
     end
 
     -- check for enough inventory space
     if (player:getFreeSlotsCount() < carnationsNeeded) then
-        player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, giveToPlayer[1][1]);
+        player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, giveToPlayer[1][1]);
         return;
     end
 
     -- make the trade
-    player:messageSpecial(NOKKHI_GOOD_TRADE);
+    player:messageSpecial(ID.text.NOKKHI_GOOD_TRADE);
     for k, v in pairs(giveToPlayer) do
         player:addItem(v[1], v[2]);
-        player:messageSpecial(ITEM_OBTAINED,v[1]);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,v[1]);
     end
     player:tradeComplete();
 end;

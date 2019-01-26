@@ -3,22 +3,20 @@
 -- Name: A Thief in Norg?!
 -- Norg Quest
 -----------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
+local ID = require("scripts/zones/Waughroon_Shrine/IDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -58,7 +56,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
         if (csid == 32001 and player:getVar("aThiefinNorgCS") == 6) then
             player:setVar("aThiefinNorgCS",7);
-            player:addKeyItem(CHARRED_HELM);
-            player:messageSpecial(KEYITEM_OBTAINED,CHARRED_HELM);
+            player:addKeyItem(dsp.ki.CHARRED_HELM);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARRED_HELM);
         end
 end;

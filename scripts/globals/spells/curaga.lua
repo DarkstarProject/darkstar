@@ -2,52 +2,52 @@
 -- Spell: Curaga
 -- Restores HP of all party members within area of effect.
 -----------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/magic")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onMagicCastingCheck(caster,target,spell)
-    return 0;
-end;
+    return 0
+end
 
 function onSpellCast(caster,target,spell)
-    local minCure = 60;
+    local minCure = 60
 
-    local divisor = 1;
-    local constant = 20;
-    local power = getCurePowerOld(caster);
+    local divisor = 1
+    local constant = 20
+    local power = getCurePowerOld(caster)
     if (power > 170) then
-        divisor = 35.6666;
-        constant = 87.62;
+        divisor = 35.6666
+        constant = 87.62
     elseif (power > 110) then
-        divisor =  2;
-        constant = 47.5;
+        divisor =  2
+        constant = 47.5
     end
 
-    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false);
+    local final = getCureFinal(caster,spell,getBaseCureOld(power,divisor,constant),minCure,false)
 
-    final = final + (final * (target:getMod(MOD_CURE_POTENCY_RCVD)/100));
+    final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 
     --Applying server mods....
-    final = final * CURE_POWER;
+    final = final * CURE_POWER
 
-    local diff = (target:getMaxHP() - target:getHP());
+    local diff = (target:getMaxHP() - target:getHP())
     if (final > diff) then
-        final = diff;
+        final = diff
     end
-    target:addHP(final);
+    target:addHP(final)
 
-    target:wakeUp();
-    caster:updateEnmityFromCure(target,final);
+    target:wakeUp()
+    caster:updateEnmityFromCure(target,final)
 
-    spell:setMsg(msgBasic.AOE_HP_RECOVERY);
+    spell:setMsg(dsp.msg.basic.AOE_HP_RECOVERY)
 
-    local mpBonusPercent = (final*caster:getMod(MOD_CURE2MP_PERCENT))/100;
+    local mpBonusPercent = (final*caster:getMod(dsp.mod.CURE2MP_PERCENT))/100
     if (mpBonusPercent > 0) then
-        caster:addMP(mpBonusPercent);
+        caster:addMP(mpBonusPercent)
     end
 
-    return final;
-end;
+    return final
+end

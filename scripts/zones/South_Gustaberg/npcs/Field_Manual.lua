@@ -1,22 +1,21 @@
 -----------------------------------
--- Field Manual
 -- Area: South Gustaberg
+--  NPC: Field Manual
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_SOUTH_GUSTABERG,player);
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onTrigger(player, npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,76,77,78,79,80);
-end;
+function onEventUpdate(player, csid, option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
-function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,76,77,78,79,80,FOV_MSG_SOUTH_GUSTABERG);
-end;
+function onEventFinish(player, csid, option)
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

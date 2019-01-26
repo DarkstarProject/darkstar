@@ -4,65 +4,138 @@
 -- Title Change NPC
 -- !pos 0 0 8 246
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
+-----------------------------------
 
-local title2 = { VISITOR_TO_ABYSSEA , FRIEND_OF_ABYSSEA , WARRIOR_OF_ABYSSEA , STORMER_OF_ABYSSEA , DEVASTATOR_OF_ABYSSEA ,
-                HERO_OF_ABYSSEA , CHAMPION_OF_ABYSSEA , CONQUEROR_OF_ABYSSEA , SAVIOR_OF_ABYSSEA , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title3 = { GOLDWING_SQUASHER , SILAGILITH_DETONATOR , SURTR_SMOTHERER , DREYRUK_PREDOMINATOR , SAMURSK_VITIATOR ,
-                0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title4 = { YAANEI_CRASHER , KUTHAREI_UNHORSER , SIPPOY_CAPTURER , RANI_DECROWNER , ORTHRUS_DECAPITATOR , DRAGUA_SLAYER ,
-                BENNU_DEPLUMER , HEDJEDJET_DESTINGER , CUIJATENDER_DESICCATOR , BRULO_EXTINGUISHER , PANTOKRATOR_DISPROVER , APADEMAK_ANNIHILATOR ,
-                ISGEBIND_DEFROSTER , RESHEPH_ERADICATOR , EMPOUSA_EXPURGATOR , INDRIK_IMMOLATOR , OGOPOGO_OVERTURNER , RAJA_REGICIDE , ALFARD_DETOXIFIER ,
-                AZDAJA_ABOLISHER , AMPHITRITE_SHUCKER , FUATH_PURIFIER , KILLAKRIQ_EXCORIATOR , MAERE_BESTIRRER , WYRM_GOD_DEFIER , 0 , 0 , 0 }
-local title5 = { TITLACAUAN_DISMEMBERER , SMOK_DEFOGGER , AMHULUK_INUNDATER , PULVERIZER_DISMANTLER , DURINN_DECEIVER , KARKADANN_EXOCULATOR ,
-                0 , 0 , 0 , 0 , 0 , TEMENOS_EMANCIPATOR , APOLLYON_RAZER , UMAGRHK_MANEMANGLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title6 = { KARKINOS_CLAWCRUSHER , CARABOSSE_QUASHER , OVNI_OBLITERATOR , RUMINATOR_CONFOUNDER , FISTULE_DRAINER , TURUL_GROUNDER ,
-                BLOODEYE_BANISHER , SATIATOR_DEPRIVER , CHLORIS_UPROOTER , MYRMECOLEON_TAMER , GLAVOID_STAMPEDER , USURPER_DEPOSER , ULHUADSHI_DESICCATOR ,
-                ITZPAPALOTL_DECLAWER , SOBEK_MUMMIFIER , CIREINCROIN_HARPOONER , BUKHIS_TETHERER , SEDNA_TUSKBREAKER , CLEAVER_DISMANTLER ,
-                EXECUTIONER_DISMANTLER , SEVERER_DISMANTLER , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
-local title7 = { HADHAYOSH_HALTERER , BRIAREUS_FELLER , ECCENTRICITY_EXPUNGER , KUKULKAN_DEFANGER , IRATHAM_CAPTURER , LACOVIE_CAPSIZER ,
-                LUSCA_DEBUNKER , TRISTITIA_DELIVERER , KETEA_BEACHER , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 , 0 }
+local eventId = 330
+local titleInfo =
+{
+    {
+        cost = 200,
+        title =
+        {
+            dsp.title.VISITOR_TO_ABYSSEA,
+            dsp.title.FRIEND_OF_ABYSSEA,
+            dsp.title.WARRIOR_OF_ABYSSEA,
+            dsp.title.STORMER_OF_ABYSSEA,
+            dsp.title.DEVASTATOR_OF_ABYSSEA,
+            dsp.title.HERO_OF_ABYSSEA,
+            dsp.title.CHAMPION_OF_ABYSSEA,
+            dsp.title.CONQUEROR_OF_ABYSSEA,
+            dsp.title.SAVIOR_OF_ABYSSEA,
+        },
+    },
+    {
+        cost = 300,
+        title =
+        {
+            dsp.title.GOLDWING_SQUASHER,
+            dsp.title.SILAGILITH_DETONATOR,
+            dsp.title.SURTR_SMOTHERER,
+            dsp.title.DREYRUK_PREDOMINATOR,
+            dsp.title.SAMURSK_VITIATOR,
+        },
+    },
+    {
+        cost = 400,
+        title =
+        {
+            dsp.title.YAANEI_CRASHER,
+            dsp.title.KUTHAREI_UNHORSER,
+            dsp.title.SIPPOY_CAPTURER,
+            dsp.title.RANI_DECROWNER,
+            dsp.title.ORTHRUS_DECAPITATOR,
+            dsp.title.DRAGUA_SLAYER,
+            dsp.title.BENNU_DEPLUMER,
+            dsp.title.HEDJEDJET_DESTINGER,
+            dsp.title.CUIJATENDER_DESICCATOR,
+            dsp.title.BRULO_EXTINGUISHER,
+            dsp.title.PANTOKRATOR_DISPROVER,
+            dsp.title.APADEMAK_ANNIHILATOR,
+            dsp.title.ISGEBIND_DEFROSTER,
+            dsp.title.RESHEPH_ERADICATOR,
+            dsp.title.EMPOUSA_EXPURGATOR,
+            dsp.title.INDRIK_IMMOLATOR,
+            dsp.title.OGOPOGO_OVERTURNER,
+            dsp.title.RAJA_REGICIDE,
+            dsp.title.ALFARD_DETOXIFIER,
+            dsp.title.AZDAJA_ABOLISHER,
+            dsp.title.AMPHITRITE_SHUCKER,
+            dsp.title.FUATH_PURIFIER,
+            dsp.title.KILLAKRIQ_EXCORIATOR,
+            dsp.title.MAERE_BESTIRRER,
+            dsp.title.WYRM_GOD_DEFIER,
+        },
+    },
+    {
+        cost = 500,
+        title =
+        {
+            dsp.title.TITLACAUAN_DISMEMBERER,
+            dsp.title.SMOK_DEFOGGER,
+            dsp.title.AMHULUK_INUNDATER,
+            dsp.title.PULVERIZER_DISMANTLER,
+            dsp.title.DURINN_DECEIVER,
+            dsp.title.KARKADANN_EXOCULATOR,
+            dsp.title.TEMENOS_EMANCIPATOR,
+            dsp.title.APOLLYON_RAZER,
+            dsp.title.UMAGRHK_MANEMANGLER,
+        },
+    },
+    {
+        cost = 600,
+        title =
+        {
+            dsp.title.KARKINOS_CLAWCRUSHER,
+            dsp.title.CARABOSSE_QUASHER,
+            dsp.title.OVNI_OBLITERATOR,
+            dsp.title.RUMINATOR_CONFOUNDER,
+            dsp.title.FISTULE_DRAINER,
+            dsp.title.TURUL_GROUNDER,
+            dsp.title.BLOODEYE_BANISHER,
+            dsp.title.SATIATOR_DEPRIVER,
+            dsp.title.CHLORIS_UPROOTER,
+            dsp.title.MYRMECOLEON_TAMER,
+            dsp.title.GLAVOID_STAMPEDER,
+            dsp.title.USURPER_DEPOSER,
+            dsp.title.ULHUADSHI_DESICCATOR,
+            dsp.title.ITZPAPALOTL_DECLAWER,
+            dsp.title.SOBEK_MUMMIFIER,
+            dsp.title.CIREINCROIN_HARPOONER,
+            dsp.title.BUKHIS_TETHERER,
+            dsp.title.SEDNA_TUSKBREAKER,
+            dsp.title.CLEAVER_DISMANTLER,
+            dsp.title.EXECUTIONER_DISMANTLER,
+            dsp.title.SEVERER_DISMANTLER,
+        },
+    },
+    {
+        cost = 700,
+        title =
+        {
+            dsp.title.HADHAYOSH_HALTERER,
+            dsp.title.BRIAREUS_FELLER,
+            dsp.title.ECCENTRICITY_EXPUNGER,
+            dsp.title.KUKULKAN_DEFANGER,
+            dsp.title.IRATHAM_CAPTURER,
+            dsp.title.LACOVIE_CAPSIZER,
+            dsp.title.LUSCA_DEBUNKER,
+            dsp.title.TRISTITIA_DELIVERER,
+            dsp.title.KETEA_BEACHER,
+        },
+    },
+}
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(330,npcUtil.genTmask(player,title2),npcUtil.genTmask(player,title3),npcUtil.genTmask(player,title4),npcUtil.genTmask(player,title5),npcUtil.genTmask(player,title6),npcUtil.genTmask(player,title7),1   ,player:getGil());
-end;
+    dsp.title.changerOnTrigger(player, eventId, titleInfo)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-    if (csid==330) then
-        if (option > 0 and option <29) then
-            if (player:delGil(200)) then
-                player:setTitle( title2[option] )
-            end
-        elseif (option > 256 and option <285) then
-            if (player:delGil(300)) then
-                player:setTitle( title3[option - 256] )
-            end
-        elseif (option > 512 and option < 541) then
-            if (player:delGil(400)) then
-                player:setTitle( title4[option - 512] )
-            end
-        elseif (option > 768 and option <797) then
-            if (player:delGil(500)) then
-                player:setTitle( title5[option - 768] )
-            end
-        elseif (option > 1024 and option < 1053) then
-            if (player:delGil(600)) then
-                player:setTitle( title6[option - 1024] )
-            end
-        elseif (option > 1280 and option < 1309) then
-            if (player:delGil(700)) then
-                player:setTitle(  title7[option - 1280] )
-            end
-        end
-    end
-end;
+    dsp.title.changerOnEventFinish(player, csid, option, eventId, titleInfo)
+end

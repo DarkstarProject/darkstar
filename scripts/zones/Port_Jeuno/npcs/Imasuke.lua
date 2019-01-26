@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: The Antique Collector
 -- !pos -165 11 94 246
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Jeuno/TextIDs");
+local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -62,13 +60,13 @@ function onEventFinish(player,csid,option)
     if (csid == 13 and option == 1) then
         player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
     elseif (csid == 15) then
-        player:addTitle(TRADER_OF_ANTIQUITIES);
-        if (player:hasKeyItem(MAP_OF_DELKFUTTS_TOWER) == false) then
-            player:addKeyItem(MAP_OF_DELKFUTTS_TOWER);
-            player:messageSpecial(KEYITEM_OBTAINED,MAP_OF_DELKFUTTS_TOWER);
+        player:addTitle(dsp.title.TRADER_OF_ANTIQUITIES);
+        if (player:hasKeyItem(dsp.ki.MAP_OF_DELKFUTTS_TOWER) == false) then
+            player:addKeyItem(dsp.ki.MAP_OF_DELKFUTTS_TOWER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_DELKFUTTS_TOWER);
         else
             player:addGil(2000 * GIL_RATE);
-            player:messageSpecial(GIL_OBTAINED, 2000 * GIL_RATE);
+            player:messageSpecial(ID.text.GIL_OBTAINED, 2000 * GIL_RATE);
             player:addExp(2000 * EXP_RATE);
         end
         player:addFame(JEUNO, 30);

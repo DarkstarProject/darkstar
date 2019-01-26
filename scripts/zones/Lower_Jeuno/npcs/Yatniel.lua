@@ -2,12 +2,9 @@
 -- Area: Lower Jeuno
 --   NPC: Yatniel
 -- Type: Standard NPC
--- @zone 245
--- !pos -66.817 -7 -126.594
+-- !pos -66.817 -7 -126.594 245
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 10029) then
         player:setVar("hittingTheMarquisateYatnielCS",2);
@@ -54,4 +47,3 @@ function onEventFinish(player,csid,option)
 
 
 end;
-

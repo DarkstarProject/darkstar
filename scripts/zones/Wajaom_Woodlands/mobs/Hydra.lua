@@ -6,9 +6,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
 
     local battletime = mob:getBattleTime();
@@ -40,6 +37,6 @@ end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:addTitle(HYDRA_HEADHUNTER);
+    player:addTitle(dsp.title.HYDRA_HEADHUNTER);
 
 end;

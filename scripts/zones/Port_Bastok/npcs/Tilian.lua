@@ -4,9 +4,6 @@
 -- Type: Quest NPC
 -- !pos -118.460 4.999 -68.090 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -24,13 +21,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 353) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",4,true);
     end

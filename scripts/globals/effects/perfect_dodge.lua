@@ -1,26 +1,14 @@
 -----------------------------------
 --
---     EFFECT_PERFECT_DODGE
---     
------------------------------------
-
------------------------------------
--- onEffectGain Action
+--     dsp.effect.PERFECT_DODGE
+--
 -----------------------------------
 
 function onEffectGain(target,effect)
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
+end
 
 function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+end
 
 function onEffectLose(target,effect)
-end;
+end

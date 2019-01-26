@@ -4,18 +4,14 @@
 -- Notes: Spawns Gargoyle when triggered
 -- !pos 258.399 -1.925 -70.000 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 require("scripts/zones/PsoXja/globals");
-require("scripts/zones/PsoXja/TextIDs");
-require("scripts/zones/PsoXja/MobIDs");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if ( player:getMainJob() == JOBS.THF and trade:getItemCount() == 1 and (trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) ) then
+    if ( player:getMainJob() == dsp.job.THF and trade:getItemCount() == 1 and (trade:hasItemQty(1115,1) or trade:hasItemQty(1023,1) or trade:hasItemQty(1022,1)) ) then
         attemptPickLock(player, npc, player:getXPos() >= 259);
-    end        
+    end
 end;
 
 function onTrigger(player,npc)

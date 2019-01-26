@@ -5,35 +5,35 @@
 -- Recast Time: 1:00
 -- Duration: 2:00:00
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------
 
 function onAbilityCheck(player,target,ability)
-    if player:hasStatusEffect(dsp.effects.DARK_ARTS) or player:hasStatusEffect(dsp.effects.ADDENDUM_BLACK) then
-        return msgBasic.EFFECT_ALREADY_ACTIVE, 0;
+    if player:hasStatusEffect(dsp.effect.DARK_ARTS) or player:hasStatusEffect(dsp.effect.ADDENDUM_BLACK) then
+        return dsp.msg.basic.EFFECT_ALREADY_ACTIVE, 0
     end
-    return 0,0;
-end;
+    return 0,0
+end
 
 function onUseAbility(player,target,ability)
-    player:delStatusEffectSilent(dsp.effects.LIGHT_ARTS);
-    player:delStatusEffect(dsp.effects.ADDENDUM_WHITE);
-    player:delStatusEffect(dsp.effects.PENURY);
-    player:delStatusEffect(dsp.effects.CELERITY);
-    player:delStatusEffect(dsp.effects.ACCESSION);
-    player:delStatusEffect(dsp.effects.RAPTURE);
-    player:delStatusEffect(dsp.effects.ALTRUISM);
-    player:delStatusEffect(dsp.effects.TRANQUILITY);
-    player:delStatusEffect(dsp.effects.PERPETUANCE);
+    player:delStatusEffectSilent(dsp.effect.LIGHT_ARTS)
+    player:delStatusEffect(dsp.effect.ADDENDUM_WHITE)
+    player:delStatusEffect(dsp.effect.PENURY)
+    player:delStatusEffect(dsp.effect.CELERITY)
+    player:delStatusEffect(dsp.effect.ACCESSION)
+    player:delStatusEffect(dsp.effect.RAPTURE)
+    player:delStatusEffect(dsp.effect.ALTRUISM)
+    player:delStatusEffect(dsp.effect.TRANQUILITY)
+    player:delStatusEffect(dsp.effect.PERPETUANCE)
 
-    local helixbonus = 0;
-    if (player:getMainJob() == JOBS.SCH and player:getMainLvl() >= 20) then
-        helixbonus = math.floor(player:getMainLvl() / 4);
+    local helixbonus = 0
+    if (player:getMainJob() == dsp.job.SCH and player:getMainLvl() >= 20) then
+        helixbonus = math.floor(player:getMainLvl() / 4)
     end
 
-    player:addStatusEffect(dsp.effects.DARK_ARTS,1,0,7200,0,helixbonus);
+    player:addStatusEffect(dsp.effect.DARK_ARTS,1,0,7200,0,helixbonus)
 
-    return dsp.effects.DARK_ARTS;
-end;
+    return dsp.effect.DARK_ARTS
+end

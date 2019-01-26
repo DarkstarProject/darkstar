@@ -1,5 +1,5 @@
-require("scripts/globals/status");
 require("scripts/globals/keyitems");
+require("scripts/globals/status");
 
 dynamis = {};
 
@@ -835,34 +835,34 @@ end;
 
 function getDynamisMapList(player)
     local bitmask = 0;
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_SANDORIA) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_SANDORIA) == true) then
         bitmask = bitmask + 2;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_BASTOK) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BASTOK) == true) then
         bitmask = bitmask + 4;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_WINDURST) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_WINDURST) == true) then
         bitmask = bitmask + 8;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_JEUNO) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_JEUNO) == true) then
         bitmask = bitmask + 16;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_BEAUCEDINE) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BEAUCEDINE) == true) then
         bitmask = bitmask + 32;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_XARCABARD) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_XARCABARD) == true) then
         bitmask = bitmask + 64;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_VALKURM) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_VALKURM) == true) then
         bitmask = bitmask + 128;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_BUBURIMU) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_BUBURIMU) == true) then
         bitmask = bitmask + 256;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_QUFIM) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_QUFIM) == true) then
         bitmask = bitmask + 512;
     end
-    if (player:hasKeyItem(MAP_OF_DYNAMIS_TAVNAZIA) == true) then
+    if (player:hasKeyItem(dsp.ki.MAP_OF_DYNAMIS_TAVNAZIA) == true) then
         bitmask = bitmask + 1024;
     end
 
@@ -877,7 +877,7 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
     local Z = mob:getZPos();
 
     -- Ensure my members superlink with me
-    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
 
     if (mob:getStatPoppedMobs() == false) then
         mob:setStatPoppedMobs(true);
@@ -889,7 +889,7 @@ function dynamis.spawnGroup(mob, spawnList, mobTypeList)
 
                     if (mobNBR <= 20) then
                         -- Spawn random mob by job
-                        if (mobNBR == 0) then 
+                        if (mobNBR == 0) then
                             -- Spawn random Vanguard (TEMPORARY)
                             mobNBR = math.random(1,15);
                         end
@@ -912,19 +912,19 @@ end;
 function dynamis.spawnMob(mobId, superLinkId, x, y, z)
     -- Spawn Mob
     local mob = SpawnMob(mobId);
-    mob:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+    mob:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
     mob:setPos(x,y,z);
     mob:setSpawn(x,y,z);
 
     local mJob = mob:getMainJob();
 
     -- Spawn Pet for BST, and SMN
-    if (mJob == JOBS.BST or mJob == JOBS.SMN) then
+    if (mJob == dsp.job.BST or mJob == dsp.job.SMN) then
         if(mob:getPet() ~= nil) then
             local petId = nil;
 
             -- randomize pet for SMN
-            if (mJob == JOBS.SMN) then
+            if (mJob == dsp.job.SMN) then
                 petId = math.random(8, 14);
 
                 -- switch pet to Ramuh if pet is Fenrir
@@ -937,7 +937,7 @@ function dynamis.spawnMob(mobId, superLinkId, x, y, z)
 
             local pet = mob:getPet();
 
-            pet:setMobMod(MOBMOD_SUPERLINK, superLinkId);
+            pet:setMobMod(dsp.mobMod.SUPERLINK, superLinkId);
         end
     end
 end;

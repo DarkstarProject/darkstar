@@ -3,12 +3,10 @@
 --  NPC: Vounebariont
 -- Starts and Finishes Quest: Thick Shells
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,13 +30,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 516) then
         if (player:getQuestStatus(SANDORIA,THICK_SHELLS) == QUEST_AVAILABLE) then
@@ -53,9 +47,9 @@ function onEventFinish(player,csid,option)
         end
 
         player:tradeComplete();
-        player:addTitle(BUG_CATCHER);
+        player:addTitle(dsp.title.BUG_CATCHER);
         player:addGil(GIL_RATE*750);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*750)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*750)
     end
 
 end;

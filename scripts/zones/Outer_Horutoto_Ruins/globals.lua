@@ -1,7 +1,7 @@
 -- Zone: Outer Horutoto Ruins (194)
 -- Desc: this file contains functions that are shared by multiple luas in this zone's directory
 -----------------------------------
-require("scripts/zones/Outer_Horutoto_Ruins/MobIDs");
+local ID = require("scripts/zones/Outer_Horutoto_Ruins/IDs");
 -----------------------------------
 
 OUTER_HORUTOTO_RUINS = {
@@ -10,7 +10,7 @@ OUTER_HORUTOTO_RUINS = {
         ..............................................................................................]]
     setTrioCooldown = function()
         local pop = os.time() + math.random(2700,3600); -- 45 to 60 minutes
-        for i = BALLOON_NM_OFFSET + 1, BALLOON_NM_OFFSET + 3 do
+        for i = ID.mob.BALLOON_NM_OFFSET + 1, ID.mob.BALLOON_NM_OFFSET + 3 do
             GetMobByID(i):setLocalVar("pop", pop);
         end
     end,
@@ -19,7 +19,7 @@ OUTER_HORUTOTO_RUINS = {
         has a trio NM spawned or been selected to spawn?
         ..............................................................................................]]
     trioPrimed = function()
-        for i = BALLOON_NM_OFFSET + 1, BALLOON_NM_OFFSET + 3 do
+        for i = ID.mob.BALLOON_NM_OFFSET + 1, ID.mob.BALLOON_NM_OFFSET + 3 do
             local nm = GetMobByID(i);
             if (nm ~= nil and (nm:isSpawned() or nm:getRespawnTime() ~= 0)) then
                 return true;
@@ -33,10 +33,10 @@ OUTER_HORUTOTO_RUINS = {
         ..............................................................................................]]
     balloonDespawn = function(mob)
         local phId = mob:getID();
-        local offset = phId - BALLOON_NM_OFFSET;
+        local offset = phId - ID.mob.BALLOON_NM_OFFSET;
         
         if (offset >= 0 and offset <= 4 and not OUTER_HORUTOTO_RUINS.trioPrimed() and math.random(1,5) == 1) then
-            local nmId = BALLOON_NM_OFFSET + math.random(1,3);
+            local nmId = ID.mob.BALLOON_NM_OFFSET + math.random(1,3);
             local nm = GetMobByID(nmId);
             local pop = nm:getLocalVar("pop");
             

@@ -1,15 +1,17 @@
 -----------------------------------
 -- Area: Grauberg[S]
---  MOB: Migratory_Hippogryph
+--   NM: Migratory_Hippogryph
+-- Note: Spawned for quest "The Unfinished Waltz"
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/quests");
 -----------------------------------
 
-function OnMobSpawn(mob)
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100);
 end;
 
 function onMobDeath(mob, player, isKiller)
-    if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1")==3) then
+    if (player:getQuestStatus(JEUNO,THE_UNFINISHED_WALTZ) == QUEST_ACCEPTED and player:getVar("QuestStatus_DNC_AF1") == 3) then
         player:setVar("QuestStatus_DNC_AF1", 4);
     end
 end;

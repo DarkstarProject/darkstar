@@ -5,11 +5,9 @@
 -- !pos 309.600, 2.600, 324.000 106 | DB start position
 -- !pos 290.000, 0.600, 332.100 106 | alternative start position
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg/TextIDs");
+local ID = require("scripts/zones/North_Gustaberg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,13 +23,11 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local npc = player:getEventTarget();
 
     if (csid == 10 and option == 0) then
-        local mainweapon = player:getEquipID(SLOT_MAIN);
-        local subweapon = player:getEquipID(SLOT_SUB);
+        local mainweapon = player:getEquipID(dsp.slot.MAIN);
+        local subweapon = player:getEquipID(dsp.slot.SUB);
 
         if (mainweapon == 0 and subweapon == 0) then
             local freeslots = player:getFreeSlotsCount();
@@ -40,21 +36,21 @@ function onEventFinish(player,csid,option)
             local SirensTearProgress = player:getVar("SirensTear");
 
             if (SirensTear == QUEST_COMPLETED and SirensTearProgress < 2) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,576);
             else
                 if (freeslots == 0) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,576);
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,576);
                 elseif (alreadyHasItem) then
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED_TWICE,576);
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED_TWICE,576);
                     player:addItem(576);
                 else
                     player:addItem(576);
-                    player:messageSpecial(ITEM_OBTAINED,576);
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,576);
                     resetSirenTear(npc);
                 end
             end
         else
-            player:messageSpecial(SHINING_OBJECT_SLIPS_AWAY);
+            player:messageSpecial(ID.text.SHINING_OBJECT_SLIPS_AWAY);
             moveSirenTear(npc);
         end
     end

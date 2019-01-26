@@ -10,7 +10,6 @@ package.loaded["scripts/globals/bcnm"] = nil;
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
 
 -----------------------------------
 -- onTrade
@@ -24,10 +23,6 @@ function onTrade(player,npc,trade)
     
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then  -- enter the battlefield
@@ -35,10 +30,6 @@ function onTrigger(player,npc)
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

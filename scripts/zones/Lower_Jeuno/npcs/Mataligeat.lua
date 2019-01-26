@@ -4,10 +4,6 @@
 -- Standard Info NPC
 -- !pos -24 0 -60 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

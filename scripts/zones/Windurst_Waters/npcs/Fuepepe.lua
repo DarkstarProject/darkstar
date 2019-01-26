@@ -5,9 +5,7 @@
 -- Involved in Quest: Making the grade, Class Reunion
 -- !pos 161 -2 161 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -52,25 +50,21 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 442 and option == 1) then -- Quest Start
         player:addQuest(WINDURST,MAKING_THE_GRADE);
     elseif (csid == 455) then -- Quest Progress: Test Papers Shown and told to deliver them to principal
         player:setVar("QuestMakingTheGrade_prog",1);
     elseif (csid == 458) then -- Quest Finish
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4855);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4855);
         else
             player:completeQuest(WINDURST,MAKING_THE_GRADE);
             player:addFame(WINDURST,75);
             player:addItem(4855);
-            player:messageSpecial(ITEM_OBTAINED,4855);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4855);
             player:setVar("QuestMakingTheGrade_prog",0);
             player:needToZone(true);
         end

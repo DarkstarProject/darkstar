@@ -2,16 +2,16 @@
 -- Area: Sealions Den
 --  Mob: Mammet-22_Zeta
 -----------------------------------
-require("scripts/zones/Sealions_Den/MobIDs");
+local ID = require("scripts/zones/Sealions_Den/IDs");
 require("scripts/globals/titles");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
     -- find mob offset for given battlefield instance
-    local inst = math.floor((mob:getID() - ONE_TO_BE_FEARED_OFFSET) / 7);
-    local instOffset = ONE_TO_BE_FEARED_OFFSET + (7 * (inst));
+    local inst = math.floor((mob:getID() - ID.mob.ONE_TO_BE_FEARED_OFFSET) / 7);
+    local instOffset = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst));
     
-    -- if all five mammets in this instance are dead, start event    
+    -- if all five mammets in this instance are dead, start event
     local allMammetsDead = true;
     for i = instOffset + 0, instOffset + 4 do
         if (not GetMobByID(i):isDead()) then
@@ -30,13 +30,13 @@ function onEventFinish(player,csid,option)
         local inst = player:getVar("bcnm_instanceid");
         if (inst >= 1 and inst <= 3) then
             -- players are healed in between fights, but their TP is set to 0
-            player:addTitle(BRANDED_BY_LIGHTNING);
+            player:addTitle(dsp.title.BRANDED_BY_LIGHTNING);
             player:setHP(player:getMaxHP());
             player:setMP(player:getMaxMP());
             player:setTP(0);
 
             -- spawn omega for given instance
-            local omegaId = ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 5;
+            local omegaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 5;
             if (omegaId ~= nil and not GetMobByID(omegaId):isSpawned()) then
                 SpawnMob(omegaId);
             end

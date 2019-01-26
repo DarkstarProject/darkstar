@@ -3,10 +3,6 @@
 --  NPC: Udine A.M.A.N
 -- Type: Mentor Recruiter
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -24,13 +20,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 826 and option == 0) then
         player:setMentor(1);
     end

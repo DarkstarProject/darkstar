@@ -4,9 +4,6 @@
 -- Type: Past Event Watcher
 -- !pos -172.136 -5 -69.632 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -26,31 +23,31 @@ function onTrigger(player,npc)
 
     -- Bastok Quests.
     local BastokQuests = 0xFFFFFFFE;
-    if (player:hasCompleteQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER)) then
+    if (player:hasCompletedQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER)) then
         BastokQuests = BastokQuests - 2;     -- The Return of the Adventurer
     end
 -- *Need the correct csid
---     if (player:hasCompleteQuest(BASTOK,THE_FIRST_MEETING)) then
+--     if (player:hasCompletedQuest(BASTOK,THE_FIRST_MEETING)) then
 --         BastokQuests = BastokQuests - 4;     -- The First Meeting
 --     end
-    if (player:hasCompleteQuest(BASTOK,WISH_UPON_A_STAR)) then
+    if (player:hasCompletedQuest(BASTOK,WISH_UPON_A_STAR)) then
         BastokQuests = BastokQuests - 8;     -- Wish Upon a Star (pt.1)
         BastokQuests = BastokQuests - 16;    -- Wish Upon a Star (pt.2)
         BastokQuests = BastokQuests - 32;    -- Wish Upon a Star (pt.3)
     end
 
 -- *Need the correct csid/parameters
---    if (player:hasCompleteQuest(BASTOK,ALL_BY_MYSELF)) then
+--    if (player:hasCompletedQuest(BASTOK,ALL_BY_MYSELF)) then
 --        BastokQuests = BastokQuests - 64;    -- All by Myself
 --    end
-    if (player:hasCompleteQuest(BASTOK,ACHIEVING_TRUE_POWER)) then
+    if (player:hasCompletedQuest(BASTOK,ACHIEVING_TRUE_POWER)) then
         BastokQuests = BastokQuests - 128;   -- Achieving True Power
     end
-    if (player:hasCompleteQuest(BASTOK,TOO_MANY_CHEFS)) then
+    if (player:hasCompletedQuest(BASTOK,TOO_MANY_CHEFS)) then
         BastokQuests = BastokQuests - 512;   -- Too Many Chefs
 
     end
-    if (player:hasCompleteQuest(BASTOK,A_PROPER_BURIAL)) then
+    if (player:hasCompletedQuest(BASTOK,A_PROPER_BURIAL)) then
         BastokQuests = BastokQuests - 1024;  -- A Proper Burial (pt.1)
         BastokQuests = BastokQuests - 2048;  -- A Proper Burial (pt.2)
         BastokQuests = BastokQuests - 4096;  -- A Proper Burial (pt.3)
@@ -61,56 +58,56 @@ function onTrigger(player,npc)
 
     -- Other Quests.
     local OtherQuests = 0xFFFFFFFE;
-    if (player:hasCompleteQuest(JEUNO,BEAT_AROUND_THE_BUSHIN)) then
+    if (player:hasCompletedQuest(JEUNO,BEAT_AROUND_THE_BUSHIN)) then
         OtherQuests = OtherQuests - 2;      -- Beat Around the Bushin
     end
-    if (player:hasCompleteQuest(OTHER_AREAS,CONFESSIONS_OF_A_BELLMAKER)) then
+    if (player:hasCompletedQuest(OTHER_AREAS_LOG,CONFESSIONS_OF_A_BELLMAKER)) then
         OtherQuests = OtherQuests - 4;      -- Confessions of a Bellmaker
     end
-    if (player:hasCompleteQuest(OTHER_AREAS,PICTURE_PERFECT)) then
+    if (player:hasCompletedQuest(OTHER_AREAS_LOG,PICTURE_PERFECT)) then
         OtherQuests = OtherQuests - 8;      -- Picture Perfect (pt.1)
         OtherQuests = OtherQuests - 16;     -- Picture Perfect (pt.2)
         OtherQuests = OtherQuests - 32;     -- Picture Perfect (pt.3)
         OtherQuests = OtherQuests - 64;     -- Picture Perfect (pt.4)
     end
-    if (player:hasCompleteQuest(AHT_URHGAN,NO_STRINGS_ATTACHED)) then
+    if (player:hasCompletedQuest(AHT_URHGAN,NO_STRINGS_ATTACHED)) then
         OtherQuests = OtherQuests - 128;    -- No Strings Attached
     end
-    if (player:hasCompleteQuest(AHT_URHGAN,PUPPETMASTER_BLUES)) then
+    if (player:hasCompletedQuest(AHT_URHGAN,PUPPETMASTER_BLUES)) then
         OtherQuests = OtherQuests - 256;    -- Puppetmaster Blues (pt.1)
         OtherQuests = OtherQuests - 512;    -- Puppetmaster Blues (pt.2)
     end
-    if (player:hasCompleteQuest(JEUNO,COMEBACK_QUEEN)) then
+    if (player:hasCompletedQuest(JEUNO,COMEBACK_QUEEN)) then
         OtherQuests = OtherQuests - 1024;   -- Comeback Queen
     end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,DANCER_ATTIRE)) then
+--     if (player:hasCompletedQuest(**Unknown**,DANCER_ATTIRE)) then
 --         OtherQuests = OtherQuests - 2048;   -- Dancer Attire (pt.1)
 --         OtherQuests = OtherQuests - 4096;   -- Dancer Attire (pt.2)
 --     end
-    if (player:hasCompleteQuest(CRYSTAL_WAR,DRAFTED_BY_THE_DUCHY)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,DRAFTED_BY_THE_DUCHY)) then
         OtherQuests = OtherQuests - 8192;   -- Drafted by the Duchy
     end
-    if (player:hasCompleteQuest(CRYSTAL_WAR,BATTLE_ON_A_NEW_FRONT)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,BATTLE_ON_A_NEW_FRONT)) then
         OtherQuests = OtherQuests - 16384;  -- Battle on a New Front
     end
-    if (player:hasCompleteQuest(CRYSTAL_WAR,VOIDWALKER_OP_126)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,VOIDWALKER_OP_126)) then
         OtherQuests = OtherQuests - 32768;  -- VW Op. #126: Qufim Incursion
     end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,RECORDS_OF_EMINENCE)) then
+--     if (player:hasCompletedQuest(**Unknown**,RECORDS_OF_EMINENCE)) then
 --         OtherQuests = OtherQuests - 65536;  -- Records of Eminence
 --     end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,TRUST_MUMOR)) then
+--     if (player:hasCompletedQuest(**Unknown**,TRUST_MUMOR)) then
 --         OtherQuests = OtherQuests - 131072; -- Trust (Mumor)
 --     end
 
 -- *This quest,as of the time this script was written,is not yet defined in the Darkstar Project.
---     if (player:hasCompleteQuest(**Unknown**,UNITY_CONCORD)) then
+--     if (player:hasCompletedQuest(**Unknown**,UNITY_CONCORD)) then
 --         OtherQuests = OtherQuests - 262144; -- Unity Concord (pt.1)
 --         OtherQuests = OtherQuests - 524288; -- Unity Concord (pt.2)
 --     end

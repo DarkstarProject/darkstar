@@ -3,14 +3,11 @@
 --  NPC: Vanguard_Eye
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+    mob:setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
 end;
 
 function onMobEngaged(mob,target)
@@ -32,7 +29,7 @@ function onMobEngaged(mob,target)
                         if ( GetMobAction(TauruslistID) == 0 ) then
                             local dX = math.pow(-1,math.random(0,1))
                             local dZ = math.pow(-1,math.random(0,1))
-                            SpawnMob(TauruslistID):setMobMod(MOBMOD_SUPERLINK, mob:getShortID());
+                            SpawnMob(TauruslistID):setMobMod(dsp.mobMod.SUPERLINK, mob:getShortID());
                             GetMobByID(TauruslistID):setPos(X+dX,Y,Z+dZ);
                             GetMobByID(TauruslistID):setSpawn(X+dX,Y,Z+dZ);
                             break;

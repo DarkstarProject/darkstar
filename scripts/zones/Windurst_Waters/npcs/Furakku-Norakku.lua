@@ -4,9 +4,7 @@
 -- Involved in Quests: Early Bird Catches the Bookworm, Chasing Tales, Class Reunion
 -- !pos -19 -5 101 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
 
     local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
-    local bookNotifications = player:hasKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
+    local bookNotifications = player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
     local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
     local talk2 = player:getVar("ClassReunion_TalkedToFurakku");
@@ -35,13 +33,13 @@ function onTrigger(player,npc)
         player:startEvent(400); -- Finish Quest "Early Bird Catches the Bookworm"
     elseif (bookwormStatus == QUEST_COMPLETED and player:needToZone()) then
         player:startEvent(401); -- Standard dialog before player zone
-    elseif (chasingStatus == QUEST_ACCEPTED and player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) == false) then
+    elseif (chasingStatus == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) == false) then
         player:startEvent(404,0,126); -- During Quest "Chasing Tales", tells you the book "A Song of Love" is overdue
-    elseif (player:hasKeyItem(OVERDUE_BOOK_NOTIFICATION) and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
+    elseif (player:hasKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION) and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
         player:startEvent(405,0,126);
-    elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(A_SONG_OF_LOVE) == false) then
+    elseif (player:getVar("CHASING_TALES_TRACK_BOOK") == 1 and player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) == false) then
         player:startEvent(409);
-    elseif (player:hasKeyItem(A_SONG_OF_LOVE)) then
+    elseif (player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE)) then
         player:startEvent(410);
     elseif (chasingStatus == QUEST_COMPLETED and player:needToZone() == true) then
         player:startEvent(411);
@@ -56,35 +54,31 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 389) then
-        player:addKeyItem(OVERDUE_BOOK_NOTIFICATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATIONS);
+        player:addKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATIONS);
     elseif (csid == 400) then
         player:needToZone(true);
-        player:addTitle(SAVIOR_OF_KNOWLEDGE);
+        player:addTitle(dsp.title.SAVIOR_OF_KNOWLEDGE);
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         player:setVar("EARLY_BIRD_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 404) then
-        player:addKeyItem(OVERDUE_BOOK_NOTIFICATION);
-        player:messageSpecial(KEYITEM_OBTAINED,OVERDUE_BOOK_NOTIFICATION);
+        player:addKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OVERDUE_BOOK_NOTIFICATION);
     elseif (csid == 410) then
         player:needToZone(true);
         player:addGil(GIL_RATE*2800);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2800);
-        player:addTitle(SAVIOR_OF_KNOWLEDGE);
-        player:delKeyItem(OVERDUE_BOOK_NOTIFICATION);
-        player:delKeyItem(A_SONG_OF_LOVE);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2800);
+        player:addTitle(dsp.title.SAVIOR_OF_KNOWLEDGE);
+        player:delKeyItem(dsp.ki.OVERDUE_BOOK_NOTIFICATION);
+        player:delKeyItem(dsp.ki.A_SONG_OF_LOVE);
         player:setVar("CHASING_TALES_TRACK_BOOK",0);
         player:addFame(WINDURST,120);
         player:completeQuest(WINDURST,CHASING_TALES);

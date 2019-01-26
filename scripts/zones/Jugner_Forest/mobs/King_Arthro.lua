@@ -1,14 +1,17 @@
 -----------------------------------
 -- Area: Jugner Forest
---  MOB: King Arthro
+--   NM: King Arthro
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-require("scripts/globals/msg");
+mixins =
+{
+    require("scripts/mixins/job_special"),
+    require("scripts/mixins/rage")
+}
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_ADD_EFFECT, 1);
+    mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
 end;
 
 function onMobSpawn(mob)
@@ -18,22 +21,15 @@ function onMobSpawn(mob)
     for offset = 1, 10 do
         GetMobByID(KingArthroID - offset):setRespawnTime(0);
     end
-
-    -- 20 minute rage timer
-    mob:setMobMod(MOBMOD_RAGE, 1200);
 end;
 
-function onAdditionalEffect(mob,target,damage)
-    local procRate = 10; -- No retail data, so we guessed at it.
-    -- Can't proc it if enwater is up, if player full resists, or is just plain lucky.
-    if (procRate > math.random(1,100) or mob:hasStatusEffect(dsp.effects.ENWATER)
-    or applyResistanceAddEffect(mob, target, ELE_ICE, 0) <= 0.5) then
-        return 0,0,0;
+function onAdditionalEffect(mob, target, damage)
+    if mob:hasStatusEffect(dsp.effect.ENWATER) then
+        return 0, 0, 0
     else
-        target:addStatusEffect(dsp.effects.PARALYSIS, 20, 0, 30); -- Potency unconfirmed
-        return SUBEFFECT_PARALYSIS, msgBasic.ADD_EFFECT_STATUS, EFFECT_PARALYSIS;
+        return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE)
     end
-end;
+end
 
 function onMonsterMagicPrepare(mob, target)
     -- Instant cast on spells - Waterga IV, Poisonga II, Drown, and Enwater

@@ -95,8 +95,16 @@ void LoadAutomaton(CCharEntity* PChar)
             setHead(PChar,tempEquip.Head);
             setFrame(PChar, tempEquip.Frame);
             LoadAutomatonStats(PChar);
+
+            // Always load Optic Fiber and Optic Fiber II first
             for (int i = 0; i < 12; i++)
-                setAttachment(PChar, i, tempEquip.Attachments[i]);
+                if (tempEquip.Attachments[i] == 198 || tempEquip.Attachments[i] == 206)
+                    setAttachment(PChar, i, tempEquip.Attachments[i]);
+
+            for (int i = 0; i < 12; i++)
+                if (tempEquip.Attachments[i] != 198 && tempEquip.Attachments[i] != 206)
+                    setAttachment(PChar, i, tempEquip.Attachments[i]);
+
             PChar->PAutomaton->UpdateHealth();
             PChar->PAutomaton->health.hp = PChar->PAutomaton->GetMaxHP();
             PChar->PAutomaton->health.mp = PChar->PAutomaton->GetMaxMP();
@@ -404,7 +412,7 @@ void setHead(CCharEntity* PChar, uint8 head)
 uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
 {
     int8 rank = 0;
-    if (skill < SKILL_AME || skill > SKILL_AMA)
+    if (skill < SKILL_AUTOMATON_MELEE || skill > SKILL_AUTOMATON_MAGIC)
         return 0;
     switch (PChar->PAutomaton->getFrame())
     {
@@ -412,19 +420,19 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
             rank = 5;
             break;
         case FRAME_VALOREDGE:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 2;
             break;
         case FRAME_SHARPSHOT:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 6;
-            else if (skill == SKILL_ARA)
+            else if (skill == SKILL_AUTOMATON_RANGED)
                 rank = 3;
             break;
         case FRAME_STORMWAKER:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank = 7;
-            else if (skill == SKILL_AMA)
+            else if (skill == SKILL_AUTOMATON_MAGIC)
                 rank = 3;
             break;
     }
@@ -432,20 +440,20 @@ uint16 getSkillCap(CCharEntity* PChar, SKILLTYPE skill, uint8 level)
     switch (PChar->PAutomaton->getHead())
     {
         case HEAD_VALOREDGE:
-            if (skill == SKILL_AME)
+            if (skill == SKILL_AUTOMATON_MELEE)
                 rank -= 1;
             break;
         case HEAD_SHARPSHOT:
-            if (skill == SKILL_ARA)
+            if (skill == SKILL_AUTOMATON_RANGED)
                 rank -= 1;
             break;
         case HEAD_STORMWAKER:
-            if (skill == SKILL_AME || skill == SKILL_AMA)
+            if (skill == SKILL_AUTOMATON_MELEE || skill == SKILL_AUTOMATON_MAGIC)
                 rank -= 1;
             break;
         case HEAD_SOULSOOTHER:
         case HEAD_SPIRITREAVER:
-            if (skill == SKILL_AMA)
+            if (skill == SKILL_AUTOMATON_MAGIC)
                 rank -= 2;
             break;
         default:
@@ -558,9 +566,9 @@ void TrySkillUP(CAutomatonEntity* PAutomaton, SKILLTYPE SkillID, uint8 lvl)
             {
                 PChar->WorkingSkills.skill[SkillID] += 1;
                 PAutomaton->WorkingSkills.skill[SkillID] += 1;
-                if (SkillID == SKILL_AMA)
+                if (SkillID == SKILL_AUTOMATON_MAGIC)
                 {
-                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AMA];
+                    uint16 amaSkill = PAutomaton->WorkingSkills.skill[SKILL_AUTOMATON_MAGIC];
                     PAutomaton->WorkingSkills.automaton_magic = amaSkill;
                     PAutomaton->WorkingSkills.healing = amaSkill;
                     PAutomaton->WorkingSkills.enhancing = amaSkill;
@@ -595,6 +603,36 @@ void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
                         luautils::OnManeuverGain(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
                     else
                         luautils::OnManeuverLose(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                }
+            }
+        }
+    }
+}
+
+void UpdateAttachments(CCharEntity* PChar)
+{
+    CAutomatonEntity* PAutomaton = PChar->PAutomaton;
+
+    if (PAutomaton)
+    {
+        for (uint8 i = 0; i < 12; i++)
+        {
+            if (PAutomaton->getAttachment(i) != 0)
+            {
+                CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i));
+
+                if (PAttachment)
+                {
+                    int32 maneuver = EFFECT_FIRE_MANEUVER;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        if (PAttachment->getElementSlots() >> (i * 4) & 0xF)
+                        {
+                            maneuver += i;
+                            break;
+                        }
+                    }
+                    luautils::OnUpdateAttachment(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount((EFFECT)maneuver));
                 }
             }
         }

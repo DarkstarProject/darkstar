@@ -1,11 +1,11 @@
 
-local Arrapago = require("scripts/zones/Arrapago_Remnants/IDs")
+local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 
 function onTrigger(entity, npc)
     if (npc:getInstance():getStage() == 2) then
         entity:startEvent(300)
     else
-        entity:messageSpecial(Arrapago.text.DOOR_IS_SEALED)
+        entity:messageSpecial(ID.text.DOOR_IS_SEALED)
     end
 end
 

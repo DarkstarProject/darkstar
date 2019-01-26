@@ -3,9 +3,7 @@
 --  NPC: Hagain
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -25,9 +23,9 @@ function onTrigger(player,npc)
     local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
     if (hittingTheMarquisateHagainCS == 1) then -- start first part of miniquest thf af3
-        player:startEvent(10003,0,BOMB_INCENSE);
+        player:startEvent(10003,0,dsp.ki.BOMB_INCENSE);
     elseif (hittingTheMarquisateHagainCS >= 2 and hittingTheMarquisateHagainCS < 9) then -- dialog during mini quest thf af3
-        player:startEvent(10004,0,BOMB_INCENSE);
+        player:startEvent(10004,0,dsp.ki.BOMB_INCENSE);
     elseif (hittingTheMarquisateHagainCS == 9) then
         player:startEvent(10006);    -- after the mini quest
     else
@@ -37,20 +35,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10003) then
         player:setVar("hittingTheMarquisateHagainCS",2);
-        player:addKeyItem(BOMB_INCENSE);
-        player:messageSpecial(KEYITEM_OBTAINED,BOMB_INCENSE);
+        player:addKeyItem(dsp.ki.BOMB_INCENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
     elseif (csid == 10005) then
         player:setVar("hittingTheMarquisateHagainCS",9);
-        player:delKeyItem(BOMB_INCENSE);
+        player:delKeyItem(dsp.ki.BOMB_INCENSE);
         player:tradeComplete();
     end
 

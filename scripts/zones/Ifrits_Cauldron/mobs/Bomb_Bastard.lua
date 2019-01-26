@@ -1,28 +1,22 @@
 -----------------------------------
 -- Area: Ifrit's Cauldron
---  MOB: Bomb Bastard
+--   NM: Bomb Bastard
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
-require("scripts/globals/status");
-
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_EXP_BONUS, -100);
-    mob:setMobMod(MOBMOD_GIL_BONUS, -100);
-    mob:setMobMod(MOBMOD_NO_DROPS, 1);
-end;
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
+    mob:setMobMod(dsp.mobMod.GIL_BONUS, -100)
+    mob:setMobMod(dsp.mobMod.NO_DROPS, 1)
+    mob:setMod(dsp.mod.STUNRES, 50)
+end
 
-function onMobSpawn(mob)
-    mob:addMod(MOD_STUNRES, 50);
-end;
-
-function onMobFight(mob,target)
-    if (mob:getBattleTime() > 10) then
-        mob:useMobAbility(511);
+function onMobFight(mob, target)
+    if mob:getBattleTime() > 10 then
+        mob:useMobAbility(511)
     end
-end;
+end
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
-end;
+end

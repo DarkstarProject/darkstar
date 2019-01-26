@@ -3,17 +3,8 @@
 --  NPC: Kerkopes
 
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Apollyon/TextIDs");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
 end;
@@ -28,18 +19,18 @@ function onMobDespawn(mob)
 
     if (mobID ==16933102) then -- item
        GetNPCByID(16932864+154):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+154):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+154):setStatus(dsp.status.NORMAL);
   elseif (mobID ==16933104) then -- timer T1
     GetNPCByID(16932864+153):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+153):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+153):setStatus(dsp.status.NORMAL);
   elseif (mobID ==16933106) then --  timer T2
     GetNPCByID(16932864+95):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+95):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+95):setStatus(dsp.status.NORMAL);
   elseif (mobID ==16933108) then --  timer T3
     GetNPCByID(16932864+96):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+96):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+96):setStatus(dsp.status.NORMAL);
  elseif (mobID ==16933109) then -- recover
     GetNPCByID(16932864+155):setPos(mobX,mobY,mobZ);
-    GetNPCByID(16932864+155):setStatus(STATUS_NORMAL);
+    GetNPCByID(16932864+155):setStatus(dsp.status.NORMAL);
   end
 end;

@@ -3,11 +3,7 @@
 --  NPC: Gebhardt
 -- Involved in Quests: The Fighting Fourth
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/North_Gustaberg_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,8 +24,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 104) then
         player:setVar("THE_FIGHTING_FOURTH",2);

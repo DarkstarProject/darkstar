@@ -3,9 +3,7 @@
 --  NPC: Keal
 -- Starts and Ends Quest: It's Not Your Vault
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -66,12 +64,12 @@ local path =
 
 function onSpawn(npc)
     npc:initNpcAi();
-    npc:setPos(pathfind.first(path));
+    npc:setPos(dsp.path.first(path));
     -- onPath(npc);
 end;
 
 function onPath(npc)
-    pathfind.patrol(npc, path);
+    dsp.path.patrol(npc, path);
 end;
 
 function onTrade(player,npc,trade)
@@ -81,15 +79,15 @@ function onTrigger(player,npc)
 
     local Vault = player:getQuestStatus(OUTLANDS,ITS_NOT_YOUR_VAULT);
     local mLvl = player:getMainLvl();
-    local IronBox = player:hasKeyItem(SEALED_IRON_BOX);
+    local IronBox = player:hasKeyItem(dsp.ki.SEALED_IRON_BOX);
 
     if (Vault == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 3 and mLvl >= 5) then
-        player:startEvent(36,SEALED_IRON_BOX); -- Start quest
+        player:startEvent(36,dsp.ki.SEALED_IRON_BOX); -- Start quest
     elseif (Vault == QUEST_ACCEPTED) then
         if (IronBox == true) then
             player:startEvent(38); -- Finish quest
         else
-            player:startEvent(37,MAP_OF_THE_SEA_SERPENT_GROTTO); -- Reminder/Directions Dialogue
+            player:startEvent(37,dsp.ki.MAP_OF_THE_SEA_SERPENT_GROTTO); -- Reminder/Directions Dialogue
         end
     elseif (Vault == QUEST_COMPLETED) then
         player:startEvent(39); -- New Standard Dialogue for everyone who has completed the quest
@@ -101,22 +99,18 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option,npc)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 36 and option == 1) then
         player:addQuest(OUTLANDS,ITS_NOT_YOUR_VAULT);
     elseif (csid == 38) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4961);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4961);
         else
-            player:delKeyItem(SEALED_IRON_BOX);
+            player:delKeyItem(dsp.ki.SEALED_IRON_BOX);
             player:addItem(4961); -- Scroll of Tonko: Ichi
-            player:messageSpecial(ITEM_OBTAINED, 4961);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 4961);
             player:addFame(NORG,50);
             player:completeQuest(OUTLANDS,ITS_NOT_YOUR_VAULT);
         end

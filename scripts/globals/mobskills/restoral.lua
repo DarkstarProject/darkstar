@@ -2,21 +2,14 @@
 -- Restoral
 -- Description: Restores HP.
 ---------------------------------------------
-require("scripts/globals/monstertpmoves");
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/msg");
+require("scripts/globals/monstertpmoves")
+require("scripts/globals/status")
+require("scripts/globals/msg")
 ---------------------------------------------
 
 function onMobSkillCheck(target,mob,skill)
-    local mobSkin = mob:getModelId();
-
-    if (mobSkin == 1820) then
-        return 0;
-    else
-        return 1;
-    end
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
     --[[
@@ -24,13 +17,11 @@ function onMobWeaponSkill(target, mob, skill)
     which does not seem to fit with retail in game observations on the mobskill version..
     So math.random() for now!
     ]]
-    local heal = math.random(1000, 1400);
-    -- Bigger heal for NMs
-    if (mob:isMobType(MOBTYPE_NOTORIOUS)) then
-        heal = heal * 3;
+    local heal = math.random(900, 1400)
+    if mob:getPool() == 243 then
+        heal = heal * 2.5
     end
+    skill:setMsg(dsp.msg.basic.SELF_HEAL)
 
-    skill:setMsg(msgBasic.SELF_HEAL);
-
-    return MobHealMove(mob, heal);
-end;
+    return MobHealMove(mob, heal)
+end

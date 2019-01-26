@@ -166,19 +166,6 @@ INSERT INTO `mob_spawn_mods` VALUES (17285460,1,379,1);
 INSERT INTO `mob_spawn_mods` VALUES (17285460,2,900,1);
 INSERT INTO `mob_spawn_mods` VALUES (17490231,1,6000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17490231,2,9500,1);
-INSERT INTO `mob_spawn_mods` VALUES (17297440,13,1800,1);
-INSERT INTO `mob_spawn_mods` VALUES (17297441,13,3600,1);
-INSERT INTO `mob_spawn_mods` VALUES (17301537,13,1800,1);
-INSERT INTO `mob_spawn_mods` VALUES (17301538,13,3600,1);
-INSERT INTO `mob_spawn_mods` VALUES (17408018,13,3600,1);
-INSERT INTO `mob_spawn_mods` VALUES (17408019,13,3600,1);
-INSERT INTO `mob_spawn_mods` VALUES (17649731,13,1200,1);
-INSERT INTO `mob_spawn_mods` VALUES (17613130,13,1800,1);
-INSERT INTO `mob_spawn_mods` VALUES (17596720,13,1800,1);
-INSERT INTO `mob_spawn_mods` VALUES (17649730,13,600,1);
-INSERT INTO `mob_spawn_mods` VALUES (17269106,13,1200,1);
-INSERT INTO `mob_spawn_mods` VALUES (17228242,13,1200,1);
-INSERT INTO `mob_spawn_mods` VALUES (16990474,13,3600,1);
 INSERT INTO `mob_spawn_mods` VALUES (17490016,1,6000,1);
 INSERT INTO `mob_spawn_mods` VALUES (17490016,2,9100,1);
 INSERT INTO `mob_spawn_mods` VALUES (17617158,1,15000,1);
@@ -670,6 +657,11 @@ INSERT INTO `mob_spawn_mods` VALUES (16921021,55,900,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588701,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588702,55,180,1);
 INSERT INTO `mob_spawn_mods` VALUES (17588703,55,180,1);
+
+-- [Tonberry Kinq]
+-- Values taken from wiki on 04/23/2018 (http://ffxiclopedia.wikia.com/wiki/Tonberry_Kinq)
+INSERT INTO `mob_spawn_mods` VALUES (17428677,1,18000,1); -- min gil 18000 
+INSERT INTO `mob_spawn_mods` VALUES (17428677,2,30000,1); -- max gil 30000
 
 /*!40000 ALTER TABLE `mob_spawn_mods` ENABLE KEYS */;
 UNLOCK TABLES;

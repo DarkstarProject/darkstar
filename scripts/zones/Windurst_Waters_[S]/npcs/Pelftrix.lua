@@ -3,36 +3,28 @@
 --  NPC: Pelftrix
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/shop");
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters_[S]/IDs")
+require("scripts/globals/shop")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,PELFTRIX_SHOP_DIALOG);
-
     local stock =
     {
-        0x1014,4500,        -- Hi-Potion
-        0x1024,28000,        -- Hi-Ether
-        0x03FC,300,            -- Sickle
-        0x03FD,500}            -- Hatchet
+        4116, 4500,  -- Hi-Potion
+        4132, 28000, -- Hi-Ether
+        1020, 300,   -- Sickle
+        1021, 500,   -- Hatchet
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc,ID.text.PELFTRIX_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

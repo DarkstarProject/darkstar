@@ -2,7 +2,6 @@
 
 * Issues will be closed without being looked into if the following information is missing (unless its not applicable).
 * Client version (type `/ver` in game)
-* Darkstar revision (type `!revision` in game)
 * Branch name \(such as [stable](https://github.com/DarkstarProject/darkstar/tree/stable) or [master](https://github.com/DarkstarProject/darkstar/tree/master))
 
 
@@ -20,7 +19,9 @@ Unfortunately, the team is small enough that we can't fix or open pull requests 
 
 ### Code Editor Configuration
 
-Much of this can be automated. We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
+Much of this can be automated. 
+
+We highly recommend [editorconfig](http://editorconfig.org/#download), which most code editors have either a plugin or native support for.
 * [Visual Studio Plugin](https://github.com/editorconfig/editorconfig-visualstudio#readme)
 * [Notepad++](https://github.com/editorconfig/editorconfig-notepad-plus-plus#readme)
   * As the plugin manager is usually installed by default\*, the easy way is to use that:
@@ -29,23 +30,41 @@ Much of this can be automated. We highly recommend [editorconfig](http://editorc
 * [Sublime](https://github.com/sindresorhus/editorconfig-sublime#readme): Install EditorConfig with Package Control and restart Sublime.
 * [Vim](https://github.com/editorconfig/editorconfig-vim#readme)
 
+Clang-Format is also an option for C++
+* [Visual Studio plugin](https://marketplace.visualstudio.com/items?itemName=LLVMExtensions.ClangFormat)
+* [Visual Studio Code plugin](https://marketplace.visualstudio.com/items?itemName=xaver.clang-format)
+
 ### General code guidlines (all languages):
 
-* Try not to exceed 100 chars width. Exceptions will occur, but try.
+* Try not to exceed 120 chars width. Exceptions will occur, but try.
 * 4 space indent (death to tabs)
 * No using tabs for alignment either.
 * Trim trailing whitespace.
 
 ### C++
 
+* Unix (LF) line ends
 * Braces go on a newline unless it's a lambda or empty ([allman](https://en.wikipedia.org/wiki/Indent_style#Allman_style) style)
 * Space between keyword and parentheses
 * No using tabs for alignment
-* UPPER_SNAKE_CASE for ENUM
-* UpperCamelCase for namespaced functions
+* UpperCamelCase for namespaced functions and classes
+* UPPER_SNAKE_CASE for ENUM (exception for enum classes: style as classes)
+* Asterisk goes up against the type, not the value. We want:
+  ```
+  Foo* Bar
+  ```
+  not:
+  ```
+  Foo *Bar
+  ```
+  and *definitely* not:
+  ```
+  Foo * Bar
+  ```
 
 ### Lua
 
+* Unix (LF) line ends
 * Curly braces go on a newline unless empty.
 * Our lua functions are typically lowerCamelCased, with few exceptions (just FYI).
 * No parentheses unless needed to clarify order of operations.

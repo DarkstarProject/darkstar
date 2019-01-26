@@ -4,11 +4,9 @@
 -- Involved in Quest: Forever to Hold
 -- Starts & Ends Quest: Till Death Do Us Part
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,9 +29,9 @@ end;
 
 function onTrigger(player,npc)
 
- pFame = player:getFameLevel(BASTOK);
- ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
- TilldeathdousPart = player:getQuestStatus(BASTOK,TILL_DEATH_DO_US_PART);
+    local pFame = player:getFameLevel(BASTOK);
+    local ForevertoHold = player:getQuestStatus(BASTOK,FOREVER_TO_HOLD);
+    local TilldeathdousPart = player:getQuestStatus(BASTOK,TILL_DEATH_DO_US_PART);
 
     if (pFame >= 3 and ForevertoHold == QUEST_COMPLETED and TilldeathdousPart == QUEST_AVAILABLE and player:getVar("ForevertoHold_Event") == 3) then
         player:startEvent(128);
@@ -44,20 +42,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 128) then
         player:addQuest(BASTOK,TILL_DEATH_DO_US_PART);
     elseif (csid == 129) then
-        player:addTitle(QIJIS_RIVAL);
+        player:addTitle(dsp.title.QIJIS_RIVAL);
         player:addGil(GIL_RATE*2000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2000);
         player:addFame(BASTOK,160);
         player:completeQuest(BASTOK,TILL_DEATH_DO_US_PART);
     end

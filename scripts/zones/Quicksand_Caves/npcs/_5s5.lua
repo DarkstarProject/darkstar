@@ -4,9 +4,7 @@
 -- Door blocked by Weight system
 -- !pos -779 0 -454 208
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,16 +18,12 @@ function onTrigger(player,npc)
         return -1;
     end
 
-    player:messageSpecial(DOOR_FIRMLY_SHUT);
+    player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT);
     return 1;
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

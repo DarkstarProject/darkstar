@@ -33,18 +33,18 @@
 *-------------------------------------------*/
 /*main events*/
 #define LOGIN_ATTEMPT      0x10
-#define LOGIN_CREATE	   0x20
+#define LOGIN_CREATE       0x20
 /*return result*/
-#define LOGIN_SUCCESS	       0x01
+#define LOGIN_SUCCESS          0x01
 #define LOGIN_SUCCESS_CREATE   0x03
 
-#define LOGIN_ERROR		       0x02
+#define LOGIN_ERROR            0x02
 #define LOGIN_ERROR_CREATE     0x04
 
 extern int32 login_fd;
 /*
 *
-*	Parse connections for authentification
+*   Parse connections for authentification
 */
 int32 connect_client_login(int32 listenfd);
 

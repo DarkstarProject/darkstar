@@ -23,49 +23,55 @@ CREATE TABLE `bcnm_loot` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `bcnm_loot` VALUES ('100', '13292', '75', '0'); -- Guardian's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13287', '32', '0'); -- Kampfer Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13300', '54', '0'); -- Conjurer's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13298', '32', '0'); -- Shinobi Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13293', '97', '0'); -- Slayer's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13289', '75', '0'); -- Sorcerer's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13286', '108', '0'); -- Soldier's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13294', '22', '0'); -- Tamer's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13296', '65', '0'); -- Tracker's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13299', '32', '0'); -- Drake Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13290', '32', '0'); -- Fencer's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13295', '86', '0'); -- Minstrel's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13288', '86', '0'); -- Medicine Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13291', '75', '0'); -- Rogue's Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13297', '11', '0'); -- Ronin Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13447', '32', '0'); -- Platinum Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13548', '376', '1'); -- Astral Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '13447', '22', '1'); -- Platinum Ring
-INSERT INTO `bcnm_loot` VALUES ('100', '4818', '65', '1'); -- Scroll of Quake
-INSERT INTO `bcnm_loot` VALUES ('100', '859', '0', '1'); -- Ram Skin, 0% according to wiki
-INSERT INTO `bcnm_loot` VALUES ('100', '4172', '11', '1'); -- Reraiser
-INSERT INTO `bcnm_loot` VALUES ('100', '653', '22', '1'); -- Mythril Ingot
-INSERT INTO `bcnm_loot` VALUES ('100', '4902', '0', '1'); -- Light Spirit Pact, 0% according to wiki
-INSERT INTO `bcnm_loot` VALUES ('100', '4814', '32', '1'); -- Scroll of Freeze
-INSERT INTO `bcnm_loot` VALUES ('100', '4719', '43', '1'); -- Scroll of Regen III
-INSERT INTO `bcnm_loot` VALUES ('100', '4621', '32', '1'); -- Scroll of Raise II
-INSERT INTO `bcnm_loot` VALUES ('100', '703', '11', '1'); -- Petrified Log
-INSERT INTO `bcnm_loot` VALUES ('100', '887', '11', '1'); -- Coral Fragment
-INSERT INTO `bcnm_loot` VALUES ('100', '700', '11', '1'); -- Mahogany Log
-INSERT INTO `bcnm_loot` VALUES ('100', '738', '43', '1'); -- Platinum Ore
-INSERT INTO `bcnm_loot` VALUES ('100', '737', '108', '1'); -- Gold Ore
-INSERT INTO `bcnm_loot` VALUES ('100', '645', '32', '1'); -- Darksteel Ore
-INSERT INTO `bcnm_loot` VALUES ('100', '644', '65', '1'); -- Mythril Ore
-INSERT INTO `bcnm_loot` VALUES ('100', '745', '0', '1'); -- Gold Ingot, 0% according to wiki 
-INSERT INTO `bcnm_loot` VALUES ('100', '654', '11', '1'); -- Darksteel Ingot
-INSERT INTO `bcnm_loot` VALUES ('100', '746', '11', '1'); -- Platinum Ingot
-INSERT INTO `bcnm_loot` VALUES ('100', '702', '11', '1'); -- Ebony Log
-INSERT INTO `bcnm_loot` VALUES ('100', '895', '11', '1'); -- Ram Horn
-INSERT INTO `bcnm_loot` VALUES ('100', '902', '11', '1'); -- Demon Horn
-INSERT INTO `bcnm_loot` VALUES ('100', '1116', '0', '1'); -- Manticore Hide, 0% according to wiki
-INSERT INTO `bcnm_loot` VALUES ('100', '1122', '11', '1'); -- Wyvern Skin
-INSERT INTO `bcnm_loot` VALUES ('100', '866', '11', '1'); -- Wyvern Scales
+
+-- Treasure and Tribulations
+INSERT INTO `bcnm_loot` VALUES ('100','13292','80','0'); -- Guardian's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13287','37','0'); -- Kampfer Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13300','59','0'); -- Conjurer's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13298','37','0'); -- Shinobi Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13293','102','0'); -- Slayer's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13289','80','0'); -- Sorcerer's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13286','113','0'); -- Soldier's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13294','27','0'); -- Tamer's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13296','70','0'); -- Tracker's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13299','37','0'); -- Drake Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13290','37','0'); -- Fencer's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13295','91','0'); -- Minstrel's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13288','91','0'); -- Medicine Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13291','80','0'); -- Rogue's Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13297','22','0'); -- Ronin Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13447','37','0'); -- Platinum Ring
+
+INSERT INTO `bcnm_loot` VALUES ('100','13548','382','1'); -- Astral Ring
+INSERT INTO `bcnm_loot` VALUES ('100','13447','22','1'); -- Platinum Ring
+INSERT INTO `bcnm_loot` VALUES ('100','4818','65','1'); -- Scroll of Quake
+INSERT INTO `bcnm_loot` VALUES ('100','859','0','1'); -- Ram Skin, 0% according to wiki
+INSERT INTO `bcnm_loot` VALUES ('100','4172','14','1'); -- Reraiser
+INSERT INTO `bcnm_loot` VALUES ('100','653','22','1'); -- Mythril Ingot
+INSERT INTO `bcnm_loot` VALUES ('100','4902','0','1'); -- Light Spirit Pact, 0% according to wiki
+INSERT INTO `bcnm_loot` VALUES ('100','4814','32','1'); -- Scroll of Freeze
+INSERT INTO `bcnm_loot` VALUES ('100','4719','43','1'); -- Scroll of Regen III
+INSERT INTO `bcnm_loot` VALUES ('100','4621','32','1'); -- Scroll of Raise II
+INSERT INTO `bcnm_loot` VALUES ('100','703','14','1'); -- Petrified Log
+INSERT INTO `bcnm_loot` VALUES ('100','887','14','1'); -- Coral Fragment
+INSERT INTO `bcnm_loot` VALUES ('100','700','14','1'); -- Mahogany Log
+INSERT INTO `bcnm_loot` VALUES ('100','738','43','1'); -- Platinum Ore
+INSERT INTO `bcnm_loot` VALUES ('100','737','108','1'); -- Gold Ore
+INSERT INTO `bcnm_loot` VALUES ('100','645','32','1'); -- Darksteel Ore
+INSERT INTO `bcnm_loot` VALUES ('100','644','65','1'); -- Mythril Ore
+INSERT INTO `bcnm_loot` VALUES ('100','745','0','1'); -- Gold Ingot, 0% according to wiki 
+INSERT INTO `bcnm_loot` VALUES ('100','654','14','1'); -- Darksteel Ingot
+INSERT INTO `bcnm_loot` VALUES ('100','746','14','1'); -- Platinum Ingot
+INSERT INTO `bcnm_loot` VALUES ('100','702','14','1'); -- Ebony Log
+INSERT INTO `bcnm_loot` VALUES ('100','895','14','1'); -- Ram Horn
+INSERT INTO `bcnm_loot` VALUES ('100','902','14','1'); -- Demon Horn
+INSERT INTO `bcnm_loot` VALUES ('100','1116','0','1'); -- Manticore Hide, 0% according to wiki
+INSERT INTO `bcnm_loot` VALUES ('100','1122','14','1'); -- Wyvern Skin
+INSERT INTO `bcnm_loot` VALUES ('100','866','14','1'); -- Wyvern Scales
+
+-- Birds of a Feather
 INSERT INTO `bcnm_loot` VALUES ('73', '4570', '1000', '0'); -- Bird Egg
+
 INSERT INTO `bcnm_loot` VALUES ('73', '14735', '125', '1'); -- Ashigaru Earring
 INSERT INTO `bcnm_loot` VALUES ('73', '14732', '125', '1'); -- Trimmer's Earring
 INSERT INTO `bcnm_loot` VALUES ('73', '14734', '125', '1'); -- Beater's Earring
@@ -74,6 +80,7 @@ INSERT INTO `bcnm_loot` VALUES ('73', '13435', '125', '1'); -- Mercenary's Earri
 INSERT INTO `bcnm_loot` VALUES ('73', '14733', '125', '1'); -- Singer's Earring
 INSERT INTO `bcnm_loot` VALUES ('73', '13438', '125', '1'); -- Wizard's Earring
 INSERT INTO `bcnm_loot` VALUES ('73', '13436', '125', '1'); -- Wrestler's Earring
+
 INSERT INTO `bcnm_loot` VALUES ('73', '15285', '142', '2'); -- Avatar Belt
 INSERT INTO `bcnm_loot` VALUES ('73', '15276', '142', '2'); -- Dagger Belt
 INSERT INTO `bcnm_loot` VALUES ('73', '15284', '142', '2'); -- Lance Belt
@@ -81,41 +88,48 @@ INSERT INTO `bcnm_loot` VALUES ('73', '15275', '142', '2'); -- Rapier Belt
 INSERT INTO `bcnm_loot` VALUES ('73', '15283', '142', '2'); -- Sarashi
 INSERT INTO `bcnm_loot` VALUES ('73', '15278', '142', '2'); -- Scythe Belt
 INSERT INTO `bcnm_loot` VALUES ('73', '15277', '142', '2'); -- Shield Belt
+
 INSERT INTO `bcnm_loot` VALUES ('73', '4868', '105', '3'); -- Scroll of Dispel
 INSERT INTO `bcnm_loot` VALUES ('73', '4751', '79', '3'); -- Scroll of Erase
 INSERT INTO `bcnm_loot` VALUES ('73', '5070', '421', '3'); -- Scroll of Magic Finale
 INSERT INTO `bcnm_loot` VALUES ('73', '4947', '79', '3'); -- Scroll of Utsusemi: Ni
-INSERT INTO `bcnm_loot` VALUES ('73', '847', '330', '4'); -- Bird Feather
-INSERT INTO `bcnm_loot` VALUES ('73', '694', '130', '4'); -- Chestnut Log
-INSERT INTO `bcnm_loot` VALUES ('73', '690', '125', '4'); -- Elm Log
-INSERT INTO `bcnm_loot` VALUES ('73', '4132', '210', '4'); -- Hi-Ether
-INSERT INTO `bcnm_loot` VALUES ('73', '4222', '235', '4'); -- Horn Quiver
-INSERT INTO `bcnm_loot` VALUES ('73', '651', '98', '4'); -- Iron Ingot
-INSERT INTO `bcnm_loot` VALUES ('73', '795', '130', '4'); -- Lapis Lazuli
-INSERT INTO `bcnm_loot` VALUES ('73', '796', '150', '4'); -- Light Opal
-INSERT INTO `bcnm_loot` VALUES ('73', '653', '184', '4'); -- Mythril Ingot
-INSERT INTO `bcnm_loot` VALUES ('73', '644', '159', '4'); -- Mythril Ore
-INSERT INTO `bcnm_loot` VALUES ('73', '799', '160', '4'); -- Onyx
-INSERT INTO `bcnm_loot` VALUES ('73', '736', '180', '4'); -- Silver Ore
-INSERT INTO `bcnm_loot` VALUES ('73', '744', '175', '4'); -- Silver Ingot
-INSERT INTO `bcnm_loot` VALUES ('76', '18047', '188', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '17939', '27', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '17937', '170', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '1441', '295', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '18351', '27', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '17464', '71', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '17575', '196', '0');
-INSERT INTO `bcnm_loot` VALUES ('76', '18211', '45', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '17576', '259', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '17245', '241', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '17838', '143', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '1442', '161', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '17996', '143', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '17578', '36', '1');
-INSERT INTO `bcnm_loot` VALUES ('76', '683', '446', '2');
-INSERT INTO `bcnm_loot` VALUES ('76', '908', '420', '2');
-INSERT INTO `bcnm_loot` VALUES ('76', '1312', '71', '2');
-INSERT INTO `bcnm_loot` VALUES ('76', '14080', '26', '2');
+
+INSERT INTO `bcnm_loot` VALUES ('73', '847', '230', '4'); -- Bird Feather
+INSERT INTO `bcnm_loot` VALUES ('73', '694', '30', '4'); -- Chestnut Log
+INSERT INTO `bcnm_loot` VALUES ('73', '690', '25', '4'); -- Elm Log
+INSERT INTO `bcnm_loot` VALUES ('73', '4132', '60', '4'); -- Hi-Ether
+INSERT INTO `bcnm_loot` VALUES ('73', '4222', '35', '4'); -- Horn Quiver
+INSERT INTO `bcnm_loot` VALUES ('73', '651', '58', '4'); -- Iron Ingot
+INSERT INTO `bcnm_loot` VALUES ('73', '795', '30', '4'); -- Lapis Lazuli
+INSERT INTO `bcnm_loot` VALUES ('73', '796', '50', '4'); -- Light Opal
+INSERT INTO `bcnm_loot` VALUES ('73', '653', '84', '4'); -- Mythril Ingot
+INSERT INTO `bcnm_loot` VALUES ('73', '644', '99', '4'); -- Mythril Ore
+INSERT INTO `bcnm_loot` VALUES ('73', '799', '60', '4'); -- Onyx
+INSERT INTO `bcnm_loot` VALUES ('73', '736', '80', '4'); -- Silver Ore
+INSERT INTO `bcnm_loot` VALUES ('73', '744', '75', '4'); -- Silver Ingot
+
+-- The Hills are Alive
+INSERT INTO `bcnm_loot` VALUES ('76', '18047', '188', '0'); -- Havoc Scythe
+INSERT INTO `bcnm_loot` VALUES ('76', '17939', '40', '0'); -- Kriegsbeil
+INSERT INTO `bcnm_loot` VALUES ('76', '17937', '170', '0'); -- Leopard Axe
+INSERT INTO `bcnm_loot` VALUES ('76', '1441', '295', '0'); -- Libation Abjuration
+INSERT INTO `bcnm_loot` VALUES ('76', '18351', '40', '0'); -- Meteor Cesti
+INSERT INTO `bcnm_loot` VALUES ('76', '17464', '71', '0'); -- Purgatory Mace
+INSERT INTO `bcnm_loot` VALUES ('76', '17575', '196', '0'); -- Somnus Signa
+
+INSERT INTO `bcnm_loot` VALUES ('76', '18211', '45', '1'); -- Gawains Axe
+INSERT INTO `bcnm_loot` VALUES ('76', '17576', '242', '1'); -- Grim Staff
+INSERT INTO `bcnm_loot` VALUES ('76', '17245', '230', '1'); -- Grosveneurs Bow
+INSERT INTO `bcnm_loot` VALUES ('76', '17838', '143', '1'); -- Harlequins Horn
+INSERT INTO `bcnm_loot` VALUES ('76', '1442', '161', '1'); -- Oblation Abjuration
+INSERT INTO `bcnm_loot` VALUES ('76', '17996', '143', '1'); -- Stylet
+INSERT INTO `bcnm_loot` VALUES ('76', '17578', '36', '1'); -- Zen Pole
+
+INSERT INTO `bcnm_loot` VALUES ('76', '683', '446', '2'); -- Adaman Chain
+INSERT INTO `bcnm_loot` VALUES ('76', '908', '420', '2'); -- Adamantoise Shell
+INSERT INTO `bcnm_loot` VALUES ('76', '1312', '98', '2'); -- Angel Skin
+INSERT INTO `bcnm_loot` VALUES ('76', '14080', '36', '2'); -- Strider Boots
+
 INSERT INTO `bcnm_loot` VALUES ('76', '887', '116', '3');
 INSERT INTO `bcnm_loot` VALUES ('76', '645', '89', '3');
 INSERT INTO `bcnm_loot` VALUES ('76', '902', '71', '3');
@@ -134,12 +148,14 @@ INSERT INTO `bcnm_loot` VALUES ('76', '4172', '45', '3');
 INSERT INTO `bcnm_loot` VALUES ('76', '866', '54', '3');
 INSERT INTO `bcnm_loot` VALUES ('76', '4174', '63', '3');
 INSERT INTO `bcnm_loot` VALUES ('76', '4175', '45', '3');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '683', '268', '4');
 INSERT INTO `bcnm_loot` VALUES ('76', '1525', '143', '4');
 INSERT INTO `bcnm_loot` VALUES ('76', '4205', '80', '4');
 INSERT INTO `bcnm_loot` VALUES ('76', '4201', '143', '4');
 INSERT INTO `bcnm_loot` VALUES ('76', '4199', '214', '4');
 INSERT INTO `bcnm_loot` VALUES ('76', '4203', '196', '4');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '646', '107', '5');
 INSERT INTO `bcnm_loot` VALUES ('76', '4211', '89', '5');
 INSERT INTO `bcnm_loot` VALUES ('76', '645', '179', '5');
@@ -149,10 +165,12 @@ INSERT INTO `bcnm_loot` VALUES ('76', '4209', '80', '5');
 INSERT INTO `bcnm_loot` VALUES ('76', '739', '80', '5');
 INSERT INTO `bcnm_loot` VALUES ('76', '738', '107', '5');
 INSERT INTO `bcnm_loot` VALUES ('76', '17698', '152', '5');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '4135', '295', '6');
 INSERT INTO `bcnm_loot` VALUES ('76', '4119', '250', '6');
 INSERT INTO `bcnm_loot` VALUES ('76', '4173', '196', '6');
 INSERT INTO `bcnm_loot` VALUES ('76', '4175', '214', '6');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '887', '139', '7');
 INSERT INTO `bcnm_loot` VALUES ('76', '645', '59', '7');
 INSERT INTO `bcnm_loot` VALUES ('76', '902', '50', '7');
@@ -171,6 +189,7 @@ INSERT INTO `bcnm_loot` VALUES ('76', '4174', '69', '7');
 INSERT INTO `bcnm_loot` VALUES ('76', '866', '79', '7');
 INSERT INTO `bcnm_loot` VALUES ('76', '4172', '50', '7');
 INSERT INTO `bcnm_loot` VALUES ('76', '823', '89', '7');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '1110', '109', '8');
 INSERT INTO `bcnm_loot` VALUES ('76', '836', '89', '8');
 INSERT INTO `bcnm_loot` VALUES ('76', '658', '78', '8');
@@ -178,11 +197,56 @@ INSERT INTO `bcnm_loot` VALUES ('76', '837', '99', '8');
 INSERT INTO `bcnm_loot` VALUES ('76', '942', '188', '8');
 INSERT INTO `bcnm_loot` VALUES ('76', '844', '238', '8');
 INSERT INTO `bcnm_loot` VALUES ('76', '1132', '109', '8');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '722', '79', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '1446', '257', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '703', '337', '9');
 INSERT INTO `bcnm_loot` VALUES ('76', '831', '149', '9');
+
 INSERT INTO `bcnm_loot` VALUES ('76', '3343', '1', '10');
+
+-- Creeping Doom
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '1000', '0'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '500', '1'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '816', '330', '2'); -- Silk Thread
+INSERT INTO `bcnm_loot` VALUES ('104', '14738', '90', '3'); -- Magician's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14737', '90', '3'); -- Wyvern Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14736', '90', '3'); -- Genin Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14735', '90', '3'); -- Ashigaru Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14734', '90', '3'); -- Beater's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14733', '90', '3'); -- Singer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14732', '90', '3'); -- Trimmer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14731', '90', '3'); -- Killer Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14730', '90', '3'); -- Esquire's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '14729', '90', '3'); -- Pilferer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13439', '90', '4');-- Warlock's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13438', '90', '4'); -- Wizard's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13437', '90', '4'); -- Healer's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13436', '90', '4'); -- Wrestler's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '13435', '90', '4'); -- Mercenary's Earring
+INSERT INTO `bcnm_loot` VALUES ('104', '1134', '110', '5'); -- Bast Parchment
+INSERT INTO `bcnm_loot` VALUES ('104', '4116', '150', '5'); -- Hi-Potion
+INSERT INTO `bcnm_loot` VALUES ('104', '4132', '150', '5'); -- Hi-Ether
+INSERT INTO `bcnm_loot` VALUES ('104', '694', '100', '6'); -- Chestnut Log
+INSERT INTO `bcnm_loot` VALUES ('104', '690', '100', '6'); -- Elm Log
+INSERT INTO `bcnm_loot` VALUES ('104', '651', '80', '6'); -- Iron Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '653', '80', '6'); -- Mythril Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '744', '80', '6'); -- Silver Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '652', '80', '6'); -- Steel Ingot
+INSERT INTO `bcnm_loot` VALUES ('104', '644', '100', '7'); -- Mythril Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '645', '100', '7'); -- Darksteel Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '736', '100', '7'); -- Silver Ore
+INSERT INTO `bcnm_loot` VALUES ('104', '806', '80', '7'); -- Tourmaline
+INSERT INTO `bcnm_loot` VALUES ('104', '814', '80', '7'); -- Amber
+INSERT INTO `bcnm_loot` VALUES ('104', '795', '80', '7'); -- Lapis Lazuli
+INSERT INTO `bcnm_loot` VALUES ('104', '799', '80', '7'); -- Onyx
+INSERT INTO `bcnm_loot` VALUES ('104', '807', '80', '7'); -- Sardonyx
+INSERT INTO `bcnm_loot` VALUES ('104', '4751', '200', '8'); -- Scroll of Erase
+INSERT INTO `bcnm_loot` VALUES ('104', '4868', '150', '8'); -- Scroll of Dispel
+INSERT INTO `bcnm_loot` VALUES ('104', '5070', '200', '8'); -- Scroll of Magic Finale
+INSERT INTO `bcnm_loot` VALUES ('104', '4947', '100', '8'); -- Scroll of Utsusemi: Ni
+
+--
 INSERT INTO `bcnm_loot` VALUES ('105', '1603', '100', '0');
 INSERT INTO `bcnm_loot` VALUES ('105', '915', '250', '1');
 INSERT INTO `bcnm_loot` VALUES ('105', '4112', '300', '1');
@@ -538,7 +602,6 @@ INSERT INTO `bcnm_loot` VALUES ('11', '722', '141', '10');
 INSERT INTO `bcnm_loot` VALUES ('12', '846', '1000', '0'); -- LootID 12 needs 100% chance to drop 4k gil
 INSERT INTO `bcnm_loot` VALUES ('12', '1601', '1000', '1');
 INSERT INTO `bcnm_loot` VALUES ('12', '12486', '364', '2');
-INSERT INTO `bcnm_loot` VALUES ('12', '846', '636', '2'); -- Temp fix for Chance to get zero items (This item doesnt drop here)  ~63.6%
 INSERT INTO `bcnm_loot` VALUES ('12', '12400', '175', '3');
 INSERT INTO `bcnm_loot` VALUES ('12', '12399', '175', '3');
 INSERT INTO `bcnm_loot` VALUES ('12', '12395', '175', '3');
@@ -560,7 +623,6 @@ INSERT INTO `bcnm_loot` VALUES ('12', '4868', '150', '5'); -- putting all 4 unko
 INSERT INTO `bcnm_loot` VALUES ('12', '4751', '100', '5');
 INSERT INTO `bcnm_loot` VALUES ('12', '690', '90', '5');
 INSERT INTO `bcnm_loot` VALUES ('12', '1602', '70', '5');
-INSERT INTO `bcnm_loot` VALUES ('14', '939', '50', '0'); --  Temp fix for Chance to get zero items (This item doesnt drop here)  ~5%
 INSERT INTO `bcnm_loot` VALUES ('14', '13254', '95', '0');
 INSERT INTO `bcnm_loot` VALUES ('14', '13253', '95', '0');
 INSERT INTO `bcnm_loot` VALUES ('14', '13255', '95', '0');
@@ -586,7 +648,6 @@ INSERT INTO `bcnm_loot` VALUES ('14', '13288', '64', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13291', '65', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13297', '64', '1');
 INSERT INTO `bcnm_loot` VALUES ('14', '13447', '30', '1');
-INSERT INTO `bcnm_loot` VALUES ('14', '939', '166', '2'); -- Temp fix for Chance to get zero items (This item doesnt drop here) ~16.6% 
 INSERT INTO `bcnm_loot` VALUES ('14', '4902', '10', '2');
 INSERT INTO `bcnm_loot` VALUES ('14', '4814', '176', '2');
 INSERT INTO `bcnm_loot` VALUES ('14', '4719', '176', '2');
@@ -646,14 +707,11 @@ INSERT INTO `bcnm_loot` VALUES ('15', '837', '96', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1132', '288', '6');
 INSERT INTO `bcnm_loot` VALUES ('15', '1110', '41', '6');
 INSERT INTO `bcnm_loot` VALUES ('16', '13056', '90', '0');
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '910', '0'); -- temp fix for 100% drop rate PCC (This item doesnt drop here) 91%
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '467', '1'); -- temp placeholder for the "chance to get no item" (This item doesnt drop here) 46.7%
 INSERT INTO `bcnm_loot` VALUES ('16', '18086', '48', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18046', '61', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18210', '46', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '15286', '302', '1');
 INSERT INTO `bcnm_loot` VALUES ('16', '18350', '76', '1');
-INSERT INTO `bcnm_loot` VALUES ('16', '939', '413', '2'); -- temp placeholder for the "chance to get no item" (This item doesnt drop here) 41.3%
 INSERT INTO `bcnm_loot` VALUES ('16', '17696', '42', '2');
 INSERT INTO `bcnm_loot` VALUES ('16', '17936', '77', '2');
 INSERT INTO `bcnm_loot` VALUES ('16', '17693', '73', '2');

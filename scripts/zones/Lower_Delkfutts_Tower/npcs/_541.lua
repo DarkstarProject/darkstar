@@ -5,12 +5,10 @@
 -- San d'Orian Mission 3.3 "Appointment to Jeuno"
 -- !pos 636 16 20 184
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,12 +25,12 @@ function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(SANDORIA);
 
-    if (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY) == false) then
-        player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
-    elseif (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(DELKFUTT_KEY)) then
+    if (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
+        player:messageSpecial(ID.text.THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
+    elseif (currentMission == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(0);
     else
-        player:messageSpecial(DOOR_FIRMLY_SHUT);
+        player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT);
     end
 
     return 1;
@@ -40,19 +38,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID:",csid);
-    -- printf("RESULT:",option);
 
     if (csid == 0) then
-        if (player:hasKeyItem(DELKFUTT_KEY) == false) then
+        if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
-            player:addKeyItem(DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,DELKFUTT_KEY);
+            player:addKeyItem(dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
         end
         player:setVar("MissionStatus",5);
     end

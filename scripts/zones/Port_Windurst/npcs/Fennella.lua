@@ -2,33 +2,30 @@
 -- Area: Port Windurst
 --  NPC: Fennella
 -- Type: Guildworker's Union Representative
---  @zone 240
--- !pos -177.811 -2.835 65.639
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos -177.811 -2.835 65.639 240
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 
 local keyitems = {
     [0] = {
-        id = FROG_FISHING,
+        id = dsp.ki.FROG_FISHING,
         rank = 3,
         cost = 30000
     },
     [1] = {
-        id = SERPENT_RUMORS,
+        id = dsp.ki.SERPENT_RUMORS,
         rank = 8,
         cost = 95000
     },
     [2] = {
-        id = MOOCHING,
+        id = dsp.ki.MOOCHING,
         rank = 9,
         cost = 115000
     },
-     [3] = {
-        id = ANGLERS_ALMANAC,
+    [3] = {
+        id = dsp.ki.ANGLERS_ALMANAC,
         rank = 9,
         cost = 20000
     }
@@ -86,19 +83,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     end
 end;
 
 function onEventFinish(player,csid,option,target)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10020) then
         unionRepresentativeTriggerFinish(player, option, target, 0, "guild_Fishing", keyitems, items);
     elseif (csid == 10021) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

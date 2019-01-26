@@ -6,8 +6,8 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
-    mob:setMobMod(MOBMOD_HP_STANDBACK, -1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.HP_STANDBACK, -1);
 end;
 
 function onMobDeath(mob, player, isKiller)

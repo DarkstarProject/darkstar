@@ -2,13 +2,11 @@
 -- Area: Sacrificial Chamber
 -- Name: Zilart Mission 4
 -----------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
+local ID = require("scripts/zones/Sacrificial_Chamber/IDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)
@@ -49,7 +47,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
     
     if (csid == 32001) then
-        player:addTitle(BEARER_OF_THE_WISEWOMANS_HOPE);
+        player:addTitle(dsp.title.BEARER_OF_THE_WISEWOMANS_HOPE);
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
             player:startEvent(7);
         end
@@ -57,9 +55,9 @@ function onEventFinish(player,csid,option)
         player:startEvent(8);
     elseif (csid == 8) then
         if (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
-            player:delKeyItem(SACRIFICIAL_CHAMBER_KEY);
-            player:addKeyItem(DARK_FRAGMENT);
-            player:messageSpecial(KEYITEM_OBTAINED,DARK_FRAGMENT);
+            player:delKeyItem(dsp.ki.SACRIFICIAL_CHAMBER_KEY);
+            player:addKeyItem(dsp.ki.DARK_FRAGMENT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DARK_FRAGMENT);
             player:completeMission(ZILART,THE_TEMPLE_OF_UGGALEPIH);
             player:addMission(ZILART,HEADSTONE_PILGRIMAGE);
         end

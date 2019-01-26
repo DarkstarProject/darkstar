@@ -21,7 +21,7 @@ function onTrigger(player, msgId, param1, param2, param3, param4, param5)
         return;
     end
 
-    -- inject message special packet    
+    -- inject message special packet
     if (param5 ~= nil) then
         player:messageSpecial(msgId, param1, param2, param3, param4, param5);
     elseif (param4 ~= nil) then

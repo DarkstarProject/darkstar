@@ -3,10 +3,6 @@
 --  NPC: _5ge (Lever E)
 -- !pos 20 -20.561 143.801 196
 -----------------------------------
-package.loaded["scripts/zones/Gusgen_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Gusgen_Mines/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -27,11 +23,7 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

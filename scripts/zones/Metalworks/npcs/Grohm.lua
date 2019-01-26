@@ -4,10 +4,8 @@
 -- Involved In Mission: Journey Abroad
 -- !pos -18 -11 -27 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -54,21 +52,17 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 423 or csid == 425) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,605); -- Pickaxes
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,605); -- Pickaxes
             player:setVar("notReceivePickaxe",1);
         else
             player:addItem(605,5);
-            player:messageSpecial(ITEM_OBTAINED,605); -- Pickaxes
+            player:messageSpecial(ID.text.ITEM_OBTAINED,605); -- Pickaxes
             player:setVar("MissionStatus",5);
             player:setVar("notReceivePickaxe",0);
         end

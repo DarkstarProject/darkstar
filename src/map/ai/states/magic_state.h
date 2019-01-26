@@ -52,6 +52,8 @@ public:
     uint32 GetRecast();
     void ApplyEnmity(CBattleEntity* PTarget, int ce, int ve);
 
+    void SetInstantCast(const bool bInstantCast) { m_instantCast = bInstantCast; }
+
 protected:
     bool CanCastSpell(CBattleEntity* PTarget);
 
@@ -64,6 +66,7 @@ protected:
     duration m_castTime;
     position_t m_startPos;
     bool m_interrupted {false};
+    bool m_instantCast {false};
     uint8 m_flags {0};
 };
 

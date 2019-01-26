@@ -2,10 +2,7 @@
 -- Area: The_Shrouded_Maw
 -- Name: waking_dreams
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
-require("scripts/zones/The_Shrouded_Maw/MobIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/status");
@@ -15,9 +12,9 @@ require("scripts/globals/titles");
 function onBcnmRegister(player,instance)
     -- "close" all floor tiles
     local inst = player:getBattlefieldID();
-    local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    local tile = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
-        GetNPCByID(i):setAnimation(ANIMATION_CLOSE_DOOR);
+        GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
     end
 end;
 
@@ -35,12 +32,12 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasKeyItem(VIAL_OF_DREAM_INCENSE)) then
-            player:delKeyItem(VIAL_OF_DREAM_INCENSE);
-            player:addKeyItem(WHISPER_OF_DREAMS);
-            player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_DREAMS);
+        if (player:hasKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE)) then
+            player:delKeyItem(dsp.ki.VIAL_OF_DREAM_INCENSE);
+            player:addKeyItem(dsp.ki.WHISPER_OF_DREAMS);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_DREAMS);
         end
-        player:addTitle(HEIR_TO_THE_REALM_OF_DREAMS);
+        player:addTitle(dsp.title.HEIR_TO_THE_REALM_OF_DREAMS);
         player:startEvent(32002);
     elseif (leavecode == 4) then
         player:startEvent(32002);
@@ -51,4 +48,4 @@ function onEventUpdate(player,csid,option)
 end;
         
 function onEventFinish(player,csid,option)
-end;    
+end;

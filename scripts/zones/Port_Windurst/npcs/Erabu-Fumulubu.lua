@@ -4,11 +4,9 @@
 -- Type: Fishing Synthesis Image Support
 -- !pos -178.900 -2.789 76.200 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,11 +14,11 @@ end;
 
 function onTrigger(player,npc)
     local guildMember = isGuildMember(player,5);
-    local SkillCap = getCraftSkillCap(player,SKILL_FISHING);
-    local SkillLevel = player:getSkillLevel(SKILL_FISHING);
+    local SkillCap = getCraftSkillCap(player,dsp.skill.FISHING);
+    local SkillLevel = player:getSkillLevel(dsp.skill.FISHING);
 
     if (guildMember == 1) then
-        if (player:hasStatusEffect(dsp.effects.FISHING_IMAGERY) == false) then
+        if (player:hasStatusEffect(dsp.effect.FISHING_IMAGERY) == false) then
             player:startEvent(10012,SkillCap,SkillLevel,1,239,player:getGil(),0,0,0); -- p1 = skill level
         else
             player:startEvent(10012,SkillCap,SkillLevel,1,239,player:getGil(),19194,4031,0);
@@ -31,15 +29,11 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10012 and option == 1) then
-        player:messageSpecial(FISHING_SUPPORT,0,0,1);
-        player:addStatusEffect(dsp.effects.FISHING_IMAGERY,1,0,3600);
+        player:messageSpecial(ID.text.FISHING_SUPPORT,0,0,1);
+        player:addStatusEffect(dsp.effect.FISHING_IMAGERY,1,0,3600);
     end
 end;

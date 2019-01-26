@@ -2,15 +2,8 @@
 -- Area: Spire_of_Mea
 -- NPC:  web of regret
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Mea/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Spire_of_Mea/TextIDs");
-
------------------------------------
--- onTrade Action
------------------------------------
 
 function onTrade(player,npc,trade)
     
@@ -20,10 +13,6 @@ function onTrade(player,npc,trade)
     
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
     
     if (EventTriggerBCNM(player,npc)) then
@@ -31,10 +20,6 @@ function onTrigger(player,npc)
     end
     
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

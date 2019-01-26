@@ -4,9 +4,6 @@
 -- Quest NPC
 -- pos -200 -6 -93
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -28,15 +25,10 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 122) then
         player:setVar("FiresOfDiscProg",1);
     end
 end;
-

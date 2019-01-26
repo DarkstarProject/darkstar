@@ -22,7 +22,7 @@ function onTrigger(player, amount, target)
         return;
     end
 
-    -- validate target    
+    -- validate target
     local targ;
     if (target == nil) then
         targ = player;

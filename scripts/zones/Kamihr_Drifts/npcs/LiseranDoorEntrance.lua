@@ -2,13 +2,9 @@
 -- Area: Kamihr Drifts
 --  NPC: Liseran Door Entrance
 -- Zones to Outer Ra'Kaznar (zone 274)
--- @zone 274
--- !pos -34.549 -181.334 -20.031
------------------------------------
-package.loaded["scripts/zones/Kamihr_Drifts/TextIDs"] = nil;
+-- !pos -34.549 -181.334 -20.031 274
 -----------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Kamihr_Drifts/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,13 +15,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 34 and option == 1) then
         player:setPos(-39.846,-179.334,-19.921,131,274);
     end

@@ -1,29 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Ransnana
+--  NPC: Ransnana
 -- Type: Standard NPC
--- @zone 94
--- !pos -22.008 -13.339 122.819
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
+-- !pos -22.008 -13.339 122.819 94
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(408);
-end;
+    player:startEvent(408)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

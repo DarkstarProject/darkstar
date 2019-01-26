@@ -4,9 +4,7 @@
 -- Involved in Quest: Hat in Hand
 -- !pos 163 0 -22 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -22,21 +20,14 @@ function onTrigger(player,npc)
     end
     hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
     if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and testflag(tonumber(player:getVar("QuestHatInHand_var")),1) == false) then
-        player:messageSpecial(7121); -- Show Off Hat
+        player:messageSpecial(ID.text.YOU_SHOW_OFF_THE, dsp.ki.NEW_MODEL_HAT)
         player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+1);
         player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-
-
-

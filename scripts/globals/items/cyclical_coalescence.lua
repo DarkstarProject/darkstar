@@ -9,35 +9,36 @@
 -- Magic Atk. Bonus +15
 -- Lizard Killer +7
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD)) then
-        result = 246;
+    local result = 0
+    if (target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD)) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,1800,6225);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,1800,6225)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_FOOD_MPP, 30)
-    target:addMod(MOD_FOOD_MP_CAP, 110)
-    target:addMod(MOD_INT, 7)
-    target:addMod(MOD_MND, 7)
-    target:addMod(MOD_MATT, 15)
-    target:addMod(MOD_LIZARD_KILLER, 7)
-end;
+    target:addMod(dsp.mod.FOOD_MPP, 30)
+    target:addMod(dsp.mod.FOOD_MP_CAP, 110)
+    target:addMod(dsp.mod.INT, 7)
+    target:addMod(dsp.mod.MND, 7)
+    target:addMod(dsp.mod.MATT, 15)
+    target:addMod(dsp.mod.LIZARD_KILLER, 7)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_FOOD_MPP, 30)
-    target:delMod(MOD_FOOD_MP_CAP, 110)
-    target:delMod(MOD_INT, 7)
-    target:delMod(MOD_MND, 7)
-    target:delMod(MOD_MATT, 15)
-    target:delMod(MOD_LIZARD_KILLER, 7)
-end;
+    target:delMod(dsp.mod.FOOD_MPP, 30)
+    target:delMod(dsp.mod.FOOD_MP_CAP, 110)
+    target:delMod(dsp.mod.INT, 7)
+    target:delMod(dsp.mod.MND, 7)
+    target:delMod(dsp.mod.MATT, 15)
+    target:delMod(dsp.mod.LIZARD_KILLER, 7)
+end

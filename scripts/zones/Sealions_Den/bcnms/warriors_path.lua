@@ -3,12 +3,9 @@
 -- Name: warriors_path
 -- bcnmID : 993
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Sealions_Den/TextIDs");
 -----------------------------------
  --Tarutaru
 --Tenzen                                                    group 860   3875
@@ -53,7 +50,7 @@ function onBcnmLeave(player,instance,leavecode)
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
         end
     elseif (leavecode == 4) then
-           player:startEvent(32002);
+        player:startEvent(32002);
     end
 
 end;
@@ -65,7 +62,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
-       player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
-       player:addTitle(THE_CHEBUKKIS_WORST_NIGHTMARE);
+        player:setPos(-25,-1 ,-620 ,208 ,33);-- al'taieu
+        player:addTitle(dsp.title.THE_CHEBUKKIS_WORST_NIGHTMARE);
     end
 end;

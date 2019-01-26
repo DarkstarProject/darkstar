@@ -4,10 +4,6 @@
 -- Handles access to Alzadaal Ruins
 -- !pos -20 -6 276 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mount_Zhayolm/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1 and trade:hasItemQty(2185,1)) then -- Silver
@@ -24,17 +20,13 @@ function onTrigger(player,npc)
     if (player:getZPos() > -280) then
         player:startEvent(164);
     -- Zhayolm -> Ruins
-   else
+    else
         player:startEvent(162);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

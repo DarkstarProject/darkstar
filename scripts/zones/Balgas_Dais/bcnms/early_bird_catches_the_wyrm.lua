@@ -2,22 +2,19 @@
 -- Area: Balgas_Dais
 -- Name: early bird catches the wyrm
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Balgas_Dais/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
--- 
+--
 -- What should go here:
 -- giving key items, playing ENDING cutscenes
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -54,5 +51,5 @@ function onEventUpdate(player,csid,option)
 end;
     
 function onEventFinish(player,csid,option)
--- print("bc finish csid "..csid.." and option "..option);    
+-- print("bc finish csid "..csid.." and option "..option);
 end;

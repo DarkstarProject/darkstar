@@ -2,12 +2,10 @@
 -- Area: Cloister of Storms
 -- BCNM: Trial by Lightning
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Storms/IDs");
 
 -----------------------------------
 
@@ -16,7 +14,7 @@ require("scripts/zones/Cloister_of_Storms/TextIDs");
 --
 -- What should NOT go here:
 -- Handling of "battlefield" status, spawning of monsters,
--- putting loot into treasure pool, 
+-- putting loot into treasure pool,
 -- enforcing ANY rules (SJ/number of people/etc), moving
 -- chars around, playing entrance CSes (entrance CSes go in bcnm.lua)
 
@@ -38,7 +36,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OTHER_AREAS,TRIAL_BY_LIGHTNING)
+    trialLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (trialLightning == QUEST_COMPLETED) then
@@ -59,8 +57,8 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        player:delKeyItem(TUNING_FORK_OF_LIGHTNING);
-        player:addKeyItem(WHISPER_OF_STORMS);
-        player:messageSpecial(KEYITEM_OBTAINED,WHISPER_OF_STORMS);
+        player:delKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING);
+        player:addKeyItem(dsp.ki.WHISPER_OF_STORMS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WHISPER_OF_STORMS);
     end
-end;    
+end;

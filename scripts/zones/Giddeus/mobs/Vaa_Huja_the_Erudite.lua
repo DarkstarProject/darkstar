@@ -1,11 +1,8 @@
 -----------------------------------
 -- Area: Giddeus
---  NM:  Vaa Huja the Erudite
+--   NM: Vaa Huja the Erudite
 -- Involved in Quests: Dark Legacy
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
     local darkLegacyCS = player:getVar("darkLegacyCS");

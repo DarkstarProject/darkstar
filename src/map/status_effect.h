@@ -33,11 +33,12 @@
 
 enum EFFECTOVERWRITE
 {
-    EFFECTOVERWRITE_EQUAL_HIGHER = 0, // only overwrite if equal or higher
-    EFFECTOVERWRITE_HIGHER = 1, // only overwrite if higher
+    EFFECTOVERWRITE_EQUAL_HIGHER = 0, // only overwrite if equal or higher (tier, power)
+    EFFECTOVERWRITE_HIGHER = 1, // only overwrite if higher (tier, power)
     EFFECTOVERWRITE_NEVER = 2, // never overwrite
     EFFECTOVERWRITE_ALWAYS = 3, // always overwrite no matter
-    EFFECTOVERWRITE_IGNORE = 4 // ignore dupes
+    EFFECTOVERWRITE_IGNORE = 4, // ignore dupes
+    EFFECTOVERWRITE_TIER_HIGHER = 5 // only overwrite if tier is higher (regardless of power)
 };
 
 enum EFFECTFLAG
@@ -67,6 +68,7 @@ enum EFFECTFLAG
     EFFECTFLAG_BLOODPACT        = 0x200000,
     EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
     EFFECTFLAG_NO_CANCEL        = 0x800000, // CAN NOT CLICK IT OFF IN CLIENT
+    EFFECTFLAG_INFLUENCE        = 0x1000000, // Influence effects - e.g. Signet, Sanction, Sigil, Ionis
 };
 
 enum EFFECT

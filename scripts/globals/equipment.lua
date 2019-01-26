@@ -24,7 +24,7 @@ BaseNyzulWeapons = {
                    };
 
 -----------------------------------
--- Place convenience functions 
+-- Place convenience functions
 -- related to equipment here
 -----------------------------------
 
@@ -56,7 +56,7 @@ function isBaseNyzulWeapon(itemId)
     for i, wepId in pairs(BaseNyzulWeapons) do
         if (itemId == wepId) then
             return true;
-        end  
+        end
     end
     
     return false;
@@ -65,7 +65,7 @@ end;
 
 -- Provides a power for using a chocobo shirt with bunch of gysahl greens
 function ChocoboShirt(player)
-    local body = player:getEquipID(SLOT_BODY);
+    local body = player:getEquipID(dsp.slot.BODY);
     local power = 0;
     if (body == 10293) then -- Chocobo Shirt
         power = power + 1;

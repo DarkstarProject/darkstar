@@ -4,19 +4,17 @@
 -- Lifts players up to the sky!
 -- !pos 0 -20 147 251
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_the_Gods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Hall_of_the_Gods/TextIDs");
+local ID = require("scripts/zones/Hall_of_the_Gods/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-   local ZilartProgress = player:getCurrentMission(ZILART);
-   local ZVar = player:getVar("ZilartStatus");
+    local ZilartProgress = player:getCurrentMission(ZILART);
+    local ZVar = player:getVar("ZilartStatus");
 
     if (player:getZPos() < 200) then
         if (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar == 0) then
@@ -24,8 +22,8 @@ function onTrigger(player,npc)
         elseif (ZilartProgress ~= 255 and ZilartProgress > THE_GATE_OF_THE_GODS or -- If player has not done any ZM, Progress == 255
          (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar > 0)) then
             player:startEvent(10);
-      else
-         player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        else
+            player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         end
     else
         player:startEvent(11);
@@ -34,13 +32,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 3) then
         player:setVar("ZilartStatus",1);

@@ -7,16 +7,13 @@ require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(MOBMOD_NO_MOVE, 1);
+    mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
 end;
 
 function onMobSpawn(mob)
     -- Wiki is wrong, he CAN melee: https://youtu.be/5ko8xHiHvYo?t=14m31s
     -- mob:SetAutoAttackEnabled(false);
     mob:setUnkillable(true);
-end;
-
-function onMobEngaged(mob,target)
 end;
 
 function onMobFight(mob,target)
@@ -33,7 +30,4 @@ function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
 end;

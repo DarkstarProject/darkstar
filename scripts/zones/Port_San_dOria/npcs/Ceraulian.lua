@@ -4,13 +4,11 @@
 -- Involved in Quest: The Holy Crest
 -- !pos 0 -8 -122 232
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         player:startEvent(24);
 
     -- Chasing Quotas (DRG AF2)
-    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == JOBS.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
+    elseif (Quotas_Status == QUEST_AVAILABLE and player:getMainJob() == dsp.job.DRG and player:getMainLvl() >= AF1_QUEST_LEVEL and Quotas_No == 0) then
         player:startEvent(18); -- Long version of quest start
     elseif (Quotas_No == 1) then
         player:startEvent(14); -- Short version for those that said no.
@@ -60,7 +58,7 @@ function onTrigger(player,npc)
     elseif (Stalker_Status == QUEST_ACCEPTED and Stalker_Progress == 0) then
         player:startEvent(19); -- Fetch the last Dragoon's helmet
     elseif (Stalker_Progress == 1) then
-        if (player:hasKeyItem(CHALLENGE_TO_THE_ROYAL_KNIGHTS) == false) then
+        if (player:hasKeyItem(dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) == false) then
             player:startEvent(23); -- Reminder to get helmet
         else
             player:startEvent(20); -- Response if you try to turn in the challenge to Ceraulian
@@ -77,13 +75,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 24) then
         player:setVar("TheHolyCrest_Event",1);
@@ -106,11 +100,11 @@ function onEventFinish(player,csid,option)
         player:setVar("ChasingQuotas_date",0);
     elseif (csid == 15) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14227);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14227);
         else
-            player:delKeyItem(RANCHURIOMES_LEGACY);
+            player:delKeyItem(dsp.ki.RANCHURIOMES_LEGACY);
             player:addItem(14227);
-            player:messageSpecial(ITEM_OBTAINED,14227); -- Drachen Brais
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14227); -- Drachen Brais
             player:addFame(SANDORIA,AF2_FAME);
             player:completeQuest(SANDORIA,CHASING_QUOTAS);
             player:setVar("ChasingQuotas_Progress",0);

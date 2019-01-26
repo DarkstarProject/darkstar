@@ -3,52 +3,23 @@
 -- Zone: Carpenters_Landing (2)
 --
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil;
+local func = require("scripts/zones/Carpenters_Landing/globals")
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
+require("scripts/globals/chocobo_digging")
+require("scripts/globals/conquest")
+require("scripts/globals/helm")
 -----------------------------------
-require("scripts/zones/Carpenters_Landing/TextIDs");
-require("scripts/zones/Carpenters_Landing/MobIDs");
-require("scripts/globals/chocobo_digging");
-require("scripts/globals/zone");
------------------------------------
-
-local itemMap =
-{
-    -- itemid, abundance, requirement
-                    { 4504, 152, DIGREQ_NONE },
-                    { 688, 182, DIGREQ_NONE },
-                    { 697, 83, DIGREQ_NONE },
-                    { 4386, 3, DIGREQ_NONE },
-                    { 17396, 129, DIGREQ_NONE },
-                    { 691, 144, DIGREQ_NONE },
-                    { 918, 8, DIGREQ_NONE },
-                    { 699, 76, DIGREQ_NONE },
-                    { 4447, 38, DIGREQ_NONE },
-                    { 695, 45, DIGREQ_NONE },
-                    { 4096, 100, DIGREQ_NONE },  -- all crystals
-                    { 1255, 10, DIGREQ_NONE }, -- all ores
-                    { 4100, 59, DIGREQ_BURROW },
-                    { 4101, 59, DIGREQ_BURROW },
-                    { 690, 15, DIGREQ_BORE },
-                    { 1446, 8, DIGREQ_BORE },
-                    { 700, 23, DIGREQ_BORE },
-                    { 701, 8, DIGREQ_BORE },
-                    { 696, 30, DIGREQ_BORE },
-                    { 4570, 10, DIGREQ_MODIFIER },
-                    { 4487, 11, DIGREQ_MODIFIER },
-                    { 4409, 12, DIGREQ_MODIFIER },
-                    { 1188, 10, DIGREQ_MODIFIER },
-                    { 4532, 12, DIGREQ_MODIFIER },
-};
-
-local messageArray = { DIG_THROW_AWAY, FIND_NOTHING, ITEM_OBTAINED };
 
 function onChocoboDig(player, precheck)
-    return chocoboDig(player, itemMap, precheck, messageArray);
+    return dsp.chocoboDig.start(player, precheck)
 end;
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(TEMPEST_TIGON);
-    GetMobByID(TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.TEMPEST_TIGON);
+    GetMobByID(ID.mob.TEMPEST_TIGON):setRespawnTime(math.random(900, 10800));
+
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    func.herculesTreeOnGameHour()
 end;
 
 function onZoneIn(player,prevZone)
@@ -60,22 +31,22 @@ function onZoneIn(player,prevZone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
+
+function onGameHour(zone)
+    local hour = VanadielHour()
+
+    if hour == 7 or hour == 22 then
+        func.herculesTreeOnGameHour()
+    end
+end
 
 function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

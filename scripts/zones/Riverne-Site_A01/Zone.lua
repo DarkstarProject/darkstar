@@ -3,9 +3,7 @@
 -- Zone: Riverne-Site_A01
 --
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Riverne-Site_A01/TextIDs");
+local ID = require("scripts/zones/Riverne-Site_A01/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/status");
@@ -15,11 +13,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -34,7 +28,7 @@ end;
 
 function afterZoneIn(player)
     if (ENABLE_COP_ZONE_CAP == 1) then -- ZONE WIDE LEVEL RESTRICTION
-        player:addStatusEffect(dsp.effects.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
+        player:addStatusEffect(dsp.effect.LEVEL_RESTRICTION,40,0,0); -- LV40 cap
     end
 end;
 

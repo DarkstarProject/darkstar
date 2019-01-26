@@ -20,7 +20,7 @@ function onEventFinish(player,csid,option)
     -- printf("onFinish RESULT: %u",option);
 
     if (csid == 101 and option == 1) then
-        player:setPos(-284.751,-39.923,-422.948,235,0x6F);
+        player:setPos(-284.751,-39.923,-422.948,235,111);
     end
 
 end;

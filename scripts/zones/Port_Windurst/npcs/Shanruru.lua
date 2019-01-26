@@ -2,15 +2,12 @@
 -- Area: Port Windurst
 --  NPC: Shanruru
 -- Involved in Quest: Riding on the Clouds
--- @zone 240
--- !pos -1 -6 187
------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
+-- !pos -1 -6 187 240
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,8 +16,8 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
-            player:addKeyItem(SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,SPIRITED_STONE);
+            player:addKeyItem(dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     end
 
@@ -68,6 +65,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

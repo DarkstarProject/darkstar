@@ -4,13 +4,10 @@
 -- Horlais Peak Burning Circle
 -- !pos -509 158 -211 139
 -------------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Horlais_Peak/TextIDs");
 
     --- 0: The Rank 2 Final Mission
     --- 1: Tails of Woe
@@ -31,10 +28,6 @@ require("scripts/zones/Horlais_Peak/TextIDs");
     --- 16: Today's Horoscope
     --- 17: Contaminated Colosseum
 
------------------------------------
--- onTrade Action
------------------------------------
-
 function onTrade(player,npc,trade)
 
     if (TradeBCNM(player,player:getZoneID(),trade,npc)) then
@@ -43,10 +36,6 @@ function onTrade(player,npc,trade)
 
 end;
 
------------------------------------
--- onTrigger Action
------------------------------------
-
 function onTrigger(player,npc)
 
     if (EventTriggerBCNM(player,npc)) then
@@ -54,10 +43,6 @@ function onTrigger(player,npc)
     end
 
 end;
-
------------------------------------
--- onEventUpdate
------------------------------------
 
 function onEventUpdate(player,csid,option)
     -- printf("onUpdate CSID: %u",csid);

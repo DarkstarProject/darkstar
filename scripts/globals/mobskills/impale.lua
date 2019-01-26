@@ -7,43 +7,43 @@
 --  Range: Melee
 --  Notes:
 ---------------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/status");
-require("scripts/globals/monstertpmoves");
+require("scripts/globals/settings")
+require("scripts/globals/status")
+require("scripts/globals/monstertpmoves")
 
 ---------------------------------------------
 function onMobSkillCheck(target,mob,skill)
-    return 0;
-end;
+    return 0
+end
 
 function onMobWeaponSkill(target, mob, skill)
 
-    local isNM = mob:isMobType(MOBTYPE_NOTORIOUS);
+    local isNM = mob:isMobType(MOBTYPE_NOTORIOUS)
 
-    local numhits = 1;
-    local accmod = 1;
-    local dmgmod = 2.3;
+    local numhits = 1
+    local accmod = 1
+    local dmgmod = 2.3
 
-    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT);
+    local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
 
-    local shadows = info.hitslanded;
-
-    if (isNM) then
-        shadows = MOBPARAM_IGNORE_SHADOWS;
-    end
-
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_PIERCE,shadows);
-
-    local typeEffect = dsp.effects.PARALYSIS;
-    local power = 20;
+    local shadows = info.hitslanded
 
     if (isNM) then
-        typeEffect = dsp.effects.POISON;
+        shadows = MOBPARAM_IGNORE_SHADOWS
+    end
+
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.PIERCING,shadows)
+
+    local typeEffect = dsp.effect.PARALYSIS
+    local power = 20
+
+    if (isNM) then
+        typeEffect = dsp.effect.POISON
     end
 
 
-    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, 120);
+    MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, power, 0, 120)
 
-    target:delHP(dmg);
-    return dmg;
-end;
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.PIERCING)
+    return dmg
+end

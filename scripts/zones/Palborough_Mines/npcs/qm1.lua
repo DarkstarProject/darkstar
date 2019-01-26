@@ -2,24 +2,20 @@
 -- Area: Palborough Mines
 --  NPC: ???
 -- Involved In Quest: The Talekeeper's Truth
--- @zone 143
--- !pos 15 -31 -94
+-- !pos 15 -31 -94 143
 -----------------------------------
-package.loaded["scripts/zones/Palborough_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Palborough_Mines/TextIDs");
-require("scripts/zones/Palborough_Mines/MobIDs");
+local ID = require("scripts/zones/Palborough_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getVar("theTalekeeperTruthCS") == 3 and not GetMobByID(NI_GHU_NESTFENDER):isSpawned()) then
-        player:messageSpecial(SENSE_OF_FOREBODING);
-        SpawnMob(NI_GHU_NESTFENDER):updateClaim(player);
+    if (player:getVar("theTalekeeperTruthCS") == 3 and not GetMobByID(ID.mob.NI_GHU_NESTFENDER):isSpawned()) then
+        player:messageSpecial(ID.text.SENSE_OF_FOREBODING);
+        SpawnMob(ID.mob.NI_GHU_NESTFENDER):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

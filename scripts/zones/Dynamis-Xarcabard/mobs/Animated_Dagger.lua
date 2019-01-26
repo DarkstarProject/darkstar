@@ -3,7 +3,7 @@
 --  MOB: Animated Dagger
 -----------------------------------
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 -----------------------------------
 
 function onMobEngaged(mob,target)
@@ -14,7 +14,7 @@ function onMobEngaged(mob,target)
         SetDropRate(103,1572,0);
     end
 
-    target:showText(mob,ANIMATED_DAGGER_DIALOG);
+    target:showText(mob,ID.text.ANIMATED_DAGGER_DIALOG);
 
     SpawnMob(17330306):updateEnmity(target);
     SpawnMob(17330307):updateEnmity(target);
@@ -30,12 +30,12 @@ function onMobFight(mob,target)
 end;
 
 function onMobDisengage(mob)
-    mob:showText(mob,ANIMATED_DAGGER_DIALOG+2);
+    mob:showText(mob,ID.text.ANIMATED_DAGGER_DIALOG+2);
 end;
 
 function onMobDeath(mob, player, isKiller)
 
-    player:showText(mob,ANIMATED_DAGGER_DIALOG+1);
+    player:showText(mob,ID.text.ANIMATED_DAGGER_DIALOG+1);
 
     DespawnMob(17330306);
     DespawnMob(17330307);

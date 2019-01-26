@@ -3,10 +3,7 @@
 --  NPC: Dilapidated Gate
 -- !pos 260 9 -435 25
 -----------------------------------
-package.loaded["scripts/zones/Misareaux_Coast/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Misareaux_Coast/TextIDs");
-require("scripts/zones/Misareaux_Coast/MobIDs");
+local ID = require("scripts/zones/Misareaux_Coast/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -35,17 +32,17 @@ function onTrigger(player,npc)
         player:startEvent(10);
     elseif (
         cop == A_PLACE_TO_RETURN and copStat == 1 and
-        not GetMobByID(PM6_2_MOB_OFFSET + 0):isSpawned() and
-        not GetMobByID(PM6_2_MOB_OFFSET + 1):isSpawned() and
-        not GetMobByID(PM6_2_MOB_OFFSET + 2):isSpawned()
+        not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 0):isSpawned() and
+        not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 1):isSpawned() and
+        not GetMobByID(ID.mob.PM6_2_MOB_OFFSET + 2):isSpawned()
     ) then
-        SpawnMob(PM6_2_MOB_OFFSET + 0):updateClaim(player);
-        SpawnMob(PM6_2_MOB_OFFSET + 1):updateClaim(player);
-        SpawnMob(PM6_2_MOB_OFFSET + 2):updateClaim(player);
+        SpawnMob(ID.mob.PM6_2_MOB_OFFSET + 0):updateClaim(player);
+        SpawnMob(ID.mob.PM6_2_MOB_OFFSET + 1):updateClaim(player);
+        SpawnMob(ID.mob.PM6_2_MOB_OFFSET + 2):updateClaim(player);
         
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(DOOR_CLOSED);
+        player:messageSpecial(ID.text.DOOR_CLOSED);
     end
 end;
 

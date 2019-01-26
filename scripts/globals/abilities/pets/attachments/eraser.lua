@@ -1,25 +1,25 @@
 -----------------------------------
 -- Attachment: Eraser
 -----------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 local removable = {
-    dsp.effects.PETRIFICATION,
-    dsp.effects.SILENCE,
-    dsp.effects.BANE,
-    dsp.effects.CURSE_II,
-    dsp.effects.CURSE,
-    dsp.effects.PARALYSIS,
-    dsp.effects.PLAGUE,
-    dsp.effects.POISON,
-    dsp.effects.DISEASE,
-    dsp.effects.BLINDNESS
+    dsp.effect.PETRIFICATION,
+    dsp.effect.SILENCE,
+    dsp.effect.BANE,
+    dsp.effect.CURSE_II,
+    dsp.effect.CURSE,
+    dsp.effect.PARALYSIS,
+    dsp.effect.PLAGUE,
+    dsp.effect.POISON,
+    dsp.effect.DISEASE,
+    dsp.effect.BLINDNESS
 }
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_ERASER", function(automaton, target)
         local master = automaton:getMaster()
-        if master and master:countEffect(dsp.effects.LIGHT_MANEUVER) > 0 and automaton:getLocalVar("erase") < VanadielTime() then
+        if not automaton:hasRecast(dsp.recast.ABILITY, 2021) and master and master:countEffect(dsp.effect.LIGHT_MANEUVER) > 0 then
             local erasetarget = false
 
             local function checkEffects(entity)
@@ -29,9 +29,9 @@ function onEquip(pet)
                 return false
             end
 
-            if automaton:hasStatusEffectByFlag(EFFECTFLAG_ERASABLE) or checkEffects(automaton) then
+            if automaton:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE) or checkEffects(automaton) then
                 erasetarget = automaton
-            elseif (automaton:checkDistance(master) - master:getModelSize()) < 7 and (master:hasStatusEffectByFlag(EFFECTFLAG_ERASABLE) or checkEffects(master)) then
+            elseif (automaton:checkDistance(master) - master:getModelSize()) < 7 and (master:hasStatusEffectByFlag(dsp.effectFlag.ERASABLE) or checkEffects(master)) then
                 erasetarget = master
             end
 

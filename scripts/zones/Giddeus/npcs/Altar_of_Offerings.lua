@@ -1,12 +1,10 @@
 -----------------------------------
--- Area: Windurst Waters
---  NPC: Alter Of Offering
+-- Area: Giddeus
+--  NPC: Alter of Offerings
 -- Involved in Quest: A Crisis in the Making
 -- !pos -137 17 177 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Giddeus/TextIDs");
+local ID = require("scripts/zones/Giddeus/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -26,16 +24,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 53 and option == 1) then
-        player:addKeyItem(39,OFF_OFFERING);
-        player:messageSpecial(KEYITEM_OBTAINED,OFF_OFFERING);
+        player:addKeyItem(39,dsp.ki.OFF_OFFERING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OFF_OFFERING);
         player:setVar("QuestCrisisMaking_var",2);
     end
 end;

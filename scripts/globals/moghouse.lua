@@ -23,7 +23,7 @@ function moogleTrade(player,npc,trade)
                 -- remove bronze
                 player:tradeComplete()
                 -- send event
-                player:messageSpecial(MOG_LOCKER_OFFSET + 2, getMogLockerExpiryTimestamp(player))
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET + 2, getMogLockerExpiryTimestamp(player))
             end
         end
         return true
@@ -36,9 +36,9 @@ function moogleTrigger(player,npc)
         local lockerTs = getMogLockerExpiryTimestamp(player)
         if lockerTs ~= nil then
             if lockerTs == -1 then -- expired
-                player:messageSpecial(MOG_LOCKER_OFFSET + 1, 2184) -- 2184 is imperial bronze piece item id
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET + 1, 2184) -- 2184 is imperial bronze piece item id
             else
-                player:messageSpecial(MOG_LOCKER_OFFSET, lockerTs)
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET, lockerTs)
             end
         end
 
@@ -72,9 +72,9 @@ end
 -- Unlocks a mog locker for a player. Returns the 'expired' timestamp (-1)
 function unlockMogLocker(player)
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, -1)
-    local currentSize = player:getContainerSize(LOC_MOGLOCKER)
+    local currentSize = player:getContainerSize(dsp.inv.MOGLOCKER)
     if currentSize == 0 then -- we do this check in case some servers auto-set 80 slots for mog locker items
-        player:changeContainerSize(LOC_MOGLOCKER, 30)
+        player:changeContainerSize(dsp.inv.MOGLOCKER, 30)
     end
     return -1
 end
@@ -116,7 +116,7 @@ function addMogLockerExpiryTime(player, numBronze)
 
     player:setVar(MOGLOCKER_PLAYERVAR_EXPIRY_TIMESTAMP, newTs)
     -- send an invent size packet to enable the items if they weren't
-    player:changeContainerSize(LOC_MOGLOCKER, 0)
+    player:changeContainerSize(dsp.inv.MOGLOCKER, 0)
     return true
 end
 

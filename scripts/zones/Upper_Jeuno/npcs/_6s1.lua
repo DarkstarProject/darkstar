@@ -3,9 +3,7 @@
 --  NPC: Marble Bridge Eatery (Door)
 -- !pos -96.6 -0.2 92.3 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 -----------------------------------
@@ -56,16 +54,12 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if ((csid == 84 or csid == 204) and option == 4) then
         player:updateEvent(ring[1],ring[2],ring[3])
     end
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 10011) then
         player:setVar("PromathiaStatus", 2);
     elseif (csid == 10012) then
@@ -79,11 +73,11 @@ function onEventFinish(player,csid,option)
             local currentDay = tonumber(os.date("%j"))
             local ringsTaken = player:getVar("COP-ringsTakenbr")
             player:addItem(ring[option - 4])
-            player:messageSpecial(ITEM_OBTAINED, ring[option - 4])
+            player:messageSpecial(ID.text.ITEM_OBTAINED, ring[option - 4])
             player:setVar("COP-ringsTakenbr", ringsTaken + 1)
             player:setVar("COP-lastRingday", currentDay)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, ring[option - 4])
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, ring[option - 4])
         end
     end
 end;

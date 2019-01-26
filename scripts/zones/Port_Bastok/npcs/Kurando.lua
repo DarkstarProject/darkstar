@@ -2,14 +2,11 @@
 -- Area: Port Bastok
 --   NPC: Kurando
 -- Type: Quest Giver
--- @zone 236
--- !pos -23.887 3.898 0.870
+-- !pos -23.887 3.898 0.870 236
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -24,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     local FearofFlying = player:getQuestStatus(BASTOK,FEAR_OF_FLYING);
-    -- csid 0x00Ad ?
+    -- csid 173 ?
     if (FearofFlying == QUEST_AVAILABLE and    player:getFameLevel(BASTOK) >=3) then
         player:startEvent(170); -- Quest Start Dialogue
     elseif (FearofFlying == QUEST_COMPLETED) then
@@ -36,26 +33,22 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 170) then
         player:addQuest(BASTOK,FEAR_OF_FLYING);
 
     elseif (csid == 171) then
         if    (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13113);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13113);
 
         else
             player:tradeComplete();
             player:addItem(13113,1);
-            player:messageSpecial(ITEM_OBTAINED,13113);
-            player:setTitle(AIRSHIP_DENOUNCER);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13113);
+            player:setTitle(dsp.title.AIRSHIP_DENOUNCER);
             player:completeQuest(BASTOK,FEAR_OF_FLYING);
             player:addFame(BASTOK,30);
         end

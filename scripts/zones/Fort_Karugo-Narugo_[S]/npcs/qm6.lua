@@ -2,13 +2,9 @@
 -- Area: Fort Karugo Narugo [S]
 --  NPC: ???
 -- Type: Quest
---  @zone 96
--- !pos -63 -75 4
---
+-- !pos -63 -75 4 96
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
+local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -16,35 +12,26 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-
-    if (player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_ACCEPTED) then
-        if (player:getVar("TigressStrikesProg") == 1) then
+    local ttsStat = player:getVar("TigressStrikesProg");
+    
+    if (ttsStat == 1) then
         player:startEvent(102);
-        elseif (player:getVar("TigressStrikesProg") == 2) then
-            if (player:needToZone() and player:getVar("WarLynxKilled") == 1) then
-                player:startEvent(103);
-            else
-                SpawnMob(17170645):updateClaim(player);
-            end
-        end
+    elseif (player:getVar("WarLynxKilled") == 1) then
+        player:startEvent(103);
+    elseif (ttsStat == 2 and not GetMobByID(ID.mob.TIGRESS_STRIKES_WAR_LYNX):isSpawned()) then
+        SpawnMob(ID.mob.TIGRESS_STRIKES_WAR_LYNX):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 102) then
-        player:setVar("TigressStrikesProg",2);
+        player:setVar("TigressStrikesProg", 2);
     elseif (csid == 103) then
-        player:setVar("TigressStrikesProg",3);
+        player:setVar("TigressStrikesProg", 3);
     end
 end;
-

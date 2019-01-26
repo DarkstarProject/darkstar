@@ -3,12 +3,10 @@
 --  NPC: Gerbaum
 -- Starts & Finishes Repeatable Quest: Minesweeper (100%)
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -49,8 +47,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
 MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
 
@@ -62,14 +58,12 @@ MineSweep = player:getQuestStatus(BASTOK,MINESWEEPER);
         if (MineSweep == 1) then
             player:completeQuest(BASTOK,MINESWEEPER);
             player:addFame(BASTOK,75);
-            player:addTitle(ZERUHN_SWEEPER);
+            player:addTitle(dsp.title.ZERUHN_SWEEPER);
         else
             player:addFame(BASTOK,8);
         end
         player:addGil(GIL_RATE*150);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*150);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*150);
     end
 
 end;
-
-

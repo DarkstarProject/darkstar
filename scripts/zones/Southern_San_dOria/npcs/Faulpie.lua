@@ -4,30 +4,28 @@
 -- Type: Leathercraft Guild Master
 -- !pos -178.882 -2 9.891 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local newRank = tradeTestItem(player,npc,trade,SKILL_LEATHERCRAFT);
+    local newRank = tradeTestItem(player,npc,trade,dsp.skill.LEATHERCRAFT);
 
     if (newRank ~= 0) then
-        player:setSkillRank(SKILL_LEATHERCRAFT,newRank);
+        player:setSkillRank(dsp.skill.LEATHERCRAFT,newRank);
         player:startEvent(649,0,0,0,0,newRank);
     end
 end;
 
 function onTrigger(player,npc)
     local getNewRank = 0;
-    local craftSkill = player:getSkillLevel(SKILL_LEATHERCRAFT);
-    local testItem = getTestItem(player,npc,SKILL_LEATHERCRAFT);
+    local craftSkill = player:getSkillLevel(dsp.skill.LEATHERCRAFT);
+    local testItem = getTestItem(player,npc,dsp.skill.LEATHERCRAFT);
     local guildMember = isGuildMember(player,7);
     if (guildMember == 1) then guildMember = 150995375; end
-    if (canGetNewRank(player,craftSkill,SKILL_LEATHERCRAFT) == 1) then getNewRank = 100; end
+    if (canGetNewRank(player,craftSkill,dsp.skill.LEATHERCRAFT) == 1) then getNewRank = 100; end
 
     if (player:getCurrentMission(ASA) == THAT_WHICH_CURDLES_BLOOD and guildMember == 150995375 and
         getNewRank ~= 100) then
@@ -48,24 +46,19 @@ function onTrigger(player,npc)
     end
 end;
 
--- 648  649  0x02f8  0x02f9  0x02fa  0x02fb  0x02fc  0x02fd  0x0302  0x0303  0x0304  0x0305  0x0306  0x0307  944  0x0392
-
+-- 648  649  760  761  762  763  764  765  770  771  772  773  774  775  944  914
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 648 and option == 1) then
         local crystal = 4103; -- dark crystal
 
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal);
         else
             player:addItem(crystal);
-            player:messageSpecial(ITEM_OBTAINED,crystal);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,crystal);
             signupGuild(player, guild.leathercraft);
         end
     end

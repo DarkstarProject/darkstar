@@ -2,17 +2,8 @@
 -- Area: Temenos
 --  NPC: Temenos_Aern
 -----------------------------------
-package.loaded["scripts/zones/Temenos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/limbus");
-require("scripts/zones/Temenos/TextIDs");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
 
 function onMobDeath(mob, player, isKiller)
    local mobID = mob:getID();
@@ -22,23 +13,23 @@ function onMobDeath(mob, player, isKiller)
 switch (mobID): caseof {
        [16929054] = function (x)
             GetNPCByID(16928768+197):setPos(mobX,mobY,mobZ);
-            GetNPCByID(16928768+197):setStatus(STATUS_NORMAL);
+            GetNPCByID(16928768+197):setStatus(dsp.status.NORMAL);
        end,
        [16929060] = function (x)
             GetNPCByID(16928768+199):setPos(mobX,mobY,mobZ);
-             GetNPCByID(16928768+199):setStatus(STATUS_NORMAL);
+             GetNPCByID(16928768+199):setStatus(dsp.status.NORMAL);
        end,
        [16929065] = function (x)
            GetNPCByID(16928768+200):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+200):setStatus(STATUS_NORMAL);
+           GetNPCByID(16928768+200):setStatus(dsp.status.NORMAL);
        end,
        [16929075] = function (x)
            GetNPCByID(16928768+201):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+201):setStatus(STATUS_NORMAL);
+           GetNPCByID(16928768+201):setStatus(dsp.status.NORMAL);
        end,
        [16929083] = function (x)
            GetNPCByID(16928768+202):setPos(mobX,mobY,mobZ);
-           GetNPCByID(16928768+202):setStatus(STATUS_NORMAL);
+           GetNPCByID(16928768+202):setStatus(dsp.status.NORMAL);
        end,
 
 }

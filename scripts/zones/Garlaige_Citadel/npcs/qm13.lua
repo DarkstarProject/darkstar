@@ -4,11 +4,9 @@
 -- Involved in Quest: Hitting the Marquisate (THF AF3)
 -- !pos -194.166 -5.500 139.969 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
     local hittingTheMarquisateHagainCS = player:getVar("hittingTheMarquisateHagainCS");
 
     if (hittingTheMarquisateHagainCS == 5) then
-        player:messageSpecial(PRESENCE_FROM_CEILING);
+        player:messageSpecial(ID.text.PRESENCE_FROM_CEILING);
         player:setVar("hittingTheMarquisateHagainCS",6);
     end
 
@@ -31,6 +29,4 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

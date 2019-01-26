@@ -4,28 +4,23 @@
 -- Allows players to spawn the HNM Genbu with a Gem of the North and a Winterstone.
 -- !pos 257 -70 517 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
+local ID = require("scripts/zones/RuAun_Gardens/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/RuAun_Gardens/TextIDs");
-require("scripts/zones/RuAun_Gardens/MobIDs");
-require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-    -- Trade Gem of the North and Winterstone
-    if (not GetMobByID(GENBU):isSpawned() and trade:hasItemQty(1424,1) and trade:hasItemQty(1425,1) and trade:getItemCount() == 2) then
-        player:tradeComplete();
-        SpawnMob(GENBU):updateClaim(player);
-        player:showText(npc,SKY_GOD_OFFSET + 5);
-        npc:setStatus(STATUS_DISAPPEAR);
+    if npcUtil.tradeHas(trade, {1424, 1425}) and npcUtil.popFromQM(player, npc, ID.mob.GENBU) then -- Gem of the North and Winterstone
+        player:showText(npc,ID.text.SKY_GOD_OFFSET + 5)
+        player:confirmTrade()
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(SKY_GOD_OFFSET);
-end;
+    player:messageSpecial(ID.text.SKY_GOD_OFFSET)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

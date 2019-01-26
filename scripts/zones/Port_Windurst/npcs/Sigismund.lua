@@ -1,12 +1,10 @@
 -----------------------------------
--- Area: Windurst Waters
+-- Area: Port Windurst
 --  NPC: Sigismund
 -- Starts and Finishes Quest: To Catch a Falling Star
 -- !pos -110 -10 82 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -35,13 +33,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 196) then
         player:addQuest(WINDURST,TO_CATCH_A_FALLIHG_STAR);
     elseif (csid == 199) then
@@ -49,10 +43,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(WINDURST,TO_CATCH_A_FALLIHG_STAR);
         player:addFame(WINDURST,75);
         player:addItem(12316);
-        player:messageSpecial(ITEM_OBTAINED,12316);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12316);
         player:setVar("QuestCatchAFallingStar_prog",2);
     end
 end;
-
-
-

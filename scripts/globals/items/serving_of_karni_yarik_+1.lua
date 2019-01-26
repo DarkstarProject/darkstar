@@ -9,37 +9,38 @@
 -- Ranged Attack % 22 (cap 70)
 -- Evasion +7
 -----------------------------------------
-require("scripts/globals/status");
+require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
-    local result = 0;
-    if (target:hasStatusEffect(dsp.effects.FOOD) == true or target:hasStatusEffect(dsp.effects.FIELD_SUPPORT_FOOD) == true) then
-        result = 246;
+    local result = 0
+    if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    return result;
-end;
+    return result
+end
 
 function onItemUse(target)
-    target:addStatusEffect(dsp.effects.FOOD,0,0,3600,5589);
-end;
+    target:addStatusEffect(dsp.effect.FOOD,0,0,3600,5589)
+end
 
 function onEffectGain(target, effect)
-    target:addMod(MOD_AGI, 4);
-    target:addMod(MOD_VIT, -2);
-    target:addMod(MOD_FOOD_ATTP, 22);
-    target:addMod(MOD_FOOD_ATT_CAP, 70);
-    target:addMod(MOD_FOOD_RATTP, 22);
-    target:addMod(MOD_FOOD_RATT_CAP, 70);
-    target:addMod(MOD_EVA, 7);
-end;
+    target:addMod(dsp.mod.AGI, 4)
+    target:addMod(dsp.mod.VIT, -2)
+    target:addMod(dsp.mod.FOOD_ATTP, 22)
+    target:addMod(dsp.mod.FOOD_ATT_CAP, 70)
+    target:addMod(dsp.mod.FOOD_RATTP, 22)
+    target:addMod(dsp.mod.FOOD_RATT_CAP, 70)
+    target:addMod(dsp.mod.EVA, 7)
+end
 
 function onEffectLose(target, effect)
-    target:delMod(MOD_AGI, 4);
-    target:delMod(MOD_VIT, -2);
-    target:delMod(MOD_FOOD_ATTP, 22);
-    target:delMod(MOD_FOOD_ATT_CAP, 70);
-    target:delMod(MOD_FOOD_RATTP, 22);
-    target:delMod(MOD_FOOD_RATT_CAP, 70);
-    target:delMod(MOD_EVA, 7);
-end;
+    target:delMod(dsp.mod.AGI, 4)
+    target:delMod(dsp.mod.VIT, -2)
+    target:delMod(dsp.mod.FOOD_ATTP, 22)
+    target:delMod(dsp.mod.FOOD_ATT_CAP, 70)
+    target:delMod(dsp.mod.FOOD_RATTP, 22)
+    target:delMod(dsp.mod.FOOD_RATT_CAP, 70)
+    target:delMod(dsp.mod.EVA, 7)
+end

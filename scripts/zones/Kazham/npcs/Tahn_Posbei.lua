@@ -3,45 +3,36 @@
 --  NPC: Tahn Posbei
 -- Standard Merchant NPC
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Kazham/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,TAHNPOSBEI_SHOP_DIALOG);
-
     local stock =
     {
-        0x3001,110,        -- Lauan Shield
-     0x3004,4531,        -- Mahogany Shield
-     0x3007,59607,        -- Round Shield
-     0x30A7,7026,        -- Beetle Mask
-     0x3127,10833,        -- Beetle Harness
-     0x31A7,5707,        -- Beetle Mittens
-     0x3223,8666,        -- Beetle Subligar
-     0x32A7,5332,        -- Beetre Leggins
-     0x3098,404,        -- Leather Bandana
-     0x3118,618,        -- Leather Vest
-     0x3198,331,        -- Leather Gloves
-     0x3298,309,        -- Leather Highboots
-     0x3324,28777}        -- Coeurl Gorget
+        12289,   110,    -- Lauan Shield
+        12292,  4531,    -- Mahogany Shield
+        12295, 59607,    -- Round Shield
+        12455,  7026,    -- Beetle Mask
+        12583, 10833,    -- Beetle Harness
+        12711,  5707,    -- Beetle Mittens
+        12835,  8666,    -- Beetle Subligar
+        12967,  5332,    -- Beetre Leggins
+        12440,   404,    -- Leather Bandana
+        12568,   618,    -- Leather Vest
+        12696,   331,    -- Leather Gloves
+        12952,   309,    -- Leather Highboots
+        13092, 28777,    -- Coeurl Gorget
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.TAHNPOSBEI_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

@@ -2,44 +2,44 @@
 -- Area: Nyzul Isle (Nashmeira's Plea)
 --  MOB: Alexander
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setMobMod(MOBMOD_NO_MOVE, 1);
+    mob:setMobMod(dsp.mobMod.NO_MOVE, 1);
     -- "Draw in" should only trigger when target is beyond 20' (out of Radiant_Sacrament range)
-    mob:setMobMod(MOBMOD_DRAW_IN, 1);
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
 
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Radiant Sacrament
         if (skillID == 2141) then
-            mob:showText(mob,NyzulIsle.text.OFFER_THY_WORSHIP);
+            mob:showText(mob,ID.text.OFFER_THY_WORSHIP);
         -- Mega Holy
         elseif (skillID == 2142) then
-            mob:showText(mob,NyzulIsle.text.OPEN_THINE_EYES);
+            mob:showText(mob,ID.text.OPEN_THINE_EYES);
         -- Perfect Defense
         elseif (skillID == 2143) then
-            mob:showText(mob,NyzulIsle.text.CEASE_THY_STRUGGLES);
+            mob:showText(mob,ID.text.CEASE_THY_STRUGGLES);
         -- Divine Spear
         elseif (skillID == 2144) then
-            mob:showText(mob,NyzulIsle.text.RELEASE_THY_SELF);
+            mob:showText(mob,ID.text.RELEASE_THY_SELF);
         -- Gospel of the Lost
         elseif (skillID == 2145) then
-            mob:showText(mob,NyzulIsle.text.BASK_IN_MY_GLORY);
+            mob:showText(mob,ID.text.BASK_IN_MY_GLORY);
         -- Void of Repentance
         elseif (skillID == 2146) then
-            mob:showText(mob,NyzulIsle.text.REPENT_THY_IRREVERENCE);
+            mob:showText(mob,ID.text.REPENT_THY_IRREVERENCE);
         -- Divine Judgement
         elseif (skillID == 2147) then
-            mob:showText(mob,NyzulIsle.text.ACCEPT_THY_DESTRUCTION);
-            mob:showText(mob,NyzulIsle.text.OMEGA_SPAM);
+            mob:showText(mob,ID.text.ACCEPT_THY_DESTRUCTION);
+            mob:showText(mob,ID.text.OMEGA_SPAM);
         end
     end);
 end;
 
 function onMobEngaged(mob,target)
-    mob:showText(mob,NyzulIsle.text.SHALL_BE_JUDGED);
+    mob:showText(mob,ID.text.SHALL_BE_JUDGED);
 end;
 
 function onMobFight(mob,target)
@@ -52,15 +52,15 @@ function onMobFight(mob,target)
 
     -- ffxiclopedia: "In addition to this, it's possible he'll use it several times again at low (5%?) HP."
     -- Per same wiki, may use Perfect Defense as a regular skill at 10%..Assuming same % for both skills.
-    local skill_list = mob:getMobMod(MOBMOD_SKILL_LIST);
+    local skill_list = mob:getMobMod(dsp.mobMod.SKILL_LIST);
     if (mob:getHPP() <= 10 and skill_list == 784) then
-        mob:setMobMod(MOBMOD_SKILL_LIST, 785);
+        mob:setMobMod(dsp.mobMod.SKILL_LIST, 785);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
-        mob:showText(mob,NyzulIsle.text.SHALL_KNOW_OBLIVION);
+        mob:showText(mob,ID.text.SHALL_KNOW_OBLIVION);
     end
 end;
 

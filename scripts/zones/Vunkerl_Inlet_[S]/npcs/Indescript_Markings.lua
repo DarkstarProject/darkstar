@@ -1,12 +1,10 @@
 ----------------------------------
--- Area: Meriphataud_Mountains_[S]
+-- Area: Vunkerl Inlet [S]
 --  NPC: Indescript Markings
 -- Type: Quest
 -- !pos -629.179 -49.002 -429.104 1 83
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
+local ID = require("scripts/zones/Vunkerl_Inlet_[S]/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -17,27 +15,22 @@ function onTrigger(player,npc)
 
     local pantsQuestProgress = player:getVar("AF_SCH_PANTS");
 
-    player:delStatusEffect(dsp.effects.SNEAK);
+    player:delStatusEffect(dsp.effect.SNEAK);
 
     -- SCH AF Quest - Legs
-    if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(DJINN_EMBER) == false) then
-        player:addKeyItem(DJINN_EMBER);
-        player:messageSpecial(KEYITEM_OBTAINED, DJINN_EMBER);
+    if (pantsQuestProgress > 0 and pantsQuestProgress < 3 and player:hasKeyItem(dsp.ki.DJINN_EMBER) == false) then
+        player:addKeyItem(dsp.ki.DJINN_EMBER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DJINN_EMBER);
         player:setVar("AF_SCH_PANTS", pantsQuestProgress + 1);
         npc:hideNPC(60);
 
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
-

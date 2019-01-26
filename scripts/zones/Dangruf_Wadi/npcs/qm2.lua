@@ -6,9 +6,7 @@
 -- Starts and Finishes: Breaking Stones, An Empty Vessel
 -- only spawns if the weather is SUNNY or CLEAR
 -----------------------------------
-package.loaded["scripts/zones/Dangruf_Wadi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dangruf_Wadi/TextIDs");
+local ID = require("scripts/zones/Dangruf_Wadi/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -20,21 +18,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-     -- printf("CSID: %u",csid);
-     -- printf("RESULT: %u",option);
-
     if (csid == 110 and option == 0) then
         if (player:getFreeSlotsCount() > 0) then
             if (player:addItem(553)) then
-                player:messageSpecial(ITEM_OBTAINED,553);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,553);
             end
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,553);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,553);
         end
     end
 end;

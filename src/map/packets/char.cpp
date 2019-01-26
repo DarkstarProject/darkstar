@@ -109,8 +109,6 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
                 if (PChar->isNewPlayer())
                     ref<uint8>(0x2A) |= 0x80;
 
-                ref<uint16>(0x30) = PChar->m_Costum;
-
                 ref<uint32>(0x34) = 0x010CA248; // black chocobo
 
                 if (PChar->animation == ANIMATION_MOUNT)
@@ -120,7 +118,10 @@ CCharPacket::CCharPacket(CCharEntity * PChar, ENTITYUPDATE type, uint8 updatemas
             {
                 ref<uint16>(0x3C) = PChar->PPet->targid;
             }
+
+            ref<uint16>(0x30) = PChar->m_Costume;
             ref<uint8>(0x43) = 0x04;
+
             if (updatemask & UPDATE_LOOK)
             {
                 look_t *look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);

@@ -2,39 +2,32 @@
 -- Area: Al Zahbi
 --  NPC: Kahah Hobichai
 -- Standard Merchant NPC
+-- TODO: Stock needs to be modified based on
+--       status of Astral Candescence
 -----------------------------------
-require("scripts/globals/shop");
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs");
------------------------------------
+local ID = require("scripts/zones/Al_Zahbi/IDs")
+require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-
-    player:showText(npc,KAHAHHOBICHAI_SHOP_DIALOG);
-
     local stock =
     {
-        0x005A,200,        -- Rusty Bucket
-     0x025d,200,        -- Pickaxe (not available when AC is taken)
-     0x03FC,300,        -- Sickle (not available when AC is taken)
-     0x03FD,500,        -- Hatchet (not available when AC is taken)
-     0x4051,164,        -- Bronze Knife
-     0x4052,2425}        -- Knife
+        90,     200,    -- Rusty Bucket
+        605,    200,    -- Pickaxe (Requires Astral Candescence)
+        1020,   300,    -- Sickle (Requires Astral Candescence)
+        1021,   500,    -- Hatchet (Requires Astral Candescence)
+        16465,  164,    -- Bronze Knife
+        16466, 2425     -- Knife
+    }
 
-    showShop(player, STATIC, stock);
-end;
+    player:showText(npc, ID.text.KAHAHHOBICHAI_SHOP_DIALOG)
+    dsp.shop.general(player, stock)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

@@ -4,53 +4,44 @@
 --
 -----------------------------------
 
-require("scripts/globals/status");
-
------------------------------------
--- onEffectGain Action
------------------------------------
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
-    if (effect:getPower() == 3) then -- arcane stomp
-        target:addMod(MOD_FIRE_ABSORB, 100);
-        target:addMod(MOD_EARTH_ABSORB, 100);
-        target:addMod(MOD_WATER_ABSORB, 100);
-        target:addMod(MOD_WIND_ABSORB, 100);
-        target:addMod(MOD_ICE_ABSORB, 100);
-        target:addMod(MOD_LTNG_ABSORB, 100);
-        target:addMod(MOD_LIGHT_ABSORB, 100);
-        target:addMod(MOD_DARK_ABSORB, 100);
-    elseif (effect:getPower() < 2) then
-        target:addMod(MOD_UDMGMAGIC, -101);
+    if effect:getPower() == 3 then -- arcane stomp
+        target:addMod(dsp.mod.FIRE_ABSORB, 100)
+        target:addMod(dsp.mod.EARTH_ABSORB, 100)
+        target:addMod(dsp.mod.WATER_ABSORB, 100)
+        target:addMod(dsp.mod.WIND_ABSORB, 100)
+        target:addMod(dsp.mod.ICE_ABSORB, 100)
+        target:addMod(dsp.mod.LTNG_ABSORB, 100)
+        target:addMod(dsp.mod.LIGHT_ABSORB, 100)
+        target:addMod(dsp.mod.DARK_ABSORB, 100)
+    elseif effect:getPower() < 2 then
+        target:addMod(dsp.mod.UDMGMAGIC, -101)
+        if target:isPC() and target:hasTrait(77) then -- Iron Will
+            target:addMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
+        end
     else
-        target:addMod(MOD_MAGIC_ABSORB, 100);
-    end;
-end;
-
------------------------------------
--- onEffectTick Action
------------------------------------
-
-function onEffectTick(target,effect)
-end;
-
------------------------------------
--- onEffectLose Action
------------------------------------
+        target:addMod(dsp.mod.MAGIC_ABSORB, 100)
+    end
+end
 
 function onEffectLose(target,effect)
-    if (effect:getPower() == 3) then -- arcane stomp
-        target:delMod(MOD_FIRE_ABSORB, 100);
-        target:delMod(MOD_EARTH_ABSORB, 100);
-        target:delMod(MOD_WATER_ABSORB, 100);
-        target:delMod(MOD_WIND_ABSORB, 100);
-        target:delMod(MOD_ICE_ABSORB, 100);
-        target:delMod(MOD_LTNG_ABSORB, 100);
-        target:delMod(MOD_LIGHT_ABSORB, 100);
-        target:delMod(MOD_DARK_ABSORB, 100);
-    elseif (effect:getPower() < 2) then
-        target:delMod(MOD_UDMGMAGIC, -101);
+    if effect:getPower() == 3 then -- arcane stomp
+        target:delMod(dsp.mod.FIRE_ABSORB, 100)
+        target:delMod(dsp.mod.EARTH_ABSORB, 100)
+        target:delMod(dsp.mod.WATER_ABSORB, 100)
+        target:delMod(dsp.mod.WIND_ABSORB, 100)
+        target:delMod(dsp.mod.ICE_ABSORB, 100)
+        target:delMod(dsp.mod.LTNG_ABSORB, 100)
+        target:delMod(dsp.mod.LIGHT_ABSORB, 100)
+        target:delMod(dsp.mod.DARK_ABSORB, 100)
+    elseif effect:getPower() < 2 then
+        target:delMod(dsp.mod.UDMGMAGIC, -101)
+        if target:isPC() and target:hasTrait(77) then -- Iron Will
+            target:delMod(dsp.mod.SPELLINTERRUPT, target:getMerit(dsp.merit.IRON_WILL))
+        end
     else
-        target:delMod(MOD_MAGIC_ABSORB, 100);
-    end;
-end;
+        target:delMod(dsp.mod.MAGIC_ABSORB, 100)
+    end
+end

@@ -2,28 +2,20 @@
 -- Area: Windurst Woods
 --   NPC: Abby Jalunshi
 -- Type: Moghouse Renter
--- @zone 241
--- !pos -101.895 -5 36.172
+-- !pos -101.895 -5 36.172 241
 --
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(798);
-end;
+    player:startEvent(798)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
-end;
-
+end

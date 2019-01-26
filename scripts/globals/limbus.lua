@@ -1,14 +1,15 @@
 --------------------------------------
 require("scripts/globals/keyitems")
+require("scripts/globals/status")
 --------------------------------------
 
-APPOLLYON_SE_NE = 1 -- out 557 -1 441 128
-APPOLLYON_NW_SW = 2 -- out -561 0 443 242
+APOLLYON_SE_NE = 1 -- out 557 -1 441 128
+APOLLYON_NW_SW = 2 -- out -561 0 443 242
 TEMENOS = 3
--- WHITE_CARD = 349
--- RED_CARD = 350
--- BLACK_CARD = 351
--- COSMOCLEANSE = 734
+-- dsp.ki.WHITE_CARD = 349
+-- dsp.ki.RED_CARD = 350
+-- dsp.ki.BLACK_CARD = 351
+-- dsp.ki.COSMOCLEANSE = 734
 
  --  REGION
 NW_Apollyon = 1
@@ -26,7 +27,7 @@ Central_Temenos_2nd_Floor = 6
 Central_Temenos_3rd_Floor = 7
 Central_Temenos_4th_Floor = 8
 
-APPOLLYON_SE_NE_BCNM_LIST =
+APOLLYON_SE_NE_BCNM_LIST =
 {
     -- instanceID, white, red, black, bitmap, bit, instanceRegion
     1292, {false, false, true, 8, NE_Apollyon}, --  'NE_Apollyon'  region 3  438 0 -89
@@ -37,7 +38,7 @@ APPOLLYON_SE_NE_BCNM_LIST =
     1297, {false, false, false, 128, Central_Apollyon}  --  'Central_Apollyon_II'  0   0 210
 }
 
-APPOLLYON_NW_SW_BCNM_LIST =
+APOLLYON_NW_SW_BCNM_LIST =
 {
     1290, {false, true, false, 2, NW_Apollyon}, --  'NW_Apollyon'    -439  0 -89
     1291, {false, true, false, 1, SW_Apollyon}, --  'SW_Apollyon'    -468  0 -626
@@ -73,23 +74,21 @@ MIMICPOSITION =
     8, {-335, 0, -281};
 }
 
-STATUS_NORMAL = 0
-STATUS_DISAPPEAR = 2
 cTIME = 1
 cITEM = 2
 cRESTORE = 3
 cMIMIC = 4
 
-ARMOURY_CRATES_LIST_APPOLLYON =
+ARMOURY_CRATES_LIST_APOLLYON =
 {
     -- armoryID, (type, regionID, time, despawnothercoffer, mimicID, lootID)
-    1, {cTIME, SE_Apollyon, 5, false, 0, 0}, --  time    SE_Appollyon floor 1
-    2, {cITEM, SE_Apollyon, 0, false, 0, 110}, --  items    SE_Appollyon floor 1
-    3, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore    SE_Appollyon floor 1
+    1, {cTIME, SE_Apollyon, 5, false, 0, 0}, --  time    SE_Apollyon floor 1
+    2, {cITEM, SE_Apollyon, 0, false, 0, 110}, --  items    SE_Apollyon floor 1
+    3, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore    SE_Apollyon floor 1
 
-    14, {cTIME, SW_Apollyon, 10, false, 0, 0}, --  time    SW_Appollyon floor 1
-    15, {cITEM, SW_Apollyon, 0, false, 0, 119}, --  items    SW_Appollyon floor 1
-    16, {cRESTORE, SW_Apollyon, 0, false, 0, 0}, --  restore    SW_Appollyon floor 1
+    14, {cTIME, SW_Apollyon, 10, false, 0, 0}, --  time    SW_Apollyon floor 1
+    15, {cITEM, SW_Apollyon, 0, false, 0, 119}, --  items    SW_Apollyon floor 1
+    16, {cRESTORE, SW_Apollyon, 0, false, 0, 0}, --  restore    SW_Apollyon floor 1
 
     -- 32, {}, -- mimic
     -- 33, {}, -- mimic
@@ -99,64 +98,64 @@ ARMOURY_CRATES_LIST_APPOLLYON =
     -- 37, {}, -- mimic
     -- 38, {}, -- mimic
     39, {cITEM, Central_Apollyon, 0, false, 0, 128}, --  omega
-    40, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 1 T1
-    41, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 1 T2
-    42, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 1 T3
-    43, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 2 T1
-    44, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 2 T2
-    45, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Appollyon floor 2 T3
+    40, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 1 T1
+    41, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 1 T2
+    42, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 1 T3
+    43, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 2 T1
+    44, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 2 T2
+    45, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time   NW_Apollyon floor 2 T3
 
-    70, {cTIME, SW_Apollyon, 10, true, 0, 0}, --  time    SW_Appollyon floor 2
-    71, {cITEM, SW_Apollyon, 0, true, 0, 120}, --  items    SW_Appollyon floor 2
-    72, {cRESTORE, SW_Apollyon, 0, true, 0, 0}, --  restore    SW_Appollyon floor 2
+    70, {cTIME, SW_Apollyon, 10, true, 0, 0}, --  time    SW_Apollyon floor 2
+    71, {cITEM, SW_Apollyon, 0, true, 0, 120}, --  items    SW_Apollyon floor 2
+    72, {cRESTORE, SW_Apollyon, 0, true, 0, 0}, --  restore    SW_Apollyon floor 2
 
-    81, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 1 T2
-    82, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 1 T3
+    81, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 1 T2
+    82, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 1 T3
 
-    83, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 2 T2
-    84, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 2 T3
+    83, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 2 T2
+    84, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 2 T3
 
-    85, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 3 T2
-    94, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 3 T3
+    85, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 3 T2
+    94, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 3 T3
 
-    95, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 4 T2
-    96, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 4 T3
+    95, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 4 T2
+    96, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 4 T3
 
-    97, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Appollyon floor 4 T2
-    98, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Appollyon floor 4  T3
+    97, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 4 T2
+    98, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 4  T3
 
-    107, {cITEM, NW_Apollyon, 0, false, 0, 123}, --  item    NW_Appollyon floor 1
-    108, {cITEM, NW_Apollyon, 0, false, 0, 124}, --  item    NW_Appollyon floor 2
-    109, {cITEM, NW_Apollyon, 0, false, 0, 125}, --  item    NW_Appollyon floor 3
-    110, {cITEM, NW_Apollyon, 0, false, 0, 126}, --  item    NW_Appollyon floor 4
-    111, {cITEM, NW_Apollyon, 0, false, 0, 127}, --  item    NW_Appollyon floor 5
+    107, {cITEM, NW_Apollyon, 0, false, 0, 123}, --  item    NW_Apollyon floor 1
+    108, {cITEM, NW_Apollyon, 0, false, 0, 124}, --  item    NW_Apollyon floor 2
+    109, {cITEM, NW_Apollyon, 0, false, 0, 125}, --  item    NW_Apollyon floor 3
+    110, {cITEM, NW_Apollyon, 0, false, 0, 126}, --  item    NW_Apollyon floor 4
+    111, {cITEM, NW_Apollyon, 0, false, 0, 127}, --  item    NW_Apollyon floor 5
 
-    118, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 1 T1
-    119, {cITEM, NE_Apollyon, 0, false, 0, 114}, --  items    NE_Appollyon floor 1
-    120, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Appollyon floor 1
+    118, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 1 T1
+    119, {cITEM, NE_Apollyon, 0, false, 0, 114}, --  items    NE_Apollyon floor 1
+    120, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Apollyon floor 1
 
-    125, {cTIME, NE_Apollyon, 5, false, 0, 10}, --  time    NE_Appollyon floor 2 T1
-    126, {cITEM, NE_Apollyon, 0, false, 0, 115}, --  items    NE_Appollyon floor 2
-    127, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Appollyon floor 2
+    125, {cTIME, NE_Apollyon, 5, false, 0, 10}, --  time    NE_Apollyon floor 2 T1
+    126, {cITEM, NE_Apollyon, 0, false, 0, 115}, --  items    NE_Apollyon floor 2
+    127, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Apollyon floor 2
 
-    139, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 3 T1
-    140, {cITEM, NE_Apollyon, 0, false, 0, 116}, --  items    NE_Appollyon floor 3
-    141, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Appollyon floor 3
+    139, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 3 T1
+    140, {cITEM, NE_Apollyon, 0, false, 0, 116}, --  items    NE_Apollyon floor 3
+    141, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Apollyon floor 3
 
-    153, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Appollyon floor 4 T1
-    154, {cITEM, NE_Apollyon, 0, false, 0, 117}, --  items    NE_Appollyon floor 4
-    155, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Appollyon floor 4
+    153, {cTIME, NE_Apollyon, 5, false, 0, 0}, --  time    NE_Apollyon floor 4 T1
+    154, {cITEM, NE_Apollyon, 0, false, 0, 117}, --  items    NE_Apollyon floor 4
+    155, {cRESTORE, NE_Apollyon, 0, false, 0, 0}, --  restore    NE_Apollyon floor 4
 
     177, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 3 T1
-    178, {cITEM, NE_Apollyon, 0, false, 0, 118}, --  items    NE_Appollyon floor 5
+    178, {cITEM, NE_Apollyon, 0, false, 0, 118}, --  items    NE_Apollyon floor 5
     179, {cRESTORE, NW_Apollyon, 0, false, 0, 0}, --  restore    NW_Apollyon floor 4
 
-    189, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Appollyon floor 3 T2
-    190, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Appollyon floor 3 T3
+    189, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 3 T2
+    190, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 3 T3
 
-    195, {cTIME, SW_Apollyon, 10, false, 0, 0}, --  time    SW_Appollyon floor 3
-    196, {cITEM, SW_Apollyon, 5, false, 0, 121}, --  items    SW_Appollyon floor 3
-    197, {cRESTORE, SW_Apollyon, 0, false, 0, 0}, --  restore    SW_Appollyon floor 3
+    195, {cTIME, SW_Apollyon, 10, false, 0, 0}, --  time    SW_Apollyon floor 3
+    196, {cITEM, SW_Apollyon, 5, false, 0, 121}, --  items    SW_Apollyon floor 3
+    197, {cRESTORE, SW_Apollyon, 0, false, 0, 0}, --  restore    SW_Apollyon floor 3
 
     210, {cMIMIC, SW_Apollyon, 0, false, 0, 0}, -- PH for mimic
     211, {cMIMIC, SW_Apollyon, 0, false, 0, 0}, -- PH for mimic
@@ -166,23 +165,23 @@ ARMOURY_CRATES_LIST_APPOLLYON =
     215, {cMIMIC, SW_Apollyon, 0, false, 0, 0}, -- PH for mimic
     216, {cMIMIC, SW_Apollyon, 0, false, 0, 0}, -- PH for mimic
 
-    232, {cTIME, SE_Apollyon, 5, false, 0, 0}, --  time    SE_Appollyon floor 2
-    233, {cITEM, SE_Apollyon, 0, false, 0, 111}, --  items    SE_Appollyon floor 2
-    234, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore  SE_Appollyon floor 2
+    232, {cTIME, SE_Apollyon, 5, false, 0, 0}, --  time    SE_Apollyon floor 2
+    233, {cITEM, SE_Apollyon, 0, false, 0, 111}, --  items    SE_Apollyon floor 2
+    234, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore  SE_Apollyon floor 2
 
-    246, {cTIME, SE_Apollyon, 10, false, 0, 0}, --  time    SE_Appollyon floor 3
-    247, {cITEM, SE_Apollyon, 0, false, 0, 112}, --  items    SE_Appollyon floor 3
-    248, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore  SE_Appollyon floor 3
+    246, {cTIME, SE_Apollyon, 10, false, 0, 0}, --  time    SE_Apollyon floor 3
+    247, {cITEM, SE_Apollyon, 0, false, 0, 112}, --  items    SE_Apollyon floor 3
+    248, {cRESTORE, SE_Apollyon, 0, false, 0, 0}, --  restore  SE_Apollyon floor 3
 
     259, {cITEM, Central_Apollyon, 0, false, 0, 129}, --  Pod
 
-    262, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Appollyon floor 4 T1
-    263, {cITEM, SE_Apollyon, 0, false, 0, 113}, --  items    SE_Appollyon floor 4
+    262, {cTIME, NW_Apollyon, 5, false, 0, 0}, --  time    NW_Apollyon floor 4 T1
+    263, {cITEM, SE_Apollyon, 0, false, 0, 113}, --  items    SE_Apollyon floor 4
     264, {cRESTORE, NW_Apollyon, 0, false, 0, 0}, --  restore    NW_Apollyon floor 1
 
     289, {cRESTORE, NW_Apollyon, 0, false, 0, 0}, --  restore    NW_Apollyon floor 2
 
-    313, {cITEM, SW_Apollyon, 0, false, 0, 122}, --  items    SW_Appollyon floor 4
+    313, {cITEM, SW_Apollyon, 0, false, 0, 122}, --  items    SW_Apollyon floor 4
 
     327, {cRESTORE, NW_Apollyon, 0, false, 0, 0}, --  restore    NW_Apollyon floor 3
 }
@@ -310,10 +309,10 @@ function LimbusEntrance(player, entrance)
     switch (entrance): caseof
     {
         [1] = function (x)
-            player:setPos(643, 0.1, -600, 124, 0x26)  --  instance entrer 600 1 -600
+            player:setPos(643, 0.1, -600, 124, 38)  --  instance entrer 600 1 -600
         end, --  sortiezone  637, -4, -642, 642, 4, -637
         [2] = function (x)
-            player:setPos(-668, 0.1, -666, 209, 0x26)  --  instance entrer -599 0 -600
+            player:setPos(-668, 0.1, -666, 209, 38)  --  instance entrer -599 0 -600
         end, --  sortiezone -642, -4, -642, -637, 4, -637
     }
 end
@@ -334,16 +333,16 @@ function GenerateLimbusKey()
 end
 
 function HideArmouryCrates(Region, Zone)
-    if (Zone == APPOLLYON_SE_NE or Zone == APPOLLYON_NW_SW) then
-        for X = 1, #ARMOURY_CRATES_LIST_APPOLLYON, 2 do
-            if (ARMOURY_CRATES_LIST_APPOLLYON[X+1][2] == Region) then
-                GetNPCByID((ARMOURY_CRATES_LIST_APPOLLYON[X])+16932864):setStatus(STATUS_DISAPPEAR)
+    if (Zone == APOLLYON_SE_NE or Zone == APOLLYON_NW_SW) then
+        for X = 1, #ARMOURY_CRATES_LIST_APOLLYON, 2 do
+            if (ARMOURY_CRATES_LIST_APOLLYON[X+1][2] == Region) then
+                GetNPCByID((ARMOURY_CRATES_LIST_APOLLYON[X])+16932864):setStatus(dsp.status.DISAPPEAR)
             end
         end
     elseif (Zone == TEMENOS) then
         for X = 1, #ARMOURY_CRATES_LIST_TEMENOS, 2 do
             if (ARMOURY_CRATES_LIST_TEMENOS[X+1][2] == Region) then
-                GetNPCByID((ARMOURY_CRATES_LIST_TEMENOS[X])+16928768):setStatus(STATUS_DISAPPEAR)
+                GetNPCByID((ARMOURY_CRATES_LIST_TEMENOS[X])+16928768):setStatus(dsp.status.DISAPPEAR)
             end
         end
     end
@@ -351,39 +350,39 @@ end
 
 function HideTemenosDoor(Region)
     if (Region == Temenos_Northern_Tower) then
-        GetNPCByID((450)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((451)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((452)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((453)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((454)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((455)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((456)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((450)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((451)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((452)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((453)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((454)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((455)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((456)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Temenos_Eastern_Tower) then
-        GetNPCByID((457)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((458)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((459)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((460)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((461)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((462)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((463)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((457)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((458)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((459)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((460)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((461)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((462)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((463)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Temenos_Western_Tower) then
-        GetNPCByID((464)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((465)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((466)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((467)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((468)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((469)+16928770):setStatus(STATUS_DISAPPEAR)
-        GetNPCByID((470)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((464)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((465)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((466)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((467)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((468)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((469)+16928770):setStatus(dsp.status.DISAPPEAR)
+        GetNPCByID((470)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_1st_Floor) then
-        GetNPCByID((471)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((471)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_2nd_Floor) then
-        GetNPCByID((472)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((472)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_3rd_Floor) then
-        GetNPCByID((473)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((473)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_4th_Floor) then
-        GetNPCByID((474)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((474)+16928770):setStatus(dsp.status.DISAPPEAR)
     elseif (Region == Central_Temenos_Basement) then
-        GetNPCByID((475)+16928770):setStatus(STATUS_DISAPPEAR)
+        GetNPCByID((475)+16928770):setStatus(dsp.status.DISAPPEAR)
     end
 end
 
@@ -483,7 +482,7 @@ function IsKeyExist(Key)  --  return true if Key already exist for another linbu
         GetServerVariable("[Central_Apollyon]UniqueID"),
         GetServerVariable("[Central_Apollyon_II]UniqueID"),
         GetServerVariable("[Temenos_W_Tower]UniqueID"),
-        GetServerVariable("[Temenos_N_Tower"),
+        GetServerVariable("[Temenos_N_Tower]UniqueID"),
         GetServerVariable("[Temenos_E_Tower]UniqueID"),
         GetServerVariable("[C_Temenos_Base]UniqueID"),
         GetServerVariable("[C_Temenos_Base_II]UniqueID"),
@@ -537,7 +536,7 @@ function GetLimbusKeyFromInstance(instanceID)
             Instancekey = GetServerVariable("[Temenos_W_Tower]UniqueID")
         end,
         [1299] = function (x)
-            Instancekey = GetServerVariable("[Temenos_N_Tower")
+            Instancekey = GetServerVariable("[Temenos_N_Tower]UniqueID")
         end,
         [1300] = function (x)
             Instancekey = GetServerVariable("[Temenos_E_Tower]UniqueID")
@@ -602,64 +601,64 @@ end
 function SpawnCofferSWfloor3()
     --  print("spawn_coffer")
     GetNPCByID(16932864+210):setPos(MIMICPOSITION[2][1], MIMICPOSITION[2][2], MIMICPOSITION[2][3])
-    GetNPCByID(16932864+210):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+210):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+211):setPos(MIMICPOSITION[4][1], MIMICPOSITION[4][2], MIMICPOSITION[4][3])
-    GetNPCByID(16932864+211):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+211):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+212):setPos(MIMICPOSITION[6][1], MIMICPOSITION[6][2], MIMICPOSITION[6][3])
-    GetNPCByID(16932864+212):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+212):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+213):setPos(MIMICPOSITION[8][1], MIMICPOSITION[8][2], MIMICPOSITION[8][3])
-    GetNPCByID(16932864+213):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+213):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+214):setPos(MIMICPOSITION[10][1], MIMICPOSITION[10][2], MIMICPOSITION[10][3])
-    GetNPCByID(16932864+214):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+214):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+215):setPos(MIMICPOSITION[12][1], MIMICPOSITION[12][2], MIMICPOSITION[12][3])
-    GetNPCByID(16932864+215):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+215):setStatus(dsp.status.NORMAL)
     GetNPCByID(16932864+216):setPos(MIMICPOSITION[14][1], MIMICPOSITION[14][2], MIMICPOSITION[14][3])
-    GetNPCByID(16932864+216):setStatus(STATUS_NORMAL)
+    GetNPCByID(16932864+216):setStatus(dsp.status.NORMAL)
     SetServerVariable("[SW_Apollyon]MimicTrigger", 1)
 end
 
 function SpawnCofferTemenosCFloor4()
     --  print("spawn_coffer")
     GetNPCByID(16928768+80):setPos(-560, -6, -459)
-    GetNPCByID(16928768+80):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+80):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+86):setPos(-540, -6, -459)
-    GetNPCByID(16928768+86):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+86):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+87):setPos(-576, -6, -459)
-    GetNPCByID(16928768+87):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+87):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+88):setPos(-528, -6, -459)
-    GetNPCByID(16928768+88):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+88):setStatus(dsp.status.NORMAL)
 
     GetNPCByID(16928768+89):setPos(-592, -6, -487)
-    GetNPCByID(16928768+89):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+89):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+95):setPos(-566, -6, -486)
-    GetNPCByID(16928768+95):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+95):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+96):setPos(-566, -6, -513)
-    GetNPCByID(16928768+96):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+96):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+97):setPos(-592, -6, -513)
-    GetNPCByID(16928768+97):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+97):setStatus(dsp.status.NORMAL)
 
     GetNPCByID(16928768+98):setPos(-531, -0.5, -501)
-    GetNPCByID(16928768+98):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+98):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+104):setPos(-527, -6, -512)
-    GetNPCByID(16928768+104):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+104):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+105):setPos(-552, -6, -512)
-    GetNPCByID(16928768+105):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+105):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+106):setPos(-552, -6, -488)
-    GetNPCByID(16928768+106):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+106):setStatus(dsp.status.NORMAL)
 
     GetNPCByID(16928768+107):setPos(-488, 2, -510)
-    GetNPCByID(16928768+107):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+107):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+113):setPos(-486, 2, -491)
-    GetNPCByID(16928768+113):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+113):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+114):setPos(-508, 2, -513)
-    GetNPCByID(16928768+114):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+114):setStatus(dsp.status.NORMAL)
 
     GetNPCByID(16928768+115):setPos(-488, 2, -408)
-    GetNPCByID(16928768+115):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+115):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+116):setPos(-485, 2, -423)
-    GetNPCByID(16928768+116):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+116):setStatus(dsp.status.NORMAL)
     GetNPCByID(16928768+122):setPos(-506, 2, -406)
-    GetNPCByID(16928768+122):setStatus(STATUS_NORMAL)
+    GetNPCByID(16928768+122):setStatus(dsp.status.NORMAL)
 end
 
 function Randomcoffer(Floor, region)
@@ -837,15 +836,15 @@ end
 function GetInstanceRegion(instanceID)
     local region = 0
 
-    for K = 1, #APPOLLYON_SE_NE_BCNM_LIST, 2 do
-        if (APPOLLYON_SE_NE_BCNM_LIST[K] == instanceID) then
-            region =APPOLLYON_SE_NE_BCNM_LIST[K+1][5]
+    for K = 1, #APOLLYON_SE_NE_BCNM_LIST, 2 do
+        if (APOLLYON_SE_NE_BCNM_LIST[K] == instanceID) then
+            region =APOLLYON_SE_NE_BCNM_LIST[K+1][5]
         end
     end
 
-    for L = 1, #APPOLLYON_NW_SW_BCNM_LIST, 2 do
-        if (APPOLLYON_NW_SW_BCNM_LIST[L] == instanceID) then
-            region =APPOLLYON_NW_SW_BCNM_LIST[L+1][5]
+    for L = 1, #APOLLYON_NW_SW_BCNM_LIST, 2 do
+        if (APOLLYON_NW_SW_BCNM_LIST[L] == instanceID) then
+            region =APOLLYON_NW_SW_BCNM_LIST[L+1][5]
         end
     end
 

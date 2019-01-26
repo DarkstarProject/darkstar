@@ -255,6 +255,23 @@ void CItemArmor::LoadAugment(uint8 slot, uint16 augment)
     ref<uint16>(m_extra, 2 + (slot * 2)) = augment;
 }
 
+bool CItemArmor::PushAugment(uint16 type, uint8 value)
+{
+    uint8 slot = 0;
+    uint16 augment = ref<uint16>(m_extra, 2 + (slot * 2));
+    while (augment != 0 && slot < 4)
+    {
+        ++slot;
+        augment = ref<uint16>(m_extra, 2 + (slot * 2));
+    }
+    if (augment == 0)
+    {
+        setAugment(slot, type, value);
+        return true;
+    }
+    return false;
+}
+
 void CItemArmor::ApplyAugment(uint8 slot)
 {
     SetAugmentMod(

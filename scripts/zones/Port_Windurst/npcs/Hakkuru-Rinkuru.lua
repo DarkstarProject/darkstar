@@ -5,15 +5,12 @@
 -- Starts and Ends Quest: Wonder Wands
 -- !pos -111 -4 101 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -59,7 +56,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 1) then
             player:startEvent(91);
         elseif (MissionStatus == 3) then
-            player:startEvent(94,0,CRACKED_MANA_ORBS); -- Finish Mission 1-1
+            player:startEvent(94,0,dsp.ki.CRACKED_MANA_ORBS); -- Finish Mission 1-1
         end
     elseif (player:getCurrentMission(WINDURST) == TO_EACH_HIS_OWN_RIGHT and player:getVar("MissionStatus") == 2) then
         player:startEvent(147);
@@ -88,13 +85,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 90) then
         player:setVar("MissionStatus",1);
@@ -119,7 +112,7 @@ function onEventFinish(player,csid,option)
             player:addGil(GIL_RATE*1500);
             player:completeQuest(WINDURST,MAKING_AMENDS);
             player:addFame(WINDURST,75);
-            player:addTitle(QUICK_FIXER);
+            player:addTitle(dsp.title.QUICK_FIXER);
             player:needToZone(true);
             player:tradeComplete();
     elseif (csid == 259 and option == 1) then
@@ -128,62 +121,62 @@ function onEventFinish(player,csid,option)
         rand = math.random(3); --Setup random variable to determine which 2 items are returned upon quest completion
         if (rand == 1) then
             if (player:getFreeSlotsCount() == 1) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17061);
             elseif (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17091);
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17091);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17061);
             else
                 player:addItem(17091,1);
                 player:addItem(17061,1); --Returns the Oak Staff and the Mythril Rod
-                player:messageSpecial(ITEM_OBTAINED,17091);
-                player:messageSpecial(ITEM_OBTAINED,17061);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17091);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17061);
                 player:setVar("SecondRewardVar",0);
             end
         elseif (rand == 2) then
             if (player:getFreeSlotsCount() == 1) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17053);
             elseif (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17091);
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17091);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17053);
             else
                 player:addItem(17091,1);
                 player:addItem(17053,1); --Returns the Oak Staff and the Rose Wand
-                player:messageSpecial(ITEM_OBTAINED,17091);
-                player:messageSpecial(ITEM_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17091);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17053);
                 player:setVar("SecondRewardVar",0);
             end
         elseif (rand == 3) then
             if (player:getFreeSlotsCount() == 1) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17053);
             elseif (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17061);
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17061);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17053);
             else
                 player:addItem(17061,1);
                 player:addItem(17053,1); --Returns the Rose Wand and the Mythril Rod
-                player:messageSpecial(ITEM_OBTAINED,17061);
-                player:messageSpecial(ITEM_OBTAINED,17053);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17061);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,17053);
                 player:setVar("SecondRewardVar",0);
             end
         end
     elseif (csid == 265) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12750); -- New Moon Armlets
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12750); -- New Moon Armlets
         else
             player:tradeComplete();
             player:addGil(GIL_RATE*4800);
-            player:messageSpecial(GIL_OBTAINED, 4800);
+            player:messageSpecial(ID.text.GIL_OBTAINED, 4800);
             player:addItem(12750); -- New Moon Armlets
-            player:messageSpecial(ITEM_OBTAINED, 12750); -- New Moon Armlets
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 12750); -- New Moon Armlets
             player:addFame(WINDURST,150);
-            player:addTitle(DOCTOR_SHANTOTTOS_GUINEA_PIG);
+            player:addTitle(dsp.title.DOCTOR_SHANTOTTOS_GUINEA_PIG);
             player:completeQuest(WINDURST,WONDER_WANDS);
         end
         -- ~[ Windurst Mission 6-1 Full Moon Fountain ]~ --
     elseif (csid == 456) then
             player:setVar("MissionStatus",1);
-            player:addKeyItem(SOUTHWESTERN_STAR_CHARM);
-            player:messageSpecial(KEYITEM_OBTAINED,SOUTHWESTERN_STAR_CHARM);
+            player:addKeyItem(dsp.ki.SOUTHWESTERN_STAR_CHARM);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOUTHWESTERN_STAR_CHARM);
     end
 
 end;

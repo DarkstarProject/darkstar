@@ -2,12 +2,11 @@
 -- Area: Port Bastok
 --  NPC: Valah Molkot
 -- Starts and Finishes Quest: A Lady's Heart
--- @zone 236
--- !pos 59 8 -221
+-- !pos 59 8 -221 236
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 
 
 function onTrade(player,npc,trade)
@@ -70,20 +69,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 160 and option == 2002) then
         player:tradeComplete();
         player:completeQuest(BASTOK,A_LADY_S_HEART);
         player:addFame(BASTOK,120);
         player:moghouseFlag(2);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 160 and option == 1) then
         player:tradeComplete();
         player:addQuest(BASTOK,A_LADY_S_HEART);

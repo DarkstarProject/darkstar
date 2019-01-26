@@ -3,9 +3,8 @@
 -- Zone: Tavnazian_Safehold (26)
 --
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------
@@ -16,11 +15,7 @@ function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -66,13 +61,9 @@ function onRegionLeave(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 101) then
         player:completeMission(COP,AN_INVITATION_WEST);

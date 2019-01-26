@@ -2,9 +2,8 @@
 -- Area: Western Adoulin
 --  NPC: Dangueubert
 -- Type: Standard NPC and Quest NPC
---  Involved with Quest: 'A Certain Substitute Patrolman'
---  @zone 256
---  !pos 5 0 -136 256
+-- Involved with Quest: 'A Certain Substitute Patrolman'
+-- !pos 5 0 -136 256
 -----------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");

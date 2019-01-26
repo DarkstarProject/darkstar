@@ -1,7 +1,5 @@
 
-package.loaded["scripts/zones/Mog_Garden/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mog_Garden/TextIDs");
+local ID = require("scripts/zones/Mog_Garden/IDs");
 require("scripts/globals/moghouse")
 require("scripts/globals/shop");
 -----------------------------------
@@ -17,8 +15,6 @@ function onTrigger(player, npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player, csid, option)
@@ -27,9 +23,9 @@ function onEventFinish(player, csid, option)
         local lockerLease = getMogLockerExpiryTimestamp(player);
         if (lockerLease ~= nil) then
             if (lockerLease == -1) then -- Lease expired..
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
+                player:messageSpecial(ID.text.MOGLOCKER_MESSAGE_OFFSET + 2, BRONZE_PIECE_ITEMID);
             else
-                player:messageSpecial(MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
+                player:messageSpecial(ID.text.MOGLOCKER_MESSAGE_OFFSET + 1, lockerLease);
             end
         end
 
@@ -50,7 +46,7 @@ function onEventFinish(player, csid, option)
             3985, 1111,  -- Monarch Beetle Saliva (11th Anniversary Campaign)
             3984, 1111,  -- Golden Seed Pouch (11th Anniversary Campaign)
         };
-        showShop( player, STATIC, stock );
+        dsp.shop.general(player, stock);
 
     elseif (csid == 1016 and option == 0xFFB00FF) then -- Leave this Mog Garden -> Whence I Came
         player:warp(); -- Ghetto for now, the last zone seems to get messed up due to mog house issues.

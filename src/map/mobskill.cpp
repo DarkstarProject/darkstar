@@ -40,7 +40,9 @@ CMobSkill::CMobSkill(uint16 id)
     m_primarySkillchain = 0;
     m_secondarySkillchain = 0;
     m_tertiarySkillchain = 0;
+    m_TP = 0;
     m_HPP = 0;
+    m_knockback = 0;
 }
 
 bool CMobSkill::hasMissMsg() const

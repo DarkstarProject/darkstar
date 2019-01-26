@@ -3,10 +3,7 @@
 --  NPC: Blank (TOAU-20 Cutscene, TOAU-27 Cutscene)
 -- !pos -298 36 -38 68
 -----------------------------------
-package.loaded["scripts/zones/Aydeewa_Subterrane/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Aydeewa_Subterrane/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,13 +18,9 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 11) then
         player:completeMission(TOAU,TEAHOUSE_TUMULT);
@@ -38,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,BASTION_OF_KNOWLEDGE);
     end
 end;
-

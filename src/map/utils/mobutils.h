@@ -53,7 +53,6 @@ namespace mobutils
         void  SetupDungeonMob(CMobEntity* PMob);
         void  SetupEventMob(CMobEntity* PMob);
         void  SetupNMMob(CMobEntity* PMob);
-	void  SetupMaat(CMobEntity* PMob);
 	void  SetupPetSkills(CMobEntity* PMob);
 
 	uint16	GetWeaponDamage(CMobEntity* PMob);
@@ -71,9 +70,6 @@ namespace mobutils
 	ModsList_t* GetMobSpawnMods(uint32 mobId, bool create = false);
 
 	void  AddCustomMods(CMobEntity* PMob);
-
-        // Set job before spawn
-	void  InitializeMaat(CMobEntity* PMob, JOBTYPE job);
 
 	void  SetSpellList(CMobEntity*, uint16);
 	CMobEntity* InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* = nullptr);

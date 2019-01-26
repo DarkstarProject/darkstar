@@ -4,10 +4,8 @@
 -- Only sells when Windurst controls Kolshushu
 -- Confirmed shop stock, August 2013
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/events/harvest_festivals")
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/shop");
 -----------------------------------
@@ -17,11 +15,11 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local RegionOwner = GetRegionOwner(KOLSHUSHU);
-    if (RegionOwner ~= NATION_WINDURST) then
-        player:showText(npc,AHYEEKIH_CLOSED_DIALOG);
+    local RegionOwner = GetRegionOwner(dsp.region.KOLSHUSHU);
+    if (RegionOwner ~= dsp.nation.WINDURST) then
+        player:showText(npc,ID.text.AHYEEKIH_CLOSED_DIALOG);
     else
-        player:showText(npc,AHYEEKIH_OPEN_DIALOG);
+        player:showText(npc,ID.text.AHYEEKIH_OPEN_DIALOG);
 
         local stock =
         {
@@ -31,18 +29,14 @@ function onTrigger(player,npc)
             614,     72,  -- Mhaura Garlic
             4445,    40   -- Yagudo Cherry
         }
-        showShop(player,WINDURST,stock);
+        dsp.shop.general(player, stock, WINDURST);
 
     end
 
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;

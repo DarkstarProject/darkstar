@@ -3,21 +3,15 @@
 -- Zone: Dynamis-Xarcabard
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Xarcabard/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Xarcabard/TextIDs");
+local ID = require("scripts/zones/Dynamis-Xarcabard/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
-    local players = zone:getPlayers();
-
-    for name, player in pairs(players) do
-        conquestUpdate(zone, player, updatetype, CONQUEST_BASE);
-    end
+    dsp.conq.onConquestUpdate(zone, updatetype)
 end;
 
 function onZoneIn(player,prevZone)
@@ -56,14 +50,10 @@ function onRegionEnter(player,region)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 0) then
-        player:setPos(569.312,-0.098,-270.158,90,0x70);
+        player:setPos(569.312,-0.098,-270.158,90,112);
     end
 end;

@@ -1,20 +1,20 @@
 -----------------------------------
 --
---     EFFECT_HAGAKURE
+--     dsp.effect.HAGAKURE
 --
 -----------------------------------
 
-require("scripts/globals/status");
+require("scripts/globals/status")
 
 function onEffectGain(target,effect)
-    target:addMod(MOD_SAVETP,400);
-    target:addMod(MOD_TP_BONUS,1000);
-end;
+    target:addMod(dsp.mod.SAVETP,400)
+    target:addMod(dsp.mod.TP_BONUS,1000)
+end
 
 function onEffectTick(target,effect)
-end;
+end
 
 function onEffectLose(target,effect)
-    target:delMod(MOD_SAVETP,400);
-    target:delMod(MOD_TP_BONUS,1000);
-end;
+    target:delMod(dsp.mod.SAVETP,400)
+    target:delMod(dsp.mod.TP_BONUS,1000)
+end

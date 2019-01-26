@@ -3,28 +3,25 @@
 -- NPC:  Pincerstone
 -- NPCs which activates the blue teleports in sky
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuAun_Gardens/TextIDs");
-require("scripts/zones/RuAun_Gardens/MobIDs");
+local ID = require("scripts/zones/RuAun_Gardens/IDs");
 require("scripts/globals/status");
 
 function onTrade(player,npc,trade)
-end; 
+end;
 
 function onTrigger(player,npc)
     local npcId = npc:getID();
-    local portalId = RUAUN_PINCERSTONES[npcId];
+    local portalId = ID.npc.PINCERSTONES[npcId];
     if (portalId ~= nil) then
         local portal = GetNPCByID(portalId);
-        if (portal:getAnimation() == ANIMATION_CLOSE_DOOR) then
+        if (portal:getAnimation() == dsp.anim.CLOSE_DOOR) then
             GetNPCByID(npcId - 1):openDoor(120);
             portal:openDoor(120);
         else
-            player:messageSpecial(IT_IS_ALREADY_FUNCTIONING);
+            player:messageSpecial(ID.text.IT_IS_ALREADY_FUNCTIONING);
         end
     end
-end; 
+end;
 
 function onEventUpdate(player,csid,option)
 end;

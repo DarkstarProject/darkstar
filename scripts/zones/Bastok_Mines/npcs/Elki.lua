@@ -3,12 +3,11 @@
 --  NPC: Elki
 -- Starts Quests: Hearts of Mythril, The Eleventh's Hour
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
+require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,7 +20,7 @@ Hearts = player:getQuestStatus(BASTOK,HEARTS_OF_MYTHRIL);
 HeartsVar = player:getVar("HeartsOfMythril");
 Elevenths = player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR);
 EleventhsVar = player:getVar("EleventhsHour");
-HasToolbox = player:hasKeyItem(0x18);
+HasToolbox = player:hasKeyItem(dsp.ki.OLD_TOOLBOX);
 
     if (Hearts == QUEST_AVAILABLE) then
         player:startEvent(41);
@@ -43,20 +42,18 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 
     if (csid == 41 and option == 0) then
         player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);
-        player:addKeyItem(0x17);
-        player:messageSpecial(KEYITEM_OBTAINED,0x17);
+        player:addKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
     elseif (csid == 42) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12840);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12840);
         else
-            player:addTitle(84);
+            player:addTitle(dsp.title.PURSUER_OF_THE_PAST);
             player:addItem(12840);
-            player:messageSpecial(ITEM_OBTAINED,12840);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12840);
             player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
             player:addFame(BASTOK,80);
             player:setVar("HeartsOfMythril",0);
@@ -69,5 +66,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-

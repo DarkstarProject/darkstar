@@ -4,11 +4,9 @@
 -- Type: Sigil NPC
 -- !pos 107 1 -31 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/campaign");
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,8 +34,6 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local itemid = 0;
     local canEquip = 2; -- Faking it for now.
     -- 0 = Wrong job, 1 = wrong level, 2 = Everything is in order, 3 or greater = menu exits...
@@ -48,8 +44,6 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     local medalRank = getMedalRank(player);
     if (csid == 110) then
         -- Note: the event itself already verifies the player has enough AN, so no check needed here.
@@ -59,9 +53,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.
@@ -90,11 +84,9 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effects.SIGIL);
-            player:delStatusEffect(dsp.effects.SANCTION);
-            player:delStatusEffect(dsp.effects.SIGNET);
-            player:addStatusEffect(dsp.effects.SIGIL, power, 0, duration, 0, subPower, 0);
-            player:messageSpecial(ALLIED_SIGIL);
+            player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
+            player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
+            player:messageSpecial(ID.text.ALLIED_SIGIL);
 
             if (cost > 0) then
                 player:delCurrency("allied_notes", cost);

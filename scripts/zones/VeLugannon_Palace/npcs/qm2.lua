@@ -1,26 +1,25 @@
 -----------------------------------
--- Area:  VeLugannon Palace
--- NPC:   qm2 (???)
--- Notes: Used to spawn Brigandish Blade
+-- Area: VeLugannon Palace
+--  NPC: qm2 (???)
+-- Note: Used to spawn Brigandish Blade
 -- !pos 0.1 0.1 -286 177
 -----------------------------------
-require("scripts/zones/VeLugannon_Palace/MobIDs");
-require("scripts/globals/status");
+local ID = require("scripts/zones/VeLugannon_Palace/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
 function onTrade(player,npc,trade)
-    if (not GetMobByID(BRIGANDISH_BLADE):isSpawned() and trade:hasItemQty(16575,1) and trade:getItemCount() == 1) then -- Trade Curtana
-        player:tradeComplete();
-        SpawnMob(BRIGANDISH_BLADE):updateClaim(player);
-        npc:setStatus(STATUS_DISAPPEAR);
+    if npcUtil.tradeHas(trade, 16575) and npcUtil.popFromQM(player, npc, ID.mob.BRIGANDISH_BLADE) then
+        player:confirmTrade()
     end
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(2);
-end;
+    player:startEvent(2)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
+end

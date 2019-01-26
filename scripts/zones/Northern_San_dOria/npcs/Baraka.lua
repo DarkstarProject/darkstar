@@ -4,9 +4,6 @@
 -- Involved in Missions 2-3
 -- !pos 36 -2 -2 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------
@@ -30,9 +27,9 @@ function onTrigger(player,npc)
     else
         local pNation = player:getNation();
 
-        if (pNation == NATION_SANDORIA) then
+        if (pNation == dsp.nation.SANDORIA) then
             player:startEvent(580);
-        elseif (pNation == NATION_WINDURST) then
+        elseif (pNation == dsp.nation.WINDURST) then
             player:startEvent(579);
         else
             player:startEvent(539);
@@ -42,20 +39,16 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
     if (csid == 581) then
         -- This cs should only play if you visit San d'Oria first
         -- If you visit Windurst first you will encounter Lion in Heaven's Tower instead
         if (player:getCurrentMission(BASTOK) == THE_EMISSARY
         and player:getVar("MissionStatus") < 2) then
             player:setVar("MissionStatus",2);
-            player:delKeyItem(LETTER_TO_THE_CONSULS_BASTOK);
+            player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         end
     end
 end;

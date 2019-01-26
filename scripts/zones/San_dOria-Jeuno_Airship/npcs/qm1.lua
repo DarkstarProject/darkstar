@@ -2,15 +2,12 @@
 -- Area: San d'Oria-Jeuno Airship
 --  NPC: ???
 -- Involved In Quest: The Stars Of Ifrit
--- @zone 223
--- !pos 77 -9 -5 -13
------------------------------------
-package.loaded["scripts/zones/San_dOria-Jeuno_Airship/TextIDs"] = nil;
+-- !pos -9 -5 -13 223
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/weather");
-require("scripts/zones/San_dOria-Jeuno_Airship/TextIDs");
+local ID = require("scripts/zones/San_dOria-Jeuno_Airship/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -20,20 +17,16 @@ function onTrigger(player,npc)
     local TOTD = VanadielTOTD();
     local TheStarsOfIfrit = player:getQuestStatus(BASTOK,THE_STARS_OF_IFRIT);
 
-    if (TOTD == TIME_NIGHT and IsMoonFull()) then
-        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(CARRIER_PIGEON_LETTER) == false) then
-            player:addKeyItem(CARRIER_PIGEON_LETTER);
-            player:messageSpecial(KEYITEM_OBTAINED,CARRIER_PIGEON_LETTER);
+    if (TOTD == dsp.time.NIGHT and IsMoonFull()) then
+        if (TheStarsOfIfrit == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARRIER_PIGEON_LETTER) == false) then
+            player:addKeyItem(dsp.ki.CARRIER_PIGEON_LETTER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARRIER_PIGEON_LETTER);
         end
     end
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("CSID: %u",csid);
-    -- printf("RESULT: %u",option);
 end;
