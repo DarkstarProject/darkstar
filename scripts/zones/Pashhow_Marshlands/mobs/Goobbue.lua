@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.JOLLY_GREEN_PH,5,1); -- 1 second / no cooldown
+    dsp.mob.phOnDespawn(mob,ID.mob.JOLLY_GREEN_PH,5,1); -- 1 second / no cooldown
 end;

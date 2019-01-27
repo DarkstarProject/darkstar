@@ -68,6 +68,7 @@ enum EFFECTFLAG
     EFFECTFLAG_BLOODPACT        = 0x200000,
     EFFECTFLAG_ON_JOBCHANGE     = 0x400000, // Removes effect when you change jobs
     EFFECTFLAG_NO_CANCEL        = 0x800000, // CAN NOT CLICK IT OFF IN CLIENT
+    EFFECTFLAG_INFLUENCE        = 0x1000000, // Influence effects - e.g. Signet, Sanction, Sigil, Ionis
 };
 
 enum EFFECT

@@ -11,5 +11,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.QUU_DOMI_THE_GALLANT_PH,5,3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.QUU_DOMI_THE_GALLANT_PH,5,3600) -- 1 hour
 end

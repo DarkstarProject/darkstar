@@ -772,6 +772,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x12: // dismount
     {
+        if (PChar->StatusEffectContainer->HasPreventActionEffect() || !PChar->isMounted())
+            return;
+
         PChar->animation = ANIMATION_NONE;
         PChar->updatemask |= UPDATE_HP;
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_MOUNTED);
@@ -779,7 +782,7 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x13: // tractor menu
     {
-        if (data.ref<uint8>(0x0C) == 0) //ACCEPTED TRACTOR
+        if (data.ref<uint8>(0x0C) == 0 && PChar->m_hasTractor != 0) //ACCEPTED TRACTOR
         {
             //PChar->PBattleAI->SetCurrentAction(ACTION_RAISE_MENU_SELECTION);
             PChar->loc.p = PChar->m_StartActionPos;
@@ -3929,6 +3932,20 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             if (data.ref<uint8>(0x04) == MESSAGE_SAY)
             {
+                if (map_config.audit_chat == 1 && map_config.audit_say == 1)
+                {
+                    char escaped_speaker[16 * 2 + 1];
+                    Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                    std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                    Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                    const char* fmtQuery = "INSERT into audit_chat (speaker,type,message,datetime) VALUES('%s','SAY','%s',current_timestamp())";
+                    if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_full_string.data()) == SQL_ERROR)
+                    {
+                        ShowError("packet_system::call: Failed to log inPrison MESSAGE_SAY.\n");
+                    }
+                }
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
             }
             else
@@ -3944,13 +3961,17 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 if (map_config.audit_chat == 1 && map_config.audit_say == 1)
                 {
-                    std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                    qStr += (const char*)PChar->GetName();
-                    qStr += "','SAY','";
-                    qStr += escape((const char*)data[6]);
-                    qStr += "',current_timestamp());";
-                    const char * cC = qStr.c_str();
-                    Sql_QueryStr(SqlHandle, cC);
+                    char escaped_speaker[16 * 2 + 1];
+                    Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                    std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                    Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                    const char* fmtQuery = "INSERT into audit_chat (speaker,type,message,datetime) VALUES('%s','SAY','%s',current_timestamp())";
+                    if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_full_string.data()) == SQL_ERROR)
+                    {
+                        ShowError("packet_system::call: Failed to log MESSAGE_SAY.\n");
+                    }
                 }
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
             }
@@ -3960,13 +3981,17 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             {
                 if (map_config.audit_chat == 1 && map_config.audit_shout == 1)
                 {
-                    std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                    qStr += (const char*)PChar->GetName();
-                    qStr += "','SHOUT','";
-                    qStr += escape((const char*)data[6]);
-                    qStr += "',current_timestamp());";
-                    const char * cC = qStr.c_str();
-                    Sql_QueryStr(SqlHandle, cC);
+                    char escaped_speaker[16 * 2 + 1];
+                    Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                    std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                    Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                    const char* fmtQuery = "INSERT into audit_chat (speaker,type,message,datetime) VALUES('%s','SHOUT','%s',current_timestamp())";
+                    if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_full_string.data()) == SQL_ERROR)
+                    {
+                        ShowError("packet_system::call: Failed to log MESSAGE_SHOUT.\n");
+                    }
                 }
                 PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, (const char*)data[6]));
             }
@@ -3982,16 +4007,22 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string name((const char*)PChar->PLinkshell1->getName());
-                        DecodeStringLinkshell((int8*)&name[0], (int8*)&name[0]);
-                        std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
-                        qStr += (const char*)PChar->GetName();
-                        qStr += "','LINKSHELL','";
-                        qStr += name;
-                        qStr += "','";
-                        qStr += escape((const char*)data[6]);
-                        qStr += "',current_timestamp());";
-                        Sql_QueryStr(SqlHandle, qStr.c_str());
+                        char escaped_speaker[16 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                        std::string ls_name((const char*)PChar->PLinkshell1->getName());
+                        DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
+                        char escaped_ls[19 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
+
+                        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                        const char* fmtQuery = "INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('%s','LINKSHELL','%s','%s',current_timestamp())";
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_ls, escaped_full_string.data()) == SQL_ERROR)
+                        {
+                            ShowError("packet_system::call: Failed to log MESSAGE_LINKSHELL.\n");
+                        }
                     }
                 }
             }
@@ -4007,17 +4038,22 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_linkshell == 1)
                     {
-                        std::string name((const char*)PChar->PLinkshell2->getName());
-                        DecodeStringLinkshell((int8*)&name[0], (int8*)&name[0]);
+                        char escaped_speaker[16 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
 
-                        std::string qStr = ("INSERT INTO audit_chat (speaker,type,lsName,message,datetime) VALUES('");
-                        qStr += (const char*)PChar->GetName();
-                        qStr += "','LINKSHELL','";
-                        qStr += name;
-                        qStr += "','";
-                        qStr += escape((const char*)data[6]);
-                        qStr += "',current_timestamp());";
-                        Sql_QueryStr(SqlHandle, qStr.c_str());
+                        std::string ls_name((const char*)PChar->PLinkshell2->getName());
+                        DecodeStringLinkshell((int8*)&ls_name[0], (int8*)&ls_name[0]);
+                        char escaped_ls[19 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_ls, ls_name.data());
+
+                        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                        const char* fmtQuery = "INSERT into audit_chat (speaker,type,lsName,message,datetime) VALUES('%s','LINKSHELL','%s','%s',current_timestamp())";
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_ls, escaped_full_string.data()) == SQL_ERROR)
+                        {
+                            ShowError("packet_system::call: Failed to log MESSAGE_LINKSHELL2.\n");
+                        }
                     }
                 }
             }
@@ -4033,13 +4069,17 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_party == 1)
                     {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += (const char*)PChar->GetName();
-                        qStr += "','PARTY','";
-                        qStr += escape((const char*)data[6]);
-                        qStr += "',current_timestamp());";
-                        const char * cC = qStr.c_str();
-                        Sql_QueryStr(SqlHandle, cC);
+                        char escaped_speaker[16 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                        const char* fmtQuery = "INSERT into audit_chat (speaker,type,message,datetime) VALUES('%s','PARTY','%s',current_timestamp())";
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_full_string.data()) == SQL_ERROR)
+                        {
+                            ShowError("packet_system::call: Failed to log MESSAGE_PARTY.\n");
+                        }
                     }
                 }
             }
@@ -4064,13 +4104,17 @@ void SmallPacket0x0B5(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
                     if (map_config.audit_chat == 1 && map_config.audit_yell == 1)
                     {
-                        std::string qStr = ("INSERT into audit_chat (speaker,type,message,datetime) VALUES('");
-                        qStr += (const char*)PChar->GetName();
-                        qStr += "','YELL','";
-                        qStr += escape((const char*)data[6]);
-                        qStr += "',current_timestamp());";
-                        const char * cC = qStr.c_str();
-                        Sql_QueryStr(SqlHandle, cC);
+                        char escaped_speaker[16 * 2 + 1];
+                        Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+                        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+                        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+                        const char* fmtQuery = "INSERT into audit_chat (speaker,type,message,datetime) VALUES('%s','YELL','%s',current_timestamp())";
+                        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_full_string.data()) == SQL_ERROR)
+                        {
+                            ShowError("packet_system::call: Failed to log MESSAGE_YELL.\n");
+                        }
                     }
                 }
                 else // You cannot use that command in this area.
@@ -4108,15 +4152,20 @@ void SmallPacket0x0B6(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 
     if (map_config.audit_chat == 1 && map_config.audit_tell == 1)
     {
-        std::string qStr = ("INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('");
-        qStr += (const char*)PChar->GetName();
-        qStr += "','TELL','";
-        qStr += RecipientName;
-        qStr += "','";
-        qStr += escape((const char*)data[20]);
-        qStr += "',current_timestamp());";
-        const char * cC = qStr.c_str();
-        Sql_QueryStr(SqlHandle, cC);
+        char escaped_speaker[16 * 2 + 1];
+        Sql_EscapeString(SqlHandle, escaped_speaker, (const char*)PChar->GetName());
+
+        char escaped_recipient[16 * 2 + 1];
+        Sql_EscapeString(SqlHandle, escaped_recipient, (const char*)data[5]);
+
+        std::string escaped_full_string; escaped_full_string.reserve(strlen((const char*)data[6]) * 2 + 1);
+        Sql_EscapeString(SqlHandle, escaped_full_string.data(), (const char*)data[6]);
+
+        const char* fmtQuery = "INSERT into audit_chat (speaker,type,recipient,message,datetime) VALUES('%s','TELL','%s','%s',current_timestamp())";
+        if (Sql_Query(SqlHandle, fmtQuery, escaped_speaker, escaped_recipient, escaped_full_string.data()) == SQL_ERROR)
+        {
+            ShowError("packet_system::call: Failed to log MESSAGE_TELL.\n");
+        }
     }
 }
 

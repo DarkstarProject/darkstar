@@ -133,7 +133,7 @@ function onRegionEnter(player,region)
         end,
         [23] = function (x)
             if player:getCurrentMission(TOAU) == UNDERSEA_SCOUTING then
-                player:startEvent(1, getMercenaryRank(player))
+                player:startEvent(1, dsp.besieged.getMercenaryRank(player))
             end
         end,
     }
@@ -173,9 +173,11 @@ function onEventFinish(player,csid,option)
         player:setTitle(dsp.title.PREVENTER_OF_RAGNAROK)
         player:setVar("AhtUrganStatus",0)
         player:addMission(TOAU,RAGNAROK)
-    elseif csid == 116 and player:getLocalVar("AssaultNyzul") ==1 then -- enter instancedd nyzul island
-        player:setPos(0,0,0,0,77)
-    elseif csid == 116 and player:getLocalVar("SalvageArrapago") == 1 then -- enter Salvage
+    elseif csid == 116 and player:getLocalVar("SalvageArrapago") == 1 then -- enter Salvage Silver Sea zone
         player:setPos(0,0,0,0,74)
+    elseif csid == 116 and player:getLocalVar("SalvageSilverSea") == 1 then -- enter Salvage Arrapago zone
+        player:setPos(0,0,0,0,76)
+    elseif csid == 116 and player:getLocalVar("Nyzul") == 1 then -- enter instanced nyzul isle zone
+        player:setPos(0,0,0,0,77)
     end
 end

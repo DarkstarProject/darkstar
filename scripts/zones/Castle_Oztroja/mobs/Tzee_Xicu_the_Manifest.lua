@@ -3,10 +3,10 @@
 --   NM: Tzee Xicu the Manifest
 -- TODO: messages should be zone-wide
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Castle_Oztroja/IDs")
-require("scripts/globals/status")
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/titles")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -17,19 +17,8 @@ function onMobEngaged(mob,target)
     mob:showText(mob, ID.text.YAGUDO_KING_ENGAGE)
 end
 
-function onAdditionalEffect(mob, player)
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.ICE,dsp.effect.PARALYSIS)
-    if resist <= 0.5 then
-        return 0,0,0
-    else
-        local duration = 60
-        local power = 20
-        duration = duration * resist
-        if not player:hasStatusEffect(dsp.effect.PARALYSIS) then
-            player:addStatusEffect(dsp.effect.PARALYSIS, power, 0, duration)
-        end
-        return dsp.subEffect.PARALYSIS, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.PARALYSIS
-    end
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.PARALYZE, {duration = 60})
 end
 
 function onMobDeath(mob, player, isKiller)
