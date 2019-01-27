@@ -1,6 +1,6 @@
-----------------------------------
--- Area: Kuftal Tunnel
---   NM: Yowie
+-----------------------------------
+-- Area: Xarcabard
+--   NM: Ereshkigal
 -----------------------------------
 require("scripts/globals/mobs")
 -----------------------------------
@@ -10,7 +10,7 @@ function onMobInitialize(mob)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENSTONE, {chance = 20}) -- "Enstone's frequency is mildly low"
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.ENDARK)
 end
 
 function onMobDeath(mob, player, isKiller)
