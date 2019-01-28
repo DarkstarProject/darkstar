@@ -45,6 +45,7 @@ CREATE TRIGGER char_delete
 	BEFORE DELETE ON chars
 	FOR EACH ROW
 BEGIN
+    DELETE FROM `char_blacklist` WHERE `charid_owner` = OLD.charid;
 	DELETE FROM `char_effects`   WHERE `charid` = OLD.charid;
 	DELETE FROM `char_equip`     WHERE `charid` = OLD.charid;
 	DELETE FROM `char_exp`       WHERE `charid` = OLD.charid;
