@@ -10595,6 +10595,7 @@ INSERT INTO `mob_groups` VALUES (10522,4649,134,0,128,3791,4000,0,77,79,0); -- V
 INSERT INTO `mob_groups` VALUES (10523,5869,137,0,128,0,20000,0,77,79,0); -- Zirnitra (not yet implemented: leaving as scripted)
 INSERT INTO `mob_groups` VALUES (10524,5870,88,0,128,0,4500,0,53,54,0); -- Olgoi-Khorkhoi (not yet implemented: leaving as scripted)
 INSERT INTO `mob_groups` VALUES (10525,5871,88,0,128,0,0,0,74,74,0); -- Peaseblossom (not yet implemented: leaving as scripted)
+INSERT INTO `mob_groups` VALUES (10526,5873,120,5400,0,4654,4000,0,47,48,0); -- Thunderclaw Thuban
 
 INSERT INTO `mob_groups` VALUES (10636,48,253,0,0,28,0,0,0,0,0);
 INSERT INTO `mob_groups` VALUES (10637,135,253,0,128,97,0,900,87,88,0);
