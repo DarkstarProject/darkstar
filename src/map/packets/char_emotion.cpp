@@ -21,10 +21,6 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
-
-#include <string.h>
-
 #include "char_emotion.h"
 #include "../entities/charentity.h"
 #include "../item_container.h"
@@ -41,7 +37,11 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint
     ref<uint16>(0x0E) = TargetIndex;
     ref<uint8>(0x10)  = EmoteID == Emote::JOB ? static_cast<uint8>(EmoteID) + (extra - 0x1F) : static_cast<uint8>(EmoteID);
 
-    if (EmoteID == Emote::HURRAY)
+    if (EmoteID == Emote::SALUTE)
+    {
+        ref<uint16>(0x12) = PChar->profile.nation;
+    }
+    else if (EmoteID == Emote::HURRAY)
     {
         auto PWeapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
         if (PWeapon && PWeapon->getID() != 65535)
