@@ -54,8 +54,8 @@ function onMobDespawn(mob)
 
     GetMobByID(KingArthroID):setLocalVar("[POP]King_Arthro", 0);
 
-    -- Set temporary respawn of 24 hours + 5 minutes
+    -- Set respawn of 21:05 to 24:05
     for offset = 1, 10 do
-        GetMobByID(KingArthroID - offset):setRespawnTime(86700);
+        GetMobByID(KingArthroID - offset):setRespawnTime(math.random(21, 24) * 3600 + 300);
     end
 end;

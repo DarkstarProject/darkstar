@@ -1,6 +1,6 @@
 -----------------------------------
--- Area: Quicksand Caves
---   NM: Antican_Consul
+-- Area: Palborough Mines
+--   NM: No'Mho Crimsonarmor
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------

@@ -15,3 +15,7 @@ function onMobDeath(mob, player, isKiller)
     dsp.regime.checkRegime(player, mob, 799, 2, dsp.regime.type.GROUNDS)
     dsp.regime.checkRegime(player, mob, 800, 2, dsp.regime.type.GROUNDS)
 end
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(1260, 1440)) -- 21 to 24 minutes
+end

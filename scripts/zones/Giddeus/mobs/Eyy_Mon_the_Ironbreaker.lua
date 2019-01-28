@@ -1,8 +1,6 @@
 -----------------------------------
--- Area: Sea Serpent Grotto
---   NM: Abyss Sahagin
------------------------------------
-mixins = {require("scripts/mixins/job_special")}
+-- Area: Giddeus (145)
+--   NM: Eyy Mon the Ironbreaker
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
