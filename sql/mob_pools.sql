@@ -5931,6 +5931,7 @@ INSERT INTO `mob_pools` VALUES (5870,'Olgoi-Khorkhoi','Olgoi-Khorkhoi',258,0x000
 INSERT INTO `mob_pools` VALUES (5871,'Peaseblossom','Peaseblossom',195,0x0000EE0700000000000000000000000000000000,4,5,7,240,100,0,0,0,0,2,23,0,0,513,0,0,2,1,0,195);
 
 INSERT INTO `mob_pools` VALUES (5873,'Thunderclaw_Thuban','Thunderclaw_Thuban',376,0x00003C0100000000000000000000000000000000,6,6,7,220,100,0,1,0,0,2,7,32,0,129,0,0,0,1,0,239);
+INSERT INTO `mob_pools` VALUES (5874,'Legalox_Heftyhind','Legalox_Heftyhind',373,0x0000EF0100000000000000000000000000000000,1,1,4,240,100,0,1,0,1,2,7,32,0,131,0,0,0,1,0,133);
 
 --  `poolid` int(10) unsigned NOT NULL,
 --  `name` varchar(24) DEFAULT NULL,
