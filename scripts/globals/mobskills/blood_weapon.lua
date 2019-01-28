@@ -6,18 +6,14 @@ require("scripts/globals/status")
 require("scripts/globals/msg")
 ---------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
+function onMobSkillCheck(target, mob, skill)
     return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BLOOD_WEAPON
-    local duration = 30
-    if skill:getParam() ~= 0 then
-        duration = skill:getParam()
-    end
-    MobBuffMove(mob, typeEffect, 1, 0, duration)
+    MobBuffMove(mob, dsp.effect.BLOOD_WEAPON, 1, 0, 30)
 
     skill:setMsg(dsp.msg.basic.USES)
-    return typeEffect
+
+    return dsp.effect.BLOOD_WEAPON
 end
