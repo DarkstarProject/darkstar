@@ -743,6 +743,9 @@ void SmallPacket0x01A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     break;
     case 0x11: // chocobo digging
     {
+        if (!PChar->isMounted())
+            return;
+
         // bunch of gysahl greens
         uint8 slotID = PChar->getStorage(LOC_INVENTORY)->SearchItem(4545);
 
@@ -2934,6 +2937,10 @@ void SmallPacket0x063(map_session_data_t* session, CCharEntity* PChar, CBasicPac
 void SmallPacket0x064(map_session_data_t* session, CCharEntity* PChar, CBasicPacket data)
 {
     uint8 KeyTable = data.ref<uint8>(0x4A);
+
+    if (KeyTable >= PChar->keys.tables.size())
+        return;
+
     memcpy(&PChar->keys.tables[KeyTable].seenList, data[0x08], 0x40);
 
     charutils::SaveKeyItems(PChar);
