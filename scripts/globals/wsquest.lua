@@ -553,7 +553,7 @@ dsp.wsquest.handleEventFinish = function(quest,player,csid,option,learnedId)
         player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
         player:addKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
     elseif csid == quest.eventIds.finish then -- WS Quest completed
-        player:messageSpecial(zones[player:getZoneID()].text[learnedId])
+        player:messageSpecial(learnedId)
         player:addLearnedWeaponskill(quest.wsUnlockId)
         player:addFame(quest.fameRegion,30)
         player:delKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
