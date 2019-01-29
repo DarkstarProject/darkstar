@@ -1780,6 +1780,7 @@ INSERT INTO `nm_spawn_points` VALUES (17223797,0,-429.953,24.5,-305.450); -- Ni'
 INSERT INTO `nm_spawn_points` VALUES (17223797,1,11.309,23.904,-337.923);
 INSERT INTO `nm_spawn_points` VALUES (17223889,0,184.993,24.499,-41.790);
 INSERT INTO `nm_spawn_points` VALUES (17224019,0,-351.884,24.014,513.531);
+INSERT INTO `nm_spawn_points` VALUES (17224104,0,467.436,24.5,-342.082); -- Bo'Who Warmonger
 INSERT INTO `nm_spawn_points` VALUES (17227972,0,5,-15,-142); -- Black Triple Stars (north)
 INSERT INTO `nm_spawn_points` VALUES (17227992,0,76,-15,-209); -- Black Triple Stars (south)
 INSERT INTO `nm_spawn_points` VALUES (17228150,0,395.000,-24.000,-147.000);
