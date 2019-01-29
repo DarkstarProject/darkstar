@@ -606,6 +606,16 @@ INSERT INTO `traits` VALUES (127,'smite',8,55,3,898,51,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',8,75,4,898,64,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',8,95,5,898,76,'SOA',0);
 INSERT INTO `traits` VALUES (127,'smite',18,60,1,898,25,'SOA',0);
+INSERT INTO `traits` VALUES (108,'conserve tp',14,45,1,944,15,'ABYSSEA',0); -- Conserve TP I, DRG45, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,77,1,944,15,'ABYSSEA',0); -- Conserve TP I, DNC77, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',11,80,1,944,15,'ABYSSEA',0); -- Conserve TP I, RNG80, 15%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,58,2,944,18,'ABYSSEA',0); -- Conserve TP II, DRG58, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,87,2,944,18,'ABYSSEA',0); -- Conserve TP II, DNC87, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',11,91,2,944,18,'ABYSSEA',0); -- Conserve TP II, RNG91, 18%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,71,3,944,21,'ABYSSEA',0); -- Conserve TP III, DRG71, 21%
+INSERT INTO `traits` VALUES (108,'conserve tp',19,97,3,944,21,'ABYSSEA',0); -- Conserve TP III, DNC97, 21%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,84,4,944,24,'ABYSSEA',0); -- Conserve TP IV, DRG84, 24%
+INSERT INTO `traits` VALUES (108,'conserve tp',14,97,4,944,26,'ABYSSEA',0); -- Conserve TP V, DRG97, 26%
 /*!40000 ALTER TABLE `traits` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
