@@ -33016,6 +33016,9 @@ INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1695,155); -- (Mantrap) Habaner
 
 INSERT INTO `mob_droplist` VALUES (4654,0,0,1000,16028,136); -- (Thunderclaw Thuban) Psyche Earring
 INSERT INTO `mob_droplist` VALUES (4655,0,0,1000,2846,310); -- (Legalox Heftyhind) Hefty Oak Lumber
+INSERT INTO `mob_droplist` VALUES (4656,0,0,1000,16187,122); -- (Shankha) Adoubeur's Pavise
+INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2808,125); -- (Melusine) Ebon Pigment
+INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2809,125); -- (Melusine) Furia Pigment
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

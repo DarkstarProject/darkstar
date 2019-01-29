@@ -1181,7 +1181,7 @@ INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1040); -- Outside allian
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1041); -- Outside alliance targeting version of Dragon Breath
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,957);
 INSERT INTO `mob_skill_lists` VALUES ('NidhoggWyrm',263,1046);
--- 264: free
+INSERT INTO `mob_skill_lists` VALUES ('Shankha',264,1574); -- painful_whip
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,813);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,814);
 INSERT INTO `mob_skill_lists` VALUES ('SimorgWyvern',265,815);
@@ -1280,7 +1280,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,787);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,788);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,920);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,921);
--- 283: free
+INSERT INTO `mob_skill_lists` VALUES ('Melusine',283,2198); -- winter_breeze
 -- 284: Oupire
 INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1731);
 INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1732);
