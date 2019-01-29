@@ -10,7 +10,7 @@ function onMobInitialize(mob)
 end
 
 function onAdditionalEffect(mob, target, damage)
-    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.POISON)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.POISON, {power = 10})
 end
 
 function onMobDeath(mob, player, isKiller)
