@@ -1280,7 +1280,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,787);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,788);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,920);
 INSERT INTO `mob_skill_lists` VALUES ('Grav_iton',282,921);
--- 283: free
+INSERT INTO `mob_skill_lists` VALUES ('Melusine',283,2198); -- winter_breeze
 -- 284: Oupire
 INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1731);
 INSERT INTO `mob_skill_lists` VALUES ('Gulool',285,1732);
