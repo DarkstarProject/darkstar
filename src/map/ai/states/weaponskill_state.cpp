@@ -94,7 +94,7 @@ void CWeaponSkillState::SpendCost()
         m_PEntity->health.tp = 0;
     }
 
-    if (dsprand::GetRandomNumber(100) <= m_PEntity->getMod(Mod::CONSERVE_TP))
+    if (dsprand::GetRandomNumber(100) < m_PEntity->getMod(Mod::CONSERVE_TP))
     {
         m_PEntity->addTP(dsprand::GetRandomNumber(10, 200));
     }
