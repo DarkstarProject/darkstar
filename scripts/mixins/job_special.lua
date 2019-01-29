@@ -12,6 +12,7 @@ params is a table that can contain the following keys:
     specials   : Table of job specials, with each entry a table that can contain the following keys:
       id       : the job ability ID (see dsp.jobSpecialAbility definition in scripts/globals/status.lua). Required.
       cooldown : cooldown in seconds for this special. Optional. Default 7200.
+      duration : duration in seconds for specials that apply a status effect for a non-standard number of seconds.  Optional.  No default. (1 to any)
       hpp      : mob must be below this HP percent to use this special.  Optional.  Default random 40 to 60. (0 to 100)
       begCode  : callback function before the mob uses its special.
       endCode  : callback function after the mob uses its special.
@@ -29,6 +30,14 @@ dsp.mix.jobSpecial.config(mob, {
     specials =
     {
         {id = dsp.jsa.MEIKYO_SHISUI, cooldown = 60, hpp = 100},
+    },
+})
+
+-- mob will use Mighty Strikes immediately, but the effect will only last 10 seconds
+dsp.mix.jobSpecial.config(mob, {
+    specials =
+    {
+        {id = dsp.jsa.MIGHTY_STRIKES, duration = 10, hpp = 100},
     },
 })
 
@@ -139,6 +148,19 @@ local familyEES =
     [373] = dsp.jsa.EES_GOBLIN,  -- Goblin_Armored
 }
 
+local effectByAbility =
+{
+    [dsp.jsa.MIGHTY_STRIKES] = dsp.effect.MIGHTY_STRIKES,
+    [dsp.jsa.HUNDRED_FISTS]  = dsp.effect.HUNDRED_FISTS,
+    [dsp.jsa.MANAFONT]       = dsp.effect.MANAFONT,
+    [dsp.jsa.CHAINSPELL]     = dsp.effect.CHAINSPELL,
+    [dsp.jsa.PERFECT_DODGE]  = dsp.effect.PERFECT_DODGE,
+    [dsp.jsa.INVINCIBLE]     = dsp.effect.INVINCIBLE,
+    [dsp.jsa.BLOOD_WEAPON]   = dsp.effect.BLOOD_WEAPON,
+    [dsp.jsa.SOUL_VOICE]     = dsp.effect.SOUL_VOICE,
+    [dsp.jsa.AZURE_LORE]     = dsp.effect.AZURE_LORE,
+}
+
 dsp.mix.jobSpecial.config = function(mob, params)
     if params.between and type(params.between) == "number" then
         mob:setLocalVar("[jobSpecial]between", utils.clamp(params.between, 0))
@@ -165,6 +187,10 @@ dsp.mix.jobSpecial.config = function(mob, params)
                     mob:setLocalVar("[jobSpecial]between_" .. i, utils.clamp(v.cooldown, 0))
                 else
                     mob:setLocalVar("[jobSpecial]between_" .. i, 7200)
+                end
+
+                if v.duration and type(v.duration) == "number" then
+                    mob:setLocalVar("[jobSpecial]duration_" .. i, utils.clamp(v.duration, 1))
                 end
 
                 if v.hpp and type(v.hpp) == "number" then
@@ -264,6 +290,17 @@ g_mixins.job_special = function(mob)
             end
 
             mob:useMobAbility(ability)
+
+            local customDuration = mob:getLocalVar("[jobSpecial]duration_" .. i)
+            if customDuration > 0 then
+                local specialEffect = effectByAbility[ability]
+                if specialEffect then
+                    local effect = mob:getStatusEffect(specialEffect)
+                    if effect then
+                        effect:setDuration(customDuration)
+                    end
+                end
+            end
 
             if mob:getLocalVar("[jobSpecial]endCode_" .. i) == 1 then
                 mob:triggerListener("JOB_SPECIAL_END_" .. i, mob)
