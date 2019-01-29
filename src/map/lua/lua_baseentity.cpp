@@ -976,6 +976,13 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
         ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
     }
 
+    CBattleEntity* PPet = ((CBattleEntity*)m_PBaseEntity)->PPet;
+
+    if (PPet != nullptr)
+    {
+        PPet->PAI->Disengage();
+    }
+
     uint16 EventID = (uint16)lua_tointeger(L, 1);
 
     uint32 param0 = 0;
