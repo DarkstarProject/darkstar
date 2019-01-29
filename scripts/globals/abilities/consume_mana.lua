@@ -1,8 +1,8 @@
 -----------------------------------
--- Ability: Sneak Attack
--- Deals critical damage when striking from behind.
--- Obtained: Thief Level 15
--- Recast Time: 1:00
+-- Ability: Consume Mana
+-- Converts all MP into damage for the next attack.
+-- Obtained: Dark Knight Level 55
+-- Recast Time: 1:00 (or next attack)
 -- Duration: 1:00
 -----------------------------------
 require("scripts/globals/settings")
@@ -14,5 +14,5 @@ function onAbilityCheck(player,target,ability)
 end
 
 function onUseAbility(player,target,ability)
-   player:addStatusEffect(dsp.effect.SNEAK_ATTACK,1,0,60)
+   player:addStatusEffect(dsp.effect.CONSUME_MANA,1,0,60)
 end

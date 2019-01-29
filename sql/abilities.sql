@@ -284,6 +284,7 @@ INSERT INTO `abilities` VALUES (287,'misers_roll',17,92,1,60,193,420,0,139,2000,
 INSERT INTO `abilities` VALUES (288,'companions_roll',17,95,1,60,193,420,0,265,2000,0,6,8.0,1,1,80,0,8,'ABYSSEA');
 INSERT INTO `abilities` VALUES (289,'avengers_roll',17,97,1,60,193,420,0,266,2000,0,6,8.0,1,1,80,0,8,'ABYSSEA');
 INSERT INTO `abilities` VALUES (294,'deus_ex_automata',18,5,1,60,115,0,0,83,2000,0,6,20.0,0,1,80,0,0,'TOAU');
+INSERT INTO `abilities` VALUES (299,'consume_mana',8,55,1,60,299,0,0,20,2000,0,6,20.0,0,1,1300,0,0,'SOA');
 INSERT INTO `abilities` VALUES (304,'konzen-ittai',12,65,4,180,132,529,0,36,2000,0,14,4.4,0,1,300,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (305,'bully',6,93,4,180,240,127,0,248,2000,0,6,12.0,0,1,80,0,4,'ABYSSEA');
 INSERT INTO `abilities` VALUES (306,'maintenance',18,30,257,90,214,0,0,83,2000,0,6,18.0,0,0,0,1474,0,'TOAU');

@@ -2088,7 +2088,7 @@ dsp.attackType =
 -- Damage Type
 ----------------------------------
 
-dsp.damageType = 
+dsp.damageType =
 {
     NONE      = 0,
     PIERCING  = 1,

@@ -297,6 +297,7 @@ dsp.jobAbility =
     FEATHER_STEP       = 296,
     STRIKING_FLOURISH  = 297,
     TERNARY_FLOURISH   = 298,
+    CONSUME_MANA       = 299,
     PERPETUANCE        = 300,
     IMMANENCE          = 301,
     SMITING_BREATH     = 302,
