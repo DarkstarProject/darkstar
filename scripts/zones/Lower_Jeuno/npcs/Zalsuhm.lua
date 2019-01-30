@@ -5,6 +5,7 @@
 -----------------------------------
 local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/equipment")
+require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 require("scripts/globals/status")
 -----------------------------------
@@ -16,28 +17,25 @@ function getQuestId(mainJobId)
 end
 
 function onTrade(player,npc,trade)
-    if (trade:getItemCount() == 1) then
-        for i, wepId in pairs(BaseNyzulWeapons) do
-            if trade:hasItemQty(wepId, 1) then
-                local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(i))
-                if (unlockingAMyth == QUEST_ACCEPTED) then
-                    local wsPoints = trade:getItem(0):getWeaponskillPoints()
-                    if wsPoints >= 0 and wsPoints <= 49 then
-                        player:startEvent(10091)
-                    elseif wsPoints <= 200 then
-                        player:startEvent(10092)
-                    elseif wsPoints <= 249 then
-                        player:startEvent(10093)
-                    elseif wsPoints >= 250 then
-                        player:startEvent(10088, i)
-                    end
+    for i, wepId in pairs(BaseNyzulWeapons) do
+        if npcUtil.tradeHasExactly(trade, wepId) then
+            local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(i))
+            if unlockingAMyth == QUEST_ACCEPTED then
+                local wsPoints = trade:getItem(0):getWeaponskillPoints()
+                if wsPoints <= 49 then
+                    player:startEvent(10091)
+                elseif wsPoints <= 200 then
+                    player:startEvent(10092)
+                elseif wsPoints <= 249 then
+                    player:startEvent(10093)
+                elseif wsPoints >= 250 then
+                     player:startEvent(10088, i)
                 end
-
-                return
             end
+
+            return
         end
     end
-
 end
 
 function onTrigger(player,npc)
