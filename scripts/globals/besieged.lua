@@ -82,8 +82,8 @@ dsp.besieged.hasAssaultOrders = function(player)
     local event = 0
     local keyitem = 0
 
-    for i = 0, 5 do
-        local ki = dsp.ki.LEBROS_ASSAULT_ORDERS + i
+    for i = 0, 4 do
+        local ki = dsp.ki.LEUJAOAM_ASSAULT_ORDERS + i
         if player:hasKeyItem(ki) then
             event = 120 + i
             keyitem = ki
