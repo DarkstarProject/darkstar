@@ -24,7 +24,7 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
             player:getVar("ChaosbringerKills") < 200 and
             not isWeaponSkillKill
         then
-            player:setVar("ChaosbringerKills", ChaosbringerKills + 1)
+            player:setVar("ChaosbringerKills", player:getVar("ChaosbringerKills") + 1)
         end
     end
 
