@@ -765,10 +765,16 @@ void CBattleEntity::SetMLevel(uint8 mlvl)
 
 void CBattleEntity::SetSLevel(uint8 slvl)
 {
-    int cap = std::max((int)std::floor(m_mlvl / map_config.sj_lvl_divisor), 1);
-    m_slvl = std::clamp((int)slvl, 1, cap);
     if (this->objtype & TYPE_PC)
+    {
+        m_slvl = std::clamp((int)std::max((int)std::floor(m_mlvl / map_config.player_sj_divisor), 1), 1, 99);
         Sql_Query(SqlHandle, "UPDATE char_stats SET slvl = %u WHERE charid = %u LIMIT 1;", m_slvl, this->id);
+    }
+    else
+    {
+        // Not a player, assume it's a mob
+        m_slvl = std::clamp((int)std::max((int)std::floor(m_mlvl / map_config.monster_sj_divisor), 1), 0, 255); // Zero is legit
+    }
 }
 
 /************************************************************************

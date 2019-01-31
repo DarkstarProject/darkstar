@@ -977,8 +977,9 @@ int32 map_config_default()
     map_config.nm_mp_multiplier = 1.0f;
     map_config.mob_mp_multiplier = 1.0f;
     map_config.player_mp_multiplier = 1.0f;
+    map_config.player_sj_divisor = 2.0f;
+    map_config.monster_sj_divisor = 2.0f;
     map_config.sj_mp_divisor = 2.0f;
-    map_config.sj_lvl_divisor = 2.0f;
     map_config.nm_stat_multiplier = 1.0f;
     map_config.mob_stat_multiplier = 1.0f;
     map_config.player_stat_multiplier = 1.0f;
@@ -1151,6 +1152,14 @@ int32 map_config_read(const int8* cfgName)
         else if (strcmp(w1, "player_mp_multiplier") == 0)
         {
             map_config.player_mp_multiplier = (float)atof(w2);
+        }
+        else if (strcmp(w1, "player_sj_divisor") == 0)
+        {
+            map_config.player_sj_divisor = (float)atof(w2);
+        }
+        else if (strcmp(w1, "monster_sj_divisor") == 0)
+        {
+            map_config.monster_sj_divisor = (float)atof(w2);
         }
         else if (strcmp(w1, "sj_mp_divisor") == 0)
         {
