@@ -12,6 +12,6 @@ function onMobDeath(mob, player, isKiller)
     local martialArtsScroll = player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL);
 
     if (theFirstMeeting == QUEST_ACCEPTED and martialArtsScroll == false) then
-        player:setVar("theFirstMeetingKilledNM",player:getVar("theFirstMeetingKilledNM") + 1);
+        player:addVar("theFirstMeetingKilledNM", 1)
     end
 end;
