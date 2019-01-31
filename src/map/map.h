@@ -110,6 +110,7 @@ struct map_config_t
     float  mob_mp_multiplier;         // Multiplier for max MP pool of mob
     float  player_mp_multiplier;      // Multiplier for max MP pool of player
     float  sj_mp_divisor;             // Divisor to use on subjob max MP
+    float  sj_lvl_divisor;            // Divisor to use on subjob max level
     float  nm_stat_multiplier;        // Multiplier for str/vit/etc of NMs
     float  mob_stat_multiplier;       // Multiplier for str/vit/etc of mobs
     float  player_stat_multiplier;    // Multiplier for str/vit/etc. of NMs of player
