@@ -8,6 +8,7 @@ require("scripts/globals/equipment")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 require("scripts/globals/status")
+require("scripts/globals/weaponskillids")
 -----------------------------------
 
 function getQuestId(mainJobId)
@@ -80,26 +81,26 @@ function onEventFinish(player,csid,option)
     elseif csid == 10088 and option <= dsp.job.SCH then
         local jobs = 
         {
-            [dsp.job.WAR] = 24,
-            [dsp.job.MNK] = 15,
-            [dsp.job.WHM] = 29,
-            [dsp.job.BLM] = 30,
-            [dsp.job.RDM] = 20,
-            [dsp.job.THF] = 17,
-            [dsp.job.PLD] = 21,
-            [dsp.job.DRK] = 25,
-            [dsp.job.BST] = 23,
-            [dsp.job.BRD] = 18,
-            [dsp.job.RNG] = 33,
-            [dsp.job.SAM] = 28,
-            [dsp.job.NIN] = 27,
-            [dsp.job.DRG] = 26,
-            [dsp.job.SMN] = 31,
-            [dsp.job.BLU] = 22,
-            [dsp.job.COR] = 34,
-            [dsp.job.PUP] = 16,
-            [dsp.job.DNC] = 19,
-            [dsp.job.SCH] = 32,
+            [dsp.job.WAR] = dsp.ws_unlock.KINGS_JUSTICE,
+            [dsp.job.MNK] = dsp.ws_unlock.ASCETICS_FURY,
+            [dsp.job.WHM] = dsp.ws_unlock.MYSTIC_BOON,
+            [dsp.job.BLM] = dsp.ws_unlock.VIDOHUNIR,
+            [dsp.job.RDM] = dsp.ws_unlock.DEATH_BLOSSOM,
+            [dsp.job.THF] = dsp.ws_unlock.MANDALIC_STAB,
+            [dsp.job.PLD] = dsp.ws_unlock.ATONEMENT,
+            [dsp.job.DRK] = dsp.ws_unlock.INSURGENCY,
+            [dsp.job.BST] = dsp.ws_unlock.PRIMAL_REND,
+            [dsp.job.BRD] = dsp.ws_unlock.MORDANT_RIME,
+            [dsp.job.RNG] = dsp.ws_unlock.TRUEFLIGHT,
+            [dsp.job.SAM] = dsp.ws_unlock.TACHI_RANA,
+            [dsp.job.NIN] = dsp.ws_unlock.BLADE_KAMU,
+            [dsp.job.DRG] = dsp.ws_unlock.DRAKESBANE,
+            [dsp.job.SMN] = dsp.ws_unlock.GARLAND_OF_BLISS,
+            [dsp.job.BLU] = dsp.ws_unlock.EXPIACION,
+            [dsp.job.COR] = dsp.ws_unlock.LEADEN_SALUTE,
+            [dsp.job.PUP] = dsp.ws_unlock.STRINGING_PUMMEL,
+            [dsp.job.DNC] = dsp.ws_unlock.PYRRHIC_KLEOS,
+            [dsp.job.SCH] = dsp.ws_unlock.OMNISCIENCE,
         }
         local skill = jobs[option]
         
