@@ -51,13 +51,13 @@ function onEventFinish(player, csid, option)
         player:addMission(WOTG, BACK_TO_THE_BEGINNING)
 
         if r == 1 then
-            player:addNationTeleport(MAW, 1)
+            player:addNationTeleport(dsp.teleport.nation.MAW, 1)
             dsp.teleport.toMaw(player, 1) -- go to Batallia_Downs[S]
         elseif r == 2 then
-            player:addNationTeleport(MAW, 2)
+            player:addNationTeleport(dsp.teleport.nation.MAW, 2)
             dsp.teleport.toMaw(player, 3) -- go to Rolanberry_Fields_[S]
         elseif r == 3 then
-            player:addNationTeleport(MAW, 4)
+            player:addNationTeleport(dsp.teleport.nation.MAW, 4)
             dsp.teleport.toMaw(player, 5) -- go to Sauromugue_Champaign_[S]
         end
     elseif csid == 904 and option == 1 then

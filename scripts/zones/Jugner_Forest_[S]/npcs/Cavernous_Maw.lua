@@ -26,7 +26,7 @@ end;
 function onEventFinish(player,csid,option)
     if (option == 1) then
         if (csid == 101) then
-            player:addNationTeleport(MAW,8);
+            player:addNationTeleport(dsp.teleport.nation.MAW,8);
         end
         dsp.teleport.toMaw(player,14);
     end
