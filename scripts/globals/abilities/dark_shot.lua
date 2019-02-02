@@ -21,7 +21,6 @@ function onAbilityCheck(player, target, ability)
 end
 
 function onUseAbility(player, target, ability)
-    local duration = 60
     local bonusAcc = player:getStat(dsp.mod.AGI) / 2 + player:getMerit(dsp.merit.QUICK_DRAW_ACCURACY) + player:getMod(dsp.mod.QUICK_DRAW_MACC)
     local resist = applyResistanceAbility(player, target, dsp.magic.ele.DARK, dsp.skill.NONE, bonusAcc)
 
@@ -30,37 +29,33 @@ function onUseAbility(player, target, ability)
         return 0
     end
 
-    duration = duration * resist
-
-    local effects = {}
     local bio = target:getStatusEffect(dsp.effect.BIO)
-    if bio ~= nil then
-        table.insert(effects, bio)
-    end
     local blind = target:getStatusEffect(dsp.effect.BLINDNESS)
-    if blind ~= nil then
-        table.insert(effects, blind)
-    end
-    local threnody = target:getStatusEffect(dsp.effect.THRENODY)
-    if threnody ~= nil and threnody:getSubPower() == dsp.mod.LIGHTRES then
-        table.insert(effects, threnody)
+        
+    if bio ~= nil then
+        local duration = bio:getDuration()
+        local startTime = bio:getStartTime()
+        local tick = bio:getTick()
+        local power = bio:getPower()
+        local subpower = bio:getSubPower()
+        local tier = bio:getTier()
+        local subId = bio:getSubType()
+        power = power + 3 -- +3 damage DOT
+        subpower = subpower * 1.05 -- 5% Attack down
+        target:delStatusEffectSilent(dsp.effect.BIO)
+        target:addStatusEffect(dsp.effect.BIO, power, tick, duration, subId, subpower, tier)
+        local newEffect = target:getStatusEffect(dsp.effect.BIO)
+        newEffect:setStartTime(startTime)
     end
 
-    if #effects > 0 then
-        local effect = effects[math.random(#effects)]
-        local duration = effect:getDuration()
-        local startTime = effect:getStartTime()
-        local tick = effect:getTick()
-        local power = effect:getPower()
-        local subpower = effect:getSubPower()
-        local tier = effect:getTier()
-        local effectId = effect:getType()
-        local subId = effect:getSubType()
-        power = power * 1.5
-        subpower = subpower * 1.5
-        target:delStatusEffectSilent(effectId)
-        target:addStatusEffect(effectId, power, tick, duration, subId, subpower, tier)
-        local newEffect = target:getStatusEffect(effectId)
+    if blind ~= nil then
+        local duration = blind:getDuration()
+        local startTime = blind:getStartTime()
+        local power = blind:getPower()
+        power = power * 1.1 -- 10% potency to Blind
+        target:delStatusEffectSilent(dsp.effect.BLIND)
+        target:addStatusEffect(dsp.effect.BLIND, power, 0, duration)
+        local newEffect = target:getStatusEffect(dsp.effect.BLIND)
         newEffect:setStartTime(startTime)
     end
 
