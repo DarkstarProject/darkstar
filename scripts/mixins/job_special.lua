@@ -110,6 +110,14 @@ local job2hr = {
     [dsp.job.DRG] = dsp.jsa.CALL_WYVERN,
     [dsp.job.SMN] = dsp.jsa.ASTRAL_FLOW,
     [dsp.job.BLU] = dsp.jsa.AZURE_LORE,
+
+-- following abilities are not yet defined on dsp.jsa:
+--  [dsp.job.COR] = dsp.jsa.WILD_CARD,
+--  [dsp.job.PUP] = dsp.jsa.OVERDRIVE,
+--  [dsp.job.DNC] = dsp.jsa.TRANCE,
+--  [dsp.job.SCH] = dsp.jsa.TABULA_RASA,
+--  [dsp.job.GEO] = dsp.jsa.BOLSTER,
+--  [dsp.job.RUN] = dsp.jsa.ELEMENTAL_SFORZO,
 }
 
 -- eagle eye shot ability IDs by mob family
@@ -159,6 +167,13 @@ local effectByAbility =
     [dsp.jsa.BLOOD_WEAPON]   = dsp.effect.BLOOD_WEAPON,
     [dsp.jsa.SOUL_VOICE]     = dsp.effect.SOUL_VOICE,
     [dsp.jsa.AZURE_LORE]     = dsp.effect.AZURE_LORE,
+
+-- following abilities are not yet defined on dsp.jsa, and/or do not have effect luas:
+-- [dsp.jsa.OVERDRIVE]        = dsp.effect.OVERDRIVE,
+-- [dsp.jsa.TRANCE]           = dsp.effect.TRANCE,
+-- [dsp.jsa.TABULA_RASA]      = dsp.effect.TABULA_RASA,
+-- [dsp.jsa.BOLSTER]          = dsp.effect.BOLSTER,
+-- [dsp.jsa.ELEMENTAL_SFORZO] = dsp.effect.ELEMENTAL_SFORZO,
 }
 
 dsp.mix.jobSpecial.config = function(mob, params)
