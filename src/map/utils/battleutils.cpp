@@ -3525,6 +3525,7 @@ namespace battleutils
         {
             damage += (uint32)(floor(m_PChar->health.mp / 10));
             m_PChar->health.mp = 0;
+            m_PChar->StatusEffectContainer->DelStatusEffect(EFFECT_CONSUME_MANA);
         }
         return damage;
     }
