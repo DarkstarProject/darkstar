@@ -33019,6 +33019,8 @@ INSERT INTO `mob_droplist` VALUES (4655,0,0,1000,2846,310); -- (Legalox Heftyhin
 INSERT INTO `mob_droplist` VALUES (4656,0,0,1000,16187,122); -- (Shankha) Adoubeur's Pavise
 INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2808,125); -- (Melusine) Ebon Pigment
 INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2809,125); -- (Melusine) Furia Pigment
+INSERT INTO `mob_droplist` VALUES (4658,0,0,1000,2814,250); -- (Big Bang) Aptant: Bellum
+INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenrir's Crown
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
