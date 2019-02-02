@@ -1369,7 +1369,7 @@ INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1781);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1782);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1783);
 INSERT INTO `mob_skill_lists` VALUES ('ZareehklTheJu',303,1784);
--- 304: free
+INSERT INTO `mob_skill_lists` VALUES ('Big_Bang',304,2218); -- penumbral_impact
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1920);
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1921);
 INSERT INTO `mob_skill_lists` VALUES ('Gotoh_Zha_the_Redolent',305,1922);
