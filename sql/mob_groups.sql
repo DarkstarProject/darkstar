@@ -9304,7 +9304,7 @@ INSERT INTO `mob_groups` VALUES (9240,4250,176,0,32,4026,0,0,64,66,0); -- Voll t
 INSERT INTO `mob_groups` VALUES (9241,4309,176,960,4,4114,0,0,65,68,0);
 INSERT INTO `mob_groups` VALUES (9242,4311,176,0,128,0,10000,0,80,80,0);
 INSERT INTO `mob_groups` VALUES (9243,4377,176,0,32,4189,0,0,60,61,0); -- Worr the Clawfisted
-INSERT INTO `mob_groups` VALUES (9244,4383,176,0,32,4194,0,0,48,50,0); -- Wuur the Sandcomber
+INSERT INTO `mob_groups` VALUES (9244,4383,176,0,32,4194,4700,0,48,50,0); -- Wuur the Sandcomber
 INSERT INTO `mob_groups` VALUES (9245,4467,176,0,32,4326,8000,0,64,66,0); -- Yarr the Pearleyed
 INSERT INTO `mob_groups` VALUES (9246,4525,176,0,32,4366,0,0,70,70,0); -- Zuug the Shoreleaper
 INSERT INTO `mob_groups` VALUES (9247,71,177,960,0,41,0,0,70,71,0);
