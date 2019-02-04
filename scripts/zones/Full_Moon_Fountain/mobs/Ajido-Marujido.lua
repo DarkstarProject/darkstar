@@ -9,8 +9,8 @@ require("scripts/globals/magic")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REFRESH, 1)
-    mob:addMobMod(dsp.mobMod.TELEPORT_CD, 30)
+    mob:setMod(dsp.mod.REFRESH, 1)
+    mob:setMobMod(dsp.mobMod.TELEPORT_CD, 30)
 end;
 
 function onMobSpawn(mob)

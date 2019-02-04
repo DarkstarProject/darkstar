@@ -30,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 100 and option == 1) then
-        player:addNationTeleport(MAW,1);
+        player:addNationTeleport(dsp.teleport.nation.MAW,1);
         dsp.teleport.toMaw(player,2);
     elseif (csid == 101 and option == 1) then
         dsp.teleport.toMaw(player,2);
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WOTG, CAIT_SITH);
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
         if (hasMawActivated(player,0) == false) then
-            player:addNationTeleport(MAW,1);
+            player:addNationTeleport(dsp.teleport.nation.MAW,1);
         end
         dsp.teleport.toMaw(player,2);
     end

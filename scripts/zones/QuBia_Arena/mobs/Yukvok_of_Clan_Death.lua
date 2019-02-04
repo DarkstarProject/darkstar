@@ -2,13 +2,9 @@
 -- Area: QuBia_Arena
 -- Mission 9-2 SANDO
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
 local ID = require("scripts/zones/QuBia_Arena/IDs");
-require("scripts/globals/status");
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_ORC);
-end;
+mixins = {require("scripts/mixins/job_special")};
+-----------------------------------
 
 function allHeirMobsDead(player)
     local inst = player:getBattlefield():getBattlefieldNumber();

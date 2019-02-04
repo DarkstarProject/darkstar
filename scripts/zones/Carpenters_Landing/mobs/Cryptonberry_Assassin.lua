@@ -13,7 +13,18 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainQuote", ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.MIJIN_GAKURE,
+                begCode = function(mob)
+                    mob:messageText(mob, ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+                end,
+            },
+        },
+    })
+
     mob:setLocalVar("despawnTime", os.time() + 180)
 end
 

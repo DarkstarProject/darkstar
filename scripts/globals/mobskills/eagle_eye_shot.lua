@@ -1,20 +1,12 @@
 ---------------------------------------------------
 -- Eagle Eye Shot
 ---------------------------------------------------
-
-require("scripts/globals/settings")
-require("scripts/globals/status")
 require("scripts/globals/monstertpmoves")
-
+require("scripts/globals/status")
 ---------------------------------------------------
 
-function onMobSkillCheck(target,mob,skill)
-    if (mob:getMobMod(dsp.mobMod.SCRIPTED_2HOUR) == 1) then
-        return 0
-    elseif (mob:getHPP() <= mob:getMobMod(dsp.mobMod.PROC_2HOUR)) then
-        return 0
-    end
-    return 1
+function onMobSkillCheck(target, mob, skill)
+    return 0
 end
 
 function onMobWeaponSkill(target, mob, skill)
@@ -22,11 +14,11 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 2
     local dmgmod = 9 + math.random()
 
-    local info = MobRangedMove(mob,target,skill,numhits,accmod,dmgmod,TP_NO_EFFECT)
+    local info = MobRangedMove(mob, target, skill, numhits, accmod, dmgmod, TP_NO_EFFECT)
 
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.RANGED,dsp.damageType.PIERCING,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.RANGED, dsp.damageType.PIERCING, info.hitslanded)
 
-    if (dmg > 0) then
+    if dmg > 0 then
        target:addTP(20)
        mob:addTP(80)
     end

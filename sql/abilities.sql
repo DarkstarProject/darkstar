@@ -40,7 +40,7 @@ CREATE TABLE `abilities` (
 
 INSERT INTO `abilities` VALUES (0,'mighty_strikes',1,0,1,3600,0,0,0,33,2000,0,6,20.0,0,1,300,0,0,NULL);
 INSERT INTO `abilities` VALUES (1,'hundred_fists',2,0,1,3600,0,0,0,34,2000,0,6,20.0,0,1,300,0,0,NULL);
-INSERT INTO `abilities` VALUES (2,'benediction',3,0,1,3600,0,102,0,35,2000,0,6,20.0,0,0,0,0,0,NULL);
+INSERT INTO `abilities` VALUES (2,'benediction',3,0,1,3600,0,102,0,35,2000,0,6,20.0,1,0,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (3,'manafont',4,0,1,3600,0,0,0,36,2000,0,6,20.0,0,1,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (4,'chainspell',5,0,1,3600,0,0,0,37,2000,0,6,20.0,0,1,0,0,0,NULL);
 INSERT INTO `abilities` VALUES (5,'perfect_dodge',6,0,1,3600,0,0,0,38,2000,0,6,20.0,0,1,0,0,0,NULL);
