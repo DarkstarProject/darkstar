@@ -139,8 +139,8 @@ void CEnmityContainer::UpdateEnmity(CBattleEntity* PEntity, int32 CE, int32 VE, 
         if (enmity_obj->second.PEnmityOwner == nullptr) enmity_obj->second.PEnmityOwner = PEntity;
         float bonus = CalculateEnmityBonus(PEntity);
 
-        int32 newCE = (int32)(enmity_obj->second.CE + CE > 0 ? CE * bonus : CE);
-        int32 newVE = (int32)(enmity_obj->second.VE + VE > 0 ? VE * bonus : VE);
+        int32 newCE = (int32)(enmity_obj->second.CE + (CE > 0 ? CE * bonus : CE));
+        int32 newVE = (int32)(enmity_obj->second.VE + (VE > 0 ? VE * bonus : VE));
 
         //Check for cap limit
         enmity_obj->second.CE = std::clamp(newCE, 0, EnmityCap);
