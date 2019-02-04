@@ -31815,18 +31815,18 @@ INSERT INTO `mob_droplist` VALUES (4325,2,0,1000,575,0);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,575,20);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,953,90);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,15546,1000);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,624,80);
-INSERT INTO `mob_droplist` VALUES (4326,2,0,1000,748,0);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,1428,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4360,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4443,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4514,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4613,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4618,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4719,90);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4741,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4750,80);
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,624,520); -- (Yarr the Pearleyed) clump_of_pamtam_kelp
+INSERT INTO `mob_droplist` VALUES (4326,2,0,1000,748,0); -- (Yarr the Pearleyed) gold_beastcoin, steal
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,1428,80); -- (Yarr the Pearleyed) white_mages_testimony
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4360,240); -- (Yarr the Pearleyed) bastore_sardine
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4443,320); -- (Yarr the Pearleyed) cobalt_jellyfish
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4484,120); -- (Yarr the Pearleyed) shall_shell
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4514,99); -- (Yarr the Pearleyed) quus
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4613,80); -- (Yarr the Pearleyed) scroll_of_cure_v
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4618,18); -- (Yarr the Pearleyed) scroll_of_curaga_iv
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4719,30); -- (Yarr the Pearleyed) scroll_of_regen_iii
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4741,24); -- (Yarr the Pearleyed) scroll_of_shellra_iv
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4750,40); -- (Yarr the Pearleyed) scroll_of_reraise_iii
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,1154,40);
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,4368,190);
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,17868,20);
