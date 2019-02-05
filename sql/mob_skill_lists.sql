@@ -1558,7 +1558,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Cracklaw',344,2961);
 INSERT INTO `mob_skill_lists` VALUES ('Bloated_Acuex',345,2974);
 INSERT INTO `mob_skill_lists` VALUES ('Bloated_Acuex',345,2975);
 INSERT INTO `mob_skill_lists` VALUES ('Bloated_Acuex',345,2976);
--- 346: free
+INSERT INTO `mob_skill_lists` VALUES ('Goaftrap',346,436);
 INSERT INTO `mob_skill_lists` VALUES ('Marolith',347,2927);
 INSERT INTO `mob_skill_lists` VALUES ('Marolith',347,2928);
 INSERT INTO `mob_skill_lists` VALUES ('Marolith',347,2929);
