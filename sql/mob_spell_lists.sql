@@ -2497,6 +2497,9 @@ INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,185,1,255); -- aeroaga_ii
 INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,186,1,255); -- aeroaga_iii
 INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,208,1,255); -- tornado
 INSERT INTO `mob_spell_lists` VALUES ('Chamrosh',302,359,1,255); -- silencega
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,152,1,255); -- blizzard_iv
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,181,1,255); -- blizzaga_iii
+INSERT INTO `mob_spell_lists` VALUES ('Lizardtrap',303,356,1,255); -- paralyga
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

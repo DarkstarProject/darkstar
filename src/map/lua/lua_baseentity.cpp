@@ -2013,7 +2013,7 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     //ID of 0 means it is a timed, automatic elevator
     elevator.activated = (elevator.id == 0) ? true : false;
     elevator.isPermanent = (elevator.id == 0) ? true : false;
-    
+
     elevator.movetime = 3;
     elevator.interval = 8;
 
@@ -2042,10 +2042,10 @@ inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    
+
     Trigger_t trigger;
 
     trigger.id = (uint8)lua_tointeger(L, 1);
@@ -13448,7 +13448,7 @@ inline int32 CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
 /************************************************************************
 *  Function: getMobMod()
 *  Purpose : Returns the power value of a Mob Mod in effect
-*  Example : mob:getMobMod(MOBMOD_2HOUR_PROC)
+*  Example : mob:getMobMod(dsp.mobMod.MUG_GIL)
 *  Notes   :
 ************************************************************************/
 
@@ -13466,8 +13466,8 @@ inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
 /************************************************************************
 *  Function: addMobMod()
 *  Purpose : Applies a Mob Mod with a specified amount
-*  Example : mob:addMobMod(ModID, power value)
-*  Notes   : Is this adding power to an existing Mod? (not in scripts)
+*  Example : mob:addMobMod(dsp.mobMod.MUG_GIL, 100)
+*  Notes   : Currently not being used in any script
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addMobMod(lua_State *L)
@@ -13494,7 +13494,7 @@ inline int32 CLuaBaseEntity::addMobMod(lua_State *L)
 /************************************************************************
 *  Function: setMobMod()
 *  Purpose : Applies a Mob Mod of a specified magnitude
-*  Example : mob:setMobMod(MOBMOD_MAIN_2HOUR,1)
+*  Example : mob:setMobMod(dsp.mobMod.MUG_GIL, 100)
 *  Notes   : Interesting note - this is being used for superlinking too
 ************************************************************************/
 
@@ -13522,7 +13522,7 @@ inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
 /************************************************************************
 *  Function: delMobMod()
 *  Purpose : Removes a Mob Mod
-*  Example : mob:delMobMod(ModID,value to subtract?)
+*  Example : mob:delMobMod(dsp.mobMod.MUG_GIL, 100)
 *  Notes   : Currently not being used in any script
 ************************************************************************/
 

@@ -15453,15 +15453,15 @@ INSERT INTO `mob_droplist` VALUES (2487,0,0,1000,17960,310);
 INSERT INTO `mob_droplist` VALUES (2487,0,0,1000,17960,150);
 INSERT INTO `mob_droplist` VALUES (2487,0,0,1000,19033,550);
 INSERT INTO `mob_droplist` VALUES (2487,0,0,1000,19036,570);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,624,260);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4360,180);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4443,100);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4514,30);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4613,110);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4618,80);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4719,150);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4741,150);
-INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,13804,330);
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,624,395); -- (Novv the Whitehearted) clump_of_pamtam_kelp
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4360,447); -- (Novv the Whitehearted) bastore_sardine
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4443,105); -- (Novv the Whitehearted) cobalt_jellyfish
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4514,53); -- (Novv the Whitehearted) quus
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4613,132); -- (Novv the Whitehearted) scroll_of_cure_v
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4618,26); -- (Novv the Whitehearted) scroll_of_curaga_iv
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4719,211); -- (Novv the Whitehearted) scroll_of_regen_iii
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,4741,368); -- (Novv the Whitehearted) scroll_of_shellra_iv
+INSERT INTO `mob_droplist` VALUES (2488,0,0,1000,13804,342); -- (Novv the Whitehearted) minstrels_coat
 INSERT INTO `mob_droplist` VALUES (2489,0,0,1000,3170,100);
 INSERT INTO `mob_droplist` VALUES (2489,0,0,1000,3170,50);
 INSERT INTO `mob_droplist` VALUES (2489,0,0,1000,3170,30);
@@ -15580,9 +15580,10 @@ INSERT INTO `mob_droplist` VALUES (2504,0,0,1000,888,340);
 INSERT INTO `mob_droplist` VALUES (2504,0,0,1000,4484,80);
 INSERT INTO `mob_droplist` VALUES (2505,2,0,1000,864,0);
 INSERT INTO `mob_droplist` VALUES (2506,2,0,1000,864,0);
-INSERT INTO `mob_droplist` VALUES (2507,2,0,1000,751,0);
-INSERT INTO `mob_droplist` VALUES (2507,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (2507,0,0,1000,16855,100);
+INSERT INTO `mob_droplist` VALUES (2507,2,0,1000,751,0); -- (Ocean Sahagin) platinum_beastcoin: steal
+INSERT INTO `mob_droplist` VALUES (2507,0,0,1000,1439,722); -- (Ocean Sahagin) dragoons_testimony
+INSERT INTO `mob_droplist` VALUES (2507,0,0,1000,4484,278); -- (Ocean Sahagin) shall_shell
+INSERT INTO `mob_droplist` VALUES (2507,0,0,1000,16855,56); -- (Ocean Sahagin) colossal_lance
 INSERT INTO `mob_droplist` VALUES (2508,2,0,1000,920,0);
 INSERT INTO `mob_droplist` VALUES (2508,0,0,1000,920,520);
 INSERT INTO `mob_droplist` VALUES (2508,0,0,1000,920,260);
@@ -31814,18 +31815,18 @@ INSERT INTO `mob_droplist` VALUES (4325,2,0,1000,575,0);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,575,20);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,953,90);
 INSERT INTO `mob_droplist` VALUES (4325,0,0,1000,15546,1000);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,624,80);
-INSERT INTO `mob_droplist` VALUES (4326,2,0,1000,748,0);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,1428,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4360,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4443,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4484,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4514,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4613,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4618,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4719,90);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4741,80);
-INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4750,80);
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,624,520); -- (Yarr the Pearleyed) clump_of_pamtam_kelp
+INSERT INTO `mob_droplist` VALUES (4326,2,0,1000,748,0); -- (Yarr the Pearleyed) gold_beastcoin, steal
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,1428,80); -- (Yarr the Pearleyed) white_mages_testimony
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4360,240); -- (Yarr the Pearleyed) bastore_sardine
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4443,320); -- (Yarr the Pearleyed) cobalt_jellyfish
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4484,120); -- (Yarr the Pearleyed) shall_shell
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4514,99); -- (Yarr the Pearleyed) quus
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4613,80); -- (Yarr the Pearleyed) scroll_of_cure_v
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4618,18); -- (Yarr the Pearleyed) scroll_of_curaga_iv
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4719,30); -- (Yarr the Pearleyed) scroll_of_regen_iii
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4741,24); -- (Yarr the Pearleyed) scroll_of_shellra_iv
+INSERT INTO `mob_droplist` VALUES (4326,0,0,1000,4750,40); -- (Yarr the Pearleyed) scroll_of_reraise_iii
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,1154,40);
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,4368,190);
 INSERT INTO `mob_droplist` VALUES (4327,0,0,1000,17868,20);
@@ -33019,6 +33020,9 @@ INSERT INTO `mob_droplist` VALUES (4655,0,0,1000,2846,310); -- (Legalox Heftyhin
 INSERT INTO `mob_droplist` VALUES (4656,0,0,1000,16187,122); -- (Shankha) Adoubeur's Pavise
 INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2808,125); -- (Melusine) Ebon Pigment
 INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2809,125); -- (Melusine) Furia Pigment
+INSERT INTO `mob_droplist` VALUES (4658,0,0,1000,2814,250); -- (Big Bang) Aptant: Bellum
+INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenrir's Crown
+INSERT INTO `mob_droplist` VALUES (4660,0,0,1000,16035,41); -- (Goaftrap) Altdorf's Earring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
