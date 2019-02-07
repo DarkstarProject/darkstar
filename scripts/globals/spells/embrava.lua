@@ -21,9 +21,6 @@ function onSpellCast(caster, target, spell)
 
     -- Skill caps at 500
     local skill = math.min(caster:getSkillLevel(dsp.skill.ENHANCING_MAGIC), 500)
-    local regen = math.floor(skill / 7) + 1
-    local refresh = math.floor(skill / 100) + 1
-    local haste = (math.floor(skill / 20) + 1) * 100
     local duration = calculateDuration(90, spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 5, target:getMainLvl())
 
