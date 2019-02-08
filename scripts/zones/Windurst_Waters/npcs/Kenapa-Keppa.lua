@@ -154,8 +154,8 @@ function onEventFinish(player,csid,option)
             player:setVar("Kenapa_Food_var",4);
         end
     elseif  (csid == 56) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addVar("QuestHatInHand_var", 4);
+        player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 336) then
         player:setVar("Kenapa_Overnight_var",1);
     elseif (csid == 337) then

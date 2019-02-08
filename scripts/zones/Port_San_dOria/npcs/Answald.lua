@@ -14,7 +14,7 @@ function onTrade(player, npc, trade)
             player:messageSpecial(ID.text.ANSWALD_DIALOG)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
             player:messageSpecial(ID.text.FLYERS_HANDED, 17 - player:getVar("FFR"))
-            player:setVar("FFR", player:getVar("FFR") - 1)
+            player:addVar("FFR", -1)
             player:setVar("tradeAnswald", 1)
             player:confirmTrade()
         elseif (player:getVar("tradeAnswald") ==1) then

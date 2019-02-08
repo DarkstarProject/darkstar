@@ -54,8 +54,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 177) then --1
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 32);
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz2", 32);
     elseif (csid == 174 and option == 1) then
         player:addQuest(JEUNO,CREST_OF_DAVOI);
     elseif (csid == 171) then
