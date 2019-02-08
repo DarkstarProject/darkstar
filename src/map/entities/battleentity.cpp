@@ -112,7 +112,7 @@ bool CBattleEntity::isInDynamis()
 
 bool CBattleEntity::isInAssault()
 {
-    if (loc.zone != nullptr) 
+    if (loc.zone != nullptr)
     {
         return loc.zone->GetType() == ZONETYPE_DUNGEON_INSTANCED && (loc.zone->GetRegionID() >= REGION_WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_ALZADAAL);
     }
@@ -1540,6 +1540,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
                 {
                     PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                    StatusEffectContainer->DelStatusEffect(EFFECT_FEINT);
                 }
 
                 // Process damage.
