@@ -13749,14 +13749,12 @@ INSERT INTO `mob_droplist` VALUES (2313,0,0,1000,1062,50);
 INSERT INTO `mob_droplist` VALUES (2313,0,0,1000,1631,20);
 INSERT INTO `mob_droplist` VALUES (2313,0,0,1000,1638,130);
 INSERT INTO `mob_droplist` VALUES (2313,0,0,1000,1651,80);
-INSERT INTO `mob_droplist` VALUES (2314,0,0,1000,1625,140);
 INSERT INTO `mob_droplist` VALUES (2314,0,0,1000,1729,340);
 INSERT INTO `mob_droplist` VALUES (2315,2,0,1000,751,0);
 INSERT INTO `mob_droplist` VALUES (2315,0,0,1000,1625,40);
 INSERT INTO `mob_droplist` VALUES (2315,0,0,1000,1631,160);
 INSERT INTO `mob_droplist` VALUES (2315,0,0,1000,1632,10);
 INSERT INTO `mob_droplist` VALUES (2315,0,0,1000,1638,490);
-INSERT INTO `mob_droplist` VALUES (2315,0,0,1000,1729,250);
 INSERT INTO `mob_droplist` VALUES (2316,0,0,1000,1631,20);
 INSERT INTO `mob_droplist` VALUES (2316,0,0,1000,1638,390);
 INSERT INTO `mob_droplist` VALUES (2316,0,0,1000,1861,100);
@@ -33014,6 +33012,11 @@ INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2812,200); -- (Warabouc) Aptant
 INSERT INTO `mob_droplist` VALUES (4650,0,0,1000,2820,200); -- (Warabouc) Aptant: Geoc
 INSERT INTO `mob_droplist` VALUES (4651,0,0,1000,17971,112); -- (Gharial) Tartaglia
 INSERT INTO `mob_droplist` VALUES (4652,0,0,1000,1695,155); -- (Mantrap) Habaneros
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1062,110); -- Oldton Chest Key
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1625,40); -- Moblin Helm
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1631,10); -- Moblin Armor
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1632,80); -- Moblin Mail
+INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1729,200); -- Moblin Hotrok
 
 INSERT INTO `mob_droplist` VALUES (4654,0,0,1000,16028,136); -- (Thunderclaw Thuban) Psyche Earring
 INSERT INTO `mob_droplist` VALUES (4655,0,0,1000,2846,310); -- (Legalox Heftyhind) Hefty Oak Lumber

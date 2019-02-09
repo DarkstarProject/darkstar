@@ -166,6 +166,11 @@ function onEventFinish(player,csid,option)
         checkThreePaths(player)
     elseif (csid == 853) then
         player:setVar("COP_Louverance_s_Path",10)
+        if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 then
+            player:addTitle(dsp.title.TRUE_COMPANION_OF_LOUVERANCE)
+        else
+            player:addTitle(dsp.title.COMPANION_OF_LOUVERANCE)
+        end
         checkThreePaths(player)
     elseif (csid == 852) then
         player:setVar("COP_Louverance_s_Path",7)
