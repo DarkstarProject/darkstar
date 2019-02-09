@@ -6,65 +6,42 @@
 -- !pos -68 -7 173 143
 -- Rock Racketeer !pos 210 -32 -63 143
 -----------------------------------
-require("scripts/globals/settings");
-local ID = require("scripts/zones/Palborough_Mines/IDs");
+require("scripts/globals/npc_util")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-
-    local RRvar = player:getVar("rockracketeer_sold");
-
-    if (trade:hasItemQty(605,1) and trade:getItemCount() == 1) then
-
-        if (player:getFreeSlotsCount() >= 1) then
-
-            local rand = math.random();
-
-            if (rand <= 0.47) then -- 47%
-
-                --Rock Racketeer
-                if (RRvar == 5) then
-                    player:startEvent(51,12,598); -- Sharp Stone (598)
-
-                -- Standard
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 605) then -- pickaxe
+        if player:getFreeSlotsCount() > 0 then
+            if math.random() < 0.47 then
+                if player:getVar("rockracketeer_sold") == 5 then
+                    player:startEvent(51, 12, 598) -- Sharp Stone
                 else
-                    player:startEvent(43,12,0,597); -- chunk of mine gravel (597)
+                    player:startEvent(43, 12, 0, 597) -- Mine Gravel
                 end
             else
-                player:startEvent(47,8,598); -- pickaxe breaks
-                player:tradeComplete();
+                player:startEvent(47, 8, 598) -- pickaxe breaks
             end
-
         else
-            player:startEvent(53); -- cannot carry any more
+            player:startEvent(53) -- cannot carry any more
         end
-
-    -- need a pickaxe
     else
-        player:startEvent(32);
+        player:startEvent(32) -- need a pickaxe
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:startEvent(30,12,0,597);
-end;
+function onTrigger(player, npc)
+    player:startEvent(30, 12, 0, 597)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-
-    -- Rock Racketeer
-    if (csid == 51) then
-        player:tradeComplete();
-        player:addItem(598);
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 598);
-
-    -- Standard
-    elseif (csid == 43) then
-        player:tradeComplete();
-        player:addItem(597);
-        player:messageSpecial(ID.text.ITEM_OBTAINED,597); -- Mine Gravel
+function onEventFinish(player, csid, option)
+    if csid == 51 and npcUtil.giveItem(player, 598) then
+        player:confirmTrade()
+    elseif csid == 43 and npcUtil.giveItem(player, 597) then
+        player:confirmTrade()
+    elseif csid == 47 then
+        player:confirmTrade()
     end
-
-end;
+end

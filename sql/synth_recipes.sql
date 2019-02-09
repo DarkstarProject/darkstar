@@ -4655,7 +4655,7 @@ INSERT INTO `synth_recipes` VALUES (4540,1,2045,0,0,0,117,0,0,0,0,4096,4238,2110
 INSERT INTO `synth_recipes` VALUES (4541,0,0,0,0,0,0,85,0,0,0,4100,4242,13354,0,0,0,0,0,0,0,804,804,746,746,1,1,1,2); -- Spinel Earring (desynth)
 INSERT INTO `synth_recipes` VALUES (4542,0,0,0,0,0,0,0,0,0,41,4100,4242,17142,0,0,0,0,0,0,0,716,716,716,716,1,1,1,1); -- Oak Cudgel +1 (desynth)
 INSERT INTO `synth_recipes` VALUES (4543,0,0,0,0,0,0,93,0,0,0,4100,4242,13466,0,0,0,0,0,0,0,747,747,747,747,1,1,2,2); -- Orichalcum Ring (desynth)
-INSERT INTO `synth_recipes` VALUES (4544,0,0,0,0,0,0,93,0,0,41,4100,4242,14616,0,0,0,0,0,0,0,747,747,747,747,1,1,2,2); -- Triton Ring (desynth)
+INSERT INTO `synth_recipes` VALUES (4544,0,0,0,0,0,0,93,0,0,0,4100,4242,14616,0,0,0,0,0,0,0,747,747,747,747,1,1,2,2); -- Triton Ring (desynth)
 INSERT INTO `synth_recipes` VALUES (4545,0,0,0,99,0,0,0,0,0,0,4100,4242,13467,0,0,0,0,0,0,0,903,903,903,903,1,1,1,1); -- Dragon Ring (desynth)
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template

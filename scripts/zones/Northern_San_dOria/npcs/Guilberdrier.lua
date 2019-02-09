@@ -16,7 +16,7 @@ function onTrade(player, npc, trade)
             player:messageSpecial(ID.text.CAPIRIA_DIALOG) -- gave this NPC a generic response to flyer. I don't see a unique one in the extract. need retail capture.
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
             player:messageSpecial(ID.text.FLYERS_HANDED, 17 - player:getVar("FFR"))
-            player:setVar("FFR", player:getVar("FFR") - 1)
+            player:addVar("FFR", -1);
             player:setVar("tradeGuilberdrier", 1)
             player:confirmTrade()
         elseif player:getVar("tradeGuilberdrier") == 1 then

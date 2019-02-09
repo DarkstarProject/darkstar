@@ -29,7 +29,7 @@ function onEventFinish(player,csid,option)
     local id = instance:getID()
     local points = 0
     local playerpoints = ((#chars -3)*100)
-    
+
     if (csid == 100 and option == 1) then
         if id == 41 or id == 43 then
             points = 1100 - math.max(playerpoints, 0)
@@ -39,9 +39,9 @@ function onEventFinish(player,csid,option)
             v:addAssaultPoint(ILRUSI_ASSAULT_POINT,points)
             v:setVar("AssaultComplete",1)
             if (v:hasCompletedAssault(v:getCurrentAssault())) then
-                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+1)
+                v:addVar("AssaultPromotion", 1)
             else
-                v:setVar("AssaultPromotion", v:getVar("AssaultPromotion")+5)
+                v:addVar("AssaultPromotion", 5)
             end
             v:startEvent(102)
         end

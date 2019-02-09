@@ -2,15 +2,10 @@
 -- Area: Dynamis Xarcabard
 --  MOB: Marquis Cimeries
 -----------------------------------
-require("scripts/globals/dynamis");
 local ID = require("scripts/zones/Dynamis-Xarcabard/IDs");
 mixins = {require("scripts/mixins/job_special")}
-require("scripts/globals/status")
+require("scripts/globals/dynamis");
 -----------------------------------
-
-function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_KINDRED)
-end
 
 function onMobDeath(mob, player, isKiller)
 

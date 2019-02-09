@@ -272,8 +272,8 @@ INSERT INTO `zone_settings` VALUES (223,2,'127.0.0.1',54230,'San_dOria-Jeuno_Air
 INSERT INTO `zone_settings` VALUES (224,2,'127.0.0.1',54230,'Bastok-Jeuno_Airship',128,128,128,128,0,0.00,8);
 INSERT INTO `zone_settings` VALUES (225,2,'127.0.0.1',54230,'Windurst-Jeuno_Airship',128,128,128,128,0,0.00,8);
 INSERT INTO `zone_settings` VALUES (226,2,'127.0.0.1',54230,'Kazham-Jeuno_Airship',128,128,128,128,0,0.00,8);
-INSERT INTO `zone_settings` VALUES (227,2,'127.0.0.1',54230,'Ship_bound_for_Selbina',106,106,101,103,0,0.00,152);
-INSERT INTO `zone_settings` VALUES (228,2,'127.0.0.1',54230,'Ship_bound_for_Mhaura',106,106,101,103,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (227,2,'127.0.0.1',54230,'Ship_bound_for_Selbina_Pirates',106,106,101,103,0,0.00,152);
+INSERT INTO `zone_settings` VALUES (228,2,'127.0.0.1',54230,'Ship_bound_for_Mhaura_Pirates',106,106,101,103,0,0.00,152);
 INSERT INTO `zone_settings` VALUES (229,0,'127.0.0.1',0,'229',0,0,0,0,0,0.00,0);
 INSERT INTO `zone_settings` VALUES (230,1,'127.0.0.1',54230,'Southern_San_dOria',107,107,107,107,0,0.00,72);
 INSERT INTO `zone_settings` VALUES (231,1,'127.0.0.1',54230,'Northern_San_dOria',107,107,107,107,0,0.00,72);

@@ -91,7 +91,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:completeQuest(JEUNO,COLLECT_TARUT_CARDS);
     elseif (csid == 199 and option == 0) then
-        player:setVar("RubbishDay_prog", player:getVar("RubbishDay_prog") + 1);
+        player:addVar("RubbishDay_prog", 1);
         player:setVar("RubbishDay_day", VanadielDayOfTheYear()); -- new vanadiel day
     elseif (csid == 198 and option == 0) then
         player:addQuest(JEUNO,RUBBISH_DAY);

@@ -10,9 +10,12 @@ mixins =
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("useSpecAtHpMin", 40)
-    mob:setLocalVar("useSpecAtHpMax", 95)
-    mob:setLocalVar("useMainSpecAtHPP", math.random(40, 95))
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MANAFONT, hpp = math.random(40, 95)},
+        },
+    })
 end
 
 function onMobDeath(mob, player, isKiller)

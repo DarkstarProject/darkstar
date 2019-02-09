@@ -15,11 +15,15 @@ function onInitialize(zone)
     SetExplorerMoogles(ID.npc.EXPLORER_MOOGLE)
 end
 
+function onGameHour(zone)
+    SetServerVariable("Selbina_Deastination", math.random(1,100))
+end
+
 function onZoneIn(player,prevZone)
     local cs = -1
 
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        if prevZone == dsp.zone.SHIP_BOUND_FOR_SELBINA then
+        if prevZone == dsp.zone.SHIP_BOUND_FOR_SELBINA or prevZone == dsp.zone.SHIP_BOUND_FOR_SELBINA_PIRATES then
             cs = 202
             player:setPos(32.500, -2.500, -45.500, 192)
         else
@@ -47,7 +51,11 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 200 then
-        player:setPos(0, 0, 0, 0, 221)
+        if GetServerVariable("Selbina_Deastination") > 89 then
+            player:setPos(0, 0, 0, 0, SHIP_BOUND_FOR_MHAURA_PIRATES)
+        else
+            player:setPos(0, 0, 0, 0, SHIP_BOUND_FOR_MHAURA)
+        end
     elseif csid == 1101 and npcUtil.completeQuest(player, OUTLANDS, I_LL_TAKE_THE_BIG_BOX, {item = 14226, fame_area = NORG, var = {"Enagakure_Killed", "illTakeTheBigBoxCS"}}) then
         player:delKeyItem(dsp.ki.SEANCE_STAFF)
     end

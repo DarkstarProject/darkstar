@@ -11,16 +11,6 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     text =
     {
         ORB_ALREADY_PLACED             = 0, -- A dark Mana Orb is already placed here.
-        G_ORB_ALREADY_GOTTEN           = 3, -- You have already retrieved a glowing Mana Orb from here.
-        RETRIEVED_ALL_G_ORBS           = 4, -- You have retrieved all of the glowing Mana Orbs.
-        ALL_DARK_MANA_ORBS_SET         = 5, -- You have set all of the dark Mana Orbs in place.
-        FIRST_DARK_ORB_IN_PLACE        = 6, -- The first Mana Orb receptacle is ready for use.
-        SECOND_DARK_ORB_IN_PLACE       = 7, -- The second Mana Orb receptacle is ready for use.
-        THIRD_DARK_ORB_IN_PLACE        = 8, -- Third Mana Orb Receptacle is ready for use.
-        FOURTH_DARK_ORB_IN_PLACE       = 9, -- Forth Mana Orb Receptacle is ready for use.
-        FIFTH_DARK_ORB_IN_PLACE        = 10, -- Fifth Mana Orb Receptacle is ready for use.
-        SIXTH_DARK_ORB_IN_PLACE        = 11, -- Sixth Mana Orb Receptacle is ready for use.
-        DARK_MANA_ORB_RECHARGER        = 12, -- This appears to be a device that recharges Mana Orbs.
         CONQUEST_BASE                  = 15, -- Tallying conquest results...
         DEVICE_NOT_WORKING             = 188, -- The device is not working.
         SYS_OVERLOAD                   = 197, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
@@ -57,7 +47,8 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
     },
     npc =
     {
-        TREASURE_CHEST = 17572290,
+        GATE_MAGICAL_GIZMO = 17572248,
+        TREASURE_CHEST     = 17572290,
     },
 }
 
