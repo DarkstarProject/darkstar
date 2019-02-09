@@ -4,9 +4,7 @@
 --  Linkshell Merchant
 -- !pos -142 -1 -25 236
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/shop")
 
 
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         16285, 375,    -- Pendant Compass
     }
 
-    player:showText(npc, PAUNELIE_SHOP_DIALOG, 513)
+    player:showText(npc, ID.text.PAUNELIE_SHOP_DIALOG, 513)
     dsp.shop.general(player, stock)
 end
 
@@ -29,4 +27,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

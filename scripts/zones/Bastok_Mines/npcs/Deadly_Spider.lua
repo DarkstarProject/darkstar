@@ -3,10 +3,7 @@
 --  NPC: Deadly Spider
 -- Involved in Quest: Stamp Hunt
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

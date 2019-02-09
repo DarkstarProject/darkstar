@@ -4,10 +4,7 @@
 -- Notes: Opens South door at J-7 from inside.
 -- !pos -63.703 -26.227 83.000 27
 -----------------------------------
-package.loaded["scripts/zones/Phomiuna_Aqueducts/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Phomiuna_Aqueducts/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

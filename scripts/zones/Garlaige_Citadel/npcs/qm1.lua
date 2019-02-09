@@ -4,12 +4,10 @@
 -- Involved In Quest: Altana's Sorrow
 -- !pos -282.339 0.001 261.707 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -23,9 +21,9 @@ function onTrigger(player,npc)
 
     if (AltanaSorrow == QUEST_ACCEPTED and VirnageLetter == false and DivinePaint == false) then
         player:addKeyItem(dsp.ki.BUCKET_OF_DIVINE_PAINT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BUCKET_OF_DIVINE_PAINT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BUCKET_OF_DIVINE_PAINT);
     else
-        player:messageSpecial(YOU_FIND_NOTHING);
+        player:messageSpecial(ID.text.YOU_FIND_NOTHING);
     end
 end;
 
@@ -36,5 +34,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-

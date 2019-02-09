@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -288.669 -10.319 -135.064 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -26,6 +24,6 @@ function onTrigger(player,npc)
         16512,  3215, 3, -- Bilbo
     }
 
-    player:showText(npc, ZHIKKOM_SHOP_DIALOG)
+    player:showText(npc, ID.text.ZHIKKOM_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

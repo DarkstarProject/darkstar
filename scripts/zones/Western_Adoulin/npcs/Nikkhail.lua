@@ -5,12 +5,10 @@
 --  Involved With Quest: 'A Thirst for the Ages'
 -- !pos -101 3 9 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -43,6 +41,6 @@ function onEventFinish(player,csid,option)
     if (csid == 5053) then
         -- Progresses Quest: 'A Thirst for the Ages'
         player:addKeyItem(dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.COPY_OF_THE_ALLIANCE_AGREEMENT);
     end
 end;

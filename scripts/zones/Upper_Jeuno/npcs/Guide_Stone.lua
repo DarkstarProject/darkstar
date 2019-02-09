@@ -3,9 +3,7 @@
 --  NPC: Guide Stone
 -- !pos 25 -3 -41 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -13,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    player:messageSpecial(GUIDE_STONE);
+    player:messageSpecial(ID.text.GUIDE_STONE);
 end;
 
 function onEventUpdate(player,csid,option)

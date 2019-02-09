@@ -4,12 +4,10 @@
 -- Involved in Quest: Grave Concerns
 -- !pos 1 0.1 -101 190
 -----------------------------------
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
+local ID = require("scripts/zones/King_Ranperres_Tomb/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -52,21 +50,21 @@ function onEventFinish(player,csid,option)
 
         if (graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then
             if (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,547); -- Tomb Waterskin
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,547); -- Tomb Waterskin
             else
                 player:addItem(547);
-                player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+                player:messageSpecial(ID.text.ITEM_OBTAINED,547); -- Tomb Waterskin
             end
         end
     elseif (csid == 3) then
         player:tradeComplete();
         player:setVar("OfferingWaterOK",1);
         player:addItem(547);
-        player:messageSpecial(ITEM_OBTAINED,547); -- Tomb Waterskin
+        player:messageSpecial(ID.text.ITEM_OBTAINED,547); -- Tomb Waterskin
     elseif (csid == 8) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_SANDORIAN_BOOK);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_SANDORIAN_BOOK);
     end
 
 end;

@@ -1,13 +1,15 @@
 -----------------------------------
 -- Area: Giddeus (145)
 --  MOB: Yagudo_Piper
+-- Note: PH for Vuu Puqu the Beguiler
 -----------------------------------
-require("scripts/zones/Giddeus/MobIDs");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Giddeus/IDs")
+require("scripts/globals/mobs")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,VUU_PUQU_THE_BEGUILER_PH,5,math.random(7200,14400)); -- 2 to 4 hours
-end;
+    dsp.mob.phOnDespawn(mob,ID.mob.VUU_PUQU_THE_BEGUILER_PH,5,900) -- 15 minutes
+end

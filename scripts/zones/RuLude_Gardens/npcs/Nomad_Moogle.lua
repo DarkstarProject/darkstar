@@ -4,12 +4,10 @@
 -- Type: Adventurer's Assistant
 -- !pos 10.012 1.453 121.883 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -71,7 +69,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10045 and option == 4) then
         player:addKeyItem(dsp.ki.LIMIT_BREAKER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LIMIT_BREAKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LIMIT_BREAKER);
     elseif (csid == 10045) then
         if (option == 5) then
             player:addQuest(JEUNO,NEW_WORLDS_AWAIT);
@@ -88,14 +86,14 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(80);
         player:completeQuest(JEUNO,NEW_WORLDS_AWAIT);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_80);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_80);
     elseif (csid == 10136) then
         player:tradeComplete();
         player:setMerits(meritCount - 4);
         player:addFame(JEUNO,50);
         player:levelCap(85);
         player:completeQuest(JEUNO,EXPANDING_HORIZONS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_85);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_85);
     elseif (csid == 10137) then
         player:tradeComplete();
         player:setMerits(meritCount - 5);
@@ -103,15 +101,15 @@ function onEventFinish(player,csid,option)
         player:addFame(JEUNO,50);
         player:levelCap(90);
         player:completeQuest(JEUNO,BEYOND_THE_STARS);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_90);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_90);
     elseif (csid == 10138) then
         player:tradeComplete();
         player:setMerits(meritCount - 10);
         player:addFame(JEUNO,50);
         player:levelCap(95);
         player:completeQuest(JEUNO,DORMANT_POWERS_DISLODGED);
-        player:messageSpecial(YOUR_LEVEL_LIMIT_IS_NOW_95);
+        player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_95);
         player:addKeyItem(dsp.ki.SOUL_GEM);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SOUL_GEM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SOUL_GEM);
     end
 end;

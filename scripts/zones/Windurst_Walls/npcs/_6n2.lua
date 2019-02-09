@@ -5,9 +5,7 @@
 -- Involved In Quest: Know One's Onions, Onion Rings, The Puppet Master, Class Reunion
 -- !pos -26 -13 260 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -56,7 +54,7 @@ function onTrigger(player,npc)
         elseif (player:getVar("KnowOnesOnions") == 1) then
             player:startEvent(288,0,4387);
         else
-            player:messageSpecial(DOORS_SEALED_SHUT); -- "The doors are firmly sealed shut."
+            player:messageSpecial(ID.text.DOORS_SEALED_SHUT); -- "The doors are firmly sealed shut."
         end;
     end;
 
@@ -86,7 +84,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 387) then
         player:delKeyItem(dsp.ki.JOKER_CARD);
         player:addGil(GIL_RATE*8000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*8000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*8000);
     elseif (csid == 337) then
         -- Mark the progress
         player:setVar("MissionStatus",6);
@@ -101,7 +99,7 @@ function onEventFinish(player,csid,option)
         player:setVar("ClassReunionProgress",1);
         player:addQuest(WINDURST,CLASS_REUNION);
         player:addKeyItem(dsp.ki.CARBUNCLES_TEAR);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CARBUNCLES_TEAR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CARBUNCLES_TEAR);
     elseif (csid == 415) then
         player:addQuest(WINDURST,CARBUNCLE_DEBACLE);
         player:setVar("CarbuncleDebacleProgress",1);

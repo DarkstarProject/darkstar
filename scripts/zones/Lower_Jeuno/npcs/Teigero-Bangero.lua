@@ -4,11 +4,8 @@
 -- Involved in Quests: Save the Clock Tower, The Lost Cardian
 -- !pos -58 0 -143 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Lower_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -53,8 +50,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 74) then
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz2",player:getVar("saveTheClockTowerNPCz2") + 128);
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz2", 128);
     elseif (csid == 29) then
         player:setVar("theLostCardianVar",1);
     end

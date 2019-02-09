@@ -3,10 +3,7 @@
 -- Zone: Mamool_Ja_Training_Grounds
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Mamool_Ja_Training_Grounds/IDs"] = nil;
------------------------------------
-require("scripts/zones/Mamool_Ja_Training_Grounds/IDs");
+local ID = require("scripts/zones/Mamool_Ja_Training_Grounds/IDs")
 -----------------------------------
 
 function onInitialize(zone)

@@ -4,11 +4,8 @@
 -- Involved in Quest: Ayame and Kaede, 20 in Pirate Years
 -- !pos -96 -2 29 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

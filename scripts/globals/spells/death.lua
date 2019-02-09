@@ -17,8 +17,6 @@ function onSpellCast(caster,target,spell)
         return 0
     end
 
-    -- falls to the ground
-    spell:setMsg(dsp.msg.basic.FALL_TO_GROUND)
     target:setHP(0)
 
     return 0

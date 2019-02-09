@@ -9,9 +9,7 @@
 -- make global variables for all these event hexvalues and put them in textids
 --TODO--
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -94,7 +92,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(JEUNO,LAKESIDE_MINUET);
         player:addTitle(dsp.title.TROUPE_BRILIOTH_DANCER);
         player:unlockJob(dsp.job.DNC);
-        player:messageSpecial(UNLOCK_DANCER);
+        player:messageSpecial(ID.text.UNLOCK_DANCER);
         player:addFame(JEUNO, 30);
         player:delKeyItem(dsp.ki.STARDUST_PEBBLE);
         player:needToZone(true);
@@ -108,11 +106,11 @@ function onEventFinish(player,csid,option)
 
     elseif (csid== 10133) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,19203);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,19203);
         else
             player:setVar("QuestStatus_DNC_AF1", 0);
             player:addItem(19203); -- war hoop
-            player:messageSpecial(ITEM_OBTAINED,19203);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,19203);
             player:completeQuest(JEUNO,THE_UNFINISHED_WALTZ);
         end
 
@@ -130,7 +128,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10170) then
         if (player:getFreeSlotsCount() == 0) then
             -- do nothing. player doesn't have room to receive the reward item.
-            player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 15660); -- the names of the gender specific items are the same
+            player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 15660); -- the names of the gender specific items are the same
         else
             player:completeQuest(JEUNO, THE_ROAD_TO_DIVADOM)
             player:setVar("roadToDivadomCS", 0);
@@ -140,7 +138,7 @@ function onEventFinish(player,csid,option)
             local dancersTights = 15660 - playerGender;
 
             player:addItem(dancersTights);
-            player:messageSpecial(ITEM_OBTAINED, dancersTights);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, dancersTights);
             player:completeQuest(JEUNO, THE_ROAD_TO_DIVADOM);
             end
     -- Dancer AF: Comeback Queen
@@ -148,7 +146,7 @@ function onEventFinish(player,csid,option)
         player:setVar("comebackQueenCS", 1);
         player:addQuest(JEUNO, COMEBACK_QUEEN);
         player:addKeyItem(dsp.ki.WYATTS_PROPOSAL);
-        player:messageSpecial( KEYITEM_OBTAINED, dsp.ki.WYATTS_PROPOSAL);
+        player:messageSpecial( ID.text.KEYITEM_OBTAINED, dsp.ki.WYATTS_PROPOSAL);
     elseif (csid == 10147) then
         player:setVar("comebackQueenCS", 3);
         local danceOffTimer = VanadielDayOfTheYear();
@@ -171,7 +169,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10211) then -- finally reward the player
         if (player:getFreeSlotsCount() == 0) then
             -- do nothing. player doesn't have room to receive the reward item.
-            player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
+            player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
         else
             player:completeQuest(JEUNO, COMEBACK_QUEEN);
             player:setVar("comebackQueenCS", 5); -- final state for all of the surrounding NPCs
@@ -180,14 +178,14 @@ function onEventFinish(player,csid,option)
             local dancersCasaque = 14579 - playerGender;
 
             player:addItem(dancersCasaque);
-            player:messageSpecial(ITEM_OBTAINED, dancersCasaque);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, dancersCasaque);
             player:completeQuest(JEUNO, COMEBACK_QUEEN);
         end
     elseif (csid == 10154) then
         if (player:getVar("comebackQueenCS") == 4) then -- player's inventory was full at the end of the final cutscene
             if (player:getFreeSlotsCount() == 0) then
                 -- do nothing. player doesn't have room to receive the reward item.
-                player:messageSpecial( ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
+                player:messageSpecial( ID.text.ITEM_CANNOT_BE_OBTAINED, 14578); -- the names of the gender specific items are the same
             else
                 player:completeQuest(JEUNO, COMEBACK_QUEEN);
                 player:setVar("comebackQueenCS", 5) -- final state for all of the surrounding NPCs
@@ -196,7 +194,7 @@ function onEventFinish(player,csid,option)
                 local dancersCasaque = 14579 - playerGender;
 
                 player:addItem(dancersCasaque);
-                player:messageSpecial(ITEM_OBTAINED, dancersCasaque);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, dancersCasaque);
                 player:completeQuest(JEUNO, COMEBACK_QUEEN);
             end
         -- the surrounding NPCs should have their dialogue check comebackqueenCS as well.

@@ -3,24 +3,21 @@
 --  NPC: Pihra_Rhebenslo
 -- Armor Storage NPC
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters_[S]/TextIDs");
-require("scripts/globals/armorstorage");
+require("scripts/globals/armorstorage")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    dsp.armorStorage.onTrade(player, trade, 442);
-end;
+    dsp.armorStorage.onTrade(player, trade, 442)
+end
 
 function onTrigger(player,npc)
-    dsp.armorStorage.onTrigger(player, 443);
-end;
+    dsp.armorStorage.onTrigger(player, 443)
+end
 
 function onEventUpdate(player,csid,option)
-    dsp.armorStorage.onEventUpdate(player, csid, option, 443);
-end;
+    dsp.armorStorage.onEventUpdate(player, csid, option, 443)
+end
 
 function onEventFinish(player,csid,option)
-    dsp.armorStorage.onEventFinish(player, csid, option, 442, 443);
-end;
+    dsp.armorStorage.onEventFinish(player, csid, option, 442, 443)
+end

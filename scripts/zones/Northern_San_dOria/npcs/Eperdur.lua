@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: Altana's Sorrow (finish), Acting in Good Faith (finish), Healing the Land,
 -- !pos 129 -6 96 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -56,37 +54,37 @@ function onEventFinish(player,csid,option)
 
     if (csid == 679) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4731);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4731);
         else
             player:addTitle(dsp.title.PILGRIM_TO_DEM);
             player:delKeyItem(dsp.ki.LETTER_FROM_VIRNAGE);
             player:addItem(4731);
-            player:messageSpecial(ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,ALTANA_S_SORROW);
         end
     elseif (csid == 680) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4732);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4732);
         else
             player:addTitle(dsp.title.PILGRIM_TO_MEA);
             player:delKeyItem(dsp.ki.GANTINEUXS_LETTER);
             player:addItem(4732);
-            player:messageSpecial(ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
             player:addFame(WINDURST,30);
             player:completeQuest(WINDURST,ACTING_IN_GOOD_FAITH);
         end
     elseif (csid == 681 and option == 0) then
         player:addQuest(SANDORIA,HEALING_THE_LAND);
         player:addKeyItem(dsp.ki.SEAL_OF_BANISHING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SEAL_OF_BANISHING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SEAL_OF_BANISHING);
     elseif (csid == 683) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4730);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4730);
         else
             player:addTitle(dsp.title.PILGRIM_TO_HOLLA);
             player:addItem(4730);
-            player:messageSpecial(ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4730); -- Scroll of Teleport-Holla
             player:needToZone(true);
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,HEALING_THE_LAND);
@@ -95,11 +93,11 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,SORCERY_OF_THE_NORTH);
     elseif (csid == 687) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4747);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4747);
         else
             player:delKeyItem(dsp.ki.FEIYIN_MAGIC_TOME);
             player:addItem(4747);
-            player:messageSpecial(ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4747); -- Scroll of Teleport-Vahzl
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,SORCERY_OF_THE_NORTH);
         end

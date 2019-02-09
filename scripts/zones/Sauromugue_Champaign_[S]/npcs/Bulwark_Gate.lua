@@ -4,10 +4,7 @@
 -- !pos -445 0 342
 -- Quest NPC
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/campaign");
-require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");

@@ -1,7 +1,9 @@
 -----------------------------------
 -- Area: Caedarva Mire
---  MOB: Moshdahn
+--   NM: Moshdahn
+-- Note: Spawned during quest: "Not Meant to Be"
 -----------------------------------
+mixins = {require("scripts/mixins/families/qutrub")}
 require("scripts/globals/quests")
 -----------------------------------
 

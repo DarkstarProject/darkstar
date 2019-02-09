@@ -3,14 +3,13 @@
 -- Zone: Meriphataud_Mountains_[S] (97)
 --
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
-require("scripts/zones/Meriphataud_Mountains_[S]/MobIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains_[S]/IDs");
+require("scripts/globals/chocobo")
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -26,7 +25,7 @@ end;
 
 function onGameHour(zone)
     local GameHour = 150; -- Seconds per VanadielHour
-    local npc = GetNPCByID(MERIPH_S_MARKINGS); -- Indescript Markings
+    local npc = GetNPCByID(ID.npc.INDESCRIPT_MARKINGS)
     if (npc ~= nil) then
         if (VanadielHour() == 17) then
             npc:setStatus(dsp.status.DISAPPEAR);

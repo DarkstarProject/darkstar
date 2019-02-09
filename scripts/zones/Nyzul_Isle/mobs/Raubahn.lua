@@ -2,13 +2,13 @@
 -- Area: Nyzul Isle (Nashmeira's Plea)
 --  MOB: Raubahn
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
-        mob:showText(mob,NyzulIsle.text.CARVE);
+        mob:showText(mob,ID.text.CARVE);
     end);
 
     --[[ Todo:
@@ -67,15 +67,15 @@ function onMobSpawn(mob)
                 end
 
                 -- RESIST message only shows for first reraise,
-                -- 2nd reraise should use NyzulIsle.text.NOW_UNDERSTAND instead
+                -- 2nd reraise should use ID.text.NOW_UNDERSTAND instead
                 if (phys >= magic and phys >= ranged) then
-                    mob:showText(mob,NyzulIsle.text.RESIST_MELEE);
+                    mob:showText(mob,ID.text.RESIST_MELEE);
                     mob:setMod(dsp.mod.UDMGPHYS, -100);
                 elseif (magic >= phys and magic >= ranged) then
-                    mob:showText(mob,NyzulIsle.text.RESIST_MAGIC);
+                    mob:showText(mob,ID.text.RESIST_MAGIC);
                     mob:addMod(dsp.mod.UDMGMAGIC, -100);
                 else
-                    mob:showText(mob,NyzulIsle.text.RESIST_RANGE);
+                    mob:showText(mob,ID.text.RESIST_RANGE);
                     mob:addMod(dsp.mod.UDMGRANGE, -100);
                 end
             end
@@ -92,7 +92,7 @@ end;
 function onMobEngaged(mob,target)
     -- localVar because we don't want it to repeat every reraise.
     if (mob:getLocalVar("started") == 0) then
-        mob:showText(mob,NyzulIsle.text.PRAY);
+        mob:showText(mob,ID.text.PRAY);
         mob:setLocalVar("started", 1);
     end
 end;
@@ -115,16 +115,13 @@ end;
 function onSpellPrecast(mob, spell)
     -- Eyes on Me
     if (spell == 641) then
-        mob:showText(mob,NyzulIsle.text.BEHOLD);
+        mob:showText(mob,ID.text.BEHOLD);
     end
 end;
 
 function onMobDeath(mob, player, isKiller)
     -- If he's out of reraises, display text
     if (isKiller and mob:getMobMod(dsp.mobMod.BEHAVIOR) == 0) then
-        mob:showText(mob,NyzulIsle.text.MIRACLE);
+        mob:showText(mob,ID.text.MIRACLE);
     end
-end;
-
-function onMobDespawn(mob)
 end;

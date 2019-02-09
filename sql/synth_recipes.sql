@@ -404,7 +404,7 @@ INSERT INTO `synth_recipes` VALUES (289,1,1994,0,0,0,0,43,0,0,0,4099,4241,653,65
 INSERT INTO `synth_recipes` VALUES (290,1,0,0,0,0,0,43,0,0,0,4099,4241,653,653,0,0,0,0,0,0,681,681,681,681,1,2,3,4);
 INSERT INTO `synth_recipes` VALUES (291,1,1994,0,0,0,0,0,0,63,0,4099,4241,654,654,654,654,654,654,2143,0,682,682,682,682,3,6,9,12);
 INSERT INTO `synth_recipes` VALUES (292,1,0,0,0,0,0,0,0,63,0,4099,4241,654,654,0,0,0,0,0,0,682,682,682,682,1,2,3,4);
-INSERT INTO `synth_recipes` VALUES (293,1,1994,0,0,0,0,0,0,94,0,4096,4238,655,655,655,655,655,655,2143,0,683,683,683,683,3,6,9,12);
+INSERT INTO `synth_recipes` VALUES (293,1,1994,0,0,0,0,0,0,94,0,4099,4238,655,655,655,655,655,655,2143,0,683,683,683,683,3,6,9,12);
 INSERT INTO `synth_recipes` VALUES (294,1,0,0,0,0,0,0,0,94,0,4099,4241,655,655,0,0,0,0,0,0,683,683,683,683,1,2,3,4);
 INSERT INTO `synth_recipes` VALUES (295,1,1994,0,0,0,0,58,0,0,0,4099,4241,679,679,679,679,679,679,2143,0,684,684,684,684,3,6,9,12);
 INSERT INTO `synth_recipes` VALUES (296,1,0,0,0,0,0,58,0,0,0,4099,4241,679,679,0,0,0,0,0,0,684,684,684,684,1,2,3,4);
@@ -4642,14 +4642,21 @@ INSERT INTO `synth_recipes` VALUES (4527,1,0,5,0,0,0,0,0,0,0,4103,4245,8889,0,0,
 INSERT INTO `synth_recipes` VALUES (4528,1,0,15,0,0,0,0,0,0,0,4099,4241,8891,0,0,0,0,0,0,0,4167,4167,4167,4167,33,33,33,33); -- cracker
 INSERT INTO `synth_recipes` VALUES (4529,1,0,45,0,0,0,0,0,0,0,4100,4242,8897,0,0,0,0,0,0,0,932,932,932,932,3,3,3,3); -- carbon fiber
 INSERT INTO `synth_recipes` VALUES (4530,0,0,0,0,0,0,0,0,73,0,4100,4242,16652,0,0,0,0,0,0,0,707,707,654,654,1,1,1,1); -- Darksteel Pick (desynth)
-INSERT INTO `synth_recipes` VALUES (4531,0,0,0,0,90,0,0,0,0,0,4100,4242,13208,0,0,0,0,0,0,0,823,821,0,0,1,1,0,0); -- Rainbow Obi (desynth)
-INSERT INTO `synth_recipes` VALUES (4532,0,0,0,0,0,0,0,33,0,0,4100,4242,13571,0,0,0,0,0,0,0,858,858,820,0,1,1,1,0); -- Wolf Mantle (desynth)
+INSERT INTO `synth_recipes` VALUES (4531,0,0,0,0,90,0,0,0,0,0,4100,4242,13208,0,0,0,0,0,0,0,823,821,821,821,1,1,2,3); -- Rainbow Obi (desynth)
+INSERT INTO `synth_recipes` VALUES (4532,0,0,0,0,0,0,0,33,0,0,4100,4242,13571,0,0,0,0,0,0,0,858,858,820,820,1,1,1,1); -- Wolf Mantle (desynth)
 INSERT INTO `synth_recipes` VALUES (4533,0,0,0,0,46,0,0,0,0,0,4100,4242,12723,0,0,0,0,0,0,0,834,820,820,820,2,5,6,7); -- Wool Bracers (desynth)
-INSERT INTO `synth_recipes` VALUES (4534,0,0,0,0,0,0,31,0,0,0,4100,4242,18868,0,0,0,0,0,0,0,650,0,0,0,1,0,0,0); -- Lady Bell (desynth)
-INSERT INTO `synth_recipes` VALUES (4535,0,0,0,0,0,0,85,0,0,0,4100,4242,13356,0,0,0,0,0,0,0,746,812,0,0,1,1,0,0); -- Death Earring (desynth)
+INSERT INTO `synth_recipes` VALUES (4534,0,0,0,0,0,0,31,0,0,0,4100,4242,18868,0,0,0,0,0,0,0,650,650,650,650,1,1,1,1); -- Lady Bell (desynth)
+INSERT INTO `synth_recipes` VALUES (4535,0,0,0,0,0,0,85,0,0,0,4100,4242,13356,0,0,0,0,0,0,0,746,812,812,812,1,1,1,1); -- Death Earring (desynth)
 INSERT INTO `synth_recipes` VALUES (4536,0,0,0,0,19,0,0,0,0,0,4100,4242,12849,0,0,0,0,0,0,0,850,818,818,818,1,5,6,7); -- Cotton Brais (desynth)
 INSERT INTO `synth_recipes` VALUES (4537,0,0,0,0,0,0,0,0,100,0,4100,4242,17252,0,0,0,0,0,0,0,1231,717,654,655,1,1,1,1); -- Culverin (desynth)
 INSERT INTO `synth_recipes` VALUES (4538,0,0,0,67,0,0,0,0,0,0,4100,4242,12838,0,0,0,0,0,0,0,826,851,896,896,1,1,1,1); -- Scorpion Subligar (desynth)
+INSERT INTO `synth_recipes` VALUES (4539,0,0,0,0,0,0,99,0,0,0,4100,4242,15771,0,0,0,0,0,0,0,747,747,2275,2275,1,1,1,1); -- Shining Ring (desynth)
+INSERT INTO `synth_recipes` VALUES (4540,1,2045,0,0,0,117,0,0,0,0,4096,4238,2110,4509,5134,5233,5234,5236,5237,5680,5893,5894,5894,5894,1,1,1,1); -- Marine Stewpot (117 cooking) https://www.bg-wiki.com/bg/Marine_Stewpot
+INSERT INTO `synth_recipes` VALUES (4541,0,0,0,0,0,0,85,0,0,0,4100,4242,13354,0,0,0,0,0,0,0,804,804,746,746,1,1,1,2); -- Spinel Earring (desynth)
+INSERT INTO `synth_recipes` VALUES (4542,0,0,0,0,0,0,0,0,0,41,4100,4242,17142,0,0,0,0,0,0,0,716,716,716,716,1,1,1,1); -- Oak Cudgel +1 (desynth)
+INSERT INTO `synth_recipes` VALUES (4543,0,0,0,0,0,0,93,0,0,0,4100,4242,13466,0,0,0,0,0,0,0,747,747,747,747,1,1,2,2); -- Orichalcum Ring (desynth)
+INSERT INTO `synth_recipes` VALUES (4544,0,0,0,0,0,0,93,0,0,0,4100,4242,14616,0,0,0,0,0,0,0,747,747,747,747,1,1,2,2); -- Triton Ring (desynth)
+INSERT INTO `synth_recipes` VALUES (4545,0,0,0,99,0,0,0,0,0,0,4100,4242,13467,0,0,0,0,0,0,0,903,903,903,903,1,1,1,1); -- Dragon Ring (desynth)
 
 -- INSERT INTO `synth_recipes` VALUES (ID,Type,KeyItem,AL,BO,CL,CK,GO,LE,SM,WD,Crystal,HQCrystal,I1,I2,I3,I4,I5,I6,I7,I8,R1,R2,R3,R4,Q1,Q2,Q3,Q4); -- template
 -- crystals = fire(4096,4238) ice(4097,4239) wind(4098,4240) earth(4099,4241) lightning(4100,4242) water(4101,4243) light(4102,4244) dark(4103,4245)

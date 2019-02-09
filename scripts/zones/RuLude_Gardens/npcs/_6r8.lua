@@ -4,9 +4,7 @@
 -- Windurst Missions 3.3 "A New Journey" and 4.1 "Magicite"
 -- !pos 31 9 -22 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -28,9 +26,9 @@ function onTrigger(player,npc)
             player:startEvent(131);
         end
     elseif (player:getRank() >= 4) then
-        player:messageSpecial(WINDURST_EMBASSY); -- restricted area
+        player:messageSpecial(ID.text.WINDURST_EMBASSY); -- restricted area
     else
-        player:messageSpecial(WINDURST_EMBASSY + 1); -- you have no letter of introduction
+        player:messageSpecial(ID.text.WINDURST_EMBASSY + 1); -- you have no letter of introduction
     end
 
     return 1;
@@ -48,7 +46,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",1);
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT) == false) then
             player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
         end
     elseif (csid == 38 or csid == 35) then
         finishMissionTimeline(player,1,csid,option);

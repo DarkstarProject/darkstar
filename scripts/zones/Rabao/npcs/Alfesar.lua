@@ -4,13 +4,11 @@
 -- Standard Info NPC
 --Starts The Missing Piece
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,8 +42,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
         player:addKeyItem(dsp.ki.LETTER_FROM_ALFESAR);
         player:delKeyItem(dsp.ki.ANCIENT_TABLET_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TABLET_OF_ANCIENT_MAGIC);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ALFESAR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TABLET_OF_ANCIENT_MAGIC);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ALFESAR);
     end;
 end;
-

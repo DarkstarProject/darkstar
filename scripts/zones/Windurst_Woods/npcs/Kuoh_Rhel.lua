@@ -7,9 +7,6 @@
 --  Note: In a Stew should only repeat once per conquest tally. The tally is not implemented at time of
 --        writing this quest. Once it is working please feel free to add it in ^^
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/titles")
@@ -35,7 +32,7 @@ function onTrigger(player,npc)
     elseif inAStew == QUEST_ACCEPTED then
         player:startEvent(236) -- reminder dialog
     -- Uncomment once conquest tally in place
-    --elseif (inAStew == QUEST_COMPLETED) then
+    --elseif inAStew == QUEST_COMPLETED then
         --player:startEvent(240) -- new dialog between repeats
     elseif (inAStew == QUEST_COMPLETED) then
         player:startEvent(234) -- start repeat

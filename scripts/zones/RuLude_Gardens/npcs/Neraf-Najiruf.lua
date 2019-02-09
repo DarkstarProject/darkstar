@@ -4,11 +4,9 @@
 -- Involved in Quests: Save my Sister
 -- !pos -36 2 60 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,10 +34,9 @@ function onEventFinish(player,csid,option)
         player:addQuest(JEUNO,SAVE_MY_SISTER);
         player:setVar("saveMySisterVar", 0);
         player:addKeyItem(dsp.ki.DUCAL_GUARDS_LANTERN);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DUCAL_GUARDS_LANTERN);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DUCAL_GUARDS_LANTERN);
     elseif (csid == 97) then
         player:delKeyItem(dsp.ki.DUCAL_GUARDS_LANTERN);
         player:setVar("saveMySisterFireLantern", 0);
     end
 end;
-

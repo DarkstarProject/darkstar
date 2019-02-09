@@ -3,10 +3,7 @@
 --  NPC: Adamantking_Effigy
 
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/dynamis");
-require("scripts/zones/Dynamis-Qufim/TextIDs");
 -----------------------------------
 
 function onMobSpawn(mob)

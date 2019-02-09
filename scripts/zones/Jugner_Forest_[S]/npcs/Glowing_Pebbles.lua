@@ -5,9 +5,7 @@
 -- !pos
 --  player:startEvent(106); Left over Cutscene
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local ID = require("scripts/zones/Jugner_Forest_[S]/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
     if (player:getVar("Lakeside_Minuet_Progress") == 3 and player:hasKeyItem(dsp.ki.STARDUST_PEBBLE) == false) then
         player:startEvent(100);
         player:addKeyItem(dsp.ki.STARDUST_PEBBLE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STARDUST_PEBBLE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STARDUST_PEBBLE);
     elseif (player:getVar("roadToDivadomCS") == 2) then
         local nextRoadToDivadomCS = 106;
         player:startEvent(nextRoadToDivadomCS);
@@ -45,4 +43,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

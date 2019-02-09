@@ -4,14 +4,12 @@
 -- Starts and Finishes: A Squire's Test, A Squire's Test II, A Knight's Test
 -- !zone 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,7 +40,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -103,12 +101,12 @@ function onEventFinish(player,csid,option)
         player:setVar("theSeamStress",0);
     elseif (csid == 530) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12696); -- Leather Gloves
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12696); -- Leather Gloves
         else
             player:tradeComplete();
             player:addTitle(dsp.title.SILENCER_OF_THE_LAMBS);
             player:addItem(12696);
-            player:messageSpecial(ITEM_OBTAINED, 12696); -- Leather Gloves
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 12696); -- Leather Gloves
             if (player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) == QUEST_ACCEPTED) then
                 player:addFame(SANDORIA,30);
                 player:completeQuest(SANDORIA,THE_SEAMSTRESS);
@@ -123,12 +121,12 @@ function onEventFinish(player,csid,option)
         player:setVar("lzdSkins",0);
     elseif (csid == 561) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12697); -- Lizard Gloves
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12697); -- Lizard Gloves
         else
             player:tradeComplete();
             player:addTitle(dsp.title.LIZARD_SKINNER);
             player:addItem(12697);
-            player:messageSpecial(ITEM_OBTAINED, 12697); -- Lizard Gloves
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 12697); -- Lizard Gloves
             if (player:getQuestStatus(SANDORIA,LIZARD_SKINS) == QUEST_ACCEPTED) then
                 player:addFame(SANDORIA,30);
                 player:completeQuest(SANDORIA,LIZARD_SKINS);
@@ -143,12 +141,12 @@ function onEventFinish(player,csid,option)
         player:setVar("blkTigerSkin",0);
     elseif (csid == 577) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13119); -- Tyger Stole
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13119); -- Tyger Stole
         else
             player:tradeComplete();
             player:addTitle(dsp.title.CAT_SKINNER);
             player:addItem(13119);
-            player:messageSpecial(ITEM_OBTAINED, 13119); -- Tyger Stole
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 13119); -- Tyger Stole
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,BLACK_TIGER_SKINS);
         end

@@ -3,16 +3,13 @@
 --  NPC: Door_House (Corsair's Bottes)
 -- !pos 10 0 -16 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs")
-require("scripts/zones/Bastok_Mines/MobIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npc:getID() == LELEROON_BLUE_DOOR then
+    if npc:getID() == ID.npc.LELEROON_BLUE_DOOR then
         local letterBlue = player:getVar("LeleroonsLetterBlue")
         if letterBlue == 2 and npcUtil.tradeHas(trade, {663, 879, 2007, 2010}) then -- mythril sheet, karakul leather, laminated buffalo leather, wolf felt
             player:startEvent(521) -- accepts materials, now bring me 4 imperial mythril pieces
@@ -23,7 +20,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if npc:getID() == LELEROON_BLUE_DOOR then
+    if npc:getID() == ID.npc.LELEROON_BLUE_DOOR then
         local letterBlue = player:getVar("LeleroonsletterBlue")
         if player:hasKeyItem(dsp.ki.LELEROONS_LETTER_BLUE) then
             player:startEvent(519) -- accept letter, now bring me four items

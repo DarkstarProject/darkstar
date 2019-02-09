@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Buburimu
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Buburimu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Buburimu/TextIDs");
+local ID = require("scripts/zones/Dynamis-Buburimu/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

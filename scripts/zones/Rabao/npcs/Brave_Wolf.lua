@@ -3,9 +3,7 @@
 --  NPC: Brave Wolf
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
         12962, 14327,    -- Leggins
     }
 
-    player:showText(npc, BRAVEWOLF_SHOP_DIALOG)
+    player:showText(npc, ID.text.BRAVEWOLF_SHOP_DIALOG)
     dsp.shop.general(player, stock);
 end;
 
@@ -40,4 +38,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

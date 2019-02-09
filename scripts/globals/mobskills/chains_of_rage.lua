@@ -2,9 +2,7 @@
 -- Chains of Rage
 --
 ---------------------------------------------
-package.loaded["scripts/zones/Empyreal_Paradox/TextIDs"] = nil
----------------------------------------------
-require("scripts/zones/Empyreal_Paradox/TextIDs")
+local ID = require("scripts/zones/Empyreal_Paradox/IDs")
 require("scripts/globals/monstertpmoves")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
@@ -17,8 +15,8 @@ function onMobSkillCheck(target,mob,skill)
     for i,v in pairs(targets) do
         if (v.entity:isPC()) then
             local race = v.entity:getRace()
-            if (race == 8) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_ALTAIEU) then
-                mob:showText(mob, PROMATHIA_TEXT + 4)
+            if (race == dsp.race.GALKA) and not v.entity:hasKeyItem(dsp.ki.LIGHT_OF_ALTAIEU) then
+                mob:showText(mob, ID.text.PROMATHIA_TEXT + 4)
                 return 0
             end
         end
@@ -31,7 +29,7 @@ function onMobWeaponSkill(target, mob, skill)
     local power = 30
     local duration = 30
 
-    if target:isPC() and ((target:getRace() == 8) and not target:hasKeyItem(dsp.ki.LIGHT_OF_ALTAIEU)) then
+    if target:isPC() and ((target:getRace() == dsp.race.GALKA) and not target:hasKeyItem(dsp.ki.LIGHT_OF_ALTAIEU)) then
         skill:setMsg(MobStatusEffectMove(mob, target, typeEffect, power, 0, duration))
     else
         skill:setMsg(dsp.msg.basic.SKILL_NO_EFFECT)

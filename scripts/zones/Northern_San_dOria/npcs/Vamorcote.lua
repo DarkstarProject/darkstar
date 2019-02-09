@@ -6,11 +6,9 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -50,9 +48,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 658) then --The player trades the Engraved Key to the NPC. Here come the rewards!
         player:tradeComplete();
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_SETTING_SUN);
     end;
 end;
-

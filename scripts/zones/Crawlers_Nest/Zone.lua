@@ -3,16 +3,16 @@
 -- Zone: Crawlers_Nest (197)
 --
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Crawlers_Nest/TextIDs")
-require("scripts/zones/Crawlers_Nest/MobIDs")
+local ID = require("scripts/zones/Crawlers_Nest/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(CNEST_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(CNEST_TREASURE_COFFER)
+    UpdateNMSpawnPoint(ID.mob.DYNAST_BEETLE)
+    GetMobByID(ID.mob.DYNAST_BEETLE):setRespawnTime(math.random(5400, 7200))
+
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

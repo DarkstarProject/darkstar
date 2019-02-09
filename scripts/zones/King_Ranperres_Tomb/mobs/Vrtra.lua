@@ -8,15 +8,11 @@ require("scripts/globals/titles");
 
 local offsets = {1, 3, 5, 2, 4, 6};
 
-function onMobInitialize(mob)
-end;
-
 function onMobEngaged(mob, target)
     mob:resetLocalVars();
 end;
 
 function onMobFight(mob, target)
-
     local spawnTime = mob:getLocalVar("spawnTime");
     local twohourTime = mob:getLocalVar("twohourTime");
 
@@ -34,9 +30,13 @@ function onMobFight(mob, target)
         mob:useMobAbility(710);
         mob:setLocalVar("twohourTime", (mob:getBattleTime()/15)+math.random(4,6));
     elseif (mob:getBattleTime()/15 > spawnTime) then
+        local mobId = mob:getID()
+
         for i, offset in ipairs(offsets) do
-            if (GetMobAction(mob:getID()+offset) == dsp.act.SPAWN or GetMobAction(mob:getID()+offset) == dsp.act.NONE) then
-                local pet = SpawnMob(mob:getID()+offset, 60);
+            local pet = GetMobByID(mobId + offset)
+
+            if not pet:isSpawned() then
+                pet:spawn(60)
                 local pos = mob:getPos();
                 pet:setPos(pos.x, pos.y, pos.z);
                 pet:updateEnmity(target)

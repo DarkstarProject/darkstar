@@ -5,14 +5,12 @@
 -- Involved in Mission: Bastok 6-2
 -- !pos 64 -14 -4 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -49,7 +47,7 @@ function onTrigger(player,npc)
             if (player:hasKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK) == false and player:getVar("MissionStatus") == 0) then
                 player:startEvent(713);
             else
-                player:showText(npc,GOOD_LUCK);
+                player:showText(npc,ID.text.GOOD_LUCK);
             end
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK) and player:getVar("MissionStatus") == 0) then
             player:startEvent(720);
@@ -82,25 +80,25 @@ function onEventFinish(player,csid,option)
     if (csid == 750) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:addItem(16678);
-            player:messageSpecial(ITEM_OBTAINED, 16678); -- Razor Axe
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16678); -- Razor Axe
             player:delKeyItem(dsp.ki.YASINS_SWORD);
             player:setVar("theDoormanCS",0);
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_DOORMAN);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
     elseif (csid == 710) then
         player:delKeyItem(dsp.ki.ZERUHN_REPORT);
         player:completeMission(BASTOK,THE_ZERUHN_REPORT);
     elseif (csid == 713) then
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         player:setVar("MissionStatus",1);
     elseif (csid == 720 and option == 0 or csid == 721) then
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK);
         player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
         player:setVar("MissionStatus",10);
     elseif (csid == 720 and option == 1) then
         player:delKeyItem(dsp.ki.MESSAGE_TO_JEUNO_BASTOK);

@@ -3,10 +3,7 @@
 -- Zone: Beaucedine_Glacier (111)
 --
 -----------------------------------
-package.loaded[ "scripts/zones/Beaucedine_Glacier/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs")
-require("scripts/zones/Beaucedine_Glacier/MobIDs")
+local ID = require("scripts/zones/Beaucedine_Glacier/IDs")
 require("scripts/globals/icanheararainbow")
 require("scripts/globals/missions")
 require("scripts/globals/conquest")
@@ -14,13 +11,16 @@ require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.HUMBABA)
+    GetMobByID(ID.mob.HUMBABA):setRespawnTime(math.random(3600, 4200))
+
     dsp.conq.setRegionalConquestOverseers(zone:getRegionID())
 end
 
 function onZoneIn( player, prevZone)
     local cs = -1
 
-    if prevZone == 134 then -- warp player to a correct position after dynamis
+    if prevZone == dsp.zone.DYNAMIS_BEAUCEDINE then -- warp player to a correct position after dynamis
         player:setPos(-284.751,-39.923,-422.948,235)
     end
 
@@ -63,7 +63,7 @@ function onEventFinish( player, csid, option)
 end
 
 function onZoneWeatherChange(weather)
-    local mirrorPond = GetNPCByID(MIRROR_POND_J8) -- Quest: Love And Ice
+    local mirrorPond = GetNPCByID(ID.npc.MIRROR_POND_J8) -- Quest: Love And Ice
 
     if weather ~= dsp.weather.SNOW and weather ~= dsp.weather.BLIZZARDS then
         mirrorPond:setStatus(dsp.status.NORMAL)

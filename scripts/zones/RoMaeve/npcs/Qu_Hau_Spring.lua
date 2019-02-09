@@ -2,11 +2,10 @@
 -- Qu_Hau_Spring
 -- Area: Ro'Maeve
 -----------------------------------
-package.loaded["scripts/zones/RoMaeve/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RoMaeve/TextIDs");
-require("scripts/globals/quests");
-require("scripts/globals/keyitems");
+local ID = require("scripts/zones/RoMaeve/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,28 +30,33 @@ function onTrigger(player,npc)
 
     if (CurrentMission == VAIN and MissionStatus >= 1) then
         player:startEvent(2);
+    elseif (CurrentMission == MOON_READING and MissionStatus >= 1) then
+        player:startEvent(4);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 
-function onEventUpdate(player,csid,menuchoice)
+function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
     if (csid == 7) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1550);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1550);
         else
             player:addItem(1550);
-            player:messageSpecial(ITEM_OBTAINED,1550);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1550);
             player:tradeComplete();
         end
     elseif (csid == 8) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.MOONLIGHT_ORE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MOONLIGHT_ORE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOONLIGHT_ORE);
     elseif (csid == 2 and player:getCurrentMission(WINDURST) == VAIN) then
         player:setVar("MissionStatus",2);
+    elseif (csid == 4 and player:getCurrentMission(WINDURST) == MOON_READING) then
+        player:addKeyItem(dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_VERSE_OF_ROMAEVE);
     end
 end;

@@ -2,11 +2,10 @@
 -- Area: Labyrinth of Onzozo
 --   NM: Lord of Onzozo
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/regimes")
+-----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,774,1);
-end;
-
-function onMobDespawn(mob)
-end;
+    dsp.regime.checkRegime(player, mob, 774, 1, dsp.regime.type.GROUNDS)
+end

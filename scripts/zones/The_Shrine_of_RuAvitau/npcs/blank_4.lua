@@ -3,9 +3,7 @@
 --  NPC: ??? divine might mission
 -- !pos -40 0 -151 178
 -----------------------------------
-package.loaded["scripts/zones/The_Shrine_of_RuAvitau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrine_of_RuAvitau/TextIDs");
+local ID = require("scripts/zones/The_Shrine_of_RuAvitau/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -58,7 +56,7 @@ function onTrigger(player,npc)
     elseif (DMRepeat == QUEST_ACCEPTED and DivineStatus == 2 and MoonOre == true) then -- Repeat turn in
         player:startEvent(59);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY); -- Need some kind of feedback
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY); -- Need some kind of feedback
     end
 
 end;
@@ -97,7 +95,7 @@ function onEventFinish(player,csid,option)
         if (reward ~= 0) then
             if (player:getFreeSlotsCount() >= 1 and player:hasItem(reward) == false) then
                 player:addItem(reward);
-                player:messageSpecial(ITEM_OBTAINED,reward);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
                 if (csid == 55) then
                     player:completeQuest(OUTLANDS,DIVINE_MIGHT);
                 else
@@ -107,7 +105,7 @@ function onEventFinish(player,csid,option)
                 player:setVar("DivineMight",0);
                 player:setVar("DM_Earring",reward);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward);
             end
         end
     end

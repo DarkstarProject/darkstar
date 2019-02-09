@@ -2,17 +2,14 @@
 -- Area: Sealion's Den
 --  NPC: Airship_Door
 -----------------------------------
-package.loaded["scripts/zones/Sealions_Den/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Sealions_Den/TextIDs");
-require("scripts/zones/Sealions_Den/MobIDs");
+local ID = require("scripts/zones/Sealions_Den/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local offset = npc:getID() - AIRSHIP_DOOR_OFFSET;
+    local offset = npc:getID() - ID.npc.AIRSHIP_DOOR_OFFSET;
     player:startEvent(32003, offset + 1);
 end;
 
@@ -22,7 +19,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 32003 and (option >= 100 and option <= 102)) then
         local inst = option - 99;
-        local instOffset = ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1));
+        local instOffset = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1));
 
         local stillAlive = nil;
         for i = 0, 6 do

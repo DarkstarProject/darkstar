@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -305.775 -10.319 -152.173 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -27,6 +25,6 @@ function onTrigger(player,npc)
         12672, 23846, 1,    -- Gauntlets
     }
 
-    player:showText(npc, BRUNHILDE_SHOP_DIALOG)
+    player:showText(npc, ID.text.BRUNHILDE_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

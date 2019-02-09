@@ -4,9 +4,7 @@
 -- Type: Manaclipper
 -- !pos 484.604 -4.035 729.671 4
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
     end
 
     if ( curentticket ~= 0 ) then
-        player:messageSpecial(HAVE_BILLET,curentticket);
+        player:messageSpecial(ID.text.HAVE_BILLET,curentticket);
     else
         local gils=player:getGil();
         player:startEvent(35,dsp.ki.MANACLIPPER_TICKET,dsp.ki.MANACLIPPER_MULTITICKET ,80,gils,0,500);
@@ -37,13 +35,12 @@ function onEventFinish(player,csid,option)
         if (option==1) then
             player:delGil(80);
             player:addKeyItem(dsp.ki.MANACLIPPER_TICKET);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_TICKET);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_TICKET);
         elseif (option==2) then
             player:delGil(500);
             player:addKeyItem(dsp.ki.MANACLIPPER_MULTITICKET);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_MULTITICKET);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MANACLIPPER_MULTITICKET);
             player:setVar("Manaclipper_Ticket",10);
         end
     end
 end;
-

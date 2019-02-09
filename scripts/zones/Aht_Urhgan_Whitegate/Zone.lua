@@ -3,15 +3,14 @@
 -- Zone: Aht_Urhgan_Whitegate (50)
 --
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs");
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
 require("scripts/globals/status");
 require("scripts/globals/titles");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,11 +25,11 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 46) then
+        if (prevZone == dsp.zone.OPEN_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 201;
-        elseif (prevZone == 59) then
+        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_AL_ZAHBI) then
             cs = 204;
-        elseif (prevZone == 58) then
+        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
             cs = 204;
         else
             -- MOG HOUSE EXIT
@@ -68,7 +67,7 @@ function onRegionEnter(player,region)
             if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == A_MERCENARY_LIFE and player:needToZone() == false) then
-                if (prevZone ~= 50) then
+                if (prevZone ~= dsp.zone.AHT_URHGAN_WHITEGATE) then
                     player:startEvent(3050,3,3,3,3,3,3,3,3,0);
                 end
             elseif (player:getCurrentMission(TOAU) == FINDERS_KEEPERS) then
@@ -154,25 +153,25 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.SUPPLIES_PACKAGE);
         player:completeMission(TOAU,LAND_OF_SACRED_SERPENTS,player);
         player:addMission(TOAU,IMMORTAL_SENTRIES,player);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SUPPLIES_PACKAGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUPPLIES_PACKAGE);
     elseif (csid == 3024) then
         player:setVar("AhtUrganStatus",3);
     elseif (csid == 3026) then
         player:setVar("AhtUrganStatus",0);
         player:addKeyItem(dsp.ki.RAILLEFALS_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_LETTER);
         player:completeMission(TOAU,KNIGHT_OF_GOLD);
         player:addMission(TOAU,CONFESSIONS_OF_ROYALTY);
     elseif (csid == 3027) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2185);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2185);
         else
             player:setVar("AhtUrganStatus",1)
             player:addKeyItem(dsp.ki.RAILLEFALS_NOTE);
             player:setTitle(dsp.title.AGENT_OF_THE_ALLIED_FORCES);
             player:addItem(2185,1);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
-            player:messageSpecial(ITEM_OBTAINED,2185);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RAILLEFALS_NOTE);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,2185);
         end
     elseif (csid == 3050) then
         player:completeMission(TOAU,A_MERCENARY_LIFE);
@@ -217,12 +216,12 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,STIRRINGS_OF_WAR);
         player:setVar("AhtUrganStatus", 0);
         player:addKeyItem(dsp.ki.ALLIED_COUNCIL_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ALLIED_COUNCIL_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ALLIED_COUNCIL_SUMMONS);
         player:addMission(TOAU,ALLIED_RUMBLINGS);
     elseif (csid == 797) then
         player:setVar("AgainstAllOdds",1); -- Set For Corsair BCNM
         player:addQuest(AHT_URHGAN,AGAINST_ALL_ODDS); -- Start of af 3 not completed yet
         player:addKeyItem(dsp.ki.LIFE_FLOAT); -- BCNM KEY ITEM TO ENTER BCNM
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.LIFE_FLOAT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.LIFE_FLOAT);
     end
 end;

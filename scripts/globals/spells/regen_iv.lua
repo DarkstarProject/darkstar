@@ -19,17 +19,10 @@ function onSpellCast(caster,target,spell)
     hp = hp + caster:getMerit(dsp.merit.REGEN_EFFECT) -- bonus hp from merits
     hp = hp + caster:getMod(dsp.mod.LIGHT_ARTS_REGEN) -- bonus hp from light arts
 
-    local duration = 60
-
-    duration = duration + caster:getMod(dsp.mod.REGEN_DURATION)
-
+    local duration = calculateDuration(60 + caster:getMod(dsp.mod.REGEN_DURATION), spell:getSkillType(), spell:getSpellGroup(), caster, target)
     duration = calculateDurationForLvl(duration, 86, target:getMainLvl())
 
-    if (target:hasStatusEffect(dsp.effect.REGEN) and target:getStatusEffect(dsp.effect.REGEN):getTier() == 1) then
-        target:delStatusEffect(dsp.effect.REGEN)
-    end
-
-    if (target:addStatusEffect(dsp.effect.REGEN,hp,3,duration,0,0,0)) then
+    if target:addStatusEffect(dsp.effect.REGEN, hp, 0, duration) then
         spell:setMsg(dsp.msg.basic.MAGIC_GAIN_EFFECT)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT) -- no effect

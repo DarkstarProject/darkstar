@@ -3,9 +3,6 @@
 --  MOB: Shen
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob,target)
     if (mob:getBattleTime() % 45 == 0) then
         local mobId = mob:getID();

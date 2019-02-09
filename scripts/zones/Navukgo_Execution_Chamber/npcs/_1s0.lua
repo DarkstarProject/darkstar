@@ -4,13 +4,9 @@
 -- Involved in Missions: TOAU-22
 -- !pos -601 10 -100 64
 -----------------------------------
-package.loaded["scripts/zones/Navukgo_Execution_Chamber/TextIDs"] = nil;
-package.loaded["scripts/globals/bcnm"] = nil;
------------------------------------
-
-require("scripts/globals/keyitems");
+require("scripts/globals/missions");
 require("scripts/globals/bcnm");
-require("scripts/zones/Navukgo_Execution_Chamber/TextIDs");
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -24,23 +20,15 @@ function onTrigger(player,npc)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- printf("onUpdate CSID: %u",csid);
-    -- printf("onUpdate RESULT: %u",option);
-
     if (EventUpdateBCNM(player,csid,option)) then
         return;
     end
-
 end;
 
 function onEventFinish(player,csid,option)
-    -- printf("onFinish CSID: %u",csid);
-    -- printf("onFinish RESULT: %u",option);
-
     if (csid == 2) then
         player:setVar("AhtUrganStatus", 2);
     elseif (EventFinishBCNM(player,csid,option)) then
         return;
     end
-
 end;

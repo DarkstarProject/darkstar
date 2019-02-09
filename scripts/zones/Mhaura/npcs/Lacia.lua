@@ -4,13 +4,11 @@
 -- Starts Quest: Trial Size Trial By Lightning
 --  The "TrialSizeLightning_date" still needs to be set at the BCNM/Mob level to reflect defeat by the Avatar
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -46,19 +44,19 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 10025 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
             player:setVar("TrialSizeLightning_date", 0);
             player:addQuest(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
             player:addItem(1548);
-            player:messageSpecial(ITEM_OBTAINED,1548);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1548);
         end
     elseif (csid == 10029 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
             player:addItem(1548);
-            player:messageSpecial(ITEM_OBTAINED,1548);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1548);
         end
     elseif (csid == 10026 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_STORMS);

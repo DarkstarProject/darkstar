@@ -4,9 +4,7 @@
 -- Quest NPC
 -- pos -79 -4 -125
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 -----------------------------------
@@ -59,9 +57,9 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.XHIFHUT);
         player:completeQuest(CRYSTAL_WAR,BETTER_PART_OF_VALOR);
         player:addKeyItem(dsp.ki.WARNING_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WARNING_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WARNING_LETTER);
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000);
         player:setVar("BetterPartOfValProg",0);
         player:needToZone(true);
     elseif (csid == 120) then
@@ -74,8 +72,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 164) then
         player:completeQuest(CRYSTAL_WAR,FIRES_OF_DISCONTENT);
         player:addGil(GIL_RATE*10000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*10000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*10000);
         player:setVar("FiresOfDiscProg",0);
     end
 end;
-

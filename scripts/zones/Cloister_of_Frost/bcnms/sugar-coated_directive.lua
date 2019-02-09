@@ -3,11 +3,8 @@
 -- BCNM: Sugar Coated Directive (ASA-4)
 -- !pos -721 0 -598 207
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
-----------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
 ----------------------------------------
 
 -- After registering the BCNM via bcnmRegister(bcnmid)

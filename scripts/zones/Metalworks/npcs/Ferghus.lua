@@ -3,9 +3,6 @@
 --  NPC: Ferghus
 -- Starts Quest: Too Many Chefs (1,86)
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 -----------------------------------

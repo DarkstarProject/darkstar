@@ -4,21 +4,18 @@
 -- Starts and Finishes Quest: A Clock Most Delicate, Save the Clock Tower, The Clockmaster
 -- !pos -80 0 104 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
-package.loaded["scripts/globals/settings"] = nil;
------------------------------------
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
+    local aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
 
     if (aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 1) then
         player:startEvent(119); -- Start long cs quest with option "a clock most delicate"
@@ -53,31 +50,30 @@ function onEventFinish(player,csid,option)
         player:setVar("aClockMostdelicateVar",0);
     elseif (csid == 202) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12727);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12727);
         else
             player:addTitle(dsp.title.PROFESSIONAL_LOAFER);
             player:delKeyItem(dsp.ki.CLOCK_TOWER_OIL);
             player:addGil(1200);
-            player:messageSpecial(GIL_OBTAINED,1200);
+            player:messageSpecial(ID.text.GIL_OBTAINED,1200);
             player:addItem(12727);
-            player:messageSpecial(ITEM_OBTAINED,12727);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12727);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,A_CLOCK_MOST_DELICATE);
             player:addQuest(JEUNO,SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
         end
     elseif (csid == 152) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17083);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17083);
         else
             player:addQuest(JEUNO,THE_CLOCKMASTER);
             player:addTitle(dsp.title.TIMEKEEPER);
             player:addGil(1200);
-            player:messageSpecial(GIL_OBTAINED,1200);
+            player:messageSpecial(ID.text.GIL_OBTAINED,1200);
             player:addItem(17083);
-            player:messageSpecial(ITEM_OBTAINED,17083);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17083);
             player:addFame(JEUNO,30);
             player:completeQuest(JEUNO,THE_CLOCKMASTER);
         end
     end
 end;
-

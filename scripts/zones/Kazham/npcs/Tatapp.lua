@@ -3,9 +3,6 @@
 --  NPC: Tatapp
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
 require("scripts/globals/pathfind");
 
 local path =

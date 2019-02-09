@@ -3,11 +3,10 @@
 -- Zone: RuLude_Gardens (243)
 --
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
-require("scripts/globals/missions");
-require("scripts/globals/quests");
+local ID = require("scripts/zones/RuLude_Gardens/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)
@@ -85,7 +84,7 @@ function onEventFinish(player,csid,option)
         player:setVar("EMERALD_WATERS_Status",1); -- EMERALD_WATERS-- 3-3A: San d'Oria Road
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 10047) then
         player:setVar("PromathiaStatus",0);
         player:completeMission(COP,FOR_WHOM_THE_VERSE_IS_SUNG);
@@ -104,13 +103,13 @@ function onEventFinish(player,csid,option)
     elseif (csid == 10094) then
         if (option == 1) then
             if (player:getFreeSlotsCount() == 0) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,2184);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2184);
             else
                 player:completeMission(TOAU,EASTERLY_WINDS);
                 player:addMission(TOAU,WESTERLY_WINDS);
                 player:setVar("AhtUrganStatus", 0);
                 player:addItem(2184,10);
-                player:messageSpecial(ITEM_OBTAINED,2184);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,2184);
             end
         else
             player:completeMission(TOAU,EASTERLY_WINDS);

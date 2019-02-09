@@ -34,6 +34,9 @@ function onSpellCast(caster,target,spell)
     end
     caster:delStatusEffect(dsp.effect.MARCATO)
 
+    -- convert to new haste system
+    power = (power / 1024) * 10000
+
     local duration = 120
     duration = duration * ((iBoost * 0.1) + (caster:getMod(dsp.mod.SONG_DURATION_BONUS)/100) + 1)
 

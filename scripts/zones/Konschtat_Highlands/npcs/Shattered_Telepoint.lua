@@ -3,10 +3,8 @@
 --  NPC: Shattered telepoint
 -- !pos 135 19 220 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(COP) > THE_MOTHERCRYSTALS or player:hasCompletedMission(COP,THE_LAST_VERSE) or (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") > 1)) then
         player:startEvent(913); -- normal cs (third promyvion and each entrance after having that promyvion visited or mission completed)
     else
-        player:messageSpecial(TELEPOINT_HAS_BEEN_SHATTERED);
+        player:messageSpecial(ID.text.TELEPOINT_HAS_BEEN_SHATTERED);
     end
 
 end;

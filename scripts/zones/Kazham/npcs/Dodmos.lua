@@ -4,13 +4,11 @@
 --  Starts Quest: Trial Size Trial By Fire
 -- !pos 102.647 -14.999 -97.664 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,22 +46,21 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 286 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
         else
             player:setVar("TrialSizeFire_date", 0);
             player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
             player:addItem(1544);
-            player:messageSpecial(ITEM_OBTAINED,1544);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1544);
         end
     elseif (csid == 290 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1544); --Mini tuning fork
         else
             player:addItem(1544);
-            player:messageSpecial(ITEM_OBTAINED,1544);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1544);
         end
     elseif (csid == 287 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_FLAMES);
     end
 end;
-

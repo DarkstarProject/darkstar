@@ -2,12 +2,9 @@
 -- Area: Cloister of Gales
 -- BCNM: Sugar Coated Directive (ASA-4)
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
-----------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
 
 ----------------------------------------
 

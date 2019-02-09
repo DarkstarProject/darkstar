@@ -2,21 +2,20 @@
 -- Field Manual
 -- Area: Buburimu Peninsula
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_BUBURIMU,player);
-end;
-
 function onTrade(player,npc,trade)
-end;
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,32,33,34,35,62);
-end;
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,32,33,34,35,62,FOV_MSG_BUBURIMU);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

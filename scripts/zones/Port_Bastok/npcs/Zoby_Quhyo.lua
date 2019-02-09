@@ -3,9 +3,7 @@
 --  NPC: Zoby Quhyo
 -- Elshimo Lowlands Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.ELSHIMOLOWLANDS) ~= dsp.nation.BASTOK then
-        player:showText(npc, ZOBYQUHYO_CLOSED_DIALOG)
+        player:showText(npc, ID.text.ZOBYQUHYO_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -27,7 +25,7 @@ function onTrigger(player,npc)
             1411, 1656,    -- Phalaenopsis
         }
 
-        player:showText(npc, ZOBYQUHYO_OPEN_DIALOG)
+        player:showText(npc, ID.text.ZOBYQUHYO_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

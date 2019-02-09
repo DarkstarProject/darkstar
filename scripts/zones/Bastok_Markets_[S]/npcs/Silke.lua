@@ -3,10 +3,9 @@
 --  NPC: Silke
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets_[S]/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end
@@ -19,7 +18,7 @@ function onTrigger(player,npc)
         6061, 36300     -- Adloquim Schema
     }
 
-    player:showText(npc, SILKE_SHOP_DIALOG)
+    player:showText(npc, ID.text.SILKE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

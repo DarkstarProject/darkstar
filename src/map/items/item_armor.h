@@ -99,6 +99,7 @@ public:
 	void    setTrialNumber(uint16);
 
     void    LoadAugment(uint8 slot, uint16 augment);
+    bool    PushAugment(uint16 type, uint8 value);
     void    ApplyAugment(uint8 slot);
 
     void    addModifier(CModifier modifier);

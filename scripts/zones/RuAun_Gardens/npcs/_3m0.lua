@@ -3,10 +3,6 @@
 --  NPC: _3m0
 -- !pos 0.1 -45 -113 130
 -----------------------------------
-package.loaded["scripts/zones/RuAun_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuAun_Gardens/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

@@ -5,9 +5,6 @@
 -- Involved in quest: No Strings Attached
 -- !pos -285.382 -13.021 -84.743 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------

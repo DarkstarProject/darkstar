@@ -3,10 +3,6 @@
 --  NPC: Leonyone
 -- !pos -192 -1 42 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria_[S]/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

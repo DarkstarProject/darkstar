@@ -1,7 +1,7 @@
 -----------------------------------------
 -- Implementation of Bar-spells
 -----------------------------------------
-
+require("scripts/globals/magic")
 require("scripts/globals/status")
 
 function calculateBarspellPower(caster,enhanceSkill)

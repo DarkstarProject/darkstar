@@ -24,12 +24,12 @@ function onMobWeaponSkill(target, mob, skill)
     local accmod = 1
     local dmgmod = 1
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,0,1,2,3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,0,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.NONE,info.hitslanded)
     local typeEffect = dsp.effect.SILENCE
 
     MobPhysicalStatusEffectMove(mob, target, skill, typeEffect, 1, 0, 60)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.NONE)
     return dmg
 
 end

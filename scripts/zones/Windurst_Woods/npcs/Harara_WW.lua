@@ -2,9 +2,6 @@
 -- Area: Windurst Woods
 --  NPC: Harara, W.W.
 -------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

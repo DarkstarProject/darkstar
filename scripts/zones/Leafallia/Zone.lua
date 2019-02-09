@@ -3,10 +3,7 @@
 -- Zone: Leafallia
 --
 -----------------------------------
-package.loaded["scripts/zones/Leafallia/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Leafallia/TextIDs");
+local ID = require("scripts/zones/Leafallia/IDs")
 -----------------------------------
 
 function onInitialize(zone)

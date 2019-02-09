@@ -4,11 +4,9 @@
 -- Type: Standard NPC
 -- !pos -2.400 -1 66.824 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -42,13 +40,12 @@ function onEventFinish(player,csid,option)
         player:setVar("ratraceCS",4);
     elseif (csid == 310) then
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,5595);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,5595);
         else
             player:tradeComplete();
             player:addItem(5595);
-            player:messageSpecial(ITEM_OBTAINED,5595);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5595);
             player:setVar("ratraceCS",5);
         end
     end
 end;
-

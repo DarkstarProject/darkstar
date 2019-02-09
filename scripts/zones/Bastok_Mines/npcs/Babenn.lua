@@ -5,9 +5,7 @@
 -- Involved in Quests: Riding on the Clouds
 -- !pos 73 -1 34 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -21,7 +19,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -51,11 +49,11 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.OLD_TOOLBOX);
             player:addTitle(dsp.title.PURSUER_OF_THE_TRUTH);
             player:addItem(16629);
-            player:messageSpecial(ITEM_OBTAINED,16629);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16629);
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_ELEVENTH_S_HOUR);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16629);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16629);
         end
     end
 end;

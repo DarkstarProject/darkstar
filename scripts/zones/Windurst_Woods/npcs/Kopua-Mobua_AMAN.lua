@@ -6,29 +6,27 @@
 --
 -- Auto-Script: Requires Verification (Verfied by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    local var = 0;
-    if (player:getMentor() == 0) then
-        if (player:getMainLvl() >= 30 and player:getPlaytime() >= 648000) then
-            var = 1;
+    local var = 0
+    if player:getMentor() == 0 then
+        if player:getMainLvl() >= 30 and player:getPlaytime() >= 648000 then
+            var = 1
         end
-    elseif (player:getMentor() >= 1) then
-        var = 2;
+    elseif player:getMentor() >= 1 then
+        var = 2
     end
-    player:startEvent(10026, var);
-end;
+    player:startEvent(10026, var)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-    if (csid == 10026 and option == 0) then
-        player:setMentor(1);
+    if csid == 10026 and option == 0 then
+        player:setMentor(1)
     end
-end;
+end

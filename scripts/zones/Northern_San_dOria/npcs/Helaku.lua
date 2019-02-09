@@ -4,9 +4,7 @@
 -- Involved in Missions 2-3
 -- !pos 49 -2 -12 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
         elseif (missionStatus == 2) then
             player:startEvent(536);
         elseif (missionStatus == 3) then
-            player:showText(npc,HELAKU_DIALOG);
+            player:showText(npc,ID.text.HELAKU_DIALOG);
         -- Bastok Mission 2-3 Part II - Windurst > San d'Oria
         elseif (missionStatus == 7) then
             player:startEvent(537);
@@ -72,7 +70,7 @@ function onEventFinish(player,csid,option)
         player:addMission(BASTOK,THE_EMISSARY);
         player:setVar("MissionStatus",11);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
     end
 end;

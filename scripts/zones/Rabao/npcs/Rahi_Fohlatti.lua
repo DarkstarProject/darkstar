@@ -4,12 +4,10 @@
 -- Starts Quest: Trial Size Trial by Wind
 -- !pos -17 7 -10 247
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,18 +46,18 @@ function onEventFinish(player,csid,option)
 
     if (csid == 108 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
         else
             player:addQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WIND);
             player:addItem(1546);
-            player:messageSpecial(ITEM_OBTAINED,1546);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1546);
         end
     elseif (csid == 112 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1546); --Mini tuning fork
         else
             player:addItem(1546);
-            player:messageSpecial(ITEM_OBTAINED,1546);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1546);
         end
     elseif (csid == 109 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_GALES);

@@ -3,9 +3,7 @@
 --  NPC: Leillaine
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
         4155, 22400,    -- Remedy
     }
 
-    player:showText(npc, LEILLAINE_SHOP_DIALOG)
+    player:showText(npc, ID.text.LEILLAINE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -32,4 +30,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

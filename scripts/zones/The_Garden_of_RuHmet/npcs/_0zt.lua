@@ -2,10 +2,7 @@
 -- Area: The_Garden_of_RuHmet
 --  NPC: Luminus convergence
 -----------------------------------
-package.loaded["scripts/zones/The_Garden_of_RuHmet/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/The_Garden_of_RuHmet/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

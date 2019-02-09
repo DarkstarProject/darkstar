@@ -4,12 +4,7 @@
 -- Type: Standard NPC
 -- !pos 23.539 -27.25 22.589 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("LovelyDay",0);
     end
 end;
-

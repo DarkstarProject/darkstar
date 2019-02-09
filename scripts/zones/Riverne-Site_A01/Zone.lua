@@ -3,9 +3,7 @@
 -- Zone: Riverne-Site_A01
 --
 -----------------------------------
-package.loaded["scripts/zones/Riverne-Site_A01/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Riverne-Site_A01/TextIDs");
+local ID = require("scripts/zones/Riverne-Site_A01/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/status");

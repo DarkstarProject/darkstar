@@ -2,9 +2,6 @@
 -- Area: Port Bastok
 --  NPC: Flying Axe, I.M.
 -------------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

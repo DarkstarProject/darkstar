@@ -3,11 +3,10 @@
 -- Zone: Nashmau (53)
 --
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -17,10 +16,10 @@ function onZoneIn(player,prevZone)
     local cs = -1;
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 54 and player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 3) then
+        if (prevZone == dsp.zone.ARRAPAGO_REEF and player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 3) then
             cs = 281;
             player:setPos(-13,2,-62,194);
-        elseif (prevZone == 58) then
+        elseif (prevZone == dsp.zone.SILVER_SEA_ROUTE_TO_NASHMAU) then
             cs = 201;
             player:setPos(11,2,-102,128);
         else

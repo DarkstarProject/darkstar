@@ -3,9 +3,7 @@
 --  NPC: Challoux
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs")
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
         17307, 9,    -- Dart
     }
 
-    player:showText(npc, CHALLOUX_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHALLOUX_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -28,4 +26,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

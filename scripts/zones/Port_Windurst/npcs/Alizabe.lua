@@ -3,9 +3,7 @@
 --  NPC: Alizabe
 --  Tavnazian Archipelago Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/shop")
@@ -16,7 +14,7 @@ end
 function onTrigger(player,npc)
     if player:getCurrentMission(COP) >= THE_SAVAGE then
         if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.WINDURST then
-            player:showText(npc, ALIZABE_CLOSED_DIALOG)
+            player:showText(npc, ID.text.ALIZABE_CLOSED_DIALOG)
         else
             local stock =
             {
@@ -27,11 +25,11 @@ function onTrigger(player,npc)
                 1695,  920,    -- Habanero Peppers
             }
 
-            player:showText(npc, ALIZABE_OPEN_DIALOG)
+            player:showText(npc, ID.text.ALIZABE_OPEN_DIALOG)
             dsp.shop.general(player, stock, WINDURST)
         end
     else
-        player:showText(npc, ALIZABE_COP_NOT_COMPLETED)
+        player:showText(npc, ID.text.ALIZABE_COP_NOT_COMPLETED)
     end
 end
 

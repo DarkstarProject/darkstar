@@ -2,9 +2,7 @@
 -- Area: Arrapago Reef
 --  MOB: Lamia No.19
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
+mixins = {require("scripts/mixins/weapon_break")}
 
 function onMobEngaged(mob,target)
     local mobId = mob:getID();

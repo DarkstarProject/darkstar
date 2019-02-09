@@ -95,8 +95,16 @@ void LoadAutomaton(CCharEntity* PChar)
             setHead(PChar,tempEquip.Head);
             setFrame(PChar, tempEquip.Frame);
             LoadAutomatonStats(PChar);
+
+            // Always load Optic Fiber and Optic Fiber II first
             for (int i = 0; i < 12; i++)
-                setAttachment(PChar, i, tempEquip.Attachments[i]);
+                if (tempEquip.Attachments[i] == 198 || tempEquip.Attachments[i] == 206)
+                    setAttachment(PChar, i, tempEquip.Attachments[i]);
+
+            for (int i = 0; i < 12; i++)
+                if (tempEquip.Attachments[i] != 198 && tempEquip.Attachments[i] != 206)
+                    setAttachment(PChar, i, tempEquip.Attachments[i]);
+
             PChar->PAutomaton->UpdateHealth();
             PChar->PAutomaton->health.hp = PChar->PAutomaton->GetMaxHP();
             PChar->PAutomaton->health.mp = PChar->PAutomaton->GetMaxMP();
@@ -595,6 +603,36 @@ void CheckAttachmentsForManeuver(CCharEntity* PChar, EFFECT maneuver, bool gain)
                         luautils::OnManeuverGain(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
                     else
                         luautils::OnManeuverLose(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount(maneuver));
+                }
+            }
+        }
+    }
+}
+
+void UpdateAttachments(CCharEntity* PChar)
+{
+    CAutomatonEntity* PAutomaton = PChar->PAutomaton;
+
+    if (PAutomaton)
+    {
+        for (uint8 i = 0; i < 12; i++)
+        {
+            if (PAutomaton->getAttachment(i) != 0)
+            {
+                CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + PAutomaton->getAttachment(i));
+
+                if (PAttachment)
+                {
+                    int32 maneuver = EFFECT_FIRE_MANEUVER;
+                    for (int i = 0; i < 8; i++)
+                    {
+                        if (PAttachment->getElementSlots() >> (i * 4) & 0xF)
+                        {
+                            maneuver += i;
+                            break;
+                        }
+                    }
+                    luautils::OnUpdateAttachment(PAutomaton, PAttachment, PChar->StatusEffectContainer->GetEffectsCount((EFFECT)maneuver));
                 }
             }
         }

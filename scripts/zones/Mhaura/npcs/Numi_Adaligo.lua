@@ -3,9 +3,6 @@
 --  NPC: Numi Adaligo
 --  Involved In Quest: RYCHARDE_THE_CHEF
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
 require("scripts/globals/settings");
 -----------------------------------
 

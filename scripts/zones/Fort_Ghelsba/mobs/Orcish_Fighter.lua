@@ -2,15 +2,15 @@
 -- Area: Fort Ghelsba
 --  MOB: Orcish Fighter
 -----------------------------------
-require("scripts/zones/Fort_Ghelsba/MobIDs");
+local ID = require("scripts/zones/Fort_Ghelsba/IDs");
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    if (mob:getID() == (ORCISH_PANZER + 1)) then
-        DisallowRespawn(ORCISH_PANZER, false);
-        GetMobByID(ORCISH_PANZER):setRespawnTime(math.random(3600,4200)); -- 60 to 70 min
+    if (mob:getID() == (ID.mob.ORCISH_PANZER + 1)) then
+        DisallowRespawn(ID.mob.ORCISH_PANZER, false);
+        GetMobByID(ID.mob.ORCISH_PANZER):setRespawnTime(math.random(3600,4200)); -- 60 to 70 min
     end
 end;

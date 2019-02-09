@@ -3,13 +3,16 @@
 -- Zone: Port_Jeuno (246)
 --
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs");
-require("scripts/globals/settings");
+local ID = require("scripts/zones/Port_Jeuno/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/settings")
+require("scripts/globals/chocobo")
+require("scripts/globals/quests")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -24,16 +27,16 @@ function onZoneIn(player,prevZone)
     end
 
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if (prevZone == 223) then
+        if (prevZone == dsp.zone.SAN_DORIA_JEUNO_AIRSHIP) then
             cs = 10018;
             player:setPos(-87.000, 12.000, 116.000, 128);
-        elseif (prevZone == 224) then
+        elseif (prevZone == dsp.zone.BASTOK_JEUNO_AIRSHIP) then
             cs = 10020;
             player:setPos(-50.000, 12.000, -116.000, 0);
-        elseif (prevZone == 225) then
+        elseif (prevZone == dsp.zone.WINDURST_JEUNO_AIRSHIP) then
             cs = 10019;
             player:setPos(16.000, 12.000, -117.000, 0);
-        elseif (prevZone == 226) then
+        elseif (prevZone == dsp.zone.KAZHAM_JEUNO_AIRSHIP) then
             cs = 10021;
             player:setPos(-24.000, 12.000, 116.000, 128);
         else
@@ -82,7 +85,7 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,226);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 324) then
         player:addQuest(ABYSSEA, A_JOURNEY_BEGINS);
     end

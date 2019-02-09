@@ -4,11 +4,8 @@
 --
 -- Quest NPC for "The Postman Always KOs Twice"
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -111,7 +108,3 @@ function onEventFinish(player,csid,option)
         player:addFame(WINDURST,50);
     end
 end;
-
-
-
-

@@ -3,10 +3,6 @@
 --  NPC: Wafeeyah
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -20,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

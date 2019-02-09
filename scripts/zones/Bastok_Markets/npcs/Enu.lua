@@ -4,9 +4,7 @@
 -- Type: Quest NPC
 -- !pos -253.673 -13 -92.326 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/weather");
 require("scripts/globals/quests");
 -----------------------------------
@@ -49,6 +47,6 @@ function onEventFinish(player,csid,option)
         player:setVar("WishUponAStar_Status",0);
         player:addFame(BASTOK,50);
         player:addItem(1236,4); -- Reward for quest completion: Cactus Stems x 4
-        player:messageSpecial(ITEM_OBTAINED,1236);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,1236);
     end
 end;

@@ -3,10 +3,6 @@
 -- Machu-Kuchu
 -- Warps players to Windurst Walls
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -23,4 +19,3 @@ function onEventFinish(player,csid,option)
         player:setPos(65.534,-7.5,-49.935,59,239); -- Retail packet capped
     end
 end;
-

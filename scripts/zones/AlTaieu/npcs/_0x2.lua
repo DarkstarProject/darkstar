@@ -3,10 +3,7 @@
 --  NPC: Rubious Crystal (West Tower)
 -- !pos -683.709 -6.250 -222.142 33
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -20,14 +17,14 @@ function onTrigger(player,npc)
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]WestTower") == 0
         and player:getVar("[SEA][AlTieu]WestTowerCS") == 0
-        and not GetMobByID(AERNS_TOWER_WEST+0):isSpawned()
-        and not GetMobByID(AERNS_TOWER_WEST+1):isSpawned()
-        and not GetMobByID(AERNS_TOWER_WEST+2):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_WEST+0):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_WEST+1):isSpawned()
+        and not GetMobByID(ID.mob.AERNS_TOWER_WEST+2):isSpawned()
     ) then
-        player:messageSpecial(OMINOUS_SHADOW);
-        SpawnMob(AERNS_TOWER_WEST+0):updateClaim(player);
-        SpawnMob(AERNS_TOWER_WEST+1):updateClaim(player);
-        SpawnMob(AERNS_TOWER_WEST+2):updateClaim(player);
+        player:messageSpecial(ID.text.OMINOUS_SHADOW);
+        SpawnMob(ID.mob.AERNS_TOWER_WEST+0):updateClaim(player);
+        SpawnMob(ID.mob.AERNS_TOWER_WEST+1):updateClaim(player);
+        SpawnMob(ID.mob.AERNS_TOWER_WEST+2):updateClaim(player);
 
     elseif (
             player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
@@ -38,7 +35,7 @@ function onTrigger(player,npc)
         player:startEvent(162);
 
     else
-        player:messageSpecial(NOTHING_OF_INTEREST);
+        player:messageSpecial(ID.text.NOTHING_OF_INTEREST);
     end
 end;
 

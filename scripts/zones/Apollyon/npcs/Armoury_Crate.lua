@@ -2,12 +2,9 @@
 -- Area: Apollyon
 -- NPC:  Armoury Crate
 -----------------------------------
-package.loaded["scripts/zones/Apollyon/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Apollyon/TextIDs");
 require("scripts/globals/limbus");
 -----------------------------------
 

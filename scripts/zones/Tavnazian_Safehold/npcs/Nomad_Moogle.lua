@@ -1,27 +1,20 @@
 -----------------------------------
---
---     Nomad Moogle
---
+-- Area: Tavnazian Safehold
+--  NPC: Nomad Moogle
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:showText(npc,NOMAD_MOOGLE_DIALOG);
-    player:sendMenu(1);
-end;
+    player:showText(npc, ID.text.NOMAD_MOOGLE_DIALOG)
+    player:sendMenu(1)
+end
 
 function onEventUpdate(player,csid,option)
---print("onEventUpdate");
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("onEventFinish");
-end;
-
+end

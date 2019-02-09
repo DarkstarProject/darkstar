@@ -3,18 +3,16 @@
 -- Zone: Monastic_Cavern (150)
 --
 -----------------------------------
-package.loaded["scripts/zones/Monastic_Cavern/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Monastic_Cavern/TextIDs")
-require("scripts/zones/Monastic_Cavern/MobIDs")
+local ID = require("scripts/zones/Monastic_Cavern/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(ORCISH_OVERLORD)
-    GetMobByID(ORCISH_OVERLORD):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.ORCISH_OVERLORD)
+    GetMobByID(ID.mob.ORCISH_OVERLORD):setRespawnTime(math.random(900, 10800))
 
-    UpdateTreasureSpawnPoint(MONASTIC_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)

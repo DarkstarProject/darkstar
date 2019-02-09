@@ -6,9 +6,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobFight(mob, target)
 
     local battletime = mob:getBattleTime();
@@ -43,3 +40,7 @@ function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.HYDRA_HEADHUNTER);
 
 end;
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(172800 + math.random(0, 24) * 3600) -- 48 to 72 hours, in 1 hour windows
+end

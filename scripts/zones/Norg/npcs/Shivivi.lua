@@ -4,12 +4,9 @@
 -- Starts Quest: Secret of the Damp Scroll
 -- !pos 68.729 -6.281 -6.432 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/pathfind");
 
 local path =
@@ -92,4 +89,3 @@ function onEventFinish(player,csid,option,npc)
 
     npc:wait(0);
 end;
-

@@ -3,22 +3,18 @@
 --  NPC: Beastmen_s_Banner
 -- !pos -305.061 16.172 -438.904 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Yuhtunga_Jungle/TextIDs");
+local ID = require("scripts/zones/Yuhtunga_Jungle/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:messageSpecial(BEASTMEN_BANNER);
-end;
+    player:messageSpecial(ID.text.BEASTMEN_BANNER)
+end
 
 function onEventUpdate(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end
 
 function onEventFinish(player,csid,option)
-    -- printf("OPTION: %u",option);
-end;
+end

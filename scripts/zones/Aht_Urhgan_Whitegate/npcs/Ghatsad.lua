@@ -4,13 +4,11 @@
 -- Standard Info NPC
 -- Involved in quest: No String Attached
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
 require("scripts/globals/common")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/globals/status")
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/keyitems")
 -----------------------------------
 
@@ -341,7 +339,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+2)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_VALOREDGE_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_VALOREDGE_UNLOCK)
         elseif attachmentStatus == 9 then
             player:unlockAttachment(8226)
             player:unlockAttachment(8195)
@@ -349,7 +347,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+4)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_SHARPSHOT_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SHARPSHOT_UNLOCK)
         elseif attachmentStatus == 10 then
             player:unlockAttachment(8227)
             player:unlockAttachment(8196)
@@ -357,7 +355,7 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+8)
             player:setVar("PUP_AttachmentReady", 0)
-            player:messageSpecial(AUTOMATON_STORMWAKER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_STORMWAKER_UNLOCK)
         end
     elseif csid == 900 then
         player:setVar("PUP_AttachmentStatus", 11)
@@ -373,14 +371,14 @@ function onEventFinish(player,csid,option)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentReady", 0)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+16)
-            player:messageSpecial(AUTOMATON_SOULSOOTHER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SOULSOOTHER_UNLOCK)
         elseif attachmentStatus == 13 then
             player:unlockAttachment(8198)
             player:setVar("PUP_AttachmentStatus", 0)
             player:setVar("PUP_Attachments", attachments+1)
             player:setVar("PUP_AttachmentReady", 0)
             player:setVar("PUP_AttachmentUnlock", unlockedAttachments+32)
-            player:messageSpecial(AUTOMATON_SPIRITREAVER_UNLOCK)
+            player:messageSpecial(ID.text.AUTOMATON_SPIRITREAVER_UNLOCK)
         end
     end
 end

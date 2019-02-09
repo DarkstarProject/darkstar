@@ -4,11 +4,9 @@
 -- Type: Warp NPC
 -- !pos -292.779 6.999 -263.153 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
-require("scripts/zones/Oldton_Movalpolos/TextIDs");
+local ID = require("scripts/zones/Oldton_Movalpolos/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,7 +37,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 55 and option == 1) then
         player:addKeyItem(dsp.ki.SHAFT_GATE_OPERATING_DIAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHAFT_GATE_OPERATING_DIAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHAFT_GATE_OPERATING_DIAL);
         player:tradeComplete();
     elseif (csid == 55 and option == 0) then
         player:tradeComplete();

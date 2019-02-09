@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -21,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -35,4 +33,3 @@ function onEventFinish(player,csid,option)
         player:setVar("dancerTailorCS", 2);
     end;
 end;
-

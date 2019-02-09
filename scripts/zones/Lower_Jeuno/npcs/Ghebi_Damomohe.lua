@@ -5,16 +5,14 @@
 -- Starts and Finishes Quest: Tenshodo Membership
 -- !pos 16 0 -5 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
-package.loaded["scripts/globals/settings"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 require("scripts/globals/npc_util")
 require("scripts/globals/titles")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) ~= QUEST_COMPLETED and npcUtil.tradeHas(trade, 548) then
@@ -77,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade()
         player:addGil(500 * GIL_RATE)
         player:addKeyItem(dsp.ki.PSOXJA_PASS)
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.PSOXJA_PASS)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.PSOXJA_PASS)
         player:setVar("PXPassGetGems",0)
     elseif csid == 54 then
         player:setVar("PXPassGetGems",1)

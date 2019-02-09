@@ -3,9 +3,7 @@
 --  NPC: Lokpix
 -- Starts Quest "Open Sesame"
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs");
+local ID = require("scripts/zones/Eastern_Altepa_Desert/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -41,7 +39,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 22) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.LOADSTONE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LOADSTONE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LOADSTONE);
         player:addFame(RABAO,30);
         player:completeQuest(OUTLANDS,OPEN_SESAME);
     end

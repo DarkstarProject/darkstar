@@ -3,10 +3,8 @@
 -- Zone: Cloister_of_Gales (201)
 --
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Gales/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Gales/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Gales/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

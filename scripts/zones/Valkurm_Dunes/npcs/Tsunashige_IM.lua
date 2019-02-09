@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos 139.394 -7.885 100.384 103
 -----------------------------------
-package.loaded["scripts/zones/Valkurm_Dunes/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Valkurm_Dunes/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

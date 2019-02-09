@@ -1,24 +1,21 @@
 -----------------------------------
 -- Area: Meriphataud Mountains [S]
 --  NPC: ???
--- !pos 757 -16 -446
+-- !pos 757 -16 -446 97
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
-require("scripts/zones/Meriphataud_Mountains_[S]/MobIDs");
+local ID = require("scripts/zones/Meriphataud_Mountains_[S]/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (npcUtil.tradeHas(trade, 2566) and not GetMobByID(BLOODLAPPER):isSpawned()) then -- Gnat Pellets
+    if (npcUtil.tradeHas(trade, 2566) and not GetMobByID(ID.mob.BLOODLAPPER):isSpawned()) then -- Gnat Pellets
         player:confirmTrade();
-        SpawnMob(BLOODLAPPER):updateClaim(player);
+        SpawnMob(ID.mob.BLOODLAPPER):updateClaim(player);
     end
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

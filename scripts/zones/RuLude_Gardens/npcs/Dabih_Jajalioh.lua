@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- TODO: Add support for occasional stock.
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs")
+local ID = require("scripts/zones/RuLude_Gardens/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -36,7 +34,7 @@ function onTrigger(player,npc)
         --]]
     }
 
-    player:showText(npc, DABIHJAJALIOH_SHOP_DIALOG)
+    player:showText(npc, ID.text.DABIHJAJALIOH_SHOP_DIALOG)
     dsp.shop.general(player, stock, JEUNO)
 end
 
@@ -45,4 +43,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

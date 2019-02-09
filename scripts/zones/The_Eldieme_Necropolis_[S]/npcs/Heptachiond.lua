@@ -4,9 +4,6 @@
 -- Starts and Finishes Quest: REQUIEM_FOR_THE_DEPARTED
 -- !pos 256 -32 20 175
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")

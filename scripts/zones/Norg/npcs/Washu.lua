@@ -5,9 +5,6 @@
 -- Starts and finishes Quest: Stop Your Whining
 -- !pos 49 -6 15 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/npc_util");
 require("scripts/globals/quests");

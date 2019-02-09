@@ -40,6 +40,7 @@
 #define MAX_ITEMID  32768
 #define MAX_DROPID  5000
 #define MAX_LOOTID  1300
+#define MAX_DROP_GROUP_ID  255
 
 enum DROP_TYPE
 {
@@ -51,11 +52,23 @@ enum DROP_TYPE
 
 struct DropItem_t
 {
+    DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate);
     uint16 ItemID;
-    uint8  DropType;
     uint16 DropRate;
-    uint8  GroupId;
+    uint8 DropType;
+};
+
+struct DropGroup_t
+{
+    DropGroup_t(uint16 GroupRate);
     uint16 GroupRate;
+    std::vector<DropItem_t> Items;
+};
+
+struct DropList_t
+{
+    std::vector<DropItem_t> Items;
+    std::vector<DropGroup_t> Groups;
 };
 
 struct LootItem_t
@@ -65,7 +78,6 @@ struct LootItem_t
     uint8  LootGroupId;
 };
 
-typedef std::vector<DropItem_t> DropList_t;
 typedef std::vector<LootItem_t> LootList_t;
 
 /************************************************************************

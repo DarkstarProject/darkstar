@@ -2,13 +2,13 @@
 -- Area: Mount Zhayolm
 --  MOB: Wamoura
 -----------------------------------
-require("scripts/zones/Mount_Zhayolm/MobIDs");
-require("scripts/globals/mobs");
+local ID = require("scripts/zones/Mount_Zhayolm/IDs")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob)
-end;
+end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,IGNAMOTH_PH,10,7200); -- 2 hours
-end;
+    dsp.mob.phOnDespawn(mob,ID.mob.IGNAMOTH_PH,10,7200) -- 2 hours
+end

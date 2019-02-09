@@ -3,9 +3,6 @@
 --  NPC: Pakh Jatalfih
 -- !pos 34 8 -35 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------

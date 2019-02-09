@@ -5,9 +5,7 @@
 -- Involved in Quest: It's Raining Mannequins!
 -- !pos -138 12 250 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/crafting");
 require("scripts/globals/status");
 -----------------------------------
@@ -39,10 +37,10 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 621 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4098);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4098);
         else
             player:addItem(4098);
-            player:messageSpecial(ITEM_OBTAINED,4098); -- Wind Crystal
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4098); -- Wind Crystal
             signupGuild(player, guild.woodworking);
         end
     end

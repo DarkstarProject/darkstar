@@ -3,10 +3,6 @@
 --  NPC: Urubero-Mohbero
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Heavens_Tower/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -20,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

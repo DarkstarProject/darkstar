@@ -3,12 +3,10 @@
 --  NPC: Hari Pakhroib
 -- Starts and Finishes Quest: Greetings to the Guardian
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,7 +49,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 71) then
         if (Pamamas == 1) then --First completion of quest; set title, complete quest, and give higher fame
             player:addGil(GIL_RATE*5000);
-            player:messageSpecial(GIL_OBTAINED, 5000);
+            player:messageSpecial(ID.text.GIL_OBTAINED, 5000);
             player:completeQuest(OUTLANDS,GREETINGS_TO_THE_GUARDIAN);
             player:addFame(WINDURST,100);
             player:addTitle(dsp.title.KAZHAM_CALLER);
@@ -59,13 +57,10 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
         elseif (Pamamas == 2) then --Repeats of quest; give only gil and less fame
             player:addGil(GIL_RATE*5000);
-            player:messageSpecial(GIL_OBTAINED, 5000);
+            player:messageSpecial(ID.text.GIL_OBTAINED, 5000);
             player:addFame(WINDURST,30);
             player:setVar("PamamaVar",0);
             player:needToZone(true);
         end
     end
 end;
-
-
-

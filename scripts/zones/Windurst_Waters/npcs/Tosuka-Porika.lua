@@ -6,14 +6,11 @@
 --  Involved in Missions: Windurst 2-1, Windurst 7-1, Windurst 8-2, CoP 3-3
 -- !pos -26 -6 103 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 
@@ -89,8 +86,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 55) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+32);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addVar("QuestHatInHand_var", 32);
+        player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 160) then
         player:setVar("MissionStatus",1);
     elseif (csid == 168) then
@@ -103,13 +100,13 @@ function onEventFinish(player,csid,option)
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         player:setVar("MissionStatus",1);
     elseif (csid == 724) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 801) then
         player:addKeyItem(dsp.ki.OPTISTERY_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OPTISTERY_RING);
         if (player:hasKeyItem(dsp.ki.AURASTERY_RING) and player:hasKeyItem(dsp.ki.RHINOSTERY_RING)) then
             player:setVar("MissionStatus",2)
         end

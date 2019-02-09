@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -13 -12 311 115
 -----------------------------------
-package.loaded["scripts/zones/West_Sarutabaruta/TextIDs"] = nil
------------------------------------
-require("scripts/zones/West_Sarutabaruta/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

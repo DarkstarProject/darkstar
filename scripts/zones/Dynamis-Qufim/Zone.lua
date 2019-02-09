@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Qufim
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Qufim/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Qufim/TextIDs");
+local ID = require("scripts/zones/Dynamis-Qufim/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

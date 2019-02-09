@@ -4,11 +4,9 @@
 -- Type: Leathercraft Synthesis Image Support
 -- !pos -191.050 -2.15 12.285 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 651 and option == 1) then
-        player:messageSpecial(LEATHER_SUPPORT,0,5,1);
+        player:messageSpecial(ID.text.LEATHER_SUPPORT,0,5,1);
         player:addStatusEffect(dsp.effect.LEATHERCRAFT_IMAGERY,1,0,120);
     end
 end;

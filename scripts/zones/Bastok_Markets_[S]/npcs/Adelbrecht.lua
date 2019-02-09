@@ -14,14 +14,12 @@
 -- 361 = 361 = After asking in CS 359
 -- Todo: medal loss from nation switching. Since there is no rank-up yet, this isn't so important for now.
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -60,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 139 and option == 1) then
         player:addKeyItem(dsp.ki.BATTLE_RATIONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BATTLE_RATIONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BATTLE_RATIONS);
         player:addQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
         player:setVar("BLUE_R_LETTER_USED",1);
         player:delKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
@@ -79,10 +77,10 @@ function onEventFinish(player,csid,option)
                 player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE);
                 player:addItem(15754);
                 player:completeQuest(CRYSTAL_WAR,THE_FIGHTING_FOURTH);
-                player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
-                player:messageSpecial(ITEM_OBTAINED, 15754);
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, 15754);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 15754);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 15754);
             end
         else
             player:setCampaignAllegiance(2);

@@ -26,15 +26,12 @@ function onUseAbility(player, target, ability, action)
         player:getZPos() > -85 and player:getZPos() < -75 and -- Z match
         math.random(100) < 50) then
 
-        local ITEM_CANNOT_BE_OBTAINED = 6564
-        local ITEM_OBTAINED = 6569
-
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, oldEarring)
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED, oldEarring)
             return
         else
             player:addItem(oldEarring)
-            player:messageSpecial(ITEM_OBTAINED, oldEarring)
+            player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED, oldEarring)
         end
 
     else

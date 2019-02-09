@@ -3,30 +3,16 @@
 -- Zone: Dynamis-Valkurm
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Valkurm/TextIDs"] = nil;
------------------------------------
-
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Valkurm/TextIDs");
-
------------------------------------
---  onInitialize
+local ID = require("scripts/zones/Dynamis-Valkurm/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
 end;
 
------------------------------------
--- onConquestUpdate
------------------------------------
-
 function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
 end;
-
------------------------------------
--- onZoneIn
------------------------------------
 
 function onZoneIn(player,prevZone)
     local cs = 0;
@@ -59,10 +45,6 @@ function onZoneIn(player,prevZone)
     player:setVar("enteringDynamis",0);
     return cs;
 end;
-
------------------------------------
--- onRegionEnter
------------------------------------
 
 function onRegionEnter(player,region)
 end;

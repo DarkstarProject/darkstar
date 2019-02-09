@@ -4,9 +4,7 @@
 -- Type: Guildworker's Union Representative
 -- !pos -179.458 -1 15.857 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
 require("scripts/globals/quests");
@@ -36,44 +34,44 @@ local keyitems = {
 
 local items = {
     [0] = {
-        id = 15448, -- Tanner's Belt
-        rank = 3,
-        cost = 10000
-    },
-    [1] = {
-        id = 14832, -- Tanner's Gloves
-        rank = 5,
-        cost = 70000
-    },
-    [2] = {
-        id = 14396, -- Tanner's Apron
-        rank = 7,
-        cost = 100000
-    },
-    [3] = {
         id = 202, -- Golden Fleece
         rank = 9,
         cost = 150000
     },
+    [1] = {
+        id = 15448, -- Tanner's Belt
+        rank = 3,
+        cost = 10000
+    },
+    [2] = {
+        id = 14832, -- Tanner's Gloves
+        rank = 5,
+        cost = 70000
+    },
+    [3] = {
+        id = 14396, -- Tanner's Apron
+        rank = 7,
+        cost = 100000
+    },
     [4] = {
+        id = 3329, -- Tanners' Emblem
+        rank = 9,
+        cost = 15000
+    },
+    [5] = {
         id = 339, -- Tanner's Signboard
         rank = 9,
         cost = 200000
     },
-    [5] = {
+    [6] = {
         id = 15823, -- Tanner's Ring
         rank = 6,
         cost = 80000
     },
-    [6] = {
+    [7] = {
         id = 3668, -- Hide Stretcher
         rank = 7,
         cost = 50000
-    },
-    [7] = {
-        id = 3329, -- Tanners' Emblem
-        rank = 9,
-        cost = 15000
     }
 };
 
@@ -84,7 +82,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     else
         unionRepresentativeTrade(player, npc, trade, 691, 5);
@@ -105,6 +103,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 690) then
         unionRepresentativeTriggerFinish(player, option, target, 5, "guild_leathercraft", keyitems, items);
     elseif (csid == 691) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

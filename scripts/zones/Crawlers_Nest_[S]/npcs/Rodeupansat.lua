@@ -4,9 +4,6 @@
 -- Starts and Finishes Quest: EVIL_AT_THE_INLET
 -- !pos 129 -34 26 171
 -----------------------------------
-package.loaded["scripts/zones/Crawlers_Nest_[S]/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Crawlers_Nest_[S]/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")

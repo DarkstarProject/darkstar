@@ -5,16 +5,14 @@
 -- Confirmed shop stock, August 2013
 -----------------------------------
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,TAAJIJI_SHOP_DIALOG);
+    player:showText(npc,ID.text.TAAJIJI_SHOP_DIALOG);
 
     stock = {
         4411,   756,1,     --Dhalmel Pie

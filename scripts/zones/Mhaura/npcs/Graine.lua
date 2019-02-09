@@ -3,9 +3,7 @@
 --  NPC: Graine
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Mhaura/TextIDs")
+local ID = require("scripts/zones/Mhaura/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
         12961, 1140,    -- Brass Leggings
     }
 
-    player:showText(npc, GRAINE_SHOP_DIALOG)
+    player:showText(npc, ID.text.GRAINE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

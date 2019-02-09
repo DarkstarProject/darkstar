@@ -3,9 +3,7 @@
 --  NPC: Mejuone
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -19,7 +17,7 @@ function onTrigger(player,npc)
         17307, 9,    -- Dart
     }
 
-    player:showText(npc, MEJUONE_SHOP_DIALOG)
+    player:showText(npc, ID.text.MEJUONE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -28,4 +26,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

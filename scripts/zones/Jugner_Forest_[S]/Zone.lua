@@ -3,13 +3,15 @@
 -- Zone: Jugner_Forest_[S] (82)
 --
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
+local ID = require("scripts/zones/Jugner_Forest_[S]/IDs")
+require("scripts/globals/chocobo")
+require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.LOGGING)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)

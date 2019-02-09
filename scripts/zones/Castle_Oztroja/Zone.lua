@@ -3,23 +3,21 @@
 -- Zone: Castle_Oztroja (151)
 --
 -----------------------------------
-package.loaded["scripts/zones/Castle_Oztroja/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Castle_Oztroja/TextIDs")
-require("scripts/zones/Castle_Oztroja/MobIDs")
+local CASTLE_OZTROJA = require("scripts/zones/Castle_Oztroja/globals")
+local ID = require("scripts/zones/Castle_Oztroja/IDs")
 require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(YAGUDO_AVATAR)
-    GetMobByID(YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800))
+    UpdateNMSpawnPoint(ID.mob.YAGUDO_AVATAR)
+    GetMobByID(ID.mob.YAGUDO_AVATAR):setRespawnTime(math.random(900, 10800))
 
-    Oz_handleSet = math.random(0,8)
-    Oz_passwordSet = math.random(0,8)
+    CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
+    CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
 
-    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(OZTROJA_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -39,12 +37,11 @@ end
 
 function onGameHour(zone)
     local VanadielHour = VanadielHour()
-    if VanadielHour % 24 == 0 then -- Change handles and passwords every game day
-        Oz_handleSet = math.random(0,8)
-        Oz_passwordSet = math.random(0,8)
-        for i,v in pairs(OZ_HANDLE_TABLE[Oz_handleSet]) do
-            GetNPCByID(i):setAnimation(v)
-        end
+
+    -- every game day ...
+    if VanadielHour % 24 == 0 then
+        CASTLE_OZTROJA.pickNewCombo() -- update combination for brass door on floor 2
+        CASTLE_OZTROJA.pickNewPassword() -- update password for trap door on floor 4
     end
 end
 

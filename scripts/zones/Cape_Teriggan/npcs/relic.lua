@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos 73 4 -174 113
 -----------------------------------
-package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Cape_Teriggan/TextIDs");
+local ID = require("scripts/zones/Cape_Teriggan/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

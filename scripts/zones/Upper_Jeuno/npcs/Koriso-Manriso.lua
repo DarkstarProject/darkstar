@@ -5,16 +5,14 @@
 -- !pos -64.39 1 23.704 244
 --
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -23,4 +21,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

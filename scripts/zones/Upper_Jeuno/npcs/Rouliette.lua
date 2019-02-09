@@ -4,14 +4,12 @@
 -- Starts and Finishes Quest: Candle-making
 -- !pos -24 -2 11 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -40,10 +38,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 37) then
         player:addTitle(dsp.title.BELIEVER_OF_ALTANA);
         player:addKeyItem(dsp.ki.HOLY_CANDLE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.HOLY_CANDLE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.HOLY_CANDLE);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
         player:completeQuest(JEUNO,CANDLE_MAKING);
     end
 end;
-

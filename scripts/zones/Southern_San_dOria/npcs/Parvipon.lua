@@ -4,12 +4,10 @@
 -- Starts and Finishes Quest: The Merchant's Bidding (R)
 -- !pos -169 -1 13 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ MagicFlyer = trade:hasItemQty(532,1);
     if (MagicFlyer == true and count == 1) then
         local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -54,7 +52,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 89) then
         player:tradeComplete();
         player:addGil(GIL_RATE*120);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*120);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*120);
         if (player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
             player:completeQuest(SANDORIA,THE_MERCHANT_S_BIDDING);

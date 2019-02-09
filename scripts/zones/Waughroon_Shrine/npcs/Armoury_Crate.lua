@@ -3,11 +3,8 @@
 -- NPC:  Armoury Crate
 -- Waughroon Shrine Burning Armoury_Crate
 -------------------------------------
-package.loaded["scripts/zones/Waughroon_Shrine/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
-require("scripts/zones/Waughroon_Shrine/TextIDs");
 
 
 function onTrade(player,npc,trade)

@@ -4,18 +4,16 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria), Distant Loyalties
 -- !pos -17 2 10 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -50,16 +48,16 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatSandy"),"WildcatSandy",3,true);
     elseif (csid == 663 and option == 0) then
         player:addKeyItem(dsp.ki.GOLDSMITHING_ORDER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GOLDSMITHING_ORDER);
         player:addQuest(SANDORIA,DISTANT_LOYALTIES);
         player:setVar("DistantLoyaltiesProgress",1);
     elseif (csid == 665) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13585);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13585);
         else
             player:delKeyItem(dsp.ki.MYTHRIL_HEARTS);
             player:addItem(13585,1);
-            player:messageSpecial(ITEM_OBTAINED,13585);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13585);
             player:setVar("DistantLoyaltiesProgress",0);
             player:completeQuest(SANDORIA,DISTANT_LOYALTIES);
         end;

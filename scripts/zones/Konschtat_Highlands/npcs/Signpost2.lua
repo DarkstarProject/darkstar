@@ -3,16 +3,14 @@
 --  NPC: Signpost
 -- !pos 387 32 386 108
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(SIGNPOST2);
+    player:messageSpecial(ID.text.SIGNPOST2);
 end;
 
 function onEventUpdate(player,csid,option)

@@ -3,9 +3,7 @@
 --  NPC: Vattian
 -- Kuzotz Regional Merchant
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.KUZOTZ) ~= dsp.nation.BASTOK then
-        player:showText(npc, VATTIAN_CLOSED_DIALOG)
+        player:showText(npc, ID.text.VATTIAN_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
             4491, 184,    -- Watermelon
         }
 
-        player:showText(npc, VATTIAN_OPEN_DIALOG)
+        player:showText(npc, ID.text.VATTIAN_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

@@ -5,8 +5,6 @@
 -- Involved in Mission: Bastok 7-1
 -- !pos -12 -12 1 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
@@ -14,7 +12,7 @@ require("scripts/globals/settings")
 require("scripts/globals/status")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Metalworks/TextIDs")
+local ID = require("scripts/zones/Metalworks/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.detonator
@@ -117,7 +115,7 @@ function onTrigger(player,npc)
         end
     elseif (currentMission == THE_CRYSTAL_LINE) then
         if (player:hasKeyItem(dsp.ki.C_L_REPORTS)) then
-            player:showText(npc,MISSION_DIALOG_CID_TO_AYAME)
+            player:showText(npc,ID.text.MISSION_DIALOG_CID_TO_AYAME)
         else
             player:startEvent(505)
         end
@@ -151,7 +149,7 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_tenzen_story",1)
     elseif (csid == 892) then
         player:addKeyItem(dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTERS_FROM_ULMIA_AND_PRISHE)
     elseif (csid == 890) then
         player:setVar("PromathiaStatus",0)
         player:setVar("Promathia_CID_timer",0)
@@ -168,6 +166,11 @@ function onEventFinish(player,csid,option)
         checkThreePaths(player)
     elseif (csid == 853) then
         player:setVar("COP_Louverance_s_Path",10)
+        if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 then
+            player:addTitle(dsp.title.TRUE_COMPANION_OF_LOUVERANCE)
+        else
+            player:addTitle(dsp.title.COMPANION_OF_LOUVERANCE)
+        end
         checkThreePaths(player)
     elseif (csid == 852) then
         player:setVar("COP_Louverance_s_Path",7)
@@ -198,7 +201,7 @@ function onEventFinish(player,csid,option)
         player:setVar("darkPuppetCS",1)
     elseif (csid == 503) then
         player:addKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BLUE_ACIDITY_TESTER)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BLUE_ACIDITY_TESTER)
     elseif (csid == 504 or csid == 764) then
         finishMissionTimeline(player,1,csid,option)
     elseif (csid == 505 and option == 0) then
@@ -206,16 +209,16 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount(0) >= 1) then
                 crystal = math.random(4096,4103)
                 player:addItem(crystal)
-                player:messageSpecial(ITEM_OBTAINED, crystal)
+                player:messageSpecial(ID.text.ITEM_OBTAINED, crystal)
                 player:setVar("MissionStatus",1)
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,crystal)
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,crystal)
             end
         end
     elseif (csid == 506 and option == 0) then
         player:tradeComplete()
         player:addKeyItem(dsp.ki.C_L_REPORTS)
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.C_L_REPORTS)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.C_L_REPORTS)
     elseif (csid == 763) then
         player:setVar("MissionStatus",1)
     elseif (csid == 507) then
@@ -225,13 +228,13 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.UNFINISHED_LETTER)
             player:setVar("CidsSecret_Event",0)
             player:addItem(13570)
-            player:messageSpecial(ITEM_OBTAINED,13570) -- Ram Mantle
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13570) -- Ram Mantle
             player:addFame(BASTOK,30)
             player:completeQuest(BASTOK,CID_S_SECRET)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13570)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13570)
         end
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.DETONATOR_LEARNED)
     end
 end

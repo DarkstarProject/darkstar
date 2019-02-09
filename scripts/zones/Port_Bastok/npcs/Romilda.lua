@@ -4,11 +4,9 @@
 -- Involved in Quest: Forever to Hold
 -- Starts & Ends Quest: Till Death Do Us Part
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -53,7 +51,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 129) then
         player:addTitle(dsp.title.QIJIS_RIVAL);
         player:addGil(GIL_RATE*2000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2000);
         player:addFame(BASTOK,160);
         player:completeQuest(BASTOK,TILL_DEATH_DO_US_PART);
     end

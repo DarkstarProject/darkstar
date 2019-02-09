@@ -4,7 +4,7 @@
 -- Involved in Mission: San d'Orian 9-1
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/zones/Batallia_Downs/MobIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 
@@ -18,7 +18,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (player:getCurrentMission(SANDORIA) == BREAKING_BARRIERS and player:getVar("MissionStatus") == 3
-        and GetMobByID(SUPARNA):isDead() and GetMobByID(SUPARNA_FLEDGLING):isDead()
+        and GetMobByID(ID.mob.SUPARNA):isDead() and GetMobByID(ID.mob.SUPARNA_FLEDGLING):isDead()
     ) then
         player:setVar("Mission9-1Kills", 1);
     end

@@ -4,9 +4,6 @@
 -- Type: Quest NPC
 -- !pos -255.709 -13 -91.379 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

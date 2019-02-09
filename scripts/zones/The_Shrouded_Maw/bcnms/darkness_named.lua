@@ -2,10 +2,7 @@
 -- Area: The_Shrouded_Maw
 -- Name: darkness_named
 -----------------------------------
-package.loaded["scripts/zones/The_Shrouded_Maw/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Shrouded_Maw/TextIDs");
-require("scripts/zones/The_Shrouded_Maw/MobIDs");
+local ID = require("scripts/zones/The_Shrouded_Maw/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/status");
 require("scripts/globals/titles");
@@ -14,7 +11,7 @@ require("scripts/globals/titles");
 function onBcnmRegister(player,instance)
     -- "close" all floor tiles
     local inst = player:getBattlefieldID();
-    local tile = DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
+    local tile = ID.npc.DARKNESS_NAMED_TILE_OFFSET + (inst - 1) * 8;
     for i = tile, tile + 7 do
         GetNPCByID(i):setAnimation(dsp.anim.CLOSE_DOOR);
     end

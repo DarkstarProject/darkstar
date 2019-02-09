@@ -4,6 +4,7 @@
 -- Involved in Mission: Secrets of Worship
 -- !pos 45.500 -1.500 10.000 28
 -----------------------------------
+local ID = require("scripts/zones/Sacrarium/IDs")
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -19,7 +20,7 @@ function onTrigger(player,npc)
             player:startEvent(110);
         end
     else
-        player:messageSpecial(CANNOT_OPEN_SIDE);
+        player:messageSpecial(ID.text.CANNOT_OPEN_SIDE);
     end
     return 1;
 end;

@@ -4,12 +4,10 @@
 --  Involved In Quest: Making Headlines, Hat in Hand
 -- !pos -58 -4 23 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -60,17 +58,14 @@ function onEventFinish(player,csid,option)
     if (csid == 668) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WATERS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WATERS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+1);
     elseif (csid == 60) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+16);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addVar("QuestHatInHand_var", 16);
+        player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 873) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",5);
     elseif (csid == 939) then
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",14,true);
     end
 end;
-
-
-

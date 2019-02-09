@@ -3,13 +3,11 @@
 -- Zone: Talacca_Cove (57)
 --
 -----------------------------------
-package.loaded["scripts/zones/Talacca_Cove/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Talacca_Cove/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Talacca_Cove/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)
@@ -39,7 +37,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,TESTING_THE_WATERS);
         player:delKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN);
         player:addKeyItem(dsp.ki.PERCIPIENT_EYE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERCIPIENT_EYE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERCIPIENT_EYE);
         player:setTitle(dsp.title.TREASURE_TROVE_TENDER);
         player:setVar("AhtUrganStatus", 0);
         player:addMission(TOAU,LEGACY_OF_THE_LOST);

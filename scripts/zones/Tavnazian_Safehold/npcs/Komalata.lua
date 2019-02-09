@@ -3,9 +3,7 @@
 --  NPC: Komalata
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs")
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs")
 require("scripts/globals/missions")
 require("scripts/globals/shop")
 
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
     if player:getCurrentMission(COP) >= SHELTERING_DOUBT then
         table.insert(stock, 625)      -- Apple Vinegar
         table.insert(stock, 91)
-        table.insert(stock, 18214)    -- Black Bread
+        table.insert(stock, 4364)    -- Black Bread
         table.insert(stock, 110)
         table.insert(stock, 610)      -- San d'Orian Flour
         table.insert(stock, 55)
@@ -36,7 +34,7 @@ function onTrigger(player,npc)
         table.insert(stock, 290)
     end
 
-    player:showText(npc, KOMALATA_SHOP_DIALOG)
+    player:showText(npc, ID.text.KOMALATA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -45,4 +43,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

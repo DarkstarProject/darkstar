@@ -354,7 +354,8 @@ namespace charutils
             "campaign,"             // 23
             "playtime,"             // 24
             "campaign_allegiance,"  // 25
-            "isstylelocked "        // 26
+            "isstylelocked,"        // 26
+            "moghancement "         // 27
             "FROM chars "
             "WHERE charid = %u";
 
@@ -432,6 +433,7 @@ namespace charutils
             PChar->SetPlayTime(Sql_GetUIntData(SqlHandle, 24));
             PChar->profile.campaign_allegiance = (uint8)Sql_GetIntData(SqlHandle, 25);
             PChar->setStyleLocked(Sql_GetIntData(SqlHandle, 26) == 1 ? true : false);
+            PChar->SetMoghancement(Sql_GetUIntData(SqlHandle, 27));
         }
 
         LoadSpells(PChar);
@@ -742,7 +744,7 @@ namespace charutils
         fmtQuery = "SELECT sandoria_supply, bastok_supply, windurst_supply, "
             "runic_portal, maw, past_sandoria_tp, "
             "past_bastok_tp, past_windurst_tp "
-            "FROM char_points "
+            "FROM char_unlocks "
             "WHERE charid = %u;";
 
         ret = Sql_Query(SqlHandle, fmtQuery, PChar->id);
@@ -910,7 +912,7 @@ namespace charutils
                         PItem->setSignature(EncodedString);
                     }
 
-                    if (PItem->isType(ITEM_FURNISHING) && PItem->getLocationID() == LOC_MOGSAFE)
+                    if (PItem->isType(ITEM_FURNISHING) && (PItem->getLocationID() == LOC_MOGSAFE || PItem->getLocationID() == LOC_MOGSAFE2))
                     {
                         if (((CItemFurnishing*)PItem)->isInstalled()) // способ узнать, что предмет действительно установлен
                         {
@@ -2207,7 +2209,7 @@ namespace charutils
             {
                 continue;
             }
-        
+
             UnequipItem(PChar, slotID);
         }
         // Unarmed H2H weapon check
@@ -4198,6 +4200,25 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
+    *  Saves character's current moghancement
+    *                                                                       *
+    ************************************************************************/
+
+    void SaveCharMoghancement(CCharEntity* PChar)
+    {
+        const char* Query =
+            "UPDATE chars "
+            "SET moghancement = %u "
+            "WHERE charid = %u;";
+
+        Sql_Query(SqlHandle,
+            Query,
+            PChar->m_moghancementID,
+            PChar->id);
+    }
+
+    /************************************************************************
+    *                                                                       *
     *  Сохраняем текущие уровни профессий персонажа                         *
     *                                                                       *
     ************************************************************************/
@@ -4236,11 +4257,9 @@ namespace charutils
         }
         Sql_Query(SqlHandle, fmtQuery, PChar->jobs.unlocked, PChar->jobs.job[job], PChar->id);
 
-        // Remove the new player flag if we have reached level 5.
-        // Should also remove it based on playtime (180 hours?)
         if (PChar->isNewPlayer() && PChar->jobs.job[job] >= 5)
         {
-            PChar->menuConfigFlags.flags |= NFLAG_NEWPLAYER;
+            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
             PChar->updatemask |= UPDATE_HP;
             SaveMenuConfigFlags(PChar);
         }
@@ -4321,13 +4340,13 @@ namespace charutils
 
     /************************************************************************
     *                                                                       *
-    *  Conquest Point / Nation TP, ...                                      *
+    *  Nation teleports, etc.                                               *
     *                                                                       *
     ************************************************************************/
 
-    void SaveCharPoints(CCharEntity* PChar)
+    void SaveCharUnlocks(CCharEntity* PChar)
     {
-        const char* Query = "UPDATE char_points "
+        const char* Query = "UPDATE char_unlocks "
             "SET sandoria_supply = %u, bastok_supply = %u, windurst_supply = %u, "
             "runic_portal = %u, maw = %u, past_sandoria_tp = %u, "
             "past_bastok_tp = %u, past_windurst_tp = %u "
@@ -4447,17 +4466,23 @@ namespace charutils
 
     void SaveDeathTime(CCharEntity* PChar)
     {
-        uint32 currentTime = (uint32)time(nullptr);
-        PChar->m_DeathCounter += (currentTime - PChar->m_DeathTimestamp);
-        PChar->m_DeathTimestamp = currentTime;
-
         const char* fmtQuery = "UPDATE char_stats SET death = %u WHERE charid = %u LIMIT 1;";
-        Sql_Query(SqlHandle, fmtQuery, PChar->m_DeathCounter, PChar->id);
+        Sql_Query(SqlHandle, fmtQuery, PChar->GetSecondsElapsedSinceDeath(), PChar->id);
     }
 
     void SavePlayTime(CCharEntity* PChar)
     {
-        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", PChar->GetPlayTime(), PChar->id);
+        uint32 playtime = PChar->GetPlayTime();
+
+        Sql_Query(SqlHandle, "UPDATE chars SET playtime = '%u' WHERE charid = '%u' LIMIT 1;", playtime, PChar->id);
+
+        if (PChar->isNewPlayer() && playtime >= 36000)
+        {
+            PChar->menuConfigFlags.flags &= ~NFLAG_NEWPLAYER;
+            PChar->updatemask |= UPDATE_HP;
+
+            SaveMenuConfigFlags(PChar);
+        }
     }
 
     /************************************************************************
@@ -4873,6 +4898,8 @@ namespace charutils
         // remove weakness on homepoint
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_WEAKNESS);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+
+        PChar->SetDeathTimestamp(0);
 
         PChar->health.hp = PChar->GetMaxHP();
         PChar->health.mp = PChar->GetMaxMP();

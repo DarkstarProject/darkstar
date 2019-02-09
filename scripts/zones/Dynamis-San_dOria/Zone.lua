@@ -3,10 +3,8 @@
 -- Zone: Dynamis-San_dOria
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-San_dOria/TextIDs");
+local ID = require("scripts/zones/Dynamis-San_dOria/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

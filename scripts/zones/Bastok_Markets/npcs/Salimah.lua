@@ -4,11 +4,9 @@
 -- Notes: Start & Finishes Quest: Gourmet
 -- !pos -31.687 -6.824 -73.282 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/titles");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/settings");
 -----------------------------------
 
@@ -87,7 +85,7 @@ function onEventFinish(player,csid,option)
         end
 
         player:addGil(gil*GIL_RATE);
-        player:messageSpecial(GIL_OBTAINED,gil*GIL_RATE);
+        player:messageSpecial(ID.text.GIL_OBTAINED,gil*GIL_RATE);
         player:addFame(BASTOK,fame);
         player:addTitle(dsp.title.MOMMYS_HELPER);
         player:needToZone(true);

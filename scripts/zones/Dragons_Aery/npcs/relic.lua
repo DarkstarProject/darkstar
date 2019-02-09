@@ -3,9 +3,7 @@
 --  NPC: <this space intentionally left blank>
 -- !pos -20 -2 61 154
 -----------------------------------
-package.loaded["scripts/zones/Dragons_Aery/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dragons_Aery/TextIDs");
+local ID = require("scripts/zones/Dragons_Aery/IDs");
 require("scripts/globals/npc_util");
 -----------------------------------
 
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
 end;
 
 function onEventUpdate(player,csid,option)

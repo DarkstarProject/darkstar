@@ -4,9 +4,7 @@
 -- Type: Cruor NPC
 -- !pos 132.000,-75.856,-822.000 15
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Konschtat/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Abyssea-Konschtat/TextIDs")
+local ID = require("scripts/zones/Abyssea-Konschtat/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/settings")
 require("scripts/globals/abyssea")
@@ -101,83 +99,83 @@ function onEventFinish(player,csid,option)
     -- Temp items
     elseif option == 65538 then -- Lucid Potion I
         if player:addTempItem(5824,1) then
-            player:messageSpecial(ITEM_OBTAINED,5824)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5824)
             player:delCurrency("cruor", 80)
         end
     elseif option == 131074 then -- Lucid Ether I
         if player:addTempItem(5827,1) then
-            player:messageSpecial(ITEM_OBTAINED,5827)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5827)
             player:delCurrency("cruor", 80)
         end
     elseif option == 196610 then -- Catholicon
         if player:addTempItem(4206,1) then
-            player:messageSpecial(ITEM_OBTAINED,4206)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4206)
             player:delCurrency("cruor", 80)
         end
     elseif option == 262146 then -- Dusty Elixer
         if player:addTempItem(5433,1) then
-            player:messageSpecial(ITEM_OBTAINED,5433)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5433)
             player:delCurrency("cruor", 120)
         end
     elseif option == 327682 then -- Clear Salve I
         if player:addTempItem(5837,1) then
-            player:messageSpecial(ITEM_OBTAINED,5837)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5837)
             player:delCurrency("cruor", 120)
         end
     elseif option == 393218 then -- Stalworts Tonic
         if player:addTempItem(5839,1) then
-            player:messageSpecial(ITEM_OBTAINED,5839)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5839)
             player:delCurrency("cruor", 150)
         end
     elseif option == 458754 then -- Ascetics Tonic
         if player:addTempItem(5841,1) then
-            player:messageSpecial(ITEM_OBTAINED,5841)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5841)
             player:delCurrency("cruor", 150)
         end
     elseif option == 524290 then -- Champion's Tonic
         if player:addTempItem(5843,1) then
-            player:messageSpecial(ITEM_OBTAINED,5843)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5843)
             player:delCurrency("cruor", 150)
         end
     elseif option == 589826 then -- Lucid Potion II
         if player:addTempItem(5825,1) then
-            player:messageSpecial(ITEM_OBTAINED,5825)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5825)
             player:delCurrency("cruor", 200)
         end
     elseif option == 655362 then -- Lucid Potion II
         if player:addTempItem(5828,1) then
-            player:messageSpecial(ITEM_OBTAINED,5828)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,5828)
             player:delCurrency("cruor", 200)
         end
 
     -- Keyitems
     elseif option == 65539 then -- Map of Abyssea - Konschtat
         if not player:hasKeyItem(dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT)
             player:addKeyItem(dsp.ki.MAP_OF_ABYSSEA_KONSCHTAT)
             player:delCurrency("cruor", 3500)
         end
     elseif option == 131075 then -- Ivory Abyssite of Sojourn
         if not player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_SOJOURN) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_SOJOURN)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_SOJOURN)
             player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_SOJOURN)
             player:delCurrency("cruor", 6000)
         end
     elseif option == 196611 then -- Ivory Abyssite of Confluence
         if not player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE)
             player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_CONFLUENCE)
             player:delCurrency("cruor", 4800)
         end
     elseif option == 262147 then -- Ivory Abyssite of Expertise
         if not player:hasKeyItem(dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE)
             player:addKeyItem(dsp.ki.IVORY_ABYSSITE_OF_EXPERTISE)
             player:delCurrency("cruor", 4800)
         end
     elseif option == 458755 then -- Clear Demilune Abyssite
         if not player:hasKeyItem(dsp.ki.CLEAR_DEMILUNE_ABYSSITE) then
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CLEAR_DEMILUNE_ABYSSITE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLEAR_DEMILUNE_ABYSSITE)
             player:addKeyItem(dsp.ki.CLEAR_DEMILUNE_ABYSSITE)
             player:delCurrency("cruor", 300)
         end
@@ -221,11 +219,11 @@ function onEventFinish(player,csid,option)
 
     if ItemID ~= 0 then
         if player:getFreeSlotsCount() >= 1 then
-            player:messageSpecial(ITEM_OBTAINED,ItemID)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,ItemID)
             player:addItem(ItemID,Quantity)
             player:delCurrency("cruor", Price)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,ItemID)
         end
     end
 end

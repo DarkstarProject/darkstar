@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos 58.161 -3.101 -6.695 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
-
 function onTrade(player,npc,trade)
 end;
 
@@ -18,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -5,9 +5,7 @@
 -- Involved in Mission: 2-3 Windurst
 -- !pos -72 -3 34 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -33,15 +31,15 @@ function onTrigger(player,npc)
             if (MissionStatus == 2) then
                 player:startEvent(546);
             elseif (MissionStatus == 6) then
-                player:showText(npc,KASARORO_DIALOG + 7);
+                player:showText(npc,ID.text.KASARORO_DIALOG + 7);
             elseif (MissionStatus == 7) then
                 player:startEvent(547);
             elseif (MissionStatus == 11) then
-                player:showText(npc,KASARORO_DIALOG + 20);
+                player:showText(npc,ID.text.KASARORO_DIALOG + 20);
             end
         elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA) then
             if (MissionStatus == 3) then
-                player:showText(npc,KASARORO_DIALOG);
+                player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 4) then
                 player:startEvent(549);
             elseif (MissionStatus == 5) then
@@ -49,7 +47,7 @@ function onTrigger(player,npc)
             end
         elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
             if (MissionStatus == 8) then
-                player:showText(npc,KASARORO_DIALOG);
+                player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 10) then
                 player:startEvent(551);
             end
@@ -83,7 +81,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:setVar("MissionStatus",11);
     end
 

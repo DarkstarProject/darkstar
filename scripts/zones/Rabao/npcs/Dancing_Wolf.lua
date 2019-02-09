@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -36,4 +34,3 @@ elseif (csid == 104) then
 player:setVar("BASTOK91",4);
 end
 end;
-

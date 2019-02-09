@@ -11,8 +11,8 @@
 -- 2.75      3.50       4
 -----------------------------------
 require("scripts/globals/magic")
-require("scripts/globals/status")
 require("scripts/globals/settings")
+require("scripts/globals/status")
 require("scripts/globals/weaponskills")
 -----------------------------------
 
@@ -27,7 +27,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.ftp100 = 2 params.ftp200 = 3 params.ftp300 = 4.5 -- https://www.bg-wiki.com/bg/Aeolian_Edge
-        params.dex_wsc = 0.4params.int_wsc = 0.4
+        params.dex_wsc = 0.4 params.int_wsc = 0.4
     end
 
     local damage, criticalHit, tpHits, extraHits = doMagicWeaponskill(player, target, wsID, tp, primary, action, params)

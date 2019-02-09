@@ -102,10 +102,6 @@ function triggerLightCutscene( player)
                     player:setVar( "I_CAN_HEAR_A_RAINBOW_Weather", weather);
                 end
             end
-
-            if (cutsceneTriggered) then
-                fixChocoboBug(player);
-            end
         end
     end
 
@@ -135,20 +131,5 @@ end;
 -----------------------------------
 
 function lightCutsceneFinish( player)
-    fixChocoboBug(player);
     player:setVar("I_CAN_HEAR_A_RAINBOW_Weather", 0);
-end;
-
------------------------------------
--- fixChocoboBug
------------------------------------
-
-function fixChocoboBug( player)
-    if (player:hasStatusEffect(dsp.effect.MOUNTED)) then
-        if (player:getAnimation() == 5) then
-            player:setAnimation( 0);
-        elseif (player:getAnimation() == 0) then
-            player:setAnimation( 5);
-        end
-    end
 end;

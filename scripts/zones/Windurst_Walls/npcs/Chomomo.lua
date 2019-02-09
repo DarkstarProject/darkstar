@@ -4,10 +4,7 @@
 -- Type: Standard NPC
 -- !pos -1.262 -11 290.224 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,4 +32,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

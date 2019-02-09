@@ -4,11 +4,8 @@
 -- Type: Standard Info NPC
 -- !pos 28.369 -0.199 30.061 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -31,4 +28,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

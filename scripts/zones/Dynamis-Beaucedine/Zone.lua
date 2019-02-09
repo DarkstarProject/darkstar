@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Beaucedine
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Beaucedine/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Beaucedine/TextIDs");
+local ID = require("scripts/zones/Dynamis-Beaucedine/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,8 +3,6 @@
 --  NPC: Leigon-Moigon
 -- !pos 106.567 -21.249 140.770 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -18,4 +16,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -4,10 +4,8 @@
 -- Involved in Quest "Water Way to Go"
 -- !pos -258 -2 -249 145
 -----------------------------------
-package.loaded["scripts/zones/Giddeus/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Giddeus/TextIDs");
+local ID = require("scripts/zones/Giddeus/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,6 @@ function onEventFinish(player,csid,option)
     if (csid == 55) then
         player:tradeComplete();
         player:addItem(4351);
-        player:messageSpecial(ITEM_OBTAINED,4351);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,4351);
     end
 end;
-

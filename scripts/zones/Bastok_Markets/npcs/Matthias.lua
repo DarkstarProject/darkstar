@@ -4,9 +4,7 @@
 -- Standard Info NPC
 -- Involved in Quest:
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -184,11 +182,11 @@ function onEventFinish(player,csid,option)
         end;
 
         if (player:getFreeSlotsCount() == 0) then --check to see if the player has enough inventory space before rewarding them.
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, dancerAFID);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, dancerAFID);
         else
             local playerGender = player:getGender();
             player:addItem(dancerAFID - playerGender);
-            player:messageSpecial(ITEM_OBTAINED, dancerAFID);
+            player:messageSpecial(ID.text.ITEM_OBTAINED, dancerAFID);
 
             local allPiecesCompleted = 7;
             if (bit.band(completedPieces, allPiecesCompleted) == allPiecesCompleted) then

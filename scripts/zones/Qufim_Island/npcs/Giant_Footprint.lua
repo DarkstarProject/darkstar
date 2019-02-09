@@ -4,22 +4,18 @@
 -- Involved in quest: Regaining Trust
 -- !pos 501 -11 354 126
 -----------------------------------
-package.loaded["scripts/zones/Qufim_Island/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Qufim_Island/TextIDs");
+local ID = require("scripts/zones/Qufim_Island/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(GIGANTIC_FOOTPRINT);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.GIGANTIC_FOOTPRINT)
+end
 
-function onEventUpdate(player,csid,option)
-    -- printf("updateRESULT: %u",option);
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-    -- printf("finishRESULT: %u",option);
-end;
+function onEventFinish(player, csid, option)
+end

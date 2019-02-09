@@ -48,7 +48,7 @@ function onSpellCast(caster,target,spell)
                 end
                 spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB)
                 local duration = math.floor(ELEMENTAL_DEBUFF_DURATION * resist)
-                target:addStatusEffect(dsp.effect.RASP,DOT, 3, ELEMENTAL_DEBUFF_DURATION,FLAG_ERASABLE)
+                target:addStatusEffect(dsp.effect.RASP,DOT, 3, ELEMENTAL_DEBUFF_DURATION)
             end
         end
     end

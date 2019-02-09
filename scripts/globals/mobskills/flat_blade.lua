@@ -20,21 +20,20 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4006) then -- Trion@Qubia_Arena only
-        require("scripts/zones/Qubia_Arena/TextIDs")
-        target:showText(mob,FLAT_LAND)
+        target:showText(mob,zones[dsp.zone.QUBIA_ARENA].text.FLAT_LAND)
     end
 
     local numhits = 1
     local accmod = 1
     local dmgmod = 1.25
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1.1,1.2,1.3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
 
     if (math.random(1,100) < skill:getTP()/3) then
         MobPhysicalStatusEffectMove(mob, target, skill, dsp.effect.STUN, 1, 0, 4)
     end
 
     -- AA EV: Approx 900 damage to 75 DRG/35 THF.  400 to a NIN/WAR in Arhat, but took shadows.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
     return dmg
 end

@@ -6,13 +6,11 @@
 --
 -- Starts and Finishes Quest: Gates of Paradise
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -24,7 +22,7 @@ function onTrigger(player,npc)
     if (player:hasKeyItem(dsp.ki.SCRIPTURE_OF_WATER) == true) then
         player:startEvent(620);
     elseif (gates == QUEST_ACCEPTED) then
-        player:showText(npc, OLBERGIEUT_DIALOG, dsp.ki.SCRIPTURE_OF_WIND);
+        player:showText(npc, ID.text.OLBERGIEUT_DIALOG, dsp.ki.SCRIPTURE_OF_WIND);
     elseif (player:getFameLevel(SANDORIA) >= 2 and gates == QUEST_AVAILABLE) then
         player:startEvent(619);
     else
@@ -41,17 +39,17 @@ function onEventFinish(player,csid,option)
     if (csid == 619 and option == 0) then
         player:addQuest(SANDORIA, GATES_TO_PARADISE);
         player:addKeyItem(dsp.ki.SCRIPTURE_OF_WIND);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.SCRIPTURE_OF_WIND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SCRIPTURE_OF_WIND);
     elseif (csid == 620) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 13584);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 13584);
         else
             player:completeQuest(SANDORIA,GATES_TO_PARADISE);
             player:addFame(SANDORIA,30);
             player:addTitle(dsp.title.THE_PIOUS_ONE);
             player:delKeyItem(dsp.ki.SCRIPTURE_OF_WATER);
             player:addItem(13584,1);
-            player:messageSpecial(ITEM_OBTAINED,13584);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13584);
         end;
     end;
 

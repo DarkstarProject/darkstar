@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -1.139 -2.101 -9.000 221
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Ship_bound_for_Mhaura/TextIDs")
+local ID = require("scripts/zones/Ship_bound_for_Mhaura/IDs")
 require("scripts/globals/shop")
 
 
@@ -23,7 +21,7 @@ function onTrigger(player,npc)
         4151,  800,    -- Echo Drops
     }
 
-    player:showText(npc, CHHAYA_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHHAYA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -32,4 +30,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

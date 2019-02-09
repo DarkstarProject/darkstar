@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Tahrongi
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Tahrongi/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

@@ -1,54 +1,38 @@
 -----------------------------------------
 -- Spell: Blind
 -----------------------------------------
-require("scripts/globals/status")
 require("scripts/globals/magic")
 require("scripts/globals/msg")
+require("scripts/globals/status")
+require("scripts/globals/utils")
 -----------------------------------------
 
-function onMagicCastingCheck(caster,target,spell)
+function onMagicCastingCheck(caster, target, spell)
     return 0
 end
 
-function onSpellCast(caster,target,spell)
-
+function onSpellCast(caster, target, spell)
     -- Pull base stats.
-    local dINT = (caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND)) --blind uses caster INT vs target MND
+    local dINT = caster:getStat(dsp.mod.INT) - target:getStat(dsp.mod.MND) -- blind uses caster INT vs target MND
 
-    -- Base power.  May need more research.
-    local power = math.floor(dINT * 9/40) + 23
-
-    if (power < 5) then
-        power = 5
-    end
-
-    if (power > 50) then
-        power = 50
-    end
-
-    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
-        power = power * 2
-    end
-
+    -- Base power
+    -- Min cap: 5 at -80 dINT
+    -- Max cap: 50 at 120 dINT
+    local basePotency = utils.clamp(math.floor(dINT * 9 / 40 + 23), 5, 50)
+    local potency = calculatePotency(basePotency, spell:getSkillType(), caster, target)
 
     -- Duration, including resistance.  Unconfirmed.
-    local duration = 180
+    local duration = calculateDuration(180, spell:getSkillType(), spell:getSpellGroup(), caster, target)
+
     local params = {}
-    params.diff = nil
-    params.attribute = dsp.mod.INT
-    params.skillType = 35
+    params.diff = dINT
+    params.skillType = dsp.skill.ENFEEBLING_MAGIC
     params.bonus = 0
     params.effect = dsp.effect.BLINDNESS
-    duration = duration * applyResistanceEffect(caster, target, spell, params)
+    local resist = applyResistanceEffect(caster, target, spell, params)
 
-    if (duration >= 60) then --Do it!
-
-    if (caster:hasStatusEffect(dsp.effect.SABOTEUR)) then
-        duration = duration * 2
-    end
-    caster:delStatusEffect(dsp.effect.SABOTEUR)
-
-        if (target:addStatusEffect(dsp.effect.BLINDNESS,power,0,duration)) then
+    if resist >= 0.5 then --Do it!
+        if target:addStatusEffect(params.effect, potency, 0 , duration * resist) then
             spell:setMsg(dsp.msg.basic.MAGIC_ENFEEB_IS)
         else
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)
@@ -56,5 +40,6 @@ function onSpellCast(caster,target,spell)
     else
         spell:setMsg(dsp.msg.basic.MAGIC_RESIST)
     end
-    return dsp.effect.BLINDNESS
+
+    return params.effect
 end

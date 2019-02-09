@@ -4,9 +4,7 @@
 -- Note: Starts Quest "The Fighting Fourth"
 -- !pos 422.461 -48.000 175
 -----------------------------------
-package.loaded["scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/The_Eldieme_Necropolis_[S]/TextIDs");
+local ID = require("scripts/zones/The_Eldieme_Necropolis_[S]/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -37,6 +35,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 7 and option == 0) then
         player:addKeyItem(dsp.ki.BLUE_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BLUE_RECOMMENDATION_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BLUE_RECOMMENDATION_LETTER);
     end
 end;

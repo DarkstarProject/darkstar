@@ -3,10 +3,6 @@
 --  NPC: Anoki
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -31,4 +27,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_optional_CS_Anoki",2);
     end
 end;
-

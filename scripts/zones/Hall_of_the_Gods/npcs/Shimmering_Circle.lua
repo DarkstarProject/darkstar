@@ -4,11 +4,9 @@
 -- Lifts players up to the sky!
 -- !pos 0 -20 147 251
 -----------------------------------
-package.loaded["scripts/zones/Hall_of_the_Gods/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Hall_of_the_Gods/TextIDs");
+local ID = require("scripts/zones/Hall_of_the_Gods/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
          (ZilartProgress == THE_GATE_OF_THE_GODS and ZVar > 0)) then
             player:startEvent(10);
         else
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+            player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         end
     else
         player:startEvent(11);

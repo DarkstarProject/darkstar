@@ -4,9 +4,7 @@
 -- Elshimo Uplands Regional Merchant
 -- !pos 35 -2 2 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs")
+local ID = require("scripts/zones/Port_Bastok/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -15,7 +13,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.ELSHIMOUPLANDS) ~= dsp.nation.BASTOK then
-        player:showText(npc, DHENTEVRYUKOH_CLOSED_DIALOG)
+        player:showText(npc, ID.text.DHENTEVRYUKOH_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             721,   147,    -- Rattan Lumber
         }
 
-        player:showText(npc, DHENTEVRYUKOH_OPEN_DIALOG)
+        player:showText(npc, ID.text.DHENTEVRYUKOH_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

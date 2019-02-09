@@ -4,9 +4,7 @@
 -- Involved in Quests: The Kind Cardian, Can Cardians Cry?
 -- !pos -11 -2 13 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
+local ID = require("scripts/zones/Windurst_Woods/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
@@ -28,7 +26,7 @@ end
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
     local kindCardian = player:getQuestStatus(JEUNO, THE_KIND_CARDIAN)
-    local kindCardianCS = player:getVar("theKindCardianVar");
+    local kindCardianCS = player:getVar("theKindCardianVar")
     local allNewC3000 = player:getQuestStatus(WINDURST, THE_ALL_NEW_C_3000)
     local canCardiansCry = player:getQuestStatus(WINDURST, CAN_CARDIANS_CRY)
 
@@ -158,7 +156,7 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus", 4)
     elseif csid == 621 then
         player:setVar("MissionStatus", 7)
-        player:messageSpecial(KEYITEM_LOST, dsp.ki.LETTER_FROM_ZONPAZIPPA)
+        player:messageSpecial(ID.text.KEYITEM_LOST, dsp.ki.LETTER_FROM_ZONPAZIPPA)
         player:delKeyItem(dsp.ki.LETTER_FROM_ZONPAZIPPA)
 
     -- THE KIND CARDIAN

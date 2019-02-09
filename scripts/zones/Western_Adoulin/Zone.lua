@@ -4,10 +4,8 @@
 -- !zone 256
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,10 +3,10 @@
 --   NM: Soulstealer Skullnix
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,771,2);
-    checkGoVregime(player,mob,772,2);
-    checkGoVregime(player,mob,774,2);
+    dsp.regime.checkRegime(player, mob, 771, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 772, 2, dsp.regime.type.GROUNDS)
+    dsp.regime.checkRegime(player, mob, 774, 2, dsp.regime.type.GROUNDS)
 end;

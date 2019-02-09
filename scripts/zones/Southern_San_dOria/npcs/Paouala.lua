@@ -4,13 +4,11 @@
 -- Starts and Finishes Quest: Sleepless Nights
 -- !pos 158 -6 17 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -49,13 +47,9 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(dsp.title.SHEEPS_MILK_DELIVERER);
         player:addGil(GIL_RATE*5000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*5000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*5000);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,SLEEPLESS_NIGHTS);
     end
 
 end;
-
-
-
-

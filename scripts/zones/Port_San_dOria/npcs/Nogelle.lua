@@ -3,9 +3,7 @@
 --  NPC: Nogelle
 -- Starts Lufet's Lake Salt
 -----------------------------------
-package.loaded["scripts/zones/Port_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_San_dOria/TextIDs");
+local ID = require("scripts/zones/Port_San_dOria/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -18,7 +16,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -58,6 +56,6 @@ function onEventFinish(player,csid,option)
     if (csid == 12 and option == 1) then
         player:addQuest(SANDORIA,LUFET_S_LAKE_SALT);
     elseif (csid == 11) then
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*600);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*600);
     end
 end;

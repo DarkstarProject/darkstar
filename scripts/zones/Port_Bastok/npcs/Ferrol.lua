@@ -4,12 +4,10 @@
 -- Starts Quest: Trial Size Trial by Earth
 -- !pos 33.708 6.499 -39.425 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/quests");
 require("scripts/globals/teleports");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,19 +49,19 @@ function onEventFinish(player,csid,option)
 
     if (csid == 297 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
         else
             player:setVar("TrialSizeEarth_date",0)
             player:addQuest(BASTOK,TRIAL_SIZE_TRIAL_BY_EARTH);
             player:addItem(1547);
-            player:messageSpecial(ITEM_OBTAINED,1547);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1547);
         end
     elseif (csid == 301 and option == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1547); --Mini tuning fork
         else
             player:addItem(1547);
-            player:messageSpecial(ITEM_OBTAINED,1547);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,1547);
         end
     elseif (csid == 298 and option == 1) then
         dsp.teleport.to(player, dsp.teleport.id.CLOISTER_OF_TREMORS);

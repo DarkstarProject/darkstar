@@ -4,9 +4,6 @@
 -- Type: Border Conquest Guards
 -- !pos -133.678 -22.517 112.224 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Xarcabard/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

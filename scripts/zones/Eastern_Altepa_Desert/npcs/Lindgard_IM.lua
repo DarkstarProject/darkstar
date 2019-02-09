@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos -258.041 7.473 -254.527 114
 -----------------------------------
-package.loaded["scripts/zones/Eastern_Altepa_Desert/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Eastern_Altepa_Desert/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

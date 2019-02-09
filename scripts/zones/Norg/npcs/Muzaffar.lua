@@ -5,9 +5,7 @@
 -- Quests: Black Market
 -- !pos 16.678, -2.044, -14.600 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 -----------------------------------
@@ -47,7 +45,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(NORG,BLACK_MARKET);
     elseif (csid == 17) then
         player:addGil(GIL_RATE*1500);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end
@@ -56,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:startEvent(20);
     elseif (csid == 18) then
         player:addGil(GIL_RATE*2000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*2000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*2000);
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end
@@ -65,7 +63,7 @@ function onEventFinish(player,csid,option)
         player:startEvent(20);
     elseif (csid == 19) then
         player:addGil(GIL_RATE*3000);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*3000);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*3000);
         if (player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_ACCEPTED) then
             player:completeQuest(NORG,BLACK_MARKET);
         end

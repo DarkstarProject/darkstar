@@ -3,9 +3,7 @@
 --  NPC: Capucine
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
         12985, 1495,    -- Holly Clogs
     }
 
-    player:showText(npc, CAPUCINE_SHOP_DIALOG)
+    player:showText(npc, ID.text.CAPUCINE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -34,15 +34,15 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     -- apply WSC
     local weaponDamage = attacker:getWeaponDmg()
-    local weaponType = attacker:getWeaponSkillType(0)
+    local weaponType = attacker:getWeaponSkillType(dsp.slot.MAIN)
+    local damageType = attacker:getWeaponDamageType(dsp.slot.MAIN)
 
-    if (weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE) then
-        local h2hSkill = ((attacker:getSkillLevel(1) * 0.11) + 3)
+    if weaponType == dsp.skill.HAND_TO_HAND or weaponType == dsp.skill.NONE then
+        local h2hSkill = attacker:getSkillLevel(1) * 0.11 + 3
+        weaponDamage = attacker:getWeaponDmg()
 
-        if (params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK)) then
-            weaponDamage = attacker:getMod(dsp.mod.KICK_DMG) + 18; -- footwork formerly added 18 base dmg to all kicks, its effect on weaponskills was unchanged by update
-        else
-            weaponDamage = utils.clamp(attacker:getWeaponDmg()-3, 0)
+        if params.kick and attacker:hasStatusEffect(dsp.effect.FOOTWORK) then
+            weaponDamage = attacker:getMod(dsp.mod.KICK_DMG) -- Use Kick damage if footwork is on
         end
 
         weaponDamage = weaponDamage + h2hSkill
@@ -102,7 +102,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
         -- Handle Fencer
         local mainEquip = attacker:getStorageItem(0, 0, dsp.slot.MAIN)
-        
+
         if mainEquip and not mainEquip:isTwoHanded() and not mainEquip:isHandToHand() then
             local subEquip = attacker:getStorageItem(0, 0, dsp.slot.SUB)
             if subEquip == nil or subEquip:getSkillType() == dsp.skill.NONE or subEquip:isShield() then
@@ -249,7 +249,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
     finaldmg = finaldmg + firstHitBonus
 
     -- Check for reductions from PDT
-    finaldmg = target:physicalDmgTaken(finaldmg)
+    finaldmg = target:physicalDmgTaken(finaldmg, damageType)
 
     -- Check for reductions from phys resistances
     if (weaponType == dsp.skill.HAND_TO_HAND) then
@@ -264,7 +264,7 @@ function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taCh
 
     attacker:delStatusEffectSilent(dsp.effect.BUILDING_FLOURISH)
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.PHYSICAL, damageType, dsp.slot.MAIN, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     return finaldmg, criticalHit, tpHitsLanded, extraHitsLanded
 end
 
@@ -319,7 +319,8 @@ function doMagicWeaponskill(attacker, target, wsID, tp, primary, action, params)
     else
         shadowsAbsorbed = shadowsAbsorbed + 1
     end
-    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, dsp.slot.MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
+    damageType = dsp.damageType.ELEMENTAL + params.ele
+    dmg = takeWeaponskillDamage(target, attacker, params, primary, dmg, dsp.attackType.MAGICAL, damageType, dsp.slot.MAIN, 1, 0, shadowsAbsorbed, bonusTP, action, nil)
     return dmg, false, 1, 0
 end
 
@@ -340,7 +341,7 @@ function souleaterBonus(attacker, numhits)
             end
             hitscounted = hitscounted + 1
         end
-        attacker:delHP(numhits*0.10*attacker:getHP())
+        attacker:takeDamage(numhits*0.10*attacker:getHP())
         return damage
     else
         return 0
@@ -882,7 +883,7 @@ end
     finaldmg = finaldmg * target:getMod(dsp.mod.PIERCERES) / 1000
 
     finaldmg = finaldmg * WEAPON_SKILL_POWER
-    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
+    finaldmg = takeWeaponskillDamage(target, attacker, params, primary, finaldmg, dsp.attackType.RANGED, attacker:getWeaponDamageType(dsp.slot.RANGED), dsp.slot.RANGED, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, nil)
     return finaldmg, crit, tpHitsLanded, extraHitsLanded, shadowsAbsorbed
 end
 
@@ -994,7 +995,7 @@ function getFlourishAnimation(skill)
     end
 end
 
-function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
+function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, attackType, damageType, slot, tpHitsLanded, extraHitsLanded, shadowsAbsorbed, bonusTP, action, taChar)
     if tpHitsLanded + extraHitsLanded > 0 then
         if finaldmg >= 0 then
             if primary then
@@ -1027,7 +1028,7 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
         action:reaction(defender:getID(), dsp.reaction.EVADE)
     end
     local targetTPMult = params.targetTPMult or 1
-    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
+    finaldmg = defender:takeWeaponskillDamage(attacker, finaldmg, attackType, damageType, slot, primary, tpHitsLanded, (extraHitsLanded * 10) + bonusTP, targetTPMult)
     local enmityEntity = taChar or attacker
     if (params.overrideCE and params.overrideVE) then
         defender:addEnmity(enmityEntity, params.overrideCE, params.overrideVE)
@@ -1037,68 +1038,6 @@ function takeWeaponskillDamage(defender, attacker, params, primary, finaldmg, sl
     end
 
     return finaldmg
-end
-
--- Mythic/Empyrean aftermath can be overwritten by equal or higher at tier 1 (1000-1999 tp)
--- It can be overwritten by higher at tier 2 (2000-2999 tp)
--- It cannot be overwritten at tier 3 (3000 tp)
-function shouldApplyAftermath(player, tp)
-    local effect = player:getStatusEffect(dsp.effect.AFTERMATH)
-    if (effect) then
-        local power = effect:getPower()
-        if (power == 3) then
-            return false
-        elseif (power == 2 and tp < 3000) then
-            return false
-        end
-    end
-
-    return true
-end
-
-function addAftermathEffect(player, tp, params)
-    player:addStatusEffect(dsp.effect.AFTERMATH, params.power, 0, params.duration(tp))
-    for _,mod in pairs(params.mods) do
-        player:addMod(mod.id, mod.power)
-    end
-end
-
-function removeAftermathEffect(player, params)
-    for _,mod in pairs(params.mods) do
-        player:delMod(mod.id, mod.power)
-    end
-end
-
-function addMythicAftermathEffect(player, tp, params)
-    local tier = math.floor(tp / 1000)
-    local icon = "AFTERMATH_LV"..tier
-    player:addStatusEffectEx(dsp.effect.AFTERMATH, dsp.effect[icon], tier, 0, params[tier].duration, 0, tp)
-    for _,mod in pairs(params[tier].mods) do
-        player:addMod(mod.id, mod.power(tp))
-    end
-end
-
-function removeMythicAftermathEffect(player, effect, params)
-    local tier = effect:getPower()
-    for _,mod in pairs(params[tier].mods) do
-        player:delMod(mod.id, mod.power(effect:getSubPower()))
-    end
-end
-
-function addEmpyreanAftermathEffect(player, tp, params)
-    local tier = math.floor(tp / 1000)
-    local icon = "AFTERMATH_LV"..tier
-    player:addStatusEffectEx(dsp.effect.AFTERMATH, dsp.effect[icon], tier, 0, params[tier].duration)
-    for _,mod in pairs(params[tier].mods) do
-        player:addMod(mod.id, mod.power)
-    end
-end
-
-function removeEmpyreanAftermathEffect(player, effect, params)
-    local tier = effect:getPower()
-    for _,mod in pairs(params[tier].mods) do
-        player:delMod(mod.id, mod.power)
-    end
 end
 
 function handleWSGorgetBelt(attacker)

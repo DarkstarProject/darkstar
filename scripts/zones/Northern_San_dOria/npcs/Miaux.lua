@@ -4,9 +4,7 @@
 -- Type: Quest Giver
 -- !pos -169.127 2.999 158.677 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -56,18 +54,18 @@ function onEventFinish(player,csid,option)
         player:setVar("aCraftsmanWork",1);
     elseif (csid == 70) then -- This is only if player has Altepa Polishing Stone
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16887);-- Peregrine (DRG AF1)
         else
             player:setVar("aCraftsmanWork",0);
             player:delKeyItem(dsp.ki.ALTEPA_POLISHING_STONE);
             player:addItem(16887);
-            player:messageSpecial(ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,16887); -- Peregrine (DRG AF1)
             player:addFame(SANDORIA,AF1_FAME);
             player:completeQuest(SANDORIA,A_CRAFTSMAN_S_WORK);
         end
     elseif (csid == 67) then
         player:addKeyItem(dsp.ki.SHINY_EARRING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHINY_EARRING);
         player:setVar("ChasingQuotas_Progress",3);
     end
 
@@ -112,4 +110,3 @@ end;
 -- The king wishes to bolster his ranks, and <Character>... Should fortune favor her, bards across the land...
 -- Of course, she has only begun her rise to glory... Never before has she set foot within the Elvaan Capital...
 -- Rochefogne : "Say, are you an adventurer?"
-

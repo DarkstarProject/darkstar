@@ -5,13 +5,11 @@
 -- Involved in Quest: Making the Grade, Riding on the Clouds
 -- !pos -120 -6 124 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/titles");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/settings")
+require("scripts/globals/quests")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SPIRITED_STONE);
         end
     elseif (trade:hasItemQty(16511,1) and count == 1 and trade:getGil() == 0) then
         if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED) then
@@ -50,7 +48,7 @@ function onTrade(player,npc,trade)
             player:setVar("rootProblem",2);
         end
     elseif (trade:hasItemQty(17299,4) and count == 4 and trade:getGil() == 0) then -- trade:getItemCount() is apparently checking total of all 8 slots combined. Could have sworn that wasn't how it worked before.
-        if (player:getQuestStatus(WINDURST,CLASS_REUNION) == 1 and player:getVar("ClassReunionProgress") == 2) then
+        if (player:getQuestStatus(WINDURST,CLASS_REUNION) == QUEST_ACCEPTED and player:getVar("ClassReunionProgress") == 2) then
             player:startEvent(407); -- now Koru remembers something that you need to inquire his former students.
         end;
     end;
@@ -141,18 +139,18 @@ function onEventFinish(player,csid,option)
     if (csid == 285) then  -- Giving him KI from Principle
         player:tradeComplete();
         player:addKeyItem(dsp.ki.TATTERED_TEST_SHEET);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TATTERED_TEST_SHEET);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TATTERED_TEST_SHEET);
         player:setVar("QuestMakingTheGrade_prog",2);
     elseif (csid == 211) then
         player:tradeComplete();
         player:addItem(12502);
-        player:messageSpecial(ITEM_OBTAINED,12502);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,12502);
         player:completeQuest(WINDURST,STAR_STRUCK);
         player:needToZone(true);
         player:addFame(WINDURST,20);
     elseif (csid == 199) then
         player:tradeComplete();
-        player:messageSpecial(GIL_OBTAINED,50);
+        player:messageSpecial(ID.text.GIL_OBTAINED,50);
         player:addGil(50);
     elseif (csid == 197 and option == 0) then
         player:addQuest(WINDURST,STAR_STRUCK);
@@ -163,20 +161,20 @@ function onEventFinish(player,csid,option)
         player:setVar("BlastFromThePast_Prog",0);
         player:completeQuest(WINDURST,BLAST_FROM_THE_PAST);
         player:addItem(17030);
-        player:messageSpecial(ITEM_OBTAINED,17030);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,17030);
         player:addTitle(dsp.title.FOSSILIZED_SEA_FARER);
         player:addFame(WINDURST,30);
         player:needToZone(true);
     elseif (csid == 404) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(17532);
-            player:messageSpecial(ITEM_OBTAINED,17532);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17532);
             player:completeQuest(WINDURST,THE_PUPPET_MASTER);
             player:setVar("ThePuppetMasterProgress",0);
             player:needToZone(true);
             player:addFame(WINDURST,AF1_FAME);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17532);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17532);
         end;
     elseif (csid == 412) then
         player:delKeyItem(dsp.ki.CARBUNCLES_TEAR);
@@ -187,7 +185,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 410) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(14228);
-            player:messageSpecial(ITEM_OBTAINED,14228);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14228);
             player:completeQuest(WINDURST,CLASS_REUNION);
             player:setVar("ClassReunionProgress",0);
             player:setVar("ClassReunion_TalkedToFurakku",0);
@@ -195,25 +193,25 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
             player:addFame(WINDURST,AF2_FAME);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14228);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14228);
         end;
     elseif (csid == 416) then
         player:setVar("CarbuncleDebacleProgress",2);
     elseif (csid == 417) then
         player:setVar("CarbuncleDebacleProgress",5);
         player:addKeyItem(dsp.ki.DAZEBREAKER_CHARM);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DAZEBREAKER_CHARM);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DAZEBREAKER_CHARM);
     elseif (csid == 419) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12520); -- Evoker's Horn
-            player:messageSpecial(ITEM_OBTAINED,12520);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12520);
             player:addTitle(dsp.title.PARAGON_OF_SUMMONER_EXCELLENCE);
             player:completeQuest(WINDURST,CARBUNCLE_DEBACLE);
             player:addFame(WINDURST,AF3_FAME);
             player:setVar("CarbuncleDebacleProgress",0);
             player:needToZone(true);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12520);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12520);
         end;
     end;
 end;

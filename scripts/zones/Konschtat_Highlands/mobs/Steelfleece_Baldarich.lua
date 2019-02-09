@@ -1,42 +1,26 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---   NM: Steelfleece_Baldarich
+--   NM: Steelfleece Baldarich
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")};
-require("scripts/globals/status");
-require("scripts/globals/titles");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/status")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1);
-    mob:setMobMod(dsp.mobMod.MULTI_2HOUR, 1); -- not currently implemented
-    mob:setMobMod(dsp.mobMod.DRAW_IN, 1);
-end;
+    mob:setMobMod(dsp.mobMod.ALWAYS_AGGRO, 1)
+    mob:setMobMod(dsp.mobMod.DRAW_IN, 1)
+end
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIGHTY_STRIKES, hpp = math.random(90, 95), cooldown = 120} -- "Uses ... Mighty Strikes, which can be used multiple times."
+        }
+    })
+end
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.THE_HORNSPLITTER);
-end;
-
-function onMobDespawn(mob)
-    local mobId = mob:getID();
-    
-    DisallowRespawn(mob:getID(), true);
-    mob:setLocalVar("cooldown", os.time() + math.random(75600,86400)); -- 21 to 24 hours
-    
-    local nmId  = mobId - 1;
-    local nm    = GetMobByID(nmId);
-    local phId  = mobId - 2;
-    local ph    = GetMobByID(phId);
-    
-    if (math.random(1,100) <= 10 and os.time() > nm:getLocalVar("cooldown")) then
-        DisallowRespawn(nmId, false);
-        UpdateNMSpawnPoint(nmId);
-        nm:setRespawnTime(GetMobRespawnTime(phId));
-    else
-        DisallowRespawn(phId, false);
-        ph:setRespawnTime(GetMobRespawnTime(phId));
-    end
-end;
+    player:addTitle(dsp.title.THE_HORNSPLITTER)
+end

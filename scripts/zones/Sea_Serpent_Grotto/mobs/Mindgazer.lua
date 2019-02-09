@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Mindgazer
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,811,1);
-end;
+    dsp.regime.checkRegime(player, mob, 811, 1, dsp.regime.type.GROUNDS)
+end

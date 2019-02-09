@@ -3,9 +3,7 @@
 --  NPC: Mazween
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Aht_Urhgan_Whitegate/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Aht_Urhgan_Whitegate/TextIDs")
+local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         4856, 79800     -- Aspir II
     }
 
-    player:showText(npc, MAZWEEN_SHOP_DIALOG)
+    player:showText(npc, ID.text.MAZWEEN_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

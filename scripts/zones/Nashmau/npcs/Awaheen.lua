@@ -3,9 +3,7 @@
 --  NPC: Awaheen
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -27,10 +25,10 @@ function onTrade(player,npc,trade)
             player:tradeComplete();
             player:addItem(reward,nbr);
             for boucle=1,nbr,1 do
-                player:messageSpecial(ITEM_OBTAINED,reward);
+                player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
             end
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,reward);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,reward);
         end
     end
 end;
@@ -44,4 +42,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

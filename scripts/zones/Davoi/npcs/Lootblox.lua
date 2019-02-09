@@ -4,9 +4,7 @@
 -- Type: Standard NPC
 -- !pos 218.073 -0.982 -20.746 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/dynamis");
@@ -112,11 +110,11 @@ function onEventUpdate(player,csid,option)
         elseif (maps[option] ~= nil) then
             local price = maps[option];
             if (price > player:getGil()) then
-                player:messageSpecial(NOT_ENOUGH_GIL);
+                player:messageSpecial(ID.text.NOT_ENOUGH_GIL);
             else
                 player:delGil(price);
                 player:addKeyItem(option);
-                player:messageSpecial(KEYITEM_OBTAINED, option);
+                player:messageSpecial(ID.text.KEYITEM_OBTAINED, option);
             end
             player:updateEvent(getDynamisMapList(player),player:getGil());
 
@@ -130,39 +128,39 @@ function onEventFinish(player,csid,option)
     if (csid == 134) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.PRISMATIC_HOURGLASS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PRISMATIC_HOURGLASS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PRISMATIC_HOURGLASS);
 
     -- refund timeless hourglass
     elseif (csid == 153) then
         player:tradeComplete();
         player:addGil(TIMELESS_HOURGLASS_COST);
-        player:messageSpecial(GIL_OBTAINED,TIMELESS_HOURGLASS_COST);
+        player:messageSpecial(ID.text.GIL_OBTAINED,TIMELESS_HOURGLASS_COST);
 
     -- singles to hundos
     elseif (csid == 135) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,currency[2]);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,currency[2]);
         else
             player:tradeComplete();
             player:addItem(currency[2]);
-            player:messageSpecial(ITEM_OBTAINED,currency[2]);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,currency[2]);
         end
 
     -- hundos to 10k pieces
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,currency[3]);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,currency[3]);
         else
             player:tradeComplete();
             player:addItem(currency[3]);
-            player:messageSpecial(ITEM_OBTAINED,currency[3]);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,currency[3]);
         end
 
     -- 10k pieces to hundos
     elseif (csid == 138) then
         local slotsReq = math.ceil(CURRENCY_EXCHANGE_RATE / 99);
         if (player:getFreeSlotsCount() < slotsReq) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,currency[2]);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,currency[2]);
         else
             player:tradeComplete();
             for i=1,slotsReq do
@@ -172,18 +170,18 @@ function onEventFinish(player,csid,option)
                     player:addItem(currency[2],CURRENCY_EXCHANGE_RATE % 99);
                 end
             end
-            player:messageSpecial(ITEMS_OBTAINED,currency[2],CURRENCY_EXCHANGE_RATE);
+            player:messageSpecial(ID.text.ITEMS_OBTAINED,currency[2],CURRENCY_EXCHANGE_RATE);
         end
 
     -- bought item from shop
     elseif (csid == 137) then
         local item = player:getLocalVar("hundoItemBought");
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,item);
         else
             player:tradeComplete();
             player:addItem(item);
-            player:messageSpecial(ITEM_OBTAINED,item);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,item);
         end
         player:setLocalVar("hundoItemBought", 0);
 

@@ -4,9 +4,6 @@
 -- Type: Outpost Conquest Guards
 -- !pos -584.687 39.107 54.281 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/North_Gustaberg/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

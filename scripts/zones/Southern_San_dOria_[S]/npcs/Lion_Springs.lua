@@ -3,8 +3,6 @@
 --  NPC: Door:Lion Springs
 -- !pos 96 0 106 80
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/settings");

@@ -3,11 +3,9 @@
 -- Zone: Ship_bound_for_Selbina (220)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs");
-require("scripts/zones/Ship_bound_for_Selbina/MobIDs");
+local ID = require("scripts/zones/Ship_bound_for_Selbina/IDs");
 require("scripts/globals/keyitems");
+-----------------------------------
 
 function onInitialize(zone)
 end;
@@ -21,8 +19,8 @@ function onZoneIn(player,prevZone)
         player:setPos(position,-2.100,3.250,64);
     end
     
-    if (player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0 and not GetMobByID(ENAGAKURE):isSpawned()) then
-        SpawnMob(ENAGAKURE);
+    if (player:hasKeyItem(dsp.ki.SEANCE_STAFF) and player:getVar("Enagakure_Killed") == 0 and not GetMobByID(ID.mob.ENAGAKURE):isSpawned()) then
+        SpawnMob(ID.mob.ENAGAKURE);
     end
     
     return cs;

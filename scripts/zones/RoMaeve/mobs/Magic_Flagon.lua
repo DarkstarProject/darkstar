@@ -1,10 +1,17 @@
 -----------------------------------
 -- Area: RoMaeve
 --  MOB: Magic Flagon
+-- Note: PH for Nightmare Vase
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+local ID = require("scripts/zones/RoMaeve/IDs")
+require("scripts/globals/regimes")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,120,1);
-end;
+    dsp.regime.checkRegime(player, mob, 120, 1, dsp.regime.type.FIELDS)
+end
+
+function onMobDespawn(mob)
+    dsp.mob.phOnDespawn(mob, ID.mob.NIGHTMARE_VASE_PH, 10, 3600) -- 1 hour
+end

@@ -3,16 +3,14 @@
 --  NPC: Heih Porhiaap
 -- !pos -118.876 -4.088 -515.731 116
 -----------------------------------
-package.loaded["scripts/zones/East_Sarutabaruta/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/East_Sarutabaruta/TextIDs");
+local ID = require("scripts/zones/East_Sarutabaruta/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,HEIH_PORHIAAP_DIALOG);
+    player:showText(npc,ID.text.HEIH_PORHIAAP_DIALOG);
 end;
 
 function onEventUpdate(player,csid,option)

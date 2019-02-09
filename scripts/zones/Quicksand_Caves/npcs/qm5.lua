@@ -10,9 +10,7 @@
 -- 5: !pos 787 -16 -819
 -- spawn in npc_list is 770 0 -419
 -----------------------------------
-package.loaded["scripts/zones/Quicksand_Caves/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Quicksand_Caves/TextIDs");
+local ID = require("scripts/zones/Quicksand_Caves/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
 
     if (TheMissingPiece == QUEST_ACCEPTED and not(HasAncientTablet or HasAncientFragment or player:getTitle() == dsp.title.ACQUIRER_OF_ANCIENT_ARCANUM)) then
         player:addKeyItem(dsp.ki.ANCIENT_TABLET_FRAGMENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANCIENT_TABLET_FRAGMENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANCIENT_TABLET_FRAGMENT);
 
         -- move the ??? to a random location
         local i = math.random(0,100);
@@ -44,7 +42,7 @@ function onTrigger(player,npc)
             npc:setPos(787,-16,-819,0);
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

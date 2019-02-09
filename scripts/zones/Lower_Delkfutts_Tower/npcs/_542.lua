@@ -5,12 +5,10 @@
 -- Bastok Mission 3.3 "Appointment to Jeuno"
 -- !pos 596 16 -19 184
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,11 +26,11 @@ function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(BASTOK);
 
     if (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
-        player:messageSpecial(THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
+        player:messageSpecial(ID.text.THE_DOOR_IS_FIRMLY_SHUT_OPEN_KEY);
     elseif (currentMission == JEUNO_MISSION and player:getVar("MissionStatus") == 2 and player:hasKeyItem(dsp.ki.DELKFUTT_KEY)) then
         player:startEvent(1);
     else
-        player:messageSpecial(DOOR_FIRMLY_SHUT);
+        player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT);
     end
 
     return 1;
@@ -48,7 +46,7 @@ function onEventFinish(player,csid,option)
         if (player:hasKeyItem(dsp.ki.DELKFUTT_KEY) == false) then
             player:tradeComplete();
             player:addKeyItem(dsp.ki.DELKFUTT_KEY);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DELKFUTT_KEY);
         end
         player:setVar("MissionStatus",3);
     end

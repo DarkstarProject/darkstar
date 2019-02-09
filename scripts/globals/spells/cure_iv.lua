@@ -73,7 +73,7 @@ function onSpellCast(caster,target,spell)
             else
                 solaceStoneskin = math.floor(final * 0.25)
             end
-            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25)
+            target:addStatusEffect(dsp.effect.STONESKIN,solaceStoneskin,0,25,0,0,1)
         end
         final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 
@@ -109,7 +109,7 @@ function onSpellCast(caster,target,spell)
             dmg = adjustForTarget(target,dmg,spell:getElement())
             dmg = finalMagicAdjustments(caster,target,spell,dmg)
             final = dmg
-            target:delHP(final)
+            target:takeDamage(final, caster, dsp.attackType.MAGICAL, dsp.damageType.LIGHT)
             target:updateEnmityFromDamage(caster,final)
         elseif (caster:getObjType() == dsp.objType.PC) then
             spell:setMsg(dsp.msg.basic.MAGIC_NO_EFFECT)

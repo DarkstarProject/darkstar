@@ -3,9 +3,6 @@
 --  NPC: Arpevion, T.K.
 -- !pos 105.163 0.000 -52.980 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

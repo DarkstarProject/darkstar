@@ -4,11 +4,8 @@
 -- Standard Info NPC
 -- !pos 18.020 -6.000 10.467 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Nashmau/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -44,4 +41,3 @@ function onEventFinish(player,csid,option)
         player:setVar("ratraceCS",6);
     end
 end;
-

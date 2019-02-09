@@ -3,10 +3,6 @@
 --  NPC: Rafaela
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -29,4 +25,3 @@ PastPerfectVar = player:getVar("PastPerfectVar");
     end
 
 end;
-

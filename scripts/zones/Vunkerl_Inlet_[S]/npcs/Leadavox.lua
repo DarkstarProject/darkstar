@@ -4,11 +4,8 @@
 -- Involved in Quests
 -- !pos 206 -32 316
 -----------------------------------
-package.loaded["scripts/zones/Vunkerl_Inlet_[S]/TextIDs"] = nil;
-package.loaded["scripts/globals/quests"] = nil;
------------------------------------
+local ID = require("scripts/zones/Vunkerl_Inlet_[S]/IDs");
 require("scripts/globals/quests");
-require("scripts/zones/Vunkerl_Inlet_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,6 +38,6 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:setVar("BetterPartOfValProg",4)
         player:addKeyItem(dsp.ki.XHIFHUT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.XHIFHUT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.XHIFHUT);
     end
 end;

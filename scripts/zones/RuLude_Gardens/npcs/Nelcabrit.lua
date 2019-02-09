@@ -4,13 +4,10 @@
 -- Involved in Mission: San d'Oria 3-3, 4-1
 -- !pos -32 9 -49 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -59,7 +56,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 130 and option == 1) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT);
     elseif (csid == 39 or csid == 36) then
         finishMissionTimeline(player,3,csid,option);
     end

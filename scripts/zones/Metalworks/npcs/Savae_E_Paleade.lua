@@ -4,11 +4,9 @@
 -- Involved In Mission: Journey Abroad
 -- !pos 23.724 -17.39 -43.360 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -60,7 +58,7 @@ function onEventFinish(player,csid,option)
         player:addMission(SANDORIA,JOURNEY_ABROAD);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     end
 
 end;

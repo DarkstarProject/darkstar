@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos 200.254 -1 -80.324 124
 -----------------------------------
-package.loaded["scripts/zones/Yhoator_Jungle/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Yhoator_Jungle/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

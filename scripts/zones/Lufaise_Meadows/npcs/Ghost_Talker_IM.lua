@@ -4,9 +4,6 @@
 -- Border Conquest Guards
 -- !pos 414.659 0.905 -52.417 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lufaise_Meadows/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

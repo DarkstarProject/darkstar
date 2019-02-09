@@ -4,8 +4,6 @@
 -- Type: NPC Quest
 -- !pos -64.851 21.834 -117.521 11
 -----------------------------------
-package.loaded["scripts/zones/Oldton_Movalpolos/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -1,23 +1,20 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Sacrificial Goblet NM)
+--  NPC: ??? (Sacrificial Goblet NM)
 -- !pos 300 1 255 159
 -----------------------------------
-package.loaded["scripts/zones/Temple_of_Uggalepih/TextIDs"] = nil;
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
-require("scripts/zones/Temple_of_Uggalepih/TextIDs");
-require("scripts/zones/Temple_of_Uggalepih/MobIDs");
 
-function onTrade(player,npc,trade)
-    -- Trade Uggalepih Whistle
-    if (trade:hasItemQty(1184,1) and trade:getItemCount() == 1 and not GetMobByID(SACRIFICIAL_GOBLET):isSpawned()) then
-        player:tradeComplete();
-        SpawnMob(SACRIFICIAL_GOBLET):updateClaim(player);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 1184) and npcUtil.popFromQM(player, npc, ID.mob.SACRIFICIAL_GOBLET, {hide = 0}) then -- Uggalepih Whistle
+        player:confirmTrade()
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS)
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
+end

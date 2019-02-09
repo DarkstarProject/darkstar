@@ -2,7 +2,7 @@
 -- Area: Wajaom Woodlands
 --  MOB: Zoraal Ja's Pkuucha
 -----------------------------------
-require("scripts/zones/Wajaom_Woodlands/MobIDs");
+local ID = require("scripts/zones/Wajaom_Woodlands/IDs");
 
 function onMobSpawn(mob)
     mob:setLocalVar("whenToPopZoraal", math.random(20,50));
@@ -11,26 +11,26 @@ end;
 
 function onMobDisengage(mob)
     mob:setLocalVar("hasPoppedZoraal", 0);
-    if(GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned()) then
-        DespawnMob(PERCIPIENT_ZORAAL_JA);
+    if(GetMobByID(ID.mob.PERCIPIENT_ZORAAL_JA):isSpawned()) then
+        DespawnMob(ID.mob.PERCIPIENT_ZORAAL_JA);
     end
 end;
 
 function onMobRoam(mob)
     mob:setLocalVar("hasPoppedZoraal",0);
-    if(GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned()) then
-        DespawnMob(PERCIPIENT_ZORAAL_JA);
+    if(GetMobByID(ID.mob.PERCIPIENT_ZORAAL_JA):isSpawned()) then
+        DespawnMob(ID.mob.PERCIPIENT_ZORAAL_JA);
     end
 end;
 
 function onMobFight(mob, target)
     if (
         mob:getHPP() <= mob:getLocalVar("whenToPopZoraal") and
-        not GetMobByID(PERCIPIENT_ZORAAL_JA):isSpawned() and
+        not GetMobByID(ID.mob.PERCIPIENT_ZORAAL_JA):isSpawned() and
         mob:getLocalVar("hasPoppedZoraal") == 0
     ) then
-        GetMobByID(PERCIPIENT_ZORAAL_JA):setSpawn(mob:getXPos()+math.random(-2,2), mob:getYPos(), mob:getZPos()+math.random(-2,2));
-        SpawnMob(PERCIPIENT_ZORAAL_JA):updateEnmity(target);
+        GetMobByID(ID.mob.PERCIPIENT_ZORAAL_JA):setSpawn(mob:getXPos()+math.random(-2,2), mob:getYPos(), mob:getZPos()+math.random(-2,2));
+        SpawnMob(ID.mob.PERCIPIENT_ZORAAL_JA):updateEnmity(target);
         mob:setHP(mob:getMaxHP());
         mob:setUnkillable(true);
         mob:setLocalVar("hasPoppedZoraal", 1);
@@ -38,7 +38,4 @@ function onMobFight(mob, target)
 end;
 
 function onMobDeath(mob, player, isKiller)
-end;
-
-function onMobDespawn(mob)
 end;

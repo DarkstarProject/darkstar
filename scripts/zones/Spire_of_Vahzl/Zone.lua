@@ -3,11 +3,8 @@
 -- Zone: Spire_of_Vahzl (23)
 --
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Vahzl/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Spire_of_Vahzl/TextIDs");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Spire_of_Vahzl/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onInitialize(zone)

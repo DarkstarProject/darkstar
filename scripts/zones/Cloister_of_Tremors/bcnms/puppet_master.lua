@@ -3,11 +3,8 @@
 -- BCNM: The Puppet Master
 -- !pos -539 1 -493 209
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 -----------------------------------
 

@@ -1,24 +1,19 @@
 -----------------------------------
 -- Area: Windurst Waters (S)
---   NPC: Scotwick
+--  NPC: Scotwick
 -- Type: Allied Notes Notorious Monsters
 -- !pos 153.785 -3.134 9.895 94
---
--- Auto-Script: Requires Verification (Verified by Brawndo)
------------------------------------
-package.loaded["scripts/zones/Windurst_Waters_[S]/TextIDs"] = nil;
 -----------------------------------
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(16);
-end;
+    player:startEvent(16)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

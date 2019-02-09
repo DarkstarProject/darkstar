@@ -3,6 +3,9 @@
 --  NPC: Cermet Portal
 -- !pos -419 0.1 356 35
 -----------------------------------
+local ID = require("scripts/zones/The_Garden_of_RuHmet/IDs")
+require("scripts/globals/missions")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -17,7 +20,7 @@ function onTrigger(player,npc)
         end
     else
         if (player:getZPos() <= 360) then
-            player:messageSpecial(PORTAL_SEALED);
+            player:messageSpecial(ID.text.PORTAL_SEALED);
         else
             player:startEvent(139);
         end

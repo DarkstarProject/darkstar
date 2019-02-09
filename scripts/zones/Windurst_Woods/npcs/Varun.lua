@@ -4,9 +4,6 @@
 -- Type: Standard NPC
 -- !pos 7.800 -3.5 -10.064 241
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 -----------------------------------

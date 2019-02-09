@@ -3,10 +3,7 @@
 --   NM: Cryptonberry_Assassin
 -- !pos 120.615 -5.457 -390.133 2
 -----------------------------------
-package.loaded["scripts/zones/Carpenters_Landing/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Carpenters_Landing/TextIDs")
-require("scripts/zones/Carpenters_Landing/MobIDs")
+local ID = require("scripts/zones/Carpenters_Landing/IDs")
 mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/missions")
 -----------------------------------
@@ -16,7 +13,18 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainQuote", CRYPTONBERRY_ASSASSIN_2HR)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {
+                id = dsp.jsa.MIJIN_GAKURE,
+                begCode = function(mob)
+                    mob:messageText(mob, ID.text.CRYPTONBERRY_ASSASSIN_2HR)
+                end,
+            },
+        },
+    })
+
     mob:setLocalVar("despawnTime", os.time() + 180)
 end
 
@@ -34,7 +42,7 @@ end
 
 function onMobDeath(mob, player, isKiller)
     if player:getCurrentMission(COP) == CALM_BEFORE_THE_STORM and player:getVar("Cryptonberry_Executor_KILL") < 2 then
-        local offset = mob:getID() - CRYPTONBERRY_EXECUTOR
+        local offset = mob:getID() - ID.mob.CRYPTONBERRY_EXECUTOR
         player:setVar(string.format("Cryptonberry_Assassins-%i_KILL", offset), 1)
     end
 end

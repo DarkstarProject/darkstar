@@ -3,11 +3,9 @@
 --  NPC: Benita
 -- Starts Quest: The Wisdom Of Elders
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -54,17 +52,13 @@ function onEventFinish(player,csid,option)
         player:setVar("TheWisdomVar",1);
     elseif (csid == 176) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12500);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12500);
         else
             player:completeQuest(BASTOK,THE_WISDOM_OF_ELDERS);
             player:addFame(BASTOK,120);
             player:addItem(12500);
-            player:messageSpecial(ITEM_OBTAINED,12500);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12500);
         end
     end
 
 end;
-
-
-
-

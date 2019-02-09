@@ -4,14 +4,11 @@
 -- Starts Windurst Missions
 -- !pos 0 -16 124 239
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Windurst_Walls/TextIDs");
 -----------------------------------
 
 function onTrigger(player,npc)
@@ -59,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.HEAVENS_TOWER_GATEHOUSE_RECRUIT);
     elseif (csid == 93 and (option == 12 or option == 15)) then
         player:addKeyItem(dsp.ki.STAR_CRESTED_SUMMONS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_CRESTED_SUMMONS);
     end
 
 end;

@@ -4,12 +4,10 @@
 -- Start & Finishes Quest: The Siren's Tear
 -- !pos 26.305 -1 -66.403 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 require("scripts/globals/settings");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -46,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,THE_SIREN_S_TEAR);
         player:addFame(BASTOK,120);
         player:addGil(150*GIL_RATE);
-        player:messageSpecial(GIL_OBTAINED,150*GIL_RATE);
+        player:messageSpecial(ID.text.GIL_OBTAINED,150*GIL_RATE);
         player:addTitle(dsp.title.TEARJERKER);
         player:setVar("SirensTear",0);
     end

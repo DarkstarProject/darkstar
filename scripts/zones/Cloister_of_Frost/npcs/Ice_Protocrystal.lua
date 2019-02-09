@@ -4,12 +4,10 @@
 -- Involved in Quests: Trial by Ice, Trial Size Trial by Ice
 -- !pos 558 0 596 203
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Frost/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/bcnm");
-require("scripts/zones/Cloister_of_Frost/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Frost/IDs");
 
 function onTrade(player,npc,trade)
 
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
     elseif (EventTriggerBCNM(player,npc)) then
         return;
     else
-        player:messageSpecial(PROTOCRYSTAL);
+        player:messageSpecial(ID.text.PROTOCRYSTAL);
     end
 
 end;
@@ -48,7 +46,7 @@ function onEventFinish(player,csid,option)
     if (csid==2) then
         player:delKeyItem(dsp.ki.DOMINAS_AZURE_SEAL);
         player:addKeyItem(dsp.ki.AZURE_COUNTERSEAL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.AZURE_COUNTERSEAL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.AZURE_COUNTERSEAL);
         player:setVar("ASA4_Azure","2");
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

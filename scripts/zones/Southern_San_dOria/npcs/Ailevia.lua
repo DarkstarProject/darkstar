@@ -6,9 +6,7 @@
 -- This NPC participates in Quests and Missions
 -- !pos -8 1 1 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 -----------------------------------
@@ -25,7 +23,7 @@ function onTrade(player,npc,trade)
     if (MagicFlyer == true and count == 1) then
         local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -41,6 +39,6 @@ function onEventFinish(player,csid,option)
     if (csid == 655) then
         player:addGil(GIL_RATE*50);
         player:tradeComplete();
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*50);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*50);
     end
 end;

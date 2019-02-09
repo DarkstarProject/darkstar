@@ -4,9 +4,6 @@
 -- Outpost Conquest Guards
 -- !pos -542.418 -7.124 -53.521 24
 -----------------------------------
-package.loaded["scripts/zones/Lufaise_Meadows/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lufaise_Meadows/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

@@ -4,9 +4,6 @@
 -- Type: Border Conquest Guards
 -- !pos -120.393 -25.822 -592.604 119
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Meriphataud_Mountains/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

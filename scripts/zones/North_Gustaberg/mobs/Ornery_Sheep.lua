@@ -2,9 +2,9 @@
 -- Area: North Gustaberg
 --  MOB: Ornery Sheep
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,59,2);
+    dsp.regime.checkRegime(player, mob, 59, 2, dsp.regime.type.FIELDS)
 end;

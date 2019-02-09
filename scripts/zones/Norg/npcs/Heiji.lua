@@ -4,13 +4,11 @@
 -- Starts and Ends Quest: Like a Shining Subligar
 -- !pos -1 -5 25 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -63,7 +61,7 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addTitle(dsp.title.LOOKS_SUBLIME_IN_A_SUBLIGAR);
         player:addItem(4955); -- Scroll of Kurayami: Ichi
-        player:messageSpecial(ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 4955); -- Scroll of Kurayami: Ichi
         player:setVar("shiningSubligar_nb",0);
         player:addFame(NORG,100);
         player:completeQuest(OUTLANDS,LIKE_A_SHINING_SUBLIGAR);

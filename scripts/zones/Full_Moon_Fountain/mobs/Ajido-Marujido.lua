@@ -3,27 +3,24 @@
 --  MOB: Ajido-Marujido
 -- Ally during Windurst Mission 9-2
 -----------------------------------
-package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Full_Moon_Fountain/TextIDs")
-require("scripts/zones/Full_Moon_Fountain/MobIDs")
+local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
 require("scripts/globals/status")
 require("scripts/globals/magic")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:addMod(dsp.mod.REFRESH, 1)
-    mob:addMobMod(dsp.mobMod.TELEPORT_CD, 30)
+    mob:setMod(dsp.mod.REFRESH, 1)
+    mob:setMobMod(dsp.mobMod.TELEPORT_CD, 30)
 end;
 
 function onMobSpawn(mob)
     mob:addListener("MAGIC_START", "MAGIC_MSG", function(mob, spell, action)
         -- Burst
         if spell:getID() == 212 then
-            mob:showText(mob,PLAY_TIME_IS_OVER)
+            mob:showText(mob,ID.text.PLAY_TIME_IS_OVER)
         -- Flood
         elseif spell:getID() == 214 then
-            mob:showText(mob,YOU_SHOULD_BE_THANKFUL)
+            mob:showText(mob,ID.text.YOU_SHOULD_BE_THANKFUL)
         end
     end)
 end
@@ -33,7 +30,7 @@ function onMobRoam(mob)
     if wait > 40 then
         -- pick a random living target from the two enemies
         local inst = mob:getBattlefield():getBattlefieldNumber()
-        local instOffset = MOON_READING_OFFSET + (6 * (inst - 1))
+        local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1))
         local target = GetMobByID(instOffset + math.random(4,5))
         if not target:isDead() then
             mob:addEnmity(target,0,1)
@@ -50,7 +47,7 @@ end
 
 function onMobFight(mob, target)
     if mob:getHPP() < 50 and mob:getLocalVar("saidMessage") == 0 then
-        mob:showText(mob, DONT_GIVE_UP)
+        mob:showText(mob, ID.text.DONT_GIVE_UP)
         mob:setLocalVar("saidMessage", 1)
     end
     if target:isEngaged() then
@@ -65,6 +62,6 @@ end
 function onMobDeath(mob, player, isKiller)
     mob:getBattlefield():lose()
         for _,player in ipairs(mob:getBattlefield():getPlayers()) do
-            player:messageSpecial(UNABLE_TO_PROTECT)
+            player:messageSpecial(ID.text.UNABLE_TO_PROTECT)
         end
 end

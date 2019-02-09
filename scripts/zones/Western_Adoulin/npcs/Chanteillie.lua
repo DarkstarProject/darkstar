@@ -6,9 +6,6 @@
 --                        'Vegetable Vegetable Crisis'
 --  !pos 89 0 -75 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Western_Adoulin/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");

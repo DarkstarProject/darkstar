@@ -4,9 +4,7 @@
 -- Type: ENM
 -- !pos -144.711 6.246 -250.309 7
 -----------------------------------
-package.loaded["scripts/zones/Attohwa_Chasm/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Attohwa_Chasm/TextIDs");
+local ID = require("scripts/zones/Attohwa_Chasm/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 -----------------------------------
@@ -45,15 +43,15 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 12) then
         player:addKeyItem(dsp.ki.MIASMA_FILTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MIASMA_FILTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MIASMA_FILTER);
         player:setVar("[ENM]MiasmaFilter",os.time()+(ENM_COOLDOWN*3600)); -- Current time + (ENM_COOLDOWN*1hr in seconds)
     elseif (csid == 13) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 1777); -- Flaxen Pouch
             return;
         else
             player:addItem(1777);
-            player:messageSpecial(ITEM_OBTAINED, 1777); -- Flaxen Pouch
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 1777); -- Flaxen Pouch
         end
     end
 end;

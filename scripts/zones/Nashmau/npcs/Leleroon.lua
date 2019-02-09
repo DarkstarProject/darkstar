@@ -4,9 +4,7 @@
 -- Corsair AF2 and AF3 quests
 -- !pos -14.687 0.000 25.114 53
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/quests");
@@ -55,15 +53,15 @@ function onEventFinish(player,csid,option)
     if (csid == 282) then
         if (option == 1) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_GREEN);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_GREEN)
             player:setVar("LeleroonsLetterGreen",1);
         elseif (option == 2) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_BLUE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_BLUE)
             player:setVar("LeleroonsLetterBlue",1);
         elseif (option == 3) then
             player:addKeyItem(dsp.ki.LELEROONS_LETTER_RED);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LELEROONS_LETTER_RED)
             player:setVar("LeleroonsLetterRed",1);
         end;
     end;

@@ -3,10 +3,7 @@
 -- Zone: Beaucedine_Glacier_[S] (136)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Beaucedine_Glacier_[S]/TextIDs");
+local ID = require("scripts/zones/Beaucedine_Glacier_[S]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

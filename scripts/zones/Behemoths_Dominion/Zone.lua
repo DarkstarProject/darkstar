@@ -3,18 +3,15 @@
 -- Zone: Behemoths_Dominion (127)
 --
 -----------------------------------
-package.loaded["scripts/zones/Behemoths_Dominion/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Behemoths_Dominion/TextIDs");
-require("scripts/zones/Behemoths_Dominion/MobIDs");
+local ID = require("scripts/zones/Behemoths_Dominion/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
-        UpdateNMSpawnPoint(BEHEMOTH);
-        GetMobByID(BEHEMOTH):setRespawnTime(math.random(900, 10800));
+        UpdateNMSpawnPoint(ID.mob.BEHEMOTH);
+        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(math.random(900, 10800));
     end
 end;
 

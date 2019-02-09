@@ -5,16 +5,14 @@
 -- !pos -115.29 -11 -22.609 250
 --
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kazham/TextIDs");
+local ID = require("scripts/zones/Kazham/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -23,4 +21,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

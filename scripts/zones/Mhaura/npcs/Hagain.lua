@@ -3,9 +3,7 @@
 --  NPC: Hagain
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------
@@ -43,7 +41,7 @@ function onEventFinish(player,csid,option)
     if (csid == 10003) then
         player:setVar("hittingTheMarquisateHagainCS",2);
         player:addKeyItem(dsp.ki.BOMB_INCENSE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOMB_INCENSE);
     elseif (csid == 10005) then
         player:setVar("hittingTheMarquisateHagainCS",9);
         player:delKeyItem(dsp.ki.BOMB_INCENSE);

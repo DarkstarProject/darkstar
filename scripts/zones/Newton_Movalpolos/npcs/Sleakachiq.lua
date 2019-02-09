@@ -3,9 +3,7 @@
 --  NPC: Sleakachiq
 -- !pos 162.504 14.999 136.901 12
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Newton_Movalpolos/TextIDs");
+local ID = require("scripts/zones/Newton_Movalpolos/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -18,7 +16,7 @@ function onTrade(player,npc,trade)
             player:startEvent(28);
         end
     elseif (Ypos >= 19.5) then
-        player:messageSpecial(39966); -- H0000! ... Come closer, can't trade from so far away.
+        player:messageSpecial(ID.text.COME_CLOSER)
     end
 end;
 
@@ -45,4 +43,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-

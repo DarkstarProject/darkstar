@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -318.902 -10.319 -178.087 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/shop")
 
 function onTrigger(player,npc)
@@ -25,6 +23,6 @@ function onTrigger(player,npc)
         17336,     5, 3, -- Crossbow Bolt
     }
 
-    player:showText(npc, MJOLL_SHOP_DIALOG)
+    player:showText(npc, ID.text.MJOLL_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.BASTOK)
 end

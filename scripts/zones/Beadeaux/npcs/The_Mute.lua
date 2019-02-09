@@ -3,9 +3,6 @@
 --  NPC: ???
 -- !pos -166.230 -1 -73.685 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 -----------------------------------

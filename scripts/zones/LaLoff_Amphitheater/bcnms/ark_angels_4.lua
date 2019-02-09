@@ -2,9 +2,7 @@
 -- Area: LaLoff Amphitheater
 -- Name: Ark Angels 4 (Elvaan)
 -----------------------------------
-package.loaded["scripts/zones/LaLoff_Amphitheater/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/LaLoff_Amphitheater/TextIDs");
+local ID = require("scripts/zones/LaLoff_Amphitheater/IDs");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
 -----------------------------------
@@ -68,7 +66,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:getCurrentMission(ZILART) == ARK_ANGELS  and player:getVar("ZilartStatus") == 1) then
             player:addKeyItem(dsp.ki.SHARD_OF_ARROGANCE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ARROGANCE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SHARD_OF_ARROGANCE);
             if (AAKeyitems == true) then
                 player:completeMission(ZILART,ARK_ANGELS);
                 player:addMission(ZILART,THE_SEALED_SHRINE);

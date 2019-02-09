@@ -3,11 +3,7 @@
 --  NPC: Rajesh
 -- !pos -62 1 -8 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/zones/Port_Jeuno/TextIDs");
+require("scripts/globals/keyitems")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,4 +34,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

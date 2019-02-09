@@ -3,9 +3,7 @@
 --  NPC: Boncort
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Northern_San_dOria/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
@@ -15,12 +13,12 @@ function onTrade(player,npc,trade)
     if player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         if player:getVar("tradeBoncort") == 0 then
             player:confirmTrade()
-            player:messageSpecial(BONCORT_DIALOG)
-            player:messageSpecial(FLYER_ACCEPTED)
-            player:setVar("FFR", player:getVar("FFR") - 1)
+            player:messageSpecial(ID.text.BONCORT_DIALOG)
+            player:messageSpecial(ID.text.FLYER_ACCEPTED)
+            player:addVar("FFR", -1)
             player:setVar("tradeBoncort", 1)
         else
-            player:messageSpecial(FLYER_ALREADY)
+            player:messageSpecial(ID.text.FLYER_ALREADY)
         end
     end
 end;
@@ -38,7 +36,7 @@ function onTrigger(player,npc)
         5007, 163, 3,    --Scroll of Sword Madrigal
     }
 
-    player:showText(npc, BONCORT_SHOP_DIALOG)
+    player:showText(npc, ID.text.BONCORT_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
 end
 

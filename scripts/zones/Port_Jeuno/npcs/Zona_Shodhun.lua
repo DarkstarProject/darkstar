@@ -4,11 +4,10 @@
 -- Starts and Finishes Quest: Pretty Little Things
 -- !pos -175 -5 -4 246
 -----------------------------------
------------------------------------
+local ID = require("scripts/zones/Port_Jeuno/IDs")
 require("scripts/globals/settings");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -84,7 +83,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10023 and option == 4002) then
         player:moghouseFlag(8);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
         player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);

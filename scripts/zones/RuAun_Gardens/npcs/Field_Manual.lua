@@ -2,21 +2,20 @@
 -- Field Manual
 -- Area: RuAun Gardens
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
-function onTrigger(player,npc)
-    startFov(FOV_EVENT_RUAUN_GARDENS,player);
-end;
-
 function onTrade(player,npc,trade)
-end;
+end
 
-function onEventUpdate(player,csid,menuchoice)
-    updateFov(player,csid,menuchoice,142,143,144,145,146);
-end;
+function onTrigger(player,npc)
+    dsp.regime.bookOnTrigger(player, dsp.regime.type.FIELDS)
+end
+
+function onEventUpdate(player,csid,option)
+    dsp.regime.bookOnEventUpdate(player, option, dsp.regime.type.FIELDS)
+end
 
 function onEventFinish(player,csid,option)
-    finishFov(player,csid,option,142,143,144,145,146,FOV_MSG_RUAUN_GARDENS);
-end;
+    dsp.regime.bookOnEventFinish(player, option, dsp.regime.type.FIELDS)
+end

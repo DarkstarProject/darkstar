@@ -3,10 +3,7 @@
 --  NPC: Dakha Topsalwan
 -- !zone 250
 -----------------------------------
-package.loaded["scripts/zones/Kazham/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Kazham/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,4 +26,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

@@ -3,10 +3,7 @@
 -- Zone: Ship_bound_for_Mhaura (221)
 --
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Mhaura/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Ship_bound_for_Mhaura/TextIDs");
+local ID = require("scripts/zones/Ship_bound_for_Mhaura/IDs")
 -----------------------------------
 
 function onInitialize(zone)

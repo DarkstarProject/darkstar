@@ -4,9 +4,7 @@
 --  Warp NPC (Aht Urhgan)
 -- !pos 116 0.1 84 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
@@ -48,7 +46,7 @@ function onTrade(player,npc,trade)
 
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 
@@ -91,15 +89,15 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:setVar("WildcatSandy",0);
         player:addKeyItem(dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_SENTINEL_BADGE);
     elseif (csid == 815) then
         player:completeQuest(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
         player:addFame(SANDORIA,150);
         player:setVar("WildcatSandy",0);
         player:delKeyItem(dsp.ki.RED_SENTINEL_BADGE);
         player:addKeyItem(dsp.ki.RED_INVITATION_CARD);
-        player:messageSpecial(KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
+        player:messageSpecial(ID.text.KEYITEM_LOST,dsp.ki.RED_SENTINEL_BADGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RED_INVITATION_CARD);
     elseif (csid == 881) then
         player:tradeComplete();
         dsp.teleport.to(player, dsp.teleport.id.WHITEGATE);

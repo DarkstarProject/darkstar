@@ -5,7 +5,6 @@
 -----------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Windurst_Walls/TextIDs");
 require("scripts/globals/keyitems")
 -----------------------------------
 
@@ -33,4 +32,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

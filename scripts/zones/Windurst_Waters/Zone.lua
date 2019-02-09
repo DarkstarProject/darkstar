@@ -3,10 +3,9 @@
 -- Zone: Windurst_Waters (238)
 --
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/events/harvest_festivals");
+require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
 require("scripts/globals/zone");
@@ -72,10 +71,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 531) then
-        player:messageSpecial(ITEM_OBTAINED, 536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 146) then -- Returned from Giddeus, Windurst 1-3
         player:setVar("MissionStatus", 3);
         player:setVar("ghoo_talk", 0);

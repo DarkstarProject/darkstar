@@ -2,9 +2,9 @@
 -- Area: Sauromugue Champaign
 --  MOB: Diving Beetle
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,40,2);
-end;
+    dsp.regime.checkRegime(player, mob, 40, 2, dsp.regime.type.FIELDS)
+end

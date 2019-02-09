@@ -3,11 +3,8 @@
 -- Name: brothers
 -- bcnmID : 643
 -----------------------------------
-package.loaded["scripts/zones/Bearclaw_Pinnacle/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Bearclaw_Pinnacle/TextIDs");
 
 -----------------------------------
  

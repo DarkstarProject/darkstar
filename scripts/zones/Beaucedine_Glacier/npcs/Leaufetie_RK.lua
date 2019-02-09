@@ -4,9 +4,6 @@
 -- Type: Conquest Overseer
 -- !pos -227.956 -81.475 260.442 111
 -----------------------------------
-package.loaded["scripts/zones/Beaucedine_Glacier/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beaucedine_Glacier/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

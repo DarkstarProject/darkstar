@@ -6,9 +6,7 @@
 -- Note: Animation for his "Cure" is not functioning. Unable to capture option 1, so if the user says no, he heals them anyways.
 -- !pos -108 -5 94 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
@@ -78,15 +76,15 @@ function onEventFinish(player,csid,option)
         if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
             player:delStatusEffect(dsp.effect.MUTE);
             player:addGil(GIL_RATE*1000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1000);
         elseif (player:hasStatusEffect(dsp.effect.BANE) == true) then
             player:delStatusEffect(dsp.effect.BANE);
             player:addGil(GIL_RATE*1200);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1200);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1200);
         elseif (player:hasStatusEffect(dsp.effect.PLAGUE) == true) then
             player:delStatusEffect(dsp.effect.PLAGUE);
             player:addGil(GIL_RATE*1500);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE*1500);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
         end
 
         player:setVar("QuestCatchItIfYouCan_var",0);
@@ -99,4 +97,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-

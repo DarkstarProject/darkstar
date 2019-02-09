@@ -4,9 +4,6 @@
 -- Type: Border Conquest Guards
 -- !pos -560.292 -0.961 -576.655 100
 -----------------------------------
-package.loaded["scripts/zones/West_Ronfaure/TextIDs"] = nil
------------------------------------
-require("scripts/zones/West_Ronfaure/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

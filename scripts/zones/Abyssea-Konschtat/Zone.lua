@@ -9,6 +9,7 @@
 -- EventID 2180 Teleport?
 -- EventID 2181 DEBUG Menu
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Konschtat/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

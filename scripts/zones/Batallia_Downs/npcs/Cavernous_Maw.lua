@@ -4,14 +4,12 @@
 -- !pos -48 0.1 435 105
 -- Teleports Players to Batallia Downs [S]
 -----------------------------------
-package.loaded["scripts/zones/Batallia_Downs/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/missions");
 require("scripts/globals/campaign");
-require("scripts/zones/Batallia_Downs/TextIDs");
+local ID = require("scripts/zones/Batallia_Downs/IDs");
 require("scripts/globals/titles");
 -----------------------------------
 
@@ -31,7 +29,7 @@ function onTrigger(player,npc)
             player:startEvent(910);
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
@@ -42,17 +40,17 @@ function onEventFinish(player,csid,option)
     if (csid == 500) then
         local r = math.random(1,3);
         player:addKeyItem(dsp.ki.PURE_WHITE_FEATHER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PURE_WHITE_FEATHER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PURE_WHITE_FEATHER);
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then
-            player:addNationTeleport(MAW,1);
+            player:addNationTeleport(dsp.teleport.nation.MAW,1);
             dsp.teleport.toMaw(player,1); -- go to Batallia_Downs[S]
         elseif (r == 2) then
-            player:addNationTeleport(MAW,2);
+            player:addNationTeleport(dsp.teleport.nation.MAW,2);
             dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
         elseif (r == 3) then
-            player:addNationTeleport(MAW,4);
+            player:addNationTeleport(dsp.teleport.nation.MAW,4);
             dsp.teleport.toMaw(player,5); -- go to Sauromugue_Champaign_[S]
         end;
     elseif (csid == 910 and option == 1) then

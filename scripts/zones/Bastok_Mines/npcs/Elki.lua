@@ -3,13 +3,11 @@
 --  NPC: Elki
 -- Starts Quests: Hearts of Mythril, The Eleventh's Hour
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -48,14 +46,14 @@ function onEventFinish(player,csid,option)
     if (csid == 41 and option == 0) then
         player:addQuest(BASTOK,HEARTS_OF_MYTHRIL);
         player:addKeyItem(dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BOUQUETS_FOR_THE_PIONEERS);
     elseif (csid == 42) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12840);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12840);
         else
             player:addTitle(dsp.title.PURSUER_OF_THE_PAST);
             player:addItem(12840);
-            player:messageSpecial(ITEM_OBTAINED,12840);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12840);
             player:completeQuest(BASTOK,HEARTS_OF_MYTHRIL);
             player:addFame(BASTOK,80);
             player:setVar("HeartsOfMythril",0);
@@ -68,5 +66,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-
-

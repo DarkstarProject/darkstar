@@ -3,10 +3,8 @@
 -- Zone: Cloister_of_Storms (202)
 --
 -----------------------------------
-package.loaded["scripts/zones/Cloister_of_Storms/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Cloister_of_Storms/TextIDs");
+local ID = require("scripts/zones/Cloister_of_Storms/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

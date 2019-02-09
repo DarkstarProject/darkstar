@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -46 0 -148 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_Zitah/TextIDs"] = nil
------------------------------------
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

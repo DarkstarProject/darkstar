@@ -2,11 +2,8 @@
 -- Area: Labyrinth of Onzozo
 --   NM: Peg Powler
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,774,1);
-end;
-
-function onMobDespawn(mob)
+    dsp.regime.checkRegime(player, mob, 774, 1, dsp.regime.type.GROUNDS)
 end;

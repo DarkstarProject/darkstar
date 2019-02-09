@@ -1,3 +1,5 @@
+local ID = require("scripts/zones/Arrapago_Remnants/IDs")
+require("scripts/globals/status")
 
 function onTrigger(entity, npc)
     entity:startEvent(300)
@@ -11,11 +13,11 @@ function onEventFinish(entity, eventid, result, door)
         door:setAnimation(8)
         local instance = door:getInstance();
         -- spawn mobs, etc
-        for i,v in pairs(Arrapago.npcs[1][2]) do
+        for i,v in pairs(ID.npc[1][2]) do
             local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC);
             npc:setStatus(dsp.status.NORMAL)
         end
-        for id = Arrapago.mobs[1][2].mobs_start, Arrapago.mobs[1][2].mobs_end do
+        for id = ID.mob[1][2].mobs_start, ID.mob[1][2].mobs_end do
             SpawnMob(id, instance)
         end
         door:untargetable(true)

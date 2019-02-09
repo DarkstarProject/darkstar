@@ -4,10 +4,7 @@
 -- Type: Quest
 -- !pos -63 -75 4 96
 -----------------------------------
-package.loaded["scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Fort_Karugo-Narugo_[S]/TextIDs");
-require("scripts/zones/Fort_Karugo-Narugo_[S]/MobIDs");
+local ID = require("scripts/zones/Fort_Karugo-Narugo_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -21,10 +18,10 @@ function onTrigger(player,npc)
         player:startEvent(102);
     elseif (player:getVar("WarLynxKilled") == 1) then
         player:startEvent(103);
-    elseif (ttsStat == 2 and not GetMobByID(TIGRESS_STRIKES_WAR_LYNX):isSpawned()) then
-        SpawnMob(TIGRESS_STRIKES_WAR_LYNX):updateClaim(player);
+    elseif (ttsStat == 2 and not GetMobByID(ID.mob.TIGRESS_STRIKES_WAR_LYNX):isSpawned()) then
+        SpawnMob(ID.mob.TIGRESS_STRIKES_WAR_LYNX):updateClaim(player);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

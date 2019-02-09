@@ -4,12 +4,7 @@
 -- Type: Standard NPC
 -- !pos 2.805 -47.999 -15.083 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("FixatedYagudo",0);
     end
 end;
-

@@ -342,7 +342,6 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    -- Set Cactrot Rapido's spawnpoint and respawn time (24-72 hours)
     UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(86400,259200));
+    mob:setRespawnTime(math.random(172800, 259200)) -- 2 to 3 days
 end;

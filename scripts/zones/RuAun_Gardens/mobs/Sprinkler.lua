@@ -2,12 +2,12 @@
 -- Area: RuAun Gardens
 --  MOB: Sprinkler
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,142,2);
-    checkRegime(player,mob,143,1);
+    dsp.regime.checkRegime(player, mob, 142, 2, dsp.regime.type.FIELDS)
+    dsp.regime.checkRegime(player, mob, 143, 1, dsp.regime.type.FIELDS)
 end;
 
 -- Return the selected spell ID.

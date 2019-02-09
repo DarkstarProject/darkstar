@@ -5,15 +5,13 @@
 -- Starts and Finishes: Making Amens!, Orastery Woes
 -- !pos -112.5 -4.2 102.9 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.black_halo
@@ -90,13 +88,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.BROKEN_WAND)
         player:addTitle(dsp.title.HAKKURURINKURUS_BENEFACTOR)
         player:addGil(GIL_RATE*6000)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*6000)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*6000)
         player:addFame(WINDURST,150)
         player:completeQuest(WINDURST,MAKING_AMENS)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ASURAN_FISTS_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLACK_HALO_LEARNED)
     end
 end
-
-
-

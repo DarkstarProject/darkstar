@@ -3,16 +3,14 @@
 --  NPC: Ferdoulemiont
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
-        player:messageSpecial(FLYER_REFUSED)
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
@@ -36,7 +34,7 @@ function onTrigger(player,npc)
         2343,  1984, 3,    -- La Theine Millet
     }
 
-    player:showText(npc, FERDOULEMIONT_SHOP_DIALOG)
+    player:showText(npc, ID.text.FERDOULEMIONT_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
 end
 

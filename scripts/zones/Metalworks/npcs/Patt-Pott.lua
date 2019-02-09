@@ -4,9 +4,7 @@
 -- Type: Consulate Representative
 -- !pos 23 -17 42 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -62,7 +60,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WINDURST,THE_THREE_KINGDOMS);
         player:delKeyItem(dsp.ki.KINDRED_CREST);
         player:addKeyItem(dsp.ki.KINDRED_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
     elseif (csid == 255) then
         player:tradeComplete();
         player:setVar("MissionStatus",7);

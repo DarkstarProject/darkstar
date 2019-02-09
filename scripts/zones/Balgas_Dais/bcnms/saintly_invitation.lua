@@ -3,11 +3,9 @@
 -- Name: Saintly Invitation
 -- !pos 299 -123 345 146
 -----------------------------------
-package.loaded["scripts/zones/Balgas_Dais/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/keyitems");
-require("scripts/zones/Balgas_Dais/TextIDs");
+local ID = require("scripts/zones/Balgas_Dais/IDs");
 require("scripts/globals/missions");
 
 -----------------------------------
@@ -54,7 +52,7 @@ function onEventFinish(player,csid,option)
         if (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) then
             player:addTitle(dsp.title.VICTOR_OF_THE_BALGA_CONTEST);
             player:addKeyItem(dsp.ki.BALGA_CHAMPION_CERTIFICATE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BALGA_CHAMPION_CERTIFICATE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BALGA_CHAMPION_CERTIFICATE);
             player:setVar("MissionStatus",2);
         end
     end

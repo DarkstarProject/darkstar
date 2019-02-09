@@ -3,6 +3,7 @@
 --  NPC: Magephaud
 -- Standard Info NPC
 -----------------------------------
+local ID = require("scripts/zones/Norg/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/titles")
@@ -43,11 +44,8 @@ function onEventFinish(player,csid,option)
         player:tradeComplete();
         player:addFame(NORG,80);
         player:addKeyItem(dsp.ki.TONBERRY_PRIEST_KEY);    -- Permanent Tonberry key
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TONBERRY_PRIEST_KEY);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TONBERRY_PRIEST_KEY);
         player:setVar("EveryonesGrudgeStarted",0);
         player:addTitle(dsp.title.HONORARY_DOCTORATE_MAJORING_IN_TONBERRIES);
     end
 end;
-
-
-

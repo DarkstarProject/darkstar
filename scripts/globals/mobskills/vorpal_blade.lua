@@ -25,18 +25,16 @@ end
 
 function onMobWeaponSkill(target, mob, skill)
     if (mob:getPool() == 4249) then -- Volker@Throne_Room only
-        package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil
-        require("scripts/zones/Throne_Room/TextIDs")
-        target:showText(mob,BLADE_ANSWER)
+        target:showText(mob,zones[dsp.zone.THRONE_ROOM].text.BLADE_ANSWER)
     end
 
     local numhits = 4
     local accmod = 1
     local dmgmod = 1.25
     local info = MobPhysicalMove(mob,target,skill,numhits,accmod,dmgmod,TP_CRIT_VARIES,1.1,1.2,1.3)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_PHYSICAL,MOBPARAM_SLASH,info.hitslanded)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.PHYSICAL,dsp.damageType.SLASHING,info.hitslanded)
 
     -- AA EV: Approx 900 damage to 75 DRG/35 THF.  400 to a NIN/WAR in Arhat, but took shadows.
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.PHYSICAL, dsp.damageType.SLASHING)
     return dmg
 end

@@ -4,9 +4,7 @@
 -- Type: Standard Merchant NPC
 -- !pos -1.139 -2.101 -9.000 220
 -----------------------------------
-package.loaded["scripts/zones/Ship_bound_for_Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Ship_bound_for_Selbina/TextIDs")
+local ID = require("scripts/zones/Ship_bound_for_Selbina/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
         4151,  800,    -- Echo Drops
     }
 
-    player:showText(npc, MAERA_SHOP_DIALOG)
+    player:showText(npc, ID.text.MAERA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -31,4 +29,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

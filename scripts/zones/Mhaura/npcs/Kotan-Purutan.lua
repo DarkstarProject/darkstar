@@ -4,7 +4,9 @@
 --  Involved in Quest: Overnight Delivery
 -- !pos 40.323 -8.999 44.242 249
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
+local ID = require("scripts/zones/Mhaura/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +40,6 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.SMALL_BAG);
         player:setVar("Kenapa_Overnight_Day_var",VanadielDayOfTheYear());
         player:setVar("Kenapa_Overnight_Hour_var",VanadielHour());
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMALL_BAG);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMALL_BAG);
     end
 end;
-

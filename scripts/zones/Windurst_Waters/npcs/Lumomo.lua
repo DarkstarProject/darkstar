@@ -6,8 +6,7 @@
 --  638  818 820    822  823
 -- Auto-Script: Requires Verification (Verfied By Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -49,16 +48,15 @@ function onEventFinish(player,csid,option)
             player:completeQuest(WINDURST,ECO_WARRIOR_WIN);
             player:delKeyItem(dsp.ki.INDIGESTED_MEAT);
             player:addGil(GIL_RATE * 5000);
-            player:messageSpecial(GIL_OBTAINED,GIL_RATE * 5000);
+            player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE * 5000);
             player:addItem(4198);
-            player:messageSpecial(ITEM_OBTAINED,4198);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4198);
             player:addTitle(dsp.title.EMERALD_EXTERMINATOR);
             player:addFame(WINDURST, 80);
             player:setVar("ECO-WAR_ConquestWeek",getConquestTally())
             player:setVar("ECO_WARRIOR_ACTIVE",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4198);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4198);
         end
     end
 end;
-

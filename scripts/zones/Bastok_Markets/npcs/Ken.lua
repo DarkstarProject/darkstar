@@ -4,10 +4,7 @@
 -- Type: Quest NPC
 -- !pos -340.857 -11.003 -149.008 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Markets/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -34,4 +31,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

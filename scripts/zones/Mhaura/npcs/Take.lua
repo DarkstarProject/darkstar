@@ -4,12 +4,10 @@
 -- Involved In Quest: RYCHARDE_THE_CHEF
 --  Starts and finishes quest: Expertice
 -----------------------------------
-package.loaded["scripts/zones/Mhaura/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/titles");
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Mhaura/TextIDs");
+local ID = require("scripts/zones/Mhaura/IDs");
 
 -- player:startEvent(59); -- standar dialog
 -- player:startEvent(60); -- tell to look for ricarde
@@ -74,10 +72,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 62) then   -- end quest expertice
         player:addFame(WINDURST,120);
         if (player:getFreeSlotsCount() < 1) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,132);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,132);
         else
             player:addItem(132);
-            player:messageSpecial(ITEM_OBTAINED,132);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,132);
             player:addTitle(dsp.title.THREESTAR_PURVEYOR);
             player:setVar("QUEST_EXPERTISE_STATE_var",0); --done cooking
             player:setVar("QuestHNIVCCompDay_var",0); -- completition day of unending chase
@@ -89,6 +87,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
-

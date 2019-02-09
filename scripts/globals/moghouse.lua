@@ -23,7 +23,7 @@ function moogleTrade(player,npc,trade)
                 -- remove bronze
                 player:tradeComplete()
                 -- send event
-                player:messageSpecial(MOG_LOCKER_OFFSET + 2, getMogLockerExpiryTimestamp(player))
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET + 2, getMogLockerExpiryTimestamp(player))
             end
         end
         return true
@@ -36,9 +36,9 @@ function moogleTrigger(player,npc)
         local lockerTs = getMogLockerExpiryTimestamp(player)
         if lockerTs ~= nil then
             if lockerTs == -1 then -- expired
-                player:messageSpecial(MOG_LOCKER_OFFSET + 1, 2184) -- 2184 is imperial bronze piece item id
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET + 1, 2184) -- 2184 is imperial bronze piece item id
             else
-                player:messageSpecial(MOG_LOCKER_OFFSET, lockerTs)
+                player:messageSpecial(zones[player:getZoneID()].text.MOG_LOCKER_OFFSET, lockerTs)
             end
         end
 

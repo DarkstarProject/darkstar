@@ -3,9 +3,7 @@
 --  NPC: Pyopyoroon
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Nashmau/TextIDs");
+local ID = require("scripts/zones/Nashmau/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
@@ -40,7 +38,7 @@ function onEventFinish(player,csid,option)
         player:setVar("AhtUrganStatus",0);
         player:tradeComplete();
         player:addKeyItem(dsp.ki.VIAL_OF_SPECTRAL_SCENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.VIAL_OF_SPECTRAL_SCENT);
         player:completeMission(TOAU,ROYAL_PUPPETEER);
         player:addMission(TOAU,LOST_KINGDOM);
     end

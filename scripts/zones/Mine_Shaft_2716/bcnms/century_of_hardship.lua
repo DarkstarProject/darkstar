@@ -5,11 +5,8 @@
 -- inst 2 -54 -1 -100
 -- inst 3 425 -121 -99
 -----------------------------------
-package.loaded["scripts/zones/Mine_Shaft_2716/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/missions");
-require("scripts/zones/Mine_Shaft_2716/TextIDs");
 
 -- After registering the BCNM via bcnmRegister(bcnmid)
 function onBcnmRegister(player,instance)

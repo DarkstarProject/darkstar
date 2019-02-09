@@ -4,11 +4,9 @@
 -- Involved in Quest: A Knight's Test
 -- !pos -55 -8 -32 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -30,7 +28,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 634) then
         player:addKeyItem(dsp.ki.BOOK_OF_THE_WEST);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.BOOK_OF_THE_WEST);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BOOK_OF_THE_WEST);
     end
 
 end;

@@ -3,9 +3,6 @@
 --  NPC: Glarociquet, T.K.
 -- !pos 19 -16 -28 237
 -------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Metalworks/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

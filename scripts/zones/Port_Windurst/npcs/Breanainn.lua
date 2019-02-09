@@ -3,10 +3,7 @@
 --  NPC: Breanainn
 -- !pos 212 -6 96 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -21,4 +18,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

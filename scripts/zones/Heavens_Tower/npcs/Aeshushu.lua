@@ -4,12 +4,7 @@
 -- Type: Standard NPC
 -- !pos 4.948 -26.5 -2.303 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+require("scripts/globals/missions")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -36,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("StressedOut",0);
     end
 end;
-

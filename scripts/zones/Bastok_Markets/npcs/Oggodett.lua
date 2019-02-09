@@ -3,9 +3,7 @@
 --  NPC: Oggodett
 -- Aragoneu Regional Goods
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.ARAGONEU) ~= dsp.nation.BASTOK then
-        player:showText(npc, OGGODETT_CLOSED_DIALOG)
+        player:showText(npc, ID.text.OGGODETT_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             841,    36,     -- Yagudo Feather
         }
 
-        player:showText(npc, OGGODETT_OPEN_DIALOG)
+        player:showText(npc, ID.text.OGGODETT_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

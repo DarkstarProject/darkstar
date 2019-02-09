@@ -3,17 +3,18 @@
 -- Zone: Southern_San_dOria (230)
 --
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/events/harvest_festivals");
-require("scripts/globals/zone");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
-require("scripts/zones/Southern_San_dOria/TextIDs");
+require("scripts/globals/chocobo")
+require("scripts/globals/zone");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, -292,-10,90 ,-258,10,105);
     applyHalloweenNpcCostumes(zone:getID())
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -56,10 +57,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 503) then
-        player:messageSpecial(ITEM_OBTAINED,536);
+        player:messageSpecial(ID.text.ITEM_OBTAINED,536);
     elseif (csid == 30004 and option == 0) then
         player:setHomePoint();
-        player:messageSpecial(HOMEPOINT_SET);
+        player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 758) then
         player:setVar("COP_louverance_story",3);
     end

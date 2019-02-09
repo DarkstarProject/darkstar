@@ -3,10 +3,8 @@
 -- Zone: The_Celestial_Nexus (181)
 --
 -----------------------------------
-package.loaded["scripts/zones/The_Celestial_Nexus/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/The_Celestial_Nexus/TextIDs");
+local ID = require("scripts/zones/The_Celestial_Nexus/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

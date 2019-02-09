@@ -4,9 +4,7 @@
 -- Starts and Finished Quest: A Pose By Any Other Name
 -- !pos -70 -10 -6 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -75,14 +73,14 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestAPoseByOtherName_time",os.time());
     elseif (csid == 96) then  --------------------- QUEST FINFISH
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,206);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,206);
         else
             player:completeQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME)
             player:addTitle(dsp.title.SUPER_MODEL);
             player:addItem(206);
-            player:messageSpecial(ITEM_OBTAINED,206);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,206);
             player:addKeyItem(dsp.ki.ANGELICAS_AUTOGRAPH);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ANGELICAS_AUTOGRAPH);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ANGELICAS_AUTOGRAPH);
             player:addFame(WINDURST,75);
             player:setVar("QuestAPoseByOtherName_time",0);
             player:setVar("QuestAPoseByOtherName_equip",0);

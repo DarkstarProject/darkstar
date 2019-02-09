@@ -4,9 +4,7 @@
 -- Involved in Quest: Food For Thought, Hat in Hand
 -- !pos 27 -6 -199 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -156,8 +154,8 @@ function onEventFinish(player,csid,option)
             player:setVar("Kenapa_Food_var",4);
         end
     elseif  (csid == 56) then  -- Show Off Hat
-        player:setVar("QuestHatInHand_var",player:getVar("QuestHatInHand_var")+4);
-        player:setVar("QuestHatInHand_count",player:getVar("QuestHatInHand_count")+1);
+        player:addVar("QuestHatInHand_var", 4);
+        player:addVar("QuestHatInHand_count", 1);
     elseif (csid == 336) then
         player:setVar("Kenapa_Overnight_var",1);
     elseif (csid == 337) then
@@ -188,19 +186,16 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() > 0) then
             player:addItem(12590);
             player:delKeyItem(dsp.ki.SMALL_BAG);
-            player:messageSpecial(ITEM_OBTAINED,12590);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12590);
             player:completeQuest(WINDURST,OVERNIGHT_DELIVERY);
             player:addFame(WINDURST,100);
             player:needToZone(true);
             player:setVar("Kenapa_Overnight_var",0);
             player:setVar("Kenapa_Overnight_Hour_var",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,12590);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12590);
         end
     elseif (csid == 519) then
         player:setVar("FLOWER_PROGRESS",3);
     end
 end;
-
-
-

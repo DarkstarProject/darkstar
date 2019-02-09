@@ -5,14 +5,12 @@
 -- Starts and Finishes Quests: Path of the Bard (just start), The Requiem (BARD AF2)
 -- !pos -22 0 -60 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/shop");
-require("scripts/zones/Lower_Jeuno/TextIDs");
+local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -83,14 +81,14 @@ function onEventFinish(player,csid,option)
         player:setVar("TheRequiemCS",2);
     elseif (csid == 151) then
         player:setVar("TheRequiemCS",3);
-        player:messageSpecial(ITEM_OBTAINED,4154); -- Holy Water (just message)
+        player:messageSpecial(ID.text.ITEM_OBTAINED,4154); -- Holy Water (just message)
         player:setVar("TheRequiemRandom",math.random(1,5)); -- pick a random sarcophagus
     elseif (csid == 150) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,14098);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14098);
         else
             player:addItem(14098);
-            player:messageSpecial(ITEM_OBTAINED,14098); -- Choral Slippers
+            player:messageSpecial(ID.text.ITEM_OBTAINED,14098); -- Choral Slippers
             player:addFame(JEUNO, 30);
             player:completeQuest(JEUNO,THE_REQUIEM);
         end;

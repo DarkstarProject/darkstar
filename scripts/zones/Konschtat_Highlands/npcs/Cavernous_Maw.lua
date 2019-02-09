@@ -4,13 +4,11 @@
 -- !pos 96.344, -69.080, -580.008 108
 -- Teleports Players to Abyssea - Konschtat
 -----------------------------------
-package.loaded["scripts/zones/Konschtat_Highlands/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/abyssea");
-require("scripts/zones/Konschtat_Highlands/TextIDs");
+local ID = require("scripts/zones/Konschtat_Highlands/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -26,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(107,0,1); -- No param = no entry.
         end
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 

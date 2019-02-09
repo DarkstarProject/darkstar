@@ -4,12 +4,10 @@
 -- Involved in Quests: The Rescue
 -- !pos 56 0.1 -23 147
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Beadeaux/TextIDs");
+local ID = require("scripts/zones/Beadeaux/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,9 +20,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getQuestStatus(OTHER_AREAS_LOG,THE_RESCUE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.TRADERS_SACK) == false) then
-        player:messageSpecial(LOCKED_DOOR_QUADAV_HAS_KEY);
+        player:messageSpecial(ID.text.LOCKED_DOOR_QUADAV_HAS_KEY);
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
     return 1;
 end;
@@ -35,7 +33,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 1000) then
         player:addKeyItem(dsp.ki.TRADERS_SACK);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.TRADERS_SACK);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TRADERS_SACK);
     end
 end;
-

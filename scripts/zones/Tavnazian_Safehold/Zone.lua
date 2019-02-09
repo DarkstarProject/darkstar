@@ -3,9 +3,8 @@
 -- Zone: Tavnazian_Safehold (26)
 --
 -----------------------------------
-package.loaded["scripts/zones/Tavnazian_Safehold/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Tavnazian_Safehold/TextIDs");
+local ID = require("scripts/zones/Tavnazian_Safehold/IDs");
+require("scripts/globals/conquest");
 require("scripts/globals/settings");
 require("scripts/globals/missions");
 -----------------------------------

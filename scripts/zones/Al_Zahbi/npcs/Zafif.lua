@@ -3,9 +3,7 @@
 --  NPC: Zafif
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Al_Zahbi/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Al_Zahbi/TextIDs")
+local ID = require("scripts/zones/Al_Zahbi/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         4715, 28500     -- Scroll of Reprisal
     }
 
-    player:showText(npc, ZAFIF_SHOP_DIALOG)
+    player:showText(npc, ID.text.ZAFIF_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

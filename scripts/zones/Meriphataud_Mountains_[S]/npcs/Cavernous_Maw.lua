@@ -4,12 +4,9 @@
 -- !pos 597 -32 279 97
 -- Teleports Players to Meriphataud Mountains
 -----------------------------------
-package.loaded["scripts/zones/Meriphataud_Mountains_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Meriphataud_Mountains_[S]/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -29,7 +26,7 @@ end;
 function onEventFinish(player,csid,option)
     if (option == 1) then
         if (csid == 102) then
-            player:addNationTeleport(MAW,32);
+            player:addNationTeleport(dsp.teleport.nation.MAW,32);
         end
         dsp.teleport.toMaw(player,18);
     end

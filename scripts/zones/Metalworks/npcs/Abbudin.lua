@@ -4,10 +4,6 @@
 -- Type: Standard Info NPC
 -- !pos -56.338 2.777 -31.446 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -21,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

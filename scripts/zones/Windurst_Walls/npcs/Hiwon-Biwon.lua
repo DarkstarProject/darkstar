@@ -4,12 +4,10 @@
 --  Involved In Quest: Making Headlines, Curses, Foiled...Again!?
 -- Working 100%
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 require("scripts/globals/titles");
-require("scripts/zones/Windurst_Walls/TextIDs");
+local ID = require("scripts/zones/Windurst_Walls/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -82,19 +80,16 @@ function onEventFinish(player,csid,option)
     if (csid == 281 or csid == 283 or csid == 284) then
         prog = player:getVar("QuestMakingHeadlines_var");
         player:addKeyItem(dsp.ki.WINDURST_WALLS_SCOOP);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.WINDURST_WALLS_SCOOP);
         player:setVar("QuestMakingHeadlines_var",prog+4);
 
     -- Curses,Foiled...Again!?
     elseif (csid == 182) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,552); -- Hiwon's hair
         else
             player:addItem(552);
-            player:messageSpecial(ITEM_OBTAINED,552); -- Hiwon's hair
+            player:messageSpecial(ID.text.ITEM_OBTAINED,552); -- Hiwon's hair
         end
     end
 end;
-
-
-

@@ -3,15 +3,13 @@
 -- Name: ancient_flames_backon
 -- KSNM30
 -----------------------------------
-package.loaded["scripts/zones/Spire_of_Dem/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/teleports");
-require("scripts/zones/Spire_of_Dem/TextIDs");
+local ID = require("scripts/zones/Spire_of_Dem/IDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
             if (player:hasKeyItem(dsp.ki.LIGHT_OF_MEA) and player:hasKeyItem(dsp.ki.LIGHT_OF_HOLLA)) then
                 player:addExp(1500);
                 player:addKeyItem(dsp.ki.LIGHT_OF_DEM);
-                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
+                player:messageSpecial(ID.text.CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
                 player:completeMission(COP,THE_MOTHERCRYSTALS);
                 player:setVar("PromathiaStatus",0)
                 player:addMission(COP,AN_INVITATION_WEST);
@@ -84,7 +82,7 @@ function onEventFinish(player,csid,option)
                 player:setVar("cspromy3",1)
                 player:addKeyItem(dsp.ki.LIGHT_OF_DEM);
                 player:addExp(1500);
-                player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
+                player:messageSpecial(ID.text.CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
                 player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMDEM,0,1);
             end
         elseif (player:getCurrentMission(COP) == BELOW_THE_ARKS) then
@@ -94,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:setVar("cspromy2",1)
             player:setVar("PromathiaStatus",0)
             player:addKeyItem(dsp.ki.LIGHT_OF_DEM);
-            player:messageSpecial(CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
+            player:messageSpecial(ID.text.CANT_REMEMBER,dsp.ki.LIGHT_OF_DEM);
             player:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.EXITPROMDEM,0,1);
         else
             player:addExp(1500);

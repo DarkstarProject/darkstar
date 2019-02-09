@@ -4,16 +4,14 @@
 -- Standard Merchant NPC
 -- !pos -142 -6 47 230
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs")
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
     if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
-        player:messageSpecial(FLYER_REFUSED)
+        player:messageSpecial(ID.text.FLYER_REFUSED)
     end
 end
 
@@ -35,7 +33,7 @@ function onTrigger(player,npc)
         5234,  198, 3,    -- Cibol
     }
 
-    player:showText(npc, BENAIGE_SHOP_DIALOG)
+    player:showText(npc, ID.text.BENAIGE_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.SANDORIA)
 end
 

@@ -5,12 +5,6 @@
 -----------------------------------
 require("scripts/globals/quests");
 
-function onMobSpawn(mob)
-end;
-
-function onMobFight(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,THE_WAYWARD_AUTOMATION);

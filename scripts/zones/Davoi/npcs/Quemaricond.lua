@@ -4,11 +4,9 @@
 -- Involved in Mission: Infiltrate Davoi
 -- !pos 23 0.1 -23 149
 -----------------------------------
-package.loaded["scripts/zones/Davoi/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 require("scripts/globals/keyitems");
-require("scripts/zones/Davoi/TextIDs");
+local ID = require("scripts/zones/Davoi/IDs");
 require("scripts/globals/pathfind");
 -----------------------------------
 
@@ -42,7 +40,7 @@ function onTrigger(player,npc)
         player:startEvent(117);
         npc:wait();
     else
-        player:showText(npc, QUEMARICOND_DIALOG);
+        player:showText(npc, ID.text.QUEMARICOND_DIALOG);
         npc:wait(2000);
     end
 
@@ -56,7 +54,7 @@ function onEventFinish(player,csid,option,npc)
     if (csid == 117) then
         player:setVar("MissionStatus",4);
         player:addKeyItem(dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ROYAL_KNIGHTS_DAVOI_REPORT);
     end
 
     npc:wait(0);

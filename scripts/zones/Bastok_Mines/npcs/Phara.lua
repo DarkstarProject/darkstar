@@ -6,13 +6,11 @@
 -- !zone 234
 -- !pos 75 0 -80
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -51,7 +49,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SWORD_GRIP_MATERIAL);
     elseif (csid == 153) then
         player:addKeyItem(dsp.ki.YASINS_SWORD);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.YASINS_SWORD);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.YASINS_SWORD);
         player:setVar("theDoormanCS",3);
         player:setVar("theDoorman_time",0);
     elseif (csid == 154) then

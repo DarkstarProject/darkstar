@@ -7,9 +7,7 @@
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
 require("scripts/globals/conquest");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -17,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,UPIHKHACHLA_SHOP_DIALOG);
+    player:showText(npc,ID.text.UPIHKHACHLA_SHOP_DIALOG);
 
     stock = {
         17313,  1107,1,     --Grenade

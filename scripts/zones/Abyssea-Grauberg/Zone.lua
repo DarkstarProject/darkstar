@@ -3,10 +3,13 @@
 -- Zone: Abyssea - Grauberg
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Grauberg/IDs")
 require("scripts/globals/quests")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.HARVESTING)
 end
 
 function onZoneIn(player,prevZone)

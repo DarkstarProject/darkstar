@@ -4,10 +4,6 @@
 -- Notes: Used to teleport down the stairs
 -- !pos -81 -1 -97 190
 -----------------------------------
-package.loaded["scripts/zones/King_Ranperres_Tomb/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/King_Ranperres_Tomb/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

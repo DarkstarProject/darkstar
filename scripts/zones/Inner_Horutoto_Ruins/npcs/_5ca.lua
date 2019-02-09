@@ -5,12 +5,9 @@
 -- Involved in Mission 2-1
 -- !pos -11 0 20 192
 -----------------------------------
-package.loaded["scripts/zones/Inner_Horutoto_Ruins/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Inner_Horutoto_Ruins/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

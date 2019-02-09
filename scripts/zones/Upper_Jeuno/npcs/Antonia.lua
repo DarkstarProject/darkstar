@@ -3,9 +3,7 @@
 --  NPC: Antonia
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -32,7 +30,7 @@ function onTrigger(player,npc)
         21393, 100100,    -- Arasy Sachet
     }
 
-    player:showText(npc, ANTONIA_SHOP_DIALOG)
+    player:showText(npc, ID.text.ANTONIA_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

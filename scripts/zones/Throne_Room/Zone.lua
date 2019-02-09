@@ -3,10 +3,8 @@
 -- Zone: Throne_Room (165)
 --
 -----------------------------------
-package.loaded["scripts/zones/Throne_Room/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Throne_Room/TextIDs");
+local ID = require("scripts/zones/Throne_Room/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

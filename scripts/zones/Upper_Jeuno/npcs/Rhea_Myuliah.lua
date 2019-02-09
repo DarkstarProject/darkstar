@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
 -----------------------------------
@@ -54,4 +52,3 @@ function onEventFinish(player,csid,option)
         player:setVar("QuestStatus_DNC_AF1", 2);
     end;
 end;
-

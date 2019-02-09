@@ -3,10 +3,6 @@
 --  NPC: Franziska
 -- Type: Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -27,4 +23,3 @@ if (csid == 777) then
 player:setVar("OptionalcsCornelia",0);
 end
 end;
-

@@ -2,9 +2,7 @@
 -- Area: Abyssea - Grauberg
 --  NPC: Dominion Tactician
 -----------------------------------
-package.loaded["scripts/zones/Abyssea-Grauberg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Abyssea-Grauberg/TextIDs")
+local ID = require("scripts/zones/Abyssea-Grauberg/IDs")
 require("scripts/globals/abyssea")
 -----------------------------------
 
@@ -111,16 +109,16 @@ function onEventFinish(player,csid,option)
             if TempItem then
                 if player:addTempItem(ItemID,1) then
                     player:delCurrency("dominion_note",Price)
-                    player:messageSpecial(ITEM_OBTAINED,ItemID)
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,ItemID)
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID)
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,ItemID)
                 end
             else
                 if player:addItem(ItemID,1,a1,v1,a2,v2,a3,v3,a4,v4) then
                     player:delCurrency("dominion_note",Price)
-                    player:messageSpecial(ITEM_OBTAINED,ItemID)
+                    player:messageSpecial(ID.text.ITEM_OBTAINED,ItemID)
                 else
-                    player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,ItemID)
+                    player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,ItemID)
                 end
             end
         end

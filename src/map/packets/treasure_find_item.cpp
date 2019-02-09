@@ -30,7 +30,7 @@
 #include "treasure_find_item.h"
 
 
-CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBaseEntity* PMob) 
+CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBaseEntity* PMob, bool isOldItem)
 {
 	this->type = 0xD2;
 	this->size = 0x1E;
@@ -38,6 +38,8 @@ CTreasureFindItemPacket::CTreasureFindItemPacket(TreasurePoolItem* PItem , CBase
 	ref<uint32>(0x04) = 1;                   // ItemQuantity, а вожможен размер, отличный от единицы, исключая gil ???
 	ref<uint16>(0x10) = PItem->ID;           // ItemID
 	ref<uint8>(0x14) = PItem->SlotID;       // TreasurePool slotID
+    if (isOldItem)
+        ref<uint8>(0x15) = 1;
     ref<uint32>(0x18) = (uint32)std::chrono::duration_cast<std::chrono::milliseconds>(PItem->TimeStamp - get_server_start_time()).count();
 
 	if (PMob != nullptr)

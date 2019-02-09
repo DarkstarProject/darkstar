@@ -5,16 +5,14 @@
 -- !pos -62.789 11.999 -25.959 243
 --
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, ITEM_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.ITEM_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -23,4 +21,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

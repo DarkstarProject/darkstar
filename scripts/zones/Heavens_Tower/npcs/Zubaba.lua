@@ -4,11 +4,9 @@
 -- Involved in Mission 3-2
 -- !pos 15 -27 18 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
+local ID = require("scripts/zones/Heavens_Tower/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -64,7 +62,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 121) then
         player:addKeyItem(dsp.ki.CHARM_OF_LIGHT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CHARM_OF_LIGHT);
         player:setVar("MissionStatus",1);
     elseif (csid == 149 or csid == 257) then
         player:setVar("MissionStatus",3);

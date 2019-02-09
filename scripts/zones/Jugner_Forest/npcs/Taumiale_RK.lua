@@ -4,9 +4,6 @@
 -- Border Conquest Guards
 -- !pos 570.732 -2.637 553.508 104
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Jugner_Forest/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

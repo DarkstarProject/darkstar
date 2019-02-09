@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos 210 -22 -201 112
 -----------------------------------
-package.loaded["scripts/zones/Xarcabard/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Xarcabard/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

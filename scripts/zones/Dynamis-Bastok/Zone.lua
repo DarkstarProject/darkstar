@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Bastok
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Bastok/TextIDs"] = nil;
------------------------------------
+local ID = require("scripts/zones/Dynamis-Bastok/IDs")
 require("scripts/globals/status");
-require("scripts/zones/Dynamis-Bastok/TextIDs");
 -----------------------------------
 
 function onInitialize(zone)

@@ -3,9 +3,6 @@
 --  NPC: Chapal-Afal, W.W.
 -- !pos -55 -2 31 231
 -------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Northern_San_dOria/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

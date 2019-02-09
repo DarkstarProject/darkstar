@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Altepa
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Altepa/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

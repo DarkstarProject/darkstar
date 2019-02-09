@@ -4,10 +4,6 @@
 -- Involved in Quest: Borghertz's Hands (1st quest only)
 -- !pos 35 4 -43 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;

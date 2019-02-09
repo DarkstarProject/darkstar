@@ -5,12 +5,10 @@
 -- Starts & Finishes: The Usual
 -- !pos -163 -8 13 236
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +26,7 @@ function onTrade(player,npc,trade)
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SMILING_STONE);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SMILING_STONE);
         end
     end
 
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
     if (csid == 133) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.UNFINISHED_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.UNFINISHED_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.UNFINISHED_LETTER);
     elseif (csid == 134 and option == 0) then
         if (player:getQuestStatus(BASTOK,THE_USUAL) == QUEST_AVAILABLE) then
             player:addQuest(BASTOK,THE_USUAL);
@@ -83,16 +81,16 @@ function onEventFinish(player,csid,option)
     elseif (csid == 135) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STEAMING_SHEEP_INVITATION);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STEAMING_SHEEP_INVITATION);
     elseif (csid == 136) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17170);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17170);
         else
             player:addTitle(dsp.title.STEAMING_SHEEP_REGULAR);
             player:delKeyItem(dsp.ki.STEAMING_SHEEP_INVITATION);
             player:setVar("TheUsual_Event",0);
             player:addItem(17170);
-            player:messageSpecial(ITEM_OBTAINED,17170); -- Speed Bow
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17170); -- Speed Bow
             player:addFame(BASTOK,30);
             player:completeQuest(BASTOK,THE_USUAL);
         end

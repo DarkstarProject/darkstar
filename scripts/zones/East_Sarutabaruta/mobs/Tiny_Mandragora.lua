@@ -2,9 +2,9 @@
 -- Area: East Sarutabaruta
 --  MOB: Tiny Mandragora
 -----------------------------------
-require("scripts/globals/fieldsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkRegime(player,mob,89,1);
+    dsp.regime.checkRegime(player, mob, 89, 1, dsp.regime.type.FIELDS)
 end;

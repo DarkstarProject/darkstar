@@ -3,9 +3,7 @@
 --  NPC: Hohbiba-Mubiba
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
+local ID = require("scripts/zones/Port_Windurst/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -29,7 +27,7 @@ function onTrigger(player,npc)
         17095,   386,3,    -- Ash Pole
     }
 
-    player:showText(npc, HOHBIBAMUBIBA_SHOP_DIALOG)
+    player:showText(npc, ID.text.HOHBIBAMUBIBA_SHOP_DIALOG)
     dsp.shop.nation(player, stock, dsp.nation.WINDURST)
 end
 

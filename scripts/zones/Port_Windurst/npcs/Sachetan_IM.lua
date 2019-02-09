@@ -3,9 +3,6 @@
 --  NPC: Sachetan, I.M.
 -- !pos -82 -5 165 z 240
 -------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

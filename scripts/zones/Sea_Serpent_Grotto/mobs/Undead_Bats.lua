@@ -1,10 +1,10 @@
 -----------------------------------
--- Area: Seas Serpent Grotto
+-- Area: Sea Serpent Grotto
 --  MOB: Undead Bats
 -----------------------------------
-require("scripts/globals/groundsofvalor");
+require("scripts/globals/regimes")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-    checkGoVregime(player,mob,804,2);
-end;
+    dsp.regime.checkRegime(player, mob, 804, 2, dsp.regime.type.GROUNDS)
+end

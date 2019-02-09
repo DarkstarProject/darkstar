@@ -5,12 +5,10 @@
 -- Starts, Involved with, and Finishes Quest: 'Flavors of our Lives'
 -- !pos 95 0 -28 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -66,7 +64,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(ADOULIN, FLAVORS_OF_OUR_LIVES);
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 300 * BAYLD_RATE);
-        player:messageSpecial(BAYLD_OBTAINED, 300 * BAYLD_RATE);
+        player:messageSpecial(ID.text.BAYLD_OBTAINED, 300 * BAYLD_RATE);
         player:addTitle(dsp.title.POTATION_PATHFINDER);
         player:addFame(ADOULIN);
     end

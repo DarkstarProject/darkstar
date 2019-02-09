@@ -4,14 +4,12 @@
 -- Type: Assault
 -- !pos 673.882 -23.995 367.604 61
 -----------------------------------
-package.loaded["scripts/zones/Mount_Zhayolm/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Mount_Zhayolm/TextIDs");
+local ID = require("scripts/zones/Mount_Zhayolm/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -65,12 +63,12 @@ function onEventFinish(player,csid,option)
     -- BEGINNINGS
     elseif (csid == 10) then
         player:addKeyItem(dsp.ki.BRAND_OF_THE_FLAMESERPENT);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_FLAMESERPENT);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BRAND_OF_THE_FLAMESERPENT);
 
     -- ASSAULT
     elseif (csid == 209 and option == 1) then
         player:delCurrency("imperial_standing", 50);
         player:addKeyItem(dsp.ki.ASSAULT_ARMBAND);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.ASSAULT_ARMBAND);
     end;
 end;

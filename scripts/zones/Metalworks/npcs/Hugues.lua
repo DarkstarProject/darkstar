@@ -4,11 +4,9 @@
 -- Type: Smithing Synthesis Image Support
 -- !pos -106.336 2.000 26.117 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Metalworks/TextIDs");
+local ID = require("scripts/zones/Metalworks/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,7 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 104 and option == 1) then
-        player:messageSpecial(SMITHING_SUPPORT,0,2,1);
+        player:messageSpecial(ID.text.SMITHING_SUPPORT,0,2,1);
         player:addStatusEffect(dsp.effect.SMITHING_IMAGERY,1,0,120);
     end
 end;

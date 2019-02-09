@@ -3,13 +3,11 @@
 -- Zone: Full_Moon_Fountain (170)
 --
 -----------------------------------
-package.loaded["scripts/zones/Full_Moon_Fountain/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Full_Moon_Fountain/TextIDs");
-require("scripts/zones/Full_Moon_Fountain/MobIDs");
-require("scripts/globals/settings");
-require("scripts/globals/missions");
-require("scripts/globals/titles");
+local ID = require("scripts/zones/Full_Moon_Fountain/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
+require("scripts/globals/titles")
 -----------------------------------
 
 function onInitialize(zone)
@@ -23,7 +21,7 @@ function onZoneIn(player,prevZone)
     if (player:getCurrentMission(WINDURST) == FULL_MOON_FOUNTAIN and player:getVar("MissionStatus") == 3) then
         cs = 50;
     elseif (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and player:getVar("MissionStatus") == 7) then
-            cs = 61;
+        cs = 61;
     end
     return cs;
 end;
@@ -55,7 +53,7 @@ function onEventFinish(player,csid,option)
         local battlefield = player:getBattlefield();
         if (battlefield) then
             local inst = battlefield:getBattlefieldNumber();
-            local instOffset = MOON_READING_OFFSET + (6 * (inst - 1));
+            local instOffset = ID.mob.MOON_READING_OFFSET + (6 * (inst - 1));
             local allyPos =
             {
                 [1] = { ajidoPos = {340.117,   48.752, -383.747, 64}, playerPos = { 340.220,  48.557, -386.114, 190} },

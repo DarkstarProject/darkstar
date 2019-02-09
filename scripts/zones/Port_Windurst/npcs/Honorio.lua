@@ -3,11 +3,8 @@
 --  NPC: Honorio
 -- !pos 218 -5 114 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -37,4 +34,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

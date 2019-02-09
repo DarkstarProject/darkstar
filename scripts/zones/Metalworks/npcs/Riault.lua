@@ -6,10 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Metalworks/TextIDs");
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -23,4 +19,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

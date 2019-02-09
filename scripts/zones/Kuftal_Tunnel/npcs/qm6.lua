@@ -3,10 +3,7 @@
 --  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
@@ -22,26 +19,26 @@ function onTrigger(player,npc)
         local missionStatus = player:getVar("MissionStatus");
         local anyGhostsAlive = false;
         for i = 0, 2 do
-            if (GetMobByID(TALEKEEPER_OFFSET + i):isAlive()) then
+            if (GetMobByID(ID.mob.TALEKEEPER_OFFSET + i):isAlive()) then
                 anyGhostsAlive = true;
                 break;
             end
         end
         
         if (player:getVar("MissionStatus") == 2 and not anyGhostsAlive) then
-            player:messageSpecial(EVIL);
+            player:messageSpecial(ID.text.EVIL);
             for i = 0, 2 do
-                SpawnMob(TALEKEEPER_OFFSET + i);
+                SpawnMob(ID.mob.TALEKEEPER_OFFSET + i);
             end
         elseif (player:getVar("MissionStatus") == 3 and not anyGhostsAlive) then
             player:startEvent(13);
         else
-            player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+            player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
         end
 
     -- DEFAULT DIALOG
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
     end
 end;
 

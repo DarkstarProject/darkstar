@@ -5,9 +5,6 @@
 -- !pos -344.617 -12.226 -166.233 198
 --  61  62  63  64  65
 -----------------------------------
-package.loaded["scripts/zones/Maze_of_Shakhrami/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Maze_of_Shakhrami/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
@@ -46,4 +43,3 @@ function onEventFinish(player,csid,option)
         player:delStatusEffect(dsp.effect.LEVEL_RESTRICTION);
     end
 end;
-

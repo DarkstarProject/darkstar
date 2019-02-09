@@ -4,8 +4,6 @@
 -- Type: Standard NPC
 -- !pos -7.399 -0.5 4.580 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 
 function onTrade(player,npc,trade)
 end;
@@ -19,4 +17,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

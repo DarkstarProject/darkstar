@@ -6,8 +6,6 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
 -----------------------------------
 
@@ -39,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_louverance_story",1);
     end
 end;
-

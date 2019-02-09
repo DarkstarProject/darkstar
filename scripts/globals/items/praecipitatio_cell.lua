@@ -1,4 +1,8 @@
 -----------------------------------------
+-- Praecipitatio Cell
+-- ID 5378
+-- Unlocks magic
+-----------------------------------------
 require("scripts/globals/status")
 -----------------------------------------
 
@@ -11,6 +15,5 @@ end
 
 function onItemUse(target)
     target:delStatusEffectSilent(dsp.effect.OMERTA)
-    target:messageText(target, 7218)
+    target:messageText(target, zones[target:getZoneID()].text.CELL_OFFSET + 10)
 end
-

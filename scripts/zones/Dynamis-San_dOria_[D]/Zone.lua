@@ -3,9 +3,7 @@
 -- Zone: Dynamis-San_dOria [D]
 --
 -----------------------------------
--- package.loaded["scripts/zones/Dynamis-San_dOria_[D]/TextIDs"] = nil;
------------------------------------
--- require("scripts/zones/Dynamis-San_dOria_[D]/TextIDs");
+local ID = require("scripts/zones/Dynamis-San_dOria_[D]/IDs")
 -----------------------------------
 
 function onInitialize(zone)

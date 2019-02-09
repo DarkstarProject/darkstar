@@ -4,12 +4,10 @@
 -- Type: Mission Giver
 -- !pos -358 -10 -168 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,9 +39,9 @@ function onTrigger(player,npc)
 
         if (cs ~= 0 or offset ~= 0 or ((CurrentMission == 0 or CurrentMission == 16) and offset == 0)) then
             if (CurrentMission <= 15 and cs == 0) then
-                player:showText(npc,ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission (Rank 1~5)
+                player:showText(npc,ID.text.ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission (Rank 1~5)
             elseif (CurrentMission > 15 and cs == 0) then
-                player:showText(npc,EXTENDED_MISSION_OFFSET + offset); -- dialog after accepting mission (Rank 6~10)
+                player:showText(npc,ID.text.EXTENDED_MISSION_OFFSET + offset); -- dialog after accepting mission (Rank 6~10)
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end

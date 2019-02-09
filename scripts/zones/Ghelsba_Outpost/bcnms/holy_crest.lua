@@ -3,9 +3,7 @@
 -- Name: Holy Crest - DRG flag quest
 -- !pos -162 -11 78 140
 -----------------------------------
-package.loaded["scripts/zones/Ghelsba_Outpost/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ghelsba_Outpost/TextIDs");
+local ID = require("scripts/zones/Ghelsba_Outpost/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 require("scripts/globals/status");
@@ -56,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.HEIR_TO_THE_HOLY_CREST);
         player:delKeyItem(dsp.ki.DRAGON_CURSE_REMEDY);
         player:unlockJob(dsp.job.DRG);
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_DRAGOON);
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,THE_HOLY_CREST);

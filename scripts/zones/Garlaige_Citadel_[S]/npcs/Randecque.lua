@@ -4,11 +4,9 @@
 -- !pos 61 -6 137 164
 -- Notes: Gives Red Letter required to start "Steamed Rams"
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/Garlaige_Citadel_[S]/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel_[S]/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -35,6 +33,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 1 and option == 0) then
         player:addKeyItem(dsp.ki.RED_RECOMMENDATION_LETTER);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.RED_RECOMMENDATION_LETTER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.RED_RECOMMENDATION_LETTER);
     end
 end;

@@ -4,9 +4,6 @@
 -- Involved In Quest: Wondering Minstrel
 -- !pos -63 -4 27 238
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
@@ -32,6 +29,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-
-
-

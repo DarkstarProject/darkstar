@@ -5,16 +5,14 @@
 -- !pos 158.428 7.999 78.009 247
 --
 -----------------------------------
-package.loaded["scripts/zones/Rabao/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Rabao/TextIDs");
+local ID = require("scripts/zones/Rabao/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc, PAKHI_DELIVERY_DIALOG);
+    player:showText(npc, ID.text.PAKHI_DELIVERY_DIALOG);
     player:openSendBox();
 end;
 
@@ -23,4 +21,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

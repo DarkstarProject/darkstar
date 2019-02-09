@@ -4,10 +4,7 @@
 -- Involved in Mission 3-1
 -- !pos 2 -48 14 242
 -----------------------------------
-package.loaded["scripts/zones/Heavens_Tower/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/missions");
-require("scripts/zones/Heavens_Tower/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

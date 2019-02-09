@@ -3,8 +3,12 @@
 -- Zone: Halvung (62)
 --
 -----------------------------------
+local ID = require("scripts/zones/Halvung/IDs")
+require("scripts/globals/helm")
+-----------------------------------
 
 function onInitialize(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

@@ -3,12 +3,9 @@
 -- Name: contaminated_colosseum
 -- KSNM30
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/titles");
 require("scripts/globals/quests");
-require("scripts/zones/Horlais_Peak/TextIDs");
 
 -----------------------------------
 -- EXAMPLE SCRIPT

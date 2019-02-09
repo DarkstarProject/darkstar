@@ -6,9 +6,7 @@
 --
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -44,12 +42,12 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 171) then
         if    (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,13113);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13113);
 
         else
             player:tradeComplete();
             player:addItem(13113,1);
-            player:messageSpecial(ITEM_OBTAINED,13113);
+            player:messageSpecial(ID.text.ITEM_OBTAINED,13113);
             player:setTitle(dsp.title.AIRSHIP_DENOUNCER);
             player:completeQuest(BASTOK,FEAR_OF_FLYING);
             player:addFame(BASTOK,30);

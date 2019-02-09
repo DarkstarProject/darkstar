@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -586 39 61 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/North_Gustaberg/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

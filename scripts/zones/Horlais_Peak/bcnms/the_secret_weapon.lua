@@ -3,12 +3,10 @@
 -- Name: Mission Rank 7
 -- !pos -509 158 -211 139
 -----------------------------------
-package.loaded["scripts/zones/Horlais_Peak/TextIDs"] = nil;
------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Horlais_Peak/TextIDs");
+local ID = require("scripts/zones/Horlais_Peak/IDs");
 
 -----------------------------------
 -- Maat Battle in Horlais Peak
@@ -64,7 +62,7 @@ function onEventFinish(player,csid,option)
     if (csid == 32001) then
         if (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON) then
             player:addKeyItem(dsp.ki.CRYSTAL_DOWSER);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CRYSTAL_DOWSER);
             player:setVar("SecretWeaponStatus",3)
         end
     end

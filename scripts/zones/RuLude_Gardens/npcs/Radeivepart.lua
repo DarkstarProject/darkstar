@@ -5,13 +5,11 @@
 -- Involved in Quests: Save the Clock Tower
 -- !pos 5 9 -39 243
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/RuLude_Gardens/TextIDs");
+local ID = require("scripts/zones/RuLude_Gardens/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,8 +39,8 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 160) then
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 1);
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz1", 1);
     elseif (csid == 000 and option == 0) then
         player:addQuest(JEUNO,NORTHWARD);
     elseif (csid == 61) then
@@ -50,12 +48,9 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.ENVOY_TO_THE_NORTH);
         if (player:hasKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL);
-            player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_CASTLE_ZVAHL);
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_CASTLE_ZVAHL);
         end
         player:addFame(JEUNO, 30);
         player:tradeComplete();
     end
 end;
-
-
-

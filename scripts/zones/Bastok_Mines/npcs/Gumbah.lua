@@ -4,13 +4,11 @@
 -- Finishes Quest: Blade of Darkness, Inheritance
 -- !pos 52 0 -36 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/wsquest")
-require("scripts/zones/Bastok_Mines/TextIDs")
+local ID = require("scripts/zones/Bastok_Mines/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.ground_strike
@@ -50,10 +48,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 130) then
         player:addQuest(BASTOK, BLADE_OF_DEATH)
         player:addKeyItem(dsp.ki.LETTER_FROM_ZEID)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZEID)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ZEID)
     elseif (csid == 177) then
         player:setVar("[B7-2]Werei", 1)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,GROUND_STRIKE_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.GROUND_STRIKE_LEARNED)
     end
 end

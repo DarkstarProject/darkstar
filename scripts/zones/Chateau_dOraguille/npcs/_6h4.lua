@@ -4,12 +4,9 @@
 -- Involved in Missions: 3-3, 5-2, 6-1, 8-2, 9-1
 -- !pos 0 -1 13 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
-package.loaded["scripts/globals/missions"] = nil;
------------------------------------
+local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -61,7 +58,7 @@ function onEventFinish(player,csid,option)
     if (csid == 537) then
         player:setVar("MissionStatus",3);
         player:addKeyItem(dsp.ki.LETTER_TO_THE_AMBASSADOR);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 61) then
         finishMissionTimeline(player,3,csid,option);
     elseif (csid == 87) then

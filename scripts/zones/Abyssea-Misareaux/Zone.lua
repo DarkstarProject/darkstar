@@ -3,6 +3,7 @@
 -- Zone: Abyssea - Misareaux
 --
 -----------------------------------
+local ID = require("scripts/zones/Abyssea-Misareaux/IDs")
 require("scripts/globals/quests")
 -----------------------------------
 

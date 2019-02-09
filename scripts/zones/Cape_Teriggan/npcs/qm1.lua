@@ -4,12 +4,9 @@
 -- Quests: From Saplings Grow (Empyreal Arrow WSNM "Stolas")
 -- !pos -157 -8 198.2 113
 -----------------------------------
-package.loaded["scripts/zones/Cape_Teriggan/TextIDs"] = nil
------------------------------------
 require("scripts/globals/wsquest")
-require("scripts/zones/Cape_Teriggan/TextIDs")
-require("scripts/zones/Cape_Teriggan/MobIDs")
+local ID = require("scripts/zones/Cape_Teriggan/IDs")
 
 function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.empyreal_arrow,player,STOLAS)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.empyreal_arrow,player,ID.mob.STOLAS)
 end

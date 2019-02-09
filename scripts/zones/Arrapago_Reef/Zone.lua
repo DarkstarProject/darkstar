@@ -3,13 +3,12 @@
 -- Zone: Arrapago_Reef (54)
 --
 -----------------------------------
-package.loaded["scripts/zones/Arrapago_Reef/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Arrapago_Reef/TextIDs")
-require("scripts/globals/missions")
-require("scripts/globals/quests")
+local ID = require("scripts/zones/Arrapago_Reef/IDs")
 require("scripts/globals/keyitems")
+require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 require("scripts/globals/settings")
+require("scripts/globals/quests")
 require("scripts/globals/zone")
 -----------------------------------
 
@@ -24,6 +23,9 @@ function onZoneIn(player,prevZone)
         if prevZone == dsp.zone.THE_ASHU_TALIF then
             if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2) then
                 cs = 9
+            elseif player:getVar("AgainstAllOdds") == 3 then
+                player:setPos(-456, -3, -405, 64)
+                cs = 238
             else
                 player:setPos(-456, -3, -405, 64)
             end
@@ -73,7 +75,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(TOAU,PREVALENCE_OF_PIRATES)
         player:setVar("AhtUrganStatus",0)
         player:addKeyItem(dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PERIQIA_ASSAULT_AREA_ENTRY_PERMIT)
         player:addMission(TOAU,SHADES_OF_VENGEANCE)
     elseif (csid == 15) then
         player:setVar("AhtUrganStatus",1)
@@ -86,6 +88,8 @@ function onEventFinish(player,csid,option)
         player:setPos(0,0,0,0,55)
     elseif (csid == 237) then
         player:startEvent(240)
+    elseif csid == 238 then
+        npcUtil.completeQuest(player, AHT_URHGAN, AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
     elseif (csid == 240) then
         player:setVar("AgainstAllOdds",2)
     end

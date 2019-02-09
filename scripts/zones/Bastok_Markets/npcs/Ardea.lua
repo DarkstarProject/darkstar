@@ -5,9 +5,6 @@
 -- Involved in quests: Chasing Quotas, Rock Racketeer
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
 -----------------------------------

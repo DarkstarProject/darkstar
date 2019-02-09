@@ -4,13 +4,11 @@
 -- Starts and Ends Quest: Like Shining Leggings
 -- !pos -1 -5 25 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/titles");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Norg/TextIDs");
+local ID = require("scripts/zones/Norg/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -61,7 +59,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 129) then
         player:tradeComplete();
         player:addItem(4958); -- Scroll of Dokumori: Ichi
-        player:messageSpecial(ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
+        player:messageSpecial(ID.text.ITEM_OBTAINED, 4958); -- Scroll of Dokumori: Ichi
         player:addFame(NORG,100);
         player:addTitle(dsp.title.LOOKS_GOOD_IN_LEGGINGS);
         player:setVar("shiningLeggings_nb",0);

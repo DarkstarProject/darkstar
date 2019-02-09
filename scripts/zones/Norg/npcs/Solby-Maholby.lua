@@ -3,9 +3,7 @@
 --  NPC: Solby-Maholby
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Norg/TextIDs")
+local ID = require("scripts/zones/Norg/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
         4971, 140319,    -- Scroll of Yain: Ichi
     }
 
-    player:showText(npc, SOLBYMAHOLBY_SHOP_DIALOG)
+    player:showText(npc, ID.text.SOLBYMAHOLBY_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

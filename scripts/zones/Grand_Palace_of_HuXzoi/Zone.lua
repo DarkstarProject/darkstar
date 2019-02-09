@@ -3,10 +3,8 @@
 -- Zone: Grand_Palace_of_HuXzoi (34)
 --
 -----------------------------------
-package.loaded["scripts/zones/Grand_Palace_of_HuXzoi/TextIDs"] = nil;
------------------------------------
 require("scripts/zones/Grand_Palace_of_HuXzoi/globals");
-require("scripts/zones/Grand_Palace_of_HuXzoi/TextIDs");
+local ID = require("scripts/zones/Grand_Palace_of_HuXzoi/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/status");
 -----------------------------------

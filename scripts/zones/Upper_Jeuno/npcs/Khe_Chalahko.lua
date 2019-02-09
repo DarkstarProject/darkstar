@@ -3,9 +3,7 @@
 --  NPC: Khe Chalahko
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
         12938, 32637,    -- Sollerets
     }
 
-    player:showText(npc, KHECHALAHKO_SHOP_DIALOG)
+    player:showText(npc, ID.text.KHECHALAHKO_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -31,4 +29,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

@@ -5,25 +5,22 @@
 -- Allows players to spawn Absolute Virtue by killing Jailer of Love.
 -- !pos , 431 -0 -603
 -----------------------------------
-package.loaded["scripts/zones/AlTaieu/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/AlTaieu/TextIDs");
-require("scripts/zones/AlTaieu/MobIDs");
+local ID = require("scripts/zones/AlTaieu/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
     --[[
     -- JAILER OF LOVE
     if (
-        not GetMobByID(JAILER_OF_LOVE):isSpawned() and
-        not GetMobByID(ABSOLUTE_VIRTUE):isSpawned() and
+        not GetMobByID(ID.mob.JAILER_OF_LOVE):isSpawned() and
+        not GetMobByID(ID.mob.ABSOLUTE_VIRTUE):isSpawned() and
         trade:hasItemQty(1848,1) and -- fourth_virtue
         trade:hasItemQty(1847,1) and -- fifth_virtue
         trade:hasItemQty(1849,1) and -- sixth_virtue
         trade:getItemCount() == 3
     ) then
         player:tradeComplete();
-        SpawnMob(JAILER_OF_LOVE):updateClaim(player);
+        SpawnMob(ID.mob.JAILER_OF_LOVE):updateClaim(player);
     end
     --]]
 end;

@@ -4,12 +4,10 @@
 -- Standard Info NPC
 -- Involved in Quest: Welcome to Bastok
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -22,7 +20,7 @@ function onTrigger(player,npc)
     if (WelcometoBastok == QUEST_ACCEPTED and player:getVar("WelcometoBastok_Event") ~= 1 and player:getEquipID(dsp.slot.SUB) == 12415) then -- Shell Shield
         player:startEvent(52);
     else
-        player:messageSpecial(BARTHOLOMEO_DIALOG);
+        player:messageSpecial(ID.text.BARTHOLOMEO_DIALOG);
     end
 
 end;

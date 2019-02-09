@@ -2,9 +2,6 @@
 -- Area: Port Windurst
 --  NPC: Milma-Hapilma, W.W.
 -------------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Port_Windurst/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

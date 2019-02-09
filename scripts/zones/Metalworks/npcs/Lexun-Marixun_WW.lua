@@ -3,9 +3,6 @@
 --  NPC: Lexun-Maxirun, W.W.
 -- !pos 28 -16 28 237
 -------------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Metalworks/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

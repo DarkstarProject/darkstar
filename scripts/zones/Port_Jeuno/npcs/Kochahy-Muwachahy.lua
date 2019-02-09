@@ -3,9 +3,6 @@
 --  NPC: Kochahy-Muwachahy
 -- !pos 40 0 6 246
 -------------------------------------
-package.loaded["scripts/zones/Port_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Port_Jeuno/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

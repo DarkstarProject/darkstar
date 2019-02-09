@@ -3,9 +3,7 @@
 --  NPC: Hae Jakhya
 --  General Info NPC
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/keyitems")
 require("scripts/globals/settings");
 require("scripts/globals/quests");
@@ -19,7 +17,7 @@ function onTrade(player,npc,trade)
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
 end;
@@ -44,6 +42,6 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 611) then
         player:addKeyItem(dsp.ki.A_SONG_OF_LOVE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.A_SONG_OF_LOVE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.A_SONG_OF_LOVE);
     end
 end;

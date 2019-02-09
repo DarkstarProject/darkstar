@@ -3,9 +3,6 @@
 --  NPC: Illu Bohjaa
 -- Involved in the repeatable quest "Creepy Crawlies"
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
 require("scripts/globals/quests")

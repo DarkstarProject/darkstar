@@ -3,22 +3,19 @@
 --  NPC: ??? (Spawn Lividroot Amooshah(ZNM T2))
 -- !pos 334 -10 184 52
 -----------------------------------
-package.loaded["scripts/zones/Bhaflau_Thickets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bhaflau_Thickets/TextIDs")
-require("scripts/zones/Bhaflau_Thickets/MobIDs")
+local ID = require("scripts/zones/Bhaflau_Thickets/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, 2578) and not GetMobByID(LIVIDROOT_AMOOSHAH):isSpawned() then -- Oily Blood
+    if npcUtil.tradeHas(trade, 2578) and not GetMobByID(ID.mob.LIVIDROOT_AMOOSHAH):isSpawned() then -- Oily Blood
         player:confirmTrade()
-        SpawnMob(LIVIDROOT_AMOOSHAH):updateClaim(player)
+        SpawnMob(ID.mob.LIVIDROOT_AMOOSHAH):updateClaim(player)
     end
 end
 
 function onTrigger(player,npc)
-    player:messageSpecial(NOTHING_HAPPENS)
+    player:messageSpecial(ID.text.NOTHING_HAPPENS)
 end
 
 function onEventUpdate(player,csid,option)

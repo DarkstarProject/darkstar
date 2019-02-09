@@ -3,10 +3,8 @@
 -- Zone: Phanauet_Channel
 --
 -----------------------------------
-package.loaded["scripts/zones/Phanauet_Channel/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Phanauet_Channel/TextIDs");
+local ID = require("scripts/zones/Phanauet_Channel/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)
@@ -35,4 +33,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

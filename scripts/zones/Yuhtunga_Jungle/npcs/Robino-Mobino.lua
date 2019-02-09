@@ -4,9 +4,6 @@
 -- Type: Outpost Vendor
 -- !pos -244 0 -401 123
 -----------------------------------
-package.loaded["scripts/zones/Yuhtunga_Jungle/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Yuhtunga_Jungle/TextIDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 -----------------------------------

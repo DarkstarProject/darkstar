@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Tavnazia
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Dynamis-Tavnazia/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Dynamis-Tavnazia/TextIDs");
+local ID = require("scripts/zones/Dynamis-Tavnazia/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

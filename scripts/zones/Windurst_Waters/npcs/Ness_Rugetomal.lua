@@ -6,9 +6,7 @@
 -----------------------------------
 require("scripts/globals/events/harvest_festivals")
 require("scripts/globals/shop");
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -16,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    player:showText(npc,NESSRUGETOMALL_SHOP_DIALOG);
+    player:showText(npc,ID.text.NESSRUGETOMALL_SHOP_DIALOG);
 
     stock = {
         4394,    10,1,     --Ginger Cookie

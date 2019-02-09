@@ -5,18 +5,16 @@
 -- !pos -72.771 0.999 -6.112 230
 -- Auto-Script: Requires Verification (Verified by Brawndo)
 -----------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
+local ID = require("scripts/zones/Southern_San_dOria/IDs")
+require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (FlyerForRegine == 1) then
-        count = trade:getItemCount();
-        MagicFlyer = trade:hasItemQty(532,1);
-        if (MagicFlyer == true and count == 1) then
-            player:messageSpecial(FLYER_REFUSED);
+    if player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED then
+        if trade:hasItemQty(532,1) and trade:getItemCount() == 1 then
+            player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     end
-
 end;
 
 function onTrigger(player,npc)
@@ -28,4 +26,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

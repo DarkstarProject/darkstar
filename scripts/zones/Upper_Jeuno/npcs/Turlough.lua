@@ -4,9 +4,7 @@
 -- Mission NPC
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 require("scripts/globals/quests");
 require("scripts/globals/missions");
 require("scripts/globals/settings");
@@ -31,7 +29,6 @@ function onEventFinish(player,csid,option)
     if (csid == 10172) then
         player:setVar("QueenOfTheDance",2);
         player:addKeyItem(dsp.ki.MAYAKOV_SHOW_TICKET);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAYAKOV_SHOW_TICKET);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAYAKOV_SHOW_TICKET);
     end
 end;
-

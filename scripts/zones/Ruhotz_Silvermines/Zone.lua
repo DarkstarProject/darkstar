@@ -3,10 +3,7 @@
 -- Zone: Ruhotz_Silvermines
 --
 -----------------------------------
-require("scripts/globals/settings");
-package.loaded["scripts/zones/Ruhotz_Silvermines/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Ruhotz_Silvermines/TextIDs");
+local ID = require("scripts/zones/Ruhotz_Silvermines/IDs")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,4 +23,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

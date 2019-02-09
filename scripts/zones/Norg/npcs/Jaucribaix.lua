@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Forge Your Destiny, The Sacred Katana, Yomi Okuri, A Thief in Norg!?, The Potential Within
 -- !pos 91 -7 -8 252
 -----------------------------------
-package.loaded["scripts/zones/Norg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Norg/TextIDs")
+local ID = require("scripts/zones/Norg/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/npc_util")
 require("scripts/globals/settings")
@@ -119,7 +117,7 @@ function onEventFinish(player,csid,option)
         player:confirmTrade()
         player:setVar("ForgeYourDestiny_timer", os.time() + 10368) -- 3 game days
     elseif (csid == 29 and npcUtil.completeQuest(player, OUTLANDS, FORGE_YOUR_DESTINY, {item=17809, fame=30, fameArea=NORG, title=dsp.title.BUSHIDO_BLADE, var={"ForgeYourDestiny_timer", "ForgeYourDestiny_Event"}})) then -- Mumeito
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_SAMURAI, 17809)
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_SAMURAI, 17809)
         player:unlockJob(dsp.job.SAM)
 
     -- THE SACRED KATANA
@@ -162,6 +160,6 @@ function onEventFinish(player,csid,option)
         npcUtil.completeQuest(player, OUTLANDS, A_THIEF_IN_NORG, {item=13868, title=dsp.title.PARAGON_OF_SAMURAI_EXCELLENCE, fame=AF3_FAME, fameArea=NORG, var={"aThiefinNorgCS"}})
 
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,TACHI_KASHA_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.TACHI_KASHA_LEARNED)
     end
 end

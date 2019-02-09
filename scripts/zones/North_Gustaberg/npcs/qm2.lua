@@ -4,10 +4,7 @@
 -- Involved in Quest "As Thick As Thieves"
 -- !pos -232.924 99.107 442.990 106
 -----------------------------------
-package.loaded["scripts/zones/North_Gustaberg/TextIDs"] = nil
------------------------------------
-require("scripts/zones/North_Gustaberg/TextIDs")
-require("scripts/zones/North_Gustaberg/MobIDs")
+local ID = require("scripts/zones/North_Gustaberg/IDs")
 require("scripts/globals/npc_util")
 -----------------------------------
 
@@ -17,8 +14,8 @@ end
 function onTrigger(player,npc)
     local thickAsThievesGamblingCS = player:getVar("thickAsThievesGamblingCS")
 
-    if thickAsThievesGamblingCS == 5 and not GetMobByID(GAMBILOX_WANDERLING):isSpawned() then
-        SpawnMob(GAMBILOX_WANDERLING):updateClaim(player)
+    if thickAsThievesGamblingCS == 5 and not GetMobByID(ID.mob.GAMBILOX_WANDERLING):isSpawned() then
+        SpawnMob(ID.mob.GAMBILOX_WANDERLING):updateClaim(player)
     elseif thickAsThievesGamblingCS == 6 then
         player:startEvent(200,1092)
     end

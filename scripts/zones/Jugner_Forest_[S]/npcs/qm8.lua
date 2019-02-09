@@ -4,10 +4,7 @@
 -- Type: Quest NPC
 -- !pos -6 0 -295 82
 -----------------------------------
-package.loaded["scripts/zones/Jugner_Forest_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Jugner_Forest_[S]/TextIDs");
-require("scripts/zones/Jugner_Forest_[S]/MobIDs");
+local ID = require("scripts/zones/Jugner_Forest_[S]/IDs");
 require("scripts/globals/quests");
 -----------------------------------
 
@@ -22,10 +19,10 @@ function onTrigger(player,npc)
         player:startEvent(204);
     elseif (player:getVar("CobraClawKilled") == 1) then
         player:startEvent(206);
-    elseif (player:getVar("WrathOfTheGriffon") == 1 and not GetMobByID(COBRACLAW_BUCHZVOTCH):isSpawned()) then
+    elseif (player:getVar("WrathOfTheGriffon") == 1 and not GetMobByID(ID.mob.COBRACLAW_BUCHZVOTCH):isSpawned()) then
         player:startEvent(205);
     else
-        player:messageSpecial(NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS);
     end
 end;
 
@@ -36,7 +33,7 @@ function onEventFinish(player,csid,option)
     if (csid == 204) then
         player:setVar("WrathOfTheGriffon",1);
     elseif (csid == 205) then
-        SpawnMob(COBRACLAW_BUCHZVOTCH):updateClaim(player);
+        SpawnMob(ID.mob.COBRACLAW_BUCHZVOTCH):updateClaim(player);
     elseif (csid == 206) then
         player:setVar("CobraClawKilled", 0);
         player:setVar("WrathOfTheGriffon", 2);

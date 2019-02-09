@@ -3,9 +3,7 @@
 --  NPC: Somn-Paemn
 -- Sarutabaruta Regional Goods
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/shop")
 
@@ -14,7 +12,7 @@ end
 
 function onTrigger(player,npc)
     if GetRegionOwner(dsp.region.SARUTABARUTA) ~= dsp.nation.BASTOK then
-        player:showText(npc, SOMNPAEMN_CLOSED_DIALOG)
+        player:showText(npc, ID.text.SOMNPAEMN_CLOSED_DIALOG)
     else
         local stock =
         {
@@ -25,7 +23,7 @@ function onTrigger(player,npc)
             635,  18,     --Windurstian Tea Leaves
         }
 
-        player:showText(npc, SOMNPAEMN_OPEN_DIALOG)
+        player:showText(npc, ID.text.SOMNPAEMN_OPEN_DIALOG)
         dsp.shop.general(player, stock, BASTOK)
     end
 end

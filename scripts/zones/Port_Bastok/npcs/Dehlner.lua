@@ -5,9 +5,6 @@
 -- Invlolved in Quest: A Foreman's Best Friend
 -----------------------------------
 require("scripts/globals/quests");
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Port_Bastok/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

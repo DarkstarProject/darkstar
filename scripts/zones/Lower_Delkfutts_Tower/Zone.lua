@@ -3,12 +3,11 @@
 -- Zone: Lower_Delkfutts_Tower (184)
 --
 -----------------------------------
-package.loaded["scripts/zones/Lower_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/zone");
-require("scripts/globals/missions");
-require("scripts/zones/Lower_Delkfutts_Tower/TextIDs");
+local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/missions")
+require("scripts/globals/settings")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -29,9 +28,9 @@ function onZoneIn(player,prevZone)
     end
     if (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") <= 1) then
         cs = 15;
-    elseif (ENABLE_COP == 1 and prevZone == 126 and player:getCurrentMission(COP) == ANCIENT_FLAMES_BECKON) then
+    elseif (ENABLE_COP == 1 and prevZone == dsp.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == ANCIENT_FLAMES_BECKON) then
         cs = 22;
-    elseif (player:getCurrentMission(ACP) == BORN_OF_HER_NIGHTMARES and prevZone == 126) then
+    elseif (player:getCurrentMission(ACP) == BORN_OF_HER_NIGHTMARES and prevZone == dsp.zone.QUFIM_ISLAND) then
         cs = 34;
     end
 

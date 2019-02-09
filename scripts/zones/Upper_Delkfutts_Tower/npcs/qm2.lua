@@ -1,25 +1,23 @@
 -----------------------------------
 -- Area: Upper Delkfutt's Tower
--- NPC:  ???
+--  NPC: ??? (Spawns Pallas)
 -- !pos -302.000 -159.000 21.000 158
 -----------------------------------
-require("scripts/zones/Upper_Delkfutts_Tower/MobIDs");
-require("scripts/globals/status");
+local ID = require("scripts/zones/Upper_Delkfutts_Tower/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
-function onTrade(player,npc,trade)
-    -- Trade moldy buckler
-    if (not GetMobByID(PALLAS):isSpawned() and trade:hasItemQty(2386,1) and trade:getItemCount() == 1) then
-        player:tradeComplete();
-        SpawnMob(PALLAS):updateClaim(player);
-        npc:setStatus(dsp.status.DISAPPEAR);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 2386) and npcUtil.popFromQM(player, npc, ID.mob.PALLAS) then -- Hoary Battle Horn
+        player:confirmTrade()
     end
-end;
+end
 
-function onTrigger(player,npc)
-end;
+function onTrigger(player, npc)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end

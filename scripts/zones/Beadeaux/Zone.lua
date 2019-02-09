@@ -3,16 +3,15 @@
 -- Zone: Beadeaux (147)
 --
 -----------------------------------
-package.loaded["scripts/zones/Beadeaux/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Beadeaux/TextIDs")
-require("scripts/zones/Beadeaux/MobIDs")
+local ID = require("scripts/zones/Beadeaux/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/missions")
 require("scripts/globals/npc_util")
+require("scripts/globals/treasure")
 require("scripts/globals/quests")
 require("scripts/globals/status")
 require("scripts/globals/titles")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -24,8 +23,7 @@ function onInitialize(zone)
     zone:registerRegion(5,  340, 10,  100, 0,0,0) -- 17379802 The Afflictor
     zone:registerRegion(6,  380, 10,   60, 0,0,0) -- 17379803 The Afflictor
 
-    UpdateTreasureSpawnPoint(BEADEAUX_TREASURE_CHEST)
-    UpdateTreasureSpawnPoint(BEADEAUX_TREASURE_COFFER)
+    dsp.treasure.initZone(zone)
 end
 
 function onZoneIn(player,prevZone)
@@ -35,7 +33,7 @@ function onZoneIn(player,prevZone)
         player:setPos(387.382,38.029,19.694,3)
     end
 
-    if prevZone == 109 then
+    if prevZone == dsp.zone.PASHHOW_MARSHLANDS then
         if player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED and player:getVar("ChaosbringerKills") >= 100 then
             cs = 121
         elseif player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
@@ -72,7 +70,7 @@ end
 function onEventFinish(player,csid,option)
     if csid == 121 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DARKNESS, {title=dsp.title.DARK_SIDER, var="ZeruhnMines_Zeid_CS"}) then
         player:unlockJob(dsp.job.DRK)
-        player:messageSpecial(YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
+        player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DARK_KNIGHT)
     elseif csid == 120 then
         player:setVar("MissionStatus", 2)
         player:setPos(-297, 1, 96, 1)

@@ -3,10 +3,9 @@
 --  NPC: Chutarmire
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Selbina/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Selbina/TextIDs")
+local ID = require("scripts/zones/Selbina/IDs")
 require("scripts/globals/shop")
+-----------------------------------
 
 function onTrade(player,npc,trade)
 end
@@ -32,7 +31,7 @@ function onTrigger(player,npc)
         4859,  8100,    -- Scroll of Shock Spikes
     }
 
-    player:showText(npc, CHUTARMIRE_SHOP_DIALOG)
+    player:showText(npc, ID.text.CHUTARMIRE_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 
@@ -41,4 +40,3 @@ end
 
 function onEventFinish(player,csid,option)
 end
-

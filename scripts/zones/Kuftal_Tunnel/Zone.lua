@@ -3,20 +3,18 @@
 -- Zone: Kuftal_Tunnel (174)
 --
 -----------------------------------
-package.loaded["scripts/zones/Kuftal_Tunnel/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Kuftal_Tunnel/TextIDs");
-require("scripts/zones/Kuftal_Tunnel/MobIDs");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
 require("scripts/globals/weather");
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(GUIVRE);
-    GetMobByID(GUIVRE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.GUIVRE);
+    GetMobByID(ID.mob.GUIVRE):setRespawnTime(math.random(900, 10800));
 
-    UpdateTreasureSpawnPoint(KUFTAL_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -77,7 +75,7 @@ function onGameHour(zone)
 
     if (dir > 0) then
         local shouldOpen = boulderOpen[dir][VanadielHour()];
-        local boulder = GetNPCByID(KUFTAL_DOOR_ROCK);
+        local boulder = GetNPCByID(ID.npc.DOOR_ROCK);
         if (shouldOpen ~= nil and shouldOpen() and boulder:getAnimation() == dsp.anim.CLOSE_DOOR) then
             boulder:openDoor(144 * 6); -- one vanadiel hour is 144 earth seconds. lower boulder for 6 vanadiel hours.
         end

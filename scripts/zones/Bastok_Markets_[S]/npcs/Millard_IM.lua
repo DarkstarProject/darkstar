@@ -3,11 +3,9 @@
 --  NPC: Millard IM
 -- Type: Sigil NPC
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets_[S]/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/status");
-require("scripts/globals/campaign");
-require("scripts/zones/Bastok_Markets_[S]/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets_[S]/IDs")
+require("scripts/globals/campaign")
+require("scripts/globals/status")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -55,9 +53,9 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() >= 1) then
                 player:delCurrency("allied_notes", price);
                 player:addItem(item);
-                player:messageSpecial(ITEM_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_OBTAINED, item);
             else
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, item);
+                player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, item);
             end
 
         -- Please, don't change this elseif without knowing ALL the option results first.
@@ -86,11 +84,9 @@ function onEventFinish(player,csid,option)
                 cost = 200;
             end
 
-            player:delStatusEffect(dsp.effect.SIGIL);
-            player:delStatusEffect(dsp.effect.SANCTION);
-            player:delStatusEffect(dsp.effect.SIGNET);
+            player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
             player:addStatusEffect(dsp.effect.SIGIL, power, 0, duration, 0, subPower, 0);
-            player:messageSpecial(ALLIED_SIGIL);
+            player:messageSpecial(ID.text.ALLIED_SIGIL);
 
             if (cost > 0) then
                 player:delCurrency("allied_notes", cost);

@@ -4,13 +4,11 @@
 -- Starts Quest: Altana's Sorrow
 -- !pos 0 0 51 234
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Mines/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Bastok_Mines/TextIDs");
+local ID = require("scripts/zones/Bastok_Mines/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -25,10 +23,10 @@ function onTrigger(player,npc)
         if (player:hasKeyItem(dsp.ki.BUCKET_OF_DIVINE_PAINT) == true) then
             player:startEvent(143); -- CS with Bucket of Divine Paint KI
         elseif (player:hasKeyItem(dsp.ki.LETTER_FROM_VIRNAGE) == true) then
-            --player:showText(npc,VIRNAGE_DIALOG_2);
+            --player:showText(npc,ID.text.VIRNAGE_DIALOG_2);
             player:startEvent(144); -- During quest (after KI)
         else
-            -- player:showText(npc,VIRNAGE_DIALOG_1);
+            -- player:showText(npc,ID.text.VIRNAGE_DIALOG_1);
             player:startEvent(142); -- During quest "Altana's Sorrow" (before KI)
         end
     elseif (AltanaSorrow == QUEST_COMPLETED) then
@@ -47,6 +45,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 143) then
         player:delKeyItem(dsp.ki.BUCKET_OF_DIVINE_PAINT);
         player:addKeyItem(dsp.ki.LETTER_FROM_VIRNAGE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_VIRNAGE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_VIRNAGE);
     end
 end;

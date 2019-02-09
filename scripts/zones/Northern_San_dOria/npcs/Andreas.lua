@@ -4,11 +4,9 @@
 -- Type: Guildworker's Union Representative
 -- !pos -189.282 10.999 262.626 231
 -----------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/crafting");
-require("scripts/zones/Northern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 local keyitems = {
     [0] = {
@@ -99,6 +97,6 @@ function onEventFinish(player,csid,option,target)
     if (csid == 731) then
         unionRepresentativeTriggerFinish(player, option, target, 1, "guild_woodworking", keyitems, items);
     elseif (csid == 732) then
-        player:messageSpecial(GP_OBTAINED, option);
+        player:messageSpecial(ID.text.GP_OBTAINED, option);
     end
 end;

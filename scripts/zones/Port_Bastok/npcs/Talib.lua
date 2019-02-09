@@ -4,13 +4,11 @@
 -- Starts Quest: Beauty and the Galka
 -- Starts & Finishes Quest: Shady Business
 -----------------------------------
-package.loaded["scripts/zones/Port_Bastok/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/shop");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -56,7 +54,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 3) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.PALBOROUGH_MINES_LOGS);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.PALBOROUGH_MINES_LOGS);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.PALBOROUGH_MINES_LOGS);
     elseif (csid == 90) then
         ShadyBusiness = player:getQuestStatus(BASTOK,SHADY_BUSINESS);
 
@@ -75,7 +73,7 @@ function onEventFinish(player,csid,option)
 
         player:tradeComplete();
         player:addGil(GIL_RATE*350);
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*350);
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*350);
     end
 
 end;

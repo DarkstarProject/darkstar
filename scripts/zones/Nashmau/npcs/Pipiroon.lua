@@ -3,9 +3,7 @@
 --  NPC: Pipiroon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Nashmau/TextIDs")
+local ID = require("scripts/zones/Nashmau/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         2873, 10000,     -- Nashmau Waystone
     }
 
-    player:showText(npc, PIPIROON_SHOP_DIALOG)
+    player:showText(npc, ID.text.PIPIROON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

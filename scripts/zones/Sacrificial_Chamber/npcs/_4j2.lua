@@ -3,12 +3,9 @@
 -- NPC:  Mahogany Door
 -- !pos -260 -33 274 163
 -------------------------------------
-package.loaded["scripts/zones/Sacrificial_Chamber/TextIDs"] = nil;
--------------------------------------
 
 require("scripts/globals/bcnm");
 require("scripts/globals/missions");
-require("scripts/zones/Sacrificial_Chamber/TextIDs");
 
 function onTrade(player,npc,trade)
 

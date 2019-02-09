@@ -4,11 +4,8 @@
 -- !pos 369 8 -227 98
 -- Teleports Players to Sauromugue_Champaign
 -----------------------------------
-package.loaded["scripts/zones/Sauromugue_Champaign_[S]/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/teleports");
 require("scripts/globals/campaign");
-require("scripts/zones/Sauromugue_Champaign_[S]/TextIDs");
 require("scripts/globals/titles");
 -----------------------------------
 
@@ -33,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 101 and option == 1) then
-        player:addNationTeleport(MAW,4);
+        player:addNationTeleport(dsp.teleport.nation.MAW,4);
         dsp.teleport.toMaw(player,6);
     elseif (csid == 102 and option == 1) then
         dsp.teleport.toMaw(player,6);
@@ -42,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WOTG, CAIT_SITH);
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
         if (hasMawActivated(player,0) == false) then
-            player:addNationTeleport(MAW,4);
+            player:addNationTeleport(dsp.teleport.nation.MAW,4);
         end
         dsp.teleport.toMaw(player,6);
     end

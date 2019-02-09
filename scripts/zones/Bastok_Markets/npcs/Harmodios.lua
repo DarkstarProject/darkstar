@@ -4,9 +4,7 @@
 -- Standard Merchant NPC
 -- !pos -79.928 -4.824 -135.114 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Bastok_Markets/TextIDs")
+local ID = require("scripts/zones/Bastok_Markets/IDs")
 require("scripts/globals/quests")
 require("scripts/globals/shop")
 
@@ -34,7 +32,7 @@ function onTrigger(player,npc)
             5045,  54000, 3,    -- Scroll of Bewitching Etude
         }
 
-        player:showText(npc, HARMODIOS_SHOP_DIALOG)
+        player:showText(npc, ID.text.HARMODIOS_SHOP_DIALOG)
         dsp.shop.nation(player, stock, dsp.nation.BASTOK)
     end
 end

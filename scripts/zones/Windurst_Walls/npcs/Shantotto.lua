@@ -4,14 +4,12 @@
 -- !pos 122 -2 112 239
 -- CSID's missing in autoEventID please check the old forums under resources for all of shantotto's csid's. I found them all manually.
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Walls/TextIDs"] = nil
------------------------------------
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Windurst_Walls/TextIDs")
+local ID = require("scripts/zones/Windurst_Walls/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.retribution
@@ -114,14 +112,14 @@ end
 function onEventFinish(player,csid,option)
     if (csid == 173) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17081)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17081)
         else
             player:tradeComplete()
             player:setVar("CursesFoiledAgainDay",VanadielDayOfTheYear())
             player:setVar("CursesFoiledAgainYear",VanadielYear())
             player:addFame(WINDURST,80)
             player:addItem(17081)
-            player:messageSpecial(ITEM_OBTAINED,17081)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17081)
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_1)
         end
     elseif (csid == 171 and option ~= 1) then
@@ -142,12 +140,12 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 183) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,17116)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17116)
         else
             player:tradeComplete()
             player:setTitle(dsp.title.HEXER_VEXER)
             player:addItem(17116)
-            player:messageSpecial(ITEM_OBTAINED,17116)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,17116)
             player:completeQuest(WINDURST,CURSES_FOILED_AGAIN_2)
             player:needToZone(true)
             player:addFame(WINDURST,90)
@@ -162,12 +160,12 @@ function onEventFinish(player,csid,option)
 
     elseif (csid == 342) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,4870)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4870)
         else
             player:completeQuest(WINDURST,CURSES_FOILED_A_GOLEM)
             player:setVar("foiledagolemdeliverycomplete",0)
             player:addItem(4870)
-            player:messageSpecial(ITEM_OBTAINED,4870)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,4870)
             player:setTitle(dsp.title.DOCTOR_SHANTOTTOS_FLAVOR_OF_THE_MONTH)
             player:addFame(WINDURST,120)
         end
@@ -177,11 +175,11 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatWindurst"),"WildcatWindurst",6,true)
     elseif (csid == 397) then
         player:addKeyItem(dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.GLOVE_OF_PERPETUAL_TWILIGHT)
         player:setVar("MissionStatus",8)
     elseif (csid == 399) then
         player:setVar("ShantottoCS",0)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,RETRIBUTION_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.RETRIBUTION_LEARNED)
     end
 end

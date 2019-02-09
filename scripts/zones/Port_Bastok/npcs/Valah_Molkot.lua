@@ -6,7 +6,7 @@
 -----------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Port_Bastok/TextIDs");
+local ID = require("scripts/zones/Port_Bastok/IDs");
 
 
 function onTrade(player,npc,trade)
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
         player:completeQuest(BASTOK,A_LADY_S_HEART);
         player:addFame(BASTOK,120);
         player:moghouseFlag(2);
-        player:messageSpecial(MOGHOUSE_EXIT);
+        player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 160 and option == 1) then
         player:tradeComplete();
         player:addQuest(BASTOK,A_LADY_S_HEART);

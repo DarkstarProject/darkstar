@@ -3,9 +3,6 @@
 --  NPC: Panoquieur, T.K.
 -- !pos -60 0 -31 241
 -------------------------------------
-package.loaded["scripts/zones/Windurst_Woods/TextIDs"] = nil
--------------------------------------
-require("scripts/zones/Windurst_Woods/TextIDs")
 require("scripts/globals/conquest")
 -------------------------------------
 

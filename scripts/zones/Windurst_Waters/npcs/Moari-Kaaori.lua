@@ -2,9 +2,7 @@
 -- Area: Windurst Waters
 --  NPC: Moari-Kaaori
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs")
+local ID = require("scripts/zones/Windurst_Waters/IDs")
 require("scripts/globals/settings")
 require("scripts/globals/quests")
 require("scripts/globals/titles")
@@ -59,18 +57,18 @@ function onEventFinish(player, csid, option)
             player:addItem(16536)
             player:completeQuest(WINDURST, SAY_IT_WITH_FLOWERS)
             player:addFame(WINDURST, 30)
-            player:messageSpecial(ITEM_OBTAINED, 16536)
+            player:messageSpecial(ID.text.ITEM_OBTAINED, 16536)
             player:setVar("FLOWER_PROGRESS", 0)
             player:needToZone(true)
             player:setTitle(dsp.title.CUPIDS_FLORIST)
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED, 16536)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16536)
         end
     elseif csid == 522 then -- Wrong flowers so complete quest, but smaller reward/fame and no title.
         player:completeQuest(WINDURST, SAY_IT_WITH_FLOWERS)
         player:tradeComplete()
         player:addGil(GIL_RATE * 100)
-        player:messageSpecial(GIL_OBTAINED, 100)
+        player:messageSpecial(ID.text.GIL_OBTAINED, 100)
         player:addFame(WINDURST, 10)
         player:needToZone(true)
         player:setVar("FLOWER_PROGRESS", 0)

@@ -3,9 +3,6 @@
 --  NPC: Shiroro
 -- Standard Info NPC
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs");
 require("scripts/globals/quests");
 -----------------------------------
 

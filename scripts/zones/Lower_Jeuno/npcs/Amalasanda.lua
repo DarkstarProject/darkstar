@@ -4,9 +4,7 @@
 -- Type: Tenshodo Merchant
 -- !pos 28.149 2.899 -44.780 245
 -----------------------------------
-package.loaded["scripts/zones/Lower_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Lower_Jeuno/TextIDs")
+local ID = require("scripts/zones/Lower_Jeuno/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/shop")
 
@@ -75,7 +73,7 @@ function onTrigger(player,npc)
             4994, 11830,    -- Mage's Ballad
         }
 
-        player:showText(npc, AMALASANDA_SHOP_DIALOG)
+        player:showText(npc, ID.text.AMALASANDA_SHOP_DIALOG)
         dsp.shop.general(player, stock)
     end
 end

@@ -5,11 +5,8 @@
 --  Involved in Quests: Wonder Wands
 -- !pos -101.209 -4.25 110.886 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/quests");
 require("scripts/globals/settings");
-require("scripts/zones/Port_Windurst/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -41,4 +38,3 @@ function onEventFinish(player,csid,option)
     end
 
 end;
-

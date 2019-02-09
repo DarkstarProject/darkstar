@@ -4,11 +4,7 @@
 -- Notes: Spawns Gargoyle when triggered
 -- !pos 310.000 -1.925 -101.600 9
 -----------------------------------
-package.loaded["scripts/zones/PsoXja/TextIDs"] = nil;
------------------------------------
 require("scripts/zones/PsoXja/globals");
-require("scripts/zones/PsoXja/TextIDs");
-require("scripts/zones/PsoXja/MobIDs");
 require("scripts/globals/status");
 -----------------------------------
 

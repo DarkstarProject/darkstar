@@ -3,12 +3,10 @@
 --  NPC: Osker
 -- Involved in Quest: Chocobo's Wounds
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
 require("scripts/globals/keyitems");
-require("scripts/zones/Upper_Jeuno/TextIDs");
+local ID = require("scripts/zones/Upper_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -79,10 +77,8 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 148) then
         player:addKeyItem(dsp.ki.TAMERS_WHISTLE);
-        player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.TAMERS_WHISTLE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.TAMERS_WHISTLE);
         player:setVar("ANewDawn_Event",4);
     end
 
 end;
-
-

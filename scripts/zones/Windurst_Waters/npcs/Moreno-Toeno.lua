@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Teacher's Pet
 -- !pos
 -----------------------------------
-package.loaded["scripts/zones/Windurst_Waters/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Windurst_Waters/TextIDs");
+local ID = require("scripts/zones/Windurst_Waters/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
@@ -135,14 +133,14 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 182 or csid == 687) and option ~= 1 then -- start
         player:addKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",1);
         player:setVar("testingTime_start_day",VanadielDayOfTheYear());
         player:setVar("testingTime_start_hour",VanadielHour());
         player:setVar("testingTime_start_time",os.time());
     elseif (csid == 198 or csid == 199 or csid == 202 or csid == 208) then -- failed testing time
         player:delKeyItem(dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
-        player:messageSpecial(KEYITEM_OBTAINED + 1,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED + 1,dsp.ki.CREATURE_COUNTER_MAGIC_DOLL);
         player:setVar("MissionStatus",0);
         player:setVar("testingTime_crea_count",0);
         player:setVar("testingTime_start_day",0);
@@ -166,7 +164,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 752) then
         player:setVar("MissionStatus",1);
         player:addKeyItem(dsp.ki.STAR_SEEKER);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.STAR_SEEKER);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.STAR_SEEKER);
         player:addTitle(dsp.title.FUGITIVE_MINISTER_BOUNTY_HUNTER);
 
     elseif (csid == 758) then

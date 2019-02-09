@@ -4,11 +4,8 @@
 -- Involved in Quest: A Squire's Test II (Optional), The Holy Crest
 -- !pos 99 0 116 231
 -------------------------------------
-package.loaded["scripts/zones/Northern_San_dOria/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/quests");
-require("scripts/zones/Northern_San_dOria/TextIDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)

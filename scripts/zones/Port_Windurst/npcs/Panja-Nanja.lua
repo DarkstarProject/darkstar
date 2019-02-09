@@ -4,11 +4,9 @@
 -- Type: Fishing Adv. Image Support
 -- !pos -194.499 -3 58.692 240
 -----------------------------------
-package.loaded["scripts/zones/Port_Windurst/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Port_Windurst/TextIDs");
+local ID = require("scripts/zones/Port_Windurst/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,7 +36,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 10011 and option == 1) then
         player:delGil(Cost);
-        player:messageSpecial(FISHING_SUPPORT,0,0,0);
+        player:messageSpecial(ID.text.FISHING_SUPPORT,0,0,0);
         player:addStatusEffect(dsp.effect.FISHING_IMAGERY,2,0,7200);
     end
 end;

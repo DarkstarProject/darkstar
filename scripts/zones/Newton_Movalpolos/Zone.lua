@@ -3,15 +3,15 @@
 -- Zone: Newton_Movalpolos (12)
 --
 -----------------------------------
-package.loaded["scripts/zones/Newton_Movalpolos/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Newton_Movalpolos/TextIDs");
-require("scripts/zones/Newton_Movalpolos/MobIDs");
+local ID = require("scripts/zones/Newton_Movalpolos/IDs");
 require("scripts/globals/conquest");
+require("scripts/globals/treasure")
+require("scripts/globals/helm")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(NEWTON_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
+    dsp.helm.initZone(zone, dsp.helm.type.MINING)
 end;
 
 function onZoneIn(player,prevZone)

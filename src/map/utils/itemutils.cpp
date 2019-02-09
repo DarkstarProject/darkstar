@@ -35,6 +35,16 @@ std::array<LootList_t*, MAX_LOOTID> g_pLootList; // global array of BCNM lootlis
 CItemWeapon* PUnarmedItem;
 CItemWeapon* PUnarmedH2HItem;
 
+DropItem_t::DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate)
+    : DropType(DropType)
+    , ItemID(ItemID)
+    , DropRate(DropRate)
+{ }
+
+DropGroup_t::DropGroup_t(uint16 GroupRate)
+    : GroupRate(GroupRate)
+{ }
+
 /************************************************************************
 *                                                                       *
 *  Actually methods of working with a global collection of items        *
@@ -100,7 +110,7 @@ namespace itemutils
 
     CItem* GetItem(uint16 ItemID)
     {
-        if( (ItemID == 0xFFFF) )
+        if (ItemID == 0xFFFF)
         {
             return new CItemCurrency(ItemID);
         }
@@ -472,15 +482,26 @@ namespace itemutils
                     g_pDropList[DropID] = new DropList_t;
                 }
 
-                DropItem_t DropItem;
+                DropList_t* dropList = g_pDropList[DropID];
 
-                DropItem.ItemID  = (uint16)Sql_GetIntData(SqlHandle,1);
-                DropItem.DropType = (uint8)Sql_GetIntData(SqlHandle,2);
-                DropItem.DropRate = (uint16)Sql_GetIntData(SqlHandle,3);
-                DropItem.GroupId = (uint8)Sql_GetIntData(SqlHandle,4);
-                DropItem.GroupRate = (uint16)Sql_GetIntData(SqlHandle,5);
+                uint16 ItemID = (uint16)Sql_GetIntData(SqlHandle, 1);
+                uint8 DropType = (uint8)Sql_GetIntData(SqlHandle, 2);
+                uint16 DropRate = (uint16)Sql_GetIntData(SqlHandle, 3);
 
-                g_pDropList[DropID]->push_back(DropItem);
+                if (DropType == DROP_GROUPED)
+                {
+                    uint8 GroupId = (uint8)Sql_GetIntData(SqlHandle, 4);
+                    uint16 GroupRate = (uint16)Sql_GetIntData(SqlHandle, 5);
+                    while (GroupId >= dropList->Groups.size())
+                    {
+                        dropList->Groups.emplace_back(GroupRate);
+                    }
+                    dropList->Groups[GroupId].Items.emplace_back(DropType, ItemID, DropRate);
+                }
+                else
+                {
+                    dropList->Items.emplace_back(DropType, ItemID, DropRate);
+                }
             }
         }
     }
@@ -532,7 +553,7 @@ namespace itemutils
 
         PUnarmedItem = new CItemWeapon(0);
 
-        PUnarmedItem->setDmgType(DAMAGE_NONE);
+        PUnarmedItem->setDmgType(DAMAGE_IMPACT);
         PUnarmedItem->setSkillType(SKILL_NONE);
         PUnarmedItem->setDamage(3);
 

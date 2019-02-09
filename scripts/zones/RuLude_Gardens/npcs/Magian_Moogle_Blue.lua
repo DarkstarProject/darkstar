@@ -4,12 +4,8 @@
 -- Type: Magian Trials NPC (Relic Armor)
 -- !pos -6.843 2.459 121.9 64
 -----------------------------------
-package.loaded["scripts/zones/RuLude_Gardens/TextIDs"] = nil;
-package.loaded["scripts/globals/magiantrials"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
-require("scripts/zones/RuLude_Gardens/TextIDs");
 require("scripts/globals/magiantrials");
 -----------------------------------
 

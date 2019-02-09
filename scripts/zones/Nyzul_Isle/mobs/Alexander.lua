@@ -2,7 +2,7 @@
 -- Area: Nyzul Isle (Nashmeira's Plea)
 --  MOB: Alexander
 -----------------------------------
-require("scripts/zones/Nyzul_Isle/IDs");
+local ID = require("scripts/zones/Nyzul_Isle/IDs")
 require("scripts/globals/status");
 -----------------------------------
 
@@ -14,32 +14,32 @@ function onMobSpawn(mob)
     mob:addListener("WEAPONSKILL_STATE_ENTER", "WS_START_MSG", function(mob, skillID)
         -- Radiant Sacrament
         if (skillID == 2141) then
-            mob:showText(mob,NyzulIsle.text.OFFER_THY_WORSHIP);
+            mob:showText(mob,ID.text.OFFER_THY_WORSHIP);
         -- Mega Holy
         elseif (skillID == 2142) then
-            mob:showText(mob,NyzulIsle.text.OPEN_THINE_EYES);
+            mob:showText(mob,ID.text.OPEN_THINE_EYES);
         -- Perfect Defense
         elseif (skillID == 2143) then
-            mob:showText(mob,NyzulIsle.text.CEASE_THY_STRUGGLES);
+            mob:showText(mob,ID.text.CEASE_THY_STRUGGLES);
         -- Divine Spear
         elseif (skillID == 2144) then
-            mob:showText(mob,NyzulIsle.text.RELEASE_THY_SELF);
+            mob:showText(mob,ID.text.RELEASE_THY_SELF);
         -- Gospel of the Lost
         elseif (skillID == 2145) then
-            mob:showText(mob,NyzulIsle.text.BASK_IN_MY_GLORY);
+            mob:showText(mob,ID.text.BASK_IN_MY_GLORY);
         -- Void of Repentance
         elseif (skillID == 2146) then
-            mob:showText(mob,NyzulIsle.text.REPENT_THY_IRREVERENCE);
+            mob:showText(mob,ID.text.REPENT_THY_IRREVERENCE);
         -- Divine Judgement
         elseif (skillID == 2147) then
-            mob:showText(mob,NyzulIsle.text.ACCEPT_THY_DESTRUCTION);
-            mob:showText(mob,NyzulIsle.text.OMEGA_SPAM);
+            mob:showText(mob,ID.text.ACCEPT_THY_DESTRUCTION);
+            mob:showText(mob,ID.text.OMEGA_SPAM);
         end
     end);
 end;
 
 function onMobEngaged(mob,target)
-    mob:showText(mob,NyzulIsle.text.SHALL_BE_JUDGED);
+    mob:showText(mob,ID.text.SHALL_BE_JUDGED);
 end;
 
 function onMobFight(mob,target)
@@ -60,7 +60,7 @@ end;
 
 function onMobDeath(mob, player, isKiller)
     if (isKiller) then
-        mob:showText(mob,NyzulIsle.text.SHALL_KNOW_OBLIVION);
+        mob:showText(mob,ID.text.SHALL_KNOW_OBLIVION);
     end
 end;
 

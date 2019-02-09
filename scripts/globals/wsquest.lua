@@ -501,16 +501,17 @@ dsp.wsquest.getTriggerEvent = function(quest,player)
 end
 
 dsp.wsquest.handleQmTrigger = function(quest, player, wsnmId)
+    local ID = zones[player:getZoneID()]
     if getQuestState(quest, player) == WSQUEST_CONT2 then
         if player:getLocalVar('killed_wsnm') == 1 then
-            player:messageSpecial(KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH)
+            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.ANNALS_OF_TRUTH)
             player:addKeyItem(dsp.ki.ANNALS_OF_TRUTH)
-        elseif GetMobAction(wsnmId) == 0 then
-            player:messageSpecial(SENSE_OMINOUS_PRESENCE)
+        elseif not GetMobByID(wsnmId):isSpawned() then
+            player:messageSpecial(ID.text.SENSE_OMINOUS_PRESENCE)
             SpawnMob(wsnmId):updateClaim(player)
         end
     else
-        player:messageSpecial(NOTHING_OUT_OF_ORDINARY)
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
 end
 
@@ -524,10 +525,10 @@ dsp.wsquest.handleEventFinish = function(quest,player,csid,option,learnedId)
     if csid == quest.eventIds.start then -- WS Quest start
         if quest.options.acceptStart == nil or option == quest.options.acceptStart then
             if player:getFreeSlotsCount() < 1 then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,quest.trialWeaponId)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED,quest.trialWeaponId)
             else
-                player:messageSpecial(ITEM_OBTAINED,quest.trialWeaponId)
-                player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.WEAPON_TRAINING_GUIDE)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED,quest.trialWeaponId)
+                player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.WEAPON_TRAINING_GUIDE)
                 player:addItem(quest.trialWeaponId)
                 player:addKeyItem(dsp.ki.WEAPON_TRAINING_GUIDE)
                 player:addQuest(quest.logId,quest.questId)
@@ -536,9 +537,9 @@ dsp.wsquest.handleEventFinish = function(quest,player,csid,option,learnedId)
     elseif csid == quest.eventIds.cont1 then -- WS Quest ongoing stage 1
         if quest.options.dropped ~= nil and option == quest.options.dropped then -- Misplaced weapon
             if player:hasItem(quest.trialWeaponId) then
-                player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,quest.trialWeaponId)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_CANNOT_BE_OBTAINED,quest.trialWeaponId)
             else
-                player:messageSpecial(ITEM_OBTAINED,quest.trialWeaponId)
+                player:messageSpecial(zones[player:getZoneID()].text.ITEM_OBTAINED,quest.trialWeaponId)
                 player:addItem(quest.trialWeaponId)
             end
         end
@@ -549,7 +550,7 @@ dsp.wsquest.handleEventFinish = function(quest,player,csid,option,learnedId)
         end
     elseif csid == quest.eventIds.tradedFinishedWeapon then -- WS Quest ongoing stage 2
         player:tradeComplete()
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
+        player:messageSpecial(zones[player:getZoneID()].text.KEYITEM_OBTAINED,dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
         player:addKeyItem(dsp.ki.MAP_TO_THE_ANNALS_OF_TRUTH)
     elseif csid == quest.eventIds.finish then -- WS Quest completed
         player:messageSpecial(learnedId)

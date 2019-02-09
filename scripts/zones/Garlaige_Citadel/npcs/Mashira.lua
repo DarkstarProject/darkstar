@@ -4,12 +4,10 @@
 -- Involved in Quests: Rubbish day, Making Amens!
 -- !pos 141 -6 138 200
 -----------------------------------
-package.loaded["scripts/zones/Garlaige_Citadel/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Garlaige_Citadel/TextIDs");
+local ID = require("scripts/zones/Garlaige_Citadel/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -39,8 +37,7 @@ MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
         player:setVar("RubbishDayVar",1);
     elseif (csid == 11 and option == 0 and MakingAmens == QUEST_ACCEPTED) then
         player:addKeyItem(dsp.ki.BROKEN_WAND); --Broken Wand
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.BROKEN_WAND);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.BROKEN_WAND);
         player:tradeComplete();
     end
 end;
-

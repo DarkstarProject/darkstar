@@ -4,11 +4,9 @@
 -- Type: Goldsmithing Adv. Synthesis Image Support
 -- !pos -193.849 -7.824 -56.372 235
 -----------------------------------
-package.loaded["scripts/zones/Bastok_Markets/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/status");
 require("scripts/globals/crafting");
-require("scripts/zones/Bastok_Markets/TextIDs");
+local ID = require("scripts/zones/Bastok_Markets/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -38,11 +36,11 @@ function onEventFinish(player,csid,option)
 
     if (csid == 302 and option == 1) then
         if (player:getGil() >= Cost) then
-            player:messageSpecial(GOLDSMITHING_SUPPORT,0,3,0);
+            player:messageSpecial(ID.text.GOLDSMITHING_SUPPORT,0,3,0);
             player:addStatusEffect(dsp.effect.GOLDSMITHING_IMAGERY,3,0,480);
             player:delGil(Cost);
         else
-            player:messageSpecial(NOT_HAVE_ENOUGH_GIL);
+            player:messageSpecial(ID.text.NOT_HAVE_ENOUGH_GIL);
         end
     end
 end;

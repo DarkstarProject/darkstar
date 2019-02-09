@@ -2,12 +2,9 @@
 -- Area: Cloister of Tremors
 -- BCNM: Sugar Coated Directive (ASA-4)
 ----------------------------------------
-package.loaded["scripts/zones/Cloister_of_Tremors/TextIDs"] = nil;
-----------------------------------------
 
 require("scripts/globals/keyitems");
 require("scripts/globals/quests");
-require("scripts/zones/Cloister_of_Tremors/TextIDs");
 
 ----------------------------------------
 

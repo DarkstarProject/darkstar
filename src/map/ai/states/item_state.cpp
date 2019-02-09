@@ -169,7 +169,7 @@ void CItemState::Cleanup(time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    if (m_interrupted && !m_PItem->isType(ITEM_ARMOR))
+    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_ARMOR))
         m_PItem->setSubType(ITEM_UNLOCKED);
 
     auto PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);

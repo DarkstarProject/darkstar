@@ -3,13 +3,11 @@
 -- Zone: Middle_Delkfutts_Tower
 --
 -----------------------------------
-package.loaded["scripts/zones/Middle_Delkfutts_Tower/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Middle_Delkfutts_Tower/TextIDs");
-require("scripts/zones/Middle_Delkfutts_Tower/MobIDs");
+local ID = require("scripts/zones/Middle_Delkfutts_Tower/IDs");
 require("scripts/globals/conquest");
 require("scripts/globals/npc_util");
 require("scripts/globals/settings");
+require("scripts/globals/treasure")
 require("scripts/globals/quests");
 require("scripts/globals/titles");
 -----------------------------------
@@ -27,7 +25,7 @@ function onInitialize(zone)
     zone:registerRegion(10, -415, -98, 104, -411, -97, 108 ); -- Seventh Floor  H-6 porter to Sixth Floor "J"
     zone:registerRegion(11, -489, -130, 84, -484,-129, 88 ); -- Ninth Floor F-6 porter to Upper Delkfutt's Tower
 
-    UpdateTreasureSpawnPoint(MID_DELKFUTT_TREASURE_CHEST);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

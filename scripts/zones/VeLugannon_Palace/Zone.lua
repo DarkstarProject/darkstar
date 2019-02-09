@@ -3,14 +3,13 @@
 -- Zone: VeLugannon_Palace (177)
 --
 -----------------------------------
-package.loaded["scripts/zones/VeLugannon_Palace/TextIDs"] = nil;
+local ID = require("scripts/zones/VeLugannon_Palace/IDs")
+require("scripts/globals/conquest")
+require("scripts/globals/treasure")
 -----------------------------------
-require("scripts/zones/VeLugannon_Palace/TextIDs");
-require("scripts/zones/VeLugannon_Palace/MobIDs");
-require("scripts/globals/conquest");
 
 function onInitialize(zone)
-    UpdateTreasureSpawnPoint(VELUGANNON_TREASURE_COFFER);
+    dsp.treasure.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)

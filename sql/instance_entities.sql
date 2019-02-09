@@ -86,6 +86,28 @@ INSERT INTO `instance_entities` VALUES (12, 17047808);
 INSERT INTO `instance_entities` VALUES (12, 17047809);
 
 
+-- Troll Fugitives
+-- Mobs
+INSERT INTO `instance_entities` VALUES (23,17035310);
+INSERT INTO `instance_entities` VALUES (23,17035311);
+INSERT INTO `instance_entities` VALUES (23,17035312);
+INSERT INTO `instance_entities` VALUES (23,17035313);
+INSERT INTO `instance_entities` VALUES (23,17035314);
+INSERT INTO `instance_entities` VALUES (23,17035315);
+INSERT INTO `instance_entities` VALUES (23,17035316);
+INSERT INTO `instance_entities` VALUES (23,17035317);
+INSERT INTO `instance_entities` VALUES (23,17035318);
+INSERT INTO `instance_entities` VALUES (23,17035319);
+INSERT INTO `instance_entities` VALUES (23,17035320);
+INSERT INTO `instance_entities` VALUES (23,17035321);
+INSERT INTO `instance_entities` VALUES (23,17035322);
+INSERT INTO `instance_entities` VALUES (23,17035323);
+INSERT INTO `instance_entities` VALUES (23,17035324);
+-- Npcs
+INSERT INTO `instance_entities` VALUES (23,17035478);
+INSERT INTO `instance_entities` VALUES (23,17035479);
+
+
 -- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);
 INSERT INTO `instance_entities` VALUES (27,17035360);
@@ -148,6 +170,34 @@ INSERT INTO `instance_entities` VALUES (31,17006870);
 INSERT INTO `instance_entities` VALUES (31,17006872);
 INSERT INTO `instance_entities` VALUES (31,17006874);
 
+-- Requiem
+-- mobs
+INSERT INTO `instance_entities` VALUES (32,17006612);
+INSERT INTO `instance_entities` VALUES (32,17006613);
+INSERT INTO `instance_entities` VALUES (32,17006614);
+INSERT INTO `instance_entities` VALUES (32,17006615);
+INSERT INTO `instance_entities` VALUES (32,17006616);
+INSERT INTO `instance_entities` VALUES (32,17006617);
+INSERT INTO `instance_entities` VALUES (32,17006618);
+INSERT INTO `instance_entities` VALUES (32,17006619);
+INSERT INTO `instance_entities` VALUES (32,17006620);
+INSERT INTO `instance_entities` VALUES (32,17006621);
+INSERT INTO `instance_entities` VALUES (32,17006622);
+INSERT INTO `instance_entities` VALUES (32,17006623);
+INSERT INTO `instance_entities` VALUES (32,17006624);
+INSERT INTO `instance_entities` VALUES (32,17006625);
+INSERT INTO `instance_entities` VALUES (32,17006626);
+INSERT INTO `instance_entities` VALUES (32,17006627);
+INSERT INTO `instance_entities` VALUES (32,17006628);
+INSERT INTO `instance_entities` VALUES (32,17006629);
+INSERT INTO `instance_entities` VALUES (32,17006630);
+INSERT INTO `instance_entities` VALUES (32,17006631);
+INSERT INTO `instance_entities` VALUES (32,17006632);
+INSERT INTO `instance_entities` VALUES (32,17006633);
+INSERT INTO `instance_entities` VALUES (32,17006634);
+-- npcs
+INSERT INTO `instance_entities` VALUES (32,17006809);
+INSERT INTO `instance_entities` VALUES (32,17006810);
 -- Golden Salvage
 -- mobs
 INSERT INTO `instance_entities` VALUES (41,17002497);
@@ -177,6 +227,40 @@ INSERT INTO `instance_entities` VALUES (41,17002731);
 INSERT INTO `instance_entities` VALUES (41,17002752);
 INSERT INTO `instance_entities` VALUES (41,17002753);
 
+-- Extermination
+-- mobs
+INSERT INTO `instance_entities` VALUES (43,17002521);
+INSERT INTO `instance_entities` VALUES (43,17002522);
+INSERT INTO `instance_entities` VALUES (43,17002523);
+INSERT INTO `instance_entities` VALUES (43,17002524);
+INSERT INTO `instance_entities` VALUES (43,17002525);
+INSERT INTO `instance_entities` VALUES (43,17002526);
+INSERT INTO `instance_entities` VALUES (43,17002527);
+INSERT INTO `instance_entities` VALUES (43,17002528);
+INSERT INTO `instance_entities` VALUES (43,17002529);
+INSERT INTO `instance_entities` VALUES (43,17002530);
+INSERT INTO `instance_entities` VALUES (43,17002531);
+INSERT INTO `instance_entities` VALUES (43,17002532);
+INSERT INTO `instance_entities` VALUES (43,17002533);
+INSERT INTO `instance_entities` VALUES (43,17002534);
+INSERT INTO `instance_entities` VALUES (43,17002535);
+INSERT INTO `instance_entities` VALUES (43,17002536);
+INSERT INTO `instance_entities` VALUES (43,17002537);
+INSERT INTO `instance_entities` VALUES (43,17002538);
+INSERT INTO `instance_entities` VALUES (43,17002539);
+INSERT INTO `instance_entities` VALUES (43,17002540);
+INSERT INTO `instance_entities` VALUES (43,17002541);
+INSERT INTO `instance_entities` VALUES (43,17002542);
+INSERT INTO `instance_entities` VALUES (43,17002543);
+INSERT INTO `instance_entities` VALUES (43,17002544);
+-- npc
+INSERT INTO `instance_entities` VALUES (43,17002730);
+INSERT INTO `instance_entities` VALUES (43,17002745);
+INSERT INTO `instance_entities` VALUES (43,17002747);
+INSERT INTO `instance_entities` VALUES (43,17002754);
+INSERT INTO `instance_entities` VALUES (43,17002654);
+INSERT INTO `instance_entities` VALUES (43,17002655);
+
 -- Ashu Talif
 -- npc
 INSERT INTO `instance_entities` VALUES (53,17022979);
@@ -192,6 +276,10 @@ INSERT INTO `instance_entities` VALUES (53,17022986);
 INSERT INTO `instance_entities` VALUES (53,17022987);
 INSERT INTO `instance_entities` VALUES (53,17022988);
 INSERT INTO `instance_entities` VALUES (53,17022989);
+
+-- Against All Odds COR AF2
+INSERT INTO `instance_entities` VALUES (54,17022977);
+INSERT INTO `instance_entities` VALUES (54,17022978);
 
 -- Path of Darkness
 -- mobs

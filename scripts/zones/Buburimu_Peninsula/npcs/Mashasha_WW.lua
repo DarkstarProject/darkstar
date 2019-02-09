@@ -4,9 +4,6 @@
 -- Border Conquest Guards
 -- !pos -599.903 -41.441 165.776 118
 -----------------------------------
-package.loaded["scripts/zones/Buburimu_Peninsula/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Buburimu_Peninsula/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

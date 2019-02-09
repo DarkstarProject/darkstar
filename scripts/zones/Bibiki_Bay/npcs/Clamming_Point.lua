@@ -2,9 +2,7 @@
 -- Area: Bibiki Bay
 --  NPC: Clamming Point
 -----------------------------------
-package.loaded["scripts/zones/Bibiki_Bay/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Bibiki_Bay/TextIDs");
+local ID = require("scripts/zones/Bibiki_Bay/IDs");
 require("scripts/globals/keyitems");
 -----------------------------------
 -- Local Variables
@@ -74,15 +72,15 @@ function onTrigger(player,npc)
         player:setLocalVar("ClammingPointID", npc:getID());
 
         if (GetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse") == 1) then
-            player:messageSpecial(IT_LOOKS_LIKE_SOMEONE);
+            player:messageSpecial(ID.text.IT_LOOKS_LIKE_SOMEONE);
         else
             if (player:getVar("ClammingKitBroken") > 0) then -- Broken bucket
-                player:messageSpecial(YOU_CANNOT_COLLECT);
+                player:messageSpecial(ID.text.YOU_CANNOT_COLLECT);
             else
                 local delay = GetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay");
 
                 if ( delay > 0 and delay > os.time()) then -- player has to wait a little longer
-                    player:messageSpecial(IT_LOOKS_LIKE_SOMEONE);
+                    player:messageSpecial(ID.text.IT_LOOKS_LIKE_SOMEONE);
                 else
                     SetServerVariable("ClammingPoint_" .. npc:getID() .. "_InUse", 1);
                     SetServerVariable("ClammingPoint_" .. npc:getID() .. "_Delay", 0);
@@ -92,7 +90,7 @@ function onTrigger(player,npc)
             end
         end
     else
-        player:messageSpecial(AREA_IS_LITTERED);
+        player:messageSpecial(ID.text.AREA_IS_LITTERED);
     end;
 end;
 
@@ -109,8 +107,8 @@ function onEventUpdate(player,csid,option)
                 if (dropRate <= clammingItems[itemDrop + improvedResults]) then
 
                     player:setLocalVar("ClammedItem", clammingItems[itemDrop - 2]);
-                    player:setVar("ClammedItem_" .. clammingItems[itemDrop - 2], player:getVar("ClammedItem_" .. clammingItems[itemDrop - 2]) + 1);
-                    player:setVar("ClammingKitWeight", player:getVar("ClammingKitWeight") +  clammingItems[itemDrop - 1]);
+                    player:addVar("ClammedItem_" .. clammingItems[itemDrop - 2], 1);
+                    player:addVar("ClammingKitWeight", clammingItems[itemDrop - 1]);
 
                     if (player:getVar("ClammingKitWeight") > player:getVar("ClammingKitSize")) then -- Broken bucket
                         player:setVar("ClammingKitBroken", 1);
@@ -129,7 +127,7 @@ function onEventFinish(player,csid,option)
         if (player:getLocalVar("SomethingJumpedInBucket") > 0) then
             player:setLocalVar("SomethingJumpedInBucket", 0);
 
-            player:messageSpecial(SOMETHING_JUMPS_INTO);
+            player:messageSpecial(ID.text.SOMETHING_JUMPS_INTO);
 
             player:setVar("ClammingKitBroken", 1);
 
@@ -141,13 +139,13 @@ function onEventFinish(player,csid,option)
 
             if (clammedItem > 0) then
                 if (player:getVar("ClammingKitBroken") > 0) then --Broken bucket
-                    player:messageSpecial(THE_WEIGHT_IS_TOO_MUCH, clammedItem);
+                    player:messageSpecial(ID.text.THE_WEIGHT_IS_TOO_MUCH, clammedItem);
 
                     for item = 1, #clammingItems, 4 do -- Remove items from bucket
                         player:setVar("ClammedItem_" ..  clammingItems[item], 0);
                     end
                 else
-                    player:messageSpecial(YOU_FIND_ITEM, clammedItem);
+                    player:messageSpecial(ID.text.YOU_FIND_ITEM, clammedItem);
                 end
 
                 SetServerVariable("ClammingPoint_" .. player:getLocalVar("ClammingPointID") .. "_Delay", os.time() + 10);

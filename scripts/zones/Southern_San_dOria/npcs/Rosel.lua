@@ -4,9 +4,7 @@
 -- Starts and Finishes Quest: Rosel the Armorer
 -- !zone 230
 -------------------------------------
-package.loaded["scripts/zones/Southern_San_dOria/TextIDs"] = nil;
------------------------------------
-require("scripts/zones/Southern_San_dOria/TextIDs");
+local ID = require("scripts/zones/Southern_San_dOria/IDs");
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/titles");
@@ -17,13 +15,13 @@ require("scripts/globals/shop");
 function onTrade(player,npc,trade)
     if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeRosel") == 0) then
-            player:messageSpecial(ROSEL_DIALOG);
-            player:setVar("FFR",player:getVar("FFR") - 1);
+            player:messageSpecial(ID.text.ROSEL_DIALOG);
+            player:addVar("FFR", -1)
             player:setVar("tradeRosel",1);
-            player:messageSpecial(FLYER_ACCEPTED);
+            player:messageSpecial(ID.text.FLYER_ACCEPTED);
             player:tradeComplete();
             elseif (player:getVar("tradeRosel") ==1) then
-                player:messageSpecial(FLYER_ALREADY);
+                player:messageSpecial(ID.text.FLYER_ALREADY);
             end
         end
     end;
@@ -56,7 +54,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA, ROSEL_THE_ARMORER);
         player:setVar("RefuseRoselTheArmorerQuest",0);
         player:addKeyItem(dsp.ki.RECEIPT_FOR_THE_PRINCE);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.RECEIPT_FOR_THE_PRINCE);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.RECEIPT_FOR_THE_PRINCE);
     -- Rosel the Armorer, finished quest, recieve 200gil
     elseif (csid == 527) then
         npcUtil.completeQuest(player, SANDORIA, ROSEL_THE_ARMORER, {

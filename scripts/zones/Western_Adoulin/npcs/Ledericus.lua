@@ -4,10 +4,8 @@
 -- Type: Shop NPC
 -- !pos 37 32 117 256
 -----------------------------------
-package.loaded["scripts/zones/Western_Adoulin/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/shop");
-require("scripts/zones/Western_Adoulin/TextIDs");
+local ID = require("scripts/zones/Western_Adoulin/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -15,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     -- Standard shop
-    player:showText(npc, LEDERICUS_SHOP_TEXT);
+    player:showText(npc, ID.text.LEDERICUS_SHOP_TEXT);
     local stock =
     {
         4916, 34000,  -- Scroll of Fira

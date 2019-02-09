@@ -3,9 +3,7 @@
 --  NPC: Poporoon
 -- Standard Merchant NPC
 -----------------------------------
-package.loaded["scripts/zones/Nashmau/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Nashmau/TextIDs")
+local ID = require("scripts/zones/Nashmau/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -20,7 +18,7 @@ function onTrigger(player,npc)
         12955, 20532,    -- Cuir Highboots
     }
 
-    player:showText(npc, POPOROON_SHOP_DIALOG)
+    player:showText(npc, ID.text.POPOROON_SHOP_DIALOG)
     dsp.shop.general(player, stock)
 end
 

@@ -148,8 +148,9 @@ namespace charutils
     void    SaveMenuConfigFlags(CCharEntity* PChar);                       // saves the char's unnamed flags
     void	SaveCharNation(CCharEntity* PChar);							// Save the character's nation of allegiance.
     void    SaveCampaignAllegiance(CCharEntity* PChar);                 // Save the character's campaign allegiance.
+    void	SaveCharMoghancement(CCharEntity* PChar);                   // Save the character's current moghancement
     void	SaveCharSkills(CCharEntity* PChar, uint8 skillID);	        // сохраняем указанный skill персонажа
-    void	SaveCharPoints(CCharEntity* PChar);							// Conquest point, Nation TP
+    void    SaveCharUnlocks(CCharEntity* PChar);                        // Nation teleports, etc
     void	SaveDeathTime(CCharEntity* PChar);							// Saves when this character last died.
     void	SavePlayTime(CCharEntity* PChar);							// Saves this characters total play time.
     bool	hasMogLockerAccess(CCharEntity* PChar);						// true if have access, false otherwise.

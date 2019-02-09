@@ -6,25 +6,18 @@
 -- Involved in Quest: Lure of the Wildcat (San d'Oria)
 -- !pos -105 0.1 72 233
 -----------------------------------
-package.loaded["scripts/zones/Chateau_dOraguille/TextIDs"] = nil;
------------------------------------
 require("scripts/globals/settings");
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/quests");
-require("scripts/zones/Chateau_dOraguille/TextIDs");
+local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local flyersForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
     local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
 
-    -- FLYERS FOR REGINE (magicmart flyer)
-    if (flyersForRegine == QUEST_ACCEPTED and trade:hasItemQty(532,1) and trade:getItemCount() == 1) then
-        player:messageSpecial(FLYER_REFUSED);
-
     -- HER MAJESTY'S GARDEN (derfland humus)
-    elseif (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
+    if (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
         player:startEvent(83);
 
     end;
@@ -89,16 +82,16 @@ function onEventFinish(player,csid,option)
     elseif ((csid == 98 or csid == 99) and option == 1) then
         player:setVar("circleTime",7);
         player:addKeyItem(dsp.ki.MOON_RING);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MOON_RING);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_RING);
     elseif (csid == 96) then
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
-            player:messageSpecial(ITEM_OBTAINED,12647)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
             player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
             player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
             player:setVar("circleTime",0);
         else
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED);
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED);
         end;
 
     -- LURE OF THE WILDCAT
@@ -111,7 +104,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 83) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
-        player:messageSpecial(KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
+        player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,30);
         player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
 

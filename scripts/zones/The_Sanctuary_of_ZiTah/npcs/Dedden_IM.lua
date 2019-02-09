@@ -4,9 +4,6 @@
 -- Border Conquest Guards
 -- !pos -252.454 -1.958 624.366 121
 -----------------------------------
-package.loaded["scripts/zones/The_Sanctuary_of_ZiTah/TextIDs"] = nil
------------------------------------
-require("scripts/zones/The_Sanctuary_of_ZiTah/TextIDs")
 require("scripts/globals/conquest")
 -----------------------------------
 

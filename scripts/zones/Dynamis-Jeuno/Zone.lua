@@ -3,10 +3,8 @@
 -- Zone: Dynamis-Jeuno
 --
 -----------------------------------
-package.loaded["scripts/zones/Dynamis-Jeuno/TextIDs"] = nil;
------------------------------------
-require("scripts/globals/settings");
-require("scripts/zones/Dynamis-Jeuno/TextIDs");
+local ID = require("scripts/zones/Dynamis-Jeuno/IDs")
+require("scripts/globals/conquest")
 -----------------------------------
 
 function onInitialize(zone)

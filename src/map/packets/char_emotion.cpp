@@ -21,41 +21,36 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
-
-#include <string.h>
-
 #include "char_emotion.h"
 #include "../entities/charentity.h"
 #include "../item_container.h"
 #include "../items/item_weapon.h"
 
-CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint8* buff)
+CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint16 TargetIndex, Emote EmoteID, EmoteMode emoteMode, uint16 extra)
 {
-	this->type = 0x5a;
-	this->size = 0x1C;								// new size to match retail packet
+    this->id(0x5A);
+    this->length(56);
 
-	ref<uint32>(0x04) = PChar->id;					// player Id
-	ref<uint32>(0x08) = ::ref<uint32>(buff, 0x04);		// target Id
-	ref<uint16>(0x0C) = PChar->targid;				// player's zone charList index
-	ref<uint16>(0x0E) = ::ref<uint16>(buff, 0x08);		// target's zone mobList index (?)
+    ref<uint32>(0x04) = PChar->id;
+    ref<uint32>(0x08) = TargetID;
+    ref<uint16>(0x0C) = PChar->targid;
+    ref<uint16>(0x0E) = TargetIndex;
+    ref<uint8>(0x10)  = EmoteID == Emote::JOB ? static_cast<uint8>(EmoteID) + (extra - 0x1F) : static_cast<uint8>(EmoteID);
 
-	uint8 emoteID = ::ref<uint8>(buff, 0x0A);
-	uint8 motion = ::ref<uint8>(buff, 0x0B);
+    if (EmoteID == Emote::SALUTE)
+    {
+        ref<uint16>(0x12) = PChar->profile.nation;
+    }
+    else if (EmoteID == Emote::HURRAY)
+    {
+        auto PWeapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
+        if (PWeapon && PWeapon->getID() != 65535)
+            ref<uint16>(0x12) = PWeapon->getID();
+    }
+    else if (EmoteID == Emote::JOB)
+    {
+        ref<uint8>(0x12) = (extra - 0x1F);
+    }
 
-	if (emoteID == 0x4A) { 							// [jobemote] sends job id as extra value
-		uint8 offset = ::ref<uint8>(buff, 0x0C) - 0x1F;
-		ref<uint8>(0x10) = emoteID + offset;		// emote Id
-		ref<uint8>(0x12) = offset;				// job Id
-	} else if (emoteID == 0x2B) { 					// [hurray] sends weapon as extra value
-		ref<uint8>(0x10) = emoteID;				// emote Id
-		CItem * weapon = PChar->getStorage(LOC_INVENTORY)->GetItem(PChar->equip[SLOT_MAIN]);
-		if (weapon != nullptr && weapon->getID() != 0xFFFF) {
-			ref<uint16>(0x12) = weapon->getID();	// main weapon Id
-		}
-	}else{											// [any other emote] no extra value
-		ref<uint8>(0x10) = emoteID;				// emote Id
-	}
-
-	ref<uint8>(0x16) = motion;					// motion
+    ref<uint8>(0x16) = static_cast<uint8>(emoteMode);
 }

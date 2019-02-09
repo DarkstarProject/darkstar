@@ -5,13 +5,11 @@
 -- Starts and Finishes; The Weight of Your Limits
 -- !pos 92.936 -19.532 1.814 237
 -----------------------------------
-package.loaded["scripts/zones/Metalworks/TextIDs"] = nil
------------------------------------
 require("scripts/globals/missions")
 require("scripts/globals/settings")
 require("scripts/globals/titles")
 require("scripts/globals/wsquest")
-require("scripts/zones/Metalworks/TextIDs")
+local ID = require("scripts/zones/Metalworks/IDs")
 -----------------------------------
 
 local wsQuest = dsp.wsquest.steel_cyclone
@@ -39,11 +37,11 @@ function onTrigger(player,npc)
         player:startEvent(782)
     elseif (player:getVar("Flagbastok") == 1) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
         else
             player:setVar("Flagbastok",0)
             player:addItem(182)
-            player:messageSpecial(ITEM_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
     elseif (currentMission == THE_FOUR_MUSKETEERS and missionStatus == 1) then
         player:startEvent(716)
@@ -75,21 +73,21 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player, 1, csid, option)
     elseif (csid == 782) then
         if (player:getFreeSlotsCount() == 0) then
-            player:messageSpecial(ITEM_CANNOT_BE_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,182)
             player:setVar("Flagbastok",1)
         else
             player:addItem(182)
-            player:messageSpecial(ITEM_OBTAINED,182)
+            player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
         player:setVar("BASTOK92",0)
         player:completeMission(BASTOK,WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
-        player:messageSpecial(GIL_OBTAINED,GIL_RATE*100000)
+        player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)
         player:setTitle(dsp.title.HERO_AMONG_HEROES)
     elseif (csid == 956) then
         player:setVar("FiresOfDiscProg",2)
     else
-        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,STEEL_CYCLONE_LEARNED)
+        dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.STEEL_CYCLONE_LEARNED)
     end
 end

@@ -5,9 +5,7 @@
 -- Involved in Quest: Borghertz's Hands (1st quest only)
 -- !pos -5 1 48 244
 -----------------------------------
-package.loaded["scripts/zones/Upper_Jeuno/TextIDs"] = nil
------------------------------------
-require("scripts/zones/Upper_Jeuno/TextIDs")
+local ID = require("scripts/zones/Upper_Jeuno/IDs")
 require("scripts/globals/shop")
 
 function onTrade(player,npc,trade)
@@ -33,7 +31,7 @@ function onTrigger(player,npc)
             12682, 35673,    -- Mufflers
         }
 
-        player:showText(npc, DEADLYMINNOW_SHOP_DIALOG)
+        player:showText(npc, ID.text.DEADLYMINNOW_SHOP_DIALOG)
         dsp.shop.general(player, stock)
     end
 end
