@@ -33027,37 +33027,6 @@ INSERT INTO `mob_droplist` VALUES (4658,0,0,1000,2814,250); -- (Big Bang) Aptant
 INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenrir's Crown
 INSERT INTO `mob_droplist` VALUES (4660,0,0,1000,16035,41); -- (Goaftrap) Altdorf's Earring
 
-INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,1628,104); -- (King Buffalo) Buffalo Hide
-INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,5152,222); -- (King Buffalo) Buffalo Meat
-INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,1615,41); -- (King Buffalo) Buffalo Horn
-INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,5703,478); -- (King Buffalo) Uleguerand Milk
-INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,928,1000); -- (Will-O'-The_Wykes) Pinch of bomb ash
-INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,17316,231); -- (Will-O'-The_Wykes) Bomb Arm
-INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,511,91); -- (Goblin Jeweler) Goblin mask
-INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,4518,30); -- (Goblin Jeweler) Strip of sheepjerky
-INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,4509,30); -- (Goblin Jeweler) Flask of distilled  water
-INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,605,30); -- (Goblin Jeweler) Pickaxe
-INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,4435,288); -- (Tabar Beak) Slice of cockatrice meat
-INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,842,155); -- (Tabar Beak) Giant bird feather
-INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,854,21); -- (Tabar Beak) Cockatrice skin
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,784,1855); -- (Goblin Archaeologist) Gold Beastcoin
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4197,103); -- (Goblin Archaeologist) Rusty Bolt case
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4495,77); -- (Goblin Archaeologist) Chunk of Goblin chocolate
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,507,77); -- (Goblin Archaeologist) Goblin mail
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,833,68); -- (Goblin Archaeologist) Clump of moko grass
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,948,60); -- (Goblin Archaeologist) Carnation
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,605,60); -- (Goblin Archaeologist) Pickaxe
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,640,60); -- (Goblin Archaeologist) Chunk of copper ore
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4196,60); -- (Goblin Archaeologist) Rotten quiver
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,508,51); -- (Goblin Archaeologist) Goblin helm
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,840,51); -- (Goblin Archaeologist) Chocobo feather
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,856,51); -- (Goblin Archaeologist) Rabbit hide
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,936,51); -- (Goblin Archaeologist) Chunk of rock salt
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,868,51); -- (Goblin Archaeologist) Handful of pugil scales
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,688,43); -- (Goblin Archaeologist) Arrowwood log
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,485,34); -- (Goblin Archaeologist) Broken willow fishing rod
-INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,943,26); -- (Goblin Archaeologist) Pinch of poison dust
-
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
