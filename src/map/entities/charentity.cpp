@@ -981,13 +981,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 action.recast -= std::min<int16>(getMod(Mod::BP_DELAY), 15);
                 action.recast -= std::min<int16>(getMod(Mod::BP_DELAY_II), 15);
             }
-            }
+        }
 
-        // remove invisible if aggresive
+        // remove invisible if aggressive
         if (PAbility->getID() != ABILITY_TAME && PAbility->getID() != ABILITY_FIGHT)
         {
             if (PAbility->getValidTarget() & TARGET_ENEMY) {
-                // aggresive action
+                // aggressive action
                 StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
             }
             else if (PAbility->getID() != ABILITY_TRICK_ATTACK) {
@@ -1013,7 +1013,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         // #TODO: get rid of this to script, too
         if (PAbility->isPetAbility())
         {
-            if (PPet) //is a bp - dont display msg and notify pet
+            if (PPet) //is a bp - don't display msg and notify pet
             {
                 actionList_t& actionList = action.getNewActionList();
                 actionList.ActionTargetID = PTarget->id;
@@ -1654,7 +1654,7 @@ void CCharEntity::Die()
     {
         float retainPercent = std::clamp(map_config.exp_retain + getMod(Mod::EXPERIENCE_RETAINED) / 100.0f, 0.0f, 1.0f);
         charutils::DelExperiencePoints(this, retainPercent, 0);
-}
+    }
 }
 
 void CCharEntity::Die(duration _duration)
