@@ -17,7 +17,7 @@ end
 
 function onItemUse(target)
     local instance = target:getInstance()
-    local bomb = instance:insertAlly(10635)
+    local bomb = instance:insertAlly(10633)
     local X = target:getXPos()
     local Z = target:getZPos()
 
