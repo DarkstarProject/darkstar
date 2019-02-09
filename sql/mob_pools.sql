@@ -5937,33 +5937,7 @@ INSERT INTO `mob_pools` VALUES (5876,'Big_Bang','Big_Bang',82,0x0000C40800000000
 INSERT INTO `mob_pools` VALUES (5877,'Goaftrap','Goaftrap',114,0x0000410500000000000000000000000000000000,1,1,8,200,100,0,0,0,0,2,7,0,0,3,0,0,0,1,0,346);
 INSERT INTO `mob_pools` VALUES (5878,'Crossbones','Crossbones',227,0x00003C0200000000000000000000000000000000,4,4,5,240,100,0,1,0,0,0,0,0,238,131,0,0,2,1,0,227);
 
---  `poolid` int(10) unsigned NOT NULL,
---  `name` varchar(24) DEFAULT NULL,
---  `packet_name` varchar(24) DEFAULT NULL,
---  `familyid` smallint(4) unsigned NOT NULL DEFAULT '0',
---  `modelid` binary(20) NOT NULL,
---  `mJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
---  `sJob` tinyint(2) unsigned NOT NULL DEFAULT '1',
---  `cmbSkill` tinyint(2) unsigned NOT NULL DEFAULT '1',
---  `cmbDelay` smallint(3) unsigned NOT NULL DEFAULT '240',
---  `cmbDmgMult` smallint(4) unsigned NOT NULL DEFAULT '100',
---  `behavior` smallint(5) unsigned NOT NULL DEFAULT '0',
---  `aggro` tinyint(1) unsigned NOT NULL DEFAULT '0',
---  `true_detection` tinyint(1) unsigned NOT NULL DEFAULT '0',
---  `links` tinyint(1) unsigned NOT NULL DEFAULT '0',
---  `mobType` smallint(5) unsigned NOT NULL DEFAULT '0',
---  `immunity` int(10) NOT NULL DEFAULT '0',
---  `name_prefix` tinyint(4) unsigned NOT NULL DEFAULT '0',
---  `flag` int(11) unsigned NOT NULL DEFAULT '0',
---  `entityFlags` int(11) unsigned NOT NULL DEFAULT '0',
---  `animationsub` tinyint(1) NOT NULL DEFAULT '0',
---  `hasSpellScript` tinyint(1) unsigned NOT NULL DEFAULT '0',
---  `spellList` smallint(4) NOT NULL DEFAULT '0',
---  `namevis` tinyint(4) NOT NULL DEFAULT '1',
---  `roamflag` smallint(3) unsigned NOT NULL DEFAULT '0',
---  `skill_list_id` smallint(5) unsigned NOT NULL DEFAULT '0',
-
--- 5843 through 5895 available for use (change/remove this comment when IDs are used)
+-- 5879 through 5895 available for use (change/remove this comment when IDs are used)
 
 INSERT INTO `mob_pools` VALUES (5896,'Shantotto','Shantotto',153,0x0000B80B00000000000000000000000000000000,4,5,2,240,100,0,2,0,0,0,0,32,0,3,0,0,276,1,0,750);
 -- INSERT INTO `mob_pools` VALUES (5897,'naji',
