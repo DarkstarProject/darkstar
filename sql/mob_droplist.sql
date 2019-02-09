@@ -33027,6 +33027,37 @@ INSERT INTO `mob_droplist` VALUES (4658,0,0,1000,2814,250); -- (Big Bang) Aptant
 INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenrir's Crown
 INSERT INTO `mob_droplist` VALUES (4660,0,0,1000,16035,41); -- (Goaftrap) Altdorf's Earring
 
+INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,1628,68); -- (King Buffalo) Buffalo Hide
+INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,5152,130); -- (King Buffalo) Buffalo Meat
+INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,1615,25); -- (King Buffalo) Buffalo Horn
+INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,5703,285); -- (King Buffalo) Uleguerand Milk
+INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,928,1000); -- (Will-O'-The_Wykes) Pinch of bomb ash
+INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,17316,200); -- (Will-O'-The_Wykes) Bomb Arm
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,511,0); -- (Goblin Jeweler) Goblin mask
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,4518,0); -- (Goblin Jeweler) Strip of sheepjerky
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,4509,0); -- (Goblin Jeweler) Flask of distilled  water
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,605,30); -- (Goblin Jeweler) Pickaxe
+INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,4435,207); -- (Tabar Beak) Sauromugue Champaign Slice of cockatrice meat
+INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,842,130); -- (Tabar Beak) Sauromugue Champaign Giant bird feather
+INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,854,14); -- (Tabar Beak) Sauromugue Champaign Cockatrice skin
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,748,1556); -- (Goblin Archaeologist) La Theine Plateau Gold Beastcoin
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4197,111); -- (Goblin Archaeologist) La Theine Plateau Rusty Bolt case
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4495,111); -- (Goblin Archaeologist) La Theine Plateau Chunk of Goblin chocolate
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,507,111); -- (Goblin Archaeologist) La Theine Plateau Goblin mail
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,833,111); -- (Goblin Archaeologist) La Theine Plateau Clump of moko grass
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,948,0); -- (Goblin Archaeologist) La Theine Plateau Carnation
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,605,0); -- (Goblin Archaeologist) La Theine Plateau Pickaxe
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,640,0); -- (Goblin Archaeologist) La Theine Plateau Chunk of copper ore
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,4196,0); -- (Goblin Archaeologist) La Theine Plateau Rotten quiver
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,508,222); -- (Goblin Archaeologist) La Theine Plateau Goblin helm
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,840,0); -- (Goblin Archaeologist) La Theine Plateau Chocobo feather
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,856,0); -- (Goblin Archaeologist) La Theine Plateau Rabbit hide
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,936,0); -- (Goblin Archaeologist) La Theine Plateau Chunk of rock salt
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,868,0); -- (Goblin Archaeologist) La Theine Plateau Handful of pugil scales
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,688,222); -- (Goblin Archaeologist) La Theine Plateau Arrowwood log
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,485,111); -- (Goblin Archaeologist) La Theine Plateau Broken willow fishing rod
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,943,0); -- (Goblin Archaeologist) La Theine Plateau Pinch of poison dust
+
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
