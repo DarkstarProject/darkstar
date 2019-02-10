@@ -20,6 +20,7 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         DEVICE_NOT_WORKING                      = 7318, -- The device is not working.
         SYS_OVERLOAD                            = 7327, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE                            = 7332, -- You lost the <item>.
+        NOTHING_HAPPENED                        = 7342, -- Nothing happened...
         RETURN_RIBBON_TO_HER                    = 7355, -- You can hear a voice from somewhere. (...return...ribbon to...her...)
         THE_BRAZIER_IS_LIT                      = 7369, -- The brazier is lit.
         REFUSE_TO_LIGHT                         = 7370, -- Unexpectedly, the <item> refuses to light.
@@ -28,11 +29,10 @@ zones[dsp.zone.THE_ELDIEME_NECROPOLIS] =
         THE_LIGHT_HAS_INTENSIFIED               = 7373, -- The light of the <item> has intensified.
         THE_LIGHT_IS_FULLY_LIT                  = 7374, -- The <item> is fully lit!
         SOLID_STONE                             = 7382, -- This door is made of solid stone.
-        CHEST_UNLOCKED                          = 7401, -- You unlock the chest!
-        SPIRIT_INCENSE_EMITS_PUTRID_ODOR        = 7411, -- The <item> emits a putrid odor and burns up. Your attempt this time has failed...
-        SARCOPHAGUS_CANNOT_BE_OPENED            = 7428, -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
-        NOTHING_HAPPENED                        = 7342, -- Nothing happened...
-        REGIME_REGISTERED                       = 9673, -- New training regime registered!
+        CHEST_UNLOCKED                          = 7402, -- You unlock the chest!
+        SPIRIT_INCENSE_EMITS_PUTRID_ODOR        = 7412, -- The <item> emits a putrid odor and burns up. Your attempt this time has failed...
+        SARCOPHAGUS_CANNOT_BE_OPENED            = 7429, -- It is a stone sarcophagus with the lid sealed tight. It cannot be opened.
+        REGIME_REGISTERED                       = 9674, -- New training regime registered!
     },
     mob =
     {

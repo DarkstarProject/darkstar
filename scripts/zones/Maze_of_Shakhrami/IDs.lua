@@ -21,9 +21,9 @@ zones[dsp.zone.MAZE_OF_SHAKHRAMI] =
         DEVICE_NOT_WORKING      = 7250, -- The device is not working.
         SYS_OVERLOAD            = 7259, -- Warning! Sys...verload! Enterin...fety mode. ID eras...d.
         YOU_LOST_THE            = 7264, -- You lost the <item>.
-        CHEST_UNLOCKED          = 7354, -- You unlock the chest!
-        MINING_IS_POSSIBLE_HERE = 7362, -- Mining is possible here if you have <item>.
-        REGIME_REGISTERED       = 10348, -- New training regime registered!
+        CHEST_UNLOCKED          = 7355, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE = 7363, -- Mining is possible here if you have <item>.
+        REGIME_REGISTERED       = 10349, -- New training regime registered!
     },
     mob =
     {

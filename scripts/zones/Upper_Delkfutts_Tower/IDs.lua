@@ -17,9 +17,9 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         KEYITEM_OBTAINED        = 6426, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7084, -- You can't fish here.
         CONQUEST_BASE           = 7184, -- Tallying conquest results...
-        CHEST_UNLOCKED          = 7350, -- You unlock the chest!
-        REGIME_REGISTERED       = 9459, -- New training regime registered!
-        HOMEPOINT_SET           = 10515, -- Home point set!
+        CHEST_UNLOCKED          = 7351, -- You unlock the chest!
+        REGIME_REGISTERED       = 9460, -- New training regime registered!
+        HOMEPOINT_SET           = 10516, -- Home point set!
     },
     mob =
     {

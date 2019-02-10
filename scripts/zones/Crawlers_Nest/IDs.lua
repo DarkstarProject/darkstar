@@ -19,13 +19,13 @@ zones[dsp.zone.CRAWLERS_NEST] =
         GIL_OBTAINED                  = 6579, -- Obtained <number> gil.
         KEYITEM_OBTAINED              = 6581, -- Obtained key item: <keyitem>.
         SENSE_OF_FOREBODING           = 6593, -- You are suddenly overcome with a sense of foreboding...
-        CHEST_UNLOCKED                = 7251, -- You unlock the chest!
-        SOMEONE_HAS_BEEN_DIGGING_HERE = 7259, -- Someone has been digging here.
-        EQUIPMENT_COMPLETELY_PURIFIED = 7260, -- Your equipment has not been completely purified.
-        YOU_BURY_THE                  = 7262, -- You bury the <item> and <item>.
-        NOTHING_WILL_HAPPEN_YET       = 7265, -- It seems that nothing will happen yet.
-        NOTHING_SEEMS_TO_HAPPEN       = 7266, -- Nothing seems to happen.
-        REGIME_REGISTERED             = 9427, -- New training regime registered!
+        CHEST_UNLOCKED                = 7252, -- You unlock the chest!
+        SOMEONE_HAS_BEEN_DIGGING_HERE = 7260, -- Someone has been digging here.
+        EQUIPMENT_COMPLETELY_PURIFIED = 7261, -- Your equipment has not been completely purified.
+        YOU_BURY_THE                  = 7263, -- You bury the <item> and <item>.
+        NOTHING_WILL_HAPPEN_YET       = 7266, -- It seems that nothing will happen yet.
+        NOTHING_SEEMS_TO_HAPPEN       = 7267, -- Nothing seems to happen.
+        REGIME_REGISTERED             = 9428, -- New training regime registered!
     },
     mob =
     {

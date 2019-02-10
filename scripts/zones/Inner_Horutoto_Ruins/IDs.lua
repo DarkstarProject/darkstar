@@ -20,8 +20,8 @@ zones[dsp.zone.INNER_HORUTOTO_RUINS] =
         NOT_BROKEN_ORB            = 7234, -- The Mana Orb in this receptacle is not broken.
         EXAMINED_RECEPTACLE       = 7235, -- You have already examined this receptacle.
         DOOR_FIRMLY_CLOSED        = 7262, -- The door is firmly closed.
-        CHEST_UNLOCKED            = 7337, -- You unlock the chest!
-        REGIME_REGISTERED         = 9486, -- New training regime registered!
+        CHEST_UNLOCKED            = 7338, -- You unlock the chest!
+        REGIME_REGISTERED         = 9487, -- New training regime registered!
     },
     mob =
     {

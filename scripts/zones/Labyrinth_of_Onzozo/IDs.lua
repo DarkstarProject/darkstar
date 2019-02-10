@@ -17,9 +17,9 @@ zones[dsp.zone.LABYRINTH_OF_ONZOZO] =
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7315, -- You unlock the chest!
-        SENSE_OMINOUS_PRESENCE  = 7331, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 9387, -- New training regime registered!
+        CHEST_UNLOCKED          = 7316, -- You unlock the chest!
+        SENSE_OMINOUS_PRESENCE  = 7332, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 9388, -- New training regime registered!
     },
     mob =
     {
