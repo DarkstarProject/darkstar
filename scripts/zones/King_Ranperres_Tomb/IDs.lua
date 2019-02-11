@@ -15,9 +15,9 @@ zones[dsp.zone.KING_RANPERRES_TOMB] =
         ITEM_OBTAINED           = 6547, -- Obtained: <item>.
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
-        CHEST_UNLOCKED          = 7278, -- You unlock the chest!
-        HEAVY_DOOR              = 7306, -- It is a solid stone door.
-        REGIME_REGISTERED       = 10330, -- New training regime registered!
+        CHEST_UNLOCKED          = 7279, -- You unlock the chest!
+        HEAVY_DOOR              = 7307, -- It is a solid stone door.
+        REGIME_REGISTERED       = 10331, -- New training regime registered!
     },
     mob =
     {

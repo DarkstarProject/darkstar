@@ -22,8 +22,8 @@ zones[dsp.zone.PALBOROUGH_MINES] =
         SOMETHING_FALLS_OUT_OF_THE_MACHINE = 7371, -- Something falls out of the machine!
         YOU_CANT_CARRY_ANY_MORE_ITEMS      = 7374, -- There seems to be more left in the machine, but you can't carry any more items.
         MINING_IS_POSSIBLE_HERE            = 7395, -- Mining is possible here if you have <item>.
-        CHEST_UNLOCKED                     = 7409, -- You unlock the chest!
-        HOMEPOINT_SET                      = 7456, -- Home point set!
+        CHEST_UNLOCKED                     = 7410, -- You unlock the chest!
+        HOMEPOINT_SET                      = 7457, -- Home point set!
     },
     mob =
     {

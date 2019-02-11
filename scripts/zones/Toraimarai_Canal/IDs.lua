@@ -17,9 +17,9 @@ zones[dsp.zone.TORAIMARAI_CANAL] =
         KEYITEM_OBTAINED        = 6437, -- Obtained key item: <keyitem>.
         CONQUEST_BASE           = 7095, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7254, -- You can't fish here.
-        CHEST_UNLOCKED          = 7361, -- You unlock the chest!
-        REGIME_REGISTERED       = 9616, -- New training regime registered!
-        HOMEPOINT_SET           = 10692, -- Home point set!
+        CHEST_UNLOCKED          = 7362, -- You unlock the chest!
+        REGIME_REGISTERED       = 9617, -- New training regime registered!
+        HOMEPOINT_SET           = 10693, -- Home point set!
     },
     mob =
     {

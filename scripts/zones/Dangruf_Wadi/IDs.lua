@@ -32,9 +32,9 @@ zones[dsp.zone.DANGRUF_WADI] =
         BEAT_GRASSWIX           = 7363, -- You hear a voice... (...can't believe it! How could Grasswix lose! Eggblix of Cavern...he no lose!)
         JUST_WONT_DO            = 7373, -- You hear a voice... (...just won't do...nope...nope...)
         BEAT_EGGBLIX            = 7374, -- (...Lucky, ya are! Don't forget to say hi to our sister at Drachenfall!)
-        CHEST_UNLOCKED          = 7433, -- You unlock the chest!
-        SMALL_HOLE              = 7487, -- There is a small hole here.
-        REGIME_REGISTERED       = 10450, -- New training regime registered!
+        CHEST_UNLOCKED          = 7434, -- You unlock the chest!
+        SMALL_HOLE              = 7488, -- There is a small hole here.
+        REGIME_REGISTERED       = 10451, -- New training regime registered!
     },
     mob =
     {
