@@ -9,10 +9,10 @@ dsp.quests.enums =
 {
     log_ids =
     {
-        SANDORIA  = 0, BASTOK      = 1,  WINDURST = 2,
-        JEUNO     = 3, OTHER_AREAS = 4,  OUTLANDS = 5,
-        AHT_URGAN = 6, CRYSTAL_WAR = 7,  ABYSSEA  = 8,
-        ADOULIN   = 9, COALITION   = 10
+        SANDORIA   = 0, BASTOK      = 1,  WINDURST = 2,
+        JEUNO      = 3, OTHER_AREAS = 4,  OUTLANDS = 5,
+        AHT_URHGAN = 6, CRYSTAL_WAR = 7,  ABYSSEA  = 8,
+        ADOULIN    = 9, COALITION   = 10
     },
 
     fame_areas =
@@ -40,6 +40,13 @@ dsp.quests.enums =
         QUEST_COMPLETED = 2,
     },
 
+    stages =
+    {
+        STAGE0   =  0, STAGE1  =  1, STAGE2  =  2, STAGE3   =  3, STAGE4   =  4,
+        STAGE5   =  5, STAGE6  =  6, STAGE7  =  7, STAGE8   =  8, STAGE9   =  9,
+        STAGE10  = 10, STAGE11 = 11, STAGE12 = 12, STAGE13  = 13, STAGE14  = 14,
+    },
+
     quest_ids =
     {
         sandoria =
@@ -57,23 +64,17 @@ dsp.quests.enums =
             A_SQUIRE_S_TEST                 = 10, -- + --
             GRAVE_CONCERNS                  = 11, -- ± --
             THE_BRUGAIRE_CONSORTIUM         = 12, -- + --
-
             LIZARD_SKINS                    = 15, -- + --
             FLYERS_FOR_REGINE               = 16, -- + --
-
             GATES_TO_PARADISE               = 18, -- + --
             A_SQUIRE_S_TEST_II              = 19, -- + --
             TO_CURE_A_COUGH                 = 20, -- + --
-
             TIGER_S_TEETH                   = 23, -- ± --
-
             UNDYING_FLAMES                  = 26, -- + --
             A_PURCHASE_OF_ARMS              = 27, -- + --
-
             A_KNIGHT_S_TEST                 = 29, -- + --
             THE_MEDICINE_WOMAN              = 30, -- + --
             BLACK_TIGER_SKINS               = 31, -- + --
-
             GROWING_FLOWERS                 = 58, -- ± --
             TRIAL_BY_ICE                    = 59, -- + --
             THE_GENERAL_S_SECRET            = 60, -- ± --
@@ -89,7 +90,6 @@ dsp.quests.enums =
             UNEXPECTED_TREASURE             = 70,
             BLACKMAIL                       = 71, -- + --
             THE_SETTING_SUN                 = 72, -- + --
-
             DISTANT_LOYALTIES               = 74,
             THE_RIVALRY                     = 75, -- ± --
             THE_COMPETITION                 = 76, -- ± --
@@ -127,11 +127,9 @@ dsp.quests.enums =
             SIGNED_IN_BLOOD                 = 108, -- + --
             TEA_WITH_A_TONBERRY             = 109,
             SPICE_GALS                      = 110,
-
-            OVER_THE_HILLS_AND_FAR_AWAY     = 112,
+            OVER_THE_HILLS_AND_FAR_AWAY     = 112, -- + --
             LURE_OF_THE_WILDCAT_SAN_D_ORIA  = 113, -- ± --
             ATELLOUNE_S_LAMENT              = 114,
-
             THICK_SHELLS                    = 117, -- ± --
             FOREST_FOR_THE_TREES            = 118,
         },
@@ -256,7 +254,6 @@ dsp.quests.enums =
             THE_POSTMAN_ALWAYS_KO_S_TWICE   = 19, -- + --
             EARLY_BIRD_CATCHES_THE_BOOKWORM = 20, -- + --
             CATCH_IT_IF_YOU_CAN             = 21, -- + --
-
             ALL_AT_SEA                      = 23,
             THE_ALL_NEW_C_2000              = 24, -- ± --
             MIHGO_S_AMIGO                   = 25, -- + --
@@ -288,7 +285,6 @@ dsp.quests.enums =
             HOIST_THE_JELLY_ROGER           = 51, -- + --
             SOMETHING_FISHY                 = 52, -- + --
             TO_CATCH_A_FALLIHG_STAR         = 53, -- + --
-
             PAYING_LIP_SERVICE              = 60, -- + --
             THE_AMAZIN_SCORPIO              = 61, -- + --
             TWINSTONE_BONDING               = 62, -- + --
@@ -327,7 +323,8 @@ dsp.quests.enums =
             BABBAN_NY_MHEILLEA              = 95,
         },
 
-        adoulin = {
+        adoulin =
+        {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
             TWITHERYM_DUST                  = 0,
@@ -431,7 +428,16 @@ dsp.quests.enums =
     },
 }
 
-
+dsp.quests.quest_filenames =
+{
+    [dsp.quests.enums.log_ids.ADOULIN] =
+    {
+        [dsp.quests.enums.quest_ids.adoulin.WAYWARD_WAYPOINTS] = 'wayward_waypoints',
+        [dsp.quests.enums.quest_ids.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN] = 'a_certain_substitute_patrolman',
+        [dsp.quests.enums.quest_ids.adoulin.THE_OLD_MAN_AND_THE_HARPOON] = 'the_old_man_and_the_harpoon',
+        [dsp.quests.enums.quest_ids.adoulin.FERTILE_GROUND] = 'fertile_ground',
+    }
+}
 
 local check_enum =
 {
@@ -513,7 +519,7 @@ dsp.quests.setVar = function(entity, quest, varname, val)
     local message = "dsp.quests.setVar "
     local ret = handleQuestVar(entity, quest, varname, val, false)
     if ret.message then
-        error(message..ret.message)
+        error(entity, message..ret.message)
     end
 end
 
@@ -521,7 +527,7 @@ dsp.quests.getVar = function(entity, quest, varname, val)
     local message = "dsp.quests.getVar "
     local ret = handleQuestVar(entity, quest, varname, val, true)
     if ret.message then
-        error(message..ret.message)
+        error(entity, message..ret.message)
     else
         return ret.val
     end
@@ -537,30 +543,54 @@ dsp.quests.getStage = function(entity, quest)
     return dsp.quests.getVar(entity, quest, quest.vars.stage)
 end
 
-dsp.quests.complete = function(player, quest, reward_set)
-    local message = "dsp.quests.complete "
-    if quest then
-        if reward_set == nil then
-            reward_set = quest.rewards.sets[1]
-        end
-        if quest.rewards and reward_set then
-            -- todo: check inventory (including stack space), award items, return false if cant complete
-            local rewards_given = npcUtil.completeQuest(player, quest.area, quest.quest_id, reward_set)
-            if rewards_given then
-                -- clear stage CHAR_VAR if shouldnt be preserved
-                if not quest.vars.preserve_main_on_complete then
-                    player:setVar(quest.vars.stage, 0)
-                end
-                for name, var in pairs(quest.vars.additional) do
-                    if not var.preserve_on_complete then
-                        handleQuestVar(player, quest, name, 0, "dsp.quests.complete ", nil)
-                    end
-                end
+dsp.quests.advanceStage = function(entity, quest)
+    local message = "dsp.quests.advanceStage "
+    local current_stage = dsp.quests.getStage(entity, quest)
+    return dsp.quests.setVar(entity, quest, quest.vars.stage, current_stage + 1)
+end
 
-                return true
-            else
-                error(message.. "Unable to give quest rewards.")
+dsp.quests.complete = function(player, quest, reward_set)
+    local message = "dsp.quests.complete: "
+    if quest then
+        local rewards_given = false
+        if quest.rewards then
+            if reward_set == nil then
+                if quest.rewards.sets and quest.rewards.sets[1] then
+                    reward_set = quest.rewards.sets[1]
+                else
+                    reward_set = quest.rewards
+                end
             end
+            if reward_set then
+                -- todo: check inventory (including stack space), award items, return false if cant complete
+                rewards_given = npcUtil.completeQuest(player, quest.area, quest.quest_id, reward_set)
+                if not rewards_given then
+                    error(player, message.. "Unable to give quest rewards.")
+                end
+            else
+                error(player, message.. "Rewards table defined, but unable to get rewards set")
+            end
+        else
+            error(player, message.. "No quest rewards defined!")
+        end
+
+        if rewards_given then
+            -- clear stage CHAR_VAR if shouldnt be preserved
+            if not quest.vars.preserve_main_on_complete then
+                player:setVar(quest.vars.stage, 0)
+            end
+            for name, var in pairs(quest.vars.additional) do
+                if not var.preserve_on_complete then
+                    handleQuestVar(player, quest, name, 0, "dsp.quests.complete: ", nil)
+                end
+            end
+
+            -- make certain any forgotten temporary key items have been removed
+            for _, ki in pairs(quest.temporary.key_items) do
+                player:delKeyItem(ki)
+            end
+
+            return true
         end
     end
 end
@@ -585,24 +615,47 @@ dsp.quests.check = function(player, params)
             local quest = quest_table[i]
             if quest then
                 local exitLoop
+                local stage_zone_table
+                local player_current_stage = dsp.quests.getStage(player, quest)
+                if quest.stages[player_current_stage] then
+                    stage_zone_table = quest.stages[player_current_stage][zoneid]
+                end
                 local checks =
                 {
-                    [check_enum.onTrade] = function(player, params) return quest.npcs[zoneid][targetName].onTrade(player, params.target, params.trade) end,
-                    [check_enum.onTrigger] = function(player, params) return quest.npcs[zoneid][targetName].onTrigger(player, params.target) end,
+                    [check_enum.onTrade] = function(player, params)
+                        if stage_zone_table['onTrade'] and stage_zone_table['onTrade'][targetName] then
+                            return stage_zone_table['onTrade'][targetName](player, params.target, params.trade)
+                        end
+                    end,
+                    [check_enum.onTrigger] = function(player, params)
+                        if stage_zone_table['onTrigger'] and stage_zone_table['onTrigger'][targetName] then
+                            return stage_zone_table['onTrigger'][targetName](player, params.target)
+                        end
+                    end,
                     [check_enum.onEventUpdate] = function(player, params)
-                        if quest.events[zoneid][params.csid] then
-                            return quest.events[zoneid][params.csid].onEventUpdate(player, params.option)
+                        if stage_zone_table['onEventUpdate'] and stage_zone_table['onEventUpdate'][params.csid] then
+                            return stage_zone_table['onEventUpdate'][params.csid](player, params.option)
                         end
                     end,
                     [check_enum.onEventFinish] = function(player, params)
-                        if quest.events[zoneid][params.csid] then
-                            return quest.events[zoneid][params.csid].onEventFinish(player, params.option)
+                        if stage_zone_table['onEventFinish'] and stage_zone_table['onEventFinish'][params.csid] then
+                            return stage_zone_table['onEventFinish'][params.csid](player, params.option)
                         end
                     end,
-                    [check_enum.onZoneIn] = function(player, params) return quest.onZoneIn(player, params.zone) end,
-                    [check_enum.onMobDeath] = function(player, params) return quest.mobs[zoneid][targetName].onMobDeath(params.target, player, params.isKiller, params.isWeaponSkillKill) end,
+                    [check_enum.onZoneIn] = function(player, params)
+                        if stage_zone_table['onZoneIn'] then
+                            return stage_zone_table['onZoneIn'](player, params)
+                        end
+                    end,
+                    [check_enum.onMobDeath] = function(player, params)
+                        if stage_zone_table['onMobDeath'] and stage_zone_table['onMobDeath'][targetName] then
+                            return stage_zone_table['onMobDeath'][targetName](params.target, player, params.isKiller, params.isWeaponSkillKill)
+                        end
+                    end,
                 }
-                exitLoop = checks[params.check_type](player, params)
+                if stage_zone_table then
+                    exitLoop = checks[params.check_type](player, params)
+                end
                 player:setLocalVar("[quests]cycle", i)
                 --print("Player: "..player:getName()..(targetName and " Npc: "..targetName or " Event: "..params.csid).. " \tCycle: "..i.." Quest: "..quest.name)
                 if exitLoop then
@@ -668,6 +721,36 @@ dsp.quests.checkRequirements = function(player, quest)
         return true
     else
         return false
+    end
+end
+
+dsp.quests.getQuestTable = function(area_log_id, quest_id)
+    local quest_filename = 'scripts/quests/'
+    local area_dirs =
+    {
+        [dsp.quests.enums.log_ids.SANDORIA]    = 'sandoria',
+        [dsp.quests.enums.log_ids.BASTOK]      = 'bastok',
+        [dsp.quests.enums.log_ids.WINDURST]    = 'windurst',
+        [dsp.quests.enums.log_ids.JEUNO]       = 'jeuno',
+        [dsp.quests.enums.log_ids.OTHER_AREAS] = 'other_areas',
+        [dsp.quests.enums.log_ids.OUTLANDS]    = 'outlands',
+        [dsp.quests.enums.log_ids.AHT_URHGAN]  = 'aht_urhgan',
+        [dsp.quests.enums.log_ids.CRYSTAL_WAR] = 'crystal_war',
+        [dsp.quests.enums.log_ids.ABYSSEA]     = 'abyssea',
+        [dsp.quests.enums.log_ids.ADOULIN]     = 'adoulin',
+        [dsp.quests.enums.log_ids.COALITION]   = 'coalition'
+    }
+    local quest_file = dsp.quests.quest_filenames[area_log_id][quest_id]
+    if quest_file then
+        quest_filename = quest_filename .. area_dirs[area_log_id] .. '/' .. quest_file
+        local quest_table = require(quest_filename)
+        if (quest_table) then
+            return quest_table
+        else
+            print("dsp.quests.getQuestTable: Unable to include designated file '".. quest_filename .."'")
+        end
+    else
+        print("dsp.quests.getQuestTable: No quest file defined for quest ID: ".. quest_id.. " for area: ".. area_dirs[area_log_id])
     end
 end
 
