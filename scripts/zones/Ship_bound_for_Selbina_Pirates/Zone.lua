@@ -30,7 +30,6 @@ function onEventUpdate(player,csid,option)
 end
 
 function onEventFinish(player,csid,option)
- DespawnMob(ID.mob.BLACKBEARD)
     if csid == 255 then
         player:setPos(0, 0, 0, 0, dsp.zone.SELBINA)
     end

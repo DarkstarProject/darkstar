@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: dspdb
 -- ------------------------------------------------------
--- Server version	5.5.52-MariaDB-1ubuntu0.14.04.1
+-- Server version   5.5.52-MariaDB-1ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1372,7 +1372,7 @@ INSERT INTO `item_armor` VALUES (11603,'charis_necklace',80,0,262144,0,0,0,512,0
 INSERT INTO `item_armor` VALUES (11604,'corvus_torque',79,0,66592,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (11605,'ziel_charm',80,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (11606,'arctiers_torque',80,0,2473969,0,0,0,512,0);
-INSERT INTO `item_armor` VALUES (11607,'artemis_medal',77,0,4194303,0,0,0,512,0);
+INSERT INTO `item_armor` VALUES (11607,'artemiss_medal',77,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (11608,'barcarolle_medal',78,0,512,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (11609,'shifting_necklace',79,0,4194303,0,0,0,512,0);
 INSERT INTO `item_armor` VALUES (11610,'lacono_necklace',79,0,4194303,0,0,0,512,0);
@@ -7147,7 +7147,7 @@ INSERT INTO `item_armor` VALUES (17415,'shellbuster',48,0,4194303,110,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17416,'arcana_breaker',54,0,1048580,113,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17417,'rabbit_stick',5,0,4194303,228,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17418,'moonlight_wand',15,0,4194303,228,0,0,3,0);
-INSERT INTO `item_armor` VALUES (17419,'artemis_wand',25,0,4194303,228,0,0,3,0);
+INSERT INTO `item_armor` VALUES (17419,'artemiss_wand',25,0,4194303,228,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17420,'selenes_wand',35,0,4194303,228,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17421,'moonwatch_wand',45,0,4194303,228,0,0,3,0);
 INSERT INTO `item_armor` VALUES (17422,'blessed_hammer',41,0,4,115,0,0,3,0);

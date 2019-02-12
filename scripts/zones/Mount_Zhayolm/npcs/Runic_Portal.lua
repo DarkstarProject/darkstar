@@ -5,10 +5,9 @@
 -- !pos 688.994 -23.960 351.496 61
 -----------------------------------
 local ID = require("scripts/zones/Mount_Zhayolm/IDs")
------------------------------------
+require("scripts/globals/teleports")
 require("scripts/globals/besieged")
 require("scripts/globals/missions")
-require("scripts/globals/teleports")
 -----------------------------------
 
 function onTrade(player, npc, trade)

@@ -60,7 +60,7 @@ zones[dsp.zone.PORT_WINDURST] =
         ALIZABE_OPEN_DIALOG             = 12874, -- Don't tell anybody, but I've managed to get my hands on some items from Tavnazia! Take a look!
         ALIZABE_CLOSED_DIALOG           = 12875, -- Pssst! Have you heard of Tavnazia? Boy, do they have some sweet items on those islands...
         ALIZABE_COP_NOT_COMPLETED       = 12876, -- It won't be long before I set up shop right here in this very place. And once I start, there won't be no stoppin' me!
-        RETRIEVE_DIALOG_ID              = 15876, -- You retrieve <item> from the porter moogle's care.
+        RETRIEVE_DIALOG_ID              = 15881, -- You retrieve <item> from the porter moogle's care.
     },
     mob =
     {

@@ -18,8 +18,8 @@ zones[dsp.zone.MIDDLE_DELKFUTTS_TOWER] =
         NOTHING_OUT_OF_ORDINARY = 6565, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING     = 6566, -- You are suddenly overcome with a sense of foreboding...
         FISHING_MESSAGE_OFFSET  = 7212, -- You can't fish here.
-        CHEST_UNLOCKED          = 7319, -- You unlock the chest!
-        REGIME_REGISTERED       = 9453, -- New training regime registered!
+        CHEST_UNLOCKED          = 7320, -- You unlock the chest!
+        REGIME_REGISTERED       = 9454, -- New training regime registered!
     },
     mob =
     {

@@ -28,11 +28,11 @@ zones[dsp.zone.SACRARIUM] =
         DRAWER_OPEN               = 7259, -- You open the drawer.
         DRAWER_EMPTY              = 7260, -- There is nothing inside.
         DRAWER_SHUT               = 7261, -- The drawer is jammed shut.
-        CHEST_UNLOCKED            = 7349, -- You unlock the chest!
-        START_GET_GOOSEBUMPS      = 7359, -- You start to get goosebumps.
-        HEART_RACING              = 7360, -- Your heart is racing.
-        LEAVE_QUICKLY_AS_POSSIBLE = 7361, -- Your common sense tells you to leave as quickly as possible.
-        NOTHING_HAPPENS           = 7364, -- Nothing happens.
+        CHEST_UNLOCKED            = 7350, -- You unlock the chest!
+        START_GET_GOOSEBUMPS      = 7360, -- You start to get goosebumps.
+        HEART_RACING              = 7361, -- Your heart is racing.
+        LEAVE_QUICKLY_AS_POSSIBLE = 7362, -- Your common sense tells you to leave as quickly as possible.
+        NOTHING_HAPPENS           = 7365, -- Nothing happens.
     },
     mob =
     {
