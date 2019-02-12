@@ -2,7 +2,7 @@
 -- Area: Wajaom Woodlands
 --  ZNM: Gotoh Zha the Redolent
 -----------------------------------
-mixins = 
+mixins =
 {
     require("scripts/mixins/job_special"),
     require("scripts/mixins/rage")
@@ -33,24 +33,15 @@ function onMobInitialize(mob)
 end
 
 function onMobSpawn(mob)
-    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
-    -- useMainSpecAtHPP needs set every spawn or it defaults to 46-60
-    mob:setLocalVar("useSpecAtHpMin", 66)
-    mob:setLocalVar("useSpecAtHpMax", 95)
-    -- variables because wide line.
-    local hpMin =  mob:getLocalVar("useSpecAtHpMin")
-    local hpMax =  mob:getLocalVar("useSpecAtHpMax")
-    -- This also happens every claim loss in the mixin, so had to set all 3.
-    mob:setLocalVar("useSubSpecAtHPP", math.random(hpMin, hpMax))
-    --[[
-        The "job change" in this script isn't an actual job change
-        and we're unsure if mobs actual stats are blm/whm or whm/blm
-        so we're resetting mainSpec on spawn in case of future changes
-    ]]
-    mob:setLocalVar("mainSpec", dsp.jsa.MANAFONT)
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MANAFONT, hpp = math.random(66, 95)},
+            {id = dsp.jsa.BENEDICTION, hpp = 0},
+        },
+    })
 
-    -- spell list and aniSub should happen automatic but we're doing this just in case
-    mob:AnimationSub(0) -- Retrieve that Staff
+    mob:setLocalVar("[rage]timer", 3600) -- 60 minutes
     mob:setSpellList(296) -- Set BLM spell list
 end
 
@@ -58,17 +49,14 @@ function onMobFight(mob, target)
     if mob:AnimationSub() == 1 and mob:getLocalVar("jobChanged") == 0 then
         mob:setLocalVar("jobChanged", 1)
         mob:setSpellList(297) -- Set WHM spell list.
-
         -- set new JSA parameters
-        mob:setLocalVar("mainSpec", dsp.jsa.BENEDICTION)
-        mob:setLocalVar("useSpecAtHpMin", 20)
-        mob:setLocalVar("useSpecAtHpMax", 50)
-        -- variables because wide line.
-        local hpMin =  mob:getLocalVar("useSpecAtHpMin")
-        local hpMax =  mob:getLocalVar("useSpecAtHpMax")
-        -- This also happens every claim loss in the mixin, so have to set all 3.
-        mob:setLocalVar("useSubSpecAtHPP", math.random(hpMin, hpMax))
-        mob:setLocalVar("usedSubSpec", 0)
+        dsp.mix.jobSpecial.config(mob, {
+            specials =
+            {
+                {id = dsp.jsa.MANAFONT, hpp = 0},
+                {id = dsp.jsa.BENEDICTION, hpp = math.random(25, 50)},
+            },
+        })
     end
 end
 

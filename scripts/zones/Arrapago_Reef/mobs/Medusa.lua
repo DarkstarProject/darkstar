@@ -1,20 +1,23 @@
 -----------------------------------
 -- Area: Arrapago Reef
---  MOB: Medusa
+--   NM: Medusa
 -- !pos -458 -20 458
 -- TODO: resists, attack/def boosts
 -----------------------------------
-mixins = {require("scripts/mixins/job_special")}
 local ID = require("scripts/zones/Arrapago_Reef/IDs")
-require("scripts/globals/status")
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/titles")
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("mainSpec", dsp.jsa.EES_LAMIA)
-    mob:setLocalVar("useSpecAtHpMin", 5)
-    mob:setLocalVar("useSpecAtHpMax", 99)
-    mob:setLocalVar("useMainSpecAtHPP", math.random(5,99))
+    dsp.mix.jobSpecial.config(mob, {
+        chance = 75, -- "Is possible that she will not use Eagle Eye Shot at all." (guessing 75 percent)
+        specials =
+        {
+            {id = dsp.jsa.EES_LAMIA, hpp = math.random(5, 99)},
+        },
+    })
 end
 
 function onMobEngaged(mob, target)

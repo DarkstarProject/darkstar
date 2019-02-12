@@ -18,7 +18,7 @@ zones[dsp.zone.OLDTON_MOVALPOLOS] =
         FISHING_MESSAGE_OFFSET  = 7568, -- You can't fish here.
         MINING_IS_POSSIBLE_HERE = 7699, -- Mining is possible here if you have <item>.
         RAKOROK_DIALOGUE        = 7723, -- Nsy pipul. Gattohre! I bisynw!
-        CHEST_UNLOCKED          = 7746, -- You unlock the chest!
+        CHEST_UNLOCKED          = 7747, -- You unlock the chest!
     },
     mob =
     {

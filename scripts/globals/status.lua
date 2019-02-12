@@ -2088,7 +2088,7 @@ dsp.attackType =
 -- Damage Type
 ----------------------------------
 
-dsp.damageType = 
+dsp.damageType =
 {
     NONE      = 0,
     PIERCING  = 1,
@@ -2147,10 +2147,10 @@ dsp.mobMod =
     -- 13 Available for use
     SKILL_LIST          = 14, -- uses given mob skill list
     MUG_GIL             = 15, -- amount gil carried for mugging
-    MAIN_2HOUR          = 16, -- give mob its main job two hour, value can maybe be sent to skill [[DEPRICATED, use mixin]]
+    -- 16 Available for use
     NO_DESPAWN          = 17, -- do not despawn when too far from spawn. Gob Diggers have this.
     VAR                 = 18, -- temp var for whatever. Gets cleared on spawn
-    SUB_2HOUR           = 19, -- give mob its sub job two hour (dynamis NM) [[DEPRICATED, use mixin]]
+    -- 19 Available for use
     TP_USE_CHANCE       = 20, -- % chance to use tp
     PET_SPELL_LIST      = 21, -- set pet spell list
     NA_CHANCE           = 22, -- % chance to cast -na
@@ -2163,7 +2163,7 @@ dsp.mobMod =
     ASSIST              = 29, -- mobs will assist me
     SPECIAL_SKILL       = 30, -- give special skill
     ROAM_DISTANCE       = 31, -- distance allowed to roam from spawn
-    MULTI_2HOUR         = 32, -- can use two hour multiple times
+    -- 32 Available for use
     SPECIAL_COOL        = 33, -- cool down for special
     MAGIC_COOL          = 34, -- cool down for magic
     STANDBACK_COOL      = 35, -- cool down time for standing back (casting spell while not in attack range)
@@ -2180,8 +2180,8 @@ dsp.mobMod =
     AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
     SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
     SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
-    SCRIPTED_2HOUR      = 49, -- disable two hour ability unless called upon by the script [[DEPRICATED, use mixin]]
-    PROC_2HOUR          = 50, -- chance of mob's 2 hour activating 0-100%
+    -- 49 Available for use
+    -- 50 Available for use
     ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
     ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     BEHAVIOR            = 53, -- Add behaviors to mob
@@ -2241,7 +2241,7 @@ dsp.jobSpecialAbility =
     -- INVINCIBLE          = 2940,
     BLOOD_WEAPON         = 695,
     BLOOD_WEAPON_MAAT    = 1015,
-    -- BLOOD_WEAPON        = 2249,
+    BLOOD_WEAPON_IXDRK   = 2249,
     SOUL_VOICE           = 696,
     SOUL_VOICE_MAAT      = 1018,
     -- SOUL_VOICE          = 2251,

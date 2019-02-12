@@ -322,12 +322,12 @@ INSERT INTO `item_latents` VALUES(15407, 68, 4, 1, 75); -- Evasion+4 when HP >75
 -- -------------------------------------------------------
 -- Unicorn Leggings
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15345, 384, 31, 1, 75); -- Haste+3% when HP > 75%
+INSERT INTO `item_latents` VALUES(15345, 384, 300, 1, 75); -- Haste+3% when HP > 75%
 
 -- -------------------------------------------------------
 -- Unicorn Leggings +1
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15346, 384, 41, 1, 75); -- Haste+4% when HP > 75%
+INSERT INTO `item_latents` VALUES(15346, 384, 400, 1, 75); -- Haste+4% when HP > 75%
 
 -- -------------------------------------------------------
 -- Zareehkl Jambiya
@@ -427,12 +427,12 @@ INSERT INTO `item_latents` VALUES(13430, 163, -20, 2, 25); -- Magic damage taken
 -- -------------------------------------------------------
 -- Shinobi Ring
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13298, 384, 40, 2, 75); -- Haste+4% while HP <=75% and TP <=100%
+INSERT INTO `item_latents` VALUES(13298, 384, 400, 2, 75); -- Haste+4% while HP <=75% and TP <=100%
 
 -- -------------------------------------------------------
 -- Shinobi Earring
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(13431, 167, 20, 2, 25); -- Haste+20% while HP <=25% and TP <=100%
+INSERT INTO `item_latents` VALUES(13431, 384, 2000, 2, 25); -- Haste+20% while HP <=25% and TP <=100%
 
 -- -------------------------------------------------------
 -- Drake Earring
@@ -630,7 +630,7 @@ INSERT INTO `item_latents` VALUES(10719, 13, 10, 11, 0);
 INSERT INTO `item_latents` VALUES(10719, 14, 10, 11, 0);
 
 INSERT INTO `item_latents` VALUES(15174, 25, 12, 10, 0);
-INSERT INTO `item_latents` VALUES(15174, 384, 40, 10, 0);
+INSERT INTO `item_latents` VALUES(15174, 384, 400, 10, 0);
 INSERT INTO `item_latents` VALUES(15174,370,-100,10,0);
 
 -- -------------------------------------------------------
@@ -696,7 +696,7 @@ INSERT INTO `item_latents` VALUES(13416, 68, 15, 13, 5);
 INSERT INTO `item_latents` VALUES(13400, 26, 5, 13, 9);
 INSERT INTO `item_latents` VALUES(13400, 26, 5, 13, 20);
 
-INSERT INTO `item_latents` VALUES(13248, 167, 8, 13, 4);
+INSERT INTO `item_latents` VALUES(13248, 384, 800, 13, 4);
 
 INSERT INTO `item_latents` VALUES(17831, 369, 1, 13, 2);
 INSERT INTO `item_latents` VALUES(17831, 370, 1, 13, 19);
@@ -1153,13 +1153,13 @@ INSERT INTO `item_latents` VALUES(15283, 259, 1, 8, 13);
 INSERT INTO `item_latents` VALUES(15284, 87, 5, 8, 14);
 
 --
-INSERT INTO `item_latents` VALUES(14737, 384, 51, 8, 14);
+INSERT INTO `item_latents` VALUES(14737, 384, 500, 8, 14);
 
 --
 INSERT INTO `item_latents` VALUES(13672, 23, 6, 8, 14);
 
 -- Wyvern Targe Latent effect: Haste+1%
-INSERT INTO `item_latents` VALUES(12402, 384, 10, 8, 14);
+INSERT INTO `item_latents` VALUES(12402, 384, 100, 8, 14);
 
 --
 INSERT INTO `item_latents` VALUES(14738, 5, 30, 8, 15);
@@ -1667,7 +1667,7 @@ INSERT INTO `item_latents` VALUES(18718, 24, 18, 6, 1000); -- Ranged Attack+18 w
 
 -- Koga Tekko
 INSERT INTO `item_latents` VALUES(15114, 8, 12, 26, 1); -- STR +12 during nighttime
-INSERT INTO `item_latents` VALUES(15114, 384, 41, 26, 1); -- Haste +%4 during nighttime
+INSERT INTO `item_latents` VALUES(15114, 384, 400, 26, 1); -- Haste +%4 during nighttime
 -- Koga Kyahan
 INSERT INTO `item_latents` VALUES(15144, 9, 7, 26, 1); -- DEX +7 during nighttime
 -- Ninja Kyahan
@@ -2391,7 +2391,7 @@ INSERT INTO `item_latents` VALUES(15677, 9, 7, 26, 2); -- Dusk - Dawn: DEX +7
 -- Koga Tekko +1
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14921, 8, 13, 26, 2); -- Dusk - Dawn: STR +13
-INSERT INTO `item_latents` VALUES(14921, 384, 41, 26, 2); -- Dusk - Dawn: Haste +4%
+INSERT INTO `item_latents` VALUES(14921, 384, 400, 26, 2); -- Dusk - Dawn: Haste +4%
 
 -- -------------------------------------------------------
 -- Ninja Kyahan +1
@@ -2743,7 +2743,7 @@ INSERT INTO `item_latents` VALUES(15220, 370, 1, 52, 6); -- Regen 1HP/tick in Wa
 -- -------------------------------------------------------
 -- Tempest Belt
 -- -------------------------------------------------------
-INSERT INTO `item_latents` VALUES(15946, 384, 61, 52, 3); -- Haste +6% in Wind weather
+INSERT INTO `item_latents` VALUES(15946, 384, 600, 52, 3); -- Haste +6% in Wind weather
 
 -- -------------------------------------------------------
 -- Raikiri
@@ -2776,7 +2776,7 @@ INSERT INTO `item_latents` VALUES(16883, 25, 10, 52, 6); -- Spear: Accuracy +10 
 -- Rune equips
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(18206, 25, 5, 56, 0); -- Rune Chopper +5 Acc.
-INSERT INTO `item_latents` VALUES(18206, 167, 90, 56, 0); -- Rune Chopper +9% haste
+INSERT INTO `item_latents` VALUES(18206, 384, 900, 56, 0); -- Rune Chopper +9% haste
 INSERT INTO `item_latents` VALUES(18206, 369, -3, 56, 0); -- Rune Chopper -3MP/tic
 INSERT INTO `item_latents` VALUES(17333, 10, 1, 56, 0); -- Rune Arrow +1 VIT
 INSERT INTO `item_latents` VALUES(17333, 24, 10, 56, 0); -- Rune Arrow +10 R.Atk.
@@ -3003,7 +3003,7 @@ INSERT INTO `item_latents` VALUES(14944,26,10,13,566);
 -- Latent effect: "Double Attack"+2% Haste+1% (Triggered when not under food effect.)
 -- -------------------------------------------------------
 INSERT INTO `item_latents` VALUES(14953,288,2,14,0);
-INSERT INTO `item_latents` VALUES(14953,384,10,14,0);
+INSERT INTO `item_latents` VALUES(14953,384,100,14,0);
 
 -- -------------------------------------------------------
 -- Divisor Ring

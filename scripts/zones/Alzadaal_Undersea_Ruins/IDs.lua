@@ -25,9 +25,8 @@ zones[dsp.zone.ALZADAAL_UNDERSEA_RUINS] =
         IMBUED_ITEM             = 7452, -- You are carrying imbued items. Unable to enter area.
         MYTHIC_REQUIRED         = 7454, -- You do not have the appropriate mythic weapon equipped. Unable to enter area.
         HEADY_FRAGRANCE         = 7728, -- The heady fragrance of wine pervades the air...
-        DRAWS_NEAR              = 7758, -- Something draws near!
         SLIMY_TOUCH             = 7747, -- The ground here is slimy to the touch...
-                                        -- OwO
+        DRAWS_NEAR              = 7758, -- Something draws near!
     },
     mob =
     {

@@ -963,6 +963,13 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    if (!PChar)
+    {
+        ShowError("CLuaBaseEntity::startEvent: Could not start event, Base Entity is not a Character Entity.\n");
+        return 0;
+    }
+
     int32 n = lua_gettop(L);
 
     if (n > 10)
@@ -971,9 +978,14 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
         lua_settop(L, -n);
         return 0;
     }
-    if (m_PBaseEntity->animation == ANIMATION_HEALING)
+    if (PChar->animation == ANIMATION_HEALING)
     {
-        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+    }
+
+    if (PChar->PPet)
+    {
+        PChar->PPet->PAI->Disengage();
     }
 
     uint16 EventID = (uint16)lua_tointeger(L, 1);
@@ -1007,9 +1019,9 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
         textTable = (int16)lua_tointeger(L, 10);
 
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+    PChar->pushPacket(
         new CEventPacket(
-            (CCharEntity*)m_PBaseEntity,
+            PChar,
             EventID,
             n - 1,
             param0,
@@ -1025,7 +1037,7 @@ inline int32 CLuaBaseEntity::startEvent(lua_State *L)
     // если требуется вернуть фиктивный результат, то делаем это
     if (!lua_isnil(L, 10) && lua_isnumber(L, 10))
     {
-        ((CCharEntity*)m_PBaseEntity)->m_event.Option = (int32)lua_tointeger(L, 10);
+        PChar->m_event.Option = (int32)lua_tointeger(L, 10);
     }
     return 0;
 }
@@ -1044,9 +1056,21 @@ inline int32 CLuaBaseEntity::startEventString(lua_State *L)
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
 
-    if (m_PBaseEntity->animation == ANIMATION_HEALING)
+    auto PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    if (!PChar)
     {
-        ((CCharEntity*)m_PBaseEntity)->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+        ShowError("CLuaBaseEntity::startEventString: Could not start event, Base Entity is not a Character Entity.\n");
+        return 0;
+    }
+
+    if (PChar->animation == ANIMATION_HEALING)
+    {
+        PChar->StatusEffectContainer->DelStatusEffect(EFFECT_HEALING);
+    }
+
+    if (PChar->PPet)
+    {
+        PChar->PPet->PAI->Disengage();
     }
 
     uint16 EventID = (uint16)lua_tointeger(L, 1);
@@ -1090,9 +1114,9 @@ inline int32 CLuaBaseEntity::startEventString(lua_State *L)
     if (!lua_isnil(L, 13) && lua_isnumber(L, 13))
         param7 = (uint32)lua_tointeger(L, 13);
 
-    ((CCharEntity*)m_PBaseEntity)->pushPacket(
+    PChar->pushPacket(
         new CEventStringPacket(
-            (CCharEntity*)m_PBaseEntity,
+            PChar,
             EventID,
             string0,
             string1,
@@ -1989,7 +2013,7 @@ inline int32 CLuaBaseEntity::setElevator(lua_State *L)
     //ID of 0 means it is a timed, automatic elevator
     elevator.activated = (elevator.id == 0) ? true : false;
     elevator.isPermanent = (elevator.id == 0) ? true : false;
-    
+
     elevator.movetime = 3;
     elevator.interval = 8;
 
@@ -2018,10 +2042,10 @@ inline int32 CLuaBaseEntity::addPeriodicTrigger(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_NPC);
 
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1)); 
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isnumber(L, 3));
-    
+
     Trigger_t trigger;
 
     trigger.id = (uint8)lua_tointeger(L, 1);
@@ -13424,7 +13448,7 @@ inline int32 CLuaBaseEntity::SetMobSkillAttack(lua_State* L)
 /************************************************************************
 *  Function: getMobMod()
 *  Purpose : Returns the power value of a Mob Mod in effect
-*  Example : mob:getMobMod(MOBMOD_2HOUR_PROC)
+*  Example : mob:getMobMod(dsp.mobMod.MUG_GIL)
 *  Notes   :
 ************************************************************************/
 
@@ -13442,8 +13466,8 @@ inline int32 CLuaBaseEntity::getMobMod(lua_State *L)
 /************************************************************************
 *  Function: addMobMod()
 *  Purpose : Applies a Mob Mod with a specified amount
-*  Example : mob:addMobMod(ModID, power value)
-*  Notes   : Is this adding power to an existing Mod? (not in scripts)
+*  Example : mob:addMobMod(dsp.mobMod.MUG_GIL, 100)
+*  Notes   : Currently not being used in any script
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addMobMod(lua_State *L)
@@ -13470,7 +13494,7 @@ inline int32 CLuaBaseEntity::addMobMod(lua_State *L)
 /************************************************************************
 *  Function: setMobMod()
 *  Purpose : Applies a Mob Mod of a specified magnitude
-*  Example : mob:setMobMod(MOBMOD_MAIN_2HOUR,1)
+*  Example : mob:setMobMod(dsp.mobMod.MUG_GIL, 100)
 *  Notes   : Interesting note - this is being used for superlinking too
 ************************************************************************/
 
@@ -13498,7 +13522,7 @@ inline int32 CLuaBaseEntity::setMobMod(lua_State *L)
 /************************************************************************
 *  Function: delMobMod()
 *  Purpose : Removes a Mob Mod
-*  Example : mob:delMobMod(ModID,value to subtract?)
+*  Example : mob:delMobMod(dsp.mobMod.MUG_GIL, 100)
 *  Notes   : Currently not being used in any script
 ************************************************************************/
 

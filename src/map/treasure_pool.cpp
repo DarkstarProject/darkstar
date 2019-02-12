@@ -350,6 +350,9 @@ void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 
 bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
 {
+    if (SlotID >= TREASUREPOOL_SIZE)
+        return false;
+
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
     for(size_t i = 0; i<lotters.size(); i++){
@@ -363,6 +366,9 @@ bool CTreasurePool::HasLottedItem(CCharEntity* PChar, uint8 SlotID)
 
 bool CTreasurePool::HasPassedItem(CCharEntity* PChar, uint8 SlotID)
 {
+    if (SlotID >= TREASUREPOOL_SIZE)
+        return false;
+
     std::vector<LotInfo> lotters = m_PoolItems[SlotID].Lotters;
 
     for(size_t i = 0; i<lotters.size(); i++){

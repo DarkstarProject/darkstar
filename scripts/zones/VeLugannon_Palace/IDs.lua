@@ -16,8 +16,8 @@ zones[dsp.zone.VELUGANNON_PALACE] =
         KEYITEM_OBTAINED        = 6391, -- Obtained key item: <keyitem>.
         NOTHING_OUT_OF_ORDINARY = 6402, -- There is nothing out of the ordinary here.
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
-        CHEST_UNLOCKED          = 7215, -- You unlock the chest!
-        REGIME_REGISTERED       = 10158, -- New training regime registered!
+        CHEST_UNLOCKED          = 7216, -- You unlock the chest!
+        REGIME_REGISTERED       = 10159, -- New training regime registered!
     },
     mob =
     {

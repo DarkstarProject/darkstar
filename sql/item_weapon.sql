@@ -1060,7 +1060,7 @@ INSERT INTO `item_weapon` VALUES (17415,'shellbuster',11,0,0,0,0,3,1,264,18,0);
 INSERT INTO `item_weapon` VALUES (17416,'arcana_breaker',11,0,0,0,0,3,1,324,34,0);
 INSERT INTO `item_weapon` VALUES (17417,'rabbit_stick',11,0,0,0,0,3,1,264,5,0);
 INSERT INTO `item_weapon` VALUES (17418,'moonlight_wand',11,0,0,0,0,3,1,264,8,0);
-INSERT INTO `item_weapon` VALUES (17419,'artemis_wand',11,0,0,0,0,3,1,264,11,0);
+INSERT INTO `item_weapon` VALUES (17419,'artemiss_wand',11,0,0,0,0,3,1,264,11,0);
 INSERT INTO `item_weapon` VALUES (17420,'selenes_wand',11,0,0,0,0,3,1,264,14,0);
 INSERT INTO `item_weapon` VALUES (17421,'moonwatch_wand',11,0,0,0,0,3,1,264,17,0);
 INSERT INTO `item_weapon` VALUES (17422,'blessed_hammer',11,0,0,0,0,3,1,324,27,0);

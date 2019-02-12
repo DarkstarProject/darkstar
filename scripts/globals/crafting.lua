@@ -100,8 +100,8 @@ end;
 -- signupGuild Action
 -----------------------------------
 
-function signupGuild(player,nbr)
-    player:setVar("Guild_Member",player:getVar("Guild_Member") + nbr);
+function signupGuild(player, nbr)
+    player:addVar("Guild_Member", nbr)
 end;
 
 -----------------------------------

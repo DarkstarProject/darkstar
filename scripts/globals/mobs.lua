@@ -24,7 +24,7 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
             player:getVar("ChaosbringerKills") < 200 and
             not isWeaponSkillKill
         then
-            player:setVar("ChaosbringerKills", ChaosbringerKills + 1)
+            player:addVar("ChaosbringerKills", 1)
         end
     end
 
@@ -107,17 +107,18 @@ dsp.mob.additionalEffect =
     ENSTONE    = 6,
     ENTHUNDER  = 7,
     ENWATER    = 8,
-    HP_DRAIN   = 9,
-    MP_DRAIN   = 10,
-    PARALYZE   = 11,
-    PETRIFY    = 12,
-    PLAGUE     = 13,
-    POISON     = 14,
-    SILENCE    = 15,
-    SLOW       = 16,
-    STUN       = 17,
-    TERROR     = 18,
-    TP_DRAIN   = 19,
+    EVA_DOWN   = 9,
+    HP_DRAIN   = 10,
+    MP_DRAIN   = 11,
+    PARALYZE   = 12,
+    PETRIFY    = 13,
+    PLAGUE     = 14,
+    POISON     = 15,
+    SILENCE    = 16,
+    SLOW       = 17,
+    STUN       = 18,
+    TERROR     = 19,
+    TP_DRAIN   = 20,
 }
 dsp.mob.ae = dsp.mob.additionalEffect
 
@@ -207,6 +208,19 @@ local additionalEffects =
         negMsg = dsp.msg.basic.ADD_EFFECT_HEAL,
         mod = dsp.mod.INT,
         bonusAbilityParams = {bonusmab = 0, includemab = false},
+    },
+    [dsp.mob.ae.EVA_DOWN] =
+    {
+        chance = 25,
+        ele = dsp.magic.ele.ICE,
+        sub = dsp.subEffect.EVASION_DOWN,
+        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        applyEffect = true,
+        eff = dsp.effect.EVASION_DOWN,
+        power = 25,
+        duration = 30,
+        minDuration = 1,
+        maxDuration = 60,
     },
     [dsp.mob.ae.HP_DRAIN] =
     {
