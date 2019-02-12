@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2018 Darkstar Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,52 +21,25 @@
 ===========================================================================
 */
 
-#ifndef _CPETENTITY_H
-#define _CPETENTITY_H
+#ifndef _CTRUSTENTITY_H
+#define _CTRUSTENTITY_H
 
 #include "mobentity.h"
 
-enum PETTYPE
-{
-    PETTYPE_AVATAR            = 0,
-    PETTYPE_WYVERN            = 1,
-    PETTYPE_JUG_PET           = 2,
-    PETTYPE_CHARMED_MOB       = 3,
-    PETTYPE_AUTOMATON         = 4,
-    PETTYPE_ADVENTURING_FELLOW= 5,
-    PETTYPE_CHOCOBO           = 6,
-    PETTYPE_TRUST             = 7
-};
-
-enum WYVERNTYPE
-{
-    WYVERNTYPE_NONE = 0,
-    WYVERNTYPE_DEFENSIVE = 1,
-    WYVERNTYPE_MULTIPURPOSE = 2,
-    WYVERNTYPE_OFFENSIVE = 3
-};
-
-class CPetEntity : public CMobEntity
+class CCharEntity;
+class CTrustEntity : public CMobEntity
 {
 public:
-	 CPetEntity(PETTYPE petType);						// конструктор
-	~CPetEntity();						// деструктор
-	PETTYPE getPetType();
-    bool isBstPet();
+    CTrustEntity(CCharEntity*);
+	~CTrustEntity();
 	uint8 m_Element;
 	uint32 m_PetID;
-    std::string GetScriptName();
 
-    WYVERNTYPE getWyvernType();
     virtual void PostTick() override;
     virtual void FadeOut() override;
     virtual void Die() override;
     virtual void Spawn() override;
-    virtual void OnAbility(CAbilityState&, action_t&) override;
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
-
-private:
-	PETTYPE m_PetType;					//the type of pet e.g. avatar/wyvern/jugpet etc
 };
 
 #endif
