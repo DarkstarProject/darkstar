@@ -5,12 +5,14 @@
 -----------------------------------------
 require("scripts/globals/teleports")
 require("scripts/globals/status")
+require("scripts/globals/zone")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if not target:isZoneVisited(234) then
-        result = 56
+    if not target:isZoneVisited(dsp.zone.BASTOK_MINES) then
+        result = dsp.msg.basic.ITEM_UNABLE_TO_USE_2
     end
     return result
 end
