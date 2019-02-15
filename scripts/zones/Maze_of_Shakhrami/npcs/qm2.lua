@@ -23,7 +23,7 @@ function onTrigger(player, npc)
     then
         if player:getVar("ECOR_WAR_WIN-NMs_killed") == 1 then
             npcUtil.giveKeyItem(player, dsp.ki.INDIGESTED_MEAT)
-        elseif npcUtil.popFromQM(player, npc, {ID.mob.WYRMFLY_OFFSET, ID.mob.WYRMFLY_OFFSET + 1, ID.mob.WYRMFLY_OFFSET + 2}, {hide = 0})
+        elseif npcUtil.popFromQM(player, npc, {ID.mob.WYRMFLY_OFFSET, ID.mob.WYRMFLY_OFFSET + 1, ID.mob.WYRMFLY_OFFSET + 2}, {hide = 0}) then
             -- no further action
         end
     end
