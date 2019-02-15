@@ -5,13 +5,12 @@
 -- !pos 641 -15 7 119
 -----------------------------------
 local ID = require("scripts/zones/Meriphataud_Mountains/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if trade:hasItemQty(1159, 1) and trade:getItemCount() == 1 then
-        if (player:getVar("TheHolyCrest_Event") == 4) then
-            player:startEvent(56)
-        end
+    if npcUtil.tradeHas(trade, 1159) and player:getVar("TheHolyCrest_Event") == 4 then
+        player:startEvent(56)
     end
 end
 
@@ -24,8 +23,8 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 56 then
-        player:tradeComplete()
         player:setVar("TheHolyCrest_Event", 5)
+        player:confirmTrade()
         player:startEvent(33)
     end
 end

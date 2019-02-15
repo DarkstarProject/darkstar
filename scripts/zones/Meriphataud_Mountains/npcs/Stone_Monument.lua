@@ -4,20 +4,18 @@
 -- Involved in quest "An Explorer's Footsteps"
 -- !pos 450.741 2.110 -290.736 119
 -----------------------------------
-local ID = require("scripts/zones/Meriphataud_Mountains/IDs")
+require("scripts/globals/npc_util")
 -----------------------------------
+
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 571) and npcUtil.giveItem(player, 570) then
+        player:setVar("anExplorer-CurrentTablet", 0x04000)
+        player:confirmTrade()
+    end
+end
 
 function onTrigger(player, npc)
     player:startEvent(900)
-end
-
-function onTrade(player, npc, trade)
-    if trade:getItemCount() == 1 and trade:hasItemQty(571, 1) then
-        player:tradeComplete()
-        player:addItem(570)
-        player:messageSpecial(ID.text.ITEM_OBTAINED, 570)
-        player:setVar("anExplorer-CurrentTablet", 0x04000)
-    end
 end
 
 function onEventUpdate(player, csid, option)
