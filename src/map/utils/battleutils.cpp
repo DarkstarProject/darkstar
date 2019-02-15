@@ -3514,11 +3514,6 @@ namespace battleutils
         return damage;
     }
 
-    /************************************************************************
-    *                                                                       *
-    *   Effect from Consume Mana                                            *
-    *                                                                       *
-    ************************************************************************/
     uint16 doConsumeManaEffect(CCharEntity* m_PChar, uint32 damage)
     {
         if (m_PChar->StatusEffectContainer->HasStatusEffect(EFFECT_CONSUME_MANA))
@@ -3529,8 +3524,6 @@ namespace battleutils
         }
         return damage;
     }
-
-
 
     /************************************************************************
     *                                                                       *
