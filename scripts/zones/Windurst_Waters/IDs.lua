@@ -64,6 +64,13 @@ zones[dsp.zone.WINDURST_WATERS] =
     },
     npc =
     {
+        HALLOWEEN_SKINS = {
+            [17752097] = 61, -- Ensasa
+            [17752098] = 60, -- Upih Khachla
+            [17752101] = 59, -- Ness Rugetomal
+            [17752102] = 63, -- Maqu Molpih
+            [17752103] = 62, -- Ahyeekih
+        },
         LELEROON_GREEN_DOOR = 17752333,
     },
 }
