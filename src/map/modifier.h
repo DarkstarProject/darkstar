@@ -544,6 +544,7 @@ enum class Mod
 
     TP_BONUS                  = 345, //
     SAVETP                    = 880, // SAVETP Effect for Miser's Roll / ATMA / Hagakure.
+    CONSERVE_TP               = 944, // Conserve TP trait, random chance between 10 and 200 TP
 
     // Stores the amount of elemental affinity (elemental staves mostly) - damage, acc, and perpetuation is all handled separately
     FIRE_AFFINITY_DMG         = 347, // They're stored separately due to Magian stuff - they can grant different levels of
@@ -770,9 +771,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 944, // stuff
     // SPARE = 945, // stuff
     // SPARE = 946, // stuff
+    // SPARE = 947, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it
