@@ -23,14 +23,8 @@ function onTrigger(player, npc)
     then
         if player:getVar("ECOR_WAR_WIN-NMs_killed") == 1 then
             npcUtil.giveKeyItem(player, dsp.ki.INDIGESTED_MEAT)
-        elseif
-            not GetMobByID(ID.mob.WYRMFLY_OFFSET+0):isSpawned() and
-            not GetMobByID(ID.mob.WYRMFLY_OFFSET+1):isSpawned() and
-            not GetMobByID(ID.mob.WYRMFLY_OFFSET+2):isSpawned()
-        then
-            SpawnMob(ID.mob.WYRMFLY_OFFSET+0):updateClaim(player)
-            SpawnMob(ID.mob.WYRMFLY_OFFSET+1):updateClaim(player)
-            SpawnMob(ID.mob.WYRMFLY_OFFSET+2):updateClaim(player)
+        elseif npcUtil.popFromQM(player, npc, {ID.mob.WYRMFLY_OFFSET, ID.mob.WYRMFLY_OFFSET + 1, ID.mob.WYRMFLY_OFFSET + 2}, {hide = 0})
+            -- no further action
         end
     end
 end
