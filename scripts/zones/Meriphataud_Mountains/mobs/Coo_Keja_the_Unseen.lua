@@ -1,15 +1,12 @@
 -----------------------------------
 -- Area: Meriphataud Mountains (119)
---  NM:  Coo_Keja_the_Unseen
+--   NM: Coo Keja the Unseen
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)
-end;
+end
 
 function onMobDespawn(mob)
-
-    -- Set Coo_Keja_the_Unseen's spawnpoint and respawn time (21-24 hours)
-    UpdateNMSpawnPoint(mob:getID());
-    mob:setRespawnTime(math.random(75600,86400));
-
-end;
+    UpdateNMSpawnPoint(mob:getID())
+    mob:setRespawnTime(math.random(75600, 86400)) -- 21 to 24 hours
+end
