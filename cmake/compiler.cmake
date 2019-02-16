@@ -27,7 +27,6 @@ else()
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /INCREMENTAL /SAFESEH:NO")
         add_definitions(
             /ZI # Omit Default Library Name
-            /Gm # Enable Minimal Rebuild
             /GR # Enable RTTI
         )
     else()

@@ -6,13 +6,10 @@ add_definitions(
     -DDEBUGLOGLOGIN
 )
 
+file(GLOB GENERATED_SOURCES CONFIGURE_DEPENDS *.cpp)
+
 add_executable(DSConnect-server
-    account.cpp
-    message_server.cpp
-    lobby.cpp
-    login.cpp
-    login_auth.cpp
-    login_session.cpp
+    ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/kernel.cpp
     ../common/md52.cpp

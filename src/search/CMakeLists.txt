@@ -5,16 +5,10 @@ add_definitions(
     -DDEBUGLOGSEARCH
 )
 
+file(GLOB_RECURSE GENERATED_SOURCES CONFIGURE_DEPENDS *.cpp)
+
 add_executable(DSSearch-server
-    data_loader.cpp
-    packets/auction_history.cpp
-    packets/auction_list.cpp
-    packets/linkshell_list.cpp
-    packets/party_list.cpp
-    packets/search_comment.cpp
-    packets/search_list.cpp
-    search.cpp
-    tcp_request.cpp
+    ${GENERATED_SOURCES}
     ../common/blowfish.cpp
     ../common/md52.cpp
     ../common/showmsg.cpp
