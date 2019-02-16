@@ -115,7 +115,7 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 20) then
-        player:setVar("ZilartStatus", player:getVar("ZilartStatus") + 2);
+        player:addVar("ZilartStatus", 2);
     elseif (csid == 10094) then
         player:completeMission(ACP,A_CRYSTALLINE_PROPHECY);
         player:addMission(ACP,THE_ECHO_AWAKENS);

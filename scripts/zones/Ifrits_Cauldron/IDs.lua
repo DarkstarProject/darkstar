@@ -22,12 +22,12 @@ zones[dsp.zone.IFRITS_CAULDRON] =
         ALTAR_INSPECT              = 7239, -- This looks like the altar where offerings are to be placed.
         ALTAR_OFFERING             = 7240, -- You place your offering of <item> on the altar.
         ALTAR_STANDARD             = 7241, -- It is an altar for offerings.
-        CHEST_UNLOCKED             = 7249, -- You unlock the chest!
-        MINING_IS_POSSIBLE_HERE    = 7257, -- Mining is possible here if you have <item>.
-        EGGSHELLS_LIE_SCATTERED    = 7266, -- Eggshells lie scattered around the place...
-        SENSE_OMINOUS_PRESENCE     = 7269, -- You sense an ominous presence...
-        REGIME_REGISTERED          = 10421, -- New training regime registered!
-        HOMEPOINT_SET              = 11507, -- Home point set!
+        CHEST_UNLOCKED             = 7250, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE    = 7258, -- Mining is possible here if you have <item>.
+        EGGSHELLS_LIE_SCATTERED    = 7267, -- Eggshells lie scattered around the place...
+        SENSE_OMINOUS_PRESENCE     = 7270, -- You sense an ominous presence...
+        REGIME_REGISTERED          = 10422, -- New training regime registered!
+        HOMEPOINT_SET              = 11508, -- Home point set!
     },
     mob =
     {

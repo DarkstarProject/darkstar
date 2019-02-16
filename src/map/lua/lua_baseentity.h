@@ -590,6 +590,7 @@ public:
     // Pets and Automations
     int32 spawnPet(lua_State*);              // Calls Pet
     int32 despawnPet(lua_State*);            // Despawns Pet
+    int32 spawnTrust(lua_State*);            // Spawns trust
 
     int32 isJugPet(lua_State*);              // If the entity has a pet, test if it is a jug pet.
     int32 hasValidJugPetItem(lua_State*);

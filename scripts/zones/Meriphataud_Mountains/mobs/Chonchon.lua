@@ -7,6 +7,7 @@ require("scripts/globals/mobs")
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 20) -- "Double Attack: Frequent and accurate"
 end
 
 function onAdditionalEffect(mob, target, damage)

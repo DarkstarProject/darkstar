@@ -66,6 +66,10 @@ zones[dsp.zone.BASTOK_MARKETS] =
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17739805] = 45, -- Olwyn
+        },
     },
 }
 

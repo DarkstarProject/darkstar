@@ -22,11 +22,11 @@ zones[dsp.zone.GUSGEN_MINES] =
         YOU_LOST_THE            = 7336, -- You lost the <item>.
         LOCK_OTHER_DEVICE       = 7339, -- This entrance's lock is connected to some other device.
         MINING_IS_POSSIBLE_HERE = 7359, -- Mining is possible here if you have <item>.
-        CHEST_UNLOCKED          = 7373, -- You unlock the chest!
-        LETTERS_IS_WRITTEN_HERE = 7381, -- Something resembling letters is written here.
-        FOUND_LOCATION_SEAL     = 7382, -- You have found the location of the seal. You place <item> on it.
-        IS_ON_THIS_SEAL         = 7383, -- <item> is on this seal.
-        REGIME_REGISTERED       = 10382, -- New training regime registered!
+        CHEST_UNLOCKED          = 7374, -- You unlock the chest!
+        LETTERS_IS_WRITTEN_HERE = 7382, -- Something resembling letters is written here.
+        FOUND_LOCATION_SEAL     = 7383, -- You have found the location of the seal. You place <item> on it.
+        IS_ON_THIS_SEAL         = 7384, -- <item> is on this seal.
+        REGIME_REGISTERED       = 10383, -- New training regime registered!
     },
     mob =
     {

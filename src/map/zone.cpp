@@ -938,6 +938,8 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         PChar->PTreasurePool->DelMember(PChar);
     }
 
+    PChar->ClearTrusts(); // trusts don't survive zone lines
+
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);
 

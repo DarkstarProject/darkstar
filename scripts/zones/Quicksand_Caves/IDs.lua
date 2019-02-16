@@ -19,14 +19,14 @@ zones[dsp.zone.QUICKSAND_CAVES] =
         NOW_IS_NOT_THE_TIME     = 6404, -- Now is not the time for that!
         CONQUEST_BASE           = 7049, -- Tallying conquest results...
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7315, -- You unlock the chest!
-        DOOR_FIRMLY_SHUT        = 7323, -- The door is firmly shut.
-        POOL_OF_WATER           = 7355, -- It is a pool of water.
-        YOU_FIND_NOTHING        = 7358, -- You find nothing.
-        SOMETHING_IS_BURIED     = 7363, -- Something is buried in this fallen pillar.
-        SENSE_OMINOUS_PRESENCE  = 7367, -- You sense an ominous presence...
-        REGIME_REGISTERED       = 10361, -- New training regime registered!
-        HOMEPOINT_SET           = 11423, -- Home point set!
+        CHEST_UNLOCKED          = 7316, -- You unlock the chest!
+        DOOR_FIRMLY_SHUT        = 7324, -- The door is firmly shut.
+        POOL_OF_WATER           = 7356, -- It is a pool of water.
+        YOU_FIND_NOTHING        = 7359, -- You find nothing.
+        SOMETHING_IS_BURIED     = 7364, -- Something is buried in this fallen pillar.
+        SENSE_OMINOUS_PRESENCE  = 7368, -- You sense an ominous presence...
+        REGIME_REGISTERED       = 10362, -- New training regime registered!
+        HOMEPOINT_SET           = 11424, -- Home point set!
     },
     mob =
     {
