@@ -34,10 +34,10 @@ if(UNIX)
         ${LUAJIT_INCLUDE_DIRS}
     )
     target_link_libraries(DSGame-server
-        mysqlclient
-        zmq
-        pthread
-        luajit-5.1
+        ${MYSQLCLIENT_LIBRARIES}
+        ${ZMQ_LIBRARIES}
+        ${LUAJIT_LIBRARIES}
+        ${CMAKE_THREAD_LIBS_INIT}
     )
 else()
     target_include_directories(DSGame-server PRIVATE

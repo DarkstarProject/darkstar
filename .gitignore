@@ -162,10 +162,14 @@ log/DSP.leaks
 .vs
 /win32/.vs/darkstar/v15
 
-<<<<<<< HEAD
 #VS Code
 .vscode
-=======
-# Ignore GIT_VER file
-GIT_VER
->>>>>>> 63c9b00501aa393859e1853a665969cb8aa803ff
+
+# CMake files
+CMakeCache.txt
+Makefile
+**/CMakeFiles
+cmake_install.cmake
+
+# ignore servers
+*-server

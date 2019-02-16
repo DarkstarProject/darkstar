@@ -8,7 +8,12 @@ include(cmake/compiler.cmake)
 if(UNIX)
     find_package(PkgConfig REQUIRED)
 
-    pkg_search_module(MYSQLCLIENT REQUIRED mysqlclient)
+    include(FindThreads)
+
+    pkg_search_module(MYSQLCLIENT mariadb)
+    if(NOT MYSQLCLIENT_FOUND)
+        pkg_search_module(MYSQLCLIENT REQUIRED mysqlclient)
+    endif()
     pkg_search_module(ZMQ REQUIRED libzmq)
     pkg_search_module(LUAJIT REQUIRED luajit)
 else()

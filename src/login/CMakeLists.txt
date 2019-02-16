@@ -28,9 +28,9 @@ if(UNIX)
     )
 
     target_link_libraries(DSConnect-server
-        mysqlclient
-        zmq
-        pthread
+        ${MYSQLCLIENT_LIBRARIES}
+        ${ZMQ_LIBRARIES}
+        ${CMAKE_THREAD_LIBS_INIT}
     )
 else()
     target_include_directories(DSConnect-server PRIVATE
