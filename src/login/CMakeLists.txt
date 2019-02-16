@@ -45,7 +45,7 @@ else()
 
     target_link_libraries(DSConnect-server
         libmariadb${lib_suffix}
-        libzmq${lib_debug}${lib_suffix}
+        libzmq${lib_debug}${lib_spacer}${lib_suffix}
         WS2_32
     )
 endif()
