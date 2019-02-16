@@ -8,13 +8,12 @@
 local ID = require("scripts/zones/Lower_Delkfutts_Tower/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getCurrentMission(WINDURST) == A_NEW_JOURNEY and player:getVar("MissionStatus") == 2 then
-        if trade:hasItemQty(549, 1) and trade:getItemCount() == 1 then -- Delkfutt Key
-            player:startEvent(2)
-        end
+    if player:getCurrentMission(WINDURST) == A_NEW_JOURNEY and player:getVar("MissionStatus") == 2 and npcUtil.tradeHas(trade, 549) then -- Delkfutt Key
+        player:startEvent(2)
     end
 end
 
@@ -37,11 +36,11 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 2 then
-        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
-            player:tradeComplete()
-            player:addKeyItem(dsp.ki.DELKFUTT_KEY)
-            player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DELKFUTT_KEY)
-        end
         player:setVar("MissionStatus", 3)
+
+        if not player:hasKeyItem(dsp.ki.DELKFUTT_KEY) then
+            npcUtil.giveKeyItem(player, dsp.ki.DELKFUTT_KEY)
+            player:confirmTrade()
+        end
     end
 end
