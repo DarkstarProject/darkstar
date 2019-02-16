@@ -1720,7 +1720,6 @@ namespace petutils
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
         DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
-        Pet_t* PPetData = g_PPetList.at(TrustID);
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;

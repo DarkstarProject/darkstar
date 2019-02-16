@@ -53,9 +53,9 @@ enum DROP_TYPE
 struct DropItem_t
 {
     DropItem_t(uint8 DropType, uint16 ItemID, uint16 DropRate);
+    uint8 DropType;
     uint16 ItemID;
     uint16 DropRate;
-    uint8 DropType;
 };
 
 struct DropGroup_t
