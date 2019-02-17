@@ -4,9 +4,10 @@
 -- Quests: Bugi Soden (Blade: Ku WSNM "Megapod Megalops")
 -- !pos 110 15 162 213
 -----------------------------------
-require("scripts/globals/wsquest")
 local ID = require("scripts/zones/Labyrinth_of_Onzozo/IDs")
+require("scripts/globals/wsquest")
+-----------------------------------
 
-function onTrigger(player,npc)
-    dsp.wsquest.handleQmTrigger(dsp.wsquest.blade_ku,player,ID.mob.MEGAPOD_MEGALOPS)
+function onTrigger(player, npc)
+    dsp.wsquest.handleQmTrigger(dsp.wsquest.blade_ku, player, ID.mob.MEGAPOD_MEGALOPS)
 end
