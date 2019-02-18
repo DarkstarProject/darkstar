@@ -2286,9 +2286,6 @@ namespace charutils
     {
         memset(&PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills));
 
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
-
         CItemWeapon* PItem;
         int main_ws = 0;
         int range_ws = 0;
