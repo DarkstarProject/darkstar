@@ -1807,6 +1807,8 @@ namespace battleutils
                     case DAMAGE_SLASHING: damage = (damage * (PDefender->getMod(Mod::SLASHRES))) / 1000; break;
                     case DAMAGE_IMPACT:   damage = (damage * (PDefender->getMod(Mod::IMPACTRES))) / 1000; break;
                     case DAMAGE_HTH:      damage = (damage * (PDefender->getMod(Mod::HTHRES))) / 1000; break;
+                    default:
+                        break;
                 }
             }
             else
@@ -4231,7 +4233,7 @@ namespace battleutils
 
     int32 HandleSteamJacket(CBattleEntity* PDefender, int32 damage, int16 damageType)
     {
-        uint32 steamJacketType = PDefender->GetLocalVar("steam_jacket_type");
+        auto steamJacketType = (int16)PDefender->GetLocalVar("steam_jacket_type");
         int16 steamJacketHits = (int16)PDefender->GetLocalVar("steam_jacket_hits");
 
         if (steamJacketType != damageType)
