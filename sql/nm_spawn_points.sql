@@ -2953,6 +2953,7 @@ INSERT INTO `nm_spawn_points` VALUES (17272978,0,312,-0.5,159); -- Keeper of Hal
 INSERT INTO `nm_spawn_points` VALUES (17273278,0,-391.184,-0.269,-159.086);
 INSERT INTO `nm_spawn_points` VALUES (17276982,0,-108.575,-5.699,-5.432); -- Nightmare Vase (west)
 INSERT INTO `nm_spawn_points` VALUES (17276992,0,69,-5,21); -- Nightmare Vase (east)
+INSERT INTO `nm_spawn_points` VALUES (17277079,0,219.8,-3.2,-41.22); -- Rogue Receptacle
 INSERT INTO `nm_spawn_points` VALUES (17281061,0,-307.000,2.000,216.000);
 INSERT INTO `nm_spawn_points` VALUES (17281061,1,-299.000,0.000,192.000);
 INSERT INTO `nm_spawn_points` VALUES (17281061,2,-334.000,3.000,182.000);
