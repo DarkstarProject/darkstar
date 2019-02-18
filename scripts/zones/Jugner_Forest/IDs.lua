@@ -21,6 +21,9 @@ zones[dsp.zone.JUGNER_FOREST] =
         DIG_THROW_AWAY           = 7717, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING             = 7719, -- You dig and you dig, but find nothing.
         LOGGING_IS_POSSIBLE_HERE = 7897, -- Logging is possible here if you have <item>.
+        A_TIMELY_VISIT_1         = 8008, -- Something was dug up here...
+        A_TIMELY_VISIT_2         = 8009, -- For some reason, you are unable to investigate this spot.  There is a preternatural force at work here...
+        A_TIMELY_VISIT_3         = 8010, -- A sense of foreboding fills the air...
         CONQUEST                 = 8048, -- You've earned conquest points!
         REGIME_REGISTERED        = 10857, -- New training regime registered!
     },
@@ -35,8 +38,10 @@ zones[dsp.zone.JUGNER_FOREST] =
         {
             [17203437] = 17203475,
         },
-        KING_ARTHRO = 17203216,
-        FRAELISSA   = 17203447,
+        KING_ARTHRO          = 17203216,
+        FRAELISSA            = 17203447,
+        GIOLLEMITTE_B_FEROUN = 17203666,
+        SKELETON_ESQUIRE     = 17203667,
     },
     npc =
     {
