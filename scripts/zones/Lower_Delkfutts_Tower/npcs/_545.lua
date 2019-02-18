@@ -19,7 +19,11 @@ function onTrigger(player, npc)
         npcUtil.popFromQM(player, npc, ID.mob.DISASTER_IDOL, {hide = 0})
     then
         -- no further action
-    elseif player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Tenzen_s_Path") == 7 and player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE) then
+    elseif
+        player:getCurrentMission(COP) == THREE_PATHS and
+        player:getVar("COP_Tenzen_s_Path") == 7 and
+        player:hasKeyItem(dsp.ki.DELKFUTT_RECOGNITION_DEVICE)
+    then
         player:startEvent(25)
     end
 

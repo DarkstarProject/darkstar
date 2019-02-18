@@ -12,7 +12,11 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getCurrentMission(SANDORIA) == APPOINTMENT_TO_JEUNO and player:getVar("MissionStatus") == 4 and npcUtil.tradeHas(trade, 549) then -- Delkfutt Key
+    if
+        player:getCurrentMission(SANDORIA) == APPOINTMENT_TO_JEUNO and
+        player:getVar("MissionStatus") == 4 and
+        npcUtil.tradeHas(trade, 549) -- Delkfutt Key
+    then
         player:startEvent(0)
     end
 end
