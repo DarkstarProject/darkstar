@@ -473,8 +473,7 @@ namespace message
 						{
                             // If entity not spawned, go to default location as listed in database
                             const char* query = "SELECT pos_x, pos_y, pos_z FROM mob_spawn_points WHERE mobid = %u;";
-                            uint32 fetch = Sql_Query(SqlHandle, query, Entity->id);
-                            uint64 list  = Sql_NumRows(SqlHandle);
+                            auto fetch = Sql_Query(SqlHandle, query, Entity->id);
 
                             if (fetch != SQL_ERROR && Sql_NumRows(SqlHandle) != 0)
                             {

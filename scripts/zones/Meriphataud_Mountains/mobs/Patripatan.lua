@@ -8,6 +8,8 @@ require("scripts/globals/mobs")
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10) -- "Noted Double Attack"
+    mob:addMod(dsp.mod.REGAIN, 50) -- "fairly potent Regain effect"
 end
 
 function onAdditionalEffect(mob, target, damage)
