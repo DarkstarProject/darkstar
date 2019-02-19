@@ -1,9 +1,11 @@
 -----------------------------------
 -- Area: Al'Taieu
---  MOB: Ru_aern
+--   NM: Ru'aern
+-- Note: Spawned by Rubious Crystals for PM 8-1
 -----------------------------------
-local ID = require("scripts/zones/AlTaieu/IDs");
-require("scripts/globals/missions");
+mixins = {require("scripts/mixins/job_special")}
+local ID = require("scripts/zones/AlTaieu/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
 function onMobDeath(mob, player, isKiller)

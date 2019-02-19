@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Doglix Muttsnout
+--   NM: Doglix Muttsnout
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
