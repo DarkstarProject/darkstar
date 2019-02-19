@@ -27,4 +27,7 @@ function onEventUpdate(player,csid,option,target)
 end
 
 function onEventFinish(player,csid,option,target)
+--[[    if csid == 114 and option == 0 then
+        Todo add function that when entering staging point that a player looses all agro on mobs
+    end]]
 end
