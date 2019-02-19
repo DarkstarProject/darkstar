@@ -3,6 +3,7 @@
 --   NM: Giollemitte B Feroun
 -- Involved in Quest: A Timely Visit
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status")
 require("scripts/globals/msg")
 -----------------------------------
@@ -22,6 +23,13 @@ function onMobSpawn(mob)
     mob:addMod(dsp.mod.MDEF, 50)
     DespawnMob(mob:getID(), 300)
     
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.INVINCIBLE, hpp = 25},
+        },
+    })
+
 end
 
 function onAdditionalEffect(mob, target, damage)
@@ -29,10 +37,10 @@ end
 
 function onMobFight(mob, target)
 
-    if mob:getHPP() <= 25 and mob:getLocalVar("invincible") == 0 then
-        mob:useMobAbility(694)
-        mob:setLocalVar("invincible", 1)
-    end
+    --if mob:getHPP() <= 25 and mob:getLocalVar("invincible") == 0 then
+    --    mob:useMobAbility(694)
+    --    mob:setLocalVar("invincible", 1)
+    --end
 
 end
 
