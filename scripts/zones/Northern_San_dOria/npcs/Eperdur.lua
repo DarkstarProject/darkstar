@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    AltanaSorrow  = player:getQuestStatus(BASTOK,ALTANA_S_SORROW);
+    AltanaSorrow  = player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.ALTANA_S_SORROW);
     ActingInGoodFaith  = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
     HealingTheLand = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.HEALING_THE_LAND);
     SorceryOfTheNorth = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.SORCERY_OF_THE_NORTH);
@@ -61,7 +61,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4731);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4731); -- Scroll of Teleport-Dem
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,ALTANA_S_SORROW);
+            player:completeQuest(BASTOK,dsp.quests.ids.bastok.ALTANA_S_SORROW);
         end
     elseif (csid == 680) then
         if (player:getFreeSlotsCount() == 0) then

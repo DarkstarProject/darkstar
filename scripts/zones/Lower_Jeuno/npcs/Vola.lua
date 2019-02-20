@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     FistfulOfFury = player:getQuestStatus(JEUNO,FISTFUL_OF_FURY);
     BeatAroundTheBushin = player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN);
 
-    if (player:getFameLevel(NORG) >= 3 and FistfulOfFury == QUEST_AVAILABLE and player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS) == QUEST_COMPLETED) then
+    if (player:getFameLevel(NORG) >= 3 and FistfulOfFury == QUEST_AVAILABLE and player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.SILENCE_OF_THE_RAMS) == QUEST_COMPLETED) then
         player:startEvent(216); -- Start Quest "Fistful of Fury"
     elseif (FistfulOfFury == QUEST_ACCEPTED) then
         player:startEvent(215); -- During Quest "Fistful of Fury"

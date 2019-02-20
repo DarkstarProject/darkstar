@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Castle_Oztroja/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(BASTOK,TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.TRUE_STRENGTH) == QUEST_ACCEPTED and player:hasItem(1100) == false) then
         if (trade:hasItemQty(4558,1) and trade:getItemCount() == 1) then -- Trade Yagudo Drink
             player:tradeComplete();
             player:messageSpecial(ID.text.SENSE_OF_FOREBODING);

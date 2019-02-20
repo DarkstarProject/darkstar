@@ -18,7 +18,7 @@ end;
 
 function onTrigger(player,npc)
 
-    AyameAndKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
+    AyameAndKaede = player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.AYAME_AND_KAEDE);
 
     if (AyameAndKaede == QUEST_ACCEPTED) then
 
@@ -68,7 +68,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.UNLOCK_NINJA);
         player:setVar("AyameAndKaede_Event", 0);
         player:addFame(BASTOK, 30);
-        player:completeQuest(BASTOK,AYAME_AND_KAEDE);
+        player:completeQuest(BASTOK,dsp.quests.ids.bastok.AYAME_AND_KAEDE);
     elseif (csid == 262) then
         player:setVar("twentyInPirateYearsCS",3);
     elseif (csid == 264) then

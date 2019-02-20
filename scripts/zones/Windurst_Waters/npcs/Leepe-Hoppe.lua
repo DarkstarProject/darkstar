@@ -116,7 +116,7 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.WHISPER_OF_FROST);
         player:delKeyItem(dsp.ki.WHISPER_OF_STORMS);
         player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
-        player:delQuest(BASTOK,TRIAL_BY_EARTH);
+        player:delQuest(BASTOK,dsp.quests.ids.bastok.TRIAL_BY_EARTH);
         player:delQuest(OUTLANDS,TRIAL_BY_WATER);
         player:delQuest(OUTLANDS,TRIAL_BY_WIND);
         player:delQuest(SANDORIA,dsp.quests.ids.sandoria.TRIAL_BY_ICE);

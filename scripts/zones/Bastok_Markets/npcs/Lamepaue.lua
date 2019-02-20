@@ -23,31 +23,31 @@ function onTrigger(player,npc)
 
     -- Bastok Quests.
     local BastokQuests = 0xFFFFFFFE;
-    if (player:hasCompletedQuest(BASTOK,THE_RETURN_OF_THE_ADVENTURER)) then
+    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.THE_RETURN_OF_THE_ADVENTURER)) then
         BastokQuests = BastokQuests - 2;     -- The Return of the Adventurer
     end
 -- *Need the correct csid
---     if (player:hasCompletedQuest(BASTOK,THE_FIRST_MEETING)) then
+--     if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.THE_FIRST_MEETING)) then
 --         BastokQuests = BastokQuests - 4;     -- The First Meeting
 --     end
-    if (player:hasCompletedQuest(BASTOK,WISH_UPON_A_STAR)) then
+    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.WISH_UPON_A_STAR)) then
         BastokQuests = BastokQuests - 8;     -- Wish Upon a Star (pt.1)
         BastokQuests = BastokQuests - 16;    -- Wish Upon a Star (pt.2)
         BastokQuests = BastokQuests - 32;    -- Wish Upon a Star (pt.3)
     end
 
 -- *Need the correct csid/parameters
---    if (player:hasCompletedQuest(BASTOK,ALL_BY_MYSELF)) then
+--    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.ALL_BY_MYSELF)) then
 --        BastokQuests = BastokQuests - 64;    -- All by Myself
 --    end
-    if (player:hasCompletedQuest(BASTOK,ACHIEVING_TRUE_POWER)) then
+    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.ACHIEVING_TRUE_POWER)) then
         BastokQuests = BastokQuests - 128;   -- Achieving True Power
     end
-    if (player:hasCompletedQuest(BASTOK,TOO_MANY_CHEFS)) then
+    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.TOO_MANY_CHEFS)) then
         BastokQuests = BastokQuests - 512;   -- Too Many Chefs
 
     end
-    if (player:hasCompletedQuest(BASTOK,A_PROPER_BURIAL)) then
+    if (player:hasCompletedQuest(BASTOK,dsp.quests.ids.bastok.A_PROPER_BURIAL)) then
         BastokQuests = BastokQuests - 1024;  -- A Proper Burial (pt.1)
         BastokQuests = BastokQuests - 2048;  -- A Proper Burial (pt.2)
         BastokQuests = BastokQuests - 4096;  -- A Proper Burial (pt.3)

@@ -26,10 +26,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local ayameKaede = player:getQuestStatus(BASTOK,AYAME_AND_KAEDE);
+    local ayameKaede = player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.AYAME_AND_KAEDE);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,0) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,0) == false) then
         player:startEvent(352);
     elseif (ayameKaede == QUEST_AVAILABLE and player:getMainLvl() >= 30) then
         player:startEvent(240);
@@ -49,8 +49,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 240) then
-        if (player:getQuestStatus(BASTOK,AYAME_AND_KAEDE) == QUEST_AVAILABLE) then
-            player:addQuest(BASTOK,AYAME_AND_KAEDE);
+        if (player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.AYAME_AND_KAEDE) == QUEST_AVAILABLE) then
+            player:addQuest(BASTOK,dsp.quests.ids.bastok.AYAME_AND_KAEDE);
         end
     elseif (csid == 352) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",0,true);

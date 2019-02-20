@@ -35,11 +35,11 @@ function onTrigger(player,npc)
 
     if (player:getMainLvl() >= 50 and player:getVar("BorghertzAlreadyActiveWithJob") == 0) then
         if (player:getMainJob() == dsp.job.WAR and
-           player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and
+           player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and
            player:getQuestStatus(JEUNO,BORGHERTZ_S_WARRING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for WAR
         elseif (player:getMainJob() == dsp.job.MNK and
-               player:getQuestStatus(BASTOK,THE_FIRST_MEETING) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.THE_FIRST_MEETING) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STRIKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for MNK
         elseif (player:getMainJob() == dsp.job.WHM and
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STALWART_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for PLD
         elseif (player:getMainJob() == dsp.job.DRK and
-               player:getQuestStatus(BASTOK,DARK_PUPPET) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.DARK_PUPPET) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SHADOWY_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for DRK
         elseif (player:getMainJob() == dsp.job.BST and

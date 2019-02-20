@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.YASINS_SWORD);
             player:setVar("theDoormanCS",0);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,THE_DOORMAN);
+            player:completeQuest(BASTOK,dsp.quests.ids.bastok.THE_DOORMAN);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end
