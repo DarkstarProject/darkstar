@@ -58,7 +58,7 @@ function onTrigger(player,npc)
 
     -- Other Quests.
     local OtherQuests = 0xFFFFFFFE;
-    if (player:hasCompletedQuest(JEUNO,BEAT_AROUND_THE_BUSHIN)) then
+    if (player:hasCompletedQuest(JEUNO,dsp.quests.ids.jeuno.BEAT_AROUND_THE_BUSHIN)) then
         OtherQuests = OtherQuests - 2;      -- Beat Around the Bushin
     end
     if (player:hasCompletedQuest(OTHER_AREAS_LOG,CONFESSIONS_OF_A_BELLMAKER)) then
@@ -77,7 +77,7 @@ function onTrigger(player,npc)
         OtherQuests = OtherQuests - 256;    -- Puppetmaster Blues (pt.1)
         OtherQuests = OtherQuests - 512;    -- Puppetmaster Blues (pt.2)
     end
-    if (player:hasCompletedQuest(JEUNO,COMEBACK_QUEEN)) then
+    if (player:hasCompletedQuest(JEUNO,dsp.quests.ids.jeuno.COMEBACK_QUEEN)) then
         OtherQuests = OtherQuests - 1024;   -- Comeback Queen
     end
 

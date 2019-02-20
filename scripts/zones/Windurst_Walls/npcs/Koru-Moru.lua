@@ -29,7 +29,7 @@ function onTrade(player,npc,trade)
     elseif (qStarStruck == QUEST_ACCEPTED and trade:hasItemQty(582,1) and count == 1 and trade:getGil() == 0) then
         player:startEvent(211);
     elseif (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
-        if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
+        if (player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_4") == 4) then
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();
             player:addKeyItem(dsp.ki.SPIRITED_STONE);

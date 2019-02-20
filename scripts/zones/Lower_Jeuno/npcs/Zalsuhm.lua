@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     if (trade:getItemCount() == 1) then
         for i, wepId in pairs(BaseNyzulWeapons) do
             if (trade:hasItemQty(wepId, 1)) then
-                local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(i))
+                local unlockingAMyth = player:getQuestStatus(JEUNO, dsp.quests.ids.jeuno.getQuestId(i))
                 -- printf("\tUnlockingAMyth" .. i .. " = %u", unlockingAMyth);
 
                 if (unlockingAMyth == QUEST_ACCEPTED) then
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
 
     local mainJobId = player:getMainJob();
 
-    local unlockingAMyth = player:getQuestStatus(JEUNO, getQuestId(mainJobId))
+    local unlockingAMyth = player:getQuestStatus(JEUNO, dsp.quests.ids.jeuno.getQuestId(mainJobId))
     -- printf("\tUnlockingAMyth" .. mainJobId .. " = %u", unlockingAMyth);
 
     local mainWeaponId = player:getEquipID(dsp.slot.MAIN);
@@ -106,11 +106,11 @@ function onEventFinish(player,csid,option)
         elseif (option <= dsp.job.SCH) then -- Just to make sure we didn't get into an invalid state
             -- The player chose "More power" (accepts the quest)
             local questId = getQuestId(option);
-            player:addQuest(JEUNO, questId);
+            player:addQuest(JEUNO, dsp.quests.ids.jeuno.questId);
         end
     elseif (csid == 10088 and option <= dsp.job.SCH) then -- The quest is completed
         local questId = getQuestId(option);
-        player:completeQuest(JEUNO, questId);
+        player:completeQuest(JEUNO, dsp.quests.ids.jeuno.questId);
     end
 
 end;

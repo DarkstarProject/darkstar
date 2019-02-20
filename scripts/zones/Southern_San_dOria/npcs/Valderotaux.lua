@@ -20,7 +20,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local lakesideMin = player:getQuestStatus(JEUNO,LAKESIDE_MINUET);
+    local lakesideMin = player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.LAKESIDE_MINUET);
     local lakeProg = player:getVar("Lakeside_Minuet_Progress");
     if (lakeProg == 1) then
         player:startEvent(888); -- Dance for the drunks!

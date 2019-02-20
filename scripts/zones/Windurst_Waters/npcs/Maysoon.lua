@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
+    CooksPride = player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.COOK_S_PRIDE);
     HoistTheJelly = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.HOIST_THE_JELLY_ROGER);
 
     if (CooksPride == QUEST_ACCEPTED and HoistTheJelly == QUEST_AVAILABLE) then

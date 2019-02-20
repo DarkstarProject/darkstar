@@ -313,7 +313,7 @@ function onTrigger(player,npc)
     local wildcatJeuno = player:getVar("WildcatJeuno")
     
     -- LURE OF THE WILDCAT
-    if player:getQuestStatus(JEUNO, LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
+    if player:getQuestStatus(JEUNO, dsp.quests.ids.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
         player:startEvent(313)
 
     -- DEFAULT DIALOG (menu)

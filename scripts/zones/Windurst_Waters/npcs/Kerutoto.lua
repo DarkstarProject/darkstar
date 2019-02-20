@@ -31,7 +31,7 @@ function onTrade(player,npc,trade)
         if (trade:hasItemQty(4371,1) and count == 1 and KerutotoFood == 1) then
             player:startEvent(332,440);
         end
-    elseif (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED) then
         if (player:getVar("ridingOnTheClouds_4") == 3 and trade:hasItemQty(1127,1) and count == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_4",0);
             player:tradeComplete();

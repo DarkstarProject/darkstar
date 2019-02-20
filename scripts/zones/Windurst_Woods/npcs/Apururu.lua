@@ -14,7 +14,7 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     -- THE KIND CARDIAN
-    if player:getQuestStatus(JEUNO, THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
+    if player:getQuestStatus(JEUNO, dsp.quests.ids.jeuno.THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
         player:startEvent(397)
 
     -- CAN CARDIANS CRY?
@@ -25,7 +25,7 @@ end
 
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
-    local kindCardian = player:getQuestStatus(JEUNO, THE_KIND_CARDIAN)
+    local kindCardian = player:getQuestStatus(JEUNO, dsp.quests.ids.jeuno.THE_KIND_CARDIAN)
     local kindCardianCS = player:getVar("theKindCardianVar")
     local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.THE_ALL_NEW_C_3000)
     local canCardiansCry = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.CAN_CARDIANS_CRY)

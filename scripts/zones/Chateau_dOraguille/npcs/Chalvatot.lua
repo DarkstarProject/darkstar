@@ -26,7 +26,7 @@ end;
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-    local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
+    local circleOfTime = player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.THE_CIRCLE_OF_TIME);
     local circleProgress = player:getVar("circleTime");
     local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
     local WildcatSandy = player:getVar("WildcatSandy");
@@ -87,7 +87,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() ~= 0) then
             player:addItem(12647);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12647)
-            player:completeQuest(JEUNO,THE_CIRCLE_OF_TIME);
+            player:completeQuest(JEUNO,dsp.quests.ids.jeuno.THE_CIRCLE_OF_TIME);
             player:addTitle(dsp.title.PARAGON_OF_BARD_EXCELLENCE);
             player:setVar("circleTime",0);
         else
