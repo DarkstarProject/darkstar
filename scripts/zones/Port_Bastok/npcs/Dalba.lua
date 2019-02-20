@@ -91,11 +91,11 @@ function onTrigger(player,npc)
         OtherQuests = OtherQuests - 2; -- The Puppet Master(pt.1).
         OtherQuests = OtherQuests - 4; -- The Puppet Master(pt.2).
     end
-    if (player:hasCompletedQuest(OUTLANDS,TWENTY_IN_PIRATE_YEARS)) then
+    if (player:hasCompletedQuest(OUTLANDS,dsp.quests.ids.outlands.TWENTY_IN_PIRATE_YEARS)) then
         OtherQuests = OtherQuests - 8;  -- 20 in Pirate Years(pt.1).
         OtherQuests = OtherQuests - 16;    -- 20 in Pirate Years(pt.2).
     end
-    if (player:hasCompletedQuest(OUTLANDS,I_LL_TAKE_THE_BIG_BOX)) then
+    if (player:hasCompletedQuest(OUTLANDS,dsp.quests.ids.outlands.I_LL_TAKE_THE_BIG_BOX)) then
         OtherQuests = OtherQuests - 32; -- I'll Take the Big Box.
     end
 

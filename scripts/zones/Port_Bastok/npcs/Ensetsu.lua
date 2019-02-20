@@ -35,13 +35,13 @@ function onTrigger(player,npc)
         else
             player:startEvent(27);
         end
-    elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
+    elseif (AyameAndKaede == QUEST_COMPLETED and player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.TWENTY_IN_PIRATE_YEARS) == QUEST_AVAILABLE) then
         player:startEvent(247);
     elseif (player:getVar("twentyInPirateYearsCS") == 2) then
         player:startEvent(262);
     elseif (player:getVar("twentyInPirateYearsCS") == 4) then
         player:startEvent(263);
-    elseif (player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
+    elseif (player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.I_LL_TAKE_THE_BIG_BOX) == QUEST_ACCEPTED and player:getVar("illTakeTheBigBoxCS") == 0) then
         player:startEvent(264);
     elseif (player:getVar("illTakeTheBigBoxCS") == 1) then
         player:startEvent(265);

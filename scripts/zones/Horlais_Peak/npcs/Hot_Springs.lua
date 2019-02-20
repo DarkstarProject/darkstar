@@ -10,7 +10,7 @@ require("scripts/globals/titles")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL) == QUEST_ACCEPTED and trade:hasItemQty(1210,1) and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.SECRET_OF_THE_DAMP_SCROLL) == QUEST_ACCEPTED and trade:hasItemQty(1210,1) and trade:getItemCount() == 1) then
         player:startEvent(2,1210);
     end
 end;
@@ -35,6 +35,6 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.ITEM_OBTAINED, 4949);
         player:addFame(NORG,75);
         player:addTitle(dsp.title.CRACKER_OF_THE_SECRET_CODE);
-        player:completeQuest(OUTLANDS,SECRET_OF_THE_DAMP_SCROLL);
+        player:completeQuest(OUTLANDS,dsp.quests.ids.outlands.SECRET_OF_THE_DAMP_SCROLL);
     end
 end;

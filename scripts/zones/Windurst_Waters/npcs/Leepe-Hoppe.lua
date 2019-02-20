@@ -115,10 +115,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.WHISPER_OF_GALES);
         player:delKeyItem(dsp.ki.WHISPER_OF_FROST);
         player:delKeyItem(dsp.ki.WHISPER_OF_STORMS);
-        player:delQuest(OUTLANDS,TRIAL_BY_FIRE);
+        player:delQuest(OUTLANDS,dsp.quests.ids.outlands.TRIAL_BY_FIRE);
         player:delQuest(BASTOK,dsp.quests.ids.bastok.TRIAL_BY_EARTH);
-        player:delQuest(OUTLANDS,TRIAL_BY_WATER);
-        player:delQuest(OUTLANDS,TRIAL_BY_WIND);
+        player:delQuest(OUTLANDS,dsp.quests.ids.outlands.TRIAL_BY_WATER);
+        player:delQuest(OUTLANDS,dsp.quests.ids.outlands.TRIAL_BY_WIND);
         player:delQuest(SANDORIA,dsp.quests.ids.sandoria.TRIAL_BY_ICE);
         player:delQuest(OTHER_AREAS_LOG,dsp.quests.ids.otherAreas.TRIAL_BY_LIGHTNING);
     elseif (csid == 846) then -- Turn-in event

@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         else
             player:setPos(0, 0, 0, 0, SHIP_BOUND_FOR_MHAURA)
         end
-    elseif csid == 1101 and npcUtil.completeQuest(player, OUTLANDS, I_LL_TAKE_THE_BIG_BOX, {item = 14226, fame_area = NORG, var = {"Enagakure_Killed", "illTakeTheBigBoxCS"}}) then
+    elseif csid == 1101 and npcUtil.completeQuest(player, OUTLANDS, dsp.quests.ids.outlands.I_LL_TAKE_THE_BIG_BOX, {item = 14226, fame_area = NORG, var = {"Enagakure_Killed", "illTakeTheBigBoxCS"}}) then
         player:delKeyItem(dsp.ki.SEANCE_STAFF)
     end
 end

@@ -79,11 +79,11 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_CHASING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RNG
         elseif (player:getMainJob() == dsp.job.SAM and
-               player:getQuestStatus(OUTLANDS,YOMI_OKURI) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.YOMI_OKURI) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_LOYAL_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for SAM
         elseif (player:getMainJob() == dsp.job.NIN and
-               player:getQuestStatus(OUTLANDS,I_LL_TAKE_THE_BIG_BOX) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.I_LL_TAKE_THE_BIG_BOX) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for NIN
         elseif (player:getMainJob() == dsp.job.DRG and
