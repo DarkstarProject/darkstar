@@ -15,7 +15,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(OTHER_AREAS_LOG,THE_SAND_CHARM) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quests.ids.otherAreas.THE_SAND_CHARM) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(13095,1) and trade:getItemCount() == 1) then
             player:startEvent(127); -- Finish quest "The Sand Charm"
         end
@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_BOSTAUNIEUX_OUBLIETTE);
         player:addFame(MHAURA,30);
-        player:completeQuest(OTHER_AREAS_LOG,THE_SAND_CHARM);
+        player:completeQuest(OTHER_AREAS_LOG,dsp.quests.ids.otherAreas.THE_SAND_CHARM);
     end
 
 end;

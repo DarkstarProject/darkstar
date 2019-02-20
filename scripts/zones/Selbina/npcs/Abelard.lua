@@ -36,7 +36,7 @@ local ZoneID =
 }
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(OTHER_AREAS_LOG, AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quests.ids.otherAreas.AN_EXPLORER_S_FOOTSTEPS) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 570) then
         local tablets = player:getVar("anExplorer-ClayTablets")
         local currtab = player:getVar("anExplorer-CurrentTablet")
 
@@ -63,7 +63,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, AN_EXPLORER_S_FOOTSTEPS)
+    local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, dsp.quests.ids.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
     local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.SIGNED_IN_BLOOD)
     local signedInBloodStat = player:getVar("SIGNED_IN_BLOOD_Prog")
 
@@ -118,7 +118,7 @@ function onEventFinish(player,csid,option)
 
     -- AN EXPLORER'S FOOTSTEPS
     elseif csid == 40 and option ~= 0 and npcUtil.giveItem(player, 571) then
-        player:addQuest(OTHER_AREAS_LOG, AN_EXPLORER_S_FOOTSTEPS)
+        player:addQuest(OTHER_AREAS_LOG, dsp.quests.ids.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
         player:setVar("anExplorer-ClayTablets", 0)
     elseif csid == 42 and option == 100 and npcUtil.giveItem(player, 571) then
         player:setVar("anExplorer-CurrentTablet", 0)
@@ -139,7 +139,7 @@ function onEventFinish(player,csid,option)
         end
 
         if csid == 47 then
-            player:completeQuest(OTHER_AREAS_LOG, AN_EXPLORER_S_FOOTSTEPS)
+            player:completeQuest(OTHER_AREAS_LOG, dsp.quests.ids.otherAreas.AN_EXPLORER_S_FOOTSTEPS)
             player:setVar("anExplorer-ClayTablets", 0)
         end
 
