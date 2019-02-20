@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Chateau_dOraguille/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- HER MAJESTY'S GARDEN (derfland humus)
     if (herMajestysGarden == QUEST_ACCEPTED and trade:hasItemQty(533,1) and trade:getItemCount() == 1) then
@@ -28,9 +28,9 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
     local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
     local circleProgress = player:getVar("circleTime");
-    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA);
+    local lureOfTheWildcat = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA);
     local WildcatSandy = player:getVar("WildcatSandy");
-    local herMajestysGarden = player:getQuestStatus(SANDORIA,HER_MAJESTY_S_GARDEN);
+    local herMajestysGarden = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.HER_MAJESTY_S_GARDEN);
 
     -- THE CRYSTAL SPRING (San d'Oria 3-2)
     if (currentMission == THE_CRYSTAL_SPRING and MissionStatus == 3) then
@@ -100,13 +100,13 @@ function onEventFinish(player,csid,option)
 
     -- HER MAJESTY'S GARDEN
     elseif (csid == 84 and option == 1) then
-        player:addQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
+        player:addQuest(SANDORIA,dsp.quests.ids.sandoria.HER_MAJESTY_S_GARDEN);
     elseif (csid == 83) then
         player:tradeComplete();
         player:addKeyItem(dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAP_OF_THE_NORTHLANDS_AREA);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,HER_MAJESTY_S_GARDEN);
+        player:completeQuest(SANDORIA,dsp.quests.ids.sandoria.HER_MAJESTY_S_GARDEN);
 
     end;
 end;

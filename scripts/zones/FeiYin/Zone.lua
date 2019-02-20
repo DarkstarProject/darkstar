@@ -40,7 +40,7 @@ function onZoneIn(player,prevZone)
         cs = 29;
     elseif (prevZone == dsp.zone.QUBIA_ARENA and player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK)) then
         cs = 16; -- MNK AF
-    elseif (prevZone == dsp.zone.BEAUCEDINE_GLACIER and player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then
+    elseif (prevZone == dsp.zone.BEAUCEDINE_GLACIER and player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then
         cs = 19; -- WHM AF
     end
 

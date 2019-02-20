@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.DISTANT_LOYALTIES);
     local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
 
     -- THE ELVAAN GOLDSMITH
@@ -31,7 +31,7 @@ end;
 
 function onTrigger(player,npc)
     local theElvaanGoldsmith = player:getQuestStatus(BASTOK,THE_ELVAAN_GOLDSMITH);
-    local distantLoyalties = player:getQuestStatus(SANDORIA,DISTANT_LOYALTIES);
+    local distantLoyalties = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.DISTANT_LOYALTIES);
     local distantLoyaltiesProgress = player:getVar("DistantLoyaltiesProgress");
     local fatherFigure = player:getQuestStatus(BASTOK,FATHER_FIGURE);
     

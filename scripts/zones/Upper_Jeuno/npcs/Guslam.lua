@@ -43,7 +43,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STRIKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for MNK
         elseif (player:getMainJob() == dsp.job.WHM and
-               player:getQuestStatus(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.PRELUDE_OF_BLACK_AND_WHITE) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_HEALING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for WHM
         elseif (player:getMainJob() == dsp.job.BLM and
@@ -51,7 +51,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SORCEROUS_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BLM
         elseif (player:getMainJob() == dsp.job.RDM and
-               player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.ENVELOPED_IN_DARKNESS) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_VERMILLION_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RDM
         elseif (player:getMainJob() == dsp.job.THF and
@@ -59,7 +59,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SNEAKY_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for THF
         elseif (player:getMainJob() == dsp.job.PLD and
-               player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.A_BOY_S_DREAM) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_STALWART_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for PLD
         elseif (player:getMainJob() == dsp.job.DRK and
@@ -87,7 +87,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for NIN
         elseif (player:getMainJob() == dsp.job.DRG and
-               player:getQuestStatus(SANDORIA,CHASING_QUOTAS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.CHASING_QUOTAS) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for DRG
         elseif (player:getMainJob() == dsp.job.SMN and

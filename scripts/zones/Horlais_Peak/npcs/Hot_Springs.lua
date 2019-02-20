@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET) == QUEST_ACCEPTED) and (player:hasKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY) == true) then
+    if (player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.THE_GENERAL_S_SECRET) == QUEST_ACCEPTED) and (player:hasKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY) == true) then
         player:addKeyItem(dsp.ki.CURILLAS_BOTTLE_FULL)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_FULL);
         player:delKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY);

@@ -119,7 +119,7 @@ function onEventFinish(player,csid,option)
         player:delQuest(BASTOK,TRIAL_BY_EARTH);
         player:delQuest(OUTLANDS,TRIAL_BY_WATER);
         player:delQuest(OUTLANDS,TRIAL_BY_WIND);
-        player:delQuest(SANDORIA,TRIAL_BY_ICE);
+        player:delQuest(SANDORIA,dsp.quests.ids.sandoria.TRIAL_BY_ICE);
         player:delQuest(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
     elseif (csid == 846) then -- Turn-in event
         local reward = 0;

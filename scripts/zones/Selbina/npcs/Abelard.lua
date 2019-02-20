@@ -64,7 +64,7 @@ end
 
 function onTrigger(player,npc)
     local anExplorersFootsteps = player:getQuestStatus(OTHER_AREAS_LOG, AN_EXPLORER_S_FOOTSTEPS)
-    local signedInBlood = player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD)
+    local signedInBlood = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.SIGNED_IN_BLOOD)
     local signedInBloodStat = player:getVar("SIGNED_IN_BLOOD_Prog")
 
     -- SIGNED IN BLOOD (will only activate if An Explorer's Footsteps is not active, or if it is completed)
