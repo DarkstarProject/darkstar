@@ -33,12 +33,27 @@ dsp.quests.log_ids =
     COALITION   = 10
 }
 
+dsp.quests.areas =
+{
+    [dsp.quests.log_ids.SANDORIA]    = 'sandoria',
+    [dsp.quests.log_ids.BASTOK]      = 'bastok',
+    [dsp.quests.log_ids.WINDURST]    = 'windurst',
+    [dsp.quests.log_ids.JEUNO]       = 'jeuno',
+    [dsp.quests.log_ids.OTHER_AREAS] = 'otherAreas',
+    [dsp.quests.log_ids.OUTLANDS]    = 'outlands',
+    [dsp.quests.log_ids.AHT_URHGAN]  = 'ahtUrhgan',
+    [dsp.quests.log_ids.CRYSTAL_WAR] = 'crystalWar',
+    [dsp.quests.log_ids.ABYSSEA]     = 'abyssea',
+    [dsp.quests.log_ids.ADOULIN]     = 'adoulin',
+    [dsp.quests.log_ids.COALITION]   = 'coalition'
+}
+
 dsp.quests.ids =
 {
     -----------------------------------
     --  San d'Oria
     -----------------------------------
-    [dsp.quests.log_ids.SANDORIA] =
+    [dsp.quests.areas[dsp.quests.log_ids.SANDORIA]] =
     {
         A_SENTRY_S_PERIL                = 0,  -- ± --
         WATER_OF_THE_CHEVAL             = 1,  -- ± --
@@ -126,7 +141,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Bastok
     -----------------------------------
-    [dsp.quests.log_ids.BASTOK] =
+    [dsp.quests.areas[dsp.quests.log_ids.BASTOK]] =
     {
         THE_SIREN_S_TEAR                = 0,  -- ± --
         BEAUTY_AND_THE_GALKA            = 1,  -- ± --
@@ -224,7 +239,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Windurst
     -----------------------------------
-    [dsp.quests.log_ids.WINDURST] =
+    [dsp.quests.areas[dsp.quests.log_ids.WINDURST]] =
     {
         HAT_IN_HAND                     = 0,  -- + --
         A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
@@ -320,7 +335,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Jeuno
     -----------------------------------
-    [dsp.quests.log_ids.JEUNO] =
+    [dsp.quests.areas[dsp.quests.log_ids.JEUNO]] =
     {
         CREST_OF_DAVOI                  = 0,  -- + --
         SAVE_MY_SISTER                  = 1,  -- + --
@@ -471,7 +486,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Other Areas
     -----------------------------------
-    [dsp.quests.log_ids.OTHER_AREAS] =
+    [dsp.quests.areas[dsp.quests.log_ids.OTHER_AREAS]] =
     {
         RYCHARDE_THE_CHEF               = 0,  -- + --
         WAY_OF_THE_COOK                 = 1,  -- + --
@@ -544,7 +559,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Outlands
     -----------------------------------
-    [dsp.quests.log_ids.OUTLANDS] =
+    [dsp.quests.areas[dsp.quests.log_ids.OUTLANDS]] =
     {
         -- Kazham (1-15)
         THE_FIREBLOOM_TREE              = 1,
@@ -616,7 +631,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Aht Urhgan
     -----------------------------------
-    [dsp.quests.log_ids.AHT_URHGAN] =
+    [dsp.quests.areas[dsp.quests.log_ids.AHT_URHGAN]] =
     {
         KEEPING_NOTES                   = 0,
         ARTS_AND_CRAFTS                 = 1,
@@ -674,7 +689,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Crystal War
     -----------------------------------
-    [dsp.quests.log_ids.CRYSTAL_WAR] =
+    [dsp.quests.areas[dsp.quests.log_ids.CRYSTAL_WAR]] =
     {
         LOST_IN_TRANSLOCATION            = 0,
         MESSAGE_ON_THE_WINDS             = 1,
@@ -773,7 +788,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Abyssea
     -----------------------------------
-    [dsp.quests.log_ids.ABYSSEA] =
+    [dsp.quests.areas[dsp.quests.log_ids.ABYSSEA]] =
     {
         -- For some reason these did not match dat file order,
         -- had to adjust IDs >120 after using @addquest
@@ -974,7 +989,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Adoulin
     -----------------------------------
-    [dsp.quests.log_ids.ADOULIN] =
+    [dsp.quests.areas[dsp.quests.log_ids.ADOULIN]] =
     {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
@@ -1080,7 +1095,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Coalition
     -----------------------------------
-    [dsp.quests.log_ids.COALITION] =
+    [dsp.quests.areas[dsp.quests.log_ids.COALITION]] =
     {
         -- Also slightly incongruent with DAT file order
         PROCURE_CEIZAK_BATTLEGROUNDS    = 0,
