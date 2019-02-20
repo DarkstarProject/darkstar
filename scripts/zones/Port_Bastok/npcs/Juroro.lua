@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local TrialByEarth = player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.TRIAL_BY_EARTH);
     local WhisperOfTremors = player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
+    local ThePuppetMaster = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_PUPPET_MASTER);
     local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
 
     if (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 1) then

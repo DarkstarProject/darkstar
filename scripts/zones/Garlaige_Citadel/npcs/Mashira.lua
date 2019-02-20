@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
     if (player:getQuestStatus(JEUNO,RUBBISH_DAY) == QUEST_ACCEPTED and player:getVar("RubbishDayVar") == 0) then
         player:startEvent(11,1); -- For the quest "Rubbish day"
-    elseif (player:getQuestStatus(WINDURST,MAKING_AMENS) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.MAKING_AMENS) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.BROKEN_WAND) == true) then
             player:startEvent(11,3);
         else player:startEvent(11,0); -- Making Amens dialogue
@@ -31,7 +31,7 @@ end;
 
 function onEventFinish(player,csid,option)
 RubbishDay = player:getQuestStatus(JEUNO,RUBBISH_DAY);
-MakingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS);
+MakingAmens = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.MAKING_AMENS);
     if (csid == 11 and option == 1 and RubbishDay == QUEST_ACCEPTED) then
         player:delKeyItem(dsp.ki.MAGIC_TRASH);
         player:setVar("RubbishDayVar",1);

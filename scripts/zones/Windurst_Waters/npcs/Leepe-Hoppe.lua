@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Windurst_Waters/IDs");
 -----------------------------------
 
 function onTrigger(player,npc)
-    local moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH)
+    local moonlitPath = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_MOONLIT_PATH)
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
     local MissionStatus = player:getVar("MissionStatus");
 
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 5 and player:hasKeyItem(dsp.ki.BOOK_OF_THE_GODS)) then
         player:startEvent(742);
     ---------------------------
-    elseif (player:getQuestStatus(WINDURST,FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.FOOD_FOR_THOUGHT) == QUEST_ACCEPTED) then
         player:startEvent(311);
 
     -- The Moonlit Path and Other Fenrir Stuff!
@@ -105,7 +105,7 @@ function onEventFinish(player,csid,option)
 
     -- Moonlit Path and Other Fenrir Stuff
     elseif (csid == 842 and option == 2) then
-        player:addQuest(WINDURST,THE_MOONLIT_PATH);
+        player:addQuest(WINDURST,dsp.quests.ids.windurst.THE_MOONLIT_PATH);
     elseif (csid == 844) then
         player:addKeyItem(dsp.ki.MOON_BAUBLE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MOON_BAUBLE);
@@ -144,7 +144,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.WHISPER_OF_THE_MOON);
             player:setVar("MoonlitPath_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(WINDURST,30);
-            player:completeQuest(WINDURST,THE_MOONLIT_PATH);
+            player:completeQuest(WINDURST,dsp.quests.ids.windurst.THE_MOONLIT_PATH);
         end
 
         if (player:getFreeSlotsCount() == 0 and reward ~= 0) then
@@ -154,7 +154,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
         end
 
-        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(dsp.ki.DARK_MANA_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DARK_MANA_ORB);
         end
@@ -190,7 +190,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
         end
 
-        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+        if (player:getNation() == dsp.nation.WINDURST and player:getRank() == 10 and player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_PROMISE) == QUEST_COMPLETED) then
             player:addKeyItem(dsp.ki.DARK_MANA_ORB);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DARK_MANA_ORB);
         end

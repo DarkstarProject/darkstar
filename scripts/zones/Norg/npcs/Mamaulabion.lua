@@ -118,7 +118,7 @@ end;
 
 function onTrigger(player,npc)
     local MamaMia = player:getQuestStatus(OUTLANDS,MAMA_MIA);
-    local moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH);
+    local moonlitPath = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_MOONLIT_PATH);
     local EvokersRing = player:hasItem(14625);
     local realday = tonumber(os.date("%j"));  -- %M for next minute, %j for next day
     local questday = player:getVar("MamaMia_date")

@@ -87,7 +87,7 @@ function onTrigger(player,npc)
 
     -- Other Quests.
     local OtherQuests = 0xFFFFFFFE;
-    if (player:hasCompletedQuest(WINDURST,THE_PUPPET_MASTER)) then
+    if (player:hasCompletedQuest(WINDURST,dsp.quests.ids.windurst.THE_PUPPET_MASTER)) then
         OtherQuests = OtherQuests - 2; -- The Puppet Master(pt.1).
         OtherQuests = OtherQuests - 4; -- The Puppet Master(pt.2).
     end

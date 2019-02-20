@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(WINDURST,RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 0) then
+    if (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 0) then
         player:startEvent(10003); -- Option CS for "Recollections"
     else
         player:startEvent(10006);

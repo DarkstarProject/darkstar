@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local TrialByLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_BY_LIGHTNING);
     local WhisperOfStorms = player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local CarbuncleDebacle = player:getQuestStatus(WINDURST,CARBUNCLE_DEBACLE);
+    local CarbuncleDebacle = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.CARBUNCLE_DEBACLE);
     local CarbuncleDebacleProgress = player:getVar("CarbuncleDebacleProgress");
 
     ---------------------------------------------------------------------

@@ -12,9 +12,9 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local IAS = player:getQuestStatus(WINDURST, IN_A_STEW)
+    local IAS = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.IN_A_STEW)
     local IASvar = player:getVar("IASvar")
-    local CB = player:getQuestStatus(WINDURST, CHOCOBILIOUS)
+    local CB = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.CHOCOBILIOUS)
 
     -- IN A STEW
     if IAS == QUEST_ACCEPTED and IASvar == 1 then

@@ -20,7 +20,7 @@ function onTrigger(player,npc)
     local TrialByIce = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.TRIAL_BY_ICE);
     local WhisperOfFrost = player:hasKeyItem(dsp.ki.WHISPER_OF_FROST);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+    local ClassReunion = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
 
     ------------------------------------------------------------

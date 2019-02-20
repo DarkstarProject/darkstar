@@ -25,11 +25,11 @@ end;
 
 function onTrigger(player,npc)
 
-    TruthJusticeOnionWay = player:getQuestStatus(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
-    InspectorsGadget     = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
-    OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
+    TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+    InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.INSPECTOR_S_GADGET);
+    OnionRings           = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.ONION_RINGS);
 
-    if (player:getQuestStatus(WINDURST,THE_PROMISE) == QUEST_COMPLETED) then
+    if (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.THE_PROMISE) == QUEST_COMPLETED) then
         Message = math.random(0,1)
 
         if (Message == 1) then
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(541);
         end
-    elseif (player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.CRYING_OVER_ONIONS) == QUEST_ACCEPTED) then
         player:startEvent(504);
     elseif (OnionRings == QUEST_COMPLETED) then
         player:startEvent(446);
@@ -47,7 +47,7 @@ function onTrigger(player,npc)
         player:startEvent(428);
     elseif (InspectorsGadget == QUEST_ACCEPTED) then
         player:startEvent(420);
-    elseif (player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.KNOW_ONE_S_ONIONS) == QUEST_COMPLETED) then
         player:startEvent(412);
     elseif (TruthJusticeOnionWay == QUEST_COMPLETED) then
         player:startEvent(384);

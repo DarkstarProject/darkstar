@@ -47,7 +47,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_HEALING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for WHM
         elseif (player:getMainJob() == dsp.job.BLM and
-               player:getQuestStatus(WINDURST,RECOLLECTIONS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.RECOLLECTIONS) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SORCEROUS_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BLM
         elseif (player:getMainJob() == dsp.job.RDM and
@@ -55,7 +55,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_VERMILLION_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RDM
         elseif (player:getMainJob() == dsp.job.THF and
-               player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.AS_THICK_AS_THIEVES) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_SNEAKY_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for THF
         elseif (player:getMainJob() == dsp.job.PLD and
@@ -75,7 +75,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_HARMONIOUS_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BRD
         elseif (player:getMainJob() == dsp.job.RNG and
-               player:getQuestStatus(WINDURST,FIRE_AND_BRIMSTONE) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.FIRE_AND_BRIMSTONE) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_CHASING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RNG
         elseif (player:getMainJob() == dsp.job.SAM and
@@ -91,7 +91,7 @@ function onTrigger(player,npc)
                player:getQuestStatus(JEUNO,BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for DRG
         elseif (player:getMainJob() == dsp.job.SMN and
-               player:getQuestStatus(WINDURST,CLASS_REUNION) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.CLASS_REUNION) ~= QUEST_AVAILABLE and
                player:getQuestStatus(JEUNO,BORGHERTZ_S_CALLING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for SMN
         else

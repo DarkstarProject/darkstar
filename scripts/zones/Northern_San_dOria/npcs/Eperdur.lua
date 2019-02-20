@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
 
     AltanaSorrow  = player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.ALTANA_S_SORROW);
-    ActingInGoodFaith  = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
+    ActingInGoodFaith  = player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.ACTING_IN_GOOD_FAITH);
     HealingTheLand = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.HEALING_THE_LAND);
     SorceryOfTheNorth = player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.SORCERY_OF_THE_NORTH);
 
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
             player:addItem(4732);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4732); -- Scroll of Teleport-Mea
             player:addFame(WINDURST,30);
-            player:completeQuest(WINDURST,ACTING_IN_GOOD_FAITH);
+            player:completeQuest(WINDURST,dsp.quests.ids.windurst.ACTING_IN_GOOD_FAITH);
         end
     elseif (csid == 681 and option == 0) then
         player:addQuest(SANDORIA,dsp.quests.ids.sandoria.HEALING_THE_LAND);
