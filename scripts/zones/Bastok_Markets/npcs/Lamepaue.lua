@@ -86,13 +86,13 @@ function onTrigger(player,npc)
 --         OtherQuests = OtherQuests - 2048;   -- Dancer Attire (pt.1)
 --         OtherQuests = OtherQuests - 4096;   -- Dancer Attire (pt.2)
 --     end
-    if (player:hasCompletedQuest(CRYSTAL_WAR,DRAFTED_BY_THE_DUCHY)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,dsp.quests.ids.crystalWar.DRAFTED_BY_THE_DUCHY)) then
         OtherQuests = OtherQuests - 8192;   -- Drafted by the Duchy
     end
-    if (player:hasCompletedQuest(CRYSTAL_WAR,BATTLE_ON_A_NEW_FRONT)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,dsp.quests.ids.crystalWar.BATTLE_ON_A_NEW_FRONT)) then
         OtherQuests = OtherQuests - 16384;  -- Battle on a New Front
     end
-    if (player:hasCompletedQuest(CRYSTAL_WAR,VOIDWALKER_OP_126)) then
+    if (player:hasCompletedQuest(CRYSTAL_WAR,dsp.quests.ids.crystalWar.VOIDWALKER_OP_126)) then
         OtherQuests = OtherQuests - 32768;  -- VW Op. #126: Qufim Incursion
     end
 
