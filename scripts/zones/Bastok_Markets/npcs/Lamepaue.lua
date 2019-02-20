@@ -70,10 +70,10 @@ function onTrigger(player,npc)
         OtherQuests = OtherQuests - 32;     -- Picture Perfect (pt.3)
         OtherQuests = OtherQuests - 64;     -- Picture Perfect (pt.4)
     end
-    if (player:hasCompletedQuest(AHT_URHGAN,NO_STRINGS_ATTACHED)) then
+    if (player:hasCompletedQuest(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.NO_STRINGS_ATTACHED)) then
         OtherQuests = OtherQuests - 128;    -- No Strings Attached
     end
-    if (player:hasCompletedQuest(AHT_URHGAN,PUPPETMASTER_BLUES)) then
+    if (player:hasCompletedQuest(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.PUPPETMASTER_BLUES)) then
         OtherQuests = OtherQuests - 256;    -- Puppetmaster Blues (pt.1)
         OtherQuests = OtherQuests - 512;    -- Puppetmaster Blues (pt.2)
     end
