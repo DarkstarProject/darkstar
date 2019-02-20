@@ -10,7 +10,6 @@ end
 
 function onTrigger(player, npc)
     player:startEvent(20) -- missing walk-through animation, but it's the best I could find.
-    return 1
 end
 
 function onEventUpdate(player, csid, option)

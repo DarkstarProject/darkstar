@@ -31,8 +31,6 @@ function onTrigger(player, npc)
     else
         player:messageSpecial(ID.text.DOOR_FIRMLY_SHUT)
     end
-
-    return 1
 end
 
 function onEventUpdate(player, csid, option)

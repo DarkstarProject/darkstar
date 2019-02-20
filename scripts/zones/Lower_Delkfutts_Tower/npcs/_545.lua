@@ -26,8 +26,6 @@ function onTrigger(player, npc)
     then
         player:startEvent(25)
     end
-
-    return 1
 end
 
 function onEventUpdate(player, csid, option)

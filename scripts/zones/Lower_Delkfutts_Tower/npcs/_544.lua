@@ -21,8 +21,6 @@ function onTrigger(player, npc)
     else
         player:startEvent(10) -- door is firmly shut
     end
-
-    return 1
 end
 
 function onEventUpdate(player, csid, option)
