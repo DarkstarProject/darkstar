@@ -2097,7 +2097,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3059);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3060);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3061);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3062);
--- 466: free
+INSERT INTO `mob_skill_lists` VALUES ('Muq_Shabeel',466,480); -- petrifactive_breath
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2784);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2785);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2786);

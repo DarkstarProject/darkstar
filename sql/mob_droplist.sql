@@ -33035,6 +33035,8 @@ INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2816,103); -- (Sabotender Corri
 INSERT INTO `mob_droplist` VALUES (4667,0,0,1000,19125,73); -- (Euryale) Lyft Jambiya
 INSERT INTO `mob_droplist` VALUES (4668,0,0,1000,2844,269); -- (Gloombound Lurker) Penumbral Brass Ingot
 INSERT INTO `mob_droplist` VALUES (4669,0,0,1000,16015,176); -- (Lesath) Esse Earring
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2819,300); -- (Muq Shabeel) Aptant: Fyrst
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2821,200); -- (Muq Shabeel) Aptant: Haelan
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
