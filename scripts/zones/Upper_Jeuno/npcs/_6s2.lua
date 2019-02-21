@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(117); -- During quest "a clock most delicate"
         end
-    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_CLOCKMASTER) == QUEST_AVAILABLE) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER) == QUEST_AVAILABLE) then
         player:startEvent(152); -- Start & finish quest "The Clockmaster"
     elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER) == QUEST_COMPLETED) then
         player:startEvent(110); -- After quest "The Clockmaster"

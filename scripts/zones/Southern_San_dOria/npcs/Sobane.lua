@@ -62,7 +62,7 @@ function onEventFinish(player,csid,option)
         player:addQuest(SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD)
     elseif csid == 734 then
         player:setVar("SIGNED_IN_BLOOD_Prog", 1)
-    elseif csid == 736 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD, {item = 14760, gil = 3500, var = "dsp.quest.id.sandoria.SIGNED_IN_BLOOD_Prog"}) then
+    elseif csid == 736 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.SIGNED_IN_BLOOD, {item = 14760, gil = 3500, var = "SIGNED_IN_BLOOD_Prog"}) then
         player:delKeyItem(dsp.ki.TORN_OUT_PAGES)
         player:confirmTrade()
     end

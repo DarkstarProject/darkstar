@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE) == QUEST_ACCEPTED and player:getQuestStatus(JEUNO,DEAL_WITH_TENSHODO) == QUEST_AVAILABLE) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE) == QUEST_ACCEPTED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.DEAL_WITH_TENSHODO) == QUEST_AVAILABLE) then
         if (player:getFameLevel(NORG) >= 2) then
             player:startEvent(167); -- Start quest
         else

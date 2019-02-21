@@ -57,7 +57,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(48); --Standard dialogue if fame isn't high enough to start The Usual and Cid's Secret is not active
         end
-    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_USUAL) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,CID_S_SECRET) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_USUAL) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.CID_S_SECRET) == QUEST_COMPLETED) then
         player:startEvent(49); --Hilda thanks the player for all the help
     else
         player:startEvent(48); --Standard dialogue if no quests are active or available

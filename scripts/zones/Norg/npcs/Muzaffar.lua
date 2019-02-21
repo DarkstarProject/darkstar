@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     local NorthernFurs = trade:hasItemQty(1199,4);
     local EasternPottery = trade:hasItemQty(1200,4);
     local SouthernMummies = trade:hasItemQty(1201,4);
-    if (player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_COMPLETED) then
+    if (player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_COMPLETED) then
         if (NorthernFurs and count == 4) then
             player:tradeComplete();
             player:startEvent(17, 1199, 1199);
@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,BLACK_MARKET) == QUEST_COMPLETED) then
+    if (player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_ACCEPTED or player:getQuestStatus(NORG,dsp.quest.id.outlands.BLACK_MARKET) == QUEST_COMPLETED) then
         player:startEvent(16);
     else
         player:startEvent(15);

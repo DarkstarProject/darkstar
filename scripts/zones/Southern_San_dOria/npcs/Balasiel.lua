@@ -32,7 +32,7 @@ function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local lvl = player:getMainLvl()
     local aSquiresTest = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_SQUIRE_S_TEST)
-    local aSquiresTestII = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.dsp.quest.id.sandoria.A_SQUIRE_S_TEST_II)
+    local aSquiresTestII = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SQUIRE_S_TEST_II)
     local aKnightsTest = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_KNIGHT_S_TEST)
 
     if (wsQuestEvent ~= nil) then

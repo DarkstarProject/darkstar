@@ -105,7 +105,7 @@ function onTrigger(player,npc)
         player:startEvent(845) -- COP event
     elseif (currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
         player:startEvent(847) -- COP event 3.3
-    elseif (player:getMainJob() == dsp.job.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
+    elseif (player:getMainJob() == dsp.job.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_PUPPET) == QUEST_AVAILABLE) then
         player:startEvent(760) -- Start Quest "Dark Puppet"
     elseif (currentMission == GEOLOGICAL_SURVEY) then
         if (player:hasKeyItem(dsp.ki.RED_ACIDITY_TESTER)) then

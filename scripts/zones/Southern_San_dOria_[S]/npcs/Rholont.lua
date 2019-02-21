@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON) == QUEST_ACCEPTED and player:getVar("GiftsOfGriffonProg") == 2 and player:getVar("GiftsOfGriffonPlumes") == 127) then
         player:startEvent(24); -- Gifts of Griffon Quest Complete
 
-    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_AVAILABLE and player:getQuestStatus(CRYSTAL_WAR,GIFTS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getMainLvl() >= 15) then
+    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_AVAILABLE and player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.GIFTS_OF_THE_GRIFFON) == QUEST_COMPLETED and player:getMainLvl() >= 15) then
         player:startEvent(47) -- Claws of Griffon Start
 
     elseif (player:getVar("BoyAndTheBeast") == 1) then
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
     elseif (player:getVar("BoyAndTheBeast") > 1 and player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BOY_AND_THE_BEAST) ~= QUEST_COMPLETED) then
         player:startEvent(57);
 
-    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BOY_AND_THE_BEAST) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR,WRATH_OF_THE_GRIFFON) == QUEST_AVAILABLE) then
+    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.BOY_AND_THE_BEAST) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON) == QUEST_AVAILABLE) then
         player:startEvent(59);
     elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON) == QUEST_ACCEPTED) then
         if (player:getVar("WrathOfTheGriffon") < 2) then

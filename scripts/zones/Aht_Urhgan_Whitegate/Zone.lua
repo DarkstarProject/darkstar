@@ -98,7 +98,7 @@ function onRegionEnter(player,region)
                 player:startEvent(3092);
             elseif (player:getCurrentMission(TOAU) == STIRRINGS_OF_WAR and player:getVar("AhtUrganStatus") == 1) then
                 player:startEvent(3136,0,0,0,0,0,0,0,0,0);
-            elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
+            elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NAVIGATING_THE_UNFRIENDLY_SEAS) == QUEST_COMPLETED and player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.COR and player:getMainLvl() >= AF3_QUEST_LEVEL) then
                 player:startEvent(797);
             end
         end,

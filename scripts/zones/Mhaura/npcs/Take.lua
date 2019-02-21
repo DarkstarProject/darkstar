@@ -36,7 +36,7 @@ if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.RYCHARDE_THE_C
     end
 
 
-elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)==QUEST_AVAILABLE and player:getQuestStatus(OTHER_AREAS_LOG,HIS_NAME_IS_VALGEIR )==QUEST_COMPLETED) then --
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)==QUEST_AVAILABLE and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR )==QUEST_COMPLETED) then --
     player:startEvent(61);-- accept expertice quest
 
 
@@ -47,11 +47,11 @@ elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)
         player:startEvent(63);-- expertice not done yet
     end
 
-elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)==QUEST_COMPLETED and player:getQuestStatus(OTHER_AREAS_LOG,THE_CLUE)==QUEST_AVAILABLE) then --
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.EXPERTISE)==QUEST_COMPLETED and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)==QUEST_AVAILABLE) then --
     player:startEvent(64); -- after expertice quest
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)==QUEST_ACCEPTED) then--
     player:startEvent(65); -- good luck
-elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)==QUEST_COMPLETED and player:getQuestStatus(OTHER_AREAS_LOG,THE_BASICS)==QUEST_AVAILABLE) then --
+elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_CLUE)==QUEST_COMPLETED and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS)==QUEST_AVAILABLE) then --
     player:startEvent(66);-- Valgeir cook was delicious
 elseif (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.THE_BASICS)==QUEST_COMPLETED) then--
     player:startEvent(67);-- after back to basics i think

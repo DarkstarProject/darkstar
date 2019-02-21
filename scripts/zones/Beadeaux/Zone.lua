@@ -38,7 +38,7 @@ function onZoneIn(player,prevZone)
             cs = 121
         elseif player:getCurrentMission(BASTOK) == THE_FOUR_MUSKETEERS and player:getVar("MissionStatus") == 1 then
             cs = 120
-        elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, BLADE_OF_EVIL) == QUEST_AVAILABLE then
+        elseif player:getMainJob() == dsp.job.DRK and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.DARK_PUPPET) == QUEST_COMPLETED and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_EVIL) == QUEST_AVAILABLE then
             cs = 122
         end
     end

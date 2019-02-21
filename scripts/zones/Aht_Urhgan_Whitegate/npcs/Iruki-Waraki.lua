@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
 
     if csid == 260 then
         player:setVar("NoStringsAttachedProgress",2)
-    elseif csid == 266 and npcUtil.completeQuest(player, AHT_URHGAN,NO_STRINGS_ATTACHED, {item=17859, title=dsp.title.PROUD_AUTOMATON_OWNER, var="NoStringsAttachedProgress"}) then
+    elseif csid == 266 and npcUtil.completeQuest(player, AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED, {item=17859, title=dsp.title.PROUD_AUTOMATON_OWNER, var="NoStringsAttachedProgress"}) then
         player:unlockJob(dsp.job.PUP)
         player:messageSpecial(ID.text.YOU_CAN_BECOME_PUP) -- "You can now become a puppetmaster."
         player:setPetName(dsp.pet.type.AUTOMATON, option+118)
@@ -94,7 +94,7 @@ function onEventFinish(player,csid,option)
         player:setVar("TheWaywardAutomationProgress",1)
         player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION)
     elseif csid == 776 then
-        npcUtil.completeQuest(player,AHT_URHGAN,THE_WAYWARD_AUTOMATION, {item=17858, var="TheWaywardAutomationProgress"})
+        npcUtil.completeQuest(player,AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION, {item=17858, var="TheWaywardAutomationProgress"})
     elseif csid == 778 then
         player:setVar("OperationTeatimeProgress",1)
         player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OPERATION_TEATIME)

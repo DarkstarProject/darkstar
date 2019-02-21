@@ -14,9 +14,15 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SMALL_STARFRUIT) then
+    if
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STIRS) == QUEST_ACCEPTED and
+        player:hasKeyItem(dsp.ki.SMALL_STARFRUIT)
+    then
         player:startEvent(129)
-    elseif player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED and player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_AVAILABLE then
+    elseif
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED and
+        player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_AVAILABLE
+    then
         if player:getCurrentMission(WOTG) == CAIT_SITH or player:hasCompletedMission(WOTG, CAIT_SITH) then
             player:startEvent(151)
         end
