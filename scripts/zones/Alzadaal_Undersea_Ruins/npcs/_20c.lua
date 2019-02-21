@@ -12,11 +12,11 @@ function onTrigger(player, npc)
     if player:hasKeyItem(dsp.keyItem.NYZUL_ISLE_ASSAULT_ORDERS) then
         player:messageSpecial(ID.text.CANNOT_LEAVE, dsp.keyItem.NYZUL_ISLE_ASSAULT_ORDERS)
     elseif player:getZPos() >= 77 and player:getZPos() <= 79 then
-        player:messageSpecial(ID.text.STAGING_POINT_NYZULE)
+        player:messageSpecial(ID.text.STAGING_POINT_NYZUL)
         player:messageSpecial(ID.text.IMPERIAL_CONTROL)
         player:startEvent(107)
     elseif player:getZPos() >= 80 and player:getZPos() <= 82 then
-        player:messageSpecial(ID.text.STAGING_POINT_NYZULE)
+        player:messageSpecial(ID.text.STAGING_POINT_NYZUL)
         player:messageSpecial(ID.text.IMPERIAL_CONTROL)
         player:startEvent(106)
     else
