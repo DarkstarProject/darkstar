@@ -10,8 +10,8 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local MihgosAmigo = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.MIHGO_S_AMIGO)
-    local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quests.ids.windurst.AS_THICK_AS_THIEVES)
+    local MihgosAmigo = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.MIHGO_S_AMIGO)
+    local thickAsThieves = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
     local thickAsThievesCS = player:getVar("thickAsThievesCS")
 
     -- As Thick As Thieves (THF AF)

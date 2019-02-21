@@ -16,7 +16,7 @@ require("scripts/globals/pets")
 
 
 function onTrade(player,npc,trade)
-    if npcUtil.tradeHas(trade, {{"gil", 10000}}) and player:getQuestStatus(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.NO_STRINGS_ATTACHED) == QUEST_COMPLETED and not player:hasItem(17859) then
+    if npcUtil.tradeHas(trade, {{"gil", 10000}}) and player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED) == QUEST_COMPLETED and not player:hasItem(17859) then
         player:confirmTrade()
         npcUtil.giveItem(player, 17859)
     elseif npcUtil.tradeHas(trade, {4161, 5570}) and player:getVar("OperationTeatimeProgress") == 1 then -- Chai, Sleeping Potion
@@ -26,11 +26,11 @@ end
 
 function onTrigger(player,npc)
 
-    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.NO_STRINGS_ATTACHED)
+    local NoStringsAttached = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.NO_STRINGS_ATTACHED)
     local NoStringsAttachedProgress = player:getVar("NoStringsAttachedProgress")
-    local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.THE_WAYWARD_AUTOMATION)
+    local TheWaywardAutomation = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION)
     local TheWaywardAutomationProgress = player:getVar("TheWaywardAutomationProgress")
-    local OperationTeatime = player:getQuestStatus(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.OPERATION_TEATIME)
+    local OperationTeatime = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OPERATION_TEATIME)
     local OperationTeatimeProgress = player:getVar("OperationTeatimeProgress")
     local LvL = player:getMainLvl()
     local Job = player:getMainJob()
@@ -92,12 +92,12 @@ function onEventFinish(player,csid,option)
         player:unlockAttachment(8193) --Harlequin Head
     elseif csid == 774 then
         player:setVar("TheWaywardAutomationProgress",1)
-        player:addQuest(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.THE_WAYWARD_AUTOMATION)
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.THE_WAYWARD_AUTOMATION)
     elseif csid == 776 then
         npcUtil.completeQuest(player,AHT_URHGAN,THE_WAYWARD_AUTOMATION, {item=17858, var="TheWaywardAutomationProgress"})
     elseif csid == 778 then
         player:setVar("OperationTeatimeProgress",1)
-        player:addQuest(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.OPERATION_TEATIME)
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.OPERATION_TEATIME)
     elseif csid == 780 then
         player:setVar("OperationTeatimeProgress",2)
         player:confirmTrade()

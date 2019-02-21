@@ -2,7 +2,7 @@ require("scripts/globals/log_ids")
 require("scripts/globals/zone")
 
 dsp = dsp or {}
-dsp.quests = dsp.quests or {}
+dsp.quest = dsp.quest or {}
 
 -----------------------------------
 --
@@ -18,7 +18,7 @@ QUEST_COMPLETED = 2;
 -- branch that will be merged in at a later date. Used
 -- as keys for the quest ID tables below.
 
-dsp.quests.log_ids =
+dsp.quest.log_id =
 {
     SANDORIA    =  0,
     BASTOK      =  1,
@@ -33,27 +33,27 @@ dsp.quests.log_ids =
     COALITION   = 10
 }
 
-dsp.quests.areas =
+dsp.quest.area =
 {
-    [dsp.quests.log_ids.SANDORIA]    = 'sandoria',
-    [dsp.quests.log_ids.BASTOK]      = 'bastok',
-    [dsp.quests.log_ids.WINDURST]    = 'windurst',
-    [dsp.quests.log_ids.JEUNO]       = 'jeuno',
-    [dsp.quests.log_ids.OTHER_AREAS] = 'otherAreas',
-    [dsp.quests.log_ids.OUTLANDS]    = 'outlands',
-    [dsp.quests.log_ids.AHT_URHGAN]  = 'ahtUrhgan',
-    [dsp.quests.log_ids.CRYSTAL_WAR] = 'crystalWar',
-    [dsp.quests.log_ids.ABYSSEA]     = 'abyssea',
-    [dsp.quests.log_ids.ADOULIN]     = 'adoulin',
-    [dsp.quests.log_ids.COALITION]   = 'coalition'
+    [dsp.quest.log_id.SANDORIA]    = 'sandoria',
+    [dsp.quest.log_id.BASTOK]      = 'bastok',
+    [dsp.quest.log_id.WINDURST]    = 'windurst',
+    [dsp.quest.log_id.JEUNO]       = 'jeuno',
+    [dsp.quest.log_id.OTHER_AREAS] = 'otherAreas',
+    [dsp.quest.log_id.OUTLANDS]    = 'outlands',
+    [dsp.quest.log_id.AHT_URHGAN]  = 'ahtUrhgan',
+    [dsp.quest.log_id.CRYSTAL_WAR] = 'crystalWar',
+    [dsp.quest.log_id.ABYSSEA]     = 'abyssea',
+    [dsp.quest.log_id.ADOULIN]     = 'adoulin',
+    [dsp.quest.log_id.COALITION]   = 'coalition'
 }
 
-dsp.quests.ids =
+dsp.quest.id =
 {
     -----------------------------------
     --  San d'Oria
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.SANDORIA]] =
+    [dsp.quest.area[dsp.quest.log_id.SANDORIA]] =
     {
         A_SENTRY_S_PERIL                = 0,  -- ± --
         WATER_OF_THE_CHEVAL             = 1,  -- ± --
@@ -141,7 +141,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Bastok
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.BASTOK]] =
+    [dsp.quest.area[dsp.quest.log_id.BASTOK]] =
     {
         THE_SIREN_S_TEAR                = 0,  -- ± --
         BEAUTY_AND_THE_GALKA            = 1,  -- ± --
@@ -239,7 +239,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Windurst
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.WINDURST]] =
+    [dsp.quest.area[dsp.quest.log_id.WINDURST]] =
     {
         HAT_IN_HAND                     = 0,  -- + --
         A_FEATHER_IN_ONE_S_CAP          = 1,  -- + --
@@ -335,7 +335,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Jeuno
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.JEUNO]] =
+    [dsp.quest.area[dsp.quest.log_id.JEUNO]] =
     {
         CREST_OF_DAVOI                  = 0,  -- + --
         SAVE_MY_SISTER                  = 1,  -- + --
@@ -486,7 +486,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Other Areas
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.OTHER_AREAS]] =
+    [dsp.quest.area[dsp.quest.log_id.OTHER_AREAS]] =
     {
         RYCHARDE_THE_CHEF               = 0,  -- + --
         WAY_OF_THE_COOK                 = 1,  -- + --
@@ -559,7 +559,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Outlands
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.OUTLANDS]] =
+    [dsp.quest.area[dsp.quest.log_id.OUTLANDS]] =
     {
         -- Kazham (1-15)
         THE_FIREBLOOM_TREE              = 1,
@@ -631,7 +631,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Aht Urhgan
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.AHT_URHGAN]] =
+    [dsp.quest.area[dsp.quest.log_id.AHT_URHGAN]] =
     {
         KEEPING_NOTES                   = 0,
         ARTS_AND_CRAFTS                 = 1,
@@ -689,7 +689,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Crystal War
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.CRYSTAL_WAR]] =
+    [dsp.quest.area[dsp.quest.log_id.CRYSTAL_WAR]] =
     {
         LOST_IN_TRANSLOCATION            = 0,
         MESSAGE_ON_THE_WINDS             = 1,
@@ -788,7 +788,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Abyssea
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.ABYSSEA]] =
+    [dsp.quest.area[dsp.quest.log_id.ABYSSEA]] =
     {
         -- For some reason these did not match dat file order,
         -- had to adjust IDs >120 after using @addquest
@@ -989,7 +989,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Adoulin
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.ADOULIN]] =
+    [dsp.quest.area[dsp.quest.log_id.ADOULIN]] =
     {
         -- These also do not match the DAT file order, had
         -- discrepencies and swapped orders from the start.
@@ -1095,7 +1095,7 @@ dsp.quests.ids =
     -----------------------------------
     --  Coalition
     -----------------------------------
-    [dsp.quests.areas[dsp.quests.log_ids.COALITION]] =
+    [dsp.quest.area[dsp.quest.log_id.COALITION]] =
     {
         -- Also slightly incongruent with DAT file order
         PROCURE_CEIZAK_BATTLEGROUNDS    = 0,

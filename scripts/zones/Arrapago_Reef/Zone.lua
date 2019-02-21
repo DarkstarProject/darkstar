@@ -54,7 +54,7 @@ function onRegionEnter(player,region)
         player:startEvent(14)
     elseif (player:getCurrentMission(TOAU) == TESTING_THE_WATERS and player:hasKeyItem(dsp.ki.EPHRAMADIAN_GOLD_COIN)) then
         player:startEvent(15)
-    elseif (player:getQuestStatus(AHT_URHGAN,dsp.quests.ids.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
+    elseif (player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS) == QUEST_ACCEPTED and player:getVar("AgainstAllOdds") == 1) then
         player:startEvent(237)
     end
 end
@@ -89,7 +89,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 237) then
         player:startEvent(240)
     elseif csid == 238 then
-        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quests.ids.ahtUrhgan.AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
+        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.AGAINST_ALL_ODDS, { item=15266, var="AgainstAllOdds"})
     elseif (csid == 240) then
         player:setVar("AgainstAllOdds",2)
     end

@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
             player:setVar("BorghertzCS",0);
             player:setVar("BorghertzAlreadyActiveWithJob",0);
             player:addFame(JEUNO,30);
-            player:completeQuest(JEUNO,dsp.quests.ids.jeuno.NumQuest);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.NumQuest);
         end
     end
 end;

@@ -22,7 +22,7 @@ function nbHandsQuestsCompleted(player)
     local questNotAvailable = 0;
 
     for nb = 1, 15, 1 do
-        if (player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.43 + nb) ~= QUEST_AVAILABLE) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.43 + nb) ~= QUEST_AVAILABLE) then
             questNotAvailable = questNotAvailable + 1;
         end
     end
@@ -35,64 +35,64 @@ function onTrigger(player,npc)
 
     if (player:getMainLvl() >= 50 and player:getVar("BorghertzAlreadyActiveWithJob") == 0) then
         if (player:getMainJob() == dsp.job.WAR and
-           player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and
-           player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_WARRING_HANDS) == QUEST_AVAILABLE) then
+           player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH) ~= QUEST_AVAILABLE and
+           player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for WAR
         elseif (player:getMainJob() == dsp.job.MNK and
-               player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.THE_FIRST_MEETING) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_STRIKING_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_FIRST_MEETING) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for MNK
         elseif (player:getMainJob() == dsp.job.WHM and
-               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.PRELUDE_OF_BLACK_AND_WHITE) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_HEALING_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PRELUDE_OF_BLACK_AND_WHITE) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for WHM
         elseif (player:getMainJob() == dsp.job.BLM and
-               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.RECOLLECTIONS) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_SORCEROUS_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BLM
         elseif (player:getMainJob() == dsp.job.RDM and
-               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.ENVELOPED_IN_DARKNESS) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_VERMILLION_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RDM
         elseif (player:getMainJob() == dsp.job.THF and
-               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.AS_THICK_AS_THIEVES) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_SNEAKY_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for THF
         elseif (player:getMainJob() == dsp.job.PLD and
-               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.A_BOY_S_DREAM) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_STALWART_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for PLD
         elseif (player:getMainJob() == dsp.job.DRK and
-               player:getQuestStatus(BASTOK,dsp.quests.ids.bastok.DARK_PUPPET) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_SHADOWY_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_PUPPET) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for DRK
         elseif (player:getMainJob() == dsp.job.BST and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.SCATTERED_INTO_SHADOW) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_WILD_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BST
         elseif (player:getMainJob() == dsp.job.BRD and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.THE_REQUIEM) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for BRD
         elseif (player:getMainJob() == dsp.job.RNG and
-               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.FIRE_AND_BRIMSTONE) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_CHASING_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(WINDURST,dsp.quest.id.windurst.FIRE_AND_BRIMSTONE) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for RNG
         elseif (player:getMainJob() == dsp.job.SAM and
-               player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.YOMI_OKURI) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_LOYAL_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.YOMI_OKURI) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for SAM
         elseif (player:getMainJob() == dsp.job.NIN and
-               player:getQuestStatus(OUTLANDS,dsp.quests.ids.outlands.I_LL_TAKE_THE_BIG_BOX) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.I_LL_TAKE_THE_BIG_BOX) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for NIN
         elseif (player:getMainJob() == dsp.job.DRG and
-               player:getQuestStatus(SANDORIA,dsp.quests.ids.sandoria.CHASING_QUOTAS) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.CHASING_QUOTAS) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for DRG
         elseif (player:getMainJob() == dsp.job.SMN and
-               player:getQuestStatus(WINDURST,dsp.quests.ids.windurst.CLASS_REUNION) ~= QUEST_AVAILABLE and
-               player:getQuestStatus(JEUNO,dsp.quests.ids.jeuno.BORGHERTZ_S_CALLING_HANDS) == QUEST_AVAILABLE) then
+               player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION) ~= QUEST_AVAILABLE and
+               player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS) == QUEST_AVAILABLE) then
             player:startEvent(155); -- Start Quest for SMN
         else
             player:startEvent(154); -- Standard dialog
@@ -125,7 +125,7 @@ function onEventFinish(player,csid,option)
 
     if (csid == 155) then
         local NumQuest = 43 + player:getMainJob();
-        player:addQuest(JEUNO,dsp.quests.ids.jeuno.NumQuest);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.NumQuest);
         player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
     end
 

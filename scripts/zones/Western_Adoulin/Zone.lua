@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
 
         if (option == 1) then
             -- Starts Quest: 'Raptor Rapture'
-            player:addQuest(ADOULIN, dsp.quests.ids.adoulin.RAPTOR_RAPTURE);
+            player:addQuest(ADOULIN, dsp.quest.id.adoulin.RAPTOR_RAPTURE);
             player:setVar("Raptor_Rapture_Status", 4);
         end
     end
