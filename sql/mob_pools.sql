@@ -6082,6 +6082,7 @@ INSERT INTO `mob_pools` VALUES (6019,'shantotto_ii','shantotto_ii',153,0x0000260
 -- Reserved for future Trust 6022
 -- Reserved for future Trust 6023
 INSERT INTO `mob_pools` VALUES (6024,'Qoofim','Qoofim',197,0x00005C0100000000000000000000000000000000,1,1,7,240,100,0,0,0,1,2,7,0,0,3,0,0,0,1,0,197);
+INSERT INTO `mob_pools` VALUES (6025,'Ravenous_Crawler','Ravenous_Crawler',79,0x00008C0100000000000000000000000000000000,1,1,11,240,100,0,0,0,1,2,7,0,0,129,0,0,0,1,0,79);
 
 /*!40000 ALTER TABLE `mob_pools` ENABLE KEYS */;
 UNLOCK TABLES;
