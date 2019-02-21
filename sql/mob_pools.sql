@@ -5951,8 +5951,9 @@ INSERT INTO `mob_pools` VALUES (5890,'Marquis_Naberius','Marquis_Naberius',169,0
 INSERT INTO `mob_pools` VALUES (5891,'Sabotender_Corrido','Sabotender_Corrido',212,0x0000740100000000000000000000000000000000,2,2,1,360,100,0,1,0,0,2,7,0,0,131,0,0,0,1,0,0);
 INSERT INTO `mob_pools` VALUES (5892,'Euryale','Euryale',171,0x0600750600000000000000000000000000000000,19,19,5,240,100,0,1,0,1,2,7,32,0,517,0,0,0,1,0,171);
 INSERT INTO `mob_pools` VALUES (5893,'Gloombound_Lurker','Gloombound_Lurker',221,0x0000230200000000000000000000000000000000,6,6,5,360,100,0,1,0,1,2,7,0,0,155,0,0,0,1,0,0);
+INSERT INTO `mob_pools` VALUES (5894,'Lesath','Lesath',217,0x00001C0100000000000000000000000000000000,1,1,7,280,100,0,1,0,1,2,7,0,0,129,0,0,0,1,0,370);
 
--- 5894 through 5895 available for use (change/remove this comment when IDs are used)
+-- 5895 available for use (change/remove this comment when ID is used)
 
 INSERT INTO `mob_pools` VALUES (5896,'Shantotto','Shantotto',153,0x0000B80B00000000000000000000000000000000,4,5,2,240,100,0,2,0,0,0,0,32,0,3,0,0,276,1,0,750);
 -- INSERT INTO `mob_pools` VALUES (5897,'naji',

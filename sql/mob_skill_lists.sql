@@ -1733,7 +1733,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Leech',369,423);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,418);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,421);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,420);
--- 370: free
+INSERT INTO `mob_skill_lists` VALUES ('Lesath',370,354); -- wild_rage
 INSERT INTO `mob_skill_lists` VALUES ('Marid',371,1705);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,444);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,443);
