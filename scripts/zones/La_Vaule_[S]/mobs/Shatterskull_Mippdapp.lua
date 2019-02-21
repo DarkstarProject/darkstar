@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: La Vaule (S)
---  Mob: Lobison
+--   NM: Shatterskull Mippdapp
 -----------------------------------
 mixins = {require("scripts/mixins/families/gnole")}
 -----------------------------------
