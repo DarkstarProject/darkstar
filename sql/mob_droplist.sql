@@ -33037,6 +33037,7 @@ INSERT INTO `mob_droplist` VALUES (4668,0,0,1000,2844,269); -- (Gloombound Lurke
 INSERT INTO `mob_droplist` VALUES (4669,0,0,1000,16015,176); -- (Lesath) Esse Earring
 INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2819,300); -- (Muq Shabeel) Aptant: Fyrst
 INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2821,200); -- (Muq Shabeel) Aptant: Haelan
+INSERT INTO `mob_droplist` VALUES (4671,0,0,1000,16022,238); -- (Donggu) Fidelity Earring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
