@@ -124,7 +124,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 155) then
-        local NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS - 1 + player:getMainJob() - 1;
+        local NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + player:getMainJob() - 1;
         player:addQuest(JEUNO,NumQuest);
         player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
     end
