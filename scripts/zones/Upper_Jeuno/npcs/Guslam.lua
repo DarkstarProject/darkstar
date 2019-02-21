@@ -21,8 +21,8 @@ function nbHandsQuestsCompleted(player)
 
     local questNotAvailable = 0;
 
-    for nb = 1, 15, 1 do
-        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.43 + nb) ~= QUEST_AVAILABLE) then
+    for nb = 0, 14, 1 do
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS + nb) ~= QUEST_AVAILABLE) then
             questNotAvailable = questNotAvailable + 1;
         end
     end
@@ -124,8 +124,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 155) then
-        local NumQuest = 43 + player:getMainJob();
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.NumQuest);
+        local NumQuest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS - 1 + player:getMainJob() - 1;
+        player:addQuest(JEUNO,NumQuest);
         player:setVar("BorghertzAlreadyActiveWithJob",player:getMainJob());
     end
 

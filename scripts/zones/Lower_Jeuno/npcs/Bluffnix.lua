@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
     local TheGobbieBag = gobQuest(player,inventorySize);
     local pFame = player:getFameLevel(JEUNO);
 
-    if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TheGobbieBag[1]) == 1) then
+    if (count == 4 and gil == 0 and player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 1) then
         if (player:getContainerSize(0) < 80) then
             if (trade:hasItemQty(TheGobbieBag[3],1) and trade:hasItemQty(TheGobbieBag[4],1) and trade:hasItemQty(TheGobbieBag[5],1) and trade:hasItemQty(TheGobbieBag[6],1)) then
                 if (pFame >= TheGobbieBag[2]) then
@@ -65,7 +65,7 @@ function onTrigger(player,npc)
         local pFame = player:getFameLevel(JEUNO);
         local inventorySize = player:getContainerSize(0);
         local TheGobbieBag = gobQuest(player,inventorySize);
-        local questStatus = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TheGobbieBag[1]);
+        local questStatus = player:getQuestStatus(JEUNO,TheGobbieBag[1]);
 
         offer = 0;
         if (pFame >= TheGobbieBag[2]) then
@@ -85,8 +85,8 @@ function onEventFinish(player,csid,option)
     local TheGobbieBag = gobQuest(player,player:getContainerSize(0));
 
     if (csid == 43 and option == 0) then
-        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TheGobbieBag[1]) == 0) then
-            player:addQuest(JEUNO,dsp.quest.id.jeuno.TheGobbieBag[1]);
+        if (player:getQuestStatus(JEUNO,TheGobbieBag[1]) == 0) then
+            player:addQuest(JEUNO,TheGobbieBag[1]);
         end
     elseif (csid == 73) then
         if (gobbieBag == 5) then
@@ -100,7 +100,7 @@ function onEventFinish(player,csid,option)
         player:changeContainerSize(6,5);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,dsp.quest.id.jeuno.TheGobbieBag[1]);
+        player:completeQuest(JEUNO,TheGobbieBag[1]);
         player:messageSpecial(ID.text.INVENTORY_INCREASED);
     elseif (csid == 10056) then
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",12,true);
