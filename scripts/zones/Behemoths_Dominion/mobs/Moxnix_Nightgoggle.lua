@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Moxnix Nightgoggle
+--   NM: Moxnix Nightgoggle
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}

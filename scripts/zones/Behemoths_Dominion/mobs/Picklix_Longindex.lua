@@ -1,6 +1,6 @@
 -----------------------------------
 -- Area: Behemoth's Dominion
---  MOB: Picklix Longindex
+--   NM: Picklix Longindex
 -- Involved in Quest: The Talekeeper's Gift
 -----------------------------------
 mixins = {require("scripts/mixins/job_special")}
