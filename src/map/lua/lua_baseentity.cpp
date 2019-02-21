@@ -13817,17 +13817,20 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
     if (lua_isnumber(L, 1))
     {
         SpellID spellid = static_cast<SpellID>(lua_tointeger(L, 1));
-        CBattleEntity* PTarget {nullptr};
+        uint16 targid = 0;
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
-            PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
+            if (PLuaBaseEntity->m_PBaseEntity)
+            {
+                targid = PLuaBaseEntity->m_PBaseEntity->targid;
+            }
         }
 
-        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, spellid](auto PEntity) {
-            if (PTarget)
-                PEntity->PAI->Cast(PTarget->targid, spellid);
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [targid, spellid](auto PEntity) {
+            if (targid)
+                PEntity->PAI->Cast(targid, spellid);
             else if (dynamic_cast<CMobEntity*>(PEntity))
                 PEntity->PAI->Cast(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), spellid);
         }));
