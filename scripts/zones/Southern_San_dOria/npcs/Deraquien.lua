@@ -8,6 +8,7 @@
 local ID = require("scripts/zones/Southern_San_dOria/IDs")
 require("scripts/globals/keyitems")
 require("scripts/globals/quests")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onTrade(player,npc,trade)
@@ -28,7 +29,7 @@ function onTrigger(player,npc)
 
     if lureOfTheWildcat == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy, 4) == false then
         player:startEvent(811)
-    elseif aTimelyVisit ~= QUEST_COMPLETE then
+    elseif aTimelyVisit ~= QUEST_COMPLETED then
         local canAccessChateau = true -- TODO: Change to false after testing
         local rankLevel = player:getRank()
 
