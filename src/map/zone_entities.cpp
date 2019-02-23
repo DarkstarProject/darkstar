@@ -660,7 +660,7 @@ CBaseEntity* CZoneEntities::GetEntity(uint16 targid, uint8 filter)
     }
     else if (targid < 0x800)
     {
-        if (filter & TYPE_PET)
+        if (filter & TYPE_PET || filter & TYPE_TRUST)
         {
             EntityList_t::const_iterator it = m_petList.find(targid);
             if (it != m_petList.end())

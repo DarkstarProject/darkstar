@@ -8,7 +8,7 @@ require("scripts/globals/npc_util")
 require("scripts/globals/helm")
 -----------------------------------
 
-function onTrade(player,npc,trade)
+function onTrade(player, npc, trade)
     if player:getVar("TheHolyCrest_Event") == 3 and not player:hasItem(1159) and npcUtil.tradeHas(trade, 605) then
         if npcUtil.giveItem(player, 1159) then -- Wyvern Egg
             player:confirmTrade()
@@ -19,12 +19,12 @@ function onTrade(player,npc,trade)
 
 end
 
-function onTrigger(player,npc)
+function onTrigger(player, npc)
     dsp.helm.onTrigger(player, dsp.helm.type.EXCAVATION)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
 end

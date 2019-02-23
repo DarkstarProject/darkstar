@@ -28,6 +28,7 @@ This file is part of DarkStar-server source code.
 #include "party_member_update.h"
 
 #include "../entities/charentity.h"
+#include "../entities/trustentity.h"
 #include "../alliance.h"
 #include "../party.h"
 
@@ -66,6 +67,32 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 Mem
     }
 
     memcpy(data + (0x26), PChar->GetName(), PChar->name.size());
+}
+
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber)
+{
+    this->type = 0xDD;
+    this->size = 0x20;
+
+    DSP_DEBUG_BREAK_IF(PTrust == nullptr);
+
+    ref<uint32>(0x04) = PTrust->id;
+
+    ref<uint16>(0x14) = 0;
+    ref<uint32>(0x08) = PTrust->health.hp;
+    ref<uint32>(0x0C) = PTrust->health.mp;
+    ref<uint16>(0x10) = PTrust->health.tp;
+    ref<uint16>(0x18) = PTrust->targid;
+    ref<uint8>(0x1A) = MemberNumber;
+    ref<uint8>(0x1D) = PTrust->GetHPP();
+    ref<uint8>(0x1E) = PTrust->GetMPP();
+
+    ref<uint8>(0x22) = PTrust->GetMJob();
+    ref<uint8>(0x23) = PTrust->GetMLevel();
+    ref<uint8>(0x24) = PTrust->GetSJob();
+    ref<uint8>(0x25) = PTrust->GetSLevel();
+
+    memcpy(data + (0x26), PTrust->GetName(), PTrust->name.size());
 }
 CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const int8* name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID)
 {

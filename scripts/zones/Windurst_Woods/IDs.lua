@@ -74,6 +74,14 @@ zones[dsp.zone.WINDURST_WOODS] =
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17764400] = 55, -- Meriri
+            [17764401] = 54, -- Kuzah Hpirohpon
+            [17764462] = 58, -- Taraihi-Perunhi
+            [17764464] = 56, -- Nhobi Zalkia
+            [17764465] = 57, -- Millerovieunet
+        },
     },
 }
 

@@ -3,27 +3,27 @@
 --  NPC: ???
 -- Involved in Mission: Bastok 8-2
 -----------------------------------
-local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
-require("scripts/globals/missions");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
+require("scripts/globals/missions")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    if (player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1) then
-        player:startEvent(12);
+function onTrigger(player, npc)
+    if player:getCurrentMission(BASTOK) == ENTER_THE_TALEKEEPER and player:getVar("MissionStatus") == 1 then
+        player:startEvent(12)
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-    if (csid == 12 and option == 0) then
-        player:setVar("MissionStatus",2);
-        player:messageSpecial(ID.text.FELL);
+function onEventFinish(player, csid, option)
+    if csid == 12 and option == 0 then
+        player:setVar("MissionStatus", 2)
+        player:messageSpecial(ID.text.FELL)
     end
-end;
+end

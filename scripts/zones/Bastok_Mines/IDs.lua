@@ -78,6 +78,14 @@ zones[dsp.zone.BASTOK_MINES] =
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17735742] = 41, -- Faustin
+            [17735744] = 43, -- Mille
+            [17735747] = 42, -- Aulavia
+            [17735795] = 40, -- Proud Beard
+            [17735818] = 44, -- Emaliveulaux
+        },
         LELEROON_BLUE_DOOR = 17735847,
         EXPLORER_MOOGLE    = 17735856,
     },

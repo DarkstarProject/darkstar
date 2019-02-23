@@ -33017,7 +33017,6 @@ INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1625,40); -- Moblin Helm
 INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1631,10); -- Moblin Armor
 INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1632,80); -- Moblin Mail
 INSERT INTO `mob_droplist` VALUES (4653,0,0,1000,1729,200); -- Moblin Hotrok
-
 INSERT INTO `mob_droplist` VALUES (4654,0,0,1000,16028,136); -- (Thunderclaw Thuban) Psyche Earring
 INSERT INTO `mob_droplist` VALUES (4655,0,0,1000,2846,310); -- (Legalox Heftyhind) Hefty Oak Lumber
 INSERT INTO `mob_droplist` VALUES (4656,0,0,1000,16187,122); -- (Shankha) Adoubeur's Pavise
@@ -33026,6 +33025,14 @@ INSERT INTO `mob_droplist` VALUES (4657,0,0,1000,2809,125); -- (Melusine) Furia 
 INSERT INTO `mob_droplist` VALUES (4658,0,0,1000,2814,250); -- (Big Bang) Aptant: Bellum
 INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenrir's Crown
 INSERT INTO `mob_droplist` VALUES (4660,0,0,1000,16035,41); -- (Goaftrap) Altdorf's Earring
+INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,11408,63); -- (Sarcopsylla) Morana's Pigaches
+INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,11533,333); -- (Rogue Receptacle) Lyricist's Gonnelle
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,15944,249); -- (Frogamander) Selemnus Belt
+INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,17969,31); -- (Killer Jonny) Fendoir
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,2831,539); -- (Marquis Naberius) Yellow Brass Chain
+INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2818,172); -- (Sabotender Corrido) Aptant: Ishis
+INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2816,103); -- (Sabotender Corrido) Aptant: Tachus
+INSERT INTO `mob_droplist` VALUES (4667,0,0,1000,19125,73); -- (Euryale) Lyft Jambiya
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

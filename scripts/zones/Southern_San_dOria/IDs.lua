@@ -98,6 +98,14 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA] =
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17719303] = 47, -- Machielle
+            [17719304] = 50, -- Corua
+            [17719305] = 48, -- Phamelise
+            [17719306] = 46, -- Apairemant
+            [17719493] = 49, -- Pourette
+        },
         LUSIANE  = 17719350,
         ARPETION = 17719409,
     },

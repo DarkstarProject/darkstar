@@ -852,6 +852,7 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
         case 4: actiontype = ACTION_MAGIC_FINISH; break;
         case 5: actiontype = ACTION_ITEM_FINISH; break;
         case 6: actiontype = ACTION_JOBABILITY_FINISH; break;
+        case 8: actiontype = ACTION_MAGIC_START; break;
         case 11: actiontype = ACTION_MOBABILITY_FINISH; break;
         case 13: actiontype = ACTION_PET_MOBABILITY_FINISH; break;
         case 14: actiontype = ACTION_DANCE; break;
@@ -892,6 +893,28 @@ inline int32 CLuaBaseEntity::injectActionPacket(lua_State* L)
     target.messageID = message;
     target.speceffect = speceffect;
     target.reaction = reaction;
+
+    if (actiontype == ACTION_MAGIC_START)
+    {
+        SPELLGROUP castType = (SPELLGROUP)lua_tointeger(L, 2);
+        uint16 castAnim = (uint16)lua_tointeger(L, 3);
+
+        Action.spellgroup = castType;
+        Action.actiontype = actiontype;
+        target.reaction = REACTION_NONE;
+        target.speceffect = SPECEFFECT_NONE;
+        if (lua_isnil(L, 3))
+        {
+            target.animation = 0;
+        }
+        else
+        {
+            target.animation = castAnim;
+        }
+        target.param = message;
+        target.messageID = 327; // starts casting
+        return 0;
+    }
 
     PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CActionPacket(Action));
 
@@ -2691,7 +2714,7 @@ inline int32 CLuaBaseEntity::showPosition(lua_State *L)
         (uint32)m_PBaseEntity->loc.p.y,
         (uint32)m_PBaseEntity->loc.p.z,
         m_PBaseEntity->loc.p.rotation,
-        239));
+        MsgStd::Compass));
     return 0;
 }
 
@@ -12122,6 +12145,29 @@ inline int32 CLuaBaseEntity::spawnPet(lua_State *L)
 }
 
 /************************************************************************
+*  Function: spawnTrust()
+*  Purpose : Spawns a Trust if a few correct conditions are met
+*  Example : caster:spawnTrust(TRUST_SHANTOTTO)
+*  Notes   :
+************************************************************************/
+
+inline int32 CLuaBaseEntity::spawnTrust(lua_State *L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC); // only PCs can spawn trusts
+    if (!lua_isnil(L, 1) && lua_isstring(L, 1))
+    {
+        uint16 trustId = (uint16)lua_tointeger(L, 1);
+        petutils::SpawnTrust((CCharEntity*)m_PBaseEntity, trustId);
+    }
+    else
+    {
+        ShowError(CL_RED"CLuaBaseEntity::spawnTrust : TrustID is NULL\n" CL_RESET);
+    }
+    return 0;
+}
+
+/************************************************************************
 *  Function: despawnPet()
 *  Purpose : Despawns a Pet Entity
 *  Example : target:despawnPet()
@@ -13771,17 +13817,20 @@ inline int32 CLuaBaseEntity::castSpell(lua_State* L)
     if (lua_isnumber(L, 1))
     {
         SpellID spellid = static_cast<SpellID>(lua_tointeger(L, 1));
-        CBattleEntity* PTarget {nullptr};
+        uint16 targid = 0;
 
         if (!lua_isnil(L, 2) && lua_isuserdata(L, 2))
         {
             CLuaBaseEntity* PLuaBaseEntity = Lunar<CLuaBaseEntity>::check(L, 2);
-            PTarget = (CBattleEntity*)PLuaBaseEntity->m_PBaseEntity;
+            if (PLuaBaseEntity->m_PBaseEntity)
+            {
+                targid = PLuaBaseEntity->m_PBaseEntity->targid;
+            }
         }
 
-        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [PTarget, spellid](auto PEntity) {
-            if (PTarget)
-                PEntity->PAI->Cast(PTarget->targid, spellid);
+        m_PBaseEntity->PAI->QueueAction(queueAction_t(0ms, true, [targid, spellid](auto PEntity) {
+            if (targid)
+                PEntity->PAI->Cast(targid, spellid);
             else if (dynamic_cast<CMobEntity*>(PEntity))
                 PEntity->PAI->Cast(static_cast<CMobEntity*>(PEntity)->GetBattleTargetID(), spellid);
         }));
@@ -14760,6 +14809,8 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOldestManeuver),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeAllManeuvers),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateAttachments),
+
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity, spawnTrust),
 
     // Mob Entity-Specific
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,setMobLevel),

@@ -37,7 +37,8 @@ enum ENTITYTYPE
     TYPE_NPC    = 0x02,
     TYPE_MOB    = 0x04,
     TYPE_PET    = 0x08,
-    TYPE_SHIP   = 0x10
+    TYPE_SHIP   = 0x10,
+    TYPE_TRUST  = 0x20
 };
 
 enum STATUSTYPE
