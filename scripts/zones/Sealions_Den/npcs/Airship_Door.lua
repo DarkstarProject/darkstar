@@ -2,18 +2,18 @@
 -- Area: Sealion's Den
 --  NPC: Airship_Door
 -----------------------------------
-local ID = require("scripts/zones/Sealions_Den/IDs");
+local ID = require("scripts/zones/Sealions_Den/IDs")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local offset = npc:getID() - ID.npc.AIRSHIP_DOOR_OFFSET;
-    player:startEvent(32003, offset + 1);
-end;
+function onTrigger(player, npc)
+    local offset = npc:getID() - ID.npc.AIRSHIP_DOOR_OFFSET
+    player:startEvent(32003, offset + 1)
+end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
     local inst = player:getVar("bcnm_instanceid")
 
     -- spawn omega for given instance
@@ -30,11 +30,11 @@ function onEventUpdate(player,csid,option)
             SpawnMob(ultimaId)
         end
     end
-end;
+end
 
-function onEventFinish(player,csid,option)
-    if (csid == 32003 and (option >= 100 and option <= 102)) then
-        local inst = option - 99;
+function onEventFinish(player, csid, option)
+    if csid == 32003 and option >= 100 and option <= 102 then
+        local inst = option - 99
         player:startEvent(player:getLocalVar("[OTBF]cs"), inst)
     end
-end;
+end
