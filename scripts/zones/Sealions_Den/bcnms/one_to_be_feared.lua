@@ -38,7 +38,6 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 
-
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (player:getCurrentMission(COP) == ONE_TO_BE_FEARED and player:getVar("PromathiaStatus")==2) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -55,11 +54,9 @@ function onBcnmLeave(player,instance,leavecode)
 end;
 
 function onEventUpdate(player,csid,option)
-    -- print("bc update csid "..csid.." and option "..option);
 end;
 
 function onEventFinish(player,csid,option)
-    -- print("bc finish csid "..csid.." and option "..option);
     if (csid == 32001) then
         player:addExp(1500);
         player:setPos(438 ,0 ,-18 ,11 ,24);-- tp lufease

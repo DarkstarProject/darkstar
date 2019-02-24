@@ -10,7 +10,7 @@ function onMobDeath(mob, player, isKiller)
     -- find mob offset for given battlefield instance
     local inst = math.floor((mob:getID() - ID.mob.ONE_TO_BE_FEARED_OFFSET) / 7);
     local instOffset = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst));
-    
+
     -- if all five mammets in this instance are dead, start event
     local allMammetsDead = true;
     for i = instOffset + 0, instOffset + 4 do
@@ -34,12 +34,7 @@ function onEventFinish(player,csid,option)
             player:setHP(player:getMaxHP());
             player:setMP(player:getMaxMP());
             player:setTP(0);
-
-            -- spawn omega for given instance
-            local omegaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 5;
-            if (omegaId ~= nil and not GetMobByID(omegaId):isSpawned()) then
-                SpawnMob(omegaId);
-            end
+            player:setLocalVar("[OTBF]cs", 1)
 
             -- move player to instance
             if (inst == 1) then

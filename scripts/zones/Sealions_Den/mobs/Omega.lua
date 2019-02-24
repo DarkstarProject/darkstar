@@ -36,12 +36,7 @@ function onEventFinish(player,csid,option)
             player:setHP(player:getMaxHP());
             player:setMP(player:getMaxMP());
             player:setTP(0);
-
-            -- spawn ultima for given instance
-            local ultimaId = ID.mob.ONE_TO_BE_FEARED_OFFSET + (7 * (inst - 1)) + 6;
-            if (ultimaId ~= nil and not GetMobByID(ultimaId):isSpawned()) then
-                SpawnMob(ultimaId);
-            end
+            player:setLocalVar("[OTBF]cs", 2)
 
             -- move player to instance
             if (inst == 1) then

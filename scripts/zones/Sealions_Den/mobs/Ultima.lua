@@ -24,4 +24,5 @@ end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.ULTIMA_UNDERTAKER);
+    player:setLocalVar("[OTBF]cs", 0)
 end;
