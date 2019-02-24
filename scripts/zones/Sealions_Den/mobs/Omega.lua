@@ -8,7 +8,9 @@ require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
 end
 
 function onMobFight(mob, target)

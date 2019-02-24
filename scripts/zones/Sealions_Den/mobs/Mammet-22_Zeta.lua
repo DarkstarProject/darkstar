@@ -6,6 +6,11 @@ local ID = require("scripts/zones/Sealions_Den/IDs")
 require("scripts/globals/titles")
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setMobMod(dsp.mobMod.EXP_BONUS, -100)
+    mob:setMobMod(dsp.mobMod.GIL_MAX, -1)
+end
+
 function onMobDeath(mob, player, isKiller)
     -- find mob offset for given battlefield instance
     local inst = math.floor((mob:getID() - ID.mob.ONE_TO_BE_FEARED_OFFSET) / 7)
