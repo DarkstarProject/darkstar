@@ -56,17 +56,11 @@ enum WEATHER
 
 #define WEATHER_CYCLE 2160
 
-/************************************************************************
-*                                                                       *
-*                                                                       *
-*                                                                       *
-************************************************************************/
-
 class CWeatherPacket : public CBasicPacket
 {
 public:
 
-    CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect);
+    CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect, uint8 TransitionTime);
 };
 
 #endif

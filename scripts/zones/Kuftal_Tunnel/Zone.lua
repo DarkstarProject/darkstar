@@ -3,44 +3,44 @@
 -- Zone: Kuftal_Tunnel (174)
 --
 -----------------------------------
-local ID = require("scripts/zones/Kuftal_Tunnel/IDs");
-require("scripts/globals/conquest");
+local ID = require("scripts/zones/Kuftal_Tunnel/IDs")
+require("scripts/globals/conquest")
 require("scripts/globals/treasure")
-require("scripts/globals/weather");
-require("scripts/globals/status");
+require("scripts/globals/weather")
+require("scripts/globals/status")
 -----------------------------------
 
 function onInitialize(zone)
-    UpdateNMSpawnPoint(ID.mob.GUIVRE);
-    GetMobByID(ID.mob.GUIVRE):setRespawnTime(math.random(900, 10800));
+    UpdateNMSpawnPoint(ID.mob.GUIVRE)
+    GetMobByID(ID.mob.GUIVRE):setRespawnTime(math.random(900, 10800))
 
     dsp.treasure.initZone(zone)
-end;
+end
 
 function onConquestUpdate(zone, updatetype)
     dsp.conq.onConquestUpdate(zone, updatetype)
-end;
+end
 
-function onZoneIn(player,prevZone)
-    local cs = -1;
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        player:setPos(20.37,-21.104,275.782,46);
+function onZoneIn(player, prevZone)
+    local cs = -1
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(20.37, -21.104, 275.782, 46)
     end
-    return cs;
-end;
+    return cs
+end
 
-function onRegionEnter(player,region)
-end;
+function onRegionEnter(player, region)
+end
 
-function onEventUpdate(player,csid,option)
-end;
+function onEventUpdate(player, csid, option)
+end
 
-function onEventFinish(player,csid,option)
-end;
+function onEventFinish(player, csid, option)
+end
 
 function onGameHour(zone)
-    local phase = VanadielMoonPhase();      -- 0% to 100%
-    local dir   = VanadielMoonDirection();  -- 0 (neither) 1 (waning) or 2 (waxing)
+    local phase = VanadielMoonPhase() -- 0% to 100%
+    local dir = VanadielMoonDirection() -- 0 (neither) 1 (waning) or 2 (waxing)
     local boulderOpen =
     {
         [1] = {
@@ -71,13 +71,13 @@ function onGameHour(zone)
             [21] = function() return (phase >= 24 and phase <= 38) end,
             [23] = function() return (phase >= 40 and phase <= 55) end,
         }
-    };
+    }
 
-    if (dir > 0) then
-        local shouldOpen = boulderOpen[dir][VanadielHour()];
-        local boulder = GetNPCByID(ID.npc.DOOR_ROCK);
-        if (shouldOpen ~= nil and shouldOpen() and boulder:getAnimation() == dsp.anim.CLOSE_DOOR) then
-            boulder:openDoor(144 * 6); -- one vanadiel hour is 144 earth seconds. lower boulder for 6 vanadiel hours.
+    if dir > 0 then
+        local shouldOpen = boulderOpen[dir][VanadielHour()]
+        local boulder = GetNPCByID(ID.npc.DOOR_ROCK)
+        if shouldOpen and shouldOpen() and boulder:getAnimation() == dsp.anim.CLOSE_DOOR then
+            boulder:openDoor(144 * 6) -- one vanadiel hour is 144 earth seconds. lower boulder for 6 vanadiel hours.
         end
     end
-end;
+end
