@@ -153,7 +153,7 @@ ENM_COOLDOWN = 120;  -- Number of hours before a player can obtain same KI for E
 FORCE_SPAWN_QM_RESET_TIME = 300; -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
 
 -- LIMBUS
-BETWEEN_2COSMOCLEANSE_WAIT_TIME = 72; -- Hours before player can re-enter Limbus. Default is 3 Earthdays (72 hours).
+BETWEEN_2COSMOCLEANSE_WAIT_TIME = 20; -- Hours before player can re-enter Limbus. Default is 20 hrs.
 DIMENSIONAL_PORTAL_UNLOCK = false; -- Set true to bypass requirements for using dimensional portals to reach sea for Limbus
 
 -- ABYSSEA
