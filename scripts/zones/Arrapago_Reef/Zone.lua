@@ -39,8 +39,6 @@ function onZoneIn(player,prevZone)
     return cs
 end
 
-
-
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1")
     player:entityVisualPacket("2pb1")
