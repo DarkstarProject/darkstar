@@ -33041,6 +33041,7 @@ INSERT INTO `mob_droplist` VALUES (4671,0,0,1000,16022,238); -- (Donggu) Fidelit
 INSERT INTO `mob_droplist` VALUES (4672,0,0,1000,16033,209); -- (Qoofim) Sylph Earring
 INSERT INTO `mob_droplist` VALUES (4673,0,0,1000,16020,265); -- (Ravenous Crawler) Survivor Earring
 INSERT INTO `mob_droplist` VALUES (4674,0,0,1000,15056,212); -- (Barbaric Weapon) Rover's Gloves
+INSERT INTO `mob_droplist` VALUES (4675,0,0,1000,2828,86); -- (Herensugue) Herensugue Skin
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
