@@ -18,29 +18,28 @@ end
 
 function onZoneIn(player,prevZone)
     local cs = -1
-
-    if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
-        if prevZone == dsp.zone.THE_ASHU_TALIF then
-            if (player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2) then
-                cs = 9
-            elseif player:getVar("AgainstAllOdds") == 3 then
-                player:setPos(-456, -3, -405, 64)
-                cs = 238
-            else
-                player:setPos(-456, -3, -405, 64)
-            end
-        elseif (prevZone == dsp.zone.CAEDARVA_MIRE and player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 0) then
-        cs = 13
-        else
-            player:setPos(-180.028,-10.335,-559.987,182)
+    if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
+        player:setPos(500.019, -18.333, -40.026, 202)
+    end
+    if prevZone == dsp.zone.THE_ASHU_TALIF then
+        if player:getVar("AhtUrganStatus") == 2 and player:getCurrentMission(TOAU) == THE_BLACK_COFFIN then
+                    player:setPos(-456, -3, -405, 64)
+                    cs = 9
+        elseif player:getVar("AgainstAllOdds") == 3 then
+            cs = 238
         end
+    elseif prevZone == dsp.zone.CAEDARVA_MIRE then
+            if
+                player:getVar("AhtUrganStatus") == 0 and player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES then
+                    cs = 13
     end
-    if prevZone == dsp.zone.ILRUSI_ATOLL then
-        player:setPos(26,-7,606,222)
+    elseif prevZone == dsp.zone.ILRUSI_ATOLL then
+        player:setPos(26, -7, 606, 222)
     end
-
     return cs
 end
+
+
 
 function afterZoneIn(player)
     player:entityVisualPacket("1pb1")
