@@ -907,6 +907,8 @@ INSERT INTO `nm_spawn_points` VALUES (17170475,0,24.514,-70.143,-220.559); -- Ra
 INSERT INTO `nm_spawn_points` VALUES (17170499,0,24.01,-67.138,-240.132); -- Kirtimukha
 INSERT INTO `nm_spawn_points` VALUES (17170569,0,-51.734,-28.457,686.549); -- Demoiselle Desolee
 INSERT INTO `nm_spawn_points` VALUES (17174709,0,133.834,22.199,-208.7); -- Centipedal Centruroides
+INSERT INTO `nm_spawn_points` VALUES (17178689,0,51,32,279); -- Coquecigrue (north)
+INSERT INTO `nm_spawn_points` VALUES (17178689,1,199,0,-234); -- Coquecigrue (south)
 INSERT INTO `nm_spawn_points` VALUES (17178803,0,446.853,23.817,72.982); -- Balam-Quitz
 INSERT INTO `nm_spawn_points` VALUES (17182790,0,-228,-0.68,148); -- Duu Masa the Onecut (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182813,0,-103.220,-0.246,-159.507); -- Zhuu Buxu the Silent (Castle Oztroja [S])
