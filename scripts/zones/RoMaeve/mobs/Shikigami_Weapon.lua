@@ -1,10 +1,11 @@
 -----------------------------------
 -- Area: RoMaeve
---  MOB: Shikigami Weapon
+--   NM: Shikigami Weapon
 -----------------------------------
 require("scripts/globals/pathfind")
 require("scripts/globals/regimes")
 require("scripts/globals/status")
+-----------------------------------
 
 local path =
 {
@@ -40,6 +41,11 @@ local path =
     -23, -4, -36,
     -35, -4, -36,
 }
+
+function onMobInitialize(mob)
+    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10) -- "Double Attacks frequently"
+    mob:setMod(dsp.mod.REGEN, 5) -- "Has a minor Auto Regen effect"
+end
 
 function onMobSpawn(mob)
     mob:setStatus(dsp.status.INVISIBLE)
