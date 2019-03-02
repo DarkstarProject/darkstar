@@ -66,7 +66,7 @@ function onSpellCast(caster,target,spell)
         end
     end
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then -- e.g. is a PC and not a monster (?)
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB or target:getObjType() == dsp.objType.TRUST)) then -- e.g. is a PC and not a monster (?)
         if (USE_OLD_CURE_FORMULA == true) then
             basecure = getBaseCureOld(power,divisor,constant)
         else

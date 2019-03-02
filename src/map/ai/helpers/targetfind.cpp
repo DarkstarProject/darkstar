@@ -243,12 +243,27 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
 {
-
     PTarget->ForParty([this, withPet](CBattleEntity* PMember)
     {
         addEntity(PMember, withPet);
+        if (PMember->objtype == TYPE_PC) {
+            CCharEntity* PChar = (CCharEntity*)m_PBattleEntity;
+            if (PChar->objtype == TYPE_TRUST) {
+               
+                CCharEntity* PMaster = (CCharEntity*)PChar->PMaster;
+                for (CTrustEntity* trust : PMaster->PTrusts)
+                {
+                    addEntity((CBattleEntity*)trust, withPet);
+                }
+            }
+            else if (PChar->PTrusts.size() != 0) {
+                for (CTrustEntity* trust : PChar->PTrusts)
+                {                 
+                    addEntity((CBattleEntity*)trust, withPet);  
+                }
+            }
+        }
     });
-
 }
 
 void CTargetFind::addAllInEnmityList()

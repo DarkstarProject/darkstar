@@ -75,6 +75,7 @@ struct Pet_t
     uint32		time;		// время существования (будет использоваться для задания длительности статус эффекта)
 
     uint8		mJob;
+	uint8       sJob;
     uint8		m_Element;
     float       HPscale;                             // HP boost percentage
     float       MPscale;                             // MP boost percentage
@@ -152,6 +153,7 @@ namespace petutils
                 systemid,\
                 mob_pools.familyid,\
                 mob_pools.mJob,\
+				mob_pools.sJob,\
                 pet_list.element,\
                 (mob_family_system.HP / 100),\
                 (mob_family_system.MP / 100),\
@@ -190,34 +192,35 @@ namespace petutils
                 Pet->EcoSystem = (ECOSYSTEM)Sql_GetIntData(SqlHandle, 6);
                 Pet->m_Family = (uint16)Sql_GetIntData(SqlHandle, 7);
                 Pet->mJob = (uint8)Sql_GetIntData(SqlHandle, 8);
-                Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 9);
+    			Pet->sJob = (uint8)Sql_GetIntData(SqlHandle, 9);
+                Pet->m_Element = (uint8)Sql_GetIntData(SqlHandle, 10);
 
-                Pet->HPscale = Sql_GetFloatData(SqlHandle, 10);
-                Pet->MPscale = Sql_GetFloatData(SqlHandle, 11);
+                Pet->HPscale = Sql_GetFloatData(SqlHandle, 11);
+                Pet->MPscale = Sql_GetFloatData(SqlHandle, 12);
 
-                Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 12);
+                Pet->speed = (uint8)Sql_GetIntData(SqlHandle, 13);
 
-                Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 13);
-                Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 14);
-                Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 15);
-                Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 16);
-                Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 17);
-                Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 18);
-                Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 19);
-                Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 20);
-                Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 21);
-                Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 22);
-                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 23);
+                Pet->strRank = (uint8)Sql_GetIntData(SqlHandle, 14);
+                Pet->dexRank = (uint8)Sql_GetIntData(SqlHandle, 15);
+                Pet->vitRank = (uint8)Sql_GetIntData(SqlHandle, 16);
+                Pet->agiRank = (uint8)Sql_GetIntData(SqlHandle, 17);
+                Pet->intRank = (uint8)Sql_GetIntData(SqlHandle, 18);
+                Pet->mndRank = (uint8)Sql_GetIntData(SqlHandle, 19);
+                Pet->chrRank = (uint8)Sql_GetIntData(SqlHandle, 20);
+                Pet->defRank = (uint8)Sql_GetIntData(SqlHandle, 21);
+                Pet->attRank = (uint8)Sql_GetIntData(SqlHandle, 22);
+                Pet->accRank = (uint8)Sql_GetIntData(SqlHandle, 23);
+                Pet->evaRank = (uint8)Sql_GetIntData(SqlHandle, 24);
 
-                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 24);
+                Pet->hasSpellScript = (bool)Sql_GetIntData(SqlHandle, 25);
 
-                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 25);
+                Pet->spellList = (uint8)Sql_GetIntData(SqlHandle, 26);
 
                 // resistances
-                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 26) * 1000);
-                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
-                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
-                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
+                Pet->slashres = (uint16)(Sql_GetFloatData(SqlHandle, 27) * 1000);
+                Pet->pierceres = (uint16)(Sql_GetFloatData(SqlHandle, 28) * 1000);
+                Pet->hthres = (uint16)(Sql_GetFloatData(SqlHandle, 29) * 1000);
+                Pet->impactres = (uint16)(Sql_GetFloatData(SqlHandle, 30) * 1000);
 
                 Pet->firedef = 0;
                 Pet->icedef = 0;
@@ -228,18 +231,18 @@ namespace petutils
                 Pet->lightdef = 0;
                 Pet->darkdef = 0;
 
-                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 30) - 1) * -100);
-                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
-                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
-                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
-                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
-                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
-                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
-                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
+                Pet->fireres = (uint16)((Sql_GetFloatData(SqlHandle, 31) - 1) * -100);
+                Pet->iceres = (uint16)((Sql_GetFloatData(SqlHandle, 32) - 1) * -100);
+                Pet->windres = (uint16)((Sql_GetFloatData(SqlHandle, 33) - 1) * -100);
+                Pet->earthres = (uint16)((Sql_GetFloatData(SqlHandle, 34) - 1) * -100);
+                Pet->thunderres = (uint16)((Sql_GetFloatData(SqlHandle, 35) - 1) * -100);
+                Pet->waterres = (uint16)((Sql_GetFloatData(SqlHandle, 36) - 1) * -100);
+                Pet->lightres = (uint16)((Sql_GetFloatData(SqlHandle, 37) - 1) * -100);
+                Pet->darkres = (uint16)((Sql_GetFloatData(SqlHandle, 38) - 1) * -100);
 
-                Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 38);
-                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 39);
-                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 40);
+				Pet->cmbDelay = (uint16)Sql_GetIntData(SqlHandle, 39);
+                Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 40);
+                Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 41);
 
                 g_PPetList.push_back(Pet);
             }
@@ -284,6 +287,12 @@ namespace petutils
             PPet->PAI->Disengage();
         }
     }
+	
+    uint16 GetTrustWeaponDamage(CTrustEntity* PTrust)
+    {
+        float MainLevel = PTrust->GetMLevel();
+        return (uint16)(MainLevel * (MainLevel < 40 ? 1.4 - MainLevel / 100 : 1));
+    }	
 
     uint16 GetJugWeaponDamage(CPetEntity* PPet)
     {
@@ -636,7 +645,7 @@ namespace petutils
         }
     }
 
-    void LoadTrustStats(CTrustEntity* PTrust)
+    void LoadTrustStats(CTrustEntity* PTrust, Pet_t* petStats)
     {
         // Cargo cult of PC calculations.
 
@@ -662,14 +671,13 @@ namespace petutils
 
         uint8 race = 0;                 //Human
 
-        switch (PTrust->look.race)
+        switch (PTrust->m_Family)
         {
-        case 3:
-        case 4: race = 1; break;    //Elvaan
-        case 5:
-        case 6: race = 2; break;    //Tarutaru
-        case 7: race = 3; break;    //Mithra
-        case 8: race = 4; break;    //Galka
+        case 149: race = 0; break;    //Human
+        case 145: race = 1; break;    //Elvaan
+        case 153: race = 2; break;    //Tarutaru
+        case 151: race = 3; break;    //Mithra
+        case 146: race = 4; break;    //Galka
         }
 
         // Расчет прироста HP от main job
@@ -818,6 +826,8 @@ namespace petutils
             ref<uint16>(&PTrust->stats, counter) = (uint16)((raceStat + jobStat + sJobStat));
             counter += 2;
         }
+        PTrust->m_Weapons[SLOT_MAIN]->setDamage(GetTrustWeaponDamage(PTrust));
+        PTrust->m_Weapons[SLOT_MAIN]->setDelay((uint16)(floor(1000* (petStats->cmbDelay / 60))));		
     }
 
     void LoadAvatarStats(CPetEntity* PPet)
@@ -1720,6 +1730,7 @@ namespace petutils
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
         DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
+		Pet_t* PPetData = g_PPetList.at(TrustID);
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;
@@ -1734,7 +1745,7 @@ namespace petutils
         PTrust->m_Family = trust->m_Family;
         PTrust->m_MobSkillList = trust->m_MobSkillList;
         PTrust->SetMJob(trust->mJob);
-        PTrust->SetSJob(trust->mJob); // TODO: This may not be true for some trusts
+        PTrust->SetSJob(trust->sJob); // TODO: This may not be true for some trusts
         PTrust->m_Element = trust->m_Element;
         PTrust->m_PetID = TrustID;
         PTrust->status = STATUS_NORMAL;
@@ -1753,13 +1764,14 @@ namespace petutils
         //set C magic evasion
         PTrust->setModifier(Mod::MEVA, battleutils::GetMaxSkill(SKILL_ELEMENTAL_MAGIC, JOB_RDM, PTrust->GetMLevel()));
         // HP/MP STR/DEX/etc..
-        LoadTrustStats(PTrust);
+        LoadTrustStats(PTrust, PPetData);
 
         PTrust->health.tp = 0;
         PTrust->UpdateHealth();
         PTrust->health.hp = PTrust->GetMaxHP();
         PTrust->health.mp = PTrust->GetMaxMP();
 
+		PTrust->Spawn();
         // TODO: Load stats from script
         return PTrust;
     }

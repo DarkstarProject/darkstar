@@ -114,9 +114,10 @@ INSERT INTO `pet_list` VALUES (69, 'HarlequinFrame', 5124, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (70, 'ValoredgeFrame', 5125, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (71, 'SharpshotFrame', 5126, 1, 99, 0, 0);
 INSERT INTO `pet_list` VALUES (72, 'StormwakerFrame', 5127, 1, 99, 0, 0);
--- INSERT INTO `pet_list` VALUES (73, 'AdventuringFellow', 0, 1, 99, 0, 0);
--- 74 is Chocobo in the enum..
-
-
+INSERT INTO `pet_list` VALUES (73, 'AdventuringFellow', 0, 1, 99, 0, 0);
+INSERT INTO `pet_list` VALUES (74, 'Chocobo', 0, 1, 99, 0, 0);
 -- trusts.. TODO: Make trusts not use petlist at all.
 INSERT INTO `pet_list` VALUES (75, 'Shantotto', 5896, 1, 99, 0, 0);
+INSERT INTO `pet_list` VALUES (76, 'Naji', 5897, 1, 99, 0, 0);
+INSERT INTO `pet_list` VALUES (77, 'Kupipi', 5898, 1, 99, 0, 0);
+INSERT INTO `pet_list` VALUES (78, 'Excenmille', 5899, 1, 99, 0, 0);

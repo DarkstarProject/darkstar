@@ -2496,6 +2496,7 @@ namespace luautils
 
         int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
+        PMob->objtype == TYPE_TRUST ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CMobEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
         if (prepFile(File, "onMobFight"))
@@ -2698,7 +2699,8 @@ namespace luautils
 
         int8 File[255];
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
-            snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
+        PMob->objtype == TYPE_TRUST ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CMobEntity*>(PMob)->GetScriptName().c_str()) :            
+			snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
         if (prepFile(File, "onMobSpawn"))
         {
             return -1;
@@ -3260,7 +3262,7 @@ namespace luautils
     int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
     {
         std::string path = "scripts/globals/abilities/%s.lua";
-        if (PUser->objtype == TYPE_PET) path = "scripts/globals/abilities/pets/%s.lua";
+        if (PUser->objtype == TYPE_PET || PUser->objtype == TYPE_TRUST) path = "scripts/globals/abilities/pets/%s.lua";
         lua_prepscript(path.c_str(), PAbility->getName());
 
         if (prepFile(File, "onUseAbility"))

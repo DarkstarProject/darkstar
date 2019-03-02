@@ -24,12 +24,12 @@ This file is part of DarkStar-server source code.
 #ifndef _TRUSTCONTROLLER_H
 #define _TRUSTCONTROLLER_H
 
-#include "controller.h"
+#include "pet_controller.h"
 
 class CCharEntity;
 class CTrustEntity;
 
-class CTrustController : public CController
+class CTrustController : public CMobController
 {
 public:
     CTrustController(CCharEntity*, CTrustEntity*);
@@ -38,16 +38,19 @@ public:
     virtual void Tick(time_point) override;
     virtual void Despawn() override;
 
-    virtual bool Cast(uint16 targid, SpellID spellid) override { return false; }
+    virtual bool Cast(uint16 targid, SpellID spellid);
     virtual bool ChangeTarget(uint16 targid) override { return false; }
     virtual bool WeaponSkill(uint16 targid, uint16 wsid) override { return false; }
-
-    virtual bool Ability(uint16 targid, uint16 abilityid) override { return false; }
+    virtual bool MobSkill(uint16 targid, uint16 wsid);
+    virtual bool Ability(uint16 targid, uint16 abilityid);
 
 private:
     static constexpr float RoamDistance{ 2.1f };
     void DoCombatTick(time_point tick);
     void DoRoamTick(time_point tick);
+	bool TrustIsHealing();
+	duration m_actionCooldown{ 3s };
+	time_point m_LastActionTime;
 };
 
 #endif // _TRUSTCONTROLLER

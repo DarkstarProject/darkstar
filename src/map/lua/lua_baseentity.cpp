@@ -8335,6 +8335,22 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
         lua_pcall(L, 2, 1, 0);
 
         lua_rawseti(L, -2, i++);
+		
+        CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+        if (PChar->PTrusts.size() != 0)
+        {
+            for (CTrustEntity* trust : PChar->PTrusts)
+            {
+                lua_getglobal(L, CLuaBaseEntity::className);
+                lua_pushstring(L, "new");
+                lua_gettable(L, -2);
+                lua_insert(L, -2);
+                lua_pushlightuserdata(L, (void*)trust);
+                lua_pcall(L, 2, 1, 0);
+
+                lua_rawseti(L, -2, i++);
+            }
+        }
     });
 
     return 1;
@@ -13888,7 +13904,7 @@ inline int32 CLuaBaseEntity::useJobAbility(lua_State* L)
 inline int32 CLuaBaseEntity::useMobAbility(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_PET && m_PBaseEntity->objtype != TYPE_TRUST);
 
     if (lua_isnumber(L, 1))
     {
@@ -14221,6 +14237,38 @@ inline int32 CLuaBaseEntity::getTHlevel(lua_State* L)
     CMobEntity* PMob = (CMobEntity*)m_PBaseEntity;
     lua_pushinteger(L, PMob->m_THLvl);
     return 1;
+}
+
+/************************************************************************
+*  Function: hasHate()
+*  Purpose : Returns true if an Entity is has hate
+*  Example : if (player:hasHate()) then
+*  Notes   :
+************************************************************************/
+
+int32 CLuaBaseEntity::hasHate(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+	DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+
+	bool hasHate = false;
+
+    CCharEntity* PEntity = (CCharEntity*)m_PBaseEntity;
+
+    for (SpawnIDList_t::iterator it = PEntity->SpawnMOBList.begin(); it != PEntity->SpawnMOBList.end(); ++it)
+    {
+        CMobEntity* PMob = (CMobEntity*)it->second;
+
+        if (PMob->PEnmityContainer->HasID(PEntity->id))
+        {
+            ShowWarning(CL_RED"Entity Hate!!!!\n" CL_RESET);
+            hasHate = true;
+            break;
+        }
+    }
+ 
+    lua_pushboolean(L,hasHate);
+	return 1;
 }
 
 //=======================================================//
@@ -14887,6 +14935,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTHlevel),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getPlayerRegionInZone),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateToEntireZone),
+	LUNAR_DECLARE_METHOD(CLuaBaseEntity,hasHate),
 
     {nullptr,nullptr}
 };

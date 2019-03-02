@@ -163,3 +163,7 @@ log/DSP.leaks
 
 #VS Code
 .vscode
+conf/search_server.conf
+conf/login_darkstar.conf
+conf/map_darkstar.conf
+conf/server_message.conf

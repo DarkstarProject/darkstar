@@ -40,7 +40,7 @@ function onSpellCast(caster,target,spell)
 
     final = final + (final * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
 
-    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB)) then
+    if (target:getAllegiance() == caster:getAllegiance() and (target:getObjType() == dsp.objType.PC or target:getObjType() == dsp.objType.MOB or target:getObjType() == dsp.objType.TRUST)) then
         --Applying server mods....
         final = final * CURE_POWER
     end

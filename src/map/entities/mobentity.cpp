@@ -141,6 +141,18 @@ CMobEntity::~CMobEntity()
     delete SpellContainer;
 }
 
+std::string CMobEntity::GetScriptName()
+{
+    if (objtype == TYPE_TRUST)
+    {
+        return (const char*)GetName();
+    }
+    else
+    {
+        return "";
+    }
+}
+
 /************************************************************************
 *                                                                       *
 *  Время исчезновения монстра в секундах                                *

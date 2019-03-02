@@ -40,6 +40,8 @@ public:
     virtual void Die() override;
     virtual void Spawn() override;
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
+    virtual void OnAbility(CAbilityState&, action_t&) override;
+	
 };
 
 #endif
