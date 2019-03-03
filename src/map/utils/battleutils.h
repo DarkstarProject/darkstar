@@ -186,6 +186,7 @@ namespace battleutils
     void                unCharm(CBattleEntity* PEntity);
 
     uint16              doSoulEaterEffect(CCharEntity* m_PChar, uint32 damage);
+    uint16              doConsumeManaEffect(CCharEntity* m_PChar, uint32 damage);
     int32               getOverWhelmDamageBonus(CCharEntity* m_PChar, CBattleEntity* PDefender, int32 damage);
     uint16              jumpAbility(CBattleEntity* PAttacker, CBattleEntity* PVictim, uint8 tier);
 

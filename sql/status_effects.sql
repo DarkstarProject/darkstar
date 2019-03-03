@@ -623,7 +623,7 @@ INSERT INTO `status_effects` VALUES (595,'aurorastorm_ii',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (596,'voidstorm_ii',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (597,'inundation',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (598,'cascade',32,0,0,0,0,0,0,0);
-INSERT INTO `status_effects` VALUES (599,'consume_mana',32,0,0,0,0,0,0,0);
+INSERT INTO `status_effects` VALUES (599,'consume_mana',33,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (600,'runeists_roll',131360,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (601,'crooked_cards',32,0,0,0,0,0,0,0);
 INSERT INTO `status_effects` VALUES (602,'vorseal',32,0,0,0,0,0,0,0);
