@@ -19,12 +19,13 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
-        player:setPos(500.019, -18.333, -40.026, 202)
+        player:setPos(-456, -3, -405, 64)
     end
+
     if prevZone == dsp.zone.THE_ASHU_TALIF then
         if player:getVar("AhtUrganStatus") == 2 and player:getCurrentMission(TOAU) == THE_BLACK_COFFIN then
-                    player:setPos(-456, -3, -405, 64)
-                    cs = 9
+            player:setPos(-456, -3, -405, 64)
+            cs = 9
         elseif player:getVar("AgainstAllOdds") == 3 then
             cs = 238
         end
