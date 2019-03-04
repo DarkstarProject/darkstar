@@ -2,6 +2,8 @@
 -- Area: Arrapago Remnants
 -- NPC: Armoury Crate (Arrapago)
 -----------------------------------
+require("scripts/globals/status")
+-----------------------------------
 
 function onTrigger(player, npc)
     local instance = npc:getInstance()

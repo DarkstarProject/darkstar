@@ -14,9 +14,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.PARALYSIS
-
-    MobStatusEffectMove(mob, target, typeEffect, 20, 0, 180)
+    MobStatusEffectMove(mob, target, dsp.effect.PARALYSIS, 20, 0, 180)
 
     local dmgmod = 1.75
     local accmod = 1

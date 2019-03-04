@@ -11,9 +11,7 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.BIND
-
-    MobStatusEffectMove(mob, target, typeEffect, 1, 0, 30)
+    MobStatusEffectMove(mob, target, dsp.effect.BIND, 1, 0, 30)
 
     local dmgmod = 2
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.ICE,dmgmod,TP_MAB_BONUS,1)

@@ -317,8 +317,6 @@ INSERT INTO `instance_entities` VALUES (59,17093482);
 
 -- Arrapago Remnants
 -- npc
-INSERT INTO `instance_entities` VALUES (65,17080596);
-INSERT INTO `instance_entities` VALUES (65,17080597);
 INSERT INTO `instance_entities` VALUES (65,17080598);
 INSERT INTO `instance_entities` VALUES (65,17080970);
 INSERT INTO `instance_entities` VALUES (65,17080971);
