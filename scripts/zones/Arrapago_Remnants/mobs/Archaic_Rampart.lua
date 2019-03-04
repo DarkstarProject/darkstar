@@ -2,10 +2,10 @@
 -- Area: Archaic Rampart
 --  MOB: Arrapago Remnants
 -----------------------------------
+mixins = {require("scripts/mixins/families/rampart")}
 local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 require("scripts/globals/instance")
 require("scripts/globals/status")
-mixins = {require("scripts/mixins/families/rampart")}
 -----------------------------------
 function onMobSpawn(mob)
     local instance = mob:getInstance()
