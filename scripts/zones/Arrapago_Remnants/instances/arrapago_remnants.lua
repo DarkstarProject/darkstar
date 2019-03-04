@@ -129,10 +129,8 @@ function onEventFinish(player, csid, option)
             SpawnMob(ID.mob[4][csid-204].rampart2, instance)
         end
         instance:setProgress(csid-204)
-        for _,v in ipairs(ID.mob[3]) do
-            for id = ID.mob[3][1].mobs_start, ID.mob[3].qiqirn_mine_2 do
-                DespawnMob(id, instance)
-            end
+        for id = ID.mob[3][1].mobs_start, ID.mob[3].qiqirn_mine_2 do
+            DespawnMob(id, instance)
         end
     elseif csid == 207 or csid == 208 and option == 1 then
         for i = 1, 3 do
