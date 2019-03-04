@@ -3373,6 +3373,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2054); -- diffusion ray
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2055); -- inertia stream
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2056); -- discharge
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex
