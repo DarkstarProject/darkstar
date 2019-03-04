@@ -30,9 +30,8 @@ function onZoneIn(player,prevZone)
             cs = 238
         end
     elseif prevZone == dsp.zone.CAEDARVA_MIRE then
-            if
-                player:getVar("AhtUrganStatus") == 0 and player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES then
-                    cs = 13
+        if player:getVar("AhtUrganStatus") == 0 and player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES then
+            cs = 13
     end
     elseif prevZone == dsp.zone.ILRUSI_ATOLL then
         player:setPos(26, -7, 606, 222)
