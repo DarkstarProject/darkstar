@@ -2180,7 +2180,7 @@ dsp.mobMod =
     AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
     SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
     SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
-    IS_NM               = 49, -- If set, a mob will check as a NM.
+    CHECK_AS_NM         = 49, -- If set, a mob will check as a NM.
     -- 50 Available for use
     ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
     ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))

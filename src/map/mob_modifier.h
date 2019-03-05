@@ -78,7 +78,7 @@ enum MOBMODIFIER : int
     MOBMOD_AUTO_SPIKES        = 46, // enables additional effect script to process when mob is attacked
     MOBMOD_SPAWN_LEASH        = 47, // forces a mob to not move farther from its spawn than its leash distance
     MOBMOD_SHARE_TARGET       = 48, // mob always targets same target as ID in this var
-    MOBMOD_IS_NM              = 49, // If set , mob will check as a NM
+    MOBMOD_CHECK_AS_NM        = 49, // If set , mob will check as a NM
     MOBMOD_PROC_2HOUR         = 50, // chance of mob's 2 hour activating 0-100% (OBSOLETE - use job_special mixin)
     MOBMOD_ROAM_TURNS         = 51, // Maximum amount of turns during a roam
     MOBMOD_ROAM_RATE          = 52, // Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))

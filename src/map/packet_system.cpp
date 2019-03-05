@@ -4687,7 +4687,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD || PTarget->getMobMod(MOBMOD_IS_NM) > 0)
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD || PTarget->getMobMod(MOBMOD_CHECK_AS_NM) > 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
             }
