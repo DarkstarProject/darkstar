@@ -96,7 +96,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (48,'deserter',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (49,'desperately_seeking_cephalopods',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (50,'bellerophon\'s_bliss',54,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (51,'nyzul_isle_investigation',72,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
+INSERT INTO `instance_list` VALUES (51,'nyzul_isle_investigation',72,30,-20.000,-4.000,-20.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (52,'nyzul_isle_uncharted_survey',72,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 INSERT INTO `instance_list` VALUES (53,'the_black_coffin',54,30,0,-22,24,64,-1,-1,-1,-1);
 INSERT INTO `instance_list` VALUES (54,'against_all_odds',54,30,-9.000,-22.000,17.000,252,-1,-1,-1,-1);
