@@ -33,7 +33,7 @@ end
 function onMobFight(mob, target)
     
     local act = mob:getCurrentAction()
-    local isBusy = false;
+    local isBusy = false
     local instance = mob:getInstance()
     local stage = instance:getStage()
     local prog = instance:getProgress()
