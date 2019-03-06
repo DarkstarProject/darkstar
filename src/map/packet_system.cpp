@@ -62,7 +62,7 @@ This file is part of DarkStar-server source code.
 #include "universal_container.h"
 #include "recast_container.h"
 #include "enmity_container.h"
-
+#include "mob_modifier.h"
 #include "ai/ai_container.h"
 #include "ai/states/death_state.h"
 
@@ -309,9 +309,10 @@ void SmallPacket0x00A(map_session_data_t* session, CCharEntity* PChar, CBasicPac
     PChar->pushPacket(new CZoneVisitedPacket(PChar));
 
     if (!PChar->loc.zoning)
+    {
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ZONE, true);
-    else
         charutils::ClearTempItems(PChar);
+    }
 
     PChar->PAI->QueueAction(queueAction_t(400ms, false, luautils::AfterZoneIn));
 }
@@ -4686,7 +4687,7 @@ void SmallPacket0x0DD(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         {
             CMobEntity* PTarget = (CMobEntity*)PEntity;
 
-            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD)
+            if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD || PTarget->getMobMod(MOBMOD_CHECK_AS_NM) > 0)
             {
                 PChar->pushPacket(new CMessageBasicPacket(PChar, PTarget, 0, 0, 249));
             }
