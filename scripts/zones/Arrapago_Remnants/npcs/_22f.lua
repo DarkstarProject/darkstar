@@ -2,8 +2,7 @@
 local ID = require("scripts/zones/Arrapago_Remnants/IDs")
 
 function onTrigger(entity, npc)
-    local instance = npc:getInstance()
-    if (npc:getInstance():getStage() == 6) and (instance:getProgress() >= 11) then
+    if (npc:getInstance():getStage() == 6) and (npc:getInstance():getProgress() >= 11) then
         entity:startEvent(300)
     else
         entity:messageSpecial(ID.text.DOOR_IS_SEALED)

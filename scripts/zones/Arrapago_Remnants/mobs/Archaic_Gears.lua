@@ -11,7 +11,7 @@ function onMobDeath(mob, player, isKiller)
             instance:setProgress(instance:getProgress() + 1)
         end
     end
-end;
+end
 
 function onMobDespawn(mob)
-end;
+end
