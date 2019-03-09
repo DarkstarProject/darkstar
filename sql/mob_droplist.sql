@@ -30556,20 +30556,18 @@ INSERT INTO `mob_droplist` VALUES (4127,0,0,1000,1613,100);
 INSERT INTO `mob_droplist` VALUES (4127,0,0,1000,1687,90);
 INSERT INTO `mob_droplist` VALUES (4128,2,0,1000,880,0);
 INSERT INTO `mob_droplist` VALUES (4128,0,0,1000,880,210);
-INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,300);
-INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,270);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,4824,70);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,16447,160);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,544,90);
+INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0); -- (Wendigo, Inner Horutoto Ruins, WAR) bone_chip: steal
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,300); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,270); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,16447,160); -- rusty_dagger
 INSERT INTO `mob_droplist` VALUES (4130,2,0,1000,880,0);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,880,250);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,1031,30);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,2776,40);
-INSERT INTO `mob_droplist` VALUES (4131,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,880,210);
-INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,4824,50);
+INSERT INTO `mob_droplist` VALUES (4131,2,0,1000,880,0); -- (Wendigo, Inner Horutoto Ruins, BLM) bone_chip: steal
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,544,90); -- test_answers
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,880,210); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,4824,50); -- scroll_of_gravity
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,891,130);
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,922,240);
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,924,60);
