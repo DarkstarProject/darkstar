@@ -23,16 +23,16 @@ function onZoneIn(player,prevZone)
     end
 
     if prevZone == dsp.zone.THE_ASHU_TALIF then
-        if player:getVar("AhtUrganStatus") == 2 and player:getCurrentMission(TOAU) == THE_BLACK_COFFIN then
+        if player:getCurrentMission(TOAU) == THE_BLACK_COFFIN and player:getVar("AhtUrganStatus") == 2 then
             player:setPos(-456, -3, -405, 64)
             cs = 9
         elseif player:getVar("AgainstAllOdds") == 3 then
             cs = 238
         end
     elseif prevZone == dsp.zone.CAEDARVA_MIRE then
-        if player:getVar("AhtUrganStatus") == 0 and player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES then
+        if player:getCurrentMission(TOAU) == PREVALENCE_OF_PIRATES and player:getVar("AhtUrganStatus") == 0 then
             cs = 13
-    end
+        end
     elseif prevZone == dsp.zone.ILRUSI_ATOLL then
         player:setPos(26, -7, 606, 222)
     end
