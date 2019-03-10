@@ -80,29 +80,7 @@ end
 
 function onEventFinish(player, csid, option)
     local instance = player:getInstance()
-    local chars = instance:getChars()
-    local pos = player:getPos()
     
-    if csid >= 200 and csid <= 210 and option == 1 then
-        if chars ~= nil then
-            for i,v in ipairs(chars) do
-                if v:getID() ~= player:getID() then
-                    v:startEvent(3)
-                    v:timer(4000, function(player)
-                        v:setPos(pos.x, pos.y, pos.z, pos.rot)
-                    end)
-                    v:setHP(v:getMaxHP())
-                    v:setMP(v:getMaxMP())
-                    --[[ has to be tested
-                    if v:hasPet() then
-                        local pet = v:getPet()
-                        pet:setHP(pet:getMaxHP())
-                        pet:setMP(pet:getMaxMP())
-                    end]]
-                end
-            end
-        end
-    end
     if csid >= 200 and csid <= 203 and option == 1 then
         for id = ID.mob[2][csid - 199].mobs_start, ID.mob[2][csid - 199].mobs_end do
             SpawnMob(id, instance)
