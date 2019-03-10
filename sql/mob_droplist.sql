@@ -33027,6 +33027,19 @@ INSERT INTO `mob_droplist` VALUES (4659,0,0,1000,11496,48); -- (Lizardtrap) Fenr
 INSERT INTO `mob_droplist` VALUES (4660,0,0,1000,16035,41); -- (Goaftrap) Altdorf's Earring
 INSERT INTO `mob_droplist` VALUES (4661,0,0,1000,11408,63); -- (Sarcopsylla) Morana's Pigaches
 INSERT INTO `mob_droplist` VALUES (4662,0,0,1000,11533,333); -- (Rogue Receptacle) Lyricist's Gonnelle
+INSERT INTO `mob_droplist` VALUES (4663,0,0,1000,15944,249); -- (Frogamander) Selemnus Belt
+INSERT INTO `mob_droplist` VALUES (4664,0,0,1000,17969,31); -- (Killer Jonny) Fendoir
+INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,2831,539); -- (Marquis Naberius) Yellow Brass Chain
+INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2818,172); -- (Sabotender Corrido) Aptant: Ishis
+INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2816,103); -- (Sabotender Corrido) Aptant: Tachus
+INSERT INTO `mob_droplist` VALUES (4667,0,0,1000,19125,73); -- (Euryale) Lyft Jambiya
+INSERT INTO `mob_droplist` VALUES (4668,0,0,1000,2844,269); -- (Gloombound Lurker) Penumbral Brass Ingot
+INSERT INTO `mob_droplist` VALUES (4669,0,0,1000,16015,176); -- (Lesath) Esse Earring
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2819,300); -- (Muq Shabeel) Aptant: Fyrst
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2821,200); -- (Muq Shabeel) Aptant: Haelan
+INSERT INTO `mob_droplist` VALUES (4671,0,0,1000,16022,238); -- (Donggu) Fidelity Earring
+INSERT INTO `mob_droplist` VALUES (4672,0,0,1000,16033,209); -- (Qoofim) Sylph Earring
+INSERT INTO `mob_droplist` VALUES (4673,0,0,1000,16020,265); -- (Ravenous Crawler) Survivor Earring
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

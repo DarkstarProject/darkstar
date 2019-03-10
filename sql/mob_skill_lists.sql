@@ -1641,7 +1641,7 @@ INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1130);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1131);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1133);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1134);
--- 362: free
+INSERT INTO `mob_skill_lists` VALUES ('Killer_Jonny',362,408); -- sound_vacuum
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,1943);
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,2067);
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,2301);
@@ -1733,7 +1733,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Leech',369,423);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,418);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,421);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,420);
--- 370: free
+INSERT INTO `mob_skill_lists` VALUES ('Lesath',370,354); -- wild_rage
 INSERT INTO `mob_skill_lists` VALUES ('Marid',371,1705);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,444);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,443);
@@ -2097,7 +2097,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3059);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3060);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3061);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3062);
--- 466: free
+INSERT INTO `mob_skill_lists` VALUES ('Muq_Shabeel',466,480); -- petrifactive_breath
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2784);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2785);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2786);

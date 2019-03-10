@@ -273,7 +273,7 @@ function onTrade(player,npc,trade)
     elseif afUpgrade == 0 then
         local tradedCombo = 0
         local storedABCs  = player:getCurrency("ancient_beastcoin")
-    
+
         -- check for af upgrade trades
         for k, v in pairs(afArmorPlusOne) do
             if npcUtil.tradeHasExactly(trade, v.trade) then
@@ -300,7 +300,7 @@ function onTrade(player,npc,trade)
         -- found a match
         if tradedCombo > 0 then
             local time = os.date("*t")
-            
+
             player:confirmTrade()
             player:setVar("AFupgrade", tradedCombo)
             player:setVar("AFupgradeDay", os.time() + (3600 - time.min * 60)) -- Current time + Remaining minutes in the hour in seconds (Day Change)
@@ -311,7 +311,7 @@ end
 
 function onTrigger(player,npc)
     local wildcatJeuno = player:getVar("WildcatJeuno")
-    
+
     -- LURE OF THE WILDCAT
     if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
         player:startEvent(313)
@@ -336,7 +336,7 @@ function onTrigger(player,npc)
         end
 
         -- calculate cosmocleanse parameters
-        local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 20 * 60 * 60
+        local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
         local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
 
         if lastCosmoTime ~= 0 then
@@ -376,7 +376,7 @@ function onEventFinish(player,csid,option)
     -- LURE OF THE WILDCAT
     if csid == 313 then
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true)
-        
+
     -- purchase cosmocleanse
     elseif csid == 310 and option == 3 and player:delGil(15000) then
         npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
@@ -397,7 +397,7 @@ function onEventFinish(player,csid,option)
         if info == nil then
             info = relicArmorPlusOne[afUpgrade]
         end
-        
+
         -- found a valid reward
         if info and npcUtil.giveItem(player, info.reward) then
             player:setVar("AFupgrade", 0)
