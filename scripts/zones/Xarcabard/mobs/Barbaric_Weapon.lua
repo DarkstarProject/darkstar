@@ -7,7 +7,6 @@ require("scripts/globals/status")
 -----------------------------------
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10)
     mob:setMod(dsp.mod.STORETP, 50) -- "Possesses extremely high Store TP."
 end
 

@@ -43,7 +43,6 @@ local path =
 }
 
 function onMobInitialize(mob)
-    mob:setMod(dsp.mod.DOUBLE_ATTACK, 10) -- "Double Attacks frequently"
     mob:setMod(dsp.mod.REGEN, 5) -- "Has a minor Auto Regen effect"
 end
 
