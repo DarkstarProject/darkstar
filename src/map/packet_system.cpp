@@ -2219,6 +2219,12 @@ void SmallPacket0x04E(map_session_data_t* session, CCharEntity* PChar, CBasicPac
         return;
     }
 
+    if (PChar->m_GMlevel == 0 && !PChar->loc.zone->CanUseMisc(MISC_AH))
+    {
+        ShowDebug(CL_CYAN"%s is trying to use the auction house in a disallowed zone [%s]\n" CL_RESET, PChar->GetName(), PChar->loc.zone->GetName());
+        return;
+    }
+
     // 0x04 - Selling Items
     // 0x05 - Open List Of Sales / Wait
     // 0x0A - Retrieve List of Items Sold By Player

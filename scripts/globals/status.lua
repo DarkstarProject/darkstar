@@ -22,6 +22,7 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    AH         = 0x0200, -- Ability to use the auction house
     YELL       = 0x0400, -- Send and receive /yell commands
 }
 

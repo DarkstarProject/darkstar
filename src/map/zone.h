@@ -434,6 +434,7 @@ enum ZONEMISC
     MISC_COSTUME    = 0x0040,   // Ability to use a Costumes
     MISC_PET        = 0x0080,   // Ability to summon Pets
     MISC_TREASURE   = 0x0100,   // Presence in the global zone TreasurePool
+    MISC_AH         = 0x0200,   // Ability to use the auction house
     MISC_YELL       = 0x0400    // Send and receive /yell commands
 };
 
