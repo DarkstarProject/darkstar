@@ -350,11 +350,13 @@ function onTrigger(player,npc)
         end
 
         -- calculate cosmocleanse parameters
+        local cosmoTime = 0
+
         if player:hasKeyItem(dsp.ki.COSMOCLEANSE) then
             hasCosmoCleanse = 1
+        else
+            cosmoTime = getCosmoCleanseTime(player)
         end
-
-        local cosmoTime = getCosmoCleanseTime(player)
 
         player:startEvent(310, 3, arg3, arg4, gil, cosmoTime, 1, hasCosmoCleanse, storedABCs)
     end
