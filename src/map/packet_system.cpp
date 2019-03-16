@@ -2583,6 +2583,9 @@ void SmallPacket0x053(map_session_data_t* session, CCharEntity* PChar, CBasicPac
             // uint8 locationId = data.ref<uint8>(i + 0x02);
             uint16 itemId = data.ref<uint16>(i + 0x04);
 
+            if (equipSlotId > SLOT_BACK)
+                continue;
+
             auto PItem = itemutils::GetItem(itemId);
             if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_ARMOR)))
                 itemId = 0;
