@@ -253,6 +253,21 @@ local abcShop =
 
 -----------------------------------
 
+function getCosmoCleanseTime(player)
+    local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
+    local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
+
+    if lastCosmoTime ~= 0 then
+        lastCosmoTime = lastCosmoTime + cosmoWaitTime
+    end
+
+    if lastCosmoTime <= os.time() then
+        return 2147483649 -- BITMASK for the purchase
+    end
+
+    return (lastCosmoTime - 1009843200) - 39600 -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
+end
+
 function onTrade(player,npc,trade)
     local count = trade:getItemCount()
     local afUpgrade = player:getVar("AFupgrade")
@@ -323,7 +338,6 @@ function onTrigger(player,npc)
         local arg4 = 0
         local afUpgrade = player:getVar("AFupgrade")
         local gil = player:getGil()
-        local cosmoTime = 0
         local hasCosmoCleanse = 0
         local storedABCs = player:getCurrency("ancient_beastcoin")
 
@@ -336,22 +350,11 @@ function onTrigger(player,npc)
         end
 
         -- calculate cosmocleanse parameters
-        local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
-        local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
-
-        if lastCosmoTime ~= 0 then
-            lastCosmoTime = lastCosmoTime + cosmoWaitTime
-        end
-
         if player:hasKeyItem(dsp.ki.COSMOCLEANSE) then
             hasCosmoCleanse = 1
-        else
-            if lastCosmoTime <= os.time() then
-                cosmoTime = 2147483649 -- BITMASK for the purchase
-            else
-                cosmoTime = (lastCosmoTime - 1009843200) - 39600 -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
-            end
         end
+
+        local cosmoTime = getCosmoCleanseTime(player)
 
         player:startEvent(310, 3, arg3, arg4, gil, cosmoTime, 1, hasCosmoCleanse, storedABCs)
     end
@@ -378,9 +381,12 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true)
 
     -- purchase cosmocleanse
-    elseif csid == 310 and option == 3 and player:delGil(15000) then
-        npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
-        player:setVar("Cosmo_Cleanse_TIME", os.time())
+    elseif csid == 310 and option == 3 then
+        local cosmoTime = getCosmoCleanseTime(player)
+        if cosmoTime == 2147483649 and player:delGil(15000) then
+            npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
+            player:setVar("Cosmo_Cleanse_TIME", os.time())
+        end
 
     -- purchase item using ancient beastcoins
     elseif csid == 310 and abcShop[option] then
