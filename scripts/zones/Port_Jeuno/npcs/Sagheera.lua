@@ -253,7 +253,9 @@ local abcShop =
 
 -----------------------------------
 
-function getCosmoCleanseTime(player)
+local COSMO_READY = 2147483649 -- BITMASK for the purchase
+
+local function getCosmoCleanseTime(player)
     local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
     local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
 
@@ -262,7 +264,7 @@ function getCosmoCleanseTime(player)
     end
 
     if lastCosmoTime <= os.time() then
-        return 2147483649 -- BITMASK for the purchase
+        return COSMO_READY
     end
 
     return (lastCosmoTime - 1009843200) - 39600 -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
@@ -385,7 +387,7 @@ function onEventFinish(player,csid,option)
     -- purchase cosmocleanse
     elseif csid == 310 and option == 3 then
         local cosmoTime = getCosmoCleanseTime(player)
-        if cosmoTime == 2147483649 and player:delGil(15000) then
+        if cosmoTime == COSMO_READY and player:delGil(15000) then
             npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
             player:setVar("Cosmo_Cleanse_TIME", os.time())
         end
