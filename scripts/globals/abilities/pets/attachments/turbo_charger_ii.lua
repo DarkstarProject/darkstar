@@ -2,6 +2,7 @@
 -- Attachment: Turbo Charger II
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addMod(dsp.mod.HASTE_MAGIC, 700)
