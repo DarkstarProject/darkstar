@@ -37,11 +37,11 @@ function onMobDespawn(mob)
 
         DisallowRespawn(ID.mob.KING_BEHEMOTH, false)
         UpdateNMSpawnPoint(ID.mob.KING_BEHEMOTH)
-        GetMobByID(ID.mob.KING_BEHEMOTH):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.KING_BEHEMOTH):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     else
         if LandKingSystem_NQ ~= 1 then
             UpdateNMSpawnPoint(ID.mob.BEHEMOTH)
-            mob:setRespawnTime(math.random(75600,86400))
+            GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
             SetServerVariable("[PH]King_Behemoth", kills + 1)
         end
     end

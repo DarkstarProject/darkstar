@@ -158,6 +158,8 @@ INSERT INTO `mob_pool_mods` VALUES (3124,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (2105,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (70,48,434,1);
 INSERT INTO `mob_pool_mods` VALUES (1270,39,-1,1);
+INSERT INTO `mob_pool_mods` VALUES (181,1,6000,1); -- (Antican_Praetor) GIL_MIN
+INSERT INTO `mob_pool_mods` VALUES (181,2,9234,1); -- (Antican_Praetor) GIL_MAX
 
 -- -------------------------
 --  Race Runner

@@ -2,6 +2,7 @@
 -- Attachment: Eraser
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 local removable = {
     dsp.effect.PETRIFICATION,
@@ -23,7 +24,7 @@ function onEquip(pet)
             local erasetarget = false
 
             local function checkEffects(entity)
-                for _,status in pairs(removable) do
+                for _, status in pairs(removable) do
                     if entity:hasStatusEffect(status) then return true end
                 end
                 return false
@@ -47,8 +48,8 @@ function onUnequip(pet)
     pet:removeListener("ATTACHMENT_ERASER")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end
