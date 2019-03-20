@@ -7,7 +7,7 @@ require("scripts/globals/settings")
 require("scripts/globals/msg")
 
 function onItemCheck(target)
-    if (target:getMP() == target:getMaxMP()) then
+    if target:getMP() == target:getMaxMP() then
         return dsp.msg.basic.ITEM_UNABLE_TO_USE
     end
     return 0
