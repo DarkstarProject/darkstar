@@ -38,7 +38,7 @@ function onInstanceProgressUpdate(instance, progress)
     if stage == (nyzul.objective.FREE_FLOOR or stage == nyzul.objective.ELIMINATE_ENEMY_LEADER or stage == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY) and progress == 15 then
         instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER, 0xFFF), dsp.objType.NPC):AnimationSub(1)
         for i,v in ipairs(chars) do
-            v:messageSpecial(ID.text.OBJECTIVE_COMPLETE, instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("[Nyzul_Current_Floor"))
+            v:messageSpecial(ID.text.OBJECTIVE_COMPLETE, instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Nyzul_Current_Floor"))
         end
     end
 
@@ -53,7 +53,7 @@ function pickSetPoint(player)
     local chars = instance:getChars()
     local START = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC)
     local TRANSFER = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER, 0xFFF), dsp.objType.NPC)
-    local FLOOR = START:getLocalVar("[Nyzul_Current_Floor")
+    local FLOOR = START:getLocalVar("Nyzul_Current_Floor")
     
     instance:setProgress(10)
     if math.random(1,30) == 10 then -- 3.33% of a free floor
@@ -61,12 +61,12 @@ function pickSetPoint(player)
         TRANSFER:timer(3200, function(npc) instance:setProgress(15) end)
     elseif FLOOR == 20 or FLOOR == 40 or FLOOR == 60 or FLOOR == 80 then
         instance:setStage(nyzul.objective.ELIMINATE_ENEMY_LEADER)
-        START:setLocalVar("[Nyzul_Isle]FloorLayout", 0)
+        START:setLocalVar("Nyzul_Isle_FloorLayout", 0)
     else
         instance:setStage(math.random(nyzul.objective.ELIMINATE_ENEMY_LEADER, nyzul.objective.ELIMINATE_ALL_ENEMIES))
     end
     for k, v in pairs(nyzul.FloorLayout) do
-        if k == START:getLocalVar("[Nyzul_Isle]FloorLayout") then
+        if k == START:getLocalVar("Nyzul_Isle_FloorLayout") then
             TRANSFER:setPos(v[1], v[2], v[3])
             TRANSFER:AnimationSub(0)
             pickMobs(player)
@@ -87,25 +87,23 @@ end
 function pickMobs(player)
     local instance = player:getInstance()
     local START = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC)
-    local FLOOR = START:getLocalVar("[Nyzul_Current_Floor")
+    local FLOOR = START:getLocalVar("Nyzul_Current_Floor")
     local MOB_FAMILY = math.random(1,16)
-    local LAYOUT = START:getLocalVar("[Nyzul_Isle]FloorLayout")
+    local LAYOUT = START:getLocalVar("Nyzul_Isle_FloorLayout")
 
     if instance:getStage() == nyzul.objective.ELIMINATE_ENEMY_LEADER then -- mobs for Enemy Leader Floors
         if FLOOR == 20 or FLOOR == 40 then
             local FLOOR_BOSS = math.random(nyzul.pickMobs[0][40].ADAMANTOISE, nyzul.pickMobs[0][40].FAFNIR)
             SpawnMob(FLOOR_BOSS, instance)
             SpawnMob(ID.mob[51].ARCHAIC_RAMPART1, instance)
-            printf("spawned %s", FLOOR_BOSS)
         elseif FLOOR == 60 or FLOOR == 80 or FLOOR == 100 then
             local FLOOR_BOSS = math.random(nyzul.pickMobs[0][100].KHIMAIRA, nyzul.pickMobs[0][100].CERBERUS)
             SpawnMob(FLOOR_BOSS, instance)
-            SpawnMob(ID.mob[51].RAMPART1, instance)
+            SpawnMob(ID.mob[51].ARCHAIC_RAMPART1, instance)
         else
             local FLOOR_BOSS = math.random(nyzul.pickMobs[1].MOKKE, nyzul.pickMobs[1].LONG_HORNED_CHARIOT)
             instance:getEntity(bit.band(FLOOR_BOSS, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
             SpawnMob(FLOOR_BOSS, instance)
-            printf("boss %s",FLOOR_BOSS)
             for i = nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop do
                 instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
                 SpawnMob(i, instance)

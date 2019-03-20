@@ -27,8 +27,8 @@ end
 function onEventFinish(player, csid, option, npc)
     local instance = player:getInstance()
     local RUNE = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC)
-    local START = RUNE:getLocalVar("[Nyzul_Isle]StartingFloor")
-    local CURRENT = RUNE:getLocalVar("[Nyzul_Current_Floor")
+    local START = RUNE:getLocalVar("Nyzul_Isle_StartingFloor")
+    local CURRENT = RUNE:getLocalVar("Nyzul_Current_Floor")
     local chars = instance:getChars()
     local SIZE = player:getPartySize()
     local COMPLETED = 0
@@ -39,7 +39,7 @@ function onEventFinish(player, csid, option, npc)
         for i = ID.mob[51].ARCHAIC_RAMPART1, ID.mob[51].CERBERUS do
             DespawnMob(i, instance)
         end
-        RUNE:setLocalVar("[Nyzul_Current_Floor", RUNE:getLocalVar("[Nyzul_Current_Floor") + 1)
+        RUNE:setLocalVar("Nyzul_Current_Floor", RUNE:getLocalVar("Nyzul_Current_Floor") + 1)
         for i,v in pairs(chars) do
             v:startEvent(95)
         end

@@ -46,15 +46,14 @@ function onEventUpdate(player, csid, option)
         [16641] = {item = 5433, cost = 300}, -- Dusty Elixer -+
     }
     if csid == 202 then
-        for k, v in pairs(items) do
-            if k == option and player:getCurrency("nyzul_isle_assault_point") >= v.cost then
-                if player:hasItem(v.item) then
-                    player:messageSpecial(ID.text.ALREADY_HAVE_TEMP_ITEM)
-                else
-                    player:addTempItem(v.item)
-                    player:messageSpecial(ID.text.TEMP_ITEM_OBATINED, v.item);
-                    player:delCurrency("nyzul_isle_assault_point", v.cost)
-                end
+        local item = items[option]
+        if player:getCurrency("nyzul_isle_assault_point") >= item.cost then
+            if player:hasItem(item.item) then
+                player:messageSpecial(ID.text.ALREADY_HAVE_TEMP_ITEM)
+               else
+                player:addTempItem(item.item)
+                player:messageSpecial(ID.text.TEMP_ITEM_OBATINED, item.item);
+                player:delCurrency("nyzul_isle_assault_point", item.cost)
             end
         end
         local prefered = 0 -- set prefered items at Sorrowfull_sage
