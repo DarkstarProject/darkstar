@@ -62,6 +62,7 @@ function onEventFinish(player, csid, option, npc)
         for i,v in pairs(chars) do
             if (v:getVar("NyzulFloorProgress") + 1) >= START and v:getVar("NyzulFloorProgress") < CURRENT then
                 v:setVar("NyzulFloorProgress", CURRENT)
+                v:messageSpecial(ID.text.FLOOR_RECORD, CURRENT)
             end
             v:addCurrency("nyzul_isle_assault_point", TOKENS)
             v:messageSpecial(ID.text.OBTAIN_TOKENS, TOKENS)
