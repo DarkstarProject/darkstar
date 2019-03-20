@@ -42,6 +42,8 @@ function onZoneIn(player,prevZone)
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
         if prevZone == dsp.zone.ARRAPAGO_REMNANTS then
             player:setPos(-579, 0.05, -100, 192)
+        elseif prevZone == dsp.zone.NYZUL_ISLE then
+            player:setPos(152, 0, 20, 0)
         else
             player:setPos(222.798, -0.5, 19.872, 0)
         end
