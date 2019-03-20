@@ -60,6 +60,9 @@ function onEventFinish(player, csid, option, npc)
             TOKENS = ((CURRENT - START)*200 + (CURRENT * 10)) * (((13 - SIZE)*10)/100)
         end
         for i,v in pairs(chars) do
+            if (v:getVar("NyzulFloorProgress") + 1) >= START and v:getVar("NyzulFloorProgress") < CURRENT then
+                v:setVar("NyzulFloorProgress", CURRENT)
+            end
             v:addCurrency("nyzul_isle_assault_point", TOKENS)
             v:messageSpecial(ID.text.OBTAIN_TOKENS, TOKENS)
             v:startEvent(1)
