@@ -13,7 +13,6 @@ end
 function onItemUse(target)
     if target:hasStatusEffect(dsp.effect.RERAISE) then
         target:delStatusEffect(dsp.effect.RERAISE)
-        target:addStatusEffect(dsp.effect.RERAISE,3,0,1800)
     end
     target:addStatusEffect(dsp.effect.RERAISE,3,0,1800)
 end
