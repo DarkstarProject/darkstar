@@ -71,45 +71,45 @@ nyzul.pickMobs =
 {
     [0] = -- 20th Floor bosses
     {
-        [40] =
+        [40] = -- 20 and 40 floor Bosses
         {
             ADAMANTOISE = 17092999,
             FAFNIR      = 17093001,
         },
-        [100] = -- floors 60, 80 and 100
+        [100] = -- floors 60, 80 and 100 floor bosses
         {
             KHIMAIRA = 17093002,
             CERBERUS = 17093004,
         },
     },
-    [1] = -- Regular Enemy Leaders
+    [1] = -- Enemy Leaders, can appear on all floors but %20 that are on objective
     {
         MOKKE               = 17092944,
         LONG_HORNED_CHARIOT = 17092968,
     },
     [2] = -- Regular NM's
     {
-        [20] = -- floor 1 to 19 bosses
+        [20] = -- floor 1 to 19 NM's
         {
             BAT_EYE      = 17092824,
             EMERGENT_ELM = 17092841,
         },
-        [40] =
+        [40] = -- floor 21 to 39 NM's
         {
             OLD_TWO_WINGS = 17092842,
             TAISAIJIN     = 17092859,
         },
-        [60] =
+        [60] = -- floor 41 to 59 NM's
         {
             FUNGUS_BEETLE = 17092860,
             TAISAIJIN     = 17092877,
         },
-        [80] =
+        [80] = -- floor 61 to 79 NM's
         {
             GOLDEN_BAT = 17092878,
             TAISAIJIN  = 17092895,
         },
-        [100] =
+        [100] = -- floor 81 to 99 NM's
         {
             PANZER_PERCIVAL = 17092896,
             TAISAIJIN       = 17092913,
