@@ -115,55 +115,13 @@ function pickMobs(player)
             instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
             SpawnMob(i, instance)
         end
-        if FLOOR >= 81 then
-            local NM1 = math.random(nyzul.pickMobs[2][100].PANZER_PERCIVAL, nyzul.pickMobs[2][100].TAISAIJIN)
-            local NM2 = math.random(nyzul.pickMobs[2][100].PANZER_PERCIVAL, nyzul.pickMobs[2][100].TAISAIJIN)
-            if NM2 == NM1 then
-                if NM2 == nyzul.pickMobs[2][100].TAISAIJIN then
-                    NM2 = nyzul.pickMobs[2][100].TAISAIJIN - 1
-                else
-                    NM2 = NM1 + 1
-                end
-            end
-        elseif FLOOR >= 61 then
-            local NM1 = math.random(nyzul.pickMobs[2][80].GOLDEN_BAT, nyzul.pickMobs[2][80].TAISAIJIN)
-            local NM2 = math.random(nyzul.pickMobs[2][80].GOLDEN_BAT, nyzul.pickMobs[2][80].TAISAIJIN)
-            if NM2 == NM1 then
-                if NM2 == nyzul.pickMobs[2][80].TAISAIJIN then
-                    NM2 = nyzul.pickMobs[2][80].TAISAIJIN - 1
-                else
-                    NM2 = NM1 + 1
-                end
-            end
-        elseif FLOOR >= 41 then
-            local NM1 = math.random(nyzul.pickMobs[2][60].FUNGUS_BEETLE, nyzul.pickMobs[2][60].TAISAIJIN)
-            local NM2 = math.random(nyzul.pickMobs[2][60].FUNGUS_BEETLE, nyzul.pickMobs[2][60].TAISAIJIN)
-            if NM2 == NM1 then
-                if NM2 == nyzul.pickMobs[2][60].TAISAIJIN then
-                    NM2 = nyzul.pickMobs[2][60].TAISAIJIN - 1
-                else
-                    NM2 = NM1 + 1
-                end
-            end
-        elseif FLOOR >= 21 then
-            local NM1 = math.random(nyzul.pickMobs[2][40].OLD_TWO_WINGS, nyzul.pickMobs[2][40].TAISAIJIN)
-            local NM2 = math.random(nyzul.pickMobs[2][40].OLD_TWO_WINGS, nyzul.pickMobs[2][40].TAISAIJIN)
-            if NM2 == NM1 then
-                if NM2 == nyzul.pickMobs[2][40].TAISAIJIN then
-                    NM2 = nyzul.pickMobs[2][40].TAISAIJIN - 1
-                else
-                    NM2 = NM1 + 1
-                end
-            end
-        else
-            local NM1 = math.random(nyzul.pickMobs[2][20].BAT_EYE, nyzul.pickMobs[2][20].EMERGENT_ELM)
-            local NM2 = math.random(nyzul.pickMobs[2][20].BAT_EYE, nyzul.pickMobs[2][20].EMERGENT_ELM)
-            if NM2 == NM1 then
-                if NM2 == nyzul.pickMobs[2][20].EMERGENT_ELM then
-                    NM2 = nyzul.pickMobs[2][20].EMERGENT_ELM - 1
-                else
-                    NM2 = NM1 + 1
-                end
+        local NM1 = math.random(nyzul.pickMobs[2][math.floor(FLOOR/20)].start, nyzul.pickMobs[2][math.floor(FLOOR/20)].stop)
+        local NM2 = math.random(nyzul.pickMobs[2][math.floor(FLOOR/20)].start, nyzul.pickMobs[2][math.floor(FLOOR/20)].stop)
+        if NM2 == NM1 then
+            if NM2 == nyzul.pickMobs[2][math.floor(FLOOR/20)].stop then
+                NM2 = nyzul.pickMobs[2][math.floor(FLOOR/20)].stop - 1
+            else
+                NM2 = NM1 + 1
             end
         end
         instance:getEntity(bit.band(NM1, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])

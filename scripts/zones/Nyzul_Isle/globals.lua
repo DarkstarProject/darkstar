@@ -116,30 +116,30 @@ nyzul.pickMobs =
     },
     [2] = -- Regular NM's
     {
-        [20] = -- floor 1 to 19 NM's
+        [0] = -- floor 1 to 19 NM's
         {
-            BAT_EYE      = 17092824,
-            EMERGENT_ELM = 17092841,
+            start = 17092824,
+            stop  = 17092841,
         },
-        [40] = -- floor 21 to 39 NM's
+        [1] = -- floor 21 to 39 NM's
         {
-            OLD_TWO_WINGS = 17092842,
-            TAISAIJIN     = 17092859,
+            start = 17092842,
+            stop  = 17092859,
         },
-        [60] = -- floor 41 to 59 NM's
+        [2] = -- floor 41 to 59 NM's
         {
-            FUNGUS_BEETLE = 17092860,
-            TAISAIJIN     = 17092877,
+            start = 17092860,
+            stop  = 17092877,
         },
-        [80] = -- floor 61 to 79 NM's
+        [3] = -- floor 61 to 79 NM's
         {
-            GOLDEN_BAT = 17092878,
-            TAISAIJIN  = 17092895,
+            start = 17092878,
+            stop  = 17092895,
         },
-        [100] = -- floor 81 to 99 NM's
+        [4] = -- floor 81 to 99 NM's
         {
-            PANZER_PERCIVAL = 17092896,
-            TAISAIJIN       = 17092913,
+            start = 17092896,
+            stop  = 17092913,
         },
     },
 }
