@@ -27,7 +27,8 @@ function onUseAbility(player,target,ability,action)
     end
     params.canCrit = true
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    params.atkmulti = (player:getMod(dsp.mod.JUMP_ATT_BONUS) + 100) / 100
+    local atkmulti = (player:getMod(dsp.mod.JUMP_ATT_BONUS) + 100) / 100
+    params.atk100 = atkmulti params.atk200 = atkmulti params.atk300 = atkmulti
     params.bonusTP = player:getMod(dsp.mod.JUMP_TP_BONUS)
 
     local taChar = player:getTrickAttackChar(target)
