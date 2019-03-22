@@ -1,7 +1,9 @@
 -----------------------------------
---  MOB: Fafnir
+--  MOB: Cerberus
 -- Area: Nyzul Isle
--- Info: Floor 20 and 40 Boss, Hurricane Wing is stronger than normal
+-- Info: Floor 60 80 and 100 Boss
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -11,6 +13,11 @@ function onMobEngaged(mob,target)
 end
 
 function onMobFight(mob,target)
+    if mob:getHPP() > 25 then
+        mob:setMod(dsp.mod.REGAIN, 10)
+    else
+        mob:setMod(dsp.mod.REGAIN, 70)
+    end
 end
 
 function onMobDeath(mob, player, isKiller)

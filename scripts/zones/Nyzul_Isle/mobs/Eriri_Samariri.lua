@@ -1,7 +1,8 @@
 -----------------------------------
---  MOB: Fafnir
+--  MOB: Eiri Samasriri
 -- Area: Nyzul Isle
--- Info: Floor 20 and 40 Boss, Hurricane Wing is stronger than normal
+-- Info: Enemy Leader, Spams Frog Song
+-- 
 -----------------------------------
 
 function onMobSpawn(mob)
@@ -19,4 +20,7 @@ function onMobDeath(mob, player, isKiller)
     if isKiller then
         instance:setProgress(15)
     end
+end
+
+function onMobDespawn(mob)
 end

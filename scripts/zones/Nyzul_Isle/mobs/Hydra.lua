@@ -1,7 +1,7 @@
 -----------------------------------
---  MOB: Fafnir
+--  MOB: Hydra
 -- Area: Nyzul Isle
--- Info: Floor 20 and 40 Boss, Hurricane Wing is stronger than normal
+-- Info: Floor 60 80 and 100 Boss
 -----------------------------------
 
 function onMobSpawn(mob)

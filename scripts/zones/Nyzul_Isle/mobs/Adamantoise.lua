@@ -1,7 +1,7 @@
 -----------------------------------
---  MOB: Fafnir
+--  MOB: Adamantoise
 -- Area: Nyzul Isle
--- Info: Floor 20 and 40 Boss, Hurricane Wing is stronger than normal
+-- Info: Floor 20 and 40 Boss, Tourtise song dispels all buffs
 -----------------------------------
 
 function onMobSpawn(mob)

@@ -1,10 +1,13 @@
 -----------------------------------
---  MOB: Fafnir
+--  MOB: Caraway Custard
 -- Area: Nyzul Isle
--- Info: Floor 20 and 40 Boss, Hurricane Wing is stronger than normal
+-- Info: Enemy Leader, 	Absorbs fire elemental damage
+-----------------------------------
+require("scripts/globals/status")
 -----------------------------------
 
 function onMobSpawn(mob)
+    mob:addMod(dsp.mod.FIRE_ABSORB, 100)
 end
 
 function onMobEngaged(mob,target)
@@ -19,4 +22,7 @@ function onMobDeath(mob, player, isKiller)
     if isKiller then
         instance:setProgress(15)
     end
+end
+
+function onMobDespawn(mob)
 end
