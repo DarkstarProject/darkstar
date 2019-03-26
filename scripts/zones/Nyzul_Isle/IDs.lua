@@ -99,6 +99,7 @@ zones[dsp.zone.NYZUL_ISLE] =
         {
             ARCHAIC_RAMPART1    = 17092629,
             ARCHAIC_RAMPART2    = 17092630,
+            DAHAK               = 17092823,
             CERBERUS            = 17093004,
         },
         -- Path of Darkness

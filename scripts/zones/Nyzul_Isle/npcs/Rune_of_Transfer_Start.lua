@@ -39,7 +39,6 @@ local npc = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.
         if player:getCurrency("nyzul_isle_assault_point") >= floorCost.cost then
             player:delCurrency("nyzul_isle_assault_point", floorCost.cost)
             npc:setLocalVar("Nyzul_Isle_StartingFloor", floorCost.level)
-            npc:setLocalVar("Nyzul_Isle_FloorLayout", math.random(1,16))
             npc:setLocalVar("Nyzul_Current_Floor", floorCost.level)
             pickSetPoint(player)
             for i,v in pairs(chars) do

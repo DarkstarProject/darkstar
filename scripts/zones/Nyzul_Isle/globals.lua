@@ -89,11 +89,6 @@ nyzul.floorPick =
     [22] = 16777212,
 }
 
-nyzul.RunicDisk =
-{
- --   [1] = 
-}
-
 nyzul.pickMobs =
 {
     [0] = -- 20th Floor bosses
@@ -140,6 +135,44 @@ nyzul.pickMobs =
         {
             start = 17092896,
             stop  = 17092913,
+        },
+    },
+    [3] = -- Specified Enemies
+    {
+        [0] =
+        {
+            start = 17092969, -- Heraldic Imp x5
+            stop  = 17092973,
+        },
+        [1] =
+        {
+            start = 17092974, -- Psycheflayer x5
+            stop  = 17092978,
+        },
+        [2] =
+        {
+            start = 17092979, -- Poroggo Gent x5
+            stop  = 17092983,
+        },
+        [3] =
+        {
+            start = 17092984, -- Ebony Pudding x5
+            stop  = 17092988,
+        },
+        [4] =
+        {
+            start = 17092989, -- Qiqirn_Treasure_Hunter x2
+            stop  = 17092990,
+        },
+        [5] =
+        {
+            start = 17092991, -- Qiqirn_Archaeologist x3
+            stop  = 17092993,
+        },
+        [6] =
+        {
+            start = 17092994, -- Racing_Chariot x5
+            stop  = 17092998,
         },
     },
 }
@@ -226,10 +259,6 @@ nyzul.FloorEntities = -- regular mobs by layout
         start = 17092811,
         stop  = 17092822,
     },
-    [17] =
-    {
-        Dahak = 17092823,
-    },
 }
 
 nyzul.SpawnPoint = -- set spawnpoint by layout
@@ -248,37 +277,37 @@ nyzul.SpawnPoint = -- set spawnpoint by layout
     },
     [5] =
     {
-        [0]  = {566, 0, -143, math.random(0,359)},
-        [1]  = {577, 0, -142, math.random(0,359)},
-        [2]  = {619, 0, -139, math.random(0,359)},
-        [3]  = {550, 0,   10, math.random(0,359)},
-        [4]  = {619, 0,  -60, math.random(0,359)},
-        [5]  = {626, 0,  -17, math.random(0,359)},
-        [6]  = {619, 0,   18, math.random(0,359)},
-        [7]  = {579, 0,   20, math.random(0,359)},
-        [8]  = {539, 0,   19, math.random(0,359)},
-        [9]  = {573, 0, -126, math.random(0,359)},
-        [10] = {578, 0, -153, math.random(0,359)},
-        [11] = {593, 0, -146, math.random(0,359)},
-        [12] = {607, 0, -142, math.random(0,359)},
-        [13] = {620, 0, -129, math.random(0,359)},
-        [14] = {628, 0, -109, math.random(0,359)},
-        [15] = {614, 0, -104, math.random(0,359)},
-        [16] = {616, 0,  -89, math.random(0,359)},
-        [17] = {623, 0,  -96, math.random(0,359)},
-        [18] = {622, 0,  -73, math.random(0,359)},
-        [19] = {619, 0,  -50, math.random(0,359)},
-        [20] = {629, 0,  -32, math.random(0,359)},
-        [21] = {615, 0,  -24, math.random(0,359)},
-        [22] = {615, 0,   -7, math.random(0,359)},
-        [23] = {618, 0,    7, math.random(0,359)},
-        [24] = {606, 0,   21, math.random(0,359)},
-        [25] = {594, 0,   23, math.random(0,359)},
-        [26] = {584, 0,    9, math.random(0,359)},
-        [27] = {576, 0,   15, math.random(0,359)},
-        [28] = {567, 0,   34, math.random(0,359)},
-        [29] = {553, 0,   24, math.random(0,359)},
-        [30] = {541, 0,   11, math.random(0,359)},
+        [0]  = {566, 0, -143, math.random(0,255)},
+        [1]  = {577, 0, -142, math.random(0,255)},
+        [2]  = {619, 0, -139, math.random(0,255)},
+        [3]  = {550, 0,   10, math.random(0,255)},
+        [4]  = {619, 0,  -60, math.random(0,255)},
+        [5]  = {626, 0,  -17, math.random(0,255)},
+        [6]  = {619, 0,   18, math.random(0,255)},
+        [7]  = {579, 0,   20, math.random(0,255)},
+        [8]  = {539, 0,   19, math.random(0,255)},
+        [9]  = {573, 0, -126, math.random(0,255)},
+        [10] = {578, 0, -153, math.random(0,255)},
+        [11] = {593, 0, -146, math.random(0,255)},
+        [12] = {607, 0, -142, math.random(0,255)},
+        [13] = {620, 0, -129, math.random(0,255)},
+        [14] = {628, 0, -109, math.random(0,255)},
+        [15] = {614, 0, -104, math.random(0,255)},
+        [16] = {616, 0,  -89, math.random(0,255)},
+        [17] = {623, 0,  -96, math.random(0,255)},
+        [18] = {622, 0,  -73, math.random(0,255)},
+        [19] = {619, 0,  -50, math.random(0,255)},
+        [20] = {629, 0,  -32, math.random(0,255)},
+        [21] = {615, 0,  -24, math.random(0,255)},
+        [22] = {615, 0,   -7, math.random(0,255)},
+        [23] = {618, 0,    7, math.random(0,255)},
+        [24] = {606, 0,   21, math.random(0,255)},
+        [25] = {594, 0,   23, math.random(0,255)},
+        [26] = {584, 0,    9, math.random(0,255)},
+        [27] = {576, 0,   15, math.random(0,255)},
+        [28] = {567, 0,   34, math.random(0,255)},
+        [29] = {553, 0,   24, math.random(0,255)},
+        [30] = {541, 0,   11, math.random(0,255)},
     },
     [6] =
     {
