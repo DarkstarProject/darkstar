@@ -2,6 +2,7 @@
 -- Attachment: Heat Capacitor
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:setLocalVar("heat_capacitor", pet:getLocalVar("heat_capacitor") + 1)
@@ -18,8 +19,8 @@ function onUnequip(pet)
     pet:removeListener("ATTACHMENT_HEAT_CAPACITOR")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

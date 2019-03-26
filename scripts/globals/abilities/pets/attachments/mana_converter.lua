@@ -2,6 +2,7 @@
 -- Attachment: Mana Converter
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_MANA_CONVERTER", function(automaton, target)
@@ -26,8 +27,8 @@ function onUnequip(pet)
     pet:removeListener("ATTACHMENT_MANA_CONVERTER")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

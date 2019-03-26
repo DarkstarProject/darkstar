@@ -2,6 +2,7 @@
 -- Attachment: Attuner
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_ATTUNER_ENGAGE", function(pet, target)
@@ -69,7 +70,7 @@ function onUnequip(pet)
     pet:removeListener("AUTO_ATTUNER_DISENGAGE")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
     if pet:getLocalVar("attuner") > 0 then
         if maneuvers == 1 then
             pet:addMod(dsp.mod.ATTP, 13) -- Ignore 15% def
@@ -84,7 +85,7 @@ function onManeuverGain(pet,maneuvers)
     end
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
     if pet:getLocalVar("attuner") > 0 then
         if maneuvers == 1 then
             pet:delMod(dsp.mod.ATTP, 13) -- Ignore 15% def

@@ -416,7 +416,7 @@ void CalculateTraits(CCharEntity* PChar)
 
                 if (iter != points.end())
                 {
-                    iter->second += iter->second + weight;
+                    iter->second += weight;
                 }
                 else
                 {

@@ -2,6 +2,7 @@
 -- Area: Al'Taieu
 --   NM: Jailer of Hope
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/mobs")
 -----------------------------------
 
@@ -12,6 +13,13 @@ end;
 function onMobSpawn(mob)
     mob:setSpellList(0); -- If it dies with the ability to cast spells, the next spawn would be able to cast from the start.
     mob:setMobMod(dsp.mobMod.MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
+
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIGHTY_STRIKES, cooldown = 90, hpp = math.random(85, 95)}, -- "May use Mighty Strikes multiple times."
+        },
+    })
 end;
 
 function onMobFight(mob, target)
