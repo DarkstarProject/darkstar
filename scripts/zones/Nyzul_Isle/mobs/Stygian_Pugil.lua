@@ -16,22 +16,13 @@ function onMobSpawn(mob)
     end
 end
 
-function onMobEngaged(mob,target)
-end
-
-function onMobFight(mob,target)
-end
-
 function onMobDeath(mob, player, isKiller)
     local instance = mob:getInstance()
-    if instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY then
+    if instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY and isKiller then
         if instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Nyzul_Specified_Enemy") == mob:getID() then
             instance:setProgress(15)
         end
     elseif instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
         instance:setProgress(1)
     end
-end
-
-function onMobDespawn(mob)
 end
