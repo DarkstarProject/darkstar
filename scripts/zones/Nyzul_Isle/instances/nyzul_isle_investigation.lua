@@ -34,14 +34,20 @@ end
 function onInstanceProgressUpdate(instance, progress)
     local chars = instance:getChars()
     local stage = instance:getStage()
+    local ELMINATE = instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Eliminate")
 
-    if stage == nyzul.objective.FREE_FLOOR or stage == nyzul.objective.ELIMINATE_ENEMY_LEADER or stage == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY and progress == 15 then
+    if stage == (nyzul.objective.FREE_FLOOR or stage == nyzul.objective.ELIMINATE_ENEMY_LEADER or stage == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY) and progress == 15 then
         instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER, 0xFFF), dsp.objType.NPC):AnimationSub(1)
         for i,v in ipairs(chars) do
             v:messageSpecial(ID.text.OBJECTIVE_COMPLETE, instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Nyzul_Current_Floor"))
         end
+    elseif stage == (nyzul.objective.ELIMINATE_ALL_ENEMIES or stage == nyzul.objective.ELIMINATE_SPECIFIED_ENEMIES) and progress == ELMINATE then
+        instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER, 0xFFF), dsp.objType.NPC):AnimationSub(1)
+        instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):setLocalVar("Eliminate", 0)
+        for i,v in ipairs(chars) do
+            v:messageSpecial(ID.text.OBJECTIVE_COMPLETE, instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Nyzul_Current_Floor"))
+        end
     end
-
 end
 
 function onInstanceComplete(instance)
@@ -112,18 +118,22 @@ function pickMobs(player)
             for i = nyzul.pickMobs[3][GROUP].start, nyzul.pickMobs[3][GROUP].stop do
                 instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
                 SpawnMob(i, instance)
+                START:setLocalVar("Eliminate", ELMINATE +1)
             end
         elseif instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY then -- set 1 random trash mob as NM
             START:setLocalVar("Nyzul_Specified_Enemy", math.random(nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop))
         elseif instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
             if math.random(0,100) >= 80 then -- 20% chance that Dahank will spawn
-                instance:getEntity(bit.band(ID.mob.DAHAK, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
-                SpawnMob(ID.mob[51].DAHAK, instace)
+                SpawnMob(ID.mob[51].DAHAK, instance):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
             end
         end
         for i = nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop do -- set rest of random trash mobs
             instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
             SpawnMob(i, instance)
+            if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
+            end
         end
         local NM_Floor = math.floor(FLOOR/20)
         local NM1 = math.random(nyzul.pickMobs[2][NM_Floor].start, nyzul.pickMobs[2][NM_Floor].stop)
@@ -141,15 +151,27 @@ function pickMobs(player)
         instance:getEntity(bit.band(ID.mob[51].ARCHAIC_RAMPART2, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
         if math.random(0,100) >= 10 then -- 90% chance for 1st NM to spawn
             SpawnMob(NM1, instance)
+            if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
+            end
         end
         if math.random(0,100) >= 50 then -- 50% chance for 2nd NM to spawn
             SpawnMob(NM2, instance)
+            if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
+            end
         end
         if math.random(0,100) >= 90 then -- 90% chance for 1st rampart to spawn
-            SpawnMob(NM2, instance)
+            SpawnMob(ID.mob[51].ARCHAIC_RAMPART1, instance)
+            if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
+            end
         end
         if math.random(0,100) >= 20 then -- 20% chance for 2nd rampart to spawn
-            SpawnMob(NM2, instance)
+            SpawnMob(ID.mob[51].ARCHAIC_RAMPART2, instance)
+            if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
+            end
         end
     end
 end

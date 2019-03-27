@@ -11,7 +11,6 @@ function onMobSpawn(mob)
     local instance = mob:getInstance()
     if instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY then
         if instance:getEntity(bit.band(ID.npc.RUNE_TRANSFER_START, 0xFFF), dsp.objType.NPC):getLocalVar("Nyzul_Specified_Enemy") == mob:getID() then
-            printf("check %s", mob:getID())
             mob:setMobMod(dsp.mobMod.CHECK_AS_NM, 1)
         end
     end
