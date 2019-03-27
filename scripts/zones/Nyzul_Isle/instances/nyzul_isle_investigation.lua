@@ -118,7 +118,7 @@ function pickMobs(player)
             for i = nyzul.pickMobs[3][GROUP].start, nyzul.pickMobs[3][GROUP].stop do
                 instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
                 SpawnMob(i, instance)
-                START:setLocalVar("Eliminate", ELMINATE +1)
+                START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
             end
         elseif instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMY then -- set 1 random trash mob as NM
             START:setLocalVar("Nyzul_Specified_Enemy", math.random(nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop))
