@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Great Claw
+--  MOB: Wivre
 -- Area: Nyzul Isle
 -----------------------------------
 local ID = require("scripts/zones/Nyzul_Isle/IDs")

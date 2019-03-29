@@ -23,6 +23,6 @@ function onMobDeath(mob, player, isKiller)
             instance:setProgress(15)
         end
     elseif instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
-        instance:setProgress(1)
+        instance:setProgress(instance:getProgress() + 1)
     end
 end
