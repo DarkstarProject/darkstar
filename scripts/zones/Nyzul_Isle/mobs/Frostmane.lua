@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Frostmane
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

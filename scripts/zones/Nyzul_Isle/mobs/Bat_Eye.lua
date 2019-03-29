@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Bat Eye
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

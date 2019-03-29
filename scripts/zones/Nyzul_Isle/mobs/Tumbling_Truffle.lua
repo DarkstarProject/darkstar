@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Tumbling Truffle
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

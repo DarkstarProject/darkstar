@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Tyrannic Tunnok
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

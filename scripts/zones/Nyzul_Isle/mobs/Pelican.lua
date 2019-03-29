@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Pelican
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

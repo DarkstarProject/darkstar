@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Gargantua
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

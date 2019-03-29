@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Leech King
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

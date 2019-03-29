@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Drooling Daisy
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

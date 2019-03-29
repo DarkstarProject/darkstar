@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Capricious Cassie
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Stinging Sophie
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

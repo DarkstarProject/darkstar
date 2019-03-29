@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Asphyxiated Amsel
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

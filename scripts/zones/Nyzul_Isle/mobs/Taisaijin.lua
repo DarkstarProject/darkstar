@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Taisaijin
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

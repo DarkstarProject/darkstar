@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Golden Bat
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

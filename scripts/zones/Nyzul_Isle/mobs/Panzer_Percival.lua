@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Panzer Percival
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

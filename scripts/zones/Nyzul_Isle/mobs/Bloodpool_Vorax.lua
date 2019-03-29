@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Bloodpool Vorax
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

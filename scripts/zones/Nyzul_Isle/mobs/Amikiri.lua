@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Amikiri
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

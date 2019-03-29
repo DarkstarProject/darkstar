@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Eastern Shadow
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

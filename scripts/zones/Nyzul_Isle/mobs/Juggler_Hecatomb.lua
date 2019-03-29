@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Juggler Hecatomb
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

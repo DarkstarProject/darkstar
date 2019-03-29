@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Argus
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

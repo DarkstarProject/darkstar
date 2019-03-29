@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Bonnacon
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

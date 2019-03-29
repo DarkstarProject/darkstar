@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Fungus Beetle
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

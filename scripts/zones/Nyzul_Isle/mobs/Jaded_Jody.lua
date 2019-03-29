@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Jaded Jody
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

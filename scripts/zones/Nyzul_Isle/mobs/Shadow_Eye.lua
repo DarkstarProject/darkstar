@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Shadow Eye
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

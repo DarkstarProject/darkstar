@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Crushed Krause
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

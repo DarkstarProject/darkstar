@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Aquarius
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

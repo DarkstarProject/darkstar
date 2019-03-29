@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Keeper of Halidom
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

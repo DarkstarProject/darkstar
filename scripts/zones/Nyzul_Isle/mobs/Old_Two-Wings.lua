@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Old Two-Wings
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

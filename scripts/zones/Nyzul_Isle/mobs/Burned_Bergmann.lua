@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Burned Bergmann
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

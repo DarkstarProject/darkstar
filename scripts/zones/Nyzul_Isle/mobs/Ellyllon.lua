@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Ellyllon
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

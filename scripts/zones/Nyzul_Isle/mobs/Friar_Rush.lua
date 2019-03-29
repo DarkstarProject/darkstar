@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Friar Rush
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

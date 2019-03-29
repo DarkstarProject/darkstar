@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Sharp-Eared Ropipi
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Simurgh
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

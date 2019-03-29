@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Helldiver
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

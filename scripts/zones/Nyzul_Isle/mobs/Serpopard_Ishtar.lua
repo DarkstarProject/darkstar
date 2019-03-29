@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Serpopard Ishtar
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Swamfisk
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

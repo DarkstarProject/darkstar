@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Hellion
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

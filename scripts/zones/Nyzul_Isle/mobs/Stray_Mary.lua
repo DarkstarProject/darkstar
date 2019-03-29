@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Stray Mary
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

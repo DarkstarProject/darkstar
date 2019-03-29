@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Zizzy Zillah
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Smothered Schmidt
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

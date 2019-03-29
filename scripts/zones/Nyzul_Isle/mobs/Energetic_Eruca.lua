@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Energetic Eruca
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

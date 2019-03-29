@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Daggerclaw Dracos
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

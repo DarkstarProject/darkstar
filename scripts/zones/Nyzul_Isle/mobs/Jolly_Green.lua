@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Jolly Green
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

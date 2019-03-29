@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Leaping Lizzy
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

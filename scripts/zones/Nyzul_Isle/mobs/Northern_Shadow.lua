@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Northern Shadow
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

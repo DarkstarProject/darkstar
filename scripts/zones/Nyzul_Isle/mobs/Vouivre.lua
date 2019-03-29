@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Vouivre
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

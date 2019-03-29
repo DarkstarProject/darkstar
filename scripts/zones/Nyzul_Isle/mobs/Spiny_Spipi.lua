@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Spiny Spipi
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Gyre-Carlin
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Bloodsucker
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Trickster Kinetix
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

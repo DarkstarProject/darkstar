@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Aiatar
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

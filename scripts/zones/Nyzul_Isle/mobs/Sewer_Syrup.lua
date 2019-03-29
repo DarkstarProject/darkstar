@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Sewer Syrup
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Valkurm Emperor
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

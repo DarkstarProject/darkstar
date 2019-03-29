@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Falcatus Aranei
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

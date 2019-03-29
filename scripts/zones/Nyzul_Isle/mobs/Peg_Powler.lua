@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Peg Powler
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

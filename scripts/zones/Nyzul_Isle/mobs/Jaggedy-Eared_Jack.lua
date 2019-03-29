@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Jaggedy-Eared Jack
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

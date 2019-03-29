@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Bomb King
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

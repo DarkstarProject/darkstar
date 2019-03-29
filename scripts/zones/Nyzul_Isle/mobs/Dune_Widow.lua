@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Dune Widow
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

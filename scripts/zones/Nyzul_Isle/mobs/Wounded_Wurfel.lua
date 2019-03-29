@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Wounded Wurfel
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------

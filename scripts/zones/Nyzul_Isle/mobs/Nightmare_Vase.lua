@@ -1,5 +1,5 @@
 -----------------------------------
---  MOB: Steelfleece Baldarich
+--  MOB: Nightmare Vase
 -- Area: Nyzul Isle
 -- Info: NM
 -----------------------------------
