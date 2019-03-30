@@ -85,6 +85,50 @@ INSERT INTO `instance_entities` VALUES (12, 17047589);
 INSERT INTO `instance_entities` VALUES (12, 17047808);
 INSERT INTO `instance_entities` VALUES (12, 17047809);
 
+-- Excavation Duty
+-- Mobs
+INSERT INTO `instance_entities` VALUES (21,17035265);
+INSERT INTO `instance_entities` VALUES (21,17035266);
+INSERT INTO `instance_entities` VALUES (21,17035267);
+INSERT INTO `instance_entities` VALUES (21,17035268);
+INSERT INTO `instance_entities` VALUES (21,17035269);
+INSERT INTO `instance_entities` VALUES (21,17035270);
+INSERT INTO `instance_entities` VALUES (21,17035271);
+INSERT INTO `instance_entities` VALUES (21,17035272);
+INSERT INTO `instance_entities` VALUES (21,17035273);
+INSERT INTO `instance_entities` VALUES (21,17035274);
+INSERT INTO `instance_entities` VALUES (21,17035275);
+INSERT INTO `instance_entities` VALUES (21,17035276);
+INSERT INTO `instance_entities` VALUES (21,17035277);
+INSERT INTO `instance_entities` VALUES (21,17035278);
+INSERT INTO `instance_entities` VALUES (21,17035279);
+INSERT INTO `instance_entities` VALUES (21,17035280);
+INSERT INTO `instance_entities` VALUES (21,17035281);
+INSERT INTO `instance_entities` VALUES (21,17035282);
+INSERT INTO `instance_entities` VALUES (21,17035283);
+INSERT INTO `instance_entities` VALUES (21,17035284);
+INSERT INTO `instance_entities` VALUES (21,17035285);
+INSERT INTO `instance_entities` VALUES (21,17035286);
+INSERT INTO `instance_entities` VALUES (21,17035287);
+INSERT INTO `instance_entities` VALUES (21,17035288);
+INSERT INTO `instance_entities` VALUES (21,17035289);
+INSERT INTO `instance_entities` VALUES (21,17035290);
+INSERT INTO `instance_entities` VALUES (21,17035291);
+-- npcs
+INSERT INTO `instance_entities` VALUES (21,17035478);
+INSERT INTO `instance_entities` VALUES (21,17035479);
+INSERT INTO `instance_entities` VALUES (21,17035512);
+INSERT INTO `instance_entities` VALUES (21,17035517);
+INSERT INTO `instance_entities` VALUES (21,17035520);
+INSERT INTO `instance_entities` VALUES (21,17035526);
+INSERT INTO `instance_entities` VALUES (21,17035527);
+INSERT INTO `instance_entities` VALUES (21,17035537);
+INSERT INTO `instance_entities` VALUES (21,17035538);
+INSERT INTO `instance_entities` VALUES (21,17035539);
+INSERT INTO `instance_entities` VALUES (21,17035540);
+INSERT INTO `instance_entities` VALUES (21,17035541);
+INSERT INTO `instance_entities` VALUES (21,17035552);
+INSERT INTO `instance_entities` VALUES (21,17035554);
 
 -- Troll Fugitives
 -- Mobs
@@ -106,7 +150,6 @@ INSERT INTO `instance_entities` VALUES (23,17035324);
 -- Npcs
 INSERT INTO `instance_entities` VALUES (23,17035478);
 INSERT INTO `instance_entities` VALUES (23,17035479);
-
 
 -- Wamoura Farm Raid
 INSERT INTO `instance_entities` VALUES (27,17035359);

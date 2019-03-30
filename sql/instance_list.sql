@@ -66,7 +66,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (18,'marids_in_the_mist',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (19,'azure_ailments',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (20,'the_susanoo_shuffle',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (21,'excavation_duty',61,30,124.999,-39.309,19.999,0,-1,-1,-1,-1);
+INSERT INTO `instance_list` VALUES (21,'excavation_duty',61,30,124.999,-39.309,19.999,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (22,'lebros_supplies',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (23,'troll_fugitives',61,30,-459.912,-9.860,342.319,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (24,'evade_and_escape',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
