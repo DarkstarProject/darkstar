@@ -14,7 +14,7 @@ dsp.wsquest =
     ['asuran_fists'] =
     {
         ['wsId'] = dsp.weaponskill.ASURAN_FISTS,
-        ['wsUnlockId'] = 1,
+        ['wsUnlockId'] = dsp.ws_unlock.ASURAN_FISTS,
         ['skillId'] = dsp.skill.HAND_TO_HAND,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17507,
@@ -45,7 +45,7 @@ dsp.wsquest =
     ['evisceration'] =
     {
         ['wsId'] = dsp.weaponskill.EVISCERATION,
-        ['wsUnlockId'] = 2,
+        ['wsUnlockId'] = dsp.ws_unlock.EVISCERATION,
         ['skillId'] = dsp.skill.DAGGER,
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17616,
@@ -76,7 +76,7 @@ dsp.wsquest =
     ['savage_blade'] =
     {
         ['wsId'] = dsp.weaponskill.SAVAGE_BLADE,
-        ['wsUnlockId'] = 3,
+        ['wsUnlockId'] = dsp.ws_unlock.SAVAGE_BLADE,
         ['skillId'] = dsp.skill.SWORD,
         ['minSkill'] = 240,
         ['trialWeaponId'] = 17654,
@@ -107,7 +107,7 @@ dsp.wsquest =
     ['ground_strike'] =
     {
         ['wsId'] = dsp.weaponskill.GROUND_STRIKE,
-        ['wsUnlockId'] = 4,
+        ['wsUnlockId'] = dsp.ws_unlock.GROUND_STRIKE,
         ['skillId'] = dsp.skill.GREAT_SWORD,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 16952,
@@ -138,7 +138,7 @@ dsp.wsquest =
     ['decimation'] =
     {
         ['wsId'] = dsp.weaponskill.DECIMATION,
-        ['wsUnlockId'] = 5,
+        ['wsUnlockId'] = dsp.ws_unlock.DECIMATION,
         ['skillId'] = dsp.skill.AXE,
         ['minSkill'] = 240,
         ['trialWeaponId'] = 17933,
@@ -169,7 +169,7 @@ dsp.wsquest =
     ['steel_cyclone'] =
     {
         ['wsId'] = dsp.weaponskill.STEEL_CYCLONE,
-        ['wsUnlockId'] = 6,
+        ['wsUnlockId'] = dsp.ws_unlock.STEEL_CYCLONE,
         ['skillId'] = dsp.skill.GREAT_AXE,
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16735,
@@ -200,7 +200,7 @@ dsp.wsquest =
     ['spiral_hell'] =
     {
         ['wsId'] = dsp.weaponskill.SPIRAL_HELL,
-        ['wsUnlockId'] = 7,
+        ['wsUnlockId'] = dsp.ws_unlock.SPIRAL_HELL,
         ['skillId'] = dsp.skill.SCYTHE,
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16793,
@@ -231,7 +231,7 @@ dsp.wsquest =
     ['impulse_drive'] =
     {
         ['wsId'] = dsp.weaponskill.IMPULSE_DRIVE,
-        ['wsUnlockId'] = 8,
+        ['wsUnlockId'] = dsp.ws_unlock.IMPULSE_DRIVE,
         ['skillId'] = dsp.skill.POLEARM,
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16892,
@@ -262,7 +262,7 @@ dsp.wsquest =
     ['blade_ku'] =
     {
         ['wsId'] = dsp.weaponskill.BLADE_KU,
-        ['wsUnlockId'] = 9,
+        ['wsUnlockId'] = dsp.ws_unlock.BLADE_KU,
         ['skillId'] = dsp.skill.KATANA,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17773,
@@ -293,7 +293,7 @@ dsp.wsquest =
     ['tachi_kasha'] =
     {
         ['wsId'] = dsp.weaponskill.TACHI_KASHA,
-        ['wsUnlockId'] = 10,
+        ['wsUnlockId'] = dsp.ws_unlock.TACHI_KASHA,
         ['skillId'] = dsp.skill.GREAT_KATANA,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17815,
@@ -324,7 +324,7 @@ dsp.wsquest =
     ['black_halo'] =
     {
         ['wsId'] = dsp.weaponskill.BLACK_HALO,
-        ['wsUnlockId'] = 11,
+        ['wsUnlockId'] = dsp.ws_unlock.BLACK_HALO,
         ['skillId'] = dsp.skill.CLUB,
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17456,
@@ -355,7 +355,7 @@ dsp.wsquest =
     ['retribution'] =
     {
         ['wsId'] = dsp.weaponskill.RETRIBUTION,
-        ['wsUnlockId'] = 12,
+        ['wsUnlockId'] = dsp.ws_unlock.RETRIBUTION,
         ['skillId'] = dsp.skill.STAFF,
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17527,
@@ -386,7 +386,7 @@ dsp.wsquest =
     ['empyreal_arrow'] =
     {
         ['wsId'] = dsp.weaponskill.EMPYREAL_ARROW,
-        ['wsUnlockId'] = 13,
+        ['wsUnlockId'] = dsp.ws_unlock.EMPYREAL_ARROW,
         ['skillId'] = dsp.skill.ARCHERY,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 18144,
@@ -417,7 +417,7 @@ dsp.wsquest =
     ['detonator'] =
     {
         ['wsId'] = dsp.weaponskill.DETONATOR,
-        ['wsUnlockId'] = 14,
+        ['wsUnlockId'] = dsp.ws_unlock.DETONATOR,
         ['skillId'] = dsp.skill.MARKSMANSHIP,
         ['minSkill'] = 250,
         ['trialWeaponId'] = 18146,
