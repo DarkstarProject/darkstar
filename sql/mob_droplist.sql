@@ -33040,6 +33040,13 @@ INSERT INTO `mob_droplist` VALUES (4672,0,0,1000,16033,209); -- (Qoofim) Sylph E
 INSERT INTO `mob_droplist` VALUES (4673,0,0,1000,16020,265); -- (Ravenous Crawler) Survivor Earring
 INSERT INTO `mob_droplist` VALUES (4674,0,0,1000,15056,212); -- (Barbaric Weapon) Rover's Gloves
 INSERT INTO `mob_droplist` VALUES (4675,0,0,1000,2828,86); -- (Herensugue) Herensugue Skin
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5374,100); -- (Deviate Bhoot) non-NM version
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100); 
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5375,100);
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100);
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5384,100); -- (Psycheflayer) non-NM version
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5375,100);
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5374,100);
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
