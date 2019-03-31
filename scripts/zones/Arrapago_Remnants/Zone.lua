@@ -20,7 +20,7 @@ function onInitialize(zone)
     zone:registerRegion(11, -339, 5, 300, 0, 0, 0)
 end
 
-function onInstanceZoneIn(player,instance)
+function onInstanceZoneIn(player, instance)
     local cs = -1
 
     local pos = player:getPos()
@@ -29,33 +29,37 @@ function onInstanceZoneIn(player,instance)
         player:setPos(entrypos.x, entrypos.y, entrypos.z, entrypos.rot)
     end
 
-    player:addTempItem(5399);
+    player:addTempItem(5399)
 end;
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     local instance = player:getInstance()
     local chars = instance:getChars()
+    
     if csid == 1 then
         for i,v in pairs(chars) do
             v:setPos(0,0,0,0,72)
         end
     elseif csid >= 200 and csid <= 210 and option == 1 then
-        local ALIGN = player:getAlliance()
-        local POS = player:getPos()
-        if ALIGN ~= nil then
-            for i,v in ipairs(ALIGN) do
-                if v:getID() ~= player:getID() then
-                    v:startEvent(3)
-                    v:timer(4000, function(player)
-                    v:setPos(POS.x, POS.y, pos.z, POS.rot)
+        for i,v in ipairs(chars) do
+            if v:getID() ~= player:getID() then
+                v:startEvent(3)
+                v:timer(4000, function(player)
+                    player:setPos(pos.x, pos.y, pos.z, pos.rot)
                 end)
-                end
+            end
+            v:setHP(v:getMaxHP())
+            v:setMP(v:getMaxMP())
+            if v:getPet() then
+                local pet = v:getPet()
+                pet:setHP(pet:getMaxHP())
+                pet:setMP(pet:getMaxMP())
             end
         end
     end

@@ -3,6 +3,7 @@
 -----------------------------------
 require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     onUpdate(pet, 0)
@@ -10,7 +11,7 @@ end
 
 function onUnequip(pet)
     updateModPerformance(pet, dsp.mod.AUTO_STEAM_JACKET, 'steam_jacket_mod', 0)
-        updateModPerformance(pet, dsp.mod.AUTO_STEAM_JACKED_REDUCTION, 'steam_jacket_reduction', 0)
+    updateModPerformance(pet, dsp.mod.AUTO_STEAM_JACKED_REDUCTION, 'steam_jacket_reduction', 0)
 end
 
 function onManeuverGain(pet, maneuvers)

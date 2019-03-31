@@ -1658,7 +1658,7 @@ INSERT INTO `mob_skills` VALUES (1834,1310,'trembling',1,10.0,2000,1500,4,0,0,0,
 INSERT INTO `mob_skills` VALUES (1835,1311,'serpentine_tail',0,7.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1836,1312,'nerve_gas',1,10.0,2000,1500,4,0,0,0,0,0,0);
 INSERT INTO `mob_skills` VALUES (1837,1275,'feeble_bleat',1,18.0,2000,1500,4,0,0,0,0,0,0);
-INSERT INTO `mob_skills` VALUES (1838,1221,'mine_blast',1,10.0,2000,1500,4,0,0,0,0,0,0);
+INSERT INTO `mob_skills` VALUES (1838,1221,'mine_blast',1,10.0,2000,1500,4,24,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1839,1583,'rushing_slash',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1840,1584,'rushing_stab',0,7.0,2000,1500,4,0,0,0,0,0,0);
 -- INSERT INTO `mob_skills` VALUES (1841,1585,'sandblast',0,7.0,2000,1500,4,0,0,0,0,0,0);

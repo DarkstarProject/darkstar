@@ -9,7 +9,6 @@ require("scripts/globals/status");
 -- TODO: Allegedly has a 12 hp/sec regen.  Determine if true, and add to onMobInitialize if so.
 
 function onMobSpawn(mob)
-    GetPlayerByName("Wren"):PrintToPlayer('onMobSpawn')
     dsp.mix.jobSpecial.config(mob, {
         specials =
         {

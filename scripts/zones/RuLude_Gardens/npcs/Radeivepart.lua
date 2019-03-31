@@ -27,10 +27,17 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getFameLevel(JEUNO) >= 4 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NORTHWARD) == QUEST_AVAILABLE) then
-        player:startEvent(000); -- Start quest "Northward" CS NOT FOUND
+    local northward = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
+
+    if (player:getFameLevel(JEUNO) >= 4 and northward == QUEST_AVAILABLE) then
+        player:startEvent(159, 1, 0, 0, 0, 0, 0, 8);
+    elseif (northward == QUEST_ACCEPTED) then
+        player:startEvent(159, 2, 0, 0, 0, 0, 0, 8);
+    elseif (northward == QUEST_COMPLETED) then
+        player:startEvent(159, 3, 0, 0, 0, 0, 0, 8);
     else
-        player:startEvent(159); -- Standard dialog
+        -- Standard dialogue
+        player:startEvent(159); 
     end
 end;
 
@@ -41,10 +48,10 @@ function onEventFinish(player,csid,option)
     if (csid == 160) then
         player:addVar("saveTheClockTowerVar", 1);
         player:addVar("saveTheClockTowerNPCz1", 1);
-    elseif (csid == 000 and option == 0) then
-        player:addQuest(JEUNO,dsp.quest.id.jeuno.NORTHWARD);
+    elseif (csid == 159 and option == 1) then
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
     elseif (csid == 61) then
-        player:completeQuest(JEUNO,dsp.quest.id.jeuno.NORTHWARD);
+        player:completeQuest(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
         player:addTitle(dsp.title.ENVOY_TO_THE_NORTH);
         if (player:hasKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL);
