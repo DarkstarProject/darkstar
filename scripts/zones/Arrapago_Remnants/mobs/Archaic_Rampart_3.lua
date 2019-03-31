@@ -8,8 +8,6 @@ require("scripts/globals/instance")
 require("scripts/globals/status")
 -----------------------------------
 function onMobSpawn(mob)
-    local instance = mob:getInstance()
-    mob:setLocalVar("swapTime", os.time())
 end
 
 function onMobFight(mob,target)
