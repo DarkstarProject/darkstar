@@ -2,6 +2,7 @@
 -- Attachment: Pattern Reader
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("ENGAGE", "AUTO_PATTERN_READER_ENGAGE", function(pet, target)
@@ -54,8 +55,8 @@ function onUnequip(pet)
     pet:removeListener("AUTO_PATTERN_READER_DISENGAGE")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

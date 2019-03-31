@@ -3,6 +3,7 @@
 -----------------------------------
 require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     onUpdate(pet, 0)
