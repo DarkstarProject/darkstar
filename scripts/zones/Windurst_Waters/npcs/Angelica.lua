@@ -16,7 +16,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    posestatus = player:getQuestStatus(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
+    posestatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.A_POSE_BY_ANY_OTHER_NAME);
     if (posestatus == QUEST_AVAILABLE and player:getVar("QuestAPoseByOtherName_prog") == 0 and player:needToZone() == false) then
         player:startEvent(87);                                                     -- A POSE BY ANY dsp.nation.OTHER NAME: Before Quest
         player:setVar("QuestAPoseByOtherName_prog",1);
@@ -69,13 +69,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 92) then -------------------------- QUEST START
-        player:addQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.A_POSE_BY_ANY_OTHER_NAME);
         player:setVar("QuestAPoseByOtherName_time",os.time());
     elseif (csid == 96) then  --------------------- QUEST FINFISH
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,206);
         else
-            player:completeQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME)
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.A_POSE_BY_ANY_OTHER_NAME)
             player:addTitle(dsp.title.SUPER_MODEL);
             player:addItem(206);
             player:messageSpecial(ID.text.ITEM_OBTAINED,206);
@@ -88,7 +88,7 @@ function onEventFinish(player,csid,option)
             player:needToZone(true);
         end
     elseif (csid == 102) then  ---------------------- QUEST FAILURE
-        player:delQuest(WINDURST,A_POSE_BY_ANY_OTHER_NAME);
+        player:delQuest(WINDURST,dsp.quest.id.windurst.A_POSE_BY_ANY_OTHER_NAME);
         player:addTitle(dsp.title.LOWER_THAN_THE_LOWEST_TUNNEL_WORM);
         player:setVar("QuestAPoseByOtherName_time",0);
         player:setVar("QuestAPoseByOtherName_equip",0);

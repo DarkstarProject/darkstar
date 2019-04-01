@@ -29,7 +29,7 @@ function onTrigger(player,npc)
 
     if (player:getVar("aBoysDreamCS") == 8) then
         player:startEvent(88);
-    elseif (player:getQuestStatus(SANDORIA,A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.PLD) then
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM) == QUEST_COMPLETED and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH) == QUEST_AVAILABLE and player:getMainJob() == dsp.job.PLD) then
         player:startEvent(90);
     elseif (player:getVar("UnderOathCS") == 8) then
         player:startEvent(89);
@@ -71,17 +71,17 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,14095);
         else
             if (player:getMainJob() == dsp.job.PLD) then
-                player:addQuest(SANDORIA,UNDER_OATH);
+                player:addQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
             end
             player:delKeyItem(dsp.ki.KNIGHTS_BOOTS);
             player:addItem(14095);
             player:messageSpecial(ID.text.ITEM_OBTAINED,14095); -- Gallant Leggings
             player:setVar("aBoysDreamCS",0);
             player:addFame(SANDORIA,AF2_FAME);
-            player:completeQuest(SANDORIA,A_BOY_S_DREAM);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.A_BOY_S_DREAM);
         end
     elseif (csid == 90 and option ==1) then
-        player:addQuest(SANDORIA,UNDER_OATH);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
         player:setVar("UnderOathCS",0);
     elseif (csid == 89) then
         if (player:getFreeSlotsCount() == 0) then
@@ -92,7 +92,7 @@ function onEventFinish(player,csid,option)
             player:setVar("UnderOathCS",9);
             player:addFame(SANDORIA,AF3_FAME);
             player:setTitle(dsp.title.PARAGON_OF_PALADIN_EXCELLENCE);
-            player:completeQuest(SANDORIA,UNDER_OATH);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.UNDER_OATH);
         end
     elseif (csid == 81) then
         player:setVar("MissionStatus",1);

@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 
 function onTrade(player,npc,trade)
     if
-        player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES) == QUEST_ACCEPTED and
+        player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES) == QUEST_ACCEPTED and
         player:getVar("BlueRibbonBluesProg") >= 3 and
         player:getVar("Lich_C_Magnus_Died") == 0 and
         npcUtil.tradeHas(trade, 13569) and

@@ -8,7 +8,7 @@ require("scripts/globals/settings");
 require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1 and player:getVar("tradeMaugie") == 0) then
             player:messageSpecial(ID.text.MAUGIE_DIALOG);
             player:addVar("FFR", -1)
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
     end;
 
 function onTrigger(player,npc)
-    local grimySignpost = player:getQuestStatus(SANDORIA,GRIMY_SIGNPOSTS);
+    local grimySignpost = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS);
     if (grimySignpost == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
         player:startEvent(45);
     elseif (grimySignpost == QUEST_ACCEPTED) then
@@ -43,12 +43,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 45 and option == 0) then
-        player:addQuest(SANDORIA,GRIMY_SIGNPOSTS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS);
     elseif (csid == 44) then
         player:setVar("CleanSignPost",0);
         player:addFame(SANDORIA,30);
         player:addGil(GIL_RATE*1500);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*1500);
-        player:completeQuest(SANDORIA,GRIMY_SIGNPOSTS);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.GRIMY_SIGNPOSTS);
     end
 end;

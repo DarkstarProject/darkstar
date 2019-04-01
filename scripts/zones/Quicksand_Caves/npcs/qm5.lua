@@ -16,7 +16,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrigger(player,npc)
-    local TheMissingPiece = player:getQuestStatus(OUTLANDS,THE_MISSING_PIECE);
+    local TheMissingPiece = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.THE_MISSING_PIECE);
     local HasAncientFragment = player:hasKeyItem(dsp.ki.ANCIENT_TABLET_FRAGMENT);
     local HasAncientTablet = player:hasKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
 

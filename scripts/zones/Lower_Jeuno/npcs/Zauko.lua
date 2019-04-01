@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 
     local hour = VanadielHour();
     local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
-    local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+    local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
     local currCommService = player:getVar("currCommService");
     local hasMembershipCard = player:hasKeyItem(dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD) and 1 or 0;
 
@@ -76,14 +76,14 @@ function onEventUpdate(player,csid,option)
         -- player accepts quest
         -- if nobody else has already been assigned to the quest, including Vhana, give it to this player
 
-        local doneCommService = (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
+        local doneCommService = (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) == QUEST_COMPLETED) and 1 or 0;
         local playerOnQuestId = GetServerVariable("[JEUNO]CommService");
         local hour = VanadielHour();
 
         if (playerOnQuestId == 0 and (hour >= 18 or hour < 1)) then
             -- nobody is currently on the quest
             SetServerVariable("[JEUNO]CommService",player:getID());
-            player:addQuest(JEUNO,COMMUNITY_SERVICE);
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE);
             player:setVar("currCommService",1);
             player:updateEvent(1,doneCommService);
         else
@@ -102,7 +102,7 @@ function onEventFinish(player,csid,option)
     -- COMMUNITY SERVICE
     elseif (csid == 117) then
         local params = {title = dsp.title.TORCHBEARER, var = "currCommService"};
-        if (player:getQuestStatus(JEUNO,COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COMMUNITY_SERVICE) ~= QUEST_COMPLETED) then
             -- first victory
             params.fame = 30;
         else
@@ -112,7 +112,7 @@ function onEventFinish(player,csid,option)
                 params.keyItem = dsp.ki.LAMP_LIGHTERS_MEMBERSHIP_CARD;
             end
         end
-        npcUtil.completeQuest(player, JEUNO, COMMUNITY_SERVICE, params);
+        npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.COMMUNITY_SERVICE, params);
 
     elseif (csid == 118 and option == 1) then
         -- player drops membership card

@@ -9,7 +9,7 @@ require("scripts/globals/quests")
 
 function onTrade(player, npc, trade)
     -- FLYERS FOR REGINE
-    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         if player:getVar("tradeAnswald") == 0 then
             player:messageSpecial(ID.text.ANSWALD_DIALOG)
             player:messageSpecial(ID.text.FLYER_ACCEPTED)

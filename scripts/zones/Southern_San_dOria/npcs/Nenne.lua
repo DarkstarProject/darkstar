@@ -17,8 +17,8 @@ end;
 
 function onTrigger(player,npc)
 
-    medicineWoman = player:getQuestStatus(SANDORIA,THE_MEDICINE_WOMAN);
-    toCureaCough = player:getQuestStatus(SANDORIA,TO_CURE_A_COUGH);
+    medicineWoman = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MEDICINE_WOMAN);
+    toCureaCough = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
 
     if (toCureaCough == QUEST_AVAILABLE and player:getVar("toCureaCough") == 0 and medicineWoman == QUEST_COMPLETED) then
         player:startEvent(538);
@@ -44,7 +44,7 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.SCROLL_OF_TREASURE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SCROLL_OF_TREASURE);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,TO_CURE_A_COUGH);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TO_CURE_A_COUGH);
     end
 
 end;

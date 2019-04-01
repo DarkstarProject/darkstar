@@ -15,14 +15,14 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     local tradeCount = trade:getItemCount();
-    if (player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
         -- Trade Bomb Coal / Exoray Mold / Ancient Papyrus
         if (trade:hasItemQty(1090,1) and trade:hasItemQty(1089,1) and trade:hasItemQty(1088,1) and tradeCount == 3) then
             player:startEvent(81); -- Finish Quest "In Defiant Challenge"
         end
     end
 
-    if (player:getQuestStatus(JEUNO,SHATTERING_STARS) ~= QUEST_AVAILABLE and player:getMainLvl() >= 66 and player:getVar("maatsCap") < 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS) ~= QUEST_AVAILABLE and player:getMainLvl() >= 66 and player:getVar("maatsCap") < 1) then
         local mJob = player:getMainJob();
         if (trade:hasItemQty(1425 + mJob,1) and tradeCount == 1 and mJob <= 15) then
             player:startEvent(64,mJob); -- Teleport to battlefield for "Shattering Stars"
@@ -35,11 +35,11 @@ function onTrigger(player,npc)
 
     local LvL = player:getMainLvl();
     local mJob = player:getMainJob();
-    local inDefiantChallenge = player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE);
-    local atopTheHighestMountains = player:getQuestStatus(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
-    local whenceBlowsTheWind = player:getQuestStatus(JEUNO,WHENCE_BLOWS_THE_WIND);
-    local ridingOnTheClouds = player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS);
-    local shatteringStars = player:getQuestStatus(JEUNO,SHATTERING_STARS);
+    local inDefiantChallenge = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE);
+    local atopTheHighestMountains = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS);
+    local whenceBlowsTheWind = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WHENCE_BLOWS_THE_WIND);
+    local ridingOnTheClouds = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS);
+    local shatteringStars = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS);
 
     if (player:getVar("BeatAroundTheBushin") == 5) then
         player:startEvent(117);
@@ -87,7 +87,7 @@ function onTrigger(player,npc)
         player:startEvent(91,player:getMainJob()); -- During Quest "Shattering Stars"
     elseif (shatteringStars == QUEST_ACCEPTED and LvL >= 66 and mJob <= 15 and player:getVar("maatDefeated") >= 1) then
         player:startEvent(93); -- Finish Quest "Shattering Stars"
-    elseif (player:getQuestStatus(JEUNO,BEYOND_THE_SUN) == QUEST_AVAILABLE and mJob <= 15 and player:getVar("maatsCap") == 32767) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BEYOND_THE_SUN) == QUEST_AVAILABLE and mJob <= 15 and player:getVar("maatsCap") == 32767) then
         player:startEvent(74); -- Finish Quest "Beyond The Sun"
     else
         player:showText(npc,ID.text.MAAT_DIALOG);
@@ -107,16 +107,16 @@ function onEventFinish(player,csid,option)
         player:setVar("BeatAroundTheBushin",6);
     -- Genkai 1
     elseif (csid == 79 and option == 1) then
-        player:addQuest(JEUNO,IN_DEFIANT_CHALLENGE);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE);
     elseif (csid == 81) then
         player:tradeComplete();
         player:addTitle(dsp.title.HORIZON_BREAKER);
         player:levelCap(55);
-        player:completeQuest(JEUNO,IN_DEFIANT_CHALLENGE);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE);
         player:addFame(JEUNO, 30);
     -- Genkai 2
     elseif (csid == 82 and option == 1) then
-        player:addQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS);
     elseif (csid == 84) then
         player:addTitle(dsp.title.SUMMIT_BREAKER);
         player:delKeyItem(dsp.ki.ROUND_FRIGICITE);
@@ -124,11 +124,11 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.TRIANGULAR_FRIGICITE);
         player:levelCap(60);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_60);
-        player:completeQuest(JEUNO,ATOP_THE_HIGHEST_MOUNTAINS);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.ATOP_THE_HIGHEST_MOUNTAINS);
         player:addFame(JEUNO, 40);
     -- Genkai 3
     elseif (csid == 85 and option == 1) then
-        player:addQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.WHENCE_BLOWS_THE_WIND);
     elseif (csid == 87) then
         player:addTitle(dsp.title.SKY_BREAKER);
         player:delKeyItem(dsp.ki.ORCISH_CREST);
@@ -136,11 +136,11 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.YAGUDO_CREST);
         player:levelCap(65);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_65);
-        player:completeQuest(JEUNO,WHENCE_BLOWS_THE_WIND);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.WHENCE_BLOWS_THE_WIND);
         player:addFame(JEUNO, 50);
     elseif (csid == 88) then
         if (option == 1) then
-            player:addQuest(JEUNO,RIDING_ON_THE_CLOUDS);
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS);
         else
             player:setVar("ridingOnTheClouds_1",0);
             player:setVar("ridingOnTheClouds_2",0);
@@ -155,10 +155,10 @@ function onEventFinish(player,csid,option)
         player:delKeyItem(dsp.ki.SPIRITED_STONE);
         player:levelCap(70);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_70);
-        player:completeQuest(JEUNO,RIDING_ON_THE_CLOUDS);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS);
         player:addFame(JEUNO, 60);
     elseif (csid == 92) then
-        player:addQuest(JEUNO,SHATTERING_STARS);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS);
     elseif (csid == 64 and option == 1) then
         local mJob = player:getMainJob();
             if (mJob == dsp.job.MNK or mJob == dsp.job.WHM or mJob == dsp.job.SMN) then player:setPos(299.316,-123.591,353.760,66,146);
@@ -171,11 +171,11 @@ function onEventFinish(player,csid,option)
         player:levelCap(75);
         player:setVar("maatDefeated",0);
         player:messageSpecial(ID.text.YOUR_LEVEL_LIMIT_IS_NOW_75);
-        player:completeQuest(JEUNO,SHATTERING_STARS);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS);
         player:addFame(JEUNO, 80);
     elseif (csid==74) then
         if (player:getFreeSlotsCount() > 0) then
-            player:completeQuest(JEUNO,BEYOND_THE_SUN);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.BEYOND_THE_SUN);
             player:addTitle(dsp.title.ULTIMATE_CHAMPION_OF_THE_WORLD);
             player:setVar("maatsCap",0);
             player:addItem(15194);

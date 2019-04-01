@@ -18,14 +18,14 @@ end;
 function onZoneIn(player,prevZone)
     local cs = -1;
     if (prevZone == dsp.zone.EAST_RONFAURE_S) then
-        if (player:getQuestStatus(CRYSTAL_WAR, KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
+        if (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.KNOT_QUITE_THERE) == QUEST_ACCEPTED and player:getVar("KnotQuiteThere") == 2) then
             cs = 62;
-        elseif (player:getQuestStatus(CRYSTAL_WAR, DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then
+        elseif (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.DOWNWARD_HELIX) == QUEST_ACCEPTED and player:getVar("DownwardHelix") == 0) then
             cs = 65;
         elseif (player:getCurrentMission(WOTG) == CAIT_SITH and
-               (player:getQuestStatus(CRYSTAL_WAR, WRATH_OF_THE_GRIFFON) == QUEST_COMPLETED or
-                player:getQuestStatus(CRYSTAL_WAR, A_MANIFEST_PROBLEM) == QUEST_COMPLETED or
-                player:getQuestStatus(CRYSTAL_WAR, BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
+               (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON) == QUEST_COMPLETED or
+                player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.A_MANIFEST_PROBLEM) == QUEST_COMPLETED or
+                player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.BURDEN_OF_SUSPICION) == QUEST_COMPLETED)) then
             cs = 67;
         end
     end

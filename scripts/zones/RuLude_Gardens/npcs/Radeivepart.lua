@@ -19,7 +19,7 @@ function onTrade(player,npc,trade)
            a ~= 13 and a ~= 19 and a ~= 21 and a ~= 15 and a ~= 23 and a ~= 27 and a ~= 29 and a ~= 31)) then
             player:startEvent(160,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
-    elseif (player:getQuestStatus(JEUNO,NORTHWARD) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.NORTHWARD) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(16522,1) == true and trade:getGil() == 0 and trade:getItemCount() == 1) then
             player:startEvent(61); -- Finish quest "Northward"
         end
@@ -27,7 +27,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local northward = player:getQuestStatus(JEUNO,NORTHWARD);
+    local northward = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
 
     if (player:getFameLevel(JEUNO) >= 4 and northward == QUEST_AVAILABLE) then
         player:startEvent(159, 1, 0, 0, 0, 0, 0, 8);
@@ -49,9 +49,9 @@ function onEventFinish(player,csid,option)
         player:addVar("saveTheClockTowerVar", 1);
         player:addVar("saveTheClockTowerNPCz1", 1);
     elseif (csid == 159 and option == 1) then
-        player:addQuest(JEUNO,NORTHWARD);
+        player:addQuest(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
     elseif (csid == 61) then
-        player:completeQuest(JEUNO,NORTHWARD);
+        player:completeQuest(JEUNO, dsp.quest.id.jeuno.NORTHWARD);
         player:addTitle(dsp.title.ENVOY_TO_THE_NORTH);
         if (player:hasKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL) == false) then
             player:addKeyItem(dsp.ki.MAP_OF_CASTLE_ZVAHL);

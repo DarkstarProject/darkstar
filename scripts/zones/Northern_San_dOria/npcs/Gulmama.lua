@@ -17,10 +17,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByIce = player:getQuestStatus(SANDORIA,TRIAL_BY_ICE);
+    local TrialByIce = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
     local WhisperOfFrost = player:hasKeyItem(dsp.ki.WHISPER_OF_FROST);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local ClassReunion = player:getQuestStatus(WINDURST,CLASS_REUNION);
+    local ClassReunion = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CLASS_REUNION);
     local ClassReunionProgress = player:getVar("ClassReunionProgress");
 
     ------------------------------------------------------------
@@ -58,10 +58,10 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 706 and option == 1) then
-        if (player:getQuestStatus(SANDORIA,TRIAL_BY_ICE) == QUEST_COMPLETED) then
-            player:delQuest(SANDORIA,TRIAL_BY_ICE);
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE) == QUEST_COMPLETED) then
+            player:delQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
-        player:addQuest(SANDORIA,TRIAL_BY_ICE);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         player:setVar("TrialByIce_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_ICE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_ICE);
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.WHISPER_OF_FROST); --Whisper of Frost, as a trade for the above rewards
             player:setVar("TrialByIce_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,TRIAL_BY_ICE);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE);
         end
     elseif (csid == 713 or csid == 712) then
         if (player:getFreeSlotsCount() ~= 0) then

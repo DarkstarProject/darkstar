@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
---    player:delQuest(WINDURST,CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
+--    player:delQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN); -- ======== FOR TESTING ONLY ==========-----
 -- ======== FOR TESTING ONLY ==========-----
 --    if (player:getVar("QuestCatchItIfYouCan_var") == 0 and player:hasStatusEffect(dsp.effect.MUTE) == false and player:hasStatusEffect(dsp.effect.BANE) == false and player:hasStatusEffect(dsp.effect.PLAGUE) == false) then
 --        rand = math.random(1,3);
@@ -31,8 +31,8 @@ function onTrigger(player,npc)
 --    end
 -- ======== FOR TESTING ONLY ==========-----
 
-    Catch = player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN);
-    WonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS);
+    Catch = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
+    WonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS);
     if (WonderWands == QUEST_ACCEPTED) then
         player:startEvent(258,0,17053);
     elseif (Catch == 0) then
@@ -70,7 +70,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 231) then
-        player:addQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
     elseif (csid == 246 and option == 0) then
         player:needToZone(true);
         if (player:hasStatusEffect(dsp.effect.MUTE) == true) then
@@ -89,8 +89,8 @@ function onEventFinish(player,csid,option)
 
         player:setVar("QuestCatchItIfYouCan_var",0);
 
-        if (player:getQuestStatus(WINDURST,CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,CATCH_IT_IF_YOU_CAN);
+        if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN) == QUEST_ACCEPTED) then
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.CATCH_IT_IF_YOU_CAN);
             player:addFame(WINDURST,75);
         else
             player:addFame(WINDURST,8);

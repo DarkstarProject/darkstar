@@ -15,8 +15,8 @@ end;
 
 function onTrigger(player,npc)
 
-    local WelcometoBastok = player:getQuestStatus(BASTOK,WELCOME_TO_BASTOK);
-    local GuestofHauteur = player:getQuestStatus(BASTOK,GUEST_OF_HAUTEUR);
+    local WelcometoBastok = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK);
+    local GuestofHauteur = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.GUEST_OF_HAUTEUR);
 
     if (WelcometoBastok ~= QUEST_COMPLETED) then
         local wtbStatus = player:getVar("WelcometoBastok_Event");
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 50 and option == 0) then
-        player:addQuest(BASTOK,WELCOME_TO_BASTOK);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK);
     elseif (csid == 53) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,16565);
@@ -64,10 +64,10 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,16565); -- Spatha
             player:setVar("WelcomeToBastok_Event",0);
             player:addFame(BASTOK,80);
-            player:completeQuest(BASTOK,WELCOME_TO_BASTOK);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.WELCOME_TO_BASTOK);
         end
     elseif (csid == 55 and option == 0) then
-        player:addQuest(BASTOK,GUEST_OF_HAUTEUR);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.GUEST_OF_HAUTEUR);
     elseif (csid == 58) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,12300);
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.LETTERS_FROM_DOMIEN);
             player:setVar("GuestofHauteur_Event",0);
             player:addFame(BASTOK,80);
-            player:completeQuest(BASTOK,GUEST_OF_HAUTEUR);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.GUEST_OF_HAUTEUR);
         end
     end
 

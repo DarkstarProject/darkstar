@@ -18,9 +18,9 @@ function onTrigger(player,npc)
     local Allegiance = player:getCampaignAllegiance()
     -- 0 = none, 1 = San d'Oria Iron Rams, 2 = Bastok Fighting Fourth, 3 = Windurst Cobras
 
-    local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR, THE_FIGHTING_FOURTH)
-    local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
-    local SteamedRams = player:getQuestStatus(CRYSTAL_WAR, STEAMED_RAMS)
+    local TheFightingFourth = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH)
+    local SnakeOnThePlains = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
+    local SteamedRams = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.STEAMED_RAMS)
     local GreenLetter = player:hasKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER)
 
     if SteamedRams == QUEST_ACCEPTED or TheFightingFourth == QUEST_ACCEPTED then
@@ -55,7 +55,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 103 and option == 0 then
-        player:addQuest(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
         player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
         player:setVar("GREEN_R_LETTER_USED", 1)
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER)
@@ -64,11 +64,11 @@ function onEventFinish(player,csid,option)
         player:setVar("GREEN_R_LETTER_USED", 1)
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER)
     elseif csid == 104 and option == 1 then
-        player:delQuest(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+        player:delQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
         player:delKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
         player:setVar("SEALED_DOORS", 0)
     elseif csid == 105 and option == 0 then
-        player:addQuest(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+        player:addQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
         player:addKeyItem(dsp.ki.ZONPAZIPPAS_ALLPURPOSE_PUTTY)
         player:setVar("GREEN_R_LETTER_USED", 1)
         player:delKeyItem(dsp.ki.GREEN_RECOMMENDATION_LETTER)
@@ -82,7 +82,7 @@ function onEventFinish(player,csid,option)
                 player:addTitle(dsp.title.COBRA_UNIT_MERCENARY)
                 player:addKeyItem(dsp.ki.BRONZE_RIBBON_OF_SERVICE)
                 player:addItem(15754)
-                player:completeQuest(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+                player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
                 player:setVar("SEALED_DOORS", 0)
                 player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.BRONZE_RIBBON_OF_SERVICE)
                 player:messageSpecial(ID.text.ITEM_OBTAINED, 15754)
@@ -93,7 +93,7 @@ function onEventFinish(player,csid,option)
             player:setCampaignAllegiance(3)
             player:setVar("GREEN_R_LETTER_USED", 0)
             player:addTitle(dsp.title.COBRA_UNIT_MERCENARY)
-            player:completeQuest(CRYSTAL_WAR, SNAKE_ON_THE_PLAINS)
+            player:completeQuest(CRYSTAL_WAR, dsp.quest.id.crystalWar.SNAKE_ON_THE_PLAINS)
             player:setVar("SEALED_DOORS", 0)
         end
     end

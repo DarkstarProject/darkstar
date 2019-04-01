@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    AltanaSorrow = player:getQuestStatus(BASTOK,ALTANA_S_SORROW);
+    AltanaSorrow = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.ALTANA_S_SORROW);
 
     if (AltanaSorrow == QUEST_AVAILABLE and player:getFameLevel(BASTOK) >= 4 and player:getMainLvl() >= 10) then
         player:startEvent(141); -- Start quest "Altana's Sorrow"
@@ -41,7 +41,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 141 and option == 0) then
-        player:addQuest(BASTOK,ALTANA_S_SORROW);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.ALTANA_S_SORROW);
     elseif (csid == 143) then
         player:delKeyItem(dsp.ki.BUCKET_OF_DIVINE_PAINT);
         player:addKeyItem(dsp.ki.LETTER_FROM_VIRNAGE);

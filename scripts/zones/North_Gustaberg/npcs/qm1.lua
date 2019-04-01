@@ -32,7 +32,7 @@ function onEventFinish(player,csid,option)
         if (mainweapon == 0 and subweapon == 0) then
             local freeslots = player:getFreeSlotsCount();
             local alreadyHasItem = player:hasItem(576);
-            local SirensTear = player:getQuestStatus(BASTOK,THE_SIREN_S_TEAR);
+            local SirensTear = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIREN_S_TEAR);
             local SirensTearProgress = player:getVar("SirensTear");
 
             if (SirensTear == QUEST_COMPLETED and SirensTearProgress < 2) then

@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(SANDORIA, A_BOY_S_DREAM) == QUEST_ACCEPTED and VanadielDayOfTheYear() ~= player:getVar("DreadbugNM_Day") then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_BOY_S_DREAM) == QUEST_ACCEPTED and VanadielDayOfTheYear() ~= player:getVar("DreadbugNM_Day") then
         if os.time() > player:getVar("DreadbugNM_Timer") + 30 and npcUtil.popFromQM(player, npc, ID.mob.DREADBUG, {claim=true, hide=0}) then
             player:messageSpecial(ID.text.SENSE_OF_FOREBODING)
             player:setVar("DreadbugNM_Timer", os.time() + 180)

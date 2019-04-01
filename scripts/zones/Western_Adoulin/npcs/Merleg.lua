@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local APBIF = player:getQuestStatus(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
+    local APBIF = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_PIONEERS_BEST_IMAGINARY_FRIEND);
     if (APBIF == QUEST_ACCEPTED) then
         if (player:hasStatusEffect(dsp.effect.IONIS)) then
             -- Finishing Quest: 'A Pioneers Best (Imaginary) Friend'
@@ -38,14 +38,14 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2520) then
         -- Starting Quest: 'A Pioneers Best (Imaginary) Friend'
-        player:addQuest(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.A_PIONEERS_BEST_IMAGINARY_FRIEND);
         if (player:hasStatusEffect(dsp.effect.IONIS)) then
             -- Finishes quest if Ionis is already active
             player:startEvent(2522);
         end
     elseif (csid == 2522) then
         -- Finishing Quest: 'A Pioneers Best (Imaginary) Friend'
-        player:completeQuest(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.A_PIONEERS_BEST_IMAGINARY_FRIEND);
         player:addExp(500 * EXP_RATE);
         player:addCurrency('bayld', 200 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 200 * BAYLD_RATE);

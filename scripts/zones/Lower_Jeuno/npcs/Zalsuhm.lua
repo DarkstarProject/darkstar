@@ -13,7 +13,7 @@ require("scripts/globals/weaponskillids")
 
 function getQuestId(mainJobId)
 
-    return (UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId)
+    return dsp.quest.jeuno.UNLOCKING_A_MYTH_WARRIOR - 1 + mainJobId
 
 end
 

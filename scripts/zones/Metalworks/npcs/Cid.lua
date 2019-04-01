@@ -41,7 +41,7 @@ end
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local currentday = tonumber(os.date("%j"))
-    local CidsSecret = player:getQuestStatus(BASTOK,CID_S_SECRET)
+    local CidsSecret = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.CID_S_SECRET)
     local LetterKeyItem = player:hasKeyItem(dsp.ki.UNFINISHED_LETTER)
     local currentMission = player:getCurrentMission(BASTOK)
     local currentCOPMission = player:getCurrentMission(COP)
@@ -105,7 +105,7 @@ function onTrigger(player,npc)
         player:startEvent(845) -- COP event
     elseif (currentCOPMission == THE_ROAD_FORKS and player:getVar("EMERALD_WATERS_Status")== 7 and player:getVar("MEMORIES_OF_A_MAIDEN_Status")== 12) then --two paths are finished ?
         player:startEvent(847) -- COP event 3.3
-    elseif (player:getMainJob() == dsp.job.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,DARK_PUPPET) == QUEST_AVAILABLE) then
+    elseif (player:getMainJob() == dsp.job.DRK and player:getMainLvl() >= AF2_QUEST_LEVEL and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_LEGACY) == QUEST_COMPLETED and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.DARK_PUPPET) == QUEST_AVAILABLE) then
         player:startEvent(760) -- Start Quest "Dark Puppet"
     elseif (currentMission == GEOLOGICAL_SURVEY) then
         if (player:hasKeyItem(dsp.ki.RED_ACIDITY_TESTER)) then
@@ -197,7 +197,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(COP,COMEDY_OF_ERRORS_ACT_I)
         player:addMission(COP,TENDING_AGED_WOUNDS ) --starting 3.4 COP mission
     elseif (csid == 760) then
-        player:addQuest(BASTOK,DARK_PUPPET)
+        player:addQuest(BASTOK,dsp.quest.id.bastok.DARK_PUPPET)
         player:setVar("darkPuppetCS",1)
     elseif (csid == 503) then
         player:addKeyItem(dsp.ki.BLUE_ACIDITY_TESTER)
@@ -222,7 +222,7 @@ function onEventFinish(player,csid,option)
     elseif (csid == 763) then
         player:setVar("MissionStatus",1)
     elseif (csid == 507) then
-        player:addQuest(BASTOK,CID_S_SECRET)
+        player:addQuest(BASTOK,dsp.quest.id.bastok.CID_S_SECRET)
     elseif (csid == 509) then
         if (player:getFreeSlotsCount(0) >= 1) then
             player:delKeyItem(dsp.ki.UNFINISHED_LETTER)
@@ -230,7 +230,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13570)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13570) -- Ram Mantle
             player:addFame(BASTOK,30)
-            player:completeQuest(BASTOK,CID_S_SECRET)
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.CID_S_SECRET)
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13570)
         end

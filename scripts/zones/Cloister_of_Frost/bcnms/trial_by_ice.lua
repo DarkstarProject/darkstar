@@ -31,7 +31,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
-        if (player:hasCompletedQuest(SANDORIA,TRIAL_BY_ICE)) then
+        if (player:hasCompletedQuest(SANDORIA,dsp.quest.id.sandoria.TRIAL_BY_ICE)) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,1);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);

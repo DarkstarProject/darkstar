@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         if player:getVar("tradeGuilberdrier") == 0 then
             player:messageSpecial(ID.text.CAPIRIA_DIALOG) -- gave this NPC a generic response to flyer. I don't see a unique one in the extract. need retail capture.
             player:messageSpecial(ID.text.FLYER_ACCEPTED)
@@ -26,7 +26,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    local exitTheGambler = player:getQuestStatus(SANDORIA, EXIT_THE_GAMBLER)
+    local exitTheGambler = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.EXIT_THE_GAMBLER)
     local exitTheGamblerStat = player:getVar("exitTheGamblerStat")
 
     if player:getVar("thePickpocket") == 1 and not player:getMaskBit(player:getVar("thePickpocketSkipNPC"), 4) then
@@ -45,9 +45,9 @@ function onEventUpdate(player, csid, option)
 end
 
 function onEventFinish(player, csid, option)
-    if csid == 522 and player:getQuestStatus(SANDORIA, EXIT_THE_GAMBLER) == QUEST_AVAILABLE then
-        player:addQuest(SANDORIA, EXIT_THE_GAMBLER)
+    if csid == 522 and player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.EXIT_THE_GAMBLER) == QUEST_AVAILABLE then
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.EXIT_THE_GAMBLER)
     elseif csid == 518 then
-        npcUtil.completeQuest(player, SANDORIA, EXIT_THE_GAMBLER, {ki = dsp.ki.MAP_OF_KING_RANPERRES_TOMB, title = dsp.title.DAYBREAK_GAMBLER, xp = 2000})
+        npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.EXIT_THE_GAMBLER, {ki = dsp.ki.MAP_OF_KING_RANPERRES_TOMB, title = dsp.title.DAYBREAK_GAMBLER, xp = 2000})
     end
 end

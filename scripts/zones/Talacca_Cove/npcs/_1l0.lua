@@ -42,7 +42,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.FORGOTTEN_HEXAGUN);
             player:unlockJob(dsp.job.COR);
             player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_CORSAIR);
-            player:completeQuest(AHT_URHGAN,LUCK_OF_THE_DRAW);
+            player:completeQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.LUCK_OF_THE_DRAW);
         end
     elseif (EventFinishBCNM(player,csid,option)) then
         return;

@@ -26,9 +26,9 @@ function onTrigger(player,npc)
     -- 160 (160) = 1st cutscene of Windurst Mission 2-1
     -- 161 (161) = More info on 2-1, if you talk to him right after the previous cutscene again
 
-    local bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
-    local glyphStatus = player:getQuestStatus(WINDURST,GLYPH_HANGER);
-    local chasingStatus = player:getQuestStatus(WINDURST,CHASING_TALES);
+    local bookwormStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
+    local glyphStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.GLYPH_HANGER);
+    local chasingStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
 
     local Fame = player:getFameLevel(WINDURST);
 
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         player:startEvent(387); -- Start Quest "Early Bird Catches the Bookworm"
     elseif (bookwormStatus == QUEST_ACCEPTED) then
         player:startEvent(388); -- During Quest "Early Bird Catches the Bookworm"
-    elseif (player:getQuestStatus(WINDURST,HAT_IN_HAND) == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND) == QUEST_ACCEPTED or player:getVar("QuestHatInHand_var2") == 1) then
         function testflag(set,flag)
             return (set % (2*flag) >= flag)
         end
@@ -93,9 +93,9 @@ function onEventFinish(player,csid,option)
     elseif (csid == 168) then
         finishMissionTimeline(player,1,csid,option);
     elseif (csid == 387 and option == 0) then -- Early Bird Catches the Bookworm
-        player:addQuest(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
     elseif (csid == 403 and option == 0) then
-        player:addQuest(WINDURST,CHASING_TALES);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CHASING_TALES);
     elseif (csid ==875) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",11);
     elseif (csid == 715) then

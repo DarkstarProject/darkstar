@@ -12,11 +12,11 @@ require("scripts/globals/quests")
 
 function onTrade(player, npc, trade)
     -- FLYERS FOR REGINE
-    if player:getQuestStatus(SANDORIA, FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
+    if player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 532) then
         player:messageSpecial(ID.text.FLYER_REFUSED)
 
     -- THE PICKPOCKET
-    elseif player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 579) then
+    elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 579) then
         player:startEvent(550)
 
     -- DEFAULT DIALOG
@@ -29,7 +29,7 @@ function onTrigger(player, npc)
     -- THE PICKPOCKET
     if player:getVar("thePickpocket") > 0 then
         player:startEvent(547)
-    elseif player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_COMPLETED then
+    elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_COMPLETED then
         player:startEvent(580)
 
     -- STANDARD DIALOG
@@ -43,9 +43,9 @@ end
 
 function onEventFinish(player, csid, option)
     -- THE PICKPOCKET
-    if csid == 547 and player:getQuestStatus(SANDORIA, THE_PICKPOCKET) == QUEST_AVAILABLE then
-        player:addQuest(SANDORIA, THE_PICKPOCKET)
-    elseif csid == 550 and npcUtil.completeQuest(player, SANDORIA, THE_PICKPOCKET, {item = 16667, title = dsp.title.PICKPOCKET_PINCHER, var = {"thePickpocket", "thePickpocketSkipNPC", "thePickpocketEagleButton"}}) then
+    if csid == 547 and player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET) == QUEST_AVAILABLE then
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET)
+    elseif csid == 550 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.THE_PICKPOCKET, {item = 16667, title = dsp.title.PICKPOCKET_PINCHER, var = {"thePickpocket", "thePickpocketSkipNPC", "thePickpocketEagleButton"}}) then
         player:confirmTrade()
     end
 end

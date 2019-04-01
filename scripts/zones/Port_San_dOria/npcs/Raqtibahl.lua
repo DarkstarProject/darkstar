@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
     local letterRed = player:getVar("LeleroonsLetterRed");
 
     -- magicmart flyer
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED and trade:getItemCount() == 1 and trade:hasItemQty(532,1)) then
         player:messageSpecial(ID.text.FLYER_REFUSED);
 
     -- gold chain, velvet cloth, red grass cloth, sailcloth

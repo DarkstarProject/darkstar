@@ -11,7 +11,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(BASTOK, THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TOOLBOX) then
+    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TOOLBOX) then
         player:startEvent(23)
     else
         player:startEvent(22)
