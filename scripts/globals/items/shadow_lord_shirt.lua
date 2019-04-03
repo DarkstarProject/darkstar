@@ -4,6 +4,10 @@
 -- Teleports user to Castle Zvahl Keep
 -----------------------------------------
 
+function onItemCheck(target)
+    return 0
+end
+
 function onItemUse(target)
 	-- Teleports user to Castle Zvahl Keep
 	-- May need a retail capture to verify
