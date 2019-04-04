@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         player:startEvent(153);
     elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
         player:startEvent(166);
-    elseif (player:getRank() == 5 and CurrentMission == 255 and player:hasCompletedMission(WINDURST,THE_FINAL_SEAL) == false) then
+    elseif (player:getRank() == 5 and CurrentMission == 255 and player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL) == false) then
         player:startEvent(190);
     elseif (player:hasKeyItem(dsp.ki.BURNT_SEAL)) then
         player:startEvent(192);
@@ -67,7 +67,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_AMBASSADOR);
     elseif (csid == 166 or csid == 190) then
         if (option == 0) then
-            player:addMission(WINDURST,THE_FINAL_SEAL);
+            player:addMission(WINDURST,dsp.mission.id.windurst.THE_FINAL_SEAL);
             player:addKeyItem(dsp.ki.NEW_FEIYIN_SEAL);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.NEW_FEIYIN_SEAL);
             player:setVar("MissionStatus",10);

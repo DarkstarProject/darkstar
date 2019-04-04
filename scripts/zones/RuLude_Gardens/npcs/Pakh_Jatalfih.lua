@@ -30,7 +30,7 @@ function onTrigger(player,npc)
             else
                 player:startEvent(54);
             end
-        elseif (player:getRank() == 4 and player:getCurrentMission(WINDURST) == 255 and MissionStatus ~= 0 and getMissionRankPoints(player,13) == 1) then
+        elseif (player:getRank() == 4 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.NONE and MissionStatus ~= 0 and getMissionRankPoints(player,13) == 1) then
             player:startEvent(134);
         elseif (currentMission == MAGICITE and MissionStatus == 2) then
             player:startEvent(137);

@@ -38,7 +38,7 @@ function onZoneIn( player, prevZone)
         cs = 123;
     elseif (prevZone == dsp.zone.ORDELLES_CAVES and player:getVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 122;
-    elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") ==1) then
         cs = 125;
     end
 

@@ -11,9 +11,9 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
     local CurrentMission = player:getCurrentMission(SANDORIA);
-    local OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS);
-    local BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT);
-    local TheCSpringCompleted = player:hasCompletedMission(SANDORIA,THE_CRYSTAL_SPRING);
+    local OrcishScoutCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS);
+    local BatHuntCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BAT_HUNT);
+    local TheCSpringCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_CRYSTAL_SPRING);
     local MissionStatus = player:getVar("MissionStatus");
     local Count = trade:getItemCount();
 
@@ -41,7 +41,7 @@ end;
 
 function onTrigger(player,npc)
 
-local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE);
+local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE);
 
     if (player:getNation() ~= dsp.nation.SANDORIA) then
         player:startEvent(1011); -- for Non-San d'Orians
@@ -57,7 +57,7 @@ local PresOfPapsqueCompleted = player:hasCompletedMission(SANDORIA,PRESTIGE_OF_T
             else
                 player:startEvent(cs,p[1],p[2],p[3],p[4],p[5],p[6],p[7],p[8]);
             end
-        elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,SMASH_THE_ORCISH_SCOUTS) == false) then
+        elseif (pRank == 1 and player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS) == false) then
             player:startEvent(1000); -- Start First Mission "Smash the Orcish scouts"
         elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1035);

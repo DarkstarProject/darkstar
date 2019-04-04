@@ -46,7 +46,7 @@ function onTrigger(player,npc)
         player:startEvent(565)
     elseif (pNation == dsp.nation.SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
-        if (player:hasCompletedMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)) then
+        if (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT)) then
             player:startEvent(31)
         elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 7) then
             player:startEvent(9)
@@ -69,7 +69,7 @@ function onTrigger(player,npc)
         elseif (currentMission == LEAUTE_S_LAST_WISHES and MissionStatus == 0) then
             player:startEvent(25)
         -- Mission San D'Oria 5-2 The Shadow Lord
-        elseif (player:hasCompletedMission(SANDORIA,THE_SHADOW_LORD) and currentMission == 255) then
+        elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.THE_SHADOW_LORD) and currentMission == 255) then
             player:showText(npc,ID.text.HALVER_OFFSET+500)
         elseif (currentMission == THE_SHADOW_LORD and MissionStatus == 5) then
             player:showText(npc,ID.text.HALVER_OFFSET+471)
@@ -139,7 +139,7 @@ end
 function onEventFinish(player,csid,option)
 
     if (csid == 501) then
-        player:addMission(BASTOK,THE_EMISSARY_SANDORIA)
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_SANDORIA)
         player:setVar("MissionStatus",4)
     elseif (csid == 503) then
         player:setVar("MissionStatus",9)
@@ -176,7 +176,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,181)
         end
         player:setVar("MissionStatus",0)
-        player:completeMission(SANDORIA,THE_HEIR_TO_THE_LIGHT)
+        player:completeMission(SANDORIA,dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT)
         player:setRank(10)
         player:addGil(100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,100000)

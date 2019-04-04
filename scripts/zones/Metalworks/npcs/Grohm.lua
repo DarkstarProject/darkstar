@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK) then
+    if (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK) then
         if (player:getVar("notReceivePickaxe") == 1) then
             player:startEvent(425);
         elseif (player:getVar("MissionStatus") == 4) then
@@ -23,13 +23,13 @@ function onTrigger(player,npc)
         else
             player:startEvent(422);
         end
-    elseif (player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2) then
+    elseif (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2) then
         if (player:getVar("MissionStatus") == 9) then
             player:startEvent(426);
         else
             player:startEvent(427);
         end
-    elseif (player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK) then
         if (player:getVar("notReceivePickaxe") == 1) then
             player:startEvent(425,1);
         elseif (player:getVar("MissionStatus") == 4) then
@@ -39,7 +39,7 @@ function onTrigger(player,npc)
         else
             player:startEvent(422);
         end
-    elseif (player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) then
         if (player:getVar("MissionStatus") == 9) then
             player:startEvent(426,1);
         else

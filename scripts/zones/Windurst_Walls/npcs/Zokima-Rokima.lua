@@ -29,11 +29,11 @@ function onTrigger(player,npc)
             end
         elseif (CurrentMission ~= 255) then
             player:startEvent(91);
-        elseif (player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) == false) then
             player:startEvent(96);
-        elseif (player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) == false) then
             player:startEvent(106);
-        elseif (player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) == false) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) == false) then
             player:startEvent(111);
         elseif (player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST)) then
             player:startEvent(150);

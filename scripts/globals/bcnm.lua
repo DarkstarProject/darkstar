@@ -508,41 +508,41 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [139] = {
                     [0] = function()
-                              return ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or
-                                  player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9)
+                              return ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or
+                                  player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") == 9)
                           end, -- Mission 2-3
-                    [3] = function() return (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2)  end,
+                    [3] = function() return (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 2)  end,
                 },
         [140] = {
                     [32] = function()
                                 local MissionStatus = player:getVar("MissionStatus");
-                                local sTcCompleted = player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN);
-                                return (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2))
+                                local sTcCompleted = player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN);
+                                return (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and (sTcCompleted and MissionStatus <= 2 or sTcCompleted == false and MissionStatus == 2))
                            end, -- Sandy Mission 1-3
                     [33] = function() return (player:hasKeyItem(dsp.ki.DRAGON_CURSE_REMEDY))  end, -- DRG Flag Quest
                 },
         [144] = {
-                    [64] = function() return ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or
-                        player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) end, -- Mission 2-3
-                    [67] = function() return ((player:getCurrentMission(BASTOK) == ON_MY_WAY) and (player:getVar("MissionStatus") == 2))  end,
+                    [64] = function() return ((player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or
+                        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") == 10) end, -- Mission 2-3
+                    [67] = function() return ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY) and (player:getVar("MissionStatus") == 2))  end,
                 },
         [146] = {
                     [96] = function() return (player:hasKeyItem(dsp.ki.DARK_KEY))  end, -- Mission 2-3
-                    [99] = function() return ((player:getCurrentMission(WINDURST) == SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1))  end, -- Mission 6-2
+                    [99] = function() return ((player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION) and (player:getVar("MissionStatus") == 1))  end, -- Mission 6-2
                 },
         [163] = {
                     [128] = function() return (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH)  end, -- Zilart Mission 4
                 },
         [165] = {
                     [160] = function() return (player:getCurrentMission(player:getNation()) == 15 and player:getVar("MissionStatus") == 3)  end, -- Mission 5-2
-                    [161] = function() return (player:getCurrentMission(BASTOK) == WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1)  end, -- bastok 9-2
+                    [161] = function() return (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE and player:getVar("BASTOK92") == 1)  end, -- bastok 9-2
                 },
         [168] = {
                     [192] = function() return (player:getCurrentMission(ZILART) == THROUGH_THE_QUICKSAND_CAVES or player:getCurrentMission(ZILART) == THE_CHAMBER_OF_ORACLES)  end, -- Zilart Mission 6
                 },
         [170] = {
                     [224] = function() return (player:hasKeyItem(dsp.ki.MOON_BAUBLE))  end, -- The Moonlit Path
-                    [225] = function() return ((player:getCurrentMission(WINDURST) == MOON_READING) and player:getVar("MissionStatus") == 2)  end, -- Windurst 9-2
+                    [225] = function() return ((player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING) and player:getVar("MissionStatus") == 2)  end, -- Windurst 9-2
                 },
         [179] = {
                     [256] = function() return (player:getCurrentMission(ZILART) == RETURN_TO_DELKFUTTS_TOWER and player:getVar("ZilartStatus") == 3)  end, -- Zilart Mission 8
@@ -571,7 +571,7 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
-                    [516] = function() return (player:getCurrentMission(SANDORIA) == THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
+                    [516] = function() return (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
                 --[[
                     Temp disabled pending BCNM mob fixes
                     [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(dsp.ki.MARK_OF_SEED))  end, -- ACP Mission 7
@@ -672,30 +672,30 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 139) then -- Horlais Peak
-        if ((player:hasCompletedMission(BASTOK, THE_EMISSARY_SANDORIA2) or player:hasCompletedMission(WINDURST, THE_THREE_KINGDOMS_SANDORIA2)) or
-        ((player:getCurrentMission(BASTOK) == THE_EMISSARY_SANDORIA2 or player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") > 9)) then -- Mission 2-3
+        if ((player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2) or player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2)) or
+        ((player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_SANDORIA2 or player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) and player:getVar("MissionStatus") > 9)) then -- Mission 2-3
             skip = 1
-        elseif ((player:hasCompletedMission(SANDORIA, THE_SECRET_WEAPON)) or (player:getCurrentMission(SANDORIA) == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)) then
+        elseif ((player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.THE_SECRET_WEAPON)) or (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") > 2)) then
             skip = 1
         end
     elseif (Zone == 140) then -- Ghelsba Outpost
-        if ((player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN)) or (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") > 2)) then -- Sandy Mission 1-3
+        if ((player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.SAVE_THE_CHILDREN)) or (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.SAVE_THE_CHILDREN and player:getVar("MissionStatus") > 2)) then -- Sandy Mission 1-3
             skip = 1
         elseif (player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)) then -- DRG Flag Quest
             skip = 1
         end
     elseif (Zone == 144) then -- Waughroon Shrine
-        if ((player:hasCompletedMission(SANDORIA, JOURNEY_TO_BASTOK2) or player:hasCompletedMission(WINDURST, THE_THREE_KINGDOMS_BASTOK2)) or
-        ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_BASTOK2 or player:getCurrentMission(WINDURST) == THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") > 10)) then -- Mission 2-3
+        if ((player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2) or player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2)) or
+        ((player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_BASTOK2 or player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) and player:getVar("MissionStatus") > 10)) then -- Mission 2-3
             skip = 1
-        elseif ((player:hasCompletedMission(BASTOK, ON_MY_WAY)) or (player:getCurrentMission(BASTOK) == ON_MY_WAY and player:getVar("MissionStatus") > 2)) then
+        elseif ((player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.ON_MY_WAY)) or (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.ON_MY_WAY and player:getVar("MissionStatus") > 2)) then
             skip = 1
         end
     elseif (Zone == 146) then -- Balga's Dais
-        if ((player:hasCompletedMission(SANDORIA, JOURNEY_TO_WINDURST2) or player:hasCompletedMission(BASTOK, THE_EMISSARY_WINDURST2)) or
-        ((player:getCurrentMission(SANDORIA) == JOURNEY_TO_WINDURST2 or player:getCurrentMission(BASTOK) == THE_EMISSARY_WINDURST2) and player:getVar("MissionStatus") > 8)) then -- Mission 2-3
+        if ((player:hasCompletedMission(SANDORIA, dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2) or player:hasCompletedMission(BASTOK, dsp.mission.id.bastok.THE_EMISSARY_WINDURST2)) or
+        ((player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.JOURNEY_TO_WINDURST2 or player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) and player:getVar("MissionStatus") > 8)) then -- Mission 2-3
             skip = 1
-        elseif ((player:hasCompletedMission(WINDURST, SAINTLY_INVITATION)) or (player:getCurrentMission(WINDURST) == SAINTLY_INVITATION and player:getVar("MissionStatus") > 1)) then -- Mission 6-2
+        elseif ((player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.SAINTLY_INVITATION)) or (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.SAINTLY_INVITATION and player:getVar("MissionStatus") > 1)) then -- Mission 6-2
             skip = 1
         end
     elseif (Zone == 165) then -- Throne Room
@@ -709,7 +709,7 @@ function CutsceneSkip(player, npc)
     elseif (Zone == 170) then -- Full Moon Fountain
         if ((player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON))) then -- The Moonlit Path
             skip = 1
-        elseif ((player:hasCompletedMission(WINDURST, MOON_READING)) or (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") > 2)) then
+        elseif ((player:hasCompletedMission(WINDURST, dsp.mission.id.windurst.MOON_READING)) or (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getVar("MissionStatus") > 2)) then
             skip = 1
         end
     elseif (Zone == 179) then -- Stellar Fulcrum

@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) ~= 255) then
+    if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         currentMission = player:getCurrentMission(BASTOK);
         missionStatus = player:getVar("MissionStatus");
 

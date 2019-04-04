@@ -28,15 +28,15 @@ function onTrigger(player,npc)
             end
         elseif CurrentMission ~= 255 then
             player:startEvent(112)
-        elseif not player:hasCompletedMission(WINDURST,THE_HORUTOTO_RUINS_EXPERIMENT) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HORUTOTO_RUINS_EXPERIMENT) then
             player:startEvent(121)
-        elseif not player:hasCompletedMission(WINDURST,THE_HEART_OF_THE_MATTER) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_HEART_OF_THE_MATTER) then
             player:startEvent(132)
-        elseif not player:hasCompletedMission(WINDURST,THE_PRICE_OF_PEACE) then
+        elseif not player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
             player:startEvent(149)
         elseif player:hasKeyItem(dsp.ki.MESSAGE_TO_JEUNO_WINDURST) then
             player:startEvent(197)
-        elseif player:hasCompletedMission(WINDURST,MOON_READING) then
+        elseif player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.MOON_READING) then
             player:startEvent(632)
         else
             local flagMission, repeatMission = getMissionMask(player)

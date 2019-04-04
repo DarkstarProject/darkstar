@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
         end
     end
     if (trade:hasItemQty(4365,1) and trade:getItemCount() == 1 and player:getNation() == dsp.nation.WINDURST and player:getRank() >= 2 and player:hasKeyItem(dsp.ki.PORTAL_CHARM) == false) then -- Trade Rolanberry
-        if (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS)) then
+        if (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS)) then
             player:startEvent(291); -- Qualifies for the reward immediately
         else
             player:startEvent(292); -- Kupipi owes you the portal charm later
@@ -95,11 +95,11 @@ function onTrigger(player,npc)
             player:startEvent(103,0,0,dsp.ki.STARWAY_STAIRWAY_BAUBLE);
         elseif (currentMission == TO_EACH_HIS_OWN_RIGHT and MissionStatus == 1) then
             player:startEvent(104);
-        elseif (player:getCurrentMission(WINDURST) == THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
+        elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and MissionStatus == 3) then
             player:startEvent(326);
-        elseif (player:hasCompletedMission(WINDURST,WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
+        elseif (player:hasCompletedMission(WINDURST,dsp.mission.id.windurst.WRITTEN_IN_THE_STARS) and player:getVar("OwesPortalCharm") == 1) then
             player:startEvent(293); -- Kupipi repays your favor
-        elseif (player:getCurrentMission(WINDURST) == MOON_READING and MissionStatus >= 3) then
+        elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 3) then
             player:startEvent(400); -- Kupipi in disbelief over player becoming Rank 10
         elseif (pNation == dsp.nation.WINDURST) and (player:getRank() == 10) then
             player:startEvent(408); -- After achieving Windurst Rank 10, Kupipi has more to say

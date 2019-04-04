@@ -22,7 +22,7 @@ function onTrigger(player,npc)
 
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI);
 
     local Wait1DayRanperre = player:getVar("Wait1DayForRanperre_date");
     local osdate = tonumber(os.date("%j"));
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
         player:startEvent(21);
     elseif (currentMission == RANPERRE_S_FINAL_REST and MissionStatus == 7) then
         player:startEvent(21);
-    elseif (player:hasCompletedMission(SANDORIA,LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.LIGHTBRINGER) and player:getRank() == 9 and player:getVar("Cutscenes_8-2") == 0) then
         player:startEvent(63);
     else
         player:startEvent(522);

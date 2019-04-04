@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(WINDURST) == WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 1) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.WRITTEN_IN_THE_STARS and player:getVar("MissionStatus") == 1) then
         player:startEvent(41,0,dsp.ki.CHARM_OF_LIGHT);
     else
         player:messageSpecial(ID.text.DOOR_FIRMLY_CLOSED);

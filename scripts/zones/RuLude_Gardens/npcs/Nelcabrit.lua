@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         player:startEvent(67);
     elseif (currentMission == APPOINTMENT_TO_JEUNO and missionStatus == 5) then
         player:startEvent(39);
-    elseif (player:getRank() == 4 and player:getCurrentMission(SANDORIA) == 255 and getMissionRankPoints(player,13) == 1) then
+    elseif (player:getRank() == 4 and player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.NONE and getMissionRankPoints(player,13) == 1) then
         player:startEvent(130); -- Start Mission 4-1 Magicite
     elseif (currentMission == MAGICITE_BASTOK and missionStatus == 1) then
         player:startEvent(133);

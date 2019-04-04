@@ -54,7 +54,7 @@ function onZoneIn(player,prevZone)
         cs = 1;
     elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 4) then
         cs = 0;
-    elseif (player:hasCompletedMission(SANDORIA,COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
+    elseif (player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.COMING_OF_AGE) and tonumber(os.date("%j")) == player:getVar("Wait1DayM8-1_date")) then
         cs = 16;
     end
     return cs;

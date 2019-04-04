@@ -25,7 +25,7 @@ function onTrigger(player,npc)
         player:startEvent(66);
     elseif (currentMission == JEUNO_MISSION and missionStatus == 3) then
         player:startEvent(38);
-    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == 255 and getMissionRankPoints(player,13) == 1) then
+    elseif (player:getRank() == 4 and player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.NONE and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then
             player:startEvent(129,1);
         else

@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,182)
         end
         player:setVar("BASTOK92",0)
-        player:completeMission(BASTOK,WHERE_TWO_PATHS_CONVERGE)
+        player:completeMission(BASTOK,dsp.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE)
         player:setRank(10)
         player:addGil(GIL_RATE*100000)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*100000)

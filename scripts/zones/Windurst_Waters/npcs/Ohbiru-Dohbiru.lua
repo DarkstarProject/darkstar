@@ -65,7 +65,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status")==2) then
         player:startEvent(872);
-    elseif (player:getCurrentMission(WINDURST) == THE_PRICE_OF_PEACE) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_PRICE_OF_PEACE) then
         if (player:getVar("ohbiru_dohbiru_talk") == 1) then
             player:startEvent(143);
         else

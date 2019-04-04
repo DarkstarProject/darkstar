@@ -29,7 +29,7 @@ function onTrigger(player,npc)
         player:startEvent(114)
     elseif (player:getCurrentMission(ZILART) == THE_TEMPLE_OF_UGGALEPIH) then
         player:startEvent(115)
-    elseif (player:getCurrentMission(WINDURST) == AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
+    elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.AWAKENING_OF_THE_GODS and player:getVar("MissionStatus") == 2) then
         player:startEvent(265)
     else
         player:startEvent(113)

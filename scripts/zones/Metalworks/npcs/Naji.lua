@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 
     if (player:hasKeyItem(dsp.ki.YASINS_SWORD)) then -- The Doorman, WAR AF1
         player:startEvent(750);
-    elseif (player:getCurrentMission(BASTOK) ~= 255) then
+    elseif (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         local currentMission = player:getCurrentMission(BASTOK);
 
         if (currentMission == THE_ZERUHN_REPORT and player:hasKeyItem(dsp.ki.ZERUHN_REPORT)) then
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
         end
     elseif (csid == 710) then
         player:delKeyItem(dsp.ki.ZERUHN_REPORT);
-        player:completeMission(BASTOK,THE_ZERUHN_REPORT);
+        player:completeMission(BASTOK,dsp.mission.id.bastok.THE_ZERUHN_REPORT);
     elseif (csid == 713) then
         player:addKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);

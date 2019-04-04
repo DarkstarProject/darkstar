@@ -16,7 +16,7 @@ function onTrigger(player,npc)
 
     pNation = player:getNation();
 
-    if (player:getCurrentMission(BASTOK) ~= 255) then
+    if (player:getCurrentMission(BASTOK) ~= dsp.mission.id.bastok.NONE) then
         currentMission = player:getCurrentMission(pNation);
 
         if (pNation == dsp.nation.BASTOK) then
@@ -69,7 +69,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 48) then
-        player:addMission(BASTOK,THE_EMISSARY_WINDURST);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_WINDURST);
         player:setVar("MissionStatus",2);
         player:delKeyItem(dsp.ki.LETTER_TO_THE_CONSULS_BASTOK);
     elseif (csid == 53) then
@@ -78,13 +78,13 @@ function onEventFinish(player,csid,option)
         player:setVar("MissionStatus",4);  --> Gideus next
         player:delKeyItem(dsp.ki.SWORD_OFFERING) -- remove sword offering
     elseif (csid == 55) then
-        player:addMission(BASTOK,THE_EMISSARY);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
         player:setVar("MissionStatus",7); -- to Sandy now
     elseif (csid == 61) then
-        player:addMission(BASTOK,THE_EMISSARY_WINDURST2);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY_WINDURST2);
         player:setVar("MissionStatus",7);
     elseif (csid == 66) then
-        player:addMission(BASTOK,THE_EMISSARY);
+        player:addMission(BASTOK,dsp.mission.id.bastok.THE_EMISSARY);
         player:addKeyItem(dsp.ki.KINDRED_REPORT)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.KINDRED_REPORT);
         player:setVar("MissionStatus",10);  -- return to Bastok

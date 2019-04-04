@@ -13,7 +13,7 @@ require("scripts/globals/npc_util")
 
 function onTrade(player, npc, trade)
     if
-        player:getCurrentMission(WINDURST) == A_NEW_JOURNEY and
+        player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.A_NEW_JOURNEY and
         player:getVar("MissionStatus") == 2 and
         npcUtil.tradeHas(trade, 549) -- Delkfutt Key
     then

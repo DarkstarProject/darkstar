@@ -67,7 +67,7 @@ function onTrigger(player,npc)
     local MissionStatus = player:getVar("MissionStatus");
 
     --optional windy 9-1
-    if (player:getCurrentMission(WINDURST) == DOLL_OF_THE_DEAD and MissionStatus == 4) then
+    if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and MissionStatus == 4) then
         player:startEvent(439);
     elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3) then
         player:startEvent(469);

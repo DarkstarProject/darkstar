@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:hasCompletedMission(BASTOK,ON_MY_WAY) and player:getVar("[B7-2]Cornelia") == 0) then
+    if (player:hasCompletedMission(BASTOK,dsp.mission.id.bastok.ON_MY_WAY) and player:getVar("[B7-2]Cornelia") == 0) then
         player:startEvent(622);
     else
         player:messageSpecial(ID.text.ITS_LOCKED);

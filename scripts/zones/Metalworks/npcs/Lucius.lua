@@ -26,7 +26,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(BASTOK) == JEUNO_MISSION and player:getVar("MissionStatus") == 0) then
+    if (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.JEUNO_MISSION and player:getVar("MissionStatus") == 0) then
         player:startEvent(322);
     else
         player:startEvent(320);

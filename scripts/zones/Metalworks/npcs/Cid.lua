@@ -30,7 +30,7 @@ function onTrade(player,npc,trade)
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getCurrentMission(BASTOK) == THE_CRYSTAL_LINE and player:getVar("MissionStatus") == 1) then
+    elseif (player:getCurrentMission(BASTOK) == dsp.mission.id.bastok.THE_CRYSTAL_LINE and player:getVar("MissionStatus") == 1) then
         if (trade:getItemQty(613,1) and trade:getItemCount() == 1) then
             player:startEvent(506)
         end

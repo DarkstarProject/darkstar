@@ -15,7 +15,7 @@ end;
 function onTrigger(player,npc)
 
     local CurrentMission = player:getCurrentMission(SANDORIA);
-    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,INFILTRATE_DAVOI);
+    local infiltrateDavoi = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.INFILTRATE_DAVOI);
 
     if (CurrentMission == THE_DAVOI_REPORT and player:getVar("MissionStatus") == 0) then
         player:startEvent(100);

@@ -22,7 +22,7 @@ end;
 function onTrigger(player,npc)
     local currentMission = player:getCurrentMission(SANDORIA);
     local MissionStatus = player:getVar("MissionStatus");
-    local BatHuntCompleted = player:hasCompletedMission(SANDORIA,BAT_HUNT); -- quest repeatable and clicking tombstone should not produce cutscene on repeat
+    local BatHuntCompleted = player:hasCompletedMission(SANDORIA,dsp.mission.id.sandoria.BAT_HUNT); -- quest repeatable and clicking tombstone should not produce cutscene on repeat
     local X = npc:getXPos();
     local Z = npc:getZPos();
 
