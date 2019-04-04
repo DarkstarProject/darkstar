@@ -414,7 +414,7 @@ function ItemToBCNMID(player, zone, trade)
                         questTimelineOK = 1
                     elseif (item == 1553) then -- KSNM99
                         questTimelineOK = 1
-                    elseif (item == 1550 and (player:getQuestStatus(OUTLANDS, DIVINE_MIGHT) == QUEST_ACCEPTED or player:getQuestStatus(OUTLANDS, DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED)) then -- Divine Might
+                    elseif (item == 1550 and (player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT) == QUEST_ACCEPTED or player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT) == QUEST_ACCEPTED)) then -- Divine Might
                         questTimelineOK = 1
                     elseif (item == 1169 and player:getVar("ThePuppetMasterProgress") == 2) then -- The Puppet Master
                         questTimelineOK = 1
@@ -481,7 +481,7 @@ function checkNonTradeBCNM(player, npc, mode)
                     [864] = function() return (player:getCurrentMission(COP) == DESIRES_OF_EMPTINESS and player:getVar("PromathiaStatus")==8)  end, -- desires of emptiness
                },
         [29] = {
-                    [896] = function() return (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2)  end,  -- Storms of Fate BCNM
+                    [896] = function() return (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 2)  end,  -- Storms of Fate BCNM
                },
         [31] = {
                     [960] = function() return (player:getCurrentMission(COP) == ANCIENT_VOWS and player:getVar("PromathiaStatus") == 2)  end,  -- Ancient Vows bcnm
@@ -624,7 +624,7 @@ function CutsceneSkip(player, npc)
     elseif (Zone == 10) then -- The_Shrouded_Maw
         if ((player:hasCompletedMission(COP, DARKNESS_NAMED)) or (player:getCurrentMission(COP) == DARKNESS_NAMED and player:getVar("PromathiaStatus") > 2)) then -- DARKNESS_NAMED
             skip = 1
-        elseif ((player:hasCompletedQuest(WINDURST, WAKING_DREAMS)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS))) then -- waking_dreams (diabolos avatar quest)
+        elseif ((player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.WAKING_DREAMS)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_DREAMS))) then -- waking_dreams (diabolos avatar quest)
             skip = 1
         end
     elseif (Zone == 13) then -- Mine Shaft 2716
@@ -648,7 +648,7 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 29) then -- Riverne Site #B01
-        if ((player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_COMPLETED) or (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)) then -- Storms of Fate
+        if ((player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_COMPLETED) or (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar("StormsOfFate") > 2)) then -- Storms of Fate
             skip = 1
         end
     elseif (Zone == 31) then -- Monarch Linn
@@ -681,7 +681,7 @@ function CutsceneSkip(player, npc)
     elseif (Zone == 140) then -- Ghelsba Outpost
         if ((player:hasCompletedMission(SANDORIA, SAVE_THE_CHILDREN)) or (player:getCurrentMission(SANDORIA) == SAVE_THE_CHILDREN and player:getVar("MissionStatus") > 2)) then -- Sandy Mission 1-3
             skip = 1
-        elseif (player:hasCompletedQuest(SANDORIA, THE_HOLY_CREST)) then -- DRG Flag Quest
+        elseif (player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.THE_HOLY_CREST)) then -- DRG Flag Quest
             skip = 1
         end
     elseif (Zone == 144) then -- Waughroon Shrine
@@ -707,7 +707,7 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 170) then -- Full Moon Fountain
-        if ((player:hasCompletedQuest(WINDURST, THE_MOONLIT_PATH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON))) then -- The Moonlit Path
+        if ((player:hasCompletedQuest(WINDURST, dsp.quest.id.windurst.THE_MOONLIT_PATH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_THE_MOON))) then -- The Moonlit Path
             skip = 1
         elseif ((player:hasCompletedMission(WINDURST, MOON_READING)) or (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") > 2)) then
             skip = 1
@@ -725,15 +725,15 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 201) then -- Cloister of Gales
-        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_WIND)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_GALES))) then -- Trial by Wind
+        if ((player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WIND)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_GALES))) then -- Trial by Wind
             skip = 1
         end
     elseif (Zone == 202) then -- Cloister of Storms
-        if ((player:hasCompletedQuest(OTHER_AREAS_LOG, TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS))) then -- Trial by Lightning
+        if ((player:hasCompletedQuest(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.TRIAL_BY_LIGHTNING)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_STORMS))) then -- Trial by Lightning
             skip = 1
         end
     elseif (Zone == 203) then -- Cloister of Frost
-        if ((player:hasCompletedQuest(SANDORIA, TRIAL_BY_ICE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FROST))) then -- Trial by Ice
+        if ((player:hasCompletedQuest(SANDORIA, dsp.quest.id.sandoria.TRIAL_BY_ICE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FROST))) then -- Trial by Ice
             skip = 1
         end
     elseif (Zone == 206) then -- Qu'Bia Arena
@@ -743,15 +743,15 @@ function CutsceneSkip(player, npc)
             skip = 1
         end
     elseif (Zone == 207) then -- Cloister of Flames
-        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_FIRE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES))) then -- Trial by Fire
+        if ((player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_FIRE)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_FLAMES))) then -- Trial by Fire
             skip = 1
         end
     elseif (Zone == 209) then -- Cloister of Tremors
-        if ((player:hasCompletedQuest(BASTOK, TRIAL_BY_EARTH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS))) then -- Trial by Earth
+        if ((player:hasCompletedQuest(BASTOK, dsp.quest.id.bastok.TRIAL_BY_EARTH)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS))) then -- Trial by Earth
             skip = 1
         end
     elseif (Zone == 211) then -- Cloister of Tides
-        if ((player:hasCompletedQuest(OUTLANDS, TRIAL_BY_WATER)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES))) then -- Trial by Water
+        if ((player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.TRIAL_BY_WATER)) or (player:hasKeyItem(dsp.ki.WHISPER_OF_TIDES))) then -- Trial by Water
             skip = 1
         end
     end
