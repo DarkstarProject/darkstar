@@ -11267,8 +11267,8 @@ INSERT INTO `item_armor` VALUES (25709,'obviation_cuirass',99,119,193,202,0,0,32
 INSERT INTO `item_armor` VALUES (25710,'obviat._cuirass_+1',99,119,193,202,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25711,'botulus_suit',1,0,4194303,419,0,0,32,80);
 INSERT INTO `item_armor` VALUES (25712,'botulus_suit_+1',1,0,4194303,419,0,0,32,80);
-INSERT INTO `item_armor` VALUES (25713,'track_shirt',1,0,4194303,0,0,0,32,64);
-INSERT INTO `item_armor` VALUES (25714,'track_shirt_+1',1,0,4194303,0,0,0,32,64);
+INSERT INTO `item_armor` VALUES (25713,'track_shirt',1,0,4194303,579,0,0,32,64);
+INSERT INTO `item_armor` VALUES (25714,'track_shirt_+1',1,0,4194303,579,0,0,32,64);
 INSERT INTO `item_armor` VALUES (25715,'korrigan_suit',1,0,4194303,417,0,0,32,128);
 INSERT INTO `item_armor` VALUES (25716,'odyss._chestplate',99,119,193,412,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25717,'valorous_mail',99,119,10689,413,0,0,32,0);
@@ -11306,7 +11306,7 @@ INSERT INTO `item_armor` VALUES (25751,'inyanga_jubbah',99,119,16900,185,0,0,32,
 INSERT INTO `item_armor` VALUES (25752,'inyanga_jubbah_+1',99,119,16900,185,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25753,'jhakri_robe',99,119,1605656,186,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25754,'jhakri_robe_+1',99,119,1605656,186,0,0,32,0);
-INSERT INTO `item_armor` VALUES (25755,'crustacean_shirt',1,0,4194303,0,0,0,32,0);
+INSERT INTO `item_armor` VALUES (25755,'crustacean_shirt',1,0,4194303,584,0,0,32,0);
 INSERT INTO `item_armor` VALUES (25756,'wyrmking_suit',1,0,4194303,414,0,0,32,128);
 INSERT INTO `item_armor` VALUES (25757,'wyrmking_suit_+1',1,0,4194303,414,0,0,32,128);
 INSERT INTO `item_armor` VALUES (25758,'rhapsody_shirt',1,0,4194303,581,0,0,32,0);
@@ -11735,8 +11735,10 @@ INSERT INTO `item_armor` VALUES (26483,'brewers_shield_-1',1,0,4194303,0,3,0,2,0
 INSERT INTO `item_armor` VALUES (26484,'chefs_ecu_-1',1,0,4194303,0,2,0,2,0);
 INSERT INTO `item_armor` VALUES (26485,'chefs_scutum_-1',1,0,4194303,0,4,0,2,0);
 INSERT INTO `item_armor` VALUES (26486,'chefs_shield_-1',1,0,4194303,0,3,0,2,0);
-INSERT INTO `item_armor` VALUES (26520,'akitu_shirt',1,0,4194303,0,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26517,'shadow_lord_shirt',1,0,4194303,588,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26520,'akitu_shirt',1,0,4194303,582,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26523,'delegates_garb',1,0,4194303,441,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26524,'gil_nabber_shirt',1,0,4194303,585,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26525,'oshosi_vest',99,119,66560,0,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26526,'oshosi_vest_+1',99,119,66560,0,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26527,'ken._samue',99,119,6146,0,0,0,32,0);
@@ -12022,8 +12024,8 @@ INSERT INTO `item_armor` VALUES (26885,'revealers_tunic',99,119,1589788,62,0,0,3
 INSERT INTO `item_armor` VALUES (26886,'reveal._tunic_+1',99,119,1589788,62,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26887,'shomonjijoe',99,119,16384,37,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26888,'shomonjijoe_+1',99,119,16384,37,0,0,32,0);
-INSERT INTO `item_armor` VALUES (26889,'heart_apron',1,0,4194303,241,0,0,32,0);
-INSERT INTO `item_armor` VALUES (26890,'heart_apron_+1',1,0,4194303,241,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26889,'heart_apron',1,0,4194303,576,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26890,'heart_apron_+1',1,0,4194303,576,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26891,'yorium_cuirass',99,119,193,55,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26892,'acro_surcoat',99,119,10689,325,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26893,'taeon_tabard',99,119,2602290,326,0,0,32,0);
@@ -12079,7 +12081,7 @@ INSERT INTO `item_armor` VALUES (26942,'agony_jerkin',99,119,2473969,94,0,0,32,0
 INSERT INTO `item_armor` VALUES (26943,'agony_jerkin_+1',99,119,2473969,94,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26944,'tartarus_platemail',99,119,10689,384,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26945,'counts_garb',99,119,3850780,345,0,0,32,0);
-INSERT INTO `item_armor` VALUES (26946,'pupils_shirt',1,0,4194303,0,0,0,32,0);
+INSERT INTO `item_armor` VALUES (26946,'pupils_shirt',1,0,4194303,577,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26947,'eschite_breast.',99,119,193,392,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26948,'despair_mail',99,119,2141649,389,0,0,32,0);
 INSERT INTO `item_armor` VALUES (26949,'naga_samue',99,119,137218,394,0,0,32,0);
@@ -12455,8 +12457,8 @@ INSERT INTO `item_armor` VALUES (27321,'lengo_pants',99,119,1622556,344,0,0,128,
 INSERT INTO `item_armor` VALUES (27322,'talab_trousers',99,119,2593826,231,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27323,'enticers_pants',99,119,16384,356,0,0,128,0);
 INSERT INTO `item_armor` VALUES (27324,'gyve_trousers',99,119,1758748,410,0,0,128,0);
-INSERT INTO `item_armor` VALUES (27325,'track_pants',1,0,4194303,404,0,0,128,256);
-INSERT INTO `item_armor` VALUES (27326,'track_pants_+1',1,0,4194303,404,0,0,128,256);
+INSERT INTO `item_armor` VALUES (27325,'track_pants',1,0,4194303,579,0,0,128,256);
+INSERT INTO `item_armor` VALUES (27326,'track_pants_+1',1,0,4194303,579,0,0,128,256);
 INSERT INTO `item_armor` VALUES (27328,'agoge_calligae',99,109,1,65,0,0,256,0);
 INSERT INTO `item_armor` VALUES (27329,'agoge_calligae_+1',99,119,1,65,0,0,256,0);
 INSERT INTO `item_armor` VALUES (27330,'hes._gaiters',99,109,2,67,0,0,256,0);
