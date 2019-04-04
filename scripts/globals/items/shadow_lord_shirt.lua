@@ -3,15 +3,21 @@
 -- Item: Shadow Lord Shirt
 -- Teleports user to Castle Zvahl Keep
 -----------------------------------------
+require("scripts/globals/teleports")
+require("scripts/globals/status")
+-----------------------------------------
 
 function onItemCheck(target)
-    return 0
+    local result = 0
+	-- Need retail verification: Is having set foot in the zone a requirement?
+    if not target:isZoneVisited(162) then
+        result = 56
+    end
+    return result
 end
 
 function onItemUse(target)
-	-- Teleports user to Castle Zvahl Keep
-	-- May need a retail capture to verify
+	-- May need a retail capture to verify actual position
 	-- https://ffxiclopedia.fandom.com/wiki/Shadow_Lord_Shirt states teleports next to HP#1
-	-- so I copied the homepoint teleport position
-	target:setPos(-554, -70, 66, 0, 162)
+	target:addStatusEffectEx(dsp.effect.TELEPORT,0,dsp.teleport.id.ZVAHL_KEEP,0,4)
 end
