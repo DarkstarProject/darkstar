@@ -5,9 +5,6 @@
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:hideName(true);
     mob:untargetable(true);

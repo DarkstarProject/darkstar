@@ -12,7 +12,7 @@ require("scripts/globals/zone");
 function onInitialize(zone)
     if (LandKingSystem_NQ ~= 1) then
         UpdateNMSpawnPoint(ID.mob.ADAMANTOISE);
-        GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(math.random(900, 10800));
+        GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(900 + math.random(0, 6) * 1800)
     end
 end;
 

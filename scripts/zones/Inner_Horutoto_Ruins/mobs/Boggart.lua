@@ -12,5 +12,5 @@ function onMobDeath(mob, player, isKiller)
 end;
 
 function onMobDespawn(mob)
-    phOnDespawn(mob,ID.mob.NOCUOUS_WEAPON_PH,5,3600); -- 1 hour
+    dsp.mob.phOnDespawn(mob,ID.mob.NOCUOUS_WEAPON_PH,5,3600); -- 1 hour
 end;

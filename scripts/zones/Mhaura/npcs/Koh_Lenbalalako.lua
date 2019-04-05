@@ -58,4 +58,3 @@ function onEventFinish(player,csid,option)
         player:setVar("unbridledPassion",3);
     end
 end;
-

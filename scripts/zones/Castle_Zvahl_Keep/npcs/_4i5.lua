@@ -10,7 +10,7 @@ local ID = require("scripts/zones/Castle_Zvahl_Keep/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(WINDURST,RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 2) then
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.RECOLLECTIONS) == QUEST_ACCEPTED and player:getVar("recollectionsQuest") == 2) then
         if (trade:hasItemQty(1106,1) and trade:getItemCount() == 1) then
             player:startEvent(8,1106);
         end

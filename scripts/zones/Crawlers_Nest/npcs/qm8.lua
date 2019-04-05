@@ -52,7 +52,7 @@ function onEventFinish(player,csid,option)
             player:setVar("theCrimsonTrial_prog",0);
             player:setVar("needs_crawler_blood",2); -- Fixed being unable start next quest
             player:addFame(SANDORIA,AF2_FAME);
-            player:completeQuest(SANDORIA,ENVELOPED_IN_DARKNESS);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS);
         end
     end
 

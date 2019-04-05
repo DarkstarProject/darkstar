@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ToBee = player:getQuestStatus(WINDURST,TO_BEE_OR_NOT_TO_BEE);
+    local ToBee = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
     local ToBeeOrNotStatus = player:getVar("ToBeeOrNot_var");
 
     if (ToBeeOrNotStatus == 10 and ToBee == QUEST_AVAILABLE) then
@@ -45,7 +45,7 @@ function onEventFinish(player,csid,option)
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,4370); -- Cannot give Honey because player Inventory is full
         else
-            player:addQuest(WINDURST,TO_BEE_OR_NOT_TO_BEE);
+            player:addQuest(WINDURST,dsp.quest.id.windurst.TO_BEE_OR_NOT_TO_BEE);
             player:addItem(4370);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 4370); -- Gives player Honey x1
         end
@@ -60,6 +60,3 @@ function onEventFinish(player,csid,option)
         end
     end
 end;
-
-
-

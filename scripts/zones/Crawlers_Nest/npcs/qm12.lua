@@ -16,7 +16,7 @@ end;
 function onTrigger(player,npc)
     if (OldSchoolG1 == false) then
         if (player:hasItem(1089) == false and player:hasKeyItem(dsp.ki.EXORAY_MOLD_CRUMB3) == false
-        and player:getQuestStatus(JEUNO,IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
+        and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.IN_DEFIANT_CHALLENGE) == QUEST_ACCEPTED) then
             player:addKeyItem(dsp.ki.EXORAY_MOLD_CRUMB3);
             player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.EXORAY_MOLD_CRUMB3);
         end

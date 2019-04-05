@@ -11,7 +11,7 @@ end;
 
 function onTrigger(player,npc)
     local WildcatJeuno = player:getVar("WildcatJeuno");
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,8) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,8) == false) then
         player:startEvent(10086);
     else
         player:startEvent(168);
@@ -26,4 +26,3 @@ function onEventFinish(player,csid,option)
         player:setMaskBit(player:getVar("WildcatJeuno"),"WildcatJeuno",8,true);
     end
 end;
-

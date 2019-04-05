@@ -15,12 +15,12 @@ function onTrade(player,npc,trade)
     local AuctionParcel = trade:hasItemQty(594,1);
 
     if (MagicFlyer == true and count == 1) then
-        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
     elseif (AuctionParcel == true and count == 1) then
-        local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
+        local TheBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
         if (TheBrugaireConsortium == 1) then
             player:tradeComplete();
             player:startEvent(540);

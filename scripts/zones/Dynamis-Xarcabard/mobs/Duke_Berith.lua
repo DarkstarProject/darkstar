@@ -8,12 +8,6 @@ require("scripts/globals/status");
 mixins = {require("scripts/mixins/job_special")}
 -----------------------------------
 
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     local Animate_Trigger = GetServerVariable("[DynaXarcabard]Boss_Trigger");

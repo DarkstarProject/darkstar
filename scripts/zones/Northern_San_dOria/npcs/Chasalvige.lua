@@ -37,4 +37,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Ulmia_s_Path",3);
     end
 end;
-

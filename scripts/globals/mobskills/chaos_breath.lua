@@ -17,8 +17,8 @@ function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.5, 1, dsp.magic.ele.DARK, 700)
 
-    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_DARK,MOBPARAM_IGNORE_SHADOWS)
+    local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.DARK,MOBPARAM_IGNORE_SHADOWS)
 
-    target:delHP(dmg)
+    target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.DARK)
     return dmg
 end

@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(CRYSTAL_WAR,THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.BATTLE_RATIONS)) == true then
+    if (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.THE_FIGHTING_FOURTH) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.BATTLE_RATIONS)) == true then
         player:startEvent(102)
     else
         player:startEvent(110)

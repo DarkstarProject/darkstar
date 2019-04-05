@@ -21,7 +21,7 @@ function onTrigger(player,npc)
         player:startEvent(536)
     elseif gotItAllProg == 3 then
         player:startEvent(524)
-    elseif player:getQuestStatus(AHT_URHGAN,GOT_IT_ALL) == QUEST_COMPLETED then
+    elseif player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.GOT_IT_ALL) == QUEST_COMPLETED then
         player:startEvent(531)
     else
         player:startEvent(532)
@@ -40,4 +40,3 @@ function onEventFinish(player,csid,option)
         player:setVar("gotitallCS",4)
     end
 end
-

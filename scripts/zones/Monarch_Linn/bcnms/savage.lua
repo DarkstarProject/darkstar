@@ -53,4 +53,3 @@ function onEventFinish(player,csid,option)
     end
     
 end;
-

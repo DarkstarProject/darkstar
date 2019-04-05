@@ -12,7 +12,7 @@ require("scripts/globals/missions");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(532,1) and trade:getItemCount() == 1) then -- Trade Magicmart_flyer
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end

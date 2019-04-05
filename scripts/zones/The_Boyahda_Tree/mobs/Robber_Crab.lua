@@ -13,5 +13,5 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.AQUARIUS_PH, 5, 1) -- can repop instantly
+    dsp.mob.phOnDespawn(mob, ID.mob.AQUARIUS_PH, 5, 1) -- can repop instantly
 end

@@ -5,10 +5,8 @@
 -- Type: Enhancing
 -- Utsusemi/Blink absorb: N/A
 -- Range: Self
--- Notes:
 ---------------------------------------------
 require("scripts/globals/monstertpmoves")
-require("scripts/globals/settings")
 require("scripts/globals/status")
 ---------------------------------------------
 
@@ -17,9 +15,14 @@ function onMobSkillCheck(target,mob,skill)
 end
 
 function onMobWeaponSkill(target, mob, skill)
-    local typeEffect = dsp.effect.DEFENSE_BOOST
+    local status = mob:getStatusEffect(dsp.effect.DEFENSE_BOOST)
+    local power = 100
+    if status ~= nil then
+        -- This is as accurate as we get until effects applied by mob moves can use subpower..
+        power = status:getPower() * 2
+    end
 
-    skill:setMsg(MobBuffMove(mob, typeEffect, 50, 0, 60))
+    skill:setMsg(MobBuffMove(mob, dsp.effect.DEFENSE_BOOST, power, 0, 60))
 
-    return typeEffect
+    return dsp.effect.DEFENSE_BOOST
 end

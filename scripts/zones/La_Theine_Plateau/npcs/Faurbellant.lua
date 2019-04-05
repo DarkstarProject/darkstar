@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local gates = player:getQuestStatus(SANDORIA,GATES_TO_PARADISE);
+    local gates = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GATES_TO_PARADISE);
     if (gates == QUEST_COMPLETED) then
         player:showText(npc, ID.text.FAURBELLANT_4);
     elseif (gates == QUEST_ACCEPTED) then

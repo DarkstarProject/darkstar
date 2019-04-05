@@ -35,6 +35,6 @@ function onEventFinish(player,csid,option)
     elseif (csid == 202) then
         SpawnMob(ID.mob.FINGERFILCHER_DRADZAD):updateClaim(player);
     elseif (csid == 203) then
-        npcUtil.completeQuest(player, CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON, {item=813, var="ClawsOfGriffonProg"});
+        npcUtil.completeQuest(player, CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON, {item=813, var={"ClawsOfGriffonProg","FingerfilcherKilled"}});
     end
 end;

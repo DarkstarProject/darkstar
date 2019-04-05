@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Lower_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,BEAT_AROUND_THE_BUSHIN) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(1526,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 2) then
             player:startEvent(156); -- After trade Wyrm Beard
         elseif (trade:hasItemQty(1527,1) == true and trade:getItemCount() == 1 and player:getVar("BeatAroundTheBushin") == 4) then
@@ -55,7 +55,7 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus",0);
         player:startEvent(10);
     elseif (csid == 155) then
-        player:addQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
         player:setVar("BeatAroundTheBushin",2);
     elseif (csid == 156) then
         player:setVar("BeatAroundTheBushin",3);
@@ -76,7 +76,7 @@ function onEventFinish(player,csid,option)
             player:setVar("BeatAroundTheBushin",0);
             player:addFame(NORG,125);
             player:tradeComplete();
-            player:completeQuest(JEUNO,BEAT_AROUND_THE_BUSHIN);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.BEAT_AROUND_THE_BUSHIN);
         end
     end
 end;

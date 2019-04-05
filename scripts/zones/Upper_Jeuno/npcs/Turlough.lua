@@ -32,4 +32,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.MAYAKOV_SHOW_TICKET);
     end
 end;
-

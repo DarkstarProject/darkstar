@@ -1,13 +1,10 @@
 -----------------------------------
 -- Area: Sacrarium
---  MOB: Keremet
+--   NM: Keremet
 -----------------------------------
 require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobFight(mob,target)
 
@@ -29,3 +26,7 @@ function onMobDeath(mob, player, isKiller)
         player:setVar("PromathiaStatus",4);
     end
 end;
+
+function onMobDespawn(mob)
+    mob:setRespawnTime(math.random(1200, 1800)) -- 20 to 30 minutes
+end

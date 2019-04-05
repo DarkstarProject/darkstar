@@ -9,9 +9,6 @@ require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
-function onMobInitialize(mob)
-end
-
 function onMobSpawn(mob)
     if LandKingSystem_NQ > 0 or LandKingSystem_HQ > 0 then
         GetNPCByID(ID.npc.ADAMANTOISE_QM):setStatus(dsp.status.DISAPPEAR)
@@ -40,11 +37,11 @@ function onMobDespawn(mob)
 
         DisallowRespawn(ID.mob.ASPIDOCHELONE, false)
         UpdateNMSpawnPoint(ID.mob.ASPIDOCHELONE)
-        GetMobByID(ID.mob.ASPIDOCHELONE):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.ASPIDOCHELONE):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     else
         if LandKingSystem_NQ ~= 1 then
             UpdateNMSpawnPoint(ID.mob.ADAMANTOISE)
-            mob:setRespawnTime(math.random(75600,86400))
+            GetMobByID(ID.mob.ADAMANTOISE):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
             SetServerVariable("[PH]Aspidochelone", kills + 1)
         end
     end

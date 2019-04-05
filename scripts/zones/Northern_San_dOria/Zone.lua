@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 569) then
         player:setPos(0,0,-13,192,233);
-    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
+    elseif (csid == 49 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT, {item = 12513, fame = AF3_FAME, title = dsp.title.PARAGON_OF_RED_MAGE_EXCELLENCE})) then
         player:setVar("peaceForTheSpiritCS",0);
     elseif (csid == 16) then
         player:setVar("Wait1DayM8-1_date",0);

@@ -27,4 +27,3 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_optional_CS_Anoki",2);
     end
 end;
-

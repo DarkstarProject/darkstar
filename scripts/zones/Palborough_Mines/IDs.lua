@@ -22,8 +22,8 @@ zones[dsp.zone.PALBOROUGH_MINES] =
         SOMETHING_FALLS_OUT_OF_THE_MACHINE = 7371, -- Something falls out of the machine!
         YOU_CANT_CARRY_ANY_MORE_ITEMS      = 7374, -- There seems to be more left in the machine, but you can't carry any more items.
         MINING_IS_POSSIBLE_HERE            = 7395, -- Mining is possible here if you have <item>.
-        CHEST_UNLOCKED                     = 7409, -- You unlock the chest!
-        HOMEPOINT_SET                      = 7456, -- Home point set!
+        CHEST_UNLOCKED                     = 7410, -- You unlock the chest!
+        HOMEPOINT_SET                      = 7457, -- Home point set!
     },
     mob =
     {
@@ -37,6 +37,11 @@ zones[dsp.zone.PALBOROUGH_MINES] =
         ZI_GHI_BONEEATER_PH =
         {
             [17363205] = 17363208, -- 130.386 -32.313 73.967
+        },
+        BEHYA_HUNDREDWALL_PH =
+        {
+            [17363256] = 17363258,
+            [17363257] = 17363258,
         },
         NI_GHU_NESTFENDER   = 17363318,
     },

@@ -2,17 +2,30 @@
 -- Area: LaLoff Amphitheater
 --  MOB: Ark Angel TT
 -----------------------------------
+mixins = {require("scripts/mixins/job_special")}
 require("scripts/globals/status");
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:addMod(dsp.mod.UFASTCAST, 30);
-    mob:setMobMod(dsp.mobMod.MAIN_2HOUR, 1);
-    mob:setMobMod(dsp.mobMod.SUB_2HOUR, 1);
 end;
 
 function onMobSpawn(mob)
-end;
+    dsp.mix.jobSpecial.config(mob, {
+        between = 30,
+        specials =
+        {
+            {id = dsp.jsa.BLOOD_WEAPON},
+            {
+                id = dsp.jsa.MANAFONT,
+                endCode = function(mob) -- "Uses Manafont and ... Will cast Sleepga followed by Meteor."
+                    mob:castSpell(273) -- sleepga
+                    mob:castSpell(218) -- meteor
+                end,
+            },
+        },
+    })
+end
 
 function onMobEngaged(mob,target)
     local mobid = mob:getID()

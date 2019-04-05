@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local aClockMostdelicate = player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE);
+    local aClockMostdelicate = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
 
     if (aClockMostdelicate == QUEST_AVAILABLE and player:getVar("aClockMostdelicateVar") == 1) then
         player:startEvent(119); -- Start long cs quest with option "a clock most delicate"
@@ -27,9 +27,9 @@ function onTrigger(player,npc)
         else
             player:startEvent(117); -- During quest "a clock most delicate"
         end
-    elseif (player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_CLOCKMASTER) == QUEST_AVAILABLE) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER) == QUEST_AVAILABLE) then
         player:startEvent(152); -- Start & finish quest "The Clockmaster"
-    elseif (player:getQuestStatus(JEUNO,THE_CLOCKMASTER) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER) == QUEST_COMPLETED) then
         player:startEvent(110); -- After quest "The Clockmaster"
     else
         player:startEvent(116); -- Standard dialog
@@ -41,12 +41,12 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 119 and option == 1) then
-        player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);
     elseif (csid == 119 and option == 0) then
         player:setVar("aClockMostdelicateVar",2);
     elseif (csid == 118 and option == 1) then
-        player:addQuest(JEUNO,A_CLOCK_MOST_DELICATE);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
         player:setVar("aClockMostdelicateVar",0);
     elseif (csid == 202) then
         if (player:getFreeSlotsCount() == 0) then
@@ -59,22 +59,21 @@ function onEventFinish(player,csid,option)
             player:addItem(12727);
             player:messageSpecial(ID.text.ITEM_OBTAINED,12727);
             player:addFame(JEUNO,30);
-            player:completeQuest(JEUNO,A_CLOCK_MOST_DELICATE);
-            player:addQuest(JEUNO,SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE);
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER); -- Start next quest "Save the Clock Tower"
         end
     elseif (csid == 152) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,17083);
         else
-            player:addQuest(JEUNO,THE_CLOCKMASTER);
+            player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER);
             player:addTitle(dsp.title.TIMEKEEPER);
             player:addGil(1200);
             player:messageSpecial(ID.text.GIL_OBTAINED,1200);
             player:addItem(17083);
             player:messageSpecial(ID.text.ITEM_OBTAINED,17083);
             player:addFame(JEUNO,30);
-            player:completeQuest(JEUNO,THE_CLOCKMASTER);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_CLOCKMASTER);
         end
     end
 end;
-

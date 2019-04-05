@@ -17,9 +17,9 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         KEYITEM_OBTAINED        = 6426, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7084, -- You can't fish here.
         CONQUEST_BASE           = 7184, -- Tallying conquest results...
-        CHEST_UNLOCKED          = 7350, -- You unlock the chest!
-        REGIME_REGISTERED       = 9459, -- New training regime registered!
-        HOMEPOINT_SET           = 10515, -- Home point set!
+        CHEST_UNLOCKED          = 7351, -- You unlock the chest!
+        REGIME_REGISTERED       = 9460, -- New training regime registered!
+        HOMEPOINT_SET           = 10516, -- Home point set!
     },
     mob =
     {
@@ -27,6 +27,15 @@ zones[dsp.zone.UPPER_DELKFUTTS_TOWER] =
         {
             [17424388] = 17424385, -- -371.586 -144.367 28.244
             [17424426] = 17424423, -- -215.194 -144.099 19.528
+        },
+        IXTAB_PH =
+        {
+            [17424472] = 17424475,
+            [17424473] = 17424475,
+            [17424474] = 17424475,
+            [17424509] = 17424512,
+            [17424510] = 17424512,
+            [17424511] = 17424512,
         },
         PALLAS       = 17424444,
         ALKYONEUS    = 17424480,

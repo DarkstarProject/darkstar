@@ -6,8 +6,8 @@ local this_quest = {}
 
 this_quest.name = "Fertile Ground"
 this_quest.area = ADOULIN
-this_quest.log_id = dsp.quests.enums.log_ids.ADOULIN
-this_quest.quest_id = dsp.quests.enums.quest_ids.adoulin.FERTILE_GROUND
+this_quest.log_id = dsp.quest.log_id.ADOULIN
+this_quest.quest_id = dsp.quest.id.adoulin.FERTILE_GROUND
 
 this_quest.repeatable = false
 
@@ -17,7 +17,7 @@ this_quest.requirements =
     {
         {
             ['area'] = ADOULIN,
-            ['quest_id'] = dsp.quests.enums.quest_ids.adoulin.THE_OLD_MAN_AND_THE_HARPOON
+            ['quest_id'] = dsp.quest.id.adoulin.THE_OLD_MAN_AND_THE_HARPOON
         }
     },
     fame =

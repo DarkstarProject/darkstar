@@ -35,6 +35,3 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.MAGICKED_ASTROLABE);
     end
 end;
-
-
-

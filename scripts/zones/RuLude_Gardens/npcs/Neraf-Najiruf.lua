@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    saveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
+    saveMySister = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SISTER);
 
     if (saveMySister == QUEST_AVAILABLE and player:getVar("saveMySisterVar") == 3) then
         player:startEvent(98); -- Real start of this quest (with addquest)
@@ -31,7 +31,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 98) then
-        player:addQuest(JEUNO,SAVE_MY_SISTER);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SISTER);
         player:setVar("saveMySisterVar", 0);
         player:addKeyItem(dsp.ki.DUCAL_GUARDS_LANTERN);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.DUCAL_GUARDS_LANTERN);
@@ -40,4 +40,3 @@ function onEventFinish(player,csid,option)
         player:setVar("saveMySisterFireLantern", 0);
     end
 end;
-

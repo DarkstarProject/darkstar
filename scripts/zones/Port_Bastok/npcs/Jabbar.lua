@@ -20,7 +20,7 @@ function onTrigger(player,npc)
         if (player:sendGuild(60419, 1, 23, 4)) then
             player:showText(npc,ID.text.TENSHODO_SHOP_OPEN_DIALOG);
         end
-    elseif (player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP) == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.TENSHODO_APPLICATION_FORM)) then
             player:startEvent(152);
         else

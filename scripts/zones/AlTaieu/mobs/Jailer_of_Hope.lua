@@ -1,8 +1,9 @@
 -----------------------------------
 -- Area: Al'Taieu
---  NM:  Jailer of Hope
+--   NM: Jailer of Hope
 -----------------------------------
-require("scripts/globals/status");
+mixins = {require("scripts/mixins/job_special")}
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -12,6 +13,13 @@ end;
 function onMobSpawn(mob)
     mob:setSpellList(0); -- If it dies with the ability to cast spells, the next spawn would be able to cast from the start.
     mob:setMobMod(dsp.mobMod.MAGIC_COOL, 20); -- This gives around 6 - 15 seconds between casts. Doesn't seem to work anywhere except in this function.
+
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIGHTY_STRIKES, cooldown = 90, hpp = math.random(85, 95)}, -- "May use Mighty Strikes multiple times."
+        },
+    })
 end;
 
 function onMobFight(mob, target)
@@ -28,16 +36,9 @@ function onMobWeaponSkill(target, mob, skill)
     end;
 end;
 
-function onAdditionalEffect(mob,target,damage)
-    -- Guestimating 2 in 3 chance to stun on melee.
-    if ((math.random(1,100) >= 66) or (target:hasStatusEffect(dsp.effect.STUN) == true)) then
-        return 0,0,0;
-    else
-        local duration = math.random(4,8);
-        target:addStatusEffect(dsp.effect.STUN,5,0,duration);
-        return dsp.subEffect.STUN,0,dsp.effect.STUN;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN, {chance = 65, duration = math.random(4, 8)})
+end
 
 function onMobDeath(mob, player, isKiller)
 end;

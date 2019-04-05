@@ -5,8 +5,5 @@
 -- !pos -716 -10 66 103
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 end;

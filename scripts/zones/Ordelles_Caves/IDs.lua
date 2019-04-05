@@ -25,15 +25,19 @@ zones[dsp.zone.ORDELLES_CAVES] =
         A_SQUIRE_S_TEST_II_DIALOG_I   = 7356, -- You place your hands into the pool.
         A_SQUIRE_S_TEST_II_DIALOG_II  = 7359, -- The dew from the stalactite slips through your fingers.
         A_SQUIRE_S_TEST_II_DIALOG_III = 7360, -- You have already obtained the dew.
-        CHEST_UNLOCKED                = 7391, -- You unlock the chest!
-        GERWITZS_AXE_DIALOG           = 7413, -- Mine axe shall rend thy throat!
-        GERWITZS_SWORD_DIALOG         = 7414, -- Mine sword shall pierce thy tongue!
-        GERWITZS_SOUL_DIALOG          = 7415, -- Long have I waited. I will tell all...
-        REGIME_REGISTERED             = 10462, -- New training regime registered!
+        CHEST_UNLOCKED                = 7392, -- You unlock the chest!
+        GERWITZS_AXE_DIALOG           = 7414, -- Mine axe shall rend thy throat!
+        GERWITZS_SWORD_DIALOG         = 7415, -- Mine sword shall pierce thy tongue!
+        GERWITZS_SOUL_DIALOG          = 7416, -- Long have I waited. I will tell all...
+        REGIME_REGISTERED             = 10463, -- New training regime registered!
     },
     mob =
     {
-        AGAR_AGAR_PH                  =
+        DONGGU_PH =
+        {
+            [17567797] = 17567801,
+        },
+        AGAR_AGAR_PH =
         {
             [17567897] = 17567901, -- -81.31 31.493 210.675
             [17567898] = 17567901, -- -76.67 31.163 186.602

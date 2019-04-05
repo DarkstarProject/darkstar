@@ -11,9 +11,11 @@ require("scripts/globals/conquest");
 require("scripts/globals/missions");
 require("scripts/globals/npc_util");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/weather");
 require("scripts/globals/quests");
 require("scripts/globals/status");
+require("scripts/globals/zone")
 -----------------------------------
 
 function onChocoboDig(player, precheck)
@@ -22,6 +24,7 @@ end;
 
 function onInitialize(zone)
     LA_THEINE_PLATEAU.moveFallenEgg();
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn( player, prevZone)
@@ -33,7 +36,7 @@ function onZoneIn( player, prevZone)
 
     if (triggerLightCutscene(player)) then -- Quest: I Can Hear A Rainbow
         cs = 123;
-    elseif (prevZone == 193 and player:getVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
+    elseif (prevZone == dsp.zone.ORDELLES_CAVES and player:getVar("darkPuppetCS") == 5 and player:getFreeSlotsCount() >= 1) then
         cs = 122;
     elseif (player:getCurrentMission(WINDURST) == VAIN and player:getVar("MissionStatus") ==1) then
         cs = 125;
@@ -61,7 +64,7 @@ function onEventFinish( player, csid, option)
     if (csid == 123) then
         lightCutsceneFinish(player); -- Quest: I Can Hear A Rainbow
     elseif (csid == 122) then
-        npcUtil.completeQuest(player, BASTOK, DARK_PUPPET, {item=14096, fame=AF2_FAME, var="darkPuppetCS"}); -- Chaos Sollerets
+        npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.DARK_PUPPET, {item=14096, fame=AF2_FAME, var="darkPuppetCS"}); -- Chaos Sollerets
     end
 end;
 

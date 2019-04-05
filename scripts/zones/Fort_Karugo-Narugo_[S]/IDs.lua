@@ -35,6 +35,10 @@ zones[dsp.zone.FORT_KARUGO_NARUGO_S] =
             [17170496] = 17170499,
             [17170498] = 17170499,
         },
+        DEMOISELLE_DESOLEE_PH =
+        {
+            [17170577] = 17170569,
+        },
         TIGRESS_STRIKES_WAR_LYNX = 17170645,
     },
     npc =

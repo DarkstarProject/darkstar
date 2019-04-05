@@ -25,8 +25,8 @@ end;
 
 function onTrigger(player,npc)
 
-SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
-    if (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
+SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
+    if (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     elseif (SomethingFishy >= QUEST_ACCEPTED) then
@@ -37,7 +37,7 @@ SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
         end
     elseif (SomethingFishy == QUEST_AVAILABLE) then
         player:startEvent(208,0,4360);
-    elseif (player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
+    elseif (player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED and player:getVar("BlastFromThePast_Prog") == 0) then
         player:startEvent(318);
         player:setVar("BlastFromThePast_Prog",1);
     else
@@ -55,13 +55,13 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 208) then
-        player:addQuest(WINDURST,SOMETHING_FISHY);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
         player:setVar("TokakaSpokenTo",1);
     elseif (csid == 210) then
-        SomethingFishy = player:getQuestStatus(WINDURST,SOMETHING_FISHY);
+        SomethingFishy = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
 
         if (SomethingFishy == QUEST_ACCEPTED) then
-            player:completeQuest(WINDURST,SOMETHING_FISHY);
+            player:completeQuest(WINDURST,dsp.quest.id.windurst.SOMETHING_FISHY);
             player:addFame(WINDURST,60);
         else
             player:addFame(WINDURST,10);
@@ -75,5 +75,3 @@ function onEventFinish(player,csid,option)
         player:setVar("TokakaSpokenTo",1);
     end
 end;
-
-

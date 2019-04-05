@@ -20,6 +20,6 @@ function onMobDeath(mob, player, isKiller)
 end
 
 function onMobDespawn(mob)
-    phOnDespawn(mob, ID.mob.TRIARIUS_X_XV_PH, 10, 7200) -- 2 hours
-    phOnDespawn(mob, ID.mob.HASTATUS_XI_XII_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.TRIARIUS_X_XV_PH, 10, 7200) -- 2 hours
+    dsp.mob.phOnDespawn(mob, ID.mob.HASTATUS_XI_XII_PH, 10, 3600) -- 1 hour
 end

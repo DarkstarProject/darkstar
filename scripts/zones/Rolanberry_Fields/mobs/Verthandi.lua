@@ -1,13 +1,10 @@
 -----------------------------------
 -- Area: Rolanberry Fields
---  MOB: Verthandi
+--  VNM: Verthandi
 -----------------------------------
-require("scripts/globals/titles");
+require("scripts/globals/titles")
 -----------------------------------
-
-function onMobSpawn(mob)
-end;
 
 function onMobDeath(mob, player, isKiller)
-    player:addTitle(dsp.title.VERTHANDI_ENSNARER);
-end;
+    player:addTitle(dsp.title.VERTHANDI_ENSNARER)
+end

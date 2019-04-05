@@ -27,7 +27,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    trialLightning = player:getQuestStatus(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER)
+    trialLightning = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         player:startEvent(32001,1,1,1,instance:getTimeInside(),1,0,0);
@@ -55,6 +55,6 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeWater_date", 0);
         player:addFame(NORG,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_WATER);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WATER);
     end
 end;

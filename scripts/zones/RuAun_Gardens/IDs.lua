@@ -20,10 +20,10 @@ zones[dsp.zone.RUAUN_GARDENS] =
         FISHING_MESSAGE_OFFSET     = 7049, -- You can't fish here.
         CONQUEST_BASE              = 7149, -- Tallying conquest results...
         IT_IS_ALREADY_FUNCTIONING  = 7309, -- It is already functioning.
-        CHEST_UNLOCKED             = 7342, -- You unlock the chest!
-        SKY_GOD_OFFSET             = 7359, -- A strange insignia pointing north is carved into the wall.
-        REGIME_REGISTERED          = 9725, -- New training regime registered!
-        HOMEPOINT_SET              = 11646, -- Home point set!
+        CHEST_UNLOCKED             = 7343, -- You unlock the chest!
+        SKY_GOD_OFFSET             = 7360, -- A strange insignia pointing north is carved into the wall.
+        REGIME_REGISTERED          = 9726, -- New training regime registered!
+        HOMEPOINT_SET              = 11647, -- Home point set!
     },
     mob =
     {

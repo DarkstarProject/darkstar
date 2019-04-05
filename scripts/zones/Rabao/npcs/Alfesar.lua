@@ -16,7 +16,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local TheMissingPiece = player:getQuestStatus(OUTLANDS,THE_MISSING_PIECE);
+    local TheMissingPiece = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.THE_MISSING_PIECE);
     local Fame = player:getFameLevel(RABAO);
 
     if (TheMissingPiece == QUEST_AVAILABLE and Fame >= 4) then -- start quest
@@ -37,7 +37,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 6) then
-        player:addQuest(OUTLANDS,THE_MISSING_PIECE);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.THE_MISSING_PIECE);
     elseif (csid == 8) then -- give the player the key items he needs to complete the quest
         player:addKeyItem(dsp.ki.TABLET_OF_ANCIENT_MAGIC);
         player:addKeyItem(dsp.ki.LETTER_FROM_ALFESAR);
@@ -46,4 +46,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.LETTER_FROM_ALFESAR);
     end;
 end;
-

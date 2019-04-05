@@ -9,8 +9,8 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local DMfirst = player:getQuestStatus(OUTLANDS,DIVINE_MIGHT);
-    local DMRepeat = player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT);
+    local DMfirst = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
+    local DMRepeat = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
     local Hour = VanadielHour();
 
     if ((Hour >= 18 or Hour < 6) and IsMoonFull() == true) then

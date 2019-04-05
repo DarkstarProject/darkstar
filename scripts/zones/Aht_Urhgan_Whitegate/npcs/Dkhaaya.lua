@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local olduumQuest = player:getQuestStatus(AHT_URHGAN, OLDUUM)
+    local olduumQuest = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
     local ringCheck = player:hasItem(2217)
     if olduumQuest == QUEST_AVAILABLE then
         player:startEvent(4)
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
     if csid == 4 then
         player:addKeyItem(dsp.ki.DKHAAYAS_RESEARCH_JOURNAL)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.DKHAAYAS_RESEARCH_JOURNAL)
-        player:addQuest(AHT_URHGAN, OLDUUM)
+        player:addQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
     elseif csid == 6 or csid == 8 then
         if player:getFreeSlotsCount() >= 1 then
             player:addItem(2217)
@@ -49,7 +49,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.ELECTROPOT)
             player:delKeyItem(dsp.ki.ELECTROCELL)
             if csid == 6 then
-                player:completeQuest(AHT_URHGAN, OLDUUM)
+                player:completeQuest(AHT_URHGAN, dsp.quest.id.ahtUrhgan.OLDUUM)
             end
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 2217)

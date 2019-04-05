@@ -9,6 +9,7 @@ require("scripts/globals/settings")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
 require("scripts/globals/quests")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -26,7 +27,7 @@ function onZoneIn(player,prevZone)
         end
         player:setVar("PlayerMainJob",0);
     elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
-        and (prevZone == 238 or prevZone == 241) and player:getMainLvl()>=10) then
+        and (prevZone == dsp.zone.WINDURST_WATERS or prevZone == dsp.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
         cs = 510;
     elseif (player:getCurrentMission(WINDURST) == MOON_READING and player:getVar("MissionStatus") == 4) then
         cs = 443;

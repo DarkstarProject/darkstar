@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
     if (player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
-        (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
-         player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
-         player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
+        (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
         player:startEvent(701);
     elseif (hasMawActivated(player,2) == false) then
         player:startEvent(101);
@@ -30,7 +30,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 101 and option == 1) then
-        player:addNationTeleport(MAW,4);
+        player:addNationTeleport(dsp.teleport.nation.MAW,4);
         dsp.teleport.toMaw(player,6);
     elseif (csid == 102 and option == 1) then
         dsp.teleport.toMaw(player,6);
@@ -39,7 +39,7 @@ function onEventFinish(player,csid,option)
         player:addMission(WOTG, CAIT_SITH);
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT);
         if (hasMawActivated(player,0) == false) then
-            player:addNationTeleport(MAW,4);
+            player:addNationTeleport(dsp.teleport.nation.MAW,4);
         end
         dsp.teleport.toMaw(player,6);
     end

@@ -387,25 +387,6 @@ void CMobEntity::restoreMobModifiers()
     m_mobModStat = m_mobModStatSave;
 }
 
-void CMobEntity::HideModel(bool hide)
-{
-    if (hide)
-    {
-        // I got this from ambush antlion
-        // i'm not sure if this is right
-        m_flags |= FLAG_HIDE_MODEL;
-    }
-    else
-    {
-        m_flags &= ~FLAG_HIDE_MODEL;
-    }
-}
-
-bool CMobEntity::IsModelHidden()
-{
-    return m_flags & FLAG_HIDE_MODEL;
-}
-
 void CMobEntity::HideHP(bool hide)
 {
     if (hide)
@@ -430,12 +411,13 @@ void CMobEntity::CallForHelp(bool call)
     if (call)
     {
         m_flags |= FLAG_CALL_FOR_HELP;
+        m_OwnerID.clean();
     }
     else
     {
         m_flags &= ~FLAG_CALL_FOR_HELP;
     }
-    updatemask |= UPDATE_HP;
+    updatemask |= UPDATE_COMBAT;
 }
 
 bool CMobEntity::CalledForHelp()
@@ -536,9 +518,9 @@ void CMobEntity::Spawn()
     uint8 level = m_minLevel;
 
     // Generate a random level between min and max level
-    if (m_maxLevel != m_minLevel)
+    if (m_maxLevel > m_minLevel)
     {
-        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel);
+        level += dsprand::GetRandomNumber(0, m_maxLevel - m_minLevel + 1);
     }
 
     SetMLevel(level);
@@ -799,12 +781,12 @@ void CMobEntity::DropItems(CCharEntity* PChar)
     if (DropList != nullptr && !getMobMod(MOBMOD_NO_DROPS) && (DropList->Items.size() || DropList->Groups.size()))
     {
         //THLvl is the number of 'extra chances' at an item. If the item is obtained, then break out.
-        uint8 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
-        uint8 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
+        int16 maxRolls = 1 + (m_THLvl > 2 ? 2 : m_THLvl);
+        int16 bonus = (m_THLvl > 2 ? (m_THLvl - 2) * 10 : 0);
 
         for (const DropGroup_t& group : DropList->Groups)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 //Determine if this group should drop an item
                 if (group.GroupRate > 0 && dsprand::GetRandomNumber(1000) < group.GroupRate * map_config.drop_rate_multiplier + bonus)
@@ -830,7 +812,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
         for (const DropItem_t& item : DropList->Items)
         {
-            for (uint8 roll = 0; roll < maxRolls; ++roll)
+            for (int16 roll = 0; roll < maxRolls; ++roll)
             {
                 if (item.DropRate > 0 && dsprand::GetRandomNumber(1000) < item.DropRate * map_config.drop_rate_multiplier + bonus)
                 {

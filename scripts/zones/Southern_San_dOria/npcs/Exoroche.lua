@@ -12,7 +12,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
 --    player:startEvent(19)  -- thanks for your help i have to tell trion -- under oath
 --     player:startEvent(77)    -- a boys dream
 -- "Father and Son" Event Dialogs
-    if (player:getQuestStatus(SANDORIA,FATHER_AND_SON) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FATHER_AND_SON) == QUEST_ACCEPTED) then
         player:startEvent(542);
     elseif (player:getVar("aBoysDreamCS") == 2) then
         player:startEvent(50);

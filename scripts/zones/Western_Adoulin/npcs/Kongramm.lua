@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     local SOA_Mission = player:getCurrentMission(SOA);
-    local Transporting = player:getQuestStatus(ADOULIN, TRANSPORTING);
+    local Transporting = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.TRANSPORTING);
 
     if ((SOA_Mission == A_CURSE_FROM_THE_PAST) and (not player:hasKeyItem(dsp.ki.PIECE_OF_A_STONE_WALL))) then
         if (player:getVar("SOA_ACFTP_Kongramm") < 1) then

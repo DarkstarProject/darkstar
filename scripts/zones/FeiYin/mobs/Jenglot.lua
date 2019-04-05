@@ -5,9 +5,6 @@
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
     -- Curses, Foiled A-Golem!?
     if (player:hasKeyItem(dsp.ki.SHANTOTTOS_NEW_SPELL)) then

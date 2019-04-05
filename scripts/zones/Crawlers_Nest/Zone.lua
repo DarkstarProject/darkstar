@@ -9,6 +9,9 @@ require("scripts/globals/treasure")
 -----------------------------------
 
 function onInitialize(zone)
+    UpdateNMSpawnPoint(ID.mob.DYNAST_BEETLE)
+    GetMobByID(ID.mob.DYNAST_BEETLE):setRespawnTime(math.random(5400, 7200))
+
     dsp.treasure.initZone(zone)
 end
 

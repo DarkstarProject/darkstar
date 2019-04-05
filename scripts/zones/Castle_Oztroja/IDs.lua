@@ -29,11 +29,11 @@ zones[dsp.zone.CASTLE_OZTROJA] =
         NOTHING_OUT_OF_ORDINARY            = 6587, -- There is nothing out of the ordinary here.
         SENSE_OF_FOREBODING                = 6588, -- You are suddenly overcome with a sense of foreboding...
         FISHING_MESSAGE_OFFSET             = 7253, -- You can't fish here.
-        CHEST_UNLOCKED                     = 7423, -- You unlock the chest!
-        YAGUDO_AVATAR_ENGAGE               = 7444, -- Kahk-ka-ka... You filthy, dim-witted heretics! You have damned yourselves by coming here.
-        YAGUDO_AVATAR_DEATH                = 7445, -- Our lord, Tzee Xicu the Manifest!  Even should our bodies be crushed and broken, may our souls endure into eternity...
-        YAGUDO_KING_ENGAGE                 = 7446, -- You are not here as sacrifices, are you? Could you possibly be committing this affront in the face of a deity?  Very well, I will personally mete out your divine punishment, kyah!
-        YAGUDO_KING_DEATH                  = 7447, -- You have...bested me... However, I...am...a god... I will never die...never rot...never fade...never...
+        CHEST_UNLOCKED                     = 7424, -- You unlock the chest!
+        YAGUDO_AVATAR_ENGAGE               = 7445, -- Kahk-ka-ka... You filthy, dim-witted heretics! You have damned yourselves by coming here.
+        YAGUDO_AVATAR_DEATH                = 7446, -- Our lord, Tzee Xicu the Manifest!  Even should our bodies be crushed and broken, may our souls endure into eternity...
+        YAGUDO_KING_ENGAGE                 = 7447, -- You are not here as sacrifices, are you? Could you possibly be committing this affront in the face of a deity?  Very well, I will personally mete out your divine punishment, kyah!
+        YAGUDO_KING_DEATH                  = 7448, -- You have...bested me... However, I...am...a god... I will never die...never rot...never fade...never...
     },
     mob =
     {
@@ -62,6 +62,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
             [17395868] = 17395870, -- 35.847 -0.500 -101.685
             [17395867] = 17395870, -- 59.000 -4.000 -131.000
             [17395829] = 17395870, -- 33.832 -0.068 -176.627
+            [17395837] = 17395870, -- 18.545 -0.056 -120.283
         },
         YAA_HAQA_THE_PROFANE_PH    =
         {
@@ -71,6 +72,7 @@ zones[dsp.zone.CASTLE_OZTROJA] =
             [17395953] = 17395954, -- -32.302 -16.250 -139.169
         },
         YAGUDO_AVATAR              = 17396134,
+        HUU_XALMO_THE_SAVAGE       = 17396140,
         MIMIC                      = 17396144,
     },
     npc =

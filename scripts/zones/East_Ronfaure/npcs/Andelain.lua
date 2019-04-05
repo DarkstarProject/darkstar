@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
+    sermonQuest = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_VICASQUE_S_SERMON);
 
     if (sermonQuest == QUEST_ACCEPTED) then
         count = trade:getItemCount();
@@ -48,4 +48,3 @@ end;
 
 function onEventFinish(player,csid,option)
 end;
-

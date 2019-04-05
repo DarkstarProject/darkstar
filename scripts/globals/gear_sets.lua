@@ -6,9 +6,10 @@ require("scripts/globals/status");
 -----------------------------------
 
 local matchtype = {
-    any           = 0,
+    any            = 0,
     earring_weapon = 1,
-    weapon_weapon  = 2
+    weapon_weapon  = 2,
+    ring_armor     = 3
 }
 
 -- placeholder for unknown mod types
@@ -116,6 +117,16 @@ local GearSets =  {
              {id = 110, items = {27649,27789,27929,28072,28209},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.CRITHITRATE, 3, 2, 0}} }, -- Skadi's Attire Set +1: Critical hit rate +3-9%
              {id = 111, items = {27648,27788,27928,28071,28208},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DOUBLE_ATTACK, 3, 2, 0}} }, -- Ares' Armor Set +1: Double Attack +3-9%
              {id = 112, items = {10315,10598},  matches = 2, matchType = matchtype.any, mods = {{dsp.mod.DMGMAGIC, -5, 0, 0}} }, -- Alcedo Cuisses and Gauntlets: Magic damage taken -5%
+             {id = 113, items = {26204,25574,25790,25828,25879,25946}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.SUBTLE_BLOW, 5, 5, 0}} }, -- Sulevia's Armor Set +2: Subtle Blow +5-20 (Requires Sulevia's Ring to activate set effect)
+             {id = 114, items = {26206,25576,25792,25830,25881,25948}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.COUNTER, 4, 4, 0}} }, -- Hizamaru Armor Set +2: Counter +4-16% (Requires Hizamaru Ring to activate set effect)
+             {id = 115, items = {26207,25577,25793,25831,25882,25949}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REFRESH, 1, 1, 0}} }, -- Inyanga Armor Set +2: Refresh +1-4 (Requires Inyanga Ring to activate set effect)
+             {id = 116, items = {26205,25575,25791,25829,25880,25947}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.REGEN, 3, 3, 0}} }, -- Meghanada Armor Set +2: Regen +3-12 (Requires Megahanada Ring to activate set effect)
+             {id = 117, items = {26208,25578,25794,25832,25883,25950}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.FAST_CAST, 1, 1, 0}} }, -- Jhakri Armor Set +2: Fast Cast +1-4% (Requires Jhakri Ring to activate set effect)
+             {id = 118, items = {26211,25569,25797,25385,25886,25953}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}} }, -- Flamma Armor Set +2 STR/DEX/VIT +8-32 (Requires Flamma Ring to activate set effect)
+             {id = 121, items = {26210,25573,25796,25834,25885,25952}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Tali'ah Armor Set +2 DEX/VIT/CHR +8-32 (Requires Tali'ah Ring to activate set effect}
+             {id = 124, items = {26212,25570,25798,25836,25887,25954}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.DEX, 8, 8, 0}, {dsp.mod.AGI, 8, 8, 0}, {dsp.mod.CHR, 8, 8, 0}} }, -- Mummu Armor Set +2 DEX/AGI/CHR +8-32 (Requires Mummu Ring to activate set effect)
+             {id = 127, items = {26209,25572,25795,25833,25884,25951}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.STR, 8, 8, 0}, {dsp.mod.VIT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Ayanmo Armor Set +2 STR/VIT/MND +8-32 (Requires Ayanmo Ring to activate set effect)
+             {id = 130, items = {26213,25571,25799,25837,25888,25955}, matches = 3, matchType = matchtype.ring_armor, mods = {{dsp.mod.VIT, 8, 8, 0}, {dsp.mod.INT, 8, 8, 0}, {dsp.mod.MND, 8, 8, 0}} }, -- Mallquis Armor Set +2 VIT/INT/MND +8-32 (Requires Mallquis Ring to activate set effect)
         }
              -- increment id by (number of mods in previous gearset - 1)
 
@@ -180,6 +191,8 @@ end;
 
 function FindMatchByType(gearset, gearMatch)
     if (gearset.matchType == matchtype.any) then
+        return true;
+    elseif (gearset.matchType == matchtype.ring_armor and (gearMatch[dsp.slot.HEAD+1] ~= nil or gearMatch[dsp.slot.BODY+1] ~= nil or gearMatch[dsp.slot.HANDS+1] ~= nil or gearMatch[dsp.slot.LEGS+1] ~= nil or gearMatch[dsp.slot.FEET+1] ~= nil) and (gearMatch[dsp.slot.RING1+1] ~= nil or gearMatch[dsp.slot.RING2+1] ~= nil)) then
         return true;
     end
 

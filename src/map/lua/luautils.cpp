@@ -53,6 +53,7 @@
 #include "../weapon_skill.h"
 #include "../vana_time.h"
 #include "../utils/zoneutils.h"
+#include "../timetriggers.h"
 #include "../transport.h"
 #include "../packets/action.h"
 #include "../packets/char_update.h"
@@ -2079,8 +2080,11 @@ namespace luautils
     {
         DSP_DEBUG_BREAK_IF(PSpell == nullptr);
 
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua",
-            PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onSpellCast"))
         {
@@ -2383,7 +2387,7 @@ namespace luautils
         PMob->objtype == TYPE_PET ? snprintf((char*)File, sizeof(File), "scripts/globals/pets/%s.lua", static_cast<CPetEntity*>(PMob)->GetScriptName().c_str()) :
             snprintf((char*)File, sizeof(File), "scripts/zones/%s/mobs/%s.lua", PMob->loc.zone->GetName(), PMob->GetName());
 
-        if (PTarget->objtype != TYPE_PET && PTarget->objtype != TYPE_MOB)
+        if (PTarget->objtype == TYPE_PC)
         {
             ((CCharEntity*)PTarget)->m_event.reset();
             ((CCharEntity*)PTarget)->m_event.Target = PMob;
@@ -3084,10 +3088,15 @@ namespace luautils
 
     int32 OnMagicCastingCheck(CBaseEntity* PChar, CBaseEntity* PTarget, CSpell* PSpell)
     {
-        lua_prepscript(PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" : "scripts/globals/spells/%s.lua", PSpell->getName());
+        lua_prepscript(
+            PSpell->getSpellGroup() == SPELLGROUP_BLUE ? "scripts/globals/spells/bluemagic/%s.lua" :
+            PSpell->getSpellGroup() == SPELLGROUP_TRUST ? "scripts/globals/spells/trust/%s.lua" :
+            "scripts/globals/spells/%s.lua", PSpell->getName()
+        );
 
         if (prepFile(File, "onMagicCastingCheck"))
         {
+            // ShowDebug("luautils::OnMagicCastingCheck: could not load %s/%s.lua \n", scriptPath, PSpell->getName());
             return 47;
         }
 
@@ -3677,6 +3686,30 @@ namespace luautils
         if (lua_pcall(LuaHandle, 2, 0, 0))
         {
             ShowError("luautils::onTransportEvent: %s\n", lua_tostring(LuaHandle, -1));
+            lua_pop(LuaHandle, 1);
+            return -1;
+        }
+
+        return 0;
+    }
+
+    int32 OnTimeTrigger(CNpcEntity* PNpc, uint8 triggerID)
+    {
+        lua_prepscript("scripts/zones/%s/npcs/%s.lua", PNpc->loc.zone->GetName(), PNpc->GetName());
+
+        if (prepFile(File, "onTimeTrigger"))
+        {
+            return -1;
+        }
+
+        CLuaBaseEntity LuaBaseEntity(PNpc);
+        Lunar<CLuaBaseEntity>::push(LuaHandle, &LuaBaseEntity);
+
+        lua_pushinteger(LuaHandle, triggerID);
+
+        if (lua_pcall(LuaHandle, 2, 0, 0))
+        {
+            ShowError("luautils::onTimeTrigger: %s\n", lua_tostring(LuaHandle, -1));
             lua_pop(LuaHandle, 1);
             return -1;
         }

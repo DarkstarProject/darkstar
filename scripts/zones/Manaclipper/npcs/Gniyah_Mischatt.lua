@@ -1,20 +1,24 @@
 -----------------------------------
 -- Area: Manaclipper
 --  NPC: Gniyah Mischatt
--- Type: Adventurer's Assistant
+-- Type: Manaclipper Timekeeper
 -- !pos 0.033 -4 2.725 3
 -----------------------------------
+require("scripts/globals/manaclipper")
+-----------------------------------
+
+local timekeeperLocation = dsp.manaclipper.location.MANACLIPPER
+local timekeeperEventId = 2
 
 function onTrade(player,npc,trade)
-end;
+end
 
 function onTrigger(player,npc)
-    player:startEvent(2);
-end;
+    dsp.manaclipper.timekeeperOnTrigger(player, timekeeperLocation, timekeeperEventId)
+end
 
 function onEventUpdate(player,csid,option)
-end;
+end
 
 function onEventFinish(player,csid,option)
-end;
-
+end

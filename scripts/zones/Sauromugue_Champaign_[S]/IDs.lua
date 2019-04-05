@@ -21,6 +21,7 @@ zones[dsp.zone.SAUROMUGUE_CHAMPAIGN_S] =
         {
             [17178778] = 17178803, -- 481.509 24.184 98.264
         },
+        COQUECIGRUE = 17178689,
     },
     npc =
     {

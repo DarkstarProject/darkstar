@@ -48,4 +48,3 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.SUBLIME_STATUE_OF_THE_GODDESS);
     end
 end;
-

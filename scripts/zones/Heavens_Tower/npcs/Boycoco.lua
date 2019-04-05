@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("SimplePrayer",0);
     end
 end;
-

@@ -33,7 +33,7 @@ local ID = require("scripts/zones/Norg/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(OUTLANDS,MAMA_MIA) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA) == QUEST_ACCEPTED) then
         local tradesMamaMia = player:getVar("tradesMamaMia")
         if (trade:hasItemQty(1202,1) and trade:getItemCount() == 1) then -- Trade Bubbly water
             wasSet = player:getMaskBit(tradesMamaMia,0)
@@ -117,8 +117,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local MamaMia = player:getQuestStatus(OUTLANDS,MAMA_MIA);
-    local moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH);
+    local MamaMia = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
+    local moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH);
     local EvokersRing = player:hasItem(14625);
     local realday = tonumber(os.date("%j"));  -- %M for next minute, %j for next day
     local questday = player:getVar("MamaMia_date")
@@ -159,7 +159,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 191) then
-        player:addQuest(OUTLANDS,MAMA_MIA);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
 
     elseif (csid == 193) then
         player:tradeComplete();
@@ -175,14 +175,14 @@ function onEventFinish(player,csid,option)
             player:addItem(14625); -- Evokers Ring
             player:messageSpecial(ID.text.ITEM_OBTAINED,14625); -- Evokers Ring
             player:addFame(NORG,30); --idk how much fame the quest adds, just left at 30 which the levi quest gave.
-            player:completeQuest(OUTLANDS,MAMA_MIA);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
             player:setVar("tradesMamaMia",0)
         end
 
     elseif (csid == 243) then
         if (option == 1) then
-            player:delQuest(OUTLANDS,MAMA_MIA);
-            player:addQuest(OUTLANDS,MAMA_MIA);
+            player:delQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
+            player:addQuest(OUTLANDS,dsp.quest.id.outlands.MAMA_MIA);
         end
     end
 end;

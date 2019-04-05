@@ -10,11 +10,13 @@ require("scripts/globals/keyitems");
 require("scripts/globals/missions");
 require("scripts/globals/pathfind");
 require("scripts/globals/settings");
+require("scripts/globals/chocobo")
 require("scripts/globals/status");
 -----------------------------------
 
 function onInitialize(zone)
     zone:registerRegion(1, 23, 0, -43, 44, 7, -39); -- Inside Tenshodo HQ
+    dsp.chocobo.initZone(zone)
 end;
 
 function onZoneIn(player,prevZone)
@@ -113,7 +115,7 @@ function onEventFinish(player,csid,option)
         player:setHomePoint();
         player:messageSpecial(ID.text.HOMEPOINT_SET);
     elseif (csid == 20) then
-        player:setVar("ZilartStatus", player:getVar("ZilartStatus") + 2);
+        player:addVar("ZilartStatus", 2);
     elseif (csid == 10094) then
         player:completeMission(ACP,A_CRYSTALLINE_PROPHECY);
         player:addMission(ACP,THE_ECHO_AWAKENS);

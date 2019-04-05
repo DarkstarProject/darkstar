@@ -71,13 +71,21 @@ zones[dsp.zone.BASTOK_MINES] =
         EMALIVEULAUX_COP_NOT_COMPLETED = 12241, -- I'd like to start my own business someday, but I just haven't found anything that truly interests me.
         EMALIVEULAUX_OPEN_DIALOG       = 12242, -- Rare Tavnazian imports! Get them before they're gone!
         EMALIVEULAUX_CLOSED_DIALOG     = 12243, -- I'd love to sell you goods imported from the island of Tavnazia, but with the area under foreign control, I can't secure my trade routes...
-        TEAR_IN_FABRIC_OF_SPACE        = 16556, -- There appears to be a tear in the fabric of space...
+        TEAR_IN_FABRIC_OF_SPACE        = 16557, -- There appears to be a tear in the fabric of space...
     },
     mob =
     {
     },
     npc =
     {
+        HALLOWEEN_SKINS =
+        {
+            [17735742] = 41, -- Faustin
+            [17735744] = 43, -- Mille
+            [17735747] = 42, -- Aulavia
+            [17735795] = 40, -- Proud Beard
+            [17735818] = 44, -- Emaliveulaux
+        },
         LELEROON_BLUE_DOOR = 17735847,
         EXPLORER_MOOGLE    = 17735856,
     },

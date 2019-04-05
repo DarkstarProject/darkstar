@@ -2,6 +2,7 @@
 -- Attachment: Flame Holder
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 local validskills = {
     [1940] = true,
@@ -57,8 +58,8 @@ function onUnequip(pet)
     pet:removeListener("AUTO_FLAME_HOLDER_END")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

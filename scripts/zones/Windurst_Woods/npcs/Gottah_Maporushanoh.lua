@@ -10,7 +10,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local AmazinScorpio = player:getQuestStatus(WINDURST, THE_AMAZIN_SCORPIO)
+    local AmazinScorpio = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_AMAZIN_SCORPIO)
 
     if AmazinScorpio == QUEST_COMPLETED then
         player:startEvent(486)

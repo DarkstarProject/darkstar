@@ -22,6 +22,7 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    AH         = 0x0200, -- Ability to use the auction house
     YELL       = 0x0400, -- Send and receive /yell commands
 }
 
@@ -858,6 +859,7 @@ dsp.effectFlag =
     BLOODPACT       = 0x200000,
     ON_JOBCHANGE    = 0x400000,
     NO_CANCEL       = 0x800000,
+    INFLUENCE       = 0x1000000,
 }
 
 ------------------------------------
@@ -1109,7 +1111,7 @@ dsp.mod =
     SUBTLE_BLOW                     = 289,
     ENF_MAG_POTENCY                 = 290, -- Increases Enfeebling magic potency %
     COUNTER                         = 291,
-    KICK_ATTACK                     = 292,
+    KICK_ATTACK_RATE                = 292,
     AFFLATUS_SOLACE                 = 293,
     AFFLATUS_MISERY                 = 294,
     CLEAR_MIND                      = 295,
@@ -1483,6 +1485,23 @@ dsp.mod =
     SYNTH_SKILL_GAIN                = 852, -- Synthesis skill gain rate
     SYNTH_FAIL_RATE                 = 861, -- Synthesis failure rate (percent)
     SYNTH_HQ_RATE                   = 862, -- High-quality success rate (not a percent)
+    DESYNTH_SUCCESS                 = 916, -- Rate of desynthesis success
+    SYNTH_FAIL_RATE_FIRE            = 917, -- Amount synthesis failure rate is reduced when using a fire crystal
+    SYNTH_FAIL_RATE_EARTH           = 918, -- Amount synthesis failure rate is reduced when using a earth crystal
+    SYNTH_FAIL_RATE_WATER           = 919, -- Amount synthesis failure rate is reduced when using a water crystal
+    SYNTH_FAIL_RATE_WIND            = 920, -- Amount synthesis failure rate is reduced when using a wind crystal
+    SYNTH_FAIL_RATE_ICE             = 921, -- Amount synthesis failure rate is reduced when using a ice crystal
+    SYNTH_FAIL_RATE_LIGHTNING       = 922, -- Amount synthesis failure rate is reduced when using a lightning crystal
+    SYNTH_FAIL_RATE_LIGHT           = 923, -- Amount synthesis failure rate is reduced when using a light crystal
+    SYNTH_FAIL_RATE_DARK            = 924, -- Amount synthesis failure rate is reduced when using a dark crystal
+    SYNTH_FAIL_RATE_WOOD            = 925, -- Amount synthesis failure rate is reduced when doing woodworking
+    SYNTH_FAIL_RATE_SMITH           = 926, -- Amount synthesis failure rate is reduced when doing smithing
+    SYNTH_FAIL_RATE_GOLDSMITH       = 927, -- Amount synthesis failure rate is reduced when doing goldsmithing
+    SYNTH_FAIL_RATE_CLOTH           = 928, -- Amount synthesis failure rate is reduced when doing clothcraft
+    SYNTH_FAIL_RATE_LEATHER         = 929, -- Amount synthesis failure rate is reduced when doing leathercraft
+    SYNTH_FAIL_RATE_BONE            = 930, -- Amount synthesis failure rate is reduced when doing bonecraft
+    SYNTH_FAIL_RATE_ALCHEMY         = 931, -- Amount synthesis failure rate is reduced when doing alchemy
+    SYNTH_FAIL_RATE_COOK            = 932, -- Amount synthesis failure rate is reduced when doing cooking
 
     WEAPONSKILL_DAMAGE_BASE         = 570, -- Specific to 1 Weaponskill: See modifier.h for how this is used
     ALL_WSDMG_ALL_HITS              = 840, -- Generic (all Weaponskills) damage, on all hits.
@@ -1541,7 +1560,7 @@ dsp.latent =
     SONG_ROLL_ACTIVE         = 25, -- any song or roll active
     TIME_OF_DAY              = 26, -- PARAM: 0: DAYTIME 1: NIGHTTIME 2: DUSK-DAWN
     HOUR_OF_DAY              = 27, -- PARAM: 1: NEW DAY, 2: DAWN, 3: DAY, 4: DUSK, 5: EVENING, 6: DEAD OF NIGHT
-    FIRESDAY                 = 28, 
+    FIRESDAY                 = 28,
     EARTHSDAY                = 29,
     WATERSDAY                = 30,
     WINDSDAY                 = 31,
@@ -1558,7 +1577,7 @@ dsp.latent =
     WEAPON_DRAWN_HP_UNDER    = 43, -- PARAM: HP PERCENT
     --                       = 44  -- Unused
     MP_UNDER_VISIBLE_GEAR    = 45, -- mp less than or equal to %, calculated using MP bonuses from visible gear only
-    HP_OVER_VISIBLE_GEAR     = 46, -- hp more than or equal to %, calculated using HP bonuses from visible gear only 
+    HP_OVER_VISIBLE_GEAR     = 46, -- hp more than or equal to %, calculated using HP bonuses from visible gear only
     WEAPON_BROKEN            = 47,
     IN_DYNAMIS               = 48,
     FOOD_ACTIVE              = 49, -- food effect (foodId) active - PARAM: FOOD ITEMID
@@ -2053,6 +2072,42 @@ dsp.objType =
 }
 
 ----------------------------------
+-- Attack Type
+----------------------------------
+
+dsp.attackType =
+{
+    NONE     = 0,
+    PHYSICAL = 1,
+    MAGICAL  = 2,
+    RANGED   = 3,
+    SPECIAL  = 4,
+    BREATH   = 5,
+}
+
+----------------------------------
+-- Damage Type
+----------------------------------
+
+dsp.damageType =
+{
+    NONE      = 0,
+    PIERCING  = 1,
+    SLASHING  = 2,
+    BLUNT     = 3,
+    HTH       = 4,
+    ELEMENTAL = 5,
+    FIRE      = 6,
+    EARTH     = 7,
+    WATER     = 8,
+    WIND      = 9,
+    ICE       = 10,
+    LIGHTNING = 11,
+    LIGHT     = 12,
+    DARK      = 13,
+}
+
+----------------------------------
 -- Drop Type (not currently used in code base)
 ----------------------------------
 
@@ -2093,10 +2148,10 @@ dsp.mobMod =
     -- 13 Available for use
     SKILL_LIST          = 14, -- uses given mob skill list
     MUG_GIL             = 15, -- amount gil carried for mugging
-    MAIN_2HOUR          = 16, -- give mob its main job two hour, value can maybe be sent to skill [[DEPRICATED, use mixin]]
+    -- 16 Available for use
     NO_DESPAWN          = 17, -- do not despawn when too far from spawn. Gob Diggers have this.
     VAR                 = 18, -- temp var for whatever. Gets cleared on spawn
-    SUB_2HOUR           = 19, -- give mob its sub job two hour (dynamis NM) [[DEPRICATED, use mixin]]
+    -- 19 Available for use
     TP_USE_CHANCE       = 20, -- % chance to use tp
     PET_SPELL_LIST      = 21, -- set pet spell list
     NA_CHANCE           = 22, -- % chance to cast -na
@@ -2109,7 +2164,7 @@ dsp.mobMod =
     ASSIST              = 29, -- mobs will assist me
     SPECIAL_SKILL       = 30, -- give special skill
     ROAM_DISTANCE       = 31, -- distance allowed to roam from spawn
-    MULTI_2HOUR         = 32, -- can use two hour multiple times
+    -- 32 Available for use
     SPECIAL_COOL        = 33, -- cool down for special
     MAGIC_COOL          = 34, -- cool down for magic
     STANDBACK_COOL      = 35, -- cool down time for standing back (casting spell while not in attack range)
@@ -2126,8 +2181,8 @@ dsp.mobMod =
     AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
     SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
     SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
-    SCRIPTED_2HOUR      = 49, -- disable two hour ability unless called upon by the script [[DEPRICATED, use mixin]]
-    PROC_2HOUR          = 50, -- chance of mob's 2 hour activating 0-100%
+    CHECK_AS_NM         = 49, -- If set, a mob will check as a NM.
+    -- 50 Available for use
     ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
     ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
     BEHAVIOR            = 53, -- Add behaviors to mob
@@ -2143,7 +2198,7 @@ dsp.mobMod =
     ATTACK_SKILL_LIST   = 63, -- skill list to use in place of regular attacks
     CHARMABLE           = 64, -- mob is charmable
     NO_MOVE             = 65, -- Mob will not be able to move
-    MULTI_HIT           = 66, -- Mob will not be able to move
+    MULTI_HIT           = 66, -- Mob will have as many swings as defined.
     NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
 }
 
@@ -2187,7 +2242,7 @@ dsp.jobSpecialAbility =
     -- INVINCIBLE          = 2940,
     BLOOD_WEAPON         = 695,
     BLOOD_WEAPON_MAAT    = 1015,
-    -- BLOOD_WEAPON        = 2249,
+    BLOOD_WEAPON_IXDRK   = 2249,
     SOUL_VOICE           = 696,
     SOUL_VOICE_MAAT      = 1018,
     -- SOUL_VOICE          = 2251,
@@ -2460,10 +2515,9 @@ dsp.behavior =
 dsp.elevator =
 {
     TIMED_AUTOMATIC           = 0,
-    PORT_BASTOK_DRWBRDG       = 2,
-    DAVOI_LIFT                = 3,
-    PALBOROUGH_MINES_LIFT     = 4,
-    FORT_GHELSBA_LIFT         = 5
+    DAVOI_LIFT                = 1,
+    PALBOROUGH_MINES_LIFT     = 2,
+    FORT_GHELSBA_LIFT         = 3
 }
 
 ------------------------------------
@@ -2578,4 +2632,67 @@ dsp.itemCheck =
     NONE    = 0,
     EQUIP   = 1,
     UNEQUIP = 2,
+}
+
+------------------------------------
+-- Emote Values
+------------------------------------
+dsp.emote =
+{
+    POINT = 0,
+    BOW = 1,
+    SALUTE = 2,
+    KNEEL = 3,
+    LAUGH = 4,
+    CRY = 5,
+    NO = 6,
+    YES = 7,
+    WAVE = 8,
+    GOODBYE = 9,
+    WELCOME = 10,
+    JOY = 11,
+    CHEER = 12,
+    CLAP = 13,
+    PRAISE = 14,
+    SMILE = 15,
+    POKE = 16,
+    SLAP = 17,
+    STAGGER = 18,
+    SIGH = 19,
+    COMFORT = 20,
+    SURPRISED = 21,
+    AMAZED = 22,
+    STARE = 23,
+    BLUSH = 24,
+    ANGRY = 25,
+    DISGUSTED = 26,
+    MUTED = 27,
+    DOZE = 28,
+    PANIC = 29,
+    GRIN = 30,
+    DANCE = 31,
+    THINK = 32,
+    FUME = 33,
+    DOUBT = 34,
+    SULK = 35,
+    PSYCH = 36,
+    HUH = 37,
+    SHOCKED = 38,
+    LOGGING = 40,    -- Only used for HELM
+    EXCAVATION = 41, -- Only used for HELM
+    HARVESTING = 42, -- Only used for HELM
+    HURRAY = 43,
+    TOSS = 44,
+    DANCE1 = 65,
+    DANCE2 = 66,
+    DANCE3 = 67,
+    DANCE4 = 68,
+    JOB = 74
+}
+
+dsp.emoteMode =
+{
+    ALL = 0,
+    TEXT = 1,
+    MOTION = 2
 }

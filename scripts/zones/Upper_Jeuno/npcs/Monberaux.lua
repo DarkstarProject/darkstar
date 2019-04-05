@@ -25,8 +25,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TheLostCardien = player:getQuestStatus(JEUNO,THE_LOST_CARDIAN);
-    local CooksPride = player:getQuestStatus(JEUNO,COOK_S_PRIDE);
+    local TheLostCardien = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN);
+    local CooksPride = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE);
     -- COP mission 1-1
     if (player:getCurrentMission(COP) == THE_RITES_OF_LIFE and  player:getVar("PromathiaStatus") == 1) then
         player:startEvent(10);--10
@@ -46,7 +46,7 @@ function onTrigger(player,npc)
         player:startEvent(33); -- Long CS & Finish Quest "The Lost Cardian" 33
     elseif (CooksPride == QUEST_COMPLETED and TheLostCardien == QUEST_AVAILABLE and player:getVar("theLostCardianVar") == 3) then
         player:startEvent(34); -- Shot CS & Finish Quest "The Lost Cardian" 34
-    elseif (TheLostCardien == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_KIND_CARDIAN) == QUEST_ACCEPTED) then
+    elseif (TheLostCardien == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN) == QUEST_ACCEPTED) then
         player:startEvent(32); -- 32
     else
         player:startEvent(28); -- Standard dialog 28
@@ -98,8 +98,8 @@ function onEventFinish(player,csid,option)
         player:completeMission(COP,DARKNESS_NAMED);
         player:addMission(COP,SHELTERING_DOUBT);
     elseif (csid == 91) then
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 4);
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz1", 4);
     elseif (csid == 33 and option == 0 or csid == 34 and option == 0) then
         player:addTitle(dsp.title.TWOS_COMPANY);
         player:setVar("theLostCardianVar",0);
@@ -108,8 +108,8 @@ function onEventFinish(player,csid,option)
         player:addKeyItem(dsp.ki.TWO_OF_SWORDS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TWO_OF_SWORDS); -- Two of Swords (Key Item)
         player:addFame(JEUNO,30);
-        player:completeQuest(JEUNO,THE_LOST_CARDIAN);
-        player:addQuest(JEUNO,THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN); -- Start next quest "THE_KING_CARDIAN"
     elseif (csid == 33 and option == 1) then
         player:setVar("theLostCardianVar",3);
     end

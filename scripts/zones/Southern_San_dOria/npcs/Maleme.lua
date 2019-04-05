@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
 

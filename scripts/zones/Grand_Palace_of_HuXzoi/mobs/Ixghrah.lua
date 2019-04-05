@@ -13,9 +13,6 @@ function onMobSpawn(mob)
     if (mob:getMod(dsp.mod.HTHRES)) then mob:setMod(dsp.mod.HTHRES,1000); end
 end;
 
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local changeTime = mob:getLocalVar("changeTime");
 

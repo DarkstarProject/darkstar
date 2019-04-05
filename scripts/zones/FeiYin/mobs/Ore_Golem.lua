@@ -6,9 +6,6 @@ require("scripts/globals/regimes")
 require("scripts/globals/keyitems");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     dsp.regime.checkRegime(player, mob, 712, 2, dsp.regime.type.GROUNDS)
