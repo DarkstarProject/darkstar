@@ -1,11 +1,10 @@
 -----------------------------------
 -- Area: Konschtat Highlands
---  NM:  Ghillie Dhu
+--   NM: Ghillie Dhu
 -----------------------------------
 require("scripts/globals/regimes")
-require("scripts/globals/status");
-require("scripts/globals/utils");
-require("scripts/globals/msg");
+require("scripts/globals/utils")
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
@@ -14,9 +13,6 @@ function onMobInitialize(mob)
 
     -- Hits especially hard for his level, even by NM standards.
     mob:addMod(dsp.mod.ATT, 50); -- May need adjustment along with cmbDmgMult in mob_pools.sql
-end;
-
-function onMobSpawn(mob)
 end;
 
 function onMobRoam(mob)
@@ -35,17 +31,9 @@ function onMobFight(mob,target)
     end
 end;
 
-function onAdditionalEffect(mob,target,damage)
-    -- wiki just says "29%" so thats what I am using (for now).
-    local CHANCE = 29;
-    if (CHANCE > math.random(0,99)) then
-        local DRAIN = math.random(10,30); -- Its a pretty weaksauce drain.
-        target:delTP(DRAIN);
-        return dsp.subEffect.TP_DRAIN, dsp.msg.basic.ADD_EFFECT_TP_DRAIN, DRAIN;
-    else
-        return 0,0,0;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.TP_DRAIN, {power = math.random(10, 30)})
+end
 
 function onMobDeath(mob, player, isKiller)
     -- I think he still counts for the FoV page? Most NM's do not though.

@@ -1,26 +1,20 @@
 -----------------------------------
 -- Area: Temple of Uggalepih
--- NPC:  ??? (Crimson-toothed Pawberry NM)
+--  NPC: ??? (Crimson-toothed Pawberry NM)
 -- !pos -39 -24 27 159
 -----------------------------------
-local ID = require("scripts/zones/Temple_of_Uggalepih/IDs");
+local ID = require("scripts/zones/Temple_of_Uggalepih/IDs")
+require("scripts/globals/npc_util")
+-----------------------------------
 
-function onTrade(player,npc,trade)
-    -- Trade Uggalepih Offering
-    if (
-        trade:hasItemQty(1183,1) and trade:getItemCount() == 1 and
-        os.time() > GetServerVariable("[POP]Crimson-toothed_Pawberry") and
-        not GetMobByID(ID.mob.CRIMSON_TOOTHED_PAWBERRY):isSpawned() and
-        not GetMobByID(ID.mob.CRIMSON_TOOTHED_PAWBERRY + 2):isSpawned()
-    ) then
-        player:tradeComplete();
-        SpawnMob(ID.mob.CRIMSON_TOOTHED_PAWBERRY):updateClaim(player);
-        SpawnMob(ID.mob.CRIMSON_TOOTHED_PAWBERRY + 2):updateClaim(player);
+function onTrade(player, npc, trade)
+    if npcUtil.tradeHas(trade, 1183) and npcUtil.popFromQM(player, npc, {ID.mob.CRIMSON_TOOTHED_PAWBERRY, ID.mob.CRIMSON_TOOTHED_PAWBERRY + 2}, {hide = 900}) then
+        player:confirmTrade()
     else
-        player:messageSpecial(ID.text.NOTHING_HAPPENS);
+        player:messageSpecial(ID.text.NOTHING_HAPPENS)
     end
-end;
+end
 
-function onTrigger(player,npc)
-    player:messageSpecial(ID.text.NM_OFFSET + 1);
-end;
+function onTrigger(player, npc)
+    player:messageSpecial(ID.text.NM_OFFSET + 1)
+end

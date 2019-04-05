@@ -37,8 +37,6 @@ public:
     uint8       widescan;
     uint32      getEntityFlags();                        // Returns the current value in m_flags
     void        setEntityFlags(uint32 EntityFlags);      // Change the current value in m_flags
-    void        HideModel(bool hide);                    // hide / show model
-    bool        IsModelHidden();
     void        HideHP(bool hide);
     bool        IsHPHidden();
     void        Untargetable(bool untargetable);
@@ -46,8 +44,8 @@ public:
     virtual void PostTick() override;
     virtual void Tick(time_point) override {}
 
-	 CNpcEntity();				// конструктор
-	~CNpcEntity();				// деструктор
+     CNpcEntity();              // конструктор
+    ~CNpcEntity();              // деструктор
 
 
 private:

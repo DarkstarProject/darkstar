@@ -12,12 +12,6 @@ require("scripts/globals/status");
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
-function onMobEngaged(mob,target)
-end;
-
 function onMobFight(mob,target)
     local YingID = 17330183;
     local YangID = 17330184;

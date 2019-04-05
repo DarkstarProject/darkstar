@@ -51,7 +51,7 @@ function onTrigger(player,npc)
         player:showText(npc, 8596) -- Dialogue after first cutscene
     elseif (currentMission == THE_CHAINS_THAT_BIND_US) and (missionStatus == 3) then
         player:startEvent(768) -- Cutscene on return from Quicksand Caves
-    elseif (player:getQuestStatus(CRYSTAL_WAR,FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(CRYSTAL_WAR,dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_ACCEPTED) then
         if (player:getVar("FiresOfDiscProg") == 1) then
             player:startEvent(956)
         else

@@ -7,9 +7,11 @@ local ID = require("scripts/zones/Norg/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/keyitems")
 require("scripts/globals/missions")
+require("scripts/globals/chocobo")
 -----------------------------------
 
 function onInitialize(zone)
+    dsp.chocobo.initZone(zone)
 end;
 
 function onConquestUpdate(zone, updatetype)
@@ -49,7 +51,7 @@ function onEventFinish(player,csid,option)
         player:completeMission(ZILART,THE_NEW_FRONTIER);
         player:addMission(ZILART,WELCOME_TNORG);
     elseif (csid == 176) then
-        player:setVar("ZilartStatus", player:getVar("ZilartStatus")+1);
+        player:addVar("ZilartStatus", 1);
     end
 
 end;

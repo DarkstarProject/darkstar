@@ -52,6 +52,6 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]Nidhogg", 0)
         DisallowRespawn(ID.mob.FAFNIR, false)
         UpdateNMSpawnPoint(ID.mob.FAFNIR)
-        GetMobByID(ID.mob.FAFNIR):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.FAFNIR):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
 end

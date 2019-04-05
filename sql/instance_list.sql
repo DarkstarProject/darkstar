@@ -66,7 +66,7 @@ INSERT INTO `instance_list` VALUES (0,'TEST',0,0,0.000,0.000,0.000,0,-1,-1,-1,-1
 -- INSERT INTO `instance_list` VALUES (18,'marids_in_the_mist',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (19,'azure_ailments',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (20,'the_susanoo_shuffle',52,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (21,'excavation_duty',61,30,124.999,-39.309,19.999,0,-1,-1,-1,-1);
+INSERT INTO `instance_list` VALUES (21,'excavation_duty',61,30,124.999,-39.309,19.999,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (22,'lebros_supplies',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (23,'troll_fugitives',61,30,-459.912,-9.860,342.319,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (24,'evade_and_escape',61,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
@@ -109,7 +109,7 @@ INSERT INTO `instance_list` VALUES (59,'nashmeira\'s_plea',72,45,-444,-4,420,127
 -- INSERT INTO `instance_list` VALUES (61,'waking_the_colossus',72,30,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (62,'zhayolm_remnants',72,100,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (64,'zhayolm_remnants_ii',72,100,0.000,0.000,0.000,0,-1,-1,-1,-1);
--- INSERT INTO `instance_list` VALUES (65,'arrapago_remnants',72,100,340.000,0.000,-246.000,63,-1,-1,-1,-1);
+INSERT INTO `instance_list` VALUES (65,'arrapago_remnants',72,100,340.000,0.000,-246.000,63,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (67,'arrapago_remnants_ii',72,100,340.000,0.000,-246.000,63,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (68,'bhaflau_remnants',72,100,0.000,0.000,0.000,0,-1,-1,-1,-1);
 -- INSERT INTO `instance_list` VALUES (70,'bhaflau_remnants_ii',72,100,0.000,0.000,0.000,0,-1,-1,-1,-1);

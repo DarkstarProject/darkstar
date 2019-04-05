@@ -7,6 +7,7 @@ local ID = require("scripts/zones/Zeruhn_Mines/IDs")
 require("scripts/globals/conquest")
 require("scripts/globals/quests")
 require("scripts/globals/helm")
+require("scripts/globals/zone")
 -----------------------------------
 
 function onInitialize(zone)
@@ -16,15 +17,15 @@ end
 function onZoneIn(player,prevZone)
     local cs = -1
 
-    if prevZone == 143 then
+    if prevZone == dsp.zone.PALBOROUGH_MINES then
         cs = 150
-        if player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
+        if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED then
             if player:getVar("ZeruhnMines_Zeid_CS") == 0 then
                 cs = 130
             elseif not player:hasItem(16607) then
                 cs = 131
             end
-        elseif player:getQuestStatus(BASTOK,BLADE_OF_DEATH) == QUEST_ACCEPTED then
+        elseif player:getQuestStatus(BASTOK,dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED then
             if not player:hasItem(16607) then
                 cs = 131
             end

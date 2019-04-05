@@ -31,7 +31,7 @@ function onUseAbility(player, target, ability, action)
     dmg = adjustForTarget(target, dmg, dsp.magic.ele.LIGHTNING)
 
     params.targetTPMult = 0 -- Quick Draw does not feed TP
-    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
+    dmg = takeAbilityDamage(target, player, params, true, dmg, dsp.attackType.MAGICAL, dsp.damageType.LIGHTNING, dsp.slot.RANGED, 1, 0, 0, 0, action, nil)
 
     if dmg > 0 then
         local effects = {}

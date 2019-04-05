@@ -56,7 +56,7 @@ function onEventFinish(player,csid,option)
 -- print("bc finish csid "..csid.." and option "..option);
 
     if (csid == 32001) then
-        if (player:getQuestStatus(JEUNO,SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
+        if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SHATTERING_STARS) == QUEST_ACCEPTED and player:getFreeSlotsCount() > 0) then
             player:addItem(4181);
             player:messageSpecial(ID.text.ITEM_OBTAINED,4181);
         end

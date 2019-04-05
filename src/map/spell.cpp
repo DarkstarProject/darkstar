@@ -592,6 +592,10 @@ namespace spell
                 // Mobs can cast any non-given char spell
                 return true;
             }
+            if (PCaster->objtype == TYPE_PC && spell->getSpellGroup() == SPELLGROUP_TRUST)
+            {
+                return true; // every PC can use trusts
+            }
 
             if(PCaster->GetMLevel() >= JobMLVL)
             {

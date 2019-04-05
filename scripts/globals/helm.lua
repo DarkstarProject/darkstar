@@ -34,6 +34,7 @@ local helmInfo =
     [dsp.helm.type.HARVESTING] =
     {
         id = "HARVESTING",
+        animation = dsp.emote.HARVESTING,
         mod = dsp.mod.HARVESTING_RESULT,
         settingRate = "HARVESTING_RATE",
         settingBreak = "HARVESTING_BREAK_CHANCE",
@@ -310,10 +311,11 @@ local helmInfo =
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.EXCAVATION] =
     {
         id = "EXCAVATION",
+        animation = dsp.emote.EXCAVATION,
         mod = nil,
         settingRate = "EXCAVATION_RATE",
         settingBreak = "EXCAVATION_BREAK_CHANCE",
@@ -378,7 +380,7 @@ local helmInfo =
                     { 425.145,  47.862,  487.601},
                     { 439.581,  47.928,  475.796},
                 },
-            },    
+            },
             [dsp.zone.KORROLOKA_TUNNEL] =
             {
                 drops =
@@ -407,7 +409,7 @@ local helmInfo =
                     {  61.417,   0.342,  -29.337},
                     {  61.890,   0.012,   90.298},
                 },
-            },    
+            },
             [dsp.zone.MAZE_OF_SHAKHRAMI] =
             {
                 drops =
@@ -438,15 +440,16 @@ local helmInfo =
                     { 255.750,  -0.179, -144.886},
                     { 405.577,  -0.284,  -44.539},
                 },
-            },    
+            },
         },
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.LOGGING] =
     {
         id = "LOGGING",
+        animation = dsp.emote.LOGGING,
         mod = dsp.mod.LOGGING_RESULT,
         settingRate = "LOGGING_RATE",
         settingBreak = "LOGGING_BREAK_CHANCE",
@@ -869,10 +872,11 @@ local helmInfo =
     },
 
     -------------------------------------------------
-    
+
     [dsp.helm.type.MINING] =
     {
         id = "MINING",
+        animation = dsp.emote.EXCAVATION,
         mod = dsp.mod.MINING_RESULT,
         settingRate = "MINING_RATE",
         settingBreak = "MINING_BREAK_CHANCE",
@@ -1272,28 +1276,26 @@ local helmInfo =
                 },
                 points =
                 {
-                    {-230.764,  38.248,  131.501},
-                    {-179.897,   2.841, -183.614}, -- {R}D-12
-                    {-144.081,  16.047, -177.289},
-                    {-129.569,  38.263,   83.389},
-                    {-109.431,  16.818,   25.500}, -- {R}F-7
-                    {-108.781,  -3.446,   50.634}, -- {R}F-6
-                    {-104.457,  -1.927,  -66.331},
-                    { -98.921,  -1.524,  -16.917},
-                    { -73.008,  -0.541,  -96.456},
-                    { -64.817,  -1.146,   61.395}, -- {R}G-6
-                    { -16.149,  26.090,  137.087},
-                    { -15.084,   4.648,  176.277},
-                    { -10.390,  13.376,   92.300},
-                    {  -3.945,   9.675,   95.107},
-                    {  25.588,   8.467,   96.117},
-                    {  27.931,  -2.754,   50.856},
-                    {  41.822,  -0.888,  -24.337},
-                    {  67.766,  -2.801,   27.572},
-                    {  92.615,  19.226,   -5.734},
-                    {  96.232,  10.479,  227.291},
-                    {  96.820,   8.636,  141.280}, -- {R}K-4
-                    { 139.082,   3.224,  -61.040},
+                    {-230.764,  38.248,  131.501}, -- Map 8 H-8
+                    {-179.897,   2.841, -183.614}, -- Map 7 D-12 -- {R}D-12
+                    {-144.081,  16.047, -177.289}, -- Map 7 E-12
+                    {-129.569,  38.263,   83.389}, -- Map 8 J-9
+                    {-109.431,  16.818,   25.500}, -- Map 7 F-7 -- {R}F-7
+                    {-108.781,  -3.446,   50.634}, -- Map 2 F-6 -- {R}F-6
+                    {-104.457,  -1.927,  -66.331}, -- Map 2 F-9
+                    { -98.921,  -1.524,  -16.917}, -- Map 2 F-8
+                    { -73.008,  -0.541,  -96.456}, -- Map 2 G-10
+                    { -64.817,  -1.146,   61.395}, -- Map 2 G-6 -- {R}G-6
+                    { -15.084,   4.648,  176.277}, -- Map 7 H-3
+                    {  -3.945,   9.675,   95.107}, -- Map 7 H-5
+                    {  25.588,   8.467,   96.117}, -- Map 7 I-5
+                    {  27.931,  -2.754,   50.856}, -- Map 2 I-6
+                    {  41.822,  -0.888,  -24.337}, -- Map 2 J-8
+                    {  67.766,  -2.801,   27.572}, -- Map 2 J-7
+                    {  92.615,  19.226,   -5.734}, -- Map 6 H-11
+                    {  96.232,  10.479,  227.291}, -- Map 6 H-5
+                    {  96.820,   8.636,  141.280}, -- Map 7 K-4 -- {R}K-4
+                    { 139.082,   3.224,  -61.040}, -- Map 1 G-8
                 },
             },
         },
@@ -1304,7 +1306,7 @@ local helmInfo =
 -- colored rocks. do not change this order!
 -------------------------------------------------
 
-local rocks = {769,770,771,772,773,774,776,775}
+local rocks = {769,771,770,772,773,774,776,775}
 
 -------------------------------------------------
 -- local functions
@@ -1313,7 +1315,7 @@ local rocks = {769,770,771,772,773,774,776,775}
 local function doesToolBreak(player, info)
     local roll  = math.random(100)
     local mod   = info.mod
-    
+
     if mod then
         roll = roll + (player:getMod(mod) / 10)
     end
@@ -1328,12 +1330,12 @@ end
 
 function pickItem(player, info)
     local zoneId = player:getZoneID()
-    
+
     -- found nothing
     if math.random(100) >= _G[info.settingRate] then
         return 0
     end
-    
+
     -- possible drops
     local drops = info.zone[zoneId].drops
 
@@ -1384,7 +1386,7 @@ dsp.helm.initZone = function(zone, helmType)
     local zoneId = zone:getID()
     local info = helmInfo[helmType]
     local npcs = zones[zoneId].npc[info.id]
-    
+
     for _, npcId in ipairs(npcs) do
         local npc = GetNPCByID(npcId)
         if npc then
@@ -1397,14 +1399,15 @@ end
 dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
     local info = helmInfo[helmType]
     local zoneId = player:getZoneID()
-    
+
     if trade:hasItemQty(info.tool, 1) and trade:getItemCount() == 1 then
         -- start event
         local item  = pickItem(player, info)
         local broke = doesToolBreak(player, info) and 1 or 0
         local full  = (player:getFreeSlotsCount() == 0) and 1 or 0
         player:startEvent(csid, item, broke, full)
-        
+        player:sendEmote(npc, info.animation, dsp.emoteMode.MOTION)
+
         -- success! reward item and decrement number of remaining uses on the point
         if item ~= 0 and full == 0 then
             player:addItem(item)
@@ -1419,7 +1422,7 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
         -- quest stuff
         if
             helmType == dsp.helm.type.HARVESTING and
-            player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and
+            player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
             not player:hasKeyItem(dsp.ki.RAINBOW_BERRY) and
             broke ~= 1 and
             zoneId == dsp.zone.WAJAOM_WOODLANDS

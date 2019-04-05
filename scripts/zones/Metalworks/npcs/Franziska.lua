@@ -23,4 +23,3 @@ if (csid == 777) then
 player:setVar("OptionalcsCornelia",0);
 end
 end;
-

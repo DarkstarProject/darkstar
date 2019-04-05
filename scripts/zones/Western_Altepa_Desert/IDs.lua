@@ -49,6 +49,11 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
             [17289474] = 17289453, -- 118.575 -0.299 127.016
             [17289277] = 17289453, -- 99.000 -0.030 116.000
         },
+        CALCHAS_PH =
+        {
+            [17289545] = 17289547,
+            [17289546] = 17289547,
+        },
         KING_VINEGARROON     = 17289575,
         SABOTENDER_ENAMORADO = 17289653,
         EASTERN_SPHINX       = 17289654,
@@ -57,6 +62,7 @@ zones[dsp.zone.WESTERN_ALTEPA_DESERT] =
     },
     npc =
     {
+        ALTEPA_GATE = 17289744,
     },
 }
 

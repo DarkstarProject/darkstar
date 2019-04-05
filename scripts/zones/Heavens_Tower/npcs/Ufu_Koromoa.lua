@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:setVar("HighEsteem",0);
     end
 end;
-

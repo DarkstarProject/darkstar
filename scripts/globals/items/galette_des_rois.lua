@@ -9,15 +9,16 @@
 -- Random Jewel
 -----------------------------------------
 require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
-    if (target:hasStatusEffect(dsp.effect.FOOD)) then
-        result = 246
+    if target:hasStatusEffect(dsp.effect.FOOD) then
+        result = dsp.msg.basic.IS_FULL
     end
-    if (target:getFreeSlotsCount() == 0) then
-        result = 308
+    if target:getFreeSlotsCount() == 0 then
+        result = dsp.msg.basic.ITEM_NO_USE_INVENTORY
     end
     return result
 end

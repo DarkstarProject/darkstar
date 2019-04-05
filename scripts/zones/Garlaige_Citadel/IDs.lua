@@ -27,11 +27,15 @@ zones[dsp.zone.GARLAIGE_CITADEL] =
         YOU_FIND_NOTHING            = 7293, -- You find nothing special.
         PRESENCE_FROM_CEILING       = 7295, -- You sense a presence from in the ceiling.
         HEAT_FROM_CEILING           = 7296, -- You feel a terrible heat from the ceiling.
-        CHEST_UNLOCKED              = 7325, -- You unlock the chest!
-        REGIME_REGISTERED           = 9604, -- New training regime registered!
+        CHEST_UNLOCKED              = 7326, -- You unlock the chest!
+        REGIME_REGISTERED           = 9605, -- New training regime registered!
     },
     mob =
     {
+        HAZMAT_PH =
+        {
+            [17596515] = 17596520,
+        },
         HOVERING_HOTPOT_PH =
         {
             [17596623] = 17596628, -- 182.157 -0.012 29.941

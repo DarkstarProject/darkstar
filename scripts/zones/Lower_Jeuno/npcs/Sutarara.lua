@@ -11,10 +11,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TenshodoMembership = player:getQuestStatus(JEUNO,TENSHODO_MEMBERSHIP);
+    local TenshodoMembership = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.TENSHODO_MEMBERSHIP);
     local WildcatJeuno = player:getVar("WildcatJeuno");
 
-    if (player:getQuestStatus(JEUNO,LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,10) == false) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and player:getMaskBit(WildcatJeuno,10) == false) then
         player:startEvent(10055);
     elseif (TenshodoMembership ~= QUEST_COMPLETED) then
         player:startEvent(208);

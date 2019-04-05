@@ -3623,7 +3623,7 @@ INSERT INTO `item_mods` VALUES (11145,1,25);
 INSERT INTO `item_mods` VALUES (11145,8,8);
 INSERT INTO `item_mods` VALUES (11145,25,8);
 INSERT INTO `item_mods` VALUES (11145,386,45);
-INSERT INTO `item_mods` VALUES (11145,429,52);
+INSERT INTO `item_mods` VALUES (11145,429,13);
 INSERT INTO `item_mods` VALUES (11146,1,18);
 INSERT INTO `item_mods` VALUES (11146,2,30);
 INSERT INTO `item_mods` VALUES (11146,5,30);
@@ -4097,7 +4097,7 @@ INSERT INTO `item_mods` VALUES (11245,1,23);
 INSERT INTO `item_mods` VALUES (11245,8,6);
 INSERT INTO `item_mods` VALUES (11245,25,6);
 INSERT INTO `item_mods` VALUES (11245,386,40);
-INSERT INTO `item_mods` VALUES (11245,429,33);
+INSERT INTO `item_mods` VALUES (11245,429,8);
 INSERT INTO `item_mods` VALUES (11246,1,16);
 INSERT INTO `item_mods` VALUES (11246,2,20);
 INSERT INTO `item_mods` VALUES (11246,5,20);
@@ -19998,6 +19998,7 @@ INSERT INTO `item_mods` VALUES (16426,23,10);
 INSERT INTO `item_mods` VALUES (16428,165,3);
 INSERT INTO `item_mods` VALUES (16428,292,7);
 INSERT INTO `item_mods` VALUES (16429,431,1);
+INSERT INTO `item_mods` VALUES (16431,431,1); -- Stun claws - Additional effect: "Stun"
 INSERT INTO `item_mods` VALUES (16433,23,3);
 INSERT INTO `item_mods` VALUES (16433,25,2);
 INSERT INTO `item_mods` VALUES (16434,25,2);
@@ -20905,6 +20906,7 @@ INSERT INTO `item_mods` VALUES (17480,25,3);
 INSERT INTO `item_mods` VALUES (17481,14,3);
 INSERT INTO `item_mods` VALUES (17481,25,3);
 INSERT INTO `item_mods` VALUES (17485,54,6);
+INSERT INTO `item_mods` VALUES (17486,431,1); -- Stun claws +1 - Additional effect: "Stun"
 INSERT INTO `item_mods` VALUES (17487,431,1);
 INSERT INTO `item_mods` VALUES (17491,25,2);
 INSERT INTO `item_mods` VALUES (17492,12,3);
@@ -31080,6 +31082,7 @@ INSERT INTO `item_mods` VALUES (25754,31,53);     -- Magic Evasion+53
 INSERT INTO `item_mods` VALUES (25754,68,33);     -- Evasion+33
 INSERT INTO `item_mods` VALUES (25754,369,3);     -- Refresh+3
 INSERT INTO `item_mods` VALUES (25754,384,100);    -- Haste +1%
+INSERT INTO `item_mods` VALUES (25755,1,1);       -- Crustacean Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (25758,1,1);       -- Rhapsody Shirt: DEF 1
 INSERT INTO `item_mods` VALUES (25759,1,2);       -- Rhapsody Shirt +1: DEF 2
 INSERT INTO `item_mods` VALUES (25759,416,1);     -- Occasionally nullifies physical damage +1% ?
@@ -32482,6 +32485,9 @@ INSERT INTO `item_mods` VALUES (26454,134,1);     -- Alchemy Skill+1
 INSERT INTO `item_mods` VALUES (26458,1,1);       -- Chef's Aspis DEF:+1
 INSERT INTO `item_mods` VALUES (26459,1,2);       -- Chef's EcuDEF:+2
 INSERT INTO `item_mods` VALUES (26459,135,1);     -- Cooking Skill+1
+INSERT INTO `item_mods` VALUES (26517,1,1);       -- Shadow Lord Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26520,1,1);       -- Akitu Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26524,1,1);       -- Gil Nabber Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (26624,1,82);
 INSERT INTO `item_mods` VALUES (26624,2,18);
 INSERT INTO `item_mods` VALUES (26624,8,19);
@@ -39550,7 +39556,7 @@ INSERT INTO `item_mods` VALUES (27414,31,69);
 INSERT INTO `item_mods` VALUES (27414,68,72);
 INSERT INTO `item_mods` VALUES (27414,384,400);
 INSERT INTO `item_mods` VALUES (27414,386,55);
-INSERT INTO `item_mods` VALUES (27414,429,102);     -- Footwork+10% of 1024 = 102.4
+INSERT INTO `item_mods` VALUES (27414,429,25);     -- Footwork+10% of 256 = 25.6
 INSERT INTO `item_mods` VALUES (27415,1,46);
 INSERT INTO `item_mods` VALUES (27415,2,45);
 INSERT INTO `item_mods` VALUES (27415,5,57);

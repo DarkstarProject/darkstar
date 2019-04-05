@@ -15,8 +15,8 @@ zones[dsp.zone.CASTLE_ZVAHL_KEEP] =
         ITEM_OBTAINED           = 6547, -- Obtained: <item>.
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
-        CHEST_UNLOCKED          = 7222, -- You unlock the chest!
-        HOMEPOINT_SET           = 7280, -- Home point set!
+        CHEST_UNLOCKED          = 7223, -- You unlock the chest!
+        HOMEPOINT_SET           = 7281, -- Home point set!
     },
     mob =
     {

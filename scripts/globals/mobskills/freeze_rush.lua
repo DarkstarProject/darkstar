@@ -19,7 +19,7 @@ end
 function onMobWeaponSkill(target, mob, skill)
     local dmgmod = 2
     local info = MobMagicalMove(mob,target,skill,mob:getWeaponDmg()*3,dsp.magic.ele.ICE,dmgmod,TP_NO_EFFECT)
-    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,MOBSKILL_MAGICAL,MOBPARAM_ICE,MOBPARAM_1_SHADOW)
-    target:delHP(dmg)
+    local dmg = MobFinalAdjustments(info.dmg,mob,skill,target,dsp.attackType.MAGICAL,dsp.damageType.ICE,MOBPARAM_1_SHADOW)
+    target:takeDamage(dmg, mob, dsp.attackType.MAGICAL, dsp.damageType.ICE)
     return dmg
 end

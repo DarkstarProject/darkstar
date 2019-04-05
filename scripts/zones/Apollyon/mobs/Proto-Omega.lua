@@ -4,13 +4,13 @@
 -----------------------------------
 require("scripts/globals/limbus");
 require("scripts/globals/titles");
-require("scripts/globals/status");
-require("scripts/globals/magic");
-require("scripts/globals/msg");
+require("scripts/globals/mobs")
 -----------------------------------
 
 function onMobInitialize(mob)
     mob:setMobMod(dsp.mobMod.ADD_EFFECT, 1);
+    mob:setMod(dsp.mod.COUNTER, 10) -- "Possesses a Counter trait"
+    mob:setMod(dsp.mod.REGEN, 25) -- "Posseses an Auto-Regen (low to moderate)"
 end;
 
 function onMobSpawn(mob)
@@ -18,6 +18,7 @@ function onMobSpawn(mob)
     mob:setMod(dsp.mod.UDMGPHYS, -75);
     mob:setMod(dsp.mod.UDMGRANGE, -75);
     mob:setMod(dsp.mod.UDMGMAGIC, 0);
+    mob:setMod(dsp.mod.MOVE, 100) -- "Moves at Flee Speed in Quadrupedal stance and in the Final Form"
 end;
 
 function onMobFight(mob,target)
@@ -34,6 +35,7 @@ function onMobFight(mob,target)
         mob:setMod(dsp.mod.UDMGPHYS, 0);
         mob:setMod(dsp.mod.UDMGRANGE, 0);
         mob:setMod(dsp.mod.UDMGMAGIC, -75);
+        mob:setMod(dsp.mod.MOVE, 0)
     end
 
     if (currentForm == 1) then
@@ -51,27 +53,18 @@ function onMobFight(mob,target)
             mob:setMod(dsp.mod.UDMGPHYS, -50);
             mob:setMod(dsp.mod.UDMGRANGE, -50);
             mob:setMod(dsp.mod.UDMGMAGIC, -50);
+            mob:setMod(dsp.mod.MOVE, 100)
             mob:addStatusEffect(dsp.effect.REGAIN,7,3,0); -- The final form has Regain,
-            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(32);
+            mob:getStatusEffect(dsp.effect.REGAIN):setFlag(dsp.effectFlag.DEATH);
             currentForm = 2;
             mob:setLocalVar("form", currentForm)
         end
     end
 end;
 
-function onAdditionalEffect(mob, player)
-    local chance = 20; -- wiki lists ~20% stun chance
-    local resist = applyResistanceAddEffect(mob,player,dsp.magic.ele.THUNDER,dsp.effect.STUN);
-    if (math.random(0,99) >= chance or resist <= 0.5) then
-        return 0,0,0;
-    else
-        local duration = 5 * resist;
-        if (player:hasStatusEffect(dsp.effect.STUN) == false) then
-            player:addStatusEffect(dsp.effect.STUN, 0, 0, duration);
-        end
-        return dsp.subEffect.STUN, dsp.msg.basic.ADD_EFFECT_STATUS, dsp.effect.STUN;
-    end
-end;
+function onAdditionalEffect(mob, target, damage)
+    return dsp.mob.onAddEffect(mob, target, damage, dsp.mob.ae.STUN)
+end
 
 function onMobDeath(mob, player, isKiller)
     player:addTitle(dsp.title.APOLLYON_RAVAGER);

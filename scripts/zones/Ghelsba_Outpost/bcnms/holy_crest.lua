@@ -32,7 +32,7 @@ function onBcnmLeave(player,instance,leavecode)
 -- print(leave code ..leavecode);
 
     if (leavecode == 2) then --play end CS. Need time and battle id for record keeping + storage
-        if (player:getQuestStatus(SANDORIA,THE_HOLY_CREST) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST) == QUEST_ACCEPTED) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.YOU_CAN_NOW_BECOME_A_DRAGOON);
         player:setVar("TheHolyCrest_Event",0);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,THE_HOLY_CREST);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_HOLY_CREST);
         player:setPetName(dsp.pet.type.WYVERN,option+1);
     end
 

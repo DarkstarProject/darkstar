@@ -1,5 +1,5 @@
 -----------------------------------
--- Area:
+-- Area: Monarch Linn
 --  MOB: Ouryu
 -----------------------------------
 require("scripts/globals/titles");

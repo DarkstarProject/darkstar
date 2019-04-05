@@ -50,7 +50,7 @@ function onTrade(player,npc,trade)
         end
     end
 
-    local PrettyLittleThings = player:getQuestStatus(JEUNO,PRETTY_LITTLE_THINGS);
+    local PrettyLittleThings = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
 
     if (itemQuality == 2) then
         if (PrettyLittleThings == QUEST_COMPLETED) then
@@ -86,9 +86,9 @@ function onEventFinish(player,csid,option)
         player:messageSpecial(ID.text.MOGHOUSE_EXIT);
         player:addFame(JEUNO, 30);
         player:tradeComplete();
-        player:completeQuest(JEUNO,PRETTY_LITTLE_THINGS);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
     elseif (csid == 10023 and option == 1) then
         player:tradeComplete();
-        player:addQuest(JEUNO,PRETTY_LITTLE_THINGS);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.PRETTY_LITTLE_THINGS);
     end
 end;

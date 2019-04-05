@@ -5,23 +5,15 @@
 -- !pos 238 24 469 110
 -----------------------------------
 
+function onTrade(player, npc, trade)
+end
 
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/titles");
------------------------------------
+function onTrigger(player, npc)
+    -- player:startEvent(8009)
+end
 
-function onTrade(player,npc,trade)
-end;
+function onEventUpdate(player, csid, option, target)
+end
 
-function onTrigger(player,npc)
-    -- player:startEvent(8009);
-end;
-
-function onEventUpdate(player,csid,option,target)
-end;
-
-function onEventFinish(player,csid,option,target)
-    -- print("CSID:",csid);
-    -- print("RESULT:",option);
-end;
+function onEventFinish(player, csid, option, target)
+end

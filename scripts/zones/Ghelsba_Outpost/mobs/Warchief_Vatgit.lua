@@ -8,9 +8,6 @@ require("scripts/globals/missions");
 require("scripts/globals/titles");
 -----------------------------------
 
-function onMobSpawn(mob)
-end;
-
 function onMobDeath(mob, player, isKiller)
 
     if (player:getCurrentMission(player:getNation()) == 6) then

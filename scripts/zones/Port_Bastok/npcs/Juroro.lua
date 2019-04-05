@@ -15,10 +15,10 @@ end;
 
 function onTrigger(player,npc)
 
-    local TrialByEarth = player:getQuestStatus(BASTOK,TRIAL_BY_EARTH);
+    local TrialByEarth = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TRIAL_BY_EARTH);
     local WhisperOfTremors = player:hasKeyItem(dsp.ki.WHISPER_OF_TREMORS);
     local realday = tonumber(os.date("%j")); -- %M for next minute, %j for next day
-    local ThePuppetMaster = player:getQuestStatus(WINDURST,THE_PUPPET_MASTER);
+    local ThePuppetMaster = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PUPPET_MASTER);
     local ThePuppetMasterProgress = player:getVar("ThePuppetMasterProgress");
 
     if (ThePuppetMaster == QUEST_ACCEPTED and ThePuppetMasterProgress == 1) then
@@ -72,10 +72,10 @@ function onEventFinish(player,csid,option)
     elseif (csid == 258) then
         player:setVar("ThePuppetMasterProgress",4);
     elseif (csid == 249 and option == 1) then
-        if (player:getQuestStatus(BASTOK,TRIAL_BY_EARTH) == QUEST_COMPLETED) then
-            player:delQuest(BASTOK,TRIAL_BY_EARTH);
+        if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TRIAL_BY_EARTH) == QUEST_COMPLETED) then
+            player:delQuest(BASTOK,dsp.quest.id.bastok.TRIAL_BY_EARTH);
         end
-        player:addQuest(BASTOK,TRIAL_BY_EARTH);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.TRIAL_BY_EARTH);
         player:setVar("TrialByEarth_date", 0);
         player:addKeyItem(dsp.ki.TUNING_FORK_OF_EARTH);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TUNING_FORK_OF_EARTH);
@@ -107,7 +107,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.WHISPER_OF_TREMORS); --Whisper of Tremors, as a trade for the above rewards
             player:setVar("TrialByEarth_date", os.date("%j")); -- %M for next minute, %j for next day
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,TRIAL_BY_EARTH);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.TRIAL_BY_EARTH);
         end
     end
 

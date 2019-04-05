@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Aht_Urhgan_Whitegate/IDs")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL)
+    local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
     local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
     local StoneID = player:getVar("EmptyVesselStone")
 
@@ -25,10 +25,10 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,AN_EMPTY_VESSEL)
+    local anEmptyVessel = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
     local anEmptyVesselProgress = player:getVar("AnEmptyVesselProgress")
     local divinationReady = vanaDay() > player:getVar("LastDivinationDay")
-    local beginnings = player:getQuestStatus(AHT_URHGAN,BEGINNINGS)
+    local beginnings = player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS)
 
     -- AN EMPTY VESSEL
     if ENABLE_TOAU == 1 and anEmptyVessel == QUEST_AVAILABLE and anEmptyVesselProgress <= 1 and player:getMainLvl() >= ADVANCED_JOB_LEVEL then
@@ -132,7 +132,7 @@ function onEventFinish(player,csid,option)
             player:needToZone(true)
             player:setVar("LastDivinationDay",vanaDay())
             player:setVar("AnEmptyVesselProgress",2)
-            player:addQuest(AHT_URHGAN,AN_EMPTY_VESSEL)
+            player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.AN_EMPTY_VESSEL)
         else
             player:setVar("LastDivinationDay",vanaDay())
             player:setVar("AnEmptyVesselProgress",1)
@@ -152,11 +152,11 @@ function onEventFinish(player,csid,option)
         player:delGil(1000)
         player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
     elseif csid == 705 and option == 1 then
-        player:addQuest(AHT_URHGAN,BEGINNINGS)
+        player:addQuest(AHT_URHGAN,dsp.quest.id.ahtUrhgan.BEGINNINGS)
     elseif csid == 706 and option == 1 then
         player:delGil(1000)
         player:messageSpecial(ID.text.PAY_DIVINATION) -- You pay 1000 gil for the divination.
     elseif csid == 707 then
-        npcUtil.completeQuest(player, AHT_URHGAN, BEGINNINGS, {item=17717})
+        npcUtil.completeQuest(player, AHT_URHGAN, dsp.quest.id.ahtUrhgan.BEGINNINGS, {item=17717})
     end
 end

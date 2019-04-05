@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(BASTOK,PAST_PERFECT) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.PAST_PERFECT) == QUEST_ACCEPTED) then
         player:addKeyItem(dsp.ki.TATTERED_MISSION_ORDERS);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.TATTERED_MISSION_ORDERS);
     else

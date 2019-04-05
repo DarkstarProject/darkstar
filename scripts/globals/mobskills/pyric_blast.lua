@@ -32,11 +32,11 @@ end
 function onMobWeaponSkill(target, mob, skill)
 
     local dmgmod = MobBreathMove(mob, target, 0.01, 0.1, dsp.magic.ele.FIRE, 700)
-	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,MOBSKILL_BREATH,MOBPARAM_FIRE,MOBPARAM_IGNORE_SHADOWS)
+	local dmg = MobFinalAdjustments(dmgmod,mob,skill,target,dsp.attackType.BREATH,dsp.damageType.FIRE,MOBPARAM_IGNORE_SHADOWS)
 
     MobStatusEffectMove(mob, target, dsp.effect.PLAGUE, 5, 3, 60)
 
-	target:delHP(dmg)
+	target:takeDamage(dmg, mob, dsp.attackType.BREATH, dsp.damageType.FIRE)
 
     if (mob:getFamily() == 313 and bit.band(mob:getBehaviour(),dsp.behavior.NO_TURN) == 0) then -- re-enable no turn if all three heads are up
         mob:setBehaviour(bit.bor(mob:getBehaviour(), dsp.behavior.NO_TURN))

@@ -19,4 +19,3 @@ function onEventFinish(player,csid,option)
         player:setPos(65.534,-7.5,-49.935,59,239); -- Retail packet capped
     end
 end;
-

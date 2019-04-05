@@ -1070,9 +1070,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     -- SIGNET
     if option == 1 then
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
-        player:delStatusEffectSilent(dsp.effect.SIGIL)
-        player:delStatusEffectSilent(dsp.effect.SANCTION)
-        player:delStatusEffectSilent(dsp.effect.SIGNET)
+        player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
 
     -- BEGIN SUPPLY RUN

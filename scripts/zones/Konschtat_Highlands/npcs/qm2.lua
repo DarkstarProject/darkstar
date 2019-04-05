@@ -10,7 +10,7 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(OUTLANDS,FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 1151) and not GetMobByID(ID.mob.FORGER):isSpawned()) then -- Oriental Steel
+    if (player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.FORGE_YOUR_DESTINY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 1151) and not GetMobByID(ID.mob.FORGER):isSpawned()) then -- Oriental Steel
         SpawnMob(ID.mob.FORGER):updateClaim(player);
         player:confirmTrade();
     end

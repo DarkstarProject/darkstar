@@ -4,31 +4,28 @@
 -- Involved in Quests: Acting in Good Faith
 -- !pos -17 0 59 195 (I-10)
 -----------------------------------
-require("scripts/globals/settings");
-require("scripts/globals/keyitems");
-require("scripts/globals/quests");
-local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs");
+local ID = require("scripts/zones/The_Eldieme_Necropolis/IDs")
+require("scripts/globals/keyitems")
+require("scripts/globals/quests")
 -----------------------------------
 
-function onTrade(player,npc,trade)
-end;
+function onTrade(player, npc, trade)
+end
 
-function onTrigger(player,npc)
-    local ActingInGoodFaith = player:getQuestStatus(WINDURST,ACTING_IN_GOOD_FAITH);
-
-    if (ActingInGoodFaith == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SPIRIT_INCENSE) == true) then
-        player:startEvent(50);
+function onTrigger(player, npc)
+    if player:getQuestStatus(WINDURST, dsp.quest.id.windurst.ACTING_IN_GOOD_FAITH) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.SPIRIT_INCENSE) then
+        player:startEvent(50)
     else
-        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
+        player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
     end
-end;
---
-function onEventUpdate(player,csid,option)
-end;
+end
 
-function onEventFinish(player,csid,option)
-    if (csid == 50 and option == 0) then
-        player:messageSpecial(ID.text.SPIRIT_INCENSE_EMITS_PUTRID_ODOR,dsp.ki.SPIRIT_INCENSE);
-        player:delKeyItem(dsp.ki.SPIRIT_INCENSE);
+function onEventUpdate(player, csid, option)
+end
+
+function onEventFinish(player, csid, option)
+    if csid == 50 and option == 0 then
+        player:messageSpecial(ID.text.SPIRIT_INCENSE_EMITS_PUTRID_ODOR, dsp.ki.SPIRIT_INCENSE)
+        player:delKeyItem(dsp.ki.SPIRIT_INCENSE)
     end
-end;
+end

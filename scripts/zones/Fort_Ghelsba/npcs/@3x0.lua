@@ -17,16 +17,16 @@
 require("scripts/globals/status")
 -----------------------------------
 
-function onSpawn(npc)
+function onSpawn(npc) 
     local elevator =
     {
         id = dsp.elevator.FORT_GHELSBA_LIFT,
         lowerDoor = npc:getID() +1,
         upperDoor = npc:getID() +2,
         elevator = npc:getID(),
-        started = 0,
-        regime = 0,
+        reversedAnimations = true,
     }
 
-    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.started, elevator.regime)
+    npc:setElevator(elevator.id, elevator.lowerDoor, elevator.upperDoor, elevator.elevator, elevator.reversedAnimations)
+    
 end

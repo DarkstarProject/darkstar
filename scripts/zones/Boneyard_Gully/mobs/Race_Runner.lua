@@ -18,9 +18,6 @@ local path =
     -532, 0, -466
 };
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     onMobRoam(mob);
 end;
@@ -36,12 +33,6 @@ function onMobRoam(mob)
     if (mob:isFollowingPath() == false) then
         mob:pathThrough(dsp.path.first(path));
     end
-end;
-
-function onMobEngaged(mob,target)
-end;
-
-function onMobFight(mob,target)
 end;
 
 function onMobDeath(mob, player, isKiller)

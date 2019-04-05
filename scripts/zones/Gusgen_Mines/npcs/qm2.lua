@@ -25,7 +25,7 @@ function onTrade(player,npc,trade)
 
     -- BLADE OF DEATH: Chaosbringer
     elseif (
-        player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED and
+        player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED and
         player:getVar("ChaosbringerKills") >= 200 and
         npcUtil.tradeHas(trade, 16607)
     ) then
@@ -41,7 +41,7 @@ function onEventUpdate(player,csid,option)
 end;
 
 function onEventFinish(player,csid,option)
-    if (csid == 10 and npcUtil.completeQuest(player, BASTOK, BLADE_OF_DEATH, {item=16637, title=dsp.title.BLACK_DEATH, var="ChaosbringerKills"})) then
+    if (csid == 10 and npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH, {item=16637, title=dsp.title.BLACK_DEATH, var="ChaosbringerKills"})) then
         player:confirmTrade();
         player:delKeyItem(dsp.ki.LETTER_FROM_ZEID);
     end

@@ -21,7 +21,7 @@ end;
 
 function onTrigger(player,npc)
     AirshipKI = player:hasKeyItem(dsp.ki.AIRSHIP_PASS);
-    saveTheClockTower = player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER);
+    saveTheClockTower = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER);
     NPCNumber = player:getVar("saveTheClockTowerVar"); -- Quest step & number of npc
     AgreeSignPetition = player:getVar("saveTheClockTowerVar2"); -- Sum of all NPC
 
@@ -93,9 +93,6 @@ function onEventFinish(player,csid,option)
         player:addTitle(dsp.title.CLOCK_TOWER_PRESERVATIONIST);
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,SAVE_THE_CLOCK_TOWER);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER);
     end
 end;
-
-
-

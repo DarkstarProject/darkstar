@@ -24,7 +24,7 @@ function onTrigger(player,npc)
             player:startEvent(3111)
         elseif player:getCurrentMission(TOAU) == IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true then
-            player:startEvent(3140,getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0)
+            player:startEvent(3140,dsp.besieged.getMercenaryRank(player),player:getTitle(),0,0,0,0,0,0,0)
         elseif player:getCurrentMission(TOAU) >= IMPERIAL_CORONATION and
                 doRoyalPalaceArmorCheck(player) == true then
             local ring = player:getVar("TOAU_RINGTIME")
@@ -87,4 +87,3 @@ function onEventFinish(player,csid,option)
         npcUtil.giveItem(player,129)
     end
 end
-

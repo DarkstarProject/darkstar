@@ -21,9 +21,9 @@ function onTrigger(player,npc)
         player:startEvent(500,0);
     elseif (ENABLE_WOTG == 1 and hasMawActivated(player,0)) then
         if (player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
-        (player:getQuestStatus(CRYSTAL_WAR, CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
-         player:getQuestStatus(CRYSTAL_WAR, THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
-         player:getQuestStatus(CRYSTAL_WAR, FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
+        (player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
+         player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.FIRES_OF_DISCONTENT) == QUEST_COMPLETED)) then
             player:startEvent(501);
         else
             player:startEvent(910);
@@ -44,13 +44,13 @@ function onEventFinish(player,csid,option)
         player:completeMission(WOTG,CAVERNOUS_MAWS);
         player:addMission(WOTG,BACK_TO_THE_BEGINNING);
         if (r == 1) then
-            player:addNationTeleport(MAW,1);
+            player:addNationTeleport(dsp.teleport.nation.MAW,1);
             dsp.teleport.toMaw(player,1); -- go to Batallia_Downs[S]
         elseif (r == 2) then
-            player:addNationTeleport(MAW,2);
+            player:addNationTeleport(dsp.teleport.nation.MAW,2);
             dsp.teleport.toMaw(player,3); -- go to Rolanberry_Fields_[S]
         elseif (r == 3) then
-            player:addNationTeleport(MAW,4);
+            player:addNationTeleport(dsp.teleport.nation.MAW,4);
             dsp.teleport.toMaw(player,5); -- go to Sauromugue_Champaign_[S]
         end;
     elseif (csid == 910 and option == 1) then

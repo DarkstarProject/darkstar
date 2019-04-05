@@ -21,16 +21,14 @@
 ===========================================================================
 */
 
-#include "../../common/socket.h"
-
 #include "weather.h"
 
-
-CWeatherPacket::CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect) 
+CWeatherPacket::CWeatherPacket(uint32 ChangeTime, WEATHER WeatherEffect, uint8 TransitionTime)
 {
-    this->type = 0x57;
-    this->size = 0x06;
+    this->id(0x057);
+    this->length(12);
 
     ref<uint32>(0x04) = ChangeTime;
     ref<uint16>(0x08) = WeatherEffect;
+    ref<uint8>(0x0A) = TransitionTime;
 }

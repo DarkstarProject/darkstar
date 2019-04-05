@@ -17,9 +17,19 @@ zones[dsp.zone.MAMOOK] =
         KEYITEM_OBTAINED         = 6391, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET   = 7049, -- You can't fish here.
         LOGGING_IS_POSSIBLE_HERE = 7534, -- Logging is possible here if you have <item>.
+        SICKLY_SWEET             = 8661, -- A sickly sweet fragrance pervades the air...
+        DRAWS_NEAR               = 8665, -- Something draws near!
     },
     mob =
     {
+        ZIZZY_ZILLAH_PH =
+        {
+            [17043560] = 17043554,
+            [17043561] = 17043554,
+            [17043562] = 17043554,
+            [17043563] = 17043554,
+            [17043564] = 17043554,
+        },
         FIREDANCE_MAGMAAL_JA_PH =
         {
             [17043773] = 17043779, -- -201.522 17.209 -363.865

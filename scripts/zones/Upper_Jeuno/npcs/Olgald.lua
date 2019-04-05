@@ -33,4 +33,3 @@ function onEventFinish(player,csid,option)
         player:setVar("dancerTailorCS", 2);
     end;
 end;
-

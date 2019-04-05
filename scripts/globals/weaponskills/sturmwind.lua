@@ -9,7 +9,7 @@
 -- Element: None
 -- Modifiers: STR:60%
 -- 100%TP    200%TP    300%TP
--- 1.00      1.00      1.00
+-- 1.0       2.0       3.5
 -----------------------------------
 require("scripts/globals/status")
 require("scripts/globals/settings")
@@ -25,8 +25,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
     params.crit100 = 0.0 params.crit200 = 0.0 params.crit300 = 0.0
     params.canCrit = false
     params.acc100 = 0.0 params.acc200= 0.0 params.acc300= 0.0
-    -- params.atkmulti is supposed to vary with TP, however it is unknown what the multiplier is so I am going to leave it at 1. http://www.bg-wiki.com/bg/Sturmwind
-    params.atkmulti = 1
+    params.atk100 = 1; params.atk200 = 2; params.atk300 = 3.5;
 
     if (USE_ADOULIN_WEAPON_SKILL_CHANGES == true) then
         params.str_wsc = 0.6

@@ -16,8 +16,11 @@ function onEventFinish(entity, eventid, result, door)
     if (eventid == 300 and result == 1) then
         local instance = door:getInstance()
         instance:setStage(3)
-        instance:setProgress(0)
+        instance:setProgress(1)
         door:setAnimation(8)
-        door:untargetable(true)
+        for i,v in pairs(ID.npc[2][1]) do
+            local npc = instance:getEntity(bit.band(v, 0xFFF), dsp.objType.NPC)
+            npc:untargetable(true)
+        end
     end
 end

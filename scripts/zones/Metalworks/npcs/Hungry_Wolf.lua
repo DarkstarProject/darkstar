@@ -14,7 +14,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) ~= QUEST_AVAILABLE and
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN) ~= QUEST_AVAILABLE and
       trade:hasItemQty(4395,1) and trade:getItemCount() == 1) then
         player:startEvent(429);
     end
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
- local SmokeOnTheMountain = player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN);
+ local SmokeOnTheMountain = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN);
 
     if (SmokeOnTheMountain == QUEST_AVAILABLE) then
         player:startEvent(428);
@@ -37,15 +37,15 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 428) then
-        player:addQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN);
     elseif (csid == 429) then
         player:tradeComplete();
         player:addGil(GIL_RATE*300)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*300);
         player:addTitle(dsp.title.HOT_DOG);
-        if (player:getQuestStatus(BASTOK,SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN) == QUEST_ACCEPTED) then
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,SMOKE_ON_THE_MOUNTAIN);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.SMOKE_ON_THE_MOUNTAIN);
         else
             player:addFame(BASTOK,5);
         end

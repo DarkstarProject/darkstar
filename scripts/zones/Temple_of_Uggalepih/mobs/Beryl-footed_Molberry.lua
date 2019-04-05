@@ -10,11 +10,13 @@ mixins =
 -----------------------------------
 
 function onMobSpawn(mob)
-    mob:setLocalVar("useSpecAtHpMin", 20)
-    mob:setLocalVar("useSpecAtHpMax", 30)
-    mob:setLocalVar("useMainSpecAtHPP", math.random(20, 30))
+    dsp.mix.jobSpecial.config(mob, {
+        specials =
+        {
+            {id = dsp.jsa.MIJIN_GAKURE, hpp = math.random(20, 30)},
+        },
+    })
 end
 
 function onMobDeath(mob, player, isKiller)
-    SetServerVariable("[POP]Beryl-footed_Molberry", os.time() + 900) -- 15 min
 end

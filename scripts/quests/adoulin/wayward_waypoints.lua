@@ -13,8 +13,8 @@ local this_quest = {}
 
 this_quest.name = "Wayward Waypoints"
 this_quest.area = ADOULIN
-this_quest.log_id = dsp.quests.enums.log_ids.ADOULIN
-this_quest.quest_id = dsp.quests.enums.quest_ids.adoulin.WAYWARD_WAYPOINTS
+this_quest.log_id = dsp.quest.log_id.ADOULIN
+this_quest.quest_id = dsp.quest.id.adoulin.WAYWARD_WAYPOINTS
 
 this_quest.repeatable = false
 
@@ -24,7 +24,7 @@ this_quest.requirements =
     { 
         {
             ['area'] = ADOULIN,
-            ['quest_id'] = dsp.quests.enums.quest_ids.adoulin.MEGALOMANIAC
+            ['quest_id'] = dsp.quest.id.adoulin.MEGALOMANIAC
         } 
     },
     fame =

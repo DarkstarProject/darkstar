@@ -19,9 +19,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER) == QUEST_ACCEPTED) then
         player:startEvent(120);
-    elseif (player:getQuestStatus(JEUNO,SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_THE_CLOCK_TOWER) == QUEST_COMPLETED) then
         player:startEvent(181);
     else
         player:startEvent(88);
@@ -33,8 +33,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 182) then
-        player:setVar("saveTheClockTowerVar",player:getVar("saveTheClockTowerVar") + 1);
-        player:setVar("saveTheClockTowerNPCz1",player:getVar("saveTheClockTowerNPCz1") + 16);
+        player:addVar("saveTheClockTowerVar", 1);
+        player:addVar("saveTheClockTowerNPCz1", 16);
     end
 end;
-

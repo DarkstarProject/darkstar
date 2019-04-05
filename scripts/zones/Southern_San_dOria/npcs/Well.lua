@@ -11,7 +11,7 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(547,1) and trade:getItemCount() == 1) then
             player:tradeComplete();
             player:addItem(567);

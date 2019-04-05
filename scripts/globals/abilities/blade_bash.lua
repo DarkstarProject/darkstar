@@ -34,7 +34,8 @@ function onUseAbility(player,target,ability)
     end
 
     -- Calculating and applying Blade Bash damage
-    target:delHP(damage)
+    damage = utils.stoneskin(target, damage)
+    target:takeDamage(damage, player, dsp.attackType.PHYSICAL, dsp.damageType.BLUNT)
     target:updateEnmityFromDamage(player,damage)
 
     -- Applying Plague based on merit level.

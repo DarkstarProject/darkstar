@@ -227,7 +227,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED and player:getVar("scatIntoShadowCS") == 1 and not player:hasItem(13121) end,
                         code = function(player) npcUtil.giveItem(player, 13121) end,
                     },
                 },
@@ -258,7 +258,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
                     },
                 },
@@ -284,7 +284,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(JEUNO,WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
+                        test = function(player) return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.WINGS_OF_GOLD) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.GUIDING_BELL) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.GUIDING_BELL) end,
                     },
                 },
@@ -306,10 +306,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:setVar("ATestOfTrueLoveProgress", player:getVar("ATestOfTrueLoveProgress") + 1)
+                            player:addVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -342,10 +342,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.UN_MOMENT) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.UN_MOMENT)
-                            player:setVar("ATestOfTrueLoveProgress", player:getVar("ATestOfTrueLoveProgress") + 1)
+                            player:addVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -365,10 +365,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LEPHEMERE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LEPHEMERE)
-                            player:setVar("ATestOfTrueLoveProgress", player:getVar("ATestOfTrueLoveProgress") + 1)
+                            player:addVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -460,13 +460,13 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(SANDORIA,SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
+                            return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SIGNED_IN_BLOOD) == QUEST_ACCEPTED and player:getVar("SIGNED_IN_BLOOD_Prog") >= 1 and not player:hasKeyItem(dsp.ki.TORN_OUT_PAGES)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.TORN_OUT_PAGES) end,
                     },
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 0 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -534,7 +534,7 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 1 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -600,7 +600,7 @@ local treasureInfo =
                 {
                     {
                         test = function(player)
-                            return player:getQuestStatus(JEUNO,THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
+                            return player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_GOBLIN_TAILOR) >= QUEST_ACCEPTED and VanadielRSELocation() == 2 and VanadielRSERace() == player:getRace() and not player:hasKeyItem(dsp.ki.MAGICAL_PATTERN)
                         end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.MAGICAL_PATTERN) end,
                     },
@@ -656,7 +656,7 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SORCERY_OF_THE_NORTH) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.FEIYIN_MAGIC_TOME) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.FEIYIN_MAGIC_TOME) end,
                     },
                 },
@@ -689,10 +689,10 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(BASTOK,A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
+                        test = function(player) return player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_TEST_OF_TRUE_LOVE) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LANCIENNE) end,
                         code = function(player)
                             npcUtil.giveKeyItem(player, dsp.ki.LANCIENNE)
-                            player:setVar("ATestOfTrueLoveProgress", player:getVar("ATestOfTrueLoveProgress") + 1)
+                            player:addVar("ATestOfTrueLoveProgress", 1)
                         end,
                     },
                 },
@@ -1021,11 +1021,11 @@ local treasureInfo =
                 misc =
                 {
                     {
-                        test = function(player) return player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
+                        test = function(player) return player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and player:getVar("trueWillCS") == 2 and not player:hasKeyItem(dsp.ki.LARGE_TRICK_BOX) end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.LARGE_TRICK_BOX) end,
                     },
                     {
-                        test = function(player) return player:getQuestStatus(SANDORIA,KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1 end,
+                        test = function(player) return player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.KNIGHT_STALKER) == QUEST_ACCEPTED and player:getVar("KnightStalker_Progress") == 1 end,
                         code = function(player) npcUtil.giveKeyItem(player, dsp.ki.CHALLENGE_TO_THE_ROYAL_KNIGHTS) end,
                     },
                 },
@@ -1465,19 +1465,30 @@ dsp.treasure.onTrade = function(player, npc, trade, chestType)
 
     -- gil
     if roll <= info.gil[1] then
+        players = player:getParty()
+        for i = 1, #players, 1 do
+            if player:getZoneID() ~= players[i]:getZoneID() then
+                table.remove(players, i)
+            end
+        end
         local gilAmount = math.random(info.gil[2], info.gil[3])
-        player:addGil(gilAmount)
-        player:messageSpecial(ID.text.GIL_OBTAINED, gilAmount)
+        local gil = gilAmount/#players
+        for i = 1, #players, 1 do
+            if player:getZoneID() == players[i]:getZoneID() then
+                players[i]:addGil(gil)
+                players[i]:messageSpecial(ID.text.GIL_OBTAINED, gil)
+            end
+        end
 
     -- gem
     elseif roll <= (info.gil[1] + info.gem[1]) then
         local gemIndex = math.random(table.getn(info.gem) - 1) + 1
-        npcUtil.giveItem(player, info.gem[gemIndex])
+        player:addTreasure(info.gem[gemIndex], npc)
 
     -- item
     elseif info.item then
         local itemIndex = math.random(table.getn(info.item) - 1) + 1
-        npcUtil.giveItem(player, info.item[itemIndex])
+        player:addTreasure(info.item[itemIndex], npc)
     end
 
     player:confirmTrade()

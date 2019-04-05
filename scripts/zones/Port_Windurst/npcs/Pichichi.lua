@@ -12,12 +12,12 @@ end;
 
 function onTrigger(player,npc)
 
-TruthJusticeOnionWay = player:getQuestStatus(WINDURST,TRUTH_JUSTICE_AND_THE_ONION_WAY);
-KnowOnesOnions       = player:getQuestStatus(WINDURST,KNOW_ONE_S_ONIONS);
-InspectorsGadget     = player:getQuestStatus(WINDURST,INSPECTOR_S_GADGET);
-OnionRings           = player:getQuestStatus(WINDURST,ONION_RINGS);
-CryingOverOnions     = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS);
-ThePromise = player:getQuestStatus(WINDURST,THE_PROMISE);
+TruthJusticeOnionWay = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.TRUTH_JUSTICE_AND_THE_ONION_WAY);
+KnowOnesOnions       = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.KNOW_ONE_S_ONIONS);
+InspectorsGadget     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.INSPECTOR_S_GADGET);
+OnionRings           = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.ONION_RINGS);
+CryingOverOnions     = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS);
+ThePromise = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_PROMISE);
 
     if (ThePromise == QUEST_COMPLETED) then
         Message = math.random(0,1)
@@ -68,5 +68,3 @@ end;
 function onEventFinish(player,csid,option)
 
 end;
-
-

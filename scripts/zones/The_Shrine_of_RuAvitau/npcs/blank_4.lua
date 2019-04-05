@@ -16,8 +16,8 @@ end;
 function onTrigger(player,npc)
     local CurrentZM = player:getCurrentMission(ZILART);
     local ZMProgress = player:getVar("ZilartStatus");
-    local DMStatus = player:getQuestStatus(OUTLANDS,DIVINE_MIGHT);
-    local DMRepeat = player:getQuestStatus(OUTLANDS,DIVINE_MIGHT_REPEAT);
+    local DMStatus = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
+    local DMRepeat = player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
     local AAKeyitems = 0;
     local DMEarrings = 0;
     local DivineStatus = player:getVar("DivineMight");
@@ -72,12 +72,12 @@ function onEventFinish(player,csid,option)
     if (csid == 53) then -- Got the required cutscene for AA
         player:setVar("ZilartStatus",1);
 
-    elseif ((csid == 54 or csid == 56) and player:getQuestStatus(OUTLANDS,DIVINE_MIGHT) == QUEST_AVAILABLE) then -- Flag Divine Might
-        player:addQuest(OUTLANDS,DIVINE_MIGHT);
+    elseif ((csid == 54 or csid == 56) and player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT) == QUEST_AVAILABLE) then -- Flag Divine Might
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
 
     elseif (csid == 57) then -- Divine Might Repeat
-        player:delQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
-        player:addQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
+        player:delQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
+        player:addQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
 
     elseif (csid == 55 or csid == 59) then -- Turning in Divine Might or Repeat
         local reward = 0;
@@ -97,9 +97,9 @@ function onEventFinish(player,csid,option)
                 player:addItem(reward);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,reward);
                 if (csid == 55) then
-                    player:completeQuest(OUTLANDS,DIVINE_MIGHT);
+                    player:completeQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT);
                 else
-                    player:completeQuest(OUTLANDS,DIVINE_MIGHT_REPEAT);
+                    player:completeQuest(OUTLANDS,dsp.quest.id.outlands.DIVINE_MIGHT_REPEAT);
                     player:delKeyItem(dsp.ki.MOONLIGHT_ORE);
                 end
                 player:setVar("DivineMight",0);

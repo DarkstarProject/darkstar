@@ -38,7 +38,7 @@ dsp.aftermath.effects =
     [4]  = { mods = { dsp.mod.CRITHITRATE, 5 }, duration = getTier1RelicDuration }, -- Ragnarok
     [5]  = { mods = { dsp.mod.ATTP, 10 }, duration = getTier1RelicDuration }, -- Guttler
     [6]  = { mods = { dsp.mod.DMG, -20 }, duration = getTier1RelicDuration }, -- Bravura
-    [7]  = { mods = { dsp.mod.HASTE, 1000 }, duration = getTier1RelicDuration }, -- Apocalypse
+    [7]  = { mods = { dsp.mod.HASTE_GEAR, 1000 }, duration = getTier1RelicDuration }, -- Apocalypse
     [8]  = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10 }, duration = getTier1RelicDuration }, -- Gungnir
     [9]  = { mods = { dsp.mod.SUBTLE_BLOW, 10 }, duration = getTier1RelicDuration }, -- Kikoku
     [10] = { mods = { dsp.mod.STORETP, 7 }, duration = getTier1RelicDuration }, -- Amanomurakumo
@@ -56,7 +56,7 @@ dsp.aftermath.effects =
     [18] = { mods = { dsp.mod.CRITHITRATE, 10, dsp.mod.ACC, 15 }, duration = getTier2RelicDuration }, -- Ragnarok
     [19] = { mods = { dsp.mod.ATTP, 10 }, duration = getTier2RelicDuration, includePets = true }, -- Guttler
     [20] = { mods = { dsp.mod.DMG, -20, dsp.mod.REGEN, 15 }, duration = getTier2RelicDuration }, -- Bravura
-    [21] = { mods = { dsp.mod.HASTE, 1000, dsp.mod.ACC, 15 }, duration = getTier2RelicDuration }, -- Apocalypse
+    [21] = { mods = { dsp.mod.HASTE_ABILITY, 1000, dsp.mod.ACC, 15 }, duration = getTier2RelicDuration }, -- Apocalypse
     [22] = { mods = { dsp.mod.SPIKES, dsp.subEffect.SHOCK_SPIKES, dsp.mod.SPIKES_DMG, 10, dsp.mod.ATTP, 5, dsp.mod.DOUBLE_ATTACK, 5 }, duration = getTier2RelicDuration }, -- Gungir
     [23] = { mods = { dsp.mod.SUBTLE_BLOW, 10, dsp.mod.ATTP, 10 }, duration = getTier2RelicDuration }, -- Kikoku
     [24] = { mods = { dsp.mod.STORETP, 10, dsp.mod.ZANSHIN, 10 }, duration = getTier2RelicDuration }, -- Amanomurakumo
@@ -208,6 +208,28 @@ dsp.aftermath.addStatusEffect = function(player, tp, weaponSlot, aftermathType)
     if not weapon then return end
 
     local id = weapon:getMod(dsp.mod.AFTERMATH)
+
+    -- Verify the aftermath ID matches the aftermath Type
+    local invalid = false
+    switch (aftermathType) : caseof
+    {
+        -- Relic
+        [1] = function(x)
+            invalid = id > 28
+        end,
+        
+        -- Mythic
+        [2] = function(x)
+            invalid = id < 29 or id > 43
+        end,
+        
+        -- Empyrean
+        [3] = function(x)
+            invalid = id < 44
+        end
+    }
+    if invalid then return end
+
     local aftermath = dsp.aftermath.effects[id]
     if not aftermath then return end
 

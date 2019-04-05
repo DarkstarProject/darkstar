@@ -14,21 +14,21 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
     -- THE KIND CARDIAN
-    if player:getQuestStatus(JEUNO, THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_KIND_CARDIAN) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 969) then
         player:startEvent(397)
 
     -- CAN CARDIANS CRY?
-    elseif player:getQuestStatus(WINDURST, CAN_CARDIANS_CRY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 551) then
+    elseif player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 551) then
         player:startEvent(325, 0, 20000, 5000)
     end
 end
 
 function onTrigger(player,npc)
     local missionStatus = player:getVar("MissionStatus")
-    local kindCardian = player:getQuestStatus(JEUNO, THE_KIND_CARDIAN)
+    local kindCardian = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_KIND_CARDIAN)
     local kindCardianCS = player:getVar("theKindCardianVar")
-    local allNewC3000 = player:getQuestStatus(WINDURST, THE_ALL_NEW_C_3000)
-    local canCardiansCry = player:getQuestStatus(WINDURST, CAN_CARDIANS_CRY)
+    local allNewC3000 = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.THE_ALL_NEW_C_3000)
+    local canCardiansCry = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY)
 
     -- WINDURST 1-2: THE HEART OF THE MATTER
     if player:getCurrentMission(WINDURST) == THE_HEART_OF_THE_MATTER then
@@ -170,8 +170,8 @@ function onEventFinish(player,csid,option)
 
     -- CAN CARDIANS CRY?
     elseif csid == 319 then
-        player:addQuest(WINDURST,CAN_CARDIANS_CRY)
-    elseif csid == 325 and npcUtil.completeQuest(player, WINDURST, CAN_CARDIANS_CRY, {gil=5000}) then
+        player:addQuest(WINDURST,dsp.quest.id.windurst.CAN_CARDIANS_CRY)
+    elseif csid == 325 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CAN_CARDIANS_CRY, {gil=5000}) then
         player:confirmTrade()
     end
 end

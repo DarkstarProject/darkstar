@@ -19,8 +19,8 @@ function onTrigger(player,npc)
         local HasStone = getTravStonesTotal(player)
         if
             HasStone >= 1 and
-            player:getQuestStatus(ABYSSEA, DAWN_OF_DEATH) == QUEST_ACCEPTED and
-            player:getQuestStatus(ABYSSEA, A_MAN_EATING_MITE) == QUEST_AVAILABLE
+            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.DAWN_OF_DEATH) == QUEST_ACCEPTED and
+            player:getQuestStatus(ABYSSEA, dsp.quest.id.abyssea.A_MAN_EATING_MITE) == QUEST_AVAILABLE
         then
             player:startEvent(58)
         else
@@ -36,7 +36,7 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 58 then
-        player:addQuest(ABYSSEA, A_MAN_EATING_MITE)
+        player:addQuest(ABYSSEA, dsp.quest.id.abyssea.A_MAN_EATING_MITE)
     elseif csid == 59 then
         -- Killed Resheph
     elseif csid == 204 and option == 1 then

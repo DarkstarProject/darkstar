@@ -15,7 +15,7 @@ function onInitialize(zone)
     dsp.promyvion.initZone(zone)
 end
 
-function onZoneIn(player,prevZone)
+function onZoneIn(player, prevZone)
     local cs = -1
 
     if player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0 then
@@ -53,17 +53,17 @@ function afterZoneIn(player)
     end
 end
 
-function onRegionEnter(player,region)
+function onRegionEnter(player, region)
     dsp.promyvion.onRegionEnter(player, region)
 end
 
-function onRegionLeave(player,region)
+function onRegionLeave(player, region)
 end
 
-function onEventUpdate(player,csid,option)
+function onEventUpdate(player, csid, option)
 end
 
-function onEventFinish(player,csid,option)
+function onEventFinish(player, csid, option)
     if csid == 46 and option == 1 then
         player:setPos(-225.682, -6.459, 280.002, 128, 14) -- To Hall of Transference {R}
     elseif csid == 50 then

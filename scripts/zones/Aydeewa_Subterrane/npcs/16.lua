@@ -31,4 +31,3 @@ function onEventFinish(player,csid,option)
         player:addMission(TOAU,BASTION_OF_KNOWLEDGE);
     end
 end;
-

@@ -2,6 +2,7 @@
 -- Attachment: Reactive Shield
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("AUTOMATON_ATTACHMENT_CHECK", "ATTACHMENT_REACTIVE_SHIELD", function(automaton, target)
@@ -16,8 +17,8 @@ function onUnequip(pet)
     pet:removeListener("ATTACHMENT_REACTIVE_SHIELD")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

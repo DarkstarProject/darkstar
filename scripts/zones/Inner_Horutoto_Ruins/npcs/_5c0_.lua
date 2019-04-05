@@ -17,7 +17,7 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+    MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
 
     if (MakingHeadlines == 1) then
         prog = player:getVar("QuestMakingHeadlines_var");

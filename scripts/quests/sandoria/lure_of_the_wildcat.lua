@@ -3,8 +3,8 @@ require("scripts/globals/zone")
 
 local this_quest = {}
 local name = "LURE_OF_THE_WILDCAT"
-local logid = dsp.quests.enums.log_ids.SANDORIA
-local id = dsp.quests.quest_ids.sandoria.LURE_OF_THE_WILDCAT
+local logid = dsp.quest.log_id.SANDORIA
+local id = dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT
 
 this_quest.id = id
 this_quest.name = name

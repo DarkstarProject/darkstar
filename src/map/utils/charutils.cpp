@@ -1192,7 +1192,7 @@ namespace charutils
             if (HasItem(PChar, PItem->getID()))
             {
                 if (!silence)
-                    PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, 220));
+                    PChar->pushPacket(new CMessageStandardPacket(PChar, PItem->getID(), 0, MsgStd::ItemEx));
                 delete PItem;
                 return ERROR_SLOTID;
             }
@@ -1980,7 +1980,7 @@ namespace charutils
                 PChar->styleItems[i] = 0;
 
         if (PChar->getStyleLocked() != isStyleLocked)
-            PChar->pushPacket(new CMessageStandardPacket(isStyleLocked ? 0x10B : 0x10C));
+            PChar->pushPacket(new CMessageStandardPacket(isStyleLocked ? MsgStd::StyleLockOn : MsgStd::StyleLockOff));
         PChar->setStyleLocked(isStyleLocked);
     }
 
@@ -2285,9 +2285,6 @@ namespace charutils
     void BuildingCharWeaponSkills(CCharEntity* PChar)
     {
         memset(&PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills));
-
-        JOBTYPE curMainJob = PChar->GetMJob();
-        JOBTYPE curSubJob = PChar->GetSJob();
 
         CItemWeapon* PItem;
         int main_ws = 0;

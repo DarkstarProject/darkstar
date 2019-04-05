@@ -6,8 +6,8 @@ local this_quest = {}
 
 this_quest.name = "A Certain Substitute Patrolman"
 this_quest.area = ADOULIN
-this_quest.log_id = dsp.quests.enums.log_ids.ADOULIN
-this_quest.quest_id = dsp.quests.enums.quest_ids.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN
+this_quest.log_id = dsp.quest.log_id.ADOULIN
+this_quest.quest_id = dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN
 
 this_quest.repeatable = false
 

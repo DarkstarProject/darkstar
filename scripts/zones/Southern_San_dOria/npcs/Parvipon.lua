@@ -12,7 +12,7 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MERCHANT_S_BIDDING) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(856,3) and trade:getItemCount() == 3) then
             player:startEvent(89);
         end
@@ -22,7 +22,7 @@ function onTrade(player,npc,trade)
 MagicFlyer = trade:hasItemQty(532,1);
 
     if (MagicFlyer == true and count == 1) then
-        local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+        local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
         if (FlyerForRegine == 1) then
             player:messageSpecial(ID.text.FLYER_REFUSED);
         end
@@ -32,7 +32,7 @@ end;
 
 function onTrigger(player,npc)
 
-TheMerchantsBidding = player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING);
+TheMerchantsBidding = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MERCHANT_S_BIDDING);
 
     if (TheMerchantsBidding == QUEST_AVAILABLE) then
         player:startEvent(90);
@@ -48,14 +48,14 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 90 and option == 1) then
-        player:addQuest(SANDORIA,THE_MERCHANT_S_BIDDING);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_MERCHANT_S_BIDDING);
     elseif (csid == 89) then
         player:tradeComplete();
         player:addGil(GIL_RATE*120);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*120);
-        if (player:getQuestStatus(SANDORIA,THE_MERCHANT_S_BIDDING) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_MERCHANT_S_BIDDING) == QUEST_ACCEPTED) then
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,THE_MERCHANT_S_BIDDING);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_MERCHANT_S_BIDDING);
         else
             player:addFame(SANDORIA,5);
         end

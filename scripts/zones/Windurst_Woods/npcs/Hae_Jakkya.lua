@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local chasingStatus = player:getQuestStatus(WINDURST, CHASING_TALES)
+    local chasingStatus = player:getQuestStatus(WINDURST, dsp.quest.id.windurst.CHASING_TALES)
 
     if player:hasKeyItem(dsp.ki.A_SONG_OF_LOVE) then
         player:startEvent(406)

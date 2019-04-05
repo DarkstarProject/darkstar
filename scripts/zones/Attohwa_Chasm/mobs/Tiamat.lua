@@ -6,9 +6,6 @@ require("scripts/globals/titles");
 require("scripts/globals/status");
 -----------------------------------
 
-function onMobInitialize(mob)
-end;
-
 function onMobSpawn(mob)
     mob:SetMobSkillAttack(0); -- resetting so it doesn't respawn in flight mode.
     mob:AnimationSub(0); -- subanim 0 is only used when it spawns until first flight.
@@ -20,7 +17,7 @@ function onMobFight(mob,target)
     if (mob:getHP() < ((mob:getMaxHP() / 10) * 2.5)) then
         if (mob:hasStatusEffect(dsp.effect.ATTACK_BOOST) == false) then
             mob:addStatusEffect(dsp.effect.ATTACK_BOOST,75,0,0);
-            mob:getStatusEffect(dsp.effect.ATTACK_BOOST):setFlag(32);
+            mob:getStatusEffect(dsp.effect.ATTACK_BOOST):setFlag(dsp.effectFlag.DEATH);
         end;
     end;
 

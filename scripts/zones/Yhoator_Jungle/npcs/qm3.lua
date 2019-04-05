@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(OUTLANDS,TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
+    if player:getQuestStatus(OUTLANDS,dsp.quest.id.outlands.TRUE_WILL) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.OLD_TRICK_BOX) then
         if player:getVar("trueWillKilledNM") >= 1 then
             if GetMobByID(ID.mob.KAPPA_AKUSO):isDead() and GetMobByID(ID.mob.KAPPA_BONZE):isDead() and GetMobByID(ID.mob.KAPPA_BIWA):isDead() then
                 player:addKeyItem(dsp.ki.OLD_TRICK_BOX)

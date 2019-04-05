@@ -226,57 +226,15 @@ function onHalloweenTrade(player,trade,npc)
 end;
 
 function applyHalloweenNpcCostumes(zoneid)
-    -- TODO: move these NPC IDs to zones table
-    if (isHalloweenEnabled() ~= 0) then
-        -- npcID, skinID (skin ID can be found in mob_change_skin Sql table)
-        local npc_costume_map = {
-            [234] = {
-                [17735795] = 40, -- Proud_Beard - Bastok Mines
-                [17735742] = 41, -- Faustin - Bastok Mines
-                [17814119] = 42, -- Aulavia - Bastok Mines
-                [17735744] = 43, -- Mille - Bastok Mines
-                [17735818] = 44  -- Emaliveulaux - Bastok Mines
-            },
-            [235] = {
-                [17739805] = 45  -- Olwyn - Bastok Markets
-            },
-            [230] = {
-                [17719306] = 46, -- Apairemant - Southern Sandoria
-                [17719303] = 47, -- Machielle - Southern Sandoria
-                [17719305] = 48, -- Phamelise - Southern Sandoria
-                [17719493] = 49, -- Pourette - Southern Sandoria
-                [17719304] = 50  -- Corua -- Southern Sandoria
-            },
-            [231] = {
-                [17723497] = 51, -- Attarena - Northern Sandoria
-                [17723492] = 52, -- Antonian - Northern Sandoria
-                [17723487] = 53  -- Vichuel - Northern Sandoria
-            },
-            [241] = {
-                [17764401] = 54, -- Kuzah_Hpirohpon - Windurst Woods
-                [17764400] = 55, -- Meriri - Windurst Woods
-                [17764464] = 56, -- Nhobi_Zalkia - Windurst Woods
-                [17764465] = 57, -- Millerovieunet - Windurst Woods
-                [17764462] = 58  -- Taraihi-Perunhi - Windurst Woods
-            },
-            [238] = {
-                [17752101] = 59, -- Ness_Rugetomal - Windurst Waters
-                [17752098] = 60, -- Upih_Khachla - Windurst Waters
-                [17752097] = 61, -- Ensasa - Windurst Waters
-                [17752103] = 62, -- Ahyeekih - Windurst Waters
-                [17752102] = 63  -- Maqu_Molpih - Windurst Waters
-            }
-        };
-
-        for id,skin in pairs(npc_costume_map[zoneid]) do
-            local hfNpc = GetNPCByID(id);
-            if (hfNpc ~= nil) then
-                hfNpc:changeSkin(skin);
+    if isHalloweenEnabled() ~= 0 then
+        local skins = zones[zoneid].npc.HALLOWEEN_SKINS
+        if skins then
+            for id, skin in pairs(skins) do
+                local npc = GetNPCByID(id)
+                if npc then
+                    npc:changeSkin(skin)
+                end
             end
         end
-
     end
-end;
-
-
-
+end

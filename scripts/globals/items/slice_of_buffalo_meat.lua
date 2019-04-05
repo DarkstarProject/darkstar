@@ -8,18 +8,19 @@
 -- Intelligence -7
 -----------------------------------------
 require("scripts/globals/status")
+require("scripts/globals/msg")
 -----------------------------------------
 
 function onItemCheck(target)
     local result = 0
     if (target:getRace() ~= dsp.race.GALKA) then
-        result = 247
+        result = dsp.msg.basic.CANNOT_EAT
     end
     if (target:getMod(dsp.mod.EAT_RAW_MEAT) == 1) then
         result = 0
     end
     if target:hasStatusEffect(dsp.effect.FOOD) or target:hasStatusEffect(dsp.effect.FIELD_SUPPORT_FOOD) then
-        result = 246
+        result = dsp.msg.basic.IS_FULL
     end
     return result
 end
