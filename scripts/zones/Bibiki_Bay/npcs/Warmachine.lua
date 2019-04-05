@@ -16,9 +16,9 @@ function onTrigger(player,npc)
 local ColoredDrop = 4258+math.random(0,7);
 
     -- COP mission
-    if (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 2) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 2) then
         player:startEvent(33);
-    elseif (player:getCurrentMission(COP) == DAWN and player:getVar("COP_3-taru_story")== 1) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("COP_3-taru_story")== 1) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,ColoredDrop);
         else

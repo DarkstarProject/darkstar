@@ -9,13 +9,13 @@ require("scripts/globals/npc_util")
 -----------------------------------
 
 function onTrade(player, npc, trade)
-    if player:getCurrentMission(COP) >= THREE_PATHS and npcUtil.tradeHas(trade, 1725) then
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.THREE_PATHS and npcUtil.tradeHas(trade, 1725) then
         player:startEvent(32)
     end
 end
 
 function onTrigger(player, npc)
-    if player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 7 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 7 then
         player:startEvent(34)
     else
         if math.random() < 0.5 then -- this isn't retail at all.

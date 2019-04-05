@@ -17,7 +17,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(COP) >= THE_SAVAGE then
+    if player:getCurrentMission(COP) >= dsp.mission.id.cop.THE_SAVAGE then
         if GetRegionOwner(dsp.region.TAVNAZIANARCH) ~= dsp.nation.SANDORIA then
             player:showText(npc, ID.text.DEGUERENDARS_CLOSED_DIALOG)
         else

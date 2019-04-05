@@ -123,7 +123,7 @@ function onZoneIn(player,prevZone)
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-351.136,-2.25,-380,253);
     end
-    if (player:getCurrentMission(COP) == WHEN_ANGELS_FALL and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus") == 0) then
         cs = 201 ;
     end
     player:setVar("Ru-Hmet-TP",0);
@@ -135,7 +135,7 @@ function onRegionEnter(player,region)
         switch (region:GetRegionID()): caseof
         {
             [1] = function (x)
-                if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
+                if (player:getCurrentMission(COP)==DAWN or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN) or player:hasCompletedMission(COP,THE_LAST_VERSE) ) then
                    player:startEvent(101);
                 else
                    player:startEvent(155);

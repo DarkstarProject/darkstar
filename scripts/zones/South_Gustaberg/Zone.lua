@@ -24,7 +24,7 @@ function onZoneIn(player, prevZone)
         player:setPos(-601.433, 35.204, -520.031, 1)
     end
 
-    if player:getCurrentMission(COP) == THE_CALL_OF_THE_WYRMKING and player:getVar("VowsDone") == 1 then
+    if player:getCurrentMission(COP) == dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING and player:getVar("VowsDone") == 1 then
         cs = 906
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 901
@@ -58,9 +58,9 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 906 then
-        if player:getCurrentMission(COP) == A_TRANSIENT_DREAM then
-            player:completeMission(COP, A_TRANSIENT_DREAM)
-            player:addMission(COP, THE_CALL_OF_THE_WYRMKING)
+        if player:getCurrentMission(COP) == dsp.mission.id.cop.A_TRANSIENT_DREAM then
+            player:completeMission(COP, dsp.mission.id.cop.A_TRANSIENT_DREAM)
+            player:addMission(COP, dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
         end
         player:setVar("VowsDone", 0)
     elseif csid == 901 then

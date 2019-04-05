@@ -25,7 +25,7 @@ function onZoneIn(player,prevZone)
     end
 
     -- COP mission 1-1
-    if (player:getCurrentMission(COP) == THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
+    if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_RITES_OF_LIFE and player:getVar("PromathiaStatus") == 0) then
         cs = 2;
     -- MOG HOUSE EXIT
     elseif (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then

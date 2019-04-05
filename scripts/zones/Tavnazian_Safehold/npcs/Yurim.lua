@@ -78,7 +78,7 @@ end
 
 function onTrigger(player,npc)
     -- IN THE NAME OF SCIENCE
-    if player:hasCompletedMission(COP, THE_WARRIOR_S_PATH) then
+    if player:hasCompletedMission(COP, dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
         local nameOfScience  = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.IN_THE_NAME_OF_SCIENCE)
         local itemInProgress = player:getVar("NAME_OF_SCIENCE_target")
 

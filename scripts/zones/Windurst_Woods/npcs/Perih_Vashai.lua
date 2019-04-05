@@ -48,7 +48,7 @@ function onTrigger(player,npc)
         player:startEvent(wsQuestEvent)
 
     -- THREE PATHS
-    elseif player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1 then
+    elseif player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Louverance_s_Path") == 1 then
         player:startEvent(686)
 
     -- THE FANGED ONE

@@ -57,8 +57,8 @@ function onEventFinish(player,csid,option)
     -- SHELTERING DOUBT (PM4-1)
     elseif (csid == 7) then
         player:setVar("PromathiaStatus",0);
-        player:completeMission(COP,SHELTERING_DOUBT);
-        player:addMission(COP,THE_SAVAGE);
+        player:completeMission(COP,dsp.mission.id.cop.SHELTERING_DOUBT);
+        player:addMission(COP,dsp.mission.id.cop.THE_SAVAGE);
 
     -- A PLACE TO RETURN (PM6-2)
     elseif (csid == 10) then
@@ -66,7 +66,7 @@ function onEventFinish(player,csid,option)
         player:setVar("Warder_Aglaia_KILL",0);
         player:setVar("Warder_Euphrosyne_KILL",0);
         player:setVar("Warder_Thalia_KILL",0);
-        player:completeMission(COP,A_PLACE_TO_RETURN);
-        player:addMission(COP,MORE_QUESTIONS_THAN_ANSWERS);
+        player:completeMission(COP,dsp.mission.id.cop.A_PLACE_TO_RETURN);
+        player:addMission(COP,dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS);
     end
 end;

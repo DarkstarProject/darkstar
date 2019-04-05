@@ -19,8 +19,8 @@ local wsQuest = dsp.wsquest.detonator
 
 local function checkThreePaths(player)
     if player:getVar("COP_Tenzen_s_Path") == 11 and player:getVar("COP_Ulmia_s_Path") == 8 and player:getVar("COP_Louverance_s_Path") == 10 then
-        player:completeMission(COP, THREE_PATHS)
-        player:addMission(COP, FOR_WHOM_THE_VERSE_IS_SUNG)
+        player:completeMission(COP, dsp.mission.id.cop.THREE_PATHS)
+        player:addMission(COP, dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG)
         player:setVar("PromathiaStatus", 0)
     end
 end
@@ -153,8 +153,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 890) then
         player:setVar("PromathiaStatus",0)
         player:setVar("Promathia_CID_timer",0)
-        player:completeMission(COP,FIRE_IN_THE_EYES_OF_MEN)
-        player:addMission(COP,CALM_BEFORE_THE_STORM)
+        player:completeMission(COP,dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN)
+        player:addMission(COP,dsp.mission.id.cop.CALM_BEFORE_THE_STORM)
     elseif (csid == 857) then
         player:setVar("PromathiaStatus",2)
         player:setVar("Promathia_CID_timer",VanadielDayOfTheYear())
@@ -176,26 +176,26 @@ function onEventFinish(player,csid,option)
         player:setVar("COP_Louverance_s_Path",7)
     elseif (csid == 850) then
         player:setVar("PromathiaStatus",0)
-        player:completeMission(COP,DESIRES_OF_EMPTINESS)
-        player:addMission(COP,THREE_PATHS)
+        player:completeMission(COP,dsp.mission.id.cop.DESIRES_OF_EMPTINESS)
+        player:addMission(COP,dsp.mission.id.cop.THREE_PATHS)
     elseif (csid == 849) then
         player:setVar("PromathiaStatus",2)
     elseif (csid == 856) then
         player:setVar("PromathiaStatus",1)
     elseif (csid == 845) then
         player:setVar("PromathiaStatus",0)
-        player:completeMission(COP,THE_CALL_OF_THE_WYRMKING)
-        player:addMission(COP,A_VESSEL_WITHOUT_A_CAPTAIN)
+        player:completeMission(COP,dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)
+        player:addMission(COP,dsp.mission.id.cop.A_VESSEL_WITHOUT_A_CAPTAIN)
     elseif (csid == 847) then
         -- finishing mission 3.3 and all sub missions
         player:setVar("EMERALD_WATERS_Status",0)
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",0)
-        player:completeMission(COP,THE_ROAD_FORKS)
-        player:addMission(COP,DESCENDANTS_OF_A_LINE_LOST)
-        player:completeMission(COP,DESCENDANTS_OF_A_LINE_LOST)
-        player:addMission(COP,COMEDY_OF_ERRORS_ACT_I)
-        player:completeMission(COP,COMEDY_OF_ERRORS_ACT_I)
-        player:addMission(COP,TENDING_AGED_WOUNDS ) --starting 3.4 COP mission
+        player:completeMission(COP,dsp.mission.id.cop.THE_ROAD_FORKS)
+        player:addMission(COP,dsp.mission.id.cop.DESCENDANTS_OF_A_LINE_LOST)
+        player:completeMission(COP,dsp.mission.id.cop.DESCENDANTS_OF_A_LINE_LOST)
+        player:addMission(COP,dsp.mission.id.cop.COMEDY_OF_ERRORS_ACT_I)
+        player:completeMission(COP,dsp.mission.id.cop.COMEDY_OF_ERRORS_ACT_I)
+        player:addMission(COP,dsp.mission.id.cop.TENDING_AGED_WOUNDS ) --starting 3.4 COP mission
     elseif (csid == 760) then
         player:addQuest(BASTOK,dsp.quest.id.bastok.DARK_PUPPET)
         player:setVar("darkPuppetCS",1)

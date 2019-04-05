@@ -69,17 +69,17 @@ function onTrigger(player,npc)
     --optional windy 9-1
     if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.DOLL_OF_THE_DEAD and MissionStatus == 4) then
         player:startEvent(439);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 3) then
         player:startEvent(469);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 6) then
         player:startEvent(470,0,587,0,586);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and player:hasKeyItem(dsp.ki.MIMEO_FEATHER) == true) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and player:hasKeyItem(dsp.ki.MIMEO_FEATHER) == true) then
         player:startEvent(471);
-    elseif (player:getCurrentMission(COP) == THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 ) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_ROAD_FORKS and EMORIES_OF_A_MAIDEN == 11 ) then
         player:startEvent(472);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and LouverancePath == 3 ) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and LouverancePath == 3 ) then
         player:startEvent(481);
-    elseif (player:getCurrentMission(COP) == THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 4 ) then
+    elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.THREE_PATHS and player:getVar("COP_Ulmia_s_Path") == 4 ) then
         player:startEvent(473);
     elseif (blastFromPast == QUEST_ACCEPTED) then
         local blastPastProg = player:getVar("BlastFromThePast_Prog");

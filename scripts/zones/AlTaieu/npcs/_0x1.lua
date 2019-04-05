@@ -13,7 +13,7 @@ end;
 function onTrigger(player,npc)
 
     if (
-            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+            player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]SouthTower") == 0
         and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0
@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         SpawnMob(ID.mob.AERNS_TOWER_SOUTH+2):updateClaim(player);
 
     elseif (
-            player:getCurrentMission(COP) == GARDEN_OF_ANTIQUITY
+            player:getCurrentMission(COP) == dsp.mission.id.cop.GARDEN_OF_ANTIQUITY
         and player:getVar("PromathiaStatus") == 2
         and player:getVar("[SEA][AlTieu]SouthTower") == 1
         and player:getVar("[SEA][AlTieu]SouthTowerCS") == 0

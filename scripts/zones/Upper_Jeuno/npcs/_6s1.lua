@@ -28,7 +28,7 @@ function onTrigger(player,npc)
         player:startEvent(10012)
     elseif (mission == DAWN and status == 4) then
         player:startEvent(129)
-    elseif ((mission == DAWN and status > 4) or player:hasCompletedMission(COP,DAWN)) then
+    elseif ((mission == DAWN and status > 4) or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN)) then
         local hasRing = false
 
         for key, value in pairs(ring) do
@@ -64,8 +64,8 @@ function onEventFinish(player,csid,option)
         player:setVar("PromathiaStatus", 2);
     elseif (csid == 10012) then
         player:setVar("PromathiaStatus", 0);
-        player:completeMission(COP, FLAMES_IN_THE_DARKNESS);
-        player:addMission(COP, FIRE_IN_THE_EYES_OF_MEN);
+        player:completeMission(COP, dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS);
+        player:addMission(COP, dsp.mission.id.cop.FIRE_IN_THE_EYES_OF_MEN);
     elseif (csid == 129) then
         player:setVar("PromathiaStatus", 5);
     elseif ((csid == 84 or csid == 204) and option >= 5 and option <= 7) then

@@ -41,11 +41,11 @@ function onBcnmLeave(player,instance,leavecode)
 
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         player:addExp(1000);
-        if (player:getCurrentMission(COP) == THE_WARRIOR_S_PATH) then
+        if (player:getCurrentMission(COP) == dsp.mission.id.cop.THE_WARRIOR_S_PATH) then
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,0);
             player:setVar("PromathiaStatus",0);
-            player:completeMission(COP,THE_WARRIOR_S_PATH);
-            player:addMission(COP,GARDEN_OF_ANTIQUITY);
+            player:completeMission(COP,dsp.mission.id.cop.THE_WARRIOR_S_PATH);
+            player:addMission(COP,dsp.mission.id.cop.GARDEN_OF_ANTIQUITY);
         else
             player:startEvent(32001,1,1,1,instance:getTimeInside(),1,1,1);
         end

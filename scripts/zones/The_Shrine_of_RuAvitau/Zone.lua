@@ -138,8 +138,8 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 51) then
-        player:completeMission(ZILART,THE_SEALED_SHRINE);
-        player:addMission(ZILART,THE_CELESTIAL_NEXUS);
+        player:completeMission(ZILART,dsp.mission.id.zilart.THE_SEALED_SHRINE);
+        player:addMission(ZILART,dsp.mission.id.zilart.THE_CELESTIAL_NEXUS);
         player:setVar("ZilartStatus",0);
     end
 end;

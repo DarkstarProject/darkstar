@@ -112,10 +112,10 @@ function onTrigger(player,npc)
 
     -- Promathia Missions.
     local PromathiaMissions = 0xFFFFFFFE;
-    if (player:hasCompletedMission(COP,THE_CALL_OF_THE_WYRMKING)) then
+    if (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_CALL_OF_THE_WYRMKING)) then
         PromathiaMissions = PromathiaMissions - 2; -- The Call of the Wyrmking.
     end
-    if (player:hasCompletedMission(COP,THE_ENDURING_TUMULT_OF_WAR)) then
+    if (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_ENDURING_TUMULT_OF_WAR)) then
         PromathiaMissions = PromathiaMissions - 4; -- The Enduring Tumult of War.
     end
 

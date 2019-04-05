@@ -26,7 +26,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getCurrentMission(ZILART) == HEADSTONE_PILGRIMAGE then
+    if player:getCurrentMission(ZILART) == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE then
         if not player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) then
             player:startEvent(200,dsp.ki.EARTH_FRAGMENT)
         elseif hasAllFragments(player) then
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
         elseif player:hasKeyItem(dsp.ki.EARTH_FRAGMENT) then
             player:messageSpecial(ID.text.ALREADY_OBTAINED_FRAG, dsp.ki.EARTH_FRAGMENT)
         end
-    elseif player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) then
+    elseif player:hasCompletedMission(ZILART,dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
         player:messageSpecial(ID.text.ZILART_MONUMENT)
     else
         player:messageSpecial(ID.text.CANNOT_REMOVE_FRAG)
@@ -52,8 +52,8 @@ function onEventFinish(player,csid,option)
         if hasAllFragments(player) then
             player:messageSpecial(ID.text.FOUND_ALL_FRAGS, dsp.ki.EARTH_FRAGMENT)
             player:addTitle(dsp.title.BEARER_OF_THE_EIGHT_PRAYERS)
-            player:completeMission(ZILART, HEADSTONE_PILGRIMAGE)
-            player:addMission(ZILART, THROUGH_THE_QUICKSAND_CAVES)
+            player:completeMission(ZILART, dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE)
+            player:addMission(ZILART, dsp.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES)
         else
             player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.EARTH_FRAGMENT)
         end
