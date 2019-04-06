@@ -72,7 +72,7 @@ this_quest.vars =
 this_quest.stages =
 {
     -- [TODO] Stage 0: Speak to Sharuru in Eastern Adoulin to start the quest and receive a Waypoint Scanner Kit KI
-    [dsp.quests.enums.stages.STAGE0] =
+    [dsp.quest.stage.STAGE0] =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {
@@ -89,19 +89,19 @@ this_quest.stages =
         }
     },
     -- [TODO] Stage 1: Adjust waypoints at Frontier Stations in Ceizak, Yahse, Foret, Morimar, Yorcia, Marjami, and Kamihr
-    [dsp.quests.enums.stages.STAGE1] =
+    [dsp.quest.stage.STAGE1] =
     {
         -- TODO: Find/implement the onTriggers for the Adoulin waypoints
         -- TODO: Implement the event onFinishes for the Adoulin waypoints, just call waypointEventFinish() with their number
     },
     -- [TODO] Stage 2: Try adjusting waypoint in Lower Jeuno
-    [dsp.quests.enums.stages.STAGE2] =
+    [dsp.quest.stage.STAGE2] =
     {
         -- TODO: Find/implement the onTriggers for the Lower Jeuno waypoint
         -- TODO: Implement the Lower Jeuno waypoint onFinish events
     },
     -- [TODO] Stage 3: Talk to Sharuru again.
-    [dsp.quests.enums.stages.STAGE3] =
+    [dsp.quest.stage.STAGE3] =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {
@@ -118,7 +118,7 @@ this_quest.stages =
         }
     },
     -- Stage 4: Talk to Shipilolo in Western Adoulin and get Waypoint Recalibration Kit KI
-    [dsp.quests.enums.stages.STAGE4] =
+    [dsp.quest.stage.STAGE4] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -142,13 +142,13 @@ this_quest.stages =
         }
     },
     -- [TODO] Stage 5: Try Lower Jeuno waypoint again
-    [dsp.quests.enums.stages.STAGE5] =
+    [dsp.quest.stage.STAGE5] =
     {
         -- TODO: Find/implement the onTriggers for the Lower Jeuno waypoint
         -- TODO: Implement the Lower Jeuno waypoint onFinish events
     },
     -- [TODO] Stage 6: Return to Sharuru, quest complete
-    [dsp.quests.enums.stages.STAGE6] =
+    [dsp.quest.stage.STAGE6] =
     {
         [dsp.zone.EASTERN_ADOULIN] =
         {

@@ -56,7 +56,7 @@ this_quest.vars =
 this_quest.stages =
 {
     -- [TODO] Stage 0: Talk to Chalvava, Rala Waterways, to begin the quest
-    [dsp.quests.enums.stages.STAGE0] =
+    [dsp.quest.stage.STAGE0] =
     {
         [dsp.zone.RALA_WATERWAYS] =
         {
@@ -74,7 +74,7 @@ this_quest.stages =
         }
     },
     -- Stage 1: Talk to Shipilolo, Western Adoulin, to get Bottle of Fertilizer X KI
-    [dsp.quests.enums.stages.STAGE1] =
+    [dsp.quest.stage.STAGE1] =
     {
         [dsp.zone.WESTERN_ADOULIN] =
         {
@@ -108,7 +108,7 @@ this_quest.stages =
         }
     },
     -- [TODO] Stage 2: Talk to Chalvava again, quest complete
-    [dsp.quests.enums.stages.STAGE2] =
+    [dsp.quest.stage.STAGE2] =
     {
         [dsp.zone.RALA_WATERWAYS] =
         {
