@@ -495,16 +495,16 @@ function checkNonTradeBCNM(player, npc, mode)
                     [1024] = function() return (player:getCurrentMission(COP) == dsp.mission.id.cop.WHEN_ANGELS_FALL and player:getVar("PromathiaStatus")==4)  end, -- when_angels_fall
                },
         [36] = {
-                    [1056] = function() return (player:getCurrentMission(COP) == dsp.mission.id.cop. DAWN and player:getVar("PromathiaStatus")==2)  end, -- dawn
+                    [1056] = function() return (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN and player:getVar("PromathiaStatus")==2)  end, -- dawn
                },
         [57] = {
-                    [1092] = function() return (player:getCurrentMission(TOAU) ==  LEGACY_OF_THE_LOST)  end, -- TOAU-35 Legacy of the Lost
+                    [1092] = function() return (player:getCurrentMission(TOAU) == dsp.mission.id.toau.LEGACY_OF_THE_LOST)  end, -- TOAU-35 Legacy of the Lost
                },
         [64] =  {
-                    [1124] = function() return (player:getCurrentMission(TOAU) ==  SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus")==2)  end, -- TOAU-22 shield of diplomacy
+                    [1124] = function() return (player:getCurrentMission(TOAU) == dsp.mission.id.toau.SHIELD_OF_DIPLOMACY and player:getVar("AhtUrganStatus")==2)  end, -- TOAU-22 shield of diplomacy
                 },
         [67] =  {
-                    [1156] = function() return (player:getCurrentMission(TOAU) ==  PUPPET_IN_PERIL and player:getVar("AhtUrganStatus")==1)  end, -- TOAU-29 Puppet in Peril
+                    [1156] = function() return (player:getCurrentMission(TOAU) == dsp.mission.id.toau.PUPPET_IN_PERIL and player:getVar("AhtUrganStatus")==1)  end, -- TOAU-29 Puppet in Peril
                 },
         [139] = {
                     [0] = function()

@@ -40,9 +40,9 @@ function onTrigger(player,npc)
             player:addItem(181)
             player:messageSpecial(ID.text.ITEM_OBTAINED,181)
         end
-    elseif (player:getCurrentMission(TOAU) == CONFESSIONS_OF_ROYALTY and player:hasKeyItem(dsp.ki.RAILLEFALS_LETTER)) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY and player:hasKeyItem(dsp.ki.RAILLEFALS_LETTER)) then
         player:startEvent(564)
-    elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
         player:startEvent(565)
     elseif (pNation == dsp.nation.SANDORIA) then
         -- Mission San D'Oria 9-2 The Heir to the Light
@@ -188,8 +188,8 @@ function onEventFinish(player,csid,option)
         finishMissionTimeline(player,3,csid,option)
         player:setVar("Wait1DayM8-1_date", os.date("%j"))
     elseif (csid == 564 and option == 1) then
-        player:completeMission(TOAU,CONFESSIONS_OF_ROYALTY)
-        player:addMission(TOAU,EASTERLY_WINDS)
+        player:completeMission(TOAU,dsp.mission.id.toau.CONFESSIONS_OF_ROYALTY)
+        player:addMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS)
         player:delKeyItem(dsp.ki.RAILLEFALS_LETTER)
         player:setVar("AhtUrganStatus", 1)
     end

@@ -48,9 +48,9 @@ function onRegionEnter(player,region)
             player:startEvent(10048);
         elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and player:getVar("PromathiaStatus") == 2) then
             player:startEvent(10051);
-        elseif (player:getCurrentMission(TOAU) == EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
+        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.EASTERLY_WINDS and player:getVar("AhtUrganStatus") == 1) then
             player:startEvent(10094);
-        elseif (player:getCurrentMission(TOAU) == ALLIED_RUMBLINGS) then
+        elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.ALLIED_RUMBLINGS) then
             player:startEvent(10097);
         elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.DAWN) then
             if (player:getVar("COP_3-taru_story") == 2 and player:getVar("COP_shikarees_story") == 1 and player:getVar("COP_louverance_story") == 3
@@ -105,22 +105,22 @@ function onEventFinish(player,csid,option)
             if (player:getFreeSlotsCount() == 0) then
                 player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,2184);
             else
-                player:completeMission(TOAU,EASTERLY_WINDS);
-                player:addMission(TOAU,WESTERLY_WINDS);
+                player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
+                player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
                 player:setVar("AhtUrganStatus", 0);
                 player:addItem(2184,10);
                 player:messageSpecial(ID.text.ITEM_OBTAINED,2184);
             end
         else
-            player:completeMission(TOAU,EASTERLY_WINDS);
-            player:addMission(TOAU,WESTERLY_WINDS);
+            player:completeMission(TOAU,dsp.mission.id.toau.EASTERLY_WINDS);
+            player:addMission(TOAU,dsp.mission.id.toau.WESTERLY_WINDS);
             player:setVar("AhtUrganStatus", 0);
         end
     elseif (csid == 10097) then
-        player:completeMission(TOAU,ALLIED_RUMBLINGS);
+        player:completeMission(TOAU,dsp.mission.id.toau.ALLIED_RUMBLINGS);
         player:needToZone(true);
         player:setVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
-        player:addMission(TOAU,UNRAVELING_REASON);
+        player:addMission(TOAU,dsp.mission.id.toau.UNRAVELING_REASON);
     elseif (csid == 142) then
         player:addQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
     elseif (csid == 143) then

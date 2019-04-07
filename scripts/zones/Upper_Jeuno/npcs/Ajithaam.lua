@@ -42,7 +42,7 @@ Port Jeuno (West to East)
 ]]--
 
 function onTrade(player,npc,trade)
-    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > IMMORTAL_SENTRIES) then
+    if (trade:getGil() == 300 and trade:getItemCount() == 1 and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_COMPLETED and player:getCurrentMission(TOAU) > dsp.mission.id.toau.IMMORTAL_SENTRIES) then
         -- Needs a check for at least traded an invitation card to Naja Salaheem
         player:startEvent(10177);
     end
@@ -63,7 +63,7 @@ function onTrigger(player,npc)
                 player:startEvent(10090);
             end
         end
-    elseif (player:getCurrentMission(TOAU) >= 2) then
+    elseif (player:getCurrentMission(TOAU) >= dsp.mission.id.toau.PRESIDENT_SALAHEEM) then
         player:startEvent(10176);
     else
         player:startEvent(10092);

@@ -16,7 +16,7 @@ end
 
 function onTrigger(player, npc)
     if
-        player:getCurrentMission(WOTG) == BACK_TO_THE_BEGINNING and
+        player:getCurrentMission(WOTG) == dsp.mission.id.wotg.BACK_TO_THE_BEGINNING and
         (
             player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.CLAWS_OF_THE_GRIFFON) == QUEST_COMPLETED or
             player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.THE_TIGRESS_STRIKES) == QUEST_COMPLETED or
@@ -41,8 +41,8 @@ function onEventFinish(player, csid, option)
     elseif csid == 102 and option == 1 then
         dsp.teleport.toMaw(player, 4)
     elseif csid == 701 then
-        player:completeMission(WOTG, BACK_TO_THE_BEGINNING)
-        player:addMission(WOTG, CAIT_SITH)
+        player:completeMission(WOTG, dsp.mission.id.wotg.BACK_TO_THE_BEGINNING)
+        player:addMission(WOTG, dsp.mission.id.wotg.CAIT_SITH)
         player:addTitle(dsp.title.CAIT_SITHS_ASSISTANT)
         if not hasMawActivated(player, 0) then
             player:addNationTeleport(dsp.teleport.nation.MAW, 2)

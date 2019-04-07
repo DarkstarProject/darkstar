@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         end
     elseif (player:getCurrentMission(COP) == dsp.mission.id.cop.MORE_QUESTIONS_THAN_ANSWERS  and  player:getVar("PromathiaStatus") == 0) then
         player:startEvent(10049);
-    elseif (player:getCurrentMission(TOAU) == UNRAVELING_REASON) then
+    elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.UNRAVELING_REASON) then
         if (player:getVar("TOAUM40_STARTDAY") ~= VanadielDayOfTheYear() and player:needToZone() == false) then
             player:startEvent(10098,0,0,0,0,0,0,0,0);
         else
