@@ -12,7 +12,7 @@ require("scripts/globals/missions")
 
 function onTrade(player, npc, trade)
     -- Trade Seedspall's Lux, Luna, Astrum
-    if player:getCurrentMission(ACP) == THE_ECHO_AWAKENS and npcUtil.tradeHas(trade, {2740, 2741, 2742}) then
+    if player:getCurrentMission(ACP) == dsp.mission.id.acp.THE_ECHO_AWAKENS and npcUtil.tradeHas(trade, {2740, 2741, 2742}) then
         player:startEvent(31)
     end
 end
@@ -61,17 +61,17 @@ end
 
 function onEventFinish(player, csid, option)
     if csid == 31 then
-        player:completeMission(ACP, THE_ECHO_AWAKENS)
-        player:addMission(ACP, GATHERER_OF_LIGHT_I)
+        player:completeMission(ACP, dsp.mission.id.acp.THE_ECHO_AWAKENS)
+        player:addMission(ACP, dsp.mission.id.acp.GATHERER_OF_LIGHT_I)
         player:confirmTrade()
     elseif csid == 32 then
-        player:completeMission(ACP, GATHERER_OF_LIGHT_I)
-        player:addMission(ACP, GATHERER_OF_LIGHT_II)
+        player:completeMission(ACP, dsp.mission.id.acp.GATHERER_OF_LIGHT_I)
+        player:addMission(ACP, dsp.mission.id.acp.GATHERER_OF_LIGHT_II)
         player:delKeyItem(dsp.ki.SEEDSPALL_ROSEUM)
         player:delKeyItem(dsp.ki.SEEDSPALL_CAERULUM)
         player:delKeyItem(dsp.ki.SEEDSPALL_VIRIDIS)
     elseif csid == 34 then
-        player:completeMission(ACP, GATHERER_OF_LIGHT_II)
-        player:addMission(ACP, THOSE_WHO_LURK_IN_SHADOWS_I)
+        player:completeMission(ACP, dsp.mission.id.acp.GATHERER_OF_LIGHT_II)
+        player:addMission(ACP, dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I)
     end
 end

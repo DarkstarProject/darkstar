@@ -559,35 +559,35 @@ function checkNonTradeBCNM(player, npc, mode)
                 },
         [201] = {
                     [416] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WIND))  end, -- Trial by Wind
-                    [420] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL))  end,
+                    [420] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_EMERALD_SEAL))  end,
                 },
         [202] = {
                     [448] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_LIGHTNING))  end, -- Trial by Lightning
-                    [452] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL))  end,
+                    [452] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_VIOLET_SEAL))  end,
                },
         [203] = {
                     [480] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_ICE))  end, -- Trial by Ice
-                    [484] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL))  end,
+                    [484] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AZURE_SEAL))  end,
                 },
         [206] = {
                     [512] = function() return (player:getCurrentMission(player:getNation()) == 14 and player:getVar("MissionStatus") == 11)  end, -- Mission 5-1
                     [516] = function() return (player:getCurrentMission(SANDORIA) == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and player:getVar("MissionStatus") == 3)  end, -- sando 9-2
                 --[[
                     Temp disabled pending BCNM mob fixes
-                    [532] = function() return (player:getCurrentMission(ACP) >= THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(dsp.ki.MARK_OF_SEED))  end, -- ACP Mission 7
+                    [532] = function() return (player:getCurrentMission(ACP) >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III and player:hasKeyItem(dsp.ki.MARK_OF_SEED))  end, -- ACP Mission 7
                 ]]
                 },
         [207] = {
                     [544] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_FIRE))  end, -- Trial by Fire
-                    [547] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL))  end,
+                    [547] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_SCARLET_SEAL))  end,
                 },
         [209] = {
                     [576] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_EARTH))  end, -- Trial by Earth
-                    [580] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL))  end,
+                    [580] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_AMBER_SEAL))  end,
                },
         [211] = {
                     [608] = function() return (player:hasKeyItem(dsp.ki.TUNING_FORK_OF_WATER))  end, -- Trial by Water
-                    [611] = function() return (player:getCurrentMission(ASA) == SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL))  end,
+                    [611] = function() return (player:getCurrentMission(ASA) == dsp.mission.id.asa.SUGAR_COATED_DIRECTIVE and player:hasKeyItem(dsp.ki.DOMINAS_CERULEAN_SEAL))  end,
                 },
     }
 

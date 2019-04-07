@@ -29,7 +29,7 @@ function onZoneIn(player, prevZone)
         cs = 15
     elseif ENABLE_COP == 1 and prevZone == dsp.zone.QUFIM_ISLAND and player:getCurrentMission(COP) == dsp.mission.id.cop.ANCIENT_FLAMES_BECKON then
         cs = 22
-    elseif player:getCurrentMission(ACP) == BORN_OF_HER_NIGHTMARES and prevZone == dsp.zone.QUFIM_ISLAND then
+    elseif player:getCurrentMission(ACP) == dsp.mission.id.acp.BORN_OF_HER_NIGHTMARES and prevZone == dsp.zone.QUFIM_ISLAND then
         cs = 34
     end
 
@@ -71,8 +71,8 @@ function onEventFinish(player, csid, option)
     elseif csid == 22 then
         player:startEvent(36)
     elseif csid == 34 then
-        player:completeMission(ACP, BORN_OF_HER_NIGHTMARES)
-        player:addMission(ACP, BANISHING_THE_ECHO)
+        player:completeMission(ACP, dsp.mission.id.acp.BORN_OF_HER_NIGHTMARES)
+        player:addMission(ACP, dsp.mission.id.acp.BANISHING_THE_ECHO)
     elseif csid == 36 then
         player:startEvent(37)
     elseif csid == 37 then

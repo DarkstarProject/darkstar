@@ -31,9 +31,9 @@ function onZoneIn( player, prevZone)
 
     if triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 48
-    elseif player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == dsp.zone.WINDURST_WATERS then
+    elseif player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.WINDURST_WATERS then
         cs = 62
-    elseif player:getCurrentMission(ASA) == BURGEONING_DREAD and prevZone == dsp.zone.PORT_WINDURST then
+    elseif player:getCurrentMission(ASA) == dsp.mission.id.asa.BURGEONING_DREAD and prevZone == dsp.zone.PORT_WINDURST then
         cs = 63
     elseif player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.VAIN and player:getVar("MissionStatus") == 1 then
         cs = 50
@@ -70,7 +70,7 @@ function onEventFinish( player, csid, option)
     if csid == 48 then
         lightCutsceneFinish(player) -- Quest: I Can Hear A Rainbow
     elseif csid == 62 or csid == 63 then
-        player:completeMission(ASA, BURGEONING_DREAD)
-        player:addMission(ASA, THAT_WHICH_CURDLES_BLOOD)
+        player:completeMission(ASA, dsp.mission.id.asa.BURGEONING_DREAD)
+        player:addMission(ASA, dsp.mission.id.asa.THAT_WHICH_CURDLES_BLOOD)
     end
 end

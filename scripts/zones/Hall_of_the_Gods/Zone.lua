@@ -16,7 +16,7 @@ function onZoneIn(player,prevZone)
     local cs = -1;
     if (player:getXPos() == 0 and player:getYPos() == 0 and player:getZPos() == 0) then
         player:setPos(-0.011,-1.848,-176.133,192);
-    elseif (player:getCurrentMission(ACP) == REMEMBER_ME_IN_YOUR_DREAMS and prevZone == dsp.zone.ROMAEVE) then
+    elseif (player:getCurrentMission(ACP) == dsp.mission.id.acp.REMEMBER_ME_IN_YOUR_DREAMS and prevZone == dsp.zone.ROMAEVE) then
         cs = 5;
     end
     return cs;
@@ -34,7 +34,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 5) then
-        player:completeMission(ACP,REMEMBER_ME_IN_YOUR_DREAMS);
-        player:addMission(ACP,BORN_OF_HER_NIGHTMARES);
+        player:completeMission(ACP,dsp.mission.id.acp.REMEMBER_ME_IN_YOUR_DREAMS);
+        player:addMission(ACP,dsp.mission.id.acp.BORN_OF_HER_NIGHTMARES);
     end
 end;

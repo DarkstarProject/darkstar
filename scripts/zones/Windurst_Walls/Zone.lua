@@ -26,7 +26,7 @@ function onZoneIn(player,prevZone)
             cs = 30004;
         end
         player:setVar("PlayerMainJob",0);
-    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == A_SHANTOTTO_ASCENSION
+    elseif (ENABLE_ASA == 1 and player:getCurrentMission(ASA) == dsp.mission.id.asa.A_SHANTOTTO_ASCENSION
         and (prevZone == dsp.zone.WINDURST_WATERS or prevZone == dsp.zone.WINDURST_WOODS) and player:getMainLvl()>=10) then
         cs = 510;
     elseif (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.MOON_READING and player:getVar("MissionStatus") == 4) then
@@ -64,8 +64,8 @@ function onEventFinish(player,csid,option)
     elseif (csid == 510) then
         player:startEvent(514);
     elseif (csid == 514) then
-        player:completeMission(ASA,A_SHANTOTTO_ASCENSION);
-        player:addMission(ASA,BURGEONING_DREAD);
+        player:completeMission(ASA,dsp.mission.id.asa.A_SHANTOTTO_ASCENSION);
+        player:addMission(ASA,dsp.mission.id.asa.BURGEONING_DREAD);
         player:setVar("ASA_Status",0);
     elseif (csid == 443) then
         player:completeMission(WINDURST,dsp.mission.id.windurst.MOON_READING);

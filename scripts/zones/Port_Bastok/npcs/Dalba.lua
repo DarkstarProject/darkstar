@@ -121,11 +121,11 @@ function onTrigger(player,npc)
 
     -- Add-on Scenarios.
     local AddonScenarios = 0xFFFFFFFE;
-    if (player:hasCompletedMission(AMK,DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
+    if (player:hasCompletedMission(AMK,dsp.mission.id.amk.DRENCHED_IT_BEGAN_WITH_A_RAINDROP)) then
         AddonScenarios = AddonScenarios - 2; -- Drenched! It Began with a Raindrop.
     end
 -- *Need the correct csid
---    if (player:hasCompletedMission(AMK,HASTEN_IN_A_JAM_IN_JEUNO)) then
+--    if (player:hasCompletedMission(AMK,dsp.mission.id.amk.HASTEN_IN_A_JAM_IN_JEUNO)) then
 --        AddonScenarios = AddonScenarios - 4; -- Hasten! In a Jam in Jeuno?
 --    end
 

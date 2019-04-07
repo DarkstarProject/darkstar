@@ -41,11 +41,11 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 155) then
         -- Finishes SOA Mission: '...Into the Fire'
-        player:completeMission(SOA, INTO_THE_FIRE);
-        player:addMission(SOA, MELVIEN_DE_MALECROIX);
+        player:completeMission(SOA, dsp.mission.id.soa.INTO_THE_FIRE);
+        player:addMission(SOA, dsp.mission.id.soa.MELVIEN_DE_MALECROIX);
     elseif (csid == 157) then
         -- Finishes SOA Mission: 'Done and Delivered'
-        player:completeMission(SOA, DONE_AND_DELIVERED);
-        player:addMission(SOA, MINISTERIAL_WHISPERS);
+        player:completeMission(SOA, dsp.mission.id.soa.DONE_AND_DELIVERED);
+        player:addMission(SOA, dsp.mission.id.soa.MINISTERIAL_WHISPERS);
     end
 end;
