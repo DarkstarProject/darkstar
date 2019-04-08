@@ -3,7 +3,6 @@
 -- Item: Chocobo Shield +1
 -- Dispense: Sakura Biscuit
 -----------------------------------------
-require("scripts/globals/status")
 require("scripts/globals/msg")
 -----------------------------------------
 
