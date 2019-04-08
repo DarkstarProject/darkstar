@@ -8325,7 +8325,7 @@ inline int32 CLuaBaseEntity::getParty(lua_State* L)
 
     lua_createtable(L, size, 0);
     int i = 1;
-    ((CBattleEntity*)m_PBaseEntity)->ForParty([this, &L, &i](CBattleEntity* member)
+    ((CBattleEntity*)m_PBaseEntity)->ForParty([&L, &i](CBattleEntity* member)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");
@@ -8503,9 +8503,10 @@ inline int32 CLuaBaseEntity::forMembersInRange(lua_State* L)
                                                       luautils::pushFunc(function);
                                                       luautils::pushArg<CBattleEntity*>(member);
                                                       luautils::callFunc(1);
-                                                      luautils::unregister_fp(function);
                                                   }
                                               });
+
+    luautils::unregister_fp(function);
 
     return 0;
 }
@@ -8638,7 +8639,7 @@ inline int32 CLuaBaseEntity::getAlliance(lua_State* L)
     lua_createtable(L, size, 0);
     int i = 1;
 
-    PChar->ForAlliance([this, &L, &i](CBattleEntity* PMember)
+    PChar->ForAlliance([&L, &i](CBattleEntity* PMember)
     {
         lua_getglobal(L, CLuaBaseEntity::className);
         lua_pushstring(L, "new");

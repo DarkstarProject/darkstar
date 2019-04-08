@@ -14,7 +14,7 @@ function onItemUse(target)
     target:forMembersInRange(target, 30, function(member)
         local healAmount = math.random(60,90)
 
-        healAmount = healAmount + (healAmount * (target:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
+        healAmount = healAmount + (healAmount * (member:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
         healAmount = healAmount * CURE_POWER
 
         local diff = (member:getMaxHP() - member:getHP())
