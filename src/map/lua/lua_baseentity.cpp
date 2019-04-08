@@ -8487,24 +8487,23 @@ inline int32 CLuaBaseEntity::getPartyLeader(lua_State* L)
 inline int32 CLuaBaseEntity::forMembersInRange(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isuserdata(L, 1));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isnumber(L, 2));
-    DSP_DEBUG_BREAK_IF(lua_isnil(L, 3) || !lua_isfunction(L, 3));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
+    DSP_DEBUG_BREAK_IF(lua_isnil(L, 2) || !lua_isfunction(L, 2));
 
-    auto PEntity = Lunar<CLuaBaseEntity>::check(L, 1)->m_PBaseEntity;
-    auto range = (uint8)lua_tointeger(L, 2);
-    auto function = luautils::register_fp(3);
+    auto target = (CBattleEntity*)m_PBaseEntity;
+    auto range = (uint8)lua_tointeger(L, 1);
+    auto function = luautils::register_fp(2);
 
-    ((CBattleEntity*)m_PBaseEntity)->ForParty([&PEntity, &range, &function](CBattleEntity* member)
-                                              {
-                                                  if (PEntity->loc.zone == member->loc.zone &&
-                                                      distanceSquared(member->loc.p, PEntity->loc.p) < (range * range))
-                                                  {
-                                                      luautils::pushFunc(function);
-                                                      luautils::pushArg<CBattleEntity*>(member);
-                                                      luautils::callFunc(1);
-                                                  }
-                                              });
+    target->ForParty([&target, &range, &function](CBattleEntity* member)
+    {
+        if (target->loc.zone == member->loc.zone &&
+            distanceSquared(target->loc.p, member->loc.p) < (range * range))
+        {
+            luautils::pushFunc(function);
+            luautils::pushArg<CBattleEntity*>(member);
+            luautils::callFunc(1);
+        }
+    });
 
     luautils::unregister_fp(function);
 

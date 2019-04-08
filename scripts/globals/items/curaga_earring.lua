@@ -11,7 +11,7 @@ function onItemCheck(target)
 end
 
 function onItemUse(target)
-    target:forMembersInRange(target, 30, function(member)
+    target:forMembersInRange(30, function(member)
         local healAmount = math.random(60,90)
 
         healAmount = healAmount + (healAmount * (member:getMod(dsp.mod.CURE_POTENCY_RCVD)/100))
