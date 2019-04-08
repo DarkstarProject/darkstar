@@ -410,6 +410,7 @@ public:
     int32 hasPartyJob(lua_State*);
     int32 getPartyMember(lua_State* L);             // Get a character entity from another entity's party or alliance
     int32 getPartyLeader(lua_State* L);
+    int32 forMembersInRange(lua_State* L);
 
     int32 addPartyEffect(lua_State*);               // Adds Effect to all party members
     int32 hasPartyEffect(lua_State*);               // Has Effect from all party members
