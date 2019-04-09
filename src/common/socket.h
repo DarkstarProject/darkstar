@@ -7,6 +7,7 @@
 	#include "../common/cbasetypes.h"
 #endif
 
+#include <CoreFoundation/CoreFoundation.h>
 
 #ifdef WIN32
     #define FD_SETSIZE 1000

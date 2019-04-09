@@ -273,6 +273,7 @@ AM_CONDITIONAL(DARKSTAR_ARCH_SOLARIS,test "$darkstar_arch_solaris")
 AM_CONDITIONAL(DARKSTAR_ARCH_FREEBSD,test "$darkstar_arch_freebsd")
 AM_CONDITIONAL(DARKSTAR_ARCH_NETBSD,test "$darkstar_arch_netbsd")
 AM_CONDITIONAL(DARKSTAR_ARCH_WIN32,test "$darkstar_arch_win32")
+AM_CONDITIONAL(DARKSTAR_ARCH_OSX,test "$darkstar_arch_osx")
 
 AC_CONFIG_HEADER([src/common/config.h])
 AC_CONFIG_FILES([Makefile])

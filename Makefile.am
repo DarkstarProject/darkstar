@@ -42,7 +42,7 @@ CPPFLAGS_ALL            += -DFD_SETSIZE=4096 -DCYGWIN
 endif
 
 if DARKSTAR_ARCH_OSX
-LDFLAGS_ALL             += -pagezero_size=10000 -image_base=100000000 ##-image_base=7fff04c4a000
+LDFLAGS_ALL             += -pagezero_size 10000 -image_base 100000000
 endif
 
 ## Targets
