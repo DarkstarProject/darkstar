@@ -51,6 +51,9 @@ case "$host" in
         *-*-cygwin* | *-*-mingw32*)
                 darkstar_arch_win32=true
                 ;;
+        *-*-darwin*)
+                darkstar_arch_osx=true
+                ;;
         *)
                 AC_MSG_ERROR([*** Invalid host])
                 ;;
@@ -254,6 +257,13 @@ then
         AC_MSG_RESULT(Building Win32 targets)
         AC_DEFINE(DARKSTAR_ARCH_WIN32,1,Compile code for a windows target)
         DLLEXT=".dll"
+fi
+
+### OSX Specifics
+if test "$darkstar_arch_osx"
+then
+        AC_MSG_RESULT(Building OSX targets)
+        AC_DEFINE(DARKSTAR_ARCH_OSX,1,Compile code for an OSX target)
 fi
 
 AC_SUBST([DLLEXT])
