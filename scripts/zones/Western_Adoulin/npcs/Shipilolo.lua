@@ -25,7 +25,7 @@ function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
 
-    if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if ((TOMATH == QUEST_ACCEPTED) and player:hasKeyItem(dsp.ki.BROKEN_HARPOON)) then
             -- Progresses Quest: 'The Old Man and the Harpoon'
             player:startEvent(2543);

@@ -20,23 +20,23 @@ function onTrigger(player,npc)
 
     local ZilartMission = player:getCurrentMission(ZILART);
 
-    if (ZilartMission == KAZAMS_CHIEFTAINESS) then
+    if (ZilartMission == dsp.mission.id.zilart.KAZAMS_CHIEFTAINESS) then
         player:startEvent(7);
-    elseif (ZilartMission == THE_TEMPLE_OF_UGGALEPIH) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH) then
         player:startEvent(8);
-    elseif (ZilartMission == HEADSTONE_PILGRIMAGE) then
+    elseif (ZilartMission == dsp.mission.id.zilart.HEADSTONE_PILGRIMAGE) then
         player:startEvent(9);
-    elseif (ZilartMission == RETURN_TO_DELKFUTTS_TOWER) then
+    elseif (ZilartMission == dsp.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER) then
         player:startEvent(13);
-    elseif (ZilartMission == ROMAEVE) then
+    elseif (ZilartMission == dsp.mission.id.zilart.ROMAEVE) then
         player:startEvent(11);
-    elseif (ZilartMission == THE_MITHRA_AND_THE_CRYSTAL) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_MITHRA_AND_THE_CRYSTAL) then
         player:startEvent(170);
-    elseif (ZilartMission == ARK_ANGELS) then
+    elseif (ZilartMission == dsp.mission.id.zilart.ARK_ANGELS) then
         player:startEvent(171);
-    elseif (ZilartMission == THE_CELESTIAL_NEXUS) then
+    elseif (ZilartMission == dsp.mission.id.zilart.THE_CELESTIAL_NEXUS) then
         player:startEvent(173);
-    elseif (ZilartMission == AWAKENING) then
+    elseif (ZilartMission == dsp.mission.id.zilart.AWAKENING) then
         player:startEvent(177);
     end
 

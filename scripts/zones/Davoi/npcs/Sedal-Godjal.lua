@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
     local MissionStatus = player:getVar("MissionStatus");
 
     if (trade:hasItemQty(17437,1)) then
-        if (CurrentMission == VAIN and MissionStatus == 3 and player:hasKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER) == true) then
+        if (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus == 3 and player:hasKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER) == true) then
             player:startEvent(120);
         end
     end
@@ -28,7 +28,7 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and player:getVar("MissionStatus") == 1) then
         player:startEvent(122,0,276);
-    elseif (CurrentMission == VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
+    elseif (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus >= 2) then -- wiki says it doesnt matter whether you get cs or kill first
         if (player:hasKeyItem(dsp.ki.STAR_SEEKER) == true) then
             player:startEvent(118,0,17437,dsp.ki.STAR_SEEKER);
         elseif (player:hasKeyItem(dsp.ki.MAGIC_DRAINED_STAR_SEEKER) and MissionStatus == 4) then

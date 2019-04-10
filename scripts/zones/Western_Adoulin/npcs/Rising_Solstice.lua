@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
 
-    if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
+    if (SOA_Mission >= dsp.mission.id.soa.LIFE_ON_THE_FRONTIER) then
         if (ACSP == QUEST_ACCEPTED) then
             -- Finishing Quest: 'A Certain Substitute Patrolman'
             if (player:getVar("ACSP_NPCs_Visited") >= 8) then
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
         elseif (ACSP == QUEST_AVAILABLE) then
             player:startEvent(2550);
         else
-            if ((SOA_Mission >= BEAUTY_AND_THE_BEAST) and (SOA_Mission <= SALVATION)) then
+            if ((SOA_Mission >= dsp.mission.id.soa.BEAUTY_AND_THE_BEAST) and (SOA_Mission <= dsp.mission.id.soa.SALVATION)) then
                 -- Speech while Arciela is 'kidnapped'
                 player:startEvent(150);
             else

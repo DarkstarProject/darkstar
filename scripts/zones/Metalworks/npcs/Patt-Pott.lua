@@ -22,7 +22,7 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(WINDURST);
     MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == THE_THREE_KINGDOMS) then
+    if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
         if (MissionStatus == 1) then
             player:startEvent(254);
         elseif (MissionStatus == 6) then
@@ -32,7 +32,7 @@ function onTrigger(player,npc)
         elseif (MissionStatus == 11) then
             player:startEvent(259);
         end
-    elseif (currentMission == THE_THREE_KINGDOMS_BASTOK2) then
+    elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_BASTOK2) then
         if (MissionStatus == 11) then
             player:startEvent(257);
         else

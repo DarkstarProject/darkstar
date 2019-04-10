@@ -18,7 +18,7 @@ function onTrigger(player, npc)
     local beginnings = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.BEGINNINGS)
 
     -- IMMORTAL SENTRIES
-    if toauMission == IMMORTAL_SENTRIES then
+    if toauMission == dsp.mission.id.toau.IMMORTAL_SENTRIES then
         if player:hasKeyItem(dsp.ki.SUPPLIES_PACKAGE) then
             player:startEvent(4)
         elseif player:getVar("AhtUrganStatus") == 1 then
@@ -34,7 +34,7 @@ function onTrigger(player, npc)
         end
 
     -- ASSAULT
-    elseif toauMission >= PRESIDENT_SALAHEEM then
+    elseif toauMission >= dsp.mission.id.toau.PRESIDENT_SALAHEEM then
         local IPpoint = player:getCurrency("imperial_standing")
         if player:hasKeyItem(dsp.ki.LEBROS_ASSAULT_ORDERS) and not player:hasKeyItem(dsp.ki.ASSAULT_ARMBAND) then
             player:startEvent(209, 50, IPpoint)

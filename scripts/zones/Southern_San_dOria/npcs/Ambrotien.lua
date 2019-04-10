@@ -18,18 +18,18 @@ function onTrade(player,npc,trade)
     local MissionStatus = player:getVar("MissionStatus");
     local Count = trade:getItemCount();
 
-    if (CurrentMission ~= 255) then
-        if (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
+    if (CurrentMission ~= dsp.mission.id.sandoria.NONE) then
+        if (CurrentMission == dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1 and OrcishScoutCompleted == false) then -- Trade Orcish Axe
             player:startEvent(2020); -- Finish Mission "Smash the Orcish scouts" (First Time)
-        elseif (CurrentMission == SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1) then -- Trade Orcish Axe
+        elseif (CurrentMission == dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS and trade:hasItemQty(16656,1) and Count == 1) then -- Trade Orcish Axe
             player:startEvent(2002); -- Finish Mission "Smash the Orcish scouts" (Repeat)
-        elseif (CurrentMission == BAT_HUNT and trade:hasItemQty(1112,1) and Count == 1 and BatHuntCompleted == false and MissionStatus == 2) then -- Trade Orcish Mail Scales
+        elseif (CurrentMission == dsp.mission.id.sandoria.BAT_HUNT and trade:hasItemQty(1112,1) and Count == 1 and BatHuntCompleted == false and MissionStatus == 2) then -- Trade Orcish Mail Scales
             player:startEvent(2023); -- Finish Mission "Bat Hunt"
-        elseif (CurrentMission == BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted and MissionStatus == 2) then -- Trade Bat Fang
+        elseif (CurrentMission == dsp.mission.id.sandoria.BAT_HUNT and trade:hasItemQty(891,1) and Count == 1 and BatHuntCompleted and MissionStatus == 2) then -- Trade Bat Fang
             player:startEvent(2003); -- Finish Mission "Bat Hunt" (repeat)
-        elseif (CurrentMission == THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted == false) then -- Trade Crystal Bass
+        elseif (CurrentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted == false) then -- Trade Crystal Bass
             player:startEvent(2030); -- Dialog During Mission "The Crystal Spring"
-        elseif (CurrentMission == THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted) then -- Trade Crystal Bass
+        elseif (CurrentMission == dsp.mission.id.sandoria.THE_CRYSTAL_SPRING and trade:hasItemQty(4528,1) and Count == 1 and TheCSpringCompleted) then -- Trade Crystal Bass
             player:startEvent(2013); -- Finish Mission "The Crystal Spring" (repeat)
         else
             player:startEvent(2008); -- Wrong Item
@@ -52,7 +52,7 @@ function onTrigger(player,npc)
         local pRank = player:getRank();
         local cs, p, offset = getMissionOffset(player,2,CurrentMission,MissionStatus);
 
-        if (CurrentMission <= 15 and (cs ~= 0 or offset ~= 0 or (CurrentMission == 0 and offset == 0))) then
+        if (CurrentMission <= dsp.mission.id.sandoria.THE_SHADOW_LORD and (cs ~= 0 or offset ~= 0 or (CurrentMission == dsp.mission.id.sandoria.SMASH_THE_ORCISH_SCOUTS and offset == 0))) then
             if (cs == 0) then
                 player:showText(npc,ID.text.ORIGINAL_MISSION_OFFSET + offset); -- dialog after accepting mission
             else
@@ -62,19 +62,19 @@ function onTrigger(player,npc)
             player:startEvent(2000); -- Start First Mission "Smash the Orcish scouts"
         elseif (player:hasKeyItem(dsp.ki.ANCIENT_SANDORIAN_BOOK)) then
             player:startEvent(1036);
-        elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then -- Not ready yet
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus",4) and tonumber(os.date("%j")) == player:getVar("Wait1DayForRanperre_date")) then -- Not ready yet
             player:startEvent(1038);
-        elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 4 and tonumber(os.date("%j")) ~= player:getVar("Wait1DayForRanperre_date")) then -- Ready now.
             player:startEvent(1040);
-        elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 6) then
             player:startEvent(1040);
-        elseif (CurrentMission == RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.RANPERRE_S_FINAL_REST and player:getVar("MissionStatus") == 9) then
             player:startEvent(1034);
-        elseif (CurrentMission ~= THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getVar("SecretWeaponStatus") == 0) then
+        elseif (CurrentMission ~= dsp.mission.id.sandoria.THE_SECRET_WEAPON and pRank == 7 and PresOfPapsqueCompleted == true and getMissionRankPoints(player,19) == 1 and player:getVar("SecretWeaponStatus") == 0) then
             player:startEvent(62);
-        elseif (CurrentMission == THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 3) then
+        elseif (CurrentMission == dsp.mission.id.sandoria.THE_SECRET_WEAPON and player:getVar("SecretWeaponStatus") == 3) then
             player:startEvent(1044);
-        elseif (CurrentMission ~= 255) then
+        elseif (CurrentMission ~= dsp.mission.id.sandoria.NONE) then
             player:startEvent(2001); -- Have mission already activated
         else
             local mission_mask, repeat_mask = getMissionMask(player);

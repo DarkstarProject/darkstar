@@ -15,7 +15,7 @@ function onTrigger(player,npc)
     local currentCoP = player:getCurrentMission(COP);
     local PromathiaStatus = player:getVar("PromathiaStatus");
 
-    if (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1) then
+    if (currentCoP == dsp.mission.id.cop.THE_SECRETS_OF_WORSHIP and PromathiaStatus == 1) then
         player:startEvent(9);
     elseif (player:hasCompletedMission(COP,dsp.mission.id.cop.THE_LAST_VERSE) or (currentCoP == THE_SECRETS_OF_WORSHIP and PromathiaStatus >= 2)or(currentCoP > THE_SECRETS_OF_WORSHIP)) then
         player:startEvent(502);

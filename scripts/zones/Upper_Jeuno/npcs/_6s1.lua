@@ -22,13 +22,13 @@ function onTrigger(player,npc)
     local status = player:getVar("PromathiaStatus")
     local mission = player:getCurrentMission(COP)
 
-    if (mission == FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
+    if (mission == dsp.mission.id.cop.FOR_WHOM_THE_VERSE_IS_SUNG and status == 1) then
         player:startEvent(10011)
-    elseif (mission == FLAMES_IN_THE_DARKNESS and status == 3) then
+    elseif (mission == dsp.mission.id.cop.FLAMES_IN_THE_DARKNESS and status == 3) then
         player:startEvent(10012)
-    elseif (mission == DAWN and status == 4) then
+    elseif (mission == dsp.mission.id.cop.DAWN and status == 4) then
         player:startEvent(129)
-    elseif ((mission == DAWN and status > 4) or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN)) then
+    elseif ((mission == dsp.mission.id.cop.DAWN and status > 4) or player:hasCompletedMission(COP,dsp.mission.id.cop.DAWN)) then
         local hasRing = false
 
         for key, value in pairs(ring) do

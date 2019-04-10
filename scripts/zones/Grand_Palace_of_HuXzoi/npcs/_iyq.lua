@@ -14,9 +14,9 @@ function onTrigger(player,npc)
     local cop = player:getCurrentMission(COP);
     local copStat = player:getVar("PromathiaStatus");
     
-    if (cop == A_FATE_DECIDED and copStat == 1 and not GetMobByID(ID.mob.IXGHRAH):isSpawned()) then
+    if (cop == dsp.mission.id.cop.A_FATE_DECIDED and copStat == 1 and not GetMobByID(ID.mob.IXGHRAH):isSpawned()) then
         SpawnMob(ID.mob.IXGHRAH):updateClaim(player);
-    elseif (cop == A_FATE_DECIDED and copStat == 2) then
+    elseif (cop == dsp.mission.id.cop.A_FATE_DECIDED and copStat == 2) then
         player:startEvent(3);
     end
 end;

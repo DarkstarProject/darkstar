@@ -28,20 +28,20 @@ function onTrigger(player, npc)
     local lastViridian = player:getVar("LastViridianKey") -- When last Viridian key was obtained
 
     if ENABLE_ACP == 1 and not player:hasKeyItem(dsp.ki.AMBER_KEY) then
-        if missionACP == GATHERER_OF_LIGHT_I and SR and SC and SV and now ~= lastViridian then
+        if missionACP == dsp.mission.id.acp.GATHERER_OF_LIGHT_I and SR and SC and SV and now ~= lastViridian then
             player:startEvent(32)
-        elseif missionACP == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 0 then
+        elseif missionACP == dsp.mission.id.acp.GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 0 then
             -- Spawn Seed mandragora's
             player:setVar("SEED_MANDY", 1) -- This will need moved into Seed mandies onDeath script later.
             player:PrintToPlayer( "Confrontation Battles are not working yet." )
             -- dsp.effect.CONFRONTATION for 30 min
-        elseif missionACP == GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 1 then -- change SEED_MANDY var number later when battle actually works (intended purpose is to track number of slain mandies).
+        elseif missionACP == dsp.mission.id.acp.GATHERER_OF_LIGHT_II and player:getVar("SEED_MANDY") == 1 then -- change SEED_MANDY var number later when battle actually works (intended purpose is to track number of slain mandies).
             player:setVar("SEED_MANDY", 0)
             player:startEvent(34)
-        -- elseif missionACP >= THOSE_WHO_LURK_IN_SHADOWS_I and not amberKey and now ~= lastAmber and now ~= lastViridian and SR and SC and SV and player:getVar("SEED_MANDY") == 0) then
+        -- elseif missionACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I and not amberKey and now ~= lastAmber and now ~= lastViridian and SR and SC and SV and player:getVar("SEED_MANDY") == 0) then
             -- This is for repeats to get amber keys.
             -- Spawn Seed mandragora's with dsp.effect.CONFRONTATION for 30 min
-        -- elseif SR and SC and SV and missionACP >= THOSE_WHO_LURK_IN_SHADOWS_I and player:getVar("SEED_MANDY") == 1 then
+        -- elseif SR and SC and SV and missionACP >= dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I and player:getVar("SEED_MANDY") == 1 then
             -- npcUtil.giveKeyItem(player, dsp.ki.AMBER_KEY)
             -- player:setVar("LastAmberKey", os.date("%j"))
             -- player:setVar("SEED_MANDY", 0)

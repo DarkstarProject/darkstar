@@ -28,9 +28,9 @@ function onTrigger(player,npc)
     local CurrentMission = player:getCurrentMission(WINDURST);
     local MissionStatus = player:getVar("MissionStatus");
 
-    if (CurrentMission == VAIN and MissionStatus >= 1) then
+    if (CurrentMission == dsp.mission.id.windurst.VAIN and MissionStatus >= 1) then
         player:startEvent(2);
-    elseif (CurrentMission == MOON_READING and MissionStatus >= 1) then
+    elseif (CurrentMission == dsp.mission.id.windurst.MOON_READING and MissionStatus >= 1) then
         player:startEvent(4);
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY);
