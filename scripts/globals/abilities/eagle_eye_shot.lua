@@ -42,7 +42,7 @@ function onUseAbility(player,target,ability,action)
     params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
     params.enmityMult = 0.5
 
-    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, true, action)
+    local damage, criticalHit, tpHits, extraHits = doRangedWeaponskill(player, target, 0, params, 0, action, true)
 
     -- Set the message id ourselves
     if (tpHits + extraHits > 0) then

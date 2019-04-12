@@ -31,7 +31,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 1.0
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     local chance = (tp-1000) * applyResistanceAddEffect(player,target,dsp.magic.ele.LIGHTNING,0) > math.random() * 150
     if (damage > 0 and target:hasStatusEffect(dsp.effect.STUN) == false and chance) then

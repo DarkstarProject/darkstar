@@ -36,7 +36,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.int_wsc = 0.7 + (player:getMerit(dsp.merit.SHATTERSOUL) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     if (damage > 0 and target:hasStatusEffect(dsp.effect.MAGIC_DEF_DOWN) == false) then
         target:addStatusEffect(dsp.effect.MAGIC_DEF_DOWN, 10, 0, 120)

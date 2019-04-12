@@ -29,7 +29,7 @@ function onUseWeaponSkill(player, target, wsID, tp, primary, action, taChar)
         params.str_wsc = 0.7 + (player:getMerit(dsp.merit.STARDIVER) / 100)
     end
 
-    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, tp, primary, action, taChar, params)
+    local damage, criticalHit, tpHits, extraHits = doPhysicalWeaponskill(player, target, wsID, params, tp, action, primary, taChar)
 
     if (damage > 0 and target:hasStatusEffect(dsp.effect.CRIT_HIT_EVASION_DOWN) == false) then
         target:addStatusEffect(dsp.effect.CRIT_HIT_EVASION_DOWN, 5, 0, 60)
