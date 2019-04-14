@@ -19,7 +19,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17507,
         ['logId'] = BASTOK,
-        ['questId'] = THE_WALLS_OF_YOUR_MIND,
+        ['questId'] = dsp.quest.id.bastok.THE_WALLS_OF_YOUR_MIND,
         ['fameRegion'] = BASTOK,
         ['eventIds'] =
         {
@@ -50,7 +50,7 @@ dsp.wsquest =
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17616,
         ['logId'] = OUTLANDS,
-        ['questId'] = CLOAK_AND_DAGGER,
+        ['questId'] = dsp.quest.id.outlands.CLOAK_AND_DAGGER,
         ['fameRegion'] = KAZHAM,
         ['eventIds'] =
         {
@@ -81,7 +81,7 @@ dsp.wsquest =
         ['minSkill'] = 240,
         ['trialWeaponId'] = 17654,
         ['logId'] = SANDORIA,
-        ['questId'] = OLD_WOUNDS,
+        ['questId'] = dsp.quest.id.sandoria.OLD_WOUNDS,
         ['fameRegion'] = SANDORIA,
         ['eventIds'] =
         {
@@ -112,7 +112,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 16952,
         ['logId'] = BASTOK,
-        ['questId'] = INHERITANCE,
+        ['questId'] = dsp.quest.id.bastok.INHERITANCE,
         ['fameRegion'] = BASTOK,
         ['eventIds'] =
         {
@@ -143,7 +143,7 @@ dsp.wsquest =
         ['minSkill'] = 240,
         ['trialWeaponId'] = 17933,
         ['logId'] = JEUNO,
-        ['questId'] = AXE_THE_COMPETITION,
+        ['questId'] = dsp.quest.id.jeuno.AXE_THE_COMPETITION,
         ['fameRegion'] = JEUNO,
         ['eventIds'] =
         {
@@ -174,7 +174,7 @@ dsp.wsquest =
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16735,
         ['logId'] = BASTOK,
-        ['questId'] = THE_WEIGHT_OF_YOUR_LIMITS,
+        ['questId'] = dsp.quest.id.bastok.THE_WEIGHT_OF_YOUR_LIMITS,
         ['fameRegion'] = BASTOK,
         ['eventIds'] =
         {
@@ -205,7 +205,7 @@ dsp.wsquest =
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16793,
         ['logId'] = SANDORIA,
-        ['questId'] = SOULS_IN_SHADOW,
+        ['questId'] = dsp.quest.id.sandoria.SOULS_IN_SHADOW,
         ['fameRegion'] = SANDORIA,
         ['eventIds'] =
         {
@@ -236,7 +236,7 @@ dsp.wsquest =
         ['minSkill'] = 240,
         ['trialWeaponId'] = 16892,
         ['logId'] = SANDORIA,
-        ['questId'] = METHODS_CREATE_MADNESS,
+        ['questId'] = dsp.quest.id.sandoria.METHODS_CREATE_MADNESS,
         ['fameRegion'] = SANDORIA,
         ['eventIds'] =
         {
@@ -267,7 +267,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17773,
         ['logId'] = OUTLANDS,
-        ['questId'] = BUGI_SODEN,
+        ['questId'] = dsp.quest.id.outlands.BUGI_SODEN,
         ['fameRegion'] = NORG,
         ['eventIds'] =
         {
@@ -298,7 +298,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 17815,
         ['logId'] = OUTLANDS,
-        ['questId'] = THE_POTENTIAL_WITHIN,
+        ['questId'] = dsp.quest.id.outlands.THE_POTENTIAL_WITHIN,
         ['fameRegion'] = NORG,
         ['eventIds'] =
         {
@@ -329,7 +329,7 @@ dsp.wsquest =
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17456,
         ['logId'] = WINDURST,
-        ['questId'] = ORASTERY_WOES,
+        ['questId'] = dsp.quest.id.windurst.ORASTERY_WOES,
         ['fameRegion'] = WINDURST,
         ['eventIds'] =
         {
@@ -360,7 +360,7 @@ dsp.wsquest =
         ['minSkill'] = 230,
         ['trialWeaponId'] = 17527,
         ['logId'] = WINDURST,
-        ['questId'] = BLOOD_AND_GLORY,
+        ['questId'] = dsp.quest.id.windurst.BLOOD_AND_GLORY,
         ['fameRegion'] = WINDURST,
         ['eventIds'] =
         {
@@ -391,7 +391,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 18144,
         ['logId'] = WINDURST,
-        ['questId'] = FROM_SAPLINGS_GROW,
+        ['questId'] = dsp.quest.id.windurst.FROM_SAPLINGS_GROW,
         ['fameRegion'] = WINDURST,
         ['eventIds'] =
         {
@@ -422,7 +422,7 @@ dsp.wsquest =
         ['minSkill'] = 250,
         ['trialWeaponId'] = 18146,
         ['logId'] = BASTOK,
-        ['questId'] = SHOOT_FIRST_ASK_QUESTIONS_LATER,
+        ['questId'] = dsp.quest.id.bastok.SHOOT_FIRST_ASK_QUESTIONS_LATER,
         ['fameRegion'] = BASTOK,
         ['eventIds'] =
         {
