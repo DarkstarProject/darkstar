@@ -2,6 +2,7 @@
 -- Attachment: Ice Maker
 -----------------------------------
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     pet:addListener("MAGIC_START", "AUTO_ICE_MAKER_START", function(pet, spell, action)
@@ -43,8 +44,8 @@ function onUnequip(pet)
     pet:removeListener("AUTO_ICE_MAKER_END")
 end
 
-function onManeuverGain(pet,maneuvers)
+function onManeuverGain(pet, maneuvers)
 end
 
-function onManeuverLose(pet,maneuvers)
+function onManeuverLose(pet, maneuvers)
 end

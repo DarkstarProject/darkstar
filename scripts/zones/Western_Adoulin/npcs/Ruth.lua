@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local APBIF = player:getQuestStatus(ADOULIN, A_PIONEERS_BEST_IMAGINARY_FRIEND);
+    local APBIF = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_PIONEERS_BEST_IMAGINARY_FRIEND);
     local SOA_Mission = player:getCurrentMission(SOA);
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then

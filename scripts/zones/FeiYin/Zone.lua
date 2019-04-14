@@ -38,9 +38,9 @@ function onZoneIn(player,prevZone)
         cs = 23; -- San d'Oria 9-2
     elseif (player:getCurrentMission(ACP) == THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 29;
-    elseif (prevZone == dsp.zone.QUBIA_ARENA and player:getQuestStatus(BASTOK,THE_FIRST_MEETING) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK)) then
+    elseif (prevZone == dsp.zone.QUBIA_ARENA and player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_FIRST_MEETING) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.LETTER_FROM_DALZAKK)) then
         cs = 16; -- MNK AF
-    elseif (prevZone == dsp.zone.BEAUCEDINE_GLACIER and player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then
+    elseif (prevZone == dsp.zone.BEAUCEDINE_GLACIER and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION) == QUEST_ACCEPTED and player:getVar("pieujesDecisionCS") == 0) then
         cs = 19; -- WHM AF
     end
 

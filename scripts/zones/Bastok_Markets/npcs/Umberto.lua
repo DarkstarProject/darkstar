@@ -31,7 +31,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,5674);
             player:addFame(BASTOK,30);
             player:setVar("TOO_MANY_CHEFS",0);
-            player:completeQuest(BASTOK,TOO_MANY_CHEFS);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.TOO_MANY_CHEFS);
         end
     end
 end;

@@ -13,15 +13,15 @@ require("scripts/globals/keyitems");
 -- == 0 means QUEST_AVAILABLE
 -- == 1 means QUEST_ACCEPTED
 -- == 2 means QUEST_COMPLETED
--- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == 0
--- means if (player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN) == QUEST AVAILABLE
+-- e.g. if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN) == 0
+-- means if (player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN) == QUEST AVAILABLE
 
 function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
 
-local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,UNFORGIVEN);
+local Unforgiven = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.UNFORGIVEN);
 
     if (Unforgiven == 1 and player:hasKeyItem(dsp.ki.ALABASTER_HAIRPIN) == false) then
         player:addKeyItem(dsp.ki.ALABASTER_HAIRPIN);

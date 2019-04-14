@@ -57,7 +57,7 @@ function onEventFinish(player,csid,option)
         end
         player:setVar("TrialSizeFire_date", 0);
         player:addFame(KAZHAM,30);
-        player:completeQuest(OUTLANDS,TRIAL_SIZE_TRIAL_BY_FIRE);
+        player:completeQuest(OUTLANDS,dsp.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_FIRE);
     end
 
 end;

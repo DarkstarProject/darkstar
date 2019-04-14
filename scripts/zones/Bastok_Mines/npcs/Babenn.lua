@@ -14,7 +14,7 @@ require("scripts/globals/titles");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 1) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
@@ -27,7 +27,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(BASTOK,THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR) == QUEST_ACCEPTED and player:getVar("EleventhsHour") == 1) then
         player:startEvent(45);
     else
         player:startEvent(40);
@@ -51,7 +51,7 @@ function onEventFinish(player,csid,option)
             player:addItem(16629);
             player:messageSpecial(ID.text.ITEM_OBTAINED,16629);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,THE_ELEVENTH_S_HOUR);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_ELEVENTH_S_HOUR);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16629);
         end

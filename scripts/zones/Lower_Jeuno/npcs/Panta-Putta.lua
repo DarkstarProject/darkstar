@@ -17,10 +17,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    TheWonderMagicSet = player:getQuestStatus(JEUNO,THE_WONDER_MAGIC_SET);
+    TheWonderMagicSet = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
     WonderMagicSetKI = player:hasKeyItem(dsp.ki.WONDER_MAGIC_SET);
     TheLostCardianCS = player:getVar("theLostCardianVar");
-    TheKindCardian = player:getQuestStatus(JEUNO,THE_KIND_CARDIAN);
+    TheKindCardian = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
 
     if (player:getFameLevel(JEUNO) >= 4 and TheWonderMagicSet == QUEST_AVAILABLE) then
         player:startEvent(77); -- Start quest "The wonder magic set"
@@ -28,9 +28,9 @@ function onTrigger(player,npc)
         player:startEvent(55); -- During quest "The wonder magic set"
     elseif (WonderMagicSetKI == true) then
         player:startEvent(33); -- Finish quest "The wonder magic set"
-    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,COOK_S_PRIDE) ~= QUEST_COMPLETED) then
+    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.COOK_S_PRIDE) ~= QUEST_COMPLETED) then
         player:startEvent(40); -- Standard dialog
-    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
+    elseif (TheWonderMagicSet == QUEST_COMPLETED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_LOST_CARDIAN) == QUEST_AVAILABLE) then
         if (TheLostCardianCS >= 1) then
             player:startEvent(30); -- Second dialog for "The lost cardien" quest
         else
@@ -53,7 +53,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 77 and option == 1) then
-        player:addQuest(JEUNO,THE_WONDER_MAGIC_SET);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
     elseif (csid == 33) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13328);
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,13328);
             player:addFame(JEUNO, 30);
             player:needToZone(true);
-            player:completeQuest(JEUNO,THE_WONDER_MAGIC_SET);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_WONDER_MAGIC_SET);
         end
     elseif (csid == 30) then
         player:setVar("theLostCardianVar",2);
@@ -78,7 +78,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13596);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13596); -- Green Cape
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO,THE_KIND_CARDIAN);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_KIND_CARDIAN);
         end
     end
 end;

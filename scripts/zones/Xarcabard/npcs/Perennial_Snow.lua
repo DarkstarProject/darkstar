@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local circleOfTime = player:getQuestStatus(JEUNO, THE_CIRCLE_OF_TIME)
+    local circleOfTime = player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME)
 
     -- CIRCLE OF TIME (Bard AF3)
     if circleOfTime == QUEST_ACCEPTED and player:getVar("circleTime") == 3 then

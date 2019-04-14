@@ -26,9 +26,9 @@ end
 
 function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
-    local makingAmends = player:getQuestStatus(WINDURST,MAKING_AMENDS) --First quest in series
-    local makingAmens = player:getQuestStatus(WINDURST,MAKING_AMENS) --Second quest in series
-    local wonderWands = player:getQuestStatus(WINDURST,WONDER_WANDS) --Third and final quest in series
+    local makingAmends = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_AMENDS) --First quest in series
+    local makingAmens = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_AMENS) --Second quest in series
+    local wonderWands = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDER_WANDS) --Third and final quest in series
     local pfame = player:getFameLevel(WINDURST)
     local needToZone = player:needToZone()
     local brokenWand = player:hasKeyItem(dsp.ki.BROKEN_WAND)
@@ -82,7 +82,7 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 280) then
-        player:addQuest(WINDURST,MAKING_AMENS)
+        player:addQuest(WINDURST,dsp.quest.id.windurst.MAKING_AMENS)
     elseif (csid == 284) then
         player:needToZone(true)
         player:delKeyItem(dsp.ki.BROKEN_WAND)
@@ -90,7 +90,7 @@ function onEventFinish(player,csid,option)
         player:addGil(GIL_RATE*6000)
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*6000)
         player:addFame(WINDURST,150)
-        player:completeQuest(WINDURST,MAKING_AMENS)
+        player:completeQuest(WINDURST,dsp.quest.id.windurst.MAKING_AMENS)
     else
         dsp.wsquest.handleEventFinish(wsQuest,player,csid,option,ID.text.BLACK_HALO_LEARNED)
     end

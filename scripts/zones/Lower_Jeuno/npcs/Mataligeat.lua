@@ -9,9 +9,9 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local painfulMemory = player:getQuestStatus(JEUNO,PAINFUL_MEMORY);
-    local theRequiem = player:getQuestStatus(JEUNO,THE_REQUIEM);
-    local pathOfTheBard = player:getQuestStatus(JEUNO,PATH_OF_THE_BARD);
+    local painfulMemory = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PAINFUL_MEMORY);
+    local theRequiem = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_REQUIEM);
+    local pathOfTheBard = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.PATH_OF_THE_BARD);
 
     -- THE OLD MONUMENT
     if (player:getVar("TheOldMonument_Event") == 1) then

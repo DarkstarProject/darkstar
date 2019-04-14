@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    wonderingstatus = player:getQuestStatus(WINDURST,WONDERING_MINSTREL);
+    wonderingstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WONDERING_MINSTREL);
     if (wonderingstatus == QUEST_ACCEPTED) then
         prog = player:getVar("QuestWonderingMin_var")
         if (prog == 0) then                 -- WONDERING_MINSTREL + Rosewood Lumber: During Quest / Progression

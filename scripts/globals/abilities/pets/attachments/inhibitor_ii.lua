@@ -3,6 +3,7 @@
 -----------------------------------
 require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     updateModPerformance(pet, dsp.mod.STORETP, 'inhibitor_ii_mod', 10)

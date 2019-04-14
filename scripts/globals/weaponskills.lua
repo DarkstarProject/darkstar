@@ -15,7 +15,7 @@ require("scripts/globals/magic")
 require("scripts/globals/utils")
 require("scripts/globals/msg")
 
--- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti, kick
+-- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atk100, atk200, atk300, kick
 function doPhysicalWeaponskill(attacker, target, wsID, tp, primary, action, taChar, params)
     local criticalHit = false
     local bonusTP = 0
@@ -496,7 +496,8 @@ function cMeleeRatio(attacker, defender, params, ignoredDef)
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
         attacker:addMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower() / 2)
     end
-    local cratio = (attacker:getStat(dsp.mod.ATT) * params.atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef)
+    local atkmulti = fTP(params.atk100, params.atk200, params.atk300)
+    local cratio = (attacker:getStat(dsp.mod.ATT) * atkmulti) / (defender:getStat(dsp.mod.DEF) - ignoredDef)
     cratio = utils.clamp(cratio, 0, 2.25)
     if flourisheffect ~= nil and flourisheffect:getPower() > 1 then
         attacker:delMod(dsp.mod.ATTP, 25 + flourisheffect:getSubPower() / 2)
@@ -590,6 +591,7 @@ end
 
 function cRangedRatio(attacker, defender, params, ignoredDef)
 
+    local atkmulti = fTP(params.atk100, params.atk200, params.atk300)
     local cratio = attacker:getRATT() / (defender:getStat(dsp.mod.DEF) - ignoredDef)
 
     local levelcor = 0
@@ -599,7 +601,7 @@ function cRangedRatio(attacker, defender, params, ignoredDef)
 
     cratio = cratio - levelcor
 
-    cratio = cratio * params.atkmulti
+    cratio = cratio * atkmulti
 
     if (cratio > 3 - levelcor) then
         cratio = 3 - levelcor
@@ -721,7 +723,7 @@ function getAlpha(level)
     return alpha
 end
 
- -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atkmulti
+ -- params contains: ftp100, ftp200, ftp300, str_wsc, dex_wsc, vit_wsc, int_wsc, mnd_wsc, canCrit, crit100, crit200, crit300, acc100, acc200, acc300, ignoresDef, ignore100, ignore200, ignore300, atk100, atk200, atk300
  function doRangedWeaponskill(attacker, target, wsID, params, tp, primary, action)
     local bonusTP = 0
     if (params.bonusTP ~= nil) then

@@ -13,13 +13,13 @@ require("scripts/globals/quests");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (player:getQuestStatus(JEUNO,DEAL_WITH_TENSHODO) == QUEST_ACCEPTED and trade:hasItemQty(554,1) == true and trade:getItemCount() == 1) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.DEAL_WITH_TENSHODO) == QUEST_ACCEPTED and trade:hasItemQty(554,1) == true and trade:getItemCount() == 1) then
         player:startEvent(166); -- Ending quest
     end
 end;
 
 function onTrigger(player,npc)
-    if (player:getQuestStatus(JEUNO,A_CLOCK_MOST_DELICATE) == QUEST_ACCEPTED and player:getQuestStatus(JEUNO,DEAL_WITH_TENSHODO) == QUEST_AVAILABLE) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.A_CLOCK_MOST_DELICATE) == QUEST_ACCEPTED and player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.DEAL_WITH_TENSHODO) == QUEST_AVAILABLE) then
         if (player:getFameLevel(NORG) >= 2) then
             player:startEvent(167); -- Start quest
         else
@@ -35,13 +35,13 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 167) then
-        player:addQuest(JEUNO,DEAL_WITH_TENSHODO);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.DEAL_WITH_TENSHODO);
     elseif (csid == 166) then
         player:addTitle(dsp.title.TRADER_OF_RENOWN);
         player:addKeyItem(dsp.ki.CLOCK_TOWER_OIL);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CLOCK_TOWER_OIL);
         player:addFame(JEUNO,30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,DEAL_WITH_TENSHODO);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.DEAL_WITH_TENSHODO);
     end
 end;

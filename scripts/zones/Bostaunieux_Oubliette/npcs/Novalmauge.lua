@@ -42,7 +42,7 @@ function onTrade(player, npc, trade)
     if player:getVar("troubleAtTheSluiceVar") == 2 and npcUtil.tradeHas(trade, 959) then -- Dahlia
         player:startEvent(17)
         npc:wait()
-    elseif player:getQuestStatus(SANDORIA, THE_RUMOR) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 930) then -- Beastman Blood
+    elseif player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, 930) then -- Beastman Blood
         player:startEvent(12)
         npc:wait()
     elseif wsQuestEvent ~= nil then
@@ -53,10 +53,10 @@ end
 
 function onTrigger(player, npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest, player)
-    local troubleAtTheSluice = player:getQuestStatus(SANDORIA, TROUBLE_AT_THE_SLUICE)
+    local troubleAtTheSluice = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.TROUBLE_AT_THE_SLUICE)
     local troubleAtTheSluiceStat = player:getVar("troubleAtTheSluiceVar")
     local theHolyCrestStat = player:getVar("TheHolyCrest_Event")
-    local theRumor = player:getQuestStatus(SANDORIA, THE_RUMOR)
+    local theRumor = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
 
     npc:wait()
 
@@ -92,10 +92,10 @@ function onEventFinish(player, csid, option, npc)
         player:setVar("TheHolyCrest_Event", 2)
     elseif csid == 7 then
         player:setVar("theHolyCrestCheck", 1)
-    elseif csid == 12 and npcUtil.completeQuest(player, SANDORIA, THE_RUMOR, {item = 4853}) then
+    elseif csid == 12 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.THE_RUMOR, {item = 4853}) then
         player:confirmTrade()
     elseif csid == 13 and option == 1 then
-        player:addQuest(SANDORIA, THE_RUMOR)
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.THE_RUMOR)
     elseif csid == 14 then
         player:setVar("theHolyCrestCheck", 0)
     elseif csid == 15 then

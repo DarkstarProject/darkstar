@@ -45,8 +45,8 @@ function onTrigger(player,npc)
         end
 
     -- SOUL SEARCHING
-    elseif player:hasCompletedMission(ZILART, THE_CHAMBER_OF_ORACLES) and not player:hasCompletedQuest(OUTLANDS, SOUL_SEARCHING) then
-        player:addQuest(OUTLANDS, SOUL_SEARCHING)
+    elseif player:hasCompletedMission(ZILART, THE_CHAMBER_OF_ORACLES) and not player:hasCompletedQuest(OUTLANDS, dsp.quest.id.outlands.SOUL_SEARCHING) then
+        player:addQuest(OUTLANDS, dsp.quest.id.outlands.SOUL_SEARCHING)
         player:startEvent(202, dsp.ki.PRISMATIC_FRAGMENT)
 
     -- DEFAULT DIALOGS
@@ -67,6 +67,6 @@ function onEventFinish(player,csid,option)
 
     -- SOUL SEARCHING
     elseif csid == 202 then
-        npcUtil.completeQuest(player, OUTLANDS, SOUL_SEARCHING, {item = 13416, title = dsp.title.GUIDER_OF_SOULS_TO_THE_SANCTUARY})
+        npcUtil.completeQuest(player, OUTLANDS, dsp.quest.id.outlands.SOUL_SEARCHING, {item = 13416, title = dsp.title.GUIDER_OF_SOULS_TO_THE_SANCTUARY})
     end
 end

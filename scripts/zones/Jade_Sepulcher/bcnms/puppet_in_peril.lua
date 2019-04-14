@@ -45,7 +45,7 @@ end;
 function onEventFinish(player,csid,option)
     -- print("bc finish csid "..csid.." and option "..option);
     
-    if (csid == 32001) then
+    if csid == 32001 and player:getCurrentMission(TOAU) == PUPPET_IN_PERIL then
         player:completeMission(TOAU,PUPPET_IN_PERIL);
         player:setVar("AhtUrganStatus",0);
         player:addMission(TOAU,PREVALENCE_OF_PIRATES);

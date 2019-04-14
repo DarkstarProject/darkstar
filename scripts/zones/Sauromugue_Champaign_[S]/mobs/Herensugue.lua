@@ -3,6 +3,11 @@
 --   NM: Herensugue
 -----------------------------------
 
+function onMobInitialize(mob)
+    mob:setMod(dsp.mod.TRIPLE_ATTACK, 90) -- "Triple Attacks almost every round"
+    mob:addMod(dsp.mod.REGAIN, 75) -- "appears to have a high rate of Regain"
+end
+
 function onMobDeath(mob, player, isKiller)
 end
 

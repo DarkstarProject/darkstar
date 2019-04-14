@@ -12,7 +12,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local wotg = player:getQuestStatus(CRYSTAL_WAR, WRATH_OF_THE_GRIFFON);
+    local wotg = player:getQuestStatus(CRYSTAL_WAR, dsp.quest.id.crystalWar.WRATH_OF_THE_GRIFFON);
     local wotgStat = player:getVar("WrathOfTheGriffon");
     
     if (wotg == QUEST_ACCEPTED and wotgStat == 0) then

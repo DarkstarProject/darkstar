@@ -1422,7 +1422,7 @@ dsp.helm.onTrade = function(player, npc, trade, helmType, csid)
         -- quest stuff
         if
             helmType == dsp.helm.type.HARVESTING and
-            player:getQuestStatus(AHT_URHGAN,VANISHING_ACT) == QUEST_ACCEPTED and
+            player:getQuestStatus(AHT_URHGAN,dsp.quest.id.ahtUrhgan.VANISHING_ACT) == QUEST_ACCEPTED and
             not player:hasKeyItem(dsp.ki.RAINBOW_BERRY) and
             broke ~= 1 and
             zoneId == dsp.zone.WAJAOM_WOODLANDS

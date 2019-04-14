@@ -13,7 +13,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local thickAsThieves = player:getQuestStatus(WINDURST,AS_THICK_AS_THIEVES)
+    local thickAsThieves = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.AS_THICK_AS_THIEVES)
     local thickAsThievesCS = player:getVar("thickAsThievesCS")
 
     if thickAsThieves == QUEST_ACCEPTED then

@@ -495,7 +495,7 @@ void CZone::SetWeather(WEATHER weather)
     m_Weather = weather;
     m_WeatherChangeTime = CVanaTime::getInstance()->getVanaTime();
 
-    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather));
+    m_zoneEntities->PushPacket(nullptr, CHAR_INZONE, new CWeatherPacket(m_WeatherChangeTime, m_Weather, dsprand::GetRandomNumber(4, 28)));
 }
 
 void CZone::UpdateWeather()
@@ -937,6 +937,8 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         PChar->PTreasurePool->DelMember(PChar);
     }
+
+    PChar->ClearTrusts(); // trusts don't survive zone lines
 
     if (PChar->isDead())
         charutils::SaveDeathTime(PChar);

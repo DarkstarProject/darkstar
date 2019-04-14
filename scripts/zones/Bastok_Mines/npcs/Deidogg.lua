@@ -31,14 +31,14 @@ end;
 
 function onTrigger(player,npc)
 
-    local theDoorman = player:getQuestStatus(BASTOK,THE_DOORMAN);
-    local theTalekeeperTruth = player:getQuestStatus(BASTOK,THE_TALEKEEPER_S_TRUTH);
+    local theDoorman = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
+    local theTalekeeperTruth = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
     local theTalekeeperTruthCS = player:getVar("theTalekeeperTruthCS");
     local Wait1DayForAF3 = player:getVar("DeidoggWait1DayForAF3");
     local theTalekeeperGiftCS = player:getVar("theTalekeeperGiftCS");
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,18) == false) then
         player:startEvent(504);
     elseif (theDoorman == QUEST_COMPLETED and theTalekeeperTruth == QUEST_AVAILABLE and player:getMainJob() == dsp.job.WAR and player:getMainLvl() >= 50) then
         if (theTalekeeperTruthCS == 1) then
@@ -71,7 +71,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 161) then
-        player:addQuest(BASTOK,THE_TALEKEEPER_S_TRUTH);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
         player:setVar("theTalekeeperTruthCS",3);
     elseif (csid == 162) then
         player:tradeComplete();
@@ -91,11 +91,11 @@ function onEventFinish(player,csid,option)
             player:setVar("DeidoggWait1DayForAF3",VanadielDayOfTheYear());
             player:needToZone(true);
             player:addFame(BASTOK,AF2_FAME);
-            player:completeQuest(BASTOK,THE_TALEKEEPER_S_TRUTH);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_TRUTH);
         end
     elseif (csid == 172) then
         player:tradeComplete();
-        player:addQuest(BASTOK,THE_TALEKEEPER_S_GIFT);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.THE_TALEKEEPER_S_GIFT);
         player:setVar("theTalekeeperGiftCS",3);
     elseif (csid == 504) then
         player:setMaskBit(player:getVar("WildcatBastok"),"WildcatBastok",18,true);

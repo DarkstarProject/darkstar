@@ -14,9 +14,9 @@ end;
 
 function onTrigger(player,npc)
 
-    messengerFromBeyond = player:getQuestStatus(SANDORIA,MESSENGER_FROM_BEYOND);
-    preludeOfBandW = player:getQuestStatus(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
-    pieujesDecision = player:getQuestStatus(SANDORIA,PIEUJE_S_DECISION);
+    messengerFromBeyond = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.MESSENGER_FROM_BEYOND);
+    preludeOfBandW = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PRELUDE_OF_BLACK_AND_WHITE);
+    pieujesDecision = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION);
 
     if (player:getMainJob() == dsp.job.WHM and player:getMainLvl() >= AF2_QUEST_LEVEL) then
         if (messengerFromBeyond == QUEST_COMPLETED and preludeOfBandW == QUEST_AVAILABLE) then
@@ -40,9 +40,9 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 551) then
-        player:addQuest(SANDORIA,PRELUDE_OF_BLACK_AND_WHITE);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.PRELUDE_OF_BLACK_AND_WHITE);
     elseif (csid == 552) then
-        player:addQuest(SANDORIA,PIEUJE_S_DECISION);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.PIEUJE_S_DECISION);
     elseif (csid == 74) then
         player:setVar("Cutscenes_8-2",2);
     end

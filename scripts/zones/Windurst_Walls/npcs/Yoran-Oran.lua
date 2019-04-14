@@ -12,7 +12,7 @@ require("scripts/globals/keyitems");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
+    local MandragoraMad = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
     if (MandragoraMad ~= QUEST_AVAILABLE) then
         if (trade:getItemCount() == 1) then
             -- Cornette
@@ -21,35 +21,35 @@ function onTrade(player,npc,trade)
                 player:addFame(WINDURST,10);
                 player:addGil(GIL_RATE*200);
                 player:startEvent(251,GIL_RATE*200);
-                player:completeQuest(WINDURST,MANDRAGORA_MAD);
+                player:completeQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
             -- Sulfur
             elseif (trade:hasItemQty(934,1)) then
                 player:tradeComplete();
                 player:addFame(WINDURST,25);
                 player:addGil(GIL_RATE*250);
                 player:startEvent(252,GIL_RATE*250);
-                player:completeQuest(WINDURST,MANDRAGORA_MAD);
+                player:completeQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
             -- ThreeLeafBud
             elseif (trade:hasItemQty(1154,1)) then
                 player:tradeComplete();
                 player:addFame(WINDURST,50);
                 player:addGil(GIL_RATE*1200);
                 player:startEvent(253,GIL_RATE*1200);
-                player:completeQuest(WINDURST,MANDRAGORA_MAD);
+                player:completeQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
             -- FourLeafBud
             elseif (trade:hasItemQty(4369,1)) then
                 player:tradeComplete();
                 player:addFame(WINDURST,10);
                 player:addGil(GIL_RATE*120);
                 player:startEvent(254,GIL_RATE*120);
-                player:completeQuest(WINDURST,MANDRAGORA_MAD);
+                player:completeQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
             -- Letter
             elseif (trade:hasItemQty(1150,1)) then
                 player:tradeComplete();
                 player:addFame(WINDURST,100);
                 player:addGil(GIL_RATE*5500);
                 player:startEvent(255,GIL_RATE*5500);
-                player:completeQuest(WINDURST,MANDRAGORA_MAD);
+                player:completeQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
             else
                 player:startEvent(250);
             end
@@ -60,8 +60,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local MandragoraMad = player:getQuestStatus(WINDURST,MANDRAGORA_MAD);
-    local blastFromPast = player:getQuestStatus(WINDURST,BLAST_FROM_THE_PAST);
+    local MandragoraMad = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
+    local blastFromPast = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLAST_FROM_THE_PAST);
     local EMORIES_OF_A_MAIDEN = player:getVar("MEMORIES_OF_A_MAIDEN_Status");
     local LouverancePath = player:getVar("COP_Louverance_s_Path");
     local MissionStatus = player:getVar("MissionStatus");
@@ -107,7 +107,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 249) then
-        player:addQuest(WINDURST,MANDRAGORA_MAD);
+        player:addQuest(WINDURST,dsp.quest.id.windurst.MANDRAGORA_MAD);
     elseif (csid == 469) then
         player:setVar("MEMORIES_OF_A_MAIDEN_Status",4);
     elseif (csid == 470) then

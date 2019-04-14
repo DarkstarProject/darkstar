@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SLEEPLESS_NIGHTS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(4527,1) and trade:getItemCount() == 1) then
             player:startEvent(84);
         end
@@ -23,7 +23,7 @@ end;
 
 function onTrigger(player,npc)
 
-    sleeplessNights = player:getQuestStatus(SANDORIA,SLEEPLESS_NIGHTS);
+    sleeplessNights = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.SLEEPLESS_NIGHTS);
 
     if (player:getFameLevel(SANDORIA) >= 2 and sleeplessNights == QUEST_AVAILABLE) then
         player:startEvent(85);
@@ -42,14 +42,14 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 85 and option == 1) then
-        player:addQuest(SANDORIA,SLEEPLESS_NIGHTS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.SLEEPLESS_NIGHTS);
     elseif (csid == 84) then
         player:tradeComplete();
         player:addTitle(dsp.title.SHEEPS_MILK_DELIVERER);
         player:addGil(GIL_RATE*5000);
         player:messageSpecial(ID.text.GIL_OBTAINED,GIL_RATE*5000);
         player:addFame(SANDORIA,30);
-        player:completeQuest(SANDORIA,SLEEPLESS_NIGHTS);
+        player:completeQuest(SANDORIA,dsp.quest.id.sandoria.SLEEPLESS_NIGHTS);
     end
 
 end;

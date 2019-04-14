@@ -1,21 +1,22 @@
 ---------------------------------------------------------------------------------------------------
 -- func: addallspells
--- desc: Adds all valid spells to the given target. If no target; then to the current player.
+-- desc: Adds all valid spells EXCEPT TRUSTS to the given target. If no target then to the current player.
 ---------------------------------------------------------------------------------------------------
 
 cmdprops =
 {
     permission = 1,
     parameters = "s"
-};
+}
 
 function error(player, msg)
-    player:PrintToPlayer(msg);
-    player:PrintToPlayer("!addallspells {player}");
-end;
+    player:PrintToPlayer(msg)
+    player:PrintToPlayer("!addallspells {player}")
+end
 
 function onTrigger(player, target)
-    local ValidSpells = {
+    local ValidSpells =
+     {
         1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,
         38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,
         72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,
@@ -48,33 +49,30 @@ function onTrigger(player, target)
         841,842,843,844,845,846,847,848,849,850,851,852,853,854,855,856,857,858,859,860,861,862,863,864,865,866,
         867,868,869,870,871,872,873,874,875,876,877,878,879,880,881,882,883,884,885,886,887,888,889,890,891,892,
         893,894,895
-        --trusts are causing client crashes when flagged in char spells packets sent outside of zone/log in
-        --896,897,898,899,900,901,902,903,904,905,906,907,908,909,910,911,912,913,914,915,916,917,918,919,920,921,
-        --922,923,924,925,926,927,928,929,930,931,932,933,934,935,936,937,938,939,940,941,942,943,944,945,946,947,
-        --948,949,950,951,952,953,954,955,956,957,958,959,960,961,962,963,964,965,966,967,968,969,970,971,972,973,
-        --974,975,976,977,978,979,980,981,982,983,984,985,986,987,1004,1005,1006,1007,1008,1009,1010,1011,1012,1013,1014,1015,1016
-    };
+
+        -- Trust spells are in their own command.
+    }
 
     -- validate target
-    local targ;
+    local targ
     if (target == nil) then
-        targ = player;
+        targ = player
     else
-        targ = GetPlayerByName(target);
+        targ = GetPlayerByName(target)
         if (targ == nil) then
-            error(player, string.format("Player named '%s' not found!", target));
-            return;
+            error(player, string.format("Player named '%s' not found!", target))
+            return
         end
     end
 
     -- add all spells
-    local save = true;
-    local silent = true;    -- prevent packet spam
+    local save = true
+    local silent = true    -- prevent packet spam
     for i = 1, #ValidSpells do
         if i == #ValidSpells then
-            silent = false;
+            silent = false
         end
-        targ:addSpell(ValidSpells[i], silent, save);
+        targ:addSpell(ValidSpells[i], silent, save)
     end
-    player:PrintToPlayer(string.format("%s now has all spells.",targ:getName()));
+    player:PrintToPlayer(string.format("%s now has all spells.", targ:getName()))
 end

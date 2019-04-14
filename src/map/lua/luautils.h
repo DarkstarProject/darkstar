@@ -120,7 +120,7 @@ namespace luautils
     template<class T>
     typename std::enable_if_t<std::is_same<bool, T>::value> pushArg(T arg) { lua_pushboolean(LuaHandle, arg); }
     template<class T>
-    typename std::enable_if_t<std::is_same<nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
+    typename std::enable_if_t<std::is_same<std::nullptr_t, T>::value> pushArg(T arg) { lua_pushnil(LuaHandle); }
 
     void pushFunc(int lua_func, int index = 0);
     void callFunc(int nargs);

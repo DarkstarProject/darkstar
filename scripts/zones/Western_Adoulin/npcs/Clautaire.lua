@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local FINAO = player:getQuestStatus(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
+    local FINAO = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.FAILURE_IS_NOT_AN_OPTION);
     if (FINAO == QUEST_ACCEPTED) then
         if (player:hasKeyItem(dsp.ki.HUNK_OF_BEDROCK)) then
             -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
@@ -39,11 +39,11 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 78) then
         -- Starting Quest: 'F.A.I.L.ure Is Not an Option'
-        player:addQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.FAILURE_IS_NOT_AN_OPTION);
     elseif (csid == 76) then
         -- Finishing Quest: 'F.A.I.L.ure Is Not an Option'
         player:delKeyItem(dsp.ki.HUNK_OF_BEDROCK);
-        player:completeQuest(ADOULIN, FAILURE_IS_NOT_AN_OPTION);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.FAILURE_IS_NOT_AN_OPTION);
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);

@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    if player:getQuestStatus(BASTOK, LOVERS_IN_THE_DUSK) == QUEST_ACCEPTED and VanadielTOTD() == dsp.time.DUSK then
+    if player:getQuestStatus(BASTOK, dsp.quest.id.bastok.LOVERS_IN_THE_DUSK) == QUEST_ACCEPTED and VanadielTOTD() == dsp.time.DUSK then
         player:startEvent(204)
     else
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -26,6 +26,6 @@ end
 
 function onEventFinish(player,csid,option)
     if csid == 204 then
-        npcUtil.completeQuest(player, BASTOK, LOVERS_IN_THE_DUSK, {item = 17346, fame = 120})
+        npcUtil.completeQuest(player, BASTOK, dsp.quest.id.bastok.LOVERS_IN_THE_DUSK, {item = 17346, fame = 120})
     end
 end

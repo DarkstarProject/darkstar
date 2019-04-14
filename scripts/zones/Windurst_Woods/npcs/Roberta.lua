@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end
 
 function onTrigger(player,npc)
-    local BlueRibbonBlues = player:getQuestStatus(WINDURST,BLUE_RIBBON_BLUES)
+    local BlueRibbonBlues = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.BLUE_RIBBON_BLUES)
     if BlueRibbonBlues == QUEST_ACCEPTED then
         local blueRibbonProg = player:getVar("BlueRibbonBluesProg")
 

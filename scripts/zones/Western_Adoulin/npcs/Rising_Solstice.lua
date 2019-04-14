@@ -15,7 +15,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local ACSP = player:getQuestStatus(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
+    local ACSP = player:getQuestStatus(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
     local SOA_Mission = player:getCurrentMission(SOA);
 
     if (SOA_Mission >= LIFE_ON_THE_FRONTIER) then
@@ -51,13 +51,13 @@ end;
 function onEventFinish(player,csid,option)
     if (csid == 2550) then
         -- Starting Quest: 'A Certain Substitute Patrolman'
-        player:addQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
+        player:addQuest(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
         player:addKeyItem(dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.WESTERN_ADOULIN_PATROL_ROUTE);
         player:setVar("ACSP_NPCs_Visited", 1);
     elseif (csid == 2552) then
         -- Finishing Quest: 'A Certain Substitute Patrolman'
-        player:completeQuest(ADOULIN, A_CERTAIN_SUBSTITUTE_PATROLMAN);
+        player:completeQuest(ADOULIN, dsp.quest.id.adoulin.A_CERTAIN_SUBSTITUTE_PATROLMAN);
         player:addExp(1000 * EXP_RATE);
         player:addCurrency('bayld', 500 * BAYLD_RATE);
         player:messageSpecial(ID.text.BAYLD_OBTAINED, 500 * BAYLD_RATE);

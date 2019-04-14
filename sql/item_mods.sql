@@ -31082,6 +31082,7 @@ INSERT INTO `item_mods` VALUES (25754,31,53);     -- Magic Evasion+53
 INSERT INTO `item_mods` VALUES (25754,68,33);     -- Evasion+33
 INSERT INTO `item_mods` VALUES (25754,369,3);     -- Refresh+3
 INSERT INTO `item_mods` VALUES (25754,384,100);    -- Haste +1%
+INSERT INTO `item_mods` VALUES (25755,1,1);       -- Crustacean Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (25758,1,1);       -- Rhapsody Shirt: DEF 1
 INSERT INTO `item_mods` VALUES (25759,1,2);       -- Rhapsody Shirt +1: DEF 2
 INSERT INTO `item_mods` VALUES (25759,416,1);     -- Occasionally nullifies physical damage +1% ?
@@ -32484,6 +32485,9 @@ INSERT INTO `item_mods` VALUES (26454,134,1);     -- Alchemy Skill+1
 INSERT INTO `item_mods` VALUES (26458,1,1);       -- Chef's Aspis DEF:+1
 INSERT INTO `item_mods` VALUES (26459,1,2);       -- Chef's EcuDEF:+2
 INSERT INTO `item_mods` VALUES (26459,135,1);     -- Cooking Skill+1
+INSERT INTO `item_mods` VALUES (26517,1,1);       -- Shadow Lord Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26520,1,1);       -- Akitu Shirt: DEF +1
+INSERT INTO `item_mods` VALUES (26524,1,1);       -- Gil Nabber Shirt: DEF +1
 INSERT INTO `item_mods` VALUES (26624,1,82);
 INSERT INTO `item_mods` VALUES (26624,2,18);
 INSERT INTO `item_mods` VALUES (26624,8,19);

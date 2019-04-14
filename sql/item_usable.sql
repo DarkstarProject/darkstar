@@ -1147,7 +1147,7 @@ INSERT INTO `item_usable` VALUES (5327,'bottle_of_potion_drops',1,1,30,0,0,0,0,0
 INSERT INTO `item_usable` VALUES (5328,'bottle_of_hi-potion_drops',1,2,31,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5329,'tarutaru_snare',4,1,0,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5330,'mithra_snare',4,1,0,0,0,0,0,0);
-INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,0,0,0,0,0,0);
+INSERT INTO `item_usable` VALUES (5331,'qiqirn_mine',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5332,'kabura_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5333,'sleep_quiver',1,1,55,0,0,0,0,0);
 INSERT INTO `item_usable` VALUES (5334,'blind_bolt_quiver',1,1,55,0,0,0,0,0);
@@ -2204,6 +2204,7 @@ INSERT INTO `item_usable` VALUES (21269,'armageddon',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (22115,'yoichinoyumi',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (22116,'gandiva',1,1,55,0,1,10,3600,0);
 INSERT INTO `item_usable` VALUES (25585,'black_chocobo_cap',1,8,79,0,1,30,72000,0);
+INSERT INTO `item_usable` VALUES (26517,'shadow_lord_shirt',1,8,79,0,1,30,72000,0);
 INSERT INTO `item_usable` VALUES (26720,'sheep_cap_+1',1,2,55,0,1,30,86400,0);
 INSERT INTO `item_usable` VALUES (27556,'echad_ring',1,3,76,0,1,5,7200,0);
 INSERT INTO `item_usable` VALUES (28540,'warp_ring',1,8,80,3,1,8,600,0);

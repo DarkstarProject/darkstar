@@ -17,7 +17,7 @@ end;
 function onTrigger(player,npc)
     local offset = npc:getID() - ID.npc.UNDERGROUND_POOL_OFFSET
 
-    if player:getQuestStatus(JEUNO, SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.SCATTERED_INTO_SHADOW) == QUEST_ACCEPTED then
         if offset == 0 and player:hasKeyItem(dsp.ki.AQUAFLORA2) then
             player:startEvent(20)
         elseif offset == 1 and player:getVar("DabotzKilled") == 1 then

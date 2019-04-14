@@ -42,7 +42,7 @@ itemQuality = 0;
         end
     end
 
-    ALadysHeart = player:getQuestStatus(BASTOK,A_LADY_S_HEART);
+    ALadysHeart = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
 
     if (itemQuality == 2) then
         if (ALadysHeart == QUEST_COMPLETED) then
@@ -75,12 +75,12 @@ function onEventFinish(player,csid,option)
 
     if (csid == 160 and option == 2002) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,A_LADY_S_HEART);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
         player:addFame(BASTOK,120);
         player:moghouseFlag(2);
         player:messageSpecial(ID.text.MOGHOUSE_EXIT);
     elseif (csid == 160 and option == 1) then
         player:tradeComplete();
-        player:addQuest(BASTOK,A_LADY_S_HEART);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.A_LADY_S_HEART);
     end
 end;

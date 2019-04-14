@@ -57,9 +57,9 @@ function onRegionEnter(player,region)
             and player:getVar("COP_tenzen_story") == 1 and player:getVar("COP_jabbos_story") == 1) then
                 player:startEvent(122);
             elseif (player:getVar("PromathiaStatus") == 7) then
-                if (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_AVAILABLE) then
+                if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_AVAILABLE) then
                     player:startEvent(142);
-                elseif (player:getQuestStatus(JEUNO,STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 3) then
+                elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE) == QUEST_ACCEPTED and player:getVar('StormsOfFate') == 3) then
                     player:startEvent(143);
                 end
             end
@@ -122,9 +122,9 @@ function onEventFinish(player,csid,option)
         player:setVar("TOAUM40_STARTDAY", VanadielDayOfTheYear());
         player:addMission(TOAU,UNRAVELING_REASON);
     elseif (csid == 142) then
-        player:addQuest(JEUNO,STORMS_OF_FATE);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
     elseif (csid == 143) then
-        player:completeQuest(JEUNO,STORMS_OF_FATE);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.STORMS_OF_FATE);
         player:setVar('StormsOfFate',0);
     end
 end;

@@ -16,13 +16,13 @@ end
 
 function onTrigger(player,npc)
 
-    local aTasteForMeat = player:getQuestStatus(SANDORIA, A_TASTE_FOR_MEAT)
-    local medicineWoman = player:getQuestStatus(SANDORIA, THE_MEDICINE_WOMAN)
+    local aTasteForMeat = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.A_TASTE_FOR_MEAT)
+    local medicineWoman = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_MEDICINE_WOMAN)
     local diaryPage = player:getVar("DiaryPage")
     local fameLevel = player:getFameLevel(SANDORIA)
 
     if player:getVar("aTasteForMeat") == 0 and aTasteForMeat == QUEST_COMPLETED and fameLevel >= 8 and medicineWoman == QUEST_COMPLETED and diaryPage >= 4 then
-        local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
+        local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
 
         if overTheHillsAndFarAway == QUEST_AVAILABLE then
             player:startEvent(725) -- Start
@@ -62,7 +62,7 @@ end
 function onEventFinish(player,csid,option)
 
     if csid == 725 then
-        player:addQuest(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
+        player:addQuest(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
     else
         if csid == 527 then
             player:setVar("aTasteForMeat", 1)

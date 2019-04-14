@@ -13,7 +13,7 @@ end;
 
 function onTrigger(player,npc)
     if (npc:getID() == ID.npc.MIRROR_POND_J8) then
-        if (player:getQuestStatus(BASTOK,LOVE_AND_ICE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARMELOS_SONG_SHEET)) then
+        if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LOVE_AND_ICE) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.CARMELOS_SONG_SHEET)) then
             player:startEvent(100);
         end
     end

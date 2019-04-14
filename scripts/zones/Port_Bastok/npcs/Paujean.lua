@@ -11,7 +11,7 @@ require("scripts/globals/titles");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+    local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
 
     if (SilenceOfTheRams == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
@@ -25,10 +25,10 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local SilenceOfTheRams = player:getQuestStatus(BASTOK,SILENCE_OF_THE_RAMS);
+    local SilenceOfTheRams = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
     local WildcatBastok = player:getVar("WildcatBastok");
 
-    if (player:getQuestStatus(BASTOK,LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
+    if (player:getQuestStatus(BASTOK,dsp.quest.id.bastok.LURE_OF_THE_WILDCAT_BASTOK) == QUEST_ACCEPTED and player:getMaskBit(WildcatBastok,2) == false) then
         player:startEvent(355);
     elseif (SilenceOfTheRams == QUEST_AVAILABLE and player:getFameLevel(NORG) >= 2) then
         player:startEvent(195);
@@ -46,10 +46,10 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 195) then
-        player:addQuest(BASTOK,SILENCE_OF_THE_RAMS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
     elseif (csid == 196) then
         player:tradeComplete();
-        player:completeQuest(BASTOK,SILENCE_OF_THE_RAMS);
+        player:completeQuest(BASTOK,dsp.quest.id.bastok.SILENCE_OF_THE_RAMS);
         player:addFame(3,125);
         player:addItem(13201);
         player:messageSpecial(ID.text.ITEM_OBTAINED,13201);

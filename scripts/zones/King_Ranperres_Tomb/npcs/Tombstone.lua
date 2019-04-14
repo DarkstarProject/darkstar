@@ -12,7 +12,7 @@ local ID = require("scripts/zones/King_Ranperres_Tomb/IDs");
 
 function onTrade(player,npc,trade)
 
-        if (player:getQuestStatus(SANDORIA,GRAVE_CONCERNS) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS) == QUEST_ACCEPTED) then
             if (trade:hasItemQty(567,1) and trade:getItemCount() == 1) then -- Trade Well Water
             player:startEvent(3);
             end
@@ -46,7 +46,7 @@ function onEventFinish(player,csid,option)
     if (csid == 4) then
         player:setVar("MissionStatus",2);
     elseif (csid == 2) then
-        local graveConcerns = player:getQuestStatus(SANDORIA,GRAVE_CONCERNS);
+        local graveConcerns = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.GRAVE_CONCERNS);
 
         if (graveConcerns == QUEST_ACCEPTED and player:hasItem(547) == false and player:hasItem(567) == false) then
             if (player:getFreeSlotsCount() == 0) then

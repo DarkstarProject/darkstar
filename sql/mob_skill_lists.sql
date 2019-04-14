@@ -721,22 +721,22 @@ INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2181);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2180);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2179);
 INSERT INTO `mob_skill_lists` VALUES ('Ladybug',170,2178);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752); -- Gusting Gouge
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753); -- hysteric Barrage
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1929);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1761); -- arrow deludge
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1930);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1754);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1755);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1756);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1757,?);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1758);
-INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1813);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1814);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1812);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1809);
--- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1811);
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1752); -- gusting_gouge
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1753); -- hysteric_barrage
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1754); -- dukkeripen_heal
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1755); -- dukkeripen_shadow
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1756); -- dukkeripen
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1757); -- dukkeripen
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1758); -- tail_slap
+INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1759); -- hypnotic_sway
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1761); -- arrow_deluge
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1809); -- pw_shadow_thrust
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1811); -- ?
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1812); -- pw_pinning_shot
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1813); -- pw_calcifying_deluge
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1814); -- pw_gorgon_dance
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1929); -- pole_swing
+-- INSERT INTO `mob_skill_lists` VALUES ('Lamiae',171,1930); -- tidal_slash
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,414);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,415);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',172,416);
@@ -1641,7 +1641,7 @@ INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1130);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1131);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1133);
 INSERT INTO `mob_skill_lists` VALUES ('DynamisLord',361,1134);
--- 362: free
+INSERT INTO `mob_skill_lists` VALUES ('Killer_Jonny',362,408); -- sound_vacuum
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,1943);
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,2067);
 INSERT INTO `mob_skill_lists` VALUES ('Automaton_Harlequin',363,2301);
@@ -1733,7 +1733,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Leech',369,423);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,418);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,421);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,420);
--- 370: free
+INSERT INTO `mob_skill_lists` VALUES ('Lesath',370,354); -- wild_rage
 INSERT INTO `mob_skill_lists` VALUES ('Marid',371,1705);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,444);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,443);
@@ -2097,7 +2097,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3059);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3060);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3061);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3062);
--- 466: free
+INSERT INTO `mob_skill_lists` VALUES ('Muq_Shabeel',466,480); -- petrifactive_breath
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2784);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2785);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2786);
@@ -3373,6 +3373,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2054); -- diffusion ray
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2055); -- inertia stream
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2056); -- discharge
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex

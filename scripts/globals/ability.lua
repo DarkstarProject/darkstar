@@ -356,6 +356,7 @@ dsp.jobAbility =
     WARD               = 363,
     EFFUSION           = 364,
     APOGEE             = 369,
+    CONSUME_MANA       = 373,
     NATURALISTS_ROLL   = 374,
     RUNEISTS_ROLL      = 375,
     HEALING_RUBY       = 496,

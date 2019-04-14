@@ -20,14 +20,14 @@ function onTrade(player,npc,trade)
            a ~= 672 and a ~= 416 and a ~= 608 and a ~= 480 and a ~= 736 and a ~= 864 and a ~= 928 and a ~= 992)) then
             player:startEvent(177,10 - player:getVar("saveTheClockTowerVar")); -- "Save the Clock Tower" Quest
         end
-    elseif (player:getQuestStatus(JEUNO,CREST_OF_DAVOI) == QUEST_ACCEPTED and trade:hasItemQty(4377,1) and trade:getItemCount() == 1) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI) == QUEST_ACCEPTED and trade:hasItemQty(4377,1) and trade:getItemCount() == 1) then
         player:startEvent(171); -- Finish Quest "Crest of Davoi" Start Quest "Save my Sister" with var, not addquest()
     end
 end;
 
 function onTrigger(player,npc)
-    local CrestOfDavoi = player:getQuestStatus(JEUNO,CREST_OF_DAVOI);
-    local SaveMySister = player:getQuestStatus(JEUNO,SAVE_MY_SISTER);
+    local CrestOfDavoi = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI);
+    local SaveMySister = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SISTER);
 
     -- You need to talk to Aldo before you can obtain the Crest of Davoi or Yagudo Torch
     if (player:hasKeyItem(dsp.ki.SILVER_BELL) and CrestOfDavoi == QUEST_AVAILABLE) then
@@ -57,14 +57,14 @@ function onEventFinish(player,csid,option)
         player:addVar("saveTheClockTowerVar", 1);
         player:addVar("saveTheClockTowerNPCz2", 32);
     elseif (csid == 174 and option == 1) then
-        player:addQuest(JEUNO,CREST_OF_DAVOI);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI);
     elseif (csid == 171) then
         player:tradeComplete();
         player:setVar("saveMySisterVar",1);
         player:addKeyItem(dsp.ki.CREST_OF_DAVOI_KI);
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CREST_OF_DAVOI_KI);
         player:addFame(JEUNO, 30);
-        player:completeQuest(JEUNO,CREST_OF_DAVOI);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.CREST_OF_DAVOI);
 
     elseif (csid == 105) then
         player:setVar("saveMySisterVar",3);
@@ -79,7 +79,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_OBTAINED,17041);
             player:tradeComplete();
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO,SAVE_MY_SISTER);
+            player:completeQuest(JEUNO,dsp.quest.id.jeuno.SAVE_MY_SISTER);
         end
     end
 end;

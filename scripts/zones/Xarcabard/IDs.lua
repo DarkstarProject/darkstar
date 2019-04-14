@@ -31,6 +31,10 @@ zones[dsp.zone.XARCABARD] =
     },
     mob =
     {
+        BARBARIC_WEAPON_PH =
+        {
+            [17236026] = 17236027,
+        },
         TIMEWORN_WARRIOR_PH =
         {
             [17236041] = 17236045,

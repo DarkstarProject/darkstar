@@ -1017,7 +1017,6 @@ dsp.regime.bookOnEventUpdate = function(player, option, regimeType)
     local opt = opts[option]
 
     if not opt then
-        print("returning")
         return
     end
 

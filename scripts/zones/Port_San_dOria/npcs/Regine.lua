@@ -10,8 +10,8 @@ require("scripts/globals/quests");
 require("scripts/globals/shop");
 
 function onTrade(player,npc,trade)
-    local flyersForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
-    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,THE_BRUGAIRE_CONSORTIUM);
+    local flyersForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
+    local theBrugaireConsortium = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM);
 
     -- FLYERS FOR REGINE
     if (flyersForRegine == QUEST_ACCEPTED and npcUtil.tradeHas( trade, {{"gil",10}} )) then
@@ -31,7 +31,7 @@ function onTrigger(player,npc)
     local ffr = player:getVar("FFR");
 
     -- FLYERS FOR REGINE
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_AVAILABLE and ffr == 0) then
         player:startEvent(601);
     elseif (ffr == 1) then
         player:startEvent(510,2);
@@ -55,11 +55,11 @@ function onEventFinish(player,csid,option)
         player:setVar("FFR",1);
     elseif (csid == 510 and option == 2) then
         if (npcUtil.giveItem(player, {{532,12}, {532,3}} )) then
-            player:addQuest(SANDORIA,FLYERS_FOR_REGINE);
+            player:addQuest(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
             player:setVar("FFR",17);
         end
     elseif (csid == 603) then
-        if (npcUtil.completeQuest(player, SANDORIA, FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
+        if (npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.FLYERS_FOR_REGINE, {gil=440, title=dsp.title.ADVERTISING_EXECUTIVE})) then
             player:setVar("tradeAnswald",0);
             player:setVar("tradePrietta",0);
             player:setVar("tradeMiene",0);

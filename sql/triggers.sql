@@ -66,7 +66,7 @@ BEGIN
     DELETE FROM `char_vars`      WHERE `charid` = OLD.charid;
     DELETE FROM `auction_house`  WHERE `seller` = OLD.charid;
     DELETE FROM `delivery_box`   WHERE `charid` = OLD.charid;
-    UPDATE `accounts_ip_record` SET `charid`  = 0 where `charid` = OLD.charid;
+    UPDATE `account_ip_record` SET `charid`  = 0 where `charid` = OLD.charid;
     UPDATE `delivery_box` SET sent = 0 WHERE box = 2 AND received = 0 AND sent = 1 AND senderid = OLD.charid;
 END $$
 

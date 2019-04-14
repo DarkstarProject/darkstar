@@ -21,8 +21,8 @@ zones[dsp.zone.OUTER_HORUTOTO_RUINS] =
         KEYITEM_OBTAINED               = 6596, -- Obtained key item: <keyitem>.
         DOOR_FIRMLY_SHUT               = 7254, -- The door is firmly shut.
         ALL_G_ORBS_ENERGIZED           = 7257, -- The six Mana Orbs have been successfully energized with magic!
-        CHEST_UNLOCKED                 = 7279, -- You unlock the chest!
-        REGIME_REGISTERED              = 10342, -- New training regime registered!
+        CHEST_UNLOCKED                 = 7280, -- You unlock the chest!
+        REGIME_REGISTERED              = 10343, -- New training regime registered!
     },
     mob =
     {

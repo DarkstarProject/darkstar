@@ -16,9 +16,9 @@ zones[dsp.zone.YUGHOTT_GROTTO] =
         GIL_OBTAINED            = 6548, -- Obtained <number> gil.
         KEYITEM_OBTAINED        = 6550, -- Obtained key item: <keyitem>.
         FISHING_MESSAGE_OFFSET  = 7208, -- You can't fish here.
-        CHEST_UNLOCKED          = 7333, -- You unlock the chest!
-        MINING_IS_POSSIBLE_HERE = 7341, -- Mining is possible here if you have <item>.
-        HOMEPOINT_SET           = 7441, -- Home point set!
+        CHEST_UNLOCKED          = 7334, -- You unlock the chest!
+        MINING_IS_POSSIBLE_HERE = 7342, -- Mining is possible here if you have <item>.
+        HOMEPOINT_SET           = 7442, -- Home point set!
     },
     mob =
     {

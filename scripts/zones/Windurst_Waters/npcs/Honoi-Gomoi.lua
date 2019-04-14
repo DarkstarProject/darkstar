@@ -22,9 +22,9 @@ function onTrigger(player,npc)
         return (set % (2*flag) >= flag)
     end
 
-    local cryingOverOnions  = player:getQuestStatus(WINDURST,CRYING_OVER_ONIONS)
-    local wildCard          = player:getQuestStatus(WINDURST,WILD_CARD)
-    local hatInHand         = player:getQuestStatus(WINDURST,HAT_IN_HAND)
+    local cryingOverOnions  = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.CRYING_OVER_ONIONS)
+    local wildCard          = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.WILD_CARD)
+    local hatInHand         = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND)
 
     if player:getCurrentMission(COP) == THE_ROAD_FORKS and player:getVar("MEMORIES_OF_A_MAIDEN_Status") == 5 then
         player:startEvent(874) -- COP event
@@ -69,11 +69,11 @@ function onEventFinish(player,csid,option)
     elseif csid == 775 and npcUtil.giveItem(player, 13136) then
         player:confirmTrade()
         player:setVar("CryingOverOnions", 2)
-    elseif csid == 776 and npcUtil.completeQuest(player, WINDURST, CRYING_OVER_ONIONS, {fame=120, var="CryingOverOnions"}) then
+    elseif csid == 776 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.CRYING_OVER_ONIONS, {fame=120, var="CryingOverOnions"}) then
         player:needToZone(true)
     elseif csid == 780 then
-        player:addQuest(WINDURST, WILD_CARD)
-    elseif csid == 782 and npcUtil.completeQuest(player, WINDURST, WILD_CARD, {title=dsp.title.DREAM_DWELLER, fame=135, var="WildCard"}) then
+        player:addQuest(WINDURST, dsp.quest.id.windurst.WILD_CARD)
+    elseif csid == 782 and npcUtil.completeQuest(player, WINDURST, dsp.quest.id.windurst.WILD_CARD, {title=dsp.title.DREAM_DWELLER, fame=135, var="WildCard"}) then
         player:needToZone(true)
     elseif csid == 59 then -- Show Off Hat
         player:addVar("QuestHatInHand_var", 2)

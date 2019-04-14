@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: RoMaeve
 --  MOB: Magic Flagon
--- Note: PH for Nightmare Vase
+-- Note: PH for Nightmare Vase and Rogue Receptacle
 -----------------------------------
 local ID = require("scripts/zones/RoMaeve/IDs")
 require("scripts/globals/regimes")
@@ -14,4 +14,5 @@ end
 
 function onMobDespawn(mob)
     dsp.mob.phOnDespawn(mob, ID.mob.NIGHTMARE_VASE_PH, 10, 3600) -- 1 hour
+    dsp.mob.phOnDespawn(mob, ID.mob.ROGUE_RECEPTACLE_PH, 10, 7200) -- 2 hour
 end

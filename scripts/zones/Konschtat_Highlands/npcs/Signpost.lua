@@ -14,7 +14,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local SignPost = player:getQuestStatus(BASTOK,THE_SIGNPOST_MARKS_THE_SPOT);
+    local SignPost = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.THE_SIGNPOST_MARKS_THE_SPOT);
     local Painting = player:hasKeyItem(dsp.ki.PAINTING_OF_A_WINDMILL);
 
     if (SignPost == 1 and Painting == false) then

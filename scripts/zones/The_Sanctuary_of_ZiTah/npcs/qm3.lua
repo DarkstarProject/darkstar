@@ -11,7 +11,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(OUTLANDS, THE_SACRED_KATANA) == QUEST_ACCEPTED then
+    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.THE_SACRED_KATANA) == QUEST_ACCEPTED then
         if npcUtil.tradeHas(trade, 1168) and npcUtil.popFromQM(player, npc, ID.mob.ISONADE, {hide = 0}) then -- Sack of Fish Bait
             player:confirmTrade()
             player:messageSpecial(ID.text.SENSE_OF_FOREBODING)

@@ -58,6 +58,10 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
             {
                 ref<uint8>(0x28) = 0x04;
             }
+            if (PEntity->objtype == TYPE_TRUST)
+            {
+              //  ref<uint8>(0x28) = 0x45;
+            }
             if (PEntity->look.size == MODEL_EQUIPED || PEntity->look.size == MODEL_CHOCOBO)
             {
                 updatemask = 0x57;
@@ -107,6 +111,7 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         break;
         case TYPE_MOB:
         case TYPE_PET:
+        case TYPE_TRUST:
         {
             CMobEntity* PMob = (CMobEntity*)PEntity;
 
@@ -158,6 +163,17 @@ CEntityUpdatePacket::CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type
         {
             break;
         }
+    }
+
+    // TODO: Read from the trust model itself
+    if (PEntity->objtype == TYPE_TRUST)
+    {
+        ref<uint32>(0x21) = 0x21b;
+        ref<uint8>(0x2B) = 0x06;
+        ref<uint8>(0x2A) = 0x08;
+        ref<uint8>(0x25) = 0x0f;
+        ref<uint8>(0x27) = 0x28;
+        ref<uint8>(0x28) = 0x45;
     }
 
     switch (PEntity->look.size)

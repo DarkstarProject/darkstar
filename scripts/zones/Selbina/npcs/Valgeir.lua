@@ -10,7 +10,7 @@ require("scripts/globals/quests")
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if player:getQuestStatus(OTHER_AREAS_LOG, EXPERTISE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {4400, 4447}) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and npcUtil.tradeHas(trade, {4400, 4447}) then
         player:startEvent(103)
     end
 end
@@ -19,11 +19,11 @@ function onTrigger(player,npc)
     local expertiseStat = player:getVar("QUEST_EXPERTISE_STATE_var")
 
     -- HIS NAME IS VALGEIR
-    if player:getQuestStatus(OTHER_AREAS_LOG, HIS_NAME_IS_VALGEIR) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA) then
+    if player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.HIS_NAME_IS_VALGEIR) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.ARAGONEU_PIZZA) then
         player:startEvent(100)
 
     -- EXPERTISE
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, EXPERTISE) == QUEST_ACCEPTED and expertiseStat ~= 3 then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.EXPERTISE) == QUEST_ACCEPTED and expertiseStat ~= 3 then
         if expertiseStat == 1 then
             player:startEvent(104)
         elseif expertiseStat == 2 then
@@ -40,9 +40,9 @@ function onTrigger(player,npc)
         end
 
     -- THE BASICS
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, THE_BASICS) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MHAURAN_COUSCOUS) then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_ACCEPTED and player:hasKeyItem(dsp.ki.MHAURAN_COUSCOUS) then
         player:startEvent(106)
-    elseif player:getQuestStatus(OTHER_AREAS_LOG, THE_BASICS) == QUEST_COMPLETED and player:getVar("QuestTheBacisCommentary_var") == 1 then
+    elseif player:getQuestStatus(OTHER_AREAS_LOG, dsp.quest.id.otherAreas.THE_BASICS) == QUEST_COMPLETED and player:getVar("QuestTheBacisCommentary_var") == 1 then
         player:startEvent(107)
 
     -- STANDARD DIALOG

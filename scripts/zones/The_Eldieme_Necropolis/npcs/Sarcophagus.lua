@@ -34,7 +34,7 @@ function onTrigger(player, npc)
     local offset = npc:getID() - ID.npc.SARCOPHAGUS_OFFSET
 
     -- A NEW DAWN (Beastmaster AF3)
-    if player:getQuestStatus(JEUNO, A_NEW_DAWN) == QUEST_ACCEPTED and npc:getID() == ID.npc.SARCOPHAGUS_OFFSET then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN) == QUEST_ACCEPTED and npc:getID() == ID.npc.SARCOPHAGUS_OFFSET then
         local aNewDawnEvent = player:getVar("ANewDawn_Event")
 
         if aNewDawnEvent == 4 then
@@ -72,7 +72,7 @@ function onEventFinish(player,csid,option)
         npcUtil.giveKeyItem(player, dsp.ki.STAR_RING1)
 
     -- A NEW DAWN
-    elseif csid == 45 and npcUtil.completeQuest(player, JEUNO, A_NEW_DAWN, {item = 14222, title = dsp.title.PARAGON_OF_BEASTMASTER_EXCELLENCE}) then
+    elseif csid == 45 and npcUtil.completeQuest(player, JEUNO, dsp.quest.id.jeuno.A_NEW_DAWN, {item = 14222, title = dsp.title.PARAGON_OF_BEASTMASTER_EXCELLENCE}) then
         player:setVar("ANewDawn_Event", 6)
         player:delKeyItem(dsp.ki.TAMERS_WHISTLE)
     end
