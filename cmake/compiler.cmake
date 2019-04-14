@@ -21,6 +21,7 @@ else()
         -D_WINSOCK_DEPRECATED_NO_WARNINGS
         /Ob2 # Inline Function Expansion
         /Oy- # Frame-Pointer Omission
+        /MP # Build with Multiple Processes
     )
 
     if(CMAKE_CONFIGURATION_TYPES STREQUAL Debug)
@@ -36,7 +37,6 @@ else()
             /GL # Whole Program Optimization
             /Gy # Enable Function Level Linking
             /TP # C++ Source Files
-            /GR- # Disable RTTI
         )
     endif()
 endif()
