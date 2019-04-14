@@ -778,9 +778,9 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
-                    [dsp.job.PLD] = {quest = BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
-                    [dsp.job.MNK] = {quest = BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
+                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,     reward = 12646}, -- Beast Jackcoat
+                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS, reward = 14220}, -- Gallant Breeches
+                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS, reward = 12639}, -- Temple Cyclas
                 },
                 points =
                 {
@@ -806,9 +806,9 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.DRK] = {quest = BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
-                    [dsp.job.RNG] = {quest = BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
-                    [dsp.job.BLM] = {quest = BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
+                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,   reward = 14221}, -- Chaos Flanchard
+                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,   reward = 12648}, -- Hunter's Jerkin
+                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 12641}, -- Wizard's Coat
                 },
                 points =
                 {
@@ -833,10 +833,10 @@ local treasureInfo =
                 key = 1044,
                 af =
                 {
-                    [dsp.job.DRK] = {quest = BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
-                    [dsp.job.BRD] = {quest = BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
-                    [dsp.job.THF] = {quest = BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
-                    [dsp.job.RDM] = {quest = BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
+                    [dsp.job.DRK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SHADOWY_HANDS,    reward = 12645}, -- Chaos Cuirass
+                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 14223}, -- Choral Cannions
+                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,     reward = 14219}, -- Rogue's Culottes
+                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 12642}, -- Warlock's Tabard
                 },
                 points =
                 {
@@ -865,7 +865,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
+                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 13869}, -- Ninja Hatsuburi
                 },
                 points =
                 {
@@ -895,8 +895,8 @@ local treasureInfo =
                 map = dsp.ki.MAP_OF_THE_TEMPLE_OF_UGGALEPIH,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
-                    [dsp.job.SAM] = {quest = BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
+                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 12650}, -- Evoker's Doublet
+                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,   reward = 13781}, -- Myochin Domaru
                 },
                 points =
                 {
@@ -946,8 +946,8 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.WAR] = {quest = BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
-                    [dsp.job.THF] = {quest = BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
+                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS, reward = 14214}, -- Fighter's Cuisses
+                    [dsp.job.THF] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SNEAKY_HANDS,  reward = 12643}, -- Rogue's Vest
                 },
                 misc =
                 {
@@ -977,7 +977,7 @@ local treasureInfo =
                 key = 1057,
                 af =
                 {
-                    [dsp.job.SMN] = {quest = BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
+                    [dsp.job.SMN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CALLING_HANDS, reward = 14103}, -- Evoker's Pigaches
                 },
                 misc =
                 {
@@ -1058,7 +1058,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.NIN] = {quest = BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
+                    [dsp.job.NIN] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LURKING_HANDS, reward = 14101}, -- Ninja Kyahan
                 },
                 points =
                 {
@@ -1109,7 +1109,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BLM] = {quest = BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
+                    [dsp.job.BLM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_SORCEROUS_HANDS, reward = 14217}, -- Wizard's Tonban
                 },
                 points =
                 {
@@ -1137,10 +1137,10 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BRD] = {quest = BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
-                    [dsp.job.WAR] = {quest = BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
-                    [dsp.job.WHM] = {quest = BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
-                    [dsp.job.RNG] = {quest = BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
+                    [dsp.job.BRD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HARMONIOUS_HANDS, reward = 13857}, -- Choral Roundlet
+                    [dsp.job.WAR] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WARRING_HANDS,    reward = 12511}, -- Fighter's Mask
+                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 14216}, -- Healer's Pantaloons
+                    [dsp.job.RNG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_CHASING_HANDS,    reward = 14224}, -- Hunter's Braccae
                 },
                 points =
                 {
@@ -1166,11 +1166,11 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.BST] = {quest = BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
-                    [dsp.job.PLD] = {quest = BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
-                    [dsp.job.WHM] = {quest = BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
-                    [dsp.job.MNK] = {quest = BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
-                    [dsp.job.RDM] = {quest = BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
+                    [dsp.job.BST] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_WILD_HANDS,       reward = 12517}, -- Beast Helm
+                    [dsp.job.PLD] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STALWART_HANDS,   reward = 12515}, -- Gallant Coronet
+                    [dsp.job.WHM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_HEALING_HANDS,    reward = 13855}, -- Healer's Cap
+                    [dsp.job.MNK] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_STRIKING_HANDS,   reward = 12512}, -- Temple Crown
+                    [dsp.job.RDM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_VERMILLION_HANDS, reward = 14218}, -- Warlock's Tights
                 },
                 points =
                 {
@@ -1196,7 +1196,7 @@ local treasureInfo =
                 },
                 af =
                 {
-                    [dsp.job.DRG] = {quest = BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
+                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 12649}, -- Drachen Mail
                 },
                 points =
                 {
@@ -1224,8 +1224,8 @@ local treasureInfo =
                 map = dsp.ki.MAP_OF_THE_QUICKSAND_CAVES,
                 af =
                 {
-                    [dsp.job.DRG] = {quest = BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
-                    [dsp.job.SAM] = {quest = BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
+                    [dsp.job.DRG] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_DRAGON_HANDS, reward = 14102}, -- Drachen Greaves
+                    [dsp.job.SAM] = {quest = dsp.quest.id.jeuno.BORGHERTZ_S_LOYAL_HANDS,  reward = 14225}, -- Myochin Haidate
                 },
                 points =
                 {
