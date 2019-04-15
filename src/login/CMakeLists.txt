@@ -8,6 +8,13 @@ add_definitions(
 
 file(GLOB GENERATED_SOURCES CONFIGURE_DEPENDS *.cpp)
 
+if(UNIX)
+    set(resource "")
+else()
+    set(resource "../../win32/vcxproj/connectserver.rc")
+endif()
+
+
 add_executable(DSConnect-server
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
@@ -20,7 +27,10 @@ add_executable(DSConnect-server
     ../common/timer.cpp
     ../common/utils.cpp
     ../common/zlib.cpp
+    ${resource}
 )
+
+set_target_properties(DSConnect-server PROPERTIES OUTPUT_NAME DSConnect-server${spacer}${platform_suffix})
 
 if(UNIX)
     target_include_directories(DSConnect-server PRIVATE
@@ -41,8 +51,8 @@ else()
     )
 
     target_link_libraries(DSConnect-server
-        libmariadb${lib_suffix}
-        libzmq${lib_debug}${lib_spacer}${lib_suffix}
+        libmariadb${platform_suffix}
+        libzmq${lib_debug}${spacer}${platform_suffix}
         WS2_32
     )
 endif()
