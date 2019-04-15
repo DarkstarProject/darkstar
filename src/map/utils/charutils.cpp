@@ -3205,7 +3205,7 @@ namespace charutils
             auto PMember = static_cast<CCharEntity*>(PPartyMember);
             uint32 baseexp = 0;
             auto exp = 0.f;
-            int8 levelDifference = PPartyMember->GetMLevel() - PMob->GetMLevel();
+            int8 levelDifference = PMob->GetMLevel() - PPartyMember->GetMLevel();
             bool evenMatchOrHigher = levelDifference >= 0;
             float permonstercap, monsterbonus = 1.0f;
             bool chainactive = false;
