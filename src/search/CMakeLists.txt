@@ -7,6 +7,12 @@ add_definitions(
 
 file(GLOB_RECURSE GENERATED_SOURCES CONFIGURE_DEPENDS *.cpp)
 
+if(UNIX)
+    set(resource "")
+else()
+    set(resource "../../win32/vcxproj/searchserver.rc")
+endif()
+
 add_executable(DSSearch-server
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
@@ -16,7 +22,10 @@ add_executable(DSSearch-server
     ../common/taskmgr.cpp
     ../common/timer.cpp
     ../common/utils.cpp
+    ${resource}
 )
+
+set_target_properties(DSSearch-server PROPERTIES OUTPUT_NAME DSSearch-server${spacer}${platform_suffix})
 
 if(UNIX)
     target_include_directories(DSSearch-server PRIVATE
@@ -35,7 +44,7 @@ else()
         ../../win32/external/mysql
     )
     target_link_libraries(DSSearch-server
-        libmariadb${lib_suffix}
+        libmariadb${platform_suffix}
         WS2_32
     )
 endif()

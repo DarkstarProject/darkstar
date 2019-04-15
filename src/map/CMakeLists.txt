@@ -8,6 +8,12 @@ add_definitions(
 
 file(GLOB_RECURSE GENERATED_SOURCES CONFIGURE_DEPENDS *.cpp)
 
+if(UNIX)
+    set(resource "")
+else()
+    set(resource "../../win32/vcxproj/gameserver.rc")
+endif()
+
 add_executable(DSGame-server
     ${GENERATED_SOURCES}
     ../common/blowfish.cpp
@@ -26,7 +32,10 @@ add_executable(DSGame-server
     ../common/timer.cpp
     ../common/utils.cpp
     ../common/zlib.cpp
+    ${resource}
 )
+
+set_target_properties(DSGame-server PROPERTIES OUTPUT_NAME DSGame-server${spacer}${platform_suffix})
 
 if(UNIX)
     target_include_directories(DSGame-server PRIVATE
@@ -48,9 +57,9 @@ else()
     )
 
     target_link_libraries(DSGame-server
-        libmariadb${lib_suffix}
-        lua51${lib_spacer}${lib_suffix}
-        libzmq${lib_debug}${lib_spacer}${lib_suffix}
+        libmariadb${platform_suffix}
+        lua51${spacer}${platform_suffix}
+        libzmq${lib_debug}${spacer}${platform_suffix}
         WS2_32
     )
 endif()
