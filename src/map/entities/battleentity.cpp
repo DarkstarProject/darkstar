@@ -765,7 +765,14 @@ void CBattleEntity::SetMLevel(uint8 mlvl)
 
 void CBattleEntity::SetSLevel(uint8 slvl)
 {
-    m_slvl = (slvl > (m_mlvl >> 1) ? (m_mlvl == 1 ? 1 : (m_mlvl >> 1)) : slvl);
+    if (this->objtype == TYPE_MOB && this->objtype != TYPE_PET)
+    {
+        m_slvl = (slvl > (m_mlvl >> 1) ? (m_mlvl == 1 ? 1 : (m_mlvl >> 1)) : slvl);
+    }
+    else
+    {
+        m_slvl = (slvl > (m_mlvl) ? (m_mlvl == 1 ? 1 : (m_mlvl)) : slvl); // Sub caps to main.
+    }
 
     if (this->objtype & TYPE_PC)
         Sql_Query(SqlHandle, "UPDATE char_stats SET slvl = %u WHERE charid = %u LIMIT 1;", m_slvl, this->id);
