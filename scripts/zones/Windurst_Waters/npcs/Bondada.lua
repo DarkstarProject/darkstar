@@ -16,7 +16,7 @@ function onTrigger(player,npc)
     function testflag(set,flag)
         return (set % (2*flag) >= flag)
     end
-    hatstatus = player:getQuestStatus(WINDURST,HAT_IN_HAND);
+    hatstatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.HAT_IN_HAND);
     if ((hatstatus == 1  or player:getVar("QuestHatInHand_var2") == 1) and player:getVar("QuestHatInHand_var") < 127) then
         player:startEvent(53); -- Show Off Hat (She does not buy one)
     elseif ((hatstatus == 1 or player:getVar("QuestHatInHand_var2") == 1)  and player:getVar("QuestHatInHand_var") == 127) then

@@ -11,7 +11,7 @@ require("scripts/globals/titles")
 
 function onTrade(player,npc,trade)
 
-    local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
+    local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
     local louverancesPath = player:getVar("COP_Louverance_s_Path")
 
     -- Taking a logical guess what criteria displays what message.
@@ -41,7 +41,7 @@ end
 
 function onTrigger(player,npc)
 
-    local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY)
+    local overTheHillsAndFarAway = player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY)
 
     if overTheHillsAndFarAway == QUEST_COMPLETED then
         player:messageSpecial(ID.text.NOTHING_OUT_OF_ORDINARY)
@@ -59,7 +59,7 @@ end
 
 function onEventFinish(player,csid,option)
 
-    if csid == 10 and npcUtil.completeQuest(player, SANDORIA, OVER_THE_HILLS_AND_FAR_AWAY, {gil = 2000, xp = 2000, ki = dsp.ki.MAP_OF_THE_ULEGUERAND_RANGE}) then
+    if csid == 10 and npcUtil.completeQuest(player, SANDORIA, dsp.quest.id.sandoria.OVER_THE_HILLS_AND_FAR_AWAY, {gil = 2000, xp = 2000, ki = dsp.ki.MAP_OF_THE_ULEGUERAND_RANGE}) then
         player:confirmTrade()
     end
 

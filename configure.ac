@@ -51,6 +51,9 @@ case "$host" in
         *-*-cygwin* | *-*-mingw32*)
                 darkstar_arch_win32=true
                 ;;
+        *-*-darwin*)
+                darkstar_arch_osx=true
+                ;;
         *)
                 AC_MSG_ERROR([*** Invalid host])
                 ;;
@@ -256,6 +259,13 @@ then
         DLLEXT=".dll"
 fi
 
+### OSX Specifics
+if test "$darkstar_arch_osx"
+then
+        AC_MSG_RESULT(Building OSX targets)
+        AC_DEFINE(DARKSTAR_ARCH_OSX,1,Compile code for an OSX target)
+fi
+
 AC_SUBST([DLLEXT])
 
 AM_CONDITIONAL(DARKSTAR_ARCH_LINUX,test "$darkstar_arch_linux")
@@ -263,6 +273,7 @@ AM_CONDITIONAL(DARKSTAR_ARCH_SOLARIS,test "$darkstar_arch_solaris")
 AM_CONDITIONAL(DARKSTAR_ARCH_FREEBSD,test "$darkstar_arch_freebsd")
 AM_CONDITIONAL(DARKSTAR_ARCH_NETBSD,test "$darkstar_arch_netbsd")
 AM_CONDITIONAL(DARKSTAR_ARCH_WIN32,test "$darkstar_arch_win32")
+AM_CONDITIONAL(DARKSTAR_ARCH_OSX,test "$darkstar_arch_osx")
 
 AC_CONFIG_HEADER([src/common/config.h])
 AC_CONFIG_FILES([Makefile])

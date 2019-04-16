@@ -11,7 +11,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local TooManyChefs = player:getQuestStatus(BASTOK,TOO_MANY_CHEFS);
+    local TooManyChefs = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.TOO_MANY_CHEFS);
     local pFame = player:getFameLevel(BASTOK);
 
     if (TooManyChefs == QUEST_AVAILABLE and pFame >= 5) then
@@ -28,7 +28,7 @@ end;
 
 function onEventFinish(player,csid,option)
     if (csid == 946 and option == 0) then
-        player:addQuest(BASTOK,TOO_MANY_CHEFS);
+        player:addQuest(BASTOK,dsp.quest.id.bastok.TOO_MANY_CHEFS);
         player:setVar("TOO_MANY_CHEFS",1);
     elseif (csid == 947) then
         player:setVar("TOO_MANY_CHEFS",5);

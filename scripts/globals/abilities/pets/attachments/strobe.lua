@@ -5,6 +5,7 @@
 -----------------------------------
 require("scripts/globals/automaton")
 require("scripts/globals/status")
+-----------------------------------
 
 function onEquip(pet)
     updateModPerformance(pet, dsp.mod.ENMITY, 'strobe_mod', 5)

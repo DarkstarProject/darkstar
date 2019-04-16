@@ -23,7 +23,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    sermonQuest = player:getQuestStatus(SANDORIA,THE_VICASQUE_S_SERMON);
+    sermonQuest = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_VICASQUE_S_SERMON);
 
     if (sermonQuest == QUEST_AVAILABLE) then
         player:startEvent(589);
@@ -53,10 +53,10 @@ function onEventFinish(player,csid,option)
             player:addFame(SANDORIA,30);
             player:addTitle(dsp.title.THE_BENEVOLENT_ONE);
             player:setVar("sermonQuestVar",0);
-            player:completeQuest(SANDORIA,THE_VICASQUE_S_SERMON );
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_VICASQUE_S_SERMON );
         end
     elseif (csid == 589) then
-        player:addQuest(SANDORIA,THE_VICASQUE_S_SERMON );
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_VICASQUE_S_SERMON );
     elseif (csid == 591) then
         player:addItem(618);
         player:messageSpecial(ID.text.ITEM_OBTAINED, 618);

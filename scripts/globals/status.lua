@@ -22,6 +22,7 @@ dsp.zoneMisc =
     COSTUME    = 0x0040, -- Ability to use a Costumes
     PET        = 0x0080, -- Ability to summon Pets
     TREASURE   = 0x0100, -- Presence in the global zone TreasurePool
+    AH         = 0x0200, -- Ability to use the auction house
     YELL       = 0x0400, -- Send and receive /yell commands
 }
 
@@ -2180,7 +2181,7 @@ dsp.mobMod =
     AUTO_SPIKES         = 46, -- enables additional effect script to process when mob is attacked
     SPAWN_LEASH         = 47, -- forces a mob to not move farther from its spawn than its leash distance
     SHARE_TARGET        = 48, -- mob always targets same target as ID in this var
-    -- 49 Available for use
+    CHECK_AS_NM         = 49, -- If set, a mob will check as a NM.
     -- 50 Available for use
     ROAM_TURNS          = 51, -- Maximum amount of turns during a roam
     ROAM_RATE           = 52, -- Roaming frequency. roam_cool - rand(roam_cool / (roam_rate / 10))
@@ -2197,7 +2198,7 @@ dsp.mobMod =
     ATTACK_SKILL_LIST   = 63, -- skill list to use in place of regular attacks
     CHARMABLE           = 64, -- mob is charmable
     NO_MOVE             = 65, -- Mob will not be able to move
-    MULTI_HIT           = 66, -- Mob will not be able to move
+    MULTI_HIT           = 66, -- Mob will have as many swings as defined.
     NO_AGGRO            = 67  -- If set, mob cannot aggro until unset.
 }
 

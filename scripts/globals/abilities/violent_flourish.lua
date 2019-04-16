@@ -48,7 +48,7 @@ function onUseAbility(player,target,ability,action)
     local fstr = fSTR(player:getStat(dsp.mod.STR),target:getStat(dsp.mod.VIT),player:getWeaponDmgRank())
 
     local params = {}
-    params.atkmulti = 1
+    params.atk100 = 1 params.atk200 = 1 params.atk300 = 1
 
     --apply WSC
     local weaponDamage = player:getWeaponDmg()

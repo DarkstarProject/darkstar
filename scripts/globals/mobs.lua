@@ -19,7 +19,7 @@ function onMobDeathEx(mob, player, isKiller, isWeaponSkillKill)
     if isKiller then
         -- DRK quest - Blade Of Darkness
         if
-            (player:getQuestStatus(BASTOK, BLADE_OF_DARKNESS) == QUEST_ACCEPTED or player:getQuestStatus(BASTOK, BLADE_OF_DEATH) == QUEST_ACCEPTED) and
+            (player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DARKNESS) == QUEST_ACCEPTED or player:getQuestStatus(BASTOK, dsp.quest.id.bastok.BLADE_OF_DEATH) == QUEST_ACCEPTED) and
             player:getEquipID(dsp.slot.MAIN) == 16607 and
             player:getVar("ChaosbringerKills") < 200 and
             not isWeaponSkillKill
@@ -99,26 +99,27 @@ end
 dsp.mob.additionalEffect =
 {
     BLIND      = 0,
-    ENAERO     = 1,
-    ENBLIZZARD = 2,
-    ENDARK     = 3,
-    ENFIRE     = 4,
-    ENLIGHT    = 5,
-    ENSTONE    = 6,
-    ENTHUNDER  = 7,
-    ENWATER    = 8,
-    EVA_DOWN   = 9,
-    HP_DRAIN   = 10,
-    MP_DRAIN   = 11,
-    PARALYZE   = 12,
-    PETRIFY    = 13,
-    PLAGUE     = 14,
-    POISON     = 15,
-    SILENCE    = 16,
-    SLOW       = 17,
-    STUN       = 18,
-    TERROR     = 19,
-    TP_DRAIN   = 20,
+    CURSE      = 1,
+    ENAERO     = 2,
+    ENBLIZZARD = 3,
+    ENDARK     = 4,
+    ENFIRE     = 5,
+    ENLIGHT    = 6,
+    ENSTONE    = 7,
+    ENTHUNDER  = 8,
+    ENWATER    = 9,
+    EVA_DOWN   = 10,
+    HP_DRAIN   = 11,
+    MP_DRAIN   = 12,
+    PARALYZE   = 13,
+    PETRIFY    = 14,
+    PLAGUE     = 15,
+    POISON     = 16,
+    SILENCE    = 17,
+    SLOW       = 18,
+    STUN       = 19,
+    TERROR     = 20,
+    TP_DRAIN   = 21,
 }
 dsp.mob.ae = dsp.mob.additionalEffect
 
@@ -136,6 +137,19 @@ local additionalEffects =
         duration = 30,
         minDuration = 1,
         maxDuration = 45,
+    },
+    [dsp.mob.ae.CURSE] =
+    {
+        chance = 20,
+        ele = dsp.magic.ele.DARK,
+        sub = dsp.subEffect.CURSE,
+        msg = dsp.msg.basic.ADD_EFFECT_STATUS,
+        applyEffect = true,
+        eff = dsp.effect.CURSE_I,
+        power = 50,
+        duration = 300,
+        minDuration = 1,
+        maxDuration = 300,
     },
     [dsp.mob.ae.ENAERO] =
     {

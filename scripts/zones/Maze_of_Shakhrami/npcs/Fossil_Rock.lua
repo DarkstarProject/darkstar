@@ -39,7 +39,7 @@ function onTrigger(player, npc)
         end
 
     -- BLAST FROM THE PAST
-    elseif offset == 8 and player:getQuestStatus(WINDURST, BLAST_FROM_THE_PAST) == QUEST_ACCEPTED then
+    elseif offset == 8 and player:getQuestStatus(WINDURST, dsp.quest.id.windurst.BLAST_FROM_THE_PAST) == QUEST_ACCEPTED then
         if not GetMobByID(ID.mob.ICHOROUS_IRE):isSpawned() and not player:hasItem(16511) then
             SpawnMob(ID.mob.ICHOROUS_IRE):updateClaim(player)
         else

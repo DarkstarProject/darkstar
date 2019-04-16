@@ -35,7 +35,7 @@ end;
 
 function onBcnmLeave(player,instance,leavecode)
 -- print("leave code "..leavecode);
-    moonlitPath = player:getQuestStatus(WINDURST,THE_MOONLIT_PATH)
+    moonlitPath = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.THE_MOONLIT_PATH)
     
     if (leavecode == 2) then -- play end CS. Need time and battle id for record keeping + storage
         if (moonlitPath == QUEST_COMPLETED) then

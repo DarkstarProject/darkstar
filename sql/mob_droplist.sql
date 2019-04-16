@@ -424,7 +424,6 @@ INSERT INTO `mob_droplist` VALUES (61,0,0,1000,3148,180);
 INSERT INTO `mob_droplist` VALUES (61,0,0,1000,11898,310);
 INSERT INTO `mob_droplist` VALUES (62,2,0,1000,2531,0);
 INSERT INTO `mob_droplist` VALUES (62,0,0,1000,2556,100);
-INSERT INTO `mob_droplist` VALUES (63,0,0,1000,501,20);
 INSERT INTO `mob_droplist` VALUES (63,0,0,1000,606,10);
 INSERT INTO `mob_droplist` VALUES (63,0,0,1000,607,10);
 INSERT INTO `mob_droplist` VALUES (63,0,0,1000,608,20);
@@ -3358,7 +3357,7 @@ INSERT INTO `mob_droplist` VALUES (577,0,0,1000,12449,30);
 INSERT INTO `mob_droplist` VALUES (577,0,0,1000,12705,30);
 INSERT INTO `mob_droplist` VALUES (577,0,0,1000,12833,20);
 INSERT INTO `mob_droplist` VALUES (577,0,0,1000,12961,30);
-INSERT INTO `mob_droplist` VALUES (578,0,0,1000,2839,100);
+INSERT INTO `mob_droplist` VALUES (578,0,0,1000,2839,182); -- (Coquecigrue) Coquecigrue Skin
 INSERT INTO `mob_droplist` VALUES (579,0,0,1000,881,10);
 INSERT INTO `mob_droplist` VALUES (579,2,0,1000,936,0);
 INSERT INTO `mob_droplist` VALUES (579,0,0,1000,936,110);
@@ -15655,7 +15654,6 @@ INSERT INTO `mob_droplist` VALUES (2525,0,0,1000,2505,60);
 INSERT INTO `mob_droplist` VALUES (2526,2,0,1000,748,0);
 INSERT INTO `mob_droplist` VALUES (2526,0,0,1000,2504,130);
 INSERT INTO `mob_droplist` VALUES (2526,0,0,1000,2505,60);
-INSERT INTO `mob_droplist` VALUES (2527,0,0,1000,501,20);
 INSERT INTO `mob_droplist` VALUES (2527,0,0,1000,606,10);
 INSERT INTO `mob_droplist` VALUES (2527,0,0,1000,607,10);
 INSERT INTO `mob_droplist` VALUES (2527,0,0,1000,608,20);
@@ -18555,7 +18553,7 @@ INSERT INTO `mob_droplist` VALUES (3182,0,0,1000,14885,100);
 INSERT INTO `mob_droplist` VALUES (3183,0,0,1000,858,710);
 INSERT INTO `mob_droplist` VALUES (3183,0,0,1000,940,280);
 INSERT INTO `mob_droplist` VALUES (3183,0,0,1000,16980,900);
-INSERT INTO `mob_droplist` VALUES (3184,0,0,1000,14468,410);
+INSERT INTO `mob_droplist` VALUES (3184,0,0,1000,14468,208); -- (Shikigami Weapon) Yinyang Robe
 INSERT INTO `mob_droplist` VALUES (3185,0,0,1000,646,980);
 INSERT INTO `mob_droplist` VALUES (3185,0,0,1000,654,100);
 INSERT INTO `mob_droplist` VALUES (3185,0,0,1000,679,100);
@@ -30556,20 +30554,18 @@ INSERT INTO `mob_droplist` VALUES (4127,0,0,1000,1613,100);
 INSERT INTO `mob_droplist` VALUES (4127,0,0,1000,1687,90);
 INSERT INTO `mob_droplist` VALUES (4128,2,0,1000,880,0);
 INSERT INTO `mob_droplist` VALUES (4128,0,0,1000,880,210);
-INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,300);
-INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,270);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,4824,70);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,16447,160);
-INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,544,90);
+INSERT INTO `mob_droplist` VALUES (4129,2,0,1000,880,0); -- (Wendigo, Inner Horutoto Ruins, WAR) bone_chip: steal
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,300); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,880,270); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4129,0,0,1000,16447,160); -- rusty_dagger
 INSERT INTO `mob_droplist` VALUES (4130,2,0,1000,880,0);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,880,250);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,1031,30);
 INSERT INTO `mob_droplist` VALUES (4130,0,0,1000,2776,40);
-INSERT INTO `mob_droplist` VALUES (4131,2,0,1000,880,0);
-INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,880,210);
-INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,4824,50);
+INSERT INTO `mob_droplist` VALUES (4131,2,0,1000,880,0); -- (Wendigo, Inner Horutoto Ruins, BLM) bone_chip: steal
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,544,90); -- test_answers
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,880,210); -- bone_chip
+INSERT INTO `mob_droplist` VALUES (4131,0,0,1000,4824,50); -- scroll_of_gravity
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,891,130);
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,922,240);
 INSERT INTO `mob_droplist` VALUES (4132,0,0,1000,924,60);
@@ -33033,6 +33029,22 @@ INSERT INTO `mob_droplist` VALUES (4665,0,0,1000,2831,539); -- (Marquis Naberius
 INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2818,172); -- (Sabotender Corrido) Aptant: Ishis
 INSERT INTO `mob_droplist` VALUES (4666,0,0,1000,2816,103); -- (Sabotender Corrido) Aptant: Tachus
 INSERT INTO `mob_droplist` VALUES (4667,0,0,1000,19125,73); -- (Euryale) Lyft Jambiya
+INSERT INTO `mob_droplist` VALUES (4668,0,0,1000,2844,269); -- (Gloombound Lurker) Penumbral Brass Ingot
+INSERT INTO `mob_droplist` VALUES (4669,0,0,1000,16015,176); -- (Lesath) Esse Earring
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2819,300); -- (Muq Shabeel) Aptant: Fyrst
+INSERT INTO `mob_droplist` VALUES (4670,0,0,1000,2821,200); -- (Muq Shabeel) Aptant: Haelan
+INSERT INTO `mob_droplist` VALUES (4671,0,0,1000,16022,238); -- (Donggu) Fidelity Earring
+INSERT INTO `mob_droplist` VALUES (4672,0,0,1000,16033,209); -- (Qoofim) Sylph Earring
+INSERT INTO `mob_droplist` VALUES (4673,0,0,1000,16020,265); -- (Ravenous Crawler) Survivor Earring
+INSERT INTO `mob_droplist` VALUES (4674,0,0,1000,15056,212); -- (Barbaric Weapon) Rover's Gloves
+INSERT INTO `mob_droplist` VALUES (4675,0,0,1000,2828,86); -- (Herensugue) Herensugue Skin
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5374,100); -- (Deviate Bhoot) non-NM version
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100); 
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5375,100);
+INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100);
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5384,100); -- (Psycheflayer) non-NM version
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5375,100);
+INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5374,100);
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;

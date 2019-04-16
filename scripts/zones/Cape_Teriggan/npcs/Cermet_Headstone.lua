@@ -14,8 +14,8 @@ function onTrade(player,npc,trade)
 
     -- WANDERING SOULS
     if (trade:hasItemQty(949,1) and trade:getItemCount() == 1) then
-        if (not player:hasCompletedQuest(OUTLANDS,WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
-             player:addQuest(OUTLANDS,WANDERING_SOULS);
+        if (not player:hasCompletedQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS) and (player:hasCompletedMission(ZILART,HEADSTONE_PILGRIMAGE) or player:hasKeyItem(dsp.ki.WIND_FRAGMENT))) then
+             player:addQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS);
              player:startEvent(202,949);
         else
              player:messageSpecial(ID.text.NOTHING_HAPPENS);
@@ -80,7 +80,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13248); -- Flagellant's Rope
             player:messageSpecial(ID.text.ITEM_OBTAINED,13248);
             player:addTitle(dsp.title.BEARER_OF_BONDS_BEYOND_TIME);
-            player:completeQuest(OUTLANDS,WANDERING_SOULS);
+            player:completeQuest(OUTLANDS,dsp.quest.id.outlands.WANDERING_SOULS);
         end
     end
 end;

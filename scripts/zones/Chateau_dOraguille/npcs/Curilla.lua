@@ -28,18 +28,18 @@ function onTrigger(player,npc)
     local wsQuestEvent = dsp.wsquest.getTriggerEvent(wsQuest,player)
     local mLvL = player:getMainLvl()
     local mJob = player:getMainJob()
-    local theGeneralSecret = player:getQuestStatus(SANDORIA,THE_GENERAL_S_SECRET)
-    local envelopedInDarkness = player:getQuestStatus(SANDORIA,ENVELOPED_IN_DARKNESS)
-    local peaceForTheSpirit = player:getQuestStatus(SANDORIA,PEACE_FOR_THE_SPIRIT)
+    local theGeneralSecret = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_GENERAL_S_SECRET)
+    local envelopedInDarkness = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS)
+    local peaceForTheSpirit = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT)
     local WildcatSandy = player:getVar("WildcatSandy")
 
     if wsQuestEvent ~= nil then
         player:startEvent(wsQuestEvent)
-    elseif (player:getQuestStatus(SANDORIA,LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,15) == false) then
+    elseif (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LURE_OF_THE_WILDCAT_SAN_D_ORIA) == QUEST_ACCEPTED and player:getMaskBit(WildcatSandy,15) == false) then
         player:startEvent(562)
     elseif (theGeneralSecret == QUEST_AVAILABLE and player:getFameLevel(SANDORIA) >= 2) then
         player:startEvent(55) -- Start Quest "The General's Secret"
-    elseif (mJob == dsp.job.RDM and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
+    elseif (mJob == dsp.job.RDM and mLvL >= AF2_QUEST_LEVEL and player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_CRIMSON_TRIAL) == QUEST_COMPLETED and envelopedInDarkness == QUEST_AVAILABLE) then
         player:startEvent(94) -- Start Quest "Enveloped in Darkness"
     elseif (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH) and player:hasKeyItem(dsp.ki.OLD_BOOTS) == false) then
         player:startEvent(93)
@@ -71,7 +71,7 @@ end
 
 function onEventFinish(player,csid,option)
     if (csid == 55 and option == 1) then
-        player:addQuest(SANDORIA,THE_GENERAL_S_SECRET)
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_GENERAL_S_SECRET)
         player:addKeyItem(dsp.ki.CURILLAS_BOTTLE_EMPTY)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.CURILLAS_BOTTLE_EMPTY)
     elseif (csid == 54) then
@@ -82,14 +82,14 @@ function onEventFinish(player,csid,option)
             player:addItem(16409)
             player:messageSpecial(ID.text.ITEM_OBTAINED,16409) -- Lynx Baghnakhs
             player:addFame(SANDORIA,30)
-            player:completeQuest(SANDORIA,THE_GENERAL_S_SECRET)
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_GENERAL_S_SECRET)
         end
     elseif (csid == 94 and option == 1) then
-        player:addQuest(SANDORIA,ENVELOPED_IN_DARKNESS)
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.ENVELOPED_IN_DARKNESS)
         player:addKeyItem(dsp.ki.OLD_POCKET_WATCH)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED,dsp.ki.OLD_POCKET_WATCH)
     elseif (csid == 109 and option == 1) then
-        player:addQuest(SANDORIA,PEACE_FOR_THE_SPIRIT)
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.PEACE_FOR_THE_SPIRIT)
         player:setVar("needs_crawler_blood",0)
     elseif (csid == 101) then
         player:setVar("needs_crawler_blood",1)

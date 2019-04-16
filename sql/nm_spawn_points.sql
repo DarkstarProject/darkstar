@@ -907,6 +907,8 @@ INSERT INTO `nm_spawn_points` VALUES (17170475,0,24.514,-70.143,-220.559); -- Ra
 INSERT INTO `nm_spawn_points` VALUES (17170499,0,24.01,-67.138,-240.132); -- Kirtimukha
 INSERT INTO `nm_spawn_points` VALUES (17170569,0,-51.734,-28.457,686.549); -- Demoiselle Desolee
 INSERT INTO `nm_spawn_points` VALUES (17174709,0,133.834,22.199,-208.7); -- Centipedal Centruroides
+INSERT INTO `nm_spawn_points` VALUES (17178689,0,51,32,279); -- Coquecigrue (north)
+INSERT INTO `nm_spawn_points` VALUES (17178689,1,199,0,-234); -- Coquecigrue (south)
 INSERT INTO `nm_spawn_points` VALUES (17178803,0,446.853,23.817,72.982); -- Balam-Quitz
 INSERT INTO `nm_spawn_points` VALUES (17182790,0,-228,-0.68,148); -- Duu Masa the Onecut (Castle Oztroja [S])
 INSERT INTO `nm_spawn_points` VALUES (17182813,0,-103.220,-0.246,-159.507); -- Zhuu Buxu the Silent (Castle Oztroja [S])
@@ -2109,6 +2111,7 @@ INSERT INTO `nm_spawn_points` VALUES (17232117,46,297.000,20.000,446.000);
 INSERT INTO `nm_spawn_points` VALUES (17232117,47,-224.000,-80.000,-130.000);
 INSERT INTO `nm_spawn_points` VALUES (17232117,48,134.000,-21.200,133.000);
 INSERT INTO `nm_spawn_points` VALUES (17232117,49,297.000,20.000,446.000);
+INSERT INTO `nm_spawn_points` VALUES (17236027,0,57,-21.108,-24); -- Barbaric Weapon
 INSERT INTO `nm_spawn_points` VALUES (17236045,0,47.21,-24.02,-367.51); -- Timeworn Warrior
 INSERT INTO `nm_spawn_points` VALUES (17236146,0,36.000,-36.000,160.000);
 INSERT INTO `nm_spawn_points` VALUES (17236146,1,42.000,-35.998,154.000);
@@ -5549,6 +5552,7 @@ INSERT INTO `nm_spawn_points` VALUES (17563785,0,-238.000,-0.500,-167.000); -- S
 INSERT INTO `nm_spawn_points` VALUES (17563801,0,-236.855,0.476,-51.263);
 INSERT INTO `nm_spawn_points` VALUES (17563801,1,-237.426,0.500,-23.412);
 INSERT INTO `nm_spawn_points` VALUES (17563801,2,-230.732,-0.025,-52.324);
+INSERT INTO `nm_spawn_points` VALUES (17567801,0,-48.06,31.996,270.290); -- Donggu
 INSERT INTO `nm_spawn_points` VALUES (17567901,0,-71.36,31.975,207.479); -- Agar Agar
 INSERT INTO `nm_spawn_points` VALUES (17568127,0,-96.898,-27.154,-258.763);
 INSERT INTO `nm_spawn_points` VALUES (17568127,1,-86.207,-26.437,-261.129);

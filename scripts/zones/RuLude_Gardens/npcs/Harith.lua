@@ -11,7 +11,7 @@ local ID = require("scripts/zones/RuLude_Gardens/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         local reward = 0;
         local anima = 0;
@@ -55,10 +55,10 @@ function onTrigger(player,npc)
 
     if (player:getCurrentMission(COP) == BELOW_THE_ARKS and player:getVar("PromathiaStatus") == 1) then
         player:startEvent(113);
-    elseif (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= THE_MOTHERCRYSTALS) then
-        player:addQuest(JEUNO,EMPTY_MEMORIES);
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_AVAILABLE and player:getCurrentMission(COP) >= THE_MOTHERCRYSTALS) then
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES);
         player:startEvent(114);
-    elseif (player:getQuestStatus(JEUNO,EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
+    elseif (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.EMPTY_MEMORIES) >= QUEST_ACCEPTED) then
         player:startEvent(114);
     else
         player:startEvent(111);
@@ -78,9 +78,9 @@ function onEventFinish(player,csid,option)
         player:addItem(objecttrade);
         player:messageSpecial(ID.text.ITEM_OBTAINED,objecttrade);
         player:setVar("harithreward", 0);
-        if (player:getQuestStatus(JEUNO, EMPTY_MEMORIES) == QUEST_ACCEPTED) then
+        if (player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES) == QUEST_ACCEPTED) then
             player:addFame(JEUNO, 30);
-            player:completeQuest(JEUNO, EMPTY_MEMORIES)
+            player:completeQuest(JEUNO, dsp.quest.id.jeuno.EMPTY_MEMORIES)
         else
             player:addFame(JEUNO, 5);
         end

@@ -244,7 +244,7 @@ INSERT INTO `abilities` VALUES (204,'alacrity',20,25,1,1,231,0,0,178,2000,0,6,20
 INSERT INTO `abilities` VALUES (205,'ebullience',20,55,1,1,231,0,0,179,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (206,'manifestation',20,40,1,1,231,0,0,180,2000,0,6,20.0,0,1,80,0,32,'WOTG');
 INSERT INTO `abilities` VALUES (207,'stratagems',20,10,1,0,233,0,0,0,2000,0,6,20.0,0,0,0,0,0,'WOTG');
-INSERT INTO `abilities` VALUES (208,'velocity_shot',11,45,1,300,129,0,0,186,2000,0,6,20.0,0,1,300,0,0,'WOTG');
+INSERT INTO `abilities` VALUES (208,'velocity_shot',11,45,1,60,129,0,0,186,2000,0,6,20.0,0,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (209,'snarl',9,45,257,30,107,0,0,87,2000,0,6,20.0,0,0,0,0,192,'WOTG');
 INSERT INTO `abilities` VALUES (210,'retaliation',1,60,1,180,8,0,0,185,2000,0,6,20.0,0,1,80,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (211,'footwork',2,65,1,300,21,0,0,197,2000,0,6,20.0,0,1,80,0,0,'WOTG');
@@ -316,6 +316,7 @@ INSERT INTO `abilities` VALUES (364,'Effusion',22,1,1,0,0,0,0,0,2000,0,6,20.0,0,
 INSERT INTO `abilities` VALUES (365,'chocobo_jig_ii',19,70,1,60,218,126,0,13,2000,0,14,20.0,1,1,300,0,0,'WOTG');
 INSERT INTO `abilities` VALUES (367,'Vivacious_pulse',22,1,1,300,0,0,0,327,2000,0,6,20.0,0,1,300,0,0,NULL);
 INSERT INTO `abilities` VALUES (369,'apogee',15,70,1,180,108,0,0,333,2000,0,6,20.0,0,1,0,0,0,NULL);
+INSERT INTO `abilities` VALUES (373,'consume_mana',8,55,1,60,373,0,0,337,2000,0,6,20.0,0,1,1300,0,0,'SOA');
 INSERT INTO `abilities` VALUES (374,'naturalists_roll',17,67,1,60,193,420,0,328,2000,0,6,8.0,1,1,80,0,8,'SOA'); -- No Enhancing Magic Duration MOD, Empty PH effect exists
 INSERT INTO `abilities` VALUES (375,'runeists_roll',17,70,1,60,193,420,0,329,2000,0,6,8.0,1,1,80,0,8,'SOA');
 INSERT INTO `abilities` VALUES (496,'healing_ruby',15,1,3,60,174,0,0,6,2000,0,6,18.0,0,1,60,0,0,NULL);

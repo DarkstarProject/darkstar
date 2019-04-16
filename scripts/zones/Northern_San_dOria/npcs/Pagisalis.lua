@@ -14,7 +14,7 @@ local ID = require("scripts/zones/Northern_San_dOria/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(SANDORIA,UNDYING_FLAMES) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(913,2) and trade:getItemCount() == 2) then -- Trade Lump of Beeswax
             player:startEvent(563);
         end
@@ -31,7 +31,7 @@ end;
 function onTrigger(player,npc)
 
     sanFame = player:getFameLevel(SANDORIA);
-    undyingFlames = player:getQuestStatus(SANDORIA,UNDYING_FLAMES);
+    undyingFlames = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
     if (player:hasKeyItem(dsp.ki.OLD_POCKET_WATCH)) then
         player:startEvent(48);
     elseif (player:hasKeyItem(dsp.ki.OLD_BOOTS)) then
@@ -54,7 +54,7 @@ end;
 function onEventFinish(player,csid,option)
 
     if (csid == 562 and option == 0) then
-        player:addQuest(SANDORIA,UNDYING_FLAMES);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
     elseif (csid == 563) then
         if (player:getFreeSlotsCount() == 0) then
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,13211); -- Friars Rope
@@ -64,7 +64,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13211);
             player:messageSpecial(ID.text.ITEM_OBTAINED,13211); -- Friars Rope
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,UNDYING_FLAMES);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.UNDYING_FLAMES);
         end
     elseif (csid == 37) then
         player:tradeComplete();

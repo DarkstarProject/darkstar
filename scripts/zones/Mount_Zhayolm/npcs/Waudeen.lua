@@ -15,7 +15,7 @@ end
 
 function onTrigger(player, npc)
     local toauMission = player:getCurrentMission(TOAU)
-    local beginnings = player:getQuestStatus(AHT_URHGAN, BEGINNINGS)
+    local beginnings = player:getQuestStatus(AHT_URHGAN, dsp.quest.id.ahtUrhgan.BEGINNINGS)
 
     -- IMMORTAL SENTRIES
     if toauMission == IMMORTAL_SENTRIES then

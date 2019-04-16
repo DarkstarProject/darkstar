@@ -253,6 +253,23 @@ local abcShop =
 
 -----------------------------------
 
+local COSMO_READY = 2147483649 -- BITMASK for the purchase
+
+local function getCosmoCleanseTime(player)
+    local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 60 * 60
+    local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
+
+    if lastCosmoTime ~= 0 then
+        lastCosmoTime = lastCosmoTime + cosmoWaitTime
+    end
+
+    if lastCosmoTime <= os.time() then
+        return COSMO_READY
+    end
+
+    return (lastCosmoTime - 1009843200) - 39600 -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
+end
+
 function onTrade(player,npc,trade)
     local count = trade:getItemCount()
     local afUpgrade = player:getVar("AFupgrade")
@@ -273,7 +290,7 @@ function onTrade(player,npc,trade)
     elseif afUpgrade == 0 then
         local tradedCombo = 0
         local storedABCs  = player:getCurrency("ancient_beastcoin")
-    
+
         -- check for af upgrade trades
         for k, v in pairs(afArmorPlusOne) do
             if npcUtil.tradeHasExactly(trade, v.trade) then
@@ -300,7 +317,7 @@ function onTrade(player,npc,trade)
         -- found a match
         if tradedCombo > 0 then
             local time = os.date("*t")
-            
+
             player:confirmTrade()
             player:setVar("AFupgrade", tradedCombo)
             player:setVar("AFupgradeDay", os.time() + (3600 - time.min * 60)) -- Current time + Remaining minutes in the hour in seconds (Day Change)
@@ -311,9 +328,9 @@ end
 
 function onTrigger(player,npc)
     local wildcatJeuno = player:getVar("WildcatJeuno")
-    
+
     -- LURE OF THE WILDCAT
-    if player:getQuestStatus(JEUNO, LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
+    if player:getQuestStatus(JEUNO, dsp.quest.id.jeuno.LURE_OF_THE_WILDCAT_JEUNO) == QUEST_ACCEPTED and not player:getMaskBit(wildcatJeuno, 19) then
         player:startEvent(313)
 
     -- DEFAULT DIALOG (menu)
@@ -323,7 +340,6 @@ function onTrigger(player,npc)
         local arg4 = 0
         local afUpgrade = player:getVar("AFupgrade")
         local gil = player:getGil()
-        local cosmoTime = 0
         local hasCosmoCleanse = 0
         local storedABCs = player:getCurrency("ancient_beastcoin")
 
@@ -336,21 +352,12 @@ function onTrigger(player,npc)
         end
 
         -- calculate cosmocleanse parameters
-        local cosmoWaitTime = BETWEEN_2COSMOCLEANSE_WAIT_TIME * 20 * 60 * 60
-        local lastCosmoTime = player:getVar("Cosmo_Cleanse_TIME")
-
-        if lastCosmoTime ~= 0 then
-            lastCosmoTime = lastCosmoTime + cosmoWaitTime
-        end
+        local cosmoTime = 0
 
         if player:hasKeyItem(dsp.ki.COSMOCLEANSE) then
             hasCosmoCleanse = 1
         else
-            if lastCosmoTime <= os.time() then
-                cosmoTime = 2147483649 -- BITMASK for the purchase
-            else
-                cosmoTime = (lastCosmoTime - 1009843200) - 39600 -- (os.time number - BITMASK for the event) - 11 hours in seconds. Only works in this format (strangely).
-            end
+            cosmoTime = getCosmoCleanseTime(player)
         end
 
         player:startEvent(310, 3, arg3, arg4, gil, cosmoTime, 1, hasCosmoCleanse, storedABCs)
@@ -376,11 +383,14 @@ function onEventFinish(player,csid,option)
     -- LURE OF THE WILDCAT
     if csid == 313 then
         player:setMaskBit(player:getVar("WildcatJeuno"), "WildcatJeuno", 19, true)
-        
+
     -- purchase cosmocleanse
-    elseif csid == 310 and option == 3 and player:delGil(15000) then
-        npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
-        player:setVar("Cosmo_Cleanse_TIME", os.time())
+    elseif csid == 310 and option == 3 then
+        local cosmoTime = getCosmoCleanseTime(player)
+        if cosmoTime == COSMO_READY and player:delGil(15000) then
+            npcUtil.giveKeyItem(player, dsp.ki.COSMOCLEANSE)
+            player:setVar("Cosmo_Cleanse_TIME", os.time())
+        end
 
     -- purchase item using ancient beastcoins
     elseif csid == 310 and abcShop[option] then
@@ -397,7 +407,7 @@ function onEventFinish(player,csid,option)
         if info == nil then
             info = relicArmorPlusOne[afUpgrade]
         end
-        
+
         -- found a valid reward
         if info and npcUtil.giveItem(player, info.reward) then
             player:setVar("AFupgrade", 0)

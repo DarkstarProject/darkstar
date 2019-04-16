@@ -18,7 +18,7 @@ function onTrigger(player,npc)
     local offset = npc:getID() - ID.npc.HIDE_FLAP_OFFSET
 
     -- THE DOORMAN
-    if offset == 0 and player:getQuestStatus(BASTOK, THE_DOORMAN) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SWORD_GRIP_MATERIAL) then
+    if offset == 0 and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_DOORMAN) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SWORD_GRIP_MATERIAL) then
         if player:getVar("theDoormanKilledNM") >= 2 then
             npcUtil.giveKeyItem(player, dsp.ki.SWORD_GRIP_MATERIAL)
             player:setVar("theDoormanMyMob", 0)
@@ -30,7 +30,7 @@ function onTrigger(player,npc)
         end
         
     -- THE FIRST MEETING
-    elseif offset == 1 and player:getQuestStatus(BASTOK, THE_FIRST_MEETING) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL) then
+    elseif offset == 1 and player:getQuestStatus(BASTOK, dsp.quest.id.bastok.THE_FIRST_MEETING) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL) then
         if player:getVar("theFirstMeetingKilledNM") >= 2 then
             npcUtil.giveKeyItem(player, dsp.ki.SANDORIAN_MARTIAL_ARTS_SCROLL)
             player:setVar("theFirstMeetingKilledNM",0)

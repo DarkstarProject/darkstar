@@ -15,7 +15,7 @@ local ID = require("scripts/zones/Metalworks/IDs");
 
 function onTrade(player,npc,trade)
 
-    if (player:getQuestStatus(JEUNO,RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 6) then
+    if (player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.RIDING_ON_THE_CLOUDS) == QUEST_ACCEPTED and player:getVar("ridingOnTheClouds_2") == 6) then
         if (trade:hasItemQty(1127,1) and trade:getItemCount() == 1) then -- Trade Kindred seal
             player:setVar("ridingOnTheClouds_2",0);
             player:tradeComplete();
@@ -84,7 +84,7 @@ function onEventFinish(player,csid,option)
             player:delKeyItem(dsp.ki.YASINS_SWORD);
             player:setVar("theDoormanCS",0);
             player:addFame(BASTOK,30);
-            player:completeQuest(BASTOK,THE_DOORMAN);
+            player:completeQuest(BASTOK,dsp.quest.id.bastok.THE_DOORMAN);
         else
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED, 16678); -- Razor Axe
         end

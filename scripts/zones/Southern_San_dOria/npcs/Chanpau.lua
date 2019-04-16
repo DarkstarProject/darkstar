@@ -11,7 +11,7 @@ require("scripts/globals/quests");
 
 function onTrade(player,npc,trade)
     -- "Flyers for Regine" conditional script
-    local FlyerForRegine = player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE);
+    local FlyerForRegine = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE);
 
     if (FlyerForRegine == 1) then
         local count = trade:getItemCount();
@@ -25,9 +25,9 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getQuestStatus(SANDORIA,A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.A_SQUIRE_S_TEST_II) == QUEST_ACCEPTED) then
         player:startEvent(629);
-    elseif (player:getQuestStatus(SANDORIA, THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED) then
+    elseif (player:getQuestStatus(SANDORIA, dsp.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM) == QUEST_COMPLETED) then
         Fired = player:getVar("Fired")
         if Fired == 1 then
             player:startEvent(567) -- i got fired in a day

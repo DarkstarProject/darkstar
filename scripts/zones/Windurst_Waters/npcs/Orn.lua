@@ -12,7 +12,7 @@ end;
 
 function onTrigger(player,npc)
 
-    bookwormStatus = player:getQuestStatus(WINDURST,EARLY_BIRD_CATCHES_THE_BOOKWORM);
+    bookwormStatus = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.EARLY_BIRD_CATCHES_THE_BOOKWORM);
 
     if (bookwormStatus == QUEST_ACCEPTED and player:getVar("EARLY_BIRD_TRACK_BOOK") == 3) then
         player:startEvent(399);

@@ -51,6 +51,6 @@ function onMobDespawn(mob)
         SetServerVariable("[PH]King_Behemoth", 0)
         DisallowRespawn(ID.mob.BEHEMOTH, false)
         UpdateNMSpawnPoint(ID.mob.BEHEMOTH)
-        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(math.random(75600,86400))
+        GetMobByID(ID.mob.BEHEMOTH):setRespawnTime(75600 + math.random(0, 6) * 1800) -- 21 - 24 hours with half hour windows
     end
 end

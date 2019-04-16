@@ -12,14 +12,14 @@ local ID = require("scripts/zones/Mhaura/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    if (trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
+    if (trade:hasItemQty(1548,1) == true and player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING) == QUEST_ACCEPTED and player:getMainJob() == dsp.job.SMN) then
         player:startEvent(10026,0,1548,5,20);
     end
 end;
 
 function onTrigger(player,npc)
 
-    local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+    local TrialSizeLightning = player:getQuestStatus(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
 
     if (player:getMainLvl() >= 20 and player:getMainJob() == dsp.job.SMN and TrialSizeLightning == QUEST_AVAILABLE and player:getFameLevel(WINDURST) >= 2) then --Requires player to be Summoner at least lvl 20
         player:startEvent(10025,0,1548,5,20);     --mini tuning fork of lightning, zone, level
@@ -47,7 +47,7 @@ function onEventFinish(player,csid,option)
             player:messageSpecial(ID.text.ITEM_CANNOT_BE_OBTAINED,1548); --Mini tuning fork
         else
             player:setVar("TrialSizeLightning_date", 0);
-            player:addQuest(OTHER_AREAS_LOG,TRIAL_SIZE_TRIAL_BY_LIGHTNING);
+            player:addQuest(OTHER_AREAS_LOG,dsp.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING);
             player:addItem(1548);
             player:messageSpecial(ID.text.ITEM_OBTAINED,1548);
         end

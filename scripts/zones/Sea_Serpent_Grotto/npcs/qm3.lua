@@ -12,7 +12,7 @@ function onTrade(player, npc, trade)
 end
 
 function onTrigger(player, npc)
-    if player:getQuestStatus(OUTLANDS, ITS_NOT_YOUR_VAULT) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SEALED_IRON_BOX) then
+    if player:getQuestStatus(OUTLANDS, dsp.quest.id.outlands.ITS_NOT_YOUR_VAULT) == QUEST_ACCEPTED and not player:hasKeyItem(dsp.ki.SEALED_IRON_BOX) then
         player:addKeyItem(dsp.ki.SEALED_IRON_BOX)
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, dsp.ki.SEALED_IRON_BOX)
     end

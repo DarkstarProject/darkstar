@@ -1733,7 +1733,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Leech',369,423);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,418);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,421);
 INSERT INTO `mob_skill_lists` VALUES ('Leech',369,420);
--- 370: free
+INSERT INTO `mob_skill_lists` VALUES ('Lesath',370,354); -- wild_rage
 INSERT INTO `mob_skill_lists` VALUES ('Marid',371,1705);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,444);
 INSERT INTO `mob_skill_lists` VALUES ('Crab',372,443);
@@ -2097,7 +2097,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3059);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3060);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3061);
 INSERT INTO `mob_skill_lists` VALUES ('Yumcax',465,3062);
--- 466: free
+INSERT INTO `mob_skill_lists` VALUES ('Muq_Shabeel',466,480); -- petrifactive_breath
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2784);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2785);
 INSERT INTO `mob_skill_lists` VALUES ('Gallu',467,2786);
@@ -3373,6 +3373,9 @@ INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,923);
 INSERT INTO `mob_skill_lists` VALUES ('Suparna',999,924);
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armed',1000,2060); -- brainjack
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Battle',1001,2059); -- discoid
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2054); -- diffusion ray
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2055); -- inertia stream
+INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2056); -- discharge
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Armored',1002,2057); -- mortal revolution
 INSERT INTO `mob_skill_lists` VALUES ('Chariot_Bowed',1003,2058); -- homing missle
 INSERT INTO `mob_skill_lists` VALUES ('NM_Rocs',1004,922); -- Blind Vortex

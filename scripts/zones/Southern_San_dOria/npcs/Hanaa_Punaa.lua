@@ -15,28 +15,28 @@ local ID = require("scripts/zones/Southern_San_dOria/IDs");
 function onTrade(player,npc,trade)
 
     -- "The Seamstress" , x3 sheepskin trade
-    if (player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_SEAMSTRESS) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(505,3) and trade:getItemCount() == 3) then
             player:startEvent(530);
         end
     end
 
     -- "Black Tiger Skins", Tiger Hide trade
-    if (player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACK_TIGER_SKINS) == QUEST_ACCEPTED) then
         if (trade:hasItemQty(861,3) and trade:getItemCount() == 3) then
             player:startEvent(577);
         end
     end
 
     -- "Lizard Skins", lizard skin trade
-    if (player:getQuestStatus(SANDORIA,LIZARD_SKINS) ~= QUEST_AVAILABLE) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LIZARD_SKINS) ~= QUEST_AVAILABLE) then
         if (trade:hasItemQty(852,3) and trade:getItemCount() == 3) then
             player:startEvent(561);
         end
     end
 
     -- "Flyers for Regine"
-    if (player:getQuestStatus(SANDORIA,FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
+    if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.FLYERS_FOR_REGINE) == QUEST_ACCEPTED) then
         local count = trade:getItemCount();
         local MagicFlyer = trade:hasItemQty(532,1);
         if (MagicFlyer == true and count == 1) then
@@ -50,9 +50,9 @@ function onTrigger(player,npc)
 
     -- Checking Fame Level & Quest
     sanFame = player:getFameLevel(SANDORIA);
-    theSteamStress = player:getQuestStatus(SANDORIA,THE_SEAMSTRESS);
-    lizardSkins = player:getQuestStatus(SANDORIA,LIZARD_SKINS);
-    blackTigerSkins = player:getQuestStatus(SANDORIA,BLACK_TIGER_SKINS);
+    theSteamStress = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_SEAMSTRESS);
+    lizardSkins = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LIZARD_SKINS);
+    blackTigerSkins = player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.BLACK_TIGER_SKINS);
 
     -- "The Seamstress" Quest Status
     if (theSteamStress == QUEST_AVAILABLE and player:getVar("theSeamStress") == 1) then
@@ -97,7 +97,7 @@ function onEventFinish(player,csid,option)
 
     -- "The Seamstress" Quest
     if ((csid == 528 or csid == 531) and option == 0) then
-        player:addQuest(SANDORIA,THE_SEAMSTRESS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.THE_SEAMSTRESS);
         player:setVar("theSeamStress",0);
     elseif (csid == 530) then
         if (player:getFreeSlotsCount() == 0) then
@@ -107,9 +107,9 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.SILENCER_OF_THE_LAMBS);
             player:addItem(12696);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 12696); -- Leather Gloves
-            if (player:getQuestStatus(SANDORIA,THE_SEAMSTRESS) == QUEST_ACCEPTED) then
+            if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.THE_SEAMSTRESS) == QUEST_ACCEPTED) then
                 player:addFame(SANDORIA,30);
-                player:completeQuest(SANDORIA,THE_SEAMSTRESS);
+                player:completeQuest(SANDORIA,dsp.quest.id.sandoria.THE_SEAMSTRESS);
             else
                 player:addFame(SANDORIA,5);
             end
@@ -117,7 +117,7 @@ function onEventFinish(player,csid,option)
 
     -- "Liard Skins" Quest
     elseif ((csid == 559 or csid == 562) and option == 0) then
-        player:addQuest(SANDORIA,LIZARD_SKINS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.LIZARD_SKINS);
         player:setVar("lzdSkins",0);
     elseif (csid == 561) then
         if (player:getFreeSlotsCount() == 0) then
@@ -127,9 +127,9 @@ function onEventFinish(player,csid,option)
             player:addTitle(dsp.title.LIZARD_SKINNER);
             player:addItem(12697);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 12697); -- Lizard Gloves
-            if (player:getQuestStatus(SANDORIA,LIZARD_SKINS) == QUEST_ACCEPTED) then
+            if (player:getQuestStatus(SANDORIA,dsp.quest.id.sandoria.LIZARD_SKINS) == QUEST_ACCEPTED) then
                 player:addFame(SANDORIA,30);
-                player:completeQuest(SANDORIA,LIZARD_SKINS);
+                player:completeQuest(SANDORIA,dsp.quest.id.sandoria.LIZARD_SKINS);
             else
                 player:addFame(SANDORIA,5);
             end
@@ -137,7 +137,7 @@ function onEventFinish(player,csid,option)
 
     -- "Black Tiger Skins" Quest
     elseif ((csid == 576 or csid == 579) and option == 0) then
-        player:addQuest(SANDORIA,BLACK_TIGER_SKINS);
+        player:addQuest(SANDORIA,dsp.quest.id.sandoria.BLACK_TIGER_SKINS);
         player:setVar("blkTigerSkin",0);
     elseif (csid == 577) then
         if (player:getFreeSlotsCount() == 0) then
@@ -148,7 +148,7 @@ function onEventFinish(player,csid,option)
             player:addItem(13119);
             player:messageSpecial(ID.text.ITEM_OBTAINED, 13119); -- Tyger Stole
             player:addFame(SANDORIA,30);
-            player:completeQuest(SANDORIA,BLACK_TIGER_SKINS);
+            player:completeQuest(SANDORIA,dsp.quest.id.sandoria.BLACK_TIGER_SKINS);
         end
     end
 

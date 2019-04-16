@@ -14,7 +14,7 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local StampHunt = player:getQuestStatus(BASTOK,STAMP_HUNT);
+    local StampHunt = player:getQuestStatus(BASTOK,dsp.quest.id.bastok.STAMP_HUNT);
 
     if (player:getCurrentMission(BASTOK) == RETURN_OF_THE_TALEKEEPER and player:getVar("MissionStatus") == 3) then
         player:startEvent(182);

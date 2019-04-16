@@ -52,7 +52,7 @@ function onSpellCast(caster,target,spell)
         dmg = target:getHP()
     end
 
-    dmg = BlueFinalAdjustments(caster,target,spell,dmg)
+    dmg = BlueFinalAdjustments(caster,target,spell,dmg,params)
     caster:addHP(dmg)
 
     return dmg

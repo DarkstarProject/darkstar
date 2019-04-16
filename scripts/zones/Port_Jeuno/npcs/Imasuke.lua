@@ -13,7 +13,7 @@ local ID = require("scripts/zones/Port_Jeuno/IDs");
 -----------------------------------
 
 function onTrade(player,npc,trade)
-    local theAntiqueCollector = player:getQuestStatus(JEUNO,THE_ANTIQUE_COLLECTOR);
+    local theAntiqueCollector = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ANTIQUE_COLLECTOR);
 
     -- THE ANTIQUE COLLECTOR (kaiser sword)
     if (theAntiqueCollector == QUEST_ACCEPTED and trade:hasItemQty(16631,1) and trade:getItemCount() == 1) then
@@ -22,8 +22,8 @@ function onTrade(player,npc,trade)
 end;
 
 function onTrigger(player,npc)
-    local circleOfTime = player:getQuestStatus(JEUNO,THE_CIRCLE_OF_TIME);
-    local theAntiqueCollector = player:getQuestStatus(JEUNO,THE_ANTIQUE_COLLECTOR);
+    local circleOfTime = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_CIRCLE_OF_TIME);
+    local theAntiqueCollector = player:getQuestStatus(JEUNO,dsp.quest.id.jeuno.THE_ANTIQUE_COLLECTOR);
     local circleProgress = player:getVar("circleTime");
 
     -- CIRCLE OF TIME
@@ -58,7 +58,7 @@ end;
 function onEventFinish(player,csid,option)
     -- THE ANTIQUE COLLECTOR
     if (csid == 13 and option == 1) then
-        player:addQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
+        player:addQuest(JEUNO,dsp.quest.id.jeuno.THE_ANTIQUE_COLLECTOR);
     elseif (csid == 15) then
         player:addTitle(dsp.title.TRADER_OF_ANTIQUITIES);
         if (player:hasKeyItem(dsp.ki.MAP_OF_DELKFUTTS_TOWER) == false) then
@@ -71,7 +71,7 @@ function onEventFinish(player,csid,option)
         end
         player:addFame(JEUNO, 30);
         player:tradeComplete(trade);
-        player:completeQuest(JEUNO,THE_ANTIQUE_COLLECTOR);
+        player:completeQuest(JEUNO,dsp.quest.id.jeuno.THE_ANTIQUE_COLLECTOR);
 
     -- CIRCLE OF TIME
     elseif (csid == 29 and option == 1) then

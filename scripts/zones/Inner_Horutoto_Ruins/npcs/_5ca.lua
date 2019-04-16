@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    local MakingHeadlines = player:getQuestStatus(WINDURST,MAKING_HEADLINES);
+    local MakingHeadlines = player:getQuestStatus(WINDURST,dsp.quest.id.windurst.MAKING_HEADLINES);
     local CurrentMission = player:getCurrentMission(WINDURST)
     local MissionStatus = player:getVar("MissionStatus");
 
