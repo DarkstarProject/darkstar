@@ -1067,7 +1067,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
     local sOutpost = outposts[sRegion]
     local mOffset  = zones[player:getZoneID()].text.CONQUEST
 
-		    -- SIGNET
+    -- SIGNET
     if option == 1 then
 	local ID = zones[player:getZoneID()]
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
