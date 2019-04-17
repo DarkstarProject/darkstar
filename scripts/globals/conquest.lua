@@ -1073,7 +1073,7 @@ dsp.conquest.overseerOnEventFinish = function(player, csid, option, guardNation,
         local duration = (pRank + getNationRank(pNation) + 3) * 3600
         player:delStatusEffectsByFlag(dsp.effectFlag.INFLUENCE, true)
         player:addStatusEffect(dsp.effect.SIGNET, 0, 0, duration)
-		player:messageSpecial(ID.text.CONQUEST + 1)
+        player:messageSpecial(ID.text.CONQUEST + 1) -- "You've received your nation's Signet."
 
     -- BEGIN SUPPLY RUN
     elseif option >= 65541 and option <= 65565 and guardType <= dsp.conquest.guard.FOREIGN then
