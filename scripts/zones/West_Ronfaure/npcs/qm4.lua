@@ -15,7 +15,7 @@ end;
 
 function onTrigger(player,npc)
 
-    if (player:getCurrentMission(SANDORIA,PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1
+    if (player:getCurrentMission(SANDORIA,dsp.mission.id.sandoria.PRESTIGE_OF_THE_PAPSQUE) and player:getVar("MissionStatus") == 1
         and not GetMobByID(ID.mob.MARAUDER_DVOGZOG):isSpawned()) then
         if (player:getVar("Mission7-1MobKilled") == 1 and player:needToZone() == true) then
             player:addKeyItem(dsp.ki.ANCIENT_SANDORIAN_TABLET);

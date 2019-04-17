@@ -28,7 +28,7 @@ function onZoneIn( player, prevZone)
         player:setPos( -247.911, -82.165, 260.207, 248)
     end
 
-    if player:getCurrentMission( COP) == DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
+    if player:getCurrentMission( COP) == dsp.mission.id.cop.DESIRES_OF_EMPTINESS and player:getVar( "PromathiaStatus") == 9 then
         cs = 206
     elseif triggerLightCutscene(player) then -- Quest: I Can Hear A Rainbow
         cs = 114

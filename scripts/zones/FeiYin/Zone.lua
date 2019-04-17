@@ -34,7 +34,7 @@ function onZoneIn(player,prevZone)
 
     if (prevZone == dsp.zone.BEAUCEDINE_GLACIER and currentMission == 14 and MissionStatus == 10) then
         cs = 1; -- MISSION 5-1
-    elseif (currentMission == THE_HEIR_TO_THE_LIGHT and MissionStatus == 2) then
+    elseif (currentMission == dsp.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT and MissionStatus == 2) then
         cs = 23; -- San d'Oria 9-2
     elseif (player:getCurrentMission(ACP) == dsp.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_I) then
         cs = 29;

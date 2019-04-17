@@ -17,7 +17,7 @@ function onTrigger(player,npc)
     currentMission = player:getCurrentMission(pNation);
     MissionStatus = player:getVar("MissionStatus");
 
-    if (currentMission == A_NEW_JOURNEY and MissionStatus == 4) then
+    if (currentMission == dsp.mission.id.windurst.A_NEW_JOURNEY and MissionStatus == 4) then
         player:startEvent(40);
     elseif (player:getRank() == 4 and MissionStatus == 0 and player:getCurrentMission(WINDURST) == dsp.mission.id.windurst.NONE and getMissionRankPoints(player,13) == 1) then
         if (player:hasKeyItem(dsp.ki.ARCHDUCAL_AUDIENCE_PERMIT)) then
