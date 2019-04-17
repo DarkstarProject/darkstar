@@ -1726,6 +1726,10 @@ namespace battleutils
         // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
         bool validWeapon = (PWeapon == nullptr || PWeapon->getSkillType() == SKILL_HAND_TO_HAND);
 
+        if (PDefender->objtype == TYPE_MOB || PDefender->objtype == TYPE_PET) {
+            validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
+        }
+
         auto hasH2HSkill = PDefender->GetSkill(SKILL_HAND_TO_HAND);
 
         if (validWeapon && hasH2HSkill && PDefender->PAI->IsEngaged())
