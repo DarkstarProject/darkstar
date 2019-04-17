@@ -10818,7 +10818,7 @@ INSERT INTO `mob_groups` VALUES (10826,3537,198,330,0,3111,0,0,83,85,0); -- Chas
 INSERT INTO `mob_groups` VALUES (10827,120,198,330,0,89,0,0,86,88,0); -- Warren Bat (86-88) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10828,646,198,330,0,479,0,0,86,88,0); -- Crypterpillar (86-88) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10829,3768,153,330,0,3355,0,0,102,105,0); -- Viseclaw (102-105) FFXIwiki
-INSERT INTO `mob_groups` VALUES (10830,289,178,330,0,4377,0,0,104,106,0); -- Aura Sculpture (104-106) FFXIwiki
+INSERT INTO `mob_groups` VALUES (10830,289,178,330,0,4803,0,0,104,106,0); -- Aura Sculpture (104-106) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10831,1044,200,330,0,0,0,0,91,96,0); -- Donjon Bat (91-96) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10832,1085,213,330,0,0,0,0,96,98,0); -- Babaulas (96-98) FFXIwiki
 INSERT INTO `mob_groups` VALUES (10833,1083,213,330,0,0,0,0,96,98,0); -- Boribaba (~99) FFXIwiki [Estimated to match Babaulas]
