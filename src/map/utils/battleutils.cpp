@@ -1723,10 +1723,12 @@ namespace battleutils
     {
         CItemWeapon* PWeapon = GetEntityWeapon(PDefender, SLOT_MAIN);
 
-        bool hasGuardSkill = (PDefender->GetMJob() == JOB_MNK || PDefender->GetSJob() == JOB_MNK ||
-                              PDefender->GetMJob() == JOB_PUP || PDefender->GetSJob() == JOB_PUP);
+        // Defender must have no weapon equipped, or a hand to hand weapon equipped to guard
+        bool validWeapon = (PWeapon == nullptr || PWeapon->getSkillType() == SKILL_HAND_TO_HAND);
 
-        if (hasGuardSkill && PDefender->PAI->IsEngaged())
+        auto hasH2HSkill = PDefender->GetSkill(SKILL_HAND_TO_HAND);
+
+        if (validWeapon && hasH2HSkill && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);
