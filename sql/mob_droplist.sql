@@ -33045,6 +33045,10 @@ INSERT INTO `mob_droplist` VALUES (4801,0,0,1000,5378,100);
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5384,100); -- (Psycheflayer) non-NM version
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5375,100);
 INSERT INTO `mob_droplist` VALUES (4802,0,0,1000,5374,100);
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,644,212); -- (Aura Sculpture) Chunk of mythril ore
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3541,182); -- (Aura Sculpture) Seasoning stone
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,955,30); -- (Aura Sculpture) Golem shard
+INSERT INTO `mob_droplist` VALUES (4803,0,0,1000,3543,91); -- (Aura Sculpture) Fossilized fang
 
 /*!40000 ALTER TABLE `mob_droplist` ENABLE KEYS */;
 UNLOCK TABLES;
