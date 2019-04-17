@@ -27,7 +27,7 @@ function onTrigger(player,npc)
         currentMission = player:getCurrentMission(pNation);
         MissionStatus = player:getVar("MissionStatus");
 
-        if (currentMission == THE_THREE_KINGDOMS) then
+        if (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS) then
             if (MissionStatus == 2) then
                 player:startEvent(546);
             elseif (MissionStatus == 6) then
@@ -37,7 +37,7 @@ function onTrigger(player,npc)
             elseif (MissionStatus == 11) then
                 player:showText(npc,ID.text.KASARORO_DIALOG + 20);
             end
-        elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA) then
             if (MissionStatus == 3) then
                 player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 4) then
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
             elseif (MissionStatus == 5) then
                 player:startEvent(550); -- done with Sandy first path, now go to bastok
             end
-        elseif (currentMission == THE_THREE_KINGDOMS_SANDORIA2) then
+        elseif (currentMission == dsp.mission.id.windurst.THE_THREE_KINGDOMS_SANDORIA2) then
             if (MissionStatus == 8) then
                 player:showText(npc,ID.text.KASARORO_DIALOG);
             elseif (MissionStatus == 10) then

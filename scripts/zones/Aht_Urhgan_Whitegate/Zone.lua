@@ -64,7 +64,7 @@ function onRegionEnter(player,region)
             end
         end,
         [3] = function (x) -- TOAU Mission 1
-            if (player:getCurrentMission(TOAU)== LAND_OF_SACRED_SERPENTS) then
+            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.LAND_OF_SACRED_SERPENTS) then
                 player:startEvent(3000,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.A_MERCENARY_LIFE and player:needToZone() == false) then
                 if (prevZone ~= dsp.zone.AHT_URHGAN_WHITEGATE) then
@@ -83,14 +83,14 @@ function onRegionEnter(player,region)
             end
         end,
         [4] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 2) then
+            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 2) then
                 player:startEvent(3024,0,0,0,0,0,0,0,0,0);
-            elseif (player:getCurrentMission(TOAU)== BASTION_OF_KNOWLEDGE) then
+            elseif (player:getCurrentMission(TOAU)== dsp.mission.id.toau.BASTION_OF_KNOWLEDGE) then
                 player:startEvent(3112);
             end
         end,
         [5] = function (x) -- AH mission
-            if (player:getCurrentMission(TOAU)== KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 3) then
+            if (player:getCurrentMission(TOAU)== dsp.mission.id.toau.KNIGHT_OF_GOLD and player:getVar("AhtUrganStatus") == 3) then
                 player:startEvent(3026,0,0,0,0,0,0,0,0,0);
             elseif (player:getCurrentMission(TOAU) == dsp.mission.id.toau.WESTERLY_WINDS and player:getVar("AhtUrganStatus") == 0) then
                 player:startEvent(3027,0,0,0,0,0,0,0,0,0);

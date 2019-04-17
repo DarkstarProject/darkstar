@@ -60,7 +60,7 @@ function onTrigger(player,npc)
             player:startEvent(55); -- Show Off Hat
         end
     -- Book is dsp.ki.A_SONG_OF_LOVE, KeyItem ID = 126
-    elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
+    elseif (chasingStatus == QUEST_AVAILABLE and bookwormStatus == QUEST_COMPLETED and WindyMission ~= dsp.mission.id.windurst.THE_JESTER_WHO_D_BE_KING and Fame >= 3 and player:needToZone() == false) then
         player:startEvent(403); --  Add initial cutscene
     elseif (chasingStatus == QUEST_ACCEPTED and player:getVar("CHASING_TALES_TRACK_BOOK") > 0) then
         player:startEvent(412);

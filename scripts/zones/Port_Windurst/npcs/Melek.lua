@@ -21,7 +21,7 @@ function onTrigger(player,npc)
 
         if (pNation == dsp.nation.BASTOK) then
             missionStatus = player:getVar("MissionStatus");
-            if (currentMission == THE_EMISSARY) then
+            if (currentMission == dsp.mission.id.bastok.THE_EMISSARY) then
                 -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
                 if (missionStatus == 1) then
                     player:startEvent(48);
@@ -34,7 +34,7 @@ function onTrigger(player,npc)
                     player:startEvent(67);
                 end
             -- Bastok Mission 2-3 Part I - Windurst > San d'Oria
-            elseif (currentMission == THE_EMISSARY_WINDURST) then
+            elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST) then
                 if (missionStatus == 2) then
                     player:startEvent(49);
                 elseif (player:hasKeyItem(dsp.ki.SWORD_OFFERING)) then
@@ -45,7 +45,7 @@ function onTrigger(player,npc)
                     player:startEvent(55);
                 end
             -- Bastok Mission 2-3 Part II - San d'Oria > Windurst
-            elseif (currentMission == THE_EMISSARY_WINDURST2) then
+            elseif (currentMission == dsp.mission.id.bastok.THE_EMISSARY_WINDURST2) then
                 if (missionStatus == 7) then
                     player:startEvent(64);
                 elseif (missionStatus == 8) then
