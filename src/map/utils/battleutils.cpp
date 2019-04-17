@@ -1730,7 +1730,7 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        auto hasH2HSkill = PDefender->GetSkill(SKILL_HAND_TO_HAND);
+        bool hasH2HSkill = PDefender->GetSkill(SKILL_HAND_TO_HAND) > 0;
 
         if (validWeapon && hasH2HSkill && PDefender->PAI->IsEngaged())
         {
