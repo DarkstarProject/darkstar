@@ -31,7 +31,6 @@ zones[dsp.zone.UPPER_JEUNO] =
         LEILLAINE_SHOP_DIALOG            = 7002, -- Hello. Are you feeling all right?
         YOU_CAN_NOW_BECOME_A_BEASTMASTER = 7182, -- You can now become a beastmaster.
         CONQUEST                         = 7738, -- You've earned conquest points!
-		SIGNET							 = 7739, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         KIRISOMANRISO_DIALOG             = 8071, -- Delivering goods to residences everywhere!
         ITEM_DELIVERY_DIALOG             = 8071, -- Delivering goods to residences everywhere!
         DECIMATION_LEARNED               = 8194, -- You have learned the weapon skill Decimation!

@@ -48,7 +48,6 @@ zones[dsp.zone.PORT_BASTOK] =
         PAUJEAN_DIALOG_1            = 7647, -- Where can you find them? If you're the kind of adventurer I think you are, you should have a pretty good idea. Just don't do anything I wouldn't...heh heh.
         MOGHOUSE_EXIT               = 7945, -- You have learned your way through the back alleys of Bastok! Now you can exit to any area from your residence.
         CONQUEST                    = 8001, -- You've earned conquest points!
-		SIGNET						= 8002, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         VATTIAN_OPEN_DIALOG         = 8361, -- Welcome to my humble establishment. I have a wide variety of specialty goods from Kuzotz.
         ZOBYQUHYO_OPEN_DIALOG       = 8362, -- Hey therrre! I've got lots of wonderrrful goodies, fresh from the Elshimo Lowlands.
         ZOBYQUHYO_CLOSED_DIALOG     = 8363, -- I'm trrrying to start a business selling goods from the Elshimo Lowlands, but it's not easy getting stuff from areas that aren't under Bastokan contrrrol.

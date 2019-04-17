@@ -50,7 +50,6 @@ zones[dsp.zone.PORT_WINDURST] =
         RYAN_SHOP_DIALOG                = 11825, -- I have no time for white-livered scum that rely on magic alone. If you're with me then check out these wares from across the high seas.
         DROZGA_SHOP_DIALOG              = 11826, -- Ho there, young [man/lady]! Not only is Ryan a boorish lout, but his craftsmanship leaves much to be desired, as well. You're better off buyin' from me.
         CONQUEST                        = 11892, -- You've earned conquest points!
-		SIGNET						    = 11893, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         KOHLO_LAKOLO_DIALOG_A           = 12435, -- On your Star Onion Brigade honor, you can't tell anybody that Joker is hiding in the ghosty house!
         LEBONDUR_OPEN_DIALOG            = 12546, -- I've risked my life traveling all the way from Vollbow to bring you these fine goods!
         LEBONDUR_CLOSED_DIALOG          = 12547, -- Where is my shipment from Vollbow? This is terrible for my image as a respected importer...

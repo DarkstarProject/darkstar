@@ -21,7 +21,6 @@ zones[dsp.zone.CAPE_TERIGGAN] =
         CONQUEST_BASE              = 7049, -- Tallying conquest results...
         BEASTMEN_BANNER            = 7130, -- There is a beastmen's banner.
         CONQUEST                   = 7217, -- You've earned conquest points!
-		SIGNET					   = 7218, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         FISHING_MESSAGE_OFFSET     = 7550, -- You can't fish here.
         SOMETHING_BETTER           = 7662, -- Don't you have something better to do right now?
         CANNOT_REMOVE_FRAG         = 7665, -- It is an oddly shaped stone monument. A shining stone is embedded in it, but cannot be removed...

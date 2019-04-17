@@ -22,7 +22,6 @@ zones[dsp.zone.MERIPHATAUD_MOUNTAINS] =
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         NOTHING_FOUND           = 7488, -- You find nothing.
         CONQUEST                = 7900, -- You've earned conquest points!
-		SIGNET					= 7901, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         REGIME_REGISTERED       = 10590, -- New training regime registered!
     },
     mob =

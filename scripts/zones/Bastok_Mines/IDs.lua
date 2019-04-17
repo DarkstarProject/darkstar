@@ -53,7 +53,6 @@ zones[dsp.zone.BASTOK_MINES] =
         VIRNAGE_DIALOG_1               = 10982, -- They stayed in a citadel on the Sauromugue Champaign. The paint may be there still! I have heard people here say you are a great adventurer. Please, help the Goddess in Her hour of need!
         VIRNAGE_DIALOG_2               = 10988, -- Hand my letter to Eperdur in the San d'Oria Cathedral to claim your reward.
         CONQUEST                       = 11111, -- You've earned conquest points!
-		SIGNET						   = 11112, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         GALDEO_OPEN_DIALOG             = 11471, -- Come! Take a look at all the wonderful goods from Li'Telor.
         AULAVIA_OPEN_DIALOG            = 11472, -- May I interest you in some specialty goods from Vollbow?
         AULAVIA_CLOSED_DIALOG          = 11473, -- I'm trying to start a business selling goods from Vollbow, but it's not easy getting stuff from areas that aren't under Bastokan control.

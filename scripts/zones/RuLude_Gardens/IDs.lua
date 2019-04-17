@@ -30,7 +30,6 @@ zones[dsp.zone.RULUDE_GARDENS] =
         YOUR_LEVEL_LIMIT_IS_NOW_70       = 10438, -- Your level limit is now 70.
         YOUR_LEVEL_LIMIT_IS_NOW_75       = 10497, -- Your level limit is now 75.
         CONQUEST                         = 10558, -- You've earned conquest points!
-		SIGNET						     = 10559, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         DABIHJAJALIOH_SHOP_DIALOG        = 10895, -- Hello therrre. I worrrk for the M&P Market. I'm still new, so I don't know much about selling stuff...
         MACCHI_GAZLITAH_SHOP_DIALOG1     = 10901, -- Hello therrre. I work for the Buffalo Bonanza Ranch. I'm still new, so I don't know much about selling stuff...
         MACCHI_GAZLITAH_SHOP_DIALOG2     = 10902, -- Hello therrre, [handsome/cutie]! The Buffalo Bonanza Ranch has a lot of useful items, just for you!

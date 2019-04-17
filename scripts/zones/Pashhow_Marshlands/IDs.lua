@@ -22,7 +22,6 @@ zones[dsp.zone.PASHHOW_MARSHLANDS] =
         DIG_THROW_AWAY          = 7243, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING            = 7245, -- You dig and you dig, but find nothing.
         CONQUEST                = 7919, -- You've earned conquest points!
-		SIGNET					= 7920, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         REGIME_REGISTERED       = 10711, -- New training regime registered!
     },
     mob =

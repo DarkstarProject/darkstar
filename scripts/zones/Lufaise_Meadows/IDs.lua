@@ -17,7 +17,6 @@ zones[dsp.zone.LUFAISE_MEADOWS] =
         NOTHING_OUT_OF_ORDINARY     = 6402, -- There is nothing out of the ordinary here.
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         CONQUEST                    = 7217, -- You've earned conquest points!
-		SIGNET						= 7218, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         FISHING_MESSAGE_OFFSET      = 7551, -- You can't fish here.
         KI_STOLEN                   = 7680, -- The <keyitem> has been stolen!
         LOGGING_IS_POSSIBLE_HERE    = 7728, -- Logging is possible here if you have <item>.

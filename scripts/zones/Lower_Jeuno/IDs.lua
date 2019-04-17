@@ -46,7 +46,6 @@ zones[dsp.zone.LOWER_JEUNO] =
         ITEM_DELIVERY_DIALOG    = 7780, -- Now offering quick and easy delivery of packages to residences everywhere!
         MERTAIRE_RING           = 8041, -- So, what did you do with that ring? Maybe it's valuable. I'd ask a collector if I were you. Of course, he might just say it's worthless...
         CONQUEST                = 8053, -- You've earned conquest points!
-		SIGNET					= 8054, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         PARIKE_PORANKE_DIALOG   = 8951, -- All these people running back and forth... There have to be a few that have munched down more mithkabobs than they can manage. (And if I don't hand in this report to the Orastery soon... Ulp!)
         PARIKE_PORANKE_1        = 8952, -- Hey you! Belly bursting? Intestines inflating? Bladder bulging? I can tell by the notch on your belt that you've been overindulging yourself in culinary delights.
         PARIKE_PORANKE_2        = 8955, -- I mean, this is a new era. If somebody wants to go around with their flabby-flubber hanging out of their cloaks, they should have every right to do so. If someone wants to walk around town with breath reeking of Kazham pines and roasted sleepshrooms, who am I to stop them?

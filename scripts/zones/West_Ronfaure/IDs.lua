@@ -30,7 +30,6 @@ zones[dsp.zone.WEST_RONFAURE] =
         ZOVRIACE_DIALOG         = 7382, -- Let me be! I return to Southgate with word on La Theine.
         DISMAYED_CUSTOMER       = 7408, -- You find some worthless scraps of paper.
         CONQUEST                = 7530, -- You've earned conquest points!
-		SIGNET					= 7531, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         REGIME_REGISTERED       = 10426, -- New training regime registered!
     },
     mob =

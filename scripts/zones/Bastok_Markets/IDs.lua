@@ -53,7 +53,6 @@ zones[dsp.zone.BASTOK_MARKETS] =
         YAFAFA_OPEN_DIALOG          = 7692, -- Hello! I've got some goods from Kolshushu--interested?
         SOMNPAEMN_OPEN_DIALOG       = 7693, -- Welcome! I have goods straight from Sarutabaruta! What say you?
         CONQUEST                    = 7784, -- You've earned conquest points!
-		SIGNET						= 7785, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         EXTENDED_MISSION_OFFSET     = 8146, -- Go to Ore Street and talk to Medicine Eagle. He says he was there when the commotion started.
         TRICK_OR_TREAT              = 8269, -- Trick or treat...
         THANK_YOU_TREAT             = 8270, -- Thank you... And now for your treat...
