@@ -52,6 +52,7 @@ zones[dsp.zone.WINDURST_WOODS] =
         CATALIA_DIALOG               = 8559, -- While we cannot break our promise to the Windurstians, to ensure justice is served, we would secretly like you to take two shields off of the Yagudo who you meet en route.
         FORINE_DIALOG                = 8560, -- Act according to our convictions while fulfilling our promise with the Tarutaru. This is indeed a fitting course for us, the people of glorious San d'Oria.
         CONQUEST                     = 8928, -- You've earned conquest points!
+		SIGNET						 = 8929, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         APURURU_DIALOG               = 9491, -- There's no way Semih Lafihna will just hand it over for no good reason. Maybe if you try talking with Kupipi...
         EMPYREAL_ARROW_LEARNED       = 9725, -- You have learned the weapon skill Empyreal Arrow!
         TRICK_OR_TREAT               = 9736, -- Trick or treat...

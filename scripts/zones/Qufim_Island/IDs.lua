@@ -21,6 +21,7 @@ zones[dsp.zone.QUFIM_ISLAND] =
         THESE_WITHERED_FLOWERS         = 7328, -- These withered flowers seem unable to bloom.
         NOW_THAT_NIGHT_HAS_FALLEN      = 7329, -- Now that night has fallen, the flowers bloom with a strange glow.
         CONQUEST                       = 7377, -- You've earned conquest points!
+		SIGNET						   = 7378, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         AN_EMPTY_LIGHT_SWIRLS          = 7741, -- An empty light swirls about the cave, eating away at the surroundings...
         GIGANTIC_FOOTPRINT             = 7825, -- There is a gigantic footprint here.
         MYSTERIOUS_VOICE               = 7839, -- You hear a mysterious, floating voice: Bring forth the <item>...

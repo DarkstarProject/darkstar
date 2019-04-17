@@ -18,6 +18,7 @@ zones[dsp.zone.YHOATOR_JUNGLE] =
         CONQUEST_BASE               = 7049, -- Tallying conquest results...
         BEASTMEN_BANNER             = 7130, -- There is a beastmen's banner.
         CONQUEST                    = 7217, -- You've earned conquest points!
+		SIGNET					    = 7218, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         FISHING_MESSAGE_OFFSET      = 7550, -- You can't fish here.
         DIG_THROW_AWAY              = 7563, -- You dig up <item>, but your inventory is full. You regretfully throw the <item> away.
         FIND_NOTHING                = 7565, -- You dig and you dig, but find nothing.

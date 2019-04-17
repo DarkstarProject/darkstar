@@ -38,6 +38,7 @@ zones[dsp.zone.PORT_JEUNO] =
         DIGAGA_DIALOG           = 7375, -- Delivering goods to residences everywhere!
         ITEM_DELIVERY_DIALOG    = 7375, -- Delivering goods to residences everywhere!
         CONQUEST                = 7385, -- You've earned conquest points!
+		SIGNET					= 7386, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         SAGHEERA_MAX_ABCS       = 8026, -- I apologize, but I cannot take any more <item> from you.
         SAGHEERA_LACK_ABCS      = 8027, -- You have collected the proper materials, but unfortunately you lack the required amount of <item> for payment.
         GET_LOST                = 8150, -- You want somethin' from me? Well, too bad. I don't want nothin' from you. Get lost.

@@ -76,6 +76,7 @@ zones[dsp.zone.NORTHERN_SAN_DORIA] =
         EUGBALLION_OPEN_DIALOG   = 11637, -- Have a look at these goods imported direct from Qufim Island!
         CHAUPIRE_SHOP_DIALOG     = 11638, -- San d'Orian woodcraft is the finest in the land!
         CONQUEST                 = 11704, -- You've earned conquest points!
+		SIGNET					 = 11705, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         BONCORT_DIALOG           = 12051, -- Hmm... With magic, I could get hold of materials a mite easier. I'll have to check this mart out.
         CAPIRIA_DIALOG           = 12052, -- A flyer? For me? Some reading material would be a welcome change of pace, indeed!
         VILLION_DIALOG           = 12053, -- Opening a shop of magic, without consulting me first? I must pay this Regine a visit!

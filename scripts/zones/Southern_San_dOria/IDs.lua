@@ -74,6 +74,7 @@ zones[dsp.zone.SOUTHERN_SAN_DORIA] =
         POURETTE_OPEN_DIALOG           = 8426, -- Derfland produce for sale!
         POURETTE_CLOSED_DIALOG         = 8427, -- Listen, adventurer... I can't import from Derfland until the region knows San d'Orian power!
         CONQUEST                       = 8484, -- You've earned conquest points!
+		SIGNET						   = 8485, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         FLYER_ACCEPTED                 = 8829, -- The flyer is accepted.
         FLYER_ALREADY                  = 8830, -- This person already has a flyer.
         BLENDARE_MESSAGE               = 8831, -- Blendare looks over curiously for a moment.

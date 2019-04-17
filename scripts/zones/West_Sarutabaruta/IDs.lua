@@ -37,6 +37,7 @@ zones[dsp.zone.WEST_SARUTABARUTA] =
         MELT_BARE_HANDS             = 7402, -- It looks like it would melt if you touched it with your bare hands...
         HARVESTING_IS_POSSIBLE_HERE = 7438, -- Harvesting is possible here if you have <item>.
         CONQUEST                    = 7454, -- You've earned conquest points!
+		SIGNET						= 7455, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         REGIME_REGISTERED           = 10188, -- New training regime registered!
         DONT_SWAP_JOBS              = 10189, -- hanging your job will result in the cancellation of your current training regime.
         REGIME_CANCELED             = 10190, -- Training regime canceled.

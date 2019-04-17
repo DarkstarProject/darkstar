@@ -20,6 +20,7 @@ zones[dsp.zone.XARCABARD] =
         BEASTMEN_BANNER                = 7141, -- There was a curse on the beastmen's banner!
         ALREADY_OBTAINED_TELE          = 7371, -- You already possess the gate crystal for this telepoint.
         CONQUEST                       = 7384, -- You've earned conquest points!
+		SIGNET						   = 7385, -- You've received your nation's Signet. You are now taking part in your nation's conquest campaign!
         ONLY_SHARDS                    = 7717, -- Only shards of ice lie upon the ground.
         BLOCKS_OF_ICE                  = 7718, -- You can hear blocks of ice moving from deep within the cave.
         PERENNIAL_SNOW_DEFAULT         = 7719, -- How many millennia has this snow been here, hidden from the rays of the sun?
