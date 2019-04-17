@@ -131,8 +131,9 @@ void CTrustController::DoRoamTick(time_point tick)
     {
         CCharEntity* PChar = (CCharEntity*)POwner->PMaster;
 
-        // Owner is not engaged, check to see if they have hate to apply healing
-        for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
+        // Owner is not engaged, check to see if they have hate to apply healing <- This is not how Trust AI works
+        //
+        /*for (SpawnIDList_t::iterator it = PChar->SpawnMOBList.begin(); it != PChar->SpawnMOBList.end(); ++it)
         {
             CMobEntity* PMob = (CMobEntity*)it->second;
 
@@ -144,8 +145,23 @@ void CTrustController::DoRoamTick(time_point tick)
                 }
                 break;
             }
-        }
+        }*/
     }
+
+
+    /*float currentDistance = distance(PPet->loc.p, PPet->PMaster->loc.p);
+
+    if (currentDistance > PetRoamDistance)
+    {
+        if (currentDistance < 35.0f && PPet->PAI->PathFind->PathAround(PPet->PMaster->loc.p, 2.0f, PATHFLAG_RUN | PATHFLAG_WALLHACK))
+        {
+            PPet->PAI->PathFind->FollowPath();
+        }
+        else if (PPet->GetSpeed() > 0)
+        {
+            PPet->PAI->PathFind->WarpTo(PPet->PMaster->loc.p, PetRoamDistance);
+        }
+    }*/
 
     float currentDistance = distance(POwner->loc.p, POwner->PMaster->loc.p);
 
@@ -155,7 +171,7 @@ void CTrustController::DoRoamTick(time_point tick)
         {
             POwner->PAI->PathFind->FollowPath();
         }
-        else if (POwner->GetSpeed() > 0)
+        else// if (POwner->GetSpeed() > 0)
         {
             POwner->PAI->PathFind->WarpTo(POwner->PMaster->loc.p, RoamDistance);
         }

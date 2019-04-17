@@ -26,6 +26,7 @@ This file is part of DarkStar-server source code.
 
 #include <string.h>
 #include <vector>
+#include <map>
 #include <math.h>
 
 #include "battleutils.h"
@@ -127,7 +128,8 @@ struct Pet_t
 
 };
 
-std::vector<Pet_t*> g_PPetList;
+std::map<uint32, Pet_t*> g_PPetMap;
+//std::vector<Pet_t*> g_PPetList;
 
 namespace petutils
 {
@@ -172,7 +174,7 @@ namespace petutils
                 hasSpellScript, spellList, \
                 Slash, Pierce, H2H, Impact, \
                 Fire, Ice, Wind, Earth, Lightning, Water, Light, Dark, \
-                cmbDelay, name_prefix, mob_pools.skill_list_id \
+                cmbDelay, name_prefix, mob_pools.skill_list_id, petid \
                 FROM pet_list, mob_pools, mob_family_system \
                 WHERE pet_list.poolid = mob_pools.poolid AND mob_pools.familyid = mob_family_system.familyid";
 
@@ -244,7 +246,10 @@ namespace petutils
                 Pet->name_prefix = (uint8)Sql_GetUIntData(SqlHandle, 40);
                 Pet->m_MobSkillList = (uint16)Sql_GetUIntData(SqlHandle, 41);
 
-                g_PPetList.push_back(Pet);
+                uint32 petId = (uint32)Sql_GetUIntData(SqlHandle, 42);
+
+                g_PPetMap.insert(std::pair<uint32, Pet_t*>(petId, Pet));
+                //g_PPetList.push_back(Pet);
             }
         }
     }
@@ -257,10 +262,16 @@ namespace petutils
 
     void FreePetList()
     {
-        while (!g_PPetList.empty())
+        /*while (!g_PPetList.empty())
         {
             delete *g_PPetList.begin();
             g_PPetList.erase(g_PPetList.begin());
+        }*/
+
+        while (!g_PPetMap.empty())
+        {
+            delete g_PPetMap.begin()->second;
+            g_PPetMap.erase(g_PPetMap.begin());
         }
     }
 
@@ -1110,8 +1121,8 @@ namespace petutils
         to manage pet families and spawn them.
         */
 
-        // grab pet info
-        Pet_t* petData = g_PPetList.at(PetID);
+        // grab pet info - map instead of indexed based vector.
+        Pet_t* petData = g_PPetMap[PetID];//g_PPetList.at(PetID);
         CMobEntity* PPet = (CMobEntity*)PMaster->PPet;
 
         PPet->look = petData->look;
@@ -1406,11 +1417,12 @@ namespace petutils
 
     void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
-        DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
+        DSP_DEBUG_BREAK_IF(g_PPetMap.count(PetID) <= 0);
+        //DSP_DEBUG_BREAK_IF(PetID >= g_PPetList.size());
         if (PMaster->GetMJob() != JOB_DRG && PetID == PETID_WYVERN)
             return;
 
-        Pet_t* PPetData = g_PPetList.at(PetID);
+        Pet_t* PPetData = g_PPetMap[PetID];  //g_PPetList.at(PetID);
 
         if (PMaster->objtype == TYPE_PC)
         {
@@ -1444,8 +1456,10 @@ namespace petutils
 
                     if (wyvernid != 0)
                     {
-                        g_PPetList.at(PetID)->name.clear();
-                        g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                        g_PPetMap[PetID]->name.clear();
+                        g_PPetMap[PetID]->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                        /*g_PPetList.at(PetID)->name.clear();
+                        g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));*/
                     }
                 }
             }
@@ -1498,7 +1512,8 @@ namespace petutils
                         uint16 chocoboname1 = chocoboid & 0x0000FFFF;
                         uint16 chocoboname2 = chocoboid >>= 16;
 
-                        g_PPetList.at(PetID)->name.clear();
+                        g_PPetMap[PetID]->name.clear();
+                        //g_PPetList.at(PetID)->name.clear();
 
                         Query =
                             "SELECT\
@@ -1512,7 +1527,8 @@ namespace petutils
                             {
                                 if (chocoboname1 != 0 && chocoboname2 != 0)
                                 {
-                                    g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                                    g_PPetMap[PetID]->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
+                                    //g_PPetList.at(PetID)->name.insert(0, (const char*)Sql_GetData(SqlHandle, 0));
                                 }
                             }
                         }
@@ -1543,18 +1559,29 @@ namespace petutils
 
         if (petType != PETTYPE_AUTOMATON)
         {
-            PPet->look = g_PPetList.at(PetID)->look;
-            PPet->name = g_PPetList.at(PetID)->name;
+            PPet->look = g_PPetMap[PetID]->look;
+            PPet->name = g_PPetMap[PetID]->name;
+
+            /*PPet->look = g_PPetList.at(PetID)->look;
+            PPet->name = g_PPetList.at(PetID)->name;*/
         }
         else
         {
             PPet->look.size = MODEL_AUTOMATON;
         }
-        PPet->m_name_prefix = g_PPetList.at(PetID)->name_prefix;
+
+        
+        PPet->m_name_prefix = g_PPetMap[PetID]->name_prefix;
+        PPet->m_Family = g_PPetMap[PetID]->m_Family;
+        PPet->m_MobSkillList = g_PPetMap[PetID]->m_MobSkillList;
+        PPet->SetMJob(g_PPetMap[PetID]->mJob);
+        PPet->m_Element = g_PPetMap[PetID]->m_Element;
+
+        /*PPet->m_name_prefix = g_PPetList.at(PetID)->name_prefix;
         PPet->m_Family = g_PPetList.at(PetID)->m_Family;
         PPet->m_MobSkillList = g_PPetList.at(PetID)->m_MobSkillList;
         PPet->SetMJob(g_PPetList.at(PetID)->mJob);
-        PPet->m_Element = g_PPetList.at(PetID)->m_Element;
+        PPet->m_Element = g_PPetList.at(PetID)->m_Element;*/
         PPet->m_PetID = PetID;
 
         if (PPet->getPetType() == PETTYPE_AVATAR)
@@ -1705,7 +1732,9 @@ namespace petutils
                 PPet->SetMLevel(PMaster->GetSLevel());
                 PPet->SetSLevel(PMaster->GetSLevel() / 2);
             }
-            LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
+
+            LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetMap[PetID]); //temp
+            //LoadAutomatonStats((CCharEntity*)PMaster, PPet, g_PPetList.at(PetID)); //temp
             if (PMaster->objtype == TYPE_PC)
             {
                 CCharEntity* PChar = (CCharEntity*)PMaster;
@@ -1721,16 +1750,22 @@ namespace petutils
 
         FinalizePetStatistics(PMaster, PPet);
         PPet->status = STATUS_NORMAL;
-        PPet->m_ModelSize = g_PPetList.at(PetID)->size;
-        PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;
+
+        PPet->m_ModelSize = g_PPetMap[PetID]->size;
+        PPet->m_EcoSystem = g_PPetMap[PetID]->EcoSystem;
+
+        /*PPet->m_ModelSize = g_PPetList.at(PetID)->size;
+        PPet->m_EcoSystem = g_PPetList.at(PetID)->EcoSystem;*/
 
         PMaster->PPet = PPet;
     }
 
     CTrustEntity* LoadTrust(CCharEntity* PMaster, uint32 TrustID)
     {
-        DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
-		Pet_t* PPetData = g_PPetList.at(TrustID);
+        DSP_DEBUG_BREAK_IF(g_PPetMap.count(TrustID) <= 0);
+        Pet_t* PPetData = g_PPetMap[TrustID];
+        //DSP_DEBUG_BREAK_IF(TrustID >= g_PPetList.size());
+		//Pet_t* PPetData = g_PPetList.at(TrustID);
         CTrustEntity* PTrust = new CTrustEntity(PMaster);
         PTrust->loc = PMaster->loc;
         PTrust->m_OwnerID.id = PMaster->id;
@@ -1738,7 +1773,7 @@ namespace petutils
 
         // spawn me randomly around master
         PTrust->loc.p = nearPosition(PMaster->loc.p, CPetController::PetRoamDistance, (float)M_PI);
-        Pet_t* trust = g_PPetList.at(TrustID);
+        Pet_t* trust = PPetData;//do we need to refind trust? g_PPetList.at(TrustID);
         PTrust->look = trust->look;
         PTrust->name = trust->name;
         PTrust->m_name_prefix = trust->name_prefix;
@@ -1757,6 +1792,9 @@ namespace petutils
         PTrust->SetSLevel(PMaster->GetSLevel());
 
         // TODO: Proper stats per trust
+
+        battleutils::AddTraits(PTrust, traits::GetTraits(PTrust->GetMJob()), PTrust->GetMLevel());
+
         PTrust->setModifier(Mod::ATT, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
         PTrust->setModifier(Mod::ACC, battleutils::GetMaxSkill(SKILL_CLUB, JOB_WHM, PTrust->GetMLevel()));
         PTrust->setModifier(Mod::EVA, battleutils::GetMaxSkill(SKILL_THROWING, JOB_WHM, PTrust->GetMLevel())); // Throwing??

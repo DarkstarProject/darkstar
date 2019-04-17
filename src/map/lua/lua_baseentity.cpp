@@ -300,10 +300,12 @@ inline int32 CLuaBaseEntity::PrintToPlayer(lua_State* L)
 inline int32 CLuaBaseEntity::PrintToArea(lua_State* L)
 {
     DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
-    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_PC && m_PBaseEntity->objtype != TYPE_TRUST);
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isstring(L, 1));
 
-    CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
+    //If entity is a Trust then we actually want to send this message to the owner!
+
+    CCharEntity* PChar = (CCharEntity*) (m_PBaseEntity->objtype == TYPE_TRUST ? ((CBattleEntity*)m_PBaseEntity)->PMaster : m_PBaseEntity);
 
     // see scripts\globals\msg.lua or src\map\packets\chat_message.h for values
     CHAT_MESSAGE_TYPE messageLook = (lua_isnil(L, 2) || !lua_isnumber(L, 2)) ? MESSAGE_SYSTEM_1 : (CHAT_MESSAGE_TYPE)lua_tointeger(L, 2);
@@ -316,7 +318,8 @@ inline int32 CLuaBaseEntity::PrintToArea(lua_State* L)
     }
     else if (messageRange == 1) // Say range
     {
-        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, messageLook, (char*)lua_tostring(L, 1), name));
+        auto messageType = m_PBaseEntity->objtype == TYPE_TRUST ? CHAR_INRANGE_SELF : CHAR_INRANGE;
+        PChar->loc.zone->PushPacket(PChar, messageType, new CChatMessagePacket(PChar, messageLook, (char*)lua_tostring(L, 1), name));
     }
     else if (messageRange == 2) // Shout
     {
@@ -7366,11 +7369,14 @@ inline int32 CLuaBaseEntity::setHP(lua_State *L)
     ((CBattleEntity*)m_PBaseEntity)->health.hp = 0;
     auto value = (int32)lua_tointeger(L, 1);
     ((CBattleEntity*)m_PBaseEntity)->addHP(value);
-    m_PBaseEntity->updatemask |= UPDATE_HP;
 
     //When setting the HP to 0 the entity "falls to the ground" so the last attacker needs to be cleared
     if (value == 0)
         ((CBattleEntity*)m_PBaseEntity)->PLastAttacker = nullptr;
+
+    m_PBaseEntity->updatemask |= UPDATE_HP;
+
+    
 
     return 0;
 }
@@ -8197,6 +8203,7 @@ inline int32 CLuaBaseEntity::hasSpell(lua_State *L)
     lua_pushboolean(L, (charutils::hasSpell((CCharEntity*)m_PBaseEntity, SpellID) != 0));
     return 1;
 }
+
 
 /************************************************************************
 *  Function: canLearnSpell()
@@ -9808,7 +9815,7 @@ int32 CLuaBaseEntity::queue(lua_State* L)
 *  Function: addRecast()
 *  Purpose : Manually adds a cooldown for a particular Ability
 *  Example : automaton:addRecast(RECAST_ABILITY, skill:getID(), 180)
-*  Notes   :
+*  Notes   : Recast in seconds.
 ************************************************************************/
 
 inline int32 CLuaBaseEntity::addRecast(lua_State* L)
@@ -11033,7 +11040,7 @@ inline int32 CLuaBaseEntity::getMod(lua_State *L)
     DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype == TYPE_NPC);
 
     DSP_DEBUG_BREAK_IF(lua_isnil(L, 1) || !lua_isnumber(L, 1));
-
+    
     lua_pushinteger(L, ((CBattleEntity*)m_PBaseEntity)->getMod(static_cast<Mod>(lua_tointeger(L, 1))));
     return 1;
 }
@@ -13713,6 +13720,22 @@ inline int32 CLuaBaseEntity::updateTarget(lua_State* L)
 }
 
 /************************************************************************
+*  Function: removeOwner()
+*  Purpose : Cast's m_PBaseEntity to CBattleEntity before removing owner
+*  Example : mob:removeOwner
+*  Notes   : Used in conjunction with "DEATH" listener to kill Chigoes on WS or Crit.
+************************************************************************/
+
+inline int32 CLuaBaseEntity::removeOwner(lua_State* L)
+{
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity == nullptr);
+    DSP_DEBUG_BREAK_IF(m_PBaseEntity->objtype != TYPE_MOB);
+
+    ((CBattleEntity*)m_PBaseEntity)->m_OwnerID.clean();
+    return 0;
+}
+
+/************************************************************************
 *  Function: getEnmityList()
 *  Purpose : Returns a Lua table list of PC's with active enmity
 *  Example : local targets = mob:getEnmityList()
@@ -14910,6 +14933,7 @@ Lunar<CLuaBaseEntity>::Register_t CLuaBaseEntity::methods[] =
 
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTarget),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,updateTarget),
+    LUNAR_DECLARE_METHOD(CLuaBaseEntity,removeOwner),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getEnmityList),
     LUNAR_DECLARE_METHOD(CLuaBaseEntity,getTrickAttackChar),
 

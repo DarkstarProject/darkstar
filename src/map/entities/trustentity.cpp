@@ -60,6 +60,8 @@ void CTrustEntity::PostTick()
     if (loc.zone && updatemask && status != STATUS_DISAPPEAR)
     {
         loc.zone->PushPacket(this, CHAR_INRANGE, new CEntityUpdatePacket(this, ENTITY_UPDATE, updatemask));
+        if (!PMaster)
+            return;
         for (auto PTrust : ((CCharEntity*)PMaster)->PTrusts)
         {
             if (PTrust == this)

@@ -424,11 +424,16 @@ function getMagicHitRate(caster, target, skillType, element, percentBonus, bonus
     local magicacc = caster:getMod(dsp.mod.MACC) + caster:getILvlMacc();
 
     -- Get the base acc (just skill + skill mod (79 + skillID = ModID) + magic acc mod)
-    if (skillType ~= 0) then
+    --Checking skilltype ~= 0 does not tell you if its mob or player as skilltype came from params
+    --therefore lets check for the object type instead.
+    --if (skillType ~= 0) then
+    if(caster:getObjType() == dsp.objType.PC) then 
         magicacc = magicacc + caster:getSkillLevel(skillType);
+        print(caster:getName().. "Magic Acc Var = " .. magicacc)
     else
         -- for mob skills / additional effects which don't have a skill
         magicacc = magicacc + utils.getSkillLvl(1, caster:getMainLvl());
+        print(caster:getName().. " Magic Acc Var = " .. magicacc)
     end
 
     local resMod = 0; -- Some spells may possibly be non elemental, but have status effects.
@@ -989,6 +994,11 @@ function getElementalDamageReduction(target, element)
     return defense;
 end
 
+-- get elemental resistance as a percentage
+function getElementalResistance(target, element)
+    return target:getMod(dsp.magic.resistMod[element])
+end
+
 ---------------------------------------------
 --  Elemental Debuff Potency functions
 ---------------------------------------------
@@ -1144,7 +1154,6 @@ function doElementalNuke(caster, spell, target, spellParams)
             --(above some critical value, adding INT/MND becomes half as effective)
             else DMG = V + (I + ((dINT - I) / 2) * 1); end
         end
-
         if DMG < 0 then DMG = 0; end
     else
         local hasMultipleTargetReduction = spellParams.hasMultipleTargetReduction; --still unused!!!
@@ -1193,7 +1202,6 @@ function doElementalNuke(caster, spell, target, spellParams)
     params.AMIIaccBonus = AMIIaccBonus;
 
     local resist = applyResistance(caster, target, spell, params);
-
     --get the resisted damage
     DMG = DMG * resist;
 
@@ -1206,7 +1214,6 @@ function doElementalNuke(caster, spell, target, spellParams)
 
     --add in final adjustments
     DMG = finalMagicAdjustments(caster, target, spell, DMG);
-
     return DMG;
 end
 

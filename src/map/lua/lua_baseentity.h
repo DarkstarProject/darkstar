@@ -676,6 +676,7 @@ public:
 
     int32 getTarget(lua_State*);
     int32 updateTarget(lua_State*);         // Force mob to update target from enmity container (ie after updateEnmity)
+    int32 removeOwner(lua_State*);
     int32 getEnmityList(lua_State* L);
     int32 getTrickAttackChar(lua_State*);   // true if TA target is available
 
