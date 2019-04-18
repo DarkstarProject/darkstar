@@ -15458,7 +15458,7 @@ INSERT INTO `item_mods` VALUES (14927,1,20);
 INSERT INTO `item_mods` VALUES (14928,1,16);      -- Magus Bazubands: DEF 16
 INSERT INTO `item_mods` VALUES (14928,5,15);      -- MP +15
 INSERT INTO `item_mods` VALUES (14928,110,10);    -- Parrying skill +10
-INSERT INTO `item_mods` VALUES (14928,945,17);    -- Increases chance to learn blue magic (+17)
+INSERT INTO `item_mods` VALUES (14928,945,10);    -- Increases chance to learn blue magic (+10)
 INSERT INTO `item_mods` VALUES (14929,1,11);
 INSERT INTO `item_mods` VALUES (14929,2,10);
 INSERT INTO `item_mods` VALUES (14929,9,2);
@@ -15814,7 +15814,7 @@ INSERT INTO `item_mods` VALUES (15024,5,20);      -- MP +20
 INSERT INTO `item_mods` VALUES (15024,8,3);       -- STR +3
 INSERT INTO `item_mods` VALUES (15024,12,3);      -- INT +3
 INSERT INTO `item_mods` VALUES (15024,110,10);    -- Parrying skill +10
-INSERT INTO `item_mods` VALUES (15024,945,17);    -- Increases chance to learn blue magic (+17)
+INSERT INTO `item_mods` VALUES (15024,945,11);    -- Increases chance to learn blue magic (+11)
 INSERT INTO `item_mods` VALUES (15025,1,17);
 INSERT INTO `item_mods` VALUES (15025,2,12);
 INSERT INTO `item_mods` VALUES (15025,5,12);
@@ -43887,13 +43887,13 @@ INSERT INTO `item_mods` VALUES (27958,10,20);     -- VIT +20
 INSERT INTO `item_mods` VALUES (27958,11,3);      -- AGI +3
 INSERT INTO `item_mods` VALUES (27958,12,18);     -- INT +18
 INSERT INTO `item_mods` VALUES (27958,13,19);     -- MND +19
-INSERT INTO `item_mods` VALUES (27958,14,1);      -- CHR +11
+INSERT INTO `item_mods` VALUES (27958,14,11);     -- CHR +11
 INSERT INTO `item_mods` VALUES (27958,29,1);      -- Magic Def Bonus + 1
-INSERT INTO `item_mods` VALUES (27958,31,25);     -- Magic Evasion +26
+INSERT INTO `item_mods` VALUES (27958,31,25);     -- Magic Evasion +25
 INSERT INTO `item_mods` VALUES (27958,68,11);     -- Evasion + 11
 INSERT INTO `item_mods` VALUES (27958,110,15);    -- Parrying skill +15
 INSERT INTO `item_mods` VALUES (27958,384,400);   -- Haste +4%
-INSERT INTO `item_mods` VALUES (27958,945,17);    -- Increases chance to learn blue magic (+17)
+INSERT INTO `item_mods` VALUES (27958,945,14);    -- Increases chance to learn blue magic (+14)
 INSERT INTO `item_mods` VALUES (27959,1,59);
 INSERT INTO `item_mods` VALUES (27959,2,11);
 INSERT INTO `item_mods` VALUES (27959,5,25);
@@ -44220,7 +44220,7 @@ INSERT INTO `item_mods` VALUES (27979,31,37);     -- Magic Evasion +37
 INSERT INTO `item_mods` VALUES (27979,68,24);     -- Evasion +24
 INSERT INTO `item_mods` VALUES (27979,110,15);    -- Parrying skill +15
 INSERT INTO `item_mods` VALUES (27979,384,500);   -- Haste +5%
-INSERT INTO `item_mods` VALUES (27979,945,17);    -- Chance to learn blue magic +12
+INSERT INTO `item_mods` VALUES (27979,945,12);    -- Chance to learn blue magic +12
 INSERT INTO `item_mods` VALUES (27980,1,88);
 INSERT INTO `item_mods` VALUES (27980,2,25);
 INSERT INTO `item_mods` VALUES (27980,5,25);
