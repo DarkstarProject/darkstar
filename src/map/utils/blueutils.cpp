@@ -136,17 +136,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
             // make sure the difference between spell skill and player is at most 31 points
             if (playerSkillLvl >= skillLvlForSpell - 31)
             {
-                uint chanceToLearn = 33;
-                if (PBlueMage->getEquip(SLOT_HANDS) &&
-                   (PBlueMage->getEquip(SLOT_HANDS)->getID() == 14928 || // Magus Bazubands
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 15024 || // Magus Bazubands +1
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 27958 || // Assimilator's Bazubands
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 27979 || // Assimilator's Bazubands + 1
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 23189 || // Assimilator's Bazubands + 2
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 23524))  // Assimilator's Bazubands + 3
-                {
-                    chanceToLearn = 50;
-                }
+                uint chanceToLearn = 33 + PBlueMage->getMod(Mod::BLUE_LEARN_CHANCE);
                 if (dsprand::GetRandomNumber(100) < chanceToLearn) {
 					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));

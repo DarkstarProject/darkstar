@@ -440,6 +440,7 @@ enum class Mod
 
     // Blue Mage
     BLUE_POINTS               = 309, // Tracks extra blue points
+    BLUE_LEARN_CHANCE         = 945, // Additional chance to learn blue magic
 
     // Corsair
     EXP_BONUS                 = 382, //
@@ -771,9 +772,9 @@ enum class Mod
 
     // The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
     // 570 through 825 used by WS DMG mods these are not spares.
-    // SPARE = 945, // stuff
     // SPARE = 946, // stuff
     // SPARE = 947, // stuff
+    // SPARE = 948, // stuff
 };
 
 //temporary workaround for using enum class as unordered_map key until compilers support it

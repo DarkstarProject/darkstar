@@ -15455,9 +15455,10 @@ INSERT INTO `item_mods` VALUES (14926,5,18);
 INSERT INTO `item_mods` VALUES (14926,25,4);
 INSERT INTO `item_mods` VALUES (14926,27,6);
 INSERT INTO `item_mods` VALUES (14927,1,20);
-INSERT INTO `item_mods` VALUES (14928,1,16);
-INSERT INTO `item_mods` VALUES (14928,5,15);
-INSERT INTO `item_mods` VALUES (14928,110,10);
+INSERT INTO `item_mods` VALUES (14928,1,16);      -- Magus Bazubands: DEF 16
+INSERT INTO `item_mods` VALUES (14928,5,15);      -- MP +15
+INSERT INTO `item_mods` VALUES (14928,110,10);    -- Parrying skill +10
+INSERT INTO `item_mods` VALUES (14928,945,17);    -- Increases chance to learn blue magic (+17)
 INSERT INTO `item_mods` VALUES (14929,1,11);
 INSERT INTO `item_mods` VALUES (14929,2,10);
 INSERT INTO `item_mods` VALUES (14929,9,2);
@@ -15808,11 +15809,12 @@ INSERT INTO `item_mods` VALUES (15023,9,4);
 INSERT INTO `item_mods` VALUES (15023,25,5);
 INSERT INTO `item_mods` VALUES (15023,26,5);
 INSERT INTO `item_mods` VALUES (15023,289,2);
-INSERT INTO `item_mods` VALUES (15024,1,17);
-INSERT INTO `item_mods` VALUES (15024,5,20);
-INSERT INTO `item_mods` VALUES (15024,8,3);
-INSERT INTO `item_mods` VALUES (15024,12,3);
-INSERT INTO `item_mods` VALUES (15024,110,10);
+INSERT INTO `item_mods` VALUES (15024,1,17);      -- Magus Bazubands +1: DEF 17
+INSERT INTO `item_mods` VALUES (15024,5,20);      -- MP +20
+INSERT INTO `item_mods` VALUES (15024,8,3);       -- STR +3
+INSERT INTO `item_mods` VALUES (15024,12,3);      -- INT +3
+INSERT INTO `item_mods` VALUES (15024,110,10);    -- Parrying skill +10
+INSERT INTO `item_mods` VALUES (15024,945,17);    -- Increases chance to learn blue magic (+17)
 INSERT INTO `item_mods` VALUES (15025,1,17);
 INSERT INTO `item_mods` VALUES (15025,2,12);
 INSERT INTO `item_mods` VALUES (15025,5,12);
@@ -27704,6 +27706,7 @@ INSERT INTO `item_mods` VALUES (23189,68,34);     -- Evasion+34
 INSERT INTO `item_mods` VALUES (23189,110,17);    -- Parry+17
 INSERT INTO `item_mods` VALUES (23189,160,-3);    -- Damage Taken-3
 INSERT INTO `item_mods` VALUES (23189,384,500);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (23189,945,14);    -- Chance to learn blue magic +14
 INSERT INTO `item_mods` VALUES (23190,1,98);      -- laksa._gants_+2 DEF:98
 INSERT INTO `item_mods` VALUES (23190,2,37);      -- HP+37
 INSERT INTO `item_mods` VALUES (23190,5,25);      -- MP+25
@@ -29700,6 +29703,7 @@ INSERT INTO `item_mods` VALUES (23524,68,44);     -- Evasion+44
 INSERT INTO `item_mods` VALUES (23524,110,19);    -- Parry+19
 INSERT INTO `item_mods` VALUES (23524,160,-6);    -- Damage Taken-6
 INSERT INTO `item_mods` VALUES (23524,384,500);    -- Haste +5%
+INSERT INTO `item_mods` VALUES (23524,945,16);    -- Chance to learn blue magic +16
 INSERT INTO `item_mods` VALUES (23525,1,108);     -- laksa._gants_+3 DEF:108
 INSERT INTO `item_mods` VALUES (23525,2,47);      -- HP+47
 INSERT INTO `item_mods` VALUES (23525,5,35);      -- MP+35
@@ -43874,21 +43878,22 @@ INSERT INTO `item_mods` VALUES (27957,31,25);
 INSERT INTO `item_mods` VALUES (27957,68,10);
 INSERT INTO `item_mods` VALUES (27957,357,5);     -- Convoker's Bracers: Blood Pact ability delay -5
 INSERT INTO `item_mods` VALUES (27957,384,300);
-INSERT INTO `item_mods` VALUES (27958,1,63);
-INSERT INTO `item_mods` VALUES (27958,2,11);
-INSERT INTO `item_mods` VALUES (27958,5,30);
-INSERT INTO `item_mods` VALUES (27958,8,7);
-INSERT INTO `item_mods` VALUES (27958,9,22);
-INSERT INTO `item_mods` VALUES (27958,10,20);
-INSERT INTO `item_mods` VALUES (27958,11,3);
-INSERT INTO `item_mods` VALUES (27958,12,18);
-INSERT INTO `item_mods` VALUES (27958,13,19);
-INSERT INTO `item_mods` VALUES (27958,14,11);
-INSERT INTO `item_mods` VALUES (27958,29,1);
-INSERT INTO `item_mods` VALUES (27958,31,25);
-INSERT INTO `item_mods` VALUES (27958,68,11);
-INSERT INTO `item_mods` VALUES (27958,110,15);
-INSERT INTO `item_mods` VALUES (27958,384,400);
+INSERT INTO `item_mods` VALUES (27958,1,63);      -- Assimilator's Bazubands: DEF 63
+INSERT INTO `item_mods` VALUES (27958,2,11);      -- HP +11
+INSERT INTO `item_mods` VALUES (27958,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (27958,8,7);       -- STR +7
+INSERT INTO `item_mods` VALUES (27958,9,22);      -- DEX +22
+INSERT INTO `item_mods` VALUES (27958,10,20);     -- VIT +20
+INSERT INTO `item_mods` VALUES (27958,11,3);      -- AGI +3
+INSERT INTO `item_mods` VALUES (27958,12,18);     -- INT +18
+INSERT INTO `item_mods` VALUES (27958,13,19);     -- MND +19
+INSERT INTO `item_mods` VALUES (27958,14,1);      -- CHR +11
+INSERT INTO `item_mods` VALUES (27958,29,1);      -- Magic Def Bonus + 1
+INSERT INTO `item_mods` VALUES (27958,31,25);     -- Magic Evasion +26
+INSERT INTO `item_mods` VALUES (27958,68,11);     -- Evasion + 11
+INSERT INTO `item_mods` VALUES (27958,110,15);    -- Parrying skill +15
+INSERT INTO `item_mods` VALUES (27958,384,400);   -- Haste +4%
+INSERT INTO `item_mods` VALUES (27958,945,17);    -- Increases chance to learn blue magic (+17)
 INSERT INTO `item_mods` VALUES (27959,1,59);
 INSERT INTO `item_mods` VALUES (27959,2,11);
 INSERT INTO `item_mods` VALUES (27959,5,25);
@@ -44200,21 +44205,22 @@ INSERT INTO `item_mods` VALUES (27978,31,37);
 INSERT INTO `item_mods` VALUES (27978,68,22);
 INSERT INTO `item_mods` VALUES (27978,357,6);     -- Convoker's Bracers +1: Blood Pact ability delay -6
 INSERT INTO `item_mods` VALUES (27978,384,300);
-INSERT INTO `item_mods` VALUES (27979,1,90);
-INSERT INTO `item_mods` VALUES (27979,2,25);
-INSERT INTO `item_mods` VALUES (27979,5,30);
-INSERT INTO `item_mods` VALUES (27979,8,11);
-INSERT INTO `item_mods` VALUES (27979,9,35);
-INSERT INTO `item_mods` VALUES (27979,10,32);
-INSERT INTO `item_mods` VALUES (27979,11,5);
-INSERT INTO `item_mods` VALUES (27979,12,22);
-INSERT INTO `item_mods` VALUES (27979,13,30);
-INSERT INTO `item_mods` VALUES (27979,14,17);
-INSERT INTO `item_mods` VALUES (27979,29,2);
-INSERT INTO `item_mods` VALUES (27979,31,37);
-INSERT INTO `item_mods` VALUES (27979,68,24);
-INSERT INTO `item_mods` VALUES (27979,110,15);
-INSERT INTO `item_mods` VALUES (27979,384,500);
+INSERT INTO `item_mods` VALUES (27979,1,90);      -- Assimilator's Bazubands +1: DEF 90
+INSERT INTO `item_mods` VALUES (27979,2,25);      -- HP +25
+INSERT INTO `item_mods` VALUES (27979,5,30);      -- MP +30
+INSERT INTO `item_mods` VALUES (27979,8,11);      -- STR +11
+INSERT INTO `item_mods` VALUES (27979,9,35);      -- DEX +35
+INSERT INTO `item_mods` VALUES (27979,10,32);     -- VIT +32
+INSERT INTO `item_mods` VALUES (27979,11,5);      -- AGI +5
+INSERT INTO `item_mods` VALUES (27979,12,22);     -- INT +22
+INSERT INTO `item_mods` VALUES (27979,13,30);     -- MND +30
+INSERT INTO `item_mods` VALUES (27979,14,17);     -- CHR +17
+INSERT INTO `item_mods` VALUES (27979,29,2);      -- Magic Def Bonus +2
+INSERT INTO `item_mods` VALUES (27979,31,37);     -- Magic Evasion +37
+INSERT INTO `item_mods` VALUES (27979,68,24);     -- Evasion +24
+INSERT INTO `item_mods` VALUES (27979,110,15);    -- Parrying skill +15
+INSERT INTO `item_mods` VALUES (27979,384,500);   -- Haste +5%
+INSERT INTO `item_mods` VALUES (27979,945,17);    -- Chance to learn blue magic +12
 INSERT INTO `item_mods` VALUES (27980,1,88);
 INSERT INTO `item_mods` VALUES (27980,2,25);
 INSERT INTO `item_mods` VALUES (27980,5,25);
