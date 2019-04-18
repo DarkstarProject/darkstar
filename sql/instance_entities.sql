@@ -270,6 +270,8 @@ INSERT INTO `instance_entities` VALUES (51,17093333); -- Runic Lamp 2
 INSERT INTO `instance_entities` VALUES (51,17093334); -- Runic Lamp 3
 INSERT INTO `instance_entities` VALUES (51,17093335); -- Runic Lamp 4
 INSERT INTO `instance_entities` VALUES (51,17093336); -- Runic Lamp 5
+INSERT INTO `instance_entities` VALUES (51,17093353);
+INSERT INTO `instance_entities` VALUES (51,17093354);
 INSERT INTO `instance_entities` VALUES (51,17093429); -- Rune of Transfer
 INSERT INTO `instance_entities` VALUES (51,17093430); -- Vending box
 -- mobs
