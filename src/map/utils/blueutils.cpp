@@ -138,12 +138,12 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
             {
                 uint chanceToLearn = 33;
                 if (PBlueMage->getEquip(SLOT_HANDS) &&
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 14928 || // Magus Bazubands
+                   (PBlueMage->getEquip(SLOT_HANDS)->getID() == 14928 || // Magus Bazubands
                     PBlueMage->getEquip(SLOT_HANDS)->getID() == 15024 || // Magus Bazubands +1
                     PBlueMage->getEquip(SLOT_HANDS)->getID() == 27958 || // Assimilator's Bazubands
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() ==27979 || // Assimilator's Bazubands + 1
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() ==23189 || // Assimilator's Bazubands + 2
-                    PBlueMage->getEquip(SLOT_HANDS)->getID() ==23524) // Assimilator's Bazubands + 3
+                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 27979 || // Assimilator's Bazubands + 1
+                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 23189 || // Assimilator's Bazubands + 2
+                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 23524))  // Assimilator's Bazubands + 3
                 {
                     chanceToLearn = 50;
                 }
