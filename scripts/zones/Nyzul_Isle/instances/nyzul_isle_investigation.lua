@@ -74,7 +74,7 @@ function pickSetPoint(player)
     for k, v in pairs(nyzul.FloorLayout) do
         if k == START:getLocalVar("Nyzul_Isle_FloorLayout") then
             TRANSFER:setPos(v[1], v[2], v[3])
-            TRANSFER:AnimationSub(0)
+            TRANSFER:setStatus(dsp.status.NORMAL)
             local posX = v[1] local posY = v[2] local posZ = v[3]
             for i,v in pairs(chars) do
                 v:timer(3200, function(player)
@@ -111,12 +111,12 @@ function pickMobs(player)
     elseif instance:getStage() ~= nyzul.objective.FREE_FLOOR then -- mobs set for all floors but Free Floor and Boss Floors
         if instance:getStage() == nyzul.objective.ELIMINATE_ENEMY_LEADER then -- set mob for objective Enemy Leader
             local FLOOR_BOSS = math.random(nyzul.pickMobs[1].MOKKE, nyzul.pickMobs[1].LONG_HORNED_CHARIOT)
-            instance:getEntity(bit.band(FLOOR_BOSS, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+            instance:getEntity(bit.band(FLOOR_BOSS, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
             SpawnMob(FLOOR_BOSS, instance)
         elseif instance:getStage() == nyzul.objective.ELIMINATE_SPECIFIED_ENEMIES then -- set mobs for Specified Groups
             local GROUP = math.random(0,6)
             for i = nyzul.pickMobs[3][GROUP].start, nyzul.pickMobs[3][GROUP].stop do
-                instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+                instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
                 SpawnMob(i, instance)
                 START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
             end
@@ -124,12 +124,12 @@ function pickMobs(player)
             START:setLocalVar("Nyzul_Specified_Enemy", math.random(nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop))
         elseif instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
             if math.random(0,100) >= 80 then -- 20% chance that Dahank will spawn
-                SpawnMob(ID.mob[51].DAHAK, instance):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+                SpawnMob(ID.mob[51].DAHAK, instance):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
                 START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
             end
         end
         for i = nyzul.FloorEntities[MOB_FAMILY].start, nyzul.FloorEntities[MOB_FAMILY].stop do -- set rest of random trash mobs
-            instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+            instance:getEntity(bit.band(i, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
             SpawnMob(i, instance)
             if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
                 START:setLocalVar("Eliminate", START:getLocalVar("Eliminate") +1)
@@ -145,10 +145,10 @@ function pickMobs(player)
                 NM2 = NM1 + 1
             end
         end
-        instance:getEntity(bit.band(NM1, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
-        instance:getEntity(bit.band(NM2, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
-        instance:getEntity(bit.band(ID.mob[51].ARCHAIC_RAMPART1, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
-        instance:getEntity(bit.band(ID.mob[51].ARCHAIC_RAMPART2, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,30)])
+        instance:getEntity(bit.band(NM1, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
+        instance:getEntity(bit.band(NM2, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
+        instance:getEntity(bit.band(ID.mob[51].ARCHAIC_RAMPART1, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
+        instance:getEntity(bit.band(ID.mob[51].ARCHAIC_RAMPART2, 0xFFF), dsp.objType.MOB):setSpawn(nyzul.SpawnPoint[LAYOUT][math.random(0,#nyzul.SpawnPoint[LAYOUT])])
         if math.random(0,100) >= 10 then -- 90% chance for 1st NM to spawn
             SpawnMob(NM1, instance)
             if instance:getStage() == nyzul.objective.ELIMINATE_ALL_ENEMIES then
