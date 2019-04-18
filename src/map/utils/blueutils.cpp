@@ -136,8 +136,13 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob) {
             // make sure the difference between spell skill and player is at most 31 points
             if (playerSkillLvl >= skillLvlForSpell - 31)
             {
-                // TODO: check for blue learning bonus and adjust base percent
-                if (dsprand::GetRandomNumber(100) < 33) {
+                uint chanceToLearn = 33;
+                if (PBlueMage->getEquip(SLOT_HANDS) &&
+                    PBlueMage->getEquip(SLOT_HANDS)->getID() == 10569 || PBlueMage->getEquip(SLOT_HANDS)->getID() == 12717) // BLU AF Hands or AF Hands + 1 (Magus Bazubands)
+                {
+                    chanceToLearn = 50;
+                }
+                if (dsprand::GetRandomNumber(100) < chanceToLearn) {
 					if (charutils::addSpell(PBlueMage, static_cast<uint16>(PSpell->getID()))) {
 						PBlueMage->pushPacket(new CMessageBasicPacket(PBlueMage, PBlueMage, static_cast<uint16>(PSpell->getID()), 0, MSGBASIC_LEARNS_SPELL));
 						charutils::SaveSpell(PBlueMage, static_cast<uint16>(PSpell->getID()));
