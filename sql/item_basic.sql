@@ -17778,12 +17778,12 @@ INSERT INTO `item_basic` VALUES (21496,0,'jug_of_furious_broth','furious_broth',
 INSERT INTO `item_basic` VALUES (21497,0,'jug_of_rapid_broth','rapid_broth',12,2052,48,0,0);
 INSERT INTO `item_basic` VALUES (21498,0,'jug_of_crackling_broth','crackling_broth',12,2052,48,0,0);
 INSERT INTO `item_basic` VALUES (21499,0,'jug_of_creepy_broth','creepy_broth',12,2052,48,0,0);
-INSERT INTO `item_basic` VALUES (21504,0,'arasy_sainti','arasy_sainti',1,2084,1,0,0);
+INSERT INTO `item_basic` VALUES (21504,0,'arasy_sainti','arasy_sainti',1,2082,1,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21505,0,'arasy_sainti_+1','arasy_sainti_+1',1,2080,1,0,0);
-INSERT INTO `item_basic` VALUES (21506,0,'pair_of_jolt_counter','jolt_counter',1,2084,1,0,0);
+INSERT INTO `item_basic` VALUES (21506,0,'pair_of_jolt_counter','jolt_counter',1,2082,1,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21507,0,'pair_of_jolt_counter_+1','jolt_counter_+1',1,2080,1,0,0);
-INSERT INTO `item_basic` VALUES (21511,0,'hepatizon_baghnakhs','hep._baghnakhs',1,2084,0,0,0);
-INSERT INTO `item_basic` VALUES (21512,0,'hepatizon_baghnakhs_+1','hep._baghnakhs_+1',1,2080,0,0,0);
+INSERT INTO `item_basic` VALUES (21511,0,'hepatizon_baghnakhs','hep._baghnakhs',1,2082,0,0,0); -- Obtainable from Goblin Box, Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21512,0,'hepatizon_baghnakhs_+1','hep._baghnakhs_+1',1,2080,0,0,0); -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21513,0,'pair_of_raetic_baghnakhs','raetic_baghnakhs',1,2080,0,0,0);
 INSERT INTO `item_basic` VALUES (21514,0,'pair_of_raetic_baghnakhs_+1','rae._baghnakhs_+1',1,2080,0,0,0);
 INSERT INTO `item_basic` VALUES (21515,0,'pair_of_tokko_knuckles','tokko_knuckles',1,63552,0,1,0);
@@ -17791,6 +17791,12 @@ INSERT INTO `item_basic` VALUES (21516,0,'pair_of_ajja_knuckles','ajja_knuckles'
 INSERT INTO `item_basic` VALUES (21517,0,'pair_of_eletta_knuckles','eletta_knuckles',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21518,0,'pair_of_kaja_knuckles','kaja_knuckles',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21519,0,'karambit','karambit',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21521,0,'melee_fists','melee_fists',1,2080,0,0,0);     -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21522,0,'hesychasts_fists','hes._fists',1,2080,0,0,0); -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21523,0,'sagitta','sagitta',1,2080,0,0,0);             -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21524,0,'pantin_fists','pantin_fists',1,2080,0,0,0);   -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21525,0,'pitre_fists','pitre_fists',1,2080,0,0,0);     -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21526,0,'xiucoatl','xiucoatl',1,2080,0,0,0);           -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21554,0,'arasy_knife','arasy_knife',1,2084,2,0,0);
 INSERT INTO `item_basic` VALUES (21555,0,'arasy_knife_+1','arasy_knife_+1',1,2080,2,0,0);
 INSERT INTO `item_basic` VALUES (21556,0,'beryllium_kris','beryllium_kris',1,2084,0,0,0);
@@ -17803,11 +17809,18 @@ INSERT INTO `item_basic` VALUES (21562,0,'ajja_knife','ajja_knife',1,63552,0,1,0
 INSERT INTO `item_basic` VALUES (21563,0,'eletta_knife','eletta_knife',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21564,0,'kaja_knife','kaja_knife',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21565,0,'tauret','tauret',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21579,0,'commodores_knife','comm._knife',1,2080,2,0,0); -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21580,0,'lanun_knife','lanun_knife',1,2080,2,0,0);      -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21581,0,'rostam','rostam',1,2080,2,0,0);                -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21582,0,'etoile_knife','etoile_knife',1,2080,2,0,0);    -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21583,0,'horos_knife','horos_knife',1,2080,2,0,0);      -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21584,0,'setan_kober','setan_kober',1,2080,2,0,0);      -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21604,0,'arasy_sword','arasy_sword',1,2084,3,0,0);
 INSERT INTO `item_basic` VALUES (21605,0,'arasy_sword_+1','arasy_sword_+1',1,2080,3,0,0);
 INSERT INTO `item_basic` VALUES (21606,0,'enriching_sword','enriching_sword',1,2084,3,0,0);
 INSERT INTO `item_basic` VALUES (21607,0,'enriching_sword_+1','enr._sword_+1',1,2080,3,0,0);
-INSERT INTO `item_basic` VALUES (21608,0,'onion_sword_ii','onion_sword_ii',1,63552,0,0,0);
+INSERT INTO `item_basic` VALUES (21608,0,'onion_sword_ii','onion_sword_ii',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21609,0,'save_the_queen_ii','save_the_queen_ii',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21610,0,'hepatizon_rapier','hepatizon_rapier',1,2084,0,0,0);
 INSERT INTO `item_basic` VALUES (21611,0,'hepatizon_rapier_+1','hep._rapier_+1',1,2080,0,0,0);
 INSERT INTO `item_basic` VALUES (21612,0,'raetic_blade','raetic_blade',1,2080,0,0,0);
@@ -17819,6 +17832,15 @@ INSERT INTO `item_basic` VALUES (21618,0,'ajja_sword','ajja_sword',1,63552,0,1,0
 INSERT INTO `item_basic` VALUES (21619,0,'eletta_sword','eletta_sword',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21620,0,'kaja_sword','kaja_sword',1,63552,0,1,0);
 INSERT INTO `item_basic` VALUES (21621,0,'naegling','naegling',1,63552,0,1,0);
+INSERT INTO `item_basic` VALUES (21625,0,'duelists_sword','duelists_sword',1,2080,3,0,0);   -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21626,0,'vitiation_sword','vitiation_sword',1,2080,3,0,0); -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21627,0,'crocea_mors','crocea_mors',1,2080,3,0,0);         -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21628,0,'valor_sword','valor_sword',1,2080,3,0,0);         -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21629,0,'caballarius_sword','cabal._sword',1,2080,3,0,0);  -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21630,0,'moralltach','moralltach',1,2080,3,0,0);           -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21631,0,'mirage_sword','mirage_sword',1,2080,3,0,0);       -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21632,0,'luhlaza_sword','luhlaza_sword',1,2080,3,0,0);     -- Inscribable, Equippable
+INSERT INTO `item_basic` VALUES (21633,0,'zomorrodnegar','zomorrodnegar',1,2080,3,0,0);     -- Inscribable, Equippable
 INSERT INTO `item_basic` VALUES (21654,0,'arasy_claymore','arasy_claymore',1,2084,4,0,0);
 INSERT INTO `item_basic` VALUES (21655,0,'arasy_claymore_+1','arasy_claymore_+1',1,2080,4,0,0);
 INSERT INTO `item_basic` VALUES (21656,0,'dyrnwyn','dyrnwyn',1,2084,4,0,0);
