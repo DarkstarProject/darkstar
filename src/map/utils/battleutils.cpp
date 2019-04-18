@@ -1730,10 +1730,9 @@ namespace battleutils
             validWeapon = PDefender->GetMJob() == JOB_MNK || PDefender->GetMJob() == JOB_PUP;
         }
 
-        auto combinedGuardSkillCap = battleutils::GetMaxSkill(SKILL_GUARD, PDefender->GetMJob(), PDefender->GetMLevel()) +
-                                     battleutils::GetMaxSkill(SKILL_GUARD, PDefender->GetSJob(), PDefender->GetSLevel());
+        bool hasGuardSkillRank = GetSkillRank(SKILL_GUARD, PDefender->GetMJob() > 0 || GetSkillRank(SKILL_GUARD, PDefender->GetSJob() > 0;
 
-        if (validWeapon && (combinedGuardSkillCap > 0) && PDefender->PAI->IsEngaged())
+        if (validWeapon && hasGuardSkillRank && PDefender->PAI->IsEngaged())
         {
             // assuming this is like parry
             float skill = (float)PDefender->GetSkill(SKILL_GUARD) + PDefender->getMod(Mod::GUARD);
