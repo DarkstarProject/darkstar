@@ -165,7 +165,6 @@ INSERT INTO `mob_pool_mods` VALUES (181,2,9234,1); -- (Antican_Praetor) GIL_MAX
 --  Race Runner
 -- -------------------------
 INSERT INTO `mob_pool_mods` VALUES (3301, 29, 100, 0); -- Magic Def
-INSERT INTO `mob_pool_mods` VALUES (3301, 302, 10, 0); -- Triple Attack
 
 -- -------------------------
 --  Bloodlapper
