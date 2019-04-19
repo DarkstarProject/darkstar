@@ -1932,7 +1932,11 @@ INSERT INTO `mob_skill_lists` VALUES ('Seed_Yagudo',409,2413);
 INSERT INTO `mob_skill_lists` VALUES ('Seed_Goblin',410,590);
 INSERT INTO `mob_skill_lists` VALUES ('Seed_Goblin',410,591);
 INSERT INTO `mob_skill_lists` VALUES ('Seed_Goblin',410,2414);
--- 411 to 435: free
+INSERT INTO `mob_skill_lists` VALUES ('Capricious_Cassie',411,725);
+INSERT INTO `mob_skill_lists` VALUES ('Capricious_Cassie',411,726);
+INSERT INTO `mob_skill_lists` VALUES ('Capricious_Cassie',411,727);
+INSERT INTO `mob_skill_lists` VALUES ('Capricious_Cassie',411,728);
+-- 412 to 435: free
 INSERT INTO `mob_skill_lists` VALUES ('Bloodlapper',436,2162);
 INSERT INTO `mob_skill_lists` VALUES ('Ghillie_Dhu',437,685);
 INSERT INTO `mob_skill_lists` VALUES ('Highlander_Lizard',438,371);
