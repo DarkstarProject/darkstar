@@ -2688,7 +2688,7 @@ INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,317); -- vampiric lash
 INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,319); -- bad breath
 INSERT INTO `mob_skill_lists` VALUES ('Clingy_Clare',795,320); -- sweet breath
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,726); -- drain whip
-INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,727); -- bad breath
+INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,319); -- bad breath
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,2575); -- tainting breath
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,2574); -- thousand spears
 INSERT INTO `mob_skill_lists` VALUES ('Eccentric_Eve',796,1332); -- extremely bad breath
