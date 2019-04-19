@@ -23,7 +23,7 @@ function onTrigger(player, npc)
     if player:getCurrentMission(SANDORIA) == THE_RESCUE_DRILL then
         local missionStatus = player:getVar("MissionStatus")
 
-        if (missionStatus >= 2 && missionStatus <= 7) then
+        if (missionStatus >= 2 and missionStatus <= 7) then
             player:startEvent(1)
         elseif missionStatus >= 10 or player:hasCompletedMission(SANDORIA, THE_RESCUE_DRILL) then
             player:showText(npc, ID.text.RUILLONT_INITIAL_DIALOG + 9)
