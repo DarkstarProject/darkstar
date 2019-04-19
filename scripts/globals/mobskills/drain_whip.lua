@@ -23,13 +23,13 @@ function onMobWeaponSkill(target, mob, skill)
     local dmg = MobFinalAdjustments(info.dmg, mob, skill, target, dsp.attackType.MAGICAL, dsp.damageType.DARK, MOBPARAM_IGNORE_SHADOWS)
 
     local rnd = math.random()
-        if rnd < 0.33 then
-            drainEffect = MOBDRAIN_TP
-        elseif rnd < 0.67 then
-            drainEffect = MOBDRAIN_MP
-        else
-            drainEffect = MOBDRAIN_HP -- does this need to be here?
-        end
+    if rnd == 1 then
+        drainEffect = MOBDRAIN_TP
+    elseif rnd == 2 then
+        drainEffect = MOBDRAIN_MP
+    else
+        drainEffect = MOBDRAIN_HP
+    end
 
     skill:setMsg(MobPhysicalDrainMove(mob, target, skill, drainEffect, dmg))
 
