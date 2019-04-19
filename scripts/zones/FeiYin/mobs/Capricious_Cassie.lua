@@ -3,6 +3,7 @@
 --   NM: Capricious_Cassie
 -----------------------------------
 mixins = {require("scripts/mixins/rage")}
+require("scripts/globals/status")
 require("scripts/globals/titles")
 -----------------------------------
 
